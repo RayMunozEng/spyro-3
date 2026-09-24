@@ -5,24 +5,157 @@
 
 // sbss
 extern int D_8006C6D0;
+extern char g_CheatFlags;
+extern int D_8006E050;
 
 ///////////////////////////////////////////////////////////////////////
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001204C);
+/* Retail source: asm/nonmatchings/camera/func_8001204C.s,
+ * 0x8001204C..0x80012168; reset and cleanup execute once on call. */
+extern int D_8006E1D0, D_8006E1CC, D_8006E538, D_8006E044, D_8006E038;
+extern char D_80070328;
+extern void (*unk_ovlheader_80074328)(void*);
+void func_8005955C(int);
+void func_80055D24(void*, int);
+void func_80050B88(void*);
+void func_80055B18(void*);
+void func_8001204C(void) {
+    char* moby;
+    void* outer;
+    void* object;
+    func_80012168();
+    func_80017028();
+    func_8005955C(D_8006E1D0 + 0x155);
+    D_8006E1CC = 0;
+    if (*(int*)(&D_80070328 + 0x24C) == 4) {
+        outer = *(void**)(&D_80070328 + 0x250);
+        moby = *(char**)outer;
+        if ((D_8006E538 & 0x80) != 0) {
+            int stage = *(int*)(&D_80070328 + 0x48);
+            if (stage == 0x7B || (stage == 0x7A && D_8006E044 == 0x1F)) {
+                func_80055D24(outer, 4);
+                if (unk_ovlheader_80074328 != 0)
+                    unk_ovlheader_80074328(*(void**)(&D_80070328 + 0x250));
+                goto end;
+            }
+        }
+        object = *(void**)(moby + 0x88);
+        if (object != 0) {
+            func_80050B88(object);
+            *(void**)(moby + 0x88) = 0;
+        }
+        object = *(void**)(moby + 0x70);
+        if (object != 0) {
+            func_80055B18(object);
+            *(void**)(moby + 0x70) = 0;
+        }
+    }
+end:
+    D_8006E038 = 0;
+}
 
 /**
- * ???() - func_80012168()
- * WIP
- * https://decomp.me/scratch/IUiur
+ * Camera update - func_80012168() - MATCHING
+ * Rev 0 target: asm/nonmatchings/camera/func_80012168.s,
+ * 0x80012168..0x8001241C (173 instruction words).
+ * https://decomp.me/scratch/IUiur supplied the initial C candidate.
  */
-INCLUDE_ASM("asm/nonmatchings/camera", func_80012168);
+extern int D_8006C640;
+extern int deltaTime;
+extern int D_8006E0CC, D_8006E0D0, D_8006E0D4;
+extern int D_8006E1D4, D_8006E1D8, D_8006E1DC, D_8006E148;
+extern unsigned char D_8006E054;
+void func_80012168(void) {
+    int var_s0;
+    int var_v0;
+    int var_v1;
+    short framePad[2]; /* GCC 2.7.2 frame layout; no runtime access. */
+
+    func_800144B4();
+    if (camera.unk140[5] != 0) {
+        func_8004F178(&camera.nextCameraPosCartesian, (Vector3D*)&camera.unk1c4[9]);
+        camera.unk44 = camera.unk1f4[0];
+        camera.unk46 = camera.unk1f4[1];
+        camera.unk48 = camera.unk1f4[2];
+    } else {
+        var_s0 = 0;
+        if (deltaTime > 0) {
+            do {
+                var_s0 += 1;
+                func_80016568();
+            } while (var_s0 < deltaTime);
+        }
+        func_80012AC8();
+        func_80012B34();
+    }
+    var_v1 = ABS(camera.unk7c.pos[4].pos.azimuth)
+        + ABS(camera.unk7c.pos[4].pos.elevation) + ABS(D_8006E0CC);
+    camera.unk130 = var_v1 + ABS(D_8006E0D0) + ABS(D_8006E0D4);
+    if (D_8006E1D8 != 0) {
+        if (D_8006E1DC < D_8006E1D8) {
+            D_8006E1DC = D_8006E1D8;
+        }
+        D_8006E1D8 = D_8006E1D8 - deltaTime;
+        if (D_8006E1D8 < 0) {
+            D_8006E1D8 = 0;
+        }
+        camera.nextCameraPosCartesian.z +=
+            ((D_8006E1D4 * D_8006E1D8 * ((D_8006C640 & 2) - 1)) / camera.unk1c4[8]) >> 6;
+    } else {
+        camera.unk1c4[8] = 0;
+    }
+    if (camera.unk5c[0] != 0) {
+        var_s0 = ((camera.unk7c.pos[0].pos.azimuth - spyro.rotation.yaw) - 0x800) & 0xFFF;
+        if (var_s0 >= 0x801) {
+            var_s0 -= 0x1000;
+        }
+        var_v0 = ABS(var_s0);
+        if ((var_v0 < 0x40) || (D_8006E148 != 0) || (camera.unk140[4] != 0)) {
+            D_8006E054 = 0;
+        }
+    }
+}
 
 /**
  * ???() - func_8001241C() - MATCHING
  * Almost ready to add, but must have struct usage corrected first
  * https://decomp.me/scratch/FD6TW
  */
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001241C);
+extern int D_8006E088;
+extern int D_8006E08C;
+extern int D_8006E090;
+extern int D_8006E094;
+extern int D_8006E098;
+extern int D_8006E09C;
+extern int D_8006E0A0;
+extern int D_8006E0A4;
+extern int D_8006E0A8;
+extern int D_8006E0AC;
+extern int D_8006E0B0;
+extern int D_8006E0B4;
+extern int D_8006E0B8;
+extern int D_8006E0BC;
+extern int D_8006E0C0;
+extern int D_8006E148;
+void func_8001241C(void) {
+    int temp_v1;
+    int var_v0;
+    var_v0 = D_8006E148;
+    if (var_v0 != 0) {
+        D_8006E0B0 = var_v0;
+    } else {
+        temp_v1 = ((D_8006E088 - D_8006E09C) & 0xFFF);
+        D_8006E0B0 = (D_8006E088 - D_8006E09C) & 0xFFF;
+        D_8006E0B0 = temp_v1 < 0x801 ? D_8006E0B0 : temp_v1 - 0x1000;
+    }
+    D_8006E0B8 = D_8006E090 - D_8006E0A4;
+    D_8006E0B4 = (D_8006E08C - D_8006E0A0) & 0xFFF;
+    if (D_8006E0B4 >= 0x801) D_8006E0B4 -= 0x1000;
+    D_8006E0BC = (D_8006E094 - D_8006E0A8) & 0xFFF;
+    if (D_8006E0BC >= 0x801) D_8006E0BC -= 0x1000;
+    D_8006E0C0 = (D_8006E098 - D_8006E0AC) & 0xFFF;
+    if (D_8006E0C0 >= 0x801) D_8006E0C0 -= 0x1000;
+}
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_80012530);
 
@@ -53,7 +186,60 @@ void func_80012B34() {
  * WIP
  * https://decomp.me/scratch/b1d0d
  */
-INCLUDE_ASM("asm/nonmatchings/camera", func_80012BA8);
+/* Retail source: asm/nonmatchings/camera/func_80012BA8.s,
+ * 0x80012BA8..0x80012D18; one camera setup sequence per call. */
+extern char D_8006E058;
+extern int D_8006E064, D_8006E12C, D_8006E130;
+extern int D_8006E134, D_80071934;
+extern unsigned char D_8006E13E;
+void func_8004E790(void*, int, int);
+int func_80018368(Vector3D*, Vector3D*);
+void func_80012BA8(CameraPosition* origin) {
+    char* state = (char*)&D_8006E058;
+    CameraPosition* current;
+    CameraPosition* next;
+    Vector3D temp;
+    func_800142AC();
+    func_8004F178((Vector3D*)state, (Vector3D*)&D_80070328);
+    current = (CameraPosition*)(state + 0x30);
+    D_8006E064 = *(int*)(&D_80070328 + 0x64);
+    func_800135A4(current, origin, D_8006E064);
+    next = (CameraPosition*)(state + 0x44);
+    func_800135A4(next, current, 0);
+    func_800135A4((CameraPosition*)(state + 0x1C), current, 0);
+    func_80013900((CameraPosition*)(state + 0x6C));
+    func_800135F8((Vector3D*)(state + 0x10), (SphericalPosition*)next,
+                   (Vector3D*)state);
+    func_8004F178((Vector3D*)(state - 0x38), (Vector3D*)(state + 0x10));
+    func_80012B34();
+    D_8006E12C = 0;
+    D_8006E130 = 0;
+    func_8004E790(state + 0x108, 0, 0x70);
+    func_8004E790(state + 0x17C, 0, 0xC);
+    func_80016764(1);
+    if ((unsigned int)(*(int*)(&D_80070328 + 0x50) - 11) < 2) {
+        func_8004F178(&temp, (Vector3D*)(state - 0x38));
+        {
+            register Vector3D* a0 __asm__("$4") = (Vector3D*)(state - 0x38);
+            register Vector3D* a1 __asm__("$5") = &temp;
+            register int* hit __asm__("$16");
+            int z;
+            __asm__ volatile ("" : "=r"(a0), "=r"(a1) : "0"(a0), "1"(a1) : "memory");
+            z = temp.z;
+            __asm__ volatile ("" : "=r"(z) : "0"(z));
+            hit = &D_80071934;
+            *hit = 0;
+            __asm__ volatile ("" : "=r"(z) : "0"(z) : "memory");
+            temp.z = z - 0x1000;
+            func_80018368(a0, a1);
+            if (*hit != 0) D_8006E038 = 0;
+        }
+    } else {
+        D_8006E038 = 0;
+    }
+    D_8006E13E = 0;
+    D_8006E134 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_80012D18);
 
@@ -77,7 +263,16 @@ void func_800135A4(CameraPosition* arg0, CameraPosition* arg1, int arg2) {
  * Needs clean up but nearly ready to add
  * https://decomp.me/scratch/LWgh2
  */
-INCLUDE_ASM("asm/nonmatchings/camera", func_800135F8);
+extern int func_8004EA2C(int);
+extern int func_8004E9E4(int);
+void func_800135F8(Vector3D* arg0, SphericalPosition* arg1, Vector3D* arg2) {
+    arg0->x = (((int)(arg1->radius * func_8004EA2C(arg1->elevation)) >> 0xC) * func_8004EA2C(arg1->azimuth)) >> 0xC;
+    arg0->y = (((int)(arg1->radius * func_8004EA2C(arg1->elevation)) >> 0xC) * func_8004E9E4(arg1->azimuth)) >> 0xC;
+    arg0->z = (int)(arg1->radius * func_8004E9E4(arg1->elevation)) >> 0xC;
+    if (arg2 != 0) {
+        func_8004F194(arg0, arg0, arg2);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_800136F0);
 
@@ -105,9 +300,69 @@ void func_80013900(CameraPosition* arg0) {
     arg0->pitch = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_80013918);
+extern int D_8006E14C;
+extern int D_8006E344;
+extern int D_8006E538;
+extern char D_80070328;
+void func_80013918(int arg0) {
+    register int* pair __asm__("$5") = &D_8006E148;
+    int flags;
+    register int one __asm__("$6");
+    __asm__ volatile ("" : "=r"(pair) : "0"(pair));
+    *pair = 0;
+    if (D_8006E344 == 7) return;
+    flags = D_8006E538;
+    if (flags & 12) return;
+    one = 1;
+    if (pair[1] == one) pair[1] = 3;
+    if (*(int*)(&D_80070328 + 0x240)) return;
+    if ((flags & 3) == 2) {
+        *pair = arg0;
+        pair[1] = one;
+    }
+    if ((flags & 3) == one) {
+        *pair = -arg0;
+        __asm__ volatile ("" : "=r"(one) : "0"(one));
+        pair[1] = one;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_800139A4);
+extern int D_8006E150;
+extern int D_8006E074;
+void func_800139A4(void) {
+    if (D_8006E148 != 0) {
+        D_8006E14C = 1;
+        return;
+    }
+    if (D_8006E14C == 1) {
+        D_8006E150 = (D_8006E074 - D_8006E088) & 0xFFF;
+        if (D_8006E150 >= 0x801) D_8006E150 -= 0x1000;
+        D_8006E088 = D_8006E074;
+        D_8006E14C = 2;
+        return;
+    }
+    if (D_8006E14C == 2) {
+        if (D_8006E150 > 0) {
+            D_8006E150 -= 0x18;
+            if (D_8006E150 <= 0) {
+                D_8006E150 = 0;
+                D_8006E14C = 0;
+            }
+        } else {
+            D_8006E150 += 0x18;
+            if (D_8006E150 >= 0) {
+                D_8006E150 = 0;
+                D_8006E14C = 0;
+            }
+        }
+        {
+            register int* angle __asm__("$4") = &D_8006E088;
+            __asm__ volatile ("" : "=r"(angle) : "0"(angle));
+            *angle = (*angle + D_8006E150) & 0xFFF;
+            if (*angle >= 0x801) *angle -= 0x1000;
+        }
+    }
+}
 
 /**
  * ???() - func_80013ACC() - MATCHING
@@ -133,8 +388,46 @@ void func_80013AE4(Vector3D* arg0, Vector3D* arg1) {
     camera.unk170.pitch = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_80013B7C);
-
+/* Retail source: asm/nonmatchings/camera/func_80013B7C.s,
+ * 0x80013B7C..0x80013CC4; state and offsets are Rev 0 runtime addresses. */
+extern int D_8006E160, D_8006C74C, D_8006E048, D_8006E04C;
+extern unsigned char D_8006E13B;
+extern int D_80068CAC[];
+void func_80013B7C(int enabled) {
+    char* state = (char*)&D_8006E044;
+    char* shifted;
+    char* work;
+    int choice;
+    if (*(int*)state == 9) {
+        shifted = state + 0x14;
+        if (!enabled) goto disabled;
+        func_8004F178((Vector3D*)(state + 0x138), (Vector3D*)&D_80070328);
+        func_800135A4((CameraPosition*)(state + 0x124),
+                        (CameraPosition*)(state + 0x144), 0);
+        goto set_flag;
+    }
+    if (*(int*)state != 10) return;
+    shifted = state + 0x14;
+    if (enabled) goto enabled_ten;
+disabled:
+    D_8006E160 = 0;
+    func_8004F178((Vector3D*)shifted, (Vector3D*)&D_80070328);
+    work = state + 0x30;
+    D_8006E13B = func_800136F0((CameraPosition*)work,
+                                (Vector3D*)(state - 0x24), (Vector3D*)shifted);
+    func_800138A0((CameraPosition*)work, (CameraPosition*)work);
+    func_800135A4((CameraPosition*)(state + 0x58), (CameraPosition*)work, 0);
+    choice = D_80068CAC[*(int*)(&D_80070328 + 0x48)];
+    if (choice == 0) choice = 6;
+    func_80016764(choice);
+    D_8006C74C = 0;
+    return;
+enabled_ten:
+    if (*(int*)(state + 4) & 0x80) return;
+set_flag:
+    D_8006E048 = 0x80;
+    D_8006E04C = 0;
+}
 /**
  * ???() - func_80013CC4() - MATCHING
  * https://decomp.me/scratch/XL6u3
@@ -149,13 +442,48 @@ void func_80013CC4(int arg0, int arg1) {
     camera.unk1b4 = arg1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_80013D44);
+extern int D_8006E160;
+extern int D_8006E044;
+extern int D_8006E04C;
+extern int D_8006C598;
+extern void func_8004F168(Vector3D*);
+void func_80013D44(Vector3D* source, int shift, Vector3D* optional, int mode) {
+    if (*(int*)(&D_80070328 + 0x280) >= 0) {
+        int flag = 0;
+        register int* state __asm__("$4");
+        int shifted;
+        func_8004F178((Vector3D*)(&D_80070328 + 0x22C), source);
+        shifted = shift << 4;
+        __asm__ volatile ("" : "=r"(shifted) : "0"(shifted));
+        state = &D_8006E160;
+        __asm__ volatile ("" : "=r"(state) : "0"(state));
+        *(int*)(&D_80070328 + 0x238) = shifted;
+        *state = 11;
+        *(int*)(&D_80070328 + 0x23C) = mode;
+        if (optional != 0) {
+            func_8004F178((Vector3D*)((char*)state + 0x1C), optional);
+        } else {
+            func_8004F168((Vector3D*)((char*)state + 0x1C));
+        }
+        if (D_8006E044 == 9 && D_8006C598 >= 128) {
+            flag = 16;
+        }
+        func_80016764(11);
+        D_8006E04C = flag;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_80013E38);
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001405C);
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_800142AC);
+void func_800142AC(void) {
+    if (*((unsigned char*)&g_CheatFlags + 2)) {
+        D_8006E050 = 0;
+    } else {
+        D_8006E050 = 7;
+    }
+}
 
 /**
  * ???() - func_800142E0() - MATCHING
@@ -172,7 +500,23 @@ void func_800142E0() {
  * Ready to add
  * https://decomp.me/scratch/Oix8L
  */
-INCLUDE_ASM("asm/nonmatchings/camera", func_80014354);
+extern CameraPosition D_80069058, D_800719A8, D_80068FA4, D_80068FF4;
+extern int D_8006E1CC;
+void func_80014354(void) {
+    int* state = &camera.unk168;
+    if (*state == 13) {
+        func_800135A4((CameraPosition*)((char*)state - 0xD8), &D_80069058, camera.unk6c);
+    } else if (*(int*)((char*)&spyro + 0x244) != 0) {
+        func_800135A4((CameraPosition*)((char*)state - 0xD8), &D_800719A8, camera.unk6c);
+    } else if (*(int*)((char*)&spyro + 0x50) == 5) {
+        func_800135A4((CameraPosition*)((char*)state - 0xD8), &D_80068FA4, camera.unk6c);
+    } else if (*(int*)((char*)&spyro + 0x50) == 6) {
+        func_800135A4((CameraPosition*)((char*)state - 0xD8), &D_80068FF4, camera.unk6c);
+    } else {
+        func_800135A4((CameraPosition*)((char*)state - 0xD8), &D_80068F7C, camera.unk6c);
+    }
+    { int* angle = &D_8006E094; *angle = (*angle - D_8006E1CC) & 0xFFF; }
+}
 
 /**
  * ???() - func_80014450() - MATCHING

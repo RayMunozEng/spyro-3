@@ -53,7 +53,58 @@ extern LevelWadHeader levelWadHeader; // 80072098
  * WIP, lots of externs but a fairly short function
  * https://decomp.me/scratch/cbDKn
  */
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80034DAC);
+/* Retail source: asm/nonmatchings/mobyutil/func_80034DAC.s,
+ * 0x80034DAC..0x80034F40; Moby update occurs once per call. */
+extern unsigned char D_80070130[];
+extern char D_8006E00C[];
+extern char D_80070328;
+void func_8004ECF4(SHORTMATRIX*, void*);
+void func_8004ED6C(SHORTMATRIX*, void*, Vector3D*);
+void func_8004F1C8(Vector3D*, Vector3D*, Vector3D*);
+void func_8004F110(Vector3D*, int);
+void func_80055D24(Moby*, int);
+void func_80055F14(Moby*, int, void*);
+void func_80034DAC(Moby* moby) {
+    Vector3D delta;
+    SHORTMATRIX matrix;
+    char* tag = moby->mobyTag;
+    char* linked;
+    if ((*(unsigned char*)((char*)moby + 0x42) & 2) && moby->animationState.nextId != 0) {
+        D_8006C770 = 0;
+        {
+            unsigned char nextId = moby->animationState.nextId;
+            unsigned char nextFrame = moby->animationState.nextFrame;
+            moby->animationProgress = 0x72;
+            moby->animationState.nextId = 0;
+            moby->animationState.nextFrame = 0;
+            moby->animationState.id = nextId;
+            moby->animationState.frame = nextFrame;
+        }
+        func_80035734(moby);
+    }
+    *(unsigned char*)((char*)moby + 0x44) = D_80070130[0];
+    *(unsigned char*)((char*)moby + 0x45) = D_80070130[1];
+    func_8003585C(moby, D_80070130[2], 16, 0, 0, 0);
+    func_8004ECF4(&matrix, D_8006E00C);
+    func_8004ED6C(&matrix, D_80070130 - 0x18, &delta);
+    func_8004F194(&delta, &delta, (Vector3D*)(D_8006E00C + 0x14));
+    func_8004F1C8(&delta, &delta, &moby->position);
+    func_8004F110(&delta, 2);
+    func_8004F194(&moby->position, &moby->position, &delta);
+    func_80055D24(moby, 4);
+    linked = *(char**)(tag + 0x10);
+    if (linked != 0) {
+        int value;
+        linked[0x13] = 0x7F;
+        value = *(int*)(&D_80070328 + 0x280);
+        if (value >= 4) {
+            (*(char**)(tag + 0x10))[0x10] = value;
+        } else {
+            (*(char**)(tag + 0x10))[0x10] = 1;
+        }
+        func_80055F14(moby, 0, *(void**)(tag + 0x10));
+    }
+}
 
 /** 
  * DoMobyAnimation - func_80034F40() - MATCHING
@@ -74,7 +125,33 @@ void func_80034F40(Moby* moby, int newId) {
  * Weird, has that weird array I've labelled as "moby sound pointers"??
  * https://decomp.me/scratch/wbxvf
  */
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80034F80);
+extern int D_8006EE2C[];
+void func_80034F80(Moby* moby, int animation) {
+    unsigned char* bytes = (unsigned char*)moby;
+    if (bytes[0x3C] != animation) {
+        int klass;
+        int table;
+        unsigned char* descriptor;
+        register unsigned int first __asm__("$2");
+        int flag;
+        klass = *(short*)(bytes + 0x36);
+        bytes[0x42] = 0;
+        table = D_8006EE2C[klass];
+        descriptor = *(unsigned char**)(table + animation * 4 + 0x3C);
+        first = descriptor[0];
+        __asm__ volatile ("" : "=r"(first) : "0"(first));
+        bytes[0x3C] = animation;
+        bytes[0x3D] = animation;
+        bytes[0x3E] = 0;
+        bytes[0x3F] = 1;
+        __asm__ volatile ("" : "=r"(first) : "0"(first), "m"(bytes[0x3F]));
+        flag = first < 2;
+        __asm__ volatile ("" : "=r"(flag) : "0"(flag));
+        flag ^= 1;
+        flag = -flag;
+        bytes[0x40] = flag & 0x30;
+    }
+}
 
 /**
  * SetDefaultMobyProperties() - func_80034FEC() - MATCHING
@@ -99,7 +176,45 @@ void func_80034FEC(Moby* arg0) {
  * Maybe consider making a txt file with my common functions and externed variables when this is in too
  * https://decomp.me/scratch/KUovp
  */
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80035030);
+int func_80035030(Moby* arg0, int* arg1, int arg2, int* arg3, int arg4, int arg5, int arg6, int arg7) {
+    int temp_v0;
+    int temp_v1_2;
+    int temp_v1_3;
+    int var_a3;
+    int var_s3;
+    int var_v0;
+    int var_v1;
+    var_v1 = arg7;
+    var_s3 = 0;
+    var_a3 = arg6;
+    if (arg3 == 0) var_v1 |= 4;
+    if (var_v1 & 0x4000) var_a3 = 0;
+    if (*arg1 != 0) {
+        var_s3 = func_80035EE0(arg0, arg2, *arg1, var_a3, arg6, var_v1 | 0x2000);
+        *arg1 -= arg4;
+        if (*arg1 < 0) *arg1 = 0;
+    }
+    if (arg3 != 0) {
+        var_v0 = var_s3;
+        if (*arg3 != 0xFFFF) {
+            temp_v0 = func_80035D84(arg0, 0x258);
+            arg0->position.z += *arg3;
+            temp_v1_2 = *arg3 - arg5;
+            *arg3 = temp_v1_2;
+            if (temp_v1_2 < -0x104) *arg3 = -0x104;
+            if (*arg3 <= 0) {
+                temp_v1_3 = temp_v0 + arg0->distanceToGround;
+                if (arg0->position.z < temp_v1_3) {
+                    arg0->position.z = temp_v1_3;
+                    var_s3 = 3;
+                }
+            }
+            func_80056270(arg0);
+            func_8005629C(arg0);
+        }
+    }
+    return var_s3;
+}
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80035194);
 
@@ -229,7 +344,61 @@ int func_800359A4(void* pTimer, int pTimerType) {
  * Path related, needs better struct naming but is ready to add
  * https://decomp.me/scratch/MfTDY
  */
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80035A80);
+/* Retail Rev 0: 0x80035A80..0x80035D38. Path nodes hold runtime
+ * Vector3D coordinates; updates run on each call with D_8006C648 ticks. */
+typedef struct { Vector3D unk0; int unkC; } PathNodeRev0;
+typedef struct {
+    short unk0, unk2;
+    int unk4;
+    short unk8, unkA;
+    PathNodeRev0* unkC;
+} PathHeaderRev0;
+int func_8004F334(Vector3D*, Vector3D*);
+int func_80035DDC(Moby*, int, int, int, int);
+int func_80035A80(Moby* arg0, PathHeaderRev0* arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7) {
+    int temp_a0;
+    int temp_v0;
+    int temp_v0_4;
+    int temp_v0_5;
+    int var_s0_2;
+    int var_s4;
+    int var_s6;
+    int var_v0;
+    var_s4 = 0;
+    var_s6 = 0;
+    if (arg7 & 0x100) {
+        temp_v0 = arg0->position.z - arg1->unkC[arg1->unk2].unk0.z;
+        var_s0_2 = (ABS(temp_v0) < arg2);
+    } else {
+        var_s0_2 = 1;
+    }
+    if (func_8004F334(&arg0->position, &arg1->unkC[arg1->unk2].unk0) < arg2) {
+        if (var_s0_2) var_s4 = 1;
+    }
+    if (arg7 & 0x20000) {
+        if (func_8004F264(arg0->angle.yaw, func_8004E880(arg1->unkC[arg1->unk2].unk0.x - arg0->position.x, arg1->unkC[arg1->unk2].unk0.y - arg0->position.y, 0)) >= 0x41)
+            var_s4 = 1;
+    }
+    if (var_s4 != 0) {
+        temp_a0 = arg1->unk2 + arg1->unkA;
+        arg1->unk2 = (temp_a0 + arg1->unk0) % arg1->unk0;
+        if (temp_a0 != arg1->unk2) var_s6 = 3;
+        else var_s6 = 1;
+    }
+    temp_v0_4 = func_8004E880(arg1->unkC[arg1->unk2].unk0.x - arg0->position.x, arg1->unkC[arg1->unk2].unk0.y - arg0->position.y, 0);
+    temp_v0_5 = func_8004F264(temp_v0_4, arg0->angle.yaw);
+    if (arg6 >= temp_v0_5) {
+        func_8003585C(arg0, temp_v0_4, arg5, arg6, 1, 0);
+        func_80035DDC(arg0, arg3, arg4, 0, arg7);
+    } else {
+        if (D_8006C648 == 3) arg5 += arg5 >> 1;
+        else if (D_8006C648 == 4) arg5 *= 2;
+        MAX(arg5, temp_v0_5);
+        func_8003585C(arg0, temp_v0_4, arg5, 0x80, 1, 0);
+    }
+    if (func_8004F264(temp_v0_4, arg0->angle.yaw) > 0) var_s6 |= 4;
+    return var_s6;
+}
 
 /**
  * SnapMobyToGround() - func_80035D38() - MATCHING
@@ -250,7 +419,13 @@ int func_80035D38(Moby* moby) {
  * Ready to add
  * https://decomp.me/scratch/pfFhX
  */
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80035D84);
+int func_80035D84(Moby* moby, int range) {
+    int result;
+    moby->position.z += range;
+    result = func_8001A358(&moby->position, 0x1000);
+    moby->position.z -= range;
+    return result;
+}
 
 /**
  * ???() - func_80035DDC() - MATCHING
@@ -277,7 +452,23 @@ int func_80035DDC(Moby* arg0, int arg1, int arg2, int arg3, int arg4) {
  * Does something involving moving a moby and some sin / cos stuff
  * https://decomp.me/scratch/jDsId
  */
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80035EE0);
+int func_80035EE0(Moby* arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
+    Vector3D sp18;
+    if (!(arg5 & 0x10000)) {
+        if (D_8006C648 == 3) arg2 += arg2 >> 1;
+        else if (D_8006C648 == 4) arg2 *= 2;
+    }
+    sp18.x = (D_80065920[arg1] * arg2) >> 0xC;
+    sp18.y = (D_800658A0[arg1] * arg2) >> 0xC;
+    sp18.z = 0;
+    func_8004F194(&sp18, &sp18, &arg0->position);
+    if (arg5 & 0x2000) {
+        if (sp18.x < 0x400) sp18.x = 0x400;
+        if (sp18.y < 0x400) sp18.y = 0x400;
+        if (sp18.z < 0x400) sp18.z = 0x400;
+    }
+    return func_80038000(arg0, &sp18, arg4, arg3, arg5);
+}
 
 /** 
  * ???() - func_80036018() - MATCHING
@@ -359,10 +550,62 @@ int func_8003617C(int arg0, int arg1) {
  * Ready to implement
  * https://decomp.me/scratch/a5QDz
  */
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80036188);
+extern int func_8004F388(int);
+void func_80036188(Angle* out) {
+    Vector3D* vec = &D_80071900.D_80071918;
+    int magnitude = func_8004F388(vec->x * vec->x + vec->z * vec->z);
+    ((char*)out)[0] = -func_8004E880(magnitude, vec->y, 0);
+    ((char*)out)[1] = -func_8004E880(vec->z, vec->x, 0);
+}
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80036220);
-
+void func_8004F1C8(Vector3D*, Vector3D*, Vector3D*);
+int func_80036220(Vector3D* position, char* bounds, int margin, int zLimit) {
+    Vector3D rotated;
+    Vector3D delta;
+    int angle = *(int*)(bounds + 0x14);
+    register int rx __asm__("$3");
+    register int ry __asm__("$4");
+    int width;
+    int height;
+    int z;
+    func_8004F1C8(&delta, position, (Vector3D*)bounds);
+    {
+        int firstProduct = delta.x * D_80065920[angle];
+        int secondProduct = delta.y * D_800658A0[angle];
+        register int first __asm__("$3") = firstProduct >> 12;
+        register int second __asm__("$2") = secondProduct >> 12;
+        rx = first - second;
+    }
+    rotated.x = rx;
+    {
+        int firstProduct = delta.x * D_800658A0[angle];
+        int secondProduct = delta.y * D_80065920[angle];
+        register int first __asm__("$4") = firstProduct >> 12;
+        register int second __asm__("$2") = secondProduct >> 12;
+        ry = first + second;
+    }
+    rotated.y = ry;
+    width = *(int*)(bounds + 0xC);
+    if (rx < 0) rx = -rx;
+    if (rx >= width + margin) return 0;
+    height = *(int*)(bounds + 0x10);
+    {
+        register int absY __asm__("$3");
+        if (ry >= 0) {
+            absY = ry;
+        } else {
+            absY = ry;
+            __asm__ volatile ("subu %0,$zero,%0" : "=r"(absY) : "0"(absY));
+        }
+        if (absY < height + margin) {
+            if (zLimit == 0) return 1;
+            z = delta.z;
+            if (z < 0) z = -z;
+            return z <= zLimit;
+        }
+    }
+    return 0;
+}
 /**
  * RandBetween() - func_8003636C() - MATCHING
  * https://decomp.me/scratch/GldaF
@@ -387,15 +630,132 @@ int func_800363DC(int low, int high) {
     return -out;
 }
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003645C);
+typedef struct {
+    short count;
+    short selectedIndex;
+    int unknown4;
+    int unknown8;
+    char* points;
+} PathPointSet;
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80036518);
+extern int func_8004F334(Vector3D*, Vector3D*);
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800365E4);
+int func_8003645C(Vector3D* position, PathPointSet* path, int* selectedIndex) {
+    int index;
+    int bestIndex = 0;
+    int bestDistance = 0xFFFFFF;
+
+    for (index = 0; index < path->count; index++) {
+        int distance = func_8004F334(position, (Vector3D*)(path->points + index * 16));
+        if (distance < bestDistance) {
+            bestDistance = distance;
+            bestIndex = index;
+        }
+    }
+
+    if (selectedIndex != 0) {
+        *selectedIndex = bestIndex;
+    }
+    return bestDistance;
+}
+
+/* Retail source: asm/nonmatchings/mobyutil/func_80036518.s,
+ * 0x80036518..0x800365E4; path node stride is 16 runtime bytes. */
+typedef struct { short count, unk2; int unk4, unk8; char* nodes; } PathFindHeader;
+void func_8004F1C8(Vector3D*, Vector3D*, Vector3D*);
+int func_8004EDE8(Vector3D*, int);
+int func_80036518(Vector3D* position, PathFindHeader* path, int* closestIndex) {
+    int best = 0xFFFFFF;
+    int bestIndex = 0;
+    int i;
+    for (i = 0; i < path->count; i++) {
+        Vector3D delta;
+        int distance;
+        func_8004F1C8(&delta, (Vector3D*)(path->nodes + i * 16), position);
+        distance = func_8004EDE8(&delta, 1);
+        if (distance < best) {
+            best = distance;
+            bestIndex = i;
+        }
+    }
+    if (closestIndex != 0) *closestIndex = bestIndex;
+    return best;
+}
+
+int func_800365E4(Vector3D* first, Vector3D* second, int divisor,
+                  int acceleration, int* outSteps) {
+    int delta[2];
+    int steps;
+    delta[0] = first->x - second->x;
+    delta[1] = first->y - second->y;
+    steps = func_8004EDE8((Vector3D*)delta, 0) / divisor;
+    if (outSteps != 0) *outSteps = steps;
+    if (steps != 0) {
+        return -(first->z - second->z + ((acceleration * (steps * steps)) >> 1)) / steps;
+    }
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80036708);
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800368A4);
+/* Retail source: asm/nonmatchings/mobyutil/func_800368A4.s,
+ * 0x800368A4..0x800369B8; raw integer state fields. */
+int func_800368A4(void* object, int value, int mode) {
+    register int level asm("$7") = value;
+    register char* state asm("$8") = object;
+    register int high asm("$5");
+    register int part asm("$3");
+    register int base asm("$4");
+    register int temp asm("$2");
+    int flags;
+    if (level == 0) {
+        if (!(*(int*)(state + 0x18) & 0x10000)) {
+            return level;
+        }
+    }
+    flags = *(int*)(state + 0x18);
+    if (flags & 0x10000) {
+        if (mode == 2) {
+            level += 0x20;
+            if (level >= 0x51) level = 0x50;
+        } else {
+            level += 0x10;
+            if (level >= 0x40) level = 0x3F;
+        }
+    } else {
+        level--;
+        if (level >= 0x21) level--;
+    }
+    if (mode == 0) {
+        *(int*)(state + 0x54) = 0x30000080 + ((level >> 2) << 24);
+    } else {
+        if (mode == 2) {
+            temp = 0xF0000000;
+            high = *(int*)(state + 0x54);
+            base = 0x0D000000;
+            high &= temp;
+            temp = 0x50 - level;
+            part = temp << 16;
+        } else {
+            temp = 0xF0000000;
+            part = 0x60 - level;
+            part <<= 16;
+            high = *(int*)(state + 0x54);
+            base = 0x0D000000;
+            high &= temp;
+            temp = 0x50 - level;
+        }
+        temp <<= 8;
+        temp += base;
+        part += temp;
+        part += 0x50;
+        temp = level << 1;
+        part += temp;
+        high += part;
+        *(int*)(state + 0x54) = high;
+    }
+    return level;
+}
 
 /**
  * ???() - func_800369B8() - MATCHING
@@ -441,7 +801,20 @@ void func_80037014(Moby* moby) {
     func_8005629C(moby);
 }
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80037058);
+extern int D_8006C644;
+int func_80037058(int x, int y) {
+    Vector3D planar;
+    int distance;
+    int phase;
+    int value;
+    planar.x = 0x1400 - (x % 10240);
+    planar.y = 0x1400 - (y % 10240);
+    distance = func_8004EDE8(&planar, 0);
+    phase = 0xFF - (distance * 255) / 7241;
+    phase += (D_8006C644 * 3) / 2;
+    value = D_80065920[phase & 0xFF];
+    return ((short)(value / 200)) << 2;
+}
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80037168);
 
@@ -531,7 +904,44 @@ INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80037324);
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80037768);
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80037A60);
+/* Retail source: asm/nonmatchings/mobyutil/func_80037A60.s,
+ * 0x80037A60..0x80037BBC. Values use raw integer storage;
+ * D_8006C648 products shift right by one. Cadence is once per call. */
+int func_80037A60(Moby* moby, void* state, int widthArg, int decrementArg, int minimum) {
+    register int width asm("$18") = widthArg;
+    register int decrement asm("$17") = decrementArg;
+    int ground = func_80035D38(moby);
+    int step = (decrement * D_8006C648) >> 1;
+    int velocity;
+    volatile char compilerLocal[1]; /* preserves the retail 48-byte frame */
+    if (width == 4) {
+        int old;
+        old = *(int*)state;
+        velocity = old;
+        *(int*)state = old - step;
+        if (*(int*)state < minimum) *(int*)state = minimum;
+    } else if (width == 2) {
+        int old;
+        old = *(short*)state;
+        velocity = old;
+        *(short*)state = old - step;
+        if (*(short*)state < minimum) *(short*)state = minimum;
+    } else {
+        register int byteOld asm("$2");
+        byteOld = *(unsigned char*)state;
+        __asm__("" : "=r"(byteOld) : "0"(byteOld));
+        velocity = byteOld & 0xFF;
+        *(unsigned char*)state = byteOld - step;
+        if (*(unsigned char*)state < minimum) *(unsigned char*)state = minimum;
+    }
+    velocity = (velocity * D_8006C648) >> 1;
+    if (velocity <= 0 && moby->position.z - moby->distanceToGround + velocity < ground) {
+        moby->position.z = ground + moby->distanceToGround;
+        return 1;
+    }
+    moby->position.z += velocity;
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80037BBC);
 

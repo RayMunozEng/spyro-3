@@ -11,6 +11,7 @@
 #include "str.h"
 #include "warp.h"
 #include "ovl_header.h"
+#include "spyro.h"
 
 // spyroupdate
 extern void func_8003E83C(); // UpdateSpyro
@@ -45,7 +46,58 @@ INCLUDE_ASM("asm/nonmatchings/update", func_80050F18);
 
 INCLUDE_ASM("asm/nonmatchings/update", func_800512E4);
 
-INCLUDE_ASM("asm/nonmatchings/update", func_800518F8);
+extern int D_8006E344;
+extern int D_8006C74C;
+extern char D_80070328;
+extern int D_8006C620;
+extern int D_8006C684[];
+extern unsigned char* D_8006C68C[];
+extern int D_8006C778;
+extern int D_8006C72C;
+extern Moby* D_8006C5A8;
+extern int D_8006C770;
+extern short D_8006C57C;
+extern Moby* D_8006C69C;
+extern int D_8006C5FC;
+extern int D_8006C590;
+extern void func_80035734(Moby*);
+/* Retail source: asm/nonmatchings/update/func_800518F8.s,
+ * 0x800518F8..0x80051A60; raw bytes and per-call state reset. */
+void func_800518F8(void) {
+    int i;
+    int j;
+    for (i = 0; i < D_8006C620; i++) {
+        for (j = 0; j < D_8006C684[i]; j++) {
+            D_8006C68C[i][j] = 0x5E;
+        }
+    }
+    if (D_8006C778 != D_8006C72C) {
+        Moby* moby = (Moby*)D_8006C5A8;
+        if (moby->animationState.nextId != D_8006C72C) {
+            D_8006C770 = 0;
+            moby->animationProgress = 0xF2;
+            ((Moby*)D_8006C5A8)->animationState.nextId = D_8006C72C;
+            ((Moby*)D_8006C5A8)->animationState.nextFrame = 0;
+            func_80035734((Moby*)D_8006C5A8);
+        }
+    }
+    {
+        int* current = (int*)D_8006C5A8;
+        int tag;
+        D_8006C57C = -1;
+        D_8006E344 = 0;
+        tag = *current;
+        /* Preserve the retail load delay; this emits no instruction. */
+        asm volatile ("" : : "r"(tag));
+        D_8006C69C = 0;
+        D_8006C5FC = 0;
+        D_8006C590 = -1;
+        D_8006C74C = 0;
+        if (*((unsigned char*)tag + 5) == 2) {
+            *(int*)(&D_80070328 + 0x20C) = 0x10000002;
+        }
+    }
+}
 
 /**
  * ???() - func_80051A60() - MATCHING
@@ -53,20 +105,440 @@ INCLUDE_ASM("asm/nonmatchings/update", func_800518F8);
  * Differs in 1.1, so would be interesting to add
  * https://decomp.me/scratch/ziJbr
  */
-INCLUDE_ASM("asm/nonmatchings/update", func_80051A60);
+/* Rev 0 source hypothesis: asm/nonmatchings/update/func_80051A60.s. */
+extern int D_8006C790, D_8006C78C, D_8006C648, D_8006C5C4;
+extern unsigned char D_8006C680;
+void func_80047D00(Moby*);
+void func_80055294(int);
+extern short D_80065920[0x100], D_800658A0[0x100];
+#define D_80070328 g_Spyro
+typedef struct {
+    short unk0;
+    short unk2;
+    short unk4;
+    short unk6;
+} MobyTag_132;
+extern CameraPosition D_80069094[]; // this too
+extern CameraPosition D_800690F8[]; // this one actually DOES seem to be an array of CameraPositions! Not sure how big
+extern CameraPosition D_8006915C[]; // this too
+extern int D_8006C51C;
+extern int D_8006C520;
+extern unsigned char D_8006C53C;
+extern short D_8006C544;
+extern int D_8006C594;
+extern unsigned char D_8006C5AC;
+extern int D_8006C624;
+extern SoundTable* D_8006C654; // may be better off as a char*, really
+extern int D_8006C66C;
+extern int D_8006C674;
+extern int D_8006C6A4;
+extern int D_8006C6D8;
+extern int D_8006C6DC;
+extern unsigned char D_8006C6E4;
+extern int D_8006C6E8;
+extern int D_8006C6FC;
+extern int D_8006C794;
+extern int D_8006C798;
+extern unsigned char D_8006C7A4;
+extern int D_8006C7BC;
+extern short D_80071938[]; // not sure how long this is
 
+static inline void SetAnimation2(Moby* m, int prog, int next) {
+    D_8006C770 = 0;
+    m->animationProgress = prog;
+    m->animationState.nextId = next;
+    m->animationState.nextFrame = 0;
+    func_80035734(m);
+}
+
+#define SetAnimation(moby, prog, id) \
+    D_8006C770 = 0;\
+    (moby)->animationProgress = (prog);\
+    (moby)->animationState.nextId = (id);\
+    (moby)->animationState.nextFrame = 0;\
+    func_80035734(moby);
+
+void func_80051A60() {
+    Vector3D sp10;
+    char temp_v0_3;
+    int temp_v0_6;
+    int var_s0;
+    int var_v0_5;
+    int var_v1;
+    char temp_s1;
+
+    // I struggled to find a match that didn't have a goto, good luck
+	if (D_8006C778 != D_8006C72C) {
+		if (D_8006C674 == 0xFF) {
+			if (D_8006C5A8->animationState.nextId != D_8006C778) {
+				SetAnimation(D_8006C5A8, 0xF2, D_8006C778);
+			}
+		}
+		else {
+			if (D_8006C5A8->animationState.nextId != D_8006C778) {
+				if ((streamingData.dat_8006e4b4 == 2) && (streamingData.dat_8006e48c == 6 || streamingData.dat_8006e48c == 7)) {
+					SetAnimation(D_8006C5A8, 0xF2, D_8006C778);
+					goto block_out;
+				}
+				if (D_8006C5A8->animationState.nextId != D_8006C778) {
+					goto block_out;
+				}
+			}
+			if ((streamingData.dat_8006e4b4 != 2) || !((streamingData.dat_8006e48c == 6 || streamingData.dat_8006e48c == 7))) {
+				if (D_8006C5A8->animationState.nextId != D_8006C72C) {
+					SetAnimation(D_8006C5A8, 0xF2, D_8006C72C);
+				}
+				if (D_8006C798 != 0) {
+                    // 1.1 only:
+                    // D_8006C798 = 0;
+					D_8006C790 = 2;
+					D_8006C78C = 0;
+				}
+			}
+		}
+	}
+block_out:
+
+    D_8006C74C = 1;
+    if (D_8006C790 == 0) {
+        D_8006C78C += D_8006C648;
+        if ((D_8006C78C >= 0x3C) && (D_8006C78C >= 0x4C)) { // ???????
+            D_8006C78C = 0;
+            D_8006C790 = 1;
+        }
+    }
+    else if (D_8006C790 == 1) {
+        if (D_8006C7A4 != 0) {
+            D_8006C78C += D_8006C648;
+            if ((D_8006C53C == 0) && (pad.state.pressed & 0x5000)) {
+                PlaySound(D_8006C654->pauseMove, 0, 0);
+                D_8006C78C = 0;
+                if (pad.state.pressed & 0x1000) {
+                    D_8006C57C--;
+                }
+                else if (pad.state.pressed & 0x4000) {
+                    D_8006C57C++;
+                }
+                D_8006C57C = (D_8006C57C + D_8006C6E4) % D_8006C6E4;
+            }
+            if ((pad.state.pressed & 0x840) || ((D_8006C53C != 0) && (pad.state.pressed & 0x810))) {
+                if (D_8006C53C != 0) {
+                    PlaySound(D_8006C654->pauseExit, 0, 0x80);
+                    D_8006C790 = 2;
+                    D_8006C78C = 0;
+                }
+                else {
+                    func_80037768(D_8006C5A8);
+                    if (D_8006C7A4 != 0) {
+                        func_800512E4(D_8006C5A8, D_8006C72C, D_8006C778);
+                        if (D_8006C544 == 0) {
+                            D_8006C57C = -1;
+                        }
+                    } else {
+                        PlaySound(D_8006C654->pauseExit, 0, 0x80);
+                        D_8006C790 = 2;
+                        D_8006C78C = 0;
+                    }
+                }
+            }
+        } else if ((D_8006C5AC != 0) && (pad.state.pressed & 0x850)) {
+            // 1.1: seems to have this here
+            // D_8006C798 = 0;
+            if (D_8006C544 != 0) {
+                D_8006C7A4 = 1;
+            } else if (D_8006C624 != -1) {
+                func_80037768(D_8006C5A8);
+                func_800512E4(D_8006C5A8, D_8006C72C, D_8006C778);
+            } else {
+                PlaySound(D_8006C654->pauseExit, 0, 0x80);
+                D_8006C790 = 2;
+                D_8006C78C = 0;
+            }
+        } else if (D_8006C6D8 != 0) {
+            if (pad.state.pressed & 0x840) { // TODO - where pad.state is mentioned, replace this with the buttons
+                // 1.1: this if statement also requires ((D_8006C798 == 0) || ((streamingData.dat_8006e4b4 == 2) && (streamingData.dat_8006e48c == 6 || streamingData.dat_8006e48c == 7)))
+                // Ghidra suggests this if statement goes above this if:
+                /*
+                if ((DAT_8006c878 != 0) && ((DAT_8006e594 != 2 || (1 < DAT_8006e56c - 6U)))) {
+                    bVar1 = true;
+                }
+                */
+                D_8006C6E8 += 3;
+                if (D_8006C6E8 >= D_8006C6A4) {
+                    D_8006C6DC = D_8006C520;
+                } else {
+                    D_8006C6DC = D_80071938[D_8006C6E8];
+                }
+                D_8006C6D8 = 0;
+            }
+        } else {
+            if (D_8006C794 != 0) {
+                D_8006C78C += 2;
+                D_8006C51C = (D_8006C78C * D_8006C520) / D_8006C594;
+                if (pad.state.pressed & 0x840) {
+                    D_8006C794 = 0;
+                    streamingData.dat_8006e498 = 1;
+                    if (D_8006C6FC < 5) {
+                        D_8006C6E8 = 5;
+                    }
+                    else if (D_8006C6FC < 8) {
+                        D_8006C6E8 = 8;
+                    }
+                    else if (D_8006C6FC < 11) {
+                        D_8006C6E8 = 11;
+                    }
+                    if (D_8006C6A4 <= D_8006C6E8) {
+                        D_8006C6DC = D_8006C520;
+                    } else {
+                        D_8006C6DC = D_80071938[D_8006C6E8];
+                    }
+                }
+            } else {
+                D_8006C51C += 3;
+                if (pad.state.pressed & 0x840) {
+                    D_8006C51C = D_8006C6DC;
+                }
+            }
+            if (D_8006C51C >= D_8006C520) {
+                D_8006C51C = D_8006C520;
+                D_8006C5AC = 1;
+            } else if (D_8006C51C >= D_8006C6DC) {
+                D_8006C51C = D_8006C6DC;
+                D_8006C6D8 = 1;
+            } else if (D_8006C7BC != 0) {
+                if (D_8006C51C >= D_80071938[1 + D_8006C6FC]) {
+                    D_8006C51C = D_80071938[1 + D_8006C6FC] - 1;
+                }
+            }
+        }
+    }
+    else if (D_8006C790 == 2) {
+        if (D_8006C78C == 0) {
+            func_80037768(D_8006C5A8);
+            if ((D_8006C5FC != 0) && (D_8006C5C4 == 0)) {
+                SpawnMoby(272, D_8006C5A8);
+            }
+        }
+        D_8006C78C += D_8006C648;
+        if (D_8006C78C >= 0x18) {
+            if (D_8006C5C4 != 0) {
+                D_8006C790 = 3;
+                D_8006C78C = 0;
+                temp_s1 = D_8006C5A8->angle.yaw;
+                if ((D_80070328.critterMode == CRITTER_BENTLEY) || (D_80070328.critterMode == CRITTER_BENTLEY_BOXING)) {
+                    var_v1 = D_800690F8[D_8006C590].pos.azimuth;
+                    var_v0_5 = ((temp_s1 * 0x10 + 0x800 + var_v1) & 0xFFF) >> 4;
+                } else {
+                    var_v1 = D_80069094[D_8006C590].pos.azimuth;
+                    var_v0_5 = ((temp_s1 * 0x10 + 0x800 + var_v1) & 0xFFF) >> 4; // :(
+                }
+                if (D_8006C590 == 0) {
+                    D_8006C590 = 3;
+                    var_s0 = 0x600;
+                } else {
+                    D_8006C590 = 4;
+                    var_s0 = 0xA00;
+                }
+                if (camera.cameraState == 0x12) {
+                    camera.unk50 = 1;
+                }
+                temp_v0_3 = temp_s1 - (func_8003613C(temp_s1, var_v0_5) >> 1);
+                sp10.x = (D_80065920[temp_v0_3] * 0x27) >> 7;
+                sp10.y = (D_800658A0[temp_v0_3] * 0x27) >> 7;
+                sp10.z = 0;
+                sp10.z = (D_80070328.position.z - D_8006C5A8->position.z) - 0x40;
+                func_8004F194(&camera.unk60, &D_8006C5A8->position, &sp10);
+                camera.unk6c = (D_80070328.rotation.yaw + var_s0) & 0xFFF;
+                if (D_80070328.critterMode == CRITTER_BENTLEY) {
+                    func_800135A4(&camera.unk170, &D_800690F8[D_8006C590], 0);
+                }
+                else if (D_80070328.critterMode == CRITTER_BENTLEY_BOXING) {
+                    D_8006C590 &= 1;
+                    if (D_8006C590 == 0) {
+                        var_s0 = 0xC00;
+                    }
+                    else {
+                        var_s0 = 0x400;
+                    }
+                    camera.unk6c = (D_80070328.rotation.yaw + var_s0) & 0xFFF;
+                    func_800135A4(&camera.unk170, &D_8006915C[D_8006C590], 0);
+                }
+                else {
+                    func_800135A4(&camera.unk170, &D_80069094[D_8006C590], 0);
+                }
+                func_800136F0(&camera.unk7c.pos[0], &camera.nextCameraPosCartesian, &camera.unk60);
+                func_800138A0(&camera.unk7c.pos[0], &camera.unk7c.pos[0]);
+                func_800135A4(&camera.unk7c.pos[2], &camera.unk7c.pos[0], 0);
+            } else {
+                if (D_8006C5FC != 0) {
+                    D_8006C790 = 5;
+                    D_8006C78C = 0;
+                }
+                else {
+                    func_800518F8();
+                }
+            }
+        }
+    }
+    else if (D_8006C790 == 3) {
+        D_8006C78C++;
+        if (D_8006C78C == 0x1E) {
+            D_8006C69C = SpawnMoby(D_8006C5C4, D_8006C5A8);
+            if (D_8006C69C != 0) {
+                if (D_8006C5C4 == 0x84) {
+                    MobyTag_132* tag = D_8006C69C->mobyTag;
+                    tag->unk0 = D_8006C66C;
+                    tag->unk6 = D_80070328.bodyRotation.yaw;
+                    D_8006C69C->size = 0x7F;
+                }
+                func_8004F178(&D_8006C69C->position, &camera.unk60);
+                D_8006C69C->position.z = D_8006C5A8->position.z;
+                temp_v0_6 = func_80035D38(D_8006C69C);
+                if (temp_v0_6 != 0) {
+                    D_8006C69C->position.z = temp_v0_6;
+                }
+                D_8006C69C->state = 2;
+                SpawnParticle(4, 0xC, (Vector3D* ) D_8006C69C, (Vector3D* )3);
+            } else {
+                D_8006C78C -= 1;
+            }
+        } else if ((D_8006C69C != 0) && (D_8006C69C->state & 0x80)) {
+            func_800518F8();
+        }
+    }
+    else {
+        D_8006C78C++;
+        if (D_8006C78C == 0x30) {
+            func_800518F8();
+        }
+    }
+    D_80070328.unk17a |= 0x10000002;
+    if ((game.state == 1) && (D_8006C680 != 0)) {
+        func_80047D00(D_8006C5A8);
+    }
+    if (D_8006C790 != 2) {
+        func_80013ACC(D_8006C5A8, 0x12);
+    }
+    func_80055294(0x7B);
+}
+
+
+
+#undef D_80070328
 /**
  * ???() - func_800527C4()
  * Does something with egg / dragon data, has placeholder struct and one register switch hasn't been fixed yet
  * https://decomp.me/scratch/i3rjG
  */
-INCLUDE_ASM("asm/nonmatchings/update", func_800527C4);
+extern Moby* D_8006C5A8;
+extern Moby* D_8006C69C;
+extern int D_8006C590;
+extern unsigned char D_8006C680;
+extern unsigned char* D_8006C7A0;
+extern int D_8006C790;
+extern int D_8006C78C;
+extern int D_8006C7D0;
+extern int D_8006C5C4;
+void func_800527C4(int arg0, int arg1) {
+    game.state = 15;
+    D_8006C680 = 1;
+    D_8006C790 = 0;
+    D_8006C78C = 0;
+    D_8006C7D0 = 0;
+    D_8006C5C4 = 0;
+    D_8006C5A8 = arg0;
+    D_8006C69C = arg0;
+    {
+    register unsigned int flag __asm__("$3") = D_8006C7A0[arg1 * 12 + 11];
+    if (flag == 0) {
+        __asm__ volatile ("" : "=r"(flag) : "0"(flag));
+        D_8006C590 = 0;
+    } else {
+        D_8006C590 = 1;
+    }
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/update", func_80052854);
+extern short D_8006C57C;
+extern Moby* D_8006C69C;
+extern Moby* D_8006C5A8;
+extern int D_8006C5FC;
+extern int D_8006C590;
+extern int D_8006E344;
+extern int D_8006C74C;
+void func_80052854(void) {
+    D_8006C57C = -1;
+    D_8006C69C = 0;
+    D_8006C5A8 = 0;
+    D_8006C5FC = 0;
+    D_8006C590 = -1;
+    D_8006E344 = 0;
+    D_8006C74C = 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/update", func_8005289C);
+extern void func_80047D00(Moby*);
+void func_80055294(int);
+void func_8005289C(void) {
+    Moby* current = (Moby*)D_8006C5A8;
+    D_8006C74C = 1;
+    func_80047D00(current);
+    func_80013ACC((Moby*)D_8006C5A8, 0x12);
+    func_80055294(0x7B);
+    if (D_8006C69C != 0 &&
+        (*((unsigned char*)D_8006C69C + 0x48) & 0x80) != 0) {
+        func_80052854();
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/update", func_80052918);
+extern Vector3D D_8006FA2C;
+extern Vector3D D_800719BC;
+extern unsigned char D_80071570[];
+extern int D_8006C5C8, D_8006C75C, D_8006C5C0, D_8006C514;
+extern int D_8006C6E0, D_8006C50C, D_8006C4F8, D_8006E49C;
+extern int D_8006C5F4, D_8006C768;
+/* Retail source: asm/nonmatchings/update/func_80052918.s,
+ * 0x80052918..0x80052A84; raw Moby state and global reset fields. */
+void func_80052918(int selected, Moby* moby) {
+    register int current asm("$19") = selected;
+    register Moby* actor asm("$17") = moby;
+    register char* tag asm("$18") = (char*)actor->mobyTag;
+    register Vector3D* position asm("$16");
+    int prior;
+    int angleAgain;
+    int first;
+    int second;
+    position = &actor->position;
+    func_800282D8();
+    func_8004F178(&D_8006FA2C, position);
+    func_8004F178(&D_800719BC, position);
+    D_8006C5C0 = actor->angle.yaw << 4;
+    prior = D_8006C5C8;
+    angleAgain = actor->angle.yaw;
+    D_8006C75C = prior;
+    first = *(int*)(tag + 0x44);
+    second = *(int*)(tag + 0x48);
+    D_8006C5C8 = current;
+    D_8006C514 = 0;
+    D_8006C6E0 = angleAgain << 4;
+    D_8006C50C = first;
+    if (second >= 0) {
+        if (D_80071570[second] == 0) D_8006C4F8 = 1;
+        else D_8006C4F8 = 2;
+    } else if (*(int*)(&D_80070328 + 0x24C)) {
+        D_8006C4F8 = 2;
+    } else {
+        D_8006C4F8 = 0;
+    }
+    func_8003BEDC();
+    D_8006E49C = 1;
+    D_8006E344 = 13;
+    D_8006C5F4 = 0;
+    D_8006C768 = 0;
+    *(int*)(&D_80070328 + 0x170) = 0;
+    *(int*)(&D_80070328 + 0x178) = 0;
+    *(int*)(&D_80070328 + 0x140) = 0;
+    *(int*)(&D_80070328 + 0x254) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/update", func_80052A84);
 
@@ -112,7 +584,142 @@ INCLUDE_ASM("asm/nonmatchings/update", func_80053A10);
  * This is a function that is different in 1.1
  * https://decomp.me/scratch/0zqbG
  */
-INCLUDE_ASM("asm/nonmatchings/update", func_80053F50);
+/* Rev 0 source hypothesis: asm/nonmatchings/update/func_80053F50.s. */
+typedef struct {
+    Vector3D polygonPoints[5]; // 00 0C 18 24 30
+    unsigned int* skybox; // 3c
+    char renderDistance; // 40
+    char sidedness; // 41 // 0 is one-sided
+    char levelId; // 42
+    char animationState; // 43
+} Portal;
+typedef struct {
+    int DAT_800722E8; // level ID (to load)?
+    Vector3D DAT_800722EC;
+    Vector3D DAT_800722F8;
+    int DAT_80072304;
+    Vector3D DAT_80072308;
+    Vector3D DAT_80072314;
+    short DAT_80072320;
+    short DAT_80072322;
+    int DAT_80072324;
+    int DAT_80072328;
+    int DAT_8007232C;
+} Unknown;
+extern unsigned char D_80066FCC[72];
+extern unsigned char D_80070300[40];
+extern ProgressFlags progressFlags;
+extern Portal* D_8006C530;
+extern Unknown D_800722E8;
+extern int D_8006C508, D_8006C5BC, D_8006C73C;
+int func_8004F2C8(int,int);
+int func_8004F284(short,int);
+void func_8004F178(Vector3D*,Vector3D*);
+void func_8004F194(Vector3D*,Vector3D*,Vector3D*);
+void func_8004F1C8(Vector3D*,Vector3D*,Vector3D*);
+int func_8004EDE8(Vector3D*,int);
+void func_80053F50(int arg0) {
+    Vector3D sp10;
+    int temp_a0;
+    int homeworldNo;
+    int temp_s0_4;
+    register int temp_s3 __asm__("$19");
+    int temp_s3a;
+    unsigned int temp_v1;
+    register int var_v0 __asm__("$2");
+    Portal* temp_v0;
+    int temp_s3b;
+
+    if (arg0 >= 0) {
+        temp_v0 = (Portal*)(arg0 * sizeof(Portal) + (int)D_8006C530);
+        temp_s3 = func_8004E880(temp_v0->polygonPoints[4].x - temp_v0->polygonPoints[0].x,
+                                temp_v0->polygonPoints[4].y - temp_v0->polygonPoints[0].y, 1);
+        __asm__ volatile("" : : "r"(temp_s3) : "memory");
+        temp_s3a = func_8004E880(spyro.position.x - D_8006C530[arg0].polygonPoints[2].x,
+                                 spyro.position.y - D_8006C530[arg0].polygonPoints[2].y, 1);
+        temp_s3b = func_8004F2C8(temp_s3, temp_s3a);
+
+        var_v0 = ((temp_s3b < 0) ? temp_s3 - 0x400 : temp_s3 + 0x400);
+        temp_s3 = var_v0 & 0xFFF;
+        sp10.x = func_8004EA2C(temp_s3) >> 1;
+        sp10.y = func_8004E9E4(temp_s3) >> 1;
+        sp10.z = -1000;
+        func_8004F194(&D_800722E8.DAT_800722EC, &D_8006C530[arg0].polygonPoints[2], &sp10);
+        func_8004F178(&D_800722E8.DAT_800722F8, &sp10);
+        sp10.x = -sp10.x >> 2;
+        sp10.y = -sp10.y >> 2;
+        func_8004F178(&D_800722E8.DAT_80072308, &camera.nextCameraPosCartesian);
+        func_8004F194(&D_800722E8.DAT_80072314, &D_8006C530[arg0].polygonPoints[2], &sp10);
+        D_800722E8.DAT_80072322 = temp_s3;
+        D_800722E8.DAT_80072320 = camera.unk48;
+        temp_s0_4 = func_8004E880(D_8006C530[arg0].polygonPoints[2].x - camera.nextCameraPosCartesian.x, D_8006C530[arg0].polygonPoints[2].y - camera.nextCameraPosCartesian.y, 1);
+        func_8004F1C8(&sp10, &D_800722E8.DAT_80072308, &D_800722E8.DAT_80072314);
+
+        D_800722E8.DAT_80072324 = (func_8004F284(temp_s3, temp_s0_4) * func_8004EDE8(&sp10, 0)) >> 0xB;
+        if (D_800722E8.DAT_80072324 < 400) {
+            D_800722E8.DAT_80072324 = 0;
+        }
+
+        D_800722E8.DAT_800722E8 = arg0;
+        D_8006C7C8 = (!D_8006C508) ? levelIndexToHomeworldLevelId[levelIndex] : D_8006C530[arg0].levelId;
+        pauseData.menuType = 0;
+    } else {
+        D_8006C7C8 = levelIndexToHomeworldLevelId[levelIndex];
+        pauseData.menuType = 1;
+    }
+    homeworldNo = D_8006C7C8 / 10;
+
+    if (D_8006C7C8 == (homeworldNo * 0xA)) {
+        temp_v1 = D_8006C5BC % 10;
+        if ((temp_v1 - 1 < 6) && (temp_v1 != 5)) {
+            if ((D_8006C5BC < 60)
+                && ((&progressFlags.lvl67_AMonsterToEndAllMonsters)[homeworldNo] == 0)) {
+
+                temp_a0  = D_80070300[D_80066FCC[D_8006C7C8 + 1]] & 1;
+				temp_a0 += D_80070300[D_80066FCC[D_8006C7C8 + 2]] & 1;
+				temp_a0 += D_80070300[D_80066FCC[D_8006C7C8 + 3]] & 1;
+				temp_a0 += D_80070300[D_80066FCC[D_8006C7C8 + 4]] & 1;
+				temp_a0 += D_80070300[D_80066FCC[D_8006C7C8 + 6]] & 1;
+
+                switch (D_8006C7C8) {
+                case 10:
+                    if (temp_a0 >= 2) {
+                        progressFlags.lvl62_TheSecondWarning = 1;
+                        func_800584BC(6, 62);
+                        return;
+                    }
+                    break;
+                case 20:
+                    if (temp_a0 >= 2) {
+                        progressFlags.lvl64_HuntersTussle = 1;
+                        func_800584BC(6, 64);
+                        return;
+                    }
+                    break;
+                case 30:
+                    if (temp_a0 >= 4) {
+                        progressFlags.lvl66_AnApologyAndLunch = 1;
+                        func_800584BC(6, 66);
+                        return;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    D_800722E8.DAT_8007232C = 0;
+    pauseData.dat_8006fbc8 = 0;
+    pauseData.frameCount = 0;
+    loadStage = 0;
+    game.state = GAMESTATE_LOADING_GLIDE;
+    func_8003BEDC();
+    streamingData.musicEnabled = 1;
+    D_8006C73C = D_8006C5BC;
+}
+
+
+
+
 
 INCLUDE_ASM("asm/nonmatchings/update", func_80054450);
 
@@ -130,33 +737,259 @@ void func_80054AF8() {
     streamingData.musicEnabled = 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/update", func_80054B64);
+/* Retail source: asm/nonmatchings/update/func_80054B64.s,
+ * 0x80054B64..0x80054CD8; one state update per call. */
+extern int D_8006FBC8, D_8006FBC4, D_8006C518;
+extern int D_8006C784, D_8006C5BC, D_8006C60C, D_8006C58C;
+void func_8002CA50(void);
+void func_8001FB10(int);
+void func_title_80074DEC(int);
+void func_loading_80076FEC(void);
+void func_80054E5C(void);
+void func_80054B64(void) {
+    int state = D_8006FBC8;
+    if (state >= 3) goto check_state_three;
+    if (state > 0) goto loading;
+    if (state == 0) goto state_zero;
+    return;
+check_state_three:
+    if (state == 3) goto check_three;
+    return;
+state_zero:
+    if (D_8006C518 < 2) func_8002CA50();
+    D_8006C598 += 16;
+    if (D_8006C598 < 256) return;
+    func_8001EBAC();
+    func_8001FB10(0x1C000);
+    goto check_wait;
+wait:
+    func_8002CA50();
+check_wait:
+    if (D_8006C518 < 2) goto wait;
+    if (D_8006C784 >= 0) {
+        func_title_80074DEC(0);
+        func_80054E5C();
+        return;
+    }
+    D_8006FBC8 = 1;
+    D_8006FBC4 = 0;
+    D_8006C718 = 1;
+    D_8006C5BC = D_8006C7C8;
+    D_8006C60C = D_8006C58C;
+    return;
+loading:
+    func_loading_80076FEC();
+    return;
+wait_three:
+    func_8002CA50();
+check_three:
+    if (D_8006C518 >= 0) goto wait_three;
+    func_8005399C();
+}
 
 /**
  * ???() - func_80054CD8() - MATCHING
  * Worth reviewing for the structs etc.
  * https://decomp.me/scratch/kCgmm
  */
-INCLUDE_ASM("asm/nonmatchings/update", func_80054CD8);
+extern char* D_80011254;
+extern short D_8006C510;
+extern short D_8006C540;
+extern int D_8006C56C;
+extern short D_8006C6A8;
+extern int D_8006C6AC;
+extern short D_8006C740;
+extern short D_8006C744;
+extern short D_8006C780;
+extern int D_8006C7F0;
+extern int D_8006DE88;
+extern int D_8006DE8C;
+extern int D_8006E470;
+extern int D_8006E49C;
+void func_80054CD8(void) {
+    D_8006E344 = 0xA;
+    D_8006C744 = 0;
+    D_8006C740 = 0;
+    D_8006C540 = 0;
+    D_8006C510 = -1;
+    D_8006C6AC = 0;
+    D_8006C7F0 = 0;
+    D_8006C780 = 0;
+    D_8006C6A8 = 0;
+    D_8006C56C = 0;
+    CDLoadSync(D_8006E470, D_80011254, D_8006DE8C, D_8006DE88);
+    func_8003BEDC();
+    D_8006E49C = 1;
+}
 
-INCLUDE_ASM("asm/nonmatchings/update", func_80054D84);
+extern void func_credits_80074BA0(void);
+extern void func_8002CA50(void);
+void func_80054D84(void) {
+    switch (D_8006C510) {
+    case 0x63:
+        {
+        register int level __asm__("$5") = D_8006C67C;
+        loadStage = 1;
+        if (level > 0) {
+            func_800584BC(0, level);
+            D_8006C67C = -1;
+        } else {
+            func_800584BC(0, 0x28);
+        }
+        D_8006C780 = 0;
+        D_8006C510 = (unsigned short)D_8006C510 + 1;
+        }
+        break;
+    case 0x64:
+        D_8006C780 = (unsigned short)D_8006C780 + deltaTime;
+        func_8002CA50();
+        break;
+    default:
+        func_credits_80074BA0();
+        break;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/update", func_80054E5C);
+extern int D_8006C658;
+extern int D_8006C7E4;
+extern int D_8006C678;
+extern int D_8006C64C;
+extern int D_80065834;
+extern char D_80070328;
+extern char D_8006FBA8;
+extern char D_8007179C;
+extern char D_8006DFF8;
+extern char D_8006D088;
+extern char D_8006C7F8;
+extern char g_CheatFlags;
+extern void ActivateSparxPowers(void);
+extern int func_8004F6A0(void);
+extern void srand(int);
+void func_80054E5C(void) {
+    unsigned char cheat;
+    D_8006E344 = 11;
+    D_8006C658 = 0;
+    D_8006C7E4 = 0;
+    D_8006C678 = 0;
+    D_8006C74C = 0;
+    D_8006C64C = 0;
+    func_8001FB10(0x1C000);
+    func_8004E790(&D_80070328, 0, 0x2E8);
+    func_8004E790(&D_8006FBA8, 0, 0x1C);
+    func_8004E790(&D_8007179C, 0, 0x130);
+    func_8004E790(&D_8006DFF8, 0, 0x1FC);
+    *(int*)(&D_80070328 + 0x28C) = -1;
+    *(int*)(&D_80070328 + 0x294) = -1;
+    *(int*)(&D_80070328 + 0x280) = D_80065834;
+    func_8004E790(&D_8006D088, 0, 0x850);
+    func_8004E790(&D_8006C7F8, 0, 0x850);
+    cheat = (&g_CheatFlags)[3];
+    func_8004E790(&g_CheatFlags, 0, 0x18);
+    (&g_CheatFlags)[3] = cheat;
+    ActivateSparxPowers();
+    srand(func_8004F6A0());
+}
 
 /**
  * ???() - func_80054F94() - MATCHING
  * Worth reviewing for the structs etc.
  * https://decomp.me/scratch/haRsG
  */
-INCLUDE_ASM("asm/nonmatchings/update", func_80054F94);
+extern int D_8007232C;
+extern int D_8006FBC8;
+extern int D_8006FBC4;
+extern int D_8006FBD0;
+extern int D_8006C528;
+extern int D_8006E49C;
+extern int D_8006C73C;
+extern int D_8006C5BC;
+void func_80054F94(int arg0, Moby* arg1) {
+    D_8007232C = 0;
+    D_8006FBC8 = 0;
+    D_8006FBC4 = 0;
+    D_8006FBD0 = 1;
+    loadStage = 0;
+    D_8006E344 = 0xC;
+    D_8006C7C8 = arg0;
+    D_8006C528 = (int)arg1->mobyClass;
+    func_8003BEDC();
+    D_8006E49C = 1;
+    D_8006C73C = D_8006C5BC;
+}
 
 /**
- * ???() - func_80055020() - MATCHING
- * Seems to be functionally matching now
- * HAS A GAMESTATE STRUCT - probably how it needs to be done
- * https://decomp.me/scratch/bm0hn
+ * Loading-state updater - func_80055020() - MATCHING
+ * Rev 0 target: asm/nonmatchings/update/func_80055020.s,
+ * 0x80055020..0x80055294 (157 instruction words).
+ * The 0x15000 buffer increment reads D_8006FC6C and writes D_8006FCE0.
+ * https://decomp.me/scratch/bm0hn supplied the initial C candidate.
  */
-INCLUDE_ASM("asm/nonmatchings/update", func_80055020);
+extern int D_8006C508, D_8006C7DC, D_8006FC6C, D_8006FCE0;
+extern char D_80070328, D_8006D088, D_8006C7F8;
+extern Vector3D D_800722F8;
+extern void func_80044240(void);
+extern int func_80048444(Vector3D*);
+extern void func_8004BEF8(int);
+extern void func_loading_80078678(void);
+
+void func_80055020(void) {
+    int temp_v0;
+
+    switch (pauseData.dat_8006fbc8) {
+    case 0:
+        if (((loadStage > 0) || (func_8002CA50(), (loadStage > 0))) && (CDLoadTime() == 0)) {
+            func_8001FB10(0x1C000);
+            D_8006C7DC = 0x15000;
+            pauseData.dat_8006fbc8 = 1;
+            pauseData.frameCount = 0;
+            D_8006FCE0 = D_8006FC6C + 0x15000;
+        }
+        return;
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+        func_loading_80078678();
+        break;
+    case 5:
+        if (pauseData.frameCount == 0) {
+            if (loadStage >= 0) {
+                do {
+                    func_8002CA50();
+                } while (loadStage >= 0);
+            }
+            func_8004E790(&D_8006D088, 0, 0x850);
+            func_8004E790(&D_8006C7F8, 0, 0x850);
+            func_8005399C();
+        }
+        if (game.state == GAMESTATE_LOADING_GLIDE) {
+            pauseData.frameCount++;
+            if (pauseData.frameCount < 9) {
+                D_8006C598 = (8 - pauseData.frameCount) << 5;
+            }
+            if (D_8006C508 != 0) {
+                func_80044240();
+                if (pauseData.frameCount >= 0xA) {
+                    temp_v0 = func_80048444(&D_800722F8);
+                    (&D_80070328)[0xC] = 0;
+                    (&D_80070328)[0xD] = 0;
+                    func_8001204C();
+                    if (!temp_v0) {
+                        func_8004BEF8(0);
+                        game.state = GAMESTATE_FADE_IN;
+                        pauseData.dat_8006fbc8 = 4;
+                        pauseData.frameCount = 0;
+                        pauseData.menuType = 0;
+                        D_8006C598 = 0;
+                        D_8006C718 = 1;
+                    }
+                }
+                (&D_80070328)[0x1E] = 0x20;
+            }
+        }
+        return;
+    }
+}
 
 /**
  * UpdateUsingFlags() - func_80055294() - MATCHING
@@ -226,10 +1059,12 @@ void func_80055398(void) {
 
 /**
  * Update() - func_80055400() - MATCHING
- * C code isn't in currently as a script is needed to add the jtbl to the asm
- * https://decomp.me/scratch/aLTcr
+ * Retail Rev 0: asm/nonmatchings/update/Update.s,
+ * 0x80055400..0x800555C0 plus 20-entry jump table at 0x80011204.
+ * Dispatch runs once per call. Exact C source hypothesis:
+ * https://decomp.me/scratch/X6Lxc
  */
-INCLUDE_ASM("asm/nonmatchings/update", Update);
+
 
 /* externed functions, only to be used as notes
 void func_80050F18(); // gameplay updates
@@ -246,7 +1081,6 @@ void func_80055294(enum UpdateFlags updateFlags); // update with flags
 void func_80055398(); // bullet time updates
 */
 
-/*
 void Update(void) {
     enum UpdateFlags var_a0;
 
@@ -317,4 +1151,3 @@ void Update(void) {
     }
     func_8003C184();
 }
-*/

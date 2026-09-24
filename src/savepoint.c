@@ -70,7 +70,39 @@ void func_8003B74C(Savepoint* save) {
  * TODO, the registers aren't right yet
  * https://decomp.me/scratch/T5FoR
  */
-INCLUDE_ASM("asm/nonmatchings/savepoint", func_8003B7B4);
+/* USA Rev 0 EXE 0x8003B7B4..0x8003B918: register one tracked
+ * memory value. Control flow informed by decomp.me scratch nEvCR;
+ * the linked executable matches all 89 original instruction words. */
+extern int D_8006E344;
+extern int D_8006C640;
+void func_8003B7B4(void* address, int width, Savepoint* save) {
+    int key;
+    int slot;
+    int isNew;
+    int count;
+    if (D_8006E344 != 13 || D_8006C640 == 0) {
+        key = (int)address & 0xFFFFFF;
+        isNew = 1;
+        count = save->savedMemoryCount[area];
+        for (slot = 0; slot < save->savedMemoryCount[area]; slot++) {
+            if (key == (save->savedMemory[area][slot].ptr & 0xFFFFFF)) {
+                isNew = 0;
+                count = slot;
+                break;
+            }
+        }
+        if (!isNew || count < 64) {
+            key |= width << 24;
+            save->savedMemory[area][count].ptr = key;
+            switch (width) {
+                case 1: save->savedMemory[area][count].val = *(unsigned char*)address; break;
+                case 2: save->savedMemory[area][count].val = *(short*)address; break;
+                case 4: save->savedMemory[area][count].val = *(int*)address; break;
+            }
+            if (isNew) save->savedMemoryCount[area]++;
+        }
+    }
+}
 
 /**
  * LoadSavedMemory() - func_8003B918() - MATCHING

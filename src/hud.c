@@ -267,7 +267,41 @@ void func_80027FCC(HudEntry* hud, int spriteClass) {
  * WIP
  * https://decomp.me/scratch/VNAQB
  */
-INCLUDE_ASM("asm/nonmatchings/hud", func_8002803C);
+/* Retail source: asm/nonmatchings/hud/func_8002803C.s,
+ * 0x8002803C..0x80028154. HUD entry stride is 0x54 bytes;
+ * raw selector and reset fields update on call. */
+int func_8002803C(int slot, int number, void* callbackA, void* callbackB,
+                  void* callbackC, int* display, int max) {
+    HudEntry* entry = &D_80067248[slot & 15];
+    int packed = slot & 0xFFF0;
+    if (entry->unk8 != display || entry->unk6 != max ||
+        entry->unk4 != number || entry->unk3A != packed ||
+        entry->unkC != callbackA || entry->unk10 != callbackB ||
+        entry->unk14 != callbackC) {
+        unsigned short* count = (unsigned short*)&g_Hud.DAT_800719c8;
+        unsigned int old;
+        unsigned int frame;
+        entry->unk6 = max;
+        entry->unk8 = display;
+        entry->unk4 = number;
+        entry->unk3A = packed;
+        entry->unkC = callbackA;
+        entry->unk10 = callbackB;
+        entry->unk14 = callbackC;
+        old = *count;
+        *count = old + 1;
+        entry->unk1A = old;
+        frame = (unsigned char)entry->movementFrame;
+        if (frame >= 0x33) {
+            register unsigned int newFrame __asm__("$2") = 100 - frame;
+            *(volatile unsigned char*)((char*)entry + 0x3F) = newFrame;
+            if ((unsigned char)newFrame >= 0x33)
+                entry->movementFrame = 0;
+        }
+        entry->isOffScreen = 1;
+    }
+    return entry->unk1A;
+}
 
 /**
  * ???() - func_80028154() - MATCHING
@@ -342,10 +376,75 @@ void func_800282D8() {
 }
 
 /**
- * ???() - func_80028378()
- * https://decomp.me/scratch/dRYvN
+ * Sprite animation frame selector - func_80028378() - MATCHING
+ * Rev 0 target: asm/nonmatchings/hud/func_80028378.s,
+ * 0x80028378..0x800285A4 plus its six-entry jump table (145 target words).
+ * https://decomp.me/scratch/dRYvN supplied the initial candidate; the
+ * reflected frame uses 2 * frameCount - (remainder + 2) in retail.
  */
-INCLUDE_ASM("asm/nonmatchings/hud", func_80028378);
+extern int D_8006C644;
+extern int rand();
+
+int func_80028378(SpriteAnimationData* animData, int arg1) {
+    SpriteDefinition* spriteDef;
+    int temp;
+    int ret;
+
+    spriteDef = &D_8006C738[animData->index];
+    ret = 0;
+    if (spriteDef->spriteClass != -1) {
+        switch (animData->animationType) {
+        case 0:
+            ret = animData->frame;
+            break;
+        case 1:
+            temp = (D_8006C644 / spriteDef->frameDelay) + arg1;
+            ret = spriteDef->frame + (temp % spriteDef->frameCount);
+            break;
+        case 2: {
+            int quotient;
+            int count;
+            int result;
+            int span;
+            quotient = D_8006C644 / spriteDef->frameDelay;
+            count = spriteDef->frameCount;
+            result = quotient + arg1;
+            __asm__ volatile("" : "=r"(result) : "0"(result), "r"(count));
+            span = count * 2;
+            ret = result % (span - 2);
+            if (ret >= count) {
+                int adjusted = ret + 2;
+                /* Keep the retail add-two then subtract order in GCC 2.7.2. */
+                __asm__ volatile("" : "=r"(adjusted) : "0"(adjusted));
+                ret = span - adjusted;
+            }
+            ret = ret + spriteDef->frame;
+            break;
+        }
+        case 3:
+            ret = spriteDef->frame;
+            if (!(rand() & 0x1F)) {
+                animData->animationType = 4;
+            }
+            break;
+        case 4:
+            ret = animData->frame + 1;
+            if (ret >= (spriteDef->frame + spriteDef->frameCount)) {
+                animData->animationType = 5;
+                ret = (spriteDef->frame + spriteDef->frameCount) - 1;
+            }
+            break;
+        case 5:
+            ret = animData->frame - 1;
+            if (spriteDef->frame >= ret) {
+                animData->animationType = 3;
+                ret = spriteDef->frame;
+            }
+            break;
+        }
+    }
+    return ret;
+}
 
 /**
  * ???() - func_800285A4()
@@ -353,8 +452,6 @@ INCLUDE_ASM("asm/nonmatchings/hud", func_80028378);
  * Could be the function pointers that I need to do something with
  * https://decomp.me/scratch/NkhCu
  */
-INCLUDE_ASM("asm/nonmatchings/hud", func_800285A4);
-#if 0
 int func_800285A4(int arg0) {
     int var_s3 = 0;
     int i;
@@ -380,7 +477,7 @@ int func_800285A4(int arg0) {
             hud->movementFrame = 50;
         }
         
-        if (g_Hud.DAT_800719d4 != 0 || D_8006C598 == 0xFF || hud->unk44 <= 0 || hud->isOffScreen || !arg0 || (!(D_8006C74C == 0 && D_8006C64C == 0) && !(g_HudEntries[i].unk38 & 0x20)) ) {
+        if (g_Hud.DAT_800719d4 != 0 || D_8006C598 == 0xFF || (short)hud->unk44 <= 0 || hud->isOffScreen || !arg0 || (!(D_8006C74C == 0 && D_8006C64C == 0) && !(g_HudEntries[i].unk38 & 0x20)) ) {
             if (hud->movementFrame > 100) {
                 hud->movementFrame = 0;
             }
@@ -423,26 +520,284 @@ int func_800285A4(int arg0) {
     g_Hud.DAT_800719d4 = 0;
     return var_s3;
 }
-#endif
 
 /**
  * ???() - func_800289C8() - MATCHING
  * Ready to add
  * https://decomp.me/scratch/UXqpI
  */
-INCLUDE_ASM("asm/nonmatchings/hud", func_800289C8);
+/* Retail source: 0x800289C8..0x80028D30. POLY_FT4 fields follow
+ * the PSYQ packet layout; sprite input coordinates are byte units. */
+extern void* D_8006C664;
+void func_8004E758(void*);
+int* func_800289C8(SpriteData* arg0, int arg1, int arg2) {
+    int var_s0 = 0;
+    int var_s2 = 0;
+    POLY_FT4* temp_s0;
+    POLY_FT4* temp_s1 = D_8006C664;
+    POLY_FT4* temp_t6;
+    temp_s1->tag = 0x09000000;
+    *(int*)&temp_s1->r0 = 0x2C808080;
+    if ((arg0->unk6 & 0x60) != 0x60) temp_s1->code |= 2;
+    temp_s1->x0 = arg1;
+    temp_s1->x2 = arg1;
+    temp_s1->y0 = arg2;
+    temp_s1->y1 = arg2;
+    temp_s1->tpage = arg0->unk6;
+    temp_s1->clut = arg0->unk2;
+    temp_s1->x1 = arg1 + (arg0->unk4 - arg0->unk0);
+    temp_s1->y2 = arg2 + (arg0->unk5 - arg0->unk1);
+    temp_s1->u0 = arg0->unk0;
+    temp_s1->u1 = arg0->unk4;
+    if ((temp_s1->u1 & 0xFF) != 0xFF) {
+        temp_s1->u1++;
+        temp_s1->x1++;
+    } else var_s0 = 1;
+    temp_s1->v0 = arg0->unk1;
+    temp_s1->v2 = arg0->unk5;
+    if ((temp_s1->v2 & 0xFF) != 0xFF) {
+        temp_s1->v2++;
+        temp_s1->y2++;
+    } else var_s2 = 1;
+    temp_s1->x3 = temp_s1->x1;
+    temp_s1->y3 = temp_s1->y2;
+    temp_s1->u2 = temp_s1->u0;
+    temp_s1->u3 = temp_s1->u1;
+    temp_s1->v1 = temp_s1->v0;
+    temp_s1->v3 = temp_s1->v2;
+    func_8004E758(temp_s1);
+    temp_t6 = temp_s1 + 1;
+    D_8006C664 = temp_t6;
+    if (var_s0 != 0) {
+        POLY_FT4* temp_s6 = D_8006C664;
+        temp_s6->tag = temp_s1->tag;
+        *(int*)&temp_s6->r0 = *(int*)&temp_s1->r0;
+        temp_s6->x0 = temp_s1->x1;
+        temp_s6->x2 = temp_s1->x1;
+        temp_s6->x1 = temp_s1->x1 + 1;
+        temp_s6->x3 = temp_s1->x1 + 1;
+        temp_s6->y0 = temp_s1->y0;
+        temp_s6->y1 = temp_s1->y0;
+        temp_s6->y2 = temp_s1->y2;
+        temp_s6->y3 = temp_s1->y2;
+        temp_s6->u0 = temp_s1->u1;
+        temp_s6->u2 = temp_s1->u1;
+        temp_s6->u1 = temp_s1->u1;
+        temp_s6->u3 = temp_s1->u1;
+        temp_s6->v0 = temp_s1->v0;
+        temp_s6->v1 = temp_s1->v0;
+        temp_s6->v2 = temp_s1->v2;
+        temp_s6->v3 = temp_s1->v2;
+        temp_s6->tpage = temp_s1->tpage;
+        temp_s6->clut = temp_s1->clut;
+        func_8004E758(temp_t6);
+        D_8006C664 = temp_s6 + 1;
+    }
+    if (var_s2 != 0) {
+        temp_s0 = D_8006C664;
+        temp_s0->tag = temp_s1->tag;
+        *(int*)&temp_s0->r0 = *(int*)&temp_s1->r0;
+        temp_s0->x0 = temp_s1->x0;
+        temp_s0->x2 = temp_s1->x0;
+        temp_s0->x1 = temp_s1->x1;
+        temp_s0->x3 = temp_s1->x1;
+        temp_s0->y0 = temp_s1->y2;
+        temp_s0->y1 = temp_s1->y2;
+        temp_s0->y2 = temp_s1->y2 + 1;
+        temp_s0->y3 = temp_s1->y2 + 1;
+        temp_s0->u0 = temp_s1->u0;
+        temp_s0->u2 = temp_s1->u0;
+        temp_s0->u1 = temp_s1->u1;
+        temp_s0->u3 = temp_s1->u1;
+        temp_s0->v0 = temp_s1->v2;
+        temp_s0->v1 = temp_s1->v2;
+        temp_s0->v2 = temp_s1->v2;
+        temp_s0->v3 = temp_s1->v2;
+        temp_s0->tpage = temp_s1->tpage;
+        temp_s0->clut = temp_s1->clut;
+        func_8004E758(temp_s0);
+        D_8006C664 = temp_s0 + 1;
+    }
+    return (int*)temp_s1;
+}
 
 /**
  * ???() - func_80028D30()
  * Nearly matching
  * https://decomp.me/scratch/zr6ZQ
  */
-INCLUDE_ASM("asm/nonmatchings/hud", func_80028D30);
+/* Retail source hypothesis: asm/nonmatchings/hud/func_80028D30.s, 0x80028D30..0x800291B8. */
+int* func_80028D30(SpriteData* arg0, short arg1, short arg2, int arg3) {
+    int temp_a0;
+    int var_s0;
+    int var_s2;
+    int var_t1;
+    POLY_FT4* temp_s1;
+    unsigned char temp_v1_2;
+    unsigned char temp_v1_3;
 
-/**
- * ???() - func_800291B8()
- * https://decomp.me/scratch/m95oz
- */
+    var_s0 = 0;
+    var_s2 = 0;
+    var_t1 = 0;
+
+    temp_s1 = D_8006C664;
+    temp_s1->tag = 0x09000000;
+    *(int*)&temp_s1->r0 = 0x2C808080;
+
+    if (arg3 & 8) var_t1 = arg3 >> 0x10;
+
+    if (((arg0->unk6 & 0x60) != 0x60) || (arg3 & 0x10)) {
+        temp_s1->code |= 0x02;
+    }
+
+    temp_s1->x0 = arg1;
+    temp_s1->x2 = arg1;
+    temp_s1->y0 = arg2;
+    temp_s1->y1 = arg2;
+
+    temp_s1->tpage = arg0->unk6;
+    if (arg3 & 0x10) {
+        temp_s1->tpage &= 0xFF9F;
+    }
+
+    temp_s1->clut = arg0->unk2;
+    temp_a0 = arg0->unk5 - arg0->unk1;
+    temp_s1->x1 = (arg1 + (arg0->unk4 - arg0->unk0));
+
+    temp_s1->y2 = arg2 + temp_a0;
+    temp_s1->u0 = arg0->unk0;
+    temp_s1->u1 = arg0->unk4;
+    temp_s1->v0 = arg0->unk1;
+    temp_s1->v2 = arg0->unk5;
+
+    if (var_t1 > 0) {
+        MAX(var_t1, temp_a0);
+        temp_s1->y0 += var_t1;
+        temp_s1->y1 += var_t1;
+        temp_s1->v0 += var_t1;
+    }
+    else if (var_t1 < 0) {
+        var_t1 = -var_t1;
+        MAX(var_t1, temp_a0);
+        temp_s1->y2 = temp_s1->y0 + var_t1;
+        temp_s1->v2 = temp_s1->v0 + var_t1;
+    }
+
+    if ((arg3 & 2) != 0) {
+        temp_v1_2 = temp_s1->v0;
+        temp_s1->v0 = temp_s1->v2;
+        temp_s1->v2 = temp_v1_2;
+        if (temp_s1->v2 != 0) {
+            if (!(arg3 & 4)) {
+                temp_s1->v2--;
+            }
+            temp_s1->y2++;
+        }
+        else {
+            var_s2 = 1;
+        }
+    }
+    else if ((temp_s1->v2 & 0xFF) != 0xFF) {
+        if (!(arg3 & 4)) {
+            temp_s1->v2++;
+        }
+        temp_s1->y2++;
+    }
+    else {
+        var_s2 = 1;
+    }
+
+    if (arg3 & 1) {
+        temp_v1_3 = temp_s1->u0;
+        temp_s1->u0 = temp_s1->u1;
+        temp_s1->u1 = temp_v1_3;
+        if (temp_s1->u1 != 0) {
+            if (!(arg3 & 4)) {
+                temp_s1->u1--;
+            }
+            temp_s1->x1++;
+        }
+        else {
+            var_s0 = 1;
+        }
+    }
+    else if ((temp_s1->u1 & 0xFF) != 0xFF) {
+        if (!(arg3 & 4)) {
+            temp_s1->u1++;
+        }
+        temp_s1->x1++;
+    }
+    else {
+        var_s0 = 1;
+    }
+
+    temp_s1->x3 = temp_s1->x1;
+    temp_s1->y3 = temp_s1->y2;
+    temp_s1->u2 = temp_s1->u0;
+    temp_s1->u3 = temp_s1->u1;
+    temp_s1->v1 = temp_s1->v0;
+    temp_s1->v3 = temp_s1->v2;
+    func_8004E758(temp_s1);
+
+    D_8006C664 = temp_s1 + 1;
+
+    if (var_s0 != 0) {
+        POLY_FT4* temp_t6 = D_8006C664;
+
+        temp_t6->tag = temp_s1->tag;
+        *(int*)&temp_t6->r0 = *(int*)&temp_s1->r0;
+        temp_t6->x0 = temp_s1->x1;
+        temp_t6->x2 = temp_s1->x1;
+        temp_t6->x1 = temp_s1->x1 + 1;
+        temp_t6->x3 = temp_s1->x1 + 1;
+        temp_t6->y0 = temp_s1->y0;
+        temp_t6->y1 = temp_s1->y0;
+        temp_t6->y2 = temp_s1->y2;
+        temp_t6->y3 = temp_s1->y2;
+        temp_t6->u0 = temp_s1->u1;
+        temp_t6->u2 = temp_s1->u1;
+        temp_t6->u1 = temp_s1->u1;
+        temp_t6->u3 = temp_s1->u1;
+        temp_t6->v0 = temp_s1->v0;
+        temp_t6->v1 = temp_s1->v0;
+        temp_t6->v2 = temp_s1->v2;
+        temp_t6->v3 = temp_s1->v2;
+        temp_t6->tpage = temp_s1->tpage;
+        temp_t6->clut = temp_s1->clut;
+        func_8004E758(temp_t6);
+        D_8006C664 = temp_t6 + 1;
+
+    }
+    if (var_s2 != 0) {
+        POLY_FT4* temp_s0;
+
+        temp_s0 = D_8006C664;
+        temp_s0->tag = temp_s1->tag;
+        *(int*)&temp_s0->r0 = *(int*)&temp_s1->r0;
+        temp_s0->x0 = temp_s1->x0;
+        temp_s0->x2 = temp_s1->x0;
+        temp_s0->x1 = temp_s1->x1;
+        temp_s0->x3 = temp_s1->x1;
+        temp_s0->y0 = temp_s1->y2;
+        temp_s0->y1 = temp_s1->y2;
+        temp_s0->y2 = temp_s1->y2 + 1;
+        temp_s0->y3 = temp_s1->y2 + 1;
+        temp_s0->u0 = temp_s1->u0;
+        temp_s0->u2 = temp_s1->u0;
+        temp_s0->u1 = temp_s1->u1;
+        temp_s0->u3 = temp_s1->u1;
+        temp_s0->v0 = temp_s1->v2;
+        temp_s0->v1 = temp_s1->v2;
+        temp_s0->v2 = temp_s1->v2;
+        temp_s0->v3 = temp_s1->v2;
+        temp_s0->tpage = temp_s1->tpage;
+        temp_s0->clut = temp_s1->clut;
+        func_8004E758(temp_s0);
+        D_8006C664 = temp_s0 + 1;
+    }
+    return (int*)temp_s1;
+}
+
 INCLUDE_ASM("asm/nonmatchings/hud", func_800291B8);
 
 /**
@@ -487,21 +842,75 @@ int func_80029674(HudEntry* arg0, int* arg1, int* arg2) {
     return ret;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hud", func_80029708);
+extern unsigned char D_800674E8[];
+void func_80029708(HudEntry* hud, int* frame, int* x, int* y) {
+    unsigned char mode;
+    if (*frame < 0) *frame = 0;
+    if (*frame >= 60) *frame = 59;
+    mode = hud->displayMode;
+    if (mode & 1) {
+        *y -= D_800674E8[*frame];
+        *frame = -(unsigned char)hud->movementFrame;
+    } else if (mode & 2) {
+        *y += D_800674E8[*frame];
+        *frame = (unsigned char)hud->movementFrame;
+    } else if (mode & 4) {
+        *x -= D_800674E8[*frame] * 2;
+        *frame = -((unsigned char)hud->movementFrame + 60);
+    } else if (mode & 8) {
+        *x += D_800674E8[*frame] * 2;
+        *frame = (unsigned char)hud->movementFrame + 60;
+    }
+}
 
 /**
  * ???() - func_8002982C() - MATCHING
  * Ready to add
  * https://decomp.me/scratch/s4WGn
  */
-INCLUDE_ASM("asm/nonmatchings/hud", func_8002982C);
+int func_8002982C(HudEntry* hudEntry) {
+    int sp10;
+    int sp14;
+    int sp18;
+    SpriteData* spriteData;
+    spriteData = &D_8006C788[hudEntry->unk1C.frame];
+    sp10 = hudEntry->unk0;
+    sp14 = hudEntry->unk2;
+    sp18 = hudEntry->movementFrame != 0 ? (hudEntry->movementFrame + 0xA) >> 1 : 0;
+    func_80029674(hudEntry, &sp10, &sp14);
+    func_80029708(hudEntry, &sp18, &sp10, &sp14);
+    sp14 = sp14 - ((spriteData->unk5 - spriteData->unk1) >> 1);
+    func_800289C8(spriteData, sp10, sp14);
+    return spriteData->unk4 - spriteData->unk0;
+}
 
 /**
  * ???() - func_80029904() - MATCHING
  * Ready to add
  * https://decomp.me/scratch/H9Zvm
  */
-INCLUDE_ASM("asm/nonmatchings/hud", func_80029904);
+int func_80029904(HudEntry* hudEntry) {
+    int sp10;
+    int sp14;
+    int sp18;
+    int sp1C;
+    int sp20;
+    SpriteData* spriteData;
+    int ret;
+    spriteData = &D_8006C788[hudEntry->unk1C.frame];
+    sp10 = hudEntry->unk0;
+    sp14 = hudEntry->unk2;
+    sp18 = hudEntry->movementFrame != 0 ? (hudEntry->movementFrame + 0xA) >> 1 : 0;
+    func_80029674(hudEntry, &sp10, &sp14);
+    sp1C = sp10;
+    sp20 = sp14;
+    func_80029708(hudEntry, &sp18, &sp1C, &sp20);
+    sp20 = sp20 - ((spriteData->unk5 - spriteData->unk1) >> 1);
+    func_800289C8(spriteData, sp1C, sp20);
+    ret = (spriteData->unk4 - spriteData->unk0) + 0xA;
+    sp10 = sp10 + ret;
+    return ret + func_800291B8(hudEntry->unk40, sp10, sp14, sp18);
+}
 
 /*
  * ???() - func_8009A00() - MATCHING
@@ -528,16 +937,102 @@ void func_80029A00(HudEntry* hudEntry) {
     func_800291B8(hudEntry->unk40, sp10, sp14, sp18);
 }
 
-INCLUDE_ASM("asm/nonmatchings/hud", func_80029AA0);
+int func_80029AA0(HudEntry* hudEntry) {
+    int sp18;
+    int sp1C;
+    int sp20;
+    int sp24;
+    int sp28;
+    int width;
+    int first;
+    int second;
+    int argA;
+    int argB;
+    register int x __asm__("$6");
+    SpriteData* spriteData = &D_8006C788[hudEntry->unk1C.frame];
+    sp18 = hudEntry->unk0;
+    sp1C = hudEntry->unk2;
+    if (hudEntry->movementFrame != 0) sp20 = (hudEntry->movementFrame + 10) >> 1;
+    else sp20 = 0;
+    func_80029674(hudEntry, &sp18, &sp1C);
+    sp24 = sp18;
+    sp28 = sp1C;
+    func_80029708(hudEntry, &sp20, &sp24, &sp28);
+    sp28 -= (spriteData->unk5 - spriteData->unk1) >> 1;
+    func_800289C8(spriteData, sp24, sp28);
+    first = spriteData->unk4;
+    second = spriteData->unk0;
+    argA = hudEntry->unk40;
+    argB = hudEntry->unk26;
+    __asm__ volatile ("" : "=r"(x) : "r"(first), "r"(second), "r"(argA), "r"(argB), "0"(sp18));
+    width = first - second + 10;
+    sp18 = x + width;
+    return width + func_800293C4(argA, argB, sp18, sp1C, sp20);
+}
 
 /**
  * ???() - func_80029BB0() - MATCHING
  * Ready to add
  * https://decomp.me/scratch/omtIh
  */
-INCLUDE_ASM("asm/nonmatchings/hud", func_80029BB0);
+int func_80029BB0(HudEntry* hudEntry) {
+    int x;
+    int y;
+    int sp18;
+    int sp1C;
+    int sp20;
+    SpriteData* sprData0;
+    SpriteData* sprData1;
+    int temp_s0;
+    int temp_v0;
+    temp_v0 = D_8006C738[hudEntry->unk1C.index].frame;
+    sprData0 = &D_8006C788[temp_v0];
+    sprData1 = temp_v0 == hudEntry->unk1C.frame ? &D_8006C788[temp_v0 + 1] : &D_8006C788[hudEntry->unk1C.frame];
+    x = hudEntry->unk0;
+    y = hudEntry->unk2;
+    sp18 = hudEntry->movementFrame != 0 ? (hudEntry->movementFrame + 0xA) >> 1 : 0;
+    func_80029674(hudEntry, &x, &y);
+    sp1C = x;
+    sp20 = y;
+    func_80029708(hudEntry, &sp18, &sp1C, &sp20);
+    sp20 = sp20 - ((sprData0->unk5 - sprData0->unk1) >> 1);
+    func_800289C8(sprData0, sp1C, sp20);
+    func_800289C8(sprData1, sp1C + 0x16, sp20 + 0xA);
+    temp_s0 = (sprData0->unk4 - sprData0->unk0) + 0xA;
+    x = x + temp_s0;
+    return temp_s0 + func_800291B8(hudEntry->unk40, x, y, sp18);
+}
 
-INCLUDE_ASM("asm/nonmatchings/hud", func_80029CF8);
+extern int D_8006C7D0;
+extern int D_8006C76C;
+extern char* D_80069DC4[];
+extern void func_8001FE48(int, int, int, int);
+extern void func_8002E748(char*, int, int, int, int*);
+extern int sprintf(char*, const char*, ...);
+int func_80029CF8(HudEntry* hud) {
+    char buffer[32];
+    int x = hud->unk0;
+    int y = hud->unk2;
+    int frame;
+    int halfWidth;
+    int centered;
+    int drawY;
+    frame = hud->movementFrame ? ((unsigned char)hud->movementFrame + 10) >> 1 : 0;
+    func_80029674(hud, &x, &y);
+    func_80029708(hud, &frame, &x, &y);
+    drawY = y;
+    y = drawY - 4;
+    func_8001FE48(x - 9, x + (unsigned char)hud->unk3C + 9, drawY - 6, drawY + 7);
+    func_8002E748((char*)hud->unk28, x, y, 1, 0);
+    if (D_8006C7D0 != 0) {
+        sprintf(buffer, D_80069DC4[D_8006C76C]);
+        halfWidth = func_8002EBB0(buffer) >> 1;
+        centered = 256 - halfWidth;
+        func_8001FE48(centered - 9, halfWidth + 265, 178, 191);
+        func_8002E748(buffer, centered, 180, 1, 0);
+    }
+    return (unsigned char)hud->unk3C;
+}
 
 /**
  * ???() - func_80029E48()

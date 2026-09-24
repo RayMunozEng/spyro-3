@@ -21,8 +21,8 @@ void func_80020168();
 void DrawStringCentered(char*, int, int, int); // 800202dc
 void func_80020344(const char*, int, int, int);
 void DrawStringRightAligned(char*, int, int, int); // 800203c4
-void func_80020428(int, int, short, int); // 80020428 FUN_80020428
-void func_80020530(char*); // 80020530 FUN_80020530
+void func_80020428(int, int, int, int); // 80020428 FUN_80020428
+void func_80020530(signed char*); // 80020530 FUN_80020530
 void func_80020790(); // 80020790 fPrepareHelpScreen
 void func_80020D70(); // 80020d70 FUN_80020d70
 void DrawStringRowCentered(char**, int, int, int); // 80020dac fDrawStringRowCentered

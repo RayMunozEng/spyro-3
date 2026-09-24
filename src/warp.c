@@ -109,12 +109,12 @@ const char** g_LoadingScreenStringTables[] = {
 
 /**
  * WarpToLevel() - func_800584BC() - MATCHING
- * TODO - READY TO IMPLEMENT, but may have issues
- * Due to the strings in this file, I'll need to match from the bottom up!
- * https://decomp.me/scratch/bz7v4
+ * Rev 0 target: asm/nonmatchings/warp/func_800584BC.s,
+ * 0x800584BC..0x80058778 plus its 20-entry switch table (195 target words).
+ * The six RGB writes belong to pauseData2's DRAWENV records.
+ * https://decomp.me/scratch/bz7v4 supplied the initial C candidate.
  */
-INCLUDE_ASM("asm/nonmatchings/warp", func_800584BC);
-#if 0
+
 void func_800584BC(int pType, int pLevelId) {
     if (game.state == GAMESTATE_CREDITS) D_8006C548 = 1;
     else D_8006C548 = 0;
@@ -229,25 +229,25 @@ void func_800584BC(int pType, int pLevelId) {
     }
     
     currentLevel = pLevelId;
-    pauseData.dat_8006fbfc.r0 = 8;
-    pauseData.dat_8006fbfc.g0 = 8;
-    pauseData.dat_8006fbfc.b0 = 8;
-    pauseData.dat_8006fc70.r0 = 8;
-    pauseData.dat_8006fc70.g0 = 8;
-    pauseData.dat_8006fc70.b0 = 8;
+    pauseData2.dat_8006fbfc.r0 = 8;
+    pauseData2.dat_8006fbfc.g0 = 8;
+    pauseData2.dat_8006fbfc.b0 = 8;
+    pauseData2.dat_8006fc70.r0 = 8;
+    pauseData2.dat_8006fc70.g0 = 8;
+    pauseData2.dat_8006fc70.b0 = 8;
     func_8001FB10(0x14000);
     func_8003BEDC();
     streamingData.musicEnabled = 1;
 }
-#endif
-
 /**
  * UpdateLoadingImage() - func_80058778() - MATCHING
- * Something's happening around case 6, unfortunately - I don't know why, as it's matching in decomp.me
- * https://decomp.me/scratch/TOylz
+ * Rev 0 target: asm/nonmatchings/warp/func_80058778.s,
+ * 0x80058778..0x80059038 plus two jump tables (588 target words).
+ * Case 6 reads the global levelIndex at 0x8006C58C, while case 3 uses
+ * selectedIndex locally. A local named levelIndex shadowed the retail global.
+ * https://decomp.me/scratch/TOylz supplied the initial C candidate.
  */
-INCLUDE_ASM("asm/nonmatchings/warp", func_80058778);
-#if 0
+
 void func_80058778() {
     RECT sp10;
     Vector3D sp18;
@@ -259,7 +259,7 @@ void func_80058778() {
     int levelId;
     int temp_s2;
     int var_s0;
-    int levelIndex;
+    int selectedIndex;
     int x;
 
     temp_s2 = pauseData.dat_8006fbc8;
@@ -349,14 +349,14 @@ void func_80058778() {
                         && (currentLevel < D_8006C73C)
                         && (D_8006C73C < currentLevel + 10 || D_8006C73C >= 77)) {
                         if (D_8006C73C >= 0x4D) {
-                            levelIndex = D_80066FCC[6 + currentLevel];
+                            selectedIndex = D_80066FCC[6 + currentLevel];
                         } else {
-                            levelIndex = D_80066FCC[D_8006C73C];
+                            selectedIndex = D_80066FCC[D_8006C73C];
                         }
-                        sp28.x = D_80067064[D_8006703C[levelIndex]].pos.x * 4;
-                        sp28.y = D_80067064[D_8006703C[levelIndex]].pos.y * 4;
-                        sp28.z = D_80067064[D_8006703C[levelIndex]].pos.z * 4 - 0x164;
-                        var_s0 = D_80067134[D_8006703C[levelIndex]];
+                        sp28.x = D_80067064[D_8006703C[selectedIndex]].pos.x * 4;
+                        sp28.y = D_80067064[D_8006703C[selectedIndex]].pos.y * 4;
+                        sp28.z = D_80067064[D_8006703C[selectedIndex]].pos.z * 4 - 0x164;
+                        var_s0 = D_80067134[D_8006703C[selectedIndex]];
                         if (D_8006C73C >= 0x4D) {
                             var_s0 = (var_s0 + 0x80) & 0xFF;
                         }
@@ -365,7 +365,7 @@ void func_80058778() {
                         if (D_8006C73C < 0x4D) {
                             savedData.unk5 = 1;
                         }
-                        if (D_80067064[D_8006703C[levelIndex]].swimming != 0) {
+                        if (D_80067064[D_8006703C[selectedIndex]].swimming != 0) {
                             savedData.swimState = 2;
                         } else {
                             savedData.swimState = 0;
@@ -460,8 +460,6 @@ void func_80058778() {
     }
     pauseData.frameCount += 1;
 }
-#endif
-
 /**
  * DrawLoadingImage() - func_80059038() - MATCHING
  * Matches if pauseData is split into two structs, investigate where this boundary is and what the implications for other functions are
