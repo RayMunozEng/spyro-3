@@ -25,6 +25,7 @@ extern int rand(); // rand
 extern short D_800658A0[0x100]; // sin
 extern short D_80065920[0x100]; // cos
 extern unsigned char D_80066964[28]; // GemValueToSubstate
+extern unsigned char D_80066980[];
 extern unsigned char D_80066988[8]; // GemAnimationIds
 extern unsigned char D_80066990[8]; // GemColourIndices
 extern unsigned char D_80066F54[40]; // gems per level / 100
@@ -40,6 +41,12 @@ extern int D_8006C580;
 extern Moby* D_8006C704; // FirstAllocatedMobyPointer
 extern unsigned short** D_8006C730;
 extern int D_8006C770;
+extern int D_8006C6F8;
+extern int D_8006C71C;
+extern int D_8006C79C;
+extern unsigned char D_8006E3B0[];
+extern int D_80071A10[];
+extern unsigned int D_80071AB0[40][8];
 
 // bss
 extern WadHeader wadHeader; // 8006d8d8
@@ -789,7 +796,46 @@ int func_800369D8(int arg0) {
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80036A68);
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80036E60);
+void func_80036708(int, Moby*);
+void func_8003BA00(Moby*);
+/* Retail source: USA Rev 0 0x80036E60..0x80037014 (109 words).
+ * One call records one collected value; integer fields have no fixed-point scale.
+ * Exact test: full PSX.EXE SHA-256 plus all overlay hashes in build_multiproc.py. */
+void func_80036E60(Moby* arg0) {
+    int gemValue;
+    int temp_v0;
+    register int temp_a1 __asm__("$5");
+    int var_s0;
+    unsigned char temp_v1;
+    register Moby* var_a0 __asm__("$4");
+
+    gemValue = D_80066980[arg0->substate];
+    if (arg0->mobyClass != 0x141) {
+        D_8006C71C += gemValue;
+        D_80071A10[levelIndex] += gemValue;
+    }
+    D_8006E3B0[D_8006C6F8 & 0x1F] = arg0->substate;
+    D_8006C6F8 += 1;
+    if ((arg0->mobyClass == 1) && (arg0->position.z >= 0x300)) {
+        func_80036708(gemValue, arg0);
+    }
+    if (arg0->mobyClass != 0x141) {
+        temp_v1 = arg0->linkedMoby;
+        if (temp_v1 != 0xFF) {
+            var_s0 = temp_v1 + D_8006C79C;
+            var_a0 = &D_8006C550[temp_v1];
+        } else {
+            var_a0 = arg0;
+            temp_a1 = (unsigned int)var_a0 - (unsigned int)D_8006C550;
+            temp_v0 = temp_a1 * -0x45D1745D;
+            var_s0 = (temp_v0 >> 3) + D_8006C79C;
+        }
+        func_8003BA00(var_a0);
+        temp_a1 = var_s0 & 0x1F;
+        var_s0 >>= 5;
+        D_80071AB0[levelIndex][var_s0] |= 1 << temp_a1;
+    }
+}
 
 /**
  * ???() - func_80037014() - MATCHING
