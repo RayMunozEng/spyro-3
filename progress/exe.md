@@ -361,7 +361,7 @@
 - [x] func_80056A3C
 - [ ] func_80056A98
 - [ ] func_80056CF0
-- [ ] func_80056ECC
+- [x] func_80056ECC
 - [ ] func_80057154
 - [ ] func_80057340
 - [ ] func_80057834

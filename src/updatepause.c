@@ -72,7 +72,92 @@ INCLUDE_ASM("asm/nonmatchings/updatepause", func_80056A98);
 
 INCLUDE_ASM("asm/nonmatchings/updatepause", func_80056CF0);
 
-INCLUDE_ASM("asm/nonmatchings/updatepause", func_80056ECC);
+extern int D_8006C598, D_8006C648;
+extern Moby* D_8006C65C;
+extern int D_8006FBC8, D_8006FBCC, D_8006FBD4;
+extern unsigned short D_8006E040;
+extern Moby* D_8006E788[];
+extern int D_8006E78C;
+extern unsigned char D_80070115;
+extern short D_80070116;
+extern int D_80070118, D_8007011C, D_80070120;
+extern Vector3D D_80070124;
+extern unsigned char D_80070130, D_80070131;
+extern signed char D_80070132;
+extern short D_80070136, D_80070158;
+extern char* (*UpdateParticles)(int);
+int func_800359A4(short*, int);
+void func_8004F178(Vector3D*, Vector3D*);
+void func_80055854(Moby**, int);
+void func_80034DAC(Moby*);
+
+/* Retail source: USA Rev 0 PSX.EXE 0x80056ECC..0x80057154 (162 words).
+ * Pause state and frame delta are runtime scalar units; camera angle is a
+ * signed 12-bit-style value reduced by four fractional bits. This update runs
+ * once per paused frame. Confidence is confirmed only by exact instruction and
+ * executable comparisons; falsify with any word mismatch in the cited span. */
+void func_80056ECC(void) {
+    register int offset __asm__("$2");
+    int shift;
+
+    if ((D_8006FBC8 == 0x15) && (D_8006FBD4 == 1)) {
+        func_8004F178(&D_8006C65C->position, &D_80070124);
+    }
+    if (D_8006C598 == 0) {
+        register short* randomTimer __asm__("$16") = &D_80070116;
+        if (func_800359A4(randomTimer, 2) != 0) {
+            *randomTimer = (rand() & 0x7F) + 0x1E;
+            D_80070115 = rand() & 1;
+        }
+    }
+
+    D_80070118 = 0x800;
+    if (D_8006FBC8 == 3) {
+        offset = D_8006FBCC + 8;
+    } else {
+        offset = D_8006FBCC - 1;
+    }
+    D_80070120 = 0x6E - offset * 0x87;
+    __asm__ volatile ("" ::: "memory");
+    {
+        register int* coordinate __asm__("$5") = &D_80070120;
+        register int vertical __asm__("$3") = D_80070158;
+        register unsigned int direction __asm__("$4") = D_80070115;
+        vertical -= 5;
+        *coordinate += (vertical * 0x87) >> 1;
+
+        if (direction != 0) {
+            D_8007011C = 0x1AE;
+            D_80070132 = ((short)D_8006E040 >> 4) - 0x40;
+        } else {
+            D_8007011C = -0x1AE;
+            D_80070132 = ((short)D_8006E040 >> 4) + 0x40;
+        }
+    }
+
+    if (D_80070136 != 0) {
+        shift = D_80070136 / 8 - 1;
+        if (shift >= 7) {
+            shift = 6;
+        }
+        D_8007011C <<= shift;
+    }
+
+    D_80070130 = 0;
+    D_80070131 = 0;
+    if (D_8006C65C != 0) {
+        D_8006E788[0] = D_8006C65C;
+        D_8006E78C = 0;
+        func_80055854(D_8006E788, 2);
+        if (D_8006C648 >= 3) {
+            func_80055854(D_8006E788, D_8006C648 + 0x7FFFFFFE);
+        }
+        func_80034DAC(D_8006C65C);
+    }
+    if (UpdateParticles != 0) {
+        UpdateParticles(D_8006C648);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/updatepause", func_80057154);
 
