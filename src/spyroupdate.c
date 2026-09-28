@@ -236,21 +236,123 @@ zero:
 done:
     return result;
 }
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80040D10);
-
-/**
- * ???() - func_80040F48() - MATCHING
- * Just needs variable cleanups / labelling
- * https://decomp.me/scratch/kqmRi
- */
 typedef struct { int unk0, unk4; } SpyroInputPair;
 typedef struct {
     int unk0, unk4, unk8;
     unsigned char unkC, unkD, unkE, unkF;
 } SpyroInputSource;
 extern SpyroInputSource* D_8006C570;
+extern int D_8006C5BC;
 extern short D_8006E040;
+extern signed char D_8006E535;
 extern unsigned char D_8006E536;
+
+/* Retail evidence: USA Rev 0 PSX.EXE 0x80040D10..0x80040F48 (142 words).
+ * Raw unsigned pad axes are centered at 0x7F; yaw is Q12 and speed is scaled
+ * by arg0/128 once per call. Confidence: exact. Falsifiable by the full-image
+ * hash and a word comparison over this address span. */
+void func_80040D10(int arg0) {
+    Vector3D sp10;
+    int temp_a0;
+    int temp_a1;
+    int temp_v0;
+    int temp_v0_2;
+    int temp_v1;
+    int temp_v1_2;
+    int var_v0_3;
+    int var_v1;
+
+    if (D_8006E536 != 0) {
+        sp10.x = D_8006C570->unkE;
+        sp10.y = D_8006C570->unkF;
+    } else {
+        temp_v1 = D_8006C570->unk0;
+        {
+            register int selector __asm__("$2");
+            selector = temp_v1 & 0x1000;
+            if (selector) {
+                sp10.y = 0;
+            } else {
+                selector = temp_v1 & 0x4000;
+                if (!selector) {
+                    selector = 0x7F;
+                } else {
+                    selector = 0xFF;
+                }
+                sp10.y = selector;
+            }
+        }
+        temp_v1_2 = D_8006C570->unk0;
+        {
+            register int selector __asm__("$2");
+            selector = temp_v1_2 & 0x2000;
+            if (!selector) {
+                selector = temp_v1_2 & 0x8000;
+                if (selector) {
+                    sp10.x = 0;
+                    goto input_done;
+                }
+                selector = 0x7F;
+            } else {
+                selector = 0xFF;
+            }
+            sp10.x = selector;
+        }
+    }
+input_done:
+    if ((D_8006C5BC == 0x2A) &&
+        (*(int*)(&D_80070328 + 0x24C) == 1)) {
+        sp10.y = 0x7F;
+        if (sp10.x == 0x7F) {
+            D_8006E535 = 1;
+            goto block_15;
+        }
+        goto block_19;
+    }
+block_15:
+    if (sp10.x == 0x7F) {
+        if (sp10.y == sp10.x) {
+            *(int*)(&D_80070328 + 0xAC) = 0;
+            *(int*)(&D_80070328 + 0xA4) = *(int*)(&D_80070328 + 0x64);
+        } else {
+            goto block_20;
+        }
+    } else {
+block_19:
+block_20:
+        temp_a0 = 0x7F - sp10.y;
+        temp_a1 = 0x7F - sp10.x;
+        sp10.x = temp_a1;
+        sp10.y = temp_a0;
+        temp_v0 = func_8004E880(temp_a0, temp_a1, 1);
+        *(int*)(&D_80070328 + 0xA4) = temp_v0;
+        *(int*)(&D_80070328 + 0xA4) = (temp_v0 + D_8006E040) & 0xFFF;
+        temp_v0_2 = (arg0 * func_8004EDE8(&sp10, 0)) >> 7;
+        *(int*)(&D_80070328 + 0xAC) = temp_v0_2;
+        if (arg0 < temp_v0_2) {
+            *(int*)(&D_80070328 + 0xAC) = arg0;
+        }
+    }
+    if ((D_8006C5BC == 0x2A) &&
+        (*(int*)(&D_80070328 + 0x24C) == 1)) {
+        var_v1 = *(int*)(&D_80070328 + 0xA4) & 0xFFF;
+        if (var_v1 >= 0x801) {
+            var_v1 -= 0x1000;
+        }
+        var_v0_3 = (var_v1 >= 0) ? var_v1 : -var_v1;
+        if (var_v0_3 >= 0x401) {
+            *(int*)(&D_80070328 + 0xA4) = 0x800;
+            return;
+        }
+        *(int*)(&D_80070328 + 0xA4) = 0;
+    }
+}
+
+/**
+ * ???() - func_80040F48() - MATCHING
+ * Just needs variable cleanups / labelling
+ * https://decomp.me/scratch/kqmRi
+ */
 int func_8004E9E4(int);
 int func_8004EA2C(int);
 void func_80040F48(SpyroInputPair* arg0, int arg1) {
