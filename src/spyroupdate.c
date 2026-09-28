@@ -1295,7 +1295,55 @@ loop_13:
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800498C0);
+extern int D_8006582C, D_80065834;
+extern unsigned char D_8006C408, D_8006C409, D_8006C40A, D_8006C40B;
+extern int D_8006C5BC, D_8006C5C8, D_8006C658;
+extern int D_8006C6BC, D_8006C70C, D_8006C784, D_8006C7E4;
+extern int D_8006FA38, D_8006FBD0;
+extern char D_8006D088;
+void func_8003B74C(void*);
+void func_80054AF8(void);
+/* Retail source: USA Rev 0 PSX.EXE 0x800498C0..0x80049ACC (131 words).
+ * One call updates integer death and level counters, consumes at most one
+ * life, and selects checkpoint reset or game over using the retail level and
+ * state tests. Confidence: exact; falsifiable by all instruction words and
+ * the complete executable/overlay SHA-256 checks. */
+void func_800498C0(void) {
+    if (D_8006FA38 < 0) {
+        D_8006C70C += 1;
+        D_8006C6BC += 1;
+    }
+    if (D_8006C658 == 1) {
+        D_8006C7E4 = D_8006C658;
+        return;
+    }
+    if (D_8006C5BC == 0x11) {
+        D_8006C408 += 1;
+    } else if (D_8006C5BC == 0x1B) {
+        D_8006C409 += 1;
+    } else if (D_8006C5BC == 0x25) {
+        D_8006C40A += 1;
+    } else if (D_8006C5BC == 0x2F) {
+        D_8006C40B += 1;
+    }
+    D_8006582C = 0;
+    if ((D_8006FA38 < 0) &&
+        ((D_8006C5BC != 0x15) || (D_8006C5C8 != 1))) {
+        *(int*)(&D_80070328 + 0x280) = D_80065834;
+        if (((D_8006C5BC / 10) * 10) != (D_8006C5BC - 8)) {
+            D_8006C784 -= 1;
+        }
+        if (D_8006C784 >= 0) {
+            func_8003B74C(&D_8006D088);
+            D_8006FBD0 = 1;
+            *(int*)(&D_80070328 + 0x240) = 0;
+            return;
+        }
+        func_80054AF8();
+        return;
+    }
+    func_8003B74C(&D_8006D088);
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80049ACC);
 
