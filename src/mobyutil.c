@@ -1102,10 +1102,87 @@ INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038F14);
  */
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800391E8);
 
-/**
- * TODO
- */
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80039714);
+typedef struct {
+    short velocityX;
+    short velocityY;
+    short velocityZ;
+    unsigned char angleX;
+    unsigned char pad7;
+    unsigned char angleY;
+    unsigned char pad9;
+    unsigned char angleZ;
+    unsigned char padB;
+    short lifetime;
+    short minimumZ;
+    short gravity;
+    short collisionDistance;
+    int collisionCooldown;
+} MobyPhysicsTag;
+
+extern int func_80019194(Vector3D*, int);
+extern void func_8004EF04(Vector3D*, int);
+extern void func_8004F08C(Vector3D*, int, int);
+
+/* Retail source: USA Rev 0 PSX.EXE 0x80039714..0x80039974 (152 words).
+ * Moby position uses runtime world units; tag velocities and gravity are signed
+ * 16-bit values, angles are unsigned bytes, and lifetime/cooldown update once
+ * per call. Confirmed by an exact 152/152 instruction comparison; falsify with
+ * any word mismatch in that address span or a nonmatching retail executable. */
+int func_80039714(Moby* arg0) {
+    register Moby* moby __asm__("$17") = arg0;
+    register MobyPhysicsTag* tag __asm__("$16");
+    register Vector3D* normal __asm__("$18");
+    int dot;
+    register int projection __asm__("$7");
+
+    __asm__ volatile ("" : "=r"(moby) : "0"(moby));
+    tag = moby->mobyTag;
+
+    if ((tag->lifetime <= 0) || (moby->drawn == 0) ||
+        ((tag->collisionDistance == 0) && (moby->position.z < tag->minimumZ))) {
+        func_80055B18(moby);
+        return 1;
+    }
+
+    if (tag->collisionCooldown == 0) {
+        if ((tag->collisionDistance != 0) &&
+            func_80019194(&moby->position, tag->collisionDistance)) {
+            normal = &D_80071900.D_80071918;
+            func_8004EF04(normal, 0x1000);
+            dot = tag->velocityX * normal->x + tag->velocityY * normal->y +
+                  tag->velocityZ * normal->z;
+            projection = dot >> 11;
+            if (projection < 0) {
+                func_8004F08C(normal, 0x1000, (dot >> 13) - projection);
+                tag->velocityX = (unsigned short)tag->velocityX + normal->x;
+                tag->velocityY = (unsigned short)tag->velocityY + normal->y;
+                tag->velocityZ = (unsigned short)tag->velocityZ + normal->z;
+            }
+        }
+        if (tag->collisionCooldown == 0) {
+            goto update_velocity;
+        }
+    }
+
+    tag->collisionCooldown--;
+    if (tag->collisionCooldown < 0) {
+        tag->collisionCooldown = 0;
+    }
+
+update_velocity:
+    tag->velocityZ = (unsigned short)tag->velocityZ - (unsigned short)tag->gravity;
+    if (tag->velocityZ < -0x80) {
+        tag->velocityZ = -0x80;
+    }
+    moby->position.x += tag->velocityX;
+    moby->position.y += tag->velocityY;
+    moby->position.z += tag->velocityZ;
+    moby->angle.roll += tag->angleX;
+    moby->angle.pitch += tag->angleY;
+    moby->angle.yaw += tag->angleZ;
+    tag->lifetime--;
+    return 0;
+}
 
 /**
  * LoadDragonModel() - func_80039974() - MATCHING
