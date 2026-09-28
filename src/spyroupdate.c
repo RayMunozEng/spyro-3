@@ -1344,7 +1344,88 @@ void func_80047D00(Moby* object) {
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80047E6C);
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80048210);
+/* Retail source: USA Rev 0 asm/nonmatchings/spyroupdate/func_80048210.s,
+ * 0x80048210..0x80048444 (141 instruction words). The input and Spyro
+ * positions use runtime Vector3D units; the derived direction is a signed
+ * angle byte, and the history-copy loop runs once per D_8006C648 tick.
+ * Confidence: confirmed by a 141/141 word comparison and PSX.EXE SHA-256
+ * e5406997dccc7300c8198498c20b9d6c4c0a547813be1010446b6c4e5d50e39f;
+ * changing the state gates, Q12 trig shifts, 0x7F clamp, or copy cadence is
+ * a falsifiable mismatch against that executable. */
+extern signed char D_8006E534, D_8006E546, D_8006E547;
+extern int D_8006E538, D_8006E544;
+extern char D_8006E548[], D_8006E54C[];
+extern int D_8006C648;
+void func_80048210(Vector3D* target) {
+    struct {
+        Vector3D delta;
+        int pad1;
+        int pad2;
+    } local;
+    register int angle __asm__("$16");
+    register int distance __asm__("$17");
+
+    *(signed char*)&D_8006E508 = 3;
+    func_8004F1C8(&local.delta, target, (Vector3D*)&D_80070328);
+    distance = func_8004EDE8(&local.delta, 0) >> 1;
+    if (distance >= 0x80) {
+        distance = 0x7F;
+    }
+    angle = func_8004E880(local.delta.x, local.delta.y, 1);
+    if (*(int*)(&D_80070328 + 0x214) == 0) {
+        if (*(int*)(&D_80070328 + 0x50) != 2) {
+            func_8004BEF8(6);
+        }
+        D_8006E538 = 0x40;
+        if (*(int*)(&D_80070328 + 0xB8) != 0) {
+            *(int*)(&D_80070328 + 0x214) = 1;
+        }
+    } else if (*(int*)(&D_80070328 + 0x214) == 1) {
+        D_8006E538 = 0x40;
+        if (*(int*)(&D_80070328 + 0xB8) == 0 ||
+            *(int*)(&D_80070328 + 0x50) != 2) {
+            *(int*)(&D_80070328 + 0x214) = 2;
+        }
+    }
+    if (*(int*)(&D_80070328 + 0x214) < 2) {
+        register int index __asm__("$4");
+        register signed char* output __asm__("$6");
+        register int adjusted __asm__("$2");
+        int product;
+        int i;
+        int offset;
+        register int* destination __asm__("$4");
+        register int* source __asm__("$6");
+
+        adjusted = angle - D_8006E040;
+        angle = adjusted >> 3;
+        index = angle & 0x1FE;
+        output = &D_8006E546;
+        *output = 0x7F - ((distance * *(short*)((char*)D_800658A0 + index)) >> 12);
+        product = distance * *(short*)((char*)D_80065920 + index);
+        D_8006E534 = 0;
+        D_8006E547 = 0x7F - (product >> 12);
+        __asm__ volatile ("" ::: "memory");
+        if ((D_8006E544 & 0xFFFF0000) != 0x7F7F0000) {
+            D_8006E536 = 1;
+            D_8006E535 = 0;
+        }
+        i = 0;
+        if (D_8006C648 > 0) {
+            destination = (int*)(output + 0xE);
+            source = destination;
+            offset = 0;
+            do {
+                *destination = source[-4];
+                i++;
+                *(int*)((char*)D_8006E548 + offset) = source[-7];
+                destination += 4;
+                *(int*)((char*)D_8006E54C + offset) = source[-6];
+                offset += 0x10;
+            } while (i < D_8006C648);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80048444);
 
