@@ -670,7 +670,80 @@ INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80041C20);
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80042A44);
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80042F64);
+/* Retail source: USA Rev 0 asm/nonmatchings/spyroupdate/func_80042F64.s,
+ * 0x80042F64..0x80043194 (140 instruction words). The function derives
+ * signed byte angles from runtime vectors, transforms three Vector3D points,
+ * and applies collision displacement once per call. Confidence: confirmed by
+ * a 140/140 word comparison and PSX.EXE SHA-256
+ * e5406997dccc7300c8198498c20b9d6c4c0a547813be1010446b6c4e5d50e39f;
+ * changing any branch, field offset, angle shift, or 8-unit dead zone is a
+ * falsifiable mismatch against that executable. */
+extern CollisionData D_80071900;
+void func_8004EA90(Angle*, SHORTMATRIX*, int*);
+void func_80042F64(void) {
+    Vector3D sp10;
+    Vector3D sp20;
+    Vector3D sp30;
+    Angle sp40;
+    SHORTMATRIX sp48;
+    register unsigned char* flag __asm__("$16") =
+        (unsigned char*)&D_80070328 + 0xFE;
+    Vector3D* position;
+    int value;
+
+    if (*flag != 0) {
+        sp40.roll = 0;
+        sp40.pitch = -func_8004E880(
+            func_8004EDE8((Vector3D*)(flag - 0x26), 0),
+            *(int*)(&D_80070328 + 0xE0), 0);
+        sp40.yaw = func_8004E880(-*(int*)(flag - 0x26),
+                                 -*(int*)(&D_80070328 + 0xDC), 0);
+    } else {
+        sp40.roll = *(int*)(&D_80070328 + 0x5C) >> 4;
+        sp40.pitch = *(int*)(&D_80070328 + 0x60) >> 4;
+        sp40.yaw = *(int*)(&D_80070328 + 0x64) >> 4;
+    }
+    func_8004EA90(&sp40, &sp48, 0);
+    sp30.y = 0;
+    sp30.z = 0;
+    sp30.x = *(int*)(&D_80070328 + 0x44);
+    func_8004F178(&sp20, &sp30);
+    sp20.x += 0xA0;
+    func_8004F178(&sp10, &sp30);
+    sp10.x -= 0x80;
+    func_8004ED6C(&sp48, &sp10, &sp10);
+    position = (Vector3D*)&D_80070328;
+    func_8004F194(&sp10, position, &sp10);
+    func_8004ED6C(0, &sp20, &sp20);
+    func_8004F194(&sp20, position, &sp20);
+    func_8004ED6C(0, &sp30, &sp30);
+    func_8004F194(&sp30, position, &sp30);
+    if (func_80018368(&sp10, &sp20) != 0) {
+        func_8004F1C8(&sp30, &D_80071900.D_80071900, &sp30);
+        value = sp30.x;
+        if (value < 0) {
+            value = -value;
+        }
+        if (value < 8) {
+            sp30.x = 0;
+        }
+        value = sp30.y;
+        if (value < 0) {
+            value = -value;
+        }
+        if (value < 8) {
+            sp30.y = 0;
+        }
+        value = sp30.z;
+        if (value < 0) {
+            value = -value;
+        }
+        if (value < 8) {
+            sp30.z = 0;
+        }
+        func_8004F194(position, position, &sp30);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80043194);
 
@@ -850,7 +923,6 @@ void func_80043E00(Vector3D* arg0) {
  */
 /* Retail source: 0x80043F3C..0x800441F0. Ladder alignment uses
  * 12-bit signed angles and runtime Vector3D position units. */
-void func_8004EA90(Angle*, SHORTMATRIX*, int*);
 void func_80043F3C(Vector3D* arg0) {
     Angle12 sp10;
     Vector3D sp20;
