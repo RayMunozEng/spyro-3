@@ -703,7 +703,77 @@ int func_800365E4(Vector3D* first, Vector3D* second, int divisor,
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80036708);
+extern short D_8006E040;
+
+/* Retail source: USA Rev 0 PSX.EXE 0x80036708..0x800368A4 (103 words).
+ * One call emits one display Moby per decimal digit. Positions and velocities
+ * use raw integer world units; the retail 12-bit-turn heading is reduced to an
+ * 8-bit table index. Confidence: exact. Falsifiable by all 103 instruction
+ * words, the full PSX.EXE SHA-256, and every overlay hash. */
+void func_80036708(int arg0, Moby* arg1) {
+    short velocity[3];
+    register int count __asm__("$18") = arg0;
+    register Moby* source __asm__("$22") = arg1;
+    register int place __asm__("$19") = 1;
+    register int var_s0 __asm__("$16") = (int)&D_8006E040;
+    register int x __asm__("$21") = source->position.x;
+    register int y __asm__("$20");
+    register int trig_arg __asm__("$4");
+    register int trig_result __asm__("$2");
+    int digit;
+    int product;
+
+    __asm__ volatile("" : "=r"(source), "=r"(place) : "0"(source), "1"(place));
+    __asm__ volatile("" : "=r"(var_s0) : "0"(var_s0));
+    trig_arg = *(short*)var_s0;
+    y = source->position.y;
+    trig_result = func_8004EA2C(trig_arg - 0x400);
+    trig_arg = *(short*)var_s0;
+    velocity[0] = trig_result >> 8;
+    velocity[1] = func_8004E9E4(trig_arg - 0x400) >> 8;
+    velocity[2] = 0x80;
+    while (count != 0) {
+        register Moby* spawned __asm__("$2");
+        register int* tag __asm__("$4");
+        register int z __asm__("$3");
+        int place_temp;
+
+        digit = count / 10;
+        var_s0 = digit;
+        digit = count - digit * 10;
+        spawned = SpawnMoby(0x104, 0);
+        spawned->animationState.id = digit;
+        spawned->position.x = x;
+        spawned->position.y = y;
+        z = source->position.z;
+        product = digit * place;
+        spawned->angle.roll = 0;
+        spawned->angle.pitch = 0;
+        spawned->position.z = z;
+        tag = (int*)spawned->mobyTag;
+        spawned->angle.yaw = (unsigned short)D_8006E040 >> 4;
+        tag[1] = 0x60;
+        tag[3] = velocity[0];
+        tag[4] = velocity[1];
+        count = var_s0;
+        tag[5] = velocity[2];
+        __asm__ volatile("sll %0, %1, 2" : "=&r"(place_temp) : "r"(place));
+        __asm__ volatile("addu %0, %0, %2" : "=&r"(place_temp) : "0"(place_temp), "r"(place));
+        __asm__ volatile("sll %0, %1, 1" : "=r"(place) : "r"(place_temp));
+        tag[2] = product;
+        {
+            register unsigned int angle __asm__("$4") = spawned->angle.yaw;
+            register int sine __asm__("$3") = D_800658A0[angle];
+            int cosine = D_80065920[angle];
+
+            velocity[2] -= 0x10;
+            __asm__ volatile("" : "=r"(sine) : "0"(sine));
+            __asm__ volatile("" : "=r"(cosine) : "0"(cosine));
+            x -= sine >> 4;
+            y += cosine >> 4;
+        }
+    }
+}
 
 /* Retail source: asm/nonmatchings/mobyutil/func_800368A4.s,
  * 0x800368A4..0x800369B8; raw integer state fields. */
@@ -977,7 +1047,6 @@ loop_42:
     return spawnedMoby;
 }
 
-void func_80036708(int, Moby*);
 void func_8003BA00(Moby*);
 /* Retail source: USA Rev 0 0x80036E60..0x80037014 (109 words).
  * One call records one collected value; integer fields have no fixed-point scale.
