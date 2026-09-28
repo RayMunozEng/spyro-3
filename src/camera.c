@@ -274,7 +274,58 @@ void func_800135F8(Vector3D* arg0, SphericalPosition* arg1, Vector3D* arg2) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_800136F0);
+extern unsigned char D_8006E13B;
+extern int D_8006E144;
+int func_8004EDE8(Vector3D*, int);
+void func_8004F1C8(Vector3D*, Vector3D*, Vector3D*);
+/* Retail source: USA Rev 0 0x800136F0..0x800138A0 (108 words).
+ * Angles use 12-bit turns; Cartesian inputs use the producer's world units.
+ * Exact test: full PSX.EXE SHA-256 plus all overlay hashes in build_multiproc.py. */
+int func_800136F0(CameraPosition* output, Vector3D* first, Vector3D* second) {
+    Vector3D difference;
+    int flipped = 0;
+    int azimuth;
+    register int delta __asm__("$3");
+    register int magnitude __asm__("$2");
+    if (second != 0) {
+        func_8004F1C8(&difference, first, second);
+    } else {
+        func_8004F178(&difference, first);
+    }
+    output->pos.elevation = func_8004E880(func_8004EDE8(&difference, 0), difference.z, 1);
+    azimuth = func_8004E880(difference.x, difference.y, 1);
+    delta = (azimuth - output->pos.azimuth) & 0xFFF;
+    if (delta >= 0x801) delta -= 0x1000;
+    magnitude = delta;
+    if (delta < 0) magnitude = -magnitude;
+    if (magnitude > 0x400) {
+        if (D_8006E13B != 0 ||
+            (D_8006E044 == 7 && D_8006E144 >= 0x401) ||
+            *(int*)(&D_80070328 + 0x48) == 0x26) {
+            azimuth = (azimuth + 0x800) & 0xFFF;
+            flipped = 1;
+            output->pos.elevation = (0x800 - output->pos.elevation) & 0xFFF;
+        }
+    }
+    {
+        int x = difference.x;
+        if (x < 0) x = -x;
+        if (x < 0x80) {
+            int y = difference.y;
+            if (y < 0) y = -y;
+            if (y < 0x80) {
+                azimuth = D_8006E09C;
+                /* Retail load-delay word at 0x80013844. */
+                __asm__ volatile("nop");
+            }
+        }
+    }
+    if (azimuth >= 0x801) azimuth -= 0x1000;
+    output->pos.azimuth = azimuth;
+    if (output->pos.elevation >= 0x801) output->pos.elevation -= 0x1000;
+    output->pos.radius = func_8004EDE8(&difference, 1);
+    return flipped;
+}
 
 /**
  * ???() - func_800138A0() - MATCHING
