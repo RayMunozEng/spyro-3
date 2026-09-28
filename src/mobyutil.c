@@ -794,7 +794,188 @@ int func_800369D8(int arg0) {
     return liveMobys;
 }
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80036A68);
+typedef struct {
+    unsigned char pad0[4];
+    short velocityX;
+    short velocityY;
+    short velocityZ;
+    unsigned char padA[4];
+    unsigned char randomX;
+    unsigned char randomY;
+    unsigned char randomZ;
+    unsigned char movementMode;
+    unsigned char settleMode;
+    unsigned char timer;
+} GemMobyTag;
+
+extern int D_8006C5C8;
+extern Vector3D D_80071918;
+extern int D_80071920;
+extern int g_CurrentLevel;
+extern Spyro g_Spyro;
+extern int func_8001BA30(Vector3D*, int, int, int, int, Moby*);
+extern int func_8004EDE8(Vector3D*, int);
+
+/* Retail source: USA Rev 0 0x80036A68..0x80036E60 (254 words).
+ * One call spawns and initializes one gem Moby. Position, velocity, collision,
+ * and distance values remain in the raw signed integer units consumed by the
+ * retail vector and collision helpers; random masks and all state transitions
+ * execute once at their corresponding branch in this call. Confidence: exact.
+ * Falsifiable test: compare all 254 words, the full PSX.EXE SHA-256, and every
+ * corrected and encrypted overlay hash through build_multiproc.py. */
+Moby* func_80036A68(Moby* arg0, int arg1, Vector3D* arg2, Vector3D* arg3) {
+    Vector3D sp18;
+    Vector3D sp28;
+    register Moby* sourceMoby asm("$19");
+    register Moby* spawnedMoby asm("$17");
+    register Vector3D* requestedPosition asm("$20");
+    register int temp_a0 asm("$4");
+    register int var_a1 asm("$5");
+    register int temp_v0_2 asm("$2");
+    int var_a0;
+    register int var_s0 asm("$16");
+    int var_s2;
+    register int var_v1 asm("$3");
+    unsigned char temp_v0;
+    register GemMobyTag* spawnedTag asm("$21");
+
+    sourceMoby = arg0;
+    __asm__("" : "=r"(sourceMoby) : "0"(sourceMoby));
+    var_s2 = arg1;
+    var_s0 = (int)arg2;
+    requestedPosition = arg3;
+    if (sourceMoby->gemValue == 0xFF) {
+        return 0;
+    }
+    var_a0 = 1;
+    if (sourceMoby->mobyClass == 0xB3) {
+        var_a0 = 0x141;
+    }
+    spawnedMoby = SpawnMoby(var_a0, sourceMoby);
+    __asm__ volatile("" : "=r"(spawnedMoby) : "0"(spawnedMoby) : "memory");
+    spawnedTag = spawnedMoby->mobyTag;
+    if (((g_CurrentLevel / 10) * 10) == (g_CurrentLevel - 8)) {
+        spawnedMoby->mobyClass = 0x17D;
+        spawnedMoby->unknown4 = 0;
+    }
+    spawnedMoby->state = 2;
+    temp_v0 = D_80066964[sourceMoby->gemValue];
+    spawnedMoby->substate = temp_v0;
+    spawnedMoby->animationState.id = D_80066988[temp_v0 & 0xFF];
+    spawnedMoby->colour.r = D_80066990[spawnedMoby->substate];
+    spawnedTag->timer = 0xFF;
+    if (var_s2 & 4) {
+        spawnedTag->movementMode = 1;
+    }
+    if (var_s2 & 8) {
+        spawnedTag->movementMode = 3;
+    }
+    if (var_s2 & 2) {
+        spawnedTag->settleMode = 0;
+    } else {
+        spawnedTag->settleMode = 3;
+    }
+    temp_a0 = (int)&spawnedMoby->position;
+    if (var_s0 != 0) {
+        func_8004F178((Vector3D*)temp_a0, (Vector3D*)var_s0);
+    } else {
+        func_8004F178((Vector3D*)temp_a0, &sourceMoby->position);
+        spawnedMoby->position.z += 0x100;
+    }
+    if ((g_CurrentLevel == 42) && (D_8006C5C8 == 1)) {
+        var_s2 |= 16;
+    }
+    temp_a0 = (int)&sp18;
+    if (requestedPosition == 0) {
+        goto no_requested_position;
+    }
+    var_a1 = (int)requestedPosition;
+    goto block_39;
+
+no_requested_position:
+    var_s0 = (int)&sp28;
+    if ((var_s2 & 16) ||
+            (!(var_s2 & 1) &&
+             ((g_Spyro.movementState == MOVEMENT_STATE_CHARGE) ||
+              (g_Spyro.movementState == MOVEMENT_STATE_SWIM_CHARGE) ||
+              (g_Spyro.movementState == MOVEMENT_STATE_SKATEBOARD)))) {
+        var_s0 = (int)&sp28;
+        temp_a0 = var_s0;
+        __asm__("" : "=r"(temp_a0) : "0"(temp_a0));
+        requestedPosition = &spawnedMoby->position;
+        func_8004F1C8((Vector3D*)temp_a0, requestedPosition, &g_Spyro.position);
+        if ((var_s2 & 16) ||
+                (func_8004EDE8((Vector3D*)var_s0, 1) < 0xA00)) {
+            func_8004F504((Vector3D16*)((char*)spawnedTag + 4),
+                          (Vector3D16*)requestedPosition);
+            spawnedTag->randomX = rand() & 0xE;
+            spawnedTag->randomY = rand() & 0xE;
+            spawnedTag->randomZ = rand() & 0xE;
+            spawnedMoby->state = 3;
+            spawnedMoby->updateDistance = 0xFF;
+            return spawnedMoby;
+        }
+    }
+
+    var_s0 = 0;
+    var_s2 = (int)&D_80071918;
+loop_32:
+    func_8004F178(&sp18, &sourceMoby->position);
+    temp_v0_2 = rand();
+    var_v1 = sp18.x;
+    __asm__("" : "=r"(var_v1) : "0"(var_v1));
+    temp_v0_2 &= 0x3FF;
+    var_v1 -= 0x200;
+    var_v1 += temp_v0_2;
+    __asm__("" : "=r"(var_v1) : "0"(var_v1));
+    sp18.x = var_v1;
+    temp_v0_2 = rand();
+    var_v1 = sp18.y;
+    var_v1 -= 0x200;
+    sp18.y = var_v1 + (temp_v0_2 & 0x3FF);
+    sp18.z += 0x400;
+    temp_v0_2 = func_8001A358(&sp18, 0x800);
+    sp18.z = temp_v0_2;
+    if ((temp_v0_2 <= 0) ||
+            (func_8004E880(D_80071920, func_8004EDE8((Vector3D*)var_s2, 0), 0) >= 0x18) ||
+            (func_8001BA30(&sp18, 0xC8, 0, 0, 0, sourceMoby) != 0)) {
+        var_s0 += 1;
+        if (var_s0 < 4) {
+            goto loop_32;
+        }
+    }
+    var_v1 = 0x8C;
+    if (var_s0 == 4) {
+        temp_a0 = (int)&sp18;
+        var_a1 = (int)&sourceMoby->position;
+block_39:
+        func_8004F178((Vector3D*)temp_a0, (Vector3D*)var_a1);
+        var_v1 = 0x8C;
+    }
+    temp_a0 = spawnedMoby->position.z;
+    var_a1 = sp18.z;
+    var_s0 = 0;
+loop_41:
+    temp_a0 += var_v1;
+loop_42:
+    var_v1 -= 10;
+    var_s0 += 1;
+    if (var_v1 > 0) {
+        goto loop_41;
+    }
+    temp_v0_2 = var_a1 < temp_a0;
+    temp_a0 += var_v1;
+    if (temp_v0_2) {
+        goto loop_42;
+    }
+    func_8004F1C8(&sp18, &sp18, &spawnedMoby->position);
+    func_8004F228(&sp18, &sp18, var_s0);
+    sp18.z = 0x8C;
+    spawnedTag->velocityX = sp18.x;
+    spawnedTag->velocityY = sp18.y;
+    spawnedTag->velocityZ = sp18.z;
+    return spawnedMoby;
+}
 
 void func_80036708(int, Moby*);
 void func_8003BA00(Moby*);
