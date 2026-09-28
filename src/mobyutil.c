@@ -862,7 +862,58 @@ int func_80037058(int x, int y) {
     return ((short)(value / 200)) << 2;
 }
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80037168);
+typedef struct {
+    Vector3D target;
+    short unkC;
+    unsigned char active;
+    unsigned char timer;
+    unsigned char movement;
+    unsigned char turnSpeed;
+    unsigned char maxDistance;
+    unsigned char angle;
+    unsigned char timerLow;
+    unsigned char timerHigh;
+} MobyWanderStateRev0;
+
+/* Retail evidence: USA Rev 0 PSX.EXE 0x80037168..0x80037324 (111 words).
+ * Target and Moby positions are runtime integer coordinates; maxDistance is
+ * stored in 16-unit steps, and timer/heading state advances once per call.
+ * Confidence: exact. Falsifiable by the full-image hash and a word comparison
+ * over this address span. */
+void func_80037168(Moby* moby, MobyWanderStateRev0* state, int flags) {
+    int movement = state->movement;
+    int result;
+    int distance;
+    Vector3D* position;
+
+    if (state->active == 0) {
+        state->angle += func_8003636C(-0x20, 0x20);
+        state->timer = func_8003636C(state->timerLow, state->timerHigh);
+        state->active = 1;
+    } else {
+        func_8003585C(moby, state->angle, state->turnSpeed, 0, 1, 0);
+        if (func_800359A4(&state->timer, 1) != 0) {
+            state->active = 0;
+        }
+    }
+    result = func_80035DDC(moby, movement, state->unkC, state->unkC, flags);
+    position = &moby->position;
+    distance = func_8004F334(position, &state->target);
+    if ((result != 0) || ((state->maxDistance * 0x10) < distance)) {
+        state->angle = func_8004E880(state->target.x - moby->position.x,
+                                    state->target.y - moby->position.y, 0);
+        state->timer = func_8003636C(0x1E, 0x5A);
+        state->active = 1;
+        return;
+    }
+    distance = func_8004F334(position, (Vector3D*)&D_80070328);
+    if (distance < 0x1000) {
+        state->angle = ((state->angle * distance) +
+            (func_8004E880(moby->position.x - *(int*)(&D_80070328),
+                           moby->position.y - *(int*)(&D_80070328 + 4), 0) *
+             (0x1000 - distance))) >> 0xC;
+    }
+}
 
 //////////////////////////////////////////////////////////////// jtbl section below
 /*
