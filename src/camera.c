@@ -633,7 +633,84 @@ void func_80014450() {
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_800144B4);
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_80016568);
+/* Retail source: USA Rev 0 PSX.EXE 0x80016568..0x80016764 (127 words).
+ * Camera mode and angle deltas are scalar state updated once per camera tick.
+ * Confidence is exact: all 127 words and the complete executable match;
+ * falsify with any mismatch in the cited span or final executable hash. */
+extern int D_80068F80;
+extern int D_8006E048, D_8006E094, D_8006E0A0, D_8006E0A8;
+extern int D_8006E0B0, D_8006E0B4, D_8006E0BC;
+extern void (*unk_ovlheader_80074308)(void);
+void func_80016568(void) {
+    int* var_a0;
+    int temp_v1;
+    int temp_v1_2;
+
+    var_a0 = &D_8006E044;
+    temp_v1 = *var_a0;
+    if (temp_v1 == 8) goto block_16;
+    if (temp_v1 < 9) {
+        if (temp_v1 == 6) goto block_5;
+        goto block_22;
+    }
+    if (temp_v1 < 0xC) goto block_17;
+    goto block_22;
+
+block_5:
+    func_80013900((CameraPosition*)(var_a0 + 0x1B));
+    if (D_8006E1CC != 0) {
+        temp_v1 = (D_8006E094 - D_8006E0A8) & 0xFFF;
+        D_8006E0BC = temp_v1;
+        if (temp_v1 >= 0x801) {
+            D_8006E0BC = temp_v1 - 0x1000;
+        }
+    }
+    if ((D_8006E050 & 4) || (D_8006E038 != 0)) {
+        temp_v1_2 = (D_80068F80 - D_8006E0A0) & 0xFFF;
+        D_8006E0B4 = temp_v1_2;
+        if (temp_v1_2 >= 0x801) {
+            D_8006E0B4 = temp_v1_2 - 0x1000;
+        }
+    }
+    if (D_8006E148 != 0) {
+        D_8006E0B0 = D_8006E148;
+    }
+    goto block_25;
+
+block_16:
+    temp_v1 = D_8006E048;
+    if (temp_v1 == 2) {
+        func_80013900((CameraPosition*)(var_a0 + 0x1B));
+        goto block_25;
+    }
+    goto block_24;
+
+block_17:
+    var_a0 = &D_8006E048;
+    if (*var_a0 == 0) {
+        func_80013900((CameraPosition*)(var_a0 + 0x1A));
+        goto block_25;
+    }
+    if ((*(int*)(&D_80070328 + 0x48) != 7) ||
+        (*(int*)(&D_80070328 + 0x4C) != 0x7F)) {
+        func_800135A4((CameraPosition*)&D_8006E09C,
+                      (CameraPosition*)((char*)&D_8006E09C - 0x14), 0);
+        return;
+    }
+    goto block_24;
+
+block_22:
+    if (unk_ovlheader_80074308 != 0) {
+        unk_ovlheader_80074308();
+        return;
+    }
+    goto block_24;
+
+block_24:
+    func_8001241C();
+block_25:
+    func_80012530();
+}
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_80016764);
 
