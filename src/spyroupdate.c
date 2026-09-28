@@ -1430,7 +1430,88 @@ void func_80048210(Vector3D* target) {
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80048444);
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800486FC);
+/* Retail source: USA Rev 0 PSX.EXE 0x800486FC..0x80048948 (147 words).
+ * The target and Spyro positions use runtime integer Vector3D units; rotation
+ * fields use signed deltas in the 12-bit 0x000..0xFFF angle domain. One call
+ * normalizes the target vector, advances the three rotation words by at most
+ * 0x40, and advances the lock state when both residual angles are below 0x20.
+ * Confidence: exact; falsifiable by all 147 instruction words, the executable
+ * SHA-256, and every overlay SHA-256 in sha256sum.txt. */
+void func_800486FC(Vector3D* target) {
+    Vector3D delta;
+    register int distance __asm__("$16");
+    register int targetPitch __asm__("$17");
+    register int targetYaw __asm__("$18");
+    register int pitchChange __asm__("$6");
+    register int yawChange __asm__("$4");
+    register int value __asm__("$2");
+
+    func_8004F1C8(&delta, target, (Vector3D*)&D_80070328);
+    distance = func_8004EDE8(&delta, 1);
+    if (*(int*)(&D_80070328 + 0x214) == 0) {
+        targetYaw = func_8004E880(delta.x, delta.y, 1);
+        targetPitch = func_8004E880(func_8004EDE8(&delta, 0), delta.z, 1);
+        if (distance < 0x201) {
+            *(int*)(&D_80070328 + 0x214) = 1;
+        }
+    } else {
+        value = *(int*)(&D_80070328 + 0x238);
+        targetPitch = 0;
+        targetYaw = value << 4;
+    }
+    if (distance >= 0x81) {
+        func_8004F08C(&delta, distance, 0x80);
+    }
+    func_8004F0E8(&delta, 4);
+    func_8004F178(&D_80070328 + 0x80, &delta);
+    func_8004F178(&D_80070328 + 0x8C, &D_80070328 + 0x80);
+
+    value = targetYaw - *(int*)(&D_80070328 + 0x64);
+    yawChange = value & 0xFFF;
+    if (yawChange >= 0x801) {
+        yawChange -= 0x1000;
+    }
+    value = targetPitch - *(int*)(&D_80070328 + 0x60);
+    pitchChange = value & 0xFFF;
+    if (pitchChange >= 0x801) {
+        pitchChange -= 0x1000;
+    }
+    if (*(int*)(&D_80070328 + 0x214) == 1) {
+        value = ABS(yawChange);
+        if (value < 0x20) {
+            value = ABS(pitchChange);
+            if (value < 0x20) {
+                *(int*)(&D_80070328 + 0x214) = 2;
+            }
+        }
+    }
+    if (yawChange < -0x40) yawChange = -0x40;
+    if (yawChange >= 0x41) yawChange = 0x40;
+    if (pitchChange < -0x40) pitchChange = -0x40;
+    if (pitchChange >= 0x41) pitchChange = 0x40;
+    {
+        register int* yaw __asm__("$5") =
+            (int*)(&D_80070328 + 0x64);
+        register int currentYaw __asm__("$3") = *yaw;
+        register int currentPitch __asm__("$2");
+        register int currentRoll __asm__("$7");
+
+        currentRoll = *(int*)(&D_80070328 + 0x5C);
+        __asm__ volatile("" : : "r"(currentRoll) : "memory");
+        currentPitch = *(int*)(&D_80070328 + 0x60);
+
+        currentYaw += yawChange;
+        yawChange = (-currentRoll) & 0xFFF;
+        currentPitch += pitchChange;
+        *yaw = currentYaw;
+        *(int*)(&D_80070328 + 0x60) = currentPitch;
+        if (yawChange >= 0x801) yawChange -= 0x1000;
+        if (yawChange < -0x40) yawChange = -0x40;
+        if (yawChange >= 0x41) yawChange = 0x40;
+        value = currentRoll + yawChange;
+        *(int*)(&D_80070328 + 0x5C) = value;
+    }
+}
 
 /* Retail source: asm/nonmatchings/spyroupdate/func_80048948.s,
  * 0x80048948..0x800489CC; state offsets are runtime Spyro words. */
