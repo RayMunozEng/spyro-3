@@ -159,7 +159,70 @@ void func_80056ECC(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/updatepause", func_80057154);
+extern int D_8006E48C, D_80070110;
+extern unsigned char D_80070114;
+int func_8005E074(int, void*);
+int func_8005E0BC(int, void*, void*);
+void func_8005F5FC(char*, ...);
+CdLoc* CdIntToPos(int, CdLoc*);
+
+/* Retail source: USA Rev 0 PSX.EXE 0x80057154..0x80057340 (123 words).
+ * State values are unsigned bytes; seek offsets are byte counts converted to
+ * 0x800-byte CD sectors. One call advances at most one asynchronous preseek
+ * state. Confidence: exact; falsify with any cited-span word or final hash
+ * mismatch. */
+void func_80057154(void) {
+    unsigned char command;
+    register unsigned char* state __asm__("$17");
+
+    if (D_8006E48C != 0) return;
+    state = &D_80070114;
+    if (*state == 0) return;
+    command = 0x80;
+
+    if (*state == 0xFF) {
+        if (func_8005E074(1, 0) == 2) *state = 0;
+        return;
+    }
+    if (*state < 0x80) {
+        if (*state == 1) {
+            D_80070110 = D_8006DE68[D_8006C76C].first;
+        } else if (*state == 2) {
+            D_80070110 = D_80072098 + D_8006DBE0[D_8006C58C * 4 + 2];
+        } else {
+            func_8005F5FC("bad pause preseek %d\n", *state);
+        }
+        D_80070114 = 0x80;
+        return;
+    }
+    if (*state == 0x80) {
+        if (func_8005E074(1, 0) == 2) {
+            func_8005E0BC(0xE, &command, 0);
+            *state = 0x81;
+        }
+        return;
+    }
+    if (*state == 0x81) {
+        if (func_8005E074(1, 0) == 2) {
+            register int seekOffset __asm__("$4") = D_80070110;
+            register int* base __asm__("$2");
+            register CdLoc* location __asm__("$16");
+            __asm__ volatile ("" : "=r"(seekOffset) : "0"(seekOffset));
+            base = &D_8006E470;
+            location = (CdLoc*)((char*)base + 8);
+            CdIntToPos(*base + seekOffset / 0x800, location);
+            func_8005E0BC(2, location, 0);
+            *state = 0x82;
+        }
+        return;
+    }
+    if (*state == 0x82) {
+        if (func_8005E074(1, 0) == 2) {
+            func_8005E0BC(0x16, 0, 0);
+            *state = 0xFF;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/updatepause", func_80057340);
 
