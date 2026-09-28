@@ -524,7 +524,60 @@ void func_80013D44(Vector3D* source, int shift, Vector3D* optional, int mode) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_80013E38);
+/* Retail source: asm/nonmatchings/camera/func_80013E38.s,
+ * 0x80013E38..0x8001405C; positions are raw world units and the path is
+ * sampled in 0x400-unit intervals once per call. Confidence: exact (137/137
+ * instruction words). Falsifiable vector: flag 4 adds 0x80 to step.z before
+ * count=(length>>10)+1; a clear path returns 1 after exactly count samples. */
+extern int func_8001830C(Vector3D*, Vector3D*, int, int, int);
+extern Moby* func_8001AD60(Vector3D*, Vector3D*, int, int, int);
+int func_80013E38(Vector3D* start, Vector3D* end, int flags) {
+    Vector3D step;
+    Vector3D current;
+    Vector3D next;
+    register Vector3D* startPosition asm("$17") = start;
+    register int count asm("$16");
+    register int flagBits asm("$20");
+    int i;
+
+    D_80071934 = 0;
+    flagBits = flags;
+    func_8004F1C8(&step, end, startPosition);
+    if (flagBits & 4) {
+        step.z += 0x80;
+    }
+    count = (func_8004EDE8(&step, 1) >> 10) + 1;
+    if (count >= 2) {
+        step.x /= count;
+        step.y /= count;
+        step.z /= count;
+    }
+    func_8004F178(&current, startPosition);
+    i = 0;
+    while (i < count) {
+        Moby* hit;
+        func_8004F194(&next, &current, &step);
+        if (func_8001830C(&current, &next, 2, 0,
+                          *(int*)(&D_80070328 + 0x250)) != 0) {
+            if (D_80071934 == 0) {
+                return 0;
+            }
+        }
+        if ((flagBits & 2) && D_80071934 != 0) {
+            return 0;
+        }
+        if (flagBits & 1) {
+            hit = func_8001AD60(&current, &next, 1, 0,
+                                *(int*)(&D_80070328 + 0x250));
+            if (hit != 0 && !(hit->difficultyFlags & 0x80)) {
+                return 0;
+            }
+        }
+        func_8004F178(&current, &next);
+        i++;
+    }
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001405C);
 
