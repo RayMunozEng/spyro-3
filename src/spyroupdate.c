@@ -93,7 +93,94 @@ int func_80040954(int arg0) {
     return D_8006D048.m_SurfaceData[index]->m_Type;
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80040994);
+extern int D_8006C6C0, D_8006C710, D_8006C74C;
+extern char* D_8006EE2C;
+extern void func_8004BEF8(unsigned int);
+/* Retail source: USA Rev 0 PSX.EXE 0x80040994..0x80040BCC (142 words).
+ * One call decodes the raw input bitfield, updates integer retry counters,
+ * and selects the retail movement state using the current player and object
+ * fields. Confidence: exact; falsifiable by all instruction words and the
+ * complete executable/overlay SHA-256 checks. */
+int func_80040994(void) {
+    int var_a0;
+    int var_v0 = 0;
+
+    if (*(int*)(&D_80070328 + 0x284) == 0) {
+        var_v0 = 0;
+        if (*(int*)(&D_80070328 + 0x1CC) == 0) {
+            if (*(int*)(&D_80070328 + 0x24) & 0x3F9) {
+                *(int*)(&D_80070328 + 0x284) = 0x5A;
+                if ((*(int*)(&D_80070328 + 0x240) != 0) ||
+                    (D_8006C74C != 0)) {
+                    if (*(int*)(&D_80070328 + 0x280) < 0)
+                        *(int*)(&D_80070328 + 0x280) = 0;
+                } else {
+                    D_8006C6C0 += 1;
+                    D_8006C710 += 1;
+                    if (*(int*)(&D_80070328 + 0x280) >= 0)
+                        *(int*)(&D_80070328 + 0x280) -= 1;
+                }
+                if (*(int*)(&D_80070328 + 0x24) & 1) {
+                    var_a0 = 0x10;
+                    if ((unsigned int)(*(int*)(&D_80070328 + 0x50) - 0xB) < 2)
+                        var_a0 = 0x39;
+                    goto activate;
+                }
+                var_a0 = 0x1A;
+                if (!(*(int*)(&D_80070328 + 0x24) & 0x10)) {
+                    var_a0 = 9;
+                    if (!(*(int*)(&D_80070328 + 0x24) & 0x20)) {
+                        var_a0 = 0x1D;
+                        if (!(*(int*)(&D_80070328 + 0x24) & 0x80)) {
+                            var_a0 = 0x17;
+                            if (!(*(int*)(&D_80070328 + 0x24) & 0x100)) {
+                                if (*(int*)(&D_80070328 + 0x24) & 8) {
+                                    if (*(int*)(&D_80070328 + 0x280) < 0) {
+                                        var_a0 = 0x1F;
+                                        if (*(int*)(D_8006EE2C + 0x124) != 0)
+                                            var_a0 = 0x3A;
+                                    } else {
+                                        goto grounded;
+                                    }
+                                    goto activate;
+                                }
+                                if (*(int*)(&D_80070328 + 0x24) & 0x40) {
+                                    if (*(int*)(&D_80070328 + 0x280) < 0) {
+                                        var_a0 = 0x38;
+                                        if (*(int*)(D_8006EE2C + 0x128) != 0)
+                                            var_a0 = 0x3B;
+                                    } else {
+                                        var_a0 = 0x38;
+                                    }
+                                    goto activate;
+                                }
+                                var_v0 = 1;
+                                if (*(int*)(&D_80070328 + 0x24) & 0x200) {
+                                    if (*(int*)(&D_80070328 + 0x280) < 0) {
+                                        var_a0 = 0x1F;
+                                        if (*(int*)(D_8006EE2C + 0xB4) != 0)
+                                            var_a0 = 0x1E;
+                                    } else {
+grounded:
+                                        var_a0 = 0x1C;
+                                    }
+                                    goto activate;
+                                }
+                                return var_v0;
+                            }
+                        }
+                    }
+                }
+activate:
+                func_8004BEF8(var_a0);
+                return 1;
+            }
+            var_v0 = 0;
+            return var_v0;
+        }
+    }
+    return var_v0;
+}
 
 extern int func_80040994(void);
 extern void func_8004F1C8(void*, void*, void*);
@@ -102,7 +189,6 @@ extern int func_8004EDE8(void*, int);
 extern void func_8004F178(void*, void*);
 extern Vector3D D_80071918;
 extern int D_80071920;
-extern void func_8004BEF8(unsigned int);
 int func_80040BCC(void) {
     int state = *(int*)(&D_80070328 + 0x50);
     int controls;
