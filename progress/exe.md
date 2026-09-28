@@ -292,7 +292,7 @@
 - [x] func_80049590
 - [x] func_80049688
 - [x] func_800498C0
-- [ ] func_80049ACC
+- [x] func_80049ACC
 - [ ] func_80049D70
 - [ ] func_8004B324
 - [x] func_8004BA6C

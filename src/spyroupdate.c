@@ -11,6 +11,7 @@ extern Unk_8006d048 D_8006D048;
 extern char D_80070328;
 extern void func_8004F168(void*);
 extern unsigned char D_80066530[];
+void func_80049ACC();
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -1686,7 +1687,106 @@ void func_800498C0(void) {
     func_8003B74C(&D_8006D088);
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80049ACC);
+void func_800560AC(int, Vector3D*, unsigned char, unsigned char, int);
+void func_8004F1FC(Vector3D*, Vector3D*, int);
+
+/* Retail source: USA Rev 0 PSX.EXE 0x80049ACC..0x80049D70 (169 words).
+ * Animation positions use packed signed 11-bit components and runtime vector
+ * units; blend weights are unsigned bytes. One call samples one animation
+ * frame, optionally blends the paired pose, and applies the retail transforms.
+ * Confidence is confirmed by exact word and executable comparisons; falsify
+ * with any mismatch in the cited address span. */
+void func_80049ACC(int arg0, void* arg1) {
+    Vector3D blendPosition;
+    Vector3D primaryPosition;
+    Vector3D secondaryPosition;
+    register int frame __asm__("$16") = arg0;
+    register Vector3D* output __asm__("$18");
+    register int secondFrame __asm__("$17");
+    register unsigned char* state __asm__("$19");
+    register Vector3D* finalOffset __asm__("$6");
+    register Vector3D* finalOutput __asm__("$4");
+    register Vector3D* finalInput __asm__("$5");
+    SpyroAnimRoot* root;
+    int frameCount;
+    int packed;
+
+    root = D_8006C558[0];
+    frameCount = *((unsigned char*)root + 2);
+    output = arg1;
+    __asm__ volatile ("" : "=r"(output) : "0"(output));
+    if (frame < frameCount) {
+        secondFrame = 0;
+    } else {
+        secondFrame = 1;
+        frame -= frameCount;
+    }
+
+    {
+        register int callFrame __asm__("$4") = frame;
+        __asm__ volatile ("" : "=r"(callFrame) : "0"(callFrame));
+        state = (unsigned char*)&D_80070328 + 0x14;
+        __asm__ volatile ("" : "=r"(state) : "0"(state));
+        __asm__ volatile ("sw %0, 16($sp)" : : "r"(secondFrame) : "memory");
+        ((void (*)(int, Vector3D*, unsigned char, unsigned char))func_800560AC)(
+            callFrame, output, state[0], state[2]);
+    }
+    if (D_80066530[state[8]] != 0) {
+        func_800560AC(frame, &blendPosition,
+                      *((unsigned char*)&D_80070328 + 0x15),
+                      *((unsigned char*)&D_80070328 + 0x17), secondFrame);
+        func_8004F1FC(output, output, 0x100 - D_80066530[state[8]]);
+        func_8004F1FC(&blendPosition, &blendPosition, D_80066530[state[8]]);
+        func_8004F194(output, output, &blendPosition);
+        func_8004F110(output, 8);
+    }
+
+    if (secondFrame == 0) {
+        func_8004ED6C((SHORTMATRIX*)(state + 0x1C), output, output);
+        finalOutput = output;
+        finalInput = finalOutput;
+        __asm__ volatile ("" : "=r"(finalOutput), "=r"(finalInput)
+                         : "0"(finalOutput), "1"(finalInput));
+        finalOffset = (Vector3D*)(state - 0x14);
+        goto add_final_offset;
+    } else {
+        packed = (int)D_8006C558[state[0]] + state[2] * 0x14;
+        packed = *(int*)(packed + 0x1C);
+        primaryPosition.x = packed >> 21;
+        primaryPosition.y = (packed << 11) >> 21;
+        {
+            register unsigned int weightIndex __asm__("$7") = state[8];
+        primaryPosition.z = (packed << 22) >> 21;
+        if (D_80066530[weightIndex] != 0) {
+            packed = (int)D_8006C558[
+                *((unsigned char*)&D_80070328 + 0x15)] +
+                *((unsigned char*)&D_80070328 + 0x17) * 0x14;
+            packed = *(int*)(packed + 0x1C);
+            secondaryPosition.x = packed >> 21;
+            secondaryPosition.y = (packed << 11) >> 21;
+            secondaryPosition.z = (packed << 22) >> 21;
+            func_8004F1FC(&primaryPosition, &primaryPosition,
+                          0x100 - D_80066530[weightIndex]);
+            func_8004F1FC(&secondaryPosition, &secondaryPosition,
+                          D_80066530[state[8]]);
+            func_8004F194(&primaryPosition, &primaryPosition, &secondaryPosition);
+            func_8004F110(&primaryPosition, 8);
+        }
+        }
+        func_8004ED6C((SHORTMATRIX*)(state + 0x1C), &primaryPosition, &primaryPosition);
+        func_8004ED6C((SHORTMATRIX*)(state + 0x18C), output, output);
+        func_8004F194(output, output, (Vector3D*)(state - 0x14));
+        finalOutput = output;
+        finalInput = finalOutput;
+        finalOffset = &primaryPosition;
+        __asm__ volatile ("" : "=r"(finalOutput), "=r"(finalInput),
+                           "=r"(finalOffset)
+                         : "0"(finalOutput), "1"(finalInput),
+                           "2"(finalOffset));
+    }
+add_final_offset:
+    func_8004F194(finalOutput, finalInput, finalOffset);
+}
 
 // has overlay version in "animation.c"
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80049D70);
