@@ -1291,7 +1291,118 @@ void func_80047138(void) {
     state[0x1D] = e;
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80047190);
+extern int D_8006E344;
+extern int D_8006FA38;
+extern int D_80067648[];
+void func_8005F35C(void*, void*, void*);
+/* Retail source: USA Rev 0 PSX.EXE 0x80047190..0x800473E4 (149 words).
+ * The saved position and rotation vectors use runtime integer units; this
+ * routine runs once per reset, clears the 0x2E8-byte Spyro state outside mode
+ * 13, restores the retained vectors and counter, rebuilds both matrices, and
+ * initializes the retail sound, animation, and camera fields. Confidence:
+ * exact; falsifiable by all 149 instruction words, the executable SHA-256,
+ * and every overlay SHA-256 in sha256sum.txt. */
+void func_80047190(void) {
+    Vector3D position;
+    Vector3D rotation;
+    register char* state __asm__("$18");
+    register int* soundIndex __asm__("$16");
+    register char* rotationState __asm__("$17");
+    register int savedCounter __asm__("$19");
+    register int* gameMode __asm__("$20");
+    register int resetMode __asm__("$21");
+    register int minusOne __asm__("$3");
+    register int byteMax __asm__("$2");
+    register Vector3D* positionArg __asm__("$4");
+
+    soundIndex = (int*)(&D_80070328 + 0x28C);
+    if (*soundIndex >= 0 &&
+        func_8003BF6C(*(int*)(&D_80070328 + 0x290), *soundIndex) != 0) {
+        func_8003BE70(*soundIndex);
+    }
+    soundIndex = (int*)(&D_80070328 + 0x294);
+    positionArg = &position;
+    if (*soundIndex >= 0) {
+        int soundActive =
+            func_8003BF6C(*((unsigned char*)D_8006C654 + 6), *soundIndex);
+
+        positionArg = &position;
+        if (soundActive != 0) {
+            func_8003BE70(*soundIndex);
+            positionArg = &position;
+        }
+    }
+
+    state = &D_80070328;
+    func_8004F178(positionArg, state);
+    {
+        register void* destination __asm__("$4");
+
+        soundIndex = (int*)&rotation;
+        destination = soundIndex;
+        __asm__ volatile("" : "=r"(destination) : "0"(destination));
+        rotationState = state + 0x5C;
+        func_8004F178(destination, rotationState);
+    }
+    gameMode = &D_8006E344;
+    resetMode = 13;
+    byteMax = *gameMode;
+    __asm__ volatile("" : "=r"(state) : "0"(state));
+    savedCounter = *(int*)(state + 0x280);
+    if (byteMax != resetMode) {
+        func_8004E790(state, 0, 0x2E8);
+    }
+    {
+        register void* destination __asm__("$4") = state;
+
+        __asm__ volatile("" : "=r"(destination) : "0"(destination));
+        minusOne = -1;
+        byteMax = 0xFF;
+        *(int*)(&D_80070328 + 0x28C) = minusOne;
+        *(int*)(&D_80070328 + 0x294) = minusOne;
+        *(int*)(&D_80070328 + 0x108) = byteMax;
+        *(int*)(&D_80070328 + 0x10C) = byteMax;
+        *(int*)(&D_80070328 + 0x110) = byteMax;
+        *(int*)(&D_80070328 + 0x2C0) = minusOne;
+        func_8004F178(destination, &position);
+    }
+    func_8004F178(state + 0x124, state);
+    func_8004F178(rotationState, &rotation);
+
+    {
+        register Angle* angle __asm__("$4") = (Angle*)(state + 0xC);
+        __asm__ volatile("" : "=r"(angle) : "0"(angle));
+        rotationState = state + 0x30;
+        func_8004EA90(angle, (SHORTMATRIX*)rotationState, 0);
+    }
+    {
+        register Angle* angle __asm__("$4") = (Angle*)(state + 0x10);
+        __asm__ volatile("" : "=r"(angle) : "0"(angle));
+        soundIndex = (int*)(state + 0x1A0);
+        func_8004EA90(angle, (SHORTMATRIX*)soundIndex, 0);
+    }
+    func_8005F35C(rotationState, soundIndex, soundIndex);
+
+    byteMax = *gameMode;
+    *(int*)(&D_80070328 + 0x280) = savedCounter;
+    if (byteMax != resetMode) {
+        minusOne = D_8006FA38;
+        *(int*)(&D_80070328 + 0xF8) = D_80067648[D_8006C58C];
+        if (minusOne >= 0) {
+            func_8004BEF8(0x21);
+            *(int*)(&D_80070328 + 0xB0) = 0x800;
+            func_80041848();
+            soundIndex = (int*)(state + 0x80);
+            func_8004F178(state + 0x8C, soundIndex);
+            func_8004F178(state + 0x98, soundIndex);
+        } else {
+            func_8004BEF8(0);
+        }
+        *(unsigned char*)(&D_80070328 + 0x1C) = 0x10;
+        *(unsigned char*)(&D_80070328 + 0x1D) = 0x10;
+        *(int*)(&D_80070328 + 0x200) = 6;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800473E4);
 
