@@ -98,6 +98,10 @@ INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80040994);
 extern int func_80040994(void);
 extern void func_8004F1C8(void*, void*, void*);
 extern int func_8004E880(int, int, int);
+extern int func_8004EDE8(void*, int);
+extern void func_8004F178(void*, void*);
+extern Vector3D D_80071918;
+extern int D_80071920;
 extern void func_8004BEF8(unsigned int);
 int func_80040BCC(void) {
     int state = *(int*)(&D_80070328 + 0x50);
@@ -367,7 +371,72 @@ void func_80041848(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80041930);
+/* Retail source: USA Rev 0 PSX.EXE 0x80041930..0x80041AE8 (110 words).
+ * Builds two signed world-coordinate probes from Spyro's height, transforms
+ * them once per call, and records the collision normal and polygon when the
+ * signed angle result is at least 0x17. Confidence: exact; falsifiable by the
+ * instruction words and the complete executable/overlay SHA-256 checks. */
+void func_80041930(void) {
+    Vector3D first;
+    Vector3D second;
+    register int var_v0 asm("$2");
+    register int var_v0_2 asm("$2");
+    register int var_v1 asm("$3");
+    register char* temp_s1 asm("$17");
+    register char* temp_s2 asm("$18");
+
+    if ((*(int*)(&D_80070328 + 0x50) == 1) ||
+        (*(int*)(&D_80070328 + 0x50) == 0x10)) {
+        first.y = 0;
+        first.x = 0;
+        second.y = 0;
+        var_v0 = -*(int*)(&D_80070328 + 0x44) + 0x20;
+        var_v1 = *(int*)(&D_80070328 + 0x44) + 0x60;
+        first.z = var_v0;
+        goto block_9;
+    }
+    if (*(int*)(&D_80070328 + 0x50) == 0xA) {
+        first.y = 0;
+        first.x = 0;
+        first.z = 0;
+        second.y = 0;
+        second.z = 0;
+        second.x = *(int*)(&D_80070328 + 0x44) + 0x60;
+    } else {
+        if (*(int*)(&D_80070328 + 0x50) == 0xD) {
+            first.y = 0;
+            first.x = 0;
+            second.y = 0;
+            var_v0_2 = -*(int*)(&D_80070328 + 0x44);
+            var_v1 = *(int*)(&D_80070328 + 0x44) + 0xA0;
+        } else {
+            first.y = 0;
+            first.x = 0;
+            second.y = 0;
+            var_v0_2 = -*(int*)(&D_80070328 + 0x44);
+            var_v1 = *(int*)(&D_80070328 + 0x44) + 0x60;
+        }
+        first.z = var_v0_2;
+        var_v0 = var_v0_2 - 0x40;
+block_9:
+        second.x = var_v1;
+        second.z = var_v0;
+    }
+    temp_s2 = &D_80070328 + 0x30;
+    __asm__ volatile("" : "=r"(temp_s2) : "0"(temp_s2));
+    func_8004ED6C((SHORTMATRIX*)temp_s2, &first, &first);
+    temp_s1 = temp_s2 - 0x30;
+    func_8004F194(&first, &first, (Vector3D*)temp_s1);
+    func_8004ED6C(0, &second, &second);
+    func_8004F194(&second, &second, (Vector3D*)temp_s1);
+    if ((func_80018368(&first, &second) != 0) &&
+        ((signed char)func_8004E880(D_80071920,
+            func_8004EDE8(&D_80071918, 0), 0) >= 0x17)) {
+        *(temp_s2 + 0xCE) = 1;
+        func_8004F178((Vector3D*)(temp_s2 + 0xA8), &D_80071918);
+        *(int*)(temp_s2 + 0xE0) = D_80071924;
+    }
+}
 
 /* Retail source: asm/nonmatchings/spyroupdate/func_80041AE8.s,
  * 0x80041AE8..0x80041B64; runtime vector bytes at Spyro +0x8C. */
