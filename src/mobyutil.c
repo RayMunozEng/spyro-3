@@ -1513,15 +1513,6 @@ int func_80038B44(int lvlIndex, int gems, int eggs) {
     return percentage;
 }
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038BF8);
-
-/* Retail source: USA Rev 0 PSX.EXE 0x80038F14..0x800391E8 (181 words).
- * Initializes a moby state and its caller-owned 0x18-byte animation/effect
- * control block once when the requested state differs. Mode is an unsigned
- * switch selector; animation/state values and packed random values are bytes,
- * durations are signed 16-bit values, and the routine advances once per call.
- * Confirmed by an exact 181/181 instruction comparison; falsify with any word
- * mismatch in that address span or a nonmatching retail executable. */
 typedef struct {
     unsigned char pad0[4];
     short unk4;
@@ -1539,6 +1530,161 @@ typedef struct {
     signed char unk17;
 } MobyStateSetup;
 
+/* Retail source: USA Rev 0 PSX.EXE 0x80038BF8..0x80038F14 (199 words).
+ * Initializes an enemy hit-motion descriptor when its requested animation
+ * differs from the active state. Descriptor fields are bytes and halfwords;
+ * damage flags select the exact duration adjustment once per invocation.
+ * Confirmed by an exact 199/199 instruction comparison and all 62 retail
+ * hashes; falsify with any mismatch in this span or a different revision. */
+
+void func_80038BF8(Moby* arg0, EnemyTag* arg1, int arg2, int arg3) {
+    register Moby* moby __asm__("$16") = arg0;
+    register MobyStateSetup* setup __asm__("$17") = (MobyStateSetup*)arg1;
+    unsigned int mode = arg2;
+    int animation = arg3;
+    register int temp_v0 __asm__("$2");
+    register int temp_v1 __asm__("$3");
+    register int base __asm__("$4");
+    register int animationOffset __asm__("$5");
+    unsigned char value;
+    register unsigned int first __asm__("$2");
+    int flag;
+    int firstRandom;
+    int secondRandom;
+    int randomLow;
+    int randomHigh;
+    int damageFlags;
+    /* Preserves the retail 0x30-byte frame and otherwise-unused 8-byte local. */
+    volatile int stackPad[2];
+
+    if (moby->state != animation) {
+        moby->updateDistance = 0xFF;
+        moby->subtype = 0xFF;
+        setup->unk4 = 0x10E;
+        value = moby->unkb;
+        if (value == 0) {
+            value = func_800360F8(
+                func_8004E880(moby->position.x - ((Spyro*)&D_80070328)->position.x,
+                              moby->position.y - ((Spyro*)&D_80070328)->position.y, 0),
+                ((Spyro*)&D_80070328)->bodyRotation.yaw, 0x20, 0x40);
+        }
+        setup->unk11 = value;
+        setup->unk6 = 0;
+        __asm__ volatile ("" ::: "memory");
+        animationOffset = animation * 4;
+        temp_v0 = moby->mobyClass;
+        temp_v1 = moby->animationState.id;
+        temp_v0 <<= 2;
+        temp_v0 = *(int*)((char*)D_8006EE2C + temp_v0);
+        temp_v1 <<= 2;
+        temp_v1 += temp_v0;
+        temp_v0 = animationOffset + temp_v0;
+        temp_v1 = *(int*)(temp_v1 + 0x3C);
+        temp_v0 = *(int*)(temp_v0 + 0x3C);
+        temp_v1 = *(unsigned char*)(temp_v1 + 4);
+        temp_v0 = *(unsigned char*)(temp_v0 + 4);
+        base = (int)D_8006EE2C;
+        if (temp_v1 != temp_v0) {
+            temp_v1 = 1;
+            __asm__ volatile ("" ::: "memory");
+            temp_v0 = moby->mobyClass;
+            moby->state = animation;
+            temp_v0 <<= 2;
+            temp_v0 += base;
+            temp_v0 = *(int*)temp_v0;
+            temp_v0 = animationOffset + temp_v0;
+            temp_v0 = *(int*)(temp_v0 + 0x3C);
+            first = *(unsigned char*)temp_v0;
+            __asm__ volatile ("" : "=r"(first) : "0"(first));
+            moby->animationState.id = animation;
+            moby->animationState.nextId = animation;
+            moby->animationState.frame = 0;
+            moby->animationState.nextFrame = temp_v1;
+            __asm__ volatile ("" : "=r"(first) : "0"(first), "m"(moby->animationState.nextFrame));
+            flag = first < 2;
+            __asm__ volatile ("" : "=r"(flag) : "0"(flag));
+            flag ^= 1;
+            flag = -flag;
+            moby->animationProgress = flag & 0x30;
+        } else {
+            moby->state = animation;
+            func_80034F40(moby, animation);
+        }
+
+        damageFlags = moby->damageFlags;
+        if (damageFlags & 0x02000000) {
+            setup->unk4 = (unsigned short)setup->unk4 + 0xB4;
+        } else if (damageFlags & 0x00020000) {
+            setup->unk4 = (unsigned short)setup->unk4 + 0x8C;
+        }
+
+        switch (mode) {
+        case 0:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+            break;
+        case 1:
+            setup->unk13 = 1;
+            setup->unk15 = animation;
+            setup->unk14 = animation;
+            setup->unk6 = 0xC8;
+            if (moby->damageFlags & 0x00020000) {
+                setup->unk6 = 0xF0;
+            }
+            break;
+        case 6:
+            setup->unk13 = 1;
+            setup->unk15 = animation;
+            setup->unk14 = animation;
+            setup->unk6 = 0xC8;
+            if (moby->damageFlags & 0x00020000) {
+                setup->unk6 = 0xF0;
+            }
+            setup->unk16 = func_8003636C(0x28, 0x46);
+            break;
+        case 7:
+            setup->unk13 = 1;
+            setup->unk15 = animation;
+            setup->unk14 = animation;
+            setup->unk6 = 0xC8;
+            if (moby->damageFlags & 0x00020000) {
+                setup->unk6 = 0xF0;
+            }
+            temp_v0 = func_8003636C(0x28, 0x46);
+            randomLow = 8;
+            randomHigh = 0xF;
+            setup->unk16 = temp_v0;
+            goto randomize_38bf8;
+        case 8:
+            setup->unk13 = 1;
+            setup->unk15 = animation;
+            setup->unk14 = animation;
+            setup->unk6 = 0xC8;
+            if (moby->damageFlags & 0x00020000) {
+                setup->unk6 = 0xF0;
+            }
+            setup->unk16 = func_8003636C(0x28, 0x46);
+            randomLow = 8;
+            setup->unk15 = setup->unk14 + 1;
+            randomHigh = 0xF;
+randomize_38bf8:
+            firstRandom = func_800363DC(randomLow, randomHigh);
+            secondRandom = func_800363DC(8, 0xF);
+            setup->unk17 = ((firstRandom / 2) * 0x10) + ((secondRandom / 2) & 0xF);
+            break;
+        }
+    }
+}
+
+/* Retail source: USA Rev 0 PSX.EXE 0x80038F14..0x800391E8 (181 words).
+ * Initializes a moby state and its caller-owned 0x18-byte animation/effect
+ * control block once when the requested state differs. Mode is an unsigned
+ * switch selector; animation/state values and packed random values are bytes,
+ * durations are signed 16-bit values, and the routine advances once per call.
+ * Confirmed by an exact 181/181 instruction comparison; falsify with any word
+ * mismatch in that address span or a nonmatching retail executable. */
 void func_80038F14(Moby* arg0, void* arg1, unsigned int arg2, int arg3) {
     register Moby* moby __asm__("$18") = arg0;
     register MobyStateSetup* setup __asm__("$17") = arg1;
