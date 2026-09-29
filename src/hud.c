@@ -798,7 +798,82 @@ int* func_80028D30(SpriteData* arg0, short arg1, short arg2, int arg3) {
     return (int*)temp_s1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hud", func_800291B8);
+/**
+ * ???() - func_800291B8()
+ * https://decomp.me/scratch/m95oz
+ */
+/* Retail source: asm/nonmatchings/hud/func_800291B8.s, 0x800291B8..0x800293C4. */
+extern unsigned char D_800674AC[];
+extern unsigned char D_800674E8[];
+extern short D_800719CC;
+int func_800291B8(int arg0, int arg1, int arg2, int arg3) {
+    int sp10;
+    int sp18;
+    int sp20;
+    int temp_height;
+    SpriteData* temp_v0;
+    int temp_v0_addr;
+    int temp_fp;
+    int var_a1;
+    int var_a2;
+    int var_a3;
+    int var_s1;
+    int var_s2;
+    int var_s3;
+    int var_s4;
+    int var_v0;
+
+    temp_v0_addr = D_800719CC << 3;
+    temp_v0_addr += (int)D_8006C788;
+    temp_v0 = (SpriteData*)temp_v0_addr;
+    temp_fp = temp_v0->unk4 - temp_v0->unk0;
+    var_s4 = 0;
+    var_a3 = arg0;
+    temp_height = (temp_v0->unk5 - temp_v0->unk1) >> 1;
+    __asm__ volatile ("" : "=r"(temp_height) : "0"(temp_height));
+    sp10 = temp_height;
+    var_v0 = arg3 >= 0 ? arg3 : -arg3;
+    sp20 = ((var_v0 + 0xA) >> 1) - 1;
+    if (var_a3 >= 0xA) {
+        while (var_a3 >= 0xA) {
+            var_a3 /= 0xA;
+            var_s4 += 1;
+        }
+    }
+    sp18 = (var_s4 + 1) * temp_fp;
+    var_a3 = arg0;
+    if (var_s4 < 0) return sp18;
+    var_s3 = sp20 - var_s4;
+    var_s2 = var_s4 * temp_fp + arg1;
+    var_s1 = var_s4 * temp_fp;
+    do {
+        var_a2 = arg2;
+        if (arg3 == 0) {
+            var_a1 = arg1 + var_s1;
+        } else {
+            var_a2 = 60;
+            if (sp20 < var_a2) {
+                var_a2 = D_800674E8[var_s3];
+                if (arg3 < 0) var_a2 = arg2 - var_a2;
+                else var_a2 += arg2;
+                var_a1 = arg1 + var_s1;
+            } else {
+                var_a1 = D_800674AC[var_s3];
+                var_a2 = arg2;
+                var_a1 = arg3 < 0 ? var_s2 - var_a1 : var_a1 + var_s2;
+            }
+        }
+        var_s3 += 1;
+        var_s4 -= 1;
+        func_800289C8(&D_8006C788[D_800719CC + (var_a3 % 10)],
+                      var_a1, var_a2 - sp10);
+        var_v0 = -temp_fp;
+        var_s2 += var_v0;
+        var_s1 += var_v0;
+        var_a3 /= 0xA;
+    } while (var_s4 >= 0);
+    return sp18;
+}
 
 /**
  * ???() - func_800293C4()
