@@ -103,7 +103,138 @@ void func_8002AE34(int* stream, int* end) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/loaders", func_8002AF9C);
+/* Retail source: USA Rev 0 PSX.EXE 0x8002AF9C..0x8002B31C (224 words).
+ * Walks one of two packed record shapes and relocates only fields whose source
+ * addresses are below the unsigned block end. The root is published through
+ * D_8006EE2C once per call. Rev 1 0x8002AFC0 independently confirms the two
+ * shapes. Units: byte offsets and absolute 32-bit pointers; negative-shape
+ * adjustments are unsigned 16-bit fields. Cadence: one bounded pass per call,
+ * followed by one D_8006EE2C[type] publication. Confidence: confirmed retail
+ * exact: PSX.EXE SHA-256 e5406997...e39f and all 62 manifest hashes.
+ * Falsifiable vectors: root at end, both root signs, null optional fields, each
+ * end-boundary slot, and the positive shape's +28 null fallback. */
+void func_8002AF9C(int* arg0, int arg1, int* arg2) {
+    volatile char stackSpace[16];
+    register char* base __asm__("$12") = (char*)arg0;
+    register char* root __asm__("$9") = base;
+    register int firstWord __asm__("$2");
+    register int index __asm__("$10");
+    register int fieldOffset __asm__("$7");
+    register char* cursor __asm__("$3");
+    register char* record __asm__("$4");
+    int count;
+
+    if ((unsigned)root >= (unsigned)arg2) return;
+    __asm__ volatile("lw %0,0(%1)" : "=r"(firstWord) : "r"(root));
+    index = 0;
+    if (firstWord < 0) {
+        register char* negativeRoot __asm__("$8");
+        __asm__("move %0,%1" : "=r"(negativeRoot) : "r"(root));
+        fieldOffset = 8;
+        __asm__("move %0,%1" : "=r"(cursor) : "r"(root));
+        do {
+            int value = *(int*)(cursor + 8);
+            if (value != 0 && (unsigned)(negativeRoot + fieldOffset) < (unsigned)arg2) {
+                *(int*)(cursor + 8) = (int)base + value;
+            }
+            fieldOffset += 4;
+            index++;
+            cursor += 4;
+        } while (index < 2);
+        if ((unsigned)(negativeRoot + 16) < (unsigned)arg2) {
+            *(int*)(negativeRoot + 16) = (int)base + *(int*)(negativeRoot + 16);
+        }
+        count = -*(int*)negativeRoot;
+        *(int*)negativeRoot = count;
+        index = 0;
+        if (count > 0) {
+            register char* nestedCursor __asm__("$7") = negativeRoot;
+            register int nestedOffset __asm__("$11") = 20;
+            do {
+                if ((unsigned)(negativeRoot + nestedOffset) < (unsigned)arg2) {
+                    *(int*)(nestedCursor + 20) = (int)base + *(int*)(nestedCursor + 20);
+                }
+                record = *(char**)(nestedCursor + 20);
+                if ((unsigned)(record + 8) < (unsigned)arg2) {
+                    *(unsigned short*)(record + 8) = *(unsigned short*)(record + 8) +
+                        (*(int*)(negativeRoot + 16) - (int)record);
+                    record = *(char**)(nestedCursor + 20);
+                    *(unsigned short*)(record + 10) = *(unsigned short*)(record + 10) +
+                        (*(int*)(negativeRoot + 16) - (int)record);
+                }
+                record = *(char**)(nestedCursor + 20);
+                if ((unsigned)(record + 12) < (unsigned)arg2) {
+                    *(unsigned short*)(record + 12) = *(unsigned short*)(record + 12) +
+                        (*(int*)(negativeRoot + 16) - (int)record);
+                    record = *(char**)(nestedCursor + 20);
+                    *(unsigned short*)(record + 14) = *(unsigned short*)(record + 14) +
+                        (*(int*)(negativeRoot + 16) - (int)record);
+                }
+                nestedCursor += 4;
+                count = *(volatile int*)negativeRoot;
+                index++;
+                nestedOffset += 4;
+            } while (index < count);
+        }
+        root = (char*)((unsigned)root & 0x7FFFFFFF);
+    } else {
+        index = 0;
+        fieldOffset = 20;
+        __asm__("move %0,%1" : "=r"(cursor) : "r"(root));
+        do {
+            int value = *(int*)(cursor + 20);
+            if (value != 0 && (unsigned)(root + fieldOffset) < (unsigned)arg2) {
+                *(int*)(cursor + 20) = (int)base + value;
+            }
+            fieldOffset += 4;
+            index++;
+            cursor += 4;
+        } while (index < 8);
+        if ((unsigned)(root + 52) < (unsigned)arg2) *(int*)(root + 52) = (int)base + *(int*)(root + 52);
+        if ((unsigned)(root + 56) < (unsigned)arg2) *(int*)(root + 56) = (int)base + *(int*)(root + 56);
+        index = 0;
+        if (*(int*)root > 0) {
+            register char* nestedCursor __asm__("$7") = root;
+            register int nestedOffset __asm__("$8") = 60;
+            do {
+                if ((unsigned)(root + nestedOffset) < (unsigned)arg2) {
+                    *(int*)(nestedCursor + 60) = (int)base + *(int*)(nestedCursor + 60);
+                }
+                record = *(char**)(nestedCursor + 60);
+                if ((unsigned)(record + 12) < (unsigned)arg2)
+                    *(int*)(record + 12) = *(int*)(root + 56) + *(int*)(record + 12);
+                record = *(char**)(nestedCursor + 60);
+                if ((unsigned)(record + 16) < (unsigned)arg2)
+                    *(int*)(record + 16) = *(int*)(root + 56) + *(int*)(record + 16);
+                record = *(char**)(nestedCursor + 60);
+                if ((unsigned)(record + 20) < (unsigned)arg2)
+                    *(int*)(record + 20) = *(int*)(root + 56) + *(int*)(record + 20);
+                record = *(char**)(nestedCursor + 60);
+                if ((unsigned)(record + 24) < (unsigned)arg2 && *(int*)(record + 24) != 0) {
+                    *(int*)(record + 24) = *(int*)(root + 56) + *(int*)(record + 24);
+                }
+                {
+                    register char* specialRecord __asm__("$3") = *(char**)(nestedCursor + 60);
+                    if ((unsigned)(specialRecord + 28) < (unsigned)arg2) {
+                        register int specialValue __asm__("$4") = *(int*)(specialRecord + 28);
+                        if (specialValue != 0)
+                            *(int*)(specialRecord + 28) = *(int*)(root + 56) + specialValue;
+                        else
+                            *(int*)(specialRecord + 28) = *(int*)(specialRecord + 20);
+                    }
+                }
+                record = *(char**)(nestedCursor + 60);
+                if ((unsigned)(record + 32) < (unsigned)arg2)
+                    *(int*)(record + 32) = *(int*)(root + 56) + *(int*)(record + 32);
+                nestedCursor += 4;
+                count = *(volatile int*)root;
+                index++;
+                nestedOffset += 4;
+            } while (index < count);
+        }
+    }
+    ((int*)&D_8006EE2C)[arg1] = (int)root;
+}
 
 extern int D_8006C5C8;
 extern int* D_8006D050;

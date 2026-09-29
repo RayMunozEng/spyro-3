@@ -129,7 +129,7 @@
 <!-- Loaders -->
 - [x] func_8002AE00
 - [x] func_8002AE34
-- [ ] func_8002AF9C
+- [x] func_8002AF9C
 - [x] func_8002B31C
 - [x] func_8002B5EC
 - [x] func_8002B6C8
