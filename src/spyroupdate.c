@@ -1539,7 +1539,106 @@ void func_80048210(Vector3D* target) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80048444);
+int func_8004F284(int, int);
+int func_8004F2C8(int, int);
+/* Retail source: USA Rev 0 PSX.EXE 0x80048444..0x800486FC (174 words).
+ * The target and Spyro position deltas use runtime integer Vector3D units;
+ * rotations are wrapped 12-bit angles, and this pursuit update runs once per
+ * call. Confidence is exact: falsify by comparing the rebuilt 174 words or
+ * the complete executable and overlay hashes against the retail manifest.
+ */
+int func_80048444(Vector3D* target) {
+    Vector3D delta;
+    register int angle __asm__("$16");
+    register int change __asm__("$17");
+    register int maximum __asm__("$18");
+    register int* yaw __asm__("$19");
+    register int scale __asm__("$20");
+    register Vector3D* originalTarget __asm__("$21") = target;
+    register int temp __asm__("$2");
+    register int pitch __asm__("$3");
+    register int roll __asm__("$7");
+
+    func_8004F1C8(&delta, originalTarget, (Vector3D*)&D_80070328);
+    angle = func_8004E880(delta.x, delta.y, 1);
+    change = func_8004F284(angle, *(int*)(&D_80070328 + 0x64));
+    if (change >= 0x320) {
+        scale = 0;
+        maximum = 0x80;
+    } else {
+        temp = 0x320 - change;
+        scale = temp >> 2;
+        if (scale >= 0x65) scale = 0x64;
+        temp = change >> 3;
+        maximum = temp + 4;
+    }
+
+    yaw = (int*)(&D_80070328 + 0x64);
+    change = func_8004F2C8(angle, *yaw);
+    if (change < -maximum) change = -maximum;
+    if (change > maximum) change = maximum;
+    *yaw += change;
+    func_8004F168((char*)yaw + 0x124);
+    func_80046FF8();
+
+    pitch = *(int*)(&D_80070328 + 0x60);
+    temp = -pitch;
+    angle = temp & 0xFFF;
+    if (angle >= 0x801) angle -= 0x1000;
+    if (angle < -0x1E) angle = -0x1E;
+    if (angle >= 0x1F) angle = 0x1E;
+    pitch += angle;
+    *(int*)(&D_80070328 + 0x60) = pitch;
+
+    roll = *(int*)(&D_80070328 + 0x5C);
+    temp = (-change) << 3;
+    temp -= roll;
+    angle = temp & 0xFFF;
+    if (angle >= 0x801) angle -= 0x1000;
+    if (angle < -0x10) angle = -0x10;
+    {
+        register Angle* rotation __asm__("$4") =
+            (Angle*)((char*)yaw - 0x58);
+        register SHORTMATRIX* matrix __asm__("$5");
+
+        if (angle >= 0x11) angle = 0x10;
+        matrix = (SHORTMATRIX*)((char*)yaw - 0x34);
+        temp = roll + angle;
+        *(int*)(&D_80070328 + 0x5C) = temp;
+        *(volatile signed char*)((char*)yaw - 0x58) = temp >> 4;
+        *(signed char*)(&D_80070328 + 0xE) = *yaw >> 4;
+        *(signed char*)(&D_80070328 + 0xD) = pitch >> 4;
+        __asm__ volatile("" : "=r"(rotation), "=r"(matrix) :
+                             "0"(rotation), "1"(matrix));
+        func_8004EA90(rotation, matrix, 0);
+    }
+
+    angle = func_8004EDE8(&delta, 0);
+    if (angle < 0x101) {
+        func_8004F178((char*)yaw - 0x64, originalTarget);
+        return 0;
+    }
+    *(int*)(&D_80070328 + 0xB0) = scale;
+    func_80041848();
+    {
+        register int quotient __asm__("$6") = (delta.z * scale) / angle;
+        register int positionX __asm__("$3") =
+            *(int*)(&D_80070328 + 0);
+        register int velocityX __asm__("$4") =
+            *(int*)(&D_80070328 + 0x80);
+        register int velocityY __asm__("$5") =
+            *(int*)(&D_80070328 + 0x84);
+        register int positionZ __asm__("$4");
+
+        *(volatile int*)(&D_80070328 + 0) = positionX + velocityX;
+        __asm__ volatile("" ::: "memory");
+        positionX = *(int*)(&D_80070328 + 4);
+        positionZ = *(int*)(&D_80070328 + 8);
+        *(int*)(&D_80070328 + 4) = positionX + velocityY;
+        *(int*)(&D_80070328 + 8) = positionZ + quotient;
+    }
+    return angle;
+}
 
 /* Retail source: USA Rev 0 PSX.EXE 0x800486FC..0x80048948 (147 words).
  * The target and Spyro positions use runtime integer Vector3D units; rotation
