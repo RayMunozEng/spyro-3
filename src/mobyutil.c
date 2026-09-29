@@ -1344,7 +1344,153 @@ int func_80038B44(int lvlIndex, int gems, int eggs) {
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038BF8);
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038F14);
+/* Retail source: USA Rev 0 PSX.EXE 0x80038F14..0x800391E8 (181 words).
+ * Initializes a moby state and its caller-owned 0x18-byte animation/effect
+ * control block once when the requested state differs. Mode is an unsigned
+ * switch selector; animation/state values and packed random values are bytes,
+ * durations are signed 16-bit values, and the routine advances once per call.
+ * Confirmed by an exact 181/181 instruction comparison; falsify with any word
+ * mismatch in that address span or a nonmatching retail executable. */
+typedef struct {
+    unsigned char pad0[4];
+    short unk4;
+    short unk6;
+    unsigned char pad8[6];
+    unsigned char unkE;
+    unsigned char unkF;
+    unsigned char pad10;
+    unsigned char unk11;
+    unsigned char pad12;
+    unsigned char unk13;
+    unsigned char unk14;
+    unsigned char unk15;
+    unsigned char unk16;
+    signed char unk17;
+} MobyStateSetup;
+
+void func_80038F14(Moby* arg0, void* arg1, unsigned int arg2, int arg3) {
+    register Moby* moby __asm__("$18") = arg0;
+    register MobyStateSetup* setup __asm__("$17") = arg1;
+    unsigned int mode = arg2;
+    int animation = arg3;
+    register int temp_v0 __asm__("$2");
+    register int temp_v1 __asm__("$3");
+    register int base __asm__("$4");
+    register int animationOffset __asm__("$5");
+    unsigned char value;
+    register unsigned int first __asm__("$2");
+    int flag;
+    int firstRandom;
+    int secondRandom;
+    int randomLow;
+    int randomHigh;
+
+    if (moby->state != animation) {
+        moby->updateDistance = 0xFF;
+        setup->unk4 = 0x96;
+        setup->unkE = 5;
+        value = moby->unkb;
+        if (value == 0) {
+            value = func_800360F8(
+                func_8004E880(moby->position.x - ((Spyro*)&D_80070328)->position.x,
+                              moby->position.y - ((Spyro*)&D_80070328)->position.y, 0),
+                ((Spyro*)&D_80070328)->bodyRotation.yaw, 0x20, 0x40);
+        }
+        setup->unk11 = value;
+        setup->unk6 = 0;
+        __asm__ volatile ("" ::: "memory");
+        animationOffset = animation * 4;
+        temp_v0 = moby->mobyClass;
+        temp_v1 = moby->animationState.id;
+        temp_v0 <<= 2;
+        temp_v0 = *(int*)((char*)D_8006EE2C + temp_v0);
+        temp_v1 <<= 2;
+        temp_v1 += temp_v0;
+        temp_v0 = animationOffset + temp_v0;
+        temp_v1 = *(int*)(temp_v1 + 0x3C);
+        temp_v0 = *(int*)(temp_v0 + 0x3C);
+        temp_v1 = *(unsigned char*)(temp_v1 + 4);
+        temp_v0 = *(unsigned char*)(temp_v0 + 4);
+        base = (int)D_8006EE2C;
+        if (temp_v1 != temp_v0) {
+            temp_v1 = 1;
+            __asm__ volatile ("" ::: "memory");
+            temp_v0 = moby->mobyClass;
+            moby->state = animation;
+            temp_v0 <<= 2;
+            temp_v0 += base;
+            temp_v0 = *(int*)temp_v0;
+            temp_v0 = animationOffset + temp_v0;
+            temp_v0 = *(int*)(temp_v0 + 0x3C);
+            first = *(unsigned char*)temp_v0;
+            __asm__ volatile ("" : "=r"(first) : "0"(first));
+            moby->animationState.id = animation;
+            moby->animationState.nextId = animation;
+            moby->animationState.frame = 0;
+            moby->animationState.nextFrame = temp_v1;
+            __asm__ volatile ("" : "=r"(first) : "0"(first), "m"(moby->animationState.nextFrame));
+            flag = first < 2;
+            __asm__ volatile ("" : "=r"(flag) : "0"(flag));
+            flag ^= 1;
+            flag = -flag;
+            moby->animationProgress = flag & 0x30;
+        } else {
+            moby->state = animation;
+            func_80034F40(moby, animation);
+        }
+        switch (mode) {
+        case 0:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+            break;
+        case 1:
+            setup->unk13 = 1;
+            setup->unk6 = 0xE6;
+            setup->unk4 = 0x78;
+            setup->unkE = 3;
+            setup->unk15 = animation;
+            setup->unk14 = animation;
+            setup->unkF = 0x17;
+            break;
+        case 6:
+            setup->unk13 = 1;
+            setup->unk6 = 0xE6;
+            setup->unk15 = animation;
+            setup->unk14 = animation;
+            setup->unkF = 0x17;
+            setup->unk16 = func_8003636C(0x28, 0x46);
+            break;
+        case 7:
+            setup->unk6 = 0xE6;
+            setup->unk16 = func_8003636C(0x28, 0x46);
+            randomLow = 8;
+            randomHigh = 0xF;
+            goto randomize;
+        case 8:
+            setup->unk13 = 1;
+            setup->unk15 = animation;
+            setup->unk14 = animation;
+            setup->unk6 = 0xC8;
+            if (moby->damageFlags & 0x20000) {
+                setup->unk6 = 0xF0;
+            }
+            setup->unk16 = func_8003636C(0x28, 0x46);
+            randomLow = 8;
+            setup->unk15 = setup->unk14 + 1;
+            randomHigh = 0xF;
+randomize:
+            firstRandom = func_800363DC(randomLow, randomHigh);
+            secondRandom = func_800363DC(8, 0xF);
+            setup->unk17 = ((firstRandom / 2) * 0x10) + ((secondRandom / 2) & 0xF);
+            break;
+        }
+        if (moby->damageFlags & 0x04000000) {
+            setup->unk4 = (setup->unk4 * 3) >> 1;
+        }
+    }
+}
 //////////////////////////////////////////////////////////////// jtbl section above
 
 /**
