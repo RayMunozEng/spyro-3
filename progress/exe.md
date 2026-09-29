@@ -9,7 +9,7 @@
 - [x] func_80012AC8
 - [x] func_80012B34
 - [x] func_80012BA8
-- [ ] func_80012D18
+- [x] func_80012D18
 - [ ] func_800130DC
 - [x] func_800135A4
 - [x] func_800135F8

@@ -241,7 +241,127 @@ void func_80012BA8(CameraPosition* origin) {
     D_8006E134 = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_80012D18);
+/* Retail source: USA Rev 0 PSX.EXE 0x80012D18..0x800130DC (241 words),
+ * raw function SHA-256
+ * E978A7EE10472A51337B028E9AC09FCF3FC75A2A5D0E13943E08C3326600B947.
+ * Positions and deltas use runtime Vector3D world units. Path segments are
+ * divided into (distance(mode 1) / 240) + 1 steps; collision probes use a
+ * 0x100 radius and at most six corrections per step. The final ground probe
+ * adds 0x80 world units to Z and uses a 0x300 range. This runs once per call.
+ * Confidence: confirmed by a 241/241 instruction comparison. Falsifiable
+ * vectors are the D_8006E138 direct-copy branch, distances on both sides of
+ * 240, collision results with Moby flag 0x80 clear/set, six failed retries,
+ * and zero/nonzero ground results with D_80071934 clear/set. */
+extern unsigned char D_8006E138, D_8006E139;
+extern signed char D_8006E13C;
+extern Vector3D D_8006E020, D_8007190C;
+extern int D_8006E028, D_8006E038, D_8006E044;
+extern int D_8006E134, D_80071934;
+extern unsigned char D_8006E13E;
+extern Moby* func_8001BA30(Vector3D*, int, int, int, int, Moby*);
+extern int func_80019194(Vector3D*, int);
+extern int func_8001A358(Vector3D*, int);
+extern void func_8004F1C8(Vector3D*, Vector3D*, Vector3D*);
+void func_80012D18(void) {
+    Vector3D delta;
+    Vector3D position;
+    Vector3D savedPosition;
+    Vector3D groundProbe;
+    Moby* collision;
+    int stepCount;
+    int step;
+    int attempt;
+    int foundMoby = 0;
+    signed char* stateFlag = &D_8006E13C;
+    int retry;
+    volatile int stackPad[2];
+
+    *stateFlag = 0;
+    if (D_8006E138 != 0) {
+        func_8004F178((Vector3D*)(stateFlag - 0x11C), (Vector3D*)(stateFlag - 0xD4));
+    } else {
+        Vector3D* start = (Vector3D*)(stateFlag - 0x11C);
+        func_8004F1C8(&delta, (Vector3D*)(stateFlag - 0xD4), start);
+        stepCount = func_8004EDE8(&delta, 1);
+        __asm__ volatile ("" : "=r"(stepCount) : "0"(stepCount));
+        stepCount = (stepCount / 240) + 1;
+        if (stepCount >= 2) {
+            delta.x /= stepCount;
+            delta.y /= stepCount;
+            delta.z /= stepCount;
+        }
+        func_8004F178(&position, start);
+        step = 0;
+        if (stepCount > 0) {
+            do {
+                func_8004F194(&position, &position, &delta);
+                func_8004F178(&savedPosition, &position);
+                attempt = 0;
+                do {
+                    collision = 0;
+                    if (D_8006E139 == 0)
+                        collision = func_8001BA30(&position, 0x100, 0, 0, 0, 0);
+                    if (collision != 0) {
+                        if (((unsigned char*)collision)[0x53] & 0x80) {
+                            collision = 0;
+                        } else {
+                            func_8004F178(&position, &D_8007190C);
+                            foundMoby = 1;
+                        }
+                    }
+                    if (func_80019194(&position, 0x100) == 0) {
+                        retry = attempt < 6;
+                        if (collision == 0)
+                            break;
+                    } else {
+                        func_8004F178(&position, &D_8007190C);
+                        D_8006E13C = 1;
+                    }
+                    attempt++;
+                    retry = attempt < 6;
+                } while (retry);
+                if (!retry && foundMoby) {
+                    func_8004F178(&position, &savedPosition);
+                    attempt = 0;
+                    do {
+                        if (func_80019194(&position, 0x100) == 0)
+                            break;
+                        func_8004F178(&position, &D_8007190C);
+                        D_8006E13C = 1;
+                        attempt++;
+                    } while (attempt < 6);
+                }
+                step++;
+            } while (step < stepCount);
+        }
+        func_8004F178(&D_8006E020, &position);
+    }
+
+    {
+        register int* cameraState __asm__("$5") = &D_8006E044;
+        if (*cameraState != 0x23) {
+            func_8004F178(&groundProbe, (Vector3D*)((char*)cameraState - 0x24));
+            groundProbe.z += 0x80;
+            groundProbe.z = func_8001A358(&groundProbe, 0x300);
+            if (groundProbe.z != 0 && D_80071934 != 0) {
+                D_8006E13E = 1;
+                D_8006E134 = groundProbe.z;
+            } else {
+                register unsigned char* groundFlag __asm__("$3") = &D_8006E13E;
+                if (*groundFlag == 0)
+                    D_8006E134 = 0;
+                *groundFlag = 0;
+            }
+            if (D_8006E134 == 0)
+                return;
+            if (D_8006E028 < D_8006E134) {
+                D_8006E038 = 0x800;
+                return;
+            }
+        }
+    }
+    D_8006E038 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_800130DC);
 
