@@ -579,7 +579,98 @@ int func_80013E38(Vector3D* start, Vector3D* end, int flags) {
     return 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001405C);
+/* Retail source: USA Rev 0 PSX.EXE 0x8001405C..0x800142AC (148 words).
+ * Selects a 20-byte camera-position record from the retail mode jump table,
+ * applies controller deltas once per camera tick, then updates both camera
+ * positions. Values are signed integers; angles use the engine's 0x1000-turn
+ * domain. Confidence is exact only when every cited word and the complete
+ * executable hash match; any mismatch falsifies this implementation. */
+extern CameraPosition D_80068FB8, D_80068FCC, D_80068FF4;
+extern CameraPosition D_8006901C, D_80069030, D_80069044, D_80069058;
+extern CameraPosition D_80069184, D_80069198, D_800691AC, D_800691C0;
+extern CameraPosition D_80069288, D_8006E168;
+extern int D_8006C5BC, D_8006E064, D_8006E074;
+void func_80040F48(void*, int);
+int func_8004F284(int, int);
+void func_8001405C(void) {
+    int input[2];
+    CameraPosition* target;
+
+    switch (D_8006E044) {
+    case 1:
+        target = &D_80068F7C;
+        if (func_8004F284(*(int*)(&D_80070328 + 0x64), D_8006E074) < 0x280)
+            target = &D_80068F90;
+        goto update;
+    case 2:
+        target = &D_80068FB8;
+        goto update_input;
+    case 3:
+        target = &D_80068FF4;
+        goto update_input;
+    case 0:
+    case 4:
+    case 8:
+    case 12:
+    case 23:
+        target = &D_80068F7C;
+        goto update_input;
+    case 5:
+        target = &D_80068FCC;
+        goto update_input;
+    case 6:
+        func_80016764(0);
+        return;
+    case 14:
+        target = &D_8006901C;
+        if (D_8006C5BC == 0x2F)
+            target = &D_80069030;
+        goto update_input;
+    case 16:
+        target = &D_80069044;
+        goto update_input;
+    case 17:
+    case 18:
+        target = &D_8006E168;
+        goto update_input;
+    case 13:
+        target = &D_80069058;
+        goto update_input;
+    case 21:
+        target = &D_80069184;
+        goto update_input;
+    case 22:
+        target = &D_80069198;
+        goto update_input;
+    case 24:
+        target = &D_800691AC;
+        goto update_input;
+    case 25:
+        target = &D_80069288;
+        goto update_input;
+    case 26:
+        target = &D_800691C0;
+        goto update;
+    default:
+        return;
+    }
+
+update_input:
+update:
+    func_80040F48(input, 0);
+    if (D_8006E538 & 8) {
+        target->pos.radius -= input[1] >> 2;
+    } else if (D_8006E538 & 4) {
+        target->pitch -= input[0] >> 3;
+        target->yaw += input[1] >> 3;
+    } else if (D_8006E538 & 0x40) {
+        target->pos.azimuth += input[0] >> 3;
+        target->pos.elevation += input[1] >> 3;
+    }
+    func_800135A4((CameraPosition*)&D_8006E088, target, D_8006E064);
+    func_800135A4((CameraPosition*)((char*)&D_8006E088 + 0x14),
+                  (CameraPosition*)&D_8006E088, 0);
+}
 
 void func_800142AC(void) {
     if (*((unsigned char*)&g_CheatFlags + 2)) {
