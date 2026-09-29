@@ -879,8 +879,10 @@ typedef struct {
 } GemMobyTag;
 
 extern int D_8006C5C8;
+extern Vector3D D_8007190C;
 extern Vector3D D_80071918;
 extern int D_80071920;
+extern int D_80071930;
 extern int g_CurrentLevel;
 extern Spyro g_Spyro;
 extern int func_8001BA30(Vector3D*, int, int, int, int, Moby*);
@@ -1311,7 +1313,176 @@ void func_80037F50(Moby* arg0) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038000);
+/* Retail source: USA Rev 0 PSX.EXE 0x80038000..0x800382F4 (189 words).
+ * Tests a candidate world-space position against collision and ground results,
+ * then conditionally applies it to the moby. Coordinates and height deltas are
+ * signed integer world units; arg4 is a behavior bitfield evaluated once per
+ * caller invocation. Confirmed by an exact 189/189 instruction comparison;
+ * falsify with any word mismatch in this span or a different retail revision. */
+int func_80038000(Moby *arg0, Vector3D *arg1, int arg2, int arg3, int arg4)
+{
+  register int vertical asm("$18");
+  register int result asm("$17");
+  register int collision asm("$20");
+  int difference;
+  int angle;
+  result = 0;
+  if (arg4 & 1)
+  {
+    arg1->z += 0x12C + arg2;
+  }
+  if ((arg3 != 0) && (!(arg4 & 0x4000)))
+  {
+    collision = func_8001BA30(arg1, arg3, 0, 0, 0, arg0);
+  }
+  else
+  {
+    collision = 0;
+  }
+  if (collision != 0)
+  {
+    result |= 0x20;
+    if (!(arg4 & 2))
+    {
+      goto store_collision;
+    }
+    func_8004F178(arg1, &D_8007190C);
+  }
+  if ((arg2 != 0) && (func_80019194(arg1, arg2) != 0))
+  {
+    result |= 0x10;
+    if (!(arg4 & 0x20))
+    {
+      goto done;
+    }
+    func_8004F178(arg1, &D_8007190C);
+  }
+  if ((arg4 & 0x400) && (func_80018368(&arg0->position, arg1) != 0))
+  {
+    result |= 0x10;
+    goto done;
+  }
+  if (arg4 & 1)
+  {
+    arg1->z -= 0x12C + arg2;
+  }
+  arg1->z += 0x400;
+  vertical = func_8001A358(arg1, 0x2000);
+  if (arg4 & 0x1000)
+  {
+    arg1->z -= 0x400;
+  }
+  if (arg4 & 0x10)
+  {
+    int currentZ = arg0->position.z;
+    int combined = vertical + arg0->distanceToGround;
+    difference = combined - currentZ;
+    if (difference < 0)
+    {
+      goto negative_height;
+    }
+    if (difference >= 0x191)
+    {
+      goto height_fail;
+    }
+    goto height_ok;
+    negative_height:
+    difference = currentZ - combined;
+
+    if (difference < 0x191)
+    {
+      goto height_ok;
+    }
+    height_fail:
+    asm volatile("" : "=r"(result) : "0"(result));
+
+    result |= 0x40;
+    goto done;
+  }
+  height_ok:
+  if (arg4 & 0x200)
+  {
+    difference = (vertical + arg0->distanceToGround) - arg0->position.z;
+    if (difference < 0xC9)
+    {
+      goto angle_check;
+    }
+    asm volatile("" : "=r"(result) : "0"(result));
+    result |= 0x40;
+    goto done;
+  }
+
+  angle_check:
+  if (arg4 & 0x40)
+  {
+    register int magnitude asm("$2");
+    angle = func_8004E880(func_8004EDE8(&D_80071918, 0), D_80071920, 0);
+    if (angle >= 0x81)
+    {
+      angle -= 0x100;
+    }
+    magnitude = angle;
+    if (angle < 0)
+    {
+      magnitude = -magnitude;
+    }
+    if (magnitude < 0x17)
+    {
+      result |= 0x40;
+      goto done;
+    }
+  }
+
+  arg0->position.x = arg1->x;
+  arg0->position.y = arg1->y;
+  if (arg4 & 4)
+  {
+    int oldZ = arg0->position.z;
+    register int temp_v0 asm("$2");
+    temp_v0 = vertical + arg0->distanceToGround;
+    vertical = temp_v0 - oldZ;
+    temp_v0 = vertical < (-0xFA);
+    if (temp_v0)
+    {
+      vertical = -0xFA;
+      asm volatile("" : "=r"(vertical) : "0"(vertical));
+      temp_v0 = vertical < 0xFB;
+    }
+    else
+    {
+      temp_v0 = vertical < 0xFB;
+    }
+    if (temp_v0)
+    {
+      temp_v0 = oldZ + vertical;
+      goto assign_z;
+    }
+    vertical = 0xFA;
+    asm volatile("" : "=r"(vertical) : "0"(vertical));
+    temp_v0 = oldZ + vertical;
+    assign_z:
+    arg0->position.z = temp_v0;
+
+  }
+  else
+    if (arg4 & 0x1000)
+  {
+    arg0->position.z = arg1->z;
+  }
+  asm volatile("" : "=r"(arg4) : "0"(arg4));
+  func_80056270(arg0);
+  func_8005629C(arg0);
+  func_80055D24(arg0, 2);
+  done:
+  if (collision != 0)
+  {
+    store_collision:
+    D_80071930 = collision;
+    asm volatile("" : : : "memory");
+  }
+
+  return result;
+}
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800382F4);
 
@@ -1384,6 +1555,8 @@ void func_80038F14(Moby* arg0, void* arg1, unsigned int arg2, int arg3) {
     int secondRandom;
     int randomLow;
     int randomHigh;
+    /* Preserves the retail 0x30-byte frame and otherwise-unused 8-byte local. */
+    volatile int stackPad[2];
 
     if (moby->state != animation) {
         moby->updateDistance = 0xFF;
