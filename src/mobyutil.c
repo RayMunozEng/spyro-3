@@ -1292,7 +1292,102 @@ int func_80037A60(Moby* moby, void* state, int widthArg, int decrementArg, int m
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80037BBC);
+/* Retail source: USA Rev 0 PSX.EXE 0x80037BBC..0x80037F50 (229 instructions),
+ * raw SHA-256 7E27B7113ACFEA112F48427CC3E49A462FE3F92825ADEE56D50691EBDCF8632C.
+ * Evaluates a Moby's talk prompt once per call. Positions and distance limits
+ * are signed world units; facing limits are 12-bit angle deltas and flags are
+ * the retail bitfield (1, 2, 4, 8). Confidence: confirmed by an exact 229-word
+ * comparison, the linked USA Rev 0 EXE, and all 62 manifest hashes. Falsifiable
+ * vectors: tag states 0/2/255; distances 0x4FF/0x500/0x9FF/0xA00/0xBB3/0xBB4;
+ * both vertical bounds; facing deltas 0x20/0x40/0x48/0x80; player states
+ * 4/9/11/19; pause gates; prompt age 9/10; and input bit 0x10. */
+extern int D_8006C74C, D_8006C64C, D_8006E344, D_8006C640;
+extern int D_8006C508, D_8006E53C;
+extern char D_8006D088, D_8006C7F8;
+int func_8004F334(Vector3D*, Vector3D*);
+void func_8003B7B4(void*, int, void*);
+void func_80037F50(Moby*);
+int func_80037BBC(Moby* moby, int flags) {
+    unsigned char* tag = moby->mobyTag;
+    int distance = func_8004F334(&moby->position, (Vector3D*)&D_80070328);
+    int enabled;
+    int upper;
+    int lower;
+    int nearFacing;
+    int farFacing;
+    int previousPrompt;
+    int angle;
+
+    if (tag[5] == 0xFF) {
+        tag[7] = 0;
+        return 0;
+    }
+    if (tag[5] == 2) {
+        if (distance >= 0xBB4) return 0;
+    } else if (distance >= 0xA00) {
+        return 0;
+    }
+
+    previousPrompt = tag[7];
+    tag[7] = 0;
+    enabled = ((flags & 1) != 0 || *(int*)(&D_80070328 + 0xB8) == 0);
+    {
+        register int retailUpper __asm__("$5");
+        __asm__ volatile (
+            "lh $2,56(%1)\n"
+            "lw $3,20(%1)\n"
+            "nop\n"
+            "subu %0,$3,$2"
+            : "=r"(retailUpper) : "r"(moby) : "$2", "$3");
+        upper = retailUpper;
+        lower = upper;
+    }
+    if (flags & 8) lower -= 0x320;
+    if (*(int*)(&D_80070328 + 0x50) == 11) {
+        upper += 0x708;
+        lower -= 0x190;
+        enabled = 1;
+    } else {
+        int playerOffset = *(int*)(&D_80070328 + 0x44);
+        upper += 0x1BC + playerOffset;
+        lower += -0x164 + playerOffset;
+    }
+    if (distance < 0x500) {
+        nearFacing = 0x40;
+        farFacing = 0x80;
+    } else {
+        nearFacing = 0x20;
+        farFacing = 0x48;
+    }
+    if (!enabled) return 0;
+    if (upper < *(int*)(&D_80070328 + 8) || *(int*)(&D_80070328 + 8) < lower) return 0;
+    if (!(flags & 2)) {
+        angle = func_8004E880(*(int*)&D_80070328 - moby->position.x,
+                             *(int*)(&D_80070328 + 4) - moby->position.y, 0);
+        if (func_8004F264(moby->angle.yaw, angle) > nearFacing) return 0;
+    }
+    angle = func_8004E880(moby->position.x - *(int*)&D_80070328,
+                         moby->position.y - *(int*)(&D_80070328 + 4), 0);
+    if (func_8004F264(*(unsigned char*)(&D_80070328 + 0xE), angle) > farFacing) return 0;
+    if (moby->drawn == 0) return 0;
+    if (*(int*)(&D_80070328 + 0x50) == 0x13) return 0;
+    if ((D_8006C74C != 0 || D_8006C64C != 0) && tag[5] != 2) return 0;
+    if (D_8006E344 != 0) return 0;
+    if (!(flags & 4) && *(int*)(&D_80070328 + 0x50) == 4) return 0;
+    if (*(int*)(&D_80070328 + 0x50) == 9) return 0;
+    if (D_8006C640 < 10 && tag[5] != 0 && D_8006C508 != 0 && tag[2] != 0) tag[5] = 0;
+    if ((D_8006E53C & 0x10) != 0 || tag[5] != 0) {
+        if (tag[5] == 2) *(int*)(&D_80070328 + 0x20C) |= 0x10000002;
+        tag[5] = 0;
+        tag += 5;
+        func_8003B7B4(tag, 1, &D_8006D088);
+        func_8003B7B4(tag, 1, &D_8006C7F8);
+        return 1;
+    }
+    if (previousPrompt == 0) func_80037F50(moby);
+    tag[7] = 2;
+    return 0;
+}
 
 /**
  * SpawnTalkText() - func_80037F50() - MATCHING
