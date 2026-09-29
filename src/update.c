@@ -190,7 +190,109 @@ next_lane:
         goto loop;
     }
 }
-INCLUDE_ASM("asm/nonmatchings/update", func_80050F18);
+/* Retail source: USA Rev 0 PSX.EXE 0x80050F18..0x800512E4 (243 instructions),
+ * raw SHA-256 B24CB11342B67AD4858B7ADB7F6EBA60D6DC7C9015395E85C285C30345C1152F.
+ * USA Rev 1 0x80050F3C and docs/yotd-re/manifests/dialogue-manager-runtime.json
+ * corroborate the dialogue-runtime reset. Inputs are controller-mask bits and
+ * frame ticks; the clock uses /900 steps, level records are 18 bytes with six
+ * byte lanes, and the fade advances by 16 through 256. Called once per gameplay
+ * update; sector state refreshes every 64 calls and lanes saturate at 255 only
+ * when a /900 boundary changes. Confidence: confirmed by the exact linked EXE
+ * and all 62 manifest hashes. Falsifiable vectors: pause bits 0x100/0x800 with
+ * each gate set, clocks at 599/600 and 899/900, packed mode/nibble mismatches,
+ * lane values 254/255, the -1 override sentinel, and fade values 0/240/256. */
+extern int D_8006E53C, D_8006C74C, D_8006C64C, D_8006C598;
+extern int D_8006E344, D_80070148, D_8006C640;
+extern unsigned char D_8006E508, D_8006E534;
+extern int D_8006C5F4, D_8006C584, D_8006C5D0, D_8006C648;
+extern int D_8006C404, D_8006C7E4, D_8006C734;
+extern int* D_8006C55C;
+extern char D_80070328;
+extern char g_CheatFlags;
+void func_8005663C(void);
+void func_80055294(int);
+void func_800584BC(int, int);
+void func_80050F18(void) {
+    int priorStep;
+    int currentStep;
+
+    if ((D_8006E53C & 0x100) != 0 &&
+        D_8006C74C == 0 && D_8006C64C == 0 && D_8006C598 == 0 &&
+        *(int*)(&D_80070328 + 0x280) >= 0 && D_8006E344 == 0) {
+        D_80070148 = 3;
+        func_8005663C();
+    }
+    D_8006C640++;
+    if ((D_8006E53C & 0x800) != 0 || D_8006E508 < 2) {
+        if (D_8006C74C == 0 && D_8006C64C == 0 && D_8006C598 == 0 &&
+            *(int*)(&D_80070328 + 0x280) >= 0 && D_8006E344 == 0) {
+            func_8005663C();
+        }
+    }
+    func_80055294(0x7B);
+    priorStep = D_8006C5F4 / 900;
+    if (D_8006E534 != 0) {
+        D_8006C584 += D_8006C648;
+    } else {
+        D_8006C584 = 0;
+    }
+    if (D_8006C584 < 600) {
+        D_8006C5D0 += D_8006C648;
+        D_8006C5F4 += D_8006C648;
+    }
+    currentStep = D_8006C5F4 / 900;
+    if (currentStep != priorStep) {
+        register int lane __asm__("$6") = 0;
+        register int packedMode __asm__("$9") = 0x10;
+        register unsigned char* thresholdBase __asm__("$8") = D_800716AC;
+        register int laneOffset __asm__("$7") = 0;
+        do {
+            int level = D_8006C58C;
+            register int recordOffset __asm__("$2") = level * 18;
+            register int packed __asm__("$4");
+            register int packedLow __asm__("$2");
+            register unsigned char* value __asm__("$4");
+            __asm__ volatile ("addu %0,%1,%2" : "=r"(recordOffset) : "r"(laneOffset), "0"(recordOffset));
+            __asm__ volatile (
+                ".set noreorder\n"
+                ".set noat\n"
+                "lui $1,%%hi(D_80066BDC)\n"
+                "addu $1,$1,%1\n"
+                "lbu %0,%%lo(D_80066BDC)($1)\n"
+                "nop\n"
+                ".set at"
+                : "=r"(packed) : "r"(recordOffset) : "$1");
+            packedLow = packed & 0xF0;
+            if (packedLow != packedMode) goto lane_done;
+            packedLow = packed & 0xF;
+            if (packedLow != D_8006C5C8) goto lane_done;
+            recordOffset = level * 6;
+            __asm__ volatile ("addu %0,%1,%2" : "=r"(recordOffset) : "0"(recordOffset), "r"(thresholdBase));
+            value = (unsigned char*)recordOffset + lane;
+            if (*value < 0xFF) (*value)++;
+lane_done:
+            lane++;
+            laneOffset += 3;
+        } while (lane < 6);
+    }
+    if ((D_8006C640 & 0x3F) == 0) func_80050B90();
+    if (D_8006C404 != -1) D_8006C7C4 = D_8006C404;
+    if (D_8006C658 == 1) {
+        int target = *D_8006C55C - 18;
+        if (D_8006C640 >= target) {
+            if (D_8006C598 == 0) D_8006C598 = 0x10;
+            target = *D_8006C55C - 18;
+            if (D_8006C640 >= target && D_8006C598 != 0) {
+                D_8006C598 += 0x10;
+                if (D_8006C598 >= 0x100) D_8006C7E4 = 1;
+            }
+        }
+        if (D_8006C7E4 != 0) {
+            func_800584BC(5, 0);
+            (&g_CheatFlags)[3] = (char)D_8006C734;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/update", func_800512E4);
 

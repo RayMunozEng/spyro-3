@@ -322,7 +322,7 @@
 
 <!-- Update -->
 - [x] func_80050B90
-- [ ] func_80050F18
+- [x] func_80050F18
 - [ ] func_800512E4
 - [x] func_800518F8
 - [x] func_80051A60
