@@ -1251,7 +1251,158 @@ TODO: investigate what the headers are for each line of dialogue
 */
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80037324);
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80037768);
+/* Retail source: USA Rev 0 PSX.EXE 0x80037768..0x80037A60
+ * (190 instruction words), body SHA-256
+ * F5F22629324F1DBCCCF4A53EEF4A260B71117BA83F30191E5DA0F6817D92BF42.
+ * The two 26-word tables at 0x8001040C and 0x80010474 have combined raw
+ * SHA-256 815EBB0309969E292E32F77A81A8BC23FF71244B5A71F446CF5D16EE4A5E882F.
+ * Stream lengths and opcodes are bytes; encoded selection values are reduced
+ * by one, while D_8006C71C and table halfwords remain raw integer units. Each
+ * stream is parsed once per call. Confidence: confirmed by an exact 227-record
+ * instruction/relocation comparison. Falsifiable vectors cover empty streams,
+ * opcodes 0x23/0x25/0x26/0x29/0x2A/0x2B/0x3B, the two-byte default, equal and
+ * unequal 0x23 bounds, selector values zero/nonzero, item 0xFE, insufficient
+ * D_8006C71C, and selected bytes below/above 0x80. */
+extern int D_8006C76C, D_8006C71C;
+extern short D_8006C57C;
+extern unsigned char D_8006C7A4;
+extern char D_8006C7F8;
+extern short D_80066EAC[];
+extern short D_80066EAE[];
+extern int func_8003636C(int, int);
+extern void func_8003B7B4(void*, int, void*);
+void func_80037768(void* arg) {
+    unsigned char* state = *(unsigned char**)arg;
+    unsigned char* cursor;
+    unsigned char* end;
+    int values[5];
+    register int* valuesBase __asm__("$21");
+    register int low __asm__("$18");
+    register int high __asm__("$17");
+    register int selected __asm__("$2");
+
+    {
+        register int offset __asm__("$2") = state[2];
+        register int tableOffset __asm__("$3") = D_8006C76C;
+        tableOffset <<= 2;
+        offset <<= 2;
+        offset += (int)state;
+        offset += tableOffset;
+        cursor = *(unsigned char**)(offset + 0x10);
+    }
+    end = cursor + cursor[0];
+    cursor++;
+    if (cursor < end) {
+        valuesBase = values;
+        do {
+        switch (*cursor) {
+        case 0x2A:
+            state[5] = 0xFF;
+            func_8003B7B4(state + 5, 1, &D_8006C7F8);
+            cursor++;
+            break;
+        case 0x26:
+        case 0x2B:
+        case 0x3B:
+            cursor++;
+            break;
+        case 0x29:
+            state[2] = cursor[1] - 1;
+            cursor += 2;
+            break;
+        case 0x23:
+            {
+                register int first __asm__("$2") = cursor[1];
+                register int second __asm__("$3") = cursor[2];
+                low = first - 1;
+                high = second - 1;
+            }
+            if (low != high) {
+                selected = func_8003636C(low, high);
+                if (state[2] == selected) {
+                    state[2]++;
+                    selected = high < state[2];
+                    if (selected)
+                        state[2] = low;
+                }
+            } else {
+                state[2] = low;
+            }
+            cursor += 3;
+            break;
+        case 0x25:
+            {
+                register int itemByte __asm__("$2") = cursor[6];
+                register int item __asm__("$6") = itemByte - 1;
+                register int fallback __asm__("$3") = cursor[7] - 1;
+                register int i __asm__("$4") = 0;
+                register int* output __asm__("$5") = valuesBase;
+                register unsigned char* entry __asm__("$2");
+                do {
+                    entry = cursor + i;
+                    *output = entry[1] - 1;
+                    i++;
+                    output++;
+                } while (i < 5);
+            state[2] = valuesBase[D_8006C57C];
+            if (D_8006C57C == 0 && item != 0xFE) {
+                int cost = D_80066EAC[item * 2];
+                if (D_8006C71C >= cost) {
+                    D_8006C71C -= cost;
+                    D_80066EAE[item * 2] = 1;
+                } else {
+                    state[2] = fallback;
+                }
+            }
+            }
+            if (state[2] >= 0x80) {
+                state[2] += 0x80;
+                D_8006C7A4 = 0;
+            }
+            cursor += 8;
+            break;
+        default:
+            cursor += 2;
+            break;
+        }
+        } while (cursor < end);
+    }
+
+    {
+        register int offset __asm__("$2") = state[2];
+        register int tableOffset __asm__("$3") = D_8006C76C;
+        offset <<= 2;
+        offset += (int)state;
+        tableOffset <<= 2;
+        offset += tableOffset;
+        cursor = *(unsigned char**)(offset + 0x10);
+    }
+    end = cursor + cursor[0];
+    cursor++;
+    while (cursor < end) {
+        switch (*cursor) {
+        case 0x2B:
+            state[5] = 2;
+            cursor++;
+            break;
+        case 0x26:
+        case 0x2A:
+        case 0x3B:
+            cursor++;
+            break;
+        case 0x23:
+            cursor += 3;
+            break;
+        case 0x25:
+            cursor += 8;
+            break;
+        default:
+            cursor += 2;
+            break;
+        }
+    }
+    func_8003B7B4(state + 2, 1, &D_8006C7F8);
+}
 
 /* Retail source: asm/nonmatchings/mobyutil/func_80037A60.s,
  * 0x80037A60..0x80037BBC. Values use raw integer storage;
