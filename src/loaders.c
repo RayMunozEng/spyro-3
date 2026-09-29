@@ -105,7 +105,140 @@ void func_8002AE34(int* stream, int* end) {
 
 INCLUDE_ASM("asm/nonmatchings/loaders", func_8002AF9C);
 
-INCLUDE_ASM("asm/nonmatchings/loaders", func_8002B31C);
+extern int D_8006C5C8;
+extern int* D_8006D050;
+extern int* D_8006D054;
+extern int D_8006D058;
+extern volatile int* volatile D_8006D070;
+extern int D_8006D074;
+extern int D_8006F600[];
+extern int D_800720A8;
+extern int D_800720AC;
+extern int D_80072138;
+extern int D_8007213C;
+extern int D_80072140;
+/* Retail source: USA Rev 0 PSX.EXE 0x8002B31C..0x8002B5EC
+ * (180 words). The image rectangle uses signed 16-bit SDK coordinates and
+ * dimensions; loaded block references are byte offsets until this routine
+ * relocates them against the block base. This runs once for each loaded block.
+ * Confidence is exact: falsify by comparing all 180 rebuilt words, the retail
+ * executable SHA-256, and every overlay SHA-256 in sha256sum.txt. */
+int func_8002B31C(int* input, int* end) {
+    RECT image;
+    register int initialOffset __asm__("$2") = D_800720AC;
+    register char* base __asm__("$19") = (char*)input;
+    register int* bound __asm__("$21") = end;
+    register char* result __asm__("$22");
+    register int* tableBase __asm__("$20");
+    register int* tableEnd __asm__("$18");
+    register short* type __asm__("$17");
+    register int* entry __asm__("$16");
+    int* cursor;
+
+    result = base + initialOffset;
+    {
+        register int* block __asm__("$2") =
+            (int*)(base + *(int*)base);
+        register int imageX __asm__("$6") = ((volatile int*)block)[0];
+        register int imageY __asm__("$7") = ((volatile int*)block)[1];
+        register int imageW __asm__("$3") = ((volatile int*)block)[2];
+        register int imageH __asm__("$5") = ((volatile int*)block)[3];
+        if (imageW != 0 && imageH != 0) {
+        register char* imageData __asm__("$16");
+        imageData = (char*)block[4];
+        image.x = imageX;
+        image.y = imageY;
+        image.w = imageW;
+        image.h = imageH;
+        imageData += 0x10;
+        imageData = (char*)block + (int)imageData;
+        LoadImage(&image, (unsigned long*)imageData);
+        result = imageData;
+        }
+    }
+    if (D_8006C5C8 == 0) {
+        register int* first __asm__("$5");
+        register int* second __asm__("$4") = (int*)base + 1;
+        register int offset __asm__("$2") = ((int*)base)[1];
+        int* third;
+        first = second;
+        second = (int*)((char*)second + offset);
+        if (offset < 9) {
+            D_8006D050 = first;
+            D_8006D074 = 0x18000;
+            D_8006D058 = 0;
+        } else {
+            D_8006D074 = 0x2C000;
+            D_8006D050 = (int*)base + 2;
+            D_8006D058 = 1;
+        }
+        first = second;
+        second = (int*)((char*)second + *second);
+        if (*first < 9) {
+            D_8006D054 = first;
+            *first = -1;
+        } else {
+            register int* next __asm__("$2") = first + 1;
+            D_8006D054 = next;
+        }
+        third = second;
+        if (*third == -2) {
+            register int* relocation __asm__("$4") = third + 2;
+            D_8006D070 = relocation;
+            { volatile int* p = D_8006D070; p[3] = (int)((char*)relocation + p[3]); }
+            { volatile int* p = D_8006D070; p[4] = (int)((char*)relocation + p[4]); }
+            { volatile int* p = D_8006D070; p[5] = (int)((char*)relocation + p[5]); }
+            { volatile int* p = D_8006D070; p[6] = (int)((char*)relocation + p[6]); }
+            { volatile int* p = D_8006D070; p[7] = (int)((char*)relocation + p[7]); }
+            {
+                volatile int* p = D_8006D070;
+                register int relocated __asm__("$2") =
+                    (int)((char*)relocation + p[8]);
+                p[8] = relocated;
+            }
+        }
+    }
+    func_8002AE34((int*)(base + (D_80072138 - D_800720A8)), bound);
+    {
+        int i = 0x1F5;
+        cursor = D_8006F600;
+        do {
+            *cursor = 0;
+            i++;
+            cursor++;
+        } while (i < 0x1FA);
+    }
+    {
+    register int* table __asm__("$4") = &D_8007213C;
+    if (D_80072140 > 0) {
+        tableBase = table - 1;
+        tableEnd = table + 1;
+        type = (short*)((char*)table + 0xFE);
+        entry = table;
+        do {
+            register int callType __asm__("$5");
+            register int callOffset __asm__("$4");
+            register int baseOffset __asm__("$2");
+            register int* callBound __asm__("$6");
+            tableEnd++;
+            callType = *type;
+            type++;
+            callOffset = *(volatile int*)entry;
+            baseOffset = *(volatile int*)(tableBase - 36);
+            __asm__ volatile("" : "=r"(callType), "=r"(callOffset),
+                                  "=r"(baseOffset), "=r"(type) :
+                                  "0"(callType), "1"(callOffset),
+                                  "2"(baseOffset), "3"(type));
+            callBound = bound;
+            callOffset -= baseOffset;
+            func_8002AF9C(
+                (int*)(base + callOffset), callType, callBound);
+            entry++;
+        } while (*tableEnd > 0);
+    }
+    }
+    return (int)result;
+}
 
 /**
  * ???() - func_8002B5EC()
