@@ -24,8 +24,8 @@ This version contains modchip protection, anti-crack protection, and encrypted o
 Last updated: 2026-09-28
 |                            | EXE     | Overlays | Total   |
 | -------------------------- | ------- | -------- | ------- |
-| Total C functions matching | 279/337 | 160/3098 | 439/3435 |
-| Progress percentage        | 82.79% | 5.16% | 12.78% |
+| Total C functions matching | 280/337 | 160/3098 | 440/3435 |
+| Progress percentage        | 83.09% | 5.16% | 12.81% |
 
 *Note: the percentages given above are not necessarily representative of a linear indicator of progress. In particular, many overlay functions repeat and will be easier to implement on the whole than the EXE's functions.*
 
@@ -34,7 +34,7 @@ Hashes listed are for the final overlays, after correcting checksums and encrypt
 
 | EXE / Overlay | Expected SHA-256                                                   | C functions matching | Progess % |
 | ------------- | ------------------------------------------------------------------ | -------------------- | --------- |
-| EXE           | `CB819EE78C556D403779309859CB08A7111331F624759BC1BC380946261BB26E` | 279/337 | 82.79% |
+| EXE           | `CB819EE78C556D403779309859CB08A7111331F624759BC1BC380946261BB26E` | 280/337 | 83.09% |
 | credits       | `BBE3F8DEB18E0F462C5918C8AFEDB03A32FE855CC6778E9B8D7E4E3849988BCD` | 1/5 | 20.00% |
 | loading       | `0E94063F258479586AE630C23260B77014BE18BAC5891FBB9A894156B5763AE2` | 2/16 | 12.50% |
 | title         | `675044820F58E521AE2F5AE67F3D050BA37D604D4F06FEC20DCD8806FD1B90F9` | 2/22 | 9.09% |

@@ -116,6 +116,7 @@ extern void func_8005EB70(void*);
 extern void func_8005EC1C(void*);
 extern int D_8006FCF4;
 extern int D_8006FCF8;
+void func_8003C428(int);
 
 /* USA Rev 0 retail source: asm/nonmatchings/spu/func_8003C184.s,
  * 0x8003C184..0x8003C428. Each game update consumes one status byte for
@@ -238,7 +239,148 @@ next:
     D_8006C630 = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/spu", func_8003C428);
+extern char* D_8006C6A0;
+extern int D_8006E344;
+extern volatile int soundGameState __asm__("D_8006E344");
+extern volatile int activeBaseVolume __asm__("D_8006FCEC");
+extern unsigned char D_8006FCE5;
+extern unsigned char D_8006FCE7;
+extern int D_8006FCEC;
+extern int D_8006FCFC;
+extern int D_8006FD0C;
+void func_8003CB00(void*, void*);
+void func_8003C79C(void*, void*);
+
+/* USA Rev 0 retail source: asm/nonmatchings/spu/func_8003C428.s,
+ * 0x8003C428..0x8003C79C; one 44-byte ActiveSound entry is translated into
+ * a 64-byte SPU command when its voice is updated. Integer gains use Q12
+ * scaling and clamp to 0..0x3FFF. Confidence: exact; test vector: all 221
+ * instructions match retail. */
+void func_8003C428(int arg0) {
+    char command[64];
+    register int index __asm__("$16") = arg0;
+    register int workA1 __asm__("$5");
+    register int workA2 __asm__("$6");
+    register int workV1 __asm__("$3");
+    register int workA0 __asm__("$4");
+    register int workV0 __asm__("$2");
+    int scaled;
+    int inRange;
+    unsigned char flags;
+    void *owner;
+
+    {
+        workA0 = 1;
+        workV0 = workA0 << index;
+        *(volatile int *)(command + 0) = workV0;
+        workV0 = index << 1;
+        workV0 = workV0 + index;
+        workV0 = workV0 << 2;
+        workV0 = workV0 - index;
+        workA1 = workV0 << 2;
+        *(int *)(command + 4) = 0;
+        workA2 = *(volatile int *)((char *)&activeBaseVolume + workA1);
+        workV1 = soundGameState;
+        *(int *)(command + 4) = 3;
+        workV0 = workA2;
+        *(short *)(command + 10) = workV0;
+        *(short *)(command + 8) = workV0;
+        if (workV1 == workA0) {
+            if (!(*(unsigned char *)((char *)&D_8006FCE6 + workA1) & 0x80)) {
+                workV0 = (workA2 << 16) >> 18;
+                *(short *)(command + 8) = workV0;
+                *(short *)(command + 10) = workV0;
+            }
+        }
+    }
+
+    workV0 = index << 1;
+    workV0 = workV0 + index;
+    workV0 = workV0 << 2;
+    workV0 = workV0 - index;
+    workV1 = workV0 << 2;
+    flags = *(unsigned char *)((char *)&D_8006FCE6 + workV1);
+    if (!(flags & 1)) {
+        owner = *(void **)((char *)&D_8006FD0C + workV1);
+        if (owner != 0) {
+            if (*((unsigned char *)owner + 0x48) & 0x80) {
+                if (*(unsigned char *)((char *)&D_8006FCE7 + workV1) != 0) {
+                    func_8003BE70(index);
+                    return;
+                }
+                *(unsigned char *)((char *)&D_8006FCE6 + workV1) = flags | 1;
+            } else {
+                func_8003C79C((char *)&D_8006FCE4 + workV1, command);
+            }
+        }
+    }
+
+    workV0 = index << 1;
+    workV0 = workV0 + index;
+    workV0 = workV0 << 2;
+    workV0 = workV0 - index;
+    workV1 = workV0 << 2;
+    if (*(unsigned char *)((char *)&D_8006FCE6 + workV1) & 8) {
+        *(int *)(command + 4) |= 0x10;
+        *(short *)(command + 0x14) = *(int *)((char *)&D_8006FCFC + workV1);
+        *(unsigned char *)((char *)&D_8006FCE6 + workV1) =
+            *(unsigned char *)((char *)&D_8006FCE6 + workV1) & 0xF7;
+    }
+    workA0 = *(int *)((char *)&D_8006FD0C + workV1);
+    if (workA0 != 0 &&
+        !(*(unsigned char *)((char *)&D_8006FCE6 + workV1) & 0x21) &&
+        !(*(unsigned char *)(workA0 + 0x48) & 0x80)) {
+        func_8003CB00((char *)&D_8006FCE4 + workV1, command);
+    }
+
+    workV0 = index << 1;
+    workV0 = workV0 + index;
+    workV0 = workV0 << 2;
+    workV0 = workV0 - index;
+    workA0 = workV0 << 2;
+    if (*(unsigned char *)((char *)&D_8006FCE4 + workA0) == 1) {
+        *(int *)(command + 4) |= 0x93;
+        *(int *)(command + 0x1C) =
+            *(int *)(D_8006C6A0 +
+                     (*(unsigned char *)((char *)&D_8006FCE5 + workA0) * 0x14));
+        *(short *)(command + 0x14) = *(int *)((char *)&D_8006FCFC + workA0);
+    }
+    if (*(unsigned char *)((char *)&D_8006FCE6 + workA0) & 0x10) {
+        *(int *)(command + 4) |= 3;
+        scaled = (*(short *)(command + 8) *
+                  *(int *)((char *)&D_8006FCF0 + workA0)) >> 12;
+        inRange = scaled < 0x4000;
+        if (scaled < 0) {
+            scaled = 0;
+            __asm__ volatile ("" : "=r"(scaled) : "0"(scaled));
+            inRange = scaled < 0x4000;
+        }
+        if (!inRange) {
+            scaled = 0x3FFF;
+        }
+        workV0 = (int)&D_8006FCE4;
+        workA1 = workA0 + workV0;
+        *(int *)(workA1 + 0x14) = scaled;
+        *(short *)(command + 8) = scaled;
+
+        scaled = (*(short *)(command + 10) *
+                  *(int *)((char *)&D_8006FCF0 + workA0)) >> 12;
+        inRange = scaled < 0x4000;
+        if (scaled < 0) {
+            scaled = 0;
+            __asm__ volatile ("" : "=r"(scaled) : "0"(scaled));
+            inRange = scaled < 0x4000;
+        }
+        if (!inRange) {
+            scaled = 0x3FFF;
+        }
+        *(int *)(workA1 + 0x10) = scaled;
+        *(short *)(command + 10) = scaled;
+    }
+    if (*(int *)(command + 4) != 0) {
+        func_8005EC1C(command);
+    }
+}
 
 /* USA Rev 0 EXE 0x8003C79C..0x8003C994: update a sound's
  * two integer gain channels from its distance and planar angle. */
