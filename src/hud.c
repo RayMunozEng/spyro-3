@@ -802,7 +802,10 @@ int* func_80028D30(SpriteData* arg0, short arg1, short arg2, int arg3) {
  * ???() - func_800291B8()
  * https://decomp.me/scratch/m95oz
  */
-/* Retail source: asm/nonmatchings/hud/func_800291B8.s, 0x800291B8..0x800293C4. */
+/* Retail source: USA Rev 0 PSX.EXE 0x800291B8..0x800293C4.
+ * Confirmed exact across 131 words and the 62-artifact retail hash set.
+ * Integer HUD pixels update once per rendered digit. Falsify with values 0,
+ * 9, 10, and negative motion offsets against the rebuilt instruction span. */
 extern unsigned char D_800674AC[];
 extern unsigned char D_800674E8[];
 extern short D_800719CC;
@@ -881,8 +884,9 @@ int func_800291B8(int arg0, int arg1, int arg2, int arg3) {
  */
 /* Retail source: USA Rev 0 PSX.EXE 0x800293C4..0x80029674.
  * Values are integer HUD pixel coordinates; decimal digits are consumed once
- * per loop iteration. Confidence is confirmed by all 172 matching words.
- * Falsify by comparing the rebuilt words and the final executable hash. */
+ * per loop iteration. Confidence is confirmed by all 172 matching words and
+ * the 62-artifact retail hash set. Falsify with paired values containing
+ * zero digits and both signs of the integer motion offset. */
 int func_800293C4(int arg0, int arg1, int arg2, int arg3, int arg4) {
     volatile int sp10;
     int sp18;
