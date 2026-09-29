@@ -40,8 +40,156 @@ extern PauseData pauseData; // 8006fbc4
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-INCLUDE_ASM("asm/nonmatchings/update", func_80050B90);
+/* Retail source: USA Rev 0 PSX.EXE 0x80050B90..0x80050F18 (226 instructions).
+ * Raw SHA-256 13c06150...d8a7; Rev 1 0x80050BB4 corroborates behavior.
+ * Units: six byte lanes, 18-byte level records, mask bits, byte thresholds, and
+ * an integer timer advanced by 10 and capped at 30. Cadence: one call evaluates
+ * the base mask and up to six lanes. Confidence: confirmed retail exact by the
+ * PSX.EXE SHA-256 e5406997...e39f and all 62 manifest hashes.
+ * Falsifiable vectors: override nonzero; timer -20/-19/10/11; entry remainder
+ * 1..5; packed modes 0x10/0x20/0x30; mask bits; threshold edges; fresh mode 3. */
+extern int D_8006C658;
+extern int D_8006C7C4;
+extern int D_8006C7A8;
+extern int D_8006C564;
+extern int D_8006C5BC;
+extern int D_8006C58C;
+extern int D_8006C5C8;
+extern int D_8006C504;
+extern unsigned char D_8006C7B4;
+extern unsigned char D_80066BDC[];
+extern unsigned char D_80066BDD[];
+extern unsigned char D_80066BDE[];
+extern unsigned char D_80070300[];
+extern unsigned char D_800715BC[];
+extern unsigned char D_800716AC[];
+void func_80050B90(void) {
+    register int lane __asm__("$7");
+    register int laneOffset __asm__("$9");
+    register int entryId __asm__("$4");
+    register int entryRemainder __asm__("$8");
+    register int level __asm__("$5");
+    int level2;
+    int recordOffset;
+    register int packed __asm__("$5");
+    register int packedMode __asm__("$3");
+    register int remainderProduct __asm__("$3");
+    register int firstPacked __asm__("$2");
+    register int firstOffset __asm__("$2");
+    register int divisionV0 __asm__("$2");
+    register int divisionV1 __asm__("$3");
+    register int divisionHi __asm__("$24");
+    int mode;
+    register int threshold __asm__("$3");
+    register int two __asm__("$11");
+    register int one __asm__("$12");
+    register int three __asm__("$10");
+    register int five __asm__("$13");
+    register unsigned char* thresholdBase __asm__("$14");
+    register unsigned char* stateBase __asm__("$15");
 
+    if (D_8006C658 != 0) {
+        D_8006C7C4 = 1;
+        return;
+    }
+    if (D_8006C7A8 < -19) {
+        D_8006C564 = 2;
+    } else if (D_8006C7A8 < 11) {
+        D_8006C564 = 1;
+    } else {
+        D_8006C564 = 0;
+    }
+    lane = 0;
+    two = 2;
+    thresholdBase = D_800716AC;
+    one = 1;
+    three = 3;
+    five = 5;
+    stateBase = D_800715BC;
+    D_8006C7C4 = D_8006C564;
+    laneOffset = 0;
+loop:
+    __asm__ volatile (
+        "lui %1,0x6666\n"
+        "lui %0,%%hi(D_8006C5BC)\n"
+        "lw %0,%%lo(D_8006C5BC)(%0)\n"
+        "ori %1,%1,0x6667\n"
+        "mult %0,%1\n"
+        "lui %2,%%hi(D_8006C58C)\n"
+        "lw %2,%%lo(D_8006C58C)(%2)\n"
+        "sra %1,%0,31\n"
+        "mfhi %4\n"
+        "sra %3,%4,2\n"
+        "subu %5,%3,%1"
+        : "=r"(entryId), "=r"(divisionV0), "=r"(level),
+          "=r"(divisionV1), "=r"(divisionHi), "=r"(entryRemainder));
+    remainderProduct = entryRemainder * 10;
+    firstOffset = level * 18;
+    __asm__ volatile ("addu %0,%1,%2" : "=r"(firstOffset) : "r"(laneOffset), "0"(firstOffset));
+    firstPacked = D_80066BDC[firstOffset];
+    entryRemainder = entryId - remainderProduct;
+    packedMode = firstPacked & 0xF0;
+    if (lane == 0 && (unsigned)(entryRemainder - 1) < 4) {
+        if ((D_8006C7B4 & 1) != 0) goto next_lane;
+        if ((D_80070300[level] & 1) != 0) goto next_lane;
+    }
+    if (packedMode == 0x30) goto next_lane;
+    level2 = D_8006C58C;
+    recordOffset = laneOffset + level2 * 18;
+    packed = D_80066BDC[recordOffset];
+    if ((packed & 0xF) != D_8006C5C8) goto next_lane;
+    if (((D_8006C7B4 >> lane) & 1) != 0) goto next_lane;
+    D_8006C504 = two;
+    packedMode = packed & 0xF0;
+    if (packedMode == 0x10) goto mode_10;
+    if (packedMode == 0x20) goto mode_20;
+    goto mode_done;
+mode_10:
+    threshold = (thresholdBase + level2 * 6)[lane];
+    if (threshold < D_80066BDD[recordOffset]) goto set_one;
+    if (!(D_80066BDE[recordOffset] < threshold)) goto set_two;
+    goto set_three;
+mode_20:
+    threshold = (thresholdBase + level2 * 6)[lane];
+    if (!(threshold < D_80066BDD[recordOffset])) goto check_high;
+set_one:
+    D_8006C504 = one;
+    goto mode_done;
+check_high:
+    if (D_80066BDE[recordOffset] < threshold) goto set_three;
+set_two:
+    D_8006C504 = two;
+    goto mode_done;
+set_three:
+    D_8006C504 = three;
+mode_done:
+    if (D_8006C504 == two) {
+        if (lane != 0 || entryRemainder == five) {
+            if (D_8006C7C4 >= 2) D_8006C7C4 = one;
+        }
+    }
+    mode = D_8006C504;
+    if (mode == three) D_8006C7C4 = 0;
+    {
+        register int stateLevel __asm__("$2") = D_8006C58C;
+        register unsigned char* state __asm__("$3");
+        state = (unsigned char*)(stateLevel * 6);
+        state += (int)stateBase;
+        state += lane;
+        if (*state == 0 && mode == three) {
+            *state = (unsigned char)mode;
+            D_8006C7A8 += 10;
+            if (D_8006C7A8 >= 31) D_8006C7A8 = 30;
+        }
+    }
+    if (entryRemainder != five) return;
+next_lane:
+    lane++;
+    if (lane < 6) {
+        laneOffset += 3;
+        goto loop;
+    }
+}
 INCLUDE_ASM("asm/nonmatchings/update", func_80050F18);
 
 INCLUDE_ASM("asm/nonmatchings/update", func_800512E4);
