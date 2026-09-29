@@ -111,7 +111,132 @@ void func_8003C140(int index, int value) {
     *(unsigned char*)((char*)&D_8006FCE6 + offset) = flag | 0x10;
 }
 
-INCLUDE_ASM("asm/nonmatchings/spu", func_8003C184);
+extern void func_8005E9B0(int, int);
+extern void func_8005EB70(void*);
+extern void func_8005EC1C(void*);
+extern int D_8006FCF4;
+extern int D_8006FCF8;
+
+/* USA Rev 0 retail source: asm/nonmatchings/spu/func_8003C184.s,
+ * 0x8003C184..0x8003C428. Each game update consumes one status byte for
+ * each of 24 voices and advances 44-byte ActiveSound entries. Fade state 3
+ * subtracts 0x400 integer volume units per update and clamps each channel at
+ * zero. Confidence: exact; test vector: all 169 instructions match retail. */
+void func_8003C184(void) {
+    struct {
+        unsigned char status[24];
+        char fadeCommand[64];
+        char stopCommand[64];
+    } locals;
+    register int startMask __asm__("$23");
+    register int finishMask __asm__("$19");
+    register int index __asm__("$18");
+    register int offset __asm__("$17");
+    register int one __asm__("$21");
+    register int five __asm__("$22");
+    register int tempMask __asm__("$16");
+    register unsigned char *active __asm__("$20");
+    register unsigned char *stack __asm__("$29");
+    int value;
+    int bit;
+
+    startMask = 0;
+    finishMask = 0;
+    func_8005EB70(stack + 0x10);
+    index = 0;
+    one = 1;
+    five = 5;
+    active = &D_8006FCE4;
+    offset = 0;
+    do {
+        switch (*active) {
+        case 0: {
+            unsigned char voiceStatus = *(index + stack + 0x10);
+            if (voiceStatus != one) {
+                register int three __asm__("$2") = 3;
+                if (voiceStatus != three) {
+                    break;
+                }
+            }
+            finishMask |= one << index;
+            *active = five;
+            break;
+        }
+        case 1:
+            func_8003C428(index);
+            if (*active == one) {
+                *(unsigned char *)((char *)&D_8006FCE4 + offset) = 2;
+                startMask |= one << index;
+            } else {
+                finishMask |= one << index;
+            }
+            break;
+        case 2: {
+            unsigned char voiceStatus = *(index + stack + 0x10);
+            register int three __asm__("$2") = 3;
+            if (voiceStatus == three) {
+                finishMask |= one << index;
+                *active = five;
+            } else {
+                func_8003C428(index);
+                active += sizeof(ActiveSound);
+                goto next;
+            }
+            break;
+        }
+        case 3:
+            bit = one << index;
+            *(int *)(locals.fadeCommand + 0) = bit;
+            *(int *)(locals.fadeCommand + 4) = 0x13;
+            *(short *)(locals.fadeCommand + 0x14) = 0;
+            value = *(int *)((char *)&D_8006FCF4 + offset) - 0x400;
+            *(int *)((char *)&D_8006FCF4 + offset) = value;
+            if (value < 0) {
+                *(int *)((char *)&D_8006FCF4 + offset) = 0;
+            }
+            value = *(int *)((char *)&D_8006FCF8 + offset) - 0x400;
+            *(int *)((char *)&D_8006FCF8 + offset) = value;
+            if (value < 0) {
+                *(int *)((char *)&D_8006FCF8 + offset) = 0;
+            }
+            if (*(int *)((char *)&D_8006FCF4 + offset) != 0 ||
+                *(int *)((char *)&D_8006FCF8 + offset) != 0) {
+                *(short *)(locals.fadeCommand + 8) = *(int *)((char *)&D_8006FCF8 + offset);
+                *(short *)(locals.fadeCommand + 10) = *(int *)((char *)&D_8006FCF4 + offset);
+                func_8005EC1C(locals.fadeCommand);
+                active += sizeof(ActiveSound);
+                goto next;
+            }
+            *(unsigned char *)((char *)&D_8006FCE4 + offset) = five;
+            finishMask |= bit;
+            break;
+        case 4:
+            tempMask = one << index;
+            *(int *)(locals.stopCommand + 0) = tempMask;
+            *(int *)(locals.stopCommand + 4) = 0x10;
+            *(short *)(locals.stopCommand + 0x14) = 0;
+            func_8005EC1C(locals.stopCommand);
+            finishMask |= tempMask;
+            *active = five;
+            break;
+        case 5:
+            finishMask |= one << index;
+            *active = 0;
+            break;
+        }
+        active += sizeof(ActiveSound);
+next:
+        index += 1;
+        offset += sizeof(ActiveSound);
+    } while (index < 24);
+    if (startMask != 0) {
+        func_8005E9B0(1, startMask);
+    }
+    if (finishMask != 0) {
+        func_8005E9B0(0, finishMask);
+    }
+    D_8006C630 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/spu", func_8003C428);
 
