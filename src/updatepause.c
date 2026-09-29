@@ -68,7 +68,165 @@ void func_80056A3C(void) {
     D_80070138 = *size;
 }
 
-INCLUDE_ASM("asm/nonmatchings/updatepause", func_80056A98);
+extern Moby* (*SpawnMoby)(int, Moby*);
+extern Moby* D_8006C65C;
+extern unsigned char D_80070130, D_80070131;
+extern signed char D_80070132;
+extern unsigned char D_8007014F;
+extern char D_8006E00C[];
+extern int D_80065860;
+extern int D_80070140;
+void func_8004ECF4(SHORTMATRIX*, void*);
+void func_8004ED6C(SHORTMATRIX*, void*, Vector3D*);
+void func_8004F194(Vector3D*, Vector3D*, Vector3D*);
+/* Retail source: USA Rev 0 PSX.EXE 0x80056A98..0x80056CF0 (150 words).
+ * Resource offsets and copy lengths are bytes; the upload rectangle uses PSX
+ * VRAM pixel coordinates, while Moby angles are stored as retail angle bytes.
+ * One call performs this pause preview setup/load step. Confidence is exact:
+ * falsify with a cited-span word or final executable/overlay hash mismatch.
+ */
+void func_80056A98(void) {
+    RECT image;
+    Vector3D vector;
+    SHORTMATRIX matrix;
+    register char* buffer __asm__("$20");
+    register char* data __asm__("$19");
+    register unsigned char* rotation __asm__("$18");
+    register char* transform __asm__("$17");
+    register char* scratch __asm__("$16");
+    register int value __asm__("$2");
+    register int remaining __asm__("$3");
+
+    remaining = D_8006FCE0;
+    value = 0x8000;
+    buffer = (char*)(remaining + value);
+    __asm__ volatile("" : "=r"(buffer) : "0"(buffer));
+
+    {
+        register Moby* current __asm__("$3") = D_8006C65C;
+        __asm__ volatile("" : "=r"(current) : "0"(current));
+        data = buffer;
+        if (current == 0) {
+            register SHORTMATRIX* matrixArg __asm__("$4");
+
+            __asm__ volatile("" ::: "$3", "$5");
+            current = SpawnMoby(0x78, 0);
+            D_8006C65C = current;
+            if (current == 0) goto load_data;
+            scratch = (char*)&matrix;
+            __asm__ volatile("" : "=r"(scratch) : "0"(scratch));
+            __asm__ volatile("" ::: "memory", "$5");
+            rotation = &D_80070130;
+            value = rotation[0];
+            __asm__ volatile("" ::: "$4");
+            matrixArg = (SHORTMATRIX*)scratch;
+            __asm__ volatile("" : "=r"(matrixArg) : "0"(matrixArg));
+            current->angle.roll = value;
+            {
+                register Moby* spawned __asm__("$3") = D_8006C65C;
+                value = D_80070131;
+                __asm__ volatile("" ::: "$17");
+                transform = D_8006E00C;
+                spawned->angle.pitch = value;
+            }
+            {
+                register Moby* spawned __asm__("$3") = D_8006C65C;
+                value = (unsigned char)D_80070132;
+                spawned->angle.yaw = value;
+            }
+            func_8004ECF4(matrixArg, transform);
+            {
+                register void* vectorSource __asm__("$5");
+                matrixArg = (SHORTMATRIX*)scratch;
+                vectorSource = rotation - 0x18;
+                scratch = (char*)&vector;
+                __asm__ volatile("" : "=r"(matrixArg), "=r"(vectorSource),
+                                     "=r"(scratch) : "0"(matrixArg),
+                                     "1"(vectorSource), "2"(scratch));
+                func_8004ED6C(matrixArg, vectorSource,
+                              (Vector3D*)scratch);
+            }
+            func_8004F194(&D_8006C65C->position, (Vector3D*)scratch,
+                          (Vector3D*)(transform + 0x14));
+            {
+                register Moby* spawned __asm__("$3") = D_8006C65C;
+                register int colour __asm__("$2") = D_80065860;
+                __asm__ volatile("" : "=r"(spawned), "=r"(colour) :
+                                     "0"(spawned), "1"(colour));
+                *(int*)&spawned->colour = colour;
+            }
+            value = 1;
+            goto set_state;
+        } else {
+            if (current->lowDrawDistance != 0) goto load_data;
+            value = 0x10;
+            current->lowDrawDistance = value;
+            value = 2;
+            goto set_state;
+        }
+    }
+set_state:
+    D_8007014F = value;
+
+load_data:
+    data += 4;
+    value = *(int*)data;
+    remaining = D_80011254;
+    __asm__ volatile("" ::: "$16");
+    scratch = (char*)&D_80070144;
+    __asm__ volatile("" : "=r"(scratch) : "0"(scratch));
+    value -= remaining;
+    value -= 4;
+    remaining = D_80070138;
+    data += value;
+    *(int*)scratch = value;
+    remaining -= value;
+    D_80070138 = remaining;
+    {
+        register int segmentSize __asm__("$5") = *(int*)data;
+
+        value = (int)(data + 4);
+        *(int*)(scratch - 0x3C) = value;
+        value = -0x800;
+        data += segmentSize;
+        remaining -= segmentSize;
+        D_80070138 = remaining;
+        remaining += 0x7FF;
+        remaining &= value;
+        *(int*)(scratch + 0x18) = segmentSize;
+        *(char**)(scratch - 8) = data;
+        D_80070138 = remaining;
+    }
+
+    __asm__ volatile("" ::: "$4");
+    DrawSync(0);
+    image.x = 0x200;
+    image.y = 0;
+    image.w = 0x200;
+    image.h = D_80070138 / 0x400;
+    LoadImage(&image, data);
+    DrawSync(0);
+
+    {
+        register void* copySource __asm__("$4") = *(void**)(scratch - 8);
+        register int copyDestination __asm__("$5") = D_80011254;
+        register int copySize __asm__("$6") = *(int*)scratch;
+
+        copySize += 4;
+        __asm__ volatile("" : "=r"(copySource), "=r"(copyDestination),
+                             "=r"(copySize) : "0"(copySource),
+                             "1"(copyDestination), "2"(copySize));
+        *(int*)scratch = copySize;
+        func_8004E7D4(copySource, copyDestination, copySize);
+    }
+    func_8004E7D4((void*)D_80011254, (int)buffer, *(int*)scratch);
+    func_8004E7D4(buffer, *(int*)(scratch - 0x3C),
+                  *(int*)(scratch + 0x18));
+    value = *(int*)(scratch - 8);
+    remaining = *(int*)scratch;
+    *(char**)(scratch - 0x3C) = buffer;
+    D_80070140 = value + remaining;
+}
 
 extern char* D_8006C788;
 extern char* D_8006C738;

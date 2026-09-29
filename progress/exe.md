@@ -359,7 +359,7 @@
 - [x] func_8005693C
 - [x] func_800569C0
 - [x] func_80056A3C
-- [ ] func_80056A98
+- [x] func_80056A98
 - [x] func_80056CF0
 - [x] func_80056ECC
 - [x] func_80057154
