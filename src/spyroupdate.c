@@ -379,7 +379,98 @@ void func_80040F48(SpyroInputPair* arg0, int arg1) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800410F8);
+/* Retail source: USA Rev 0 PSX.EXE 0x800410F8..0x80041404 (195 words).
+ * Updates signed camera-input accumulators once per input tick. Analog bytes
+ * are centered on 0x7f; accumulated values clamp to [-0x7f, 0x7f], and the
+ * digital decay step is 0x20. Confidence is exact: all 195 words and the
+ * complete executable match; any mismatch in either falsifies this decode. */
+void func_800410F8(SpyroInputPair* output, Vector3D* state, int usePitch) {
+    SpyroInputPair input;
+    int temp_a3;
+    int temp_a3_2;
+    int temp_v0;
+    int temp_v0_10;
+    int temp_v0_2;
+    int temp_v0_3;
+    int temp_v0_4;
+    int temp_v0_5;
+    int temp_v0_6;
+    int temp_v0_7;
+    int temp_v0_8;
+    int temp_v0_9;
+    int temp_v1;
+    int temp_v1_2;
+    int var_v1;
+    int var_v1_2;
+
+    if (D_8006E536 != 0) {
+        temp_v0 = D_8006C570->unkE - 0x7F;
+        input.unk0 = temp_v0;
+        input.unk4 = 0x7F - D_8006C570->unkF;
+        temp_v0_2 = temp_v0 - state->z;
+        input.unk0 = temp_v0_2;
+        if (temp_v0_2 < -0x10) input.unk0 = -0x10;
+        if (input.unk0 >= 0x11) input.unk0 = 0x10;
+        temp_v0_3 = state->z + input.unk0;
+        state->z = temp_v0_3;
+        if (temp_v0_3 < -0x7F) state->z = -0x7F;
+        if (state->z >= 0x80) state->z = 0x7F;
+        input.unk0 = state->z;
+        temp_v0_4 = input.unk4 - state->y;
+        input.unk4 = temp_v0_4;
+        if (temp_v0_4 < -0x10) input.unk4 = -0x10;
+        if (input.unk4 >= 0x11) input.unk4 = 0x10;
+        temp_v0_5 = state->y + input.unk4;
+        state->y = temp_v0_5;
+        if (temp_v0_5 < -0x7F) state->y = -0x7F;
+        if (state->y >= 0x80) state->y = 0x7F;
+        input.unk4 = state->y;
+    } else {
+        temp_v1 = D_8006C570->unk0;
+        if (temp_v1 & 0x1000) {
+            temp_v0_6 = state->y + 0x10;
+            state->y = temp_v0_6;
+            if (temp_v0_6 >= 0x80) state->y = 0x7F;
+        } else if (temp_v1 & 0x4000) {
+            temp_v0_7 = state->y - 0x10;
+            state->y = temp_v0_7;
+            if (temp_v0_7 < -0x7F) state->y = -0x7F;
+        } else {
+            temp_a3 = state->y;
+            var_v1 = -temp_a3;
+            if (var_v1 >= 0x21) var_v1 = 0x20;
+            if (var_v1 < -0x20) var_v1 = -0x20;
+            state->y = temp_a3 + var_v1;
+        }
+        input.unk4 = state->y;
+        temp_v1_2 = D_8006C570->unk0;
+        if (temp_v1_2 & 0x2000) {
+            temp_v0_8 = state->z + 0x10;
+            state->z = temp_v0_8;
+            if (temp_v0_8 >= 0x80) state->z = 0x7F;
+        } else if (temp_v1_2 & 0x8000) {
+            temp_v0_9 = state->z - 0x10;
+            state->z = temp_v0_9;
+            if (temp_v0_9 < -0x7F) state->z = -0x7F;
+        } else {
+            temp_a3_2 = state->z;
+            var_v1_2 = -temp_a3_2;
+            if (var_v1_2 >= 0x21) var_v1_2 = 0x20;
+            if (var_v1_2 < -0x20) var_v1_2 = -0x20;
+            state->z = temp_a3_2 + var_v1_2;
+        }
+        input.unk0 = state->z;
+    }
+    output->unk0 = -input.unk0;
+    if (input.unk4 == 0 && usePitch == 0) {
+        temp_v0_10 = *(int*)(&D_80070328 + 0x60) >> 3;
+        output->unk4 = temp_v0_10;
+        if (temp_v0_10 >= 0x80) output->unk4 = 0x7F;
+        if (output->unk4 < -0x7F) output->unk4 = -0x7F;
+    } else {
+        output->unk4 = input.unk4;
+    }
+}
 
 /* Rev 0 source hypothesis: asm/nonmatchings/spyroupdate/func_80041404.s. */
 extern volatile int D_8007038C;
