@@ -355,7 +355,7 @@
 
 <!-- Pause -->
 - [x] func_800565A0
-- [ ] func_8005663C
+- [x] func_8005663C
 - [x] func_8005693C
 - [x] func_800569C0
 - [x] func_80056A3C

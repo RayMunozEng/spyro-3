@@ -29,7 +29,94 @@ void func_800565A0(void) {
 done:
     __asm__ volatile ("" : "=r"(value) : "0"(value));
     D_8006FBD0 = value;
-}INCLUDE_ASM("asm/nonmatchings/updatepause", func_8005663C);
+}
+
+extern int D_8006FBC4, D_8006FBC8, D_8006FBCC, D_8006FBD4;
+extern int D_8006FBEC, D_80070148;
+extern unsigned char D_80070114;
+extern unsigned char D_80070133, D_80070134, D_8007014E;
+extern short D_8007015A, D_800719D2;
+extern unsigned char D_80067602, D_80067603, D_80067604, D_80067605;
+extern unsigned char D_80067606, D_80067607, D_80067608, D_80067609;
+extern unsigned char D_8006760C[];
+extern unsigned char D_80066FCC[], D_80070300[];
+extern unsigned char D_80071586, D_80071587, D_80071588;
+extern int D_8006E344, D_8006E49C;
+extern char* D_8006C654;
+void ClearCheatBuffer(void);
+void func_8003BEDC(void);
+void PlaySound(int, int, int);
+/* Retail source: USA Rev 0 PSX.EXE 0x8005663C..0x8005693C (192 words).
+ * Pause modes and list indices are integer state values; unlock entries and
+ * flags are bytes, and one call initializes one pause transition. Confidence
+ * is exact: falsify with any cited-span word or executable/overlay hash
+ * mismatch against the retail manifest.
+ */
+void func_8005663C(void) {
+    register int* pauseState __asm__("$5") = &D_8006FBC8;
+    register int count __asm__("$4");
+    register int value __asm__("$2");
+    register int mode __asm__("$3") = 1;
+
+    __asm__ volatile("" : "=r"(pauseState) : "0"(pauseState));
+    *pauseState = 0;
+    D_8006FBCC = mode;
+    pauseState[-1] = 0;
+    __asm__ volatile("" ::: "memory");
+    count = D_80070148;
+    value = 1;
+    D_8006FBD4 = 0;
+    D_80070114 = value;
+    D_80070133 = value;
+    D_80070134 = value;
+    D_8007014E = 0;
+    D_8006FBEC = 0;
+
+    if (count == mode) {
+        mode = D_8006C5BC;
+        D_8006FBD0 = 0xD;
+        D_8007015A = 0;
+        count = 2;
+        if (mode != 10) {
+            D_8006760C[count] = D_80067602;
+            count = 3;
+        }
+        if (D_80070300[D_80066FCC[0x11]] & 1)
+            D_8006760C[count++] = D_80067603;
+        if ((D_8006C5BC != 20) && D_80071586)
+            D_8006760C[count++] = D_80067604;
+        if (D_80070300[D_80066FCC[0x1B]] & 1)
+            D_8006760C[count++] = D_80067605;
+        if ((D_8006C5BC != 30) && D_80071587)
+            D_8006760C[count++] = D_80067606;
+        if (D_80070300[D_80066FCC[0x25]] & 1)
+            D_8006760C[count++] = D_80067607;
+        if ((D_8006C5BC != 40) && D_80071588)
+            D_8006760C[count++] = D_80067608;
+        if (D_80070300[D_80066FCC[0x2F]] & 1)
+            D_8006760C[count++] = D_80067609;
+        value = 0xFF;
+        D_8006760C[count] = value;
+        value = 1;
+        goto done;
+    } else if (count == 2) {
+        pauseState[2] = 7;
+        *pauseState = 0x15;
+    } else if (count == 3) {
+        pauseState[2] = 0;
+        *pauseState = 0xF;
+    } else {
+        func_800565A0();
+    }
+    value = 1;
+done:
+    D_800719D2 = value;
+    D_8006E344 = 4;
+    ClearCheatBuffer();
+    func_8003BEDC();
+    PlaySound((unsigned char)D_8006C654[0x16], 0, 0x40);
+    D_8006E49C = 1;
+}
 
 /* Retail source: asm/nonmatchings/updatepause/func_8005693C.s,
  * 0x8005693C..0x800569C0; level table entries have 16-byte stride. */
