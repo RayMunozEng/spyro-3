@@ -216,7 +216,7 @@
 <!-- SPU -->
 - [x] func_8003BABC
 - [x] func_8003BB10
-- [ ] func_8003BB50 <!-- PlaySound -->
+- [x] func_8003BB50 <!-- PlaySound -->
 - [x] func_8003BE70
 - [x] func_8003BEDC
 - [x] func_8003BF6C

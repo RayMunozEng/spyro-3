@@ -21,11 +21,133 @@ int func_8003BB10(Moby* owner, int index, int selector) {
     return ((int (*)(int, Moby*, int))PlaySound)(id, owner, selector);
 }
 
-/** 
- * PlaySound() - func_8003BB50()
- * TODO
- */
-INCLUDE_ASM("asm/nonmatchings/spu", PlaySound);
+/** PlaySound() - func_8003BB50 */
+/* Retail source: USA Rev 0 PSX.EXE 0x8003BB50..0x8003BE70 (200 words).
+ * Confirmed exact against all 200 instructions and all 62 retail artifact
+ * hashes. Each request scans 24 records at a 44-byte cadence, then replaces a
+ * record only when its integer priority is below descriptor byte 0x11. Test
+ * vectors: sound ID 0xFF returns -1; a free record receives state 1, 0x1000
+ * scale, three descriptor-volume products divided by 10, owner, and pitch. */
+extern int D_8006C3F8;
+extern int D_8006C630;
+extern unsigned char D_8006FCE4;
+extern unsigned char D_8006FCE5;
+extern unsigned char D_8006FCE6;
+extern unsigned char D_8006FCE7;
+extern int D_8006FCE8;
+extern int D_8006FCEC;
+extern int D_8006FCF0;
+extern int D_8006FCF4;
+extern int D_8006FCF8;
+extern int D_8006FCFC;
+extern int D_8006FD0C;
+int func_8003C994(int, void*);
+int PlaySound(int localSoundId, Moby* moby, int param_3) {
+    register int soundId __asm__("$18") = localSoundId;
+    register Moby* owner __asm__("$20") = moby;
+    register int flags __asm__("$19") = param_3;
+    register int index __asm__("$16");
+    register int scanOffset __asm__("$3");
+    register int definitionOffset __asm__("$4");
+    register SoundDefinition* definition __asm__("$5");
+    register int activeState __asm__("$2");
+    int activeOffset;
+    int priorityOffset;
+    int lowestPriority;
+    int replacement;
+    int currentPriority;
+    if (soundId == 0xFF) {
+        return -1;
+    }
+    __asm__ volatile("" : "=r"(soundId) : "0"(soundId));
+    if (g_SpuDefinitionsPtr[soundId].unk10 != 0 && !(flags & 4)) {
+        return -1;
+    }
+    if (D_8006C3F8 == 0) {
+        return -1;
+    }
+    if (D_8006C630 != 0 && !(flags & 0x40)) {
+        return -1;
+    }
+    index = 0;
+    if (!(flags & 1) && owner != 0) {
+        int accepted = func_8003C994(soundId, &owner->position);
+        if (accepted == 0) {
+            return -1;
+        }
+        __asm__ volatile("move %0,$0" : "=r"(index));
+    }
+
+    scanOffset = 0;
+scan_free_slot:
+    if (*(unsigned char*)((char*)&D_8006FCE4 + scanOffset) == 0) {
+        goto found_free_slot;
+    }
+    index++;
+    if (index < 24) {
+        scanOffset += sizeof(ActiveSound);
+        goto scan_free_slot;
+    }
+found_free_slot:
+
+    if (index == 24) {
+        lowestPriority = 0xFE;
+        replacement = -1;
+        index = 0;
+        priorityOffset = 0;
+        do {
+            currentPriority = *(int*)((char*)&D_8006FCE8 + priorityOffset);
+            if (currentPriority < lowestPriority) {
+                lowestPriority = currentPriority;
+                replacement = index;
+            }
+            index++;
+            priorityOffset += sizeof(ActiveSound);
+        } while (index < 24);
+        if (replacement < 0) {
+            return -1;
+        }
+        if (lowestPriority < g_SpuDefinitionsPtr[soundId].unk11) {
+            index = replacement;
+        } else {
+            return -1;
+        }
+    }
+
+    activeOffset = index * sizeof(ActiveSound);
+    __asm__ volatile("" : "=r"(activeOffset) : "0"(activeOffset));
+    activeState = 1;
+    definitionOffset = soundId * sizeof(SoundDefinition);
+    __asm__ volatile("" : "=r"(definitionOffset) : "0"(definitionOffset));
+    *(unsigned char*)((char*)&D_8006FCE4 + activeOffset) = activeState;
+    *(unsigned char*)((char*)&D_8006FCE5 + activeOffset) = soundId;
+    *(unsigned char*)((char*)&D_8006FCE6 + activeOffset) = flags;
+    definition = (SoundDefinition*)(definitionOffset + (int)g_SpuDefinitionsPtr);
+    *(int*)((char*)&D_8006FCEC + activeOffset) =
+        (*(volatile unsigned short*)((char*)definition + 6) * D_8006C3F8) / 10;
+    *(int*)((char*)&D_8006FCF0 + activeOffset) = 0x1000;
+    *(int*)((char*)&D_8006FCF4 + activeOffset) =
+        (*(volatile unsigned short*)((char*)definition + 6) * D_8006C3F8) / 10;
+    *(int*)((char*)&D_8006FCF8 + activeOffset) =
+        (*(volatile unsigned short*)((char*)definition + 6) * D_8006C3F8) / 10;
+    *(int*)((char*)&D_8006FD0C + activeOffset) = (int)owner;
+    *(unsigned char*)((char*)&D_8006FCE7 + activeOffset) =
+        *(unsigned char*)((char*)definition + 16);
+    definitionOffset += (int)g_SpuDefinitionsPtr;
+    __asm__ volatile("" : "=r"(definitionOffset) : "0"(definitionOffset));
+    *(int*)((char*)&D_8006FCE8 + activeOffset) =
+        *(unsigned char*)(definitionOffset + 17);
+    if (*(unsigned short*)(definitionOffset + 12) ==
+        *(unsigned short*)(definitionOffset + 14)) {
+        *(int*)((char*)&D_8006FCFC + activeOffset) =
+            *(unsigned short*)(definitionOffset + 14);
+    } else {
+        *(int*)((char*)&D_8006FCFC + activeOffset) = func_8003636C(
+            *(unsigned short*)(definitionOffset + 12),
+            *(unsigned short*)(definitionOffset + 14));
+    }
+    return index;
+}
 
 /* Retail source: asm/nonmatchings/spu/func_8003BE70.s,
  * 0x8003BE70..0x8003BEDC; ActiveSound entries are 44 bytes. */
@@ -41,6 +163,7 @@ void func_8003BE70(int index) {
 /* Retail source: asm/nonmatchings/spu/func_8003BEDC.s,
  * 0x8003BEDC..0x8003BF6C; 24 active sound entries, 44 bytes each. */
 extern int D_8006C630;
+
 void func_8003BEDC(void) {
     int i;
     D_8006C630 = 1;
