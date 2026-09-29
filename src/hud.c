@@ -879,7 +879,104 @@ int func_800291B8(int arg0, int arg1, int arg2, int arg3) {
  * ???() - func_800293C4()
  * https://decomp.me/scratch/8rUnD
  */
-INCLUDE_ASM("asm/nonmatchings/hud", func_800293C4);
+/* Retail source: USA Rev 0 PSX.EXE 0x800293C4..0x80029674.
+ * Values are integer HUD pixel coordinates; decimal digits are consumed once
+ * per loop iteration. Confidence is confirmed by all 172 matching words.
+ * Falsify by comparing the rebuilt words and the final executable hash. */
+int func_800293C4(int arg0, int arg1, int arg2, int arg3, int arg4) {
+    volatile int sp10;
+    int sp18;
+    int sp20;
+    int sp28;
+    int sp30;
+    SpriteData* temp_v0;
+    int temp_v0_addr;
+    int temp_lo;
+    int temp_v0_2;
+    int var_a1;
+    int var_a2;
+    int var_s0;
+    register int saved_arg3 __asm__("$21");
+    register int var_s1 __asm__("$17");
+    register int saved_arg4 __asm__("$23");
+    int var_s2;
+    int var_s3;
+    int var_s4;
+    int var_v0;
+
+    sp10 = arg0;
+    var_s0 = sp10;
+    temp_v0_addr = D_800719CC;
+    temp_v0 = D_8006C788;
+    saved_arg4 = arg4;
+    saved_arg3 = arg3;
+    /* Keep GCC's zero initialization after the saved Y-coordinate move. */
+    __asm__ ("move %0,$0" : "=r"(var_s1) : "r"(saved_arg3));
+    temp_v0_addr <<= 3;
+    temp_v0_addr += (int)temp_v0;
+    temp_v0 = (SpriteData*)temp_v0_addr;
+    sp18 = temp_v0->unk4 - temp_v0->unk0;
+    sp20 = (temp_v0->unk5 - temp_v0->unk1) >> 1;
+    var_v0 = saved_arg4 >= 0 ? saved_arg4 : -saved_arg4;
+    sp30 = ((var_v0 + 0xA) >> 1) - 1;
+    if (var_s0 >= 0xA) {
+        while (var_s0 >= 0xA) {
+            var_s0 /= 0xA;
+            var_s1 += 1;
+        }
+    }
+    var_s0 = arg1;
+    var_s1 += 2;
+    if (var_s0 >= 0xA) {
+        while (var_s0 >= 0xA) {
+            var_s0 /= 0xA;
+            var_s1 += 1;
+        }
+    }
+    sp28 = (var_s1 + 1) * sp18;
+    var_s0 = arg1;
+    if (var_s1 < 0) return sp28;
+    temp_lo = var_s1 * sp18;
+    var_s4 = sp30 - var_s1;
+    var_s3 = temp_lo + arg2;
+    var_s2 = temp_lo;
+    do {
+        if (var_s0 == 0) {
+            var_s0 = -0x64;
+        } else if (var_s0 < 0) {
+            var_s0 = sp10;
+        }
+        var_a2 = saved_arg3;
+        if (saved_arg4 == 0) {
+            var_a1 = arg2 + var_s2;
+        } else {
+            if ((var_a2 = sp30) < 0x3C) {
+                var_a2 = D_800674E8[var_s4];
+                if (saved_arg4 < 0) var_a2 = saved_arg3 - var_a2;
+                else var_a2 += saved_arg3;
+                var_a1 = arg2 + var_s2;
+            } else {
+                var_a1 = D_800674AC[var_s4];
+                var_a2 = saved_arg3;
+                var_a1 = saved_arg4 < 0 ? var_s3 - var_a1 : var_a1 + var_s3;
+            }
+        }
+        if (var_s0 < 0) {
+            func_800289C8(&D_8006C788[D_800719CC + 0xA],
+                          var_a1 + 4, var_a2 - sp20);
+        } else {
+            func_800289C8(&D_8006C788[D_800719CC + (var_s0 % 10)],
+                          var_a1, var_a2 - sp20);
+        }
+        temp_v0_2 = -sp18;
+        var_s3 += temp_v0_2;
+        var_s2 += temp_v0_2;
+        var_s4 += 1;
+        var_s1 -= 1;
+        var_s0 /= 0xA;
+    } while (var_s1 >= 0);
+    return sp28;
+}
 
 /**
  * ???() - func_80029674() - MATCHING
