@@ -360,7 +360,7 @@
 - [x] func_800569C0
 - [x] func_80056A3C
 - [ ] func_80056A98
-- [ ] func_80056CF0
+- [x] func_80056CF0
 - [x] func_80056ECC
 - [x] func_80057154
 - [ ] func_80057340

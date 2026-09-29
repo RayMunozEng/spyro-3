@@ -70,7 +70,110 @@ void func_80056A3C(void) {
 
 INCLUDE_ASM("asm/nonmatchings/updatepause", func_80056A98);
 
-INCLUDE_ASM("asm/nonmatchings/updatepause", func_80056CF0);
+extern char* D_8006C788;
+extern char* D_8006C738;
+extern short D_800719D0;
+extern int D_80070150, D_80070154;
+int func_80027934(int);
+/* Retail source: USA Rev 0 PSX.EXE 0x80056CF0..0x80056ECC (119 words).
+ * Buffer offsets and copy lengths are bytes, the upload rectangle uses PSX
+ * VRAM pixel coordinates, and one call completes this pause resource load and
+ * relocation step. Confidence is exact: falsify with any word mismatch in the
+ * cited span or any executable/overlay hash mismatch against the manifest.
+ */
+void func_80056CF0(void) {
+    RECT image;
+    register int* sizeState __asm__("$17");
+    register char* buffer __asm__("$18");
+    register char* data __asm__("$16");
+    register int size __asm__("$2");
+    register int remaining __asm__("$3");
+
+    remaining = D_8006FCE0;
+    size = 0x8000;
+    sizeState = &D_80070144;
+    __asm__ volatile("" : "=r"(sizeState) : "0"(sizeState));
+    buffer = (char*)(remaining + size);
+    __asm__ volatile("" : "=r"(buffer) : "0"(buffer));
+    size = *(int*)(remaining + 0x8004);
+    remaining = D_80011254;
+    data = buffer + 4;
+    size -= remaining;
+    size -= 4;
+    data += size;
+    remaining = D_80070138;
+    *sizeState = size;
+    remaining -= size;
+    D_80070138 = remaining;
+
+    {
+        register int segmentSize __asm__("$5");
+
+        segmentSize = *(int*)data;
+        *(int*)((char*)sizeState - 0x3C) = (int)(data + 4);
+        data += segmentSize;
+        remaining -= segmentSize;
+        D_80070138 = remaining;
+        *(int*)((char*)sizeState + 0x18) = segmentSize;
+
+        segmentSize = *(int*)data;
+        size = (int)(data + 4);
+        *(int*)((char*)sizeState - 0x38) = size;
+        data += segmentSize;
+        remaining -= segmentSize;
+        size = *(int*)((char*)sizeState + 0x18);
+        size += segmentSize;
+        D_80070138 = remaining;
+        *(int*)((char*)sizeState + 0x18) = size;
+    }
+    *(char**)((char*)sizeState - 8) = data;
+    D_80070138 = ((remaining << 1) + 0x7FF) & -0x800;
+
+    __asm__ volatile("" ::: "$4");
+    DrawSync(0);
+    image.x = 0x300;
+    image.y = 0;
+    image.w = 0x100;
+    image.h = D_80070138 / 0x400;
+    LoadImage(&image, data);
+    DrawSync(0);
+
+    {
+        register void* copySource __asm__("$4") =
+            *(void**)((char*)sizeState - 8);
+        register int copyDestination __asm__("$5") = D_80011254;
+        register int copySize __asm__("$6") = *sizeState;
+
+        copySize += 4;
+        __asm__ volatile("" : "=r"(copySource), "=r"(copyDestination),
+                             "=r"(copySize) : "0"(copySource),
+                             "1"(copyDestination), "2"(copySize));
+        *sizeState = copySize;
+        func_8004E7D4(copySource, copyDestination, copySize);
+    }
+    func_8004E7D4((void*)D_80011254, (int)buffer, *sizeState);
+    func_8004E7D4(buffer, *(int*)((char*)sizeState - 0x3C),
+                  *(int*)((char*)sizeState + 0x18));
+
+    {
+        register int first __asm__("$3") =
+            *(int*)((char*)sizeState - 0x3C);
+        register char* oldSprites __asm__("$6") = D_8006C788;
+        register int second __asm__("$2") =
+            *(int*)((char*)sizeState - 0x38);
+        register char* oldDefinitions __asm__("$5") = D_8006C738;
+
+        *(char**)((char*)sizeState - 0x3C) = buffer;
+        D_8006C788 = buffer;
+        first -= (int)buffer;
+        second -= first;
+        *(int*)((char*)sizeState - 0x38) = second;
+        D_80070150 = (int)oldSprites;
+        D_80070154 = (int)oldDefinitions;
+        D_8006C738 = (char*)second;
+    }
+    D_800719D0 = (unsigned char)D_8006C738[func_80027934(1) * 8 + 2];
+}
 
 extern int D_8006C598, D_8006C648;
 extern Moby* D_8006C65C;
