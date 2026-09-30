@@ -1673,7 +1673,139 @@ void func_80047D00(Moby* object) {
     *(int*)(&D_80070328 + 0x218) = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80047E6C);
+/* Retail source: USA Rev 0 PSX.EXE 0x80047E6C..0x80048210 (233 words),
+ * boot SHA-256 CB819EE78C556D403779309859CB08A7111331F624759BC1BC380946261BB26E,
+ * raw function SHA-256 C2A75AAD7FEA127F9B55EA6C45FF1214696FDD61E9B20B8166F546E1D4FA0C50.
+ * Target and origin are runtime integer Vector3D positions; angles wrap in the
+ * signed 12-bit domain, and sine/cosine products are Q12. One call updates
+ * steering and copies exactly D_8006C648 history entries. Confidence is exact:
+ * all 233 words and relocations match. Falsify with a null origin (zero relative
+ * angle), target distance above 0x60 (saturates to 0x60), and packed Q12 outputs
+ * indexed by ((angle - D_8006E040) >> 3) & 0x1FE.
+ */
+extern signed char D_8006E546, D_8006E547;
+extern int D_8006E544;
+void func_80047E6C(Vector3D* targetArg, Vector3D* originArg) {
+    register Vector3D* target __asm__("$21") = targetArg;
+    register Vector3D* origin __asm__("$22") = originArg;
+    register int relativeAngle __asm__("$16");
+    register int targetAngle __asm__("$17");
+    register int targetDistance __asm__("$18");
+    register int originDistance __asm__("$19");
+    register int originAngle __asm__("$20");
+    register int* steeringState __asm__("$4");
+    Vector3D delta;
+    int absolute;
+    volatile int stackPad[2];
+
+    __asm__ ("move %0,$0" : "=r"(originAngle) : "r"(target), "r"(origin));
+
+    *(signed char*)&D_8006E508 = 3;
+    func_8004F1C8(&delta, target, (Vector3D*)&D_80070328);
+    targetDistance = func_8004EDE8(&delta, 0) >> 2;
+    if (targetDistance >= 0x61) targetDistance = 0x60;
+    if (origin != 0) {
+        func_8004F1C8(&delta, target, origin);
+        originDistance = func_8004EDE8(&delta, 0);
+        if (originDistance >= 0x80) {
+            targetAngle = func_8004E880(delta.x, delta.y, 1);
+            func_8004F1C8(&delta, (Vector3D*)&D_80070328, origin);
+            originAngle = func_8004E880(delta.x, delta.y, 1);
+            {
+                register int difference __asm__("$2") = targetAngle - originAngle;
+                relativeAngle = difference & 0xFFF;
+            }
+            if (relativeAngle >= 0x801) relativeAngle -= 0x1000;
+        } else {
+            relativeAngle = 0;
+        }
+    } else {
+        __asm__ volatile ("move %0,$0" : "=r"(originDistance));
+        relativeAngle = 0;
+    }
+
+    steeringState = (int*)(&D_80070328 + 0x214);
+    if (*steeringState != 0) goto follow_47e6c;
+    {
+        register int initialAbsolute __asm__("$2");
+        initialAbsolute = relativeAngle < 0 ? -relativeAngle : relativeAngle;
+        if (initialAbsolute < 0x20 && targetDistance < 0x10) {
+follow_47e6c:
+        {
+            register int desired __asm__("$2") = *(int*)(&D_80070328 + 0x238);
+            register int current __asm__("$3") = steeringState[-108];
+            relativeAngle = desired << 4;
+            targetAngle = (relativeAngle - current) & 0xFFF;
+        }
+        if (targetAngle >= 0x801) targetAngle -= 0x1000;
+        absolute = targetAngle < 0 ? -targetAngle : targetAngle;
+        targetDistance = 0;
+        if (absolute < 0x50) {
+            *steeringState = 2;
+            steeringState[-108] = relativeAngle;
+        } else {
+            targetDistance = absolute >> 5;
+            if (targetDistance >= 5) targetDistance = 4;
+            if (targetAngle > 0) targetAngle = 0x400;
+            else targetAngle = -0x400;
+            {
+                register int currentYaw __asm__("$2") = *(int*)(&D_80070328 + 0x64);
+                currentYaw += targetAngle;
+                relativeAngle = currentYaw & 0xFFF;
+            }
+            if (relativeAngle >= 0x801) relativeAngle -= 0x1000;
+            *(int*)(&D_80070328 + 0x214) = 1;
+        }
+        goto pack_47e6c;
+        }
+    }
+    {
+        if (originDistance < 0x80) {
+            func_8004F178(&delta, target);
+            if (targetDistance < 0x10) *(int*)(&D_80070328 + 0x214) = 1;
+        } else {
+            if (relativeAngle >= 0x41) relativeAngle = 0x40;
+            if (relativeAngle < -0x40) relativeAngle = -0x40;
+            relativeAngle += originAngle;
+            delta.x = (func_8004EA2C(relativeAngle) * originDistance) >> 12;
+            delta.y = (func_8004E9E4(relativeAngle) * originDistance) >> 12;
+            delta.z = 0;
+            func_8004F194(&delta, &delta, origin);
+        }
+        func_8004F1C8(&delta, &delta, (Vector3D*)&D_80070328);
+        relativeAngle = func_8004E880(delta.x, delta.y, 1);
+    }
+
+pack_47e6c:
+    {
+        register int index __asm__("$4");
+        register signed char* output __asm__("$5") = &D_8006E546;
+        register int adjusted __asm__("$2");
+        int i;
+        register int* destination __asm__("$3");
+        register int* source __asm__("$5");
+        adjusted = relativeAngle - D_8006E040;
+        relativeAngle = adjusted >> 3;
+        index = relativeAngle & 0x1FE;
+        *output = 0x7F - ((targetDistance * *(short*)((char*)D_800658A0 + index)) >> 12);
+        D_8006E547 = 0x7F - ((targetDistance * *(short*)((char*)D_80065920 + index)) >> 12);
+        __asm__ volatile ("" ::: "memory");
+        if ((D_8006E544 & 0xFFFF0000) != 0x7F7F0000) {
+            D_8006E536 = 1;
+            D_8006E535 = 0;
+        }
+        i = 0;
+        if (D_8006C648 > 0) {
+            destination = (int*)(output + 0xE);
+            source = destination;
+            do {
+                *destination = source[-4];
+                i++;
+                destination += 4;
+            } while (i < D_8006C648);
+        }
+    }
+}
 
 /* Retail source: USA Rev 0 asm/nonmatchings/spyroupdate/func_80048210.s,
  * 0x80048210..0x80048444 (141 instruction words). The input and Spyro
