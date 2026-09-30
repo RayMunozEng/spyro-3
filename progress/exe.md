@@ -279,7 +279,7 @@
 - [ ] func_800473E4
 - [x] func_80047C7C
 - [x] func_80047D00
-- [ ] func_80047E6C
+- [x] func_80047E6C
 - [x] func_80048210
 - [x] func_80048444
 - [x] func_800486FC
