@@ -1249,7 +1249,260 @@ Default:
 
 TODO: investigate what the headers are for each line of dialogue
 */
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80037324);
+/* Retail source: USA Rev 0 PSX.EXE 0x80037324..0x80037768
+ * (353 instruction/relocation records). The dispatcher table is retail data at
+ * 0x800103A4: 25 reachable opcode entries followed by its verified zero word.
+ * The input is a length-prefixed bytecode stream; state[2] selects a message
+ * and state[3] bounds the per-call scan. Confidence: confirmed by an exact
+ * linked PSX.EXE hash. Falsifiable vectors: empty streams; opcodes 1..9;
+ * opcodes 0x23, 0x24, 0x25, 0x26, 0x29..0x2D, and 0x3B; out-of-range opcodes;
+ * item 0xFE; insufficient D_8006C71C; signed byte boundaries; and default-loop
+ * continuation. The parser visits each candidate message once per call until
+ * selection or exhaustion.
+ */extern int D_8006C58C, D_8006C590, D_8006C59C, D_8006C5C4, D_8006C5FC;
+extern int D_8006C608, D_8006C624, D_8006C66C;
+extern int D_8006C71C, D_8006C750, D_8006C76C, D_8006C798;
+extern unsigned char D_8006C62C, D_8006C6E4, D_8006C7B4;
+extern unsigned char D_8007145C[], D_800719FA[];
+extern short D_80066EAC[], D_80066EAE[];
+extern short D_80066EAC_second[] __asm__("D_80066EAC");
+extern char D_8006C7F8;
+extern void func_8003B7B4(void*, int, void*);
+
+void func_80037324(void** arg) {
+    volatile int framePadding[2];
+    int found;
+    register unsigned char* state __asm__("$18");
+    register int message __asm__("$19");
+    register int one __asm__("$20");
+    register int byteFF __asm__("$21");
+    register int negativeOne __asm__("$22");
+    register unsigned char* end __asm__("$23");
+    register unsigned char* cursor __asm__("$17");
+    register unsigned char* next __asm__("$16");
+    register int initial __asm__("$2");
+    register int more __asm__("$2");
+
+    found = 0;
+    __asm__ ("move %1,$0" : "=r"(message), "=r"(initial) : "0"(message));
+    state = *(unsigned char**)arg;
+    message = 0;
+    if (initial != 0)
+        goto finish;
+    one = 1;
+    negativeOne = -1;
+    byteFF = 0xFF;
+
+    for (;;) {
+        register int offset __asm__("$3") = message << 2;
+        register int tableOffset __asm__("$2") = D_8006C76C;
+        offset += (int)state;
+        tableOffset <<= 2;
+        offset += tableOffset;
+        cursor = *(unsigned char**)(offset + 0x10);
+        {
+            register int length __asm__("$2") = cursor[0];
+            end = cursor + length;
+        }
+        cursor++;
+        if (cursor < end) {
+            next = cursor + 1;
+            {
+                unsigned int opcode;
+parse_again:
+                opcode = cursor[0];
+                more = opcode < 10;
+                if (opcode != 0 && more) {
+                    int selector = opcode - 1;
+                    if (selector != 0)
+                        selector = opcode - 2;
+                    if ((D_8006C7B4 & (one << selector)) && !(D_8006C62C & (one << selector))) {
+                        D_8006C624 = negativeOne;
+                        D_8006C798 = 0;
+                        state[2] = message;
+                        D_8006C608 = 0;
+                        {
+                            int selectedValue = next[0];
+                            D_8006C66C = selector;
+                            D_8006C5C4 = selectedValue;
+                        }
+                        found = 1;
+                        goto advance_two;
+                    }
+advance_two:
+                    next += 2;
+                    cursor += 2;
+                } else {
+                    register int switchOffset __asm__("$3");
+                    __asm__ volatile ("" : : : "memory");
+                    more = cursor[0];
+                    switchOffset = more - 0x23;
+                    __asm__ volatile ("" : "=r"(switchOffset) : "0"(switchOffset));
+                    more = (unsigned int)switchOffset < 0x19;
+                    if (!more) {
+                        more = cursor < end;
+                        goto test_more;
+                    }
+                    more = cursor < end;
+                    __asm__ volatile ("");
+                    {
+                        static void * const jumpTable[26] __asm__("jtbl_800103A4") = {
+                            &&case_0, &&case_1, &&case_2, &&case_3, &&case_4,
+                            &&case_default, &&case_6, &&case_7, &&case_8, &&case_9,
+                            &&case_10, &&case_default, &&case_default, &&case_default, &&case_default,
+                            &&case_default, &&case_default, &&case_default, &&case_default, &&case_default,
+                            &&case_default, &&case_default, &&case_default, &&case_default, &&case_24, 0
+                        };
+                        register int tableOffset __asm__("$2");
+                        register void *jump __asm__("$2");
+                        tableOffset = switchOffset << 2;
+                        jump = *(void **)((char *)jumpTable + tableOffset);
+                        goto *jump;
+                    }
+case_24:
+                        D_8006C798 = one;
+                        next++;
+                        cursor++;
+                        goto loop_test;
+case_0:
+                        next += 3;
+                        cursor += 3;
+                        goto loop_test;
+case_10:
+                        if (state[2] == message)
+                            D_8006C608 = next[0] - 1;
+                        next += 2;
+                        cursor += 2;
+                        goto loop_test;
+case_6:
+                        if (state[2] == message)
+                            D_8006C624 = one;
+                        next += 2;
+                        cursor += 2;
+                        goto loop_test;
+case_2:
+                        if (state[2] == message) {
+                            register int itemByte __asm__("$2");
+                            register int item __asm__("$3");
+                            register int sentinel __asm__("$2");
+                            __asm__ volatile ("" : : : "memory");
+                            itemByte = next[5];
+                            item = itemByte - 1;
+                            sentinel = 0xFE;
+                            if (item != sentinel) {
+                                int paid;
+                                item <<= 2;
+                                D_8006C59C = *(short*)((char*)D_80066EAC + item);
+                                paid = *(short*)((char*)D_80066EAE + item);
+                                D_8006C750 = one;
+                                if (paid == 0 && D_8006C71C < *(short*)((char*)D_80066EAC_second + item)) {
+                                    state[2] = next[6] - 1;
+                                    return;
+                                }
+                            }
+                            D_8006C6E4 = 0;
+                            {
+                                int i;
+                                for (i = 0; i < 5; i++) {
+                                    register unsigned char* scan __asm__("$2") = cursor;
+                                    scan += i;
+                                    if (scan[1] != byteFF)
+                                        D_8006C6E4++;
+                                }
+                            }
+                        }
+                        next += 8;
+                        cursor += 8;
+                        goto loop_test;
+case_1: {
+                        register unsigned int value __asm__("$4") = next[0];
+                        register int selector __asm__("$3") = value - 1;
+                        register unsigned int condition __asm__("$2");
+                        if (selector == 0) {
+                            condition = D_8006C7B4 & 1;
+                            goto check_case_24;
+                        }
+                        if (selector < 10) {
+                            register int shift __asm__("$2") = value - 2;
+                            register unsigned int flags __asm__("$3") = D_8006C7B4;
+                            shift = one << shift;
+                            flags &= shift;
+                            if (flags == 0)
+                                goto advance_two;
+                            goto accept_case_24;
+                        }
+                        if (selector < 20) {
+                            condition = D_800719FA[selector];
+check_case_24:
+                            __asm__ volatile ("nop");
+                            if (condition != 0) {
+accept_case_24:
+                                state[2] = message;
+                                next[0] = byteFF;
+                                D_8006C624 = negativeOne;
+                                D_8006C798 = 0;
+                                D_8006C608 = 0;
+                                func_8003B7B4(next, 1, &D_8006C7F8);
+                                goto advance_two;
+                            }
+                        }
+                        goto advance_two;
+                    }
+case_3:
+                        if (message == state[2])
+                            D_8006C5FC = one;
+                        next++;
+                        cursor++;
+                        goto loop_test;
+case_7:
+case_8:
+                        next++;
+                        cursor++;
+                        goto loop_test;
+case_4:
+                        if (message == state[2]) {
+                            register int flags __asm__("$3") = (int)D_8007145C;
+                            register int entry __asm__("$4") = D_8006C58C;
+                            register int bit __asm__("$2");
+                            __asm__ volatile ("" : "=r"(flags), "=r"(entry) : "0"(flags), "1"(entry));
+                            __asm__ volatile ("lbu %0,0(%3)\n\taddu %1,%1,%2"
+                                : "=r"(bit), "=r"(entry)
+                                : "r"(flags), "r"(next), "1"(entry));
+                            bit -= 1;
+                            flags = *(unsigned char*)entry;
+                            bit = one << bit;
+                            flags |= bit;
+                            *(unsigned char*)entry = flags;
+                        }
+                        next += 2;
+                        cursor += 2;
+                        goto loop_test;
+case_9:
+                        if (message == state[2])
+                            D_8006C590 = next[0] - 1;
+                        next += 2;
+                        cursor += 2;
+                        goto loop_test;
+case_default:
+                        more = cursor < end;
+                        goto test_more;
+                }
+loop_test:
+                more = cursor < end;
+test_more:
+                if (more)
+                    goto parse_again;
+            }
+        }
+        message++;
+        if (message > state[3] || found != 0)
+            break;
+    }
+finish:
+    func_8003B7B4(state + 2, 1, &D_8006C7F8);
+}
+
+
 
 /* Retail source: USA Rev 0 PSX.EXE 0x80037768..0x80037A60
  * (190 instruction words), body SHA-256
