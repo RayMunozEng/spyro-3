@@ -185,7 +185,7 @@
 - [x] func_80037F50
 - [x] func_80038000
 - [ ] func_800382F4
-- [ ] func_800387AC
+- [x] func_800387AC
 - [x] func_80038B44
 - [x] func_80038BF8
 - [x] func_80038F14

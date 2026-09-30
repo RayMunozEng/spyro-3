@@ -1732,7 +1732,169 @@ int func_80038000(Moby *arg0, Vector3D *arg1, int arg2, int arg3, int arg4)
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800382F4);
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800387AC);
+/* Retail source: USA Rev 0 PSX.EXE 0x800387AC..0x80038B44 (230 instructions).
+ * Disc identity: SHA-256 e5406997dccc7300c8198498c20b9d6c4c0a547813be1010446b6c4e5d50e39f.
+ * Raw function words SHA-256: 1b61fbbfc7bfbd74999c981e92bbe44da72414c83caea430fa808b5f8b9eecbe.
+ * Polygon line coefficients and projections use signed Q10 arithmetic; input/output points
+ * and maxDistance are runtime integer coordinates. Each call tests every 28-byte edge
+ * until an accepted projection or terminal endpoint condition is found. Confidence: exact.
+ * Falsify with any mismatch among the 230 opcodes, seven function-relative relocations,
+ * or the linked executable hash above; test vectors include inside-edge, endpoint-wrap,
+ * rejected half-plane, optional angle output, and distance-threshold paths. */
+int func_800387AC(unsigned char* polygon, int* point, int* projected,
+                  int* projectedAngle, volatile int referenceAngle, volatile int maxDistance) {
+    register unsigned char* shape __asm__("$21") = polygon;
+    register int* source __asm__("$18") = point;
+    register int* output __asm__("$19") = projected;
+    register int firstEndpoint = ({
+        int zero;
+        __asm__ ("move %0,$0" : "=r"(zero) : "r"(shape), "r"(source), "r"(output));
+        zero;
+    });
+    register int previousEndpoint __asm__("$23") = ({
+        int zero;
+        __asm__ ("move %0,$0" : "=r"(zero) : "r"(firstEndpoint));
+        zero;
+    });
+    register int index __asm__("$20");
+    register int offset __asm__("$22");
+    register int* edge __asm__("$16");
+    register int angle __asm__("$17");
+    int delta[2];
+    int closest[2];
+    struct {
+        int* angleOutput;
+        int pad;
+        int result;
+    } local;
+    int count;
+    local.angleOutput = projectedAngle;
+    local.result = 0;
+
+    index = 0;
+    if (index >= shape[1]) goto done_387ac;
+    offset = 12;
+loop_387ac:
+    {
+        int distance;
+        int projection;
+        register int deltaY __asm__("$3");
+        register int edgeY __asm__("$2");
+        edge = (int*)(shape + offset);
+        __asm__ volatile ("" : "=r"(edge) : "0"(edge));
+        delta[0] = source[0] - edge[2];
+        deltaY = source[1];
+        edgeY = edge[3];
+        deltaY = deltaY - edgeY;
+        delta[1] = deltaY;
+        __asm__ volatile ("" : : "m"(delta[1]));
+        if (edge[0] * deltaY - edge[1] * delta[0] <= 0) {
+            goto reset_endpoint_387ac;
+        }
+        projection = (edge[6] + (edge[4] * source[0] + edge[5] * source[1])) >> 10;
+        output[0] = source[0] - ((projection * edge[4]) >> 10);
+        projection = projection * edge[5];
+        output[1] = source[1] - (projection >> 10);
+        distance = func_8004F334((Vector3D*)output, (Vector3D*)source);
+        angle = func_8004E880(edge[0], edge[1], 0);
+        {
+            register int difference __asm__("$2") = func_8004F264(angle, referenceAngle);
+            __asm__ volatile (
+                "slti $2,%2,65\n"
+                "bnez $2,.Langle_done_387ac\n"
+                "addiu $2,%0,128\n"
+                "andi %0,$2,255\n"
+                ".Langle_done_387ac:"
+                : "=r"(angle) : "0"(angle), "r"(difference) : "$2");
+        }
+
+        if (output[0] > edge[2] && output[0] > edge[2] + edge[0]) goto outside_edge;
+        if (output[0] < edge[2] && output[0] < edge[2] + edge[0]) goto outside_edge;
+        if (output[1] > edge[3] && output[1] > edge[3] + edge[1]) goto outside_edge;
+        if (output[1] < edge[3] && output[1] < edge[3] + edge[1]) goto outside_edge;
+        {
+            register int withinDistance __asm__("$2") = func_8004F334((Vector3D*)output, (Vector3D*)source);
+            __asm__ volatile (
+                "lw $8,%1\n"
+                "nop\n"
+                "slt %0,%0,$8"
+                : "=r"(withinDistance) : "m"(maxDistance), "0"(withinDistance));
+            if (withinDistance) {
+                __asm__ volatile (
+                    "lw $8,%1\n"
+                    "nop\n"
+                    "beqz $8,1f\n"
+                    "nop\n"
+                    "sw %2,0($8)\n"
+                    "1:\n"
+                    "li $8,1\n"
+                    ".word 0x08000000\n"
+                    ".reloc .-4,R_MIPS_26,.Ldone_387ac\n"
+                    "sw $8,%0"
+                    : "=m"(local.result)
+                    : "m"(local.angleOutput), "r"(angle)
+                    : "memory");
+            }
+        }
+outside_edge:
+        {
+            register int minX __asm__("$7");
+            register int maxX __asm__("$5");
+            register int minY __asm__("$6");
+            register int maxY __asm__("$4");
+            register int endpoint __asm__("$3");
+            register int base __asm__("$4");
+            register int extent __asm__("$2");
+            base = edge[2];
+            extent = edge[0];
+            minX = base;
+            endpoint = base + extent;
+            if (endpoint < minX) minX = endpoint;
+            maxX = base;
+            if (maxX < endpoint) maxX = endpoint;
+            base = edge[3];
+            extent = edge[1];
+            minY = base;
+            endpoint = base + extent;
+            if (endpoint < minY) minY = endpoint;
+            maxY = base;
+            if (maxY < endpoint) maxY = endpoint;
+            closest[0] = output[0];
+            closest[1] = output[1];
+            if (maxX < closest[0]) closest[0] = maxX;
+            if (maxY < closest[1]) closest[1] = maxY;
+            if (closest[0] < minX) closest[0] = minX;
+            if (closest[1] < minY) closest[1] = minY;
+            {
+                register int exceedsDistance __asm__("$2") = func_8004F334((Vector3D*)closest, (Vector3D*)source);
+                __asm__ volatile (
+                    "lw $8,%1\n"
+                    "nop\n"
+                    "slt %0,$8,%0"
+                    : "=r"(exceedsDistance) : "m"(maxDistance), "0"(exceedsDistance));
+                if (!exceedsDistance) {
+                    if (index == shape[1] - 1 && firstEndpoint != 0) return 0x2000;
+                    if (previousEndpoint != 0) return 0x2000;
+                    previousEndpoint = 1;
+                    if (index == 0) firstEndpoint = 1;
+                }
+            }
+        }
+        goto increment_387ac;
+reset_endpoint_387ac:
+        previousEndpoint = 0;
+increment_387ac:
+        count = shape[1];
+        index++;
+        if (index < count) {
+            offset += 28;
+            goto loop_387ac;
+        }
+    }
+done_387ac:
+    __asm__ volatile (".Ldone_387ac:");
+    return local.result;
+}
 
 /**
  * CalculateAtlasPercentage() - func_80038B44() - MATCHING
