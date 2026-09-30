@@ -19,6 +19,7 @@ void func_80049ACC();
  * 0x8003E83C..0x8003E968; call sequence executes once on call. */
 extern char g_CheatFlags;
 void func_80044240(void);
+void func_800458F8(void);
 void func_80047C7C(void);
 void func_80048948(void);
 void func_800491F4(void);
@@ -1295,7 +1296,134 @@ INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80044CF0);
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800451C4);
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800458F8);
+/* Retail source: USA Rev 0 PSX.EXE 0x800458F8..0x80045D70
+ * (286 instructions; linked bytes SHA-256
+ * 945dd8f78afd55854f7755e6faa9c38b25097b30a556404a6639343cab777631).
+ * Called once per player-update frame by func_8003E83C. Positions and collision
+ * probes are signed runtime coordinates; rotations use byte angles and Q12
+ * sine/cosine results. The eight probe slots update one bit per call.
+ * Confidence: exact. Falsifiable by the complete instruction/relocation stream,
+ * the linked function hash above, and the executable/overlay manifest hashes. */extern int D_8006FBA8;
+extern int D_8006FBB4;
+extern int D_8006FBB8;
+extern unsigned char D_8006FBB9, D_8006FBBA;
+extern signed char D_8006FBBB;
+extern int D_8006FBBC, D_8006FBC0;
+extern char D_80068C4C;
+extern int D_8007191C;
+extern void func_8004E7D4(int*, int*, int);
+extern int func_8001A358(Vector3D*, int);
+extern int func_8004F388(int);
+
+void func_800458F8(void) {
+    Vector3D vector;
+    SHORTMATRIX matrix;
+    register char* state __asm__("$19") = &D_80070328 + 0x1E;
+    register int* cameraMode __asm__("$18");
+    int slope;
+    int ground;
+
+    if (*(unsigned char*)state < 0x7F)
+        *(unsigned char*)state = 5;
+    cameraMode = &D_8006FBBC;
+    {
+        register int cameraModeValue __asm__("$2") = 3;
+        int height = *(int*)(&D_80070328 + 0x44);
+        *cameraMode = cameraModeValue;
+        vector.z = -height;
+    }
+    __asm__ volatile ("" : "=r"(cameraMode) : "0"(cameraMode));
+    D_8006FBBB = 0;
+    vector.x = 0;
+    vector.y = 0;
+
+    if (*(int*)(&D_80070328 + 0x50) == 13) {
+        Vector3D* camera = (Vector3D*)((char*)cameraMode - 0x10);
+        Vector3D* player = (Vector3D*)(state - 0x1E);
+        *(unsigned char*)((char*)cameraMode - 4) = *(unsigned char*)(&D_80070328 + 0xC);
+        D_8006FBB9 = *(unsigned char*)(&D_80070328 + 0xD) + 0x40;
+        D_8006FBBA = *(unsigned char*)(&D_80070328 + 0xE);
+        func_8004EA90((Angle*)((char*)cameraMode - 4), &matrix, 0);
+        func_8004ED6C(&matrix, &vector, &vector);
+        func_8004F194(camera, &vector, player);
+        func_8004F1C8(&vector, camera, player);
+        func_8004F194(&vector, &vector, camera);
+        if (func_80018368(player, &vector) == 0)
+            D_8006FBBB = 1;
+    } else {
+        SHORTMATRIX* playerMatrix = (SHORTMATRIX*)(state + 0x12);
+        Vector3D* camera = (Vector3D*)((char*)cameraMode - 0x10);
+        func_8004ED6C(playerMatrix, &vector, &vector);
+        func_8004F194(camera, &vector, (Vector3D*)(state - 0x1E));
+        D_8006FBB4 += 0x80;
+        D_8006FBB4 = func_8001A358(camera, 0x10000);
+
+        if (*(int*)(&D_80070328 + 0x50) < 2) {
+            func_8004E7D4((int*)&matrix, (int*)playerMatrix, 0x14);
+            slope = *(int*)(&D_80070328 + 0xE4);
+            D_8006FBB8 = *(int*)(&D_80070328 + 0xC);
+        } else {
+            register int sine __asm__("$16") = func_8004EA2C(*(int*)(&D_80070328 + 0x64));
+            int cosine = func_8004E9E4(*(int*)(&D_80070328 + 0x64));
+            vector.x = ((D_80071918.x * sine) + (D_8007191C * cosine)) >> 12;
+            sine = func_8004EA2C(*(int*)(&D_80070328 + 0x64));
+            cosine = func_8004E9E4(*(int*)(&D_80070328 + 0x64));
+            vector.y = ((D_8007191C * sine) - (D_80071918.x * cosine)) >> 12;
+            vector.z = D_80071920;
+            {
+                int roll = func_8004E880(func_8004F388((vector.x * vector.x) + (vector.z * vector.z)), vector.y, 0);
+                register int zero __asm__("$6") = 0;
+                register int secondZ __asm__("$4") = vector.z;
+                register int secondX __asm__("$5") = vector.x;
+                __asm__ volatile (""
+                    : "=r"(zero), "=r"(secondZ), "=r"(secondX)
+                    : "0"(zero), "1"(secondZ), "2"(secondX));
+                *(unsigned char*)((char*)cameraMode - 4) = -roll;
+                D_8006FBB9 = -func_8004E880(secondZ, secondX, zero);
+            }
+            D_8006FBBA = *(unsigned char*)(&D_80070328 + 0xE);
+            func_8004EA90((Angle*)((char*)cameraMode - 4), &matrix, 0);
+            slope = func_8004E880(D_80071920, func_8004EDE8(&D_80071918, 0), 0);
+        }
+
+        if (D_8006FBB4 < 0x401 || *(int*)(&D_80070328 + 0x28) < 0)
+            D_8006FBBB = 1;
+        {
+            register int* cameraHeight __asm__("$16") = &D_8006FBB4;
+            {
+                int playerZ = *(int*)(&D_80070328 + 8);
+                int cameraZ = *cameraHeight;
+                int baseZ = *(int*)(&D_80070328 + 0x44);
+                playerZ -= cameraZ;
+                baseZ += 0x100;
+                if (baseZ < playerZ)
+                    D_8006FBBC = 5;
+            }
+
+            D_8006FBC0 = (D_8006FBC0 + 1) & 7;
+            func_8004ED6C(&matrix, (Vector3D*)(&D_80068C4C + D_8006FBC0 * 12), &vector);
+            func_8004F194(&vector, &vector, (Vector3D*)((char*)cameraHeight - 8));
+            vector.z += 0x200;
+            ground = func_8001A358(&vector, 0x400);
+            {
+                int difference;
+                difference = vector.z - 0x200;
+                vector.z = difference;
+                difference -= ground;
+                if (difference < 0) {
+                    __asm__ volatile ("");
+                    difference = -difference;
+                }
+                difference = difference < 0x40;
+                if (!difference || slope >= 0x21)
+                    D_8006FBA8 |= 1 << D_8006FBC0;
+                else
+                    D_8006FBA8 &= 0xFF - (1 << D_8006FBC0);
+            }
+        }
+    }
+    __asm__ volatile ("" : : "r"(state), "r"(cameraMode));
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80045D70);
 
