@@ -51,7 +51,7 @@ int func_80038000(Moby*, Vector3D*, int, int, int);
 int func_80038B44(int lvlIndex, int gems, int eggs); // CalculateAtlasPercentage
 void func_80038BF8(Moby*, EnemyTag*, int, int); // void fSmallEnemyDeath
 void func_80038F14(Moby*, void*, unsigned int, int);
-// unk func_800391E8(unk);
+Moby* func_800391E8(int, int, Moby*, int, int, int, unsigned short);
 // unk func_80039714(unk);
 void func_80039974(int dragonNo, int localOffset, int sizeLeft); // load dragon model
 // unk func_800399E8(unk);

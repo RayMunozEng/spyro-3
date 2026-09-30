@@ -38,6 +38,8 @@ extern int* dragonModelPtr; // 8006C5B0
 extern int D_8006C648; // deltaTime
 extern Moby* D_8006C550; // MobyArrayPointer
 extern int D_8006C580;
+extern int D_8006C574;
+extern int D_8006C578;
 extern Moby* D_8006C704; // FirstAllocatedMobyPointer
 extern unsigned short** D_8006C730;
 extern int D_8006C770;
@@ -2769,10 +2771,229 @@ randomize:
 }
 //////////////////////////////////////////////////////////////// jtbl section above
 
-/**
- * TODO
- */
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800391E8);
+/* Retail source: USA Rev 0 PSX.EXE 0x800391E8..0x80039714 (331 words),
+ * SHA-256 2601EBD22A5E4473A945D5D80E9E0685B81229F4ED0860841ACBFE0C45933FC7.
+ * The fragment loop runs once per requested actor while at least 21 pool slots
+ * remain. Tag velocities are signed 16-bit values; world positions use runtime
+ * integer units and add tag velocity * 4. Angle and lifetime fields update once
+ * per spawned fragment. Rev 1 0x8003920C has the same 331-instruction control
+ * shape. Confirmed by an exact 366-record object comparison including
+ * relocations; falsify with any record mismatch or a different retail image. */
+#define M2C_FIELD(p, t, o) (*(t)((char*)(p) + (o)))
+Moby* func_800391E8(int arg0, int arg1, Moby* arg2, int arg3, int arg4, int arg5, unsigned short arg6) {
+    struct { int sp10, sp14, sp18, pad1C, sp20, pad24, sp28, pad2C, sp30, reserved[2]; } frame;
+
+    register short *temp_a0 __asm__("$4");
+    short temp_v0_2;
+    register int temp_t1 __asm__("$9");
+    register int temp_v0 __asm__("$2");
+    int temp_v1;
+    int var_a0;
+    register int var_a0_2 __asm__("$4");
+    int var_a1;
+    int var_v0;
+    int var_v0_2;
+    register int var_v1 __asm__("$3");
+    unsigned char temp_a0_2;
+    unsigned char temp_v0_3;
+    register Moby *var_s2 __asm__("$18");
+    register int mobyClass __asm__("$20") = arg1;
+    register Moby *source __asm__("$19") = arg2;
+    register short *cosTable __asm__("$23");
+    register short *sinTable __asm__("$22");
+    Vector3D *playerVelocity;
+    register Spyro *playerBase __asm__("$21");
+    register void *temp_s1 __asm__("$17");
+    register int temp_s0 __asm__("$16");
+    register int temp_t0 __asm__("$8");
+    register int temp_t1_arg __asm__("$9");
+    register int rangeLow __asm__("$4");
+    register int rangeHigh __asm__("$5");
+
+
+    var_s2 = ({ Moby *zero; __asm__("move %0,$0" : "=r"(zero) : "r"(mobyClass), "r"(source)); zero; });
+    frame.sp20 = arg0;
+    frame.sp28 = arg3;
+    frame.sp30 = 0;
+    if (arg0 > 0) {
+        cosTable = D_80065920;
+        __asm__ volatile ("" : : "r"(cosTable));
+        sinTable = D_800658A0;
+        __asm__ volatile ("" : : "r"(sinTable));
+        playerVelocity = &((Spyro*)&D_80070328)->unk7a[2];
+        __asm__ volatile ("addiu %0,%1,-140" : "=r"(playerBase) : "r"(playerVelocity));
+loop_2:
+        if ((D_8006C578 - D_8006C574) >= 0x15) {
+            var_s2 = SpawnMoby(mobyClass, source);
+            __asm__ volatile ("" : "=r"(var_s2) : "0"(var_s2));
+            if (var_s2 != 0) {
+                temp_s1 = var_s2->mobyTag;
+                temp_s0 = rand() & 0xFF;
+                temp_v0 = rand() & 0x7F;
+                __asm__ volatile (
+                    "sll $2,$2,1\n\t"
+                    "addu $4,$2,$23"
+                    : "=r"(temp_v0), "=r"(temp_a0) : "0"(temp_v0), "r"(cosTable));
+                __asm__ volatile (
+                    "lh $3,0($4)\n\t"
+                    "lw $8,124($sp)\n\t"
+                    "nop\n\t"
+                    "mult $8,$3\n\t"
+                    "sll $16,$16,1\n\t"
+                    "addu $3,$16,$23\n\t"
+                    "mflo $9\n\t"
+                    "lh $3,0($3)\n\t"
+                    "nop\n\t"
+                    "mult $9,$3\n\t"
+                    "mflo $8\n\t"
+                    "sra $3,$8,24\n\t"
+                    "sh $3,0($17)\n\t"
+                    "lh $3,0($4)\n\t"
+                    "lw $9,124($sp)\n\t"
+                    "nop\n\t"
+                    "mult $9,$3\n\t"
+                    "addu $16,$16,$22\n\t"
+                    "mflo $8\n\t"
+                    "lh $3,0($16)\n\t"
+                    "nop\n\t"
+                    "mult $8,$3\n\t"
+                    "addu $2,$2,$22\n\t"
+                    "mflo $9\n\t"
+                    "sra $3,$9,24\n\t"
+                    "sh $3,2($17)\n\t"
+                    "lh $2,0($2)\n\t"
+                    "lw $8,124($sp)\n\t"
+                    "nop\n\t"
+                    "mult $8,$2\n\t"
+                    "mflo $9\n\t"
+                    "sra $2,$9,12\n\t"
+                    "sh $2,4($17)"
+                    : "=r"(temp_v0), "=r"(temp_s0) : "0"(temp_v0), "1"(temp_s0), "r"(temp_a0), "r"(temp_s1), "r"(cosTable), "r"(sinTable) : "$3", "$8", "$9", "memory", "hi", "lo");                if (mobyClass == 0x2EE) {
+                    var_a0 = 0x28;
+                    var_a1 = 0x46;
+                    var_s2->position.x = source->position.x + (M2C_FIELD(temp_s1, short *, 0) * 4);
+                    var_s2->position.y = source->position.y + (M2C_FIELD(temp_s1, short *, 2) * 4);
+                    var_s2->position.z = source->position.z + (M2C_FIELD(temp_s1, short *, 4) * 4);
+                    goto block_13;
+                }
+                if (mobyClass == 0x84) {
+                    var_a0 = 0x28;
+                    var_a1 = 0x46;
+                    goto block_13;
+                }
+                var_a0 = 0xA;
+                if (mobyClass == 0x2C3) {
+                    var_a1 = 0x14;
+                    goto block_13;
+                }
+                temp_a0_2 = source->unkb;
+                if (temp_a0_2 != 0) {
+                    if (source->damageFlags & 0x100000) {
+                        M2C_FIELD(temp_s1, short *, 0) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 0) + ((int) (cosTable[temp_a0_2] * 0x4B) >> 0xB));
+                        var_a0 = 0x28;
+                        var_a1 = 0x46;
+                        M2C_FIELD(temp_s1, short *, 2) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 2) + ((int) (sinTable[source->unkb] * 0x4B) >> 0xB));
+block_13:
+                        M2C_FIELD(temp_s1, short *, 4) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 4) + func_8003636C(var_a0, var_a1));
+                    } else {
+                        goto block_14;
+                    }
+                } else {
+block_14:
+                    temp_v1 = source->damageFlags;
+                    if (temp_v1 & 0x40000) {
+                        M2C_FIELD(temp_s1, short *, 0) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 0) + ((int) M2C_FIELD(playerVelocity, int *, 0) >> 5));
+                        M2C_FIELD(temp_s1, short *, 2) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 2) + ((int) M2C_FIELD(playerVelocity, int *, 4) >> 5));
+                        goto block_28;
+                    }
+                    __asm__ volatile ("" : : : "memory");
+                    if (temp_v1 & 0x02000000) {
+                        temp_v0 = func_8004E880(var_s2->position.x - playerBase->position.x, var_s2->position.y - playerBase->position.y, 0);
+                        __asm__ volatile (
+                            "sll $2,$2,1\n\t"
+                            "addu $2,$2,$23\n\t"
+                            "lh $2,0($2)"
+                            : "=r"(temp_v0) : "0"(temp_v0), "r"(cosTable));
+                        frame.sp10 = temp_v0 >> 4;
+                        temp_v0 = func_8004E880(var_s2->position.x - playerBase->position.x, var_s2->position.y - playerBase->position.y, 0);
+                        __asm__ volatile (
+                            "sll $2,$2,1\n\t"
+                            "addu $2,$2,$22\n\t"
+                            "lh $2,0($2)"
+                            : "=r"(temp_v0) : "0"(temp_v0), "r"(sinTable));
+                        var_v1 = frame.sp10;
+                        frame.sp18 = 0;
+                        __asm__ volatile ("" : : : "memory");
+                        var_v0_2 = temp_v0 >> 4;
+                        goto block_27;
+                    }
+                    if (temp_v1 & 0x20000) {
+                        if (((Spyro*)&D_80070328)->movementState != MOVEMENT_STATE_CHARGE) {
+                            if (((Spyro*)&D_80070328)->movementState != MOVEMENT_STATE_SWIM_CHARGE) {
+                                if (((Spyro*)&D_80070328)->movementState == MOVEMENT_STATE_SKATEBOARD) {
+                                    goto block_22;
+                                }
+                                goto block_24;
+                            }
+                            goto block_22;
+                        }
+block_22:
+                        M2C_FIELD(temp_s1, short *, 0) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 0) + ((int) M2C_FIELD(playerVelocity, int *, 0) >> 6));
+                        M2C_FIELD(temp_s1, short *, 2) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 2) + ((int) M2C_FIELD(playerVelocity, int *, 4) >> 6));
+                        goto block_28;
+                    } else {
+block_24:
+                        temp_v0_3 = source->unkb;
+                        var_a0_2 = temp_v0_3 * 2;
+                        if (temp_v0_3 == 0) {
+                            var_a0_2 = func_8004E880(var_s2->position.x - playerBase->position.x, var_s2->position.y - playerBase->position.y, 0) * 2;
+                        }
+                        temp_v0 = *(short *)(var_a0_2 + (int)cosTable);
+                        var_a0_2 += (int)sinTable;
+                        var_v1 = (temp_v0 * 0x23) >> 0xA;
+                        frame.sp10 = var_v1;
+                        var_a0_2 = *(short *)var_a0_2;
+                        frame.sp18 = 0;
+                        var_v0_2 = (var_a0_2 * 0x23) >> 0xA;
+block_27:
+                        frame.sp14 = var_v0_2;
+                        M2C_FIELD(temp_s1, short *, 0) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 0) + var_v1);
+                        M2C_FIELD(temp_s1, short *, 2) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 2) + frame.sp14);
+                    }
+                }
+block_28:
+                var_s2->position.x = source->position.x + (M2C_FIELD(temp_s1, short *, 0) * 4);
+                var_s2->position.y = source->position.y + (M2C_FIELD(temp_s1, short *, 2) * 4);
+                var_s2->position.z = source->position.z + (M2C_FIELD(temp_s1, short *, 4) * 4);
+                var_s2->angle.pitch = rand();
+                var_s2->angle.yaw = rand();
+                M2C_FIELD(temp_s1, short *, 6) = (short) ((rand() & 0xE) - 7);
+                M2C_FIELD(temp_s1, short *, 8) = (short) ((rand() & 0xE) - 7);
+                M2C_FIELD(temp_s1, short *, 0xA) = (short) ((rand() & 0xE) - 7);
+                M2C_FIELD(temp_s1, short *, 0xE) = (short) (source->position.z - 0x40);
+                temp_v0 = func_8003636C(0x1E, 0x32);
+                __asm__ volatile ("lw %0,40($sp)" : "=r"(rangeLow));
+                __asm__ volatile ("lw %0,120($sp)" : "=r"(rangeHigh));
+                M2C_FIELD(temp_s1, short *, 0xC) = temp_v0;
+                M2C_FIELD(temp_s1, short *, 0x10) = 8;
+                __asm__ volatile ("lhu %0,128($sp)" : "=r"(temp_t0) : : "memory");
+                M2C_FIELD(temp_s1, unsigned short *, 0x12) = temp_t0;
+                func_80034F80(var_s2, func_8003636C(rangeLow, rangeHigh));
+                var_s2->unknownCollision = 0;
+            }
+            temp_t1 = frame.sp30 + 1;
+            temp_t0 = frame.sp20;
+            frame.sp30 = temp_t1;
+            temp_v0 = temp_t1 < temp_t0;
+            if (temp_v0) {
+                goto loop_2;
+            }
+        }
+    }
+    __asm__ volatile ("" : "=r"(var_s2) : "0"(var_s2));
+    return var_s2;
+}
+#undef M2C_FIELD
 
 typedef struct {
     short velocityX;
