@@ -363,7 +363,195 @@ void func_80012D18(void) {
     D_8006E038 = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_800130DC);
+/* Retail source: USA Rev 0 PSX.EXE 0x800130DC..0x800135A4 (306 words),
+ * raw function SHA-256
+ * 7397B247488B76D4D7C2DA96CF6CB05F32937652A9079056B1F6295885DE1CAC.
+ * Angles are 12-bit turns; positions and radii are runtime world units.
+ * The camera timer advances by D_8006C648 once per call. After 61 ticks,
+ * five fixed camera entries are tested; before that, four signed angle/radius
+ * offsets are tested at scales 1, 2, and 4 with 0x100 collision probes.
+ * Confidence: confirmed by a 306/306 instruction comparison. Falsifiable
+ * vectors are camera lock clear/set, mode 7/other, timer 60/61, each of the
+ * five fixed entries, each four-bit candidate mask, and collision results at
+ * all three scales. Runtime camera appearance and Rev 1 equivalence remain
+ * unverified. */
+extern char D_800693DC, D_800693E0, D_800693E4, D_8006942C;
+extern unsigned char D_8006E13A;
+extern int D_8006C648, D_8006E074, D_8006E344;
+#define CAMERA_FIELD(p, t, o) (*(t)((char *)(p) + (o)))
+void func_800130DC(void) {
+    struct { Vector3D sp10; char pad1C[4]; Vector3D sp20; char pad2C[4]; int sp30, sp34, sp38; char pad3C[8]; } frame;
+    register unsigned char *var_s1 asm ("$17");
+    int temp_v0;
+    int temp_v1;
+    int temp_v1_2;
+    int temp_v1_3;
+    int collisionResult;
+    register int var_s0 asm ("$16");
+    register int var_s3 asm ("$19");
+    register unsigned char *temp_s2 asm ("$18");
+    register unsigned char *var_s4 asm ("$20");
+    register unsigned char *var_s5 asm ("$21");
+
+    var_s1 = &D_8006E139;
+    if ((*var_s1 == 0) && (D_8006E344 != 7)) {
+        func_8004F178(&frame.sp10, (Vector3D *)&D_80070328);
+        temp_s2 = var_s1 - 0x119;
+        frame.sp10.z -= 0x124;
+        if (func_80013E38((Vector3D *) temp_s2, &frame.sp10, 1) == 0) {
+            D_8006E13C = 1;
+            temp_v0 = D_8006E130 + D_8006C648;
+            D_8006E130 = temp_v0;
+            var_s3 = 0;
+            if (temp_v0 >= 0x3D) {
+                var_s0 = 0;
+                var_s1 = &D_8006942C;
+loop_5:
+                func_80012BA8(var_s1);
+                if ((func_80019194((Vector3D *) temp_s2, 0x100) != 0) || (func_80013E38((Vector3D *) temp_s2, &frame.sp10, 1) == 0)) {
+                    var_s0 += 1;
+                    var_s1 += 0x14;
+                    if (var_s0 < 5) {
+                        goto loop_5;
+                    }
+                    return;
+                }
+            } else {
+                var_s0 = 0;
+                var_s4 = var_s1 - 0xC5;
+                temp_s2 = (unsigned char *)&frame.sp20;
+                var_s5 = var_s1 - 0xE1;
+                var_s1 = (unsigned char *)0;
+loop_10:
+                frame.sp30 = (CAMERA_FIELD(var_s4, int *, 0) + CAMERA_FIELD(&D_800693DC, int *, (int)var_s1)) & 0xFFF;
+                temp_v1 = (CAMERA_FIELD(var_s4, int *, 4) + CAMERA_FIELD(&D_800693E0, int *, (int)var_s1)) & 0xFFF;
+                frame.sp34 = temp_v1;
+                if (temp_v1 >= 0x801) {
+                    frame.sp34 = temp_v1 - 0x1000;
+                }
+                if (frame.sp34 >= 0x401) {
+                    frame.sp34 = 0x400;
+                }
+                frame.sp38 = CAMERA_FIELD(var_s4, int *, 8) + CAMERA_FIELD(&D_800693E4, int *, (int)var_s1);
+                func_800135F8((Vector3D *) temp_s2, (SphericalPosition *) &frame.sp30, (Vector3D *) var_s5);
+                if ((func_80019194((Vector3D *) temp_s2, 0x100) != 0) || (func_80013E38((Vector3D *) (var_s4 - 0x54), (Vector3D *) temp_s2, 1) == 0) || (var_s3 |= 1 << var_s0, (func_80013E38((Vector3D *) temp_s2, &frame.sp10, 1) == 0))) {
+                    var_s0 += 1;
+                    var_s1 += 0x14;
+                    if (var_s0 >= 4) {
+                        var_s0 = 0;
+                        if (var_s3 != 0) {
+                            temp_s2 = (unsigned char *)&frame.sp20;
+                                    var_s4 = (unsigned char *)&D_8006E074;
+                            var_s5 = (unsigned char *)&D_8006E074 - 0x1C;
+                            var_s1 = (unsigned char *)0;
+loop_20:
+                            if ((var_s3 >> var_s0) & 1) {
+                                frame.sp30 = (CAMERA_FIELD(var_s4, int *, 0) + (CAMERA_FIELD(&D_800693DC, int *, (int)var_s1) * 2)) & 0xFFF;
+                                temp_v1_2 = (CAMERA_FIELD(var_s4, int *, 4) + (CAMERA_FIELD(&D_800693E0, int *, (int)var_s1) * 2)) & 0xFFF;
+                                frame.sp34 = temp_v1_2;
+                                if (temp_v1_2 >= 0x801) {
+                                    frame.sp34 = temp_v1_2 - 0x1000;
+                                }
+                                if (frame.sp34 >= 0x401) {
+                                    frame.sp34 = 0x400;
+                                }
+                                frame.sp38 = CAMERA_FIELD(var_s4, int *, 8) + (CAMERA_FIELD(&D_800693E4, int *, (int)var_s1) * 2);
+                                func_800135F8((Vector3D *) temp_s2, (SphericalPosition *) &frame.sp30, (Vector3D *) var_s5);
+                                if (func_80019194((Vector3D *) temp_s2, 0x100) == 0) {
+                                    if (func_80013E38((Vector3D *) (var_s4 - 0x54), (Vector3D *) temp_s2, 1) != 0) {
+                                        collisionResult = func_80013E38((Vector3D *) temp_s2, &frame.sp10, 1);
+                                        var_s0 += 1;
+                                        if (collisionResult == 0) {
+                                            goto block_32;
+                                        }
+                                        goto block_51;
+                                    }
+                                    goto block_30;
+                                }
+block_30:
+                                var_s3 &= ~(1 << var_s0);
+                                goto block_31;
+                            }
+block_31:
+                            var_s0 += 1;
+block_32:
+                            var_s1 += 0x14;
+                            if (var_s0 >= 4) {
+                                var_s0 = 0;
+                                if (var_s3 != 0) {
+                                    temp_s2 = (unsigned char *)&frame.sp20;
+                                    var_s4 = (unsigned char *)&D_8006E074;
+                                    var_s5 = (unsigned char *)&D_8006E074 - 0x1C;
+                                    var_s1 = (unsigned char *)0;
+loop_35:
+                                    if ((var_s3 >> var_s0) & 1) {
+                                        frame.sp30 = (CAMERA_FIELD(var_s4, int *, 0) + (CAMERA_FIELD(&D_800693DC, int *, (int)var_s1) * 4)) & 0xFFF;
+                                        temp_v1_3 = (CAMERA_FIELD(var_s4, int *, 4) + (CAMERA_FIELD(&D_800693E0, int *, (int)var_s1) * 4)) & 0xFFF;
+                                        frame.sp34 = temp_v1_3;
+                                        if (temp_v1_3 >= 0x801) {
+                                            frame.sp34 = temp_v1_3 - 0x1000;
+                                        }
+                                        if (frame.sp34 >= 0x401) {
+                                            frame.sp34 = 0x400;
+                                        }
+                                        frame.sp38 = CAMERA_FIELD(var_s4, int *, 8) + (CAMERA_FIELD(&D_800693E4, int *, (int)var_s1) * 4);
+                                        func_800135F8((Vector3D *) temp_s2, (SphericalPosition *) &frame.sp30, (Vector3D *) var_s5);
+                                        if (func_80019194((Vector3D *) temp_s2, 0x100) == 0) {
+                                            if (func_80013E38((Vector3D *) (var_s4 - 0x54), (Vector3D *) temp_s2, 1) != 0) {
+                                                collisionResult = func_80013E38((Vector3D *) temp_s2, &frame.sp10, 1);
+                                                var_s0 += 1;
+                                                if (collisionResult == 0) {
+                                                    goto block_47;
+                                                }
+                                                goto block_51;
+                                            }
+                                            goto block_45;
+                                        }
+block_45:
+                                        var_s3 &= ~(1 << var_s0);
+                                        goto block_46;
+                                    }
+block_46:
+                                    var_s0 += 1;
+block_47:
+                                    var_s1 += 0x14;
+                                    if (var_s0 < 4) {
+                                        goto loop_35;
+                                    }
+                                    return;
+                                }
+                            } else {
+                                goto loop_20;
+                            }
+                        }
+                    } else {
+                        goto loop_10;
+                    }
+                } else {
+                    goto block_51;
+                }
+            }
+            return;
+        } else {
+            if (D_8006E13A == 0) {
+                goto block_53;
+            }
+            goto block_52;
+        }
+    } else {
+        goto block_52;
+    }
+
+block_51:
+    func_800136F0((CameraPosition *) (var_s4 + 0x14), (Vector3D *) temp_s2, (Vector3D *) var_s5);
+    CAMERA_FIELD(var_s4, int *, 0xB8) = 0x10;
+    return;
+block_52:
+    D_8006E12C = 0;
+block_53:
+    D_8006E130 = 0;
+}
+#undef CAMERA_FIELD
 
 /**
  * SetCameraPosition() - func_800135A4() - MATCHING
