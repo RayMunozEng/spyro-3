@@ -1983,7 +1983,303 @@ int func_80038000(Moby *arg0, Vector3D *arg1, int arg2, int arg3, int arg4)
   return result;
 }
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800382F4);
+/* Retail source: USA Rev 0 PSX.EXE 0x800382F4..0x800387AC
+ * (302 instructions; 5 function-relative relocations; 307 compared records).
+ * Disc identity: SHA-256 e5406997dccc7300c8198498c20b9d6c4c0a547813be1010446b6c4e5d50e39f.
+ * Edge plane coefficients use signed Q10 arithmetic with a 10-bit right shift;
+ * points, centers, bounds, distances, and the 0x12D threshold are runtime integers.
+ * Each call visits shapes in input order and edges in stored order until the retail
+ * return conditions select an edge or exhaust the shape list. Confidence: exact.
+ * Falsify with any object-record or linked-executable hash mismatch. Test vectors:
+ * zero shapes; type-0 radius rejection, all-edge containment, and nearest projection;
+ * directed-edge positive/nonpositive cross products; projected endpoints inside and
+ * outside normal or reversed bounds; clamp distances below/at 0x12D; first/last-edge
+ * wrap states; and multiple shapes. */
+typedef struct Edge382 { int unk0, unk4, unk8, unkC, unk10, unk14, unk18; } Edge382;
+typedef struct Shape382 { unsigned char unk0, unk1; short unk2; int centerX, centerY; Edge382 edges[1]; } Shape382;
+extern int func_8004F334(Vector3D*, Vector3D*);
+
+void *func_800382F4(Vector3D *arg0, void **arg1, int arg2)
+{
+  struct
+  {
+    int primary[2];
+    int projected[2];
+    int closest[2];
+    int count;
+    int pad;
+    int outer;
+    int reserved[6];
+  } frame;
+  int temp_a0_2;
+  int temp_a0_3;
+  int temp_a0_4;
+  int temp_a0_5;
+  int temp_a0_6;
+  int temp_a1;
+  int temp_a1_2;
+  int temp_a1_3;
+  int new_var;
+  int temp_a1_4;
+  register int temp_t0 asm("$8");
+  register int temp_t1 asm("$9");
+  int temp_v0;
+  int temp_v1;
+  int temp_v1_2;
+  int temp_v1_3;
+  int temp_v1_4;
+  int temp_v1_5;
+  int temp_v1_6;
+  int temp_v1_7;
+  register int var_a0 asm("$4");
+  register int var_a1 asm("$5");
+  int var_a2;
+  register int var_a2_2 asm("$6");
+  int var_a3;
+  register int var_s1 asm("$17");
+  register int var_s2 asm("$18");
+  register int var_s5 asm("$21");
+  register int var_s6 asm("$22");
+  int var_v0_2;
+  int var_v0_3;
+  unsigned char *var_fp;
+  Edge382 *temp_a0;
+  Edge382 *temp_s0;
+  register Shape382 *temp_s4 asm("$20");
+  register Vector3D *point asm("$19") = arg0;
+  register void *var_s7 asm("$23") = (  {
+    void *zero;
+    asm("move %0,$0" : "=r"(zero) : "r"(point));
+    zero;
+  }
+);
+  register void *var_v0 asm("$2");
+  frame.count = arg2;
+  if ((arg2 != 0) && ((frame.outer = 0, ((int) var_s7) < arg2)))
+  {
+    var_fp = (unsigned char *) arg1;
+    loop_3:
+    temp_s4 = *((Shape382 **) var_fp);
+
+    var_s6 = 0;
+    if (temp_s4->unk0 == 0)
+    {
+      if (func_8004F334(point, (Vector3D *) (((char *) temp_s4) + 4)) < temp_s4->unk2)
+      {
+        var_s1 = 0;
+        new_var = (int) temp_s4->unk1;
+ do { if (new_var > 0) { var_a2 = 0xC; loop_7: temp_a0 = (Edge382 *) (((char *) temp_s4) + var_a2); temp_a1 = point->x - temp_a0->unk8; frame.primary[0] = temp_a1; temp_v1 = point->y - temp_a0->unkC; frame.primary[1] = temp_v1; if (((temp_a0->unk0 * temp_v1) - (temp_a0->unk4 * temp_a1)) >= 0) { new_var = temp_s4->unk1; var_s1 += 1; var_a2 += 0x1C; if (var_s1 < new_var) { goto loop_7; } } } } while (0);
+        if ((var_s1 == temp_s4->unk1) && ((var_s5 = 0x98967F, var_s1 = 0, temp_s4->unk1 != 0)))
+        {
+          var_s2 = 0xC;
+          do
+          {
+            temp_s0 = (Edge382 *) (((char *) temp_s4) + var_s2);
+            temp_a1_2 = temp_s0->unk10;
+            temp_a0_2 = point->x;
+            temp_v1_2 = ((int) (temp_s0->unk18 + ((temp_a1_2 * temp_a0_2) + (temp_s0->unk14 * point->y)))) >> 0xA;
+            frame.primary[0] = temp_a0_2 - (((int) (temp_v1_2 * temp_a1_2)) >> 0xA);
+            frame.primary[1] = point->y - (((int) (temp_v1_2 * temp_s0->unk14)) >> 0xA);
+            temp_v0 = func_8004F334((Vector3D *) (&frame.primary[0]), point);
+            if (temp_v0 < var_s5)
+            {
+              var_s7 = temp_s0;
+              var_s5 = temp_v0;
+            }
+            new_var = temp_s4->unk1;
+            var_s1 += 1;
+            var_s2 += 0x1C;
+          }
+          while (var_s1 < new_var);
+          var_fp += 4;
+        }
+        else
+        {
+          goto block_53;
+        }
+      }
+      else
+      {
+        goto block_53;
+      }
+      goto block_54;
+    }
+    var_s5 = 0;
+    new_var = (int) temp_s4->unk1;
+    var_s1 = 0;
+    do {
+    if (new_var > 0)
+    {
+      var_s2 = 0xC;
+      loop_19:
+      temp_s0 = (Edge382 *) (((char *) temp_s4) + var_s2);
+
+      temp_a0_3 = point->x - temp_s0->unk8;
+      frame.primary[0] = temp_a0_3;
+      temp_v1_3 = point->y - temp_s0->unkC;
+      frame.primary[1] = temp_v1_3;
+      if (((temp_s0->unk0 * temp_v1_3) - (temp_s0->unk4 * temp_a0_3)) > 0)
+      {
+        temp_a0_4 = temp_s0->unk10;
+        temp_a1_3 = point->x;
+        temp_v1_4 = ((int) (temp_s0->unk18 + ((temp_a0_4 * temp_a1_3) + (temp_s0->unk14 * point->y)))) >> 0xA;
+        temp_a1_4 = temp_a1_3 - (((int) (temp_v1_4 * temp_a0_4)) >> 0xA);
+        frame.projected[0] = temp_a1_4;
+        temp_v1_5 = point->y - (((int) (temp_v1_4 * temp_s0->unk14)) >> 0xA);
+        frame.projected[1] = temp_v1_5;
+        temp_a0_5 = temp_s0->unk8;
+        {
+          register int xcmp __asm__("$2");
+          __asm__ volatile (
+              "slt %0,%1,%2\n\t"
+              "beqz %0,2f\n\t"
+              "slt %0,%2,%1\n\t"
+              "lw %0,0(%3)\n\t"
+              "nop\n\t"
+              "addu %0,%1,%0\n\t"
+              "slt %0,%0,%2\n\t"
+              "bnez %0,1f\n\t"
+              "slt %0,%2,%1\n"
+              "2:"
+              : "=&r"(xcmp)
+              : "r"(temp_a0_5), "r"(temp_a1_4), "r"(temp_s0));
+          if (xcmp)
+          {
+            if (temp_a1_4 < (temp_a0_5 + temp_s0->unk0))
+            {
+              goto block_29;
+            }
+          }
+        }
+        temp_a0_6 = temp_s0->unkC;
+        if (temp_a0_6 < temp_v1_5)
+        {
+          if ((temp_a0_6 + temp_s0->unk4) < temp_v1_5)
+          {
+            goto block_29;
+          }
+        }
+        if (!(temp_v1_5 < temp_a0_6))
+        {
+          return temp_s0;
+        }
+        if (!(temp_v1_5 < (temp_a0_6 + temp_s0->unk4)))
+        {
+          return temp_s0;
+        }
+        block_29:
+        __asm__ volatile (
+            "lw %0,8(%3)\n\t"
+            "1:\n\t"
+            "lw $2,0(%3)\n\t"
+            "move %1,%0\n\t"
+            "addu %2,%0,$2"
+            : "=r"(var_a0), "=r"(var_a3), "=r"(temp_v1_6)
+            : "r"(temp_s0)
+            : "$2");
+        var_a1 = var_a0;
+        if (temp_v1_6 < var_a3)
+        {
+          var_a3 = temp_v1_6;
+        }
+        if (var_a1 < temp_v1_6)
+        {
+          var_a1 = temp_v1_6;
+        }
+        var_a0 = temp_s0->unkC;
+        var_a2_2 = var_a0;
+        temp_v1_7 = var_a0 + temp_s0->unk4;
+        if (temp_v1_7 < var_a2_2)
+        {
+          var_a2_2 = temp_v1_7;
+        }
+        if (var_a0 < temp_v1_7)
+        {
+          var_a0 = temp_v1_7;
+        }
+        frame.closest[0] = frame.projected[0];
+        frame.closest[1] = frame.projected[1];
+        if (var_a1 < frame.projected[0])
+        {
+          frame.closest[0] = var_a1;
+        }
+        if (var_a0 < frame.projected[1])
+        {
+ do { frame.closest[1] = var_a0; } while (0);
+        }
+        if (frame.closest[0] < var_a3)
+        {
+          frame.closest[0] = var_a3;
+        }
+        if (frame.closest[1] < var_a2_2)
+        {
+          frame.closest[1] = var_a2_2;
+        }
+        if (func_8004F334((Vector3D *) (&frame.closest[0]), point) < 0x12D)
+        {
+          var_s7 = temp_s0;
+          if ((var_s1 != (temp_s4->unk1 - 1)) || ((var_v0 = var_s7, var_s6 == 0)))
+          {
+            var_v0 = var_s7;
+            if (var_s5 == 0)
+            {
+              var_s5 = 1;
+              if (var_s1 == 0)
+              {
+                var_s6 = 1;
+              }
+              goto block_52;
+            }
+          }
+        }
+        else
+        {
+          goto block_52;
+        }
+      }
+      else
+      {
+        var_s5 = 0;
+        block_52:
+        new_var = temp_s4->unk1;
+
+        var_s1 += 1;
+        var_s2 += 0x1C;
+        if (var_s1 >= new_var)
+        {
+          goto block_53;
+        }
+        goto loop_19;
+      }
+    }
+    else
+    {
+      block_53:
+      var_fp += 4;
+
+      block_54:
+      temp_t0 = frame.outer;
+
+      temp_t1 = frame.count;
+      temp_t0 += 1;
+      var_v0 = (void *) (temp_t0 < temp_t1);
+      frame.outer = temp_t0;
+      if (var_v0)
+      {
+        goto loop_3;
+      }
+      goto block_55;
+    }
+    } while (0);
+  }
+  else
+  {
+    block_55:
+    var_v0 = var_s7;
+
+  }
+  return var_v0;
+}
 
 /* Retail source: USA Rev 0 PSX.EXE 0x800387AC..0x80038B44 (230 instructions).
  * Disc identity: SHA-256 e5406997dccc7300c8198498c20b9d6c4c0a547813be1010446b6c4e5d50e39f.
