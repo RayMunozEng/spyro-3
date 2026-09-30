@@ -12,6 +12,7 @@ extern char D_80070328;
 extern void func_8004F168(void*);
 extern unsigned char D_80066530[];
 void func_80049ACC();
+void func_8003F194(void);
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -57,7 +58,153 @@ INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8003E968);
 
 // Apply surface effects
 // There's a bunch of surface functions here
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8003F194);
+#define M2C_FIELD_3F194(p, t, o) (*(t *)((char *)(p) + (o)))
+extern int D_8006C5BC, D_8006C6C0, D_8006C710, D_8006C74C;
+extern int D_8006FA38, D_80071908, D_80071924;
+extern Vector3D D_8006E020;
+extern char* D_8006EE2C;
+int func_8003FD58(int, int);
+int func_8001A310(Vector3D*, int, int, Moby*);
+int func_8001A358(Vector3D*, int);
+int func_80040954(int);
+void func_8004BEF8(unsigned int);
+
+/* Retail source: USA Rev 0 PSX.EXE 0x8003F194..0x8003F6F4
+ * (344 words; raw text SHA-256
+ * 408e7a1a28f2005620dae59405028a90bcb317532586b5f0a5b32d5791c8c2a7).
+ * Called once per player update by func_8003E83C. Player and collision heights
+ * are raw signed world integers; probes use 0x400, 0xC00, and 0x1000 height
+ * ranges, the player height at +0x44 is halved arithmetically, and state,
+ * animation, and retry fields are integer selectors/counters. Confidence:
+ * exact; falsifiable by 488 instruction/relocation records and the complete
+ * executable and overlay SHA-256 checks. */
+void func_8003F194(void) {
+    int var_v1;
+    register signed char *temp_a3 asm ("$7");
+    register unsigned int var_a0 asm ("$4");
+
+    var_v1 = 0;
+    if (M2C_FIELD_3F194(&D_80070328, int, 0xB8) == 0) {
+        var_v1 = func_8003FD58(M2C_FIELD_3F194(&D_80070328, int, 0x10C), 1);
+    }
+    if ((var_v1 == 0) && (func_8003FD58(M2C_FIELD_3F194(&D_80070328, int, 0x108), 0) == 0) && (func_8003FD58(M2C_FIELD_3F194(&D_80070328, int, 0x110), 2), (M2C_FIELD_3F194(&D_80070328, int, 0xF4) != 0)) && (M2C_FIELD_3F194(&D_80070328, int, 0x280) >= 0) && (M2C_FIELD_3F194(&D_80070328, int, 0x50) != 0x12) && (M2C_FIELD_3F194(&D_80070328, int, 0x24C) != 8) && (M2C_FIELD_3F194(&D_80070328, int, 0x24C) != 0xA)) {
+        if (D_8006C5BC != 0x20) goto regular_surface;
+        if (M2C_FIELD_3F194(&D_80070328, int, 0x1CC) != 0) goto regular_surface;
+        if (M2C_FIELD_3F194(&D_80070328, int, 0x50) == 8) goto regular_surface;
+        if (((M2C_FIELD_3F194(&D_80070328, int, 0x50) == 2) || (M2C_FIELD_3F194(&D_80070328, int, 0x50) == 7)) &&
+            (M2C_FIELD_3F194(&D_80070328, int, 0xA0) > 0)) return;
+        M2C_FIELD_3F194(&D_80070328, int, 0x284) = 0x5A;
+        D_8006C6C0 += 1;
+        D_8006C710 += 1;
+        if ((M2C_FIELD_3F194(&D_80070328, int, 0x240) != 0) || (D_8006C74C != 0)) {
+            if (M2C_FIELD_3F194(&D_80070328, int, 0x280) < 0) M2C_FIELD_3F194(&D_80070328, int, 0x280) = 0;
+            goto check_death_counter;
+        }
+        if (M2C_FIELD_3F194(&D_80070328, int, 0x280) >= 0) M2C_FIELD_3F194(&D_80070328, int, 0x280) -= 1;
+check_death_counter:
+        if (M2C_FIELD_3F194(&D_80070328, int, 0x280) >= 0) goto death_surface_28;
+death_surface_30:
+        func_8004BEF8(0x1E);
+        return;
+death_surface_28:
+        func_8004BEF8(0x1C);
+        return;
+regular_surface:
+        if (D_8006FA38 < 0) goto negative_spawn;
+        if (M2C_FIELD_3F194(&D_80070328, int, 0x50) == 8) goto block_60;
+        var_a0 = 0x37;
+        goto apply_surface;
+negative_spawn:
+        temp_a3 = &D_80070328 + 0x48;
+        __asm__ volatile ("" : "=r"(temp_a3) : "0"(temp_a3));
+        { register int animation asm ("$5") = *(volatile int *)temp_a3;
+        if (animation >= 0x96) goto block_60;
+        if ((M2C_FIELD_3F194(&D_80070328, int, 0x50) == 0xB) || (animation == 0x39)) {
+            if (M2C_FIELD_3F194(&D_80070328, int, 0x8) < M2C_FIELD_3F194(&D_80070328, int, 0xF4)) goto block_60;
+            var_a0 = 0x2C;
+            if (animation != 0x28) goto apply_surface;
+            if (M2C_FIELD_3F194(&D_80070328, int, 0x4C) == 1) goto block_60;
+            goto apply_surface;
+        }
+        if (M2C_FIELD_3F194(&D_80070328, int, 0x50) == 0xC) {
+            if (M2C_FIELD_3F194(&D_80070328, int, 0x8) < M2C_FIELD_3F194(&D_80070328, int, 0xF4)) goto block_60;
+            if (M2C_FIELD_3F194(&D_80070328, int, 0x4C) == 1) goto block_60;
+            var_a0 = 0x16;
+            goto apply_surface;
+        }
+        if (M2C_FIELD_3F194(&D_80070328, int, 0xA0) > 0) goto block_60;
+        if (M2C_FIELD_3F194(&D_80070328, int, 0x50) == 0xA) goto block_60;
+        if ((M2C_FIELD_3F194(&D_80070328, int, 0xF4) + (M2C_FIELD_3F194(&D_80070328, int, 0x44) >> 1)) < M2C_FIELD_3F194(&D_80070328, int, 0x8)) goto block_60;
+        if (M2C_FIELD_3F194(&D_80070328, int, 0x24C) == 1) {
+            var_a0 = 0x4F;
+            goto apply_surface;
+        }
+        if (M2C_FIELD_3F194(&D_80070328, int, 0x24C) == 4) {
+            if (animation == 0x81) goto block_60;
+            var_a0 = 0x81;
+            if (M2C_FIELD_3F194(&D_80070328, int, 0x1CC) != 0) goto apply_surface;
+            if (M2C_FIELD_3F194(&D_80070328, int, 0x50) == 8) goto apply_surface;
+            { register int ninety asm ("$3") = 0x5A;
+              register int counter asm ("$2") = D_8006C6C0;
+              M2C_FIELD_3F194(temp_a3, int, 0x23C) = ninety;
+              D_8006C6C0 = counter + 1; }
+            D_8006C710 += 1;
+            if ((M2C_FIELD_3F194(&D_80070328, int, 0x240) != 0) || (D_8006C74C != 0)) {
+                if (M2C_FIELD_3F194(&D_80070328, int, 0x280) < 0) M2C_FIELD_3F194(&D_80070328, int, 0x280) = 0;
+            } else if (M2C_FIELD_3F194(&D_80070328, int, 0x280) >= 0) {
+                M2C_FIELD_3F194(&D_80070328, int, 0x280) -= 1;
+            }
+            var_a0 = 0x81;
+            goto apply_surface;
+        }
+        if (animation == 0x16) goto run_collision_probe;
+        var_a0 = 0x2C;
+        if (animation != 0x2E) goto apply_surface;
+run_collision_probe:
+        {
+            register void *probeArg0 asm ("$4") = temp_a3 - 0x48;
+            register int probeArg1 asm ("$5") = 0x400;
+            register int probeArg2 asm ("$6") = 1;
+            register int probeArg3 asm ("$7");
+            int collisionResult;
+            __asm__ volatile ("" : "=r"(probeArg0), "=r"(probeArg1), "=r"(probeArg2) : "0"(probeArg0), "1"(probeArg1), "2"(probeArg2));
+            probeArg3 = 0;
+            collisionResult = func_8001A310(probeArg0, probeArg1, probeArg2, (Moby *)probeArg3);
+            __asm__ volatile ("" : "=r"(collisionResult) : "0"(collisionResult));
+            var_a0 = 0x2C;
+            if (collisionResult == 0) {
+                var_a0 = 0x2A;
+                if (M2C_FIELD_3F194(D_8006EE2C, int, 0xDC) == 0) var_a0 = 0x2C;
+            }
+            goto apply_surface;
+        }
+        }
+apply_surface:
+        func_8004BEF8(var_a0);
+        goto block_60;
+    }
+block_60:
+        {
+            register int *firstFloor asm ("$16") = (int *)(&D_80070328 + 0x2C);
+            *firstFloor = 0;
+            if ((func_8001A358((Vector3D *)(firstFloor - 11), 0xC00) != 0) &&
+                (func_80040954(D_80071924) == 4) &&
+                ((M2C_FIELD_3F194(&D_80070328, int, 0x8) - M2C_FIELD_3F194(&D_80070328, int, 0x44)) >= D_80071908)) {
+                *firstFloor = M2C_FIELD_3F194(&D_80070328, int, 0x8) - D_80071908;
+            }
+        }
+        {
+            register int *secondFloor asm ("$17") = (int *)(&D_80070328 + 0x2C);
+            if (*secondFloor == 0 && func_8001A358((Vector3D *)&D_8006E020, 0x1000) != 0) {
+                register int *floorHeight asm ("$16") = &D_80071908;
+                if (((M2C_FIELD_3F194(&D_80070328, int, 0x8) - M2C_FIELD_3F194(&D_80070328, int, 0x44)) >= *floorHeight) &&
+                    (func_80040954(D_80071924) == 4)) {
+                    *secondFloor = M2C_FIELD_3F194(&D_80070328, int, 0x8) - *floorHeight;
+                }
+            }
+        }
+}
+#undef M2C_FIELD_3F194
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8003F6F4);
 

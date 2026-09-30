@@ -234,7 +234,7 @@
 <!-- Spyro -->
 - [x] func_8003E83C
 - [ ] func_8003E968
-- [ ] func_8003F194
+- [x] func_8003F194
 - [ ] func_8003F6F4
 - [ ] func_8003FD58
 - [x] func_800408B8
