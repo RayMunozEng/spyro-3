@@ -1168,7 +1168,216 @@ void func_80042F64(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80043194);
+/* Retail source: USA Rev 0 PSX.EXE 0x80043194..0x80043728
+ * (357 words; raw text SHA-256
+ * d7d426dd6913d7f9c1bf23a3271d890d1c1bfe5606c5da5a794da19673373d63).
+ * Each caller invocation builds the current player rotation matrix and runs
+ * the selector's collision probe set. Selectors 0..3 run two directional
+ * probes; selector 4 runs four. Bounds are signed runtime world units using
+ * the retail offsets 0x40, 0x60, 0x80, and 0xA0. Player rotations are signed
+ * bytes derived from the stored angles by arithmetic shifts of four bits.
+ * Confidence: exact; falsifiable by 419 instruction/relocation records, the
+ * six-entry dispatch table, and the complete executable and overlay hashes. */
+typedef struct {
+    int sp10, sp14, sp18, pad1C;
+    int sp20, sp24, sp28, pad2C;
+    signed char sp30, sp31, sp32, pad33[5];
+    SHORTMATRIX sp38;
+} Frame43194;
+
+#define M2C_FIELD_43194(p, t, o) (*(t *)((signed char *)(p) + (o)))
+extern int D_8007191C;
+
+int func_80043194(unsigned int arg0) {
+    Frame43194 frame;
+    int first = arg0;
+    register int second asm("$16");
+    register int third asm("$18");
+    register int fourth asm("$19");
+    register unsigned char *playerFlag asm("$4") = (unsigned char *)&D_80070328 + 0xFE;
+    register SHORTMATRIX *callA0 asm("$4");
+    register int *callA1 asm("$5");
+    register int *callA2 asm("$6");
+    int result;
+    int initial_v0;
+    int c0_v0, c0_a3, c0b_v0, c0b_a3;
+    int c1_v0, c1_v1; register int c1b_v0 asm("$2"); register int c1b_v1 asm("$3");
+    int c2_v1, c2b_a3;
+    int c3_v0, c3_v0b, c3_a3, c3_v1, c3b_a3, c3b_v0, c3b_v1;
+    int c4a_v1, c4a_v0, c4b_v1, c4b_v0;
+    int c4c_v0, c4c_a3, c4d_a3, c4d_v0;
+    register int angle01 asm("$2");
+    register int angle2 asm("$3");
+
+    if (*playerFlag == 0) return 0;
+    playerFlag -= 0xCE;
+    frame.sp24 = 0;
+    frame.sp10 = 0;
+    frame.sp14 = 0;
+    initial_v0 = -M2C_FIELD_43194(&D_80070328, int, 0x44) - 0x40;
+    frame.sp20 = M2C_FIELD_43194(&D_80070328, int, 0x44) + 0x60;
+    frame.sp28 = initial_v0;
+    frame.sp18 = initial_v0;
+    result = func_800408B8(playerFlag, &frame.sp10, &frame.sp20);
+    if ((result == 8) || (result == 0xC)) {
+        frame.sp30 = 0;
+        second = (int)&D_80071918;
+        frame.sp31 = -func_8004E880(func_8004EDE8((Vector3D *)second, 0), D_80071920, 0);
+        frame.sp32 = func_8004E880(-*(int *)second, -D_8007191C, 0);
+    } else {
+        angle01 = M2C_FIELD_43194(&D_80070328, int, 0x5C);
+        angle2 = M2C_FIELD_43194(&D_80070328, int, 0x64);
+        frame.sp30 = angle01 >> 4;
+        __asm__ volatile ("" : : : "memory");
+        angle01 = M2C_FIELD_43194(&D_80070328, int, 0x60);
+        frame.sp32 = angle2 >> 4;
+        frame.sp31 = angle01 >> 4;
+    }
+    func_8004EA90(&frame.sp30, &frame.sp38, 0);
+
+    switch (first) {
+    case 0:
+        first = 0;
+        frame.sp20 = M2C_FIELD_43194(&D_80070328, int, 0x44) + 0xA0;
+        c0_v0 = -M2C_FIELD_43194(&D_80070328, int, 0x44) + 0x40;
+        c0_a3 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0x60;
+        frame.sp24 = c0_v0;
+        frame.sp28 = c0_a3;
+        frame.sp10 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0x40;
+        frame.sp14 = c0_v0;
+        frame.sp18 = c0_a3;
+        result = func_800408B8(&frame.sp38, &frame.sp10, &frame.sp20);
+        if ((result == 8) || (second = 0, result == 0xC)) { first = 1; second = 0; }
+        callA0 = &frame.sp38; callA1 = &frame.sp10; callA2 = &frame.sp20;
+        frame.sp20 = M2C_FIELD_43194(&D_80070328, int, 0x44) + 0xA0;
+        c0b_v0 = -M2C_FIELD_43194(&D_80070328, int, 0x44);
+        c0b_a3 = c0b_v0 + 0x40;
+        frame.sp24 = c0b_a3;
+        frame.sp28 = c0b_v0;
+        frame.sp10 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0x40;
+        frame.sp14 = c0b_a3;
+        frame.sp18 = c0b_v0;
+        goto second_probe;
+    case 1:
+        first = 0;
+        frame.sp20 = M2C_FIELD_43194(&D_80070328, int, 0x44) + 0xA0;
+        c1_v0 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0x40;
+        c1_v1 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0x60;
+        frame.sp24 = c1_v0;
+        frame.sp28 = c1_v1;
+        frame.sp10 = c1_v0;
+        frame.sp14 = c1_v0;
+        frame.sp18 = c1_v1;
+        result = func_800408B8(&frame.sp38, &frame.sp10, &frame.sp20);
+        if ((result == 8) || (second = 0, result == 0xC)) { first = 1; second = 0; }
+        callA0 = &frame.sp38; callA1 = &frame.sp10; callA2 = &frame.sp20;
+        c1b_v1 = M2C_FIELD_43194(&D_80070328, int, 0x44);
+        c1b_v0 = c1b_v1 + 0xA0;
+        frame.sp20 = c1b_v0;
+        c1b_v0 = c1b_v1 - 0x40;
+        c1b_v1 = -c1b_v1;
+        frame.sp24 = c1b_v0;
+        frame.sp28 = c1b_v1;
+        frame.sp10 = c1b_v0;
+        frame.sp14 = c1b_v0;
+        frame.sp18 = c1b_v1;
+        goto second_probe;
+    case 2:
+        first = 0;
+        c2_v1 = -M2C_FIELD_43194(&D_80070328, int, 0x44) + 0xA0;
+        frame.sp20 = M2C_FIELD_43194(&D_80070328, int, 0x44) + 0xA0;
+        frame.sp24 = c2_v1;
+        frame.sp28 = M2C_FIELD_43194(&D_80070328, int, 0x44);
+        frame.sp10 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0x40;
+        frame.sp14 = c2_v1;
+        frame.sp18 = M2C_FIELD_43194(&D_80070328, int, 0x44);
+        result = func_800408B8(&frame.sp38, &frame.sp10, &frame.sp20);
+        if ((result == 8) || (second = 0, result == 0xC)) { first = 1; second = 0; }
+        callA0 = &frame.sp38; callA1 = &frame.sp10; callA2 = &frame.sp20;
+        c2b_a3 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0xA0;
+        frame.sp20 = M2C_FIELD_43194(&D_80070328, int, 0x44) + 0xA0;
+        frame.sp24 = c2b_a3;
+        frame.sp28 = M2C_FIELD_43194(&D_80070328, int, 0x44);
+        frame.sp10 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0x40;
+        frame.sp14 = c2b_a3;
+        frame.sp18 = M2C_FIELD_43194(&D_80070328, int, 0x44);
+        goto second_probe;
+    case 3:
+        first = 0;
+        frame.sp20 = M2C_FIELD_43194(&D_80070328, int, 0x44) + 0xA0;
+        c3_v0 = -M2C_FIELD_43194(&D_80070328, int, 0x44);
+        c3_a3 = c3_v0 + 0xA0;
+        c3_v0b = c3_v0 - 0xA0;
+        c3_v1 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0x40;
+        frame.sp24 = c3_a3;
+        frame.sp28 = c3_v0b;
+        frame.sp10 = c3_v1;
+        frame.sp14 = c3_a3;
+        frame.sp18 = c3_v0b;
+        result = func_800408B8(&frame.sp38, &frame.sp10, &frame.sp20);
+        if ((result == 8) || (second = 0, result == 0xC)) { first = 1; second = 0; }
+        callA0 = &frame.sp38; callA1 = &frame.sp10; callA2 = &frame.sp20;
+        c3b_a3 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0xA0;
+        frame.sp20 = M2C_FIELD_43194(&D_80070328, int, 0x44) + 0xA0;
+        c3b_v0 = -M2C_FIELD_43194(&D_80070328, int, 0x44) - 0xA0;
+        c3b_v1 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0x40;
+        frame.sp24 = c3b_a3;
+        frame.sp28 = c3b_v0;
+        frame.sp10 = c3b_v1;
+        frame.sp14 = c3b_a3;
+        frame.sp18 = c3b_v0;
+second_probe:
+        result = func_800408B8(callA0, callA1, callA2);
+        if ((result == 8) || (result == 0xC)) second = 1;
+        return first & second;
+    case 4:
+        fourth = 0;
+        frame.sp20 = M2C_FIELD_43194(&D_80070328, int, 0x44) + 0xA0;
+        c4a_v1 = -M2C_FIELD_43194(&D_80070328, int, 0x44) + 0xA0;
+        c4a_v0 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0x40;
+        frame.sp24 = c4a_v1;
+        frame.sp28 = c4a_v0;
+        frame.sp10 = c4a_v0;
+        frame.sp14 = c4a_v1;
+        frame.sp18 = c4a_v0;
+        result = func_800408B8(&frame.sp38, &frame.sp10, &frame.sp20);
+        if ((result == 8) || (third = 0, result == 0xC)) { fourth = 1; third = 0; }
+        frame.sp20 = M2C_FIELD_43194(&D_80070328, int, 0x44) + 0xA0;
+        c4b_v1 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0xA0;
+        c4b_v0 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0x40;
+        frame.sp24 = c4b_v1;
+        frame.sp28 = c4b_v0;
+        frame.sp10 = c4b_v0;
+        frame.sp14 = c4b_v1;
+        frame.sp18 = c4b_v0;
+        result = func_800408B8(&frame.sp38, &frame.sp10, &frame.sp20);
+        if ((result == 8) || (first = 0, result == 0xC)) { third = 1; first = 0; }
+        frame.sp20 = M2C_FIELD_43194(&D_80070328, int, 0x44) + 0xA0;
+        c4c_v0 = -M2C_FIELD_43194(&D_80070328, int, 0x44);
+        c4c_a3 = c4c_v0 + 0x80;
+        frame.sp24 = c4c_a3;
+        frame.sp28 = c4c_v0;
+        frame.sp10 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0x40;
+        frame.sp14 = c4c_a3;
+        frame.sp18 = c4c_v0;
+        result = func_800408B8(&frame.sp38, &frame.sp10, &frame.sp20);
+        if ((result == 8) || (second = 0, result == 0xC)) { first = 1; second = 0; }
+        c4d_a3 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0x80;
+        frame.sp20 = M2C_FIELD_43194(&D_80070328, int, 0x44) + 0xA0;
+        c4d_v0 = -M2C_FIELD_43194(&D_80070328, int, 0x44);
+        frame.sp24 = c4d_a3;
+        frame.sp28 = c4d_v0;
+        frame.sp10 = M2C_FIELD_43194(&D_80070328, int, 0x44) - 0x40;
+        frame.sp14 = c4d_a3;
+        frame.sp18 = c4d_v0;
+        result = func_800408B8(&frame.sp38, &frame.sp10, &frame.sp20);
+        if ((result == 8) || (result == 0xC)) second = 1;
+        return fourth & third & first & second;
+    }
+    return 0;
+}
+
+#undef M2C_FIELD_43194
 
 /* Retail source: asm/nonmatchings/spyroupdate/func_80043728.s,
  * 0x80043728..0x800438F4; runtime position vectors, once per call. */

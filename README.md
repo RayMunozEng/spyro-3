@@ -24,7 +24,7 @@ This version contains modchip protection, anti-crack protection, and encrypted o
 Last updated: 2026-09-30
 |                            | EXE     | Overlays | Total   |
 | -------------------------- | ------- | -------- | ------- |
-| Total C functions matching | 308/337 | 160/3098 | 468/3435 |
+| Total C functions matching | 309/337 | 160/3098 | 469/3435 |
 | Progress percentage        | 91.39% | 5.16% | 13.62% |
 
 *Note: the percentages given above are not necessarily representative of a linear indicator of progress. In particular, many overlay functions repeat and will be easier to implement on the whole than the EXE's functions.*
