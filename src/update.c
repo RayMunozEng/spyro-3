@@ -825,7 +825,226 @@ void func_8005399C() {
     func_8004E790(&unsavedData, 0, 0x850);
 }
 
-INCLUDE_ASM("asm/nonmatchings/update", func_80053A10);
+/* Retail source: USA Rev 0 PSX.EXE 0x80053A10..0x80053F50
+ * (336 instructions; raw bytes SHA-256
+ * 5665be634f81a05124b0ebb364a20c0efbe104422680b9189af095ad89132eb3).
+ * Called once per Update dispatch while GAMESTATE_FADE_IN is active. Its five
+ * stages advance the screen fade by signed 0x10 steps clamped to 0..0xFF,
+ * gate asynchronous CD loading with integer frame counters, restore player
+ * positions in signed world units, and narrow Q4 rotation values to byte
+ * angles with arithmetic shifts. Confidence: exact. Falsifiable by the full
+ * 493 instruction/relocation comparison records and final executable/overlay
+ * hashes. */
+#define M2C_FIELD_53A10(p,t,o) (*(t *)((char *)(p) + (o)))
+extern int D_8006FBC8, D_8006FBC4, D_8006FBD0;
+extern int D_8006C598, D_8006E470, D_8006C5C8, D_8006C58C;
+extern int D_8006FA38, D_8006FA3C, D_8006FA40, D_8006FA54;
+extern int D_8006C5BC, D_8006D8D4;
+extern char D_8006D088;
+extern int D_8006C550, D_8006C704, D_8006C3F4;
+extern int D_8006C74C, D_800725C8, D_80070148, D_8006E344, D_8006C640;
+extern char D_800652B0[];
+extern char D_800652B4[], D_800652B6[];
+extern unsigned char D_80065734[];
+extern char D_8006DBE0[], D_80072098[], D_8007209C[];
+extern void *D_800722C8;
+extern CameraPosition D_80068FF4, D_80069274, D_80069288, D_80068F90;
+extern char D_80070328;
+void func_80047190(void);
+void *func_8002B810(void *);
+int func_8001A358(void *, int);
+void func_8004F178(Vector3D *, Vector3D *);
+void func_8004BEF8(int);
+void func_80052918(int, Moby *);
+void func_8004F984(int, int, int);
+void func_80055294(int);
+void func_8005663C(void);
+int CDLoadTime(void);
+int CDLoadAsync(int, void *, int, int);
+void func_80053A10(void) {
+    register CameraPosition *var_a0 asm ("$4");
+    CameraPosition *var_a0_2;
+    int temp_a0;
+    int temp_v0;
+    int temp_v0_2;
+    int temp_v0_3;
+    int temp_v0_4;
+    int temp_v0_5;
+    int temp_v1;
+    register int var_v0 asm ("$2");
+    unsigned int var_a0_3;
+    register void *temp_a1 asm ("$5");
+    register int *stateTimer asm ("$16");
+
+    switch (D_8006FBC8) {
+    case 0:
+        temp_v0 = D_8006C598 + 0x10;
+        D_8006C598 = temp_v0;
+        if (temp_v0 >= 0xFF) {
+            {
+                register int cap asm ("$4") = 0xFF;
+                register int *fadeState asm ("$2") = &D_8006FBC8;
+                int nextState = *fadeState + 1;
+                D_8006C598 = cap;
+                *fadeState = nextState;
+            }
+            return;
+        }
+    default:
+        return;
+    case 1:
+        stateTimer = &D_8006FBC4;
+        if (*stateTimer != 0) {
+            *stateTimer += 1;
+        }
+        if (CDLoadTime() == 0) {
+            if (*stateTimer == 0) {
+                temp_v1 = (D_8006C5C8 * 0x10) + 0x18;
+                CDLoadAsync(D_8006E470, D_800722C8, *(int *)(D_8007209C + temp_v1), *(int *)(D_80072098 + temp_v1) + *(int *)(D_8006DBE0 + (D_8006C58C * 0x10)));
+                *stateTimer = 1;
+                return;
+            }
+            {
+                register int timerValue asm ("$3") = *stateTimer;
+                var_v0 = D_8006FBD0;
+                __asm__ volatile ("" : "=r"(var_v0) : "0"(var_v0));
+                if (var_v0 != 0) {
+                    var_v0 = timerValue < 0x50;
+                } else {
+                    var_v0 = timerValue < 6;
+                    if (var_v0 == 0) goto advance_state;
+                    var_v0 = timerValue < 0x50;
+                }
+                if (var_v0 != 0) return;
+            }            goto advance_state;
+        }
+        break;
+    case 2:
+        func_80047190();
+        func_8002B810(D_800722C8);
+        goto advance_state;
+    case 3:
+        {
+        register int *spawnState asm ("$5") = &D_8006FA38;
+        if (*spawnState >= 0) {
+            if (D_8006FA40 != 0) {
+                func_8004F178((Vector3D *) &D_80070328, (Vector3D *) (spawnState + 4));
+                func_8004F178((Vector3D *) ((char *)&D_80070328 + 0x124), (Vector3D *) &D_80070328);
+                temp_v0_2 = D_8006FA54 * 0x10;
+                {
+                    register int currentLevel asm ("$3") = D_8006C5BC;
+                M2C_FIELD_53A10(&D_80070328, int, 0x64) = temp_v0_2;
+                M2C_FIELD_53A10(&D_80070328, unsigned char, 0xE) = (unsigned char) (temp_v0_2 >> 4);
+                __asm__ volatile ("" : : : "memory");
+                { register int expectedLevel asm ("$2") = 0x23;
+                var_a0 = &D_80068FF4;
+                __asm__ volatile ("" : "=r"(var_a0) : "0"(var_a0));
+                if ((currentLevel == expectedLevel) && (D_8006FA3C == 3)) {
+                    var_a0 = &D_80069288;
+                }
+                func_80012BA8(var_a0);
+                }
+                D_8006FA40 = 0;
+                }
+            }
+            temp_v0_3 = func_8001A358(&D_80070328, 0x400);
+            if (temp_v0_3 != 0) {
+                M2C_FIELD_53A10(&D_80070328, int, 8) = temp_v0_3 + 0x164;
+                func_8004BEF8(0);
+            }
+        } else {
+            if ((D_8006C5BC == 0x2A) && (D_8006C5C8 == 1)) {
+                var_a0_2 = &D_80069274;
+                goto block_28;
+            }
+            if ((M2C_FIELD_53A10(&D_8006D088, int, 0) != 0) && (D_8006D8D4 != 0)) {
+                var_a0_2 = &D_80068F90;
+block_28:
+                func_80012BA8(var_a0_2);
+            }
+        }
+        }
+        {
+            register unsigned char *cheatPtr asm ("$5") = (unsigned char *)&g_CheatFlags + 0x16;
+            if (*cheatPtr != 0) {
+                register unsigned int actor asm ("$4") = D_8006C550;
+                register unsigned int actorEnd asm ("$3") = D_8006C704;
+                if (actor < actorEnd) {
+                    register int keepScanning asm ("$8") = 1;
+                    register int targetClass asm ("$7") = 0x3FE;
+                    register unsigned int savedEnd asm ("$6");
+                    stateTimer = (int *)cheatPtr;
+                    __asm__ volatile ("" : "=r"(stateTimer) : "0"(stateTimer));
+                    savedEnd = actorEnd;
+                    __asm__ volatile ("" : "=r"(keepScanning) : "0"(keepScanning));
+scan_actors:
+                    if (keepScanning == 0) goto block_37;
+                    if (M2C_FIELD_53A10(actor, short, 0x36) != targetClass) goto next_actor;
+                    temp_a1 = M2C_FIELD_53A10(actor, void *, 0);
+                    if (M2C_FIELD_53A10(temp_a1, int, 0x40) != 0) goto next_actor;
+                    if (M2C_FIELD_53A10(temp_a1, int, 0x34) == *(unsigned char *)stateTimer) goto cheat_found;
+next_actor:
+                    actor += 0x58;
+                    if (actor < savedEnd) goto scan_actors;
+                }
+            }
+        }block_37:
+        temp_v0_4 = D_80065734[D_8006C58C] * 8;
+        temp_a0 = D_8006C3F4 + *(int *)(D_800652B0 + temp_v0_4);
+        func_8004F984(temp_a0, temp_a0 + *(unsigned short *)(D_800652B4 + temp_v0_4), (int) *(unsigned short *)(D_800652B6 + temp_v0_4));
+        M2C_FIELD_53A10(&D_80070328, int, 0x20C) = 0x10000002;
+        func_80055294(0x7B);
+        goto advance_state;
+advance_state:
+        { register int *fadeState asm ("$3") = &D_8006FBC8; *fadeState += 1; }
+        return;
+    case 4:
+        temp_v0_5 = D_8006C598 - 0x10;
+        D_8006C598 = temp_v0_5;
+        if (temp_v0_5 <= 0) {
+            D_8006C598 = 0;
+            D_8006C74C = 0;
+            if (D_800725C8 != 3) goto not_special_exit;
+            D_80070148 = 2;
+            func_8005663C();
+            goto exit_selected;
+cheat_found:
+            {
+                register int roll asm ("$2") = M2C_FIELD_53A10(&D_80070328, int, 0x5C);
+                register int actorIndex asm ("$6") = M2C_FIELD_53A10(temp_a1, int, 0x30);
+                register int yaw asm ("$3") = M2C_FIELD_53A10(&D_80070328, int, 0x64);
+                M2C_FIELD_53A10(&D_80070328, signed char, 0xC) = (signed char) (roll >> 4);
+                __asm__ volatile ("" : : : "memory");
+                {
+                    register int pitch asm ("$2") = M2C_FIELD_53A10(&D_80070328, int, 0x60);
+                    M2C_FIELD_53A10(&D_80070328, unsigned char, 0xE) = (unsigned char) (yaw >> 4);
+                    M2C_FIELD_53A10(&D_80070328, signed char, 0xD) = (signed char) (pitch >> 4);
+                }
+                {
+                    register int selected asm ("$4") = M2C_FIELD_53A10(temp_a1, int, 0x34);
+                    { register int actorOffset asm ("$5") = actorIndex * 0x58;
+                    func_80052918(selected, (Moby *)(D_8006C550 + actorOffset)); }
+                }
+            }
+            *(unsigned char *)stateTimer = 0;
+            return;
+not_special_exit:
+            D_8006E344 = 0;
+exit_selected:
+            { register int *savedPoint asm ("$4") = &D_8006D088;
+            if (*savedPoint == 0) {
+                M2C_FIELD_53A10(&D_80070328, int, 8) -= 0x164;
+                func_8003B634((Savepoint *) savedPoint, (Vector3D *)&D_80070328, (int) M2C_FIELD_53A10(&D_80070328, unsigned char, 0xE));
+                M2C_FIELD_53A10(&D_80070328, int, 8) += 0x164;
+            } }
+        }
+        M2C_FIELD_53A10(&D_80070328, int, 0x20C) = 0x10000002;
+        func_80055294(0x7B);
+        D_8006C640 += 1;
+        break;
+    }
+}
+#undef M2C_FIELD_53A10
 
 /**
  * GoToLevel() - func_80053F50()
