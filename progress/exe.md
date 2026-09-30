@@ -5,7 +5,7 @@
 - [x] func_8001204C
 - [x] func_80012168
 - [x] func_8001241C
-- [ ] func_80012530
+- [x] func_80012530
 - [x] func_80012AC8
 - [x] func_80012B34
 - [x] func_80012BA8

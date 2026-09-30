@@ -157,7 +157,238 @@ void func_8001241C(void) {
     if (D_8006E0C0 >= 0x801) D_8006E0C0 -= 0x1000;
 }
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_80012530);
+extern int D_8006E0C4, D_8006E0C8;
+extern int D_8006E0D8, D_8006E0DC, D_8006E0E0, D_8006E0E4, D_8006E0E8;
+extern int D_8006E0EC, D_8006E0F0, D_8006E0F4, D_8006E0F8, D_8006E0FC;
+extern int D_8006E100, D_8006E104, D_8006E108, D_8006E10C, D_8006E110;
+extern int D_8006E114, D_8006E118, D_8006E11C, D_8006E120, D_8006E124;
+
+/* Retail source: USA Rev 0 PSX.EXE 0x80012530..0x80012AC8
+ * (358 words; raw text SHA-256
+ * 76507c8f73224e31d15b5bc7b5fd2f805aa94b14bfec7405e8e56b4b4f4e059d).
+ * Each call advances five signed camera axis velocities with Q6 damping,
+ * applies the high byte to signed 12-bit camera angles, and clamps settled
+ * velocities to +/-0x100. It runs once per normal camera update and is also
+ * called explicitly by retail overlay camera paths. Confidence: exact;
+ * falsifiable by 478 instruction/relocation records and the complete
+ * executable and overlay SHA-256 checks. */void func_80012530(void) {
+    register int factor asm ("$2") = D_8006E0D8;
+    register int input asm ("$6");
+    register int *velocity asm ("$5");
+    register int product asm ("$4");
+    int value;
+
+    input = D_8006E0B0;
+    product = factor * input;
+    velocity = &D_8006E0C4;
+    value = *velocity;
+    factor = D_8006E0EC * value;
+    factor = (product - factor) >> 6;
+    value += factor;
+    *velocity = value;
+    {
+        int threshold = D_8006E100;
+        __asm__ volatile ("" : "=r"(threshold) : "0"(threshold));
+        if (value < 0) value = -value;
+        value = value < threshold;
+    }
+    if (value != 0) {
+        int scaled = input << 7;
+        __asm__ volatile ("" : "=r"(input) : "0"(input));
+        *velocity = scaled;
+        if (scaled >= 0x101) *velocity = 0x100;
+        if (*velocity < -0x100) *velocity = -0x100;
+    }
+    {
+        register int *controlPtr asm ("$5") = &D_8006E114;
+        register int control asm ("$4");
+        register int bound asm ("$3");
+        __asm__ volatile ("" : "=r"(controlPtr) : "0"(controlPtr));
+        control = *controlPtr;
+        bound = -control;
+        if (control >= 0) {
+            bound <<= 8;
+            if (controlPtr[-20] < bound) controlPtr[-20] = bound;
+            bound = control << 8;
+            if (bound < controlPtr[-20]) controlPtr[-20] = bound;
+        }
+    }
+    {
+        register int *angle asm ("$4") = &D_8006E09C;
+        int next = (*angle + (D_8006E0C4 >> 8)) & 0xFFF;
+        *angle = next;
+        if (next >= 0x801) *angle = next - 0x1000;
+    }
+    {
+        register int factor2 asm ("$2") = D_8006E0DC;
+        register int input2 asm ("$5") = D_8006E0B4;
+        register int product2 asm ("$4");
+        register int value2 asm ("$3");
+        product2 = factor2 * input2;
+        value2 = D_8006E0C8;
+        factor2 = D_8006E0F0 * value2;
+        factor2 = (product2 - factor2) >> 6;
+        value2 += factor2;
+        factor2 = D_8006E104;
+        D_8006E0C8 = value2;
+        if (value2 < 0) value2 = -value2;
+        value2 = value2 < factor2;
+        if (value2 != 0) {
+            factor2 = input2 << 7;
+            D_8006E0C8 = factor2;
+            if (factor2 >= 0x101) D_8006E0C8 = 0x100;
+            if (D_8006E0C8 < -0x100) D_8006E0C8 = -0x100;
+        }
+    }
+    {
+        register int *controlPtr2 asm ("$5") = &D_8006E118;
+        register int control2 asm ("$4");
+        register int bound2 asm ("$3");
+        __asm__ volatile ("" : "=r"(controlPtr2) : "0"(controlPtr2));
+        control2 = *controlPtr2;
+        bound2 = -control2;
+        if (control2 >= 0) {
+            bound2 <<= 8;
+            if (controlPtr2[-20] < bound2) controlPtr2[-20] = bound2;
+            bound2 = control2 << 8;
+            if (bound2 < controlPtr2[-20]) controlPtr2[-20] = bound2;
+        }
+    }
+    {
+        register int *angle2 asm ("$4") = &D_8006E0A0;
+        int next2 = (*angle2 + (D_8006E0C8 >> 8)) & 0xFFF;
+        *angle2 = next2;
+        if (next2 >= 0x801) *angle2 = next2 - 0x1000;
+    }
+    {
+        register int factor3 asm ("$2") = D_8006E0E0;
+        register int input3 asm ("$5") = D_8006E0B8;
+        register int product3 asm ("$4");
+        register int value3 asm ("$3");
+        product3 = factor3 * input3;
+        value3 = D_8006E0CC;
+        factor3 = D_8006E0F4 * value3;
+        factor3 = (product3 - factor3) >> 6;
+        value3 += factor3;
+        factor3 = D_8006E108;
+        D_8006E0CC = value3;
+        if (value3 < 0) value3 = -value3;
+        value3 = value3 < factor3;
+        if (value3 != 0) {
+            factor3 = input3 << 7;
+            D_8006E0CC = factor3;
+            if (factor3 >= 0x101) D_8006E0CC = 0x100;
+            if (D_8006E0CC < -0x100) D_8006E0CC = -0x100;
+        }
+    }
+    {
+        register int *controlPtr3 asm ("$5") = &D_8006E11C;
+        register int control3 asm ("$4");
+        register int bound3 asm ("$3");
+        __asm__ volatile ("" : "=r"(controlPtr3) : "0"(controlPtr3));
+        control3 = *controlPtr3;
+        bound3 = -control3;
+        if (control3 >= 0) {
+            bound3 <<= 8;
+            if (controlPtr3[-20] < bound3) controlPtr3[-20] = bound3;
+            bound3 = control3 << 8;
+            if (bound3 < controlPtr3[-20]) controlPtr3[-20] = bound3;
+        }
+    }
+    {
+        register int factor4 asm ("$2") = D_8006E0E4;
+        register int input4 asm ("$7") = D_8006E0BC;
+        register int product4 asm ("$6");
+        register int value4 asm ("$4");
+        int damping4;
+        product4 = factor4 * input4;
+        value4 = D_8006E0D0;
+        damping4 = D_8006E0F8 * value4;
+        {
+            register int *angle3 asm ("$5") = &D_8006E0A4;
+            register int angleValue3 asm ("$3");
+            factor4 = D_8006E0CC;
+            angleValue3 = *angle3;
+            factor4 >>= 8;
+            angleValue3 += factor4;
+            *angle3 = angleValue3;
+        }
+        factor4 = (product4 - damping4) >> 6;
+        value4 += factor4;
+        factor4 = D_8006E10C;
+        D_8006E0D0 = value4;
+        if (value4 < 0) value4 = -value4;
+        value4 = value4 < factor4;
+        if (value4 != 0) {
+            factor4 = input4 << 7;
+            D_8006E0D0 = factor4;
+            if (factor4 >= 0x101) D_8006E0D0 = 0x100;
+            if (D_8006E0D0 < -0x100) D_8006E0D0 = -0x100;
+        }
+    }
+    {
+        register int *controlPtr4 asm ("$5") = &D_8006E120;
+        register int control4 asm ("$4");
+        register int bound4 asm ("$3");
+        __asm__ volatile ("" : "=r"(controlPtr4) : "0"(controlPtr4));
+        control4 = *controlPtr4;
+        bound4 = -control4;
+        if (control4 >= 0) {
+            bound4 <<= 8;
+            if (controlPtr4[-20] < bound4) controlPtr4[-20] = bound4;
+            bound4 = control4 << 8;
+            if (bound4 < controlPtr4[-20]) controlPtr4[-20] = bound4;
+        }
+    }
+    {
+        register int *angle4 asm ("$4") = &D_8006E0A8;
+        int next4 = (*angle4 + (D_8006E0D0 >> 8)) & 0xFFF;
+        *angle4 = next4;
+        if (next4 >= 0x801) *angle4 = next4 - 0x1000;
+    }
+    {
+        register int factor5 asm ("$2") = D_8006E0E8;
+        register int input5 asm ("$5") = D_8006E0C0;
+        register int product5 asm ("$4");
+        register int value5 asm ("$3");
+        product5 = factor5 * input5;
+        value5 = D_8006E0D4;
+        factor5 = D_8006E0FC * value5;
+        factor5 = (product5 - factor5) >> 6;
+        value5 += factor5;
+        factor5 = D_8006E110;
+        D_8006E0D4 = value5;
+        if (value5 < 0) value5 = -value5;
+        value5 = value5 < factor5;
+        if (value5 != 0) {
+            factor5 = input5 << 7;
+            D_8006E0D4 = factor5;
+            if (factor5 >= 0x101) D_8006E0D4 = 0x100;
+            if (D_8006E0D4 < -0x100) D_8006E0D4 = -0x100;
+        }
+    }
+    {
+        register int *controlPtr5 asm ("$5") = &D_8006E124;
+        register int control5 asm ("$4");
+        register int bound5 asm ("$3");
+        __asm__ volatile ("" : "=r"(controlPtr5) : "0"(controlPtr5));
+        control5 = *controlPtr5;
+        bound5 = -control5;
+        if (control5 >= 0) {
+            bound5 <<= 8;
+            if (controlPtr5[-20] < bound5) controlPtr5[-20] = bound5;
+            bound5 = control5 << 8;
+            if (bound5 < controlPtr5[-20]) controlPtr5[-20] = bound5;
+        }
+    }
+    {
+        register int *angle5 asm ("$4") = &D_8006E0AC;
+        int next5 = (*angle5 + (D_8006E0D4 >> 8)) & 0xFFF;
+        *angle5 = next5;
+        if (next5 >= 0x801) *angle5 = next5 - 0x1000;
+    }
+}
+
 
 /**
  * ???() - func_80012AC8() - MATCHING
