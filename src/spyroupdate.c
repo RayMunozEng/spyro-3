@@ -761,7 +761,190 @@ void func_80041B64(void) {
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80041C20);
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80042A44);
+/* Retail source: USA Rev 0 PSX.EXE 0x80042A44..0x80042F64
+ * (328 instructions; linked bytes SHA-256
+ * c2f493402ae048dc2d254f6d6b551c12db65cbccb885736dbfcbff7c6db8c24a).
+ * Called by the player update and level animation collision paths. Runtime
+ * positions and probe heights are signed integers; the contact angle result
+ * is narrowed to a signed byte before storage. Each call resets and updates
+ * one collision-contact result set. Confidence: exact. Falsifiable by the
+ * complete instruction/relocation stream and executable/overlay hashes. */
+#define M2C_FIELD(p,t,o) (*(t)((char *)(p) + (o)))
+extern char D_80070328_s2 asm ("D_80070328");
+extern char D_80070328_b8_check asm ("D_80070328");
+extern char D_80070328_b8_store asm ("D_80070328");
+extern char D_80070328_bc_check asm ("D_80070328");
+extern int D_8007192C, D_80071930, D_80071934;
+void func_8004EA90(Angle*, SHORTMATRIX*, int*);
+void func_8004F5DC(int, Vector3D*);
+int func_8001A358(Vector3D*, int);
+void func_80042A44(void) {
+    Vector3D sp18;
+    Vector3D sp28;
+    SHORTMATRIX sp38;
+    Angle sp50;
+    Vector3D sp58;
+    SHORTMATRIX *var_a0;
+    SHORTMATRIX *var_a0_2;
+    int temp_v0_3;
+    register int temp_v1 asm ("$3");
+    signed char *temp_s0;
+    signed char *temp_s0_2;
+    signed char *temp_s0_3;
+    signed char *temp_s1;
+    register signed char *temp_s2 asm ("$18");
+    signed char temp_v0;
+    signed char temp_v0_2;
+
+    temp_s0 = &D_80070328 + 0xB8;
+    M2C_FIELD(&D_80070328, int *, 0xB8) = (int) (M2C_FIELD(&D_80070328, int *, 0xB8) + 1);
+    func_8004F168(temp_s0 + 0x14);
+    M2C_FIELD(&D_80070328, int *, 0xD4) = 0x1000;
+    M2C_FIELD(&D_80070328, int *, 0xE4) = 0;
+    M2C_FIELD(&D_80070328, signed char *, 0xFC) = 0;
+    M2C_FIELD(&D_80070328, int *, 0x2C0) = -1;
+    if (M2C_FIELD(&D_80070328, unsigned char *, 0xFD) == 0) {
+        temp_v1 = -M2C_FIELD(&D_80070328, int *, 0x44);
+        sp18.z = temp_v1 + 0x60;
+        sp28.z = temp_v1 - 0x60;
+        sp18.x = 0;
+        sp28.x = 0;
+        sp18.y = 0;
+        sp28.y = 0;
+        if (M2C_FIELD(&D_80070328, int *, 0x50) == 0x13) {
+            sp50.roll = 0;
+            sp50.pitch = M2C_FIELD(&D_80070328, unsigned char *, 0xD);
+            sp50.yaw = M2C_FIELD(&D_80070328, unsigned char *, 0xE);
+            func_8004EA90((Angle *) &sp50, &sp38, 0);
+            var_a0 = &sp38;
+        } else {
+            var_a0 = (SHORTMATRIX *) (temp_s0 - 0x88);
+        }
+        func_8004ED6C(var_a0, (Vector3D *) &sp18, (Vector3D *) &sp18);
+        func_8004F194((Vector3D *) &sp18, (Vector3D *) &sp18, (Vector3D *) &D_80070328);
+        func_8004ED6C(0, (Vector3D *) &sp28, (Vector3D *) &sp28);
+        func_8004F194((Vector3D *) &sp28, (Vector3D *) &sp28, (Vector3D *) &D_80070328);
+        if (func_8001830C((Vector3D *) &sp18, (Vector3D *) &sp28, 4, 0, 0) != 0) {
+            func_8004F178(&D_80070328 + 0xCC, &D_80071918);
+            temp_v0 = func_8004E880(D_80071920, func_8004EDE8(&D_80071918, 0), 0);
+            M2C_FIELD(&D_80070328, int *, 0xE4) = (int) temp_v0;
+            if (temp_v0 < 0) {
+                M2C_FIELD(&D_80070328, int *, 0xE4) = 0x400;
+            }
+            if (D_8007192C < 0) {
+                M2C_FIELD(&D_80070328, int *, 0x13C) = (int) D_80071930;
+            } else {
+                M2C_FIELD(&D_80070328, int *, 0x13C) = 0;
+            }
+            temp_s0_2 = &D_80070328 + 0xE4;
+            if ((M2C_FIELD(&D_80070328, int *, 0xE4) < 0x21) || (M2C_FIELD(&D_80070328, int *, 0x48) == 0x24)) {
+                M2C_FIELD(&D_80070328, int *, 0xB8) = 0;
+                M2C_FIELD(&D_80070328, signed char *, 0x1B5) = (signed char) (M2C_FIELD(&D_80070328, int *, 0xE4) < 0x17);
+                M2C_FIELD(&D_80070328, int *, 0x10C) = (int) D_80071924;
+                M2C_FIELD(&D_80070328, int *, 0x2C0) = (int) D_8007192C;
+                if (D_8007192C >= 0) {
+                    func_8004F5DC(D_8007192C, (Vector3D *) (temp_s0_2 + 0x1E0));
+                }
+                sp18.y = 0;
+                sp28.y = 0;
+                {
+                    register int lower asm ("$2");
+                    int height = M2C_FIELD(&D_80070328, int *, 0x44);
+                    lower = height - 0x60;
+                    temp_v1 = -height;
+                    sp18.x = lower;
+                }
+                sp18.z = temp_v1 + 0x60;
+                sp28.z = temp_v1 - 0x60;
+                sp28.x = M2C_FIELD(&D_80070328, int *, 0x44) + 0x60;
+                if (M2C_FIELD(&D_80070328, int *, 0x50) == 0x13) {
+                    var_a0_2 = &sp38;
+                } else {
+                    var_a0_2 = (SHORTMATRIX *) (temp_s0_2 - 0xB4);
+                }
+                func_8004ED6C(var_a0_2, (Vector3D *) &sp18, (Vector3D *) &sp18);
+                func_8004F194((Vector3D *) &sp18, (Vector3D *) &sp18, (Vector3D *) &D_80070328);
+                func_8004ED6C(0, (Vector3D *) &sp28, (Vector3D *) &sp28);
+                func_8004F194((Vector3D *) &sp28, (Vector3D *) &sp28, (Vector3D *) &D_80070328);
+                if (func_80018368((Vector3D *) &sp18, (Vector3D *) &sp28) == 0) {
+                    M2C_FIELD(&D_80070328, signed char *, 0xFC) = 1;
+                }
+            }
+        } else {
+            M2C_FIELD(&D_80070328, int *, 0x13C) = 0;
+        }
+        temp_s2 = &D_80070328_s2 + 0x48;
+        __asm__ volatile ("" : "=r"(temp_s2) : "0"(temp_s2));
+        if (M2C_FIELD(temp_s2, int *, 0) != 0xD) {
+            if ((M2C_FIELD(temp_s2, int *, 0) != 3) && (M2C_FIELD(&D_80070328_b8_check, int *, 0xB8) != 0) && (M2C_FIELD(&D_80070328_bc_check, int *, 0xBC) == 0)) {
+                temp_s1 = temp_s2 - 0x48;
+                sp18.x = 0;
+                sp18.y = 0;
+                sp28.x = 0;
+                sp28.y = 0;
+                temp_v1 = -M2C_FIELD(&D_80070328, int *, 0x44);
+                sp18.z = temp_v1 + 0x60;
+                sp28.z = temp_v1 - 0x60;
+                func_8004F194((Vector3D *) &sp18, (Vector3D *) &sp18, (Vector3D *) temp_s1);
+                func_8004F194((Vector3D *) &sp28, (Vector3D *) &sp28, (Vector3D *) temp_s1);
+                if (func_8001830C((Vector3D *) &sp18, (Vector3D *) &sp28, 4, 0, 0) != 0) {
+                    temp_s0_3 = temp_s2 + 0x84;
+                    func_8004F178(temp_s0_3, &D_80071918);
+                    temp_v0_2 = func_8004E880(M2C_FIELD(&D_80070328, int *, 0xD4), func_8004EDE8(temp_s0_3, 0), 0);
+                    M2C_FIELD(&D_80070328, int *, 0xE4) = (int) temp_v0_2;
+                    if (temp_v0_2 < 0) {
+                        M2C_FIELD(&D_80070328, int *, 0xE4) = 0x400;
+                    }
+                    {
+                        register int contactAngle asm ("$5");
+                        contactAngle = M2C_FIELD(&D_80070328, int *, 0xE4);
+                    if ((contactAngle < 0x21) || (M2C_FIELD(temp_s2, int *, 0) == 0x24)) {
+                        register int shallowContact asm ("$2");
+                        register int surfaceValue asm ("$3");
+                        register int collisionIndex asm ("$4");
+                        surfaceValue = D_80071924;
+                        collisionIndex = D_8007192C;
+                        shallowContact = contactAngle < 0x17;
+                        M2C_FIELD(&D_80070328_b8_store, int *, 0xB8) = 0;
+                        M2C_FIELD(temp_s2, signed char *, 0x16D) = (signed char) shallowContact;
+                        M2C_FIELD(temp_s2, int *, 0xC4) = surfaceValue;
+                        M2C_FIELD(temp_s2, int *, 0x278) = collisionIndex;
+                        if (collisionIndex >= 0) {
+                            func_8004F5DC(collisionIndex, (Vector3D *) (temp_s2 + 0x27C));
+                        }
+                    }
+                    }
+                }
+            }
+        }
+    }
+    func_8004F178(&sp58, &D_80070328);
+    {
+        register Vector3D *probePosition asm ("$4");
+        register int positionZ asm ("$2");
+        register int height asm ("$3");
+        register int probeHeight asm ("$5");
+        probePosition = &sp58;
+        height = M2C_FIELD(&D_80070328, volatile int *, 0x44);
+        positionZ = *(volatile int *)&sp58.z;
+        probeHeight = (height * 2) + 0x200;
+        positionZ += 0x100;
+        positionZ += height;
+        sp58.z = positionZ;
+        temp_v0_3 = func_8001A358(probePosition, probeHeight);
+    }
+    sp58.z = temp_v0_3;
+    if ((temp_v0_3 != 0) && (D_80071934 != 0)) {
+        M2C_FIELD(&D_80070328, unsigned char *, 0x100) = 1U;
+        M2C_FIELD(&D_80070328, int *, 0xF4) = temp_v0_3;
+        return;
+    }
+    if (M2C_FIELD(&D_80070328, unsigned char *, 0x100) == 0) {
+        M2C_FIELD(&D_80070328, int *, 0xF4) = 0;
+    }
+    M2C_FIELD(&D_80070328, unsigned char *, 0x100) = 0U;
+}
+#undef M2C_FIELD
 
 /* Retail source: USA Rev 0 asm/nonmatchings/spyroupdate/func_80042F64.s,
  * 0x80042F64..0x80043194 (140 instruction words). The function derives
