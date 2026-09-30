@@ -572,7 +572,265 @@ void func_80057154(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/updatepause", func_80057340);
+/* Retail source: USA Rev 0 PSX.EXE 0x80057340..0x80057834
+ * (317 words). Raw function bytes SHA-256:
+ * ee1dc9f7fd061a237cbbd6d56cc39da241cfadbb59829a5ac283bef89b239ecb.
+ * One call consumes the current pause input flags and updates one pause-menu
+ * command transition. Command rows have a 12-byte stride; command selectors
+ * and sentinels are bytes, menu states are signed integers, and input masks
+ * retain their retail bit values. Confidence: exact. Falsifiable test:
+ * compare all 454 instruction/relocation records, the generated 44-entry
+ * jump table, the full PSX.EXE SHA-256, and every corrected/encrypted overlay
+ * hash through build_multiproc.py. */
+extern unsigned char D_80067570[];
+extern int D_8006E53C;
+extern unsigned char g_CheatFlags[];
+void func_8002A6B4();
+void func_8002A6E4();
+void func_8002A714();
+#define M2C_FIELD_57340(expr, type_ptr, offset) (*(type_ptr)((signed char *)(expr) + (offset)))
+void func_80057340(void *input0) {
+    register unsigned char *var_a0 asm ("$4") = input0;
+    register int *state asm ("$16");
+    int input;
+    unsigned char command;
+    register int value asm ("$2");
+    register int short_value asm ("$2");
+    register int *counter asm ("$6");
+    register unsigned char *row asm ("$5");
+    register int *counter2 asm ("$5");
+    register int *final_state asm ("$4");
+    register int row_index asm ("$3");
+    register int row_offset asm ("$2");
+
+    input = D_8006E53C;
+    if (input & 0x810) {
+        goto cancel_path;
+    }
+    if (D_8007014E != 0) {
+        goto cancel_path;
+    }
+    if (M2C_FIELD_57340(&g_CheatFlags, unsigned char *, 4) != 0) {
+        goto cancel_path;
+    }
+    if (!(input & 0x40)) {
+        goto horizontal_input;
+    }
+    row_index = D_8006FBD0;
+    __asm__ volatile ("" : "=r"(row_index) : "0"(row_index));
+    var_a0 = D_80067570;
+    __asm__ volatile ("" : "=r"(var_a0) : "0"(var_a0));
+    row_offset = row_index * 12;
+    __asm__ volatile ("" : "=r"(row_offset) : "0"(row_offset));
+    row_offset += (int)var_a0;
+    command = *(unsigned char *)(row_offset + D_8006FBCC);
+    if (command != 0x22) {
+        goto command_switch;
+    }
+
+cancel_path:
+    if ((D_8006FBD0 == 0xE) && !(D_8006E53C & 0x800)) {
+        func_8002A6B4();
+        D_8006FBCC = 1;
+        func_800565A0();
+        D_8006FBC8 = 0;
+        goto finish;
+    }
+    state = &D_8006FBC8;
+    if (*state == 0) {
+        goto activate;
+    }
+    if (*state != 3) {
+        goto finish;
+    }
+    if (!(D_8006E53C & 0x800)) {
+        goto finish;
+    }
+activate:
+    if (D_8007014E == 0) {
+        func_8002A6E4();
+    }
+    *state = 1;
+    goto finish;
+
+command_switch:
+    switch (command) {
+    case 10:
+        func_8002A6E4();
+        D_8006FBC8 = 0xB;
+        goto finish;
+    case 11:
+    case 12:
+        func_8002A6E4();
+        D_8006FBC8 = 0xC;
+        goto finish;
+    case 1:
+        func_8002A6E4();
+        value = 1;
+        goto store_state;
+    case 2:
+        func_8002A6E4();
+        value = 0xF;
+        goto reset_state;
+    case 4:
+        func_8002A6E4();
+        D_8006FBCC = 1;
+        D_8006FBD0 = 7;
+        __asm__ volatile ("" ::: "memory");
+        value = 0x15;
+        goto reset_state;
+    case 5:
+        func_8002A6E4();
+        D_8006FBCC = 1;
+        D_8006FBD0 = 0xE;
+        __asm__ volatile ("" ::: "memory");
+        value = 3;
+reset_state:
+        D_8006FBC8 = value;
+        D_8006FBC4 = 0;
+        D_8006FBD4 = 0;
+        goto finish;
+    case 28:
+        func_8002A6B4();
+        D_8006FBC8 = 7;
+        goto finish;
+    case 29:
+        func_8002A6B4();
+        D_8006FBCC = 1;
+        func_800565A0();
+        goto finish;
+    case 9:
+        func_8002A6B4();
+        D_8006FBCC = 2;
+        D_8006FBD0 = 0xF;
+        goto finish;
+    case 7:
+        func_8002A6E4();
+        D_8006FBC8 = 8;
+        goto finish;
+    case 8:
+        func_8002A6E4();
+        D_8006FBC8 = 9;
+        goto finish;
+    case 36:
+        func_8002A6E4();
+        value = 1;
+        D_8007015A = 0;
+        D_8006FBC8 = value;
+        goto finish;
+    case 37:
+        func_8002A6E4();
+        __asm__ volatile ("" ::: "memory");
+        short_value = 0x11;
+        goto store_short;
+    case 38:
+        func_8002A6E4();
+        __asm__ volatile ("" ::: "memory");
+        short_value = 0xA;
+        goto store_short;
+    case 39:
+        func_8002A6E4();
+        __asm__ volatile ("" ::: "memory");
+        short_value = 0x1B;
+        goto store_short;
+    case 40:
+        func_8002A6E4();
+        __asm__ volatile ("" ::: "memory");
+        short_value = 0x14;
+        goto store_short;
+    case 41:
+        func_8002A6E4();
+        __asm__ volatile ("" ::: "memory");
+        short_value = 0x25;
+        goto store_short;
+    case 42:
+        func_8002A6E4();
+        __asm__ volatile ("" ::: "memory");
+        short_value = 0x1E;
+        goto store_short;
+    case 43:
+        func_8002A6E4();
+        __asm__ volatile ("" ::: "memory");
+        short_value = 0x2F;
+        goto store_short;
+    case 44:
+        func_8002A6E4();
+        __asm__ volatile ("" ::: "memory");
+        short_value = 0x28;
+store_short:
+        D_8007015A = short_value;
+        value = 1;
+store_state:
+        D_8006FBC8 = value;
+        goto finish;
+    default:
+        goto finish;
+    }
+
+horizontal_input:
+    if (input & 0x1000) {
+        func_8002A714();
+        counter = &D_8006FBCC;
+        value = *counter - 1;
+        *counter = value;
+        if (value > 0) {
+            goto finish;
+        }
+        row_index = D_8006FBD0;
+        var_a0 = D_80067570;
+        row_offset = row_index * 12;
+        row_index = D_8006FBCC;
+        row = (unsigned char *)(row_offset + (int)var_a0);
+        row_index = (int)row + row_index;
+        if (*(unsigned char *)(row_index + 1) == 0xFF) {
+            goto finish;
+        }
+        var_a0 = (unsigned char *)counter;
+        row_index = (int)row;
+        row = (unsigned char *)0xFF;
+        do {
+            ++*(int *)var_a0;
+        } while (*(unsigned char *)(row_index + D_8006FBCC + 1) != (int)row);
+        goto finish;
+    }
+    if (input & 0x4000) {
+        func_8002A714();
+        counter2 = &D_8006FBCC;
+        ++*counter2;
+        row_index = D_8006FBD0;
+        var_a0 = D_80067570;
+        row_offset = row_index * 12;
+        row_index = D_8006FBCC;
+        row_offset += (int)var_a0;
+        row_offset += row_index;
+        if (*(unsigned char *)row_offset == 0xFF) {
+            *counter2 = 1;
+        }
+    }
+
+finish:
+    if (M2C_FIELD_57340(&g_CheatFlags, unsigned char *, 4) != 0) {
+        final_state = &D_8006FBC8;
+        if (*final_state == 1) {
+            goto force_cheat_state;
+        }
+        if (*final_state <= 0) {
+            goto function_end;
+        }
+        if (*final_state >= 9) {
+            goto function_end;
+        }
+        if (*final_state < 6) {
+            goto function_end;
+        }
+force_cheat_state:
+        *final_state = 0xA;
+    }
+function_end:
+    return;
+}
+#undef M2C_FIELD_57340
+
 
 INCLUDE_ASM("asm/nonmatchings/updatepause", func_80057834);
 
