@@ -121,7 +121,7 @@ void func_8001DC5C(void) {
 static const char D_8001025C[] = "Type: %d   Msg: %d";
 extern unsigned char *speechData[];
 extern unsigned char g_CheatFlags;
-extern void *D_8006C600;
+extern unsigned char *D_8006C600;
 extern unsigned char *D_8006C65C;
 extern signed int D_8006C664, D_8006C668, D_8006C7DC;
 extern signed int D_8006FBC8, D_8006FBD4, D_8006FBF8;
@@ -130,7 +130,7 @@ extern signed char D_8006FC12;
 extern unsigned char D_8006FC14[];
 extern signed char D_8006FC86, D_8006FC88;
 extern signed int D_8006FCE0;
-extern signed char D_80070134;
+extern unsigned char D_80070134;
 extern signed int D_80070148;
 extern signed short D_8007014C;
 extern unsigned char D_8007014E;
@@ -509,7 +509,225 @@ void func_8001E618() {
     func_8001E460(0x3D);
 }
 
-/**
- * Draw() - func_8001E638()
- */
-INCLUDE_ASM("asm/nonmatchings/draw", Draw);
+/* USA Rev 0 (SCUS-94467) retail executable, 0x8001E638..0x8001EBAC.
+ * This once-per-frame dispatcher selects the draw route, waits for the retail
+ * VSync cadence, swaps display/draw environments, and submits the ordering
+ * table. Pointer deltas are byte counts in the retail packet buffers.
+ * Confidence: confirmed by all 349 instructions, including their relocation targets in the
+ * 0x574-byte object range. Falsifiable vectors: modes 4 and 13 exercise the
+ * temporary packet-buffer routes; every other mode takes the normal route. */
+typedef signed int s32;
+typedef unsigned int u32;
+typedef unsigned char u8;
+typedef s32 M2C_UNK;
+#define M2C_FIELD(expr,type_ptr,offset) (*(type_ptr)((char *)(expr)+(offset)))
+
+s32 VSync(M2C_UNK);
+M2C_UNK func_80030478();
+M2C_UNK func_80031124();
+M2C_UNK func_8003CDA0();
+s32 func_8004E664(M2C_UNK);
+M2C_UNK func_8004E7AC(s32, M2C_UNK, M2C_UNK);
+M2C_UNK func_8004F178(void *, void *);
+M2C_UNK func_8004F6C4(M2C_UNK *, void *, void *, s32);
+M2C_UNK func_80059038();
+M2C_UNK func_title_80077CFC();
+extern s32 D_8006C4F8;
+extern u8 *D_8006C550;
+extern s32 D_8006C5D4;
+extern s32 D_8006C5D8;
+extern s32 D_8006C634;
+extern s32 D_8006C678;
+extern s32 *D_8006C6B0;
+extern s32 D_8006C718;
+extern s32 D_8006C7D4;
+extern s32 D_8006C7E8;
+extern char D_8006E03C;
+extern s32 D_8006E048;
+extern u32 D_8006E344;
+extern s32 D_8006FC6C;
+extern M2C_UNK (*unk_ovlheader_80074380)();
+extern M2C_UNK (*unk_ovlheader_80074488)();
+
+void Draw(void) {
+    register s32 *temp_s1 asm("$17");
+    register s32 temp_s0 asm("$16");
+    register s32 temp_s2 asm("$18");
+    s32 temp_v0;
+    s32 temp_v0_2;
+    s32 temp_v0_3;
+    s32 temp_v0_4;
+    s32 temp_v1;
+    s32 var_a0;
+    s32 var_v1_2;
+    s32 var_v1_3;
+    u8 *temp_s3;
+    u8 *var_v1;
+    u8 temp_s4;
+    s32 previousSync;
+    register s32 *syncInit asm("$4");
+    register s32 *syncState asm("$16");
+
+    if (D_8006C718 == 0) {
+        var_v1 = D_8006FBFC;
+        if (D_8006C600 == D_8006FBFC) {
+            var_v1 = D_8006FBFC + 0x74;
+        }
+        {
+            register s32 drawStart asm("$2") = D_8006C634 + 0x1000;
+            D_8006C600 = var_v1;
+            temp_v1 = M2C_FIELD(var_v1, s32 *, 0x70);
+            D_8006C664 = temp_v1;
+            D_8006C7D4 = drawStart;
+            D_8006C668 = temp_v1 + D_8006C7DC;
+        }
+        func_8004F6C4(&D_8006E03C, &D_8006E03C - 0x30, &D_8006E03C - 0x44, D_8006C7DC);
+        func_8004F178(&D_8006E03C - 0x10, &D_8006E03C - 0x1C);
+        switch (D_8006E344) {                       /* switch 1 */
+        case 1:                                     /* switch 1 */
+            func_8001D424();
+            break;
+        case 15:                                    /* switch 1 */
+            func_8001DC3C();
+            break;
+        case 2:                                     /* switch 1 */
+            if (D_8006E048 > 0) {
+                unk_ovlheader_80074380();
+                var_a0 = 0xC;
+                goto block_22;
+            } else {
+            case 0:                                 /* switch 1 */
+            case 14:                                /* switch 1 */
+                func_8001D274();
+            }
+            break;
+        case 3:                                     /* switch 1 */
+            func_8001DC5C();
+            break;
+        case 4:                                     /* switch 1 */
+            func_8001DD1C();
+            break;
+        case 5:                                     /* switch 1 */
+            func_80059038();
+            break;
+        case 6:                                     /* switch 1 */
+            func_8001E2A8();
+            break;
+        case 7:                                     /* switch 1 */
+            func_8001E2C8();
+            break;
+        case 9:                                     /* switch 1 */
+            func_8001E32C();
+            break;
+        case 10:                                    /* switch 1 */
+            func_8001E374();
+            break;
+        case 11:                                    /* switch 1 */
+            func_title_80077CFC();
+            break;
+        case 12:                                    /* switch 1 */
+            func_8001E394();
+            break;
+        case 13:                                    /* switch 1 */
+            func_8001E3F8();
+            break;
+        case 16:                                    /* switch 1 */
+            func_8001E618();
+            break;
+        case 18:                                    /* switch 1 */
+            unk_ovlheader_80074488();
+            var_a0 = 0x3D;
+            goto block_22;
+        }
+        goto block_23;
+block_22:
+        func_8001E460(var_a0);
+block_23:
+        D_8006C7E8 = D_8006C668 - D_8006C664;
+        DrawSync(0);
+        if (D_8006E344 != 9) {
+            if (D_8006C678 != 0) {
+                VSync(0);
+            }
+            temp_v0 = VSync(-1);
+            previousSync = D_8006C5D4;
+            syncInit = &D_8006C5D8;
+            *syncInit = temp_v0;
+            if ((temp_v0 - previousSync) < 2) {
+                syncState = syncInit;
+loop_27:
+                VSync(0);
+                temp_v0_2 = VSync(-1);
+                *syncState = temp_v0_2;
+                if ((temp_v0_2 - syncState[-1]) < 2) {
+                    goto loop_27;
+                }
+            }
+        } else {
+            VSync(0);
+        }
+        D_8006C5D4 = VSync(-1);
+        PutDispEnv(D_8006C600 + 0x5C);
+        PutDrawEnv((DRAWENV *) D_8006C600);
+        if ((D_8006E344 == 4) && (D_8006C65C != 0) && ((u8) D_80070134 != 0) && ((D_8006C668 - D_8006C664) >= 0xA01)) {
+            temp_s3 = D_8006C550;
+            temp_s4 = M2C_FIELD(D_8006C65C, u8 *, 0xA0);
+            {
+                register s32 callResult asm("$2") = func_8004E664(0x580);
+                register u8 opacity asm("$3") = 0xFFU;
+                register u8 *specialDraw asm("$4") = D_8006C65C;
+                temp_s1 = D_8006C6B0;
+                temp_s2 = callResult;
+                D_8006C550 = specialDraw;
+                M2C_FIELD(specialDraw, u8 *, 0xA0) = opacity;
+            }
+            temp_s0 = D_8006C668;
+            {
+                register u8 *specialBase asm("$3") = D_8006FBFC;
+                register u8 *currentDraw asm("$2") = (u8 *)D_8006C600;
+                if (currentDraw == specialBase) {
+                    var_v1_2 = D_8006FCE0;
+                } else {
+                    var_v1_2 = D_8006FC6C;
+                }
+            }
+            D_8006C668 = var_v1_2;
+            temp_v0_3 = var_v1_2 + D_8006C7DC;
+            D_8006C668 = temp_v0_3;
+            func_8004E7AC(temp_v0_3 - 0x3000, 0, 0xC00);
+            func_80030478();
+            func_80031124();
+            D_8006C668 = temp_s0;
+            *temp_s1 = (*temp_s1 & 0xFF000000) | (func_8004E664(0x580) & 0xFFFFFF);
+            D_8006C550 = temp_s3;
+            D_8006C7E8 = D_8006C668 - D_8006C664;
+            M2C_FIELD(D_8006C65C, u8 *, 0xA0) = temp_s4;
+            DrawOTag((u32 *) temp_s2);
+            return;
+        }
+        if ((D_8006E344 == 0xD) && (D_8006C4F8 != 2)) {
+            temp_s2 = func_8004E664(0x580);
+            temp_s1 = D_8006C6B0;
+            temp_s0 = D_8006C668;
+            {
+                register u8 *specialBase asm("$3") = D_8006FBFC;
+                register u8 *currentDraw asm("$2") = (u8 *) D_8006C600;
+                if (currentDraw == specialBase) {
+                    var_v1_3 = D_8006FCE0;
+                } else {
+                    var_v1_3 = D_8006FC6C;
+                }
+            }
+            D_8006C668 = var_v1_3;
+            temp_v0_4 = var_v1_3 + D_8006C7DC;
+            D_8006C668 = temp_v0_4;
+            func_8004E7AC(temp_v0_4 - 0x3000, 0, 0xC00);
+            func_8003CDA0();
+            D_8006C668 = temp_s0;
+            *temp_s1 = (*temp_s1 & 0xFF000000) | (func_8004E664(0x580) & 0xFFFFFF);
+            DrawOTag((u32 *) temp_s2);
+        } else {
+            DrawOTag((u32 *) func_8004E664(0x580));
+        }
+    }
+}

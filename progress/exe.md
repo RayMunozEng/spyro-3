@@ -53,7 +53,7 @@
 - [x] func_8001E3F8
 - [x] func_8001E460
 - [x] func_8001E618
-- [ ] func_8001E638 <!-- Draw -->
+- [x] func_8001E638 <!-- Draw -->
 
 <!-- Drawutil -->
 - [x] func_8001EBAC
