@@ -1957,7 +1957,218 @@ void func_80044514(void) {
 }
 
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800445F8);
+/* Retail source: USA Rev 0 SCUS-94467 PSX.EXE,
+ * 0x800445F8..0x80044C28. The byte at D_80067BAC indexes a 62-byte
+ * previous-animation row by the current animation state and selects one of
+ * twelve transition paths. Animation selectors and frames are bytes; the
+ * transition mode and animation states are 32-bit values. func_80044240 calls
+ * this once per D_8006C648 animation tick when the state or transition mode
+ * changes. Confidence: exact instruction and relocation match (627/627).
+ * Falsifiable vector: modes 0, 4, and 5 plus transition codes 1..12 must
+ * reproduce the stores and calls in the cited retail range.
+ */
+extern unsigned char D_80067BAC[];
+extern SpyroAnimRoot ** volatile D_8006C558_volatile __asm__("D_8006C558");
+extern volatile int previousAnimationState __asm__("D_80070328+0x1EC");
+extern volatile unsigned char outerNextFrame __asm__("D_80070328+0x17");
+extern volatile unsigned char transitionNextFrame __asm__("D_80070328+0x17");
+extern unsigned char outerFrameCounts[] __asm__("D_80067AA9");
+#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((char *)(expr) + (offset)))
+void func_800445F8(void) {
+    int temp_a0;
+    int temp_v1;
+    unsigned char temp_v0;
+    unsigned char temp_v0_2;
+    int mode;
+
+    mode = M2C_FIELD(&D_80070328, int *, 0x1F0);
+    if (mode == 0) goto process;
+    if (mode == 4) goto mode_4;
+    if (mode == 5) goto mode_5;
+    goto process;
+
+mode_4:
+    {
+        register unsigned char *table asm("$2") = D_80067BAC;
+        register int previous asm("$4") = M2C_FIELD(&D_80070328, int *, 0x1EC);
+        register int current asm("$5") = M2C_FIELD(&D_80070328, int *, 0x48);
+        __asm__ volatile("" : "=r"(table), "=r"(previous), "=r"(current) : "0"(table), "1"(previous), "2"(current));
+        {
+            register int offset asm("$3") = previous * 0x3E;
+            offset += (int) table;
+            __asm__ volatile("" : "=r"(offset) : "0"(offset));
+            temp_v0 = ((unsigned char *) offset)[current];
+        }
+        if (((unsigned int) (temp_v0 - 4) < 2U) || (current == previous)) {
+            goto block_31;
+        }
+    }
+    goto process;
+
+mode_5:
+    __asm__ volatile("" : : "r"(mode));
+    if ((unsigned char) D_80066530[M2C_FIELD(&D_80070328, unsigned char *, 0x1C)] >= 0x60U) {
+        M2C_FIELD(&D_80070328, unsigned char *, 0x14) = (unsigned char) M2C_FIELD(&D_80070328, unsigned char *, 0x15);
+        M2C_FIELD(&D_80070328, unsigned char *, 0x16) = (unsigned char) M2C_FIELD(&D_80070328, unsigned char *, 0x17);
+    }
+    M2C_FIELD(&D_80070328, unsigned char *, 0x1C) = 0x71U;
+    {
+        register unsigned char nextFrame asm("$2") = outerFrameCounts[M2C_FIELD(&D_80070328, unsigned char *, 0x14) * 4];
+        __asm__ volatile("" : "=r"(nextFrame) : "0"(nextFrame));
+        M2C_FIELD(&D_80070328, int *, 0x1F0) = 4;
+        outerNextFrame = nextFrame;
+    }
+    return;
+
+process:
+if (previousAnimationState != M2C_FIELD(&D_80070328, int *, 0x48)) {
+    {
+        register int previous asm("$3") = M2C_FIELD(&D_80070328, int *, 0x1EC);
+        register unsigned char *table asm("$4");
+        __asm__ volatile("" : "=r"(previous) : "0"(previous));
+        table = D_80067BAC;
+        __asm__ volatile("" : "=r"(table) : "0"(table));
+        {
+            register int offset asm("$2") = previous * 0x3E;
+            offset += (int) table;
+            __asm__ volatile("" : "=r"(offset) : "0"(offset));
+            temp_v0 = ((unsigned char *) offset)[M2C_FIELD(&D_80070328, int *, 0x48)];
+        }
+    }
+    switch (temp_v0) {                  /* switch 2 */
+    case 1:                             /* switch 2 */
+        if ((unsigned char) D_80066530[M2C_FIELD(&D_80070328, unsigned char *, 0x1C)] >= 0x60U) {
+            M2C_FIELD(&D_80070328, unsigned char *, 0x14) = (unsigned char) M2C_FIELD(&D_80070328, unsigned char *, 0x15);
+            M2C_FIELD(&D_80070328, unsigned char *, 0x16) = (unsigned char) M2C_FIELD(&D_80070328, unsigned char *, 0x17);
+        }
+        M2C_FIELD(&D_80070328, unsigned char *, 0x17) = 0U;
+        M2C_FIELD(&D_80070328, unsigned char *, 0x15) = (unsigned char) M2C_FIELD(&D_80070328, int *, 0x48);
+        if ((M2C_FIELD(&D_80070328, int *, 0x50) == 6) && (M2C_FIELD(&D_80070328, int *, 0x1EC) == 0x23)) {
+            if (M2C_FIELD(&D_80070328, short *, 0x148) != 0) {
+                M2C_FIELD(&D_80070328, unsigned char *, 0x1C) = 0xF1U;
+            } else {
+                goto block_20;
+            }
+        } else {
+block_20:
+            M2C_FIELD(&D_80070328, unsigned char *, 0x1C) = 0x71U;
+        }
+        M2C_FIELD(&D_80070328, int *, 0x1F0) = 0;
+        M2C_FIELD(&D_80070328, int *, 0x1EC) = (int) M2C_FIELD(&D_80070328, int *, 0x48);
+        return;
+    case 2:                             /* switch 2 */
+        M2C_FIELD(&D_80070328, unsigned char *, 0x16) = 0U;
+        M2C_FIELD(&D_80070328, unsigned char *, 0x14) = (unsigned char) M2C_FIELD(&D_80070328, int *, 0x48);
+        M2C_FIELD(&D_80070328, unsigned char *, 0x15) = (unsigned char) M2C_FIELD(&D_80070328, int *, 0x48);
+        if (M2C_FIELD(&D_80070328, int *, 0x48) == 0x1A) {
+            M2C_FIELD(&D_80070328, unsigned char *, 0x17) = 0U;
+            M2C_FIELD(&D_80070328, unsigned char *, 0x1C) = 0U;
+        } else {
+            transitionNextFrame = 1U;
+            M2C_FIELD(&D_80070328, unsigned char *, 0x1C) = (unsigned char) (((int) D_8006C558_volatile[M2C_FIELD(&D_80070328, int *, 0x48) & 0xFF]->unk14 >> 0xE) & 0xF0);
+        }
+        func_80047138();
+        temp_v1 = M2C_FIELD(&D_80070328, int *, 0x48);
+        M2C_FIELD(&D_80070328, int *, 0x200) = 6;
+        M2C_FIELD(&D_80070328, int *, 0x1F0) = 0;
+        goto block_48;
+    case 3:                             /* switch 2 */
+        if ((unsigned char) D_80066530[M2C_FIELD(&D_80070328, unsigned char *, 0x1C)] >= 0x60U) {
+            register unsigned char oldFrame asm("$3") = M2C_FIELD(&D_80070328, unsigned char *, 0x17);
+            register int frameOffset asm("$4") = M2C_FIELD(&D_80070328, unsigned char *, 0x14);
+            register unsigned char nextFrame asm("$2") = oldFrame + 1;
+            frameOffset *= 4;
+            M2C_FIELD(&D_80070328, unsigned char *, 0x16) = oldFrame;
+            M2C_FIELD(&D_80070328, unsigned char *, 0x17) = nextFrame;
+            if ((unsigned int) (nextFrame & 0xFF) >= D_80067AA9[frameOffset]) {
+                M2C_FIELD(&D_80070328, unsigned char *, 0x17) = D_80067AA8[frameOffset];
+            }
+        }
+        M2C_FIELD(&D_80070328, unsigned char *, 0x1C) = 0x31U;
+        temp_v1 = M2C_FIELD(&D_80070328, int *, 0x48);
+        goto block_47;
+    case 4:                             /* switch 2 */
+        M2C_FIELD(&D_80070328, int *, 0x1F0) = 4;
+block_31:
+        func_80044514();
+        return;
+    case 5:                             /* switch 2 */
+        if ((unsigned char) D_80066530[M2C_FIELD(&D_80070328, unsigned char *, 0x1C)] >= 0x60U) {
+            M2C_FIELD(&D_80070328, unsigned char *, 0x14) = (unsigned char) M2C_FIELD(&D_80070328, unsigned char *, 0x15);
+            M2C_FIELD(&D_80070328, unsigned char *, 0x16) = (unsigned char) M2C_FIELD(&D_80070328, unsigned char *, 0x17);
+        }
+        M2C_FIELD(&D_80070328, unsigned char *, 0x1C) = 0x71U;
+        if ((M2C_FIELD(&D_80070328, int *, 0x1EC) == 7) && (M2C_FIELD(&D_80070328, int *, 0x58) < 0x18)) {
+            M2C_FIELD(&D_80070328, unsigned char *, 0x17) = 1U;
+            temp_v1 = M2C_FIELD(&D_80070328, int *, 0x48);
+            goto block_47;
+        }
+        temp_v0 = D_80067AA9[M2C_FIELD(&D_80070328, unsigned char *, 0x14) * 4];
+        __asm__ volatile("" : "=r"(temp_v0) : "0"(temp_v0));
+        M2C_FIELD(&D_80070328, int *, 0x1F0) = 4;
+        M2C_FIELD(&D_80070328, unsigned char *, 0x17) = temp_v0;
+        return;
+    case 10:                            /* switch 2 */
+        if ((unsigned char) D_80066530[M2C_FIELD(&D_80070328, unsigned char *, 0x1C)] >= 0x60U) {
+            M2C_FIELD(&D_80070328, unsigned char *, 0x14) = (unsigned char) M2C_FIELD(&D_80070328, unsigned char *, 0x15);
+            M2C_FIELD(&D_80070328, unsigned char *, 0x16) = (unsigned char) M2C_FIELD(&D_80070328, unsigned char *, 0x17);
+        }
+        {
+            register int current asm("$3") = M2C_FIELD(&D_80070328, int *, 0x48);
+            register int index asm("$2") = (current & 0xFF) * 4;
+            register unsigned char frame asm("$4");
+            __asm__ volatile("" : "=r"(index) : "0"(index));
+            M2C_FIELD(&D_80070328, unsigned char *, 0x15) = (unsigned char) current;
+            __asm__ volatile("" : : : "memory");
+            frame = D_80067AA8[index];
+            M2C_FIELD(&D_80070328, unsigned char *, 0x1C) = 0x71U;
+            M2C_FIELD(&D_80070328, int *, 0x1EC) = current;
+            M2C_FIELD(&D_80070328, int *, 0x1F0) = 0;
+            M2C_FIELD(&D_80070328, unsigned char *, 0x17) = frame;
+        }
+        return;
+    case 11:                            /* switch 2 */
+        if ((unsigned char) D_80066530[M2C_FIELD(&D_80070328, unsigned char *, 0x1C)] >= 0x60U) {
+            M2C_FIELD(&D_80070328, unsigned char *, 0x14) = (unsigned char) M2C_FIELD(&D_80070328, unsigned char *, 0x15);
+            M2C_FIELD(&D_80070328, unsigned char *, 0x16) = (unsigned char) M2C_FIELD(&D_80070328, unsigned char *, 0x17);
+        }
+        {
+            register int current asm("$3") = M2C_FIELD(&D_80070328, int *, 0x48);
+            register int index asm("$2") = (current & 0xFF) * 4;
+            register unsigned char frame asm("$4");
+            __asm__ volatile("" : "=r"(index) : "0"(index));
+            M2C_FIELD(&D_80070328, unsigned char *, 0x15) = (unsigned char) current;
+            __asm__ volatile("" : : : "memory");
+            frame = D_80067AA9[index];
+            M2C_FIELD(&D_80070328, unsigned char *, 0x1C) = 0x71U;
+            M2C_FIELD(&D_80070328, int *, 0x1EC) = current;
+            M2C_FIELD(&D_80070328, int *, 0x1F0) = 4;
+            M2C_FIELD(&D_80070328, unsigned char *, 0x17) = frame;
+        }
+        return;
+    case 12:                            /* switch 2 */
+        if ((unsigned char) D_80066530[M2C_FIELD(&D_80070328, unsigned char *, 0x1C)] >= 0x60U) {
+            M2C_FIELD(&D_80070328, unsigned char *, 0x14) = (unsigned char) M2C_FIELD(&D_80070328, unsigned char *, 0x15);
+            M2C_FIELD(&D_80070328, unsigned char *, 0x16) = (unsigned char) M2C_FIELD(&D_80070328, unsigned char *, 0x17);
+        }
+        M2C_FIELD(&D_80070328, unsigned char *, 0x17) = 0U;
+        M2C_FIELD(&D_80070328, unsigned char *, 0x1C) = 0xF1U;
+        temp_v1 = M2C_FIELD(&D_80070328, int *, 0x48);
+        goto block_47;
+    }
+} else {
+    return;
+}
+    return;
+
+block_47:
+    M2C_FIELD(&D_80070328, int *, 0x1F0) = 0;
+    M2C_FIELD(&D_80070328, unsigned char *, 0x15) = (unsigned char) temp_v1;
+block_48:
+    M2C_FIELD(&D_80070328, int *, 0x1EC) = temp_v1;
+}
+#undef M2C_FIELD
+
 
 /* Retail source: asm/nonmatchings/spyroupdate/func_80044C28.s,
  * 0x80044C28..0x80044CF0. Animation bytes advance on call. */
