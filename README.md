@@ -21,11 +21,11 @@ This version contains modchip protection, anti-crack protection, and encrypted o
 - `tools/`: contains utilities for building the game.
 
 ## Progress
-Last updated: 2026-09-30
+Last updated: 2026-10-01
 |                            | EXE     | Overlays | Total   |
 | -------------------------- | ------- | -------- | ------- |
 | Total C functions matching | 316/337 | 160/3098 | 476/3435 |
-| Progress percentage        | 92.58% | 5.16% | 13.74% |
+| Progress percentage        | 93.77% | 5.16% | 13.86% |
 
 *Note: the percentages given above are not necessarily representative of a linear indicator of progress. In particular, many overlay functions repeat and will be easier to implement on the whole than the EXE's functions.*
 

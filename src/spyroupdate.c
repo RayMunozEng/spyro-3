@@ -2446,7 +2446,312 @@ block_33:
 }
 #undef M2C_FIELD
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800451C4);
+/* Retail source: USA Rev 0 PSX.EXE 0x800451C4..0x800458F8. Fully decoded behavior; one compiler delay-slot scheduling pair remains before exact matching. */
+extern char **D_8006C558_raw __asm__("D_8006C558");
+extern int D_80071924;
+extern Unk_8006d048 D_8006D048;
+#define D_8006C558 D_8006C558_raw
+#define M2C_FIELD_451C4(expr,type_ptr,offset) (*(type_ptr)((signed char *)(expr)+(offset)))
+int func_8004F554(Vector3D *, void *, int);     /* extern */
+int rand();                                         /* extern */
+extern char D_80069598[];
+extern char D_800695EC[];
+extern char D_800695F8[];
+extern char D_800698B8[];
+extern unsigned char D_80069C58[];
+extern char D_80069C68[];
+extern Vector3D D_8007179C;
+extern unsigned char D_800717A8;
+extern unsigned char D_800717A9;
+extern unsigned char D_800717AA;
+extern unsigned char D_800717BC[];
+extern unsigned char D_800717C4[];
+extern unsigned char D_800717CC[];
+extern unsigned char D_80071834;
+extern unsigned char D_80071835;
+extern unsigned char D_80071836;
+extern SHORTMATRIX D_80071838;
+extern char D_80071860[];
+
+typedef struct {
+    Vector3D sp18;
+    char pad24[4];
+    Vector3D sp28;
+    char pad34[4];
+    Vector3D sp38;
+    char pad44[4];
+    int sp48;
+    char pad4C[8];
+} Stack451C4;
+void func_800451C4(void) {
+    Stack451C4 frame;
+    register char *var_a1 asm("$5");
+    register char *var_s6 asm("$22");
+    register char *var_v0 asm("$2");
+    SpecialSurface *temp_v1_2;
+    register int temp_a3 asm("$7");
+    register int temp_t1 asm("$9");
+    int var_a0;
+    int var_a2;
+    int var_a3;
+    int var_fp;
+    int var_lo;
+    register int var_s4 asm("$20");
+    signed char *temp_s0;
+    signed char *temp_s1;
+    register unsigned char *var_s3 asm("$19");
+    register unsigned char *var_s5 asm("$21");
+    unsigned char temp_a1;
+    void *temp_v1;
+    register Vector3D *workPos asm("$17");
+    register SHORTMATRIX *matrix asm("$23");
+    register Vector3D *scratchPos asm("$18");
+
+    frame.sp48 = 0;
+    if (D_80071834 != 0) {
+        if ((M2C_FIELD_451C4(&D_80070328, int *, 0xB8) == 0) && ((unsigned char) M2C_FIELD_451C4(&D_80070328, unsigned char *, 0xD) >= 0x81U)) {
+            M2C_FIELD_451C4(&D_80070328, int *, 0x18C) = (int) ((0x100 - M2C_FIELD_451C4(&D_80070328, unsigned char *, 0xD)) * 8);
+        } else {
+            M2C_FIELD_451C4(&D_80070328, int *, 0x18C) = 0;
+        }
+        {
+            register int loopDelta asm("$4") = D_8006C648;
+            register int loopIndex asm("$7") = 0;
+            if (loopDelta > 0) {
+                register unsigned char *loopState asm("$5") = &D_80071835;
+                register unsigned char *lookup asm("$6") = D_80069C58;
+                register int thirtyTwo asm("$8") = 0x20;
+                register unsigned char *entry asm("$2");
+                register unsigned char entryIndex asm("$3");
+                register unsigned char nextState asm("$2");
+                register int outputValue asm("$2");
+                register unsigned char stateValue asm("$3");
+                do {
+                    stateValue = loopState[0];
+                    if (stateValue < 8U) {
+                        __asm__ volatile("" : : : "memory");
+                        entry = (unsigned char *)((loopState[2] * 8) + (int)lookup);
+                        entry += stateValue;
+                        entryIndex = *entry;
+                        __asm__ volatile("" : : "r"(entryIndex));
+                        outputValue = loopDelta - loopIndex;
+                        __asm__ volatile("" : : "r"(outputValue));
+                        D_800717BC[entryIndex] = outputValue;
+                        entry = (unsigned char *)((loopState[2] * 8) + (int)lookup);
+                        entry += loopState[0];
+                        D_800717C4[*entry] = thirtyTwo;
+                        entry = (unsigned char *)((loopState[2] * 8) + (int)lookup);
+                        entry += loopState[0];
+                        D_800717CC[*entry] = 0;
+                    }
+                    loopIndex += 1;
+                    nextState = loopState[0];
+                    loopDelta = D_8006C648;
+                    nextState += 1;
+                    loopState[0] = nextState;
+                } while (loopIndex < loopDelta);
+            }
+        }
+        {
+            register unsigned char *active asm("$17") = &D_80071836;
+            if (*active != 0) {
+            func_80049484((int) &frame.sp18);
+            {
+            register Vector3D *collisionPos asm("$4") = &frame.sp18;
+            register int collisionRadius asm("$5") = 0xA0;
+            register int collisionZero asm("$6") = 0;
+            register int collisionObject asm("$2");
+            register int collisionFourth asm("$7");
+            __asm__ volatile("" : "=r"(collisionPos), "=r"(collisionRadius), "=r"(collisionZero) : "0"(collisionPos), "1"(collisionRadius), "2"(collisionZero));
+            temp_s0 = &D_80070328 + 0x250;
+            collisionFourth = 0;
+            __asm__ volatile("" : "=r"(collisionFourth) : "0"(collisionFourth));
+            collisionObject = *(int *)temp_s0;
+            __asm__ volatile("" : "=r"(collisionObject) : "0"(collisionObject));
+            temp_t1 = 0x10000;
+            __asm__ volatile("" : "=r"(temp_t1) : "0"(temp_t1));
+            func_8001BA30(collisionPos, collisionRadius, collisionZero, collisionFourth, temp_t1, collisionObject);
+            }
+            D_800717A8 = M2C_FIELD_451C4(&D_80070328, unsigned char *, 0xC);
+            D_800717A9 = M2C_FIELD_451C4(&D_80070328, unsigned char *, 0xD);
+            D_800717AA = M2C_FIELD_451C4(&D_80070328, unsigned char *, 0xE);
+            func_8004E7D4((int *) (active + 2), (int *) (temp_s0 - 0xB0), 0x14);
+            {
+                register unsigned int packedAddress asm("$3") = M2C_FIELD_451C4(&D_80070328, unsigned char *, 0x14);
+                register char **models asm("$2") = D_8006C558;
+                register unsigned int frameIndex asm("$6") = M2C_FIELD_451C4(&D_80070328, unsigned char *, 0x16);
+                packedAddress = (unsigned int)models[packedAddress];
+                packedAddress += frameIndex * 0x14;
+                temp_a3 = M2C_FIELD_451C4(packedAddress, int *, 0x1C);
+            }
+            {
+                register int packedComponent asm("$2");
+                packedComponent = temp_a3 >> 0x15;
+                frame.sp18.x = packedComponent;
+                packedComponent = (int) (temp_a3 << 0xB) >> 0x15;
+                frame.sp18.y = packedComponent;
+                packedComponent = (int) (temp_a3 << 0x16) >> 0x15;
+                frame.sp18.z = packedComponent;
+            }
+            func_8004ED6C((SHORTMATRIX *) (temp_s0 - 0x220), &frame.sp18, &frame.sp18);
+            func_8004F194((Vector3D *) (active - 0x9A), &frame.sp18, (Vector3D *) (temp_s0 - 0x250));
+            if ((unsigned char) M2C_FIELD_451C4(&D_80071835, unsigned char *, 0) < 0xEU) {
+                var_a1 = (((unsigned char) M2C_FIELD_451C4(&D_80071835, unsigned char *, 0) >> 1) * 0xC) + D_80069598;
+            } else {
+                var_a1 = D_800695EC;
+            }
+            var_s4 = 0;
+            func_8004F178(&frame.sp18, var_a1);
+            temp_s1 = &D_80070328 + 0x1A0;
+            func_8004ED6C((SHORTMATRIX *) temp_s1, &frame.sp18, &frame.sp18);
+            func_8004F194(&D_8007179C, &D_8007179C, &frame.sp18);
+            func_8004F1C8((Vector3D *)((char *)&D_8007179C + 0x124), &D_8007179C, temp_s1 - 0x1A0);
+        } else {
+            func_8004F194((Vector3D *) (active - 0x9A), (Vector3D *) &D_80070328, (Vector3D *) (active + 0x8A));
+            var_s4 = 0;
+        }
+        }
+        workPos = &frame.sp28;
+        scratchPos = &frame.sp38;
+        var_fp = 0;
+        matrix = &D_80071838;
+        var_s3 = (unsigned char *)((char *)matrix - 0x7C);
+        var_s5 = (unsigned char *)((char *)matrix - 0x6C);
+        var_s6 = D_80071860;
+        do {
+            if (*var_s3 != 0) {
+                var_a2 = 0x16;
+                if (var_s4 < 4) {
+                    var_a0 = 0x1E;
+                } else {
+                    var_a2 = 0x1C;
+                    var_a0 = 0x24;
+                }
+                if (*var_s5 != 0) {
+                    *var_s3 += D_8006C648;
+                }
+                if ((int) *var_s3 >= var_a0) {
+                    *var_s3 = 0;
+                    goto block_44;
+                }
+                if (*var_s5 != 2) {
+                    var_lo = var_s4 * var_a2;
+                    if (var_s4 < 4) {
+                        var_v0 = D_800695F8;
+                    } else {
+                        register int tableIndex asm("$2") = var_s4 - 4;
+                        __asm__ volatile("" : "=r"(tableIndex) : "0"(tableIndex));
+                        var_lo = tableIndex * var_a2;
+                        var_v0 = D_800698B8;
+                    }
+                    {
+                        register int tableOffsetBytes asm("$3");
+                        temp_t1 = var_lo;
+                        __asm__ volatile("" : "=r"(temp_t1) : "0"(temp_t1));
+                        tableOffsetBytes = temp_t1 * 8;
+                        __asm__ volatile("" : "=r"(tableOffsetBytes) : "0"(tableOffsetBytes));
+                        temp_v1 = (void *)(tableOffsetBytes + (int)var_v0);
+                    }
+                    temp_a1 = *var_s3;
+                    if ((int) temp_a1 < (var_a2 - 1)) {
+                        func_8004F554(workPos, temp_v1 + ((temp_a1 + 1) * 8), var_a2);
+                        func_8004ED6C(matrix, workPos, workPos);
+                        func_8004F194(workPos, workPos, (Vector3D *)((char *)matrix - 0x9C));
+                        if (*var_s5 == 0) {
+                            func_8004F178(&frame.sp38, &D_80070328);
+                            *var_s5 = 1;
+                        } else {
+                            func_8004F178(&frame.sp38, var_s6);
+                        }
+                        func_8004F178(var_s6, workPos);
+                        {
+                        register Vector3D *collisionPos2 asm("$4") = workPos;
+                        register int collisionRadius2 asm("$5") = 0xA0;
+                        register int collisionZero2 asm("$6") = 0;
+                        register int collisionFourth2 asm("$7");
+                        register int collisionObject2 asm("$2");
+                        int collisionHit;
+                        __asm__ volatile("" : "=r"(collisionPos2), "=r"(collisionRadius2), "=r"(collisionZero2) : "0"(collisionPos2), "1"(collisionRadius2), "2"(collisionZero2));
+                        temp_s0 = &D_80070328 + 0x250;
+                        collisionFourth2 = 0;
+                        __asm__ volatile("" : "=r"(collisionFourth2) : "0"(collisionFourth2));
+                        collisionObject2 = *(int *)temp_s0;
+                        __asm__ volatile("" : "=r"(collisionObject2) : "0"(collisionObject2));
+                        temp_t1 = 0x10000;
+                        __asm__ volatile("" : "=r"(temp_t1) : "0"(temp_t1));
+                        collisionHit = func_8001BA30(collisionPos2, collisionRadius2, collisionZero2, collisionFourth2, temp_t1, collisionObject2);
+                        if ((collisionHit != 0) || (func_8001830C(&frame.sp38, workPos, 0, 0x10000, *(int *)temp_s0) != 0)) {
+                            *var_s5 = 2;
+                            *(D_800717C4 + var_s4) = *var_s3;
+                            if (SpawnParticle != 0) {
+                                {
+                                    int particleRand;
+                                    frame.sp38.x = -0x10;
+                                    particleRand = rand();
+                                    temp_t1 = (int)D_80071860;
+                                    __asm__ volatile("" : : "r"(temp_t1));
+                                    frame.sp38.y = (particleRand & 0x1F) - 0x10;
+                                    frame.sp38.z = 0;
+                                    func_8004ED6C((SHORTMATRIX *)(temp_t1 - 0x28), scratchPos, scratchPos);
+                                }
+                                frame.sp38.z = 0;
+                                SpawnParticle(1, 1, workPos, scratchPos);
+                                SpawnParticle(4, 0x4E, workPos, 0);
+                                frame.sp38.x = 0x30;
+                                frame.sp38.y = 0;
+                                frame.sp38.z = 0;
+                                func_8004ED6C(0, scratchPos, scratchPos);
+                                SpawnParticle(5, 0x4F, workPos, scratchPos);
+                            }
+                            {
+                                register int *surface asm("$16") = &D_80071924;
+                                if (func_80040954(*surface) == 3) {
+                                    {
+                                        register SpecialSurface *surfaceData asm("$3");
+                                        surfaceData = D_8006D048.m_SurfaceData[*surface & 0x3F];
+                                        __asm__ volatile("" : : "r"(surfaceData));
+                                        temp_t1 = 0x10000;
+                                        surfaceData->unk4 |= temp_t1;
+                                    }
+                                }
+                            }
+                        }
+                        }
+                        goto block_44;
+                    }
+                    if ((var_a2 < (temp_a1 + D_8006C648)) && (var_a2 >= (int) temp_a1) && (func_8004F554(workPos, temp_v1 + ((var_a2 - 2) * 8), var_a2), func_8004ED6C(matrix, workPos, workPos), func_8004F194(workPos, workPos, (Vector3D *)((char *)matrix - 0x9C)), func_8004F168(scratchPos), (SpawnParticle != 0))) {
+                        SpawnParticle(1, 0, workPos, scratchPos);
+                        SpawnParticle(4, 0x4E, workPos, 0);
+                        func_8004ED6C(0, var_fp + D_80069C68, scratchPos);
+                        SpawnParticle(5, 0x4F, workPos, scratchPos);
+                        __asm__ volatile("" : : : "memory");
+                        var_fp += 0xC;
+                    } else {
+                        goto block_44;
+                    }
+                } else {
+                    goto block_44;
+                }
+            } else {
+                temp_t1 = frame.sp48;
+                temp_t1 += 1;
+                frame.sp48 = temp_t1;
+block_44:
+                var_fp += 0xC;
+            }
+            var_s3 += 1;
+            var_s5 += 1;
+            var_s4 += 1;
+            var_s6 += 0xC;
+        } while (var_s4 < 8);
+        temp_t1 = frame.sp48;
+        if (temp_t1 == 8) {
+            D_80071834 = 0;
+        }
+    }
+}
+#undef M2C_FIELD_451C4
+#undef D_8006C558
 
 /* Retail source: USA Rev 0 PSX.EXE 0x800458F8..0x80045D70
  * (286 instructions; linked bytes SHA-256
