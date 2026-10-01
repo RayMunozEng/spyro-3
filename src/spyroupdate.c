@@ -2446,7 +2446,13 @@ block_33:
 }
 #undef M2C_FIELD
 
-/* Retail source: USA Rev 0 PSX.EXE 0x800451C4..0x800458F8. Fully decoded behavior; one compiler delay-slot scheduling pair remains before exact matching. */
+/* Retail source: USA Rev 0 SCUS-94467 PSX.EXE,
+ * 0x800451C4..0x800458F8. Runs once per player update while D_80071834
+ * is active. Animation/effect selectors are bytes; packed model components are
+ * sign-extended 11-bit integers before matrix transforms. Confidence: exact
+ * instruction and relocation match (597/597). Falsifiable vectors: active
+ * flag 0/1, selector values 13/14, effect slots 0..7, and null/non-null
+ * SpawnParticle. */
 extern char **D_8006C558_raw __asm__("D_8006C558");
 extern int D_80071924;
 extern Unk_8006d048 D_8006D048;
@@ -2595,13 +2601,19 @@ void func_800451C4(void) {
             }
             func_8004ED6C((SHORTMATRIX *) (temp_s0 - 0x220), &frame.sp18, &frame.sp18);
             func_8004F194((Vector3D *) (active - 0x9A), &frame.sp18, (Vector3D *) (temp_s0 - 0x250));
-            if ((unsigned char) M2C_FIELD_451C4(&D_80071835, unsigned char *, 0) < 0xEU) {
-                var_a1 = (((unsigned char) M2C_FIELD_451C4(&D_80071835, unsigned char *, 0) >> 1) * 0xC) + D_80069598;
-            } else {
-                var_a1 = D_800695EC;
+            {
+                unsigned int animationState = (unsigned char) M2C_FIELD_451C4(&D_80071835, unsigned char *, 0);
+                register Vector3D *callPos asm("$4");
+                if (animationState < 0xEU) {
+                    callPos = &frame.sp18;
+                    var_a1 = ((animationState >> 1) * 0xC) + D_80069598;
+                } else {
+                    callPos = &frame.sp18;
+                    var_a1 = D_800695EC;
+                }
+                var_s4 = 0;
+                func_8004F178(callPos, var_a1);
             }
-            var_s4 = 0;
-            func_8004F178(&frame.sp18, var_a1);
             temp_s1 = &D_80070328 + 0x1A0;
             func_8004ED6C((SHORTMATRIX *) temp_s1, &frame.sp18, &frame.sp18);
             func_8004F194(&D_8007179C, &D_8007179C, &frame.sp18);
