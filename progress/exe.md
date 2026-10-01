@@ -44,7 +44,7 @@
 - [ ] func_8001D424
 - [x] func_8001DC3C
 - [x] func_8001DC5C
-- [ ] func_8001DD1C
+- [x] func_8001DD1C
 - [x] func_8001E2A8
 - [x] func_8001E2C8
 - [x] func_8001E32C
