@@ -520,7 +520,224 @@ void func_80020530(signed char* arg0) {
     }
 }
 
-INCLUDE_ASM_REORDER_HACK("asm/nonmatchings/drawutil", func_80020790);
+/* Retail: asm/nonmatchings/drawutil/func_80020790.s, 0x80020790..0x80020D70.
+ * The menu selection, width pass, centering bounds, and draw calls follow the retail instruction/data chain. */
+extern int D_8006C5BC;
+extern int D_8006C5C8;
+extern int D_8006FA3C;
+extern void* D_80071484[];
+#define DRAWUTIL_FIELD(expr, type_ptr, offset) (*(type_ptr)((signed char*)(expr) + (offset)))
+void func_80020790(void) {
+    int sp18;
+    int sp20;
+    short temp_v1;
+    int temp_s7;
+    int temp_v1_2;
+    register int var_a0 asm("$23");
+    int var_a3;
+    int var_a3_2;
+    int var_fp;
+    int var_s0;
+    int var_s1_3;
+    register int var_s2 asm("$18");
+    register int var_s4 asm("$20");
+    int var_s6;
+    int var_v0;
+    signed char *temp_a0_3;
+    signed char *sentinel;
+    signed char *temp_s5;
+    signed char *var_s0_2;
+    int temp_a0_4;
+    void **var_s1;
+    void **table;
+    void *temp_a0;
+    void *temp_a0_2;
+    Something *stringTable;
+    TempMenuSomething *menuState;
+
+    var_s2 = 0;
+    var_s6 = 0;
+    var_fp = 0x85;
+    sp18 = 0x17B;
+    var_s4 = 0x32;
+    var_a0 = 0x80;
+    sp20 = 0x180;
+    if (((D_8006C5BC / 10) * 0xA) == (D_8006C5BC - 5)) {
+        if (D_8006FA3C == 3) {
+            switch (D_8006C5BC) {                   /* switch 1; irregular */
+            case 15:                                /* switch 1 */
+                var_s2 = 0x15;
+                break;
+            case 25:                                /* switch 1 */
+                var_s2 = 0x16;
+                break;
+            case 35:                                /* switch 1 */
+                var_s2 = 0x17;
+                break;
+            case 45:                                /* switch 1 */
+                var_s2 = 0x18;
+                break;
+            }
+        } else {
+            var_s2 = 3;
+            if (D_8006FA3C == 2) {
+                var_s2 = 4;
+            }
+        }
+    } else if (DRAWUTIL_FIELD(D_80070328, int *, 0x24C) == 0) {
+        if ((D_8006C5BC == 0x18) && (D_8006C5C8 == 1)) {
+            var_s2 = 0x10;
+        } else if (D_8006C5BC == 0x1F) {
+            var_s2 = 0x11;
+        } else if (DRAWUTIL_FIELD(D_80070328, int *, 0x48) == 0x26) {
+            var_s2 = 5;
+        } else if (DRAWUTIL_FIELD(D_80070328, int *, 0x50) == 0x13) {
+            if ((D_8006C5BC == 0x20) || (var_s2 = 0xE, (D_8006C5BC == 0x32))) {
+                var_s2 = 0xF;
+            }
+        } else if (D_8006C5BC == 0x2F) {
+            if (DRAWUTIL_FIELD(D_80070328, void **, 0x250) != ((void*)0)) {
+                temp_v1 = DRAWUTIL_FIELD(DRAWUTIL_FIELD(D_80070328, void **, 0x250), short *, 0x36);
+                if (temp_v1 != 0x2F5) {
+                    if (temp_v1 == 0x2EA) {
+                        var_s2 = 0x1B;
+                    }
+                } else {
+                    goto block_35;
+                }
+            }
+        } else if (D_8006C5BC == 0x32) {
+            if (DRAWUTIL_FIELD(D_80070328, void **, 0x250) != ((void*)0)) {
+                if (DRAWUTIL_FIELD(DRAWUTIL_FIELD(D_80070328, void **, 0x250), short *, 0x36) == 0xF0) {
+block_35:
+                    var_s2 = 0x14;
+                }
+            }
+        } else if (DRAWUTIL_FIELD(D_80070328, int *, 0x50) == 0x12) {
+            var_s2 = 0xD;
+            if (D_8006C5BC == 0x2B) {
+                var_s2 = 0x13;
+            }
+        } else if (DRAWUTIL_FIELD(D_80070328, int *, 0x50) == 0xA) {
+            var_s2 = 1;
+        } else if ((unsigned int) (DRAWUTIL_FIELD(D_80070328, int *, 0x50) - 0xB) < 2U) {
+            var_s2 = 2;
+        }
+    } else {
+        switch (DRAWUTIL_FIELD(D_80070328, int *, 0x24C)) {
+        case 1:
+            var_s2 = 6;
+            break;
+        case 2:
+            var_s2 = 8;
+            if (D_8006C5BC == 0x24) {
+                var_s2 = 9;
+            }
+            break;
+        case 3:
+            var_s2 = 7;
+            break;
+        case 4:
+            if (D_8006C5BC != 0x21) {
+                var_s2 = 0x1A;
+                if (D_8006C5BC != 0x2C) {
+                    var_s2 = 0xB;
+                }
+            } else {
+                var_s2 = 0x19;
+            }
+            break;
+        case 5:
+            var_s2 = 0xA;
+            break;
+        case 6:
+            var_s2 = 0x12;
+            break;
+        case 7:
+            var_s2 = 0xC;
+            break;
+        }
+    }
+    { register signed char *tableBase asm("$4"); register int tableOffset asm("$3"); register int tableIndex asm("$2");
+      tableIndex = 0xA; tableBase = (signed char *)D_80071484; tableOffset = var_s2 << 2; D_80070158 = tableIndex;
+      tableIndex = D_8006C76C; tableOffset += (int)tableBase; tableIndex <<= 2; tableIndex += tableOffset;
+      var_s1 = *(void ***)tableIndex; }
+    temp_s5 = D_80067570[D_8006FBD0];
+    if ((var_s1 != ((void*)0)) && (*var_s1 != (void *)-1)) {
+        do {
+            temp_a0 = *var_s1;
+            var_s1 += 1;
+            var_s0 = func_8002EBB0(temp_a0);
+            temp_a0_2 = *var_s1;
+            if (temp_a0_2 != (void *)-1) {
+                var_s1 += 1;
+                var_s0 += func_8002EBB0(temp_a0_2);
+                var_s0 += 0x1A;
+            }
+            if (var_s6 < var_s0) {
+                var_s6 = var_s0;
+            }
+        } while (*var_s1 != (void *)-1);
+    }
+    if (var_s6 >= 0x101) {
+        { register int screenWidth asm("$3"); register int centered asm("$2"); int rightEdge;
+        screenWidth = 0x200; centered = screenWidth - var_s6; temp_s7 = centered >> 1;
+        rightEdge = screenWidth - temp_s7; sp20 = rightEdge; __asm__ volatile("" ::: "memory");
+        var_fp = temp_s7 + 5; screenWidth = screenWidth - var_fp; sp18 = screenWidth; }
+        var_a0 = temp_s7;
+    }
+    func_8001FD00(var_a0, sp20, 0x2E, 0xD3);
+    DrawStringCentered((&D_80069DE4)[D_8006C76C].stringsmaybe[(unsigned char) DRAWUTIL_FIELD(temp_s5, signed char *, 0)], 0x100, var_s4, 2);
+    { register signed char *tableBase2 asm("$4"); register int tableOffset2 asm("$2"); register int tableIndex2 asm("$3");
+      tableBase2 = (signed char *)D_80071484; tableOffset2 = var_s2 << 2; tableIndex2 = D_8006C76C;
+      tableOffset2 += (int)tableBase2; tableIndex2 <<= 2; tableOffset2 = tableIndex2 + tableOffset2;
+      var_s1 = *(void ***)tableOffset2; var_s4 += 0x15;
+      if (var_s1 == ((void*)0)) { tableOffset2 = (int)tableBase2; tableOffset2 += tableIndex2; __asm__ volatile("" : "=r"(tableOffset2) : "0"(tableOffset2)); var_s1 = *(void ***)tableOffset2; } }
+    if ((var_s1 != ((void*)0)) && (*var_s1 != -1)) {
+        sentinel = (signed char *)-1;
+loop_72:
+        { register signed char *arg0 asm("$4"); register int arg1 asm("$5"); register int arg2 asm("$6"); register int arg3 asm("$7");
+          arg1 = var_fp; arg2 = var_s4; arg3 = 2; __asm__ volatile("" ::: "memory"); arg0 = *var_s1; var_s1 += 1;
+          func_8002E748(arg0, arg1, arg2, arg3, ((void*)0)); }
+        temp_a0_3 = DRAWUTIL_FIELD(var_s1, signed char **, 0);
+        if (temp_a0_3 != sentinel) {
+            DrawStringRightAligned(temp_a0_3, sp18, var_s4, 2);
+            __asm__ volatile("" ::: "memory");
+            var_s1 += 1;
+            var_s4 += 0xE;
+            if (*var_s1 != sentinel) {
+                goto loop_72;
+            }
+        }
+    }
+    var_s4 = 0xC5;
+    var_s1_3 = 1;
+    if ((unsigned char) temp_s5[1] != 0xFF) {
+        stringTable = &D_80069DE4;
+        menuState = &D_8006FBCC;
+        var_s0_2 = &temp_s5[1];
+        do {
+            temp_a0_4 = (unsigned char) *var_s0_2;
+            if (temp_a0_4 != 0x2E) {
+                temp_a0_3 = stringTable[D_8006C76C].stringsmaybe[temp_a0_4];
+                if (D_8006C598 == 0) {
+                    var_a3 = 0;
+                    if (menuState->unk0 == var_s1_3) {
+                        temp_v1_2 = DRAWUTIL_FIELD(menuState, int *, -8) & 0x1F; var_a3 = temp_v1_2 < 0x16;
+                    }
+                    var_a3_2 = var_a3 + 2;
+                } else {
+                    temp_v1_2 = (unsigned int) (D_8006FBCC.unk0 ^ var_s1_3) < 1U; var_a3_2 = temp_v1_2 + 2;
+                }
+                DrawStringCentered(temp_a0_3, 0x100, var_s4, var_a3_2);
+            }
+            var_s4 += 0xE;
+            var_s0_2 += 1;
+            var_s1_3 += 1;
+        } while ((unsigned char) *var_s0_2 != 0xFF);
+    }
+}
+#undef DRAWUTIL_FIELD
 
 /**
  * ???() - func_80020D70() - MATCHING
