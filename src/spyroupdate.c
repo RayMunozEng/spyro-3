@@ -206,7 +206,185 @@ block_60:
 }
 #undef M2C_FIELD_3F194
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8003F6F4);
+/* Retail source: USA Rev 0 PSX.EXE 0x8003F6F4..0x8003FD58
+ * (409 instructions; raw bytes from SCUS-94467 Rev 0).
+ * Flags at player state +0x254 select the constraint path. Vector products
+ * use Q12 fixed point, angles wrap to 12 bits, and the update runs once per
+ * call. Confidence: confirmed retail exact against the identified executable.
+ * Falsifiable vectors: flag bits 1/2/4/8 independently and combined; signed
+ * vector components around zero; bounds at 0x264/0x274/0x278; distances
+ * 0x1FFF/0x2000/0x2001; final components 0x3FF/0x400. */
+extern short D_80065920[];
+extern short D_800658A0[];
+
+#define SPYRO_FIELD(expr, type_ptr, offset) (*(type_ptr)((signed char *)(expr) + (offset)))
+
+void func_8003F6F4(void) {
+    Vector3D sp10;
+    Vector3D sp20;
+    short *temp_a0;
+    short *temp_a1;
+    short *temp_v1;
+    short *temp_v1_2;
+    int temp_a3;
+    int adjusted;
+    int y_value;
+    int y_threshold;
+    int temp_s1;
+    int temp_v1_3;
+    int temp_v1_4;
+    int temp_v1_5;
+    int temp_v1_6;
+    int var_a1;
+    int var_s1;
+    signed char *temp_a0_2;
+    signed char *temp_a0_3;
+    signed char *temp_s0;
+    signed char *temp_s0_2;
+
+    temp_s0 = &D_80070328 + 0x254;
+    if (SPYRO_FIELD(&D_80070328, int *, 0x254) & 1) {
+        func_8004F168(&sp20);
+        func_8004F178(&sp10, temp_s0 - 0x1E0);
+        func_8004F110(&sp10, 6);
+        func_8004F194(&sp10, &sp10, (Vector3D *) (temp_s0 - 0x254));
+        if (SPYRO_FIELD(&D_80070328, int *, 0x254) & 8) {
+            func_8004F1C8(&sp10, temp_s0 + 0x14, &sp10);
+            temp_a0 = &D_80065920[SPYRO_FIELD(&D_80070328, int *, 0x27C)];
+            temp_v1 = &D_800658A0[SPYRO_FIELD(&D_80070328, int *, 0x27C)];
+            temp_a3 = (int) ((sp10.x * *temp_a0) - (sp10.y * *temp_v1)) >> 0xC;
+            sp20.x = temp_a3;
+            sp20.y = (int) ((sp10.x * *temp_v1) + (sp10.y * *temp_a0)) >> 0xC;
+            if (SPYRO_FIELD(&D_80070328, int *, 0x254) & 2) {
+                if (SPYRO_FIELD(&D_80070328, int *, 0x274) < temp_a3) {
+                    sp20.x = temp_a3 - SPYRO_FIELD(&D_80070328, int *, 0x274);
+                } else if (temp_a3 < -SPYRO_FIELD(&D_80070328, int *, 0x274)) {
+                    sp20.x = temp_a3 + SPYRO_FIELD(&D_80070328, int *, 0x274);
+                } else {
+                    sp20.x = 0;
+                }
+                y_value = sp20.y;
+                y_threshold = SPYRO_FIELD(&D_80070328, int *, 0x278);
+                if (y_threshold < y_value) {
+                    sp20.y = y_value - y_threshold;
+                } else if (y_value < -y_threshold) {
+                    sp20.y = y_value + y_threshold;
+                } else {
+                    sp20.y = 0;
+                }
+            } else {
+                if ((SPYRO_FIELD(&D_80070328, int *, 0x274) - 0x2000) < temp_a3) {
+                    adjusted = temp_a3 - 0x2000;
+                    __asm__ volatile("" : "=r"(adjusted) : "0"(adjusted));
+                    sp20.x = adjusted - SPYRO_FIELD(&D_80070328, int *, 0x274);
+                } else if (temp_a3 < (-SPYRO_FIELD(&D_80070328, int *, 0x274) + 0x2000)) {
+                    adjusted = temp_a3 + 0x2000;
+                    __asm__ volatile("" : "=r"(adjusted) : "0"(adjusted));
+                    sp20.x = adjusted + SPYRO_FIELD(&D_80070328, int *, 0x274);
+                } else {
+                    sp20.x = 0;
+                }
+                if ((SPYRO_FIELD(&D_80070328, int *, 0x278) + 0x2000) < sp20.y) {
+                    adjusted = sp20.y - 0x2000;
+                    __asm__ volatile("" : "=r"(adjusted) : "0"(adjusted));
+                    sp20.y = adjusted - SPYRO_FIELD(&D_80070328, int *, 0x278);
+                } else if (sp20.y < (-SPYRO_FIELD(&D_80070328, int *, 0x278) - 0x2000)) {
+                    adjusted = sp20.y + 0x2000;
+                    __asm__ volatile("" : "=r"(adjusted) : "0"(adjusted));
+                    sp20.y = adjusted + SPYRO_FIELD(&D_80070328, int *, 0x278);
+                } else {
+                    sp20.y = 0;
+                }
+                sp20.x = sp20.x >> 8;
+                sp20.y = sp20.y >> 8;
+            }
+            temp_a1 = &D_80065920[SPYRO_FIELD(&D_80070328, int *, 0x27C)];
+            temp_v1_2 = &D_800658A0[SPYRO_FIELD(&D_80070328, int *, 0x27C)];
+            sp10.x = (int) ((sp20.x * *temp_a1) + (sp20.y * *temp_v1_2)) >> 0xC;
+            sp10.y = (int) ((-sp20.x * *temp_v1_2) + (sp20.y * *temp_a1)) >> 0xC;
+            sp10.z = 0;
+            func_8004F0E8(&sp10, 6);
+            goto block_37;
+        }
+        func_8004F1C8(&sp10, temp_s0 + 4, &sp10);
+        if (SPYRO_FIELD(&D_80070328, int *, 0x254) & 4) {
+            var_a1 = func_8004EDE8(&sp10, 1);
+        } else {
+            var_a1 = func_8004EDE8(&sp10, 0);
+            sp10.z = 0;
+        }
+        if (SPYRO_FIELD(&D_80070328, int *, 0x254) & 2) {
+            if (var_a1 >= SPYRO_FIELD(&D_80070328, int *, 0x264)) {
+                func_8004F110(&sp10, 6);
+                func_8004EF04(&sp10, 0x1000);
+                temp_s1 = (int) ((sp10.x * SPYRO_FIELD(&D_80070328, int *, 0x74)) + (sp10.y * SPYRO_FIELD(&D_80070328, int *, 0x78)) + (sp10.z * SPYRO_FIELD(&D_80070328, int *, 0x7C))) >> 0xC;
+                if (temp_s1 < 0) {
+                    if (SPYRO_FIELD(&D_80070328, int *, 0x254) & 4) {
+                        temp_v1_3 = (func_8004E880(func_8004EDE8(&sp10, 0), sp10.z, 1) - SPYRO_FIELD(&D_80070328, int *, 0x60)) & 0xFFF;
+                        sp20.y = temp_v1_3;
+                        if (temp_v1_3 >= 0x801) {
+                            sp20.y = temp_v1_3 - 0x1000;
+                        }
+                    }
+                    temp_v1_4 = (func_8004E880(sp10.x, sp10.y, 1) - SPYRO_FIELD(&D_80070328, int *, 0x64)) & 0xFFF;
+                    sp20.z = temp_v1_4;
+                    if (temp_v1_4 >= 0x801) {
+                        sp20.z = temp_v1_4 - 0x1000;
+                    }
+                    func_8004F110((Vector3D *) &sp20, 5);
+                    SPYRO_FIELD(&D_80070328, int *, 0x60) = (int) (SPYRO_FIELD(&D_80070328, int *, 0x60) + sp20.y);
+                    SPYRO_FIELD(&D_80070328, int *, 0x64) = (int) (SPYRO_FIELD(&D_80070328, int *, 0x64) + sp20.z);
+                    func_8004F08C(&sp10, 0x1000, -temp_s1);
+block_37:
+                    temp_a0_2 = &D_80070328 + 0x74;
+                    func_8004F194((Vector3D *) temp_a0_2, (Vector3D *) temp_a0_2, &sp10);
+                }
+            }
+        } else if ((SPYRO_FIELD(&D_80070328, int *, 0x264) - 0x2000) < var_a1) {
+            adjusted = var_a1 + 0x2000;
+            __asm__ volatile("" : "=r"(adjusted) : "0"(adjusted));
+            var_s1 = adjusted - SPYRO_FIELD(&D_80070328, int *, 0x264);
+            func_8004F08C(&sp10, var_a1, var_s1);
+            temp_a0_3 = (&D_80070328 + 0x254) - 0x1E0;
+            func_8004F194((Vector3D *) temp_a0_3, (Vector3D *) temp_a0_3, &sp10);
+            if (SPYRO_FIELD(&D_80070328, int *, 0x254) & 4) {
+                temp_v1_5 = (func_8004E880(func_8004EDE8(&sp10, 0), sp10.z, 1) - SPYRO_FIELD(&D_80070328, int *, 0x60)) & 0xFFF;
+                sp20.y = temp_v1_5;
+                if (temp_v1_5 >= 0x801) {
+                    sp20.y = temp_v1_5 - 0x1000;
+                }
+            }
+            temp_v1_6 = (func_8004E880(sp10.x, sp10.y, 1) - SPYRO_FIELD(&D_80070328, int *, 0x64)) & 0xFFF;
+            sp20.z = temp_v1_6;
+            if (temp_v1_6 >= 0x801) {
+                sp20.z = temp_v1_6 - 0x1000;
+            }
+            if (var_s1 >= 0x2001) {
+                var_s1 = 0x2000;
+            }
+            func_8004F08C((Vector3D *) &sp20, 0x2000, var_s1);
+            func_8004F110((Vector3D *) &sp20, 3);
+            SPYRO_FIELD(&D_80070328, int *, 0x60) = (int) (SPYRO_FIELD(&D_80070328, int *, 0x60) + sp20.y);
+            SPYRO_FIELD(&D_80070328, int *, 0x64) = (int) (SPYRO_FIELD(&D_80070328, int *, 0x64) + sp20.z);
+        }
+    }
+    temp_s0_2 = &D_80070328 + 0x74;
+    func_8004F178(&sp10, temp_s0_2);
+    func_8004F110(&sp10, 6);
+    func_8004F194(&sp10, &sp10, (Vector3D *) (temp_s0_2 - 0x74));
+    {
+        register int *tail asm("$16") = (int *) temp_s0_2;
+        __asm__("" : "=r"(tail) : "0"(tail));
+        if (sp10.x < 0x400) {
+            tail[0] = tail[0] - (sp10.x << 6);
+        }
+        if (sp10.y < 0x400) {
+            tail[1] = tail[1] - (sp10.y << 6);
+        }
+    }
+}
+
+#undef SPYRO_FIELD
 
 // Run surface type function
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8003FD58);
