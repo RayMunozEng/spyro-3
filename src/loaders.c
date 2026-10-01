@@ -513,7 +513,221 @@ void func_8002C9F4(char* pData, int pPatchAddressesInTable) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/loaders", func_8002CA50);
+/* USA Rev 0 retail executable, 0x8002CA50..0x8002D044.
+ * 1524 bytes (381 instructions). The two integrity scans operate on raw
+ * executable bytes; pointer arithmetic is therefore byte-sized. Called once
+ * per loader update while the load state is active. Confidence: confirmed by
+ * normalized object comparison. Test vector: compile this TU, link PSX.EXE,
+ * and verify the repository retail SHA-256 manifest. */
+extern unsigned char D_80065878[];
+extern unsigned int D_8006C518;
+extern signed int D_8006C54C, D_8006C58C, D_8006C5BC, D_8006C658;
+extern signed int D_8006C6B4, D_8006C6F8, D_8006C714, D_8006C720;
+extern signed int D_8006C774, D_8006DB00, D_8006DB04;
+extern unsigned char *D_8006C6B8;
+extern unsigned char D_8006D910[], D_8006D914[];
+extern unsigned char D_8006DBE8[], D_8006DBEC[];
+extern signed int D_8006E344, D_8006E470;
+extern signed short D_800719D6, D_800719D8, D_800719DA, D_800719DE;
+extern signed int D_80071A10[];
+extern void *D_80011254, *D_800722B8;
+extern signed int MobyUpdate;
+extern unsigned char loading_text_end, loading_text_start;
+extern unsigned char main, main_DATA_START, main_TEXT_START;
+
+void func_8002CA50(void) {
+    register signed int *var_v1 asm("$3");
+    signed int temp_v0;
+    signed int temp_v0_2;
+    signed int temp_v1_2;
+    signed int temp_v1_4;
+    signed int var_a0;
+    signed int var_a0_2;
+    register signed int var_a0_3 asm("$4");
+    signed int var_a1;
+    signed int var_a1_2;
+    register signed int var_a2 asm("$6");
+    register signed int var_a3 asm("$7");
+    register signed int loadA0 asm("$4");
+    register void *loadA1 asm("$5");
+    register signed int savedDb04 asm("$3");
+    unsigned int temp_a0;
+    unsigned char *temp_v1_3;
+    register unsigned char *temp_v1 asm("$8");
+    register signed int *db04 asm("$16");
+    register unsigned char *initialEnd asm("$3");
+    register signed int poly asm("$6");
+    register signed int mask asm("$7");
+
+    if (CDLoadTime() != 0) {
+        if ((unsigned int) (D_8006C518 - 2) < 6U) {
+            if (D_8006C6B8 == 0) {
+                D_8006C6B8 = &main_TEXT_START + 1 - 0x473E;
+            }
+            initialEnd = &main_DATA_START - 0x473E;
+            if ((unsigned int) D_8006C6B8 < (unsigned int) initialEnd) {
+                var_a1 = 0;
+                temp_v1 = initialEnd;
+                mask = 0x800000;
+                poly = 0x400280;
+                __asm__ volatile ("" : : "r" (temp_v1), "r" (mask), "r" (poly) : "memory");
+loop_6:
+                if ((unsigned int) D_8006C6B8 < (unsigned int) temp_v1) {
+                    var_a0 = 8;
+                    D_8006C6B4 ^= D_8006C6B8[0x473E] << 0xF;
+                    do {
+                        temp_v1_2 = D_8006C6B4 * 2;
+                        D_8006C6B4 = temp_v1_2;
+                        var_a0 -= 1;
+                        if (temp_v1_2 & mask) {
+                            D_8006C6B4 = temp_v1_2 ^ poly;
+                        }
+                    } while (var_a0 != 0);
+                    var_a1 += 1;
+                    temp_v1_3 = D_8006C6B8 + (((signed int) (D_8006C6B4 & 0x180) >> 7) + 1);
+                    D_8006C6B8 = temp_v1_3;
+                    if (var_a1 >= 0x1400) {
+                        if (temp_v1_3 >= (&main_DATA_START - 0x473E)) {
+                            goto block_13;
+                        }
+                    } else {
+                        goto loop_6;
+                    }
+                } else {
+block_13:
+                    D_8006C6B8 = &loading_text_start - 0x473E;
+                }
+            }
+            var_a1_2 = 0;
+            if ((unsigned int) D_8006C6B8 >= (unsigned int) (&loading_text_start - 0x473E)) {
+                temp_v1 = &loading_text_end - 0x473E;
+                mask = 0x800000;
+                poly = 0x400280;
+                __asm__ volatile ("" : : "r" (temp_v1), "r" (mask), "r" (poly) : "memory");
+loop_16:
+                if ((unsigned int) D_8006C6B8 < (unsigned int) temp_v1) {
+                    var_a0_2 = 8;
+                    D_8006C6B4 ^= D_8006C6B8[0x473E] << 0xF;
+                    do {
+                        temp_v1_4 = D_8006C6B4 * 2;
+                        D_8006C6B4 = temp_v1_4;
+                        var_a0_2 -= 1;
+                        if (temp_v1_4 & mask) {
+                            D_8006C6B4 = temp_v1_4 ^ poly;
+                        }
+                    } while (var_a0_2 != 0);
+                    var_a1_2 += 1;
+                    D_8006C6B8 += 1;
+                    if (var_a1_2 >= 0x1400) {
+
+                    } else {
+                        goto loop_16;
+                    }
+                }
+                if (D_8006C6B8 == (&loading_text_end - 0x473E)) {
+                    D_8006C6B8 += 0x473E;
+                }
+            }
+        }
+    } else {
+        switch (D_8006C518) {
+        case 0:
+            func_800282D8();
+            db04 = &D_8006DB04;
+            __asm__ volatile ("" : "=r" (db04) : "0" (db04));
+            CDLoadAsync(D_8006E470, D_80011254, *db04, D_8006DB00);
+            savedDb04 = *db04;
+            __asm__ volatile ("" : "=r" (savedDb04) : "0" (savedDb04));
+            D_8006C518 = 1;
+            D_8006C714 = savedDb04;
+            return;
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+            func_loading_8007494C();
+            return;
+        case 8:
+            if ((D_8006C6B8 != &loading_text_end) || (D_8006C6B4 != 0)) {
+                ((signed int *)&func_8002AB38)[rand() & 0x3F] = 0;
+            } else {
+                D_8006C6B8 = 0;
+                D_8006C6B4 = 0;
+            }
+            if (D_8006E344 != 4) {
+                if (D_8006C5BC < 0x3C) {
+                    if (D_8006C658 != 0) {
+                        var_a0_3 = (D_80065878[D_8006C58C] << 0xA) - 0x1000;
+                    } else {
+                        var_a0_3 = D_80065878[D_8006C58C] << 0xA;
+                    }
+                } else {
+                    var_a0_3 = D_80065878[0] << 0xA;
+                }
+                func_8001FB10(var_a0_3);
+                func_8002B6C8();
+            }
+            if (D_8006C5BC >= 0x3C) {
+                loadA0 = D_8006E470;
+                temp_v0 = D_8006C58C * 0x18;
+                loadA1 = D_800722B8;
+                var_a2 = *(signed int *)((unsigned char *)D_8006D914 + temp_v0);
+                var_a3 = *(signed int *)((unsigned char *)D_8006D910 + temp_v0);
+                __asm__ volatile ("" : : "r" (loadA0), "r" (loadA1), "r" (var_a2), "r" (var_a3));
+            } else {
+                loadA0 = D_8006E470;
+                temp_v0_2 = D_8006C58C * 0x10;
+                loadA1 = D_800722B8;
+                var_a2 = *(signed int *)((unsigned char *)D_8006DBEC + temp_v0_2);
+                var_a3 = *(signed int *)((unsigned char *)D_8006DBE8 + temp_v0_2);
+                __asm__ volatile ("" : : "r" (loadA0), "r" (loadA1), "r" (var_a2), "r" (var_a3));
+            }
+            CDLoadAsync(loadA0, loadA1, var_a2, var_a3);
+            D_800719D6 = 0;
+            D_800719D8 = 0;
+            D_800719DA = 0;
+            D_800719DE = 0;
+            D_8006C518 = 9;
+            return;
+        case 9:
+            D_8006C518 = 0xC;
+            return;
+        case 10:
+        case 11:
+            VSync(0);
+            D_8006C518 += 1;
+            return;
+        case 12:
+            if (MobyUpdate != 0) {
+                if (D_8006C5BC < 0x3C) {
+                    temp_a0 = *(unsigned int *)((unsigned char *)D_800722B8 + 4);
+                    var_v1 = (signed int *)((unsigned char *)D_800722B8 + 0x1000);
+                    if ((unsigned int) var_v1 < temp_a0) {
+                        do {
+                            *var_v1 ^= temp_a0;
+                            var_v1 += 1;
+                        } while ((unsigned int) var_v1 < temp_a0);
+                    }
+                }
+            }
+            func_8005E0BC(1, 0, 0);
+            if ((D_8006E344 != 4) && (D_8006C5BC < 0x3C)) {
+                D_8006C6F8 = 0;
+                D_8006C720 = D_80071A10[D_8006C58C];
+            }
+            D_8006C518 = -1U;
+            D_8006C774 = 0;
+            D_8006C54C = D_8006C58C + (signed int)(&main + 2);
+            /* fallthrough */
+        default:
+            return;
+        }
+    }
+}
+
 
 /**
  * ???() - func_8002D044() - MATCHING
