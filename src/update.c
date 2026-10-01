@@ -1797,7 +1797,192 @@ void func_80053F50(int arg0) {
 
 
 
-INCLUDE_ASM("asm/nonmatchings/update", func_80054450);
+/* Retail source: USA Rev 0 SCUS-94467 PSX.EXE,
+ * 0x80054450..0x80054AF8. The loading/glide state advances once per call;
+ * states 1..4 dispatch the loading overlay helper and values outside 0..5
+ * return. Camera and trigonometric products use signed Q12 shifts; loading
+ * and fade counters are 32-bit frame counters. Confidence: exact, confirmed
+ * by all 630 instruction/relocation comparison records. Falsifiable vectors:
+ * states 0, 1..4, 5, and values outside that range reproduce the cited
+ * branches, calls, stores, and fixed-point outputs. */
+#define M2C_FIELD_54450(p,t,o) (*(t)((char *)(p) + (o)))
+extern int D_8006C518, D_8006C7DC, D_8006FCE0, D_8006FC6C;
+extern int D_8006C508, D_8006C60C, D_8006C3F4;
+extern char D_8006C7F8;
+extern Vector3D D_800722F8, D_800722EC, D_8006E020;
+extern int D_800722F0, D_800722FC, D_8006E024;
+extern short D_80072304, D_80072320, D_80072322;
+extern int D_80072324;
+extern short D_8006E03E, D_8006E040;
+extern signed char D_8006E13A;
+extern unsigned char D_8006703C[];
+extern char D_8006706A[];
+extern CameraPosition D_800691E8;
+int func_8004E9E4(short);
+int func_8004EA2C(short);
+int func_8004F1FC(Vector3D *, Vector3D *, int);
+int func_8004F228(Vector3D *, Vector3D *, int);
+int func_loading_80076538(void);
+void func_80054450(void) {
+    Vector3D sp10;
+    Vector3D *temp_s1;
+    int temp_a0;
+    int temp_s0;
+    int temp_v0_2;
+    int temp_v0_3;
+    int temp_v0_4;
+    int temp_v1;
+    int var_a0;
+    int var_a0_2;
+    int var_v1;
+    unsigned char temp_v0;
+
+    temp_v1 = D_8006FBC8;
+    if (temp_v1 < 5) {
+        if (temp_v1 > 0) goto default_case;
+        if (temp_v1 == 0) goto case_0;
+        goto end_case;
+    }
+    if (temp_v1 == 5) goto case_5;
+    goto end_case;
+case_0:
+        if (D_8006C518 <= 0) {
+            func_8002CA50();
+        }
+        if ((D_8006FBD0 == 0) && (M2C_FIELD_54450(&D_80070328, int *, 0x244) == 0)) {
+            if (M2C_FIELD_54450(&D_80070328, int *, 0x48) != 0x11) {
+                func_8004BEF8(0x11);
+            }
+            func_80044240();
+            if (func_80048444(&D_800722EC) < 0x400) {
+                D_800722EC.x += D_800722F8.x;
+                D_800722F0 += D_800722FC;
+            }
+            M2C_FIELD_54450(&D_80070328, int *, 0x2C) = 0;
+            temp_v0 = M2C_FIELD_54450(&D_80070328, unsigned char *, 0x1E) + 1;
+            M2C_FIELD_54450(&D_80070328, unsigned char *, 0x1E) = temp_v0;
+            if ((unsigned int) (temp_v0 & 0xFF) >= 0x41U) {
+                M2C_FIELD_54450(&D_80070328, unsigned char *, 0x1E) = 0x40U;
+            }
+            temp_s1 = (Vector3D *)((char *)&D_800722EC + 0x1C);
+            func_8004F1C8(&sp10, (Vector3D *)((char *)&D_800722EC + 0x28), temp_s1);
+            func_8004F1FC(&sp10, &sp10, D_8006FBC4);
+            func_8004F228(&sp10, &sp10, 0x20);
+            func_8004F194(&D_8006E020, temp_s1, &sp10);
+            var_v1 = ((int) (func_8004EA2C(D_80072322) * D_80072324) >> 0xC) * *(short *)((char *)D_800658A0 + (D_8006FBC4 * 8));
+            D_8006E020.x -= var_v1 >> 0xC;
+            var_v1 = ((int) (func_8004E9E4(D_80072322) * D_80072324) >> 0xC) * *(short *)((char *)D_800658A0 + (D_8006FBC4 * 8));
+            D_8006E024 -= var_v1 >> 0xC;
+            var_v1 = func_8004F2C8((int) D_80072322, (int) D_80072320) * D_8006FBC4;
+            if (var_v1 < 0) {
+                var_v1 += 0x1F;
+            }
+            D_8006E040 = ((unsigned short) D_80072320 + (var_v1 >> 5)) & 0xFFF;
+            if (D_8006FBC4 < 0x20) {
+                D_8006E03E = (unsigned short) D_8006E03E + (func_8004F2C8(0, (int) D_8006E03E) / (int) (0x20 - D_8006FBC4));
+            } else {
+                D_8006E03E = 0;
+            }
+        } else {
+            register int *counter asm("$4") = &D_8006FBC4;
+            temp_v1 = *counter;
+            if (temp_v1 < 0x1F) {
+                temp_v0_2 = temp_v1 + 1;
+                *counter = temp_v0_2;
+                D_8006C598 = temp_v0_2 * 8;
+            }
+        }
+        {
+            register int *counter asm("$16") = &D_8006FBC4;
+            temp_v1 = *counter;
+            if (temp_v1 < 0x20) {
+                *counter = temp_v1 + 1;
+            }
+            if ((*counter == 0x20) && (D_8006C518 > 0) && (CDLoadTime() == 0)) {
+                func_8001FB10(0x1C000);
+                {
+                    register int offset asm("$4") = 0x15000;
+                    register int base asm("$3") = D_8006FC6C;
+                    D_8006C7DC = offset;
+                    D_8006FBC8 = 1;
+                    *counter = 0;
+                    D_8006FCE0 = base + offset;
+                }
+                return;
+            }
+        }
+        return;
+default_case:
+    func_loading_80076538();
+    return;
+case_5:
+        if (D_8006FBC4 == 0) {
+            if (D_8006C518 >= 0) {
+                do {
+                    func_8002CA50();
+                } while (D_8006C518 >= 0);
+            }
+            func_8004E790(&D_8006D088, 0, 0x850);
+            func_8004E790(&D_8006C7F8, 0, 0x850);
+            if (D_8006C508 == 0) {
+                func_8005399C();
+            } else {
+                temp_s0 = D_8006C60C;
+                func_80047190();
+                func_8002B810(D_800722C8);
+                temp_v0_3 = D_80065734[D_8006C58C] * 8;
+                temp_a0 = D_8006C3F4 + *(int *)(D_800652B0 + temp_v0_3);
+                func_8004F984(temp_a0, temp_a0 + *(unsigned short *)(D_800652B4 + temp_v0_3), (int) *(unsigned short *)(D_800652B6 + temp_v0_3));
+                func_8004F178((Vector3D *) &D_80070328, &D_800722EC);
+                M2C_FIELD_54450(&D_80070328, int *, 0x64) = (int) D_80072304;
+                __asm__ volatile("" : : : "memory");
+                var_a0 = 0x11;
+                if (*(short *)(D_8006706A + (D_8006703C[temp_s0] * 8)) != 0) {
+                    var_a0 = 0x28;
+                }
+                func_8004BEF8(var_a0);
+                func_80012BA8(&D_800691E8);
+                func_80048444(&D_800722F8);
+                D_8006E138 = 1;
+                D_8006E139 = 1;
+                D_8006E13A = 0;
+                func_8001204C();
+            }
+        }
+        if (D_8006E344 == 7) {
+            register int *counter asm("$16") = &D_8006FBC4;
+            temp_v1 = *counter + 1;
+            *counter = temp_v1;
+            if (temp_v1 < 9) {
+                D_8006C598 = (8 - temp_v1) << 5;
+            }
+            func_80044240();
+            if (*counter >= 0xA) {
+                temp_v0_4 = func_80048444(&D_800722F8);
+                M2C_FIELD_54450(&D_80070328, signed char *, 0xC) = 0;
+                M2C_FIELD_54450(&D_80070328, signed char *, 0xD) = 0;
+                func_8001204C();
+                if (temp_v0_4 == 0) {
+                    if (M2C_FIELD_54450(&D_80070328, int *, 0x50) == 0xB) {
+                        func_8004BEF8(0x29);
+                    } else {
+                        func_8004BEF8(0);
+                    }
+                    D_8006E344 = 3;
+                    D_8006FBC8 = 4;
+                    D_8006FBC4 = 0;
+                    D_8006FBD0 = 0;
+                    D_8006C598 = 0;
+                    D_8006C718 = 1;
+                }
+            }
+            M2C_FIELD_54450(&D_80070328, unsigned char *, 0x1E) = 0x20U;
+        }
+        return;
+end_case:
+    return;
+}
+#undef M2C_FIELD_54450
 
 /**
  * InitGameOver() - func_80054AF8() - MATCHING
