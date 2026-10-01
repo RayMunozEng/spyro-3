@@ -788,8 +788,8 @@ void func_80051A60() {
     Vector3D sp10;
     char temp_v0_3;
     int temp_v0_6;
-    int var_s0;
     int var_v0_5;
+    int var_s0;
     int var_v1;
     char temp_s1;
 
@@ -1170,7 +1170,238 @@ INCLUDE_ASM("asm/nonmatchings/update", func_80052A84);
 
 INCLUDE_RODATA("asm/nonmatchings/update", D_80010C9C);
 
-INCLUDE_ASM("asm/nonmatchings/update", func_80053374);
+/* Retail source: USA Rev 0 PSX.EXE 0x80053374..0x80053944
+ * (372 instructions; raw bytes SHA-256 13c06150...d8a7).
+ * This is the loading transition state machine: states 0..9 advance once per
+ * call; pointer relocation uses byte addresses and a word-aligned delta;
+ * camera angles are 12-bit values and fades step by 0x10.
+ * Confidence: confirmed retail exact against PSX.EXE SHA-256
+ * e5406997...e39f and all 62 normal manifest hashes.
+ * Falsifiable vectors: states 0..9; level 0x13 and >=0x3E; relocation bounds
+ * at D_800722D8/D_800722E0; angle deltas -0x801/-0x800/-0x100/0xFF/0x100;
+ * fade values 0/0x10/0xFE/0xFF; both D_8006C658 branches. */
+extern volatile int currentLevel __asm__("D_80070328+0x48");
+extern unsigned char D_80065878;
+extern unsigned char * volatile *D_8006C558;
+extern int D_8006E074;
+extern int D_8006E12C;
+extern int D_8006E130;
+extern signed char D_8006E138;
+extern signed char D_8006E139;
+extern int D_8006E344;
+extern unsigned char *D_800722D0;
+extern unsigned int D_800722D8;
+extern unsigned int D_800722E0;
+
+#define UPDATE_FIELD(expr, type_ptr, offset) (*(type_ptr)((signed char *)(expr) + (offset)))
+
+void func_80053374(void) {
+    unsigned char *temp_s1;
+    int temp_s0;
+    int temp_v0;
+    int temp_v0_2;
+    int temp_v1_4;
+    int temp_angle;
+    int var_v0;
+    int var_v1;
+    int var_v1_2;
+    unsigned char *temp_s0_2;
+    unsigned int temp_v1;
+    unsigned int temp_v1_2;
+    void *temp_a0;
+    void *temp_a0_2;
+    void *temp_a0_3;
+    void *temp_v1_3;
+
+    switch (D_8006C514) {
+    case 0:
+        var_v1 = D_8006C5C8;
+        if (var_v1 == 0) {
+            var_v1 = D_8006C75C;
+        }
+        temp_s0 = UPDATE_FIELD(&D_80070328, int *, 0x244);
+        if (D_8006C50C != 0) {
+            func_8004BEF8(7);
+        } else if (((D_8006C5BC == 0xE) && (var_v1 == 3)) || ((D_8006C5BC == 0x2C) && (var_v1 == 2))) {
+            func_8004BEF8(0x28);
+        } else if (currentLevel != 0x13) {
+            func_8004BEF8(3);
+            UPDATE_FIELD(&D_80070328, int *, 0xB8) = 0;
+        }
+        func_80016764(0x23);
+        UPDATE_FIELD(&D_80070328, int *, 0x1BC) = 0;
+        UPDATE_FIELD(&D_80070328, int *, 0x1C4) = 0;
+        UPDATE_FIELD(&D_80070328, int *, 0x1CC) = 0;
+        UPDATE_FIELD(&D_80070328, int *, 0x1D0) = 0;
+        if (temp_s0 != 0) {
+            UPDATE_FIELD(&D_80070328, int *, 0x288) = 1;
+        }
+        D_8006C514 = 1;
+        break;
+    case 1:
+        temp_v0 = D_8006C598 + 0x10;
+        D_8006C598 = temp_v0;
+        if (temp_v0 >= 0xFF) {
+            D_8006C598 = 0xFF;
+            D_8006C514 = 2;
+        }
+        break;
+    case 2: {
+        register int temp_a2 asm("$6");
+        register int raw_delta asm("$3");
+        register unsigned char * volatile *table_base asm("$5");
+        temp_s1 = D_800722D0;
+        D_8006E12C = 0;
+        D_8006E130 = 0;
+        D_8006E138 = 1;
+        D_8006E139 = 1;
+        func_8001FB10(0x10000);
+        if (UPDATE_FIELD(&D_80070328, int *, 0x244) != 0) {
+            UPDATE_FIELD(&D_80070328, int *, 0x244) = 0;
+            if (currentLevel >= 0x3E) {
+                func_8004BEF8(0);
+            }
+        }
+        temp_s0_2 = D_8006C558[currentLevel];
+        if ((unsigned int) temp_s0_2 < (unsigned int) D_800722E0) {
+            func_8004E7D4(temp_s1, (int *) temp_s0_2, UPDATE_FIELD(temp_s0_2, int *, -4));
+            table_base = D_8006C558;
+            table_base[currentLevel] = temp_s1;
+            raw_delta = (int) (temp_s1 - temp_s0_2);
+            temp_a0 = table_base[currentLevel];
+            temp_a2 = (raw_delta >> 2) * 4;
+            UPDATE_FIELD(temp_a0, int *, 4) = (int) (UPDATE_FIELD(temp_a0, int *, 4) + temp_a2);
+            temp_a0_2 = table_base[currentLevel];
+            temp_v1 = UPDATE_FIELD(temp_a0_2, unsigned int *, 8);
+            if (temp_v1 < (unsigned int) D_800722D8) {
+                UPDATE_FIELD(temp_a0_2, unsigned int *, 8) = (unsigned int) (temp_v1 + temp_a2);
+            }
+            temp_a0_3 = D_8006C558[currentLevel];
+            temp_v1_2 = UPDATE_FIELD(temp_a0_3, unsigned int *, 0xC);
+            if (temp_v1_2 < (unsigned int) D_800722D8) {
+                UPDATE_FIELD(temp_a0_3, unsigned int *, 0xC) = (unsigned int) (temp_v1_2 + temp_a2);
+            }
+            temp_v1_3 = D_8006C558[currentLevel];
+            UPDATE_FIELD(temp_v1_3, int *, 0x10) = (int) (UPDATE_FIELD(temp_v1_3, int *, 0x10) + temp_a2);
+        }
+        D_8006C514 = 3;
+        break;
+    }
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+        func_80052A84();
+        break;
+    case 7:
+        temp_angle = UPDATE_FIELD(&D_80070328, int *, 0x64) + 0x800;
+        var_v1_2 = (D_8006E074 - temp_angle) & 0xFFF;
+        if (var_v1_2 >= 0x801) {
+            var_v1_2 -= 0x1000;
+        }
+        {
+            register int magnitude asm("$2") = var_v1_2;
+            if (var_v1_2 < 0) {
+                magnitude = -magnitude;
+            }
+            var_v0 = magnitude;
+        }
+        if (var_v0 < 0x100) {
+            D_8006C514 = 8;
+            if (D_8006C658 != 0) {
+                func_8001FB10((*(&D_80065878 + D_8006C58C) << 0xA) - 0x1000);
+            } else {
+                func_8001FB10(*(&D_80065878 + D_8006C58C) << 0xA);
+            }
+        }
+        break;
+    case 8:
+        UPDATE_FIELD(&D_80070328, int *, 0x20C) = 0x10000002;
+        func_80055294(0x7B);
+        temp_v1_4 = D_8006C598 - 0x10;
+        D_8006C640 += 1;
+        D_8006C598 = temp_v1_4;
+        if (temp_v1_4 <= 0) {
+            D_8006C598 = 0;
+            D_8006C514 = 9;
+        }
+        break;
+    case 9:
+        UPDATE_FIELD(&D_80070328, int *, 0x20C) = 0x10000002;
+        func_80055294(0x7B);
+        D_8006E344 = 0;
+        D_8006C640 += 1;
+        break;
+    }
+    if ((unsigned int) (D_8006C514 - 8) >= 2U) {
+        UPDATE_FIELD(&D_80070328, int *, 0xA8) = 0;
+        UPDATE_FIELD(&D_80070328, int *, 0x20C) = 0x10000002;
+        func_800489CC();
+        func_800473E4();
+        func_80045D70();
+        func_80044240();
+        func_80048948();
+        func_80047C7C();
+        {
+            register int angle asm("$3") = UPDATE_FIELD(&D_80070328, int *, 0x5C);
+            register int step asm("$4");
+            register int second_angle asm("$5");
+            register int scratch asm("$2");
+            UPDATE_FIELD(&D_80070328, int *, 0x2C) = 0;
+            scratch = -angle;
+            step = scratch & 0xFFF;
+            scratch = step < 0x801;
+            if (scratch == 0) {
+                step -= 0x1000;
+                scratch = step < -0x20;
+            } else {
+                scratch = step < -0x20;
+            }
+            if (scratch != 0) {
+                step = -0x20;
+                __asm__ volatile("" : "=r"(step) : "0"(step));
+                scratch = step < 0x21;
+            } else {
+                scratch = step < 0x21;
+            }
+            if (scratch == 0) {
+                step = 0x20;
+            }
+            second_angle = UPDATE_FIELD(&D_80070328, int *, 0x60);
+            angle += step;
+            UPDATE_FIELD(&D_80070328, int *, 0x5C) = angle;
+            scratch = -second_angle;
+            step = scratch & 0xFFF;
+            scratch = step < 0x801;
+            if (scratch == 0) {
+                step -= 0x1000;
+                scratch = step < -0x20;
+            } else {
+                scratch = step < -0x20;
+            }
+            if (scratch != 0) {
+                step = -0x20;
+                __asm__ volatile("" : "=r"(step) : "0"(step));
+                scratch = step < 0x21;
+            } else {
+                scratch = step < 0x21;
+            }
+            if (scratch == 0) {
+                step = 0x20;
+            }
+            UPDATE_FIELD(&D_80070328, signed char *, 0xC) = (signed char) (angle >> 4);
+            temp_v0_2 = second_angle + step;
+            UPDATE_FIELD(&D_80070328, int *, 0x60) = temp_v0_2;
+            UPDATE_FIELD(&D_80070328, signed char *, 0xD) = (signed char) (temp_v0_2 >> 4);
+            if ((UPDATE_FIELD(&g_CheatFlags, unsigned char *, 6) != 0) && (UPDATE_FIELD(&D_80070328, unsigned char *, 0x11) == 0)) {
+                UPDATE_FIELD(&D_80070328, unsigned char *, 0x11) = 1U;
+            }
+            func_8001204C(step, second_angle);
+        }
+    }
+}
+
+#undef UPDATE_FIELD
 
 /**
  * InitStateFadeIn() - func_80053944() - MATCHING
