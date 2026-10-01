@@ -1211,10 +1211,195 @@ int func_80029CF8(HudEntry* hud) {
 }
 
 /**
- * ???() - func_80029E48()
- * https://decomp.me/scratch/dFXYA
+ * func_80029E48() - NON-MATCHING
+ * Decoded from the repository target assembly at 0x80029E48-0x8002A580.
+ * Remaining differences are compiler register allocation in the gem and egg HUD widths.
  */
-INCLUDE_ASM("asm/nonmatchings/hud", func_80029E48);
+extern unsigned char D_80066F54[40], D_80066F7C[40], D_80070300[40];
+extern int D_80071A10[40], levelIndex, D_8006C640;
+extern volatile int levelIndexForHud asm("levelIndex");
+extern char* D_8006C430[], *D_8006C434[];
+void func_80029E48(void) {
+
+    int (*temp_v0_9)(HudEntry*);
+    HudEntry* hudEntry;
+    SpriteData* spData1;
+    int temp_s0;
+    int temp_s0_4;
+    int collectedGems;
+    int temp_s1_3;
+    int temp_s2_3;
+    int allEggsBitMask;
+    int totalGems;
+    int var_s0;
+    int var_s1;
+    int var_s2;
+    unsigned char temp_s1_4;
+    int collectedEggsBitMask;
+    register int temp asm("$2");
+    short foo1;
+    short foo2;
+
+
+
+
+
+    if (game.state != GAMESTATE_PAUSE) {
+        if (!(D_8006C598 != 0 || D_8006C74C != 0 || D_8006C640 < 31 || D_8006C64C != 0 || g_Hud.DAT_800719d4 != 0)) {
+
+        totalGems = D_80066F54[levelIndex] * 100; // gems in level
+        collectedEggsBitMask = D_80070300[levelIndex]; // eggs bitmask
+        allEggsBitMask = (1 << D_80066F7C[levelIndex]) - 1; // (1 << eggs-in-level) - 1, oh 1111...1111
+        collectedGems = D_80071A10[levelIndex]; // gems collected
+        func_800359A4(&g_Hud.DAT_800719de, 2); //fCountDownTimer, type = char
+
+        // if timer finished
+        if (g_Hud.DAT_800719de == 0) {
+            if (g_Hud.DAT_800719dc == 2) {
+                g_Hud.DAT_800719dc = 0;
+            } else if (g_Hud.DAT_800719d6 == 2) {
+                g_Hud.DAT_800719d6 = 1;
+            } else if (g_Hud.DAT_800719d8 == 2) {
+                g_Hud.DAT_800719d8 = 1;
+            } else if (g_Hud.DAT_800719da == 2) {
+                g_Hud.DAT_800719da = 1;
+            }
+        }
+        if (g_Hud.DAT_800719dc != 0) {
+            if ((g_Hud.DAT_800719de == 0)) {
+                if (g_Hud.DAT_800719dc == 1) {
+
+                g_Hud.DAT_800719dc = 2;
+                g_Hud.DAT_800719de = 240;
+                }
+            }
+        } else if ((((g_CurrentLevel / 10) * 0xA) != (g_CurrentLevel - 7)) && (g_Hud.DAT_800719de == 0)) {
+
+            if ((g_Hud.DAT_800719da == 0) && (g_Hud.DAT_800719d6 == 0) && (g_Hud.DAT_800719d8 == 0) && (collectedGems == totalGems) && (collectedEggsBitMask == allEggsBitMask)) {
+                g_Hud.DAT_800719d6 = 1;
+                g_Hud.DAT_800719d8 = 1;
+                g_Hud.DAT_800719da = 2;
+                g_Hud.DAT_800719de = 240;
+            }
+            if ( (g_Hud.DAT_800719de == 0) && (g_Hud.DAT_800719d6 == 0) && (collectedGems == totalGems)) {
+                    if (collectedGems == 0) {
+                        g_Hud.DAT_800719d6 = 1;
+                    } else {
+                        temp = func_80027934(3); //fGetSpriteIndex
+                        g_Hud.DAT_800719e0 = temp;
+                        g_Hud.DAT_800719e2 = D_8006C738[temp].animationType;
+                        g_Hud.DAT_800719e3 = D_8006C738[temp].frame;
+                        g_Hud.DAT_800719d6 = 2;
+                        g_Hud.DAT_800719de = 240;
+                    }
+                }
+                if (g_Hud.DAT_800719de == 0) { //
+                    if ((g_Hud.DAT_800719d8 == 0) && (collectedEggsBitMask == allEggsBitMask)) {
+                        temp = func_80027934(5); //fGetSpriteIndex
+                        g_Hud.DAT_800719e8 = temp;
+                        g_Hud.DAT_800719ea = D_8006C738[temp].animationType;
+                        g_Hud.DAT_800719eb = D_8006C738[temp].frame;
+                        g_Hud.DAT_800719d8 = 2;
+                        g_Hud.DAT_800719de = 240;
+                    }
+                    if ( (g_Hud.DAT_800719de == 0) && (g_Hud.DAT_800719da == 0) && (collectedGems == totalGems) && (collectedEggsBitMask == allEggsBitMask)) {
+                        g_Hud.DAT_800719da = 2;
+                        g_Hud.DAT_800719de = 240;
+                    }
+                }
+            }
+
+        if (g_Hud.DAT_800719de < 210) {
+            // i think these should probs just be ifs and not else ifs but else if is giving a better match atm
+            if (g_Hud.DAT_800719dc == 2) {
+                temp_s0 = func_8002EBB0(D_8006C434[D_8006C76C]) >> 1; // "Skill Point!"
+                // foo1 = 250 - temp_s0;
+                func_8001FE48(250 - temp_s0, temp_s0 + 262, 52, 69); //drawutil
+                func_8002E748(D_8006C434[D_8006C76C], 256 - temp_s0, 56, 1, 0); // handwritten
+            } else if (g_Hud.DAT_800719d6 == 2) {
+                register int workValue asm("$2");
+                register SpriteData *drawSprite asm("$16");
+                register int halfWidth asm("$17");
+                register int displayGems asm("$18");
+                workValue = g_Hud.numberFrame;
+                {
+                    register SpriteData *spriteBase asm("$4");
+                    spriteBase = D_8006C788;
+                    workValue <<= 3;
+                    workValue += (int)spriteBase;
+                }
+                {
+                    register int tableOffset asm("$3");
+                    register int topEdge asm("$4");
+                    tableOffset = levelIndex << 2;
+                    topEdge = ((SpriteData *)workValue)->unk4;
+                    workValue = ((SpriteData *)workValue)->unk0;
+                    displayGems = *(int *)((char *)D_80071A10 + tableOffset);
+                    halfWidth = topEdge - workValue;
+                    __asm__ volatile("" : "=r"(halfWidth) : "0"(halfWidth));
+                }
+                halfWidth = displayGems < 1000 ? halfWidth * 7 : halfWidth * 9;
+                workValue = halfWidth + 30;
+                halfWidth = workValue >> 1;
+                g_Hud.DAT_800719e3 = func_80028378((SpriteAnimationData *)&g_Hud.DAT_800719e0, 0);
+                drawSprite = &D_8006C788[g_Hud.DAT_800719e3 & 0xFF];
+                func_8001FE48(250 - halfWidth, halfWidth + 262, 48, 73);
+                func_800289C8(drawSprite, 256 - halfWidth, 51);
+                func_800293C4(displayGems, displayGems, 286 - halfWidth, 60, 0);
+            } else if (g_Hud.DAT_800719d8 == 2) {
+                register int workValue asm("$2");
+                register SpriteData *drawSprite asm("$16");
+                register int halfWidth asm("$18");
+                register int eggCount asm("$17");
+                workValue = g_Hud.numberFrame;
+                {
+                    register SpriteData *spriteBase asm("$3");
+                    spriteBase = D_8006C788;
+                    workValue <<= 3;
+                    workValue += (int)spriteBase;
+                }
+                {
+                    register int topEdge asm("$3");
+                    topEdge = ((volatile SpriteData *)workValue)->unk4;
+                    workValue = ((volatile SpriteData *)workValue)->unk0;
+                    halfWidth = topEdge - workValue;
+                }
+                workValue = (halfWidth << 1) + halfWidth;
+                workValue += 30;
+                eggCount = D_80066F7C[levelIndexForHud];
+                halfWidth = workValue >> 1;
+                g_Hud.DAT_800719eb = func_80028378((SpriteAnimationData *)&g_Hud.DAT_800719e8, 0);
+                drawSprite = &D_8006C788[g_Hud.DAT_800719eb & 0xFF];
+                func_8001FE48(250 - halfWidth, halfWidth + 262, 48, 73);
+                func_800289C8(drawSprite, 256 - halfWidth, 50);
+                func_800293C4(eggCount, eggCount, 286 - halfWidth, 60, 0);
+            } else if (g_Hud.DAT_800719da == 2) {
+                temp_s0_4 = func_8002EBB0(D_8006C430[D_8006C76C]) >> 1; // "Level Complete"
+                func_8001FE48(250 - temp_s0_4, temp_s0_4 + 262, 52, 69);
+                func_8002E748(D_8006C430[D_8006C76C], 256 - temp_s0_4, 56, 1, 0);
+            }
+        }
+    }
+    }
+    {
+        extern unsigned char D_8006727C[];
+        register HudEntry *tailEntry asm("$17");
+        register int tailCount asm("$18");
+        register int tailOffset asm("$16");
+        tailCount = 0;
+        tailEntry = D_80067248;
+        tailOffset = 0;
+        do {
+            temp_v0_9 = *(int (**)(HudEntry *))(D_8006727C + tailOffset);
+            if (temp_v0_9 != 0) {
+                temp_v0_9(tailEntry);
+            }
+            tailEntry++;
+            tailCount++;
+            tailOffset += sizeof(HudEntry);
+        } while (tailCount < 8);
+    }
+}
 
 /**
  * ???() - func_8002A580() - MATCHING
