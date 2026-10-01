@@ -294,7 +294,383 @@ lane_done:
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/update", func_800512E4);
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef signed short s16;
+typedef signed int s32;
+
+/* Retail source: USA Rev 0 PSX.EXE 0x800512E4..0x800518F8
+ * (389 instructions / 1556 bytes), raw .text SHA-256
+ * 75425f429fd047a4e3dbe9bcce5892ca72025b971b44cdb3e847a9af03f83720.
+ * One invocation initializes the selected dialogue session, parses its byte
+ * command stream, and rebuilds line pointers, signed 16-bit byte offsets,
+ * marker counts, and formatted marker text. Control bytes are 0x20, 0x26,
+ * 0x40, 0x5C, 0x5E, and 0xFF; accumulated widths use integer units with a
+ * 435 boundary. Confidence: confirmed retail exact over all 561 instruction
+ * and relocation comparison records. Falsifiable vectors: empty and 0xFF
+ * terminated streams, each control byte, 434/435 width crossings, consecutive
+ * 0x5E runs, nonzero break counts, and each dialogue lookup outcome. */
+extern int D_8006C72C, D_8006C778, D_8006C790;
+extern int D_8006C78C, D_8006C6A4, D_8006C51C, D_8006C520;
+extern int D_8006C6D8, D_8006C620, D_8006C6FC, D_8006C7BC;
+extern int D_8006C794, D_8006C608, D_8006C7D0, D_8006C624;
+extern int D_8006C798, D_8006C5C4, D_8006C750;
+extern int D_8006C76C, D_8006C7B0, D_8006C594;
+extern int D_8006C674, D_8006C6DC, D_8006C6E8;
+extern unsigned char D_8006C680, D_8006C5AC, D_8006C6E4, D_8006C7A4;
+extern unsigned char D_8006C53C, D_800666F1[];
+extern short D_8006C544, D_8006C57C, D_8006C6F0;
+extern short D_8006C6F4, D_8006C6F6, D_80071938[], D_80071942;
+extern unsigned char D_8006C6F2, D_8006C6F3;
+extern Moby *D_8006C5A8, *D_8006C69C;
+extern int D_8006C684[], D_8006C59C[];
+extern unsigned char *D_8006C68C[], *D_800713A8;
+extern unsigned char *D_80071390[];
+extern char D_8006C4E8[];
+int func_80027934(int);
+int func_80037324(Moby *);
+void func_800512E4(Moby *arg0, s32 arg1, s32 arg2) {
+    u8 sp10[24];
+    register SpeechProps *temp_s1 asm("$17");
+    register int one asm("$18") = 1;
+    register int initialState asm("$3");
+    register unsigned int workV0 asm("$2");
+    register int space asm("$13");
+    register u8 **breakBase asm("$9");
+    register u8 **breakPrev asm("$15");
+    register u8 **lineBase asm("$12");
+    register s16 *offsetBase asm("$11");
+    register s32 *countBase asm("$14");
+    register int loopOne asm("$10");
+    register s16 temp_a1 asm("$5");
+    s16 temp_v0;
+    s16 temp_v1_2;
+    register s32 var_v0_3 asm("$2");
+    s32 *temp_a0_3;
+    s32 *var_s1;
+    register s32 temp_a0_4 asm("$4");
+    s32 temp_v0_4;
+    s32 temp_v0_5;
+    s32 temp_v0_6;
+    register s32 temp_v1_3 asm("$3");
+    s32 var_a0;
+    register s32 var_a1 asm("$5");
+    register s32 var_a3 asm("$7");
+    u8 **temp_v0_3;
+    u8 **var_s2;
+    register u8 *temp_a0 asm("$4");
+    u8 *temp_a0_2;
+    register u8 *temp_s0 asm("$16");
+    u8 *temp_v1_4;
+    register u8 *var_a2 asm("$6");
+    register u8 *var_t0 asm("$8");
+    u8 *var_v0_2;
+    void *temp_v0_2;
+
+    temp_s1 = arg0->mobyTag;
+    D_8006C72C = arg1;
+    D_8006C778 = arg2;
+    temp_s1->talkable = 0;
+    initialState = D_8006E344;
+    if (initialState == 1) {
+        goto block_2;
+    }
+    D_8006C790 = 0;
+    goto block_3;
+block_2:
+    __asm__ volatile ("" : "=r"(initialState) : "0"(initialState));
+        D_8006C790 = initialState;
+block_3:
+    __asm__ volatile ("" : : : "memory");
+    D_8006C680 = 1;
+    D_8006E344 = one;
+    D_8006C78C = 0;
+    D_8006C5A8 = arg0;
+    D_8006C6A4 = 0;
+    D_8006C51C = 0;
+    D_8006C520 = 0;
+    D_8006C6D8 = 0;
+    D_8006C5AC = 0;
+    D_8006C620 = 0;
+    D_8006C6FC = 0;
+    D_8006C7BC = 0;
+    D_8006C794 = 0;
+    D_8006C544 = 0;
+    D_8006C6E4 = 0;
+    D_8006C57C = 0;
+    D_8006C7A4 = 0;
+    D_8006C53C = 0;
+    D_8006C608 = 0;
+    D_8006C7D0 = 0;
+    D_8006C624 = -1;
+    D_8006C798 = 0;
+    D_8006C5C4 = 0;
+    D_8006C750 = 0;
+    D_8006C69C = 0;
+    temp_v0 = func_80027934(3);
+    D_8006C6F0 = temp_v0;
+    temp_v0_2 = ((s32) (temp_v0 << 0x10) >> 0xD) + (int)D_8006C738;
+    initialState = *((u8 *)temp_v0_2 + 4);
+    D_8006C6F2 = initialState;
+    __asm__ volatile ("" : : : "memory");
+    initialState = *((u8 *)temp_v0_2 + 2);
+    D_8006C6F4 = 0x150;
+    D_8006C6F6 = 0xBE;
+    D_8006C6F3 = initialState;
+    func_80037324(arg0);
+    workV0 = temp_s1->nextMsg;
+    __asm__ volatile ("" : : : "memory");
+    initialState = temp_s1->nextMsg;
+    workV0 <<= 2;
+    temp_s1->prevMsg = initialState;
+    initialState = D_8006C76C;
+    workV0 += (unsigned int)temp_s1;
+    initialState <<= 2;
+    workV0 += initialState;
+    initialState = D_8006C7B0;
+    temp_s0 = *(u8 **)(workV0 + 0x10);
+    var_a1 = 0;
+    if (initialState == 0) {
+        goto block_6;
+    }
+    var_a1 = 0;
+    workV0 = FindMobyDialogue(temp_s1);
+    var_a1 = 0;
+    if (workV0 == 0) {
+        goto block_6;
+    }
+    D_8006C794 = one;
+block_6:
+    var_a3 = 0;
+    temp_s0 = temp_s0 + *temp_s0;
+    var_a2 = temp_s0;
+    initialState = (int)&D_800713A8;
+    __asm__ volatile ("" : "=r"(initialState) : "0"(initialState));
+    *(u8 **)initialState = temp_s0;
+    var_t0 = temp_s0;
+    if (*temp_s0 == 0) {
+        goto block_33;
+    }
+    space = 0x20;
+    __asm__ volatile ("" : "=r"(space) : "0"(space));
+    breakBase = D_80071390;
+    __asm__ volatile ("" : "=r"(breakBase) : "0"(breakBase));
+    breakPrev = breakBase - 1;
+    lineBase = (u8 **)initialState;
+    offsetBase = D_80071938;
+    countBase = D_8006C684;
+    loopOne = 1;
+loop_8:
+    initialState = *var_a2;
+    if (initialState == 0xFF) {
+        goto block_33;
+    }
+    if (initialState != space) {
+        goto block_11;
+    }
+    var_a1 += 0xB;
+    var_a3 = 0;
+    var_t0 = var_a2 + 1;
+    goto block_32;
+block_11:
+    if (initialState != 0x40) {
+        goto block_13;
+    }
+    var_a2 += 1;
+    goto block_32;
+block_13:
+    if (initialState == 0x26) {
+        goto block_16;
+    }
+    workV0 = 0x5C;
+    if (initialState == workV0) {
+        workV0 = 0x5E;
+        goto block_18;
+    }
+    workV0 = 0x5E;
+    goto block_21;
+block_16:
+    workV0 = (u16)D_8006C544;
+    __asm__ volatile ("" : "=r"(var_a2) : "0"(var_a2), "r"(workV0));
+    temp_a0 = var_a2 + 1;
+    temp_a1 = workV0 + 1;
+    workV0 <<= 0x10;
+    workV0 = (s32)workV0 >> 0xE;
+    temp_v0_3 = (u8 **)(workV0 + (unsigned int)breakBase);
+    D_8006C544 = temp_a1;
+    *temp_v0_3 = temp_a0;
+    var_a3 = 0;
+    if (var_a2[1] != 0x5B) {
+        goto block_20;
+    }
+    workV0 = (u16)temp_a1;
+    workV0 <<= 0x10;
+    workV0 = (s32)workV0 >> 0xE;
+    workV0 += (unsigned int)breakPrev;
+    D_8006C53C = loopOne;
+    *(u8 **)workV0 = temp_a0;
+    goto block_20;block_18:
+    __asm__ volatile ("" : "=r"(workV0) : "0"(workV0));
+    var_a3 = 0;
+    if (var_a2[1] != space) {
+        goto block_20;
+    }
+    var_a2 += 1;
+block_20:
+    var_a1 = 0;
+    temp_a0_2 = var_a2 + 1;
+    temp_v0_4 = D_8006C6A4 + 1;
+    D_8006C6A4 = temp_v0_4;
+    lineBase[temp_v0_4] = temp_a0_2;
+    offsetBase[temp_v0_4] = temp_a0_2 - temp_s0;
+    goto block_27;
+block_21:
+    if (initialState != workV0) {
+        goto block_26;
+    }
+    var_t0 = var_a2;
+    workV0 = D_8006C620;
+    __asm__ volatile ("" : "=r"(var_a1) : "0"(var_a1), "r"(workV0));
+    var_a1 += 0xC;
+    workV0 <<= 2;
+    *(u8 **)((u8 *)D_8006C68C + workV0) = var_a2;
+    __asm__ volatile ("" : "=r"(var_a2) : "0"(var_a2) : "memory");
+    var_a2 += 1;
+    temp_a0_3 = (s32 *)(workV0 + (unsigned int)countBase);
+    *temp_a0_3 = loopOne;
+    var_a3 = 0xC;
+    if (*var_a2 != initialState) {
+        goto block_25;
+    }
+    initialState = (s32)temp_a0_3;
+    temp_a0 = (u8 *)0x5E;
+loop_24:
+    var_a1 += 0xC;
+    workV0 = *(s32 *)initialState;
+    var_a2 += 1;
+    workV0 += 1;
+    *(s32 *)initialState = workV0;
+    workV0 = *var_a2;
+    var_a3 += 0xC;
+    if (workV0 == (s32)temp_a0) {
+        goto loop_24;
+    }
+block_25:
+    workV0 = D_8006C620;
+    workV0 += 1;
+    D_8006C620 = workV0;
+    workV0 = var_a1 < 0x1B3;
+    goto block_28;block_26:
+    workV0 = initialState << 1;
+    temp_v0_5 = D_800666F1[workV0] & 0xF;
+    var_a1 += temp_v0_5;
+    var_a3 += temp_v0_5;
+block_27:
+    workV0 = var_a1 < 0x1B3;
+block_28:
+    if (workV0 != 0) {
+        goto block_32;
+    }
+    temp_v1_2 = D_8006C544;
+    if (temp_v1_2 == 0) {
+        goto block_31;
+    }
+    D_8006C544 = temp_v1_2 + 1;
+    breakBase[temp_v1_2] = var_t0;
+block_31:
+    var_a1 = var_a3;
+    temp_v0_6 = D_8006C6A4 + 1;
+    D_8006C6A4 = temp_v0_6;
+    lineBase[temp_v0_6] = var_t0;
+    offsetBase[temp_v0_6] = var_t0 - temp_s0;
+block_32:
+    var_a2 += 1;
+    if (*var_a2 != 0) {
+        goto loop_8;
+    }
+block_33:
+    workV0 = var_a2 - temp_s0;
+    temp_a0_4 = D_8006C6A4;
+    temp_v1_3 = D_8006C544;
+    temp_a0_4 += 1;
+    var_a1 = temp_a0_4 << 1;
+    __asm__ volatile ("" : "=r"(temp_v1_3) : "0"(temp_v1_3), "r"(var_a1));
+    temp_v1_3 = temp_a0_4 - temp_v1_3;
+    *(s16 *)((u8 *)D_80071938 + var_a1) = workV0;
+    workV0 = D_80071938[temp_v1_3];
+    __asm__ volatile ("" : "=r"(workV0) : "0"(workV0) : "memory");
+    var_a1 = D_8006C620;
+    __asm__ volatile ("" : : : "memory");
+    D_8006C6A4 = temp_a0_4;
+    __asm__ volatile ("" : : : "memory");
+    D_8006C6A4 = temp_v1_3;
+    D_8006C520 = workV0;
+    temp_s0 = (u8 *)0;
+    if (var_a1 <= 0) {
+        goto block_39;
+    }
+    var_s2 = D_8006C68C;
+    var_s1 = D_8006C59C;
+loop_35:
+    sprintf(sp10, &D_8006C4E8, *var_s1);
+    var_a0 = 0;
+    __asm__ volatile ("" : "=r"(var_a0) : "0"(var_a0));
+    var_a1 = (s32)sp10;
+    if (sp10[0] == 0) {
+        goto block_38;
+    }
+    var_a2 = (u8 *)var_s2;
+    workV0 = var_a1 + var_a0;
+loop_37:
+    initialState = *(s32 *)var_a2;
+    workV0 = *(u8 *)workV0;
+    initialState += var_a0;
+    var_a0 += 1;
+    *(u8 *)initialState = workV0;
+    workV0 = var_a1;
+    __asm__ volatile ("" : "=r"(workV0) : "0"(workV0));
+    workV0 += var_a0;
+    workV0 = *(u8 *)workV0;
+    if (workV0 != 0) {
+        workV0 = var_a1 + var_a0;
+        goto loop_37;
+    }
+block_38:
+    var_s2 += 1;
+    workV0 = D_8006C620;
+    temp_s0 += 1;
+    var_s1 += 1;
+    if ((s32)temp_s0 < (s32)workV0) {
+        goto loop_35;
+    }
+block_39:
+    workV0 = D_8006C794;
+    initialState = 5;
+    D_8006C6E8 = initialState;
+    if (workV0 != 0) {
+        goto block_41;
+    }
+    workV0 = D_8006C6A4;
+    workV0 = initialState < (s32)workV0;
+    if (workV0 != 0) {
+        goto block_42;
+    }
+block_41:
+    workV0 = D_8006C520;
+    goto block_43;
+block_42:
+    workV0 = (s32)D_80071942;
+block_43:
+    D_8006C6DC = workV0;
+    workV0 = D_8006C7B0;
+    if (workV0 == 0) {
+        goto block_45;
+    }
+    D_8006C594 = (speechData[D_8006C76C][D_8006C674].len * 2) / 5;
+block_45:
+    return;
+}
+
 
 extern int D_8006E344;
 extern int D_8006C74C;
