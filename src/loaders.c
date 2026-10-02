@@ -489,7 +489,1003 @@ void func_8002B768(Particle* arg0) {
  * WIP
  * https://decomp.me/scratch/XH66Q
  */
-INCLUDE_ASM("asm/nonmatchings/loaders", func_8002B810);
+/* Retail source: asm/nonmatchings/loaders/func_8002B810.s,
+ * SCUS-94467 USA Rev 0, 0x8002B810..0x8002C9F4.
+ * Loads and relocates a layout once per invocation. Pointer offsets are bytes;
+ * packed fields retain their retail widths, shifts and signedness.
+ * Verification vector: all 1,145 instructions and the complete executable/
+ * overlay SHA-256 checks match. Register constraints emit no instructions;
+ * they preserve GCC 2.7.2's retail temporary register selection for /10.
+ */
+#define DIV10(v) ({ \
+    int quotient; \
+    register int scratch9 asm("$9"); \
+    register int scratch10 asm("$10"); \
+    register int scratch11 asm("$11"); \
+    register int scratch12 asm("$12"); \
+    register int scratch13 asm("$13"); \
+    register int scratch14 asm("$14"); \
+    register int scratch15 asm("$15"); \
+    register int scratch24 asm("$24"); \
+    register int scratch25 asm("$25"); \
+    __asm__("" : "=r"(scratch9), "=r"(scratch10), "=r"(scratch11), \
+        "=r"(scratch12), "=r"(scratch13), "=r"(scratch14), "=r"(scratch15), \
+        "=r"(scratch24), "=r"(scratch25)); \
+    quotient = (v) / 10; \
+    __asm__ volatile("" : : "r"(scratch9), "r"(scratch10), "r"(scratch11), \
+        "r"(scratch12), "r"(scratch13), "r"(scratch14), "r"(scratch15), \
+        "r"(scratch24), "r"(scratch25)); \
+    quotient; \
+})
+#define M2C_FIELD(p,t,o) (*(t)((char *)(p)+(o)))
+extern int D_8006C5BC,D_8006C58C,D_8006C658,D_80071928,D_8006E344;
+int func_80012BA8(int *);                   /* extern */
+int func_8001A310(Vector3D *, int, int, void *); /* extern */
+int func_8001A358(Vector3D *, int);             /* extern */
+int func_80021A70();                            /* extern */
+int func_80027B70();                            /* extern */
+int func_8003038C();                            /* extern */
+void *func_80036A68(void *, int, int, Vector3D *); /* extern */
+int func_8003B918(int *);                       /* extern */
+int func_8004BEF8(int);                     /* extern */
+int func_8004F52C(Vector3D *, void *);          /* extern */
+int func_80050B90();                            /* extern */
+int func_80055B18(void *);                      /* extern */
+int func_80055C24(void *);                      /* extern */
+int func_80055D10(void *);                      /* extern */
+int func_8005629C(void *);                      /* extern */
+int srand(int);                             /* extern */
+extern int D_80067150;
+extern int D_80067178;
+extern int D_8006717E;
+extern int D_800671B8;
+extern int D_800671D4;
+extern int D_80068F7C;
+extern int D_8006C4F4;
+extern int D_8006C508;
+extern int D_8006C52C;
+extern void *D_8006C530;
+extern int *D_8006C538;
+extern void *D_8006C550;
+extern int *D_8006C55C;
+extern int D_8006C568;
+extern int D_8006C574;
+extern int D_8006C578;
+extern int D_8006C580;
+extern int D_8006C588;
+extern int D_8006C590;
+extern int D_8006C5B8;
+extern int D_8006C5E0;
+extern int D_8006C5E8;
+extern void *D_8006C5EC;
+extern int D_8006C60C;
+extern void *D_8006C610;
+extern int D_8006C618;
+extern int D_8006C61C;
+extern int D_8006C628;
+extern int D_8006C640;
+extern int D_8006C644;
+extern int D_8006C64C;
+extern int D_8006C650;
+extern int D_8006C65C;
+extern char D_8006C670;
+extern int D_8006C678;
+extern int D_8006C6C4;
+extern int D_8006C6C8;
+extern int D_8006C6CC;
+extern void *D_8006C704;
+extern void *D_8006C728;
+extern void *D_8006C730;
+extern void *D_8006C738;
+extern int D_8006C73C;
+extern char D_8006C748;
+extern int D_8006C74C;
+extern void *D_8006C754;
+extern void *D_8006C758;
+extern int D_8006C76C;
+extern int D_8006C784;
+extern void *D_8006C788;
+extern int D_8006C79C;
+extern int D_8006C7C4;
+extern int *D_8006C7E0;
+extern int D_8006D088;
+extern int D_8006D08C;
+extern int D_8006D0B8;
+extern int D_8006D8D0;
+extern int D_8006E038;
+extern int D_8006E350;
+extern void **D_8006E354;
+extern int D_8006E358;
+extern void **D_8006E35C;
+extern int D_8006E360;
+extern void **D_8006E364;
+extern int D_8006E368;
+extern void **D_8006E36C;
+extern int D_8006E370;
+extern void **D_8006E374;
+extern int D_8006E378;
+extern void **D_8006E37C;
+extern int D_8006E380;
+extern void **D_8006E384;
+extern int D_8006E388;
+extern int D_8006E38C;
+extern int D_8006FA38;
+extern int D_8006FA3C;
+extern int D_8006FA40;
+extern unsigned char D_8006FC15;
+extern unsigned char D_8006FC16;
+extern unsigned char D_8006FC17;
+extern unsigned char D_8006FC89;
+extern unsigned char D_8006FC8A;
+extern unsigned char D_8006FC8B;
+extern Vector3D D_80070328;
+extern int D_80071484;
+extern unsigned char D_80071599;
+extern int D_8007179C;
+extern int D_800717AC;
+extern int D_800717B0;
+extern char D_80071A0D;
+extern int D_80071AB0;
+extern int D_80071FB0;
+extern int D_8007209C;
+extern int D_800722C8;
+extern int *D_800722CC;
+extern int D_80072330;
+extern int (*SpawnMoby)(int, int, int);
+
+void *func_8002B810(void *arg0) {
+    struct { Vector3D v10; int gap1c[3]; int f28; char gap2c[84]; } frame;
+    register char *var_v1 asm("$3");
+    int var_a0_6;
+    register Vector3D *temp_s0_2 asm("$16");
+    register Vector3D *temp_s0_3 asm("$16");
+    register Vector3D *temp_s2_2 asm("$18");
+    register Vector3D *temp_s3_3 asm("$19");
+    register int temp_v1_5 asm("$3");
+    int *temp_a0;
+    int *temp_a0_2;
+    register int *temp_s0 asm("$16");
+    register int *temp_s1_6 asm("$17");
+    register int *temp_s5 asm("$21");
+    register int *temp_s5_10 asm("$21");
+    register int *temp_s5_9 asm("$21");
+    register int *var_s1_10 asm("$17");
+    register int *var_s1_12 asm("$17");
+    register int *var_s1_2 asm("$17");
+    register int *var_s5 asm("$21");
+    register unsigned int temp_hi asm("$18");
+    register int temp_s1_8 asm("$17");
+    register int temp_s1_9 asm("$17");
+    register int temp_s3 asm("$19");
+    register int temp_s3_2 asm("$19");
+    register int temp_s7 asm("$23");
+    int temp_v0;
+    register int temp_v0_10 asm("$2");
+    register int temp_v0_13 asm("$2");
+    register int temp_v0_14 asm("$2");
+    int temp_v0_16;
+    int temp_v0_2;
+    int temp_v0_3;
+    int temp_v0_4;
+    int temp_v0_5;
+    int temp_v0_6;
+    int temp_v0_7;
+    int temp_v0_8;
+    int temp_v1;
+    register int temp_v1_4 asm("$3");
+    register int temp_v1_7 asm("$3");
+    register int temp_v1_8 asm("$3");
+    register int var_a0_2 asm("$4");
+    register int var_a0_3 asm("$4");
+    register int var_a1 asm("$5");
+    register int var_a2 asm("$6");
+    register int var_s0 asm("$16");
+    register int var_s0_2 asm("$16");
+    register int var_s2 asm("$18");
+    register int var_s2_2 asm("$18");
+    register int var_s2_3 asm("$18");
+    register int var_s2_4 asm("$18");
+    register int var_s2_5 asm("$18");
+    register int var_s2_6 asm("$18");
+    register int var_s2_7 asm("$18");
+    register int var_s2_8 asm("$18");
+    register int var_s2_9 asm("$18");
+    register int var_s6 asm("$22");
+    register int var_v0 asm("$2");
+    register int var_v0_3 asm("$2");
+    int var_v0_4;
+    char *var_a0;
+    unsigned char temp_v0_12;
+    unsigned char temp_v1_6;
+    register int var_a0_4 asm("$4");
+    register int var_a0_5 asm("$4");
+    void **temp_v0_11;
+    register void **var_s1_11 asm("$17");
+    register void **var_s1_3 asm("$17");
+    register void **var_s1_4 asm("$17");
+    register void **var_s1_5 asm("$17");
+    register void **var_s1_6 asm("$17");
+    register void **var_s1_7 asm("$17");
+    register void **var_s1_8 asm("$17");
+    register void **var_s1_9 asm("$17");
+    register void **var_v1_2 asm("$3");
+    void *temp_a0_3;
+    void *temp_a1;
+    register void *temp_s1 asm("$17");
+    register void *temp_s1_2 asm("$17");
+    register void *temp_s1_3 asm("$17");
+    register void *temp_s1_4 asm("$17");
+    register void *temp_s1_5 asm("$17");
+    register void *temp_s1_7 asm("$17");
+    register void *temp_s2 asm("$18");
+    register void *temp_s3_4 asm("$19");
+    register void *temp_s4 asm("$20");
+    register void *temp_s5_11 asm("$21");
+    register void *temp_s5_12 asm("$21");
+    register void *temp_s5_2 asm("$21");
+    register void *temp_s5_3 asm("$21");
+    register void *temp_s5_4 asm("$21");
+    register void *temp_s5_5 asm("$21");
+    register void *temp_s5_6 asm("$21");
+    register void *temp_s5_7 asm("$21");
+    register void *temp_s5_8 asm("$21");
+    void *temp_v0_15;
+    void *temp_v0_9;
+    void *temp_v1_2;
+    void *temp_v1_3;
+    void *temp_v1_9;
+    register char *var_a1_2 asm("$5");
+    register void *var_s1 asm("$17");
+    void *var_v0_2;
+
+    register char *cursor17 asm("$17");
+    register char *chunk21 asm("$21");
+    register int *count3 asm("$3");
+    register int (*spawn6)(int, int, void *) asm("$6");
+    register int *eventRoot4 asm("$4");
+    register char *saveBits7 asm("$7");
+    register char *claimedBits6 asm("$6");
+    register char *saveRoot3 asm("$3");
+    int word8;
+    register char *next4 asm("$4");
+    register char *tableBase6 asm("$6");
+    register int sentinel5 asm("$5");
+    register int value4 asm("$4");
+    register int value6 asm("$6");
+    register int value5 asm("$5");
+    register int value3 asm("$3");
+    char *actorBitsBase;
+    char *saveWord8;
+    register int value2 asm("$2");
+    register int counter18 asm("$18");
+    register void *argument17 asm("$17");
+    register void *original19 asm("$19");
+    argument17 = arg0;
+    __asm__("" : "=r"(argument17) : "0"(argument17));
+    func_80050B90();
+    __asm__ volatile("" ::: "$19");
+
+    original19 = argument17;
+    if (D_8006C5BC < 0x3C) {
+        *(((char *)((char *)&D_80071FB0)) + D_8006C58C) = 1;
+    }
+    var_s2 = 9;
+    var_a0 = &D_80071A0D;
+    D_8006C644 = 0;
+    D_8006C640 = 0;
+    D_8006C74C = 0;
+    D_8006C64C = 0;
+    D_8006C5B8 = 1;
+    D_8006C628 = 0;
+    D_8006C6C4 = 0;
+    D_8006C6C8 = 0;
+    D_8006C6CC = 0;
+    D_8006C568 = 0;
+    D_8006C5E8 = 0;
+    D_8006C52C = 0;
+    D_8006C588 = 0;
+    D_8006C670 = 0;
+    D_8006C748 = 0;
+    D_8006FA3C = D_8006FA40;
+    do {
+        *var_a0 = 0;
+        var_s2 -= 1;
+        var_a0 -= 1;
+    } while (var_s2 >= 0);
+    value2 = -1;
+    __asm__("" : "=r"(value2) : "0"(value2));
+    temp_s0 = &D_8006D088;
+    __asm__("" : "=r"(temp_s0) : "0"(temp_s0));
+    D_8006C590 = value2;
+    value2 = *temp_s0;
+    __asm__("" : "=r"(value2) : "0"(value2));
+    temp_s2 = ((char *)&D_80070328) + 0x5C;
+    D_8006C650 = 0;
+    M2C_FIELD(&D_80070328, int *, 0x5C) = 0;
+    M2C_FIELD(&D_80070328, int *, 0x60) = 0;
+    __asm__("" : "=r"(temp_s2) : "0"(temp_s2));
+    value4 = (int)temp_s2 - 0x5C;
+    if (value2 != 0) {
+        temp_s0 = (int *)((char *)temp_s0 + 0x24);
+        func_8004F178((Vector3D *)value4, (Vector3D *)temp_s0);
+        func_8004F178(((char *)temp_s2) + 0xC8, (Vector3D *) temp_s0);
+        M2C_FIELD(&D_80070328, int *, 0x64) = (int) D_8006D0B8;
+        var_s1 = (char *)argument17 + 0x10;
+    } else {
+        if (D_8006C658 != 0) {
+            if (D_8006C5BC == 0x21) {
+                if (D_8006C5C8 == 0) {
+                    value2 = 0xA7FF;
+                    __asm__("" : "=r"(value2) : "0"(value2));
+                    D_80070328.x = value2;
+                    value2 = 0x9E49;
+                    __asm__("" : "=r"(value2) : "0"(value2));
+                    D_80070328.y = value2;
+                    value2 = 0x1568;
+                    __asm__("" : "=r"(value2) : "0"(value2));
+                    D_80070328.z = value2;
+                    var_v0 = 0xA2;
+                    goto block_17;
+                }
+            } else {
+                goto block_16;
+            }
+        } else {
+            if ((D_8006C5BC == 0x12) && (D_80071599 != 0)) {
+                value3 = 0x1257B;
+                __asm__("" : "=r"(value3) : "0"(value3));
+                value2 = 0x6F8F;
+                    __asm__("" : "=r"(value2) : "0"(value2));
+                    D_80070328.x = value2;
+                value2 = 0x2981;
+                    __asm__("" : "=r"(value2) : "0"(value2));
+                    D_80070328.z = value2;
+                D_80070328.y = value3;
+                var_v0 = 0x400;
+            } else if ((D_8006C73C == (D_8006C5BC + 8)) && (temp_v1 = DIV10(D_8006C5BC), (D_8006C5BC == (temp_v1 * 0xA)))) {
+                func_8004F178(&D_80070328, (temp_v1 * 0x10) + (char *)&D_800671B8);
+                value2 = DIV10(D_8006C5BC) - 1;
+                __asm__("" : "=r"(value2) : "0"(value2));
+                var_v0 = M2C_FIELD(&D_800671D4, int *, value2 * 0x10);
+            } else {
+block_16:
+                func_8004F178(&D_80070328, (Vector3D *)argument17);
+                var_v0 = M2C_FIELD(argument17, unsigned char *, 0xE) * 0x10;
+            }
+block_17:
+            __asm__("" : "=r"(var_v0) : "0"(var_v0));
+            M2C_FIELD(&D_80070328, int *, 0x64) = var_v0;
+        }
+        temp_s2_2 = ((char *)&D_80070328) + 0x124;
+        value4 = (int)temp_s2_2;
+        __asm__("" : "=r"(value4) : "0"(value4));
+        temp_s0_2 = (Vector3D *)((char *)temp_s2_2 - 0x124);
+        func_8004F178((Vector3D *)value4, temp_s0_2);
+        if (D_8006C784 < 0) {
+            func_8004F52C(temp_s0_2, (*(((char *)((unsigned char *)&D_80067150)) + D_8006C60C) * 8) + (char *)&D_80067178);
+            func_8004F178(temp_s2_2, temp_s0_2);
+            __asm__("" : "=r"(temp_s2_2) : "0"(temp_s2_2));
+            value2 = D_8006C60C;
+            value2 = M2C_FIELD(&D_80067150, unsigned char *, value2);
+            __asm__("" : "=r"(value2) : "0"(value2) : "$3");
+            value3 = D_8006C784;
+            __asm__("" : "=r"(value2), "=r"(value3) : "0"(value2), "1"(value3));
+            value2 = M2C_FIELD(&D_8006717E, short *, value2 * 8);
+            M2C_FIELD(temp_s2_2, int *, -0xC0) = value2;
+            if (value3 < 0) {
+                D_8006C784 = 4;
+            }
+        }
+        D_8006C60C = 0;
+        var_s1 = (char *)argument17 + 0x10;
+    }
+    cursor17 = (char *)var_s1;
+    value2 = *(int *)cursor17;
+    value3 = D_8006C5BC;
+    __asm__("" : "=r"(value2), "=r"(value3) : "0"(value2), "1"(value3));
+    cursor17 += 4;
+    __asm__("" : "=r"(cursor17) : "0"(cursor17));
+    D_8006C79C = value2;
+    value2 = *(int *)cursor17;
+    D_8006C4F4 = value2;
+    cursor17 += 4;
+    if (value3 != 0) {
+        __asm__("" : "=r"(cursor17) : "0"(cursor17));
+        func_8004E790(&D_8007179C, 0, 0x130);
+        value2 = *(int *)cursor17;
+        D_800717AC = value2;
+        value2 = *(int *)(cursor17 + 4);
+        cursor17 += 8;
+        __asm__("" : "=r"(cursor17) : "0"(cursor17));
+        D_800717B0 = value2;
+        value2 = *(int *)cursor17;
+        D_8006E388 = value2;
+        value2 = *(int *)(cursor17 + 4);
+        cursor17 += 8;
+        __asm__("" : "=r"(cursor17) : "0"(cursor17));
+        D_8006E38C = value2;
+        value2 = *(int *)cursor17;
+        value3 = *(int *)(cursor17+4);
+        cursor17 += 8;
+        __asm__("" : "=r"(value2), "=r"(value3), "=r"(cursor17) : "0"(value2), "1"(value3), "2"(cursor17));
+        D_8006C618 = value2;
+        D_8006C61C = value3;
+    }
+    var_s1_2 = (int *)cursor17;
+    var_s2_2 = 0;
+    if (*var_s1_2 >= 5) {
+        D_8006E340 = ((char *)var_s1_2) + 4;
+        func_8002B6C8();
+    }
+    cursor17 = (char *)var_s1_2;
+    counter18 = 0;
+    value2 = *(int *)cursor17;
+    __asm__("" : "=r"(value2) : "0"(value2));
+    count3 = &D_8006E350;
+    __asm__("" : "=r"(count3) : "0"(count3));
+    chunk21 = cursor17 + value2;
+    value2 = *(int *)(chunk21 + 4);
+    cursor17 = chunk21 + 8;
+    D_8006E354 = (void *)cursor17;
+    *count3 = value2;
+    if (value2 > 0) {
+        do {
+            counter18 += 1;
+            value2 = *(int *)cursor17 + 4;
+            __asm__("" : "=r"(value2) : "0"(value2));
+            *(int *)cursor17 = (int)chunk21 + value2;
+            cursor17 += 4;
+        } while (counter18 < *count3);
+    }
+    counter18 = 0;
+    value2 = *(int *)chunk21;
+    __asm__("" : "=r"(value2) : "0"(value2));
+    count3 = &D_8006E358;
+    __asm__("" : "=r"(count3) : "0"(count3));
+    chunk21 = chunk21 + value2;
+    value2 = *(int *)(chunk21 + 4);
+    cursor17 = chunk21 + 8;
+    D_8006E35C = (void *)cursor17;
+    *count3 = value2;
+    if (value2 > 0) {
+        do {
+            counter18 += 1;
+            value2 = *(int *)cursor17 + 4;
+            __asm__("" : "=r"(value2) : "0"(value2));
+            *(int *)cursor17 = (int)chunk21 + value2;
+            cursor17 += 4;
+        } while (counter18 < *count3);
+    }
+    counter18 = 0;
+    value2 = *(int *)chunk21;
+    __asm__("" : "=r"(value2) : "0"(value2));
+    count3 = &D_8006E370;
+    __asm__("" : "=r"(count3) : "0"(count3));
+    chunk21 = chunk21 + value2;
+    value2 = *(int *)(chunk21 + 4);
+    cursor17 = chunk21 + 8;
+    D_8006E374 = (void *)cursor17;
+    *count3 = value2;
+    if (value2 > 0) {
+        do {
+            counter18 += 1;
+            value2 = *(int *)cursor17 + 4;
+            __asm__("" : "=r"(value2) : "0"(value2));
+            *(int *)cursor17 = (int)chunk21 + value2;
+            cursor17 += 4;
+        } while (counter18 < *count3);
+    }
+    counter18 = 0;
+    value2 = *(int *)chunk21;
+    __asm__("" : "=r"(value2) : "0"(value2));
+    count3 = &D_8006E360;
+    __asm__("" : "=r"(count3) : "0"(count3));
+    chunk21 = chunk21 + value2;
+    value2 = *(int *)(chunk21 + 4);
+    cursor17 = chunk21 + 8;
+    D_8006E364 = (void *)cursor17;
+    *count3 = value2;
+    if (value2 > 0) {
+        do {
+            counter18 += 1;
+            value2 = *(int *)cursor17 + 4;
+            __asm__("" : "=r"(value2) : "0"(value2));
+            *(int *)cursor17 = (int)chunk21 + value2;
+            cursor17 += 4;
+        } while (counter18 < *count3);
+    }
+    counter18 = 0;
+    value2 = *(int *)chunk21;
+    __asm__("" : "=r"(value2) : "0"(value2));
+    count3 = &D_8006E380;
+    __asm__("" : "=r"(count3) : "0"(count3));
+    chunk21 = chunk21 + value2;
+    value2 = *(int *)(chunk21 + 4);
+    cursor17 = chunk21 + 8;
+    D_8006E384 = (void *)cursor17;
+    *count3 = value2;
+    if (value2 > 0) {
+        do {
+            counter18 += 1;
+            value2 = *(int *)cursor17 + 4;
+            __asm__("" : "=r"(value2) : "0"(value2));
+            *(int *)cursor17 = (int)chunk21 + value2;
+            cursor17 += 4;
+        } while (counter18 < *count3);
+    }
+    counter18 = 0;
+    value2 = *(int *)chunk21;
+    __asm__("" : "=r"(value2) : "0"(value2));
+    count3 = &D_8006E378;
+    __asm__("" : "=r"(count3) : "0"(count3));
+    chunk21 = chunk21 + value2;
+    value2 = *(int *)(chunk21 + 4);
+    cursor17 = chunk21 + 8;
+    D_8006E37C = (void *)cursor17;
+    *count3 = value2;
+    if (value2 > 0) {
+        do {
+            counter18 += 1;
+            value2 = *(int *)cursor17 + 4;
+            __asm__("" : "=r"(value2) : "0"(value2));
+            *(int *)cursor17 = (int)chunk21 + value2;
+            cursor17 += 4;
+        } while (counter18 < *count3);
+    }
+    counter18 = 0;
+    value2 = *(int *)chunk21;
+    __asm__("" : "=r"(value2) : "0"(value2));
+    count3 = &D_8006E368;
+    __asm__("" : "=r"(count3) : "0"(count3));
+    chunk21 = chunk21 + value2;
+    value2 = *(int *)(chunk21 + 4);
+    cursor17 = chunk21 + 8;
+    D_8006E36C = (void *)cursor17;
+    *count3 = value2;
+    if (value2 > 0) {
+        do {
+            counter18 += 1;
+            value2 = *(int *)cursor17 + 4;
+            __asm__("" : "=r"(value2) : "0"(value2));
+            *(int *)cursor17 = (int)chunk21 + value2;
+            cursor17 += 4;
+        } while (counter18 < *count3);
+    }
+    value2 = *(int *)chunk21;
+    temp_s1_4 = chunk21 + value2;
+    func_80021A70();
+    var_s5 = (int *)temp_s1_4;
+    __asm__("" : "=r"(var_s5) : "0"(var_s5));
+    var_s1_10 = (int *)((char *)var_s5 + 4);
+    var_a0_2 = 0;
+    __asm__("" : "=r"(var_a0_2) : "0"(var_a0_2));
+    value2 = D_8006C76C;
+    var_v1 = (char *)&D_80071484;
+    value5 = value2 << 2;
+    __asm__("" : "=r"(var_v1), "=r"(value5) : "0"(var_v1), "1"(value5));
+    do {
+        *(int *)(value5 + (int)var_v1) = 0;
+        __asm__ volatile("" : : : "memory");
+        var_a0_2 += 1;
+        __asm__("" : "=r"(var_a0_2) : "0"(var_a0_2));
+        var_v1 += 4;
+    } while (var_a0_2 < 28);
+    cursor17 = (char *)var_s1_10;
+    value3 = *(int *)cursor17;
+    if (value3 != -1) {
+        tableBase6 = (char *)&D_80071484;
+        sentinel5 = -1;
+        __asm__("" : "=r"(tableBase6), "=r"(sentinel5) : "0"(tableBase6), "1"(sentinel5));
+        do {
+            value2 = *(int *)cursor17;
+            next4 = cursor17 + value2;
+            __asm__("" : "=r"(next4) : "0"(next4));
+            cursor17 += 4;
+            __asm__("" : "=r"(cursor17) : "0"(cursor17));
+            value3 = *(int *)cursor17;
+            cursor17 += 4;
+            __asm__("" : "=r"(cursor17) : "0"(cursor17));
+            value2 = D_8006C76C;
+            value3 = (value3 << 2) + (int)tableBase6;
+            __asm__("" : "=r"(value3) : "0"(value3));
+            value2 = (value2 << 2) + value3;
+            *(char **)value2 = cursor17;
+            value2 = *(int *)cursor17;
+            if (value2 != sentinel5) {
+                value3 = -1;
+                value2 += (int)cursor17;
+                do {
+                    *(int *)cursor17 = value2;
+                    __asm__ volatile(".set	noat");
+                    cursor17 += 4;
+                    value2 = *(int *)cursor17;
+                    if (value2 == value3) break;
+                    value2 += (int)cursor17;
+                } while (1);
+            }
+            value2 = *(int *)next4;
+            cursor17 = next4;
+        } while (value2 != sentinel5);
+    }
+    value2 = *(int *)var_s5;
+    var_s5 = (int *)((char *)var_s5 + value2);
+    __asm__("" : "=r"(var_s5) : "0"(var_s5));
+    if (*var_s5 >= 5) {
+        D_8006C754 = ((char *)var_s5) + 4;
+        var_s5 = (void *)((char *)var_s5 + *var_s5);
+        D_8006C758 = ((char *)var_s5) + 4;
+    } else {
+        D_8006C754 = 0;
+        D_8006C758 = 0;
+    }
+    value2 = *(int *)var_s5;
+    chunk21 = (char *)var_s5 + value2;
+    cursor17 = chunk21 + 4;
+    __asm__("" : "=r"(cursor17) : "0"(cursor17));
+    D_8006C788 = cursor17;
+    value2 = *(int *)chunk21;
+    chunk21 += value2;
+    cursor17 = chunk21 + 4;
+    __asm__("" : "=r"(cursor17) : "0"(cursor17));
+    D_8006C738 = cursor17;
+    value2 = *(int *)chunk21;
+    chunk21 += value2;
+    temp_s7 = *(int *)(chunk21 + 4);
+    cursor17 = chunk21 + 8;
+    __asm__("" : "=r"(cursor17), "=r"(chunk21) : "0"(cursor17), "1"(chunk21));
+    value3 = (int)(chunk21 + 8);
+    __asm__("" : "=r"(cursor17), "=r"(value3) : "0"(cursor17), "1"(value3));
+    D_8006C550 = cursor17;
+    value4 = *(int *)chunk21;
+    __asm__("" : "=r"(value4) : "0"(value4));
+    value3 += temp_s7 * 0x58;
+    __asm__("" : "=r"(value3) : "0"(value3));
+    D_8006C704 = (void *)value3;
+    D_8006C610 = (void *)value3;
+    M2C_FIELD((void *)value3, char *, 0x48) = 0xFF;
+    cursor17 = chunk21 + value4;
+    value2 = (unsigned int)(cursor17 - (char *)D_8006C704);
+    __asm__("" : "=r"(value2) : "0"(value2));
+    { unsigned int quotient = (unsigned int)value2 / 112;
+    __asm__("" : "=r"(temp_hi) : "0"(quotient)); }
+    D_8006C574 = 0;
+    D_8006C578 = temp_hi - 1;
+    temp_v1_3 = D_8006C704 + temp_hi * 0x58;
+    D_8006C5EC = temp_v1_3;
+    D_8006C728 = temp_v1_3;
+    value2 = *(int *)cursor17;
+    __asm__("" : "=r"(value2) : "0"(value2));
+    chunk21 = cursor17 + value2;
+    value2 = *(int *)(chunk21 + 4);
+    __asm__("" : "=r"(value2) : "0"(value2));
+    cursor17 = chunk21 + 8;
+    __asm__("" : "=r"(value2), "=r"(cursor17) : "0"(value2), "1"(cursor17));
+    D_8006C730 = cursor17;
+    __asm__ volatile("" ::: "memory");
+    counter18 = value2 - 1;
+    D_8006C580 = value2;
+    if (counter18 >= 0) {
+        value2 = counter18 << 2;
+        var_v1_2 = (void **)(value2 + (int)cursor17);
+        __asm__("" : "=r"(var_v1_2) : "0"(var_v1_2));
+        do {
+            value2 = *(int *)var_v1_2;
+            counter18 -= 1;
+            *(int *)var_v1_2 = value2 + (int)chunk21;
+            var_v1_2 = (void **)((char *)var_v1_2 - 4);
+        } while (counter18 >= 0);
+    }
+    value2 = *(int *)chunk21;
+    counter18 = 0;
+    chunk21 += value2;
+    __asm__("" : "=r"(chunk21) : "0"(chunk21));
+    value2 = *(int *)chunk21;
+    cursor17 = chunk21 + 4;
+    if (value2 > 0) {
+        do {
+            value2 = *(int *)cursor17;
+            __asm__("" : "=r"(value2) : "0"(value2));
+            value2 = (int)original19 + value2;
+            __asm__("" : "=r"(value2) : "0"(value2));
+            value3 = *(int *)value2;
+            counter18 += 1;
+            value3 += (int)original19;
+            *(int *)value2 = value3;
+            cursor17 += 4;
+        } while (counter18 < *(int *)chunk21);
+    }
+    temp_s5 = (int *)chunk21;
+    var_s1_12 = (void **)cursor17;
+    var_a2 = 0;
+    var_a1 = 0;
+    var_a0_3 = 0x18;
+    do {
+        temp_v1_4 = M2C_FIELD(&D_8007209C, int *, var_a0_3);
+        if (var_a2 < temp_v1_4) {
+            var_a2 = temp_v1_4;
+        }
+        var_a1 += 1;
+        __asm__("" : "=r"(var_a1) : "0"(var_a1));
+        var_a0_3 += 0x10;
+    } while (var_a1 < 4);
+    value2 = D_800722C8;
+    value3 = D_8006C658;
+    __asm__("" : "=r"(value2), "=r"(value3) : "0"(value2), "1"(value3));
+    value2 = var_a2 + value2;
+    __asm__("" : "=r"(value2) : "0"(value2));
+    temp_a0_2 = value2 + 0x3004;
+    D_800722CC = temp_a0_2;
+    if (value3 == 1) {
+        func_8004E7D4(temp_a0_2, var_s1_12, (*var_s1_12 * 8) | 4);
+    }
+    D_8006C7E0 = temp_s5;
+    func_8004E790(temp_s5, 0, 0x1000);
+    if (D_8006C5BC < 0x3C) {
+        saveRoot3 = (char *)&D_8006D088;
+        __asm__("" : "=r"(saveRoot3) : "0"(saveRoot3));
+        value2 = *(int *)saveRoot3;
+        __asm__("" : "=r"(value2) : "0"(value2));
+        frame.f28 = 0;
+        if (value2 != 0) {
+            var_s2_8 = 0;
+            if (temp_s7 > 0) {
+                saveBits7 = saveRoot3 + 4;
+                saveRoot3 = (char *)&D_80071AB0;
+                __asm__("" : "=r"(saveRoot3), "=r"(saveBits7) : "0"(saveRoot3), "1"(saveBits7));
+                value2 = D_8006C58C;
+                var_a1_2 = D_8006C550;
+                __asm__("" : "=r"(value2), "=r"(var_a1_2) : "0"(value2), "1"(var_a1_2));
+                value2 <<= 5;
+                claimedBits6 = (char *)(value2 + (int)saveRoot3);
+                __asm__("" : "=r"(claimedBits6) : "0"(claimedBits6));
+                do {
+                    __asm__("" : "=r"(var_a1_2) : "0"(var_a1_2));
+                    temp_v0_12 = M2C_FIELD(var_a1_2, unsigned char *, 0x3B);
+                    if ((temp_v0_12 != 0) && (temp_v0_12 < 0x21U)) {
+                        var_a0_4 = M2C_FIELD(var_a1_2, unsigned char *, 0x50);
+                        temp_v0_13 = var_s2_8 + D_8006C79C;
+                        __asm__("" : "=r"(temp_v0_13) : "0"(temp_v0_13));
+                        temp_s3 = temp_v0_13 >> 5;
+                        temp_s1_8 = temp_v0_13 & 0x1F;
+                        value2 = (unsigned int)(var_a0_4 - 1);
+                        __asm__("" : "=r"(value2) : "0"(value2));
+                        if ((unsigned int)value2 >= 2) {
+                            value2 = 5;
+                            __asm__("" : "=r"(value2) : "0"(value2));
+                            if (var_a0_4 != value2) {
+                                value2 = 10;
+                                __asm__("" : "=r"(value2) : "0"(value2));
+                                if (var_a0_4 != value2) {
+                                    value2 = 25;
+                                    __asm__("" : "=r"(value2) : "0"(value2));
+                                    if (var_a0_4 != value2) var_a0_4 = 0;
+                                }
+                            }
+                        }
+                        var_v0_3 = var_s2_8 < 0x100;
+                        var_s0 = 1;
+                        if ((var_v0_3 != 0) && (((int) ({ value3 = temp_s3 << 2; __asm__("" : "=r"(value3) : "0"(value3)); value2 = value3 + (int)saveBits7; __asm__("" : "=r"(value2) : "0"(value2)); *(int *)value2; }) >> temp_s1_8) & 1) && ((var_a0_4 == 0) || (((int) ({ value2 = value3 + (int)claimedBits6; __asm__("" : "=r"(value2) : "0"(value2)); *(int *)value2; }) >> temp_s1_8) & 1))) {
+                            var_s0 = 0;
+                        }
+                        if (var_s0 != 0) {
+                            int firstWord8;
+                            value2 = 1;
+                            value3 = M2C_FIELD(var_a1_2, unsigned char *, 0x3B);
+                            firstWord8 = frame.f28;
+                            value3 -= 1;
+                            __asm__("" : "=r"(value2), "=r"(value3) : "0"(value2), "1"(value3));
+                            firstWord8 |= value2 << value3;
+                            frame.f28 = firstWord8;
+                            __asm__ volatile("" : : "r"(var_a0_4), "r"(var_a1_2), "r"(claimedBits6), "r"(saveBits7));
+                        }
+                    }
+                    var_s2_8 += 1;
+                    var_a1_2 = (void *)((char *)var_a1_2 + 0x58);
+                } while (var_s2_8 < temp_s7);
+            }
+        }
+        __asm__ volatile(".set\tnoat");
+        var_s2_9 = 0;
+        if (temp_s7 > 0) {
+            actorBitsBase = (char *)&D_80071AB0;
+            __asm__("" : "=r"(actorBitsBase) : "0"(actorBitsBase));
+            var_s6 = 0;
+            do {
+                value2 = D_8006C79C;
+                value3 = (int)D_8006C550;
+                __asm__("" : "=r"(value2), "=r"(value3) : "0"(value2), "1"(value3));
+                temp_v0_14 = var_s2_9 + value2;
+                __asm__("" : "=r"(temp_v0_14) : "0"(temp_v0_14));
+                temp_s3_2 = temp_v0_14 >> 5;
+                temp_a0_3 = (void *)(var_s6 + value3);
+                temp_v1_5 = M2C_FIELD(temp_a0_3, short *, 0x36);
+                __asm__("" : "=r"(temp_v1_5) : "0"(temp_v1_5));
+                temp_s1_9 = temp_v0_14 & 0x1F;
+                var_s0_2 = 1;
+                if ((temp_v1_5 < 0x300) && (({ value2 = temp_v1_5 << 2; __asm__("" : "=r"(value2) : "0"(value2)); M2C_FIELD(&D_8006EE2C, int *, value2); }) != 0)) {
+                    func_80055C24(temp_a0_3);
+                } else {
+                    func_80055D10(D_8006C550 + var_s6);
+                }
+                var_a0_5 = M2C_FIELD(((void *)(var_s6 + (int)D_8006C550)), unsigned char *, 0x50);
+                if (((unsigned int) (var_a0_5 - 1) >= 2U) && (var_a0_5 != 5) && (var_a0_5 != 0xA) && (var_a0_5 != 0x19)) {
+                    var_a0_5 = 0;
+                }
+                temp_a1 = (void *)(var_s6 + (int)D_8006C550);
+                if (!(((int) (M2C_FIELD(temp_a1, unsigned char *, 0x53) & 7) >> D_8006C7C4) & 1)) {
+                    var_s0_2 = 0;
+                }
+                value2 = 255;
+                __asm__("" : "=r"(value2) : "0"(value2));
+                M2C_FIELD(temp_a1, char *, 0x3A) = value2;
+                temp_v1_6 = M2C_FIELD(((void *)(var_s6 + (int)D_8006C550)), unsigned char *, 0x3B);
+                if (temp_v1_6 == 0x7E) {
+                    var_s0_2 = 1;
+                    if ((var_s2_9 < 0x100) && (((int) *((int *)((temp_s3_2 * 4) + ({ value2 = D_8006C58C << 5; value2 += (int)actorBitsBase; __asm__("" : "=r"(value2) : "0"(value2)); value2; }))) >> temp_s1_9) & 1)) {
+                        var_a0_5 = 0;
+                    }
+                } else if (temp_v1_6 == 0x7D) {
+                    var_v0_4 = var_s2_9 < 0x100;
+                    temp_v1_7 = temp_s3_2 * 4;
+                    if (var_v0_4) {
+                        value2 = D_8006C58C;
+                        value2 <<= 5;
+                        value2 += (int)actorBitsBase;
+                        __asm__("" : "=r"(value2), "=r"(temp_v1_7) : "0"(value2), "1"(temp_v1_7));
+                        temp_v1_7 += value2;
+                        __asm__("" : "=r"(temp_v1_7) : "0"(temp_v1_7));
+                        value2 = *(int *)temp_v1_7;
+                        __asm__("" : "=r"(value2) : "0"(value2));
+                        var_v0_4 = value2 >> temp_s1_9;
+                        goto block_112;
+                    }
+                } else if ((D_8006D088 != 0) && (temp_v1_6 < 0x21U) && !((({ int secondWord8; value2 = temp_v1_6 - 1; secondWord8 = frame.f28; __asm__("" : "=r"(value2), "=r"(secondWord8) : "0"(value2), "1"(secondWord8), "r"(var_a0_5) : "$3", "$5", "$6", "$7"); value2 = secondWord8 >> value2; __asm__("" : "=r"(value2) : "0"(value2)); value2; })) & 1)) {
+                    temp_v1_7 = temp_s3_2 * 4;
+                    if ((var_s2_9 < 0x100) && (((int) ({ saveWord8 = (char *)&D_8006D08C; __asm__("" : "=r"(saveWord8) : "0"(saveWord8), "r"(temp_v1_7), "r"(var_a0_5) : "$2", "$5", "$6", "$7"); value2 = temp_v1_7 + (int)saveWord8; __asm__("" : "=r"(value2) : "0"(value2)); *(int *)value2; }) >> temp_s1_9) & 1)) {
+                        if (var_a0_5 != 0) {
+                            var_v0_4 = (int) *((int *)(temp_v1_7 + ({ value2 = D_8006C58C << 5; value2 += (int)actorBitsBase; __asm__("" : "=r"(value2) : "0"(value2)); value2; }))) >> temp_s1_9;
+block_112:
+                            if (var_v0_4 & 1) {
+                                goto block_113;
+                            }
+                        } else {
+block_113:
+                            var_s0_2 = 0;
+                            var_a0_5 = 0;
+                        }
+                    }
+                }
+                __asm__ volatile("" : "=r"(temp_s3_2) : "0"(temp_s3_2));
+                temp_v1_8 = temp_s3_2 * 4;
+                if (var_s0_2 == 0) {
+                    if ((var_s2_9 < 0x100) && (((int) ({ value2 = D_8006C58C << 5; value2 += (int)actorBitsBase; __asm__("" : "=r"(value2) : "0"(value2)); temp_v1_8 += value2; __asm__("" : "=r"(temp_v1_8) : "0"(temp_v1_8)); *(int *)temp_v1_8; }) >> temp_s1_9) & 1)) {
+                        __asm__ volatile("" ::: "$16");
+                        var_a0_5 = 0;
+                    }
+                    if (var_a0_5 != 0) {
+                        value2 = (int)SpawnMoby;
+                        value5 = 1;
+                        if (value2 != 0) {
+                        value2 = (int)D_8006C550;
+                        value6 = 0;
+                        temp_s4 = (void *)(value2 + var_s6);
+                        value4 = (int)temp_s4;
+                        __asm__("" : "=r"(value4) : "0"(value4));
+                        temp_s3_3 = (Vector3D *)((char *)temp_s4 + 0xC);
+                        __asm__("" : "=r"(temp_s3_3) : "0"(temp_s3_3));
+                        temp_v0_15 = func_80036A68((void *)value4, value5, value6, temp_s3_3);
+                        temp_s0_3 = ((char *)temp_v0_15) + 0xC;
+                        if (temp_v0_15 != 0) {
+                            value5 = (int)temp_s3_3;
+                            __asm__("" : "=r"(value5) : "0"(value5));
+                            temp_s3_4 = M2C_FIELD(temp_v0_15, void **, 0);
+                            func_8004F178(temp_s0_3, (Vector3D *)value5);
+                            temp_v0_16 = func_8001A358(temp_s0_3, 0x400);
+                            if (temp_v0_16 != 0) {
+                                M2C_FIELD(temp_v0_15, int *, 0x14) = temp_v0_16;
+                            }
+                            value2 = M2C_FIELD(temp_s4, volatile unsigned char *, 0x50);
+                            M2C_FIELD(temp_v0_15, char *, 0x48) = 0;
+                            M2C_FIELD(temp_v0_15, unsigned char *, 0x50) = value2;
+                            M2C_FIELD(temp_s3_4, char *, 0x11) = 1;
+                        }
+                    }
+                    }
+                    func_80055B18(D_8006C550 + var_s6);
+                    var_s2_9 += 1;
+                } else {
+                    if (((int) ({ value2 = D_8006C58C << 5; value2 += (int)actorBitsBase; __asm__("" : "=r"(value2) : "0"(value2)); temp_v1_8 += value2; __asm__("" : "=r"(temp_v1_8) : "0"(temp_v1_8)); *(int *)temp_v1_8; }) >> temp_s1_9) & 1) {
+                        value3 = 255;
+                        __asm__("" : "=r"(value3) : "0"(value3));
+                        M2C_FIELD(((void *)(var_s6 + (int)D_8006C550)), char *, 0x50) = value3;
+                    }
+                    func_8004F178(&frame.v10, D_8006C550 + var_s6 + 0xC);
+                    frame.v10.z += 0x400;
+                    func_8001A310(&frame.v10, 0x10000, 0, D_8006C550 + var_s6);
+                    func_8005629C(D_8006C550 + var_s6);
+                    temp_v1_9 = (void *)(var_s6 + (int)D_8006C550);
+                    if (M2C_FIELD(temp_v1_9, unsigned char *, 0x52) != 0) {
+                        M2C_FIELD(temp_v1_9, unsigned char *, 0x52) = (unsigned char) D_80071928;
+                    } else {
+                        value2 = 255;
+                        __asm__("" : "=r"(value2) : "0"(value2));
+                        M2C_FIELD(temp_v1_9, unsigned char *, 0x52) = value2;
+                    }
+                    value2 = (int)D_8006C550;
+                    __asm__("" : "=r"(value2) : "0"(value2) : "$3");
+                    value3 = 1;
+                    __asm__("" : "=r"(value3) : "0"(value3));
+                    value2 = var_s6 + value2;
+                    M2C_FIELD((void *)value2, char *, 0x4D) = value3;
+                    __asm__ volatile("" : "=r"(var_s2_9) : "0"(var_s2_9) : "memory");
+                    var_s2_9 += 1;
+                }
+                var_s6 += 0x58;
+            } while (var_s2_9 < temp_s7);
+        }
+    }
+    eventRoot4 = &D_8006D088;
+    __asm__("" : "=r"(eventRoot4) : "0"(eventRoot4));
+    if (*eventRoot4 != 0) {
+        func_8003B918(eventRoot4);
+        if (D_8006E344 != 13) {
+            if (D_8006D8D0 == 1) goto block_event_1;
+            if (D_8006D8D0 == 2) goto block_event_2;
+            goto block_after_event;
+block_event_1:
+            var_a0_6 = 44;
+            goto block_140;
+        }
+    } else if (D_8006C5BC == 14) {
+block_event_2:
+        var_a0_6 = 41;
+block_140:
+        func_8004BEF8(var_a0_6);
+    }
+block_after_event:
+    func_8002B768((Particle *) (((char *)D_8006C7E0) + 0x1000));
+    if (D_8006C658 != 0) {
+        srand(0x4D2);
+        D_8006C678 = 1;
+        if (D_8006C658 == 1) {
+            D_8006C55C = D_800722CC;
+            D_8006C538 = ((char *)D_800722CC) + 4;
+        } else {
+            D_8006C55C = (int *)0x80600000;
+            D_8006C538 = (int *)0x80600004;
+            func_8004E790((void *)0x80600000, 0, 0x4000);
+        }
+    }
+    if (D_8006C5BC != 0) {
+        spawn6 = SpawnMoby;
+        __asm__("" : "=r"(spawn6) : "0"(spawn6));
+        if ((spawn6 != 0) && (D_8006FA38 < 0) && (((DIV10(D_8006C5BC)) * 0xA) != (D_8006C5BC - 8))) {
+            D_8006C65C = spawn6(0x78, 0, spawn6);
+        } else {
+            D_8006C65C = 0;
+        }
+        func_80012BA8(&D_80068F7C);
+        D_8006E038 = 0;
+        D_8006FC15 = D_8006E33C;
+        D_8006FC16 = D_8006E33D;
+        D_8006FC17 = D_8006E33E;
+        D_8006FC89 = D_8006E33C;
+        D_8006FC8A = D_8006E33D;
+        D_8006FC8B = D_8006E33E;
+        func_8004E790(&D_80072330, 0x03030303, 0x100);
+    }
+    func_80027B70();
+    if ((D_8006C5BC != 0) && (func_8003038C != 0)) {
+        func_8003038C();
+    }
+    if ((D_8006C508 == 0) && (D_8006C5BC < 0x3C) && (D_8006C5E0 != 0)) {
+        M2C_FIELD(D_8006C530, char *, 0x40) = 0;
+    }
+    return temp_s5;
+}
+
+#undef DIV10
+#undef M2C_FIELD
 
 /**
  * ???() - func_8002C9F4() - MATCHING

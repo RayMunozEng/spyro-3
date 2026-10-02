@@ -134,7 +134,7 @@
 - [x] func_8002B5EC
 - [x] func_8002B6C8
 - [x] func_8002B768
-- [ ] func_8002B810
+- [x] func_8002B810
 - [x] func_8002C9F4
 - [x] func_8002CA50
 - [x] func_8002D044
