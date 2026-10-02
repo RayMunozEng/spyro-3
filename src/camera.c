@@ -1724,4 +1724,314 @@ end_update:
 
 #undef M2C_FIELD
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_80017028);
+/* Retail source: USA Rev 0 SCUS-94467, PSX.EXE 0x80017028..0x80017A04.
+ * Camera mode transition conditions use retail integer counters, flags and
+ * unscaled player-state fields; yaw thresholds are 12-bit angular values.
+ * Cadence: one camera transition update invocation.
+ * Falsifiable vectors: modes 0/1/2/6/7/8/9/10/11/18/35, mode-11 selectors
+ * 0/9/other, timer thresholds 14/16/30/60 and transition marker 0x82.
+ * Confidence: complete retail executable and overlay hash match.
+ * Empty register constraints preserve retail instruction ordering. */
+#define M2C_FIELD(p,t,o) (*(t)((char *)(p)+(o)))
+extern int D_8006E128;
+extern int *D_8006E19C;
+extern int D_8006E1A0;
+extern unsigned char D_8006E535;
+extern int D_8006E53C;
+extern void (*unk_ovlheader_80074310)();
+
+void func_80017028(void) {
+    int temp_s0;
+    register int four asm("$2");
+    register int *state asm("$16");
+    register int *stateArg asm("$4");
+    register int var_a0 asm("$4");
+    register int var_a0_2 asm("$4");
+    register int var_v0 asm("$2");
+    register int mode asm("$3");
+    register int index asm("$2");
+
+    switch (D_8006E044) {                           /* switch 1 */
+    case 0:                                         /* switch 1 */
+        var_a0 = D_8006E160;
+        if (var_a0 == 0) {
+            if (!(D_8006E538 & 0x10) || (M2C_FIELD(&D_80070328, unsigned char *, 0x1B9) == 0) || (M2C_FIELD(&D_80070328, int *, 0x24C) == 4)) {
+                if (!(D_8006E53C & 0x10) || (M2C_FIELD(&D_80070328, unsigned char *, 0x1B9) == 0) || (M2C_FIELD(&D_80070328, int *, 0x24C) != 4)) {
+                    var_a0 = 8;
+                    if (!(D_8006E53C & 0xC)) {
+                        index = M2C_FIELD(&D_80070328, int *, 0x48);
+                        mode = D_8006E044;
+                        __asm__("" : "=r"(mode) : "0"(mode), "r"(index));
+                        index <<= 2;
+                        __asm__("" : "=r"(index) : "0"(index));
+                        var_a0 = *(int *)((char *)D_80068CAC + index);
+                        if (mode == var_a0) {
+                            if (D_8006E14C == 3) {
+                                func_80016764(6);
+                                goto block_94;
+                            }
+                            if ((D_8006E050 & 1) && (D_8006E128 < 0x400) && (D_8006E12C == 0) && (D_8006E054 == 0) && ((unsigned int) (D_8006E048 - 1) >= 2U)) {
+                                var_a0 = 6;
+                                if (D_8006E538 & 0xC) return;
+                                __asm__ volatile("" : : : "memory");
+                                goto block_37;
+                            }
+                            return;
+                        }
+                    }
+                    goto block_37;
+                }
+                goto block_81;
+            }
+            goto block_77;
+        }
+        goto block_37;
+    case 1:                                         /* switch 1 */
+        var_a0 = D_8006E160;
+        if (var_a0 == 0) {
+            if (!(D_8006E538 & 0x10) || (M2C_FIELD(&D_80070328, unsigned char *, 0x1B9) == 0) || (M2C_FIELD(&D_80070328, int *, 0x24C) == 4)) {
+                if (!(D_8006E53C & 0x10) || (M2C_FIELD(&D_80070328, unsigned char *, 0x1B9) == 0) || (M2C_FIELD(&D_80070328, int *, 0x24C) != 4)) {
+                    if (!(D_8006E53C & 0xC) || (var_a0 = 8, (D_8006E344 == 7))) {
+                        index = M2C_FIELD(&D_80070328, int *, 0x48);
+                        mode = D_8006E044;
+                        __asm__("" : "=r"(mode) : "0"(mode), "r"(index));
+                        index <<= 2;
+                        __asm__("" : "=r"(index) : "0"(index));
+                        var_a0 = *(int *)((char *)D_80068CAC + index);
+                        if (mode != var_a0) {
+                            if (var_a0 != 0) {
+
+                            } else {
+                                goto block_36;
+                            }
+                            goto block_37;
+                        }
+                    } else {
+                        goto block_37;
+                    }
+                } else {
+                    goto block_81;
+                }
+            } else {
+                goto block_77;
+            }
+        } else {
+            goto block_37;
+        }
+        break;
+    case 2:                                         /* switch 1 */
+        var_a0 = D_8006E160;
+        if ((var_a0 == 0) || (var_a0 == 0xC)) {
+            index = M2C_FIELD(&D_80070328, int *, 0x48);
+            mode = D_8006E044;
+            __asm__("" : "=r"(mode) : "0"(mode), "r"(index));
+            index <<= 2;
+                        __asm__("" : "=r"(index) : "0"(index));
+                        var_a0 = *(int *)((char *)D_80068CAC + index);
+            if (mode != var_a0) {
+                if (var_a0 == 0) {
+                    goto block_36;
+                }
+                goto block_37;
+            }
+        } else {
+            goto block_37;
+        }
+        break;
+block_36:
+        var_a0 = 6;
+block_37:
+        __asm__("" : "=r"(var_a0) : "0"(var_a0));
+        func_80016764(var_a0);
+        return;
+    case 7:                                         /* switch 1 */
+        if ((D_8006E160 != 0) && ((unsigned int) (D_8006E160 - 0xC) >= 2U) && (D_8006E160 != 0xE) && ((unsigned int) (D_8006E160 - 0x10) >= 2U) && ((unsigned int) (D_8006E160 - 0x12) >= 2U) && (D_8006E160 != 0x14) && (D_8006E160 != 0x16) && (D_8006E160 != 0x1A) && (D_8006E160 != 0x18)) {
+            func_80016764(D_8006E160);
+        }
+        if (M2C_FIELD(&D_80070328, unsigned char *, 0x1B9) == 0) {
+            D_8006C768 = 0;
+            if (M2C_FIELD(&D_80070328, int *, 0x244) == 0) {
+                M2C_FIELD(&D_80070328, int *, 0x288) = 0;
+            }
+                goto block_122;
+        }
+        if (!(D_8006E538 & 0x10)) {
+            state = &D_8006E048;
+            __asm__("" : "=r"(state) : "0"(state));
+            if (*state == 3) {
+                *state = 4;
+                D_8006E04C = 0;
+                return;
+            }
+            if (*state == 4) {
+                if (M2C_FIELD(&D_80070328, int *, 0x170) == *state) {
+                    if (D_8006E04C >= 0xE) {
+                        D_8006E04C = 0xD;
+                        return;
+                    }
+                } else if (D_8006E04C >= 0x10) {
+                    goto block_59;
+                }
+            } else {
+block_59:
+                D_8006C768 = 0;
+                if (M2C_FIELD(&D_80070328, int *, 0x244) == 0) {
+                    M2C_FIELD(&D_80070328, int *, 0x288) = 0;
+                }
+                func_80016764(0);
+                *state = 2;
+                return;
+            }
+        } else {
+            four = 4;
+            __asm__("" : "=r"(four) : "0"(four));
+            stateArg = &D_8006E048;
+            __asm__("" : "=r"(stateArg) : "0"(stateArg));
+            if (*stateArg == four) {
+                *stateArg = 3;
+                return;
+            }
+            if ((D_8006E13F != 0) && (M2C_FIELD(&D_80070328, int *, 0x1D0) == 0) && !(M2C_FIELD(&D_80070328, int *, 0x210) & 0x20000) && (M2C_FIELD(&g_CheatFlags, unsigned char *, 3) == 0) && (M2C_FIELD(&D_80070328, int *, 0x48) != 0x64)) {
+                D_8006C768 = 0;
+                if (M2C_FIELD(&D_80070328, int *, 0x244) == 0) {
+                    M2C_FIELD(&D_80070328, int *, 0x288) = 0;
+                }
+                D_8006E13F = 0;
+                return;
+            }
+        }
+        break;
+    case 6:                                         /* switch 1 */
+        var_a0 = D_8006E160;
+        if ((var_a0 == 0) || (var_a0 == 0x11)) {
+            if ((D_8006E538 & 0x10) && (M2C_FIELD(&D_80070328, unsigned char *, 0x1B9) != 0) && (M2C_FIELD(&D_80070328, int *, 0x24C) != 4)) {
+block_77:
+                var_a0 = 7;
+                goto block_37;
+            }
+            if ((D_8006E53C & 0x10) && (M2C_FIELD(&D_80070328, unsigned char *, 0x1B9) != 0) && (M2C_FIELD(&D_80070328, int *, 0x24C) == 4)) {
+block_81:
+                var_a0 = 0x1F;
+                goto block_37;
+            }
+            var_a0 = 8;
+            if (!(D_8006E53C & 0xC) && (var_a0 = D_80068CAC[M2C_FIELD(&D_80070328, int *, 0x48)], (var_a0 == 0))) {
+                if (D_8006E12C == 0) {
+                    if ((D_8006E048 != 1) && (D_8006E04C >= 0x3C)) {
+                        mode = D_8006E160;
+                        var_a0_2 = 0;
+                        if (mode == 0x11) {
+                            __asm__("" : "=r"(mode) : "0"(mode));
+                            var_a0_2 = 0x11;
+                            __asm__("" : "=r"(var_a0_2) : "0"(var_a0_2));
+                        }
+                        func_80016764(var_a0_2);
+                        __asm__ volatile("" : : : "memory");
+                        goto block_94;
+                    }
+                    if (((D_8006E050 & 1) || (var_a0 = 0, (D_8006E048 == 1))) && (var_a0 = 0, (D_8006E054 == 0))) {
+                        if (D_8006E14C == 3) {
+                            goto block_94;
+                        }
+                    } else {
+                        goto block_37;
+                    }
+                } else {
+                    goto block_101;
+                }
+            } else {
+                goto block_37;
+            }
+        } else {
+            goto block_37;
+        }
+        break;
+block_94:
+        D_8006E048 = 1;
+        return;
+    case 8:                                         /* switch 1 */
+        var_a0 = D_8006E160;
+        if ((var_a0 == 0) || (var_a0 == 0x11)) {
+            if (((D_8006E04C >= 0x1E) || (D_8006E128 < 0x1000)) && ((D_8006E535 == 0) || (D_8006E538 & 0xD3))) {
+block_101:
+                var_a0 = 0;
+                goto block_37;
+            }
+        } else {
+            goto block_37;
+        }
+        break;
+    case 9:                                         /* switch 1 */
+        if (D_8006E048 == 0x82) {
+            D_8006E160 = 0;
+            var_v0 = M2C_FIELD(&D_80070328, int *, 0x48) * 4;
+            goto block_123;
+        }
+        break;
+    case 10:                                        /* switch 1 */
+        if (D_8006E048 == 0x82) {
+            D_8006E160 = 0;
+            var_v0 = M2C_FIELD(&D_80070328, int *, 0x48) * 4;
+            goto block_123;
+        }
+        if ((D_8006E1AC & 8) && (D_8006E1A0 >= (*D_8006E19C - 1))) {
+            index = M2C_FIELD(&D_80070328, int *, 0x48);
+            __asm__("" : "=r"(index) : "0"(index));
+            D_8006E160 = 0;
+            __asm__ volatile("" : : : "memory");
+            func_80016764(D_80068CAC[index]);
+            D_8006C74C = 0;
+            return;
+        }
+        if ((D_8006E160 == 0) && !(D_8006E048 & 0x80)) {
+            D_8006E048 = 0x80;
+            D_8006E04C = 0;
+            D_8006E1AC &= ~8;
+            return;
+        }
+        break;
+    case 11:                                        /* switch 1 */
+        if (D_8006E160 == 0) goto block_122;
+        switch (D_8006E160) {                       /* switch 2; irregular */
+        case 9:                                     /* switch 2 */
+            temp_s0 = (D_8006C598 >= 0x80) * 0x10;
+            func_80016764(9);
+            D_8006E04C = temp_s0;
+            return;
+        }
+        break;
+    case 18:                                        /* switch 1 */
+        var_a0 = D_8006E160;
+        if ((var_a0 == 0) || (var_a0 == D_8006E044)) {
+            if ((D_8006E344 != 1) && (D_8006E344 != 0xF)) {
+                D_8006E160 = 0;
+                var_v0 = M2C_FIELD(&D_80070328, int *, 0x48) * 4;
+                goto block_123;
+            }
+        } else {
+            goto block_37;
+        }
+        break;
+    case 35:                                        /* switch 1 */
+        if (D_8006E344 != 0xD) {
+            var_a0 = D_8006E160;
+            if (var_a0 == 0) {
+                goto block_122;
+            }
+            goto block_37;
+        }
+        break;
+block_122:
+        var_v0 = M2C_FIELD(&D_80070328, int *, 0x48) * 4;
+block_123:
+        var_a0 = *(int *)((char *)D_80068CAC + var_v0);
+        goto block_37;
+    default:                                        /* switch 1 */
+        if (unk_ovlheader_80074310 != 0) {
+            unk_ovlheader_80074310();
+        }
+        break;
+    }
+}
+
+#undef M2C_FIELD
