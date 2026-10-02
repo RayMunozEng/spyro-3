@@ -79,7 +79,383 @@ void func_8001D274(void) {
 }
 
 // Different in 1.1
-INCLUDE_ASM("asm/nonmatchings/draw", func_8001D424);
+/* Retail source: USA Rev 0 SCUS-94467, PSX.EXE 0x8001D424..0x8001DC5C.
+ * Text positions are screen pixels; the offset/limit tables are signed 16-bit,
+ * and the scroll counters and draw limits are signed 32-bit retail values.
+ * Cadence: one draw invocation, with the retail scroll timer decremented here.
+ * Falsifiable vectors: states 0/1/2/>=3, timer 24/60, marker IDs 1..5,
+ * hidden string tag 0xFF, line-limit edges, and visible-row bounds 142/208.
+ * Confidence: complete retail instruction and executable/overlay hash match.
+ * Register constraints and assembler mode directives emit no instructions. */
+#define M2C_FIELD(p,t,o) (*(t)((char *)(p)+(o)))
+#define M2C_FIELD(p,t,o) (*(t)((char *)(p)+(o)))
+void DrawStringRightAligned(char *, int, int, int);
+void func_8001FABC(int);
+void func_8001FB74(int, int, int, int);
+void func_8001FC90(int, int, int, int);
+void func_8001FD00(int, int, int, int);
+int func_80028378(void *, int);
+void func_800289C8(int, short, short);
+void func_800291B8(int, int, int, int);
+void func_8002E748(unsigned char *, int, int, int, int *);
+extern short D_800666B4[];
+extern short D_800666D8[];
+extern char *D_80069DBC[];
+extern char *D_80069DC0[];
+extern unsigned char D_8006C3B0;
+extern unsigned char D_8006C3B8;
+extern unsigned char D_8006C3C0;
+extern unsigned char D_8006C3C8;
+extern unsigned char D_8006C3D0;
+extern unsigned char D_8006C3D4;
+extern int D_8006C51C;
+extern unsigned char D_8006C53C;
+extern short D_8006C544;
+extern short D_8006C57C;
+extern int D_8006C590;
+extern void **D_8006C5A8;
+extern unsigned char D_8006C5AC;
+extern int D_8006C608;
+extern int D_8006C644;
+extern int D_8006C6A4;
+extern int D_8006C6D8;
+extern unsigned char D_8006C6E4;
+extern char D_8006C6F0;
+extern char D_8006C6F3;
+extern short D_8006C6F4;
+extern short D_8006C6F6;
+extern int D_8006C6FC;
+extern int D_8006C71C;
+extern int D_8006C750;
+extern int D_8006C788;
+extern int D_8006C78C;
+extern int D_8006C790;
+extern unsigned char D_8006C7A4;
+extern int D_8006C7BC;
+extern int D_80070328;
+extern unsigned char *D_80071390;
+extern char *D_800713A8[];
+extern short D_8007193A;
+
+void func_8001D424(void) {
+    struct { int limits[3]; int reserved[7]; } frame;
+    register short *var_s2_4 asm("$18");
+    register short *var_s3_2 asm("$19");
+    register short *var_v1 asm("$3");
+    register int var_s0 asm("$16");
+    register int temp_a2 asm("$6");
+    register int temp_a2_2 asm("$6");
+    register int temp_s1 asm("$17");
+    register int temp_s1_2 asm("$17");
+    register int temp_s4 asm("$20");
+    int temp_v0;
+    int temp_v0_2;
+    int loopLimit;
+    register char *callStack asm("$29");
+    register int textX asm("$5");
+    register int totalLines asm("$3");
+    register int remainingLines asm("$2");
+    register int temp_v0_4 asm("$2");
+    register int markerX asm("$5");
+    register int var_a0 asm("$4");
+    int var_a3;
+    int var_a3_2;
+    register int var_s0_2 asm("$16");
+    register int var_s0_3 asm("$16");
+    register int var_s0_4 asm("$16");
+    register int var_s0_5 asm("$16");
+    register int var_s0_6 asm("$16");
+    register int var_s1 asm("$17");
+    register int var_s1_3 asm("$17");
+    register int var_s1_4 asm("$17");
+    register int var_s2_3 asm("$18");
+    register int var_s3 asm("$19");
+    register int var_s4 asm("$20");
+    int var_v0;
+    int temp_v0_3;
+    unsigned int temp_v1;
+    register unsigned char **var_s1_2 asm("$17");
+    register unsigned char **var_s2_2 asm("$18");
+    register unsigned char *var_s2 asm("$18");
+
+    if (D_8006C790 < 3) {
+        var_s0 = 0x400;
+        if (D_8006C790 == 0) {
+            temp_v1 = D_8006C78C - 0x18;
+            if (temp_v1 < 0x24U) {
+                var_s0 = D_800666B4[(int)temp_v1 >> 1];
+            } else {
+                if (D_8006C78C < 0x3C) {
+                    goto block_5;
+                }
+                goto block_6;
+            }
+        } else {
+block_5:
+            if (D_8006C790 == 1) {
+block_6:
+                var_s0 = 0;
+            } else if (D_8006C790 == 2) {
+                var_s0 = D_800666D8[D_8006C78C >> 1];
+            }
+        }
+        if (var_s0 != 0x400) {
+            func_8001FD00(var_s0 + 0x18, var_s0 + 0x1E8, 0x92, 0xD4);
+            if (D_8006C7A4 != 0) {
+                var_s2 = &D_8006C3B0;
+                if (M2C_FIELD(&D_80070328, int *, 0x24C) == 1) {
+                    var_s2 = &D_8006C3B8;
+                } else if ((M2C_FIELD(&D_80070328, int *, 0x24C) == 2) || (M2C_FIELD(&D_80070328, int *, 0x24C) == 5)) {
+                    var_s2 = &D_8006C3C0;
+                } else if (M2C_FIELD(&D_80070328, int *, 0x24C) == 3) {
+                    var_s2 = "Sgt. Byrd";
+                } else if (M2C_FIELD(&D_80070328, int *, 0x24C) == 4) {
+                    var_s2 = &D_8006C3C8;
+                }
+                { register int value asm("$2") = D_8006C590;
+                  __asm__("" : "=r"(value) : "0"(value)); var_s3 = value == 0; }
+            } else {
+                { register void *actor asm("$2") = D_8006C5A8;
+                  register int value asm("$3");
+                  __asm__("" : "=r"(actor) : "0"(actor) : "memory");
+                  value = D_8006C590;
+                  actor = *(void **)actor;
+                  var_s3 = value != 0;
+                  var_s2 = M2C_FIELD(actor, unsigned char **, 0xC); }
+            }
+            if ((D_8006C7A4 != 0) || (*var_s2 != 0xFF)) {
+                temp_s1 = func_8002EBB0(var_s2);
+                if (var_s3 != 0) {
+                    { register int edge asm("$2") = var_s0 + 0x1CC;
+                      __asm__("" : "=r"(edge) : "0"(edge)); var_s0_2 = edge - temp_s1; }
+                } else {
+                    var_s0_2 = var_s0 + 0x28;
+                }
+                func_8001FABC(0x18);
+                var_a0 = var_s0_2;
+                __asm__("" : "=r"(var_a0) : "0"(var_a0));
+                temp_s1_2 = var_s0_2 + temp_s1;
+                func_8001FC90(var_a0, temp_s1_2 + 0xE, 0x86, 0x92);
+                func_8001FC90(var_s0_2 + 1, temp_s1_2 + 0xD, 0x85, 0x86);
+                func_8001FC90(var_s0_2 + 4, temp_s1_2 + 0xA, 0x84, 0x85);
+                var_a0 = var_s0_2 + 0x18;
+                if (D_8006C790 != 1) {
+                    if ((D_8006C790 == 0) && (D_8006C78C >= 0x3C)) {
+                        __asm__("" : "=r"(var_s0_2) : "0"(var_s0_2));
+                        var_a0 = var_s0_2 + 0x18;
+                        goto block_32;
+                    }
+                } else {
+block_32:
+                    func_8001FB74(var_a0, 0x91, temp_s1_2 - 0xA, 0x91);
+                    func_8002E748(var_s2, var_s0_2 + 8, 0x86, 0, 0);
+                }
+            }
+        }
+    }
+    if (D_8006C790 == 1) {
+        if (D_8006C7A4 != 0) {
+            frame.limits[0] = 0;
+            frame.limits[1] = 9;
+            if (D_8006C53C != 0) {
+                var_s0_3 = 0;
+                if (D_8006C544 > 0) {
+                    register int x asm("$5");
+                    register int color asm("$7");
+                    register short *baseA asm("$19") = &D_8007193A;
+                    register short *baseB asm("$20") = baseA - 1;
+                    var_s2_2 = &D_80071390;
+                    var_s1 = 0x98;
+                    do {
+                        x = 0x28;
+                        __asm__("" : "=r"(x) : "0"(x));
+                        temp_a2 = var_s1;
+                        temp_v0 = D_8006C6A4;
+                        __asm__ volatile("" : : : "$7", "memory");
+                        color = 4;
+                        __asm__("" : : "r"(color));
+                        temp_v0 += var_s0_3;
+                        frame.limits[2] = baseA[temp_v0] - baseB[temp_v0];
+                        __asm__("" : "=r"(var_s1) : "0"(var_s1));
+                        var_s1 += 12;
+                        var_s0_3 += 1;
+                        func_8002E748(*var_s2_2, x, temp_a2, color, &frame.limits[0]);
+                        var_s2_2 += 1;
+                    } while (var_s0_3 < D_8006C544);
+                }
+            } else {
+                totalLines = D_8006C544;
+                remainingLines = D_8006C6E4;
+                var_s0_4 = 0;
+                temp_s4 = totalLines - remainingLines;
+                if (totalLines > 0) {
+                    register int *limits asm("$19");
+                    register short *baseA asm("$21") = &D_8007193A;
+                    register short *baseB asm("$22") = baseA - 1;
+                    limits = frame.limits;
+                    var_s2_3 = 0x98;
+                    var_s1_2 = &D_80071390;
+                    do {
+                        temp_v0_2 = D_8006C6A4 + var_s0_4;
+                        frame.limits[2] = baseA[temp_v0_2] - baseB[temp_v0_2];
+                        if (var_s0_4 < temp_s4) {
+                            func_8002E748(*var_s1_2, 0x31, var_s2_3, 0, limits);
+                        } else {
+                            var_a3 = 0;
+                            if ((D_8006C78C & 0x1F) < 0x10) {
+                                var_a3 = var_s0_4 == (temp_s4 + D_8006C57C);
+                            }
+                            func_8002E748(*var_s1_2, 0x48, var_s2_3, var_a3, limits);
+                        }
+                        var_s2_3 += 12;
+                        __asm__("" : : "r"(var_s0_4));
+                        loopLimit = D_8006C544;
+                        __asm__("" : "=r"(var_s0_4) : "0"(var_s0_4) : "memory");
+                        var_s0_4 += 1;
+                        var_s1_2 += 1;
+                    } while (var_s0_4 < loopLimit);
+                }
+                { register int index asm("$2") = temp_s4 + D_8006C57C;
+                  __asm__("" : "=r"(index) : "0"(index));
+                  func_8002E748(&D_8006C3D0, 0x3C, index * 12 + 0x98, 1, 0); }
+            }
+            if (D_8006C750 != 0) {
+                DrawStringRightAligned(D_80069DBC[D_8006C76C], 0x14A, 0xC4, 1);
+                temp_v0_3 = func_80028378(&D_8006C6F0, 0);
+                D_8006C6F3 = temp_v0_3;
+                func_800289C8(D_8006C788 + ((temp_v0_3 & 0xFF) * 8), D_8006C6F4, D_8006C6F6);
+                func_800291B8(D_8006C71C, 0x178, 0xC6, 0);
+            }
+        } else {
+            temp_v0_4 = D_8006C6A4 - 1;
+            var_s0_5 = 0;
+            if (temp_v0_4 > 0) {
+                register int threshold asm("$5") = D_8006C51C;
+                register int scanLimit asm("$4") = temp_v0_4;
+                var_v1 = &D_8007193A;
+loop_54:
+                if (*var_v1 < threshold) {
+                    var_s0_5 += 1;
+                    var_v1 += 1;
+                    if (var_s0_5 < scanLimit) {
+                        goto loop_54;
+                    }
+                }
+            }
+            temp_a2_2 = D_8006C7BC;
+            if (temp_a2_2 != 0) {
+                D_8006C7BC = temp_a2_2 - 1;
+                var_s1_3 = temp_a2_2 + 0xC5;
+            } else if (var_s0_5 < 5) {
+                { register int y asm("$2") = var_s0_5 * 12;
+                  __asm__("" : "=r"(y) : "0"(y)); var_s1_3 = y + 0x96; }
+            } else {
+                /* Preserve the retail assembler's li-in-branch-delay slot;
+                 * these directives do not emit instructions. */
+                __asm__(".set\tnoreorder");
+                if (D_8006C6FC < var_s0_5) {
+                    D_8006C7BC = 0xB;
+                }
+                __asm__(".set\treorder");
+                { register int y asm("$2") = D_8006C7BC;
+                  __asm__("" : "=r"(y) : "0"(y)); var_s1_3 = y + 0xC6; }
+            }
+            D_8006C6FC = var_s0_5;
+            var_s4 = var_s0_5 - 5;
+            var_v0 = var_s0_5 < var_s4;
+            if (var_s4 < 0) {
+                var_s4 = 0;
+                __asm__("" : "=r"(var_s4) : "0"(var_s4));
+                var_v0 = var_s0_5 < var_s4;
+            }
+            if (var_v0 == 0) {
+                { register int indexBytes asm("$2") = var_s0_5 * 2;
+                  register short *base asm("$4");
+                  register short *prior asm("$3");
+                  __asm__("" : "=r"(indexBytes) : "0"(indexBytes));
+                  base = &D_8007193A;
+                  prior = base - 1;
+                  __asm__("" : "=r"(base), "=r"(prior) : "0"(base), "1"(prior));
+                  var_s3_2 = (short *)(indexBytes + (int)prior);
+                  var_s2_4 = (short *)(indexBytes + (int)base); }
+                do {
+                    if ((unsigned int) (var_s1_3 - 0x8E) < 0x42U) {
+                        frame.limits[0] = 0;
+                        frame.limits[1] = 9;
+                        frame.limits[2] = *var_s2_4 - *var_s3_2;
+                        if (var_s1_3 < 0x96) {
+                            frame.limits[0] = 0x96 - var_s1_3;
+                        }
+                        if (var_s1_3 >= 0xC8) {
+                            frame.limits[1] = 0xD0 - var_s1_3;
+                        }
+                        textX = 0x28;
+                        if (D_8006C51C < *var_s2_4) {
+                            frame.limits[2] = D_8006C51C - *var_s3_2;
+                        }
+                        /* The retail caller writes the fifth o32 argument at
+                         * sp+0x10 before resolving the indexed text pointer.
+                         * Keep that ABI store explicit to retain its order. */
+                        { register int screenY asm("$6") = var_s1_3;
+                          register int *drawLimits asm("$2");
+                          __asm__("" : "=r"(screenY) : "0"(screenY));
+                          drawLimits = frame.limits;
+                          __asm__("" : "=r"(drawLimits) : "0"(drawLimits));
+                          *(int **)(callStack + 16) = drawLimits;
+                          __asm__ volatile("" : : : "$2", "memory");
+                        { register int offset asm("$2") = var_s0_5 * 4;
+                          __asm__("" : "=r"(offset) : "0"(offset));
+                          ((void (*)())func_8002E748)(*(char **)((char *)D_800713A8 + offset), textX, screenY, 0); } }
+                    }
+                    var_s3_2 -= 1;
+                    var_s2_4 -= 1;
+                    var_s0_5 -= 1;
+                    var_s1_3 -= 0xC;
+                } while (var_s0_5 >= var_s4);
+            }
+            if (((D_8006C6D8 != 0) || (D_8006C5AC != 0)) && ((D_8006C644 & 0x1F) < 0x10)) {
+                func_8002E748(&D_8006C3D0, 0x1DA, 0xC8, 0, 0);
+            }
+        }
+        if (D_8006C608 != 0) {
+            if (D_8006C53C != 0) {
+                markerX = 0x17C;
+                if (D_8006C7A4 != 0) goto dialogue_markers;
+                goto dialogue_done;
+            } else {
+                markerX = 0x17C;
+                if (D_8006C5AC == 0) goto dialogue_done;
+            }
+dialogue_markers:
+            {
+                register unsigned char *marker asm("$18");
+                register int markerIndex asm("$2");
+                register int markerY asm("$6") = 0xC8;
+                register int markerColor asm("$7") = 0;
+                __asm__("" : "=r"(markerY), "=r"(markerColor) : "0"(markerY), "1"(markerColor) : "$18");
+                var_s0_6 = 0;
+                __asm__("" : "=r"(var_s0_6) : "0"(var_s0_6) : "$18");
+                markerIndex = D_8006C76C;
+                __asm__ volatile("" : : : "$18", "memory");
+                marker = &D_8006C3D4;
+                __asm__("" : "=r"(marker) : "0"(marker) : "memory");
+                DrawStringRightAligned(D_80069DC0[markerIndex], markerX, markerY, markerColor);
+                var_s1_4 = 0x186;
+                do {
+                    var_a3_2 = 7;
+                    if (var_s0_6 < D_8006C608) var_a3_2 = 6;
+                    func_8002E748(marker, var_s1_4, 0xC8, var_a3_2, 0);
+                    var_s0_6 += 1;
+                    var_s1_4 += 0xE;
+                } while (var_s0_6 < 5);
+            }
+        }
+    }
+dialogue_done:
+    func_8001E460(0x3D);
+}
+
+#undef M2C_FIELD
 
 void func_8001DC3C() {
     func_8001E460(0x3D);

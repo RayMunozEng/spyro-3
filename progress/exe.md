@@ -41,7 +41,7 @@
 
 <!-- Draw -->
 - [x] func_8001D274
-- [ ] func_8001D424
+- [x] func_8001D424
 - [x] func_8001DC3C
 - [x] func_8001DC5C
 - [x] func_8001DD1C
