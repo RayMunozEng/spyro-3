@@ -1166,7 +1166,352 @@ void func_80052918(int selected, Moby* moby) {
     *(int*)(&D_80070328 + 0x254) = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/update", func_80052A84);
+/* Retail source: USA Rev 0 SCUS-94467, PSX.EXE 0x80052A84..0x80053374.
+ * Archive offsets are bytes; relocation entries and stage counters are 32-bit.
+ * Camera angles wrap at 0x1000; the signed trigonometric tables use Q10 values.
+ * Cadence: one stage update per call, gated on completion of asynchronous CD I/O.
+ * Falsifiable vectors: stages 3/4/5/6, CD busy/idle, alternate archive records,
+ * empty relocation lists, image dimensions zero/nonzero, and camera branches.
+ * Confidence: exact retail instructions, verified by the complete executable
+ * SHA-256 e5406997...e39f and all overlay hashes. Empty compiler constraints
+ * retain the original register lifetimes and memory reads without emitted code. */
+#define M2C_FIELD(p,t,o) (*(t)((char *)(p)+(o)))
+extern int D_8006C3F4;
+extern char D_800652B0[], D_800652B4[], D_800652B6[];
+extern unsigned char D_80065734[], D_80065878;
+extern char D_8006DBE0[], D_80072098[], D_8007209C[];
+extern Vector3D D_8006E020;
+extern int D_8006E470;
+extern char D_8006D088;
+extern void *D_800722C8;
+extern CameraPosition D_80069274;
+void func_80047190(void);
+void *func_8002B810(void *);
+void func_8004F178(Vector3D *, Vector3D *);
+void func_8004F1C8(Vector3D *, Vector3D *, Vector3D *);
+void func_8004BEF8(int);
+void func_8004F984(int, int, int);
+void func_8001FB10(int);
+void func_8002AE34(void *, int);
+void func_8002AF9C(void *, s16, int);
+void *func_8002B31C(s32 *, int, s32 *, s32 *);
+extern short D_800659A0[];
+extern short D_80065A20[];
+extern void *D_8006C65C;
+extern void *D_8006C724;
+extern s32 D_8006C77C;
+extern void **D_8006D048;
+extern s32 D_8006D04C;
+extern s32 *D_8006D050;
+extern s32 *D_8006D054;
+extern s32 D_8006D058;
+extern void *D_8006D064;
+extern void *D_8006D070;
+extern s32 D_8006D074;
+extern Vector3D D_8006E058;
+extern s32 D_8006E064;
+extern void **D_80071960;
+extern s32 D_80071964;
+extern s32 *D_80071968;
+extern s32 *D_8007196C;
+extern s32 D_80071970;
+extern void *D_80071974;
+extern void *D_80071978;
+extern s32 D_8007197C;
+extern s32 *D_800722C4;
+
+void func_80052A84(void) {
+    struct { RECT rect; Vector3D vector; int gap; CameraPosition camera; int reserved[3]; } frame;
+    CameraPosition *temp_s1;
+    register char *var_s2 asm("$18");
+    register char *temp_s1_2 asm("$17");
+    char *var_s0_3;
+    s32 temp_a0;
+    s32 temp_a0_2;
+    s32 temp_s2;
+    s32 temp_v0;
+    s32 temp_v0_3;
+    register int temp_v1 asm("$3");
+    register int temp_v1_2 asm("$3");
+    s32 var_a0;
+    int var_s0;
+    int var_s0_2;
+    register int var_v0 asm("$2");
+    s32 var_v0_2;
+    s32 var_v1_2;
+    register char *var_s0_4 asm("$16");
+    register void *temp_s2_2 asm("$18");
+    register void *temp_s3 asm("$19");
+
+    switch (D_8006C514) {
+    case 3:
+        var_s0 = 2;
+        if (D_8006C5C8 != 0) {
+            { register int index asm("$2") = D_8006C5C8 * 2; __asm__("" : "=r"(index) : "0"(index)); var_s0 = index + 2; }
+        }
+        if (CDLoadTime() == 0) {
+            temp_v1 = var_s0 * 8;
+            { register int device asm("$4") = D_8006E470;
+              register void *buffer asm("$5") = D_800722C4;
+              register int level asm("$2");
+              __asm__("" : "=r"(device), "=r"(buffer) : "0"(device), "1"(buffer));
+              level = D_8006C58C;
+              CDLoadAsync(device, buffer, *(int *)(D_8007209C + temp_v1), *(int *)(D_80072098 + temp_v1) + *(int *)(D_8006DBE0 + (level * 16))); }
+            D_8006C514 = 4;
+            return;
+        }
+        return;
+    case 4:
+        if (CDLoadTime() == 0) {
+            if (D_8006C5C8 == 0) {
+                { register s32 *buffer asm("$4") = D_800722C4;
+                register void ** val2 asm("$2");
+                register int val3 asm("$3");
+                register s32 * val6 asm("$6");
+                register s32 * val7 asm("$7");
+                register int val8 asm("$8");
+                register void * val9 asm("$9");
+                register void * val10 asm("$10");
+                register int val11 asm("$11");
+                __asm__("" : "=r"(buffer) : "0"(buffer));
+                val2 = D_80071960;
+                val3 = D_80071964;
+                __asm__("" : "=r"(val2), "=r"(val3) : "0"(val2), "1"(val3) : "memory");
+                val6 = D_80071968;
+                val7 = D_8007196C;
+                val8 = D_80071970;
+                val9 = D_80071974;
+                val10 = D_80071978;
+                val11 = D_8007197C;
+                D_8006D048 = val2;
+                D_8006D04C = val3;
+                D_8006D050 = val6;
+                D_8006D054 = val7;
+                D_8006D058 = val8;
+                D_8006D064 = val9;
+                D_8006D070 = val10;
+                D_8006D074 = val11;
+                D_800722C8 = func_8002B31C(buffer, 0x80800000, val6, val7); }
+                var_v0 = 5;
+            } else {
+                temp_s1_2 = (char *)D_800722C4;
+                temp_s2_2 = temp_s1_2 + *(int *)temp_s1_2;
+                { register int offset asm("$4") = *(int *)temp_s2_2;
+                __asm__("" : "=r"(offset) : "0"(offset));
+                temp_a0 = offset; }
+                temp_s1_2 += 4;
+                func_8002AE34(temp_s1_2 + temp_a0, 0x80800000);
+                temp_s3 = temp_s2_2 + 0x180;
+                if (M2C_FIELD(temp_s2_2, int *, 8) > 0) {
+                    var_s0_3 = temp_s2_2 + 4;
+                    var_s2 = temp_s2_2 + 0x102;
+                    do {
+                        { register int base asm("$6") = 0x80800000;
+                        __asm__("" : "=r"(base) : "0"(base));
+                        temp_a0_2 = *(int *)var_s0_3;
+                        var_s0_3 += 4;
+                        func_8002AF9C(temp_s1_2 + temp_a0_2, *(short *)var_s2, base); }
+                        var_s2 += 2;
+                    } while (M2C_FIELD(var_s0_3, int *, 4) > 0);
+                }
+                temp_s1_2 = temp_s3;
+                __asm__("" : "=r"(temp_s1_2) : "0"(temp_s1_2));
+                temp_s1_2 += 4;
+                D_8006C724 = temp_s1_2 + 4;
+                D_8006C77C = (*(int *)temp_s1_2 - 4) / 28;
+                {
+                    register int *count asm("$4") = &D_8006D04C;
+                    register int index asm("$3") = 0;
+                    temp_s1_2 += *(int *)temp_s1_2;
+                    temp_v0 = *(int *)temp_s1_2;
+                    temp_s1_2 += 4;
+                    D_8006D048 = (void **)temp_s1_2;
+                    *count = temp_v0;
+                    if (temp_v0 > 0) {
+                        do {
+                            index += 1;
+                            *(int *)temp_s1_2 = (int)(temp_s3 + (*(int *)temp_s1_2 + 4));
+                            temp_s1_2 += 4;
+                        } while (index < *count);
+                    }
+                }
+                { register int offset asm("$2") = *(int *)temp_s3;
+                  __asm__("" : "=r"(offset) : "0"(offset)); temp_s1_2 = temp_s3 + offset; }
+                temp_s3 = temp_s1_2;
+                __asm__("" : "=r"(temp_s3) : "0"(temp_s3));
+                    temp_v1 = *(int *)temp_s1_2;
+                temp_v0 = *(int *)temp_s3;
+                temp_s1_2 += temp_v1;
+                if (temp_v0 < 9) {
+                    D_8006D050 = temp_s3;
+                    D_8006D074 = 0x18000;
+                    D_8006D058 = 0;
+                } else {
+                    D_8006D074 = 0x2C000;
+                    __asm__ volatile("" : : : "memory");
+                    { register void *offset asm("$2") = temp_s3 + 4;
+                      __asm__("" : "=r"(offset) : "0"(offset)); D_8006D050 = offset; }
+                    D_8006D058 = 1;
+                }
+                temp_s3 = temp_s1_2;
+                __asm__("" : "=r"(temp_s3) : "0"(temp_s3));
+                    temp_v1 = *(int *)temp_s1_2;
+                temp_v0 = *(int *)temp_s3;
+                temp_s1_2 += temp_v1;
+                if (temp_v0 < 9) {
+                    D_8006D054 = temp_s3;
+                    *(int *)temp_s3 = -1;
+                } else {
+                    { register void *offset asm("$2") = temp_s3 + 4;
+                      __asm__("" : "=r"(offset) : "0"(offset)); D_8006D054 = offset; }
+                }
+                temp_s3 = temp_s1_2;
+                __asm__("" : "=r"(temp_s3) : "0"(temp_s3));
+                temp_s1_2 += 4;
+                D_8006D064 = temp_s1_2;
+                { register int offset asm("$2") = *(int *)temp_s3;
+                  __asm__("" : "=r"(offset) : "0"(offset)); temp_s1_2 = temp_s3 + offset; }
+                temp_s3 = temp_s1_2;
+                __asm__("" : "=r"(temp_s3) : "0"(temp_s3));
+                temp_s1_2 += 4;
+                D_8006D070 = temp_s1_2;
+                __asm__("" : "=r"(temp_s1_2) : "0"(temp_s1_2));
+                M2C_FIELD(temp_s1_2, void **, 0xC) = temp_s1_2 + M2C_FIELD(temp_s1_2, int *, 0xC);
+                __asm__ volatile("" : : : "memory");
+                M2C_FIELD(D_8006D070, void **, 0x10) = temp_s1_2 + M2C_FIELD(D_8006D070, int *, 0x10);
+                __asm__ volatile("" : : : "memory");
+                M2C_FIELD(D_8006D070, void **, 0x14) = temp_s1_2 + M2C_FIELD(D_8006D070, int *, 0x14);
+                __asm__ volatile("" : : : "memory");
+                M2C_FIELD(D_8006D070, void **, 0x18) = temp_s1_2 + M2C_FIELD(D_8006D070, int *, 0x18);
+                __asm__ volatile("" : : : "memory");
+                M2C_FIELD(D_8006D070, void **, 0x1C) = temp_s1_2 + M2C_FIELD(D_8006D070, int *, 0x1C);
+                __asm__ volatile("" : : : "memory");
+                { register int offset asm("$2") = M2C_FIELD(D_8006D070, int *, 0x20);
+                  offset = (int)temp_s1_2 + offset;
+                  __asm__("" : "=r"(offset) : "0"(offset)); M2C_FIELD(D_8006D070, int *, 0x20) = offset; }
+                __asm__ volatile("" : : : "memory");
+                { register int offset asm("$2") = *(int *)temp_s3;
+                  __asm__("" : "=r"(offset) : "0"(offset)); temp_s1_2 = temp_s3 + offset; }
+                __asm__("" : "=r"(temp_s1_2) : "0"(temp_s1_2));
+                var_s0_4 = temp_s1_2;
+                __asm__("" : "=r"(var_s0_4) : "0"(var_s0_4));
+                { register int pixelX asm("$4") = M2C_FIELD(var_s0_4, int *, 0);
+                register int pixelY asm("$5") = M2C_FIELD(var_s0_4, int *, 4);
+                temp_v0 = M2C_FIELD(var_s0_4, int *, 8);
+                    temp_v1 = M2C_FIELD(var_s0_4, int *, 12);
+                if (temp_v0 && temp_v1) {
+                    frame.rect.x = pixelX;
+                    frame.rect.y = pixelY;
+                    frame.rect.w = temp_v0;
+                    frame.rect.h = temp_v1;
+                    var_s0_4 += M2C_FIELD(var_s0_4, int *, 16) + 16;
+                    LoadImage(&frame.rect, (unsigned long *)var_s0_4);
+                }
+                }
+                D_800722C8 = var_s0_4;
+                var_v0 = 5;
+            }
+            goto block_51;
+        }
+        break;
+    case 5:
+        var_s0_2 = 3;
+        if (D_8006C5C8 != 0) {
+            { register int index asm("$2") = D_8006C5C8 * 2; __asm__("" : "=r"(index) : "0"(index)); var_s0_2 = index + 3; }
+        }
+        if (CDLoadTime() == 0) {
+            temp_v1_2 = var_s0_2 * 8;
+            { register int device asm("$4") = D_8006E470;
+              register void *buffer asm("$5") = D_800722C8;
+              register int level asm("$2");
+              __asm__("" : "=r"(device), "=r"(buffer) : "0"(device), "1"(buffer));
+              level = D_8006C58C;
+              CDLoadAsync(device, buffer, *(int *)(D_8007209C + temp_v1_2), *(int *)(D_80072098 + temp_v1_2) + *(int *)(D_8006DBE0 + (level * 16))); }
+            var_v0 = 6;
+            goto block_51;
+        }
+        break;
+    case 6:
+        if (CDLoadTime() == 0) {
+            func_800136F0(&frame.camera, &D_8006E020, (Vector3D *)((char *)&D_8006E020 + 0x38));
+            func_800138A0(&frame.camera, &frame.camera);
+            temp_s2 = frame.camera.pos.azimuth - D_8006E064;
+            func_8002B810(D_800722C8);
+            if (D_8006C4F8 == 1) {
+                func_8004F1C8(&frame.vector, &D_800719BC, (Vector3D *) &D_80070328);
+                frame.vector.z += 0x164;
+                func_8004F178((Vector3D *) &D_80070328, &D_800719BC);
+                var_v1_2 = D_8006C6E0;
+                var_v0_2 = M2C_FIELD(&D_80070328, s32 *, 8) + 0x164;
+            } else {
+                func_8004F1C8(&frame.vector, &D_8006FA2C, (Vector3D *) &D_80070328);
+                frame.vector.z += 0x164;
+                func_8004F178((Vector3D *) &D_80070328, &D_8006FA2C);
+                var_v1_2 = D_8006C5C0;
+                var_v0_2 = M2C_FIELD(&D_80070328, s32 *, 8) + 0x164;
+            }
+            M2C_FIELD(&D_80070328, s32 *, 8) = var_v0_2;
+            M2C_FIELD(&D_80070328, s32 *, 0x64) = var_v1_2;
+            func_80047190();
+            M2C_FIELD(&D_80070328, u8 *, 0xE) = (u8) ((s32) M2C_FIELD(&D_80070328, s32 *, 0x64) >> 4);
+            if (((D_8006C658 != 0) && (var_a0 = 0x28, (D_8006C5BC == 0x2C))) || (var_a0 = 0, (D_8006C4F8 != 0))) {
+                func_8004BEF8(var_a0);
+            }
+            func_8003B634((Savepoint *) &D_8006D088, &D_8006FA2C, (s32) D_8006C5C0 >> 4);
+            if (D_8006C658 != 0) {
+                func_80012BA8(&D_80068F7C);
+            } else if ((D_8006C5BC == 0x2A) && (D_8006C5C8 == 1) && (D_8006C4F8 == 2)) {
+                func_80012BA8(&D_80069274);
+                func_8001FB10((&D_80065878)[D_8006C58C] << 0xA);
+                D_8006C514 = 8;
+            } else {
+                func_8004F194(&D_8006E058, &D_8006E058, &frame.vector);
+                temp_s1 = (CameraPosition *)((char *)&D_8006E058 + 0x1C);
+                D_8006E064 = M2C_FIELD(&D_80070328, s32 *, 0x64);
+                func_800135A4(temp_s1, &frame.camera, 0);
+                M2C_FIELD(&D_8006E058, s32 *, 0x1C) = (s32) ((temp_s2 + D_8006E064) & 0xFFF);
+                func_800135F8((Vector3D *)((char *)&D_8006E058 - 0x38), &temp_s1->pos, &D_8006E058);
+                func_80012B34();
+                func_800135A4((CameraPosition *)((char *)&D_8006E058 + 0x44), temp_s1, 0);
+            }
+            if (D_8006C65C != 0) {
+                func_8004F178(D_8006C65C + 0xC, (Vector3D *) &D_80070328);
+                {
+                    register int angle asm("$2") = M2C_FIELD(&D_80070328, u8 *, 0xE);
+                    register int trig asm("$3") = D_80065A20[angle];
+                    register char *actor asm("$5");
+                    register int product asm("$2");
+                    __asm__("" : "=r"(trig) : "0"(trig) : "memory");
+                    actor = D_8006C65C;
+                    __asm__("" : "=r"(actor) : "0"(actor), "r"(trig));
+                    product = trig * 0x177;
+                    M2C_FIELD(actor, int *, 0xC) += product >> 10;
+                    __asm__ volatile("" : : : "memory");
+                    angle = M2C_FIELD(&D_80070328, u8 *, 0xE);
+                    {
+                        register int z asm("$3") = M2C_FIELD(actor, int *, 0x14);
+                        register int trigY asm("$4") = D_800659A0[angle];
+                        M2C_FIELD(actor, int *, 0x14) = z + 0x320;
+                        product = trigY * 0x177;
+                        M2C_FIELD(actor, int *, 0x10) += product >> 10;
+                    }
+                }
+            }
+            temp_v0_3 = D_80065734[D_8006C58C] * 8;
+            temp_a0_2 = D_8006C3F4 + *(int *)(D_800652B0 + temp_v0_3);
+            func_8004F984(temp_a0_2, temp_a0_2 + *(unsigned short *)(D_800652B4 + temp_v0_3), (s32) *(unsigned short *)(D_800652B6 + temp_v0_3));
+            if (D_8006C514 != 6) return;
+            var_v0 = 7;
+            goto block_51;
+        }
+        break;
+    }
+    return;
+block_51:
+    D_8006C514 = var_v0;
+}
+
+#undef M2C_FIELD
 
 INCLUDE_RODATA("asm/nonmatchings/update", D_80010C9C);
 
