@@ -832,7 +832,534 @@ function_end:
 #undef M2C_FIELD_57340
 
 
-INCLUDE_ASM("asm/nonmatchings/updatepause", func_80057834);
+/* Retail source: USA Rev 0 SCUS-94467, PSX.EXE 0x80057834..0x80058408.
+ * Pause state dispatch and speech row selection run once per caller invocation.
+ * Speech rows are 12 bytes; selectors are unsigned bytes, LBA offsets are signed
+ * words, track IDs are signed halfwords, and lengths are unsigned halfwords.
+ * Fade values are signed words/halfwords updated in retail steps of 16.
+ * Falsifiable vectors: pause states 0..25 and default 26, input bits 0x4000/0x1000,
+ * speech sentinel 255 and byte wrap 0/255, fades -1/0/16/254/255/256,
+ * signed image-size rounding at -1024/-1/0/1023/1024 and warp selectors 59/60.
+ * Confidence: complete retail executable and overlay hash match.
+ * Empty register constraints emit no instructions. The old-style cheat-update
+ * call preserves retail's lack of argument setup after func_80057154. */
+#define M2C_FIELD(p,t,o) (*(t)((char *)(p)+(o)))
+int CDLoadTime();
+int ProcessCheatBuffer();
+int func_800285A4(int);
+int func_800498C0();
+void func_8004F984(int, int, int);
+int func_80052918(int, int);
+void func_80053F50(int);
+void func_800584BC(int, int);
+int func_atlas_8007A1A8();
+int func_options_800777C8();
+extern int D_8006C3F4;
+extern unsigned int D_8006C550;
+extern unsigned int D_8006C704;
+extern int D_8006FA44;
+extern int D_80070104;
+extern int D_options_8007ABE0;
+extern unsigned char *speechData[];
+extern unsigned char warpRead asm("g_CheatFlags+0x4");
+extern unsigned char warpWrite asm("g_CheatFlags+0x04");
+extern int (*unk_ovlheader_80074374)();
+
+void func_80057834(void) {
+    struct { RECT first; RECT second; } frame;
+    register int level2 asm("$2");
+    register int level3 asm("$3");
+    register unsigned char **table3 asm("$3");
+    register unsigned char *loopRoot5 asm("$5");
+    register int terminator6 asm("$6");
+    register int var_a0 asm("$4");
+    register unsigned int cheatMode5 asm("$5");
+    short temp_v0_3;
+    register int temp_a0 asm("$4");
+    register int *pauseRoot asm("$16");
+    register unsigned char *cheatRoot asm("$7");
+    register unsigned int cheatValue asm("$6");
+    register int input asm("$3");
+    register int one3 asm("$17");
+    register short *fadeRoot asm("$4");
+    register int temp_a0_3 asm("$4");
+    register int *counter3 asm("$3");
+    register int *counter2 asm("$2");
+    register int counterValue2 asm("$2");
+    register int counterValue3 asm("$3");
+    register int fade4 asm("$4");
+    register int temp_a1 asm("$5");
+    register int temp_v0_4 asm("$2");
+    int temp_v0_5;
+    int temp_v0_7;
+    register int temp_v0_8 asm("$2");
+    int temp_v1_2;
+    register int var_a1 asm("$5");
+    register int imageWidth2 asm("$2");
+    register int expectedMode2 asm("$2");
+    register int drawMode4 asm("$4");
+    register int track6 asm("$6");
+    register int length5 asm("$5");
+    register int var_a1_2 asm("$5");
+    int var_a1_3;
+    register int var_v0_2 asm("$2");
+    register unsigned int *temp_s0_2 asm("$16");
+    register unsigned int *temp_s0_3 asm("$16");
+    register unsigned int var_s0 asm("$16");
+    register unsigned char **temp_a0_2 asm("$4");
+    register unsigned char **temp_a1_2 asm("$5");
+    register unsigned int temp_v0 asm("$2");
+    register unsigned int temp_v0_2 asm("$2");
+    unsigned char temp_v0_9;
+    register unsigned int temp_v1 asm("$3");
+    void *temp_a0_4;
+    void *temp_s0;
+    void *temp_v0_6;
+    register void *var_v0 asm("$2");
+
+    if (D_80070133 != 0) {
+        ProcessCheatBuffer();
+    }
+    pauseRoot = &D_8006FBC8;
+    __asm__("" : "=r"(pauseRoot) : "0"(pauseRoot));
+    if (*pauseRoot != 0x13) {
+        func_80056ECC();
+    }
+    cheatRoot = (unsigned char *)g_CheatFlags + 0x17;
+    __asm__("" : "=r"(cheatRoot) : "0"(cheatRoot));
+    cheatValue = *cheatRoot;
+    __asm__ volatile("" : "=r"(cheatValue) : "0"(cheatValue) : "memory");
+    temp_a0 = cheatValue & 0xFF;
+    __asm__("" : "=r"(temp_a0) : "0"(temp_a0));
+    if ((temp_a0 != 0) && (*pauseRoot == 0)) {
+        input = D_8006E53C;
+        if (input & 0x4000) {
+            temp_v0 = cheatValue - 1;
+            *cheatRoot = temp_v0;
+            if (!(temp_v0 & 0xFF)) {
+                level2 = D_8006C76C;
+                __asm__("" : "=r"(level2) : "0"(level2));
+                table3 = speechData;
+                __asm__("" : "=r"(table3) : "0"(table3), "r"(level2));
+                level2 <<= 2;
+                __asm__("" : "=r"(level2) : "0"(level2));
+                temp_a0_2 = (unsigned char **)(level2 + (int)table3);
+                if (**temp_a0_2 != 0xFF) {
+                    loopRoot5 = cheatRoot;
+                    __asm__("" : "=r"(loopRoot5) : "0"(loopRoot5));
+                    terminator6 = 255;
+                    __asm__("" : "=r"(terminator6) : "0"(terminator6));
+                    do {
+                        temp_v0_2 = *loopRoot5 + 1;
+                        *loopRoot5 = temp_v0_2;
+                    } while (*(((temp_v0_2 & 0xFF) * 0xC) + *temp_a0_2) != terminator6);
+                }
+            }
+            level3 = D_8006C76C;
+            temp_a0 = g_CheatFlags[23];
+
+            level3 <<= 2;
+            __asm__("" : "=r"(level3) : "0"(level3));
+            temp_a1 = (int)*(unsigned char **)((char *)speechData + level3);
+            if (M2C_FIELD(((temp_a0 * 0xC) + temp_a1), unsigned char *, -0xC) != 0xFF) {
+                temp_v1 = temp_a0 - 1;
+                __asm__("" : "=r"(temp_v1) : "0"(temp_v1));
+                var_v0 = (void *)((temp_v1 * 0xC) + temp_a1);
+                temp_a0_3 = D_8006C3F4;
+                goto block_18;
+            }
+        } else {
+            temp_v0 = input & 0x1000;
+            __asm__("" : "=r"(temp_v0) : "0"(temp_v0));
+            if (temp_v0) {
+                level2 = D_8006C76C;
+                __asm__("" : "=r"(level2) : "0"(level2));
+                table3 = speechData;
+                __asm__("" : "=r"(table3) : "0"(table3), "r"(level2));
+                if (((temp_a1_2 = (unsigned char **)(level2 * 4 + (int)table3), (M2C_FIELD(((temp_a0 * 0xC) + *temp_a1_2), unsigned char *, -0xC) != 0xFF)) && (temp_v1 = cheatValue + 1, *cheatRoot = temp_v1, (M2C_FIELD((((temp_v1 & 0xFF) * 0xC) + *temp_a1_2), unsigned char *, -0xC) != 0xFF))) || (*cheatRoot = 1U, (**temp_a1_2 != 0xFF))) {
+                    temp_v1 = g_CheatFlags[23];
+                    temp_a0 = D_8006C76C;
+                    __asm__("" : "=r"(temp_v1), "=r"(temp_a0) : "0"(temp_v1), "1"(temp_a0));
+                    temp_v1 -= 1;
+                    __asm__("" : "=r"(temp_v1) : "0"(temp_v1));
+                    temp_a0 <<= 2;
+                    __asm__("" : "=r"(temp_a0) : "0"(temp_a0));
+                    var_v0 = (void *)(temp_v1 * 12);
+                    __asm__("" : "=r"(var_v0) : "0"(var_v0));
+                    temp_v1 = (int)*(unsigned char **)((char *)speechData + temp_a0);
+                    temp_a0_3 = D_8006C3F4;
+                    __asm__("" : "=r"(temp_a0_3) : "0"(temp_a0_3), "r"(temp_v1));
+                    var_v0 = (char *)var_v0 + temp_v1;
+block_18:
+                    temp_v1 = M2C_FIELD(var_v0, int *, 8);
+                    track6 = M2C_FIELD(var_v0, short *, 2);
+                    __asm__("" : "=r"(temp_v1), "=r"(track6) : "0"(temp_v1), "1"(track6));
+                    length5 = M2C_FIELD(var_v0, unsigned short *, 4);
+                    temp_a0_3 += temp_v1;
+                    func_8004F984(temp_a0_3, temp_a0_3 + length5, track6);
+                }
+            }
+        }
+    } else {
+        func_80057154();
+        if (D_80070133 != 0) {
+            ((void (*)())func_80057340)();
+        }
+    }
+    switch (D_8006FBC8) {
+    case 0:
+    case 3:
+        fadeRoot = &D_80070136;
+        __asm__("" : "=r"(fadeRoot) : "0"(fadeRoot));
+        if (*fadeRoot > 0) {
+            temp_v0_3 = *fadeRoot - 0x10;
+            *fadeRoot = temp_v0_3;
+            if (temp_v0_3 < 0) {
+                *fadeRoot = 0;
+            }
+        }
+        func_800285A4(1);
+        goto block_118;
+    case 11:
+        func_800285A4(1);
+        pauseRoot = &D_8006FA3C;
+        __asm__("" : "=r"(pauseRoot) : "0"(pauseRoot));
+        temp_v0 = *pauseRoot;
+        one3 = 3;
+        __asm__("" : "=r"(one3) : "0"(one3), "r"(temp_v0));
+        if (temp_v0 == one3) {
+            func_800498C0();
+        } else {
+            unk_ovlheader_80074374();
+            if (*pauseRoot == 2) {
+                D_8006FA44 = 4;
+            } else {
+                D_8006FA44 = one3;
+            }
+        }
+        goto block_118;
+    case 12:
+        func_800285A4(1);
+        D_8006C650 = 2;
+        D_8006FBC8 = 1;
+        goto block_118;
+    case 1:
+        D_8006E49C = 0;
+        D_800719D2 = 0;
+        func_800285A4(1);
+        D_80070148 = 0;
+        D_8006E344 = 0;
+        goto block_118;
+    case 13:
+        counter3 = &D_8006FBD4;
+        __asm__("" : "=r"(counter3) : "0"(counter3));
+        counterValue2 = *counter3;
+        fade4 = D_8006C598;
+        __asm__("" : "=r"(fade4) : "0"(fade4), "r"(counterValue2));
+        *counter3 = counterValue2 + 1;
+        if (fade4 > 0) {
+            temp_v0_4 = fade4 - 0x10;
+            D_8006C598 = temp_v0_4;
+            if (temp_v0_4 < 0) {
+                D_8006C598 = 0;
+            }
+            goto block_69;
+        } else {
+            D_80070133 = 1;
+            D_8006FBC8 = 0;
+        }
+        goto block_118;
+    case 21:
+        D_80070133 = 0;
+        if (CDLoadTime() == 0) {
+            counter3 = &D_8006FBD4;
+            __asm__("" : "=r"(counter3) : "0"(counter3));
+            if ((*counter3 >= 5) && (D_8006E48C == 0) && (D_80070114 == 0)) {
+                D_8006FBC8 = 0x16;
+                *counter3 = 0;
+            } else if (func_800285A4(0) == 0) {
+                counter3 = &D_8006FBD4;
+                __asm__("" : "=r"(counter3) : "0"(counter3));
+                temp_v0_5 = *counter3 + 1;
+                *counter3 = temp_v0_5;
+                __asm__ volatile("" ::: "memory");
+                if (temp_v0_5 == 1) {
+                    if (D_8006C65C != 0) {
+                        temp_s0 = D_8006C65C->mobyTag;
+                        func_8004F178(&D_80070124, &D_8006C65C->position);
+                        D_8006C65C->position.x = 0x200;
+                        D_8006C65C->position.y = 0x200;
+                        D_8006C65C->position.z = 0x200;
+                        temp_v0_6 = M2C_FIELD(temp_s0, void **, 0x10);
+                        if (temp_v0_6 != 0) {
+                            M2C_FIELD(temp_v0_6, int *, 0) = 0x200;
+                            M2C_FIELD(M2C_FIELD(temp_s0, void **, 0x10), int *, 4) = 0x200;
+                            M2C_FIELD(M2C_FIELD(temp_s0, void **, 0x10), int *, 8) = 0x200;
+                        }
+                    }
+                } else {
+                    D_80070104 = 1;
+                }
+            }
+        }
+        goto block_118;
+    case 15:
+        D_80070133 = 0;
+        if (CDLoadTime() == 0) {
+            counter3 = &D_8006FBD4;
+            __asm__("" : "=r"(counter3) : "0"(counter3));
+            if ((*counter3 >= 5) && (D_8006E48C == 0) && (D_80070114 == 0)) {
+                D_8006FBC8 = 0x10;
+                D_8006FBD0 = 0;
+                *counter3 = 0;
+            } else {
+                *counter3 += 1;
+            }
+            counterValue3 = D_8006C598;
+            __asm__("" : "=r"(counterValue3) : "0"(counterValue3));
+            if (counterValue3 < 0xFF) {
+                var_v0_2 = counterValue3 + 0x10;
+                goto block_67;
+            }
+        }
+        goto block_118;
+    case 22:
+        if (D_8006FBD4 == 0) {
+            if (D_8006FBC8 == 0x10) {
+                func_800569C0();
+            } else {
+                func_80056A3C();
+            }
+        }
+        counter2 = &D_8006FBD4;
+        __asm__("" : "=r"(counter2) : "0"(counter2));
+        counterValue3 = *counter2;
+        D_8006FBC8 = 0x17;
+        *counter2 = counterValue3 + 1;
+        goto block_118;
+    case 16:
+        if (D_8006FBD4 == 0) {
+            D_80070134 = 0;
+            D_80070136 = 0;
+            if (D_8006FBC8 == 0x10) {
+                func_800569C0();
+            } else {
+                func_80056A3C();
+            }
+        }
+        counter2 = &D_8006FBD4;
+        __asm__("" : "=r"(counter2) : "0"(counter2));
+        counterValue3 = *counter2;
+        fade4 = D_8006C598;
+        __asm__("" : "=r"(fade4) : "0"(fade4), "r"(counterValue3));
+        *counter2 = counterValue3 + 1;
+        __asm__ volatile("" ::: "memory");
+        if (fade4 < 0xFF) {
+            var_v0_2 = fade4 + 0x10;
+block_67:
+            D_8006C598 = var_v0_2;
+            if (var_v0_2 >= 0x100) {
+                D_8006C598 = 0xFF;
+            }
+block_69:
+            D_80070136 = (short) D_8006C598;
+            goto block_118;
+        }
+        D_8006FBC8 = 0x11;
+        goto block_118;
+    case 17:
+    case 23:
+        if (CDLoadTime() == 0) {
+            expectedMode2 = 17;
+            __asm__("" : "=r"(expectedMode2) : "0"(expectedMode2));
+            pauseRoot = &D_8006FBC8;
+            __asm__("" : "=r"(pauseRoot) : "0"(pauseRoot));
+            if (*pauseRoot == expectedMode2) {
+                func_80056A98();
+                *pauseRoot = 0x13;
+            } else {
+                func_80056CF0();
+                *pauseRoot = 0x19;
+                D_options_8007ABE0 = 0;
+            }
+            D_80070134 = 1;
+            D_80070114 = 2;
+        }
+        goto block_118;
+    case 19:
+        if (D_8006C76C == 0) {
+            func_atlas_8007A1A8();
+        }
+        goto block_118;
+    case 25:
+        func_options_800777C8();
+        goto block_118;
+    case 24:
+        if (CDLoadTime() == 0) {
+            if (D_8006FBD4 == 0) {
+                func_8005693C();
+            }
+            D_8006FBC8 = 0x14;
+        }
+        goto block_118;
+    case 18:
+        if (CDLoadTime() == 0) {
+            pauseRoot = &D_8006FBD4;
+            __asm__("" : "=r"(pauseRoot) : "0"(pauseRoot));
+            temp_v0_7 = *pauseRoot;
+            if (temp_v0_7 == 0) {
+                func_8005693C();
+            }
+            counterValue2 = *pauseRoot;
+            counterValue3 = D_8006C598;
+            __asm__("" : "=r"(counterValue3) : "0"(counterValue3), "r"(counterValue2));
+            *pauseRoot = counterValue2 + 1;
+            __asm__ volatile("" ::: "memory");
+            if (counterValue3 < 0xFF) {
+                temp_v0_8 = counterValue3 + 0x10;
+                D_8006C598 = temp_v0_8;
+                if (temp_v0_8 >= 0x100) {
+                    D_8006C598 = 0xFF;
+                }
+            } else {
+                D_8006FBC8 = 0xE;
+            }
+        }
+        goto block_118;
+    case 14:
+        if (CDLoadTime() == 0) {
+            imageWidth2 = 512;
+            var_a1 = D_80070138;
+            __asm__("" : "=r"(var_a1) : "0"(var_a1), "r"(imageWidth2));
+            frame.first.x = imageWidth2;
+            frame.first.y = 0;
+            frame.first.w = imageWidth2;
+            fade4 = (int)D_80070108;
+            counterValue3 = D_8007015C;
+            __asm__("" : "=r"(counterValue3) : "0"(counterValue3), "r"(fade4));
+            temp_s0_2 = (unsigned int *)(fade4 + counterValue3);
+            if (var_a1 < 0) {
+                var_a1 += 0x3FF;
+            }
+            drawMode4 = 0;
+            __asm__("" : "=r"(drawMode4) : "0"(drawMode4), "r"(var_a1));
+            imageWidth2 = var_a1 >> 10;
+            __asm__("" : "=r"(imageWidth2) : "0"(imageWidth2));
+            frame.first.h = imageWidth2;
+            DrawSync(drawMode4);
+            LoadImage(&frame.first, (unsigned long *)temp_s0_2);
+            DrawSync(0);
+            D_80070134 = 1;
+            func_800565A0();
+            D_8006FBC8 = 0xD;
+            D_80070114 = 1;
+            D_8006FBD4 = 0;
+            D_80070104 = 0;
+        }
+        goto block_118;
+    case 20:
+        if (CDLoadTime() == 0) {
+            imageWidth2 = 512;
+            var_a1_2 = D_80070138;
+            __asm__("" : "=r"(var_a1_2) : "0"(var_a1_2), "r"(imageWidth2));
+            frame.second.x = imageWidth2;
+            frame.second.y = 0;
+            frame.second.w = imageWidth2;
+            fade4 = (int)D_80070108;
+            counterValue3 = D_8007015C;
+            __asm__("" : "=r"(counterValue3) : "0"(counterValue3), "r"(fade4));
+            temp_s0_3 = (unsigned int *)(fade4 + counterValue3);
+            if (var_a1_2 < 0) {
+                var_a1_2 += 0x3FF;
+            }
+            drawMode4 = 0;
+            __asm__("" : "=r"(drawMode4) : "0"(drawMode4), "r"(var_a1_2));
+            imageWidth2 = var_a1_2 >> 10;
+            __asm__("" : "=r"(imageWidth2) : "0"(imageWidth2));
+            frame.second.h = imageWidth2;
+            DrawSync(drawMode4);
+            LoadImage(&frame.second, (unsigned long *)temp_s0_3);
+            DrawSync(0);
+            D_80070134 = 1;
+            if (D_8007014E == 0) {
+                func_800565A0();
+            }
+            D_8006C598 = 0;
+            D_8006FBC8 = 0xD;
+            D_80070114 = 1;
+            D_8006FBD4 = 0;
+            D_8006C788 = (char *) D_80070150;
+            D_8006C738 = (char *) D_80070154;
+            temp_v0_9 = M2C_FIELD(((func_80027934(1) * 8) + D_8006C738), unsigned char *, 2);
+            D_80070104 = 0;
+            D_800719D0 = (short) temp_v0_9;
+        }
+        goto block_118;
+    case 7:
+        D_80070148 = 0;
+        func_800584BC(5, 0U);
+        goto block_118;
+    case 9:
+        var_s0 = D_8006C550;
+        var_a1_3 = 1;
+        if (var_s0 < (unsigned int) D_8006C704) {
+            one3 = 0x3FE;
+            __asm__("" : "=r"(one3) : "0"(one3));
+loop_103:
+            if (var_a1_3 != 0) {
+                if (M2C_FIELD(var_s0, short *, 0x36) == one3) {
+                    temp_a0_4 = M2C_FIELD(var_s0, void **, 0);
+                    if ((M2C_FIELD(temp_a0_4, int *, 0x40) == D_8006C5C8) && (M2C_FIELD(temp_a0_4, int *, 0x34) == 0)) {
+                        func_80052918(0, D_8006C550 + (M2C_FIELD(temp_a0_4, int *, 0x30) * 0x58));
+                        var_a1_3 = 0;
+                    }
+                }
+                var_s0 += 0x58;
+                if (var_s0 < (unsigned int) D_8006C704) {
+                    goto loop_103;
+                }
+            }
+        }
+        goto block_118;
+    case 8:
+        temp_v1_2 = D_8006C5BC % 10;
+        if (temp_v1_2 == 7) {
+            func_800584BC(0, D_8006C5BC - 7);
+            return;
+        }
+        if (temp_v1_2 == 8) {
+            func_800584BC(0, D_8006C5BC - 8);
+            return;
+        }
+        func_80053F50(-1);
+        return;
+    case 10:
+        cheatMode5 = warpRead;
+        var_a0 = 0;
+        if (cheatMode5 >= 0x3CU) {
+            var_a0 = 6;
+            __asm__("" : "=r"(var_a0) : "0"(var_a0));
+        }
+        __asm__("" : "=r"(var_a0) : "0"(var_a0));
+        func_800584BC(var_a0, cheatMode5);
+        __asm__ volatile("" ::: "memory");
+        warpWrite = 0;
+        return;
+default:
+block_118:
+        if (D_8006E344 == 4) {
+            counter2 = &D_8006FBC4;
+            __asm__("" : "=r"(counter2) : "0"(counter2));
+            counterValue3 = *counter2;
+            fade4 = D_8006C648;
+            __asm__("" : "=r"(fade4) : "0"(fade4), "r"(counterValue3));
+            *counter2 = counterValue3 + fade4;
+        }
+        return;
+    }
+}
+
+#undef M2C_FIELD
 
 /**
  * ???() - func_80058408() - MATCHING
