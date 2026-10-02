@@ -5688,7 +5688,1105 @@ add_final_offset:
 }
 
 // has overlay version in "animation.c"
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80049D70);
+/* USA SCUS-94467 Rev 0, retail 0x80049D70..0x8004B324.
+ * Source: asm/nonmatchings/spyroupdate/func_80049D70.s, 1389 code words.
+ * Integer operations retain the retail MIPS 32-bit arithmetic and masks;
+ * this routine is dispatched once for each caller-supplied update index.
+ * GNU data aliases identify the same retail fields with separate C names.
+ * Empty register constraints preserve the original register lifetimes and
+ * load/store order; they emit no instructions. Acceptance requires matching
+ * raw branch words and the linked executable plus all overlay hashes.
+ * Confirmed test vector: all 1389 code words including branch offsets,
+ * linked dispatch table, and complete executable/overlay SHA-256 checks.
+ * Executable SHA-256:
+ * e5406997dccc7300c8198498c20b9d6c4c0a547813be1010446b6c4e5d50e39f.
+ */
+extern short D_8006E040;
+extern int D_8006E044;
+extern int D_8006E1D4;
+extern int D_8006E1D8;
+extern int D_8006E344;
+extern int D_8006E52C;
+extern int D_8006E530;
+extern int D_8006E538;
+extern char D_8006E548[];
+#define M2C_FIELD(p,t,o) (*(t)((char *)(p)+(o)))
+extern int write94_block_86 asm("D_80070328+0x94");
+extern int write94_block_100 asm("D_80070328+0x94");
+extern int write94_block_169 asm("D_80070328+0x94");
+extern int yawRoot5 asm("D_80070328+0xA4");
+extern int speedFirst_tail asm("D_80070328+0xB0");
+extern int speedSecond_tail asm("D_80070328 + 176");
+extern int minimumValueData asm("D_80070328+0xB0");
+extern int count46Write asm("D_80070328+0x144");
+extern unsigned char stateFlag101 asm("D_80070328+0x101");
+extern int restoreSpeedAC asm("D_80070328+0xAC");
+extern int speed17Write asm("D_80070328+0xAC");
+void func_80049D70(int arg0) {
+    char frame[0x7C];
+    int var_s0;
+    register int functionResult asm("$2");
+    int nextAngle;
+    int firstCoordinate;
+    int angleInput;
+    register int sum60 asm("$3");
+    register int unsignedPred asm("$2");
+    register int old60 asm("$3");
+    register int old5C asm("$3");
+    char *capRoot;
+    int flag101;
+    char *(*firstParticle)(int, int, Vector3D*, Vector3D*);
+    register int one5 asm("$5");
+    int var_s1;
+    register int temp_a0_3 asm("$4");
+    int temp_a0_5;
+    int temp_a0_7;
+    int temp_lo;
+    int temp_s0_2;
+    int temp_s3;
+    register int temp_v0 asm("$5");
+    int temp_v0_10;
+    int temp_v0_11;
+    int temp_v0_12;
+    int temp_v0_13;
+    int temp_v0_14;
+    int temp_v0_15;
+    int temp_v0_17;
+    int temp_v0_2;
+    register int temp_v0_3 asm("$4");
+    int temp_v0_4;
+    int temp_v0_5;
+    int temp_v0_6;
+    int temp_v0_7;
+    int temp_v0_8;
+    int temp_v0_9;
+    int temp_v1_2;
+    int temp_v1_3;
+    int temp_v1_4;
+    int temp_v1_5;
+    register int var_a0_3 asm("$4");
+    register int var_a0_4 asm("$4");
+    int var_a0_5;
+    int var_a0_6;
+    int var_a0_7;
+    int var_s2;
+    int var_v0;
+    register int var_v0_10 asm("$2");
+    int var_v0_11;
+    int var_v0_12;
+    int var_v0_13;
+    int var_v0_14;
+    int var_v0_2;
+    int var_v0_3;
+    int var_v0_4;
+    int var_v0_5;
+    int var_v0_6;
+    int var_v0_7;
+    register int var_v0_8 asm("$2");
+    int var_v0_9;
+    register int var_v1 asm("$3");
+    register char *temp_a0 asm("$4");
+    char *temp_a0_2;
+    char *temp_a0_4;
+    char *temp_a0_6;
+    register char *temp_a0_8 asm("$4");
+    char *temp_a0_9;
+    register char *temp_a1 asm("$5");
+    char *temp_s0;
+    char *temp_s0_10;
+    char *temp_s0_11;
+    char *temp_s0_3;
+    register char *temp_s0_4 asm("$16");
+    char *temp_s0_5;
+    char *temp_s0_6;
+    char *temp_s0_7;
+    char *temp_s0_8;
+    char *temp_s0_9;
+    register char *temp_s1 asm("$17");
+    char *temp_s2;
+    char *temp_s2_2;
+    char *temp_s2_3;
+    char *temp_s2_4;
+    char *temp_v1;
+    char *var_a0;
+    char *var_a0_2;
+    char *var_a0_8;
+    char *var_a1;
+    char *var_a2;
+    void *temp_v0_16;
+
+    if (M2C_FIELD(&D_80070328, int *, 0x20C) & 0x8000) {
+        goto block_222;
+    }
+    D_8006C570 = (SpyroInputSource *)((char *)&D_8006E548 + arg0 * 0x10);
+    temp_s3 = M2C_FIELD(&D_80070328, int *, 0x54) + arg0;
+    if ((unsigned int) M2C_FIELD(&D_80070328, unsigned int *, 0x48) >= 0x2FU) {
+        goto block_219;
+    }
+switch (M2C_FIELD(&D_80070328, unsigned int *, 0x48)) {
+    case 0: goto dispatch_0;
+    case 8: goto dispatch_8;
+    case 15: goto dispatch_15;
+    case 1: goto dispatch_1;
+    case 2: goto dispatch_2;
+    case 3: goto dispatch_3;
+    case 4: goto dispatch_4;
+    case 5: goto dispatch_5;
+    case 6: goto dispatch_6;
+    case 7: goto dispatch_7;
+    case 16: goto dispatch_16;
+    case 13: goto dispatch_13;
+    case 14: goto dispatch_14;
+    case 17: goto dispatch_17;
+    case 24: goto dispatch_24;
+    case 18: goto dispatch_18;
+    case 22: goto dispatch_22;
+    case 31: goto dispatch_31;
+    case 46: goto dispatch_46;
+    case 9: goto dispatch_9;
+    case 10: goto dispatch_10;
+    case 11: goto dispatch_11;
+    case 12: goto dispatch_12;
+    case 19: goto dispatch_19;
+    case 20: goto dispatch_20;
+    case 21: goto dispatch_21;
+    case 23: goto dispatch_23;
+    case 25: goto dispatch_25;
+    case 26: goto dispatch_26;
+    case 27: goto dispatch_27;
+    case 28: goto dispatch_28;
+    case 29: goto dispatch_29;
+    case 30: goto dispatch_30;
+    case 32: goto dispatch_32;
+    case 33: goto dispatch_33;
+    case 34: goto dispatch_34;
+    case 35: goto dispatch_35;
+    case 36: goto dispatch_36;
+    case 37: goto dispatch_37;
+    case 38: goto dispatch_38;
+    case 39: goto dispatch_39;
+    case 40: goto dispatch_40;
+    case 41: goto dispatch_41;
+    case 42: goto dispatch_42;
+    case 43: goto dispatch_43;
+    case 44: goto dispatch_44;
+    case 45: goto dispatch_45;
+    default: goto block_219;
+    }
+dispatch_0:
+dispatch_8:
+dispatch_15:
+    temp_s0 = &D_80070328 + 0x80;
+    func_8004F168(temp_s0);
+    func_8004F168(temp_s0 + 0xC);
+    if (D_8006E044 == 7) {
+        goto block_221;
+    }
+    func_80040D10(0x1200);
+    func_800416F4();
+    func_80041580(0x5A, 0x10);
+    goto block_221;
+dispatch_1:
+dispatch_2:
+dispatch_3:
+    func_80040D10(0x1200);
+    if (!(D_8006E538 & 0xC)) {
+        goto block_7;
+    }
+    M2C_FIELD(&D_80070328, int *, 0xAC) = 0;
+block_7:
+    var_s2 = 0;
+    if (M2C_FIELD(&D_80070328, unsigned int *, 0x48) != 3) {
+        goto block_9;
+    }
+    var_s1 = 8;
+    var_s0 = 0x28;
+    goto block_14;
+block_9:
+    var_s1 = 0xC;
+    if (M2C_FIELD(&D_80070328, unsigned int *, 0x48) != 2) {
+        goto block_11;
+    }
+    var_s0 = 0x41;
+    goto block_14;
+block_11:
+    var_s1 = 0x10;
+    if (!(M2C_FIELD(&D_80070328, int *, 0x20C) & 0x40)) {
+        goto block_13;
+    }
+    var_s0 = 0x50;
+    goto block_14;
+block_13:
+    var_s0 = 0x5A;
+    var_s2 = func_800416F4();
+block_14:
+    functionResult = func_80041580(var_s0, var_s1);
+    var_v1 = M2C_FIELD(&D_80070328, int *, 0xA8);
+    if (var_v1 >= 0) {
+        goto block_16;
+    }
+    var_v1 = -var_v1;
+block_16:
+    __asm__ ("" : "=r"(functionResult) : "0"(functionResult) : "$5");
+    __asm__("" : "=r"(var_v1) : "0"(var_v1));
+    temp_v0 = functionResult;
+    if (var_v1 >= 8) {
+        goto block_19;
+    }
+    if (!(D_8006E538 & 0xC)) {
+        goto block_19;
+    }
+    M2C_FIELD(&D_80070328, void **, 0x144) = (void *) (M2C_FIELD(&D_80070328, void **, 0x144) + 1);
+    goto block_20;
+block_19:
+    M2C_FIELD(&D_80070328, void **, 0x144) = 0;
+block_20:
+    __asm__("" : "=r"(temp_v0) : "0"(temp_v0));
+    temp_a0 = &D_80070328 + 0xAC;
+    __asm__("" : "=r"(temp_a0) : "0"(temp_a0));
+    temp_s0_2 = M2C_FIELD(temp_a0, int *, 0);
+    if (var_s2 != 0) {
+        goto block_24;
+    }
+    var_v0 = temp_v0;
+    if (temp_v0 >= 0) {
+        goto block_23;
+    }
+    var_v0 = -var_v0;
+block_23:
+    if (var_v0 < 0x201) {
+        goto block_28;
+    }
+block_24:
+    if (!(M2C_FIELD(&D_80070328, int *, 0x20C) & 0x40)) {
+        goto block_26;
+    }
+    M2C_FIELD(temp_a0, int *, 0) = 0;
+    goto block_28;
+block_26:
+    if (M2C_FIELD(&D_80070328, int *, 0xB0) >= temp_s0_2) {
+        goto block_28;
+    }
+    M2C_FIELD(temp_a0, int *, 0) = (int) M2C_FIELD(&D_80070328, int *, 0xB0);
+block_28:
+    __asm__ volatile("" ::: "memory");
+    func_800417FC(0x140, 0xC0);
+    flag101 = stateFlag101;
+    __asm__("" : "=r"(flag101) : "0"(flag101) : "$4");
+    temp_a0 = &D_80070328 + 0xAC;
+    __asm__("" : "=r"(temp_a0) : "0"(temp_a0));
+    M2C_FIELD(temp_a0, int *, 0) = temp_s0_2;
+    if (flag101 == 0) {
+        goto block_30;
+    }
+    func_8004F168(temp_a0 - 0x20);
+    goto block_31;
+block_30:
+    func_80041848();
+    func_80041B64();
+block_31:
+    var_a2 = &D_80070328 + 0xFC;
+    if (M2C_FIELD(&D_80070328, unsigned char *, 0xFC) != 0) {
+        goto block_67;
+    }
+    var_a0 = var_a2 - 0x70;
+    if (M2C_FIELD(&D_80070328, int *, 0xB8) != 0) {
+        goto block_67;
+    }
+    goto block_68;
+dispatch_4:
+    temp_v1 = &D_80070328 + 0xFC;
+    if (M2C_FIELD(&D_80070328, unsigned char *, 0xFC) == 0) {
+        goto block_36;
+    }
+    M2C_FIELD(&D_80070328, int *, 0xB0) = 0;
+    goto block_51;
+block_36:
+    if (M2C_FIELD(&D_80070328, int *, 0x4C) == 0) {
+        goto block_44;
+    }
+    temp_s0_3 = temp_v1 - 0x70;
+    M2C_FIELD(&D_80070328, int *, 0xA4) = func_8004E880(M2C_FIELD(temp_v1, int *, -0x70), M2C_FIELD(&D_80070328, int *, 0x90), 1);
+    func_80041580(0x5A, 0x10);
+    if (M2C_FIELD(&D_80070328, int *, 0x54) < 0x1E) {
+        goto block_39;
+    }
+    M2C_FIELD(&D_80070328, int *, 0x4C) = 0;
+    goto block_43;
+block_39:
+    if (M2C_FIELD(&D_80070328, int *, 0x54) < 0) {
+        goto block_43;
+    }
+    func_8004F178(&M2C_FIELD(frame, char *, 0x0), temp_s0_3);
+    M2C_FIELD(frame, int *, 0x8) = 0;
+    temp_v0_2 = func_8004EDE8(&M2C_FIELD(frame, char *, 0x0), 0);
+    if (temp_v0_2 < 0x181) {
+        goto block_42;
+    }
+    func_8004F08C(&M2C_FIELD(frame, char *, 0x0), temp_v0_2, 0x180);
+block_42:
+    func_8004F1C8((int *) temp_s0_3, (int *) temp_s0_3, &M2C_FIELD(frame, char *, 0x0));
+block_43:
+    temp_a0_2 = &D_80070328 + 0x80;
+    func_8004F178(temp_a0_2, temp_a0_2 + 0xC);
+    goto block_51;
+block_44:
+    func_80040D10(0x1200);
+    if (!(D_8006E538 & 0xC)) {
+        goto block_46;
+    }
+    M2C_FIELD(&D_80070328, int *, 0xAC) = 0;
+block_46:
+    var_v0_2 = func_80041580(0x5A, 0x10);
+    if (var_v0_2 >= 0) {
+        goto block_48;
+    }
+    var_v0_2 = -var_v0_2;
+block_48:
+    if (var_v0_2 < 0x201) {
+        goto block_50;
+    }
+    M2C_FIELD(&D_80070328, int *, 0xAC) = 0;
+block_50:
+    func_800417FC(0x140, 0xC0);
+    func_80041848();
+block_51:
+    var_a2 = &D_80070328 + 0xFC;
+    if (M2C_FIELD(&D_80070328, unsigned char *, 0xFC) != 0) {
+        goto block_67;
+    }
+    var_a0 = var_a2 - 0x70;
+    if (M2C_FIELD(&D_80070328, int *, 0xB8) != 0) {
+        goto block_67;
+    }
+    var_a1 = var_a2 - 0x7C;
+    goto block_69;
+dispatch_5:
+    temp_s0_4 = (char *)&yawRoot5;
+    __asm__("" : "=r"(temp_s0_4) : "0"(temp_s0_4));
+    temp_v0_3 = func_8004F284(M2C_FIELD(temp_s0_4, int *, 0), M2C_FIELD(temp_s0_4, int *, -0x40));
+    __asm__("" : "=r"(temp_v0_3) : "0"(temp_v0_3));
+    if (temp_v0_3 >= 0x80) {
+        goto block_56;
+    }
+    { register int shifted2 asm("$2");
+    shifted2 = temp_v0_3 >> 3;
+    __asm__("" : "=r"(shifted2) : "0"(shifted2));
+    M2C_FIELD(&D_80070328, int *, 0xA8) = shifted2;
+    }
+    goto block_62;
+block_56:
+    if (M2C_FIELD(&D_80070328, int *, 0x54) >= 6) {
+        goto block_58;
+    }
+    M2C_FIELD(&D_80070328, int *, 0xA8) = 0;
+    goto block_62;
+block_58:
+    { register int delta2 asm("$2");
+      register int left asm("$2");
+      int right;
+      left = M2C_FIELD(temp_s0_4, int *, 0);
+      __asm__("" : "=r"(left) : "0"(left));
+      right = M2C_FIELD(temp_s0_4, int *, -0x40);
+      __asm__("" : "=r"(right) : "0"(right));
+      delta2 = left - right;
+      __asm__("" : "=r"(delta2) : "0"(delta2));
+      temp_v1_2 = M2C_FIELD(&D_80070328, int *, 0xA8) + 0x10;
+      M2C_FIELD(&D_80070328, int *, 0xA8) = temp_v1_2;
+      temp_a0_3 = delta2 & 0xFFF;
+    }
+    if (temp_v1_2 < 0x63) {
+        goto block_60;
+    }
+    M2C_FIELD(&D_80070328, int *, 0xA8) = 0x62;
+block_60:
+    if (temp_a0_3 >= M2C_FIELD(&D_80070328, int *, 0xA8)) {
+        goto block_62;
+    }
+    M2C_FIELD(&D_80070328, int *, 0xA8) = temp_a0_3;
+block_62:
+    func_80041404(M2C_FIELD(&D_80070328, int *, 0xA8));
+    M2C_FIELD(&D_80070328, int *, 0xAC) = 0;
+    if (M2C_FIELD(&D_80070328, unsigned char *, 0xFC) == 0) {
+        goto block_64;
+    }
+    M2C_FIELD(&D_80070328, int *, 0xB0) = 0;
+    goto block_65;
+block_64:
+    func_800417FC(0, 0x100);
+block_65:
+    func_80041848();
+    func_80041B64();
+    var_a2 = &D_80070328 + 0xFC;
+    if (M2C_FIELD(&D_80070328, unsigned char *, 0xFC) != 0) {
+        goto block_67;
+    }
+    var_a0 = var_a2 - 0x70;
+    if (M2C_FIELD(&D_80070328, int *, 0xB8) == 0) {
+        goto block_68;
+    }
+block_67:
+    M2C_FIELD(&D_80070328, int *, 0x94) = (int) (M2C_FIELD(&D_80070328, int *, 0xA0) - 0xC0);
+    goto block_70;
+block_68:
+    __asm__ volatile("" ::: "memory");
+    var_a1 = var_a0;
+block_69:
+    func_8004F194(var_a0, var_a1, (int *) (var_a2 - 0x14));
+block_70:
+    if (D_8006E344 != 1) {
+        goto block_221;
+    }
+    temp_s0_5 = &D_80070328 + 0xFC;
+    if (M2C_FIELD(&D_80070328, unsigned char *, 0xFC) == 0) {
+        goto block_221;
+    }
+    func_8004F168(temp_s0_5 - 0x70);
+    func_8004F168(temp_s0_5 - 0x7C);
+    goto block_221;
+dispatch_6:
+    temp_s0_6 = &D_80070328 + 0x50;
+    if (M2C_FIELD(&D_80070328, int *, 0x50) != 0xD) {
+        goto block_80;
+    }
+    func_80040F48(&M2C_FIELD(frame, int *, 0x10), 0);
+    M2C_FIELD(frame, int *, 0x10) = (int) (M2C_FIELD(frame, int *, 0x10) << 0xB) >> 7;
+    M2C_FIELD(frame, int *, 0x18) = (int) (M2C_FIELD(frame, int *, 0x10) * func_8004E9E4(M2C_FIELD(&D_80070328, int *, 0x64))) >> 0xC;
+    M2C_FIELD(frame, int *, 0x1C) = (int) (-M2C_FIELD(frame, int *, 0x10) * func_8004EA2C(M2C_FIELD(&D_80070328, int *, 0x64))) >> 0xC;
+    M2C_FIELD(frame, int *, 0x18) += (int) (func_8004EA2C(M2C_FIELD(&D_80070328, int *, 0x64)) << 0xA) >> 0xC;
+    temp_s2 = temp_s0_6 + 0x3C;
+    M2C_FIELD(frame, int *, 0x1C) += (int) (func_8004E9E4(M2C_FIELD(&D_80070328, int *, 0x64)) << 0xA) >> 0xC;
+    func_8004F1C8(&M2C_FIELD(frame, int *, 0x18), &M2C_FIELD(frame, int *, 0x18), temp_s2);
+    M2C_FIELD(frame, int *, 0x20) = 0;
+    temp_v0_4 = func_8004EDE8((char *) &M2C_FIELD(frame, int *, 0x18), 0);
+    if (temp_v0_4 < 0x281) {
+        goto block_76;
+    }
+    func_8004F08C((char *) &M2C_FIELD(frame, int *, 0x18), temp_v0_4, 0x280);
+block_76:
+    temp_s0_7 = temp_s0_6 + 0x30;
+    func_8004F194(temp_s0_7, temp_s2, &M2C_FIELD(frame, int *, 0x18));
+    func_8004F178(temp_s2, temp_s0_7);
+    if (temp_s3 >= 0xD) {
+        goto block_87;
+    }
+    if (M2C_FIELD(&D_80070328, int *, 0x4C) & ~0x80) {
+        goto block_87;
+    }
+    if (!(*(int *)D_8006C570 & 0x40)) {
+        goto block_87;
+    }
+    __asm__ volatile("" ::: "memory");
+    goto block_86;
+block_80:
+    func_80040D10(0xC80);
+    func_80041580(0x28, 8);
+    func_800417FC(0x140, 0xC0);
+    temp_s2_2 = temp_s0_6 + 0x3C;
+    M2C_FIELD(frame, int *, 0x28) = (int) (M2C_FIELD(&D_80070328, int *, 0xB0) * func_8004EA2C(M2C_FIELD(&D_80070328, int *, 0xA4))) >> 0xC;
+    M2C_FIELD(frame, int *, 0x2C) = (int) (M2C_FIELD(&D_80070328, int *, 0xB0) * func_8004E9E4(M2C_FIELD(&D_80070328, int *, 0xA4))) >> 0xC;
+    func_8004F1C8(&M2C_FIELD(frame, int *, 0x28), &M2C_FIELD(frame, int *, 0x28), temp_s2_2);
+    M2C_FIELD(frame, int *, 0x30) = 0;
+    temp_v0_5 = func_8004EDE8((char *) &M2C_FIELD(frame, int *, 0x28), 0);
+    if (temp_v0_5 < 0x281) {
+        goto block_82;
+    }
+    func_8004F08C((char *) &M2C_FIELD(frame, int *, 0x28), temp_v0_5, 0x280);
+    var_a0_2 = temp_s0_6 + 0x30;
+block_82:
+    var_a0_2 = temp_s0_6 + 0x30;
+    func_8004F194(var_a0_2, temp_s2_2, &M2C_FIELD(frame, int *, 0x28));
+    func_80041B64();
+    if (temp_s3 >= 0xD) {
+        goto block_87;
+    }
+    if (M2C_FIELD(&D_80070328, int *, 0x4C) != 0) {
+        goto block_87;
+    }
+    if (*(int *)D_8006C570 & 0x40) {
+        goto block_86;
+    }
+    if (M2C_FIELD(&D_80070328, void **, 0x144) == 0) {
+        goto block_87;
+    }
+block_86:
+    write94_block_86 = (int) (M2C_FIELD(&D_80070328, int *, 0x94) + 0x17);
+    goto block_221;
+block_87:
+    M2C_FIELD(&D_80070328, int *, 0x94) = (int) (M2C_FIELD(&D_80070328, int *, 0x94) - 0xC0);
+    goto block_221;
+dispatch_7:
+    func_80040D10(0x640);
+    func_80041580(0x16, 4);
+    if (M2C_FIELD(&D_80070328, int *, 0x4C) != 2) {
+        goto block_92;
+    }
+    if (M2C_FIELD(&D_80070328, int *, 0x54) < 0x1E) {
+        goto block_91;
+    }
+    M2C_FIELD(&D_80070328, int *, 0x4C) = 0;
+block_91:
+    func_8004F168(&M2C_FIELD(frame, int *, 0x38));
+    goto block_94;
+block_92:
+    func_800417FC(0x140, 0xC0);
+    M2C_FIELD(frame, int *, 0x38) = (int) (M2C_FIELD(&D_80070328, int *, 0xB0) * func_8004EA2C(M2C_FIELD(&D_80070328, int *, 0xA4))) >> 0xC;
+    M2C_FIELD(frame, int *, 0x3C) = (int) (M2C_FIELD(&D_80070328, int *, 0xB0) * func_8004E9E4(M2C_FIELD(&D_80070328, int *, 0xA4))) >> 0xC;
+    func_8004F1C8(&M2C_FIELD(frame, int *, 0x38), &M2C_FIELD(frame, int *, 0x38), &D_80070328 + 0x4C + 0x40);
+    M2C_FIELD(frame, int *, 0x40) = 0;
+    temp_v0_6 = func_8004EDE8((char *) &M2C_FIELD(frame, int *, 0x38), 0);
+    if (temp_v0_6 < 0x141) {
+        goto block_94;
+    }
+    func_8004F08C((char *) &M2C_FIELD(frame, int *, 0x38), temp_v0_6, 0x140);
+block_94:
+    temp_a1 = &D_80070328 + 0x20C;
+    temp_s0_8 = temp_a1 - 0x180;
+    if (!(M2C_FIELD(&D_80070328, int *, 0x20C) & 0x400)) {
+        goto block_96;
+    }
+    func_8004F178(temp_s0_8, temp_a1 + 0x10);
+    func_8004F0E8(temp_s0_8, 6);
+    goto block_221;
+block_96:
+    __asm__("" : "=r"(temp_a1) : "0"(temp_a1));
+    func_8004F194(temp_a1 - 0x18C, temp_a1 - 0x180, &M2C_FIELD(frame, int *, 0x38));
+    func_80041B64();
+    goto block_100;
+dispatch_16:
+    if (temp_s3 < 0x13) {
+        goto block_99;
+    }
+    M2C_FIELD(&D_80070328, int *, 0x80) = (int) (M2C_FIELD(&D_80070328, int *, 0x8C) * 0xE0);
+    M2C_FIELD(&D_80070328, int *, 0x84) = (int) (M2C_FIELD(&D_80070328, int *, 0x90) * 0xE0);
+    M2C_FIELD(&D_80070328, int *, 0x88) = (int) (M2C_FIELD(&D_80070328, int *, 0x94) * 0xE0);
+    func_8004F110(&D_80070328 + 0x80, 8);
+block_99:
+    temp_a0_4 = &D_80070328 + 0x8C;
+    func_8004F178(temp_a0_4, temp_a0_4 - 0xC);
+block_100:
+    temp_v0_7 = M2C_FIELD(&D_80070328, int *, 0x94) - 0xC0;
+    write94_block_100 = temp_v0_7;
+    if (temp_v0_7 >= -0x2300) {
+        goto block_221;
+    }
+    write94_block_100 = -0x2300;
+    goto block_221;
+dispatch_13:
+    func_80040F48(&M2C_FIELD(frame, int *, 0x10), 1);
+    temp_a0_5 = (int) (M2C_FIELD(frame, int *, 0x10) * 0x19) >> 7;
+    if (temp_a0_5 != 0) {
+        goto block_104;
+    }
+    M2C_FIELD(&D_80070328, int *, 0xA8) = 0;
+    goto block_109;
+block_104:
+    if (temp_a0_5 >= 0) {
+        goto block_107;
+    }
+    if (M2C_FIELD(&D_80070328, int *, 0xA8) <= 0) {
+        goto block_109;
+    }
+    M2C_FIELD(&D_80070328, int *, 0xA8) = 0;
+    goto block_109;
+block_107:
+    if (M2C_FIELD(&D_80070328, int *, 0xA8) >= 0) {
+        goto block_109;
+    }
+    M2C_FIELD(&D_80070328, int *, 0xA8) = 0;
+block_109:
+{
+    register char *stepRoot asm("$5");
+    int old;
+    int next;
+    stepRoot = &D_80070328 + 0xA8;
+    __asm__ ("" : "=r"(stepRoot) : "0"(stepRoot));
+    old = M2C_FIELD(stepRoot, int *, 0);
+    if (old >= temp_a0_5) goto block_109_down;
+    next = old + 5;
+    M2C_FIELD(stepRoot, int *, 0) = next;
+    next = temp_a0_5 < next;
+    goto block_109_join;
+block_109_down:
+    next = old - 5;
+    M2C_FIELD(stepRoot, int *, 0) = next;
+    next = next < temp_a0_5;
+block_109_join:
+    if (next == 0) goto block_109_done;
+    M2C_FIELD(stepRoot, int *, 0) = temp_a0_5;
+block_109_done:;
+}
+block_114:
+    func_80041404(M2C_FIELD(&D_80070328, int *, 0xA8));
+    if (M2C_FIELD(&D_80070328, void **, 0x144) == 0) {
+        goto block_133;
+    }
+    if (M2C_FIELD(M2C_FIELD(&D_80070328, void **, 0x144), unsigned char *, 0x48) & 0x80) {
+        goto block_132;
+    }
+    if (temp_s3 >= 0x3C) {
+        goto block_132;
+    }
+    { int delta3;
+    delta3 = M2C_FIELD(&D_80070328, int *, 0x64) - D_8006E040;
+    __asm__("" : "=r"(delta3) : "0"(delta3) : "$4");
+    var_a0_3 = delta3 & 0xFFF;
+    }
+    __asm__("" : "=r"(var_a0_3) : "0"(var_a0_3));
+    if (var_a0_3 < 0x801) {
+        goto block_119;
+    }
+    var_a0_3 -= 0x1000;
+    __asm__("" : "=r"(var_a0_3) : "0"(var_a0_3));
+block_119:
+    var_v0_4 = var_a0_3;
+    if (var_a0_3 >= 0) {
+        goto block_121;
+    }
+    var_v0_4 = -var_v0_4;
+block_121:
+    if (var_v0_4 < 0x100) {
+        goto block_132;
+    }
+    func_8004F1C8(&M2C_FIELD(frame, int *, 0x48), M2C_FIELD(&D_80070328, void **, 0x144) + 0xC, (&D_80070328 + 0xA8) - 0xA8);
+    var_a0_4 = (func_8004E880(M2C_FIELD(frame, int *, 0x48), M2C_FIELD(frame, int *, 0x4C), 1) - M2C_FIELD(&D_80070328, int *, 0x64)) & 0xFFF;
+    __asm__("" : "=r"(var_a0_4) : "0"(var_a0_4));
+    if (var_a0_4 < 0x801) {
+        goto block_124;
+    }
+    var_a0_4 -= 0x1000;
+    __asm__("" : "=r"(var_a0_4) : "0"(var_a0_4));
+block_124:
+    __asm__ volatile("" ::: "memory");
+    var_v0_5 = var_a0_4;
+    if (var_a0_4 >= 0) {
+        goto block_126;
+    }
+    var_v0_5 = -var_v0_5;
+block_126:
+    var_a0_5 = var_a0_4 >> 2;
+    if (var_v0_5 >= 0x200) {
+        goto block_132;
+    }
+    if (var_a0_5 >= -0xD) {
+        var_v0_6 = var_a0_5 < 0xD;
+        goto block_129;
+    }
+    var_a0_5 = -0xD;
+    __asm__("" : "=r"(var_a0_5) : "0"(var_a0_5));
+    var_v0_6 = var_a0_5 < 0xD;
+block_129:
+    if (var_v0_6 != 0) {
+        goto block_131;
+    }
+    var_a0_5 = 0xC;
+block_131:
+    func_80041404(var_a0_5);
+    goto block_133;
+block_132:
+    M2C_FIELD(&D_80070328, void **, 0x144) = 0;
+block_133:
+    func_800417FC(0x240, 0x180);
+    func_80041848();
+    temp_s0_9 = &D_80070328 + 0x8C;
+    func_8004F178(temp_s0_9, temp_s0_9 - 0xC);
+    if (M2C_FIELD(&D_80070328, unsigned char *, 0xFC) != 0) {
+        goto block_135;
+    }
+    if (M2C_FIELD(&D_80070328, int *, 0xB8) == 0) {
+        goto block_136;
+    }
+block_135:
+    M2C_FIELD(&D_80070328, int *, 0x94) = (int) (M2C_FIELD(&D_80070328, int *, 0xA0) - 0xC0);
+    goto block_221;
+block_136:
+    func_8004F194(temp_s0_9, temp_s0_9, (int *) (temp_s0_9 + 0x5C));
+    goto block_221;
+dispatch_14:
+    if (temp_s3 < 0x13) {
+        goto block_139;
+    }
+    M2C_FIELD(&D_80070328, int *, 0x80) = (int) (M2C_FIELD(&D_80070328, int *, 0x8C) * 7);
+    M2C_FIELD(&D_80070328, int *, 0x84) = (int) (M2C_FIELD(&D_80070328, int *, 0x90) * 7);
+    M2C_FIELD(&D_80070328, int *, 0x88) = (int) (M2C_FIELD(&D_80070328, int *, 0x94) * 7);
+    func_8004F110(&D_80070328 + 0x80, 3);
+block_139:
+    temp_a0_6 = &D_80070328 + 0x8C;
+    func_8004F178(temp_a0_6, temp_a0_6 - 0xC);
+    temp_v0_10 = M2C_FIELD(&D_80070328, int *, 0x94) - 0xC0;
+    M2C_FIELD(&D_80070328, int *, 0x94) = temp_v0_10;
+    if (temp_v0_10 >= -0xC80) {
+        goto block_141;
+    }
+    M2C_FIELD(&D_80070328, int *, 0x94) = -0xC80;
+block_141:
+    M2C_FIELD(&D_80070328, int *, 0x88) = (int) M2C_FIELD(&D_80070328, int *, 0x94);
+    goto block_221;
+dispatch_17:
+dispatch_24:
+    func_80040F48(&M2C_FIELD(frame, int *, 0x48), 1);
+    temp_v1_3 = (int) (M2C_FIELD(frame, int *, 0x48) * 0x14) >> 7;
+    M2C_FIELD(&D_80070328, int *, 0xA8) = temp_v1_3;
+    M2C_FIELD(&D_80070328, int *, 0x64) = (int) (M2C_FIELD(&D_80070328, int *, 0x64) + temp_v1_3);
+    if (M2C_FIELD(frame, int *, 0x4C) >= 0) {
+        goto block_144;
+    }
+    var_v0_7 = ((int) (M2C_FIELD(frame, int *, 0x4C) * 0x1180) >> 7) + 0x1900;
+    goto block_145;
+block_144:
+    var_v0_7 = 0x1900;
+block_145:
+    speed17Write = var_v0_7;
+    __asm__ volatile("" ::: "memory");
+    func_800417FC(0x80, 0x80);
+{
+    char *minimumRoot;
+    minimumRoot = (char *)&minimumValueData;
+    __asm__("" : "=r"(minimumRoot) : "0"(minimumRoot));
+    if (M2C_FIELD(minimumRoot, int *, 0) >= 0x780) {
+        goto block_147;
+    }
+    M2C_FIELD(minimumRoot, int *, 0) = 0x780;
+}
+block_147:
+    func_80041848();
+    func_80041B64();
+    temp_v0_11 = M2C_FIELD(&D_80070328, int *, 0xA0) - 0x80;
+    M2C_FIELD(&D_80070328, int *, 0x94) = temp_v0_11;
+    if (temp_v0_11 >= -0x780) {
+        goto block_149;
+    }
+    M2C_FIELD(&D_80070328, int *, 0x94) = -0x780;
+block_149:
+    if (M2C_FIELD(&D_80070328, int *, 0x94) <= 0) {
+        goto block_151;
+    }
+    M2C_FIELD(&D_80070328, int *, 0x94) = 0;
+block_151:
+    old60 = M2C_FIELD(&D_80070328, int *, 0x60);
+    __asm__("" : "=r"(old60) : "0"(old60));
+    var_a0_6 = -old60 & 0xFFF;
+    unsignedPred = var_a0_6 < 0x801;
+    if (unsignedPred) {
+        var_v0_8 = var_a0_6 < -0xF;
+        goto block_153;
+    }
+    var_a0_6 -= 0x1000;
+    var_v0_8 = var_a0_6 < -0xF;
+block_153:
+    __asm__("" : "=r"(var_v0_8) : "0"(var_v0_8));
+    if (var_v0_8 == 0) {
+        goto block_155;
+    }
+    var_a0_6 = -0xF;
+    __asm__("" : "=r"(var_a0_6) : "0"(var_a0_6));
+    var_v0_9 = var_a0_6 < 0x10;
+block_155:
+    var_v0_9 = var_a0_6 < 0x10;
+    if (var_v0_9 != 0) {
+        goto block_157;
+    }
+    var_a0_6 = 0xF;
+block_157:
+    angleInput = M2C_FIELD(&D_80070328, int *, 0xA8);
+    __asm__("" : "=r"(angleInput) : "0"(angleInput));
+    sum60 = old60 + var_a0_6;
+    __asm__("" : "=r"(sum60) : "0"(sum60));
+    M2C_FIELD(&D_80070328, int *, 0x60) = sum60;
+    old5C = M2C_FIELD(&D_80070328, int *, 0x5C);
+    __asm__("" : "=r"(old5C) : "0"(old5C));
+    angleInput = -angleInput;
+    var_a0_7 = ((angleInput << 3) - old5C) & 0xFFF;
+    unsignedPred = var_a0_7 < 0x801;
+    if (unsignedPred) {
+        var_v0_10 = var_a0_7 < -0x10;
+        goto block_159;
+    }
+    var_a0_7 -= 0x1000;
+    var_v0_10 = var_a0_7 < -0x10;
+block_159:
+    __asm__("" : "=r"(var_v0_10) : "0"(var_v0_10));
+    __asm__ volatile("" ::: "memory");
+    if (var_v0_10 == 0) {
+        goto block_161;
+    }
+    var_a0_7 = -0x10;
+    __asm__("" : "=r"(var_a0_7) : "0"(var_a0_7));
+    var_v0_11 = var_a0_7 < 0x11;
+block_161:
+    var_v0_11 = var_a0_7 < 0x11;
+    if (var_v0_11 == 0) goto upper_cap;
+    var_v0_12 = old5C + var_a0_7;
+    goto block_163;
+upper_cap:
+    var_a0_7 = 0x10;
+    __asm__("" : "=r"(var_a0_7) : "0"(var_a0_7));
+    var_v0_12 = old5C + var_a0_7;
+block_163:
+    M2C_FIELD(&D_80070328, int *, 0x5C) = var_v0_12;
+    goto block_221;
+dispatch_18:
+    func_80040D10(0x640);
+    func_80041580(0x14, 4);
+    func_800417FC(0x140, 0xC0);
+    temp_s1 = &D_80070328 + 0xA4;
+    __asm__ volatile("" : "=r"(temp_s1) : "0"(temp_s1) : "memory");
+    temp_s2_3 = temp_s1 - 0x18;
+    firstCoordinate = (int) (speedFirst_tail * func_8004EA2C(M2C_FIELD(temp_s1, int *, 0))) >> 0xC;
+    nextAngle = M2C_FIELD(temp_s1, int *, 0);
+    M2C_FIELD(frame, int *, 0x58) = firstCoordinate;
+    M2C_FIELD(frame, int *, 0x5C) = (int) (M2C_FIELD(&D_80070328, int *, 0xB0) * func_8004E9E4(nextAngle)) >> 0xC;
+    func_8004F1C8(&M2C_FIELD(frame, int *, 0x58), &M2C_FIELD(frame, int *, 0x58), temp_s2_3);
+    M2C_FIELD(frame, int *, 0x60) = 0;
+    temp_v0_12 = func_8004EDE8((char *) &M2C_FIELD(frame, int *, 0x58), 0);
+    if (temp_v0_12 < 0x281) {
+        goto block_166;
+    }
+    func_8004F08C((char *) &M2C_FIELD(frame, int *, 0x58), temp_v0_12, 0x280);
+    var_a0_8 = temp_s1 - 0x24;
+block_166:
+    var_a0_8 = temp_s1 - 0x24;
+    func_8004F194(var_a0_8, temp_s2_3, &M2C_FIELD(frame, int *, 0x58));
+    func_80041B64();
+    if (temp_s3 >= 7) {
+        goto block_168;
+    }
+    var_v0_13 = M2C_FIELD(&D_80070328, int *, 0x94) + 0x17;
+    write94_block_169 = var_v0_13;
+    goto block_169;
+block_168:
+    var_v0_13 = M2C_FIELD(&D_80070328, int *, 0x94) - 0xC0;
+    write94_block_169 = var_v0_13;
+block_169:
+    capRoot = &D_80070328 + 0x94;
+    __asm__("" : "=r"(capRoot) : "0"(capRoot));
+    temp_v1_4 = ((M2C_FIELD(&D_80070328, int *, 0x148) - M2C_FIELD(&D_80070328, int *, 8)) << 6) - M2C_FIELD(&D_80070328, int *, 0x7C);
+    if (temp_v1_4 >= M2C_FIELD(capRoot, int *, 0)) {
+        goto block_221;
+    }
+    M2C_FIELD(capRoot, int *, 0) = temp_v1_4;
+    goto block_221;
+dispatch_22:
+    func_80040F48(&M2C_FIELD(frame, int *, 0x68), 1);
+    temp_a0_7 = (int) (M2C_FIELD(frame, int *, 0x68) * 0x19) >> 7;
+    if (temp_a0_7 != 0) {
+        goto block_173;
+    }
+    M2C_FIELD(&D_80070328, int *, 0xA8) = 0;
+    goto block_178;
+block_173:
+    if (temp_a0_7 >= 0) {
+        goto block_176;
+    }
+    if (M2C_FIELD(&D_80070328, int *, 0xA8) <= 0) {
+        goto block_178;
+    }
+    M2C_FIELD(&D_80070328, int *, 0xA8) = 0;
+    goto block_178;
+block_176:
+    if (M2C_FIELD(&D_80070328, int *, 0xA8) >= 0) {
+        goto block_178;
+    }
+    M2C_FIELD(&D_80070328, int *, 0xA8) = 0;
+block_178:
+{
+    register char *stepRoot asm("$5");
+    int old;
+    int next;
+    stepRoot = &D_80070328 + 0xA8;
+    __asm__ ("" : "=r"(stepRoot) : "0"(stepRoot));
+    old = M2C_FIELD(stepRoot, int *, 0);
+    if (old >= temp_a0_7) goto block_178_down;
+    next = old + 5;
+    M2C_FIELD(stepRoot, int *, 0) = next;
+    next = temp_a0_7 < next;
+    goto block_178_join;
+block_178_down:
+    next = old - 5;
+    M2C_FIELD(stepRoot, int *, 0) = next;
+    next = next < temp_a0_7;
+block_178_join:
+    if (next == 0) goto block_178_done;
+    M2C_FIELD(stepRoot, int *, 0) = temp_a0_7;
+block_178_done:;
+}
+block_183:
+    func_80041404(M2C_FIELD(&D_80070328, int *, 0xA8));
+    func_800417FC(0x100, 0x180);
+    M2C_FIELD(&D_80070328, int *, 0x80) = (int) ((int) (M2C_FIELD(&D_80070328, int *, 0xB0) * func_8004EA2C(M2C_FIELD(&D_80070328, int *, 0x64))) >> 0xC);
+    temp_lo = M2C_FIELD(&D_80070328, int *, 0xB0) * func_8004E9E4(M2C_FIELD(&D_80070328, int *, 0x64));
+    M2C_FIELD(&D_80070328, int *, 0x88) = (int) M2C_FIELD(&D_80070328, int *, 0x94);
+    M2C_FIELD(&D_80070328, int *, 0x84) = (int) (temp_lo >> 0xC);
+    func_80041B64();
+    if (temp_s3 >= 0xD) {
+        goto block_187;
+    }
+    if (M2C_FIELD(&D_80070328, int *, 0x4C) != 0) {
+        goto block_187;
+    }
+    if (!(*(int *)D_8006C570 & 0x40)) {
+        goto block_187;
+    }
+    M2C_FIELD(&D_80070328, int *, 0x94) = (int) M2C_FIELD(&D_80070328, int *, 0x94);
+    goto block_188;
+block_187:
+    M2C_FIELD(&D_80070328, int *, 0x94) = (int) (M2C_FIELD(&D_80070328, int *, 0x94) - 0xC0);
+block_188:
+    if (M2C_FIELD(&D_80070328, int *, 0x94) >= -0x2300) {
+        goto block_190;
+    }
+    M2C_FIELD(&D_80070328, int *, 0x94) = -0x2300;
+block_190:
+    if (!(*(int *)D_8006C570 & 0x80)) {
+        goto block_192;
+    }
+    M2C_FIELD(&D_80070328, void **, 0x144) = 0;
+    goto block_221;
+block_192:
+    M2C_FIELD(&D_80070328, void **, 0x144) = (void *) (M2C_FIELD(&D_80070328, void **, 0x144) + 1);
+    goto block_221;
+dispatch_31:
+    temp_s0_10 = &D_80070328 + 0xB8;
+    if (M2C_FIELD(&D_80070328, int *, 0xB8) == 0) {
+        goto block_197;
+    }
+    func_8004F168(&M2C_FIELD(frame, int *, 0x70));
+    temp_s2_4 = temp_s0_10 - 0x2C;
+    func_8004F1C8(&M2C_FIELD(frame, int *, 0x70), &M2C_FIELD(frame, int *, 0x70), temp_s2_4);
+    M2C_FIELD(frame, int *, 0x78) = 0;
+    temp_v0_15 = func_8004EDE8((char *) &M2C_FIELD(frame, int *, 0x70), 0);
+    if (temp_v0_15 < 0x41) {
+        goto block_196;
+    }
+    func_8004F08C((char *) &M2C_FIELD(frame, int *, 0x70), temp_v0_15, 0x40);
+block_196:
+    M2C_FIELD(frame, int *, 0x78) = -0xC0;
+    temp_s0_11 = temp_s0_10 - 0x38;
+    func_8004F194(temp_s0_11, temp_s2_4, &M2C_FIELD(frame, int *, 0x70));
+    func_8004F178(temp_s2_4, temp_s0_11);
+    goto block_198;
+block_197:
+    func_8004F168(temp_s0_10 - 0x38);
+    func_8004F168(temp_s0_10 - 0x2C);
+block_198:
+    if (M2C_FIELD(&D_80070328, int *, 0x94) >= -0x2300) {
+        goto block_221;
+    }
+    M2C_FIELD(&D_80070328, int *, 0x94) = -0x2300;
+    goto block_221;
+dispatch_46:
+    temp_a0_8 = &D_80070328 + 0x8C;
+    __asm__("" : "=r"(temp_a0_8) : "0"(temp_a0_8));
+    temp_v1_5 = M2C_FIELD(temp_a0_8, int *, -0x40);
+    M2C_FIELD(temp_a0_8, int *, 0) = 0;
+    M2C_FIELD(temp_a0_8, int *, 4) = 0;
+    if (temp_v1_5 == 1) {
+        goto block_209;
+    }
+    if (temp_v1_5 >= 2) {
+        goto block_204;
+    }
+    if (temp_v1_5 == 0) {
+        goto block_206;
+    }
+    goto block_221;
+block_204:
+    if (temp_v1_5 == 2) {
+        goto block_218;
+    }
+    goto block_221;
+block_206:
+    temp_v0_16 = M2C_FIELD(&D_80070328, void **, 0x144) + 1;
+    count46Write = (int)temp_v0_16;
+    if ((int) temp_v0_16 >= 0x2A) {
+        goto block_208;
+    }
+    M2C_FIELD(&D_80070328, int *, 0x94) = (int) (M2C_FIELD(&D_80070328, int *, 0x94) - 0x20);
+    goto block_221;
+block_208:
+    M2C_FIELD(temp_a0_8, int *, -0x40) = 1;
+    M2C_FIELD(&D_80070328, int *, 0x54) = 0;
+    goto block_221;
+block_209:
+    temp_v0_17 = M2C_FIELD(temp_a0_8, int *, 8) - 0x800;
+    M2C_FIELD(temp_a0_8, int *, 8) = temp_v0_17;
+    if (temp_v0_17 >= -0x3200) {
+        goto block_211;
+    }
+    M2C_FIELD(temp_a0_8, int *, 8) = -0x3200;
+block_211:
+    if (M2C_FIELD(&D_80070328, int *, 0xB8) != 0) {
+        goto block_221;
+    }
+    if (M2C_FIELD(&D_80070328, int *, 0x54) < 9) {
+        goto block_221;
+    }
+    if (M2C_FIELD(&D_80070328, int *, 0xE4) >= 0x17) {
+        goto block_221;
+    }
+    if ((M2C_FIELD(&D_80070328, int *, 0xD4) * M2C_FIELD(temp_a0_8, int *, 8)) >= 0) {
+        goto block_221;
+    }
+    firstParticle = SpawnParticle;
+    D_8006E1D4 = 0x1000;
+    D_8006E1D8 = 0x1E;
+    M2C_FIELD(temp_a0_8, int *, -0x40) = 2;
+    M2C_FIELD(&D_80070328, int *, 0x54) = 0;
+    if (firstParticle == 0) {
+        goto block_217;
+    }
+    firstParticle(8, 0x21, 0, (Vector3D *)2);
+    SpawnParticle(8, 0x21, 0, (Vector3D *)3);
+block_217:
+    D_8006E530 = 0x78;
+    D_8006E52C = 0xF;
+    PlaySound((int) D_8006C654->headbash, 0, 0);
+    goto block_221;
+block_218:
+    M2C_FIELD(&D_80070328, int *, 0x94) = 0;
+    goto block_221;
+dispatch_9:
+dispatch_10:
+dispatch_11:
+dispatch_12:
+dispatch_19:
+dispatch_20:
+dispatch_21:
+dispatch_23:
+dispatch_25:
+dispatch_26:
+dispatch_27:
+dispatch_28:
+dispatch_29:
+dispatch_30:
+dispatch_32:
+dispatch_33:
+dispatch_34:
+dispatch_35:
+dispatch_36:
+dispatch_37:
+dispatch_38:
+dispatch_39:
+dispatch_40:
+dispatch_41:
+dispatch_42:
+dispatch_43:
+dispatch_44:
+dispatch_45:
+block_219:
+    if (unk_ovlheader_800742EC == 0) {
+        goto block_221;
+    }
+    unk_ovlheader_800742EC();
+block_221:
+    temp_a0_9 = &D_80070328 + 0x74;
+    func_8004F194(temp_a0_9, temp_a0_9, (int *) (temp_a0_9 + 0x18));
+block_222:
+    return;
+}
+
+#undef M2C_FIELD
+
 
 // has overlay version in "animation.c"
 /* Retail source: USA Rev 0 SCUS-94467,
