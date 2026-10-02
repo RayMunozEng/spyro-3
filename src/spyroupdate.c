@@ -4143,7 +4143,589 @@ void func_800458F8(void) {
     __asm__ volatile ("" : : "r"(state), "r"(cameraMode));
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80045D70);
+/* USA SCUS-94467 Rev 0, retail 0x80045D70..0x80046FF8.
+ * Source: asm/nonmatchings/spyroupdate/func_80045D70.s, 1186 code words.
+ * Called once by func_8003E83C; iterates the retail input records at stride
+ * 16 bytes. Field offsets and signed shifts preserve their instruction units;
+ * vector rotations retain Q12 arithmetic and angles retain 12-bit wrapping.
+ * Empty compiler constraints preserve register lifetimes and the 216-byte
+ * retail frame without emitting instructions. scratch0..2 reserve the three
+ * unused spill slots so frameCounter retains its retail location at sp+144.
+ * Confidence: exact raw branches; acceptance requires the complete executable
+ * hash e5406997dccc7300c8198498c20b9d6c4c0a547813be1010446b6c4e5d50e39f
+ * and every overlay hash. These byte comparisons are falsifiable test vectors.
+ */
+extern void *camera45_active asm("D_8006C550");
+#define M2C_FIELD(p,t,o) (*(t)((char *)(p)+(o)))
+#define MULT_HI(a,b) ((int)(((long long)(a)*(long long)(b))>>32))
+void func_80046FF8(void);                            /* extern */
+void func_80049484(int);                       /* extern */
+int func_8004E790();      /* extern */
+int func_8004E880();                /* extern */
+void func_8004F110(Vector3D *, int);               /* extern */
+int func_8004F264();                          /* extern */
+int func_8004F334();                      /* extern */
+int copy45_shortVector(void *, void *) asm("func_8004F554");                   /* extern */
+int rand();                                         /* extern */
+extern char trig45_sine asm("D_800658A0");
+extern char trig45_cosine asm("D_80065920");
+extern unsigned char D_80068B14[][4];
+extern unsigned char D_80068B15[][4];
+extern unsigned char D_80068B16[][4];
+extern unsigned char D_80068B17[][4];
+extern char vector45_CC8 asm("D_80069CC8");
+extern char vector45_CE0 asm("D_80069CE0");
+
+
+extern int D_8006C5BC;
+extern int D_8006C640;
+extern int D_8006C648;
+extern int D_8006C768;
+extern unsigned short angle45_yaw asm("D_8006E03E");
+extern unsigned short angle45_pitch asm("D_8006E040");
+extern int D_8006E044;
+extern int D_8006E048;
+extern char D_8006E13F;
+extern int D_8006E538;
+extern char D_8006E548[];
+extern unsigned char D_80071834;
+extern unsigned char D_80071835;
+extern unsigned char D_80071836;
+extern char D_80071837;
+
+
+extern char vector45_1A0 asm("D_80070328+416");
+void func_80045D70(void) {
+    char frame[0x80];
+    int frameCounter;
+    int scratch0, scratch1, scratch2;
+    int particleBase;
+    Moby *temp_v0_2;
+    register Moby *temp_v0_3 asm("$18");
+    register Vector3D *temp_s6 asm("$22");
+    short *temp_a0_3;
+    int trigBase;
+    register int temp_a1_2 asm("$5");
+    int quotient;
+    int temp_a2;
+    int temp_t0;
+    register int loopExtent asm("$3");
+    register int loopTimer asm("$2");
+    register int loopCounter asm("$8");
+    register int loopPredicate asm("$3");
+    int temp_v0;
+    register Moby *(*spawnMobyFn)(int,Moby*) asm("$6");
+    register char *(*spawnParticleFn)(int,int,Vector3D*,Vector3D*) asm("$2");
+    register int pitchBias asm("$3");
+    register int initialFlags asm("$2");
+    register int shortSource asm("$2");
+    int temp_v0_4;
+    int temp_v1;
+    register int temp_v1_2 asm("$3");
+    register int temp_v1_3 asm("$3");
+    register int temp_v1_4 asm("$3");
+    register int temp_v1_5 asm("$3");
+    int temp_v1_6;
+    int trigY;
+    register int temp_v1_7 asm("$3");
+    int var_s0;
+    int var_s1;
+    int var_s1_2;
+    register int var_v0 asm("$2");
+    register int upperTest asm("$2");
+    int var_v0_2;
+    char *temp_a0;
+    char *temp_a1;
+    register char *particleResult asm("$2");
+    register Vector3D *vectorRoot asm("$18");
+    char *temp_fp;
+    register char *temp_s3 asm("$19");
+    register char *temp_s4 asm("$20");
+    register char *temp_s5 asm("$21");
+    register int temp_a0_2 asm("$4");
+    register int var_s3 asm("$19");
+    register int var_s5 asm("$21");
+    register void *temp_s7 asm("$23");
+
+    particleBase = (int)&D_80071834;
+    temp_a0 = &D_80070328 + 0x244;
+    __asm__ volatile("" : "=g"(scratch0), "=g"(scratch1), "=g"(scratch2));
+    if (M2C_FIELD(&D_80070328, int *, 0x244) == 0) {
+        frameCounter = 0;
+        if (D_8006C648 > 0) {
+            temp_s4 = temp_a0 - 0x38;
+                __asm__("" : "=r"(temp_s4) : "0"(temp_s4));
+            temp_fp = temp_a0 - 0xCC;
+                __asm__("" : "=r"(temp_fp) : "0"(temp_fp));
+            do {
+                D_8006C570 = (SpyroInputSource *)((char *)&D_8006E548 + frameCounter * 0x10);
+                switch (M2C_FIELD(&D_80070328, unsigned int *, 0x170)) { /* switch 1 */
+                case 0:                             /* switch 1 */
+                    initialFlags = M2C_FIELD(temp_s4, int *, 0);
+                    __asm__ volatile("" : "=r"(initialFlags) : "0"(initialFlags) : "memory");
+                    D_80071836 = 0;
+                    __asm__ volatile("" : "=r"(initialFlags) : "0"(initialFlags) : "memory");
+                    if (!(initialFlags & 4) && (D_8006E044 != 7)) {
+                        func_8004F168(temp_s4 - 0x84);
+                        temp_v1 = M2C_FIELD(temp_s4, int *, -0x1C4);
+    if (temp_v1 != 1) {
+        goto block_10;
+    }
+    temp_v1_2 = M2C_FIELD(temp_s4, int *, -0x164);
+    __asm__("" : "=r"(temp_v1_2) : "0"(temp_v1_2));
+    upperTest = temp_v1_2 < 9;
+    __asm__("" : "=r"(upperTest) : "0"(upperTest));
+    if (upperTest) {
+        var_v0 = temp_v1_2 < -8;
+        goto block_23;
+    }
+    __asm__("# first positive clamp");
+    var_v0_2 = 0x180;
+    goto block_24;
+block_10:
+    if (temp_v1 != 2) {
+        goto block_15;
+    }
+    temp_v1_3 = M2C_FIELD(temp_s4, int *, -0x164);
+    __asm__("" : "=r"(temp_v1_3) : "0"(temp_v1_3));
+    upperTest = temp_v1_3 < 0x11;
+    __asm__("" : "=r"(upperTest) : "0"(upperTest));
+    if (upperTest) {
+        goto block_13;
+    }
+    var_v0_2 = 0x100;
+    goto block_24;
+block_13:
+    var_v0 = temp_v1_3 < -0x10;
+    __asm__("" : "=r"(var_v0) : "0"(var_v0));
+    if (!var_v0) {
+        goto block_25;
+    }
+    var_v0 = -0x100;
+    __asm__("" : "=r"(var_v0) : "0"(var_v0));
+    M2C_FIELD(temp_s4, int *, -0x7C) = var_v0;
+    goto block_25;
+block_15:
+    if (temp_v1 != 3) {
+        goto block_20;
+    }
+    temp_v1_4 = M2C_FIELD(temp_s4, int *, -0x164);
+    __asm__("" : "=r"(temp_v1_4) : "0"(temp_v1_4));
+    upperTest = temp_v1_4 < 0x21;
+    __asm__("" : "=r"(upperTest) : "0"(upperTest));
+    if (upperTest) {
+        goto block_18;
+    }
+    __asm__("# third positive clamp");
+    var_v0_2 = 0x100;
+    goto block_24;
+block_18:
+    var_v0 = temp_v1_4 < -0x20;
+    __asm__("" : "=r"(var_v0) : "0"(var_v0));
+    if (!var_v0) {
+        goto block_25;
+    }
+    var_v0 = -0x100;
+    __asm__("" : "=r"(var_v0) : "0"(var_v0));
+    M2C_FIELD(temp_s4, int *, -0x7C) = var_v0;
+    goto block_25;
+block_20:
+    if (M2C_FIELD(temp_s4, int *, -0x1BC) != 0x13) {
+        goto block_25;
+    }
+    temp_v1_5 = M2C_FIELD(temp_s4, int *, -0x164);
+    __asm__("" : "=r"(temp_v1_5) : "0"(temp_v1_5));
+    upperTest = temp_v1_5 < 0x21;
+    __asm__("" : "=r"(upperTest) : "0"(upperTest));
+    if (upperTest) {
+        var_v0 = temp_v1_5 < -0x20;
+        __asm__("" : "=r"(var_v0) : "0"(var_v0));
+        goto block_23;
+    }
+    var_v0_2 = 0x180;
+    goto block_24;
+block_23:
+    if (var_v0 == 0) {
+        goto block_25;
+    }
+    var_v0_2 = -0x180;
+block_24:
+    M2C_FIELD(temp_s4, int *, -0x7C) = var_v0_2;
+block_25:;
+                    }
+                    if (M2C_FIELD(D_8006C570, int *, 4) & 0x20) {
+                        if (M2C_FIELD(&D_80070328, int *, 0x1D4) != 0) {
+                            if (D_80068B14[M2C_FIELD(&D_80070328, int *, 0x48)][0] != 0) {
+                                if (M2C_FIELD(&D_80070328, int *, 0x50) == 0) {
+                                    func_8004BEF8(8);
+                                }
+                                M2C_FIELD(&D_80070328, unsigned int *, 0x170) = 8U;
+                                M2C_FIELD(&D_80070328, int *, 0x178) = 0;
+                                M2C_FIELD(&D_80070328, int *, 0x1D4) = 0;
+                                M2C_FIELD(&D_80070328, int *, 0x1D8) = 0;
+                                func_8004F168(&D_80070328 + 0x1D4 + 8);
+                            }
+                            goto block_52;
+                        }
+                        if (M2C_FIELD(&D_80070328, int *, 0x1E8) != 0) {
+                            if (D_80068B14[M2C_FIELD(&D_80070328, int *, 0x48)][0] != 0) {
+                                if (M2C_FIELD(&D_80070328, int *, 0x50) == 0) {
+                                    func_8004BEF8(8);
+                                }
+                                M2C_FIELD(&D_80070328, unsigned int *, 0x170) = 9U;
+                                M2C_FIELD(&D_80070328, int *, 0x178) = 0;
+                            }
+                            goto block_52;
+                        }
+                        if (((M2C_FIELD(&D_80070328, int *, 0x1D0) != 0) || (M2C_FIELD(&g_CheatFlags, unsigned char *, 3) != 0)) && (D_80068B17[M2C_FIELD(&D_80070328, int *, 0x48)][0] != 0)) {
+                            if (M2C_FIELD(&D_80070328, int *, 0x178) >= 0x16) {
+                                if (M2C_FIELD(&D_80070328, int *, 0x50) == 0) {
+                                    func_8004BEF8(8);
+                                }
+                                M2C_FIELD(&D_80070328, unsigned int *, 0x170) = 6U;
+                                M2C_FIELD(&D_80070328, int *, 0x178) = 0;
+                            }
+                        } else if ((D_80071834 == 0) && (D_80068B14[M2C_FIELD(&D_80070328, int *, 0x48)][0] != 0)) {
+                            if (M2C_FIELD(&D_80070328, int *, 0x50) == 0) {
+                                func_8004BEF8(8);
+                            }
+                            M2C_FIELD(&D_80070328, unsigned int *, 0x170) = 1U;
+                            D_80071834 = 1;
+                            M2C_FIELD(&D_80070328, int *, 0x178) = 0;
+                            D_80071835 = 0;
+                            D_80071836 = 1;
+                            D_80071837 = rand() & 1;
+                            D_8006C768 = 0;
+                            M2C_FIELD(&D_80070328, int *, 0x288) = 0;
+
+                            __asm__("" : : "r"(particleBase));
+                            func_8004E790((void *)(particleBase - 0x78), 0, 8);
+                            PlaySound((int) D_8006C654->flame, 0, 0);
+                        } else if ((M2C_FIELD(&D_80070328, int *, 0x50) == 0xB) && (SpawnParticle != 0)) {
+                            M2C_FIELD(&D_80070328, unsigned int *, 0x170) = 7U;
+                            M2C_FIELD(&D_80070328, int *, 0x178) = 0;
+                        } else {
+                            goto block_51;
+                        }
+                    } else {
+block_51:
+block_52:
+                        if (((M2C_FIELD(temp_s4, int *, 0) & 0x10000001) == 0x10000001) && (D_80068B15[M2C_FIELD(temp_s4, int *, -0x1C4)][0] != 0)) {
+                            if (M2C_FIELD(temp_s4, int *, -0x1BC) == 0) {
+                                func_8004BEF8(0x35);
+                            }
+                            M2C_FIELD(temp_s4, int *, -0x9C) = 2;
+                            M2C_FIELD(temp_s4, int *, -0x94) = 0;
+                            M2C_FIELD(temp_s4, int *, -0xCC) = (int) M2C_FIELD(temp_s4, int *, 0xC);
+                        }
+                        if ((M2C_FIELD(temp_s4, int *, 0) & 0x10001000) == 0x10001000) {
+                            M2C_FIELD(temp_s4, int *, -0x9C) = 3;
+                            M2C_FIELD(temp_s4, int *, -0x94) = 0;
+                            func_8004F168(temp_s4 - 0x84);
+                            M2C_FIELD(temp_s4, int *, -0xCC) = (int) M2C_FIELD(temp_s4, int *, 0xC);
+                        }
+                        if ((D_8006E044 == 7) && ((M2C_FIELD(temp_s4, int *, -0x3C) != 0) || (M2C_FIELD(&g_CheatFlags, unsigned char *, 3) != 0) || (M2C_FIELD(temp_s4, int *, 0) & 0x20000)) && (D_80068B17[M2C_FIELD(&D_80070328, int *, 0x48)][0] != 0) && ((unsigned int) (D_8006E048 - 3) < 2U)) {
+                            D_8006C768 = 1;
+                            M2C_FIELD(&D_80070328, int *, 0x288) = 1;
+                            D_8006E13F = 1;
+                        } else if (D_8006E044 == 0x29) {
+                            D_8006C768 = 1;
+                        } else {
+                            goto block_117;
+                        }
+                    }
+                    break;
+                case 1:                             /* switch 1 */
+                    if (!(M2C_FIELD(temp_s4, int *, 0) & 4) && (D_8006E044 != 7)) {
+                        func_8004F168(temp_s4 - 0x84);
+                    }
+                    if (((D_80068B14[M2C_FIELD(&D_80070328, int *, 0x48)][0] == 0) && (M2C_FIELD(&D_80070328, int *, 0x50) != 4)) || (M2C_FIELD(&D_80070328, int *, 0x178) >= 0x30)) {
+                            __asm__ volatile("" : : "r"(particleBase));
+                        D_80071834 = 0;
+                            func_8004E790((void *)(particleBase - 0x78), 0, 8);
+                        M2C_FIELD(&D_80070328, unsigned int *, 0x170) = 0U;
+                        M2C_FIELD(&D_80070328, int *, 0x178) = 0;
+                        func_8004F168(&D_80070328 + 0x170 + 0x18);
+                        if (D_80068B14[M2C_FIELD(&D_80070328, int *, 0x48)][0] == 0) {
+                            M2C_FIELD(&D_80070328, int *, 0x1FC) = 0;
+                            M2C_FIELD(&D_80070328, int *, 0x200) = 6;
+                            func_80047138();
+                        }
+                    } else if (M2C_FIELD(&D_80070328, int *, 0x178) == 0x14) {
+                        D_80071836 = 0;
+                    }
+                    if (((unsigned int) (M2C_FIELD(&D_80070328, int *, 0x178) - 0xC) < 0xFU) && !(M2C_FIELD(&D_80070328, int *, 0x178) & 3)) {
+                        var_s1 = 0;
+                        if (SpawnParticle != 0) {
+                            temp_s3 = &vector45_1A0;
+                            __asm__("" : "=r"(temp_s3) : "0"(temp_s3));
+                            temp_v0_3 = (Moby *)&M2C_FIELD(frame, Vector3D *, 0x10);
+                            __asm__ volatile("" : : "r"(temp_v0_3));
+                            var_s0 = 0;
+                            do {
+                                func_8004ED6C(temp_s3, var_s0 + &vector45_CC8, &M2C_FIELD(frame, Vector3D *, 0x0));
+                                func_8004F194(&M2C_FIELD(frame, Vector3D *, 0x0), &M2C_FIELD(frame, Vector3D *, 0x0), temp_s3 - 0x1A0);
+                                if (M2C_FIELD(&D_80070328, int *, 0x50) == 0xA) {
+                                    M2C_FIELD(frame, Vector3D *, 0x0).z -= 0x100;
+                                }
+                                func_8004ED6C(0, var_s0 + &vector45_CE0, &M2C_FIELD(frame, Vector3D *, 0x10));
+                                SpawnParticle(1, 0, &M2C_FIELD(frame, Vector3D *, 0x0), &M2C_FIELD(frame, Vector3D *, 0x10));
+                                var_s0 += 0xC;
+                                var_s1 += 1;
+                            } while (var_s1 < 2);
+                        }
+                    }
+                    break;
+                case 2:                             /* switch 1 */
+                    if (!(M2C_FIELD(temp_s4, int *, 0) & 4) && (D_8006E044 != 7)) {
+                        func_8004F168(temp_s4 - 0x84);
+                        if (M2C_FIELD(temp_s4, int *, -0xCC) != 0) {
+                            func_80049484(&M2C_FIELD(frame, int *, 0x20));
+                            func_8004F1C8(&M2C_FIELD(frame, int *, 0x20), M2C_FIELD(temp_s4, int *, -0xCC) + 0xC, &M2C_FIELD(frame, int *, 0x20));
+                            temp_v1_6 = (func_8004E880(M2C_FIELD(frame, int *, 0x20), M2C_FIELD(frame, int *, 0x24), 1) - M2C_FIELD(temp_s4, int *, -0x1A8)) & 0xFFF;
+                            M2C_FIELD(temp_s4, int *, -0x7C) = temp_v1_6;
+                            if (temp_v1_6 >= 0x801) {
+                                M2C_FIELD(temp_s4, int *, -0x7C) = (int) (temp_v1_6 - 0x1000);
+                            }
+                            if (M2C_FIELD(temp_s4, int *, -0x7C) >= 0x201) {
+                                M2C_FIELD(temp_s4, int *, -0x7C) = 0x200;
+                            }
+                            if (M2C_FIELD(temp_s4, int *, -0x7C) < -0x200) {
+                                M2C_FIELD(temp_s4, int *, -0x7C) = -0x200;
+                            }
+                        }
+                    }
+                    if (M2C_FIELD(temp_fp, int *, 0) >= 0x10) {
+                        PlaySound((int) D_8006C654->swallow, 0, 0);
+                        M2C_FIELD(temp_fp, int *, -8) = 3;
+                        M2C_FIELD(temp_fp, int *, 0) = 0;
+                        func_8004F168(temp_fp + 0x10);
+                        if (M2C_FIELD(temp_fp, int *, -0x38) != 0) {
+                            M2C_FIELD(M2C_FIELD(&D_80070328, void **, 0x140), char *, 0x48) = 1;
+                        }
+                    }
+                    break;
+                case 3:                             /* switch 1 */
+                    if (!(M2C_FIELD(temp_s4, int *, 0) & 4) && (D_8006E044 != 7)) {
+                        func_8004F168(temp_s4 - 0x84);
+                        if (M2C_FIELD(temp_s4, int *, -0x1C4) == 1) {
+                            temp_v0 = M2C_FIELD(temp_s4, int *, -0x164) * 0x10;
+                            M2C_FIELD(temp_s4, int *, -0x7C) = temp_v0;
+                            if (temp_v0 >= 0x181) {
+                                M2C_FIELD(temp_s4, int *, -0x7C) = 0x180;
+                            }
+                            if (M2C_FIELD(temp_s4, int *, -0x7C) < -0x180) {
+                                M2C_FIELD(temp_s4, int *, -0x7C) = -0x180;
+                            }
+                        }
+                    }
+                    if (D_80068B16[M2C_FIELD(&D_80070328, int *, 0x48)][0] == 0) {
+                        D_8006C768 = 0;
+                        M2C_FIELD(&D_80070328, int *, 0x288) = 0;
+                        M2C_FIELD(&D_80070328, unsigned int *, 0x170) = 5U;
+                    } else {
+                        if (M2C_FIELD(&D_80070328, int *, 0x50) == 4) {
+                            func_8004F168(&D_80070328 + 0x48 + 0x140);
+                            M2C_FIELD(&D_80070328, int *, 0x18C) = -0x400;
+                        } else if (D_8006E044 != 7) {
+                            func_8004F168(&D_80070328 + 0x48 + 0x140);
+                        }
+                        if (((M2C_FIELD(D_8006C570, int *, 4) & 0x20) || (M2C_FIELD(&D_80070328, int *, 0x20C) & 0x200)) && (D_80068B17[M2C_FIELD(&D_80070328, int *, 0x48)][0] != 0)) {
+                            if (M2C_FIELD(&D_80070328, int *, 0x50) == 0) {
+                                func_8004BEF8(0x36);
+                            }
+                            M2C_FIELD(&D_80070328, unsigned int *, 0x170) = 4U;
+                            M2C_FIELD(&D_80070328, int *, 0x178) = 0;
+block_117:
+                            D_8006C768 = 0;
+                            break;
+                        }
+                        if ((D_8006E044 == 7) && ((unsigned int) (D_8006E048 - 3) < 2U)) {
+                            D_8006C768 = 1;
+                            M2C_FIELD(&D_80070328, int *, 0x288) = 1;
+                        } else {
+                            goto block_117;
+                        }
+                    }
+                    break;
+                case 4:                             /* switch 1 */
+                    if (!(M2C_FIELD(temp_s4, int *, 0) & 4) && (D_8006E044 != 7)) {
+                        func_8004F168(temp_s4 - 0x84);
+                    }
+                    if (M2C_FIELD(temp_fp, int *, 0) >= 4) {
+                        PlaySound((int) D_8006C654->spit, 0, 0);
+                        M2C_FIELD(temp_fp, int *, -8) = 0;
+                        M2C_FIELD(temp_fp, int *, 0) = 0;
+                        if (M2C_FIELD(temp_fp, int *, -0x38) != 0) {
+                            M2C_FIELD(M2C_FIELD(&D_80070328, void **, 0x140), char *, 0x48) = 2;
+                        }
+                        M2C_FIELD(temp_fp, int *, -0x38) = 0;
+                    }
+                    break;
+                case 5:                             /* switch 1 */
+                    if (!(M2C_FIELD(temp_s4, int *, 0) & 4) && (D_8006E044 != 7)) {
+                        func_8004F168(temp_s4 - 0x84);
+                    }
+                    if (D_80068B16[M2C_FIELD(&D_80070328, int *, 0x48)][0] != 0) {
+                        M2C_FIELD(&D_80070328, unsigned int *, 0x170) = 3U;
+                    }
+                    break;
+                case 6:                             /* switch 1 */
+                    if (!(M2C_FIELD(temp_s4, int *, 0) & 4) && (D_8006E044 != 7)) {
+                        func_8004F168(temp_s4 - 0x84);
+                    }
+                    if (M2C_FIELD(temp_fp, int *, 0) >= 4) {
+                        spawnMobyFn = SpawnMoby;
+                        __asm__("" : "=r"(spawnMobyFn) : "0"(spawnMobyFn) : "memory");
+                        M2C_FIELD(temp_fp, int *, -8) = 0;
+                        M2C_FIELD(temp_fp, int *, 0) = 0;
+                        if (spawnMobyFn != 0) {
+                            if (D_8006C5BC == 0x25) {
+                                if (M2C_FIELD(&g_CheatFlags, unsigned char *, 3) == 0) {
+                                    temp_v0_2 = spawnMobyFn(0x2C3, 0);
+                                    if (temp_v0_2 != 0) {
+                                        temp_v0_2->unknown3[0] = 0;
+                                        temp_v0_2->lowDrawDistance = 0;
+                                        temp_v0_2->drawn = 0;
+                                        temp_v0_2->state = 0x15;
+                                    }
+                                } else {
+                                    goto block_143;
+                                }
+                            } else {
+block_143:
+                                SpawnMoby(0x1E3, 0);
+                            }
+                        }
+                    }
+                    break;
+                case 7:                             /* switch 1 */
+                    if (!(M2C_FIELD(temp_s4, int *, 0) & 4) && (D_8006E044 != 7)) {
+                        func_8004F168(temp_s4 - 0x84);
+                    }
+                    if (M2C_FIELD(temp_fp, int *, 0) >= 0x10) {
+                        M2C_FIELD(temp_fp, int *, -8) = 0;
+                        M2C_FIELD(temp_fp, int *, 0) = 0;
+                    }
+                    if (!(D_8006C640 & 1)) {
+                        M2C_FIELD(frame, int *, 0x30) = 0x220;
+                        M2C_FIELD(frame, int *, 0x34) = 0;
+                        M2C_FIELD(frame, int *, 0x38) = 0x40;
+                        SpawnParticle(1, 0x2C, (Vector3D *) &M2C_FIELD(frame, int *, 0x30), 0);
+                    }
+                    break;
+                case 8:                             /* switch 1 */
+                    if (!(M2C_FIELD(temp_s4, int *, 0) & 4) && (D_8006E044 != 7)) {
+                        func_8004F168(temp_s4 - 0x84);
+                    }
+                    if ((M2C_FIELD(temp_fp, int *, 0) >= 0x5A) || (M2C_FIELD(temp_fp, int *, 0xC8) != 0) || (D_80068B14[M2C_FIELD(temp_fp, int *, -0x130)][0] == 0)) {
+                        M2C_FIELD(&D_80070328, unsigned int *, 0x170) = 0U;
+                        M2C_FIELD(&D_80070328, int *, 0x178) = 0;
+                    } else {
+                        func_80049484(&M2C_FIELD(frame, int *, 0x50));
+                        temp_v1_7 = ((int) (M2C_FIELD(temp_fp, int *, -0x114) + M2C_FIELD(temp_fp, int *, 0xC)) >> 4) & 0xFF;
+                        __asm__("" : "=r"(temp_v1_7) : "0"(temp_v1_7));
+                        temp_v1_7 *= 2;
+                        M2C_FIELD(frame, int *, 0x30) = (int) (*(short *)(&trig45_cosine + temp_v1_7) * 0x19) >> 0xA;
+                        trigY = *(short *)(&trig45_sine + temp_v1_7);
+                        M2C_FIELD(frame, int *, 0x38) = 0;
+                        M2C_FIELD(frame, int *, 0x34) = (trigY * 0x19) >> 0xA;
+                        func_8004F178(&M2C_FIELD(frame, char *, 0x40), temp_fp - 0xE0);
+                        M2C_FIELD(frame, int *, 0x48) = 0;
+                        func_8004F110(&M2C_FIELD(frame, char *, 0x40), 5);
+                        func_8004F194((Vector3D *) &M2C_FIELD(frame, int *, 0x30), (Vector3D *) &M2C_FIELD(frame, int *, 0x30), &M2C_FIELD(frame, char *, 0x40));
+                        particleResult = SpawnParticle(1, 0x1D, (Vector3D *) &M2C_FIELD(frame, int *, 0x50), (Vector3D *) &M2C_FIELD(frame, int *, 0x30));
+                        temp_a1 = M2C_FIELD(temp_fp, char **, 0x60);
+                        __asm__("" : "=r"(particleResult), "=r"(temp_a1) : "0"(particleResult), "1"(temp_a1));
+                        temp_s5 = particleResult;
+                        if (temp_a1 != 0) {
+                            copy45_shortVector(&M2C_FIELD(frame, char *, 0x60), temp_a1 + 4);
+                            func_8004F0E8(&M2C_FIELD(frame, char *, 0x60), 2);
+                            func_8004F194((Vector3D *) &M2C_FIELD(frame, int *, 0x50), (Vector3D *) &M2C_FIELD(frame, int *, 0x50), &M2C_FIELD(frame, char *, 0x60));
+                            func_8004F110((char *) &M2C_FIELD(frame, int *, 0x50), 1);
+                            func_8004F194((Vector3D *) &M2C_FIELD(frame, char *, 0x40), (Vector3D *) &M2C_FIELD(frame, int *, 0x30), temp_fp + 0x64);
+                            func_8004F110(&M2C_FIELD(frame, char *, 0x40), 1);
+                        }
+                        spawnParticleFn = SpawnParticle;
+                        M2C_FIELD(temp_fp, char **, 0x60) = temp_s5;
+                        spawnParticleFn(1, 0x1D, (Vector3D *) &M2C_FIELD(frame, int *, 0x50), (Vector3D *) &M2C_FIELD(frame, char *, 0x40));
+                        func_8004F178(temp_fp + 0x64, (char *) &M2C_FIELD(frame, int *, 0x30));
+                    }
+                    break;
+                case 9:                             /* switch 1 */
+                    if (!(M2C_FIELD(temp_s4, int *, 0) & 4) && (D_8006E044 != 7)) {
+                        func_8004F168(temp_s4 - 0x84);
+                    }
+                    if (M2C_FIELD(temp_fp, int *, 0) >= 4) {
+                        temp_v0_3 = SpawnMoby(0xED, 0);
+                        __asm__("" : "=r"(temp_v0_3) : "0"(temp_v0_3));
+                        if (temp_v0_3 != 0) {
+                            var_s5 = M2C_FIELD(temp_fp, unsigned char *, -0x16A);
+                            temp_s7 = temp_v0_3->mobyTag;
+                            var_s3 = 0;
+                            if (D_8006E044 == 7) {
+                                shortSource = angle45_yaw;
+                                pitchBias = 0x100;
+                                temp_v1_6 = pitchBias - ((int) (shortSource << 0x10) >> 0x14);
+                                shortSource = angle45_pitch;
+                                var_s3 = temp_v1_6 & 0xFF;
+                                var_s5 = (int) (shortSource << 0x10) >> 0x14;
+                            __asm__("" : "=r"(var_s5) : "0"(var_s5));
+                            }
+                            temp_s6 = &temp_v0_3->position;
+                            __asm__("" : "=r"(temp_s6) : "0"(temp_s6));
+                            temp_v0_3->lowDrawDistance = 0x50;
+                            temp_v0_3->highDrawDistance = 0x50;
+                            func_80049484(&temp_s6->x);
+                            var_s1_2 = func_8004F334(temp_fp - 0x178, camera45_active + 0xC);
+                            temp_a0_2 = func_8004E880(M2C_FIELD(camera45_active, int *, 0xC) - M2C_FIELD(temp_fp, int *, -0x178), M2C_FIELD(camera45_active, int *, 0x10) - M2C_FIELD(temp_fp, int *, -0x174), 0);
+                            if (var_s1_2 < 0x400) {
+                                var_s1_2 = 0x400;
+                            }
+                            quotient = 0x30000 / var_s1_2;
+                            if (func_8004F264(temp_a0_2, var_s5) < quotient) {
+                                func_8004F178(&M2C_FIELD(frame, char *, 0x70), camera45_active + 0xC);
+                                M2C_FIELD(frame, int *, 0x78) += 0x73A;
+                                var_s3 = func_8004E880(func_8004F334((char *) temp_s6, &M2C_FIELD(frame, char *, 0x70)), M2C_FIELD(frame, int *, 0x78) - temp_v0_3->position.z, 0);
+                            __asm__("" : "=r"(var_s3) : "0"(var_s3));
+                            }
+                            temp_a1_2 = var_s5 * 2;
+                            __asm__("" : "=r"(temp_a1_2) : "0"(temp_a1_2));
+                            trigBase = (int)&trig45_cosine;
+                            __asm__("" : "=r"(trigBase) : "0"(trigBase));
+                            temp_a2 = var_s3 * 2;
+                            temp_a0_3 = (short *)(temp_a2 + trigBase);
+                            M2C_FIELD(temp_s7, int *, 0) = (int) ((int) (((int) (*(short *)(&trig45_cosine + temp_a1_2) * 0xE1) >> 0xB) * *temp_a0_3) >> 0xC);
+                            M2C_FIELD(temp_s7, int *, 4) = (int) ((int) (((int) (*(short *)(&trig45_sine + temp_a1_2) * 0xE1) >> 0xB) * *temp_a0_3) >> 0xC);
+                            M2C_FIELD(temp_s7, int *, 8) = (int) ((int) (*(short *)(&trig45_sine + temp_a2) * 0xE1) >> 0xB);
+                            temp_v0_3->angle.yaw = var_s5;
+                            temp_v0_3->angle.pitch = var_s3;
+                            M2C_FIELD(temp_s7, int *, 0xC) = 0xB4;
+                        }
+                        M2C_FIELD(temp_fp, int *, 0) = 0;
+                        temp_v0_4 = M2C_FIELD(temp_fp, int *, 0x70) - 1;
+                        M2C_FIELD(temp_fp, int *, 0x70) = temp_v0_4;
+                        if ((temp_v0_4 == 0) || (M2C_FIELD(temp_fp, int *, 0xC8) != 0) || !(D_8006E538 & 0x20) || (D_80068B14[M2C_FIELD(temp_fp, int *, -0x130)][0] == 0)) {
+                            M2C_FIELD(&D_80070328, unsigned int *, 0x170) = 0U;
+                        }
+                    }
+                    break;
+                }
+                func_80046FF8();
+                loopExtent = D_8006C648;
+                frameCounter += 1;
+                loopTimer = M2C_FIELD(temp_fp, int *, 0);
+                loopPredicate = frameCounter < loopExtent;
+                M2C_FIELD(temp_fp, int *, 0) = loopTimer + 1;
+            } while (loopPredicate);
+        }
+    }
+    __asm__ volatile("" : : "g"(scratch0), "g"(scratch1), "g"(scratch2));
+}
+
+#undef M2C_FIELD
+#undef MULT_HI
+
 
 /* Retail source: asm/nonmatchings/spyroupdate/func_80046FF8.s,
  * 0x80046FF8..0x80047138; raw 12-bit angles and signed integer rates. */
