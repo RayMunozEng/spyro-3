@@ -1762,7 +1762,578 @@ void func_80041B64(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80041C20);
+/* Retail source: USA Rev 0 SCUS-94467, PSX.EXE 0x80041C20..0x80042A44.
+ * Collision subdivision and response execute once per caller invocation.
+ * Positions, velocities and collision fields are signed 32-bit retail values;
+ * vector dot products shift right by 8, angle differences wrap modulo 4096,
+ * and subdivision uses signed integer division, including retail trap paths.
+ * Falsifiable vectors: states 4/6/7/9/12/19 and default, flag bits 6/0x4000,
+ * retry counts 0/5/6, signed angle bounds 2048/2049, dot bounds 224/225,
+ * displacement bounds 320/321 and 2048/2049, and skip byte zero/nonzero.
+ * Confidence: exact executable and overlay hashes verified.
+ * Empty register constraints and assembler mode directives emit no code. */
+#define M2C_FIELD(p,t,o) (*(t)((char *)(p)+(o)))
+extern volatile unsigned char collisionSkip asm("D_80070328+0xFD");
+extern volatile int velocityZRead asm("D_80070328+0x7C");
+extern volatile int velocityZWrite asm("D_80070328+0x07C");
+extern volatile int velocityYRead asm("D_80070328+0x78");
+extern volatile int velocityYWrite asm("D_80070328+0x078");
+extern volatile int collisionResult138 asm("D_80070328+0x138");
+extern volatile int contactAngleRead asm("D_80070328+0x298");
+extern volatile int contactAngleWrite asm("D_80070328+0x0298");
+extern char playerBaseAbsolute[] asm("D_80070328+0");
+extern volatile int field250Absolute asm("D_80070328+0x250");
+extern volatile int field130Absolute asm("D_80070328+0x130");
+extern volatile int collisionFlags asm("D_80070328+0x24");
+extern volatile int motionRadius asm("D_80070328+0x44");
+extern volatile int priorYaw asm("D_80070328+0x134");
+extern int D_80071930, D_80071934, D_8007191C;
+int func_80019194(char *, int);
+extern int D_8006E52C;
+extern int D_8006E530;
+extern int D_8007190C;
+
+void func_80041C20(void) {
+    struct {
+        Vector3D v18; int gap24;
+        Vector3D v28; int gap34;
+        Vector3D v38; int gap44;
+        Vector3D v48; int gap54;
+        Vector3D v58; int gap64;
+        Vector3D v68; int gap74;
+        int f78; int gap7c;
+        int f80; int gap84;
+    } frame;
+    register Vector3D *callPosition4 asm("$4");
+    register int callKind6 asm("$6");
+    register int callRadius5 asm("$5");
+    register int callArg5_2 asm("$2");
+    register int callArg6_3 asm("$3");
+    register int callArg6_2 asm("$2");
+    register char *stack29 asm("$29");
+    register int counter3 asm("$3");
+    register int constant2 asm("$2");
+    char *repeatOutput;
+    register char *surfaceOutput asm("$4");
+    register char *initial4 asm("$4");
+    register char *player17 asm("$17");
+    register Vector3D *scratch22 asm("$22");
+    register int *surface20 asm("$20");
+    register Vector3D *normal16 asm("$16");
+    register Vector3D *normal21 asm("$21");
+    SpecialSurface *temp_a0;
+    register int temp_s7 asm("$23");
+    register int temp_t4 asm("$12");
+    int temp_v0;
+    int temp_v0_2;
+    int temp_v0_3;
+    register int temp_v0_4 asm("$18");
+    register int divided10 asm("$10");
+    register int divided9 asm("$9");
+    register int divided8 asm("$8");
+    register int divided7 asm("$7");
+    register int divided3 asm("$3");
+    register int divided11 asm("$11");
+    register char *flags12 asm("$12");
+    register int *surface5 asm("$5");
+    register int minimum12 asm("$12");
+    register int loopPredicate2 asm("$2");
+    register int yaw3 asm("$3");
+    register int var_a1 asm("$5");
+    register int var_a1_2 asm("$5");
+    int var_fp;
+    register int var_s0 asm("$16");
+    register int var_s2 asm("$18");
+    register int var_v0 asm("$2");
+    register int var_v0_10 asm("$2");
+    register int var_v0_2 asm("$2");
+    register int var_v0_3 asm("$2");
+    register int firstPositive2 asm("$2");
+    register int quotient4 asm("$4");
+    register int quotient3 asm("$3");
+    register int quotient2 asm("$2");
+    register int var_v0_4 asm("$2");
+    register int var_v0_5 asm("$2");
+    int var_v0_6;
+    int var_v0_7;
+    int var_v0_8;
+    register int var_v1 asm("$3");
+    register int var_v1_2 asm("$3");
+    register int var_v1_3 asm("$3");
+    register int var_v1_4 asm("$3");
+    register int var_v1_5 asm("$3");
+    register int var_v1_6 asm("$3");
+    register char *temp_s0 asm("$16");
+    register char *temp_s0_2 asm("$16");
+    register char *temp_s0_3 asm("$16");
+    register char *temp_s3 asm("$19");
+    register char *temp_s4 asm("$20");
+    register char *temp_s5 asm("$21");
+    register char *var_a0 asm("$4");
+    volatile char *var_a0_2;
+    char *var_a0_3;
+    char *var_a1_3;
+
+    temp_s0 = ((char *)&D_80070328 + 0xBC);
+    __asm__("" : "=r"(temp_s0) : "0"(temp_s0));
+    initial4 = temp_s0 + 28;
+    __asm__("" : "=r"(initial4) : "0"(initial4));
+    counter3 = *(int *)temp_s0;
+    __asm__ volatile("" : : "r"(counter3) : "$2");
+    constant2 = 255;
+    __asm__("" : "=r"(constant2) : "0"(constant2), "r"(counter3));
+    M2C_FIELD(&D_80070328, int *, 0x108) = constant2;
+    M2C_FIELD(&D_80070328, int *, 0x10C) = constant2;
+    M2C_FIELD(&D_80070328, int *, 0x110) = constant2;
+    M2C_FIELD(&D_80070328, char *, 0xFE) = 0;
+    collisionResult138 = 0;
+    __asm__ volatile("" : "=r"(counter3) : "0"(counter3) : "memory");
+    *(int *)temp_s0 = counter3 + 1;
+    func_8004F168(initial4);
+    func_8004F168(temp_s0 + 4);
+    if ((M2C_FIELD(&D_80070328, int *, 0x24C) == 7) && (M2C_FIELD(&D_80070328, int *, 0x144) != 0)) {
+        var_v0 = M2C_FIELD(&D_80070328, int *, 0x148);
+    } else {
+        var_v0 = M2C_FIELD(&D_80070328, int *, 0x64);
+    }
+    var_v1 = (var_v0 - priorYaw) & 0xFFF;
+    if (var_v1 >= 0x801) {
+        var_v1 -= 0x1000;
+    }
+    __asm__("" : "=r"(var_v1) : "0"(var_v1));
+    var_v0_2 = var_v1;
+    if (var_v1 < 0) {
+        var_v0_2 = -var_v0_2;
+    }
+    var_fp = 0;
+    if (var_v0_2 >= 0x41) {
+        M2C_FIELD(&D_80070328, char *, 0x101) = 0;
+    }
+    __asm__("" : "=r"(var_fp) : "0"(var_fp));
+    frame.f80 = 0;
+    initial4 = (char *)&frame.v48;
+    __asm__("" : "=r"(initial4) : "0"(initial4));
+    player17 = (char *)&D_80070328;
+    __asm__("" : "=r"(player17) : "0"(player17));
+    func_8004F178(initial4, (Vector3D *)player17);
+    initial4 = (char *)&frame.v58;
+    __asm__("" : "=r"(initial4) : "0"(initial4));
+    temp_s0_2 = player17 + 0x74;
+    __asm__("" : "=r"(temp_s0_2) : "0"(temp_s0_2));
+    func_8004F178(initial4, temp_s0_2);
+    func_8004F110((Vector3D *) temp_s0_2, 6);
+    var_v0_2 = collisionSkip;
+    __asm__ volatile("" : "=r"(var_v0_2) : "0"(var_v0_2));
+    var_s2 = 0;
+    if (var_v0_2 != 0) {
+        initial4 = player17;
+        __asm__("" : "=r"(initial4) : "0"(initial4));
+        var_a1_2 = (int)player17;
+        __asm__("" : "=r"(initial4), "=r"(var_a1_2) : "0"(initial4), "1"(var_a1_2));
+        func_8004F194(initial4, (Vector3D *)var_a1_2, (Vector3D *) temp_s0_2);
+        goto block_102;
+    }
+    __asm__("" : "=r"(var_s2) : "0"(var_s2));
+    temp_s7 = (func_8004EDE8(temp_s0_2, 1) / (int) (motionRadius - 0x10)) + 1;
+    __asm__("" : "=r"(temp_s7) : "0"(temp_s7));
+    if (temp_s7 >= 2) {
+        firstPositive2 = temp_s7 > var_fp;
+        __asm__("" : "=r"(firstPositive2) : "0"(firstPositive2));
+        quotient4 = M2C_FIELD(player17, int *, 0x74);
+        __asm__("" : "=r"(quotient4) : "0"(quotient4));
+        quotient4 /= temp_s7;
+        quotient3 = velocityYRead / temp_s7;
+        quotient2 = velocityZRead / temp_s7;
+        __asm__("" : "=r"(quotient4), "=r"(quotient3), "=r"(quotient2) : "0"(quotient4), "1"(quotient3), "2"(quotient2));
+        M2C_FIELD(player17, int *, 0x74) = quotient4;
+        velocityYWrite = quotient3;
+        velocityZWrite = quotient2;
+    }
+    var_v0_3 = temp_s7 > var_fp;
+    __asm__("" : "=r"(var_v0_3) : "0"(var_v0_3));
+    frame.f78 = 0;
+    if (var_v0_3 != 0) {
+        temp_s3 = player17 + 0x148;
+        scratch22 = &frame.v38;
+        __asm__("" : "=r"(temp_s3), "=r"(scratch22) : "0"(temp_s3), "1"(scratch22));
+        do {
+            func_8004F194((Vector3D *)player17, (Vector3D *)player17, (Vector3D *) ((player17 + 0x74)));
+            var_s2 = 0;
+            __asm__("" : "=r"(var_s2) : "0"(var_s2));
+            surface20 = &D_80071924;
+            temp_s5 = player17 + 0x108;
+            __asm__("" : "=r"(surface20), "=r"(temp_s5) : "0"(surface20), "1"(temp_s5));
+loop_17:
+            func_8004F178(&frame.v38, (Vector3D *)player17);
+            switch (M2C_FIELD(&D_80070328, int *, 0x50)) {
+            case 4:
+            case 12:
+            case 19:
+                callPosition4 = (Vector3D *)player17;
+                callKind6 = 1;
+                __asm__ volatile("" : "=r"(callPosition4), "=r"(callKind6) : "0"(callPosition4), "1"(callKind6) : "memory");
+                callRadius5 = motionRadius;
+                __asm__("" : "=r"(callRadius5) : "0"(callRadius5));
+                callArg5_2 = M2C_FIELD(player17, int *, 0x130);
+                callArg6_3 = M2C_FIELD(player17, int *, 0x250);
+                __asm__("" : "=r"(callArg5_2), "=r"(callArg6_3) : "0"(callArg5_2), "1"(callArg6_3));
+                var_s0 = func_8001BA30(callPosition4, callRadius5, callKind6, (int) ((player17 + 0x24)), callArg5_2, callArg6_3);
+                __asm__("" : "=r"(var_s0) : "0"(var_s0));
+                if (var_s0 != 0) {
+                    if (M2C_FIELD(player17, int *, 0x24) & 6) {
+                        callPosition4 = (Vector3D *)player17;
+                        callKind6 = 2;
+                        __asm__ volatile("" : "=r"(callPosition4), "=r"(callKind6) : "0"(callPosition4), "1"(callKind6) : "memory");
+                        callRadius5 = motionRadius;
+                        __asm__("" : "=r"(callRadius5) : "0"(callRadius5));
+                        callArg6_2 = field250Absolute;
+                        __asm__("" : "=r"(callArg6_2) : "0"(callArg6_2));
+                        func_8001BA30(callPosition4, callRadius5, callKind6, 0, 0, callArg6_2);
+                    } else {
+                        var_s0 = 0;
+                    }
+                    D_8006E530 = 0x78;
+                    D_8006E52C = 0xF;
+                }
+                break;
+            case 9:
+                callPosition4 = (Vector3D *)player17;
+                callKind6 = 1;
+                __asm__ volatile("" : "=r"(callPosition4), "=r"(callKind6) : "0"(callPosition4), "1"(callKind6) : "memory");
+                callRadius5 = motionRadius;
+                __asm__("" : "=r"(callRadius5) : "0"(callRadius5));
+                callArg5_2 = M2C_FIELD(player17, int *, 0x130);
+                callArg6_3 = M2C_FIELD(player17, int *, 0x250);
+                __asm__("" : "=r"(callArg5_2), "=r"(callArg6_3) : "0"(callArg5_2), "1"(callArg6_3));
+                var_s0 = func_8001BA30(callPosition4, callRadius5, callKind6, (int) ((player17 + 0x24)), callArg5_2, callArg6_3);
+                __asm__("" : "=r"(var_s0) : "0"(var_s0));
+                if (var_s0 == 0) goto block_36;
+                var_v0_2 = M2C_FIELD(player17, int *, 0x24) & 0x4000;
+                var_a0 = player17;
+                if (var_v0_2) goto block_34;
+                var_s0 = 0;
+                break;
+            case 6:
+                if (M2C_FIELD(temp_s3, short *, 0) != 0) {
+                    callPosition4 = (Vector3D *)player17;
+                    callKind6 = 1;
+                    __asm__ volatile("" : "=r"(callPosition4), "=r"(callKind6) : "0"(callPosition4), "1"(callKind6) : "memory");
+                    callRadius5 = M2C_FIELD(temp_s3, int *, -0x104);
+                    __asm__("" : "=r"(callRadius5) : "0"(callRadius5));
+                    callArg5_2 = M2C_FIELD(temp_s3, int *, -0x18);
+                    callArg6_3 = M2C_FIELD(temp_s3, int *, 0x108);
+                    __asm__("" : "=r"(callArg5_2), "=r"(callArg6_3) : "0"(callArg5_2), "1"(callArg6_3));
+                    var_s0 = func_8001BA30(callPosition4, callRadius5, callKind6, (int) (temp_s3 - 0x124), callArg5_2, callArg6_3);
+                    __asm__("" : "=r"(var_s0) : "0"(var_s0));
+                    if ((var_s0 != 0) && (M2C_FIELD(temp_s3, int *, -0x124) & 0x4000)) {
+                        var_a1 = M2C_FIELD(temp_s3, int *, -0x104);
+                        var_v0_4 = M2C_FIELD(temp_s3, int *, 0x108);
+                        var_a0 = player17;
+                        __asm__("" : "=r"(var_a0), "=r"(var_a1), "=r"(var_v0_4) : "0"(var_a0), "1"(var_a1), "2"(var_v0_4));
+                        callKind6 = 2;
+                        goto block_35;
+                    }
+                    goto block_36;
+                }
+                var_a0 = temp_s3 - 0x148;
+                var_a1_2 = M2C_FIELD(temp_s3, int *, -0x104);
+                var_v0_5 = M2C_FIELD(temp_s3, int *, -0x18);
+                var_v1_2 = M2C_FIELD(temp_s3, int *, 0x108);
+                __asm__("" : "=r"(var_a0), "=r"(var_a1_2), "=r"(var_v0_5), "=r"(var_v1_2) : "0"(var_a0), "1"(var_a1_2), "2"(var_v0_5), "3"(var_v1_2));
+                callKind6 = 0;
+                goto block_38;
+            case 7:
+                callPosition4 = (Vector3D *)player17;
+                callKind6 = 1;
+                __asm__ volatile("" : "=r"(callPosition4), "=r"(callKind6) : "0"(callPosition4), "1"(callKind6) : "memory");
+                callRadius5 = motionRadius;
+                __asm__("" : "=r"(callRadius5) : "0"(callRadius5));
+                callArg5_2 = M2C_FIELD(player17, int *, 0x130);
+                callArg6_3 = M2C_FIELD(player17, int *, 0x250);
+                __asm__("" : "=r"(callArg5_2), "=r"(callArg6_3) : "0"(callArg5_2), "1"(callArg6_3));
+                var_s0 = func_8001BA30(callPosition4, callRadius5, callKind6, (int) ((player17 + 0x24)), callArg5_2, callArg6_3);
+                __asm__("" : "=r"(var_s0) : "0"(var_s0));
+                if ((var_s0 != 0) && (M2C_FIELD(&D_80070328, int *, 0x48) != 0x1A)) {
+                    var_a0 = player17;
+                    __asm__("" : "=r"(var_a0) : "0"(var_a0));
+                    goto block_34;
+                }
+                goto block_36;
+block_34:
+                __asm__ volatile(".set\tnoat");
+                callKind6 = 2;
+                __asm__("" : "=r"(callKind6) : "0"(callKind6));
+                var_a1 = motionRadius;
+                __asm__("" : "=r"(var_a1) : "0"(var_a1));
+                var_v0_4 = field250Absolute;
+block_35:
+                __asm__ volatile(".set\tnoat");
+                func_8001BA30((Vector3D *)var_a0, var_a1, callKind6, 0, 0, var_v0_4);
+                break;
+block_36:
+                __asm__ volatile(".set\tnoat");
+                var_s0 = 0;
+                break;
+default:
+                var_a0 = player17;
+                callKind6 = 0;
+                __asm__("" : "=r"(var_a0), "=r"(callKind6) : "0"(var_a0), "1"(callKind6));
+                var_a1_2 = motionRadius;
+                __asm__("" : "=r"(var_a1_2) : "0"(var_a1_2));
+                var_v0_5 = M2C_FIELD(player17, int *, 0x130);
+                var_v1_2 = M2C_FIELD(player17, int *, 0x250);
+                __asm__("" : "=r"(var_v0_5), "=r"(var_v1_2) : "0"(var_v0_5), "1"(var_v1_2));
+block_38:
+                var_s0 = func_8001BA30((Vector3D *)var_a0, var_a1_2, callKind6, (int)((char *)&D_80070328 + 0x24), var_v0_5, var_v1_2);
+                __asm__("" : "=r"(var_s0) : "0"(var_s0));
+                break;
+            }
+            if ((collisionFlags != 0) && (contactAngleRead < 0) && (D_80071930 != 0)) {
+                initial4 = (char *)&frame.v18;
+                __asm__("" : "=r"(initial4) : "0"(initial4));
+                flags12 = (char *)&D_80070328 + 0x24;
+                __asm__("" : "=r"(flags12) : "0"(flags12));
+                func_8004F1C8(initial4, flags12 - 0x24, (char *)D_80071930 + 0xC);
+                contactAngleWrite = func_8004E880(frame.v18.x, frame.v18.y, 0);
+            }
+            if (var_s0 != 0) {
+                collisionResult138 = var_s0;
+                func_8004F178((Vector3D *)player17, &D_8007190C);
+                func_8004F1C8(&frame.v18.x, (Vector3D *)player17, scratch22);
+                temp_v0 = func_8004EDE8(&frame.v18.x, 1);
+                if (temp_v0 >= 0x141) {
+                    func_8004F08C((Vector3D *) &frame.v18.x, temp_v0, 0x140);
+                    func_8004F194((Vector3D *)player17, scratch22, (Vector3D *) &frame.v18.x);
+                }
+            }
+            callPosition4 = (Vector3D *)player17;
+            callKind6 = 0;
+            __asm__ volatile("" : "=r"(callPosition4), "=r"(callKind6) : "0"(callPosition4), "1"(callKind6) : "memory");
+            callRadius5 = motionRadius;
+            __asm__("" : "=r"(callRadius5) : "0"(callRadius5));
+            callArg5_2 = M2C_FIELD(player17, int *, 0x130);
+            callArg6_3 = M2C_FIELD(player17, int *, 0x250);
+            __asm__("" : "=r"(callArg5_2), "=r"(callArg6_3) : "0"(callArg5_2), "1"(callArg6_3));
+            if (func_80019138(callPosition4, callRadius5, callKind6, (int) ((player17 + 0x24)), callArg5_2, callArg6_3) == 0) {
+                __asm__("" : "=r"(var_s2) : "0"(var_s2));
+                var_v0_6 = var_s2 < 6;
+                if (var_s0 != 0) {
+                    var_s2 += 1;
+                    goto block_71;
+                }
+            } else {
+                if (func_80040954(*surface20) == 3) {
+                    temp_a0 = D_8006D048.m_SurfaceData[*surface20 & 0x3F];
+                    temp_a0->unk4 |= field130Absolute;
+                }
+                func_8004F178(player17 + 0xC0, ((char *)surface20 - 0xC));
+                __asm__ volatile("" : "=r"(stack29));
+                if (((unsigned int) (M2C_FIELD(&D_80070328, int *, 0x50) - 5) >= 2U) || (func_8004F1C8(&frame.v18.x, ((char *)surface20 - 0x24), (Vector3D *)player17), func_8004EF04((Vector3D *) &frame.v18.x, 0x100), ((frame.v18.z < -0xC8) != 0)) || (func_8004F178((Vector3D *)(stack29 + 0x28), (player17 + 0x74)), func_8004EF04((Vector3D *)(stack29 + 0x28), 0x100), ((({ register int x5 asm("$5"); register int y4 asm("$4"); register int left3 asm("$3"); register int right2 asm("$2"); register int z3 asm("$3"); register int dot5 asm("$5"); register int less2 asm("$2");
+                    left3 = frame.v18.x; right2 = frame.v28.x; __asm__("" : "=r"(left3), "=r"(right2) : "0"(left3), "1"(right2)); x5 = left3 * right2; __asm__("" : "=r"(x5) : "0"(x5));
+                    left3 = frame.v18.y; right2 = frame.v28.y; __asm__("" : "=r"(left3), "=r"(right2) : "0"(left3), "1"(right2)); y4 = left3 * right2; __asm__("" : "=r"(y4) : "0"(y4));
+                    left3 = frame.v18.z; right2 = frame.v28.z; __asm__("" : "=r"(left3), "=r"(right2) : "0"(left3), "1"(right2)); z3 = left3 * right2; right2 = x5 + y4; __asm__("" : "=r"(z3), "=r"(right2) : "0"(z3), "1"(right2)); dot5 = (right2 + z3) >> 8; __asm__("" : "=r"(dot5) : "0"(dot5)); less2 = dot5 < 225; __asm__("" : "=r"(less2) : "0"(less2)); less2 ? 0 : 225; }) < 0xE1) == 0))) {
+                    M2C_FIELD(&D_80070328, int *, 0xBC) = 0;
+                }
+                if ((*(int *)temp_s5 & 0x3F) == 0x3F) {
+                    *(int *)temp_s5 = *surface20;
+                    func_8004F178(temp_s5 + 0xC, ((char *)surface20 - 0xC));
+                }
+                normal16 = &D_80071918;
+                __asm__("" : "=r"(normal16) : "0"(normal16));
+                var_v1_3 = func_8004E880(func_8004EDE8(normal16, 0), D_80071920, 1) & 0xFFF;
+                if (var_v1_3 >= 0x801) {
+                    var_v1_3 -= 0x800;
+                }
+                var_v0_7 = var_v1_3;
+                if (var_v1_3 < 0) {
+                    var_v0_7 = -var_v0_7;
+                }
+                if (var_v0_7 < 0x200) {
+                    loopPredicate2 = func_8004E880(normal16->x, D_8007191C, 1);
+                    yaw3 = M2C_FIELD(temp_s5, int *, -0xA4) - 0x800;
+                    __asm__("" : "=r"(yaw3) : "0"(yaw3));
+                    var_v1_4 = (loopPredicate2 - yaw3) & 0xFFF;
+                    if (var_v1_4 >= 0x801) {
+                        var_v1_4 -= 0x1000;
+                    }
+                    minimum12 = frame.f80;
+                    __asm__("" : "=r"(minimum12) : "0"(minimum12));
+                    loopPredicate2 = var_v1_4 < minimum12;
+                    __asm__("" : "=r"(loopPredicate2) : "0"(loopPredicate2));
+                    if (loopPredicate2) {
+                        frame.f80 = var_v1_4;
+                    }
+                    if (var_fp < var_v1_4) {
+                        var_fp = var_v1_4;
+                    }
+                }
+                func_8004F178((Vector3D *)player17, &D_8007190C);
+                func_8004F1C8(&frame.v18.x, (Vector3D *)player17, scratch22);
+                temp_v0_2 = func_8004EDE8(&frame.v18.x, 1);
+                if (temp_v0_2 >= 0x141) {
+                    func_8004F08C((Vector3D *) &frame.v18.x, temp_v0_2, 0x140);
+                    func_8004F194((Vector3D *)player17, scratch22, (Vector3D *) &frame.v18.x);
+                }
+                var_s2 += 1;
+block_71:
+                __asm__("" : "=r"(var_s2) : "0"(var_s2));
+                if (var_s2 >= 6) {
+                    __asm__("" : "=r"(var_s2) : "0"(var_s2));
+                    var_v0_6 = var_s2 < 6;
+                } else {
+                    goto loop_17;
+                }
+            }
+            if (var_v0_6 == 0) {
+                var_v0_2 = collisionResult138;
+                repeatOutput = (char *)&frame.v38;
+                if (var_v0_2 != 0) {
+                    var_s2 = 0;
+                    __asm__("" : "=r"(var_s2) : "0"(var_s2));
+                    normal21 = &D_80071918;
+                    __asm__("" : "=r"(normal21) : "0"(normal21));
+                    temp_s4 = (char *)&D_80070328 + 0x108;
+                    __asm__("" : "=r"(temp_s4) : "0"(temp_s4));
+loop_76:
+                    func_8004F178(repeatOutput, (Vector3D *)player17);
+                    temp_v0_2 = func_80019194(player17, motionRadius);
+                    surfaceOutput = player17 + 0xC0;
+                    if (temp_v0_2 != 0) {
+                        func_8004F178(surfaceOutput, normal21);
+                        __asm__ volatile("" : "=r"(stack29));
+                        if (((unsigned int) (M2C_FIELD(&D_80070328, int *, 0x50) - 5) >= 2U) || (func_8004F1C8(&frame.v18.x, ((char *)normal21 - 0x18), (Vector3D *)player17), func_8004EF04((Vector3D *) &frame.v18.x, 0x100), ((frame.v18.z < -0xC8) != 0)) || (func_8004F178((Vector3D *)(stack29 + 0x28), (player17 + 0x74)), func_8004EF04((Vector3D *)(stack29 + 0x28), 0x100), ((({ register int x5 asm("$5"); register int y4 asm("$4"); register int left3 asm("$3"); register int right2 asm("$2"); register int z3 asm("$3"); register int dot5 asm("$5"); register int less2 asm("$2");
+                            left3 = frame.v18.x; right2 = frame.v28.x; __asm__("" : "=r"(left3), "=r"(right2) : "0"(left3), "1"(right2)); x5 = left3 * right2; __asm__("" : "=r"(x5) : "0"(x5));
+                            left3 = frame.v18.y; right2 = frame.v28.y; __asm__("" : "=r"(left3), "=r"(right2) : "0"(left3), "1"(right2)); y4 = left3 * right2; __asm__("" : "=r"(y4) : "0"(y4));
+                            left3 = frame.v18.z; right2 = frame.v28.z; __asm__("" : "=r"(left3), "=r"(right2) : "0"(left3), "1"(right2)); z3 = left3 * right2; right2 = x5 + y4; __asm__("" : "=r"(z3), "=r"(right2) : "0"(z3), "1"(right2)); dot5 = (right2 + z3) >> 8; __asm__("" : "=r"(dot5) : "0"(dot5)); less2 = dot5 < 225; __asm__("" : "=r"(less2) : "0"(less2)); less2 ? 0 : 225; }) < 0xE1) == 0))) {
+                            M2C_FIELD(&D_80070328, int *, 0xBC) = 0;
+                        }
+                        if ((*(int *)temp_s4 & 0x3F) == 0x3F) {
+                            surfaceOutput = temp_s4 + 0xC;
+                            __asm__("" : "=r"(surfaceOutput) : "0"(surfaceOutput));
+                            surface5 = &D_80071924;
+                            __asm__("" : "=r"(surface5) : "0"(surface5));
+                            *(int *)temp_s4 = *surface5;
+                            func_8004F178(surfaceOutput, (char *)surface5 - 0xC);
+                        }
+                        var_v1_5 = func_8004E880(func_8004EDE8(normal21, 0), D_80071920, 1) & 0xFFF;
+                        if (var_v1_5 >= 0x801) {
+                            var_v1_5 -= 0x800;
+                        }
+                        var_v0_8 = var_v1_5;
+                        if (var_v1_5 < 0) {
+                            var_v0_8 = -var_v0_8;
+                        }
+                        if (var_v0_8 < 0x200) {
+                            loopPredicate2 = func_8004E880(normal21->x, D_8007191C, 1);
+                            yaw3 = M2C_FIELD(temp_s4, int *, -0xA4) - 0x800;
+                            __asm__("" : "=r"(yaw3) : "0"(yaw3));
+                            var_v1_6 = (loopPredicate2 - yaw3) & 0xFFF;
+                            if (var_v1_6 >= 0x801) {
+                                var_v1_6 -= 0x1000;
+                            }
+                            minimum12 = frame.f80;
+                            __asm__("" : "=r"(minimum12) : "0"(minimum12));
+                            loopPredicate2 = var_v1_6 < minimum12;
+                            __asm__("" : "=r"(loopPredicate2) : "0"(loopPredicate2));
+                            if (loopPredicate2) {
+                                frame.f80 = var_v1_6;
+                            }
+                            if (var_fp < var_v1_6) {
+                                var_fp = var_v1_6;
+                            }
+                        }
+                        func_8004F178((Vector3D *)player17, &D_8007190C);
+                        func_8004F1C8(&frame.v18.x, (Vector3D *)player17, scratch22);
+                        temp_v0_3 = func_8004EDE8(&frame.v18.x, 1);
+                        surfaceOutput = (char *)&frame.v18;
+                        if (temp_v0_3 >= 0x141) {
+                            func_8004F08C(surfaceOutput, temp_v0_3, 0x140);
+                            func_8004F194((Vector3D *)player17, scratch22, (Vector3D *) &frame.v18.x);
+                        }
+                        var_s2 += 1;
+                        repeatOutput = (char *)&frame.v38;
+                        if (var_s2 < 6) {
+                            goto loop_76;
+                        }
+                    }
+                }
+            }
+            temp_t4 = frame.f78 + 1;
+            frame.f78 = temp_t4;
+            loopPredicate2 = temp_t4 < temp_s7;
+            __asm__("" : "=r"(loopPredicate2) : "0"(loopPredicate2));
+        } while (loopPredicate2);
+    }
+    func_8004F1C8(&frame.v68, &D_80070328, &frame.v48);
+    func_8004F08C(&frame.v68, 0x1000, 0x1100);
+    func_8004F194(&frame.v68, &frame.v68, &frame.v48);
+    if (func_80018368(&frame.v48, &frame.v68) != 0) {
+        if (D_80071934 == 0) {
+            var_a0_3 = &D_80070328;
+            var_a1_3 = ((char *)&D_80070328 + 0x124);
+            goto block_103;
+        }
+    }
+    if (var_s2 < 6) {
+block_102:
+        var_a0_3 = ((char *)&D_80070328 + 0x124);
+        var_a1_3 = playerBaseAbsolute;
+block_103:
+        func_8004F178(var_a0_3, var_a1_3);
+    }
+    __asm__ volatile("" : : "r"(var_s2));
+    temp_s0_3 = ((char *)&D_80070328 + 0x98);
+    func_8004F1C8(temp_s0_3, temp_s0_3 - 0x98, &frame.v48);
+    func_8004F0E8((Vector3D *) temp_s0_3, 6);
+    if (M2C_FIELD(&D_80070328, int *, 0x20C) & 8) {
+        func_8004F178(&frame.v18.x, temp_s0_3 + 0x184);
+        func_8004F0E8((Vector3D *) &frame.v18.x, 6);
+        func_8004F1C8(temp_s0_3, temp_s0_3, &frame.v18.x);
+    }
+    divided11 = *(int *)temp_s0_3;
+    __asm__("" : "=r"(divided11) : "0"(divided11));
+    divided11 /= (int)D_8006C648;
+    __asm__ volatile("" : "=r"(divided11) : "0"(divided11));
+    divided10 = M2C_FIELD(&D_80070328, int *, 0x9C) / (int)D_8006C648;
+    __asm__ volatile("" : "=r"(divided10) : "0"(divided10));
+    divided9 = M2C_FIELD(&D_80070328, int *, 0xA0) / (int)D_8006C648;
+    __asm__ volatile("" : "=r"(divided9) : "0"(divided9));
+    divided8 = frame.v58.x / (int)D_8006C648;
+    __asm__ volatile("" : "=r"(divided8) : "0"(divided8));
+    divided7 = frame.v58.y / (int)D_8006C648;
+    __asm__ volatile("" : "=r"(divided7) : "0"(divided7));
+    divided3 = frame.v58.z / (int)D_8006C648;
+    __asm__ volatile("" : "=r"(divided3) : "0"(divided3));
+    __asm__("" : "=r"(divided11), "=r"(divided10), "=r"(divided9), "=r"(divided8), "=r"(divided7), "=r"(divided3) : "0"(divided11), "1"(divided10), "2"(divided9), "3"(divided8), "4"(divided7), "5"(divided3));
+    *(int *)temp_s0_3 = divided11;
+    M2C_FIELD(&D_80070328, int *, 0x9C) = divided10;
+    M2C_FIELD(&D_80070328, int *, 0xA0) = divided9;
+    frame.v58.x = divided8;
+    frame.v58.y = divided7;
+    frame.v58.z = divided3;
+    func_8004F1C8(&frame.v18.x, temp_s0_3, &frame.v58.x);
+    temp_v0_4 = func_8004EDE8(&frame.v18.x, 1);
+    __asm__("" : "=r"(temp_v0_4) : "0"(temp_v0_4));
+    if ((temp_v0_4 >= 0x801) && (frame.v18.z < 0)) {
+        func_8004F08C((Vector3D *) &frame.v18.x, temp_v0_4, 0x800);
+        func_8004F194((Vector3D *) temp_s0_3, (Vector3D *) &frame.v58.x, (Vector3D *) &frame.v18.x);
+    }
+    M2C_FIELD(&D_80070328, int *, 0xB4) = func_8004EDE8(((char *)&D_80070328 + 0x98), 0);
+    __asm__("" : "=r"(var_fp) : "0"(var_fp));
+    minimum12 = frame.f80;
+    __asm__("" : "=r"(minimum12) : "0"(minimum12));
+    if ((minimum12 != 0) && (var_fp != 0)) {
+        M2C_FIELD(&D_80070328, char *, 0x101) = 1;
+        if ((M2C_FIELD(&D_80070328, int *, 0x24C) == 7) && (M2C_FIELD(&D_80070328, int *, 0x144) != 0)) {
+            var_v0_10 = M2C_FIELD(&D_80070328, int *, 0x148);
+        } else {
+            var_v0_10 = M2C_FIELD(&D_80070328, int *, 0x64);
+        }
+        priorYaw = var_v0_10;
+    }
+}
+
+#undef M2C_FIELD
 
 /* Retail source: USA Rev 0 PSX.EXE 0x80042A44..0x80042F64
  * (328 instructions; linked bytes SHA-256
