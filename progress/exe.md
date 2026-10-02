@@ -284,7 +284,7 @@
 - [x] func_80048444
 - [x] func_800486FC
 - [x] func_80048948
-- [ ] func_800489CC
+- [x] func_800489CC
 - [x] func_800491F4
 - [x] func_800492DC
 - [x] func_80049484
