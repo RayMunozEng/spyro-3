@@ -109,7 +109,7 @@
 - [x] func_80029AA0
 - [x] func_80029BB0
 - [x] func_80029CF8
-- [ ] func_80029E48
+- [x] func_80029E48
 - [x] func_8002A580
 - [x] func_8002A6B4
 - [x] func_8002A6E4

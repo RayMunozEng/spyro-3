@@ -1323,22 +1323,22 @@ void func_80029E48(void) {
                 register int displayGems asm("$18");
                 workValue = g_Hud.numberFrame;
                 {
+                    register int tableOffset asm("$3");
                     register SpriteData *spriteBase asm("$4");
+                    register int topEdge asm("$4");
                     spriteBase = D_8006C788;
                     workValue <<= 3;
                     workValue += (int)spriteBase;
-                }
-                {
-                    register int tableOffset asm("$3");
-                    register int topEdge asm("$4");
-                    tableOffset = levelIndex << 2;
+                    tableOffset = levelIndex;
+                    __asm__ ("" : "=r"(workValue) : "0"(workValue), "r"(tableOffset));
+                    tableOffset <<= 2;
                     topEdge = ((SpriteData *)workValue)->unk4;
                     workValue = ((SpriteData *)workValue)->unk0;
                     displayGems = *(int *)((char *)D_80071A10 + tableOffset);
                     halfWidth = topEdge - workValue;
                     __asm__ volatile("" : "=r"(halfWidth) : "0"(halfWidth));
                 }
-                halfWidth = displayGems < 1000 ? halfWidth * 7 : halfWidth * 9;
+                if (displayGems < 1000) halfWidth = (halfWidth << 3) - halfWidth; else halfWidth += halfWidth << 3;
                 workValue = halfWidth + 30;
                 halfWidth = workValue >> 1;
                 g_Hud.DAT_800719e3 = func_80028378((SpriteAnimationData *)&g_Hud.DAT_800719e0, 0);
@@ -1349,7 +1349,7 @@ void func_80029E48(void) {
             } else if (g_Hud.DAT_800719d8 == 2) {
                 register int workValue asm("$2");
                 register SpriteData *drawSprite asm("$16");
-                register int halfWidth asm("$18");
+                int halfWidth;
                 register int eggCount asm("$17");
                 workValue = g_Hud.numberFrame;
                 {
