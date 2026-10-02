@@ -236,7 +236,7 @@
 - [x] func_8003E968
 - [x] func_8003F194
 - [x] func_8003F6F4
-- [ ] func_8003FD58
+- [x] func_8003FD58
 - [x] func_800408B8
 - [x] func_80040954
 - [x] func_80040994

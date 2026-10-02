@@ -613,7 +613,459 @@ block_37:
 #undef SPYRO_FIELD
 
 // Run surface type function
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8003FD58);
+/* Retail source: USA Rev 0 SCUS-94467, PSX.EXE 0x8003FD58..0x800408B8.
+ * Surface IDs use the low six bits; descriptor types and per-level flags are
+ * unsigned bytes, and descriptor payloads and player counters are signed words.
+ * Cadence: one surface response invocation; arg1 selects the retail contact phase.
+ * Falsifiable vectors: surface ID 63, types 0/1/2/4/5/6/7/9/10/12,
+ * contact phases 0/1/2, signed counter boundaries -1/0/1 and character IDs 1/3/4/9/10.
+ * Confidence: complete retail executable and overlay hash match.
+ * Empty register constraints emit no instructions; the mode alias preserves
+ * independently issued retail reads of the same player state word. */
+#define M2C_FIELD(p,t,o) (*(t)((char *)(p)+(o)))
+void func_80053F50(int);
+extern unsigned char D_8006C7B4;
+extern unsigned char D_80070300;
+extern volatile int surfacePlayerMode asm("D_80070328+0x50");
+
+int func_8003FD58(int arg0, int arg1) {
+    register Moby *var_s0_2 asm("$16");
+    register SpecialSurface *temp_v0 asm("$2");
+    register int temp_a0 asm("$4");
+    register int modeArg asm("$5");
+    register SpecialSurface **surfaces asm("$3");
+    register int index asm("$2");
+    register int *surfaceData asm("$4");
+    register int temp_v0_2 asm("$2");
+    register int one asm("$16");
+    register int life asm("$3");
+    int temp_v0_3;
+    int var_a0_2;
+    int var_a1;
+    int var_v0;
+    register int var_v0_2 asm("$2");
+    register signed char *temp_a1 asm("$5");
+    register signed char *temp_a2 asm("$6");
+    register signed char *temp_s1 asm("$17");
+    register signed char *temp_s1_2 asm("$17");
+    register signed char *var_s0 asm("$16");
+    register signed char *var_s0_3 asm("$16");
+    register unsigned int var_a0 asm("$4");
+    unsigned int temp_v1;
+
+    modeArg = arg1;
+    __asm__("" : "=r"(modeArg) : "0"(modeArg));
+    temp_a0 = arg0 & 0x3F;
+    if (temp_a0 != 0x3F) {
+        surfaces = D_8006D048.m_SurfaceData;
+        __asm__("" : "=r"(surfaces) : "0"(surfaces), "r"(temp_a0));
+        index = temp_a0 << 2;
+        index += (int)surfaces;
+        __asm__("" : "=r"(index) : "0"(index));
+        temp_v0 = *(SpecialSurface **)index;
+        temp_v1 = *(unsigned char *)temp_v0;
+        __asm__("" : "=r"(temp_v1) : "0"(temp_v1));
+        surfaceData = (int *)((char *)temp_v0 + 4);
+        __asm__("" : "=r"(surfaceData) : "0"(surfaceData), "r"(temp_v1));
+        switch (temp_v1) {
+        default: goto block_140;                          /* switch 1 */
+        case 0:                                     /* switch 1 */
+            if (modeArg == 1) {
+                temp_a2 = ((char *)&D_80070328 + 0xA0);
+                __asm__("" : "=r"(temp_a2) : "0"(temp_a2));
+                if (*(int *)temp_a2 <= 0) {
+                    if (M2C_FIELD(&D_80070328, int *, 0x1CC) == 0) {
+                        if ((unsigned int) (M2C_FIELD(&D_80070328, int *, 0x24C) - 9) >= 2U) {
+                            if (surfacePlayerMode != 8) {
+                                if (M2C_FIELD(&D_80070328, int *, 0x24C) == 4) {
+                                    if (M2C_FIELD(&D_80070328, int *, 0x48) != 0x81) {
+                                        { register int timer asm("$3") = 0x5A;
+                                        temp_v0_2 = D_8006C6C0;
+                                        __asm__("" : : "r"(timer), "r"(temp_v0_2));
+                                        M2C_FIELD(temp_a2, int *, 0x1E4) = timer;
+                                        D_8006C6C0 = temp_v0_2 + 1; }
+                                        D_8006C710 += 1;
+                                        if ((M2C_FIELD(&D_80070328, int *, 0x240) != 0) || (D_8006C74C != 0)) {
+                                            var_a0 = 0x81;
+                                            if (M2C_FIELD(temp_a2, int *, 0x1E0) < 0) {
+                                                M2C_FIELD(temp_a2, int *, 0x1E0) = 0;
+                                            }
+                                        } else {
+                                            temp_v0_2 = M2C_FIELD(temp_a2, int *, 0x1E0);
+                                            if (temp_v0_2 >= 0) {
+                                                M2C_FIELD(temp_a2, int *, 0x1E0) = (int) (temp_v0_2 - 1);
+                                            }
+                                            var_a0 = 0x81;
+                                        }
+                                        func_8004BEF8(var_a0); return 1;
+                                    }
+                                } else if (M2C_FIELD(&D_80070328, int *, 0x24C) == 3) {
+                                    M2C_FIELD(&D_80070328, int *, 0x284) = 0x5A;
+                                    D_8006C6C0 += 1;
+                                    D_8006C710 += 1;
+                                    if ((M2C_FIELD(&D_80070328, int *, 0x240) != 0) || (D_8006C74C != 0)) {
+                                        if (M2C_FIELD(&D_80070328, int *, 0x280) < 0) {
+                                            M2C_FIELD(&D_80070328, int *, 0x280) = 0;
+                                            goto block_24;
+                                        }
+                                        goto block_26;
+                                    }
+                                    if (M2C_FIELD(&D_80070328, int *, 0x280) >= 0) {
+                                        M2C_FIELD(&D_80070328, int *, 0x280) = (int) (M2C_FIELD(&D_80070328, int *, 0x280) - 1);
+block_24:
+                                        if (M2C_FIELD(&D_80070328, int *, 0x280) >= 0) goto block_26;
+block_25:
+                                        var_a0 = 0x6C;
+                                        func_8004BEF8(var_a0); return 1;
+block_26:
+                                        if (surfacePlayerMode == 8) goto block_139;
+                                        var_a0 = 0x6B;
+                                        func_8004BEF8(var_a0); return 1;
+                                    } else {
+                                        goto block_25;
+                                    }
+                                } else if (M2C_FIELD(&D_80070328, int *, 0x48) != 0x1E) {
+                                    M2C_FIELD(&D_80070328, int *, 0x284) = 0x5A;
+                                    D_8006C6C0 += 1;
+                                    D_8006C710 += 1;
+                                    if (D_8006FA38 < 0) {
+                                        temp_v0_2 = *(int *)surfaceData;
+                                        __asm__("" : "=r"(temp_v0_2) : "0"(temp_v0_2));
+                                        if (temp_v0_2 != 0) {
+                                            var_v0_2 = -1;
+                                        } else {
+                                            temp_v0_2 = M2C_FIELD(&D_80070328, int *, 0x280);
+                                            __asm__("" : "=r"(temp_v0_2) : "0"(temp_v0_2));
+                                            if (temp_v0_2 < 0) goto surface_life_done;
+                                            var_v0_2 = temp_v0_2 - 1;
+                                        }
+                                        M2C_FIELD(&D_80070328, int *, 0x280) = var_v0_2;
+                                    }
+surface_life_done:
+                                    var_a0 = 0x1E;
+                                    func_8004BEF8(var_a0); return 1;
+                                }
+                                goto block_139;
+                            }
+                            goto block_140;
+                        }
+                    }
+                }
+            }
+            return 0;
+        case 2:                                     /* switch 1 */
+            if (D_8006FA38 >= 0) {
+                if (M2C_FIELD(&D_80070328, int *, 0x50) == 6) {
+                    var_a0 = 0x3D;
+                    func_8004BEF8(var_a0); return 1;
+                }
+                return 0;
+            }
+            if ((D_8006C5BC != 0xD) || (D_8006C7B4 & 4) || (*(&D_80070300 + D_8006C58C) & 4)) {
+                if (modeArg == 1) {
+                    M2C_FIELD(&D_80070328, int *, 0x1C4) = modeArg;
+                    return 0;
+                }
+                return 0;
+            }
+            goto block_140;
+        case 4:                                     /* switch 1 */
+            if (modeArg == 1) {
+                if (M2C_FIELD(&D_80070328, int *, 0x50) != 0x10) {
+                    if ((unsigned int) (M2C_FIELD(&D_80070328, int *, 0x50) - 7) >= 2U) {
+                        var_a0 = 0xA;
+                        if (M2C_FIELD(&D_80070328, int *, 0x48) != 0xE) {
+                            func_8004BEF8(var_a0); return 1;
+                        }
+                        goto block_140;
+                    }
+                    return 0;
+                }
+                goto block_140;
+            }
+            return 0;
+        case 5:                                     /* switch 1 */
+            if (modeArg == 2) {
+                temp_v0_2 = 0xE;
+                temp_s1 = ((char *)&D_80070328 + 0x48);
+                __asm__("" : "=r"(temp_s1) : "0"(temp_s1));
+                var_s0 = temp_s1 + 0x90;
+                if (*(int *)temp_s1 != temp_v0_2) {
+                    func_8004BEF8(0xEU);
+                    __asm__("" : "=r"(temp_s1) : "0"(temp_s1));
+                    var_s0 = temp_s1 + 0x90;
+                }
+                func_8004EF04((Vector3D *) var_s0, 0x800);
+                func_8004F178(temp_s1 + 0x44, var_s0);
+                func_8004F178(temp_s1 + 0x38, var_s0);
+                var_s0_2 = SpawnMoby(0x2CC, 0);
+                if (var_s0_2 != 0) {
+                    func_8004F178(&var_s0_2->position, temp_s1 - 0x48);
+                    var_a0_2 = M2C_FIELD(temp_s1, int *, 0x90);
+                    var_a1 = M2C_FIELD(&D_80070328, int *, 0xDC);
+                    goto block_57;
+                }
+                goto block_139;
+            }
+            if (modeArg == 0) {
+                temp_s1_2 = ((char *)&D_80070328 + 0x48);
+                __asm__("" : "=r"(temp_s1_2) : "0"(temp_s1_2));
+                var_s0_3 = temp_s1_2 + 0xCC;
+                if (*(int *)temp_s1_2 != 0xE) {
+                    func_8004BEF8(0xEU);
+                    __asm__("" : "=r"(temp_s1_2) : "0"(temp_s1_2));
+                    var_s0_3 = temp_s1_2 + 0xCC;
+                }
+                func_8004EF04((Vector3D *) var_s0_3, 0x800);
+                func_8004F178(temp_s1_2 + 0x44, var_s0_3);
+                func_8004F178(temp_s1_2 + 0x38, var_s0_3);
+                var_s0_2 = SpawnMoby(0x2CC, 0);
+                if (var_s0_2 != 0) {
+                    func_8004F178(&var_s0_2->position, temp_s1_2 - 0x48);
+                    var_a0_2 = M2C_FIELD(temp_s1_2, int *, 0xCC);
+                    var_a1 = M2C_FIELD(&D_80070328, int *, 0x118);
+block_57:
+                    var_s0_2->angle.yaw = func_8004E880(var_a0_2, var_a1, 0);
+                }
+                goto block_139;
+            }
+            return 0;
+        case 6:                                     /* switch 1 */
+            func_80053F50(*(int *)surfaceData);
+            return 0;
+        case 7:                                     /* switch 1 */
+            if (modeArg == 1) {
+                temp_a1 = ((char *)&D_80070328 + 0xA0);
+                __asm__("" : "=r"(temp_a1) : "0"(temp_a1));
+                if (*(int *)temp_a1 <= 0) {
+                    if (M2C_FIELD(&D_80070328, int *, 0x1CC) == 0) {
+                        if (surfacePlayerMode != 8) {
+                            if (D_8006C5BC == 0x2A) {
+                                if (*(int *)surfaceData != 0) {
+                                    { register int timer asm("$3") = 0x5A;
+                                        temp_v0_2 = D_8006C6C0;
+                                        __asm__("" : : "r"(timer), "r"(temp_v0_2));
+                                        M2C_FIELD(temp_a1, int *, 0x1E4) = timer;
+                                        D_8006C6C0 = temp_v0_2 + 1; }
+                                    D_8006C710 += 1;
+                                    if ((M2C_FIELD(&D_80070328, int *, 0x240) != 0) || (D_8006C74C != 0)) {
+                                        if (M2C_FIELD(temp_a1, int *, 0x1E0) < 0) {
+                                            M2C_FIELD(temp_a1, int *, 0x1E0) = 0;
+                                            goto block_69;
+                                        }
+                                        goto block_70;
+                                    }
+block_69:
+                                    if (M2C_FIELD(&D_80070328, int *, 0x280) >= 0) {
+block_70:
+                                        M2C_FIELD(&D_80070328, int *, 0x280) = (int) (M2C_FIELD(&D_80070328, int *, 0x280) - 1);
+                                    }
+                                    temp_v0_2 = M2C_FIELD(&D_80070328, int *, 0x24C);
+                                    one = 1;
+                                    __asm__("" : "=r"(one) : "0"(one), "r"(temp_v0_2));
+                                    if (temp_v0_2 == one) {
+                                        temp_v0_2 = M2C_FIELD(&D_80070328, int *, 0x24);
+                                        life = M2C_FIELD(&D_80070328, int *, 0x280);
+                                        __asm__("" : "=r"(life) : "0"(life), "r"(temp_v0_2));
+                                        M2C_FIELD(&D_80070328, int *, 0x24) = temp_v0_2 | 8;
+                                        __asm__ volatile("" : : : "memory");
+                                        __asm__("" : "=r"(life) : "0"(life));
+                                        var_a0 = 0x48;
+                                        if (life < 0) {
+                                            var_a0 = 0x4A;
+                                        }
+                                        func_8004BEF8(var_a0); return 1;
+                                    }
+                                    var_a0 = 0x1C;
+                                    if (M2C_FIELD(&D_80070328, int *, 0x280) < 0) {
+                                        var_a0 = 0x3A;
+                                        if (M2C_FIELD(D_8006EE2C, int *, 0x124) == 0) {
+block_76:
+                                            func_8004BEF8(0x1FU);
+                                            __asm__ volatile("" : : : "memory");
+                                            var_v0 = 1;
+                                            if (D_8006FA38 >= 0) {
+                                                M2C_FIELD(&D_80070328, int *, 0x4C) = one;
+                                            }
+                                            return var_v0;
+                                        }
+                                    }
+                                    func_8004BEF8(var_a0); return 1;
+                                }
+                                goto block_140;
+                            }
+                            M2C_FIELD(&D_80070328, int *, 0x284) = 0x5A;
+                            D_8006C6C0 += 1;
+                            D_8006C710 += 1;
+                            if ((M2C_FIELD(&D_80070328, int *, 0x240) != 0) || (D_8006C74C != 0)) {
+                                if (M2C_FIELD(&D_80070328, int *, 0x280) < 0) {
+                                    M2C_FIELD(&D_80070328, int *, 0x280) = 0;
+                                    goto block_84;
+                                }
+                                goto mode_seven_nine;
+                            }
+                            if (M2C_FIELD(&D_80070328, int *, 0x280) >= 0) {
+                                M2C_FIELD(&D_80070328, int *, 0x280) -= 1;
+block_84:
+                                if (M2C_FIELD(&D_80070328, int *, 0x280) >= 0) goto mode_seven_nine;
+                            }
+                            var_a0 = 0x1F;
+                            if (M2C_FIELD(D_8006EE2C, int *, 0x124) != 0) var_a0 = 0x3A;
+                            func_8004BEF8(var_a0); return 1;
+mode_seven_nine:
+                            func_8004BEF8(9); return 1;
+                        }
+                        goto block_140;
+                    }
+                }
+            }
+            return 0;
+        case 1:                                     /* switch 1 */
+            if (!(M2C_FIELD(&D_80070328, int *, 0x20C) & 0x40000) && (var_v0 = 0, (modeArg == 1)) && (var_v0 = 0, (M2C_FIELD(&D_80070328, int *, 0x1CC) == 0))) {
+                {
+                    life = M2C_FIELD(&D_80070328, int *, 0x50);
+                    if (life == 8) return 0;
+                    if ((life != 2) && (life != 7)) goto mode_one_body;
+                    if (M2C_FIELD(&D_80070328, int *, 0xA0) > 0) return 0;
+mode_one_body:
+                        if (D_8006FA38 >= 0) {
+                            temp_v0_2 = 8;
+                            __asm__("" : "=r"(temp_v0_2) : "0"(temp_v0_2));
+                            life = surfacePlayerMode;
+                            __asm__("" : "=r"(life) : "0"(life));
+                            if (life == temp_v0_2) goto block_139;
+                            func_8004BEF8(0x3A); return 1;
+                        }
+                        __asm__ volatile("" : : : "$3", "memory");
+                        M2C_FIELD(&D_80070328, int *, 0x284) = 0x5A;
+                        D_8006C6C0 += 1;
+                        D_8006C710 += 1;
+                        if ((M2C_FIELD(&D_80070328, int *, 0x240) != 0) || (D_8006C74C != 0)) {
+                            if (M2C_FIELD(&D_80070328, int *, 0x280) < 0) {
+                                M2C_FIELD(&D_80070328, int *, 0x280) = 0;
+                            }
+                        } else if (((D_8006C5BC != 0x20) || (D_8006C5C8 != 2)) && (M2C_FIELD(&D_80070328, int *, 0x280) >= 0)) {
+                            M2C_FIELD(&D_80070328, int *, 0x280) = (int) (M2C_FIELD(&D_80070328, int *, 0x280) - 1);
+                        }
+                        if (M2C_FIELD(&D_80070328, int *, 0x24C) == 3) {
+                            var_a0 = 0x6B;
+                            if (M2C_FIELD(&D_80070328, int *, 0x280) < 0) {
+                                var_a0 = 0x6C;
+                            }
+                            func_8004BEF8(var_a0); return 1;
+                        }
+                        one = 1;
+                        __asm__("" : "=r"(one) : "0"(one));
+                        if (M2C_FIELD(&D_80070328, int *, 0x24C) == one) {
+                            M2C_FIELD(&D_80070328, int *, 0x24) = (int) (M2C_FIELD(&D_80070328, int *, 0x24) | 8);
+                            if (M2C_FIELD(&D_80070328, int *, 0x280) < 0) {
+                                func_8004BEF8(0x4A); return 1;
+                            }
+                            func_8004BEF8(0x48); return 1;
+                        }
+                        var_a0 = 0x1C;
+                        if (M2C_FIELD(&D_80070328, int *, 0x280) < 0) {
+                            var_a0 = 0x3A;
+                            if (M2C_FIELD(D_8006EE2C, int *, 0x124) != 0) {
+                                func_8004BEF8(var_a0); return 1;
+                            }
+                            goto block_76;
+                        }
+                        func_8004BEF8(var_a0); return 1;
+                }
+            } else {
+                return 0;
+            }
+            break;
+        case 9:                                     /* switch 1 */
+            if (M2C_FIELD(&D_80070328, int *, 0x48) == 0x3D) {
+                M2C_FIELD(&D_80070328, int *, 0x4C) = 1;
+                return 0;
+            }
+            if (M2C_FIELD(&D_80070328, int *, 0x48) == 0x24) {
+                if (*(int *)surfaceData < 3) {
+                    temp_v0_2 = 3;
+                    __asm__("" : "=r"(temp_v0_2) : "0"(temp_v0_2));
+                    M2C_FIELD(&D_80070328, int *, 0x4C) = temp_v0_2;
+                    __asm__ volatile("" : : : "memory");
+                    M2C_FIELD(&D_80070328, signed char *, 0x1B6) = 0;
+                    temp_v0_2 = M2C_FIELD(&D_80070328, int *, 0x160);
+                    life = *(int *)surfaceData;
+                    __asm__("" : "=r"(life) : "0"(life), "r"(temp_v0_2));
+                    temp_v0_2 += 1;
+                    __asm__ volatile("" : "=r"(temp_v0_2) : "0"(temp_v0_2), "r"(life) : "memory");
+                    M2C_FIELD(&D_80070328, int *, 0x15C) = life;
+                    __asm__ volatile("" : : : "memory");
+                    M2C_FIELD(&D_80070328, int *, 0x160) = temp_v0_2;
+                    return 0;
+                }
+                goto block_140;
+            }
+            return 0;
+        case 10:                                    /* switch 1 */
+            if (modeArg == 1) {
+                if ((M2C_FIELD(&D_80070328, int *, 0x50) != 0x13) && (M2C_FIELD(&D_80070328, int *, 0x50) != 0x11)) {
+                    if ((unsigned int) (M2C_FIELD(&D_80070328, int *, 0x50) - 7) >= 2U) {
+                        var_a0 = 0x31;
+                        func_8004BEF8(var_a0); return 1;
+                    }
+                    return 0;
+                }
+                goto block_140;
+            }
+            return 0;
+        case 12:                                    /* switch 1 */
+            if (M2C_FIELD(&D_80070328, int *, 0x1CC) == 0) {
+                if (M2C_FIELD(&D_80070328, int *, 0x50) == 0xD) {
+                    if (*(int *)surfaceData != 0) {
+                        M2C_FIELD(&D_80070328, int *, 0x284) = 0x5A;
+                        D_8006C6C0 += 1;
+                        D_8006C710 += 1;
+                        if ((M2C_FIELD(&D_80070328, int *, 0x240) != 0) || (D_8006C74C != 0)) {
+                            if (M2C_FIELD(&D_80070328, int *, 0x280) < 0) {
+                                M2C_FIELD(&D_80070328, int *, 0x280) = 0;
+                                goto block_132;
+                            }
+                            goto block_133;
+                        }
+block_132:
+                        if (M2C_FIELD(&D_80070328, int *, 0x280) >= 0) {
+block_133:
+                            temp_v0_3 = M2C_FIELD(&D_80070328, int *, 0x280) - 1;
+                            M2C_FIELD(&D_80070328, int *, 0x280) = temp_v0_3;
+                            if (temp_v0_3 < 0) {
+                                goto block_134;
+                            }
+                            goto mode_twelve_life;
+                        }
+block_134:
+                        var_a0 = 0x3A;
+                        if (M2C_FIELD(D_8006EE2C, int *, 0x124) == 0) {
+                            func_8004BEF8(0x1FU);
+                            if (D_8006FA38 >= 0) {
+                                M2C_FIELD(&D_80070328, int *, 0x4C) = 1;
+                                return 1;
+                            }
+                            goto block_139;
+                        }
+                        func_8004BEF8(var_a0); return 1;
+                    }
+                    goto block_140;
+                }
+            }
+            return 0;
+        }
+mode_twelve_life:
+        func_8004BEF8(0x1C);
+block_139:
+        return 1;
+    } else {
+block_140:
+        return 0;
+    }
+}
+
+#undef M2C_FIELD
 
 /* Retail source: asm/nonmatchings/spyroupdate/func_800408B8.s,
  * 0x800408B8..0x80040954; matrix/vector domains are preserved. */
