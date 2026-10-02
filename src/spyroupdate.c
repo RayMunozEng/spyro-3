@@ -3903,7 +3903,210 @@ add_final_offset:
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80049D70);
 
 // has overlay version in "animation.c"
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8004B324);
+/* Retail source: USA Rev 0 SCUS-94467,
+ * asm/nonmatchings/spyroupdate/func_8004B324.s, 0x8004B324..0x8004BA6C.
+ * Raw offsets and constants retain the instruction representation per call.
+ * Exact linked function bytes and complete EXE/overlay hashes are the match gate. */
+#define SPYRO_FIELD(expr, type_ptr, offset) (*(type_ptr)((signed char *)(expr) + (offset)))
+extern unsigned char D_80067A08[];
+extern int D_8006C708, D_8006C6D4;
+void func_8004B324(void) {
+    int var_a0;
+    int var_v0;
+    register int temp_s0 asm("$16");
+
+    if (SPYRO_FIELD(&D_80070328, int *, 0x20C) & 0x8000) {
+        func_80041C20();
+        if ((D_8006C5BC == 0x2C) && (SPYRO_FIELD(&D_80070328, int *, 0x24C) == 4) && (SPYRO_FIELD(&D_80070328, int *, 0x24) != 0) && (((int (*)(int))unk_ovlheader_8007431C)(1) != 0)) {
+            D_8006C6D4 = 0xFF;
+        }
+    } else {
+        if (SPYRO_FIELD(&D_80070328, int *, 0xB8) == 0) {
+            SPYRO_FIELD(&D_80070328, int *, 0x120) = (int) SPYRO_FIELD(&D_80070328, int *, 0x10C);
+        }
+        switch (SPYRO_FIELD(&D_80070328, int *, 0x48)) {
+        case 0:
+        case 15:
+            if (func_800438F4() == 0) {
+                func_80043728();
+            }
+            func_80041C20();
+            SPYRO_FIELD(&D_80070328, int *, 0xBC) = 0;
+            goto block_56;
+        case 1:
+        case 2:
+            func_800438F4();
+            func_80041C20();
+            func_80042A44();
+            func_80041930();
+            func_80043A38(0xC00);
+            if (SPYRO_FIELD(&D_80070328, int *, 0xB4) != 0) {
+                var_a0 = (int) (SPYRO_FIELD(&D_80070328, int *, 0xB4) * 0x15) >> 8;
+            } else {
+                var_a0 = SPYRO_FIELD(&D_80070328, int *, 0xA8) * 4;
+            }
+            if (var_a0 < 0x10) {
+                var_a0 = 0x10;
+            }
+            if (var_a0 >= 0x61) {
+                var_a0 = 0x60;
+            }
+            func_800443A4(var_a0);
+block_21:
+            SPYRO_FIELD(&D_80070328, int *, 0x28) = 0;
+            break;
+        case 3:
+            func_800438F4();
+            func_80041C20();
+            func_80042A44();
+            func_80041930();
+            goto block_58;
+        case 4:
+            func_800438F4();
+            func_80041C20();
+            func_80042A44();
+            func_80041930();
+            func_80043A38(0xC00);
+            if (SpawnParticle != 0) {
+                SpawnParticle(1, 0x21, 0, 0);
+            }
+            goto block_21;
+        case 5:
+            func_800438F4();
+            func_80041C20();
+            func_80042A44();
+            func_80041930();
+            func_80043A38(0xC00);
+            if (SpawnParticle != 0) {
+                SpawnParticle(1, 0x21, 0, 0);
+            __asm__ volatile("" : : : "memory");
+            }
+            goto block_21;
+        case 6:
+            func_80041C20();
+            func_80042A44();
+            func_80041930();
+            if (SPYRO_FIELD(&D_80070328, int *, 0x50) == 0xD) {
+                func_80042F64();
+                if ((SPYRO_FIELD(&D_80070328, int *, 0xA0) < 0) && (SPYRO_FIELD(&D_80070328, int *, 0x54) >= 4)) {
+                    SPYRO_FIELD(&D_80070328, int *, 0x4C) = (int) ((SPYRO_FIELD(&D_80070328, int *, 0x4C) & 0x80) | 1);
+                    goto block_34;
+                }
+                if (!(SPYRO_FIELD(&D_80070328, int *, 0x4C) & 0x80)) {
+                    if (!(D_8006E538 & 0x40)) {
+                        { register int nextState asm("$2") = 2; __asm__("" : "=r"(nextState) : "0"(nextState)); SPYRO_FIELD(&D_80070328, int *, 0x4C) = nextState; }
+                    }
+block_34:
+                    if (SPYRO_FIELD(&D_80070328, int *, 0x4C) & 0x80) {
+                        goto block_35;
+                    }
+                } else {
+block_35:
+                    if (SPYRO_FIELD(&D_80070328, int *, 0x8) <= SPYRO_FIELD(&D_80070328, int *, 0x144)) {
+                        SPYRO_FIELD(&D_80070328, int *, 0x4C) = (int) (SPYRO_FIELD(&D_80070328, int *, 0x4C) & ~0x80);
+                    }
+                }
+            } else if ((SPYRO_FIELD(&D_80070328, int *, 0xA0) < 0) && (SPYRO_FIELD(&D_80070328, int *, 0x54) >= 4)) {
+                if ((unsigned int) (SPYRO_FIELD(&D_80070328, int *, 0x4C) - 3) < 2U) {
+                    SPYRO_FIELD(&D_80070328, int *, 0x4C) = 4;
+                } else {
+                    { register int nextState asm("$2") = 1; __asm__("" : "=r"(nextState) : "0"(nextState)); SPYRO_FIELD(&D_80070328, int *, 0x4C) = nextState; }
+                }
+            } else if ((SPYRO_FIELD(&D_80070328, int *, 0x4C) == 0) && !(D_8006E538 & 0x40) && (SPYRO_FIELD(&D_80070328, int *, 0x144) == 0)) {
+                { register int nextState asm("$2") = 2; __asm__("" : "=r"(nextState) : "0"(nextState)); SPYRO_FIELD(&D_80070328, int *, 0x4C) = nextState; }
+            }
+            goto block_21;
+        case 13:
+            func_800438F4();
+            func_80041C20();
+            func_80042A44();
+            if ((SPYRO_FIELD(&D_80070328, int *, 0xB8) != 0) && (SPYRO_FIELD(&D_80070328, int *, 0xBC) == 0)) {
+                SPYRO_FIELD(&D_80070328, int *, 0xE4) = (int) (signed char)func_8004E880(SPYRO_FIELD(&D_80070328, int *, 0xC8), func_8004EDE8((Vector3D *)(&D_80070328 + 0xC0), 0), 0);
+            }
+            func_80043A38(0xC00);
+            func_80049590();
+            {
+                register int tableOffset asm("$2");
+                register unsigned char *soundTable asm("$3");
+                tableOffset = SPYRO_FIELD(&D_80070328, int *, 0x10C);
+                __asm__ ("" : "=r"(tableOffset) : "0"(tableOffset));
+                temp_s0 = tableOffset >> 6;
+                __asm__ volatile ("" : "=r"(temp_s0) : "0"(temp_s0));
+                tableOffset = D_8006C58C << 2;
+                soundTable = D_80067A08;
+                SPYRO_FIELD(&D_80070328, int *, 0x28) = 0;
+                tableOffset += (int)soundTable;
+                tableOffset += temp_s0;
+                temp_s0 = ((unsigned char *)D_8006C708)[*(unsigned char *)tableOffset];
+            }
+            if (temp_s0 != SPYRO_FIELD(&D_80070328, int *, 0x290)) {
+                if (func_8003BF6C(SPYRO_FIELD(&D_80070328, int *, 0x290), SPYRO_FIELD(&D_80070328, int *, 0x28C)) != 0) {
+                    func_8003BE70(SPYRO_FIELD(&D_80070328, int *, 0x28C));
+                }
+                SPYRO_FIELD(&D_80070328, int *, 0x28C) = -1;
+            }
+            SPYRO_FIELD(&D_80070328, int *, 0x290) = (int) temp_s0;
+            if (func_8003BF6C((int) temp_s0, SPYRO_FIELD(&D_80070328, int *, 0x28C)) == 0) {
+                SPYRO_FIELD(&D_80070328, int *, 0x28C) = PlaySound(SPYRO_FIELD(&D_80070328, int *, 0x290), 0, 4);
+            }
+            break;
+        case 7:
+        case 8:
+        case 14:
+        case 31:
+            func_80041C20();
+block_56:
+            func_80042A44();
+            goto block_21;
+        case 16:
+            func_80041C20();
+            func_80042A44();
+block_58:
+            func_80043A38(0xC00);
+            goto block_21;
+        case 17:
+        case 18:
+        case 24:
+            func_80041C20();
+            func_80042A44();
+            func_80041930();
+            goto block_21;
+        case 22:
+            func_80041C20();
+            func_80042A44();
+            func_80041930();
+            func_80049590();
+            if ((SPYRO_FIELD(&D_80070328, int *, 0x50) == 9) && (SpawnParticle != 0)) {
+                SpawnParticle(1, 9, 0, 0);
+            }
+            if ((SPYRO_FIELD(&D_80070328, int *, 0xA0) < 0) && (SPYRO_FIELD(&D_80070328, int *, 0x54) >= 4)) {
+                SPYRO_FIELD(&D_80070328, int *, 0x4C) = 1;
+            } else if ((SPYRO_FIELD(&D_80070328, int *, 0x4C) == 0) && !(D_8006E538 & 0x40)) {
+                SPYRO_FIELD(&D_80070328, int *, 0x4C) = 2;
+            }
+            goto block_21;
+        case 46:
+            func_80041C20();
+            func_80042A44();
+            if (SPYRO_FIELD(&D_80070328, int *, 0x4C) == 1) {
+                func_800494A8();
+            }
+            goto block_21;
+        default:
+            if (unk_ovlheader_800742F0 != 0) {
+                unk_ovlheader_800742F0();
+            }
+            break;
+        }
+        if (SPYRO_FIELD(&D_80070328, int *, 0xB8) != 0) {
+            SPYRO_FIELD(&D_80070328, int *, 0x10C) = (int) SPYRO_FIELD(&D_80070328, int *, 0x120);
+        }
+        SPYRO_FIELD(&D_80070328, unsigned char *, 0xFD) = 0;
+    }
+}
+
+#undef SPYRO_FIELD
+
 
 /**
  * PlaySpyroSounds() - func_8004BA6C() - MATCHING
