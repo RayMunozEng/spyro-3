@@ -59,7 +59,7 @@
 - [x] func_8001EBAC
 - [x] func_8001EC24
 - [x] func_8001EC5C
-- [ ] func_8001EDEC
+- [x] func_8001EDEC
 - [x] func_8001FABC
 - [x] func_8001FB10
 - [x] func_8001FB74

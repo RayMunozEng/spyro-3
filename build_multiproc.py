@@ -517,7 +517,7 @@ def build_file(file):
 
     debug_build = os.environ.get("DEBUG")
 
-    system(GCC + ("" if not debug_build else " -DDEBUG") + " " + GCC_FLAGS + " build/" + file + ".o.d " + file + ".c | " + CC + " " + C_FLAGS + " " + fileFlags + " | python3 " + MASPSX + " " + MASPSX_FLAGS + " | python3 ./tools/fix_str_align.py | python3 ./tools/fix_jtbl_align.py > build/" + out_s)
+    system(GCC + ("" if not debug_build else " -DDEBUG") + " " + GCC_FLAGS + " build/" + file + ".o.d " + file + ".c | " + CC + " " + C_FLAGS + " " + fileFlags + " | python3 ./tools/fix_coff_debug.py | python3 " + MASPSX + " " + MASPSX_FLAGS + " | python3 ./tools/fix_str_align.py | python3 ./tools/fix_jtbl_align.py > build/" + out_s)
     system(AS + " " + AS_FLAGS + " -o build/" + out + " build/" + out_s)
 
     return"build/" + out

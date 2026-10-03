@@ -110,6 +110,7 @@ build/src/%.o: src/%.c
 		
 	@$(GCC) $(DEBUG_FLAG) $(NON_MATCHING_FLAG) $(GCC_FLAGS) $@ -MMD -MP -MF $@.d $< | \
 		$(CC) $(C_FLAGS) |\
+		$(PYTHON) ./tools/fix_coff_debug.py | \
 		$(PYTHON) $(MASPSX) $(MASPSX_FLAGS) | \
 		$(PYTHON) $(FIX_STR_ALIGN) | \
 		$(PYTHON) $(FIX_JTBL_ALIGN) | \
