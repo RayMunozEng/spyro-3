@@ -1261,7 +1261,7 @@ void func_80014450() {
     else              func_800135A4(&camera.unk7c.pos[1], &D_80068F90, camera.unk6c);
 }
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_800144B4);
+#include "camera_update.inc"
 
 /* Retail source: USA Rev 0 PSX.EXE 0x80016568..0x80016764 (127 words).
  * Camera mode and angle deltas are scalar state updated once per camera tick.
