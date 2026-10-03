@@ -3,6 +3,16 @@ A decompilation project for the third game in the *Spyro the Dragon* series, **S
 
 This project aims to produce code that will build to an executable which byte-for-byte matches the one used in the final game. The earliest final version was selected for this project, but additional work to support changes made in the later versions may be supported in the future.
 
+## Fork authorship and AI use
+
+This is a fork of [The MobyCollective's Spyro 3 decompilation project](https://github.com/TheMobyCollective/spyro-3).
+
+**Except for code and material retained or taken from the original repository, the code and other additions in this fork are AI-generated using OpenAI Codex. They were not personally written by the fork owner and must not be attributed to the fork owner as their own handwritten code.**
+
+**The AI-generated additions have not yet been human-reviewed.** Automated compilation and byte-for-byte matching checks do not constitute human review.
+
+The fork owner directs the work. Codex generated the added decompilations, tooling changes, documentation, and subsequent edits. Code and material from the original repository remain attributable to their original contributors; this fork does not claim authorship of that work.
+
 ## Version Info
 The earliest release build of the game is used in this project:
 * Region: NTSC-U
