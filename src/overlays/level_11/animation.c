@@ -1,23 +1,889 @@
 #include "common.h"
+#include "stdutil.h"
+#include "spu.h"
+#include "ovl_header.h"
+#include "spyro.h"
 
 INCLUDE_ASM("asm/nonmatchings/overlays/level_11/animation", func_level_11_8008B6A0);
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_11/animation", func_level_11_8008E030);
+/* AI generated; not human reviewed. SCUS-94467 8008E030..8008E72C.
+ * Newly verified23 case47 and verified50 table/state routes reused against
+ * original11 selector scope, stack18 vector and numeric flag chains.
+ * Original11 uses standalone stack vector18, immediate A0/A1 pointer producers
+ * and S1 mask02000000, rather than23 saved vectorS1/maskS2. Source44-14/44-44
+ * remain byte offsets. Table8006D048+14, selector80071924&63, stride4,entry+4
+ * are numeric accesses; units, helper meanings and cadence remain unresolved.
+ * Empty lifetime constraints emit no code. All original words, strict full TU
+ * and every EXE/overlay hash required; compiled equality is not runtime parity.
+ */
+extern Spyro Callback11Player __asm__("D_80070328");
+int Callback11Call80037058(int x, int y) __asm__("func_80037058");
+void Callback11Call80041930(void) __asm__("func_80041930");
+void Callback11Call80041AE8(void) __asm__("func_80041AE8");
+void Callback11Call80041C20(void) __asm__("func_80041C20");
+void Callback11Call80042A44(void) __asm__("func_80042A44");
+void Callback11Call80043A38(int scale) __asm__("func_80043A38");
+extern int Callback11Word8006E538 __asm__("D_8006E538");
+extern int D_8006FA38,D_8006C648;
+extern int D_80071924;
+extern int** Callback11Table __asm__("D_8006D048+0x14");
+int Callback11Call80055E84(Moby*) __asm__("func_80055E84");
+void Callback11Call8004ED6C(void*,Vector3D*,Vector3D*) __asm__("func_8004ED6C");
+void Callback11Call8001BA30(Vector3D*,int,int,int,int,Moby*) __asm__("func_8001BA30");
+int Callback11Call80019138(Vector3D*,int,int,int,int,Moby*) __asm__("func_80019138");
+int Callback11Call8001830C(Vector3D*,Vector3D*,int,int,Moby*) __asm__("func_8001830C");
+extern int Callback11Word290 __asm__("D_80070328+0x290");
+extern unsigned char Callback11Flags[] __asm__("D_8006FCE6");
+extern unsigned char Callback11Values[] __asm__("D_8006FCF0");
+void Callback11Call80049590(void) __asm__("func_80049590");
+int Callback11Call8003BF6C(int,int) __asm__("func_8003BF6C");
+void func_level_11_8008E030(void) {
+    Vector3D localVector;
+    register int computedValue __asm__("$4");
+    register int* descriptor __asm__("$16");
+    register int decreasingValue __asm__("$4");
+    register int increasingValue __asm__("$4");
+    register int tableValue __asm__("$2");
+    register int valueOffset __asm__("$3");
+    int descriptorResult;
+    int flagOffset;
+
+    register int positionDelta __asm__("$2");
+    register int positionValue __asm__("$3");
+
+    switch (Callback11Player.animationState) {
+    case 0x14:
+    case 0x41:
+        if(func_800438F4()==0)func_80043728();
+        Callback11Call80041C20();
+        Callback11Player.unk9a=0;
+        Callback11Call80042A44();
+        goto clearSharedValue;
+    default:
+        return;
+    case 0x20:
+    case 0x44:
+    case 0x4A:
+        Callback11Call80041C20();
+        Callback11Call80042A44();
+        goto clearSharedValue;
+    case 0x42:
+    case 0x45:
+        func_800438F4();
+        Callback11Call80041C20();
+        Callback11Call80042A44();
+        Callback11Call80041930();
+        goto queryC00;
+    case 0x13:
+    case 0x15:
+        Callback11Call80041C20();
+        Callback11Call80042A44();
+        goto call41930;
+    case 0x1A:
+        Callback11Call80041C20();
+        Callback11Call80042A44();
+        goto queryC00;
+    case 0x24:
+    case 0x25:
+    case 0x30:
+        Callback11Call80041C20();
+        Callback11Call80042A44();
+        Callback11Call80043A38(0xC00);
+        if ((Callback11Player.ticksSinceLastSurfaceTouch == 0) && (func_80040954(Callback11Player.unk11[2]) == 9)) {
+            func_8004F178((Vector3D *) ((unsigned char*)&Callback11Player.ticksSinceLastSurfaceTouch + 0x94), (Vector3D *) ((unsigned char*)&Callback11Player.ticksSinceLastSurfaceTouch + 0x14));
+            Callback11Player.union144.a.unk13da = Callback11Player.unk7a[3].z;
+        }
+        Callback11Player.unk4[0] = 0;
+        if ((Callback11Player.unk5 == 1) && ((Callback11Player.animationStateFrames >= 0xD) || !(Callback11Word8006E538 & 0x40))) {
+            Callback11Player.unk5 = 2;
+        }
+        if (Callback11Player.unk5 != 3) {
+            Callback11Player.union144.a.unk13db.x = 0;
+            Callback11Player.union144.a.unk13db.y = 0;
+            return;
+        }
+        break;
+    case 0x28:
+    case 0x29:
+        Callback11Call80041C20();
+        Callback11Call80042A44();
+        descriptor=&Callback11Player.unk22[2];
+        if (Callback11Call8003BF6C((int) D_8006C654->underwater, *descriptor) != 0) {
+            valueOffset = *descriptor * 0x2C;
+            decreasingValue = *(int*)(Callback11Values + valueOffset);
+            {
+                register int below __asm__("$2") = decreasingValue < 0xC8;
+            __asm__ volatile("" : "=r"(below) : "0"(below) : "$4");
+            if(!below)goto setTableFlag;
+            tableValue=decreasingValue-0xC8;
+            goto storeTableValue;
+            }
+            goto setTableFlag;
+        }
+        goto clearSharedValue;
+    case 0x2A:
+        Callback11Call80041C20();
+        Callback11Call80042A44();
+        Callback11Call80049590();
+        descriptor=&Callback11Player.unk22[2];
+        if (Callback11Call8003BF6C((int) D_8006C654->underwater, *descriptor) == 0) {
+            descriptorResult = PlaySound((int) D_8006C654->underwater, 0, 4);
+            *descriptor = descriptorResult;
+            if (descriptorResult >= 0) {
+                func_8003C0B0(descriptorResult, 0x157C);
+                func_8003C140(*descriptor, 0x190);
+            }
+            Callback11Word290 = (int) D_8006C654->underwater;
+            __asm__ volatile("" : : : "$16", "memory");
+            descriptor=&Callback11Player.unk22[2];
+        }
+        if (Callback11Call8003BF6C((int) D_8006C654->underwater, *descriptor) != 0) {
+            valueOffset = *descriptor * 0x2C;
+            increasingValue = *(int*)(Callback11Values + valueOffset);
+            {
+                register int below __asm__("$2") = increasingValue < 0x13E8;
+            __asm__ volatile("" : "=r"(below) : "0"(below) : "$4");
+            if(!below)goto setTableFlag;
+            tableValue=increasingValue+0xC8;
+            goto storeTableValue;
+            }
+            goto setTableFlag;
+storeTableValue:
+            *(int*)(Callback11Values + valueOffset) = tableValue;
+setTableFlag:
+            flagOffset = *descriptor * 0x2C;
+            Callback11Flags[flagOffset] = Callback11Flags[flagOffset] | 0x10;
+        }
+        goto clearSharedValue;
+    case 0x2B:
+    case 0x2C:
+        Callback11Call80041C20();
+        Callback11Call80042A44();
+        Callback11Call80041AE8();
+        if ((unsigned char) Callback11Player.unk10[4] != 0) {
+            computedValue = -Callback11Player.unk9ha[4] - Callback11Call80037058(Callback11Player.position.x, Callback11Player.position.y);
+            positionValue = Callback11Player.unk4a - computedValue;
+            Callback11Player.unk4[0] = computedValue;
+            positionDelta = (int) Callback11Player.union144.a.unk13cc >> 6;
+            positionValue -= positionDelta;
+            __asm__("" : "=r"(positionValue) : "0"(positionValue));
+            Callback11Player.position.z=positionValue;
+            return;
+        }
+        break;
+    case 0x43:
+    case 0x46:
+    case 0x49:
+        Callback11Call80041C20();
+        Callback11Call80042A44();
+        Callback11Call80041930();
+        if(Callback11Player.unk7a[3].z < 0 && Callback11Player.animationStateFrames >= 4) {
+            Callback11Player.unk5=1;
+        } else {
+            if(Callback11Player.unk5==0 && !(Callback11Word8006E538 & 0x40) && Callback11Player.union144.a.unk13cb==0)
+                Callback11Player.unk5=2;
+        }
+        goto clearSharedValue;
+    case 0x47: {
+        register int progress __asm__("$4");
+        register int value __asm__("$2");
+        register int* sourceBase __asm__("$16");
+        register int flags __asm__("$17");
+        if(Callback11Player.ticksSinceLastSurfaceTouch) {
+            Callback11Call80041C20();
+            Callback11Call80042A44();
+        } else {
+            func_800438F4();
+            Callback11Call80041C20();
+            Callback11Call80042A44();
+            Callback11Call80041930();
+            Callback11Call80043A38(0xC00);
+        }
+        progress=Callback11Call80055E84(Callback11Player.critterMobyPtr);
+        if(Callback11Player.critterMobyPtr->animationState.id==6 && (unsigned int)(progress-2)<6) {
+            if(progress<6)value=(progress<<10)/6;
+            else value=0x400;
+            localVector.x=value;
+            __asm__ volatile("" : : : "memory");
+            sourceBase=&Callback11Player.unk4a;
+            localVector.y=0;
+            localVector.z=0x200-*sourceBase;
+            Callback11Call8004ED6C((unsigned char*)sourceBase-0x14,(&localVector),(&localVector));
+            {register Vector3D* argument0 __asm__("$4")=(&localVector);
+            register Vector3D* argument1 __asm__("$5")=(&localVector);
+            __asm__("" : "=r"(argument0), "=r"(argument1) : "0"(argument0), "1"(argument1));
+            sourceBase=(int*)((unsigned char*)sourceBase-0x44);
+            func_8004F194(argument0,argument1,(Vector3D*)sourceBase);}
+            flags=0x02000000;
+            Callback11Call8001BA30((&localVector),0x200,0,0,flags,Callback11Player.critterMobyPtr);
+            if((Callback11Call80019138((&localVector),0x200,0,0,flags,Callback11Player.critterMobyPtr)!=0 ||
+                Callback11Call8001830C((Vector3D*)sourceBase,(&localVector),0,0x02000000,Callback11Player.critterMobyPtr)!=0)) {
+                register int* selector __asm__("$16")=&D_80071924;
+                if(func_80040954(*selector)==3) {
+                    register int index __asm__("$2")=*selector;
+                    register int** table __asm__("$3")=Callback11Table;
+                    register int* entry __asm__("$3");
+                    index &= 63;
+                    entry=table[index];
+                    entry[1] |= flags;
+                }
+            }
+        }
+        goto clearSharedValue;
+    }
+    case 0x4B:
+    case 0x4C:
+    case 0x4D:
+        Callback11Call80041C20();
+        Callback11Call80042A44();
+        if(Callback11Player.unk5==1)func_800494A8();
+        goto clearSharedValue;
+    case 0x48:
+        Callback11Call80041C20();
+        Callback11Call80042A44();
+        if(Callback11Player.unk5!=0)goto call41930;
+queryC00:
+        Callback11Call80043A38(0xC00);
+        goto clearSharedValue;
+call41930:
+        Callback11Call80041930();
+clearSharedValue:
+        Callback11Player.unk4[0]=0;
+        return;
+    }
+}
+
 
 /**
  * func_level_11_8008E730() - ???() - MATCHING
  * Ready to add. Currently appropriate for introducing as an animation.inc.h.
  * https://decomp.me/scratch/WDEnn
  */
-INCLUDE_ASM("asm/nonmatchings/overlays/level_11/animation", func_level_11_8008E730);
+#define LEVEL_ID 11
+#define PlaySpyroSounds_level_11 func_level_11_8008E730
+#include "overlay/animation.inc.h"
 
 /**
  * func_level_11_8008E86C() - ???() - MATCHING
  * Ready to add. Interestingly implies the level 10 version of this has some unusual extra cases.
  * https://decomp.me/scratch/GJ9gX
  */
-INCLUDE_ASM("asm/nonmatchings/overlays/level_11/animation", func_level_11_8008E86C);
+extern unsigned char D_8006E548[];
+extern unsigned char* D_8006C570;
+void func_80043ABC(Vector3D*);
+void func_80043E00(Vector3D*);
+void func_80043F3C(Vector3D*);
+void func_level_11_8008E86C(int index) {
+    D_8006C570 = D_8006E548 + index * 16;
+    switch (spyro.animationState) {
+    case 0x13:
+    case 0x15:
+    case 0x43:
+    case 0x44:
+    case 0x46:
+    case 0x49:
+    case 0x4b:
+    case 0x4c:
+    case 0x4d:
+        func_80043ABC(0);
+        break;
+    case 0x47:
+    case 0x48:
+        {
+            register int* state __asm__("$4") = (int*)((char*)&spyro + 0xB8);
+            __asm__("" : "=r"(state) : "0"(state));
+            if (*state) func_80043ABC(0);
+            else func_80043ABC(&spyro.unk9e);
+        }
+        break;
+    case 0x14:
+    case 0x1a:
+    case 0x20:
+    case 0x2b:
+    case 0x2c:
+    case 0x41:
+    case 0x42:
+    case 0x45:
+    case 0x4a:
+        func_80043ABC(&spyro.unk9e);
+        break;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_11/animation", func_level_11_8008E8FC);
+/* AI generated; not human reviewed. SCUS-94467 USA Rev0 8008E8FC.
+ * Verified32 water/swirl,22 squish/death and skateboard scalar2000,
+ * verified23 character41..4D. Original11 jump stack40 and water10/20/30;
+ * original shared244/250 tail before41 and flags1B9/1BA tail after47 retained.
+ * Numeric offsets are bytes. Word60 wrap800/801/FFF gives0/-7FF/-1;
+ * signed table-2/0/2 gives-1/0/1. Each invocation preserves original code,
+ * local jumps, owned tables; strict complete TU and all hashes required.
+ * Helper meanings, physical units, audio, cadence and live parity remain open.
+ */
+int Transition11_func_8004EDE8(Vector3D*,int) __asm__("func_8004EDE8");
+extern short D_800658A0[];
+extern short D_80065920[];
+extern int Raw11Animation __asm__("D_80070328+0x48");
+extern unsigned char Raw11Union[] __asm__("D_80070328+0x144");
+extern unsigned char Raw11Movement[] __asm__("D_80070328+0x50");
+extern int Raw11X __asm__("D_80070328+0x8C");
+extern int Raw11Word __asm__("D_80070328+0x50");
+extern int D_8006C700;
+int Call11E9E4(int) __asm__("func_8004E9E4");
+int Call11EA2C(int) __asm__("func_8004EA2C");
+void Transition11_func_8004F0E8(Vector3D*,int) __asm__("func_8004F0E8");
+extern Spyro Transition11_D_80070328 __asm__("D_80070328");
+int Transition11_func_8004EDE8(Vector3D*, int) __asm__("func_8004EDE8");
+void Transition11_func_8004F168(Vector3D*) __asm__("func_8004F168");
+extern int Transition11_D_8006E524 __asm__("D_8006E524");
+extern unsigned char Transition11RawUnion[] __asm__("D_80070328+0x144");
+extern int Transition11RawMovement __asm__("D_80070328+0x50");
+extern void (*Call11Header)(Moby*) __asm__("unk_ovlheader_8007432C");
+extern unsigned char Raw11State[] __asm__("D_80070328+0x50");
+
+extern int D_80071934;
+int Call11A358(Vector3D*,int) __asm__("func_8001A358");
+extern int Raw11NegativeWord __asm__("D_80070328+0x28");
+int Transition11_func_8003636C(int,int) __asm__("func_8003636C");
+void Transition11_func_800441F0(void) __asm__("func_800441F0");
+void Transition11_func_80043A38(int) __asm__("func_80043A38");
+int Transition11_func_8004E880(int,int,int) __asm__("func_8004E880");
+void func_level_11_8008E8FC(int arg0){
+    struct {Vector3D first; int gap1; Vector3D second; int gap2; Vector3D third; int gap3; Vector3D fourth;} vectors;
+    register int negativeWord __asm__("$3");
+    int firstResult,secondResult,firstWrappedWord,secondWrappedWord,firstParticleKind,secondParticleKind,firstParticleSubtype,secondParticleSubtype;
+    register Vector3D* destination __asm__("$4");
+
+    int lengthResult;
+
+
+    register int soundSelector __asm__("$4");
+    register int soundZero __asm__("$5");
+    register unsigned char* savedBase __asm__("$3");
+    register unsigned char* privateData __asm__("$16");
+    register unsigned char* stateBase __asm__("$17");
+    int maskedValue;
+    register int tableIndex __asm__("$2");
+    register int tableValue __asm__("$3");
+    int shiftedValue;
+    register Vector3D *damageSource __asm__("$16");
+    register Vector3D *damageDestination __asm__("$16");
+    Vector3D *firstJumpSource;
+    Vector3D *secondJumpSource;
+    enum MovementState nextSubstate;
+    register int comparisonKind __asm__("$2");
+    register int previousValue __asm__("$2");
+    register int firstAnimation __asm__("$3");
+    register unsigned char* soundTable __asm__("$3");
+    register unsigned char* unionBase __asm__("$5");
+    register unsigned char* movement __asm__("$3");
+    register unsigned char* initialMovement __asm__("$5");
+    register void *jumpPrivate __asm__("$18");
+    register void *damagePrivate __asm__("$18");
+    register Vector3D* jumpVector __asm__("$16");
+    register int oldMovementC __asm__("$5");
+    switch(arg0){
+    case 0x14:
+        Transition11_D_80070328.movementState = MOVEMENT_STATE_STAND;
+        Transition11_D_80070328.unk5 = 0;
+        Transition11_func_800441F0();
+        Transition11_D_80070328.grounded = 1;
+        Transition11_D_80070328.union144.a.unk13cb = Transition11_func_8003636C(1, 3);
+        Transition11_D_80070328.union144.a.unk13cc = 0;
+        goto clearPointers;
+    case 0x13: {
+        register Moby* sourceMoby __asm__("$6");
+        register int yawValue __asm__("$5");
+        register int positionZ __asm__("$2");
+        register int heightValue __asm__("$3");
+        register int privateValue __asm__("$4");
+        stateBase=(unsigned char*)&Transition11RawMovement;
+        privateData = Transition11_D_80070328.m_WhirlwindPointer->mobyTag;
+        *(int*)stateBase=14;
+        Transition11_D_80070328.unk5 = 0;
+        Transition11_D_80070328.grounded = 0;
+        Transition11_func_8004F168((Vector3D *) (stateBase + 0x3C));
+        sourceMoby=Transition11_D_80070328.m_WhirlwindPointer;
+        yawValue=Transition11_D_80070328.rotation.yaw;
+        positionZ=Transition11_D_80070328.position.z;
+        heightValue=sourceMoby->position.z;
+        privateValue=*(int*)privateData;
+        __asm__("" : "=r"(sourceMoby), "=r"(yawValue), "=r"(positionZ), "=r"(heightValue) : "0"(sourceMoby), "1"(yawValue), "2"(positionZ), "3"(heightValue));
+        Transition11_D_80070328.union144.a.unk13cc=yawValue;
+        Transition11_D_80070328.union144.a.unk13cb=positionZ;
+        __asm__ volatile("" : : : "memory");
+        heightValue+=privateValue;
+        Transition11_D_80070328.union144.a.unk13ce.x=heightValue;
+        heightValue-=positionZ;
+        heightValue-=0x800;
+        Transition11_D_80070328.union144.a.unk13ce.z=heightValue;
+        __asm__ volatile("" : : : "memory");
+        heightValue = ((int) (heightValue << 0xA) >> 0xA) + 0x400;
+        __asm__("" : "=r"(heightValue) : "0"(heightValue));
+        Transition11_D_80070328.union144.a.unk13ce.y = heightValue;
+        maskedValue = (((sourceMoby->angle.yaw * 0x10) - yawValue) - heightValue) & 0xFFF;
+        Transition11_D_80070328.union144.a.unk13ce.y = maskedValue;
+        if (maskedValue >= 0x801) {
+            Transition11_D_80070328.union144.a.unk13ce.y = maskedValue - 0x1000;
+        }
+        Transition11_D_80070328.union144.a.unk13da = *(int*)(privateData+4);
+        func_8004F178((Vector3D *) (stateBase + 0x10C), &sourceMoby->position);
+        Transition11_D_80070328.unk13e[0] = (int) Transition11_D_80070328.m_WhirlwindPointer->angle.yaw;
+        positionZ=*(int*)(privateData+8);
+        __asm__ volatile("" : "=r"(positionZ) : "0"(positionZ) : "memory");
+        Transition11_D_80070328.unk20a = 0;
+        Transition11_D_80070328.critterMobyPtr = 0;
+        Transition11_D_80070328.unk13e[1] = positionZ;
+        return;
+    }
+    case 0x15:
+        Transition11_D_80070328.movementState=7;
+        Transition11_D_80070328.grounded=0;
+        Transition11_D_80070328.unk5=0;
+        if(Transition11_D_80070328.unk17a&0x490){
+            register int first __asm__("$2")=Transition11_D_80070328.unk17e.x;
+            register int second __asm__("$3")=Transition11_D_80070328.unk17e.z;
+            register int third __asm__("$2");
+            __asm__("" : "=r"(first),"=r"(second) : "0"(first),"1"(second));
+            first<<=6;
+            Transition11_D_80070328.unk7a[2].x=first;
+            __asm__ volatile("" : : : "memory");
+            third=Transition11_D_80070328.unk17e.y;
+            __asm__("" : "=r"(third),"=r"(second) : "0"(third),"1"(second));
+            second<<=6;
+            Transition11_D_80070328.unk7a[2].z=second;
+            __asm__ volatile("" : "=r"(third) : "0"(third) : "memory");
+            third<<=6;
+            Transition11_D_80070328.unk7a[2].y=third;
+        }else{
+            shiftedValue=Transition11_func_8004E880(-Transition11_D_80070328.unk7a[2].x,-Transition11_D_80070328.unk7a[2].y,1);
+            Transition11_D_80070328.unk7b=shiftedValue;
+            Transition11_D_80070328.unk7a[2].x=(Call11EA2C(shiftedValue)<<12)>>12;
+            Transition11_D_80070328.unk7a[2].y=(Call11E9E4(Transition11_D_80070328.unk7b)<<12)>>12;
+            Transition11_D_80070328.unk7a[2].z=0x1000;
+        }
+        goto clearPointers;
+    case 0x1A:
+        savedBase = Transition11RawUnion;
+        __asm__("" : "=r"(savedBase) : "0"(savedBase));
+        destination = (Vector3D*)(savedBase - 0xB8);
+        __asm__("" : "=r"(destination) : "0"(destination));
+        oldMovementC = Transition11RawMovement;
+        Transition11RawMovement = MOVEMENT_STATE_HURT;
+        Transition11_D_80070328.unk5 = 0;
+        *(int*)savedBase = oldMovementC;
+        Transition11_func_8004F168(destination);
+        Transition11_D_80070328.grounded = 1;
+        Transition11_D_8006E524 = 0xF;
+        if (SpawnParticle != 0) {
+            SpawnParticle(5, 0xA, 0, 0);
+        }
+        soundSelector=D_8006C654->squish;
+        soundZero=0;
+        PlaySound(soundSelector,(Moby*)soundZero,0);
+        goto clearPointers;
+    case 0x20:
+        Transition11_D_80070328.movementState = MOVEMENT_STATE_DEATH;
+        Transition11_D_80070328.unk5 = 0;
+        Transition11_func_80043A38(0xC00);
+        Transition11_D_80070328.grounded = 1;
+        if ((arg0 == 0x3A) || (arg0 == 0x6C)) {
+            PlaySound((int) D_8006C654->lavaBurn, 0, 0);
+        }
+        Transition11_D_8006E524 = 0xF;
+        goto clearPointers;
+    case 0x24:case 0x25:case 0x30: {
+        register unsigned char* state __asm__("$16")=Raw11State;
+        register int kind __asm__("$17");
+        register int previous __asm__("$2")=*(int*)state;
+        register int currentScalar __asm__("$2");
+        register int scalar __asm__("$3");
+        register int savedRoll __asm__("$3");
+        __asm__("" : "=r"(previous) : "0"(previous));
+        kind=19;
+        __asm__("" : "=r"(kind) : "0"(kind));
+
+        destination=(Vector3D*)(state+0x48);
+        if(previous!=kind){
+            Transition11_D_80070328.union144.a.unk13db.z=0;
+            Transition11_D_80070328.unk5=0;
+            Transition11_func_8004F168((Vector3D*)(state+0xFC));
+            Transition11_D_80070328.union144.a.unk13da=0;
+            __asm__ volatile("" : "=r"(state) : "0"(state) : "memory");
+            destination=(Vector3D*)(state+0x48);
+        }
+        *(int*)state=kind;
+        Transition11_D_80070328.unk8[0]=Transition11_func_8004EDE8(destination,0);
+        currentScalar=D_8006C700;
+        __asm__("" : "=r"(currentScalar) : "0"(currentScalar));
+        scalar=0x2000;
+        __asm__("" : "=r"(scalar) : "0"(scalar));
+        Transition11_D_80070328.horizontalSpeed=scalar;
+        __asm__ volatile("" : "=r"(currentScalar) : "0"(currentScalar) : "memory");
+        if(currentScalar<0x2000)D_8006C700=scalar;
+        Transition11_func_80043A38(0xC00);
+        savedRoll=Transition11_D_80070328.rotation.roll;
+        __asm__("" : "=r"(savedRoll) : "0"(savedRoll));
+        Transition11_D_80070328.grounded=1;
+        Transition11_D_80070328.unk15c=0;
+        Transition11_D_80070328.union144.a.unk13cc=0;
+        Transition11_D_80070328.union144.a.unk13db.x=0;
+        Transition11_D_80070328.union144.a.unk13db.y=0;
+        Transition11_D_80070328.unk13a[0]=0x20000;
+        Transition11_D_80070328.union144.a.unk13cb=savedRoll;
+        return;
+    }
+    case 0x28:
+    case 0x29:
+        if (((unsigned) (Transition11_D_80070328.movementState - 0xB) >= 2U) && (Transition11_D_80070328.movementState != MOVEMENT_STATE_HURT)) {
+            if (SpawnParticle != 0) {
+                func_8004F178(&vectors.first, (Vector3D *) ((unsigned char*)&Transition11_D_80070328.movementState - 0x50));
+                if ((Transition11_D_80070328.movementState == MOVEMENT_STATE_SWIM_SURFACE) && (({
+                        negativeWord = Raw11NegativeWord;
+                        __asm__("" : "=r"(negativeWord) : "0"(negativeWord));
+                        negativeWord;
+                    }) < 0)) {
+                    vectors.first.z = -negativeWord;
+                    SpawnParticle(6, 0x2E, &vectors.first, 0);
+                    firstParticleKind = 4;
+                    firstParticleSubtype = 0x29;
+                    goto emitFirstParticle;
+                }
+                if (Transition11_D_80070328.movementState == MOVEMENT_STATE_CHARGE) {
+                    vectors.first.z += 0x400;
+                    firstResult = Call11A358(&vectors.first, 0x800);
+                    vectors.first.z = firstResult;
+                    if (firstResult != 0) {
+                        firstParticleKind = 6;
+                        if (D_80071934 != 0) {
+                            firstParticleSubtype = 0x2E;
+emitFirstParticle:
+                            SpawnParticle(firstParticleKind, firstParticleSubtype, &vectors.first, 0);
+                        }
+                    }
+                }
+            }
+            firstWrappedWord = Transition11_D_80070328.rotation.pitch & 0xFFF;
+            Transition11_D_80070328.rotation.pitch = firstWrappedWord;
+            if (firstWrappedWord >= 0x801) {
+                Transition11_D_80070328.rotation.pitch = firstWrappedWord - 0x1000;
+            }
+            if (Transition11_D_80070328.rotation.pitch > 0) {
+                Transition11_D_80070328.rotation.pitch = 0;
+            }
+            if (arg0 == 0x28) {
+                Transition11_D_80070328.unk5 = 1;
+            }
+            Transition11_func_8004F168((Vector3D *) ((unsigned char*)&Transition11_D_80070328.rotation.pitch + 0xEC));
+            Transition11_D_80070328.union144.a.unk13cb = MOVEMENT_STATE_STAND;
+            Transition11_D_80070328.unk8[0] = Transition11_func_8004EDE8((Vector3D *) ((unsigned char*)&Transition11_D_80070328.rotation.pitch + 0x38), 0);
+            Transition11_D_80070328.grounded = 1;
+            PlaySound((int) D_8006C654->waterDive, 0, 0);
+            goto clearUnderwaterWord;
+        }
+        if (Transition11_D_80070328.animationState == 0x2A) {
+            Transition11_D_80070328.unk5 = 2;
+clearUnderwaterWord:
+            Transition11_D_80070328.union144.a.unk13da = 0;
+        }
+        Transition11_D_80070328.movementState = MOVEMENT_STATE_SWIM_UNDERWATER;
+        Transition11_D_80070328.unk20a = 0;
+        Transition11_D_80070328.critterMobyPtr = 0;
+        __asm__ volatile("" : : : "memory");
+        goto clearPointers;
+    case 0x2A: {
+        register unsigned char* state __asm__("$17")=Raw11State;
+        register Vector3D* localVector __asm__("$16");
+        if ((unsigned) (*(int*)state - 0xB) >= 2U) {
+            if (SpawnParticle != 0) {
+                localVector=&vectors.second;
+                func_8004F178(localVector,(Vector3D*)(state-0x50));
+                if ((*(int*)state == MOVEMENT_STATE_SWIM_SURFACE) && (({
+                        negativeWord = Raw11NegativeWord;
+                        __asm__("" : "=r"(negativeWord) : "0"(negativeWord));
+                        negativeWord;
+                    }) < 0)) {
+                    vectors.second.z = -negativeWord;
+                    SpawnParticle(6, 0x2E, localVector, 0);
+                    secondParticleKind = 4;
+                    secondParticleSubtype = 0x29;
+                    goto emitSecondParticle;
+                }
+                if (Transition11_D_80070328.movementState == MOVEMENT_STATE_CHARGE) {
+                    localVector=&vectors.second;
+                    vectors.second.z += 0x400;
+                    secondResult = Call11A358(localVector, 0x800);
+                    vectors.second.z = secondResult;
+                    if (secondResult != 0) {
+                        secondParticleKind = 6;
+                        if (D_80071934 != 0) {
+                            secondParticleSubtype = 0x2E;
+emitSecondParticle:
+                            SpawnParticle(secondParticleKind, secondParticleSubtype, localVector, 0);
+                        }
+                    }
+                }
+            }
+            if (Transition11_D_80070328.animationState == 0x2E) {
+                Transition11_D_80070328.rotation.pitch -= 0x400;
+            }
+            secondWrappedWord = Transition11_D_80070328.rotation.pitch & 0xFFF;
+            Transition11_D_80070328.rotation.pitch = secondWrappedWord;
+            if (secondWrappedWord >= 0x801) {
+                Transition11_D_80070328.rotation.pitch = secondWrappedWord - 0x1000;
+            }
+            if (Transition11_D_80070328.rotation.pitch > 0) {
+                Transition11_D_80070328.rotation.pitch = 0;
+            }
+            Transition11_D_80070328.unk5 = 1;
+            Transition11_func_8004F168((Vector3D *) ((unsigned char*)&Transition11_D_80070328.animationState + 0x104));
+            Transition11_D_80070328.union144.a.unk13cb = MOVEMENT_STATE_STAND;
+            Transition11_D_80070328.unk8[0] = Transition11_func_8004EDE8((Vector3D *) ((unsigned char*)&Transition11_D_80070328.animationState + 0x50), 0);
+            Transition11_D_80070328.grounded = 1;
+            PlaySound((int) D_8006C654->waterDive, 0, 0);
+        }
+        Transition11_D_80070328.movementState = MOVEMENT_STATE_SWIM_CHARGE;
+        Transition11_D_80070328.unk13a[0] = 0x20000;
+        goto clearPointers;
+    }
+    case 0x2B:case 0x2C: {
+        register Vector3D* localVector __asm__("$16");
+        register unsigned char* unionPointer __asm__("$17");
+        {register int stateWord __asm__("$3")=Transition11RawMovement;
+        register int initialKind __asm__("$2")=10;
+        __asm__("" : "=r"(stateWord),"=r"(initialKind) : "0"(stateWord),"1"(initialKind));
+        if(stateWord!=initialKind){
+            PlaySound((int)D_8006C654->waterSurface,0,0);
+            unionPointer=Transition11RawUnion;
+            *(int*)unionPointer=(-Transition11_D_80070328.unk7a[2].z)>>2;
+            if(Transition11RawMovement!=8){Transition11_D_80070328.union144.a.unk13cc=0x5900;Transition11RawMovement=10;}
+            Transition11_D_80070328.unk5=0;
+            Transition11_D_80070328.unk8[0]=Transition11_func_8004EDE8((Vector3D*)(unionPointer-0xAC),0);
+            Transition11_D_80070328.grounded=1;
+            Transition11_D_80070328.unk15b=1;
+            localVector=&vectors.third;
+            func_8004F178(localVector,(Vector3D*)(unionPointer-0x144));
+            vectors.third.z+=0x400;
+            lengthResult=Call11A358(localVector,0x800);
+            vectors.third.z=lengthResult;
+            if(lengthResult!=0 && D_80071934!=0 && SpawnParticle){SpawnParticle(10,0x29,localVector,0);SpawnParticle(6,0x2E,localVector,0);}
+        }
+        }
+        goto clearPointers;
+    }
+clearPointers:
+        Transition11_D_80070328.unk20a=0;
+        Transition11_D_80070328.critterMobyPtr=0;
+        return;
+    case 0x41:
+        Transition11_D_80070328.movementState = MOVEMENT_STATE_STAND;
+        Transition11_D_80070328.unk5 = MOVEMENT_STATE_STAND;
+        Transition11_func_800441F0();
+        Transition11_D_80070328.grounded = 1;
+        return;
+    case 0x42:
+    case 0x45:
+        Transition11_D_80070328.movementState = MOVEMENT_STATE_WALK;
+        if ((arg0 == 0x57) && (Transition11_D_80070328.ticksSinceLastSurfaceTouch != 0)) {
+            func_8004F178((Vector3D *) ((Vector3D *) ((unsigned char*)(&Transition11_D_80070328.movementState) + 0x3C)), (Vector3D *) ((Vector3D *) ((unsigned char*)(&Transition11_D_80070328.movementState) + 0x48)));
+            Transition11_D_80070328.unk5 = MOVEMENT_STATE_WALK;
+        } else {
+            Transition11_D_80070328.unk5 = MOVEMENT_STATE_STAND;
+        }
+        Transition11_D_80070328.unk8[0] = Transition11_func_8004EDE8(&Transition11_D_80070328.unk7a[3], 0);
+        Transition11_func_80043A38(0xC00);
+        Transition11_D_80070328.union144.a.unk13cb = MOVEMENT_STATE_STAND;
+        Transition11_D_80070328.grounded = 1;
+        goto clearFlags;
+    case 0x43:
+    case 0x49:
+        initialMovement=Raw11Movement;
+        __asm__("" : "=r"(initialMovement) : "0"(initialMovement));
+        comparisonKind=10;
+        __asm__("" : "=r"(comparisonKind) : "0"(comparisonKind));
+        {register Moby* critter __asm__("$3")=Transition11_D_80070328.critterMobyPtr;
+        register int current __asm__("$4")=*(int*)initialMovement;
+        __asm__("" : "=r"(critter),"=r"(current) : "0"(critter),"1"(current));
+        jumpPrivate=critter->mobyTag;
+        __asm__("" : "=r"(jumpPrivate) : "0"(jumpPrivate));
+        if ((current == comparisonKind) && (SpawnParticle != 0) && (Transition11_D_80070328.unk4[0] < 0)) {
+            jumpVector=&vectors.fourth;
+            func_8004F178(jumpVector, (Vector3D*)(initialMovement-0x50));
+            vectors.fourth.z = -Transition11_D_80070328.unk4[0];
+            SpawnParticle(6, 0x2E, jumpVector, 0);
+            SpawnParticle(4, 0x29, jumpVector, 0);
+        }
+        }
+        movement=Raw11Movement;
+        __asm__("" : "=r"(movement) : "0"(movement));
+        firstJumpSource=(Vector3D*)(movement+0x48);
+        *(int*)movement=MOVEMENT_STATE_JUMP_HOVER;
+        func_8004F178((Vector3D*)(movement+0x3C), (Vector3D *) firstJumpSource);
+        Transition11_D_80070328.unk8[0] = Transition11_func_8004EDE8((Vector3D *) firstJumpSource, 0);
+        if (arg0 == 0x49) {
+            Transition11_D_80070328.unk7a[2].z = 0x2580;
+        } else {
+            Transition11_D_80070328.unk7a[2].z = 0x1680;
+            *(int*)((unsigned char*)jumpPrivate+0x4C) = 0;
+        }
+        Transition11_D_80070328.unk5 = MOVEMENT_STATE_STAND;
+        Transition11_D_80070328.union144.a.unk13cb = MOVEMENT_STATE_STAND;
+        Transition11_D_80070328.grounded = 0;
+        soundSelector = D_8006C654->jump;
+        soundZero=0;
+        goto playJumpSound;
+    case 0x44:
+        Transition11_D_80070328.unk5 = MOVEMENT_STATE_STAND;
+        if (Transition11_D_80070328.movementState == MOVEMENT_STATE_JUMP_HOVER) {
+            if(Transition11_D_80070328.animationState==0x43)Transition11_D_80070328.unk5=1;
+            else if(Transition11_D_80070328.animationState==0x46)Transition11_D_80070328.unk5=Transition11_D_80070328.movementState;
+            else if(Transition11_D_80070328.animationState==0x49)Transition11_D_80070328.unk5=4;
+        } else {
+            Transition11_D_80070328.movementState = MOVEMENT_STATE_FALL;
+        }
+        Transition11_D_80070328.unk8[0] = Transition11_func_8004EDE8(&Transition11_D_80070328.unk7a[3], 0);
+        Transition11_D_80070328.grounded = 0;
+        goto clearFlags;
+    case 0x46:
+        movement=Raw11Movement;
+        __asm__("" : "=r"(movement) : "0"(movement));
+        secondJumpSource=(Vector3D*)(movement+0x48);
+        *(int*)movement=MOVEMENT_STATE_JUMP_HOVER;
+        func_8004F178((Vector3D*)(movement+0x3C), (Vector3D *) secondJumpSource);
+        Transition11_D_80070328.unk8[0] = Transition11_func_8004EDE8((Vector3D *) secondJumpSource, 0);
+        Transition11_D_80070328.unk7a[2].z = 0x12C0;
+        Transition11_D_80070328.unk5 = MOVEMENT_STATE_STAND;
+        Transition11_D_80070328.union144.a.unk13cb = MOVEMENT_STATE_STAND;
+        Transition11_D_80070328.grounded = 0;
+        soundSelector = D_8006C654->jump;
+        soundZero=0;
+playJumpSound:
+        PlaySound(soundSelector,(Moby*)soundZero,0);
+        return;
+    case 0x47:
+        if (Transition11_D_80070328.ticksSinceLastSurfaceTouch != 0) {
+            if (Transition11_D_80070328.movementState != MOVEMENT_STATE_FALL) {
+                if (Transition11_D_80070328.animationState == 0x43) {
+                    Transition11_D_80070328.unk5 = MOVEMENT_STATE_WALK;
+                } else if (Transition11_D_80070328.animationState == 0x46) {
+                    Transition11_D_80070328.unk5 = MOVEMENT_STATE_JUMP_HOVER;
+                } else {
+                    Transition11_D_80070328.unk5 = MOVEMENT_STATE_STAND;
+                }
+            }
+            Transition11_D_80070328.movementState = MOVEMENT_STATE_FALL;
+            Transition11_D_80070328.grounded = 0;
+            Transition11_D_80070328.idle = 0;
+            Transition11_D_80070328.unk15g = 0;
+        } else {
+            Transition11_D_80070328.movementState = MOVEMENT_STATE_WALK;
+            Transition11_D_80070328.unk5 = MOVEMENT_STATE_STAND;
+            Transition11_func_80043A38(0xC00);
+            Transition11_D_80070328.union144.a.unk13cb = MOVEMENT_STATE_STAND;
+            Transition11_D_80070328.grounded = 1;
+        }
+        Transition11_D_80070328.unk8[0] = Transition11_func_8004EDE8(&Transition11_D_80070328.unk7a[3], 0);
+        goto clearFlags;
+clearFlags:
+        Transition11_D_80070328.idle = 0;
+        Transition11_D_80070328.unk15g = 0;
+        return;
+    case 0x48: {
+        register Moby* critter __asm__("$2")=Transition11_D_80070328.critterMobyPtr;
+        __asm__ volatile("" : "=r"(critter) : "0"(critter) : "memory");
+        damagePrivate=critter->mobyTag;
+        __asm__ volatile("" : "=r"(damagePrivate) : "0"(damagePrivate) : "memory");
+        previousValue=Raw11Word;
+        __asm__ volatile("" : "=r"(previousValue) : "0"(previousValue) : "memory");
+        unionBase=Raw11Union;
+        __asm__("" : "=r"(previousValue),"=r"(unionBase) : "0"(previousValue),"1"(unionBase));
+        *(int*)unionBase=previousValue;
+        Raw11Word = MOVEMENT_STATE_HURT;
+        if (Transition11_D_80070328.damageFlags & 8) {
+            damageSource = (Vector3D *) (unionBase - 0xAC);
+            Transition11_D_80070328.unk5 = MOVEMENT_STATE_WALK;
+            func_8004F178((Vector3D *) (unionBase - 0xB8), damageSource);
+            Transition11_D_80070328.unk8[0] = Transition11_func_8004EDE8(damageSource, 0);
+            soundTable=(unsigned char*)D_8006C654;
+            soundZero=0;
+            __asm__ volatile("" : "=r"(soundTable),"=r"(soundZero) : "0"(soundTable),"1"(soundZero) : "memory");
+            Transition11_D_80070328.unk7a[2].z = 0x1680;
+            *(int*)((unsigned char*)damagePrivate+0x4C) = 0;
+            Transition11_D_80070328.grounded = 0;
+            Transition11_D_80070328.union144.a.unk13cc = 1;
+            PlaySound(soundTable[12],(Moby*)soundZero,0);
+        } else {
+            Transition11_D_80070328.unk5 = MOVEMENT_STATE_STAND;
+            damageDestination = (Vector3D *) (unionBase - 0xB8);
+            if (Transition11_D_80070328.unk17a & 0x400) {
+                func_8004F178(damageDestination, (Vector3D *) ((Vector3D *) (unionBase + 0xD8)));
+                Transition11_func_8004F0E8(damageDestination, 6);
+            } else if (Transition11_D_80070328.unk22[5] >= 0) {
+                tableIndex=Transition11_D_80070328.unk22[5]*2;
+                tableValue=*(short*)((unsigned char*)D_80065920+tableIndex);
+                __asm__("" : "=r"(tableValue) : "0"(tableValue));
+                Raw11X=tableValue>>1;
+                tableIndex=*(short*)((unsigned char*)D_800658A0+tableIndex);
+                Transition11_D_80070328.unk7a[2].z=0;
+                __asm__ volatile("" : "=r"(tableIndex) : "0"(tableIndex) : "memory");
+                Transition11_D_80070328.unk7a[2].y=tableIndex>>1;
+            } else {
+                    __asm__("" : "=r"(unionBase) : "0"(unionBase));
+                Transition11_func_8004F168((Vector3D*)(unionBase-0xB8));
+            }
+            func_8004F178(&Transition11_D_80070328.unk7a[1], (Vector3D *) ((unsigned char*)(&Transition11_D_80070328.unk7a[1]) + 0xC));
+            Transition11_func_80043A38(0xC00);
+            Transition11_D_80070328.grounded = 1;
+        }
+        Transition11_D_8006E524 = 0xF;
+        if (SpawnParticle != 0) {
+            SpawnParticle(5, 0xA, 0, 0);
+            return;
+        }
+        break;
+    }
+    case 0x4A:
+        Transition11_D_80070328.movementState = MOVEMENT_STATE_DEATH;
+        Transition11_D_80070328.unk5 = MOVEMENT_STATE_STAND;
+        Transition11_func_80043A38(0xC00);
+        Transition11_D_80070328.grounded = 1;
+        Transition11_D_8006E524 = 0xF;
+        return;
+    case 0x4B:
+        firstAnimation=Raw11Animation;
+        __asm__("" : "=r"(firstAnimation) : "0"(firstAnimation));
+        if(firstAnimation==0x44){
+            if(Transition11_D_80070328.unk5==4)goto setHeadbashFlag;
+            comparisonKind=0x49;
+            __asm__ volatile("" : "=r"(comparisonKind) : "0"(comparisonKind) : "memory");
+            firstAnimation=Raw11Animation;
+            __asm__("" : "=r"(firstAnimation) : "0"(firstAnimation));
+        }else comparisonKind=0x49;
+        if(firstAnimation==comparisonKind){
+setHeadbashFlag:
+            Transition11_D_80070328.union144.a.unk13cc=1;
+        }else Transition11_D_80070328.union144.a.unk13cc=0;
+        Transition11_D_80070328.movementState = MOVEMENT_STATE_HEADBASH;
+        Transition11_D_80070328.unk5 = MOVEMENT_STATE_STAND;
+        Transition11_func_8004F168((Vector3D *) ((Vector3D *) ((unsigned char*)(&Transition11_D_80070328.movementState) + 0x3C)));
+        Transition11_D_80070328.unk7a[2].z = 0x800;
+        Transition11_D_80070328.grounded = 0;
+        Transition11_D_80070328.unk13a[0] = 0x20000;
+        Transition11_D_80070328.union144.a.unk13cb = MOVEMENT_STATE_STAND;
+        return;
+    case 0x4C:
+        Transition11_D_80070328.movementState=MOVEMENT_STATE_HEADBASH;
+        nextSubstate=1;
+        goto setHeadbashSubstate;
+    case 0x4D:
+        Transition11_D_80070328.movementState=MOVEMENT_STATE_HEADBASH;
+        nextSubstate=2;
+setHeadbashSubstate:
+        Transition11_D_80070328.unk5=nextSubstate;
+        Transition11_D_80070328.grounded=0;
+        Transition11_D_80070328.unk13a[0]=0x20000;
+        return;
+    }
+}
+
 
 INCLUDE_ASM("asm/nonmatchings/overlays/level_11/animation", func_level_11_8008F910);

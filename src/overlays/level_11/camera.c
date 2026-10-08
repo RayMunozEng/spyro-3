@@ -185,4 +185,85 @@ void func_level_11_80091BDC(int cameraState) {
  * WIP
  * https://decomp.me/scratch/g19Id
  */
-INCLUDE_ASM("asm/nonmatchings/overlays/level_11/camera", func_level_11_80091CA8);
+extern int DecodedCameraMode __asm__("D_8006E044");
+extern int DecodedCameraOverride __asm__("D_8006E160");
+extern int DecodedCameraHeld __asm__("D_8006E538");
+extern int DecodedCameraPressed __asm__("D_8006E53C");
+extern unsigned char DecodedCameraPlayer[] __asm__("D_80070328");
+extern int DecodedCameraModeTable[] __asm__("D_80068CAC");
+/* SCUS-94467 USA Rev0 80091CA8..80091ED0, 139 original words.
+ * Reuses verified func_level_24_80096990: mode3 replaces mode4 and
+ * modes23/36 retain separate table paths and their original dispatch mode.
+ * Raw input masks, player+1B9 byte and player+48 word remain retail.
+ * Units, table/flag producers and caller cadence remain open.
+ * Empty constraints preserve allocation/control flow without instructions.
+ * AI generated; not human reviewed. See batch2026-10-05-1665.
+ */
+void func_level_11_80091CA8(void) {
+    register int mode __asm__("$3") = DecodedCameraMode;
+    register int next __asm__("$4");
+    register int index __asm__("$2");
+    switch (mode) {
+    case 3:
+        next = DecodedCameraOverride;
+        if (next) goto change;
+        if (DecodedCameraHeld & 16) {
+            register int enabled __asm__("$2") = DecodedCameraPlayer[0x1B9];
+            next = 7;
+            if (enabled) goto change;
+        }
+        if (DecodedCameraPressed & 12) {
+            next = 8;
+            goto change;
+        }
+        index = *(int*)(DecodedCameraPlayer + 0x48);
+        __asm__("" : : : "memory");
+        mode = DecodedCameraMode;
+        goto compareTable;
+    case 12:
+        if (DecodedCameraHeld & 16) {
+            register int enabled __asm__("$2") = DecodedCameraPlayer[0x1B9];
+            next = 7;
+            if (enabled) goto change;
+        }
+        if (DecodedCameraPressed & 12) {
+            next = 8;
+            goto change;
+        }
+        next = DecodedCameraOverride;
+        if (!next) {
+            next = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
+            __asm__("" : "=r"(next) : "0"(next));
+            goto change;
+        }
+        __asm__("" : : : "memory");
+        if (next != DecodedCameraMode) goto change;
+        mode = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
+        next = 2;
+        if (mode != 2) return;
+        goto change;
+    case 23:
+        next = DecodedCameraOverride;
+        if (next) goto change;
+        next = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
+        if (next == mode) return;
+        if (!next) goto defaultMode;
+        __asm__ volatile("" : : : "memory");
+        goto change;
+    case 36:
+        next = DecodedCameraOverride;
+        if (next) goto change;
+        index = *(int*)(DecodedCameraPlayer + 0x48);
+compareTable:
+        next = DecodedCameraModeTable[index];
+        if (next == mode) return;
+        if (next) goto change;
+defaultMode:
+        next = 6;
+        break;
+    default:
+        return;
+    }
+change:
+    func_80016764(next);
+}

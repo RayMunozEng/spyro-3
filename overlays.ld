@@ -172,8 +172,8 @@ OVERLAY main_BSS_END : NOCROSSREFS SUBALIGN(4) {
 
     .loading {
         HEADER_GENERAL(loading, 8)
-        build/src/overlays/loading/loading1.o(.rodata);
         build/src/overlays/loading/loading1.o(.rodata.jtbl);
+        build/src/overlays/loading/loading1.o(.rodata);
         build/src/overlays/loading/loading2.o(.rodata);
         build/src/overlays/loading/loading2.o(.rodata.jtbl);
         build/src/overlays/loading/loading3.o(.rodata);

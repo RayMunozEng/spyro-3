@@ -205,4 +205,59 @@ void func_level_10_8008B3E0(int cameraState) {
  * Not quite there yet, there's a block that I can't get to appear
  * https://decomp.me/scratch/MDxON
  */
-INCLUDE_ASM("asm/nonmatchings/overlays/level_10/camera", func_level_10_8008B528);
+extern int DecodedCameraMode __asm__("D_8006E044");
+extern int DecodedCameraOverride __asm__("D_8006E160");
+extern int DecodedCameraHeld __asm__("D_8006E538");
+extern int DecodedCameraPressed __asm__("D_8006E53C");
+extern unsigned char DecodedCameraPlayer[] __asm__("D_80070328");
+extern int DecodedCameraModeTable[] __asm__("D_80068CAC");
+/* SCUS-94467 USA Rev 0: level 10, 0x8008B528..0x8008B684.
+ * Raw mode values and input masks retain the original dispatch order.
+ * Word table index and player byte reads are copied without conversion.
+ * Empty asm retains the incoming mode lifetime and emits no instructions.
+ * AI generated; not yet human reviewed. Caller cadence remains unresolved.
+ */
+void func_level_10_8008B528(void) {
+    register int mode __asm__("$3") = DecodedCameraMode;
+    register int next __asm__("$4");
+    register int index __asm__("$2");
+    switch (mode) {
+    case 3:
+    case 4:
+        __asm__("" : : "r"(mode));
+        next = DecodedCameraOverride;
+        if (next) goto change;
+        if ((DecodedCameraHeld & 16) && DecodedCameraPlayer[0x1B9]) {
+            next = 7;
+            goto change;
+        }
+        if (DecodedCameraPressed & 12) {
+            next = 8;
+            goto change;
+        }
+        index = *(int*)(DecodedCameraPlayer + 0x48);
+        mode = DecodedCameraMode;
+        goto lookup;
+    case 17:
+        next = DecodedCameraOverride;
+        if (!next) {
+            next = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
+            goto change;
+        }
+        if (next == mode) return;
+        goto change;
+    case 23:
+        next = DecodedCameraOverride;
+        if (next) goto change;
+        index = *(int*)(DecodedCameraPlayer + 0x48);
+    lookup:
+        next = DecodedCameraModeTable[index];
+        if (next == mode) return;
+        if (!next) next = 6;
+        break;
+    default:
+        return;
+    }
+change:
+    func_80016764(next);
+}

@@ -1,6 +1,6 @@
 <!-- loading1.c -->
 - [ ] func_loading_8007494C
-- [ ] func_loading_80075114
+- [x] func_loading_80075114
 
 <!-- loading2.c -->
 - [ ] func_loading_80075360
@@ -9,7 +9,7 @@
 - [ ] func_loading_80076538
 
 <!-- loading3.c -->
-- [ ] func_loading_80076EE8
+- [x] func_loading_80076EE8
 - [ ] func_loading_80076FEC
 - [ ] func_loading_80077438
 - [ ] func_loading_80077964
@@ -20,9 +20,9 @@
 <!-- loading5.c -->
 - [x] func_loading_80078F88
 - [x] func_loading_80078FB0
-- [ ] func_loading_80079240
+- [x] func_loading_80079240
 
 <!-- loading6.c -->
-- [ ] func_loading_800795BC
-- [ ] func_loading_80079A0C
+- [x] func_loading_800795BC
+- [x] func_loading_80079A0C
 

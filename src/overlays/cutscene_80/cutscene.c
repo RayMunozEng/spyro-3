@@ -1,13 +1,37 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/overlays/cutscene_80/cutscene", func_cutscene_80_800748CC);
+/* Same call-wrapper form already used by upstream cutscene_61. */
+void func_cutscene_80_80076C98(void);
+void func_cutscene_80_800748CC(void) {
+    func_cutscene_80_80076C98();
+}
 
-INCLUDE_ASM("asm/nonmatchings/overlays/cutscene_80/cutscene", func_cutscene_80_800748EC);
+/* Same call-wrapper form already used by upstream cutscene_61. */
+void func_cutscene_80_80076EF0(void);
+void func_cutscene_80_800748EC(void) {
+    func_cutscene_80_80076EF0();
+}
 
-INCLUDE_ASM("asm/nonmatchings/overlays/cutscene_80/cutscene", func_cutscene_80_8007490C);
+/* Same call-wrapper form already used by upstream cutscene_61. */
+void func_cutscene_80_8007708C(void);
+void func_cutscene_80_8007490C(void) {
+    func_cutscene_80_8007708C();
+}
 
-INCLUDE_ASM("asm/nonmatchings/overlays/cutscene_80/cutscene", func_cutscene_80_8007492C);
+/* Same call-wrapper form already used by upstream cutscene_61. */
+void func_cutscene_80_80077400(void);
+void func_cutscene_80_8007492C(void) {
+    func_cutscene_80_80077400();
+}
 
-INCLUDE_ASM("asm/nonmatchings/overlays/cutscene_80/cutscene", func_cutscene_80_8007494C);
+/* Same call-wrapper form already used by upstream cutscene_61. */
+void func_cutscene_80_800776B0(void);
+void func_cutscene_80_8007494C(void) {
+    func_cutscene_80_800776B0();
+}
 
-INCLUDE_ASM("asm/nonmatchings/overlays/cutscene_80/cutscene", func_cutscene_80_8007496C);
+/* Same call-wrapper form already used by upstream cutscene_61. */
+void func_cutscene_80_80077890(void);
+void func_cutscene_80_8007496C(void) {
+    func_cutscene_80_80077890();
+}

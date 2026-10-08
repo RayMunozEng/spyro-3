@@ -1,13 +1,21 @@
 #include "common.h"
+#include "pad.h"
 
-INCLUDE_ASM("asm/nonmatchings/overlays/cutscene_76/animation", func_cutscene_76_80076610);
+/* Retail-selected 16-byte PadState; shared selector stored at 0x8006C570. */
+extern PadState* D_8006C570;
 
-INCLUDE_ASM("asm/nonmatchings/overlays/cutscene_76/animation", func_cutscene_76_80076630);
+void func_cutscene_76_80076610(int index) {
+    D_8006C570 = &pad.store[index];
+}
 
-INCLUDE_ASM("asm/nonmatchings/overlays/cutscene_76/animation", func_cutscene_76_80076638);
+void func_cutscene_76_80076630(void) {}
 
-INCLUDE_ASM("asm/nonmatchings/overlays/cutscene_76/animation", func_cutscene_76_80076640);
+void func_cutscene_76_80076638(void) {}
 
-INCLUDE_ASM("asm/nonmatchings/overlays/cutscene_76/animation", func_cutscene_76_80076660);
+void func_cutscene_76_80076640(int index) {
+    D_8006C570 = &pad.store[index];
+}
 
-INCLUDE_ASM("asm/nonmatchings/overlays/cutscene_76/animation", func_cutscene_76_80076668);
+void func_cutscene_76_80076660(void) {}
+
+void func_cutscene_76_80076668(void) {}

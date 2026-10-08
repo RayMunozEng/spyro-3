@@ -1,0 +1,41 @@
+# Verified overlay batch 2026-10-04-874
+
+AI-generated additions and integration; not yet human-reviewed.
+
+Retail authority: SCUS-94467 USA Rev 0, original assembly sources listed below. Existing field and helper names are reused; no new interpretation of unknown fields is claimed. Each routine operates once per invocation; original access widths, constants and branch conditions are preserved. Confidence: exact compiled bytes.
+
+Accepted 25 functions, 6700 retail words including tables. Full EXE and all overlay hash verification passed in `build/overlay_batch874.full.log`; the focused linked audit found zero mismatches. EXE SHA-256: `e5406997dccc7300c8198498c20b9d6c4c0a547813be1010446b6c4e5d50e39f`.
+
+Falsifiable vectors: compare each original instruction/table word at its recorded assembly address against the corresponding linked overlay; rebuild and check every complete overlay hash. Browser-engine and semantic runtime interpretations are not established by this batch.
+
+Source baseline: original `func_level_10_80079088` and the normalized repeated families listed below; existing upstream `Moby`, `Vector3D16`, `Vector3D`, and `SpawnParticle` declarations are reused. Private velocity components are signed 16-bit values; angle updates consume only low bytes and wrap on byte stores. The dot-product route preserves signed shifts by 11 and 13, the helper parameter 4096, and halfword wrapping after adding the returned vector. The position domain and helper normalization semantics remain unresolved. Vertical changes are exactly -3, -16 for class 0x12F, or -6, with signed minimum -128. Particle routes preserve original flag priority, remaining-counter masks, random masks, callback arguments, and post-callback flag rereads. Caller cadence, particle selector meanings, and helper effects require separate producer/consumer evidence. Empty compiler constraints emit no instructions and preserve load ordering, register allocation, and the original initially true loop guard. No instruction-bearing assembly is introduced.
+
+Categories: {'signed velocity update and ordered flag-selected particle routes': 25}.
+
+| Function | Kind | Retail words | Original words SHA-256 | Assembly source |
+| --- | --- | ---: | --- | --- |
+| `func_level_10_80079088` | signed velocity update and ordered flag-selected particle routes | 268 | `361f01f818d66ac6d9fee1d350347c284fae14402a9b81e2a1640f7e8cf812d3` | `asm/nonmatchings/overlays/level_10/moby/func_level_10_80079088.s` |
+| `func_level_11_800790EC` | signed velocity update and ordered flag-selected particle routes | 268 | `5d91427f0f2d324a792efbef8d09ad0a4c5e991b8ebd7afc96977ce2afe95494` | `asm/nonmatchings/overlays/level_11/moby/func_level_11_800790EC.s` |
+| `func_level_12_80078DFC` | signed velocity update and ordered flag-selected particle routes | 268 | `69d8099213d247f67b2882223769763c45ac8bc7fb1f96024c60accbcb672644` | `asm/nonmatchings/overlays/level_12/moby/func_level_12_80078DFC.s` |
+| `func_level_13_8007A444` | signed velocity update and ordered flag-selected particle routes | 268 | `d145f2295740e0333278eac3d457617f109adbaf4007fb29667e25fc70ec76da` | `asm/nonmatchings/overlays/level_13/moby/func_level_13_8007A444.s` |
+| `func_level_14_80079664` | signed velocity update and ordered flag-selected particle routes | 268 | `0725bf1c0ab7bd2288d23902b715f9914cf881574d234a7aca5ca9dcd9d87be8` | `asm/nonmatchings/overlays/level_14/moby/func_level_14_80079664.s` |
+| `func_level_16_80078944` | signed velocity update and ordered flag-selected particle routes | 268 | `36d0123e133d494f3a0dd24e2455af8577568d182c3771a95d7b6b5b7f8d7339` | `asm/nonmatchings/overlays/level_16/moby/func_level_16_80078944.s` |
+| `func_level_20_80079618` | signed velocity update and ordered flag-selected particle routes | 268 | `a5db49cc0a8c30789cf49e3f69930c9e4b23fd89a286a9aa8103f6f65b13d68e` | `asm/nonmatchings/overlays/level_20/moby/func_level_20_80079618.s` |
+| `func_level_21_80079878` | signed velocity update and ordered flag-selected particle routes | 268 | `1c71e8ff50983d95ba935b098374b48e3a1eb657f3a4dfb790d3e9ea870a425c` | `asm/nonmatchings/overlays/level_21/moby/func_level_21_80079878.s` |
+| `func_level_22_8007A3EC` | signed velocity update and ordered flag-selected particle routes | 268 | `4db792c065ad6374c65a04f36e5618a29273273a187e4989b4093093fb8c3a7a` | `asm/nonmatchings/overlays/level_22/moby/func_level_22_8007A3EC.s` |
+| `func_level_23_8007A180` | signed velocity update and ordered flag-selected particle routes | 268 | `146511daae5898597553c29f69384bdb0bab60c4d8e3b83e249608524aebf80f` | `asm/nonmatchings/overlays/level_23/moby/func_level_23_8007A180.s` |
+| `func_level_24_8007A080` | signed velocity update and ordered flag-selected particle routes | 268 | `9d7a8d81f83afe2f341deacc7421fbead9a121fc63df98e83ad5dba330f946ac` | `asm/nonmatchings/overlays/level_24/moby/func_level_24_8007A080.s` |
+| `func_level_26_80079418` | signed velocity update and ordered flag-selected particle routes | 268 | `a23c018ff898e5611dad6f5137338f799c5b963ef01ea68856338e90c6986e3d` | `asm/nonmatchings/overlays/level_26/moby/func_level_26_80079418.s` |
+| `func_level_30_80079308` | signed velocity update and ordered flag-selected particle routes | 268 | `45bbef779140de5bf65307f1084aae2046ff60443e7d9b2cce8c6ca1873ea76b` | `asm/nonmatchings/overlays/level_30/moby/func_level_30_80079308.s` |
+| `func_level_31_800797E0` | signed velocity update and ordered flag-selected particle routes | 268 | `003e187eb4744183f02df40a34e8de01609f0b552660a0a1e3268e4ae210b6df` | `asm/nonmatchings/overlays/level_31/moby/func_level_31_800797E0.s` |
+| `func_level_32_80079FD0` | signed velocity update and ordered flag-selected particle routes | 268 | `3a776ba15780a9a91b820abe9f9288f08521c698b92043b8b574ebfee92435f5` | `asm/nonmatchings/overlays/level_32/moby/func_level_32_80079FD0.s` |
+| `func_level_33_80079E58` | signed velocity update and ordered flag-selected particle routes | 268 | `f3fe8692509943e75b683337bd1d50d5d163d9491211b51ac7d1eeb8f1797e80` | `asm/nonmatchings/overlays/level_33/moby/func_level_33_80079E58.s` |
+| `func_level_34_8007AD88` | signed velocity update and ordered flag-selected particle routes | 268 | `f609759fb934e016e349517fcfe39ec2ea69a39fd54282152484439fdbd1cf88` | `asm/nonmatchings/overlays/level_34/moby/func_level_34_8007AD88.s` |
+| `func_level_36_80078960` | signed velocity update and ordered flag-selected particle routes | 268 | `79a6e1dc39c3c09fb815f5ce8132eae5769713ffdf2b8a9113c65f4cb5dcec23` | `asm/nonmatchings/overlays/level_36/moby/func_level_36_80078960.s` |
+| `func_level_40_80078B20` | signed velocity update and ordered flag-selected particle routes | 268 | `709e124cb7617b39a55aba32321e0d6cc6bb5aff69274c033db32a80830a974d` | `asm/nonmatchings/overlays/level_40/moby/func_level_40_80078B20.s` |
+| `func_level_41_8007B018` | signed velocity update and ordered flag-selected particle routes | 268 | `c0b3b2474906122ae0e54ef447c62c8c3963903ed6b278de210817b475d44fd4` | `asm/nonmatchings/overlays/level_41/moby/func_level_41_8007B018.s` |
+| `func_level_42_8007A1AC` | signed velocity update and ordered flag-selected particle routes | 268 | `54c613f07516c035b9426641ae846cbb2de65ba04a587029e03e37c8c864e0d8` | `asm/nonmatchings/overlays/level_42/moby/func_level_42_8007A1AC.s` |
+| `func_level_43_80079818` | signed velocity update and ordered flag-selected particle routes | 268 | `00575627a1a4c282cf3078a9285a274aad18da70f00373bde684bfec8260b0b1` | `asm/nonmatchings/overlays/level_43/moby/func_level_43_80079818.s` |
+| `func_level_44_800797BC` | signed velocity update and ordered flag-selected particle routes | 268 | `cab95c92a606a26f838f8f9435b738e97624ae0210dc5a2b2cda41afec7732bd` | `asm/nonmatchings/overlays/level_44/moby/func_level_44_800797BC.s` |
+| `func_level_46_80079354` | signed velocity update and ordered flag-selected particle routes | 268 | `38bcce0e68f02cfceb9cee45ace843b35054e6898413c720c5000b799058e095` | `asm/nonmatchings/overlays/level_46/moby/func_level_46_80079354.s` |
+| `func_level_50_800792AC` | signed velocity update and ordered flag-selected particle routes | 268 | `b1e2cc08d59de9c077e76cc1ec7e5ad75cba83653ce78cedc54e5d2741a7abff` | `asm/nonmatchings/overlays/level_50/moby/func_level_50_800792AC.s` |

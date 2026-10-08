@@ -2,56 +2,73 @@
 #include "camera.h"
 #include "stdutil.h"
 #include "spyro.h"
+#include "pad.h"
+#include "cheat.h"
 
 // sbss
 extern int D_8006C6D0;
-extern char g_CheatFlags;
 extern int D_8006E050;
 
 ///////////////////////////////////////////////////////////////////////
 
+/* Readability baseline: TheMobyCollective/spyro-3, fc206c745091a11a9ff7e96072e7afcf8b435be0,
+ * src/camera.c: func_8001204C, func_8001241C, func_800142AC, func_80014354.
+ * Existing structure fields and enum names replace raw offsets and literals.
+ * Retail authority remains the corresponding SCUS-94467 Rev 0 disassemblies.
+ * Each routine executes once per call; integer units and access widths are
+ * unchanged. Confidence: exact compiled behavior, verified by all linked words
+ * and the full EXE SHA-256 e5406997dccc7300c8198498c20b9d6c4c0a547813be1010446b6c4e5d50e39f.
+ */
+
 /* Retail source: asm/nonmatchings/camera/func_8001204C.s,
  * 0x8001204C..0x80012168; reset and cleanup execute once on call. */
-extern int D_8006E1D0, D_8006E1CC, D_8006E538, D_8006E044, D_8006E038;
+extern int D_8006E1D0, D_8006E538, D_8006E044, D_8006E038;
 extern char D_80070328;
 extern void (*unk_ovlheader_80074328)(void*);
-void func_8005955C(int);
 void func_80055D24(void*, int);
 void func_80050B88(void*);
 void func_80055B18(void*);
+/* Only the two tag slots touched by this routine are described here.
+ * Retail loads/stores prove pointer slots at byte offsets 0x70 and 0x88.
+ * Other tag bytes remain unidentified. */
+typedef struct {
+    unsigned char reserved00[0x70];
+    void* unk70;
+    unsigned char reserved74[0x14];
+    void* unk88;
+} CameraAgent9Tag;
+
+/* Existing retail routine at 0x8005955C, named as in upstream. */
+extern void SetGeomScreen(int) asm("func_8005955C");
+
 void func_8001204C(void) {
-    char* moby;
-    void* outer;
-    void* object;
     func_80012168();
     func_80017028();
-    func_8005955C(D_8006E1D0 + 0x155);
-    D_8006E1CC = 0;
-    if (*(int*)(&D_80070328 + 0x24C) == 4) {
-        outer = *(void**)(&D_80070328 + 0x250);
-        moby = *(char**)outer;
-        if ((D_8006E538 & 0x80) != 0) {
-            int stage = *(int*)(&D_80070328 + 0x48);
-            if (stage == 0x7B || (stage == 0x7A && D_8006E044 == 0x1F)) {
-                func_80055D24(outer, 4);
-                if (unk_ovlheader_80074328 != 0)
-                    unk_ovlheader_80074328(*(void**)(&D_80070328 + 0x250));
-                goto end;
+    SetGeomScreen(g_Camera.unk1c4[5] + 0x155);
+    g_Camera.unk1c4[4] = 0;
+    if (g_Spyro.critterMode == CRITTER_AGENT_9) {
+        CameraAgent9Tag* tag = g_Spyro.critterMobyPtr->mobyTag;
+        if ((pad.state.held & SQU) &&
+            (g_Spyro.animationState == ANIMATION_STATE_AGENT_9_BOMB_HOLD
+                 || (g_Spyro.animationState == ANIMATION_STATE_AGENT_9_BOMB_RAISE
+                    && g_Camera.cameraState == CAMERA_AGENT_9_POV))) {
+            func_80055D24(g_Spyro.critterMobyPtr, 4);
+            if (unk_ovlheader_80074328 != 0) {
+                unk_ovlheader_80074328(g_Spyro.critterMobyPtr);
             }
         }
-        object = *(void**)(moby + 0x88);
-        if (object != 0) {
-            func_80050B88(object);
-            *(void**)(moby + 0x88) = 0;
-        }
-        object = *(void**)(moby + 0x70);
-        if (object != 0) {
-            func_80055B18(object);
-            *(void**)(moby + 0x70) = 0;
+        else {
+            if (tag->unk88 != 0) {
+                func_80050B88(tag->unk88);
+                tag->unk88 = 0;
+            }
+            if (tag->unk70 != 0) {
+                func_80055B18(tag->unk70);
+                tag->unk70 = 0;
+            }
         }
     }
-end:
-    D_8006E038 = 0;
+    g_Camera.unk40 = 0;
 }
 
 /**
@@ -118,14 +135,10 @@ void func_80012168(void) {
 
 /**
  * ???() - func_8001241C() - MATCHING
- * Almost ready to add, but must have struct usage corrected first
  * https://decomp.me/scratch/FD6TW
  */
 extern int D_8006E088;
-extern int D_8006E08C;
-extern int D_8006E090;
 extern int D_8006E094;
-extern int D_8006E098;
 extern int D_8006E09C;
 extern int D_8006E0A0;
 extern int D_8006E0A4;
@@ -138,23 +151,16 @@ extern int D_8006E0BC;
 extern int D_8006E0C0;
 extern int D_8006E148;
 void func_8001241C(void) {
-    int temp_v1;
-    int var_v0;
-    var_v0 = D_8006E148;
-    if (var_v0 != 0) {
-        D_8006E0B0 = var_v0;
-    } else {
-        temp_v1 = ((D_8006E088 - D_8006E09C) & 0xFFF);
-        D_8006E0B0 = (D_8006E088 - D_8006E09C) & 0xFFF;
-        D_8006E0B0 = temp_v1 < 0x801 ? D_8006E0B0 : temp_v1 - 0x1000;
+    if (g_Camera.unk148[2]) {
+        g_Camera.unk7c.pos[3].pos.azimuth = g_Camera.unk148[2];
     }
-    D_8006E0B8 = D_8006E090 - D_8006E0A4;
-    D_8006E0B4 = (D_8006E08C - D_8006E0A0) & 0xFFF;
-    if (D_8006E0B4 >= 0x801) D_8006E0B4 -= 0x1000;
-    D_8006E0BC = (D_8006E094 - D_8006E0A8) & 0xFFF;
-    if (D_8006E0BC >= 0x801) D_8006E0BC -= 0x1000;
-    D_8006E0C0 = (D_8006E098 - D_8006E0AC) & 0xFFF;
-    if (D_8006E0C0 >= 0x801) D_8006E0C0 -= 0x1000;
+    else {
+        SUB_ANGLE(g_Camera.unk7c.pos[3].pos.azimuth, g_Camera.unk7c.pos[1].pos.azimuth, g_Camera.unk7c.pos[2].pos.azimuth);
+    }
+    g_Camera.unk7c.pos[3].pos.radius = g_Camera.unk7c.pos[1].pos.radius - g_Camera.unk7c.pos[2].pos.radius;
+    SUB_ANGLE(g_Camera.unk7c.pos[3].pos.elevation, g_Camera.unk7c.pos[1].pos.elevation, g_Camera.unk7c.pos[2].pos.elevation);
+    SUB_ANGLE(g_Camera.unk7c.pos[3].yaw,           g_Camera.unk7c.pos[1].yaw,           g_Camera.unk7c.pos[2].yaw);
+    SUB_ANGLE(g_Camera.unk7c.pos[3].pitch,         g_Camera.unk7c.pos[1].pitch,         g_Camera.unk7c.pos[2].pitch);
 }
 
 extern int D_8006E0C4, D_8006E0C8;
@@ -1212,11 +1218,11 @@ update:
 }
 
 void func_800142AC(void) {
-    if (*((unsigned char*)&g_CheatFlags + 2)) {
-        D_8006E050 = 0;
-    } else {
-        D_8006E050 = 7;
+    if (g_CheatFlags.cameraMode != 0) {
+        g_Camera.unk58 = 0;
+        return;
     }
+    g_Camera.unk58 = 7;
 }
 
 /**
@@ -1231,25 +1237,23 @@ void func_800142E0() {
 
 /**
  * ???() - func_80014354() - MATCHING
- * Ready to add
  * https://decomp.me/scratch/Oix8L
  */
 extern CameraPosition D_80069058, D_800719A8, D_80068FA4, D_80068FF4;
 extern int D_8006E1CC;
 void func_80014354(void) {
-    int* state = &camera.unk168;
-    if (*state == 13) {
-        func_800135A4((CameraPosition*)((char*)state - 0xD8), &D_80069058, camera.unk6c);
-    } else if (*(int*)((char*)&spyro + 0x244) != 0) {
-        func_800135A4((CameraPosition*)((char*)state - 0xD8), &D_800719A8, camera.unk6c);
-    } else if (*(int*)((char*)&spyro + 0x50) == 5) {
-        func_800135A4((CameraPosition*)((char*)state - 0xD8), &D_80068FA4, camera.unk6c);
-    } else if (*(int*)((char*)&spyro + 0x50) == 6) {
-        func_800135A4((CameraPosition*)((char*)state - 0xD8), &D_80068FF4, camera.unk6c);
+    if (camera.unk168 == 0xD) {
+        func_800135A4(&camera.unk7c.pos[1], &D_80069058, camera.unk6c);
+    } else if (g_Spyro.unk20a != 0) {
+        func_800135A4(&camera.unk7c.pos[1], &D_800719A8, camera.unk6c);
+    } else if (g_Spyro.movementState == MOVEMENT_STATE_GLIDE) {
+        func_800135A4(&camera.unk7c.pos[1], &D_80068FA4, camera.unk6c);
+    } else if (g_Spyro.movementState == MOVEMENT_STATE_SUPERFLY) {
+        func_800135A4(&camera.unk7c.pos[1], &D_80068FF4, camera.unk6c);
     } else {
-        func_800135A4((CameraPosition*)((char*)state - 0xD8), &D_80068F7C, camera.unk6c);
+        func_800135A4(&camera.unk7c.pos[1], &D_80068F7C, camera.unk6c);
     }
-    { int* angle = &D_8006E094; *angle = (*angle - D_8006E1CC) & 0xFFF; }
+    camera.unk7c.pos[1].yaw = (camera.unk7c.pos[1].yaw - camera.unk1c4[4]) & 0xFFF;
 }
 
 /**

@@ -2304,7 +2304,7 @@ block_103:
     __asm__ volatile("" : "=r"(divided7) : "0"(divided7));
     divided3 = frame.v58.z / (int)D_8006C648;
     __asm__ volatile("" : "=r"(divided3) : "0"(divided3));
-    __asm__("" : "=r"(divided11), "=r"(divided10), "=r"(divided9), "=r"(divided8), "=r"(divided7), "=r"(divided3) : "0"(divided11), "1"(divided10), "2"(divided9), "3"(divided8), "4"(divided7), "5"(divided3));
+    /* The six preceding constraints retain the individual division results. */
     *(int *)temp_s0_3 = divided11;
     M2C_FIELD(&D_80070328, int *, 0x9C) = divided10;
     M2C_FIELD(&D_80070328, int *, 0xA0) = divided9;
@@ -5231,7 +5231,7 @@ block_100:
 
 /* Retail source: asm/nonmatchings/spyroupdate/func_80047C7C.s,
  * 0x80047C7C..0x80047D00; input state uses Spyro runtime word offsets. */
-extern int D_8006E3D0, D_8006E508;
+/* Reuse the address-only declarations above. */
 void func_8003A964(void*, void*);
 void func_80047C7C(void) {
     if (*(int*)(&D_80070328 + 0x20C) & 0x2C142) {

@@ -1,7 +1,51 @@
 #include "common.h"
+#include "ovl_header.h"
+#include "mobyutil.h"
+#include "stdutil.h"
+#include "spyro.h"
 
-INCLUDE_ASM("asm/nonmatchings/overlays/cutscene_77/moby", func_cutscene_77_80074780);
+void func_cutscene_77_80074780(void) {}
 
-INCLUDE_ASM("asm/nonmatchings/overlays/cutscene_77/moby", func_cutscene_77_80074788);
+extern int D_8006EDDC;
+int rand(void);
+void func_cutscene_77_80074788(Moby* moby) {
+    if (!moby->substate && D_8006EDDC >= 0x2BC) {
+        int index = 0;
+        Vector3D offset, position;
+        do {
+            index++;
+            offset.x = (rand() & 0x3FF) - 0x200;
+            offset.y = (rand() & 0x3FF) - 0x200;
+            offset.z = (rand() & 0x3FF) - 0x200;
+            func_8004EF04(&offset, 0x14);
+            func_8004F178(&position, &moby->position);
+            position.z -= 0x80;
+            SpawnParticle(1, 0, &position, &offset);
+        } while (index < 8);
+        moby->substate = 1;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/overlays/cutscene_77/moby", func_cutscene_77_80074870);
+Moby* func_80055A7C(int, Moby*);
+void func_80055C24(Moby*);
+extern Moby* D_8006C550;
+Moby* func_cutscene_77_80074870(int mobyClass, Moby* parent) {
+    Moby* moby = func_80055A7C(mobyClass, parent);
+    void* tag;
+    if (!moby) return 0;
+    tag = moby->mobyTag;
+    func_8004E790(moby, 0, 0x58);
+    moby->mobyTag = tag;
+    func_8004E790(tag, 0, 0x18);
+    moby->mobyClass = mobyClass;
+    if (parent) {
+        int index = parent - D_8006C550;
+        if ((unsigned int)index < 0x100) moby->linkedMoby = index;
+        else moby->linkedMoby = 0xFF;
+    } else moby->linkedMoby = 0xFF;
+    func_80034FEC(moby);
+    if (parent) func_8004F178(&moby->position, &parent->position);
+    else func_8004F178(&moby->position, &spyro.position);
+    func_80055C24(moby);
+    return moby;
+}
