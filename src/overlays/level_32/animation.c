@@ -4,7 +4,1484 @@
 #include "ovl_header.h"
 #include "spyro.h"
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/animation", func_level_32_80097550);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original80097550.
+ * Assembly SHA256 833311efc9ea17f6b57658fdba023dc3bd041d4d8a4b6c4905690160c38f77a0.
+ * AI-generated; not human reviewed. All2043 original instructions,
+ * 143 selectors (bias9) and one owned table-padding word are required.
+ * Frame0x168 retains scratch10..13C, savedS0..S7, incoming slotS2 and
+ * combinedS7. Seven groups reuse verified12/21/22; near9/28/49/57 and443-row
+ * 36/37/48 retain exact saved-register, stack and original-address mappings.
+ * Original32 stores fixedAC9280; source22's absent C700 path is not copied.
+ * Matrix halfwords60/62/64 preserve original widths. Original particle
+ * selector58, pointer-ready/address94 joins and final94 ownership are exact.
+ * All160 original150/151 rows retain both selector151 loads, signed wrapped
+ * arithmetic, bounds, spring/trig, vector and guarded final94 store.
+ * Typed aliases remain distinct. Empty initialized constraints and original
+ * address metadata emit zero CPU instructions; frozen C tools emit every word.
+ * Rev1 skateboard source is an identified cross-reference; Rev0 words rule.
+ * Raw units/fixed point, complete helper contracts and caller cadence remain
+ * unresolved; cadence is per invocation, rate unknown.
+ * Falsification: every original native/linked instruction, conditional/internal
+ * target, selector/padding/data word and full EXE/every-overlay retail hash.
+ * Binary identity does not establish synchronized runtime/system completion. */
+#define Physics32Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+int Physics32Call363DCView1() __asm__("func_800363DC");
+unsigned char Physics32Call40D10View1() __asm__("func_80040D10");
+unsigned char Physics32Call41580View1() __asm__("func_80041580");
+unsigned char Physics32Call416F4View1() __asm__("func_800416F4");
+unsigned char Physics32Call417FCView1() __asm__("func_800417FC");
+unsigned char Physics32Call41B64View1() __asm__("func_80041B64");
+int Physics32Call4E9E4View1() __asm__("func_8004E9E4");
+int Physics32Call4EA2CView1() __asm__("func_8004EA2C");
+unsigned char Physics32Call4ED6CView1() __asm__("func_8004ED6C");
+int Physics32Call4EDE8View1() __asm__("func_8004EDE8");
+unsigned char Physics32Call4F08CView1() __asm__("func_8004F08C");
+unsigned char Physics32Call4F110View1() __asm__("func_8004F110");
+unsigned char Physics32Call4F168View1() __asm__("func_8004F168");
+unsigned char Physics32Call4F178View1() __asm__("func_8004F178");
+unsigned char Physics32Call4F194View1() __asm__("func_8004F194");
+unsigned char Physics32Call4F1C8View1() __asm__("func_8004F1C8");
+int Physics32CallRandView1() __asm__("rand");
+extern unsigned char Physics32Data658A0View1 __asm__("D_800658A0");
+extern unsigned char Physics32Data65920View1 __asm__("D_80065920");
+extern void *Physics32Data6C570View1 __asm__("D_8006C570");
+extern int Physics32Data6E044View1 __asm__("D_8006E044");
+extern unsigned char Physics32Data6E548View1 __asm__("D_8006E548");
+extern unsigned char Physics32Player0View1 __asm__("D_80070328");
+extern int Physics32Player94View1 __asm__("D_80070328+0x94");
+extern void *(*Controller88028_SpawnParticle)() __asm__("SpawnParticle");
+extern void *(*Physics13_SpawnParticle)() __asm__("SpawnParticle");
+extern int Physics32Player94View2 __asm__("D_80070328+0x94");
+extern int Physics32Player80View1 __asm__("D_80070328+0x80");
+extern int Physics32PlayerB0View1 __asm__("D_80070328+0xB0");
+extern int Physics32Player64View1 __asm__("D_80070328+0x64");
+extern int Physics32Player144View1 __asm__("D_80070328+0x144");
+extern int Physics32Player60View1 __asm__("D_80070328+0x60");
+extern int Physics32PlayerACView1 __asm__("D_80070328+0xAC");
+extern int Physics32Player4CView1 __asm__("D_80070328+0x4C");
+extern int Physics32Player14CView1 __asm__("D_80070328+0x14C");
+extern int Physics32Player5CView1 __asm__("D_80070328+0x5C");
+extern unsigned char Physics32PlayerFCView1 __asm__("D_80070328+0xFC");
+int Physics32Call4EDE8View2() __asm__("func_8004EDE8");
+int Physics32Call4F08CView2() __asm__("func_8004F08C");
+int Physics32Call4F178View2() __asm__("func_8004F178");
+int Physics32Call4F194View2() __asm__("func_8004F194");
+int Physics32Call4F1C8View2() __asm__("func_8004F1C8");
+extern unsigned char Physics32Data658A0View2 __asm__("D_800658A0");
+extern unsigned char Physics32Data65920View2 __asm__("D_80065920");
+extern int Physics32Data6C514View1 __asm__("D_8006C514");
+extern int Physics32Data6E344View1 __asm__("D_8006E344");
+extern unsigned char Physics32Player0View2 __asm__("D_80070328");
+extern void *(*Physics34_SpawnParticle)() __asm__("SpawnParticle");
+extern int Physics32Player16CView1 __asm__("D_80070328+0x16C");
+int Physics32Call417FCView2() __asm__("func_800417FC");
+int Physics32Call4E880View1() __asm__("func_8004E880");
+int Physics32Call4E9E4View2() __asm__("func_8004E9E4");
+int Physics32Call4EA2CView2() __asm__("func_8004EA2C");
+int Physics32Call4EDE8View3() __asm__("func_8004EDE8");
+int Physics32Call4F08CView3() __asm__("func_8004F08C");
+int Physics32Call4F0E8View1() __asm__("func_8004F0E8");
+int Physics32Call4F178View3() __asm__("func_8004F178");
+int Physics32Call4F194View3() __asm__("func_8004F194");
+int Physics32Call4F1C8View3() __asm__("func_8004F1C8");
+extern void *(*Physics12_SpawnParticle)() __asm__("SpawnParticle");
+extern int Physics32PlayerACView2 __asm__("D_80070328+0xAC");
+extern int Physics32PlayerB0View2 __asm__("D_80070328+0xB0");
+extern int Physics32Player148View1 __asm__("D_80070328+0x148");
+extern int Physics32Player210View1 __asm__("D_80070328+0x210");
+extern int Physics32Player220View1 __asm__("D_80070328+0x220");
+extern int Physics32Player98View1 __asm__("D_80070328+0x98");
+extern int Physics32PlayerA0View1 __asm__("D_80070328+0xA0");
+extern int Physics32PlayerB8View1 __asm__("D_80070328+0xB8");
+extern int Physics32PlayerCCView1 __asm__("D_80070328+0xCC");
+extern int Physics32PlayerD0View1 __asm__("D_80070328+0xD0");
+extern int Physics32PlayerE4View1 __asm__("D_80070328+0xE4");
+extern unsigned char Physics32PlayerFCView2 __asm__("D_80070328+0xFC");
+int Physics32Call40D10View2() __asm__("func_80040D10");
+int Physics32Call410F8View1() __asm__("func_800410F8");
+int Physics32Call41580View2() __asm__("func_80041580");
+int Physics32Call417FCView3() __asm__("func_800417FC");
+int Physics32Call41848View1() __asm__("func_80041848");
+int Physics32Call41B64View2() __asm__("func_80041B64");
+int Physics32Call4EA2CView3() __asm__("func_8004EA2C");
+int Physics32Call4ED6CView2() __asm__("func_8004ED6C");
+int Physics32Call4F110View2() __asm__("func_8004F110");
+int Physics32Call4F168View2() __asm__("func_8004F168");
+int Physics32Call4F178View4() __asm__("func_8004F178");
+int Physics32Call4F194View4() __asm__("func_8004F194");
+int Physics32CallRandView2() __asm__("rand");
+extern int* Physics32Data6C570View2 __asm__("D_8006C570");
+extern int Physics32Data6C640View1 __asm__("D_8006C640");
+extern int Physics32Data6E044View2 __asm__("D_8006E044");
+extern unsigned char Physics32Player0View3 __asm__("D_80070328");
+extern void *(*Physics21_SpawnParticle)() __asm__("SpawnParticle");
+extern int Physics32Player8CView1 __asm__("D_80070328+0x8C");
+extern int Physics32Player158View1 __asm__("D_80070328+0x158");
+extern int Physics32Player20CView1 __asm__("D_80070328+0x20C");
+int Physics32Call410F8View2() __asm__("func_800410F8");
+int Physics32Call417FCView4() __asm__("func_800417FC");
+int Physics32Call41848View2() __asm__("func_80041848");
+int Physics32Call4EA2CView4() __asm__("func_8004EA2C");
+int Physics32Call4F178View5() __asm__("func_8004F178");
+extern void *(*Physics32_SpawnParticle)() __asm__("SpawnParticle");
+extern unsigned char Physics32Player0View4 __asm__("D_80070328");
+int Physics32Call40F48View1() __asm__("func_80040F48");
+int Physics32Call417FCView5() __asm__("func_800417FC");
+int Physics32Call41848View3() __asm__("func_80041848");
+int Physics32Call4E56CView1() __asm__("func_8004E56C");
+int Physics32Call4E880View2() __asm__("func_8004E880");
+int Physics32Call4ECF4View1() __asm__("func_8004ECF4");
+int Physics32Call4EDE8View4() __asm__("func_8004EDE8");
+int Physics32Call4F08CView4() __asm__("func_8004F08C");
+int Physics32Call4F178View6() __asm__("func_8004F178");
+int Physics32Call4F194View5() __asm__("func_8004F194");
+int Physics32Call4F1C8View4() __asm__("func_8004F1C8");
+int Physics32Call4F6C4View1() __asm__("func_8004F6C4");
+int Physics32Call5F35CView1() __asm__("func_8005F35C");
+extern int* Physics32Data6C570View3 __asm__("D_8006C570");
+extern int Physics32Data6E538View1 __asm__("D_8006E538");
+extern int Physics32PlayerA8View1 __asm__("D_80070328+0xA8");
+extern int Physics32Player4CView2 __asm__("D_80070328+0x4C");
+extern int Physics32Player68View1 __asm__("D_80070328+0x68");
+extern int Physics32Player6CView1 __asm__("D_80070328+0x6C");
+extern int Physics32Player70View1 __asm__("D_80070328+0x70");
+extern int Physics32PlayerA0View2 __asm__("D_80070328+0xA0");
+extern int Physics32Player5CView2 __asm__("D_80070328+0x5C");
+extern int Physics32Player60View2 __asm__("D_80070328+0x60");
+extern int Physics32Player64View2 __asm__("D_80070328+0x64");
+extern int Physics32Player164View1 __asm__("D_80070328+0x164");
+extern int Physics32PlayerACView3 __asm__("D_80070328+0xAC");
+extern int Physics32PlayerB8View2 __asm__("D_80070328+0xB8");
+extern int Physics32Player16CView2 __asm__("D_80070328+0x16C");
+extern int Physics32Player168View1 __asm__("D_80070328+0x168");
+extern int Physics32Player94View3 __asm__("D_80070328+0x94");
+extern int Physics32Player8CView2 __asm__("D_80070328+0x8C");
+extern int Physics32Player80View2 __asm__("D_80070328+0x80");
+extern int Physics32Player90View1 __asm__("D_80070328+0x90");
+extern int Physics32Player84View1 __asm__("D_80070328+0x84");
+extern int Physics32PlayerF4View1 __asm__("D_80070328+0xF4");
+extern int Physics32Player8View1 __asm__("D_80070328+0x8");
+extern int Physics32Player48View1 __asm__("D_80070328+0x48");
+int Physics32Call41580View3() __asm__("func_80041580");
+void func_level_32_80097550(int slotIndex) {
+    register int signedWord19 __asm__("$20");
+    register int signedWord20 __asm__("$21");
+    register int signedWord21 __asm__("$22");
+    register void *savedPointer22 __asm__("$19");
+    register void *savedPointer17 __asm__("$17");
+    int raw22_temp_v0_6;
+    register void *(*particleCall3)() __asm__("$3");
+    register int particleArg7 __asm__("$7");
+    register int workWord2 __asm__("$2");
+    register int stateWord3 __asm__("$3");
+    register int particleThreshold __asm__("$19");
+    register void *vectorAt40 __asm__("$16");
+    register void *vectorAt30 __asm__("$17");
+    register void *call4 __asm__("$4");
+    register void *call5 __asm__("$5");
+    register void *call6 __asm__("$6");
+    register int below19 __asm__("$2");
+    int lowProduct0,lowProduct1,lowProduct2,lowProduct3,lowProduct4,lowProduct5;
+    register void *globalPointer __asm__("$3");
+    struct {
+        int sp10,sp14,sp18,sp1C,sp20,sp24,sp28,sp2C,sp30,sp34,sp38,sp3C,sp40,sp44,sp48,sp4C,sp50,sp54,sp58,sp5C,sp60,sp64,sp68,sp6C,sp70,sp74,sp78,sp7C,sp80,sp84,sp88,sp8C,sp90,sp94,sp98,sp9C,spA0,spA4,spA8,spAC,spB0,spB4,spB8,spBC,spC0,spC4,spC8,spCC,spD0,spD4,spD8,spDC,spE0,spE4,spE8,spEC,spF0,spF4,spF8,spFC,sp100,sp104,sp108,sp10C,sp110,sp114,sp118,sp11C,sp120,sp124,sp128,sp12C,sp130,sp134,sp138,sp13C;
+    }
+    originalFrame;
+    register int signedTableWord __asm__("$7");
+    register void *globalVector80 __asm__("$16");
+    register void *globalVector8CState9 __asm__("$17");
+    register void *globalVector8CState20 __asm__("$18");
+    register void *var_a0 __asm__("$4");
+    register void *var_a0_2 __asm__("$4");
+    register void *var_a0_3 __asm__("$4");
+    register int combinedIndex __asm__("$23");
+    int temp_v0;
+    int temp_v0_2;
+    int temp_v0_4;
+    register int workWord3 __asm__("$3");
+    register int particleIndex __asm__("$17");
+    register int nextField94 __asm__("$2");
+    register unsigned char *globalByteE __asm__("$18");
+    register void *globalField4CPointer __asm__("$16");
+    register void *globalFieldA4Pointer __asm__("$17");
+    void *temp_v0_5;
+    register int savedSlotIndex __asm__("$18");
+    int lowProduct6;
+    int raw21_var_a0_2;
+    int raw21_var_a1_4;
+    void *raw21_temp_s0_9;
+    int raw21_temp_a0_5;
+    int raw21_temp_a0_6;
+    int raw21_temp_a0_7;
+    int raw21_temp_a1_2;
+    int raw21_temp_a1_3;
+    int raw21_temp_a1_4;
+    int raw21_temp_s0_10;
+    register int raw21_temp_s0_8 __asm__("$16");
+    int raw21_temp_s1_4;
+    int raw21_temp_v1_13;
+    int raw21_temp_v1_14;
+    int raw21_temp_v1_6;
+    int raw21_temp_v1_7;
+    int raw21_var_v0_2;
+    void *raw21_temp_s0_11;
+    void *raw21_temp_s0_7;
+    register void *raw21_temp_s1_5 __asm__("$17");
+    void *raw21_temp_s1_6;
+    void *raw21_temp_s1_7;
+    void *raw21_temp_s2_3;
+    void *raw21_temp_s4;
+    savedSlotIndex=slotIndex;
+    workWord2=savedSlotIndex*16;
+    globalPointer=&Physics32Data6E548View1;
+    workWord2+=(int)globalPointer;
+    __asm__("":"=r"(workWord2):"0"(workWord2));
+    Physics32Data6C570View1=(void*)workWord2;
+    workWord2=Physics32Field(&Physics32Player0View1,int*,0x54);
+    stateWord3=Physics32Field(&Physics32Player0View1,int*,0x48);
+    combinedIndex=workWord2+savedSlotIndex;
+    switch (stateWord3) {
+    case 20:case 53:case 54:globalVector80 = &Physics32Player0View1 + 0x80;
+        Physics32Call4F168View1(globalVector80);
+        Physics32Call4F168View1(globalVector80 + 0xC);
+        if (Physics32Data6E044View1 != 7) {
+            Physics32Call40D10View1(0x1200);
+            Physics32Call416F4View1();
+            Physics32Call41580View1(0x5A, 0x10);
+            return;
+        }
+        return;
+    default:
+        return;
+    case 0x9:
+        globalField4CPointer = &Physics32Player0View1 + 0x4C;
+        workWord3=Physics32Field(&Physics32Player0View1,int*,0x4C);
+        __asm__("" : "=r"(workWord3):"0"(workWord3));
+        workWord2=1;
+        if (workWord3 == workWord2) {
+            Physics32Call40D10View1(0xC80);
+            Physics32Call41580View1(0x28, 8);
+            Physics32Call417FCView1(0x140, 0xC0);
+            globalVector8CState9 = globalField4CPointer + 0x40;
+            workWord2=Physics32Call4EA2CView1(Physics32Field(&Physics32Player0View1, int *, 0xA4));
+            workWord3=Physics32Field(&Physics32Player0View1,int*,0xB0);
+            lowProduct0=workWord3*workWord2;
+            workWord2=lowProduct0>>12;
+            __asm__("" : "=r"(workWord2):"0"(workWord2));
+            originalFrame.sp10=workWord2;
+            workWord2=Physics32Call4E9E4View1(Physics32Field(&Physics32Player0View1, int *, 0xA4));
+            workWord3=Physics32Field(&Physics32Player0View1,int*,0xB0);
+            lowProduct1=workWord3*workWord2;
+            workWord2=lowProduct1>>12;
+            __asm__("" : "=r"(workWord2):"0"(workWord2));
+            originalFrame.sp14=workWord2;
+            Physics32Call4F1C8View1(&originalFrame.sp10, &originalFrame.sp10, globalVector8CState9);
+            originalFrame.sp18 = 0;
+            temp_v0 = Physics32Call4EDE8View1(&originalFrame.sp10, 0);
+            __asm__("" : "=r"(globalField4CPointer):"0"(globalField4CPointer));
+            var_a0 = globalField4CPointer + 0x34;
+            if (temp_v0 >= 0x281) {
+                Physics32Call4F08CView1(&originalFrame.sp10, temp_v0, 0x280);
+                __asm__("" : "=r"(globalField4CPointer):"0"(globalField4CPointer));
+                var_a0 = globalField4CPointer + 0x34;
+            }
+            Physics32Call4F194View1(var_a0, globalVector8CState9, &originalFrame.sp10);
+            Physics32Call41B64View1();
+            if (combinedIndex < 0xD) {
+                __asm__("" :: "r"(combinedIndex));
+                workWord2=Physics32Player94View2;
+                workWord2+=23;
+                goto store94From2;
+                return;
+            }
+            workWord2=Physics32Player94View2-192;
+            goto store94From2;
+            return;
+        }
+        below19=combinedIndex<19;
+        __asm__("" : "=r"(globalField4CPointer):"0"(globalField4CPointer));
+        var_a0_2 = globalField4CPointer + 0x40;
+        if (!below19) {
+            __asm__("" :: "r"(combinedIndex));
+            call4=globalField4CPointer+0x34;
+            __asm__("" : "=r"(call4):"0"(call4));
+            workWord3=Physics32Field(&Physics32Player0View1,int*,0x8C);
+            workWord2=workWord3*7;
+            workWord3=Physics32Field(&Physics32Player0View1,int*,0x90);
+            Physics32Field(globalField4CPointer,int*,0x34)=workWord2<<5;
+            workWord2=workWord3*7;
+            workWord3=Physics32Field(&Physics32Player0View1,int*,0x94);
+            Physics32Field(&Physics32Player0View1,int*,0x84)=workWord2<<5;
+            Physics32Field(&Physics32Player0View1,int*,0x88)=(workWord3*7)<<5;
+            Physics32Call4F110View1(call4, 8);
+            __asm__("" : "=r"(globalField4CPointer):"0"(globalField4CPointer));
+            var_a0_2 = globalField4CPointer + 0x40;
+        }
+        Physics32Call4F178View1(var_a0_2, globalField4CPointer + 0x34);
+        temp_v0_2 = Physics32Field(&Physics32Player0View1, int *, 0x94) - 0xC0;
+        Physics32Field(&Physics32Player0View1, int *, 0x94) = temp_v0_2;
+        if(temp_v0_2<-8960){
+            workWord2=-8960;
+            goto store94From2;
+        }
+        return;
+    case 19:{
+            register int numeric4 __asm__("$4");
+            register int numeric5 __asm__("$5");
+            register int numeric6 __asm__("$6");
+            register int numeric7 __asm__("$7");
+            register int angle16 __asm__("$16");
+            register int square8 __asm__("$8");
+            register int product10 __asm__("$10");
+            workWord3=Physics32Data6E344View1;
+            workWord2=13;
+            if(workWord3==workWord2){
+                workWord2=Physics32Data6C514View1;
+                if(workWord2)return;
+            }
+            globalVector8CState20=&Physics32Player0View2+8;
+            workWord3=Physics32Field(globalVector8CState20,int*,0);
+            workWord2=Physics32Field(&Physics32Player0View2,int*,0x144);
+            numeric4=workWord3-workWord2;
+            workWord2=numeric4<1024;
+            if(!workWord2)goto beyond19;
+            workWord2=Physics32Player94View2;
+            workWord2+=128;
+            Physics32Player94View2=workWord2;
+            workWord2=workWord2<4801;
+            __asm__("":"=r"(numeric4):"0"(numeric4),"r"(workWord2));
+            if(!workWord2){
+                workWord2=4800;
+                Physics32Player94View2=workWord2;
+            }
+            lowProduct2=numeric4*numeric4;
+            vectorAt30=&originalFrame.sp20;
+            call4=vectorAt30;
+            workWord3=Physics32Field(&Physics32Player0View2,int*,0x148);
+            __asm__(""::"r"(workWord2),"r"(workWord3),"r"(call4));
+            workWord2=lowProduct2>>11;
+            angle16=workWord2+workWord3;
+            Physics32Player64View1=angle16;
+            __asm__ volatile("":"=r"(globalVector8CState20):"0"(globalVector8CState20),"r"(call4):"memory");
+            Physics32Call4F178View2(call4,globalVector8CState20+340);
+            call4=vectorAt30;
+            call5=call4;
+            Physics32Call4F1C8View2(call4,call5,globalVector8CState20-8);
+            call4=vectorAt30;
+            call5=0;
+            originalFrame.sp28=0;
+            workWord2=Physics32Call4EDE8View2(call4,call5);
+            numeric6=workWord2;
+            workWord2=numeric6<1025;
+            call4=vectorAt30;
+            if(workWord2)goto commit19;
+            call5=(void*)numeric6;
+            __asm__ volatile(""::"i"(0x800978AC):"memory");
+            numeric6=1024;
+            goto limit19;
+            beyond19:numeric5=Physics32Field(&Physics32Player0View2,int*,0x14C);
+            workWord2=workWord3-numeric5;
+            workWord2=workWord2<-1024;
+            numeric6=numeric5-workWord3;
+            if(!workWord2)goto curve19;
+            __asm__ volatile("":"=r"(numeric6):"0"(numeric6),"i"(0x800978D0));
+            workWord2=Physics32Player4CView1;
+            workWord3=1;
+            if(!workWord2){
+                workWord2=Physics32Field(&Physics32Player0View2,int*,0x148);
+                Physics32Player4CView1=workWord3;
+                workWord2+=512;
+                Physics32Field(&Physics32Player0View2,int*,0x148)=workWord2;
+            }
+            workWord2=Physics32Player94View2;
+            workWord2+=128;
+            Physics32Player94View2=workWord2;
+            workWord2=workWord2<4801;
+            if(!workWord2)Physics32Player94View2=4800;
+            workWord2=Physics32Field(&Physics32Player0View2,int*,0x150);
+            numeric6=numeric4-1024;
+            workWord3=workWord2*numeric6;
+            workWord2=Physics32Field(&Physics32Player0View2,int*,0x154);
+            workWord2=workWord3/workWord2;
+            vectorAt30=&originalFrame.sp20;
+            call4=vectorAt30;
+            workWord3=Physics32Field(&Physics32Player0View2,int*,0x148);
+            angle16=workWord3+workWord2;
+            workWord2=(numeric6<<10)>>10;
+            workWord2=angle16+workWord2;
+            angle16=workWord2&4095;
+            Physics32Player64View1=angle16;
+            Physics32Call4F178View2(call4,globalVector8CState20+340);
+            call4=vectorAt30;
+            call5=call4;
+            Physics32Call4F1C8View2(call4,call5,globalVector8CState20-8);
+            call4=vectorAt30;
+            call5=0;
+            originalFrame.sp28=0;
+            workWord2=Physics32Call4EDE8View2(call4,call5);
+            numeric6=workWord2;
+            workWord2=numeric6<1025;
+            call4=vectorAt30;
+            if(workWord2)goto commit19;
+            call5=(void*)numeric6;
+            __asm__ volatile(""::"i"(0x800979E4):"memory");
+            numeric6=1024;
+            goto limit19;
+            curve19:__asm__ volatile("":"=r"(numeric6):"0"(numeric6),"i"(0x800979EC));
+            workWord2=(numeric6*4800)>>10;
+            Physics32Player94View2=workWord2;
+            workWord2=Physics32Player16CView1;
+            numeric7=Physics32Field(&Physics32Player0View2,int*,0x168);
+            workWord3=Physics32Field(&Physics32Player0View2,int*,0x158);
+            workWord2&=127;
+            numeric4=numeric7<<1;
+            Physics32Player16CView1=workWord2;
+            workWord2=*(short*)(&Physics32Data65920View2+numeric4);
+            workWord3+=1024;
+            product10=workWord3*workWord2;
+            square8=numeric6*numeric6;
+            workWord2=product10>>12;
+            originalFrame.sp20=workWord2;
+            workWord2=*(short*)(&Physics32Data658A0View2+numeric4);
+            workWord3=workWord3*workWord2;
+            vectorAt30=&originalFrame.sp20;
+            call5=vectorAt30;
+            numeric7<<=4;
+            call4=vectorAt30;
+            __asm__("":"=r"(globalVector8CState20):"0"(globalVector8CState20),"r"(call4),"r"(call5));
+            numeric6=(int)globalVector8CState20+340;
+            workWord2=square8>>11;
+            angle16=numeric7-workWord2;
+            workWord2=workWord3>>12;
+            originalFrame.sp24=workWord2;
+            Physics32Call4F194View2(call4,call5,numeric6,numeric7);
+            call4=vectorAt30;
+            call5=call4;
+            Physics32Player64View1=angle16;
+            Physics32Call4F1C8View2(call4,call5,globalVector8CState20-8);
+            call4=vectorAt30;
+            call5=0;
+            originalFrame.sp28=0;
+            workWord2=Physics32Call4EDE8View2(call4,call5);
+            numeric6=workWord2;
+            workWord2=numeric6<2049;
+            call4=vectorAt30;
+            if(workWord2)goto commit19;
+            call5=(void*)numeric6;
+            numeric6=2048;
+            limit19:Physics32Call4F08CView2(call4,call5,numeric6);
+            commit19:workWord2=originalFrame.sp20;
+            workWord3=originalFrame.sp24;
+            Physics32Field(&Physics32Player0View2,int*,0x8C)=workWord2;
+            Physics32Field(&Physics32Player0View2,int*,0x90)=workWord3;
+            return;
+        }
+    case 21:raw22_temp_v0_6 = Physics32Field(&Physics32Player0View4, int *, 0x94) - 0x140;
+        Physics32Field(&Physics32Player0View4, int *, 0x94) = raw22_temp_v0_6;
+        if (raw22_temp_v0_6 < -0x2300) {
+            Physics32Field(&Physics32Player0View4, int *, 0x94) = -0x2300;
+        }
+        Physics32Field(&Physics32Player0View4, int *, 0xA4) = Physics32Call4E880View2(Physics32Field(&Physics32Player0View4, int *, 0x8C), Physics32Field(&Physics32Player0View4, int *, 0x90), 1);
+        Physics32Call41580View3(0x5A, 0x10);
+        return;
+    case 28:Physics32Call40D10View1(0xC80);
+        Physics32Call41580View1(0x28, 8);
+        Physics32Call417FCView1(0x140, 0xC0);
+        globalFieldA4Pointer = &Physics32Player0View1 + 0xA4;
+        globalVector8CState20 = globalFieldA4Pointer - 0x18;
+        workWord2=Physics32Call4EA2CView1(Physics32Field(globalFieldA4Pointer,int*,0));
+        workWord3=Physics32Field(&Physics32Player0View1,int*,0xB0);
+        lowProduct3=workWord3*workWord2;
+        call4=(void*)Physics32Field(globalFieldA4Pointer,int*,0);
+        workWord2=lowProduct3>>12;
+        __asm__("" : "=r"(workWord2):"0"(workWord2));
+        originalFrame.sp30=workWord2;
+        workWord2=Physics32Call4E9E4View1(call4);
+        workWord3=Physics32Field(&Physics32Player0View1,int*,0xB0);
+        lowProduct4=workWord3*workWord2;
+        workWord2=lowProduct4>>12;
+        __asm__("" : "=r"(workWord2):"0"(workWord2));
+        originalFrame.sp34=workWord2;
+        Physics32Call4F1C8View1(&originalFrame.sp30, &originalFrame.sp30, globalVector8CState20);
+        originalFrame.sp38 = 0;
+        temp_v0_4 = Physics32Call4EDE8View1(&originalFrame.sp30, 0);
+        __asm__("" : "=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+        var_a0_3 = globalFieldA4Pointer - 0x24;
+        if (temp_v0_4 >= 0x281) {
+            Physics32Call4F08CView1(&originalFrame.sp30, temp_v0_4, 0x280);
+            __asm__("" : "=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+            var_a0_3 = globalFieldA4Pointer - 0x24;
+        }
+        Physics32Call4F194View1(var_a0_3, globalVector8CState20, &originalFrame.sp30);
+        Physics32Call41B64View1();
+        if (combinedIndex < 0xD) {
+            __asm__("" :: "r"(combinedIndex));
+            nextField94 = Physics32Field(&Physics32Player0View1, int *, 0x94) + 0x17;
+        }
+        else {
+            nextField94 = Physics32Field(&Physics32Player0View1, int *, 0x94) - 0xC0;
+        }
+        Physics32Player94View1=nextField94;
+        __asm__ volatile("" ::: "memory");
+        if (Controller88028_SpawnParticle != 0) {
+            globalPointer=&Physics32Player0View1+0x148;
+            __asm__("" : "=r"(globalPointer):"0"(globalPointer));
+            particleIndex=0;
+            if (Physics32Field(globalPointer,int*,0) != 0) {
+                workWord2=combinedIndex*4;
+                __asm__("" : "=r"(workWord2):"0"(workWord2));
+                particleThreshold=workWord2+combinedIndex;
+                globalByteE=globalPointer-0x13A;
+                vectorAt40=&originalFrame.sp50;
+                __asm__("" : "=r"(vectorAt40):"0"(vectorAt40));
+            spawnParticleLoop:
+                if (particleThreshold < (Physics32CallRandView1() & 0xFF)) {
+                    workWord2=Physics32Call363DCView1(0,0xC);
+                    call4=globalByteE+0x22;
+                    workWord3=*globalByteE;
+                    __asm__("" : "=r"(workWord3):"0"(workWord3));
+                    call5=vectorAt40;
+                    __asm__("" : "=r"(call4),"=r"(call5):"0"(call4),"1"(call5));
+                    workWord3+=0x80;
+                    __asm__("" : "=r"(workWord3):"0"(workWord3));
+                    workWord3+=workWord2;
+                    __asm__("" : "=r"(workWord3):"0"(workWord3));
+                    workWord3=(workWord3&0xFF)*2;
+                    signedTableWord = *(short*)(&Physics32Data65920View1 + workWord3);
+                    call6=vectorAt40;
+                    originalFrame.sp40 = (int) (signedTableWord * 5) >> 0xA;
+                    workWord3=*(short*)(&Physics32Data658A0View1 + workWord3);
+                    __asm__ volatile("" : "=r"(workWord3):"0"(workWord3):"memory");
+                    originalFrame.sp48 = 0xE;
+                    originalFrame.sp50 = -0x12C;
+                    originalFrame.sp54 = 0;
+                    originalFrame.sp58 = -0xC8;
+                    __asm__ volatile("" ::: "memory");
+                    originalFrame.sp44 = (workWord3 * 5) >> 0xA;
+                    Physics32Call4ED6CView1(call4, call5, call6, signedTableWord);
+                    originalFrame.sp50 += Physics32Call363DCView1(0, 0x50);
+                    originalFrame.sp54 += Physics32Call363DCView1(0, 0x50);
+                    originalFrame.sp58 += Physics32Call363DCView1(0, 0x50);
+                    Physics32Call4F194View1(vectorAt40, vectorAt40, globalByteE - 0xE);
+                    temp_v0_5 = Controller88028_SpawnParticle(1, 0x3A, vectorAt40, &originalFrame.sp40);
+                    Physics32Field(temp_v0_5, signed char *, 2) = 8;
+                    Physics32Field(temp_v0_5, signed char *, 0xA) = 0x20;
+                }
+                particleIndex += 1;
+                if (particleIndex < 2) {
+                    goto spawnParticleLoop;
+                }
+            }
+        }
+        break;
+    case 30:globalVector80=&Physics32Player80View1;
+        __asm__ volatile("":"=r"(globalVector80):"0"(globalVector80):"memory");
+        goto block_154;
+    case 0x24:
+    case 0x25:
+    case 48:{
+            register int numeric4 __asm__("$4");
+            register int numeric5 __asm__("$5");
+            Physics32Call40F48View1(&originalFrame.sp40,0);
+            workWord2=originalFrame.sp40;
+            call5=&Physics32PlayerA8View1;
+            workWord3=workWord2*9;
+            workWord3<<=2;
+            workWord2-=workWord3;
+            workWord3=Physics32Field(call5,int*,0);
+            numeric4=workWord2>>7;
+            workWord2=workWord3<numeric4;
+            if(workWord2){
+                workWord2=workWord3+8;
+                Physics32Field(call5,int*,0)=workWord2;
+                workWord2=numeric4<workWord2;
+            }
+            else{
+                workWord2=workWord3-8;
+                Physics32Field(call5,int*,0)=workWord2;
+                workWord2=workWord2<numeric4;
+            }
+            if(workWord2)Physics32Field(call5,int*,0)=numeric4;
+            workWord3=Physics32Player4CView2;
+            workWord2=5;
+            if(workWord3==workWord2){
+                workWord3=Physics32Player68View1;
+                numeric4=Physics32Player6CView1;
+                workWord2=(workWord3<<5)>>9;
+                workWord3-=workWord2;
+                workWord2=(numeric4<<5)>>9;
+                Physics32Player68View1=workWord3;
+                workWord3=originalFrame.sp40;
+                numeric4-=workWord2;
+                Physics32Player6CView1=numeric4;
+                numeric4=Physics32Player70View1;
+                workWord2=workWord3*48;
+                workWord2=-workWord2;
+                workWord2>>=8;
+                workWord3=(numeric4<<5)>>9;
+                workWord2-=workWord3;
+                numeric4+=workWord2;
+                goto store70;
+            }
+            workWord2=4;
+            if(workWord3!=workWord2)goto default48;
+            workWord2=Physics32Data6E538View1&16;
+            if(!workWord2)goto default48;
+            workWord2=originalFrame.sp40;
+            numeric4=Physics32Player68View1;
+            numeric5=Physics32Player6CView1;
+            workWord3=(workWord2*48)>>8;
+            workWord2=(numeric4<<5)>>9;
+            workWord3-=workWord2;
+            workWord2=originalFrame.sp44;
+            numeric4+=workWord3;
+            Physics32Player68View1=numeric4;
+            numeric4=Physics32Player70View1;
+            workWord3=(workWord2*48)>>8;
+            workWord2=(numeric5<<5)>>9;
+            workWord3-=workWord2;
+            numeric5+=workWord3;
+            workWord2=(numeric4<<5)>>9;
+            Physics32Player6CView1=numeric5;
+            numeric4-=workWord2;
+            goto store70;
+            default48:globalVector80=&Physics32PlayerA8View1;
+            call4=globalVector80-16;
+            workWord2=Physics32Field(globalVector80,int*,0);
+            call5=0;
+            workWord2=-workWord2;
+            signedWord20=workWord2<<3;
+            workWord2=Physics32Call4EDE8View4(call4,call5);
+            call4=(void*)workWord2;
+            call5=(void*)Physics32PlayerA0View2;
+            workWord2=Physics32Call4E880View2(call4,call5,1);
+            signedWord19=workWord2&4095;
+            workWord2=signedWord19<2049;
+            if(!workWord2){
+                signedWord19-=4096;
+                workWord2=signedWord19<-256;
+            }
+            else workWord2=signedWord19<-256;
+            if(workWord2)signedWord19=-256;
+            workWord2=Physics32Player5CView2;
+            workWord2=signedWord20-workWord2;
+            signedWord20=workWord2&4095;
+            workWord2=signedWord20<2049;
+            if(!workWord2)signedWord20-=4096;
+            workWord2=Physics32Player60View2;
+            workWord2-=signedWord19;
+            signedWord19=workWord2&4095;
+            workWord2=signedWord19<2049;
+            if(!workWord2)signedWord19-=4096;
+            workWord2=signedWord20<-256;
+            if(workWord2){
+                signedWord20=-256;
+                __asm__("":"=r"(signedWord20):"0"(signedWord20));
+                workWord2=signedWord20<257;
+            }
+            else workWord2=signedWord20<257;
+            if(!workWord2)signedWord20=256;
+            workWord2=signedWord19<-256;
+            if(workWord2){
+                signedWord19=-256;
+                __asm__("":"=r"(signedWord19):"0"(signedWord19));
+                workWord2=signedWord19<257;
+            }
+            else workWord2=signedWord19<257;
+            if(!workWord2)signedWord19=256;
+            workWord3=(signedWord20<<2)>>4;
+            numeric4=Physics32Player68View1;
+            signedWord21=Physics32Field(globalVector80,int*,0);
+            workWord2=(numeric4<<5)>>6;
+            workWord3-=workWord2;
+            numeric4+=workWord3;
+            workWord3=signedWord19<<2;
+            Physics32Player68View1=numeric4;
+            numeric4=Physics32Player6CView1;
+            workWord3>>=4;
+            workWord2=(numeric4<<5)>>6;
+            workWord3-=workWord2;
+            numeric4+=workWord3;
+            workWord3=signedWord21<<2;
+            Physics32Player6CView1=numeric4;
+            numeric4=Physics32Player70View1;
+            workWord3>>=4;
+            workWord2=(numeric4<<5)>>6;
+            workWord3-=workWord2;
+            numeric4+=workWord3;
+            store70:Physics32Player70View1=numeric4;
+            __asm__ volatile("":::"memory");
+            workWord2=4;
+            signedWord20=Physics32Player68View1;
+            signedWord19=Physics32Player6CView1;
+            signedWord21=Physics32Player70View1;
+            workWord3=Physics32Player4CView2;
+            signedWord20>>=2;
+            if(workWord3==workWord2){
+                workWord2=Physics32Data6E538View1&16;
+                signedWord19>>=2;
+                if(workWord2)signedWord21>>=2;
+            }
+            else{
+                workWord2=5;
+                if(workWord3==workWord2){
+                    signedWord21>>=2;
+                    signedWord19>>=2;
+                }
+            }
+            workWord2=(unsigned int)(Physics32Player4CView2-4)<2;
+            globalVector80=&originalFrame.sp60;
+            if(workWord2){
+                call4=Physics32Field(&Physics32Player0View4,void**,0x250);
+                if(call4){
+                    call4=Physics32Field(call4,void**,0);
+                    workWord2=Physics32Field(call4,int*,0xF4);
+                    workWord3=Physics32Field(call4,int*,0xFC);
+                    workWord2+=signedWord20;
+                    Physics32Field(call4,int*,0xF4)=workWord2;
+                    workWord2=Physics32Field(call4,int*,0xF8);
+                    workWord3+=signedWord21;
+                    Physics32Field(call4,int*,0xFC)=workWord3;
+                    workWord2+=signedWord19;
+                    Physics32Field(call4,int*,0xF8)=workWord2;
+                }
+            }
+            call4=globalVector80;
+            globalVector8CState20=&originalFrame.sp68;
+            call5=globalVector8CState20;
+            __asm__ volatile(""::"r"(call5):"memory");
+            savedPointer22=&Physics32Player5CView2;
+            workWord2=Physics32Field(savedPointer22,int*,0);
+            workWord3=Physics32Player64View2;
+            __asm__ volatile(""::"r"(workWord2),"r"(workWord3):"$17","memory");
+            savedPointer17=&originalFrame.sp80;
+            Physics32Field(&originalFrame.sp60,short*,0)=workWord2;
+            workWord2=Physics32Player60View2;
+            call6=savedPointer17;
+            Physics32Field(&originalFrame.sp64,short*,0)=workWord3;
+            workWord2=-workWord2;
+            Physics32Field(&originalFrame.sp60,short*,2)=workWord2;
+            Physics32Call4F6C4View1(call4,call5,call6);
+            Physics32Call4ECF4View1(globalVector8CState20,globalVector8CState20);
+            call4=globalVector80;
+            call5=savedPointer17;
+            __asm__ volatile(""::"r"(call4),"r"(call5):"memory");
+            globalVector80=&originalFrame.sp98;
+            call6=globalVector80;
+            Physics32Field(&originalFrame.sp60,short*,0)=signedWord20;
+            Physics32Field(&originalFrame.sp60,short*,2)=signedWord19;
+            Physics32Field(&originalFrame.sp64,short*,0)=signedWord21;
+            Physics32Call4F6C4View1(call4,call5,call6);
+            Physics32Call4ECF4View1(savedPointer17,savedPointer17);
+            Physics32Call5F35CView1(globalVector8CState20,savedPointer17,globalVector80);
+            Physics32Call4E56CView1(savedPointer22,globalVector80);
+            workWord2=Physics32Player164View1;
+            if(workWord2){
+                workWord2=14208;
+                Physics32PlayerACView3=workWord2;
+                workWord2=96;
+                goto update16C;
+            }
+            workWord2=9280;
+            Physics32PlayerACView3=workWord2;
+            workWord2=0;
+            update16C:savedPointer17=&Physics32Player16CView2;
+            numeric5=Physics32Player168View1;
+            workWord3=Physics32Field(savedPointer17,int*,0);
+            workWord2-=numeric5;
+            workWord2<<=4;
+            numeric4=workWord3<<5;
+            workWord2-=numeric4;
+            workWord2>>=6;
+            workWord3+=workWord2;
+            Physics32Field(savedPointer17,int*,0)=workWord3;
+            workWord3>>=4;
+            numeric5+=workWord3;
+            Physics32Player168View1=numeric5;
+            if(numeric5<0)Physics32Player168View1=0;
+            workWord2=Physics32Player168View1;
+            workWord2=workWord2<97;
+            call4=(void*)576;
+            if(!workWord2){
+                workWord2=96;
+                Physics32Player168View1=workWord2;
+            }
+            Physics32Call417FCView5(call4,48);
+            Physics32Call41848View3();
+            workWord3=Physics32Player4CView2;
+            workWord2=4;
+            if(workWord3!=workWord2)goto maybeFive48;
+            workWord2=Physics32Data6E538View1&16;
+            if(workWord2)goto subtract128;
+            globalVector80=&originalFrame.spB0;
+            call4=globalVector80;
+            call5=savedPointer17-236;
+            __asm__ volatile("":"=r"(savedPointer17):"0"(savedPointer17),"r"(call4),"r"(call5):"memory");
+            savedPointer17-=224;
+            Physics32Call4F1C8View4(call4,call5,savedPointer17);
+            originalFrame.spB8=0;
+            call5=(void*)Physics32Call4EDE8View4(globalVector80,0);
+            workWord2=(int)call5<385;
+            call4=savedPointer17;
+            if(!workWord2){
+                Physics32Call4F08CView4(globalVector80,call5,384);
+                call4=savedPointer17;
+            }
+            call5=call4;
+            Physics32Call4F194View5(call4,call5,globalVector80);
+            subtract128:globalPointer=&Physics32Player94View3;
+            workWord2=Physics32Field(globalPointer,int*,0);
+            workWord2-=128;
+            Physics32Field(globalPointer,int*,0)=workWord2;
+            goto clampPhysics32PointerReady;
+            maybeFive48:workWord2=5;
+            if(workWord3!=workWord2)goto gate48;
+            globalVector80=&originalFrame.spC0;
+            call4=globalVector80;
+            __asm__ volatile("":"=r"(savedPointer17):"0"(savedPointer17),"r"(call4):"memory");
+            savedPointer17-=224;
+            Physics32Call4F178View6(call4,savedPointer17);
+            originalFrame.spC8=0;
+            call5=(void*)Physics32Call4EDE8View4(globalVector80,0);
+            workWord2=(int)call5<65;
+            if(!workWord2)Physics32Call4F08CView4(globalVector80,call5,64);
+            workWord2=128;
+            originalFrame.spC8=workWord2;
+            call4=savedPointer17;
+            call5=call4;
+            Physics32Call4F1C8View4(call4,call5,globalVector80);
+            goto clampPhysics32;
+            gate48:workWord2=combinedIndex<13;
+            if(!workWord2)goto flags48;
+            workWord2=1;
+            if(workWord3!=workWord2)goto flags48;
+            workWord2=(int)Physics32Data6C570View3;
+            workWord2=Physics32Field((void*)workWord2,int*,0)&64;
+            if(!workWord2)goto flags48;
+            workWord2=Physics32Player80View2;
+            workWord3=Physics32Player94View3;
+            numeric4=Physics32Player84View1;
+            workWord3-=64;
+            Physics32Player8CView2=workWord2;
+            Physics32Player90View1=numeric4;
+            Physics32Player94View3=workWord3;
+            goto clampPhysics32;
+            flags48:call6=&Physics32PlayerFCView1;
+            workWord2=Physics32Field(call6,unsigned char*,0);
+            if(workWord2)goto copy48;
+            workWord2=Physics32PlayerB8View2;
+            call4=call6-112;
+            if(!workWord2)goto vector48;
+            copy48:workWord2=Physics32Player80View2;
+            workWord3=Physics32PlayerA0View2;
+            numeric4=Physics32Player84View1;
+            workWord3-=192;
+            Physics32Player8CView2=workWord2;
+            Physics32Player90View1=numeric4;
+            Physics32Player94View3=workWord3;
+            Physics32PlayerA0View2=workWord3;
+            goto clampPhysics32;
+            vector48:call5=call6-124;
+            Physics32Call4F194View5(call4,call5,call6-20);
+            goto clampPhysics32;
+            clampPhysics32:globalPointer=&Physics32Player94View3;
+            clampPhysics32PointerReady:workWord2=Physics32Field(globalPointer,int*,0);
+            workWord2=workWord2<-8960;
+            if(!workWord2)return;
+            workWord2=-8960;
+            Physics32Field(globalPointer,int*,0)=workWord2;
+            return;
+        }
+    case 40:{
+            register int numeric4 __asm__("$4");
+            call5=&Physics32Player20CView1;
+            __asm__("":"=r"(call5):"0"(call5));
+            workWord2=Physics32Field(call5,int*,0)&64;
+            call4=&originalFrame.spD0;
+            if(workWord2)goto block_132;
+            call5-=192;
+            __asm__("":"=r"(workWord2):"0"(workWord2));
+            Physics32Call410F8View1(call4,call5,0);
+            workWord3=Physics32Player4CView1;
+            workWord2=1;
+            if(workWord3==workWord2){
+                workWord2=512;
+                workWord3=Physics32Player60View1;
+                numeric4=Physics32Player144View1;
+                workWord2-=workWord3;
+                workWord3=numeric4<<4;
+                workWord2-=workWord3;
+                workWord3=workWord2&4095;
+                originalFrame.spD4=workWord3;
+                workWord2=workWord3<2049;
+                if(!workWord2){
+                    workWord2=workWord3-4096;
+                    __asm__("":"=r"(workWord2):"0"(workWord2));
+                    originalFrame.spD4=workWord2;
+                }
+                __asm__ volatile("":::"memory");
+                workWord2=originalFrame.spD4;
+                workWord3=numeric4+1;
+                Physics32Player144View1=workWord3;
+                workWord3=workWord3<21;
+                workWord2=(workWord2<<7)>>8;
+                originalFrame.spD4=workWord2;
+                if(!workWord3){
+                    __asm__ volatile("":"=r"(workWord3):"0"(workWord3));
+                    Physics32Player4CView1=0;
+                }
+            }
+            raw21_temp_s1_4 = (int) (originalFrame.spD0 * 0x14) >> 7;
+            Physics32Field(&Physics32Player0View3, int *, 0x64) = (int) ((Physics32Field(&Physics32Player0View3, int *, 0x64) + raw21_temp_s1_4) & 0xFFF);
+            raw21_temp_v1_6 = (Physics32Field(&Physics32Player0View3, int *, 0x60) + ((int) (originalFrame.spD4 * -0xF) >> 7)) & 0xFFF;
+            Physics32Field(&Physics32Player0View3, int *, 0x60) = raw21_temp_v1_6;
+            if (raw21_temp_v1_6 >= 0x801) {
+                Physics32Field(&Physics32Player0View3, int *, 0x60) = (int) (raw21_temp_v1_6 - 0x1000);
+            }
+            if (Physics32Field(&Physics32Player0View3, int *, 0x60) < -0x320) {
+                Physics32Field(&Physics32Player0View3, int *, 0x60) = -0x320;
+            }
+            if (Physics32Field(&Physics32Player0View3, int *, 0x60) >= 0x321) {
+                Physics32Field(&Physics32Player0View3, int *, 0x60) = 0x320;
+            }
+            if ((*Physics32Data6C570View2 & 0x40) || (Physics32Field(&Physics32Player0View3, int *, 0x4C) == 1)) {
+                Physics32Field(&Physics32Player0View3, int *, 0xAC) = 0xE00;
+            }
+            else {
+                Physics32Field(&Physics32Player0View3, int *, 0xAC) = 0;
+            }
+            if (Physics32Field(&Physics32Player0View3, int *, 0x4C) == 2) {
+                Physics32Call417FCView3(0xC0, 0xC0);
+                if (Physics32Field(&Physics32Player0View3, int *, 0xB0) < 0xE01) {
+                    Physics32Field(&Physics32Player0View3, int *, 0x4C) = 0;
+                }
+            }
+            else {
+                Physics32Call417FCView3(0xC0, 0x30);
+            }
+            raw21_temp_s0_7 = &Physics32Player0View3 + 0x60;
+            raw21_temp_a0_5 = (((int) (raw21_temp_s1_4 * -(Physics32Call4EA2CView3(Physics32Field(&Physics32Player0View3, int *, 0x60)) << 5)) >> 0xC) - ((int) (Physics32Field(&Physics32Player0View3, int *, 0x14C) * 0x10) >> 6)) - ((int) (Physics32Field(&Physics32Player0View3, int *, 0x5C) << 6) >> 6);
+            raw21_temp_v1_7 = Physics32Field(&Physics32Player0View3, int *, 0x14C) + raw21_temp_a0_5;
+            Physics32Field(&Physics32Player0View3, int *, 0x14C) = raw21_temp_v1_7;
+            raw21_temp_a1_2 = (Physics32Field(&Physics32Player0View3, int *, 0x5C) + (raw21_temp_v1_7 >> 6)) & 0xFFF;
+            Physics32Field(&Physics32Player0View3, int *, 0x5C) = raw21_temp_a1_2;
+            if (raw21_temp_a1_2 >= 0x801) {
+                Physics32Field(&Physics32Player0View3, int *, 0x5C) = (int) (raw21_temp_a1_2 - 0x1000);
+            }
+            if (Physics32Field(&Physics32Player0View3, int *, 0x5C) < -0x300) {
+                Physics32Field(&Physics32Player0View3, int *, 0x5C) = -0x300;
+            }
+            if (Physics32Field(&Physics32Player0View3, int *, 0x5C) >= 0x301) {
+                Physics32Field(&Physics32Player0View3, int *, 0x5C) = 0x300;
+            }
+            Physics32Call41848View1(raw21_temp_a0_5, raw21_temp_a1_2);
+            Physics32Call4F178View4(raw21_temp_s0_7 + 0x2C, raw21_temp_s0_7 + 0x20);
+            workWord2=Physics32CallRandView2()&31;
+            if(workWord2)goto block_130;
+            __asm__("":"=r"(workWord2):"0"(workWord2));
+            particleCall3=Physics21_SpawnParticle;
+            call4=(void*)1;
+            if(!particleCall3)goto block_130;
+            call5=(void*)44;
+            call6=&originalFrame.spD8;
+            particleArg7=0;
+            __asm__("":"=r"(particleArg7):"0"(particleArg7));
+            workWord2=544;
+            originalFrame.spD8=workWord2;
+            workWord2=64;
+            originalFrame.spDC=0;
+            __asm__ volatile(""::"i"(0x800987CC):"memory");
+            originalFrame.spE0=workWord2;
+            goto block_129;
+        }
+    case 41:{
+            register int numeric4 __asm__("$4");
+            register int numeric5 __asm__("$5");
+            int product41;
+            raw21_temp_s1_5 = &Physics32Player0View3 + 0x20C;
+            if (!(Physics32Field(&Physics32Player0View3, int *, 0x20C) & 0x40)) {
+                if (Physics32Data6E044View2 != 7) {
+                    Physics32Call410F8View1(&originalFrame.spD8, raw21_temp_s1_5 - 0xC0, 0);
+                    workWord3=originalFrame.spD8;
+                    numeric4=originalFrame.spDC;
+                    workWord2=workWord3*5;
+                    workWord2<<=2;
+                    raw21_temp_s0_8=workWord2>>7;
+                    workWord2=numeric4<<4;
+                    numeric4-=workWord2;
+                    numeric4>>=7;
+                    workWord3=Physics32Player64View1;
+                    workWord2=Physics32Player60View1;
+                    workWord3+=raw21_temp_s0_8;
+                    workWord3&=4095;
+                    workWord2+=numeric4;
+                    Physics32Player64View1=workWord3;
+                    workWord3=workWord2&4095;
+                    workWord2=workWord3<2049;
+                    Physics32Player60View1=workWord3;
+                    if(!workWord2){
+                        workWord2=workWord3-4096;
+                        __asm__("":"=r"(workWord2):"0"(workWord2));
+                        Physics32Player60View1=workWord2;
+                    }
+                    if (Physics32Field(&Physics32Player0View3, int *, 0x60) < -0x320) {
+                        Physics32Field(&Physics32Player0View3, int *, 0x60) = -0x320;
+                    }
+                    if (Physics32Field(&Physics32Player0View3, int *, 0x60) >= 0x321) {
+                        Physics32Field(&Physics32Player0View3, int *, 0x60) = 0x320;
+                    }
+                    workWord2=Physics32Call4EA2CView3(Physics32Player60View1);
+                    workWord2<<=5;
+                    workWord2=-workWord2;
+                    product41=raw21_temp_s0_8*workWord2;
+                    workWord3=Physics32Field(raw21_temp_s1_5,int*,-192);
+                    numeric5=Physics32Player5CView1;
+                    workWord2=(workWord3<<4)>>6;
+                    numeric4=product41>>12;
+                    numeric4-=workWord2;
+                    workWord2=(numeric5<<6)>>6;
+                    numeric4-=workWord2;
+                    workWord3+=numeric4;
+                    Physics32Field(raw21_temp_s1_5,int*,-192)=workWord3;
+                    workWord3>>=6;
+                    numeric5+=workWord3;
+                    numeric5&=4095;
+                    workWord2=numeric5<2049;
+                    Physics32Player5CView1=numeric5;
+                    if(!workWord2){
+                        workWord2=numeric5-4096;
+                        __asm__("":"=r"(workWord2):"0"(workWord2));
+                        Physics32Player5CView1=workWord2;
+                    }
+                    if (Physics32Field(&Physics32Player0View3, int *, 0x5C) < -0x300) {
+                        Physics32Field(&Physics32Player0View3, int *, 0x5C) = -0x300;
+                    }
+                    if (Physics32Field(&Physics32Player0View3, int *, 0x5C) >= 0x301) {
+                        Physics32Field(&Physics32Player0View3, int *, 0x5C) = 0x300;
+                    }
+                }
+                raw21_temp_s0_9 = &Physics32Player0View3 + 0x80;
+                Physics32Call4F168View2(raw21_temp_s0_9);
+                Physics32Call4F168View2(raw21_temp_s0_9 + 0xC);
+                workWord2=Physics32CallRandView2()&31;
+                if(workWord2)goto block_130;
+                __asm__("":"=r"(workWord2):"0"(workWord2));
+                particleCall3=Physics21_SpawnParticle;
+                call4=(void*)1;
+                if(!particleCall3)goto block_130;
+                call5=(void*)44;
+                call6=&originalFrame.spE8;
+                particleArg7=0;
+                __asm__("":"=r"(particleArg7):"0"(particleArg7));
+                workWord2=544;
+                originalFrame.spE8=workWord2;
+                workWord2=64;
+                originalFrame.spEC=0;
+                originalFrame.spF0=workWord2;
+                block_129:particleCall3(call4,call5,call6,particleArg7);
+                block_130:globalPointer=&Physics32Player158View1;
+                workWord2=Physics32Field(globalPointer,int*,0);
+                workWord2++;
+                Physics32Field(globalPointer,int*,0)=workWord2;
+                return;
+            }
+            goto block_132;
+        }
+    case 42:{
+            register int numeric4 __asm__("$4");
+            register int numeric5 __asm__("$5");
+            call5=&Physics32Player20CView1;
+            __asm__("":"=r"(call5):"0"(call5));
+            workWord2=Physics32Field(call5,int*,0)&64;
+            call4=&originalFrame.spE8;
+            if(!workWord2)goto run42;
+            block_132:Physics32PlayerACView1=0;
+            Physics32PlayerB0View1=0;
+            return;
+            run42:call5-=192;
+            __asm__("":"=r"(workWord2):"0"(workWord2));
+            Physics32Call410F8View1(call4,call5,0);
+            workWord3=Physics32Player4CView1;
+            workWord2=1;
+            if(workWord3==workWord2){
+                workWord2=512;
+                workWord3=Physics32Player60View1;
+                numeric5=Physics32Player144View1;
+                workWord2-=workWord3;
+                workWord3=numeric5<<4;
+                workWord2-=workWord3;
+                workWord3=workWord2&4095;
+                originalFrame.spEC=workWord3;
+                workWord2=workWord3<2049;
+                if(!workWord2){
+                    workWord2=workWord3-4096;
+                    __asm__("":"=r"(workWord2):"0"(workWord2));
+                    originalFrame.spEC=workWord2;
+                }
+                __asm__ volatile("":::"memory");
+                numeric4=originalFrame.spEC;
+                workWord3=numeric5+1;
+                Physics32Player144View1=workWord3;
+                workWord3=workWord3<13;
+                workWord2=numeric4*3;
+                workWord2<<=5;
+                workWord2>>=8;
+                originalFrame.spEC=workWord2;
+                if(!workWord3){
+                    __asm__ volatile("":"=r"(workWord3):"0"(workWord3));
+                    Physics32Player4CView1=0;
+                }
+            }
+            raw21_temp_s1_6 = &Physics32Player0View3 + 0x64;
+            raw21_temp_s0_10 = (int) (originalFrame.spE8 * 0x14) >> 7;
+            Physics32Field(&Physics32Player0View3, int *, 0x64) = (int) ((Physics32Field(&Physics32Player0View3, int *, 0x64) + raw21_temp_s0_10) & 0xFFF);
+            raw21_temp_v1_13 = (Physics32Field(&Physics32Player0View3, int *, 0x60) + ((int) (originalFrame.spEC * -0xF) >> 7)) & 0xFFF;
+            Physics32Field(&Physics32Player0View3, int *, 0x60) = raw21_temp_v1_13;
+            if (raw21_temp_v1_13 >= 0x801) {
+                Physics32Field(&Physics32Player0View3, int *, 0x60) = (int) (raw21_temp_v1_13 - 0x1000);
+            }
+            if (Physics32Field(&Physics32Player0View3, int *, 0x60) < -0x320) {
+                Physics32Field(&Physics32Player0View3, int *, 0x60) = -0x320;
+            }
+            if (Physics32Field(&Physics32Player0View3, int *, 0x60) >= 0x321) {
+                Physics32Field(&Physics32Player0View3, int *, 0x60) = 0x320;
+            }
+            Physics32Field(&Physics32Player0View3, int *, 0xAC) = 0x1C00;
+            Physics32Call417FCView3(0x240, 0x30);
+            raw21_temp_a0_6 = (((int) (raw21_temp_s0_10 * -(Physics32Call4EA2CView3(Physics32Field(&Physics32Player0View3, int *, 0x60)) << 5)) >> 0xC) - ((int) (Physics32Field(&Physics32Player0View3, int *, 0x14C) * 0x10) >> 6)) - ((int) (Physics32Field(&Physics32Player0View3, int *, 0x5C) << 6) >> 6);
+            raw21_temp_v1_14 = Physics32Field(&Physics32Player0View3, int *, 0x14C) + raw21_temp_a0_6;
+            Physics32Field(&Physics32Player0View3, int *, 0x14C) = raw21_temp_v1_14;
+            raw21_temp_a1_3 = (Physics32Field(&Physics32Player0View3, int *, 0x5C) + (raw21_temp_v1_14 >> 6)) & 0xFFF;
+            Physics32Field(&Physics32Player0View3, int *, 0x5C) = raw21_temp_a1_3;
+            if (raw21_temp_a1_3 >= 0x801) {
+                Physics32Field(&Physics32Player0View3, int *, 0x5C) = (int) (raw21_temp_a1_3 - 0x1000);
+            }
+            if (Physics32Field(&Physics32Player0View3, int *, 0x5C) < -0x300) {
+                Physics32Field(&Physics32Player0View3, int *, 0x5C) = -0x300;
+            }
+            if (Physics32Field(&Physics32Player0View3, int *, 0x5C) >= 0x301) {
+                Physics32Field(&Physics32Player0View3, int *, 0x5C) = 0x300;
+            }
+            Physics32Call41848View1(raw21_temp_a0_6, raw21_temp_a1_3);
+            Physics32Call4F178View4(raw21_temp_s1_6 + 0x28, raw21_temp_s1_6 + 0x1C);
+            if ((Physics21_SpawnParticle != 0) && (Physics32Field(&Physics32Player0View3, int *, 0xB4) >= 0x7D1)) {
+                originalFrame.spF8 = -0x190;
+                originalFrame.spFC = 0x40 - (Physics32CallRandView2() & 0x7F);
+                originalFrame.sp100 = -0x12C;
+                Physics21_SpawnParticle(1, 0x2C, &originalFrame.spF8, 0);
+                return;
+            }
+            break;
+        }
+    case 43:case 44:globalField4CPointer=&Physics32Player4CView1;
+        __asm__("":"=r"(globalField4CPointer):"0"(globalField4CPointer));
+        workWord3=Physics32Field(globalField4CPointer,int*,0);
+        workWord2=1;
+        if(workWord3!=workWord2)goto continue43;
+        block_154:call4=&Physics32Player80View1;
+        __asm__("":"=r"(call4):"0"(call4));
+        Physics32Call4F168View2(call4);
+        call4=&Physics32Player8CView1;
+        __asm__("":"=r"(call4):"0"(call4));
+        Physics32Call4F168View2(call4);
+        return;
+        continue43:workWord2=7;
+        workWord3=Physics32Data6E044View2;
+        if (workWord3 == workWord2) {
+            Physics32Field(&Physics32Player0View3, int *, 0xB0) = 0;
+        }
+        else {
+            Physics32Call40D10View2(0x980);
+            raw21_var_v0_2 = Physics32Call41580View2(0x5A, 0x10);
+            if (raw21_var_v0_2 < 0) {
+                raw21_var_v0_2 = -raw21_var_v0_2;
+            }
+            if (raw21_var_v0_2 >= 0x201) {
+                Physics32Field(&Physics32Player0View3, int *, 0xAC) = 0;
+            }
+            raw21_var_a0_2 = 0xC0;
+            if (Physics32Field(&Physics32Player0View3, int *, 0xB0) >= 0xC81) {
+                raw21_var_a0_2 = 0;
+                raw21_var_a1_4 = 0xC0;
+            }
+            else {
+                raw21_var_a1_4 = 0x40;
+            }
+            Physics32Call417FCView3(raw21_var_a0_2, raw21_var_a1_4);
+        }
+        raw21_temp_s0_11 = &Physics32Player0View3 + 0xB0;
+        if (Physics32Field(&Physics32Player0View3, int *, 0xB0) != 0) {
+            Physics32Call41848View1();
+            Physics32Call41B64View2();
+            Physics32Field(&Physics32Player0View3, int *, 0x94) = 0;
+        }
+        else {
+            Physics32Call4F168View2(raw21_temp_s0_11 - 0x30);
+            Physics32Call4F168View2(raw21_temp_s0_11 - 0x24);
+        }
+        if (Physics21_SpawnParticle != 0) {
+            raw21_temp_s4 = &Physics32Player0View3 + 0x28;
+            if (Physics32Field(&Physics32Player0View3, int *, 0x28) < 0) {
+                if ((Physics32Field(&Physics32Player0View3, int *, 0xB0) >= 0x401) && (savedSlotIndex < 2) && (Physics32Data6C640View1 & 1)) {
+                    Physics32Call4F178View4(&originalFrame.spF8, raw21_temp_s4 - 0x28);
+                    originalFrame.sp10C = 0x40;
+                    originalFrame.sp110 = 0;
+                    originalFrame.sp108 = (int) Physics32Field(&Physics32Player0View3, int *, 0xB0) >> 5;
+                    if (savedSlotIndex != 0) {
+                        originalFrame.sp10C = -0x40;
+                    }
+                    raw21_temp_s2_3 = raw21_temp_s4 + 8;
+                    Physics32Call4ED6CView2(raw21_temp_s2_3, &originalFrame.sp108, &originalFrame.sp118);
+                    Physics32Call4F194View4(&originalFrame.spF8, &originalFrame.spF8, &originalFrame.sp118);
+                    originalFrame.sp108 = 0;
+                    originalFrame.sp100 = -Physics32Field(&Physics32Player0View3, int *, 0x28);
+                    Physics32Call4ED6CView2(raw21_temp_s2_3, &originalFrame.sp108, &originalFrame.sp108);
+                    Physics32Call4F110View2(&originalFrame.sp108, 3);
+                    Physics21_SpawnParticle(1, 0x2A, &originalFrame.spF8, &originalFrame.sp108);
+                    if (!(Physics32CallRandView2() & 0x1F)) {
+                        Physics21_SpawnParticle(1, 0x29, &originalFrame.spF8, 0);
+                    }
+                }
+                else {
+                    raw21_temp_s1_7 = &Physics32Player0View3 + 0xB0;
+                    if ((Physics32Field(&Physics32Player0View3, int *, 0xB0) < 0x201) && (savedSlotIndex == 0) && !(Physics32Data6C640View1 & 7) && !(Physics32CallRandView2() & 3)) {
+                        originalFrame.sp128 = 0x80;
+                        __asm__("":"=r"(savedSlotIndex):"0"(savedSlotIndex));
+                        originalFrame.sp12C = 0;
+                        originalFrame.sp130 = 0;
+                        Physics32Call4ED6CView2(raw21_temp_s1_7 - 0x80, &originalFrame.sp128, &originalFrame.sp128);
+                        Physics32Call4F194View4(&originalFrame.sp128, &originalFrame.sp128, raw21_temp_s1_7 - 0xB0);
+                        originalFrame.sp130 = -Physics32Field(&Physics32Player0View3, int *, 0x28);
+                        Physics21_SpawnParticle(1, 0x2B, &originalFrame.sp128, (int *)1);
+                    }
+                }
+            }
+        }
+        raw21_temp_a1_4 = Physics32Field(&Physics32Player0View3, int *, 0x144) - ((int) ((Physics32Field(&Physics32Player0View3, int *, 0x148) * 2) + (Physics32Field(&Physics32Player0View3, int *, 0x144) * 0x14)) >> 8);
+        raw21_temp_a0_7 = Physics32Field(&Physics32Player0View3, int *, 0x148) + raw21_temp_a1_4;
+        Physics32Field(&Physics32Player0View3, int *, 0x144) = raw21_temp_a1_4;
+        Physics32Field(&Physics32Player0View3, int *, 0x148) = raw21_temp_a0_7;
+        if (raw21_temp_a0_7 >= 0x5901) {
+            Physics32Field(&Physics32Player0View3, int *, 0x148) = 0x5900;
+        }
+        if (Physics32Field(&Physics32Player0View3, int *, 0x148) < -0x5900) {
+            Physics32Field(&Physics32Player0View3, int *, 0x148) = -0x5900;
+            return;
+        }
+        break;
+    case 49:{
+            register void *pointer17 __asm__("$17");
+            register void *pointer18 __asm__("$18");
+            register void *pointer16 __asm__("$16");
+            int product49a,product49b;
+            pointer17=&Physics32Player210View1;
+            workWord2=Physics32Field(pointer17,int*,0)&1024;
+            call6=(void*)1;
+            if(!workWord2)goto noFlag49;
+            __asm__("":"=r"(pointer17):"0"(pointer17));
+            call4=(void*)Physics32Field(pointer17,int*,12);
+            call5=(void*)Physics32Player220View1;
+            __asm__ volatile("":"=r"(pointer17):"0"(pointer17),"r"(call4),"r"(call5):"memory");
+            pointer17+=12;
+            workWord2=Physics32Call4E880View1(call4,call5,call6);
+            pointer16=&originalFrame.sp118;
+            call4=pointer16;
+            Physics32Player148View1=workWord2;
+            Physics32Call4F178View3(call4,pointer17);
+            Physics32Call4F0E8View1(pointer16,6);
+            workWord2=Physics32Call4EDE8View3(pointer16,1);
+            Physics32PlayerB0View2=workWord2;
+            call4=(void*)128;
+            goto prepare49;
+            noFlag49:__asm__("":"=r"(call6):"0"(call6));
+            workWord2=Physics32PlayerE4View1;
+            workWord2=workWord2<11;
+            if(workWord2)goto lowMode49;
+            call4=(void*)Physics32PlayerCCView1;
+            call5=(void*)Physics32PlayerD0View1;
+            __asm__ volatile(""::"i"(0x800990CC):"memory");
+            call6=(void*)1;
+            goto query49;
+            lowMode49:call4=(void*)Physics32Player98View1;
+            call5=call4;
+            query49:workWord2=Physics32Call4E880View1(call4,call5,call6);
+            Physics32Player148View1=workWord2;
+            call4=(void*)128;
+            prepare49:call5=(void*)192;
+            __asm__ volatile(""::"r"(call5):"memory");
+            pointer18=&Physics32PlayerACView2;
+            workWord2=3840;
+            Physics32Field(pointer18,int*,0)=workWord2;
+            Physics32Call417FCView2(call4,call5);
+            call4=(void*)Physics32Player148View1;
+            pointer17=pointer18-44;
+            workWord2=Physics32Call4EA2CView2(call4);
+            workWord3=Physics32PlayerB0View2;
+            product49a=workWord3*workWord2;
+            call4=(void*)Physics32Player148View1;
+            workWord2=product49a>>12;
+            __asm__("":"=r"(workWord2):"0"(workWord2));
+            originalFrame.sp118=workWord2;
+            workWord2=Physics32Call4E9E4View2(call4);
+            workWord3=Physics32PlayerB0View2;
+            product49b=workWord3*workWord2;
+            pointer16=&originalFrame.sp118;
+            call4=pointer16;
+            call5=pointer16;
+            call6=pointer17;
+            originalFrame.sp120=0;
+            workWord2=product49b>>12;
+            __asm__("":"=r"(workWord2):"0"(workWord2));
+            originalFrame.sp11C=workWord2;
+            Physics32Call4F1C8View3(call4,call5,call6);
+            originalFrame.sp120=0;
+            call5=(void*)Physics32Call4EDE8View3(pointer16,0);
+            workWord2=(int)call5<257;
+            call4=pointer17;
+            if(!workWord2){
+                Physics32Call4F08CView3(pointer16,call5,256);
+                call4=pointer17;
+            }
+            call5=pointer17;
+            Physics32Call4F194View3(call4,call5,pointer16);
+            workWord2=Physics32PlayerFCView2;
+            if(workWord2)goto scalar49;
+            workWord2=Physics32PlayerB8View1;
+            call4=pointer18-32;
+            if(!workWord2)goto vector49;
+            scalar49:workWord2=Physics32PlayerA0View1;
+            workWord2-=192;
+            goto store94From2;
+            vector49:call5=pointer17;
+            Physics32Call4F194View3(call4,call5,pointer18+60);
+            return;
+        }
+    case 0x39:
+        if ((workWord2=combinedIndex<9)==0) {
+            Physics32Field(&Physics32Player0View3, int *, 0x80) = (int) (Physics32Field(&Physics32Player0View3, int *, 0x8C) * 0xF8);
+            Physics32Field(&Physics32Player0View3, int *, 0x84) = (int) (Physics32Field(&Physics32Player0View3, int *, 0x90) * 0xF8);
+            Physics32Field(&Physics32Player0View3, int *, 0x88) = (int) (Physics32Field(&Physics32Player0View3, int *, 0x94) * 0xF8);
+            Physics32Call4F110View2(&Physics32Player0View3 + 0x80, 8);
+        }
+        block_188:call4=&Physics32Player0View3+0x8C;
+        call5=call4-12;
+        Physics32Call4F178View4(call4,call5);
+        return;
+    case 150:case 151:{
+            register int numeric4 __asm__("$4");
+            register int numeric5 __asm__("$5");
+            register int delta17 __asm__("$17");
+            register void *pointer16 __asm__("$16");
+            int product150;
+            Physics32Call410F8View2(&originalFrame.sp138,&Physics32Player14CView1,0);
+            workWord2=originalFrame.sp13C;
+            workWord3=workWord2<<4;
+            workWord2-=workWord3;
+            workWord3=originalFrame.sp138;
+            numeric5=workWord2>>7;
+            workWord2=workWord3*5;
+            workWord2<<=2;
+            workWord3=Physics32PlayerF4View1;
+            delta17=workWord2>>7;
+            if(!workWord3)goto rotate150;
+            numeric4=Physics32Player60View1;
+            if(numeric4<=0)goto rotate150;
+            workWord2=Physics32Player8View1;
+            workWord3-=workWord2;
+            workWord2=workWord3-numeric4;
+            workWord3=workWord2&4095;
+            workWord2=workWord3<2049;
+            if(workWord2)goto rotate150;
+            workWord3-=4096;
+            workWord3>>=2;
+            workWord2=workWord3<numeric5;
+            if(workWord2)numeric5=workWord3;
+            rotate150:call4=&Physics32Player64View1;
+            workWord2=Physics32Field(call4,int*,0);
+            workWord3=Physics32Player60View1;
+            workWord2+=delta17;
+            workWord2&=4095;
+            workWord3+=numeric5;
+            workWord3&=4095;
+            Physics32Field(call4,int*,0)=workWord2;
+            workWord2=workWord3<2049;
+            Physics32Player60View1=workWord3;
+            if(!workWord2){
+                workWord2=workWord3-4096;
+                __asm__("":"=r"(workWord2):"0"(workWord2));
+                Physics32Player60View1=workWord2;
+            }
+            workWord2=Physics32Player60View1;
+            workWord2=workWord2<-512;
+            if(workWord2)Physics32Player60View1=-512;
+            workWord2=Physics32Player60View1;
+            workWord2=workWord2<513;
+            if(!workWord2)Physics32Player60View1=512;
+            workWord3=Physics32Player48View1;
+            workWord2=151;
+            __asm__("":"=r"(workWord2):"0"(workWord2));
+            if(workWord3==workWord2)workWord2=8192;
+            else workWord2=1088;
+            Physics32PlayerACView1=workWord2;
+            __asm__ volatile("":::"memory");
+            workWord3=Physics32Player48View1;
+            __asm__ volatile(""::"r"(workWord3):"memory");
+            workWord2=151;
+            __asm__("":"=r"(workWord2):"0"(workWord2));
+            call4=(void*)192;
+            if(workWord3==workWord2)call4=(void*)384;
+            Physics32Call417FCView4(call4,48);
+            pointer16=&Physics32Player60View1;
+            workWord2=Physics32Call4EA2CView4(Physics32Field(pointer16,int*,0));
+            workWord3=workWord2*3;
+            workWord3<<=3;
+            workWord3=-workWord3;
+            product150=delta17*workWord3;
+            workWord3=Physics32Player14CView1;
+            numeric5=Physics32Player5CView1;
+            workWord2=(workWord3<<4)>>6;
+            numeric4=product150>>12;
+            numeric4-=workWord2;
+            workWord2=(numeric5<<6)>>6;
+            numeric4-=workWord2;
+            workWord3+=numeric4;
+            Physics32Player14CView1=workWord3;
+            workWord3>>=6;
+            numeric5+=workWord3;
+            numeric5&=4095;
+            workWord2=numeric5<2049;
+            Physics32Player5CView1=numeric5;
+            if(!workWord2){
+                workWord2=numeric5-4096;
+                __asm__("":"=r"(workWord2):"0"(workWord2));
+                Physics32Player5CView1=workWord2;
+            }
+            workWord2=Physics32Player5CView1;
+            workWord2=workWord2<-512;
+            if(workWord2)Physics32Player5CView1=-512;
+            workWord2=Physics32Player5CView1;
+            workWord2=workWord2<513;
+            if(!workWord2)Physics32Player5CView1=512;
+            Physics32Call41848View2();
+            Physics32Call4F178View5(pointer16+44,pointer16+32);
+            workWord3=Physics32PlayerF4View1;
+            if(!workWord3)return;
+            workWord2=Physics32Player8View1;
+            workWord2=workWord3-workWord2;
+            workWord3=Physics32Player94View2;
+            workWord2<<=4;
+            workWord3=workWord2<workWord3;
+            if(!workWord3)return;
+            store94From2:Physics32Player94View2=workWord2;
+            return;
+        }
+    }
+}
+#undef Physics32Field
+
 
 /* AI generated; not human reviewed. SCUS-94467 8009953C..80099CDC.
  * Verified37 scalar/independent table,50 case24 and43 case31 routes reused
@@ -1012,4 +2489,848 @@ clearPointers:
 }
 
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/animation", func_level_32_8009ACBC);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original8009ACBC.
+ * Assembly SHA256 4caa0e9300a9f33cb13b5c73edd66ad89a44be6e6f0004b19dafc8d80bd26320.
+ * AI-generated; not human reviewed. Verified donor state C is adapted to
+ * all1407 original instructions and143 state-table entries (bias9).
+ * Original9/31/96/97 branches, shared selector calls, indirect callback,
+ * saved-value phases, signed products, raw fields and complete exits match.
+ * FrameA8 retains eight four-word scratch slots atSP10,20,...80 and the
+ * original saved S0..S3/RA positions. No field/helper meanings are inferred.
+ * View names retain distinct original typed aliases; their exact assembly
+ * symbol identities and donor sources are recorded in the provenance file.
+ * Empty metadata consumes initialized values and original source addresses,
+ * emits no CPU instructions and retains the original distinct branch joins.
+ * C emits every CPU word through the unchanged compiler/assembler/pipeline
+ * and flags. Original padding and every acceptance gate remain unchanged.
+ * Raw physical units/fixed point, helper/callback contracts and invocation
+ * cadence remain unresolved. Cadence per invocation; rate unknown.
+ * Falsification: every original native/linked word, conditional/internal
+ * target, selector/data record and full EXE/every-overlay retail hash.
+ * Binary identity does not establish synchronized runtime/system completion. */
+extern int Anim32Player48View1 __asm__("D_80070328 + 0x48");
+extern unsigned char* Anim32Player250View1 __asm__("D_80070328 + 0x250");
+extern int Anim32Player48View2 __asm__("D_80070328 + 0x48");
+extern int Anim32Player4CView1 __asm__("D_80070328 + 0x4C");
+extern int Anim32Player54View1 __asm__("D_80070328 + 0x54");
+extern int Anim32PlayerA0View1 __asm__("D_80070328 + 0xA0");
+extern int Anim32PlayerA8View1 __asm__("D_80070328 + 0xA8");
+extern int Anim32PlayerACView1 __asm__("D_80070328 + 0xAC");
+extern int Anim32PlayerB0View1 __asm__("D_80070328 + 0xB0");
+extern int Anim32PlayerB8View1 __asm__("D_80070328 + 0xB8");
+extern int Anim32PlayerCCView1 __asm__("D_80070328 + 0xCC");
+extern int Anim32PlayerD0View1 __asm__("D_80070328 + 0xD0");
+extern int Anim32PlayerD4View1 __asm__("D_80070328 + 0xD4");
+extern int Anim32Player8CView1 __asm__("D_80070328 + 0x8C");
+extern int Anim32Player90View1 __asm__("D_80070328 + 0x90");
+extern int Anim32Player94View1 __asm__("D_80070328 + 0x94");
+extern int Anim32PlayerE4View1 __asm__("D_80070328 + 0xE4");
+extern int Anim32Player144View1 __asm__("D_80070328 + 0x144");
+extern int Anim32Player158View1 __asm__("D_80070328 + 0x158");
+extern int Anim32Player1ECView1 __asm__("D_80070328 + 0x1EC");
+extern int Anim32Player1F0View1 __asm__("D_80070328 + 0x1F0");
+extern int Anim32Player240View1 __asm__("D_80070328 + 0x240");
+extern int Anim32Player280View1 __asm__("D_80070328 + 0x280");
+extern unsigned char Anim32Player14View1 __asm__("D_80070328 + 0x14");
+extern unsigned char Anim32Player15View1 __asm__("D_80070328 + 0x15");
+extern unsigned char Anim32Player16View1 __asm__("D_80070328 + 0x16");
+extern unsigned char Anim32Player17View1 __asm__("D_80070328 + 0x17");
+extern unsigned char Anim32PlayerFCView1 __asm__("D_80070328 + 0xFC");
+extern unsigned char Anim32Player1B5View1 __asm__("D_80070328 + 0x1B5");
+extern unsigned char Anim32Player1B6View1 __asm__("D_80070328 + 0x1B6");
+extern unsigned char Anim32Data66530View1[] __asm__("D_80066530");
+extern int Anim32Data6E538View1 __asm__("D_8006E538"),Anim32Data6E53CView1 __asm__("D_8006E53C");
+extern int Anim32Data6E044View1 __asm__("D_8006E044"),A4898Gate __asm__("D_8006E344"),A4898Count __asm__("D_8006C514");
+extern int (*Anim32Data74374View1)() __asm__("unk_ovlheader_80074374");
+extern int Anim32Player28CView1 __asm__("D_80070328 + 0x28C");
+extern int Anim32Player290View1 __asm__("D_80070328 + 0x290");
+extern int Anim32Data6FA38View1 __asm__("D_8006FA38");
+int Anim32Call3BF6CView1() __asm__("func_8003BF6C");
+int Anim32Call3BE70View1() __asm__("func_8003BE70");
+int Anim32Call40994View1() __asm__("func_80040994");
+int Anim32Call4BEF8View1() __asm__("func_8004BEF8");
+int Anim32Call49688View1() __asm__("func_80049688");
+int Anim32Call498C0View1() __asm__("func_800498C0");
+extern int Anim32Player10CView1 __asm__("D_80070328 + 0x10C");
+int Anim32Call40954View1() __asm__("func_80040954");
+extern int Anim32PlayerBCView1 __asm__("D_80070328 + 0xBC");
+extern int Anim32Player160View1 __asm__("D_80070328 + 0x160");
+extern int Anim32Player15CView1 __asm__("D_80070328 + 0x15C");
+extern int Anim32Player88View1 __asm__("D_80070328 + 0x88");
+extern int Anim32Player84View1 __asm__("D_80070328 + 0x84");
+extern int Anim32Player68View1 __asm__("D_80070328 + 0x68");
+extern int Anim32Player6CView1 __asm__("D_80070328 + 0x6C");
+int Anim32Call3BABCView1() __asm__("func_8003BABC");
+int Anim32Call4F1C8View1() __asm__("func_8004F1C8");
+int Anim32Call4EDE8View1() __asm__("func_8004EDE8");
+int Anim32Call3BABCView2() __asm__("func_8003BABC");
+int Anim32Call4ED6CView1() __asm__("func_8004ED6C");
+int Anim32Call4EF04View1() __asm__("func_8004EF04");
+int Anim32Call41848View1() __asm__("func_80041848");
+int Anim32Call4F178View1() __asm__("func_8004F178");
+int Anim32Call4F08CView1() __asm__("func_8004F08C");
+int Anim32Call4F194View1() __asm__("func_8004F194");
+int Anim32Call43E00View1() __asm__("func_80043E00");
+int Anim32Call4F110View1() __asm__("func_8004F110");
+int Anim32Call4F1C8View2() __asm__("func_8004F1C8");
+int Anim32Call4EDE8View2() __asm__("func_8004EDE8");
+extern int Anim32Player4CView2 __asm__("D_80070328 + 0x4C");
+extern int Anim32Player54View2 __asm__("D_80070328 + 0x54");
+extern int Anim32PlayerA0View2 __asm__("D_80070328 + 0xA0");
+extern int Anim32PlayerACView2 __asm__("D_80070328 + 0xAC");
+extern int Anim32PlayerB0View2 __asm__("D_80070328 + 0xB0");
+extern int Anim32PlayerB8View2 __asm__("D_80070328 + 0xB8");
+extern int Anim32PlayerCCView2 __asm__("D_80070328 + 0xCC");
+extern int Anim32PlayerD0View2 __asm__("D_80070328 + 0xD0");
+extern int Anim32PlayerD4View2 __asm__("D_80070328 + 0xD4");
+extern int Anim32Player8CView2 __asm__("D_80070328 + 0x8C");
+extern int Anim32Player90View2 __asm__("D_80070328 + 0x90");
+extern int Anim32Player94View2 __asm__("D_80070328 + 0x94");
+extern int Anim32PlayerE4View2 __asm__("D_80070328 + 0xE4");
+extern int Anim32Player144View2 __asm__("D_80070328 + 0x144");
+extern int Anim32Player280View2 __asm__("D_80070328 + 0x280");
+extern unsigned char Anim32Player1B5View2 __asm__("D_80070328 + 0x1B5");
+extern unsigned char Anim32Player1B6View2 __asm__("D_80070328 + 0x1B6");
+extern int Anim32Data6E538View2 __asm__("D_8006E538"),Anim32Data6E53CView2 __asm__("D_8006E53C");
+extern int (*Anim32Data7431CView1)(int) __asm__("unk_ovlheader_8007431C");
+extern int Anim32Player24View1 __asm__("D_80070328 + 0x24");
+extern int Anim32Player4CView3 __asm__("D_80070328 + 0x4C");
+extern int Anim32Player54View3 __asm__("D_80070328 + 0x54");
+extern int Anim32PlayerB0View3 __asm__("D_80070328 + 0xB0");
+extern int Anim32Player144View3 __asm__("D_80070328 + 0x144");
+extern int Anim32Player158View2 __asm__("D_80070328 + 0x158");
+extern int Anim32Player280View3 __asm__("D_80070328 + 0x280");
+extern unsigned char Anim32Player0View1[] __asm__("D_80070328");
+extern int Anim32Data6E538View3 __asm__("D_8006E538"),Anim32Data6E53CView3 __asm__("D_8006E53C");
+extern int Anim32Data6E044View2 __asm__("D_8006E044"),Anim32Data6E344View1 __asm__("D_8006E344"),Anim32Data6C514View1 __asm__("D_8006C514");
+extern int (*Anim32Data74374View2)() __asm__("unk_ovlheader_80074374");
+int Anim32Call40994View2() __asm__("func_80040994");
+int Anim32Call4BEF8View2() __asm__("func_8004BEF8");
+int Anim32Call4F334View1() __asm__("func_8004F334");
+extern volatile int Anim32Player20CView1 __asm__("D_80070328 + 0x20C");
+extern int Anim32Player214View1 __asm__("D_80070328 + 0x214");
+extern unsigned char Anim32Player100View1 __asm__("D_80070328 + 0x100");
+extern unsigned char Anim32Data6E535View1 __asm__("D_8006E535");
+extern unsigned char* Anim32Data6EE2CView1 __asm__("D_8006EE2C");
+int Anim32Call40BCCView1() __asm__("func_80040BCC");
+int Anim32Call1A310View1() __asm__("func_8001A310");
+void func_level_32_8009ACBC(void){
+    register int rawValue2 __asm__("$2");
+    register int rawValue3 __asm__("$3");
+    register int nextSelector4 __asm__("$4");
+    register int product5 __asm__("$5");
+    register unsigned char* object4 __asm__("$4");
+    register int (*callback3)(int) __asm__("$3");
+    struct {
+        int at10[4],at20[4],at30[4],at40[4],at50[4],at60[4],at70[4],at80[4];
+    }
+    frame;
+    register int* state __asm__("$16");
+    register int* saved16 __asm__("$16");
+    register int* saved17 __asm__("$17");
+    register int* saved18 __asm__("$18");
+    register int* saved19 __asm__("$19");
+    register int* state4 __asm__("$4");
+    register int call6 __asm__("$6");
+    rawValue2=Anim32Player48View1;
+    switch(rawValue2){
+    case 20:
+        if(Anim32Call40994View1())return;
+        rawValue2=Anim32Data6E53CView1&64;
+        nextSelector4=6;
+        if(rawValue2)goto select;
+        rawValue2=Anim32PlayerB8View1<4;
+        nextSelector4=7;
+        if(!rawValue2)goto select;
+        if(Anim32PlayerE4View1>=23)goto select;
+        rawValue3=Anim32Data6E538View1;
+        rawValue2=rawValue3&128;
+        nextSelector4=13;
+        if(rawValue2)goto select;
+        rawValue2=Anim32PlayerA8View1;
+        if(rawValue2<0)rawValue2=-rawValue2;
+        if(rawValue2>=17){
+            nextSelector4=1;
+            goto select;
+        }
+        rawValue2=rawValue3&12;
+        __asm__("" : "=r"(rawValue2):"0"(rawValue2));
+        if(!rawValue2){
+            rawValue2=Anim32PlayerACView1;
+            nextSelector4=1;
+            if(rawValue2)goto select;
+        }
+        if(Anim32Data6E044View1==7 || Anim32Player240View1) {
+            state=&Anim32Player48View2;
+            __asm__("" : "=r"(state):"0"(state));
+            if(!*state)return;
+            Anim32Call4BEF8View1(0);
+            if(Anim32Data66530View1[*((unsigned char*)state-0x2C)]>=96){
+                Anim32Player14View1=Anim32Player15View1;
+                Anim32Player16View1=Anim32Player17View1;
+            }
+            Anim32Player17View1=0;
+            rawValue3=*state;
+            rawValue2=113;
+            *((unsigned char*)state-0x2C)=rawValue2;
+            Anim32Player1F0View1=0;
+            Anim32Player15View1=rawValue3;
+            Anim32Player1ECView1=rawValue3;
+            return;
+        }
+        rawValue2=Anim32PlayerFCView1;
+        nextSelector4=15;
+        if(rawValue2)goto select;
+        Anim32Call49688View1();
+        return;
+    case 53: case 54:
+        if(Anim32Call40994View1())return;
+        nextSelector4=0;
+        goto select;
+    case 9:
+        rawValue3=Anim32Player4CView2;
+        if(rawValue3!=1)goto charge9;
+        if(Anim32Player1B5View2 && (Anim32Data6E53CView2&64))Anim32Player1B6View2=1;
+        if(Anim32PlayerB8View2 || Anim32Player54View2<16 || Anim32PlayerE4View2>=23)goto buttons9;
+        rawValue3=Anim32PlayerCCView2;
+        rawValue2=Anim32Player8CView2;
+        product5=rawValue3*rawValue2;
+        rawValue3=Anim32PlayerD0View2;
+        rawValue2=Anim32Player90View2;
+        nextSelector4=rawValue3*rawValue2;
+        rawValue3=Anim32PlayerD4View2;
+        rawValue2=Anim32Player94View2;
+        rawValue3=rawValue3*rawValue2;
+        rawValue2=product5+nextSelector4;
+        rawValue2+=rawValue3;
+        if(rawValue2>=0)goto buttons9;
+        if(Anim32PlayerACView2){
+            rawValue3=Anim32PlayerB0View2;
+            if(rawValue3>=3841){
+                __asm__ volatile(""::"i"(0x8009AFD0):"memory");
+                nextSelector4=3;
+                goto select;
+            }
+            rawValue2=rawValue3<1921;
+            nextSelector4=1;
+            if(rawValue2)goto select;
+            __asm__ volatile(""::"i"(0x8009AFE0):"memory");
+            nextSelector4=2;
+            goto select;
+        }
+        rawValue2=Anim32PlayerB0View2<1920;
+        nextSelector4=0;
+        if(rawValue2)goto select;
+        __asm__ volatile(""::"i"(0x8009B000):"memory");
+        nextSelector4=4;
+        goto select;
+    buttons9:
+        if((Anim32Data6E538View2&128) && Anim32PlayerA0View2<0 && Anim32Player54View2>=5){
+            nextSelector4=22;
+            goto select;
+        }
+        if(Anim32Player1B5View2 && Anim32Player1B6View2){
+            if(Anim32PlayerA0View2>=0)return;
+            if(Anim32Player54View2>=5){
+                nextSelector4=17;
+                goto select;
+            }
+        }
+        rawValue3=Anim32PlayerA0View2;
+        if(rawValue3>=0)return;
+        nextSelector4=Anim32Player54View2;
+        if(nextSelector4<5)return;
+        rawValue2=rawValue3< -6400;
+        __asm__("" : "=r"(rawValue2):"0"(rawValue2));
+        if(rawValue2)goto case9Select7;
+        rawValue2=nextSelector4<91;
+        if(rawValue2)return;
+    case9Select7:
+        __asm__ volatile(""::"i"(0x8009B0DC):"memory");
+        nextSelector4=7;
+        goto select;
+    charge9:
+        if(Anim32Player24View1&32)return;
+        if(Anim32Player54View2<25)return;
+        if(Anim32Player280View2<0){
+            __asm__ volatile(""::"i"(0x8009B128):"memory");
+            nextSelector4=31;
+            goto select;
+        }
+    selectState:
+        rawValue3=Anim32Player144View2;
+        if(rawValue3==10){
+            __asm__ volatile(""::"i"(0x8009B144):"memory");
+            nextSelector4=44;
+            goto select;
+        }
+        rawValue2=rawValue3-11;
+        __asm__("" : "=r"(rawValue2):"0"(rawValue2));
+        if((unsigned int)rawValue2<2){
+            nextSelector4=41;
+            goto select;
+        }
+        rawValue2=Anim32PlayerB8View2;
+        nextSelector4=0;
+        if(!rawValue2)goto select;
+        __asm__ volatile(""::"i"(0x8009B174):"memory");
+        nextSelector4=7;
+        goto select;
+    case 19:
+        if(Anim32Call40994View2())return;
+        rawValue2=13;
+        rawValue3=Anim32Data6E344View1;
+        if(rawValue3==rawValue2){
+            rawValue2=Anim32Data6C514View1;
+            nextSelector4=17;
+            if(rawValue2)goto select;
+        }
+        nextSelector4=(int)Anim32Player0View1;
+        rawValue2=Anim32Call4F334View1((void*)nextSelector4,(void*)(nextSelector4+348));
+        rawValue3=Anim32Player158View2;
+        rawValue3=rawValue3<rawValue2;
+        nextSelector4=17;
+        if(!rawValue3)return;
+        goto select;
+    case 21:
+        if(Anim32Player54View1<33)return;
+        if(!Anim32PlayerB8View1){
+            Anim32Call4BEF8View1(4);
+            Anim32Player4CView1=1;
+            return;
+        }
+        rawValue2=Anim32PlayerBCView1;
+        nextSelector4=7;
+        if(rawValue2)return;
+        __asm__ volatile(""::"i"(0x8009B240):"memory");
+        goto select;
+    case 28:
+        if(Anim32Player1B5View1 && (Anim32Data6E53CView1&64))Anim32Player1B6View1=1;
+        if(!Anim32PlayerB8View1 && Anim32Player54View1>=16 && Anim32PlayerE4View1<23) {
+            rawValue3=Anim32PlayerCCView1;
+            rawValue2=Anim32Player8CView1;
+            product5=rawValue3*rawValue2;
+            rawValue3=Anim32PlayerD0View1;
+            rawValue2=Anim32Player90View1;
+            nextSelector4=rawValue3*rawValue2;
+            rawValue3=Anim32PlayerD4View1;
+            rawValue2=Anim32Player94View1;
+            rawValue3*=rawValue2;
+            rawValue2=product5+nextSelector4;
+            rawValue2+=rawValue3;
+            if(rawValue2<0) {
+                if(Anim32PlayerACView1) {
+                    rawValue3=Anim32PlayerB0View1;
+                    if(rawValue3>=3841){
+                        nextSelector4=3;
+                        goto select;
+                    }
+                    rawValue2=rawValue3<1921;
+                    nextSelector4=1;
+                    if(rawValue2)goto select;
+                    nextSelector4=2;
+                    goto select;
+                }
+                rawValue2=Anim32PlayerB0View1<1920;
+                nextSelector4=0;
+                if(rawValue2)goto select;
+                __asm__ volatile("" ::: "memory");
+                nextSelector4=4;
+                goto select;
+            }
+        }
+        rawValue2=Anim32Data6E538View1&128;
+        if(rawValue2 && Anim32Player4CView1==1){
+            nextSelector4=22;
+            goto select;
+        }
+        if(Anim32Player1B5View1 && Anim32Player1B6View1) {
+            rawValue3=Anim32Player4CView1;
+            rawValue2=1;
+            nextSelector4=17;
+            if(rawValue3!=rawValue2)return;
+            goto select;
+        }
+        rawValue3=Anim32Player4CView1;
+        rawValue2=1;
+        if(rawValue3!=rawValue2)return;
+        rawValue2=Anim32PlayerA0View1<-6400;
+        nextSelector4=7;
+        if(rawValue2)goto select;
+        if(Anim32Player54View1>=91)goto select;
+        return;
+    case 30: {
+            register int* timer4 __asm__("$4");
+            register int (*callback3)() __asm__("$3");
+            if(Anim32Data6E53CView1&64)Anim32Player1B6View1=1;
+            if(Anim32Data6FA38View1>=0){
+                if(Anim32Player144View1<=0x8FFF)return;
+                callback3=Anim32Data74374View1;
+                Anim32Player28CView1=-1;
+                if(callback3){
+                    callback3();
+                    return;
+                }
+                goto call498C0;
+            }
+            timer4=&Anim32Player280View1;
+            __asm__("" : "=r"(timer4):"0"(timer4));
+            if(*timer4<0){
+                if(Anim32Player144View1<=0x8FFF)return;
+                Anim32Player28CView1=-1;
+                call498C0:Anim32Call498C0View1();
+                __asm__ volatile("" ::: "memory");
+                return;
+            }
+            rawValue3=Anim32Player54View1;
+            if(rawValue3>=61){
+                *timer4=-1;
+                return;
+            }
+            rawValue2=rawValue3<16;
+            __asm__("" : "=r"(rawValue2):"0"(rawValue2));
+            if(rawValue2)return;
+            if(!Anim32Player1B6View1)return;
+            if(Anim32Player28CView1>=0){
+                if(Anim32Call3BF6CView1(Anim32Player290View1,Anim32Player28CView1))Anim32Call3BE70View1(Anim32Player28CView1);
+                Anim32Player28CView1=-1;
+            }
+            nextSelector4=6;
+            goto select;
+        }
+    case 36:
+        if(Anim32Call40994View1())return;
+        saved16=&Anim32Player4CView1;
+        rawValue2=*saved16;
+        if((unsigned)(rawValue2-1)<2 && !Anim32PlayerB8View1){
+            if(Anim32PlayerE4View1>=60)goto expired36;
+            frame.at10[0]=0;
+            frame.at10[1]=0;
+            frame.at10[2]=4096;
+            Anim32Call4ED6CView1(saved16-7,frame.at10,frame.at10);
+            Anim32Call4EF04View1(saved16+32,4096);
+            rawValue3=frame.at10[0];
+            rawValue2=saved16[32];
+            product5=rawValue3*rawValue2;
+            rawValue3=frame.at10[1];
+            rawValue2=Anim32PlayerD0View1;
+            nextSelector4=rawValue3*rawValue2;
+            rawValue3=frame.at10[2];
+            rawValue2=Anim32PlayerD4View1;
+            rawValue3*=rawValue2;
+            rawValue2=product5+nextSelector4;
+            rawValue2+=rawValue3;
+            rawValue2>>=12;
+            nextSelector4=21;
+            if(rawValue2<1536)goto select;
+            product5=2;
+            object4=Anim32Player250View1;
+            __asm__("" : "=r"(object4):"0"(object4));
+            call6=0;
+            __asm__("" : "=r"(object4),"=r"(product5),"=r"(call6):"0"(object4),"1"(product5),"2"(call6));
+            *saved16=0;
+            Anim32Call3BABCView1(object4,product5,call6);
+            return;
+            expired36:__asm__ volatile("" ::: "memory");
+            nextSelector4=21;
+            goto select;
+        }
+        state4=&Anim32Player4CView1;
+        rawValue3=*state4;
+        rawValue2=3;
+        if(rawValue3==rawValue2){
+            if(Anim32Data6E538View1&64)Anim32Player1B6View1=1;
+            rawValue2=Anim32Call40954View1(Anim32Player10CView1);
+            rawValue3=9;
+            if(rawValue2!=rawValue3){
+                if(Anim32PlayerA0View1>0 && Anim32Player160View1>=4)Anim32PlayerB8View1=1;
+                else Anim32Player4CView1=0;
+            }
+            saved17=&Anim32PlayerB8View1;
+            __asm__("" : "=r"(saved17):"0"(saved17));
+            rawValue2=*saved17;
+            if(!rawValue2)goto remainder36;
+            if(Anim32Player158View1<=2048)goto reset36;
+            Anim32Call41848View1();
+            rawValue3=Anim32Player15CView1;
+            rawValue2=2;
+            if(rawValue3==rawValue2){
+                nextSelector4=48;
+                if(Anim32Player1B6View1){
+                    rawValue2=Anim32Player88View1;
+                    rawValue2+=3840;
+                    Anim32Player88View1=rawValue2;
+                    rawValue2=4;
+                    goto set36;
+                }
+                rawValue2=4;
+                goto set36;
+            }
+            if(Anim32Player1B6View1 || rawValue3==1){
+                Anim32Call4F178View1(frame.at10,saved17+37);
+                frame.at10[2]=0;
+                Anim32Call4EF04View1(frame.at10,4096);
+                rawValue3=frame.at10[0];
+                rawValue2=saved17[-14];
+                call6=rawValue3*rawValue2;
+                rawValue3=frame.at10[1];
+                rawValue2=Anim32Player84View1;
+                rawValue3*=rawValue2;
+                call6+=rawValue3;
+                call6>>=12;
+                call6=-call6;
+                Anim32Call4F08CView1(frame.at10,4096,call6);
+                saved16=saved17-14;
+                Anim32Player88View1+=2048;
+                Anim32Call4F194View1(saved16,saved16,frame.at10);
+                Anim32Call43E00View1(saved16);
+                Anim32Call4F110View1(frame.at10,4);
+                Anim32Call4F194View1(saved17-46,saved17-46,frame.at10);
+                nextSelector4=37;
+                Anim32Player68View1=0;
+                Anim32Player6CView1=0;
+                rawValue2=5;
+                goto set36;
+            }
+            nextSelector4=48;
+            rawValue2=4;
+        set36:
+            Anim32Player4CView1=rawValue2;
+            Anim32Call4BEF8View1(nextSelector4);
+            Anim32Call3BABCView2(Anim32Player250View1,1,0);
+            saved16=&Anim32Player8CView1;
+            nextSelector4=(int)saved16;
+            __asm__("" : "=r"(nextSelector4):"0"(nextSelector4));
+            saved17=saved16-3;
+            Anim32Call4F178View1((void*)nextSelector4,saved17);
+            Anim32Call4F178View1(saved16+3,saved17);
+            return;
+            reset36:Anim32Player4CView1=0;
+            goto remainder36;
+        }
+        if(rawValue3)goto remainder36;
+        if(Anim32PlayerB8View1<5 && (Anim32Data6E53CView1&64)){
+            rawValue2=1;
+            rawValue3=Anim32PlayerA0View1;
+            *state4=rawValue2;
+            Anim32Player54View1=0;
+            rawValue3+=3520;
+            Anim32Player94View1=rawValue3;
+            return;
+        }
+        rawValue2=Anim32PlayerB8View1;
+        if(rawValue2){
+            rawValue2=rawValue2<5;
+            goto count36;
+        }
+        rawValue2=Anim32PlayerE4View1;
+        rawValue2=rawValue2<48;
+        nextSelector4=21;
+        if(!rawValue2)goto select;
+        __asm__ volatile("" ::: "memory");
+        rawValue2=Anim32PlayerB8View1;
+        rawValue2=rawValue2<5;
+    count36:
+        if(!rawValue2){
+            rawValue2=1;
+            Anim32Player4CView1=rawValue2;
+            Anim32Player54View1=0;
+        }
+    remainder36:
+        saved18=frame.at20;
+        nextSelector4=(int)saved18;
+        __asm__("" : "=r"(nextSelector4):"0"(nextSelector4));
+        saved16=&Anim32Player8CView1;
+        product5=(int)saved16;
+        __asm__("" : "=r"(product5):"0"(product5));
+        saved17=saved16+3;
+        Anim32Call4F1C8View1((void*)nextSelector4,(void*)product5,saved17);
+        saved19=frame.at30;
+        Anim32Call4F1C8View1(saved19,saved16-3,saved17);
+        rawValue2=Anim32Call4EDE8View1(saved18,1);
+        rawValue3=Anim32PlayerACView1;
+        rawValue2<<=8;
+        rawValue2/=rawValue3;
+        if(rawValue2<218)return;
+        rawValue2=Anim32Call4EDE8View1(saved19,1);
+        rawValue3=Anim32PlayerACView1;
+        rawValue2<<=8;
+        rawValue2/=rawValue3;
+        __asm__ volatile("" : "=r"(rawValue2):"0"(rawValue2):"$4");
+        rawValue2=rawValue2<218;
+        nextSelector4=21;
+        if(rawValue2)return;
+        __asm__ volatile("" ::: "memory");
+        goto select;
+    case 48:
+        if(Anim32Call40994View1())return;
+        saved16=&Anim32PlayerB8View1;
+        if(!*saved16 && Anim32PlayerE4View1<60){
+            frame.at40[0]=0;
+            frame.at40[1]=0;
+            frame.at40[2]=4096;
+            Anim32Call4ED6CView1(saved16-34,frame.at40,frame.at40);
+            Anim32Call4EF04View1(saved16+5,4096);
+            rawValue3=frame.at40[0];
+            rawValue2=saved16[5];
+            product5=rawValue3*rawValue2;
+            rawValue3=frame.at40[1];
+            rawValue2=Anim32PlayerD0View1;
+            nextSelector4=rawValue3*rawValue2;
+            rawValue3=frame.at40[2];
+            rawValue2=Anim32PlayerD4View1;
+            rawValue3*=rawValue2;
+            rawValue2=product5+nextSelector4;
+            rawValue2+=rawValue3;
+            rawValue2>>=12;
+            nextSelector4=21;
+            if(rawValue2<1536)goto select;
+            Anim32Player4CView1=0;
+            Anim32Call4BEF8View1(36);
+            object4=Anim32Player250View1;
+            product5=2;
+            goto partialBABC;
+        }
+        saved18=frame.at50;
+        nextSelector4=(int)saved18;
+        __asm__("" : "=r"(nextSelector4):"0"(nextSelector4));
+        saved16=&Anim32Player8CView1;
+        product5=(int)saved16;
+        __asm__("" : "=r"(product5):"0"(product5));
+        saved17=saved16+3;
+        Anim32Call4F1C8View2((void*)nextSelector4,(void*)product5,saved17);
+        saved19=frame.at60;
+        Anim32Call4F1C8View2(saved19,saved16-3,saved17);
+        rawValue2=Anim32Call4EDE8View2(saved18,1);
+        rawValue3=Anim32PlayerACView1;
+        rawValue2<<=8;
+        rawValue2/=rawValue3;
+        if(rawValue2<218)return;
+        rawValue2=Anim32Call4EDE8View2(saved19,1);
+        rawValue3=Anim32PlayerACView1;
+        rawValue2<<=8;
+        rawValue2/=rawValue3;
+        __asm__("" ::: "$4");
+        rawValue2=rawValue2<218;
+        nextSelector4=21;
+        if(rawValue2)return;
+        __asm__ volatile("" ::: "memory");
+        goto select;
+    case 37:
+        if(Anim32Call40994View1())return;
+        saved17=&Anim32PlayerB8View1;
+        if(*saved17)return;
+        if(Anim32PlayerE4View1>=60)return;
+        saved19=saved17-34;
+        nextSelector4=(int)saved19;
+        __asm__("" : "=r"(nextSelector4):"0"(nextSelector4));
+        saved16=frame.at70;
+        product5=(int)saved16;
+        call6=product5;
+        __asm__("" : "=r"(product5),"=r"(call6):"0"(product5),"1"(call6));
+        saved18=(int*)4096;
+        frame.at70[0]=0;
+        frame.at70[1]=0;
+        frame.at70[2]=(int)saved18;
+        Anim32Call4ED6CView1((void*)nextSelector4,(void*)product5,(void*)call6);
+        Anim32Call4EF04View1(saved17+5,4096);
+        rawValue3=frame.at70[0];
+        rawValue2=saved17[5];
+        product5=rawValue3*rawValue2;
+        rawValue3=frame.at70[1];
+        rawValue2=Anim32PlayerD0View1;
+        nextSelector4=rawValue3*rawValue2;
+        rawValue3=frame.at70[2];
+        rawValue2=Anim32PlayerD4View1;
+        rawValue3*=rawValue2;
+        rawValue2=product5+nextSelector4;
+        rawValue2+=rawValue3;
+        rawValue2>>=12;
+        nextSelector4=21;
+        if(rawValue2<1536)goto select;
+        frame.at70[0]=(int)saved18;
+        frame.at70[1]=0;
+        frame.at70[2]=0;
+        Anim32Call4ED6CView1(saved19,saved16,saved16);
+        saved16=frame.at80;
+        Anim32Call4F178View1(saved16,saved17-8);
+        Anim32Call4EF04View1(saved16,4096);
+        rawValue3=frame.at70[0];
+        rawValue2=frame.at80[0];
+        product5=rawValue3*rawValue2;
+        rawValue3=frame.at70[1];
+        rawValue2=frame.at80[1];
+        nextSelector4=rawValue3*rawValue2;
+        rawValue3=frame.at70[2];
+        rawValue2=frame.at80[2];
+        rawValue3*=rawValue2;
+        Anim32Player4CView1=0;
+        rawValue2=product5+nextSelector4;
+        rawValue2+=rawValue3;
+        rawValue2>>=12;
+        nextSelector4=21;
+        if(rawValue2<2560)goto select;
+        Anim32Call4BEF8View1(36);
+        object4=Anim32Player250View1;
+        product5=2;
+    partialBABC:
+        Anim32Call3BABCView2(object4,product5,0);
+        return;
+    case 40:
+        if(Anim32Call40994View2())return;
+        if((Anim32Data6E538View3&128) && Anim32Player4CView3!=1){
+            nextSelector4=42;
+            goto select;
+        }
+        if(Anim32PlayerB0View3)return;
+        rawValue2=Anim32Player20CView1&64;
+        nextSelector4=41;
+        if(!rawValue2)goto select;
+        if(Anim32Player214View1<=0)return;
+        goto select;
+    case 41:
+        if(Anim32Call40994View2())return;
+        nextSelector4=Anim32Data6E538View3;
+        rawValue2=nextSelector4&128;
+        if(rawValue2){
+            nextSelector4=42;
+            goto select;
+        }
+        rawValue2=7;
+        rawValue3=Anim32Data6E044View2;
+        if(rawValue3==rawValue2)return;
+        rawValue2=nextSelector4&64;
+        nextSelector4=40;
+        if(rawValue2)goto select;
+        if(!(Anim32Player20CView1&64))return;
+        if(!Anim32Player214View1)goto select;
+        return;
+    case 42:
+        if(Anim32Call40BCCView1())return;
+        if((Anim32Data6E538View3&128) || Anim32Player4CView3==1)goto flag64;
+        rawValue2=Anim32Player20CView1&128;
+        nextSelector4=40;
+        if(!rawValue2)goto select;
+        flag64:rawValue2=Anim32Player20CView1&64;
+        nextSelector4=40;
+        if(!rawValue2)return;
+        goto select;
+    case 43: {
+            register unsigned char* byte4 __asm__("$4");
+            if(Anim32Call40994View2())return;
+            if((Anim32Data6E53CView3&64) && Anim32Player54View3>=9){
+                nextSelector4=6;
+                goto partialCall;
+            }
+            byte4=&Anim32Player100View1;
+            __asm__("" : "=r"(byte4):"0"(byte4));
+            if(!*byte4){
+                nextSelector4=7;
+                goto partialCall;
+            }
+            if(!(Anim32Data6E53CView3&128))goto check44;
+            if(Anim32Player54View3<9)goto check44;
+            rawValue2=*(int*)(Anim32Data6EE2CView1+220);
+            byte4-=256;
+            if(!rawValue2)goto check44;
+            rawValue2=Anim32Call1A310View1(byte4,1024,1,0);
+            nextSelector4=40;
+            if(rawValue2)goto check44;
+            goto select;
+            partialCall:Anim32Call4BEF8View2(nextSelector4);
+            check44:rawValue2=Anim32Data6E535View1;
+            nextSelector4=44;
+            if(!rawValue2)return;
+            goto select;
+        }
+    case 44: {
+            register unsigned char* byte4 __asm__("$4");
+            register int (*callback2)() __asm__("$2");
+            rawValue3=Anim32Player4CView3;
+            rawValue2=1;
+            if(rawValue3!=rawValue2)goto other44;
+            if(Anim32Data6E53CView3&0x850)goto callback44;
+            if(Anim32Player54View3<61)return;
+            callback44:callback2=Anim32Data74374View2;
+            __asm__("" : "=r"(callback2):"0"(callback2));
+            if(!callback2)goto missingCallback;
+            callback2();
+            return;
+            missingCallback:goto call498C0;
+            other44:if(Anim32Call40994View2())return;
+            if((Anim32Data6E53CView3&64) && Anim32Player54View3>=9){
+                nextSelector4=6;
+                goto select;
+            }
+            byte4=&Anim32Player100View1;
+            __asm__("" : "=r"(byte4):"0"(byte4));
+            if(!*byte4){
+                __asm__ volatile(""::"i"(0x8009C0FC):"memory");
+                nextSelector4=7;
+                goto select;
+            }
+            if(!(Anim32Data6E53CView3&128))goto mode44;
+            if(Anim32Player54View3<9)goto mode44;
+            rawValue2=*(int*)(Anim32Data6EE2CView1+220);
+            byte4-=256;
+            if(!rawValue2)goto mode44;
+            rawValue2=Anim32Call1A310View1(byte4,1024,1,0);
+            nextSelector4=40;
+            if(!rawValue2)goto select;
+            mode44:rawValue3=Anim32Data6E044View2;
+            rawValue2=7;
+            if(rawValue3==rawValue2)return;
+            rawValue2=Anim32Data6E535View1;
+            nextSelector4=43;
+            if(rawValue2)return;
+            __asm__ volatile(""::"i"(0x8009C190):"memory");
+            goto select;
+        }
+    case 49:
+        if(Anim32Call40994View1())return;
+        rawValue2=Anim32PlayerB8View1<4;
+        nextSelector4=7;
+        if(!rawValue2)goto select;
+        rawValue2=Anim32Player144View1<16;
+        nextSelector4=0;
+        if(rawValue2)return;
+        __asm__ volatile(""::"i"(0x8009C1D8):"memory");
+        goto select;
+    case 57:
+        if(Anim32Player54View3<25)return;
+        if(Anim32Player280View3<0){
+            nextSelector4=31;
+            goto select;
+        }
+        rawValue2=10;
+        rawValue3=Anim32Player144View3;
+        nextSelector4=41;
+        if(rawValue3!=rawValue2)goto select;
+        nextSelector4=44;
+        goto select;
+    case 150:{
+            register int (*callback2)(int) __asm__("$2")=Anim32Data7431CView1;
+            callback2(1);
+            rawValue2=Anim32Data6E538View1&0xC0;
+            __asm__ volatile("":"=r"(rawValue2):"0"(rawValue2):"$4","memory");
+            nextSelector4=151;
+            if(rawValue2==0)return;
+            goto select;
+        }
+    case 151:{
+            register int (*callback2)(int) __asm__("$2")=Anim32Data7431CView1;
+            callback2(1);
+            rawValue2=Anim32Data6E538View1&0xC0;
+            __asm__ volatile("":"=r"(rawValue2):"0"(rawValue2):"$4","memory");
+            nextSelector4=150;
+            if(rawValue2!=0)return;
+            goto select;
+        }
+        default:return;
+    }
+    select:Anim32Call4BEF8View1(nextSelector4);
+    return;
+}

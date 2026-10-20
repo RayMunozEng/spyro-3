@@ -1,10 +1,10 @@
 <!-- animation.c -->
-- [ ] func_level_35_80088A0C
+- [x] func_level_35_80088A0C
 - [x] func_level_35_8008A2EC
 - [x] func_level_35_8008A808
 - [x] func_level_35_8008A910
 - [x] func_level_35_8008A9C4
-- [ ] func_level_35_8008AF8C
+- [x] func_level_35_8008AF8C
 
 <!-- camera.c -->
 - [x] func_level_35_8008BD08
@@ -21,8 +21,8 @@
 - [x] func_level_35_8008226C
 - [x] func_level_35_800827FC
 - [x] func_level_35_80082910
-- [ ] func_level_35_80082B18
-- [ ] func_level_35_80083840
+- [x] func_level_35_80082B18
+- [x] func_level_35_80083840
 - [x] func_level_35_80084938
 - [x] func_level_35_800849BC
 - [x] func_level_35_80084DC4
@@ -52,27 +52,27 @@
 - [x] func_level_35_80079408
 - [x] func_level_35_80079428
 - [x] func_level_35_80079758
-- [ ] func_level_35_80079A70
-- [ ] func_level_35_8007A540
+- [x] func_level_35_80079A70
+- [x] func_level_35_8007A540
 - [x] func_level_35_8007ACA4
-- [ ] func_level_35_8007AE8C
+- [x] func_level_35_8007AE8C
 - [x] func_level_35_8007C1F4
 - [x] func_level_35_8007C4B0
 - [x] func_level_35_8007C6B8
-- [ ] func_level_35_8007C948
+- [x] func_level_35_8007C948
 - [x] func_level_35_8007D140
 - [x] func_level_35_8007D34C
 - [x] func_level_35_8007E4A0
 - [x] func_level_35_8007E4C0
-- [ ] func_level_35_8007E6C0
-- [ ] func_level_35_8007F80C
+- [x] func_level_35_8007E6C0
+- [x] func_level_35_8007F80C
 - [x] func_level_35_8007FCF0
 - [x] func_level_35_8007FF14
-- [ ] func_level_35_80080044
-- [ ] func_level_35_800805A8
+- [x] func_level_35_80080044
+- [x] func_level_35_800805A8
 
 <!-- parts_spawn.c -->
-- [ ] func_level_35_8008723C
+- [x] func_level_35_8008723C
 
 <!-- parts_update.c -->
 - [x] func_level_35_80085BB4

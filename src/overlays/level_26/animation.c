@@ -12,7 +12,895 @@ extern short Signed26B[] __asm__("D_80065920");
 #include "camera.h"
 #include "spyro.h"
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_26/animation", func_level_26_80088AD8);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original80088AD8.
+ * Assembly SHA256 56e47dd8825b626e18f9890d269a7b190b137dc9f4c684e212245ddb55020630.
+ * AI-generated; not human reviewed. All782 original instructions,
+ * 10 selectors bias100 and 0 owned padding words are required.
+ * Original frame0x98; every concrete field width and producer is retained.
+ * Eight state bodies reuse verified13/50/11 with exact concrete stack maps.
+ * Original scratch10..7C,savedS0..S3,combinedS2 and selectors100..109 remain.
+ * Original107 uses50's two-pointer vector/particle path; original109 includes
+ * its eight original epilogue rows. All original scalar,vector,control,gate and
+ * byte/halfword producers remain original,without inferred helper semantics.
+ * Typed aliases stay distinct. Initialized empty constraints and original
+ * address metadata emit zero CPU instructions; frozen C tools emit words.
+ * Raw units/fixed point, helper contracts and caller rate remain unresolved.
+ * Cadence is per invocation. Falsification: every native/linked instruction,
+ * actual internal/conditional target,selector/data word and full EXE/every
+ * overlay retail hash. Binary identity does not establish runtime completion. */
+#define Physics26Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+int Physics26Call363DCView4() __asm__("func_800363DC");
+unsigned char Physics26Call40D10View5() __asm__("func_80040D10");
+unsigned char Physics26Call41580View5() __asm__("func_80041580");
+unsigned char Physics26Call416F4View5() __asm__("func_800416F4");
+unsigned char Physics26Call417FCView5() __asm__("func_800417FC");
+unsigned char Physics26Call41B64View5() __asm__("func_80041B64");
+int Physics26Call4E9E4View5() __asm__("func_8004E9E4");
+int Physics26Call4EA2CView5() __asm__("func_8004EA2C");
+unsigned char Physics26Call4ED6CView4() __asm__("func_8004ED6C");
+int Physics26Call4EDE8View5() __asm__("func_8004EDE8");
+unsigned char Physics26Call4F08CView5() __asm__("func_8004F08C");
+unsigned char Physics26Call4F110View3() __asm__("func_8004F110");
+unsigned char Physics26Call4F168View5() __asm__("func_8004F168");
+unsigned char Physics26Call4F178View5() __asm__("func_8004F178");
+unsigned char Physics26Call4F194View5() __asm__("func_8004F194");
+unsigned char Physics26Call4F1C8View5() __asm__("func_8004F1C8");
+int Physics26CallRandView4() __asm__("rand");
+extern unsigned char Physics26Data658A0View5 __asm__("D_800658A0");
+extern unsigned char Physics26Data65920View5 __asm__("D_80065920");
+extern void *Physics26Data6C570View4 __asm__("D_8006C570");
+extern int Physics26Data6C640View5 __asm__("D_8006C640");
+extern int Physics26Data6E044View5 __asm__("D_8006E044");
+extern unsigned char Physics26Data6E548View5 __asm__("D_8006E548");
+extern unsigned char Physics26Player0View5 __asm__("D_80070328");
+extern int Physics26Player94View4 __asm__("D_80070328+0x94");
+extern void *(*Controller88028_SpawnParticle)() __asm__("SpawnParticle");
+int Physics26Call40D10View6() __asm__("func_80040D10");
+int Physics26Call40F48View3() __asm__("func_80040F48");
+int Physics26Call410F8View3() __asm__("func_800410F8");
+int Physics26Call41404View2() __asm__("func_80041404");
+int Physics26Call41580View6() __asm__("func_80041580");
+int Physics26Call416F4View6() __asm__("func_800416F4");
+int Physics26Call417FCView6() __asm__("func_800417FC");
+int Physics26Call41848View4() __asm__("func_80041848");
+int Physics26Call41B64View6() __asm__("func_80041B64");
+int Physics26Call4E9E4View6() __asm__("func_8004E9E4");
+int Physics26Call4EA2CView6() __asm__("func_8004EA2C");
+int Physics26Call4EDE8View6() __asm__("func_8004EDE8");
+int Physics26Call4F08CView6() __asm__("func_8004F08C");
+int Physics26Call4F168View6() __asm__("func_8004F168");
+int Physics26Call4F178View6() __asm__("func_8004F178");
+int Physics26Call4F194View6() __asm__("func_8004F194");
+int Physics26Call4F1C8View6() __asm__("func_8004F1C8");
+int Physics26Call4F284View3() __asm__("func_8004F284");
+extern unsigned char Physics26Data658A0View6 __asm__("D_800658A0");
+extern unsigned char Physics26Data65920View6 __asm__("D_80065920");
+extern int Physics26Data6763CView2 __asm__("D_8006763C");
+extern int Physics26Data67640View2 __asm__("D_80067640");
+extern int Physics26Data67644View2 __asm__("D_80067644");
+extern unsigned char Physics26Data676E8View3 __asm__("D_800676E8");
+extern int* Physics26Data6C570View5 __asm__("D_8006C570");
+extern int Physics26Data6C58CView3 __asm__("D_8006C58C");
+extern int Physics26Data6C5C8View3 __asm__("D_8006C5C8");
+extern int Physics26Data6C640View6 __asm__("D_8006C640");
+extern short Physics26Data6E040View3 __asm__("D_8006E040");
+extern int Physics26Data6E044View6 __asm__("D_8006E044");
+extern int Physics26Data6E538View4 __asm__("D_8006E538");
+extern unsigned char Physics26Data6E548View6 __asm__("D_8006E548");
+extern unsigned char Physics26Player0View6 __asm__("D_80070328");
+extern void *(*Physics13_SpawnParticle)() __asm__("SpawnParticle");
+extern int Physics26PlayerB8View3 __asm__("D_80070328+0xB8");
+extern int Physics26Player94View5 __asm__("D_80070328+0x94");
+extern int Physics26PlayerA8View3 __asm__("D_80070328+0xA8");
+extern int Physics26Player80View2 __asm__("D_80070328+0x80");
+extern int Physics26PlayerB0View3 __asm__("D_80070328+0xB0");
+extern int Physics26Player64View3 __asm__("D_80070328+0x64");
+extern int Physics26Player88View3 __asm__("D_80070328+0x88");
+extern int Physics26Player84View2 __asm__("D_80070328+0x84");
+extern int Physics26Player144View3 __asm__("D_80070328+0x144");
+extern int Physics26Player60View3 __asm__("D_80070328+0x60");
+extern int Physics26PlayerACView3 __asm__("D_80070328+0xAC");
+extern int Physics26Player4CView3 __asm__("D_80070328+0x4C");
+extern int Physics26Player14CView3 __asm__("D_80070328+0x14C");
+extern int Physics26Player5CView3 __asm__("D_80070328+0x5C");
+extern unsigned char Physics26PlayerFCView3 __asm__("D_80070328+0xFC");
+extern int Physics26PlayerA0View3 __asm__("D_80070328+0xA0");
+extern unsigned char Physics26Player1BAView2 __asm__("D_80070328+0x1BA");
+extern signed char Physics26Player1B9View2 __asm__("D_80070328+0x1B9");
+extern int Physics26Player20CView2 __asm__("D_80070328+0x20C");
+extern unsigned char Physics26Player101View2 __asm__("D_80070328+0x101");
+extern int Physics26PlayerA4View2 __asm__("D_80070328+0xA4");
+extern int Physics26Player210View3 __asm__("D_80070328+0x210");
+extern int Physics26PlayerF8View3 __asm__("D_80070328+0xF8");
+extern int Physics26Player8View3 __asm__("D_80070328+0x8");
+int Physics26Call363DCView5() __asm__("func_800363DC");
+int Physics26Call40D10View7() __asm__("func_80040D10");
+int Physics26Call40F48View4() __asm__("func_80040F48");
+int Physics26Call41580View7() __asm__("func_80041580");
+int Physics26Call416F4View7() __asm__("func_800416F4");
+int Physics26Call417FCView7() __asm__("func_800417FC");
+int Physics26Call41848View5() __asm__("func_80041848");
+int Physics26Call41B64View7() __asm__("func_80041B64");
+int Physics26Call43194View2() __asm__("func_80043194");
+int Physics26Call4E880View3() __asm__("func_8004E880");
+int Physics26Call4E9E4View7() __asm__("func_8004E9E4");
+int Physics26Call4EA2CView7() __asm__("func_8004EA2C");
+int Physics26Call4ED6CView5() __asm__("func_8004ED6C");
+int Physics26Call4EDE8View7() __asm__("func_8004EDE8");
+int Physics26Call4F08CView7() __asm__("func_8004F08C");
+int Physics26Call4F168View7() __asm__("func_8004F168");
+int Physics26Call4F178View7() __asm__("func_8004F178");
+int Physics26Call4F194View7() __asm__("func_8004F194");
+int Physics26Call4F1C8View7() __asm__("func_8004F1C8");
+int Physics26Call4F284View4() __asm__("func_8004F284");
+int Physics26CallRandView5() __asm__("rand");
+extern unsigned char Physics26Data658A0View7 __asm__("D_800658A0");
+extern unsigned char Physics26Data65920View7 __asm__("D_80065920");
+extern unsigned char Physics26Data676E8View4 __asm__("D_800676E8");
+extern int Physics26Data6C514View3 __asm__("D_8006C514");
+extern int* Physics26Data6C570View6 __asm__("D_8006C570");
+extern int Physics26Data6C58CView4 __asm__("D_8006C58C");
+extern int Physics26Data6C5C8View4 __asm__("D_8006C5C8");
+extern int Physics26Data6C640View7 __asm__("D_8006C640");
+extern short Physics26Data6E040View4 __asm__("D_8006E040");
+extern int Physics26Data6E044View7 __asm__("D_8006E044");
+extern int Physics26Data6E344View3 __asm__("D_8006E344");
+extern int Physics26Data6E538View5 __asm__("D_8006E538");
+extern unsigned char Physics26Data6E548View7 __asm__("D_8006E548");
+extern unsigned char Physics26Player0View7 __asm__("D_80070328");
+extern void *(*Physics34_SpawnParticle)() __asm__("SpawnParticle");
+extern int Physics26Player16CView2 __asm__("D_80070328+0x16C");
+int Physics26Call13E38View2() __asm__("func_80013E38");
+int Physics26Call363DCView6() __asm__("func_800363DC");
+int Physics26Call40D10View8() __asm__("func_80040D10");
+int Physics26Call410F8View4() __asm__("func_800410F8");
+int Physics26Call41580View8() __asm__("func_80041580");
+int Physics26Call416F4View8() __asm__("func_800416F4");
+int Physics26Call417FCView8() __asm__("func_800417FC");
+int Physics26Call41848View6() __asm__("func_80041848");
+int Physics26Call41B64View8() __asm__("func_80041B64");
+int Physics26Call4E4E4View2() __asm__("func_8004E4E4");
+int Physics26Call4E880View4() __asm__("func_8004E880");
+int Physics26Call4E9E4View8() __asm__("func_8004E9E4");
+int Physics26Call4EA2CView8() __asm__("func_8004EA2C");
+int Physics26Call4ED6CView6() __asm__("func_8004ED6C");
+int Physics26Call4EDE8View8() __asm__("func_8004EDE8");
+int Physics26Call4F08CView8() __asm__("func_8004F08C");
+int Physics26Call4F0E8View2() __asm__("func_8004F0E8");
+int Physics26Call4F110View4() __asm__("func_8004F110");
+int Physics26Call4F168View8() __asm__("func_8004F168");
+int Physics26Call4F178View8() __asm__("func_8004F178");
+int Physics26Call4F194View8() __asm__("func_8004F194");
+int Physics26Call4F1C8View8() __asm__("func_8004F1C8");
+int Physics26CallRandView6() __asm__("rand");
+extern unsigned char Physics26Data658A0View8 __asm__("D_800658A0");
+extern unsigned char Physics26Data65920View8 __asm__("D_80065920");
+extern int Physics26Data67630View2 __asm__("D_80067630");
+extern int Physics26Data67634View2 __asm__("D_80067634");
+extern int Physics26Data67638View2 __asm__("D_80067638");
+extern int Physics26Data6C514View4 __asm__("D_8006C514");
+extern int Physics26Data6C640View8 __asm__("D_8006C640");
+extern int Physics26Data6C7C4View2 __asm__("D_8006C7C4");
+extern int Physics26Data6E044View8 __asm__("D_8006E044");
+extern int Physics26Data6E344View4 __asm__("D_8006E344");
+extern int Physics26Data6E538View6 __asm__("D_8006E538");
+extern unsigned char Physics26Data6E548View8 __asm__("D_8006E548");
+extern int Physics26Data6FA38View2 __asm__("D_8006FA38");
+extern unsigned char Physics26Player0View8 __asm__("D_80070328");
+extern int Physics26Data71908View2 __asm__("D_80071908");
+extern void *(*Physics12_SpawnParticle)() __asm__("SpawnParticle");
+extern int Physics26Player130View2 __asm__("D_80070328+0x130");
+extern int Physics26Player144View4 __asm__("D_80070328+0x144");
+extern short Physics26Player148View3 __asm__("D_80070328+0x148");
+extern short Physics26Player14AView2 __asm__("D_80070328+0x14A");
+extern int Physics26Player14CView4 __asm__("D_80070328+0x14C");
+extern int Physics26Player150View2 __asm__("D_80070328+0x150");
+extern int Physics26Player154View2 __asm__("D_80070328+0x154");
+extern int Physics26Player160View2 __asm__("D_80070328+0x160");
+extern int Physics26Player48View2 __asm__("D_80070328+0x48");
+extern int Physics26Player4CView4 __asm__("D_80070328+0x4C");
+extern int Physics26Player5CView4 __asm__("D_80070328+0x5C");
+extern int Physics26Player60View4 __asm__("D_80070328+0x60");
+extern int Physics26Player64View4 __asm__("D_80070328+0x64");
+extern int Physics26Player8View4 __asm__("D_80070328+0x8");
+extern int Physics26Player88View4 __asm__("D_80070328+0x88");
+extern int Physics26Player8CView2 __asm__("D_80070328+0x8C");
+extern int Physics26Player90View2 __asm__("D_80070328+0x90");
+extern int Physics26Player94View6 __asm__("D_80070328+0x94");
+extern int Physics26PlayerA8View4 __asm__("D_80070328+0xA8");
+extern int Physics26PlayerACView4 __asm__("D_80070328+0xAC");
+extern int Physics26PlayerB0View4 __asm__("D_80070328+0xB0");
+extern int Physics26PlayerF8View4 __asm__("D_80070328+0xF8");
+extern int Physics26Player148View4 __asm__("D_80070328+0x148");
+extern int Physics26Player210View4 __asm__("D_80070328+0x210");
+extern int Physics26Player220View2 __asm__("D_80070328+0x220");
+extern int Physics26Player98View2 __asm__("D_80070328+0x98");
+extern int Physics26PlayerA0View4 __asm__("D_80070328+0xA0");
+extern int Physics26PlayerB8View4 __asm__("D_80070328+0xB8");
+extern int Physics26PlayerCCView2 __asm__("D_80070328+0xCC");
+extern int Physics26PlayerD0View2 __asm__("D_80070328+0xD0");
+extern int Physics26PlayerE4View2 __asm__("D_80070328+0xE4");
+extern unsigned char Physics26PlayerFCView4 __asm__("D_80070328+0xFC");
+int Physics26Call363DCView4() __asm__("func_800363DC");
+unsigned char Physics26Call40D10View5() __asm__("func_80040D10");
+unsigned char Physics26Call41580View5() __asm__("func_80041580");
+unsigned char Physics26Call416F4View5() __asm__("func_800416F4");
+unsigned char Physics26Call417FCView5() __asm__("func_800417FC");
+unsigned char Physics26Call41B64View5() __asm__("func_80041B64");
+int Physics26Call4E9E4View5() __asm__("func_8004E9E4");
+int Physics26Call4EA2CView5() __asm__("func_8004EA2C");
+unsigned char Physics26Call4ED6CView4() __asm__("func_8004ED6C");
+int Physics26Call4EDE8View5() __asm__("func_8004EDE8");
+unsigned char Physics26Call4F08CView5() __asm__("func_8004F08C");
+unsigned char Physics26Call4F110View3() __asm__("func_8004F110");
+unsigned char Physics26Call4F168View5() __asm__("func_8004F168");
+unsigned char Physics26Call4F178View5() __asm__("func_8004F178");
+unsigned char Physics26Call4F194View5() __asm__("func_8004F194");
+unsigned char Physics26Call4F1C8View5() __asm__("func_8004F1C8");
+int Physics26CallRandView4() __asm__("rand");
+extern unsigned char Physics26Data658A0View5 __asm__("D_800658A0");
+extern unsigned char Physics26Data65920View5 __asm__("D_80065920");
+extern void *Physics26Data6C570View4 __asm__("D_8006C570");
+extern int Physics26Data6C640View5 __asm__("D_8006C640");
+extern int Physics26Data6E044View5 __asm__("D_8006E044");
+extern unsigned char Physics26Data6E548View5 __asm__("D_8006E548");
+extern unsigned char Physics26Player0View5 __asm__("D_80070328");
+extern int Physics26Player94View4 __asm__("D_80070328+0x94");
+extern void *(*Controller88028_SpawnParticle)() __asm__("SpawnParticle");
+int Physics26Call40D10View6() __asm__("func_80040D10");
+int Physics26Call40F48View3() __asm__("func_80040F48");
+int Physics26Call410F8View3() __asm__("func_800410F8");
+int Physics26Call41404View2() __asm__("func_80041404");
+int Physics26Call41580View6() __asm__("func_80041580");
+int Physics26Call416F4View6() __asm__("func_800416F4");
+int Physics26Call417FCView6() __asm__("func_800417FC");
+int Physics26Call41848View4() __asm__("func_80041848");
+int Physics26Call41B64View6() __asm__("func_80041B64");
+int Physics26Call4E9E4View6() __asm__("func_8004E9E4");
+int Physics26Call4EA2CView6() __asm__("func_8004EA2C");
+int Physics26Call4EDE8View6() __asm__("func_8004EDE8");
+int Physics26Call4F08CView6() __asm__("func_8004F08C");
+int Physics26Call4F168View6() __asm__("func_8004F168");
+int Physics26Call4F178View6() __asm__("func_8004F178");
+int Physics26Call4F194View6() __asm__("func_8004F194");
+int Physics26Call4F1C8View6() __asm__("func_8004F1C8");
+int Physics26Call4F284View3() __asm__("func_8004F284");
+extern unsigned char Physics26Data658A0View6 __asm__("D_800658A0");
+extern unsigned char Physics26Data65920View6 __asm__("D_80065920");
+extern int Physics26Data6763CView2 __asm__("D_8006763C");
+extern int Physics26Data67640View2 __asm__("D_80067640");
+extern int Physics26Data67644View2 __asm__("D_80067644");
+extern unsigned char Physics26Data676E8View3 __asm__("D_800676E8");
+extern int* Physics26Data6C570View5 __asm__("D_8006C570");
+extern int Physics26Data6C58CView3 __asm__("D_8006C58C");
+extern int Physics26Data6C5C8View3 __asm__("D_8006C5C8");
+extern int Physics26Data6C640View6 __asm__("D_8006C640");
+extern short Physics26Data6E040View3 __asm__("D_8006E040");
+extern int Physics26Data6E044View6 __asm__("D_8006E044");
+extern int Physics26Data6E538View4 __asm__("D_8006E538");
+extern unsigned char Physics26Data6E548View6 __asm__("D_8006E548");
+extern unsigned char Physics26Player0View6 __asm__("D_80070328");
+extern void *(*Physics13_SpawnParticle)() __asm__("SpawnParticle");
+extern int Physics26PlayerB8View3 __asm__("D_80070328+0xB8");
+extern int Physics26Player94View5 __asm__("D_80070328+0x94");
+extern int Physics26PlayerA8View3 __asm__("D_80070328+0xA8");
+extern int Physics26Player80View2 __asm__("D_80070328+0x80");
+extern int Physics26PlayerB0View3 __asm__("D_80070328+0xB0");
+extern int Physics26Player64View3 __asm__("D_80070328+0x64");
+extern int Physics26Player88View3 __asm__("D_80070328+0x88");
+extern int Physics26Player84View2 __asm__("D_80070328+0x84");
+extern int Physics26Player144View3 __asm__("D_80070328+0x144");
+extern int Physics26Player60View3 __asm__("D_80070328+0x60");
+extern int Physics26PlayerACView3 __asm__("D_80070328+0xAC");
+extern int Physics26Player4CView3 __asm__("D_80070328+0x4C");
+extern int Physics26Player14CView3 __asm__("D_80070328+0x14C");
+extern int Physics26Player5CView3 __asm__("D_80070328+0x5C");
+extern unsigned char Physics26PlayerFCView3 __asm__("D_80070328+0xFC");
+extern int Physics26PlayerA0View3 __asm__("D_80070328+0xA0");
+extern unsigned char Physics26Player1BAView2 __asm__("D_80070328+0x1BA");
+extern signed char Physics26Player1B9View2 __asm__("D_80070328+0x1B9");
+extern int Physics26Player20CView2 __asm__("D_80070328+0x20C");
+extern unsigned char Physics26Player101View2 __asm__("D_80070328+0x101");
+extern int Physics26PlayerA4View2 __asm__("D_80070328+0xA4");
+extern int Physics26Player210View3 __asm__("D_80070328+0x210");
+extern int Physics26PlayerF8View3 __asm__("D_80070328+0xF8");
+extern int Physics26Player8View3 __asm__("D_80070328+0x8");
+int Physics26Call363DCView5() __asm__("func_800363DC");
+int Physics26Call40D10View7() __asm__("func_80040D10");
+int Physics26Call40F48View4() __asm__("func_80040F48");
+int Physics26Call41580View7() __asm__("func_80041580");
+int Physics26Call416F4View7() __asm__("func_800416F4");
+int Physics26Call417FCView7() __asm__("func_800417FC");
+int Physics26Call41848View5() __asm__("func_80041848");
+int Physics26Call41B64View7() __asm__("func_80041B64");
+int Physics26Call43194View2() __asm__("func_80043194");
+int Physics26Call4E880View3() __asm__("func_8004E880");
+int Physics26Call4E9E4View7() __asm__("func_8004E9E4");
+int Physics26Call4EA2CView7() __asm__("func_8004EA2C");
+int Physics26Call4ED6CView5() __asm__("func_8004ED6C");
+int Physics26Call4EDE8View7() __asm__("func_8004EDE8");
+int Physics26Call4F08CView7() __asm__("func_8004F08C");
+int Physics26Call4F168View7() __asm__("func_8004F168");
+int Physics26Call4F178View7() __asm__("func_8004F178");
+int Physics26Call4F194View7() __asm__("func_8004F194");
+int Physics26Call4F1C8View7() __asm__("func_8004F1C8");
+int Physics26Call4F284View4() __asm__("func_8004F284");
+int Physics26CallRandView5() __asm__("rand");
+extern unsigned char Physics26Data658A0View7 __asm__("D_800658A0");
+extern unsigned char Physics26Data65920View7 __asm__("D_80065920");
+extern unsigned char Physics26Data676E8View4 __asm__("D_800676E8");
+extern int Physics26Data6C514View3 __asm__("D_8006C514");
+extern int* Physics26Data6C570View6 __asm__("D_8006C570");
+extern int Physics26Data6C58CView4 __asm__("D_8006C58C");
+extern int Physics26Data6C5C8View4 __asm__("D_8006C5C8");
+extern int Physics26Data6C640View7 __asm__("D_8006C640");
+extern short Physics26Data6E040View4 __asm__("D_8006E040");
+extern int Physics26Data6E044View7 __asm__("D_8006E044");
+extern int Physics26Data6E344View3 __asm__("D_8006E344");
+extern int Physics26Data6E538View5 __asm__("D_8006E538");
+extern unsigned char Physics26Data6E548View7 __asm__("D_8006E548");
+extern unsigned char Physics26Player0View7 __asm__("D_80070328");
+extern void *(*Physics34_SpawnParticle)() __asm__("SpawnParticle");
+extern int Physics26Player16CView2 __asm__("D_80070328+0x16C");
+int Physics26Call13E38View2() __asm__("func_80013E38");
+int Physics26Call363DCView6() __asm__("func_800363DC");
+int Physics26Call40D10View8() __asm__("func_80040D10");
+int Physics26Call410F8View4() __asm__("func_800410F8");
+int Physics26Call41580View8() __asm__("func_80041580");
+int Physics26Call416F4View8() __asm__("func_800416F4");
+int Physics26Call417FCView8() __asm__("func_800417FC");
+int Physics26Call41848View6() __asm__("func_80041848");
+int Physics26Call41B64View8() __asm__("func_80041B64");
+int Physics26Call4E4E4View2() __asm__("func_8004E4E4");
+int Physics26Call4E880View4() __asm__("func_8004E880");
+int Physics26Call4E9E4View8() __asm__("func_8004E9E4");
+int Physics26Call4EA2CView8() __asm__("func_8004EA2C");
+int Physics26Call4ED6CView6() __asm__("func_8004ED6C");
+int Physics26Call4EDE8View8() __asm__("func_8004EDE8");
+int Physics26Call4F08CView8() __asm__("func_8004F08C");
+int Physics26Call4F0E8View2() __asm__("func_8004F0E8");
+int Physics26Call4F110View4() __asm__("func_8004F110");
+int Physics26Call4F168View8() __asm__("func_8004F168");
+int Physics26Call4F178View8() __asm__("func_8004F178");
+int Physics26Call4F194View8() __asm__("func_8004F194");
+int Physics26Call4F1C8View8() __asm__("func_8004F1C8");
+int Physics26CallRandView6() __asm__("rand");
+extern unsigned char Physics26Data658A0View8 __asm__("D_800658A0");
+extern unsigned char Physics26Data65920View8 __asm__("D_80065920");
+extern int Physics26Data67630View2 __asm__("D_80067630");
+extern int Physics26Data67634View2 __asm__("D_80067634");
+extern int Physics26Data67638View2 __asm__("D_80067638");
+extern int Physics26Data6C514View4 __asm__("D_8006C514");
+extern int Physics26Data6C640View8 __asm__("D_8006C640");
+extern int Physics26Data6C7C4View2 __asm__("D_8006C7C4");
+extern int Physics26Data6E044View8 __asm__("D_8006E044");
+extern int Physics26Data6E344View4 __asm__("D_8006E344");
+extern int Physics26Data6E538View6 __asm__("D_8006E538");
+extern unsigned char Physics26Data6E548View8 __asm__("D_8006E548");
+extern int Physics26Data6FA38View2 __asm__("D_8006FA38");
+extern unsigned char Physics26Player0View8 __asm__("D_80070328");
+extern int Physics26Data71908View2 __asm__("D_80071908");
+extern void *(*Physics12_SpawnParticle)() __asm__("SpawnParticle");
+extern int Physics26Player130View2 __asm__("D_80070328+0x130");
+extern int Physics26Player144View4 __asm__("D_80070328+0x144");
+extern short Physics26Player148View3 __asm__("D_80070328+0x148");
+extern short Physics26Player14AView2 __asm__("D_80070328+0x14A");
+extern int Physics26Player14CView4 __asm__("D_80070328+0x14C");
+extern int Physics26Player150View2 __asm__("D_80070328+0x150");
+extern int Physics26Player154View2 __asm__("D_80070328+0x154");
+extern int Physics26Player160View2 __asm__("D_80070328+0x160");
+extern int Physics26Player48View2 __asm__("D_80070328+0x48");
+extern int Physics26Player4CView4 __asm__("D_80070328+0x4C");
+extern int Physics26Player5CView4 __asm__("D_80070328+0x5C");
+extern int Physics26Player60View4 __asm__("D_80070328+0x60");
+extern int Physics26Player64View4 __asm__("D_80070328+0x64");
+extern int Physics26Player8View4 __asm__("D_80070328+0x8");
+extern int Physics26Player88View4 __asm__("D_80070328+0x88");
+extern int Physics26Player8CView2 __asm__("D_80070328+0x8C");
+extern int Physics26Player90View2 __asm__("D_80070328+0x90");
+extern int Physics26Player94View6 __asm__("D_80070328+0x94");
+extern int Physics26PlayerA8View4 __asm__("D_80070328+0xA8");
+extern int Physics26PlayerACView4 __asm__("D_80070328+0xAC");
+extern int Physics26PlayerB0View4 __asm__("D_80070328+0xB0");
+extern int Physics26PlayerF8View4 __asm__("D_80070328+0xF8");
+extern int Physics26Player148View4 __asm__("D_80070328+0x148");
+extern int Physics26Player210View4 __asm__("D_80070328+0x210");
+extern int Physics26Player220View2 __asm__("D_80070328+0x220");
+extern int Physics26Player98View2 __asm__("D_80070328+0x98");
+extern int Physics26PlayerA0View4 __asm__("D_80070328+0xA0");
+extern int Physics26PlayerB8View4 __asm__("D_80070328+0xB8");
+extern int Physics26PlayerCCView2 __asm__("D_80070328+0xCC");
+extern int Physics26PlayerD0View2 __asm__("D_80070328+0xD0");
+extern int Physics26PlayerE4View2 __asm__("D_80070328+0xE4");
+extern unsigned char Physics26PlayerFCView4 __asm__("D_80070328+0xFC");
+extern void *(*Physics21_SpawnParticle)() __asm__("SpawnParticle");
+extern void *(*Physics32_SpawnParticle)() __asm__("SpawnParticle");
+extern void *(*Physics50_SpawnParticle)() __asm__("SpawnParticle");
+void func_level_26_80088AD8(int slotIndex) {
+    int lowProduct6;
+    register void *fieldA4State28 __asm__("$16");
+    register void *vector8CState28 __asm__("$17");
+    register int workWord2 __asm__("$2");
+    register int stateWord3 __asm__("$3");
+    register int particleThreshold __asm__("$19");
+    register void *vectorAt40 __asm__("$16");
+    register void *vectorAt30 __asm__("$17");
+    register void *call4 __asm__("$4");
+    register void *call5 __asm__("$5");
+    register void *call6 __asm__("$6");
+    int lowProduct0,lowProduct1,lowProduct2,lowProduct3,lowProduct4,lowProduct5;
+    register void *globalPointer __asm__("$3");
+    struct {
+        int sp10,sp14,sp18,sp1C,sp20,sp24,sp28,sp2C,sp30,sp34,sp38,sp3C,sp40,sp44,sp48,sp4C,sp50,sp54,sp58,sp5C,sp60,sp64,sp68,sp6C,sp70,sp74,sp78,sp7C;
+    }
+    originalFrame;
+    register int signedTableWord __asm__("$7");
+    register void *globalVector80 __asm__("$16");
+    register void *globalVector80State20 __asm__("$16");
+    register void *globalVector8CState20 __asm__("$18");
+    register void *globalVector8C __asm__("$19");
+    register void *var_a0_3 __asm__("$4");
+    register int combinedIndex __asm__("$18");
+    int temp_v0_4;
+    int temp_v0_6;
+    register int workWord3 __asm__("$3");
+    register int particleIndex __asm__("$17");
+    register int nextField94 __asm__("$2");
+    register unsigned char *globalByteE __asm__("$18");
+    register void *globalFieldB8PointerState20 __asm__("$16");
+    register void *globalFieldA4Pointer __asm__("$17");
+    void *temp_v0_5;
+    void *temp_v0_7;
+    void *raw13_temp_s0_9;
+    void *raw13_temp_s1_4;
+    void *raw13_temp_s1_5;
+    int raw13_temp_v0_15;
+    int raw13_temp_v0_16;
+    workWord2=slotIndex*16;
+    globalPointer=&Physics26Data6E548View5;
+    workWord2+=(int)globalPointer;
+    __asm__("":"=r"(workWord2):"0"(workWord2));
+    Physics26Data6C570View4=(void*)workWord2;
+    workWord2=Physics26Field(&Physics26Player0View5,int*,0x54);
+    stateWord3=Physics26Field(&Physics26Player0View5,int*,0x48);
+    combinedIndex=workWord2+slotIndex;
+    switch(stateWord3){
+        default:return;
+    case 107:Physics26Call40D10View5(0xC80);
+        Physics26Call41580View5(0x28, 8);
+        Physics26Call417FCView5(0x140, 0xC0);
+        fieldA4State28 = &Physics26Player0View5 + 0xA4;
+        vector8CState28 = fieldA4State28 - 0x18;
+        workWord2=Physics26Call4EA2CView5(Physics26Field(fieldA4State28,int*,0));
+        workWord3=Physics26Field(&Physics26Player0View5,int*,0xB0);
+        lowProduct3=workWord3*workWord2;
+        call4=(void*)Physics26Field(fieldA4State28,int*,0);
+        workWord2=lowProduct3>>12;
+        __asm__("" : "=r"(workWord2):"0"(workWord2));
+        originalFrame.sp10=workWord2;
+        workWord2=Physics26Call4E9E4View5(call4);
+        workWord3=Physics26Field(&Physics26Player0View5,int*,0xB0);
+        lowProduct4=workWord3*workWord2;
+        workWord2=lowProduct4>>12;
+        __asm__("" : "=r"(workWord2):"0"(workWord2));
+        originalFrame.sp14=workWord2;
+        Physics26Call4F1C8View5(&originalFrame.sp10, &originalFrame.sp10, vector8CState28);
+        originalFrame.sp18 = 0;
+        temp_v0_4 = Physics26Call4EDE8View5(&originalFrame.sp10, 0);
+        __asm__("" : "=r"(fieldA4State28):"0"(fieldA4State28));
+        var_a0_3 = fieldA4State28 - 0x24;
+        if (temp_v0_4 >= 0x281) {
+            Physics26Call4F08CView5(&originalFrame.sp10, temp_v0_4, 0x280);
+            __asm__("" : "=r"(fieldA4State28):"0"(fieldA4State28));
+            var_a0_3 = fieldA4State28 - 0x24;
+        }
+        Physics26Call4F194View5(var_a0_3, vector8CState28, &originalFrame.sp10);
+        Physics26Call41B64View5();
+        if (combinedIndex < 0xD) {
+            __asm__("" :: "r"(combinedIndex));
+            nextField94 = Physics26Field(&Physics26Player0View5, int *, 0x94) + 0x17;
+        }
+        else {
+            nextField94 = Physics26Field(&Physics26Player0View5, int *, 0x94) - 0xC0;
+        }
+        Physics26Player94View4=nextField94;
+        __asm__ volatile("" ::: "memory");
+        if (Controller88028_SpawnParticle != 0) {
+            globalPointer=&Physics26Player0View5+0x148;
+            __asm__("" : "=r"(globalPointer):"0"(globalPointer));
+            particleIndex=0;
+            if (Physics26Field(globalPointer,int*,0) != 0) {
+                workWord2=combinedIndex*4;
+                __asm__("" : "=r"(workWord2):"0"(workWord2));
+                particleThreshold=workWord2+combinedIndex;
+                globalByteE=globalPointer-0x13A;
+                vectorAt40=&originalFrame.sp30;
+                __asm__("" : "=r"(vectorAt40):"0"(vectorAt40));
+            spawnParticleLoop:
+                if (particleThreshold < (Physics26CallRandView4() & 0xFF)) {
+                    workWord2=Physics26Call363DCView4(0,0xC);
+                    call4=globalByteE+0x22;
+                    workWord3=*globalByteE;
+                    __asm__("" : "=r"(workWord3):"0"(workWord3));
+                    call5=vectorAt40;
+                    __asm__("" : "=r"(call4),"=r"(call5):"0"(call4),"1"(call5));
+                    workWord3+=0x80;
+                    __asm__("" : "=r"(workWord3):"0"(workWord3));
+                    workWord3+=workWord2;
+                    __asm__("" : "=r"(workWord3):"0"(workWord3));
+                    workWord3=(workWord3&0xFF)*2;
+                    signedTableWord = *(short*)(&Physics26Data65920View5 + workWord3);
+                    call6=vectorAt40;
+                    originalFrame.sp20 = (int) (signedTableWord * 5) >> 0xA;
+                    workWord3=*(short*)(&Physics26Data658A0View5 + workWord3);
+                    __asm__ volatile("" : "=r"(workWord3):"0"(workWord3):"memory");
+                    originalFrame.sp28 = 0xE;
+                    originalFrame.sp30 = -0x12C;
+                    originalFrame.sp34 = 0;
+                    originalFrame.sp38 = -0xC8;
+                    __asm__ volatile("" ::: "memory");
+                    originalFrame.sp24 = (workWord3 * 5) >> 0xA;
+                    Physics26Call4ED6CView4(call4, call5, call6, signedTableWord);
+                    originalFrame.sp30 += Physics26Call363DCView4(0, 0x50);
+                    originalFrame.sp34 += Physics26Call363DCView4(0, 0x50);
+                    originalFrame.sp38 += Physics26Call363DCView4(0, 0x50);
+                    Physics26Call4F194View5(vectorAt40, vectorAt40, globalByteE - 0xE);
+                    temp_v0_5 = Controller88028_SpawnParticle(1, 0xD, vectorAt40, &originalFrame.sp20);
+                    Physics26Field(temp_v0_5, signed char *, 2) = 8;
+                    Physics26Field(temp_v0_5, signed char *, 0xA) = 0x20;
+                }
+                particleIndex += 1;
+                if (particleIndex < 2) {
+                    goto spawnParticleLoop;
+                }
+            }
+        }
+        break;
+    case 108:globalFieldB8PointerState20 = &Physics26Player0View5 + 0xB8;
+        if (Physics26Field(&Physics26Player0View5, int *, 0xB8) != 0) {
+            vectorAt30=&originalFrame.sp20;
+            Physics26Call4F168View5(vectorAt30);
+            call4=vectorAt30;
+            call5=vectorAt30;
+            __asm__("" : "=r"(call4),"=r"(call5):"0"(call4),"1"(call5));
+            globalVector8CState20 = globalFieldB8PointerState20 - 0x2C;
+            Physics26Call4F1C8View5(call4, call5, globalVector8CState20);
+            originalFrame.sp28 = 0;
+            temp_v0_6 = Physics26Call4EDE8View5(&originalFrame.sp20, 0);
+            if (temp_v0_6 >= 0x41) {
+                Physics26Call4F08CView5(&originalFrame.sp20, temp_v0_6, 0x40);
+            }
+            originalFrame.sp28 = -0xC0;
+            globalVector80State20 = globalFieldB8PointerState20 - 0x38;
+            Physics26Call4F194View5(globalVector80State20, globalVector8CState20, &originalFrame.sp20);
+            Physics26Call4F178View5(globalVector8CState20, globalVector80State20);
+        }
+        else {
+            Physics26Call4F168View5(globalFieldB8PointerState20 - 0x38);
+            Physics26Call4F168View5(globalFieldB8PointerState20 - 0x2C);
+        }
+        if (Physics26Field(&Physics26Player0View5, int *, 0x94) < -0x2300) {
+            Physics26Field(&Physics26Player0View5, int *, 0x94) = -0x2300;
+        }
+        if ((Physics26Field(&Physics26Player0View5, int *, 0x48) == 0x3A) && (Controller88028_SpawnParticle != 0) && (Physics26Data6C640View5 & 1)) {
+            originalFrame.sp40 = 0;
+            originalFrame.sp44 = 0;
+            originalFrame.sp48 = 0xE;
+            Physics26Call4F178View5(&originalFrame.sp50, (&Physics26Player0View5 + 0x94) - 0x94);
+            originalFrame.sp50 += Physics26Call363DCView4(0, 0x12C);
+            originalFrame.sp54 += Physics26Call363DCView4(0, 0x12C);
+            originalFrame.sp58 += Physics26Call363DCView4(0, 0x12C);
+            temp_v0_7 = Controller88028_SpawnParticle(1, 0xD, &originalFrame.sp50, &originalFrame.sp40);
+            Physics26Field(temp_v0_7, signed char *, 2) = 6;
+            Physics26Field(temp_v0_7, signed char *, 0xA) = 0x20;
+        }
+        break;
+    case 105:globalVector80=&Physics26Player0View6+0xB8;
+        workWord2=Physics26Field(globalVector80,int*,0);
+        if(!workWord2)goto zero105;
+        vectorAt30=&originalFrame.sp40;
+        Physics26Call4F168View6(vectorAt30);
+        call4=vectorAt30;
+        call5=vectorAt30;
+        __asm__("":"=r"(call4),"=r"(call5):"0"(call4),"1"(call5));
+        globalVector8CState20=globalVector80-44;
+        Physics26Call4F1C8View6(call4,call5,globalVector8CState20);
+        originalFrame.sp48=0;
+        call5=(void*)Physics26Call4EDE8View6(vectorAt30,0);
+        workWord2=(int)call5<65;
+        if(!workWord2)Physics26Call4F08CView6(vectorAt30,call5,64);
+        originalFrame.sp48=-192;
+        globalVector80-=56;
+        Physics26Call4F194View6(globalVector80,globalVector8CState20,vectorAt30);
+        Physics26Call4F178View6(globalVector8CState20,globalVector80);
+        goto clamp104;
+        zero105:Physics26Call4F168View6(globalVector80-56);
+        Physics26Call4F168View6(globalVector80-44);
+        goto clamp104;
+    case 100:globalVector80=&Physics26Player0View6+0x80;
+        Physics26Call4F168View6(globalVector80);
+        Physics26Call4F168View6(globalVector80+12);
+        if(Physics26Data6E044View6!=7){
+            Physics26Call40D10View6(3840);
+            Physics26Call416F4View6();
+            Physics26Call41580View6(90,16);
+        }
+        workWord2=Physics26Player1BAView2;
+        if(!workWord2){
+            workWord2=1;
+            goto byteOne;
+        }
+        workWord2=Physics26Data6E538View4&16;
+        if(workWord2){
+            workWord2=1;
+            goto wordOneReturn;
+        }
+        workWord2=1;
+        Physics26Player1BAView2=0;
+        __asm__ volatile(""::"i"(0x8008906C):"memory");
+        goto byteOne;
+    case 101:workWord3=Physics26Data6E044View6;
+        workWord2=8;
+        if(workWord3!=workWord2)Physics26Call40D10View6(3840);
+        globalVector80=&Physics26Data6E538View4;
+        workWord2=Physics26Field(globalVector80,int*,0)&12;
+        if(workWord2)Physics26PlayerACView3=0;
+        workWord2=Physics26Call416F4View6();
+        call4=(void*)90;
+        call5=(void*)16;
+        __asm__("":"=r"(call4),"=r"(call5):"0"(call4),"1"(call5));
+        globalFieldA4Pointer=(void*)workWord2;
+        workWord2=Physics26Call41580View6(call4,call5);
+        workWord3=Physics26PlayerA8View3;
+        if(workWord3<0)workWord3=-workWord3;
+        workWord3=workWord3<8;
+        __asm__("":"=r"(workWord3):"0"(workWord3),"r"(workWord2));
+        call5=(void*)workWord2;
+        if(!workWord3)goto reset101;
+        workWord2=Physics26Field(globalVector80,int*,0)&12;
+        if(!workWord2)goto reset101;
+        workWord2=Physics26Player144View3;
+        workWord2++;
+        Physics26Player144View3=workWord2;
+        goto saved101;
+        reset101:Physics26Player144View3=0;
+        saved101:call4=&Physics26PlayerACView3;
+        globalVector80=(void*)Physics26Field(call4,int*,0);
+        if(globalFieldA4Pointer)goto collision101;
+        workWord2=(int)call5;
+        if((int)call5<0)workWord2=-workWord2;
+        workWord2=workWord2<513;
+        if(workWord2)goto pass101;
+        collision101:workWord2=Physics26Player20CView2&64;
+        if(workWord2)Physics26Field(call4,int*,0)=0;
+        else{
+            workWord3=Physics26PlayerB0View3;
+            workWord2=workWord3<(int)globalVector80;
+            if(workWord2)Physics26Field(call4,int*,0)=workWord3;
+        }
+        pass101:Physics26Call417FCView6(256,384);
+        workWord2=Physics26Player101View2;
+        call4=&Physics26PlayerACView3;
+        Physics26Field(call4,int*,0)=(int)globalVector80;
+        if(workWord2){
+            Physics26Call4F168View6(call4-32);
+            goto fields101;
+        }
+        Physics26Call41848View4(call4);
+        Physics26Call41B64View6();
+        fields101:call6=&Physics26PlayerFCView3;
+        workWord2=Physics26Field(call6,unsigned char*,0);
+        if(workWord2)goto field94FromA0;
+        workWord2=Physics26PlayerB8View3;
+        call4=call6-112;
+        if(!workWord2)goto commit101;
+        field94FromA0:workWord2=Physics26PlayerA0View3;
+        workWord2-=192;
+        Physics26Player94View5=workWord2;
+        return;
+        commit101:call5=call4;
+        vectorCommit61:Physics26Call4F194View6(call4,call5,call6-20);
+        return;
+    case 102:case 103:case 106:{
+            register int limit17 __asm__("$17");
+            register int numeric5 __asm__("$5");
+            Physics26Call40D10View6(6400);
+            workWord2=Physics26Data6E538View4;
+            workWord3=workWord2&12;
+            if(workWord3)goto held106;
+            workWord2=Physics26Call4F284View3(Physics26PlayerA4View2,Physics26Player64View3);
+            workWord2=workWord2<1665;
+            if(workWord2)Physics26Call41580View6(44,6);
+            limit17=80;
+            goto move106;
+            held106:workWord2=8;
+            if(workWord3!=workWord2)goto other106;
+            workWord2=Physics26Data6E040View3;
+            workWord3=6400;
+            Physics26PlayerACView3=workWord3;
+            workWord2-=1024;
+            goto heading106;
+            other106:workWord2=4;
+            limit17=320;
+            if(workWord3!=workWord2)goto move106;
+            workWord2=Physics26Data6E040View3;
+            workWord3=6400;
+            Physics26PlayerACView3=workWord3;
+            workWord2+=1024;
+            heading106:Physics26PlayerA4View2=workWord2;
+            limit17=320;
+            move106:Physics26Call417FCView6(256,384);
+            globalVector8C=&Physics26Player210View3;
+            workWord2=Physics26Field(globalVector8C,int*,0)&1024;
+            if(workWord2)goto clamp106;
+            call4=(void*)Physics26PlayerA4View2;
+            globalVector8CState20=globalVector8C-388;
+            workWord2=Physics26Call4EA2CView6(call4);
+            workWord3=Physics26PlayerB0View3;
+            lowProduct5=workWord3*workWord2;
+            call4=(void*)Physics26PlayerA4View2;
+            workWord2=lowProduct5>>12;
+            __asm__("":"=r"(workWord2):"0"(workWord2));
+            originalFrame.sp60=workWord2;
+            workWord2=Physics26Call4E9E4View6(call4);
+            workWord3=Physics26PlayerB0View3;
+            lowProduct6=workWord3*workWord2;
+            call4=globalVector8CState20;
+            call5=globalVector8C-376;
+            workWord2=lowProduct6>>12;
+            __asm__("":"=r"(workWord2):"0"(workWord2));
+            originalFrame.sp64=workWord2;
+            Physics26Call4F178View6(call4,call5);
+            globalVector80=&originalFrame.sp60;
+            Physics26Call4F1C8View6(globalVector80,globalVector80,globalVector8CState20);
+            originalFrame.sp68=0;
+            call5=(void*)Physics26Call4EDE8View6(globalVector80,0);
+            workWord2=limit17<(int)call5;
+            if(workWord2)Physics26Call4F08CView6(globalVector80,call5,limit17);
+            Physics26Call4F194View6(globalVector8C-400,globalVector8CState20,globalVector80);
+            Physics26Call41B64View6();
+            workWord2=(int)Physics26Data6C570View5;
+            workWord2=Physics26Field((void*)workWord2,int*,0)&64;
+            if(workWord2)Physics26Player144View3=0;
+            else{
+                workWord2=Physics26Player144View3;
+                workWord2++;
+                Physics26Player144View3=workWord2;
+            }
+            workWord2=Physics26Player144View3;
+            workWord2=workWord2<10;
+            if(workWord2){
+                workWord2=Physics26Player94View5;
+                workWord2+=256;
+                goto store106;
+            }
+            workWord2=Physics26Player94View5;
+            workWord2-=96;
+            store106:Physics26Player94View5=workWord2;
+            workWord2=Physics26PlayerF8View3;
+            workWord3=Physics26Player8View3;
+            numeric5=workWord2-workWord3;
+            workWord2=numeric5<4096;
+            workWord3=numeric5<<2;
+            if(!workWord2)goto mode106;
+            workWord2=Physics26Player94View5;
+            workWord2=workWord3<workWord2;
+            if(workWord2)Physics26Player94View5=workWord3;
+            mode106:workWord3=Physics26Player4CView3;
+            workWord2=127;
+            if(workWord3==workWord2)goto clamp106;
+            call4=&Physics26Data676E8View3;
+            workWord2=Physics26Data6C58CView3;
+            workWord3=Physics26Data6C5C8View3;
+            workWord2<<=4;
+            workWord2+=(int)call4;
+            workWord3<<=2;
+            workWord3+=workWord2;
+            workWord2=Physics26Player8View3;
+            workWord3=Physics26Field((void*)workWord3,int*,0);
+            workWord2-=workWord3;
+            numeric5=workWord2-1024;
+            workWord2=numeric5<4096;
+            workWord3=-numeric5;
+            if(workWord2){
+                workWord2=Physics26Player94View5;
+                __asm__(""::"r"(workWord3),"r"(workWord2));
+                workWord3<<=1;
+                workWord2=workWord2<workWord3;
+                if(workWord2)Physics26Player94View5=workWord3;
+            }
+            clamp106:globalPointer=&Physics26Player94View5;
+            workWord2=Physics26Field(globalPointer,int*,0);
+            workWord2=workWord2<-4480;
+            if(workWord2){
+                workWord2=-4480;
+                Physics26Field(globalPointer,int*,0)=workWord2;
+            }
+            workWord2=Physics26Field(globalPointer,int*,0);
+            workWord2=workWord2<1921;
+            if(!workWord2){
+                workWord2=1920;
+                Physics26Field(globalPointer,int*,0)=workWord2;
+            }
+            return;
+        }
+    case 104:{
+            register int numeric5 __asm__("$5");
+            Physics26Call4F168View6(&originalFrame.sp70);
+            raw13_temp_s1_4 = &Physics26Player0View6 + 0x8C;
+            Physics26Call4F1C8View6(&originalFrame.sp70, &originalFrame.sp70, raw13_temp_s1_4);
+            if (Physics26PlayerB8View3 != 0) {
+                originalFrame.sp78 = 0;
+                raw13_temp_v0_15 = Physics26Call4EDE8View6(&originalFrame.sp70, 0);
+                if (raw13_temp_v0_15 >= 0x41) {
+                    Physics26Call4F08CView6(&originalFrame.sp70, raw13_temp_v0_15, 0x40);
+                }
+            }
+            else {
+                raw13_temp_v0_16 = Physics26Call4EDE8View6(&originalFrame.sp70, 1);
+                if (raw13_temp_v0_16 >= 0x101) {
+                    Physics26Call4F08CView6(&originalFrame.sp70, raw13_temp_v0_16, 0x100);
+                }
+                Physics26Call4F194View6(raw13_temp_s1_4, raw13_temp_s1_4, &originalFrame.sp70);
+            }
+            raw13_temp_s0_9 = &Physics26Player0View6 + 0x80;
+            raw13_temp_s1_5 = raw13_temp_s0_9 + 0xC;
+            originalFrame.sp78 = -0xC0;
+            Physics26Call4F194View6(raw13_temp_s0_9, raw13_temp_s1_5, &originalFrame.sp70);
+            Physics26Call4F178View6(raw13_temp_s1_5, raw13_temp_s0_9);
+            call4=&Physics26Data676E8View3;
+            workWord2=Physics26Data6C58CView3;
+            workWord3=Physics26Data6C5C8View3;
+            workWord2<<=4;
+            workWord2+=(int)call4;
+            workWord3<<=2;
+            workWord3+=workWord2;
+            workWord2=Physics26Player8View3;
+            workWord3=Physics26Field((void*)workWord3,int*,0);
+            workWord2-=workWord3;
+            numeric5=workWord2-1024;
+            workWord2=numeric5<4096;
+            workWord3=-numeric5;
+            if(workWord2){
+                workWord2=Physics26Player94View5;
+                __asm__(""::"r"(workWord3),"r"(workWord2));
+                workWord3<<=1;
+                workWord2=workWord2<workWord3;
+                if(workWord2)Physics26Player94View5=workWord3;
+            }
+            clamp104:globalPointer=&Physics26Player94View5;
+            workWord2=Physics26Field(globalPointer,int*,0);
+            workWord2=workWord2<-8960;
+            if(!workWord2)return;
+            workWord2=-8960;
+            Physics26Field(globalPointer,int*,0)=workWord2;
+            return;
+        }
+    case 109:globalVector80=&Physics26Player0View6+0x80;
+        Physics26Call4F168View6(globalVector80);
+        Physics26Call4F168View6(globalVector80+12);
+        workWord2=Physics26Player1BAView2;
+        if(!workWord2){
+            workWord2=1;
+            goto byteOne;
+        }
+        workWord2=Physics26Data6E538View4&16;
+        if(workWord2){
+            workWord2=1;
+            goto wordOneReturn;
+        }
+        workWord2=1;
+        Physics26Player1BAView2=0;
+        byteOne:Physics26Player1B9View2=workWord2;
+        wordOneReturn:__asm__(""::"r"(workWord2));
+        return;
+    }
+}
+#undef Physics26Field
+
 
 /* AI generated; not human reviewed. SCUS-94467 USA Rev0 80089710.
  * Reuses verified13 child/vector and descriptor routes; original26 selectors
@@ -348,4 +1236,268 @@ storeCommonValue:
 }
 
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_26/animation", func_level_26_8008A144);
+/* AI-generated; not human reviewed. Verified sibling C adapted only
+ * to this function's original SCUS-94467 instructions. Raw field units,
+ * helper meanings and update cadence remain unresolved. */
+/* AI generated; not human reviewed. SCUS-94467 USA Rev0 original
+ * func_level_26_8008A144:441 instructions and10 dispatch words, evidence4888.
+ * Verified animation selector/input handler idioms reused; raw100..109 states
+ * follow original private pointer, callback and numeric branch chains.
+ * Field units, helper meanings and update cadence unresolved. Acceptance:
+ * every original native/internal-target/table word and full retail hashes. */
+#define A4891Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+extern int A4891W48 __asm__("D_80070328 + 0x48");
+extern unsigned char* A4891W250 __asm__("D_80070328 + 0x250");
+extern volatile int A4891Buttons __asm__("D_8006E538");
+extern unsigned char A4891E535 __asm__("D_8006E535");
+extern int A4891WB8 __asm__("D_80070328 + 0xB8");
+extern int A4891WE4 __asm__("D_80070328 + 0xE4");
+extern int A4891WA8 __asm__("D_80070328 + 0xA8");
+extern int A4891WAC __asm__("D_80070328 + 0xAC");
+extern int A4891WB0 __asm__("D_80070328 + 0xB0");
+extern int A4891W144 __asm__("D_80070328 + 0x144");
+extern int A4891WA0 __asm__("D_80070328 + 0xA0");
+extern int A4891W8 __asm__("D_80070328 + 8");
+extern int A4891W4C __asm__("D_80070328 + 0x4C");
+extern int A4891W94 __asm__("D_80070328 + 0x94");
+extern int A4891W54 __asm__("D_80070328 + 0x54");
+extern int A4891WCC __asm__("D_80070328 + 0xCC");
+extern int A4891W8C __asm__("D_80070328 + 0x8C");
+extern int A4891WD0 __asm__("D_80070328 + 0xD0");
+extern int A4891W90 __asm__("D_80070328 + 0x90");
+extern int A4891WD4 __asm__("D_80070328 + 0xD4");
+extern unsigned char A4891Table[] __asm__("D_800676E8");
+extern int A4891Row __asm__("D_8006C58C"), A4891Column __asm__("D_8006C5C8");
+extern int (*A4891Callback)(int) __asm__("unk_ovlheader_8007431C");
+void A4891Select(int) __asm__("func_8004BEF8");
+void A4891H498C0(void) __asm__("func_800498C0");
+
+void func_level_26_8008A144(void) {
+    register int work2 __asm__("$2");
+    register int work3 __asm__("$3");
+    register int selector4 __asm__("$4");
+    register int product5 __asm__("$5");
+    register unsigned char* private16 __asm__("$16");
+    register unsigned char* object4 __asm__("$4");
+    register unsigned char* table4 __asm__("$4");
+    register int (*callback3)(int) __asm__("$3");
+
+    work2 = A4891W48;
+    switch (work2) {
+    case 100:
+        work2 = (int) A4891W250;
+        callback3 = A4891Callback;
+        private16 = A4891Field((void*) work2, unsigned char**, 0);
+        if (callback3(25)) return;
+        work2 = A4891Field(private16, int*, 0x30);
+        selector4 = 106;
+        if (work2) goto select;
+        work3 = A4891Buttons;
+        work2 = work3 & 64;
+        selector4 = 102;
+        if (work2) goto select;
+        work2 = A4891WB8 < 4;
+        selector4 = 103;
+        if (!work2) goto select;
+        if (A4891WE4 >= 23) goto select;
+        work2 = A4891WA8;
+        if (work2 < 0) work2 = -work2;
+        if (work2 >= 17) { __asm__ volatile("" ::: "memory"); selector4 = 101; goto select; }
+        work2 = work3 & 12;
+        if (work2) return;
+        work2 = A4891WAC;
+        selector4 = 101;
+        if (!work2) return;
+        goto select;
+
+    case 101:
+        work2 = (int) A4891W250;
+        callback3 = A4891Callback;
+        private16 = A4891Field((void*) work2, unsigned char**, 0);
+        if (callback3(25)) return;
+        work2 = A4891Field(private16, int*, 0x30);
+        selector4 = 106;
+        if (work2) goto select;
+        work2 = A4891Buttons & 64;
+        selector4 = 102;
+        if (work2) goto select;
+        work2 = A4891WB8 < 4;
+        selector4 = 103;
+        if (!work2) goto select;
+        if (A4891WE4 >= 23) goto select;
+        if (A4891E535) { work2 = A4891WB0; selector4 = 100; if (!work2) goto select; }
+        if (!(A4891Buttons & 12)) return;
+        work2 = A4891W144 < 16;
+        selector4 = 100;
+        if (work2) return;
+        goto select;
+
+    case 102:
+        work2 = (int) A4891W250;
+        callback3 = A4891Callback;
+        private16 = A4891Field((void*) work2, unsigned char**, 0);
+        if (callback3(25)) return;
+        work2 = A4891Field(private16, int*, 0x30);
+        selector4 = 106;
+        if (work2) goto select;
+        if (!A4891WB8 && A4891WA0 <= 0) {
+            __asm__ volatile("" ::: "memory");
+            if (A4891WE4 >= 23) return;
+            work2 = A4891WAC;
+            selector4 = 101;
+            if (work2) goto select;
+            __asm__ volatile("" ::: "memory");
+            selector4 = 100;
+            goto select;
+        }
+        if (A4891W144 < 11) return;
+                table4 = A4891Table;
+        work2 = A4891Row;
+        work3 = A4891Column;
+        work2 = (work2 << 4) + (int) table4;
+        work3 = (work3 << 2) + work2;
+        work2 = A4891W8;
+        work3 = A4891Field((void*) work3, int*, 0);
+        work2 -= work3;
+        if (work2 <= 4096) return;
+        work3 = A4891W4C;
+        selector4 = 103;
+        if (work3 == 127) return;
+        goto select;
+
+    case 103:
+        work2 = (int) A4891W250;
+        callback3 = A4891Callback;
+        private16 = A4891Field((void*) work2, unsigned char**, 0);
+        if (callback3(25)) return;
+        work2 = A4891Field(private16, int*, 0x30);
+        selector4 = 106;
+        if (work2) goto select;
+        work2 = A4891Buttons & 64;
+        selector4 = 102;
+        if (work2) goto select;
+        if (!A4891WB8) {
+            if (A4891WE4 >= 23) return;
+            work2 = A4891WAC;
+            selector4 = 101;
+            if (work2) goto select;
+            selector4 = 100;
+            goto select;
+        }
+                table4 = A4891Table;
+        work2 = A4891Row;
+        work3 = A4891Column;
+        work2 = (work2 << 4) + (int) table4;
+        work3 = (work3 << 2) + work2;
+        work2 = A4891W8;
+        work3 = A4891Field((void*) work3, int*, 0);
+        work2 -= work3;
+        selector4 = 102;
+        if (work2 >= 4096) return;
+        goto select;
+
+    case 104:
+                object4 = A4891W250;
+        work2 = A4891W48;
+        work3 = A4891Field(object4, unsigned char*, 0x3C);
+        work2 -= 100;
+        if (work3 != work2) return;
+        work2 = A4891Field(object4, unsigned char*, 0x42) & 2;
+        if (!work2) return;
+        work2 = A4891WB8;
+        selector4 = 100;
+        if (!work2) goto select;
+        selector4 = 103;
+        goto select;
+
+    case 105:
+    case 108:
+                object4 = A4891W250;
+        work2 = A4891W48;
+        work3 = A4891Field(object4, unsigned char*, 0x3C);
+        work2 -= 100;
+        if (work3 != work2) return;
+        work2 = A4891Field(object4, unsigned char*, 0x42) & 2;
+        if (!work2) return;
+        A4891H498C0();
+        return;
+
+    case 106:
+        work2 = (int) A4891W250;
+        callback3 = A4891Callback;
+        private16 = A4891Field((void*) work2, unsigned char**, 0);
+        if (callback3(25)) return;
+        if (!A4891Field(private16, int*, 0x30)) {
+            work2 = A4891Buttons & 64;
+            selector4 = 102;
+            if (work2) goto select;
+            selector4 = 103;
+            goto select;
+        }
+        if (A4891WB8) return;
+        work2 = A4891W94;
+        if (work2 > 0) return;
+        work2 = -(work2 << 1) >> 2;
+        A4891W94 = work2;
+        A4891WA0 = work2;
+        selector4 = 109;
+        if (work2 >= 1024) return;
+        goto select;
+
+    case 107:
+        if (!A4891WB8 && A4891W54 >= 16) {
+            if (A4891WE4 >= 23) return;
+            work3 = A4891WCC;
+            work2 = A4891W8C;
+            product5 = work3 * work2;
+            work3 = A4891WD0;
+            work2 = A4891W90;
+            selector4 = work3 * work2;
+            work3 = A4891WD4;
+            work2 = A4891W94;
+            work3 *= work2;
+            work2 = product5 + selector4;
+            work2 += work3;
+            if (work2 >= 0) return;
+            work2 = A4891WAC;
+            selector4 = 100;
+            if (!work2) goto select;
+            selector4 = 101;
+            goto select;
+        }
+        work2 = A4891Buttons & 64;
+        if (work2 && A4891W4C == 1) { selector4 = 102; goto select; }
+                object4 = A4891W250;
+        work2 = A4891W48;
+        work3 = A4891Field(object4, unsigned char*, 0x3C);
+        work2 -= 100;
+        if (work3 != work2) return;
+        work2 = A4891Field(object4, unsigned char*, 0x42) & 2;
+        if (!work2) return;
+        selector4 = 103;
+        goto select;
+
+    case 109:
+        work2 = (int) A4891W250;
+        callback3 = A4891Callback;
+        private16 = A4891Field((void*) work2, unsigned char**, 0);
+        if (callback3(25)) return;
+        if (!A4891Field(private16, int*, 0x30) || A4891WB8 >= 4) {
+            __asm__ volatile("" ::: "memory");
+            selector4 = 103;
+            goto select;
+        }
+        work2 = A4891Buttons & 64;
+        selector4 = 102;
+        if (work2) goto select;
+        __asm__("" ::: "$4");
+        if (A4891E535) return;
+        A4891WA0 = 1536;
+        selector4 = 102;
+        goto select;
+    }
+    return;
+select:
+    A4891Select(selector4);
+}
+#undef A4891Field

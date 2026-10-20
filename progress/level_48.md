@@ -43,9 +43,9 @@
 - [x] func_level_48_80079D5C
 - [x] func_level_48_80079E88
 - [x] func_level_48_8007A43C
-- [ ] func_level_48_8007A6E4
+- [x] func_level_48_8007A6E4
 - [x] func_level_48_8007B5A4
-- [ ] func_level_48_8007B89C
+- [x] func_level_48_8007B89C
 - [x] func_level_48_8007C228
 - [x] func_level_48_8007C9B4
 - [x] func_level_48_8007CC9C
@@ -53,16 +53,16 @@
 - [x] func_level_48_8007D5A8
 - [x] func_level_48_8007D948
 - [x] func_level_48_8007DA28
-- [ ] func_level_48_8007DB18
+- [x] func_level_48_8007DB18
 - [x] func_level_48_8007E628
-- [ ] func_level_48_8007ED04
-- [ ] func_level_48_8007F550
-- [ ] func_level_48_800800A8
-- [ ] func_level_48_800807C0
-- [ ] func_level_48_80081108
+- [x] func_level_48_8007ED04
+- [x] func_level_48_8007F550
+- [x] func_level_48_800800A8
+- [x] func_level_48_800807C0
+- [x] func_level_48_80081108
 - [x] func_level_48_80081D1C
 - [x] func_level_48_80081DA8
-- [ ] func_level_48_80082498
+- [x] func_level_48_80082498
 
 <!-- parts_spawn.c -->
 - [x] func_level_48_80085CF8

@@ -2520,7 +2520,257 @@ storeNextState:
 #undef Controller789F0Field
 
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_34/moby", func_level_34_800793C4);
+/* AI-generated; not human reviewed. Verified sibling C adapted only
+ * to this function's original SCUS-94467 instructions. Raw field units,
+ * helper meanings and update cadence remain unresolved. */
+/* AI generated; not human reviewed. SCUS-94467 USA Rev0.
+ * Original func_level_34_800793C4 and sibling:632 instructions.
+ * Raw offsets, widths, signed shifts and helper addresses follow the disc.
+ * Units, helper semantics, cadence and runtime parity remain unresolved.
+ * Evidence sibling4947: exact native instructions/internal targets.
+ * Full executable/every-overlay retail hashes gate installation acceptance. */
+#define A4946F(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+#define A4946W(p,o) A4946F(p,int*,o)
+#define A4946P(p,o) A4946F(p,unsigned char**,o)
+#define A4946B(p,o) A4946F(p,unsigned char*,o)
+#define A4946H(p,o) A4946F(p,short*,o)
+extern unsigned short A4946Cos[] __asm__("D_80065920"),A4946Sin[] __asm__("D_800658A0");
+extern unsigned char A4946Player[] __asm__("D_80070328");
+extern int A4946P24 __asm__("D_80070328 + 0x24"),A4946P224 __asm__("D_80070328 + 0x224");
+extern int A4946Delta __asm__("D_8006C648"),A4946C578 __asm__("D_8006C578"),A4946C574 __asm__("D_8006C574");
+extern unsigned char* A4946List[] __asm__("D_8006E788");
+extern unsigned char* (*A4946Spawn)() __asm__("SpawnMoby");
+extern int (*A4946Particle)() __asm__("SpawnParticle");
+int A4946Rand() __asm__("rand");
+int A4946H4ED6C() __asm__("func_8004ED6C");
+int A4946H4F178() __asm__("func_8004F178");
+int A4946H4F110() __asm__("func_8004F110");
+int A4946H4F194() __asm__("func_8004F194");
+int A4946H3BFC0() __asm__("func_8003BFC0");
+int A4946H3BABC() __asm__("func_8003BABC");
+int A4946H3BE70() __asm__("func_8003BE70");
+int A4946H4F334() __asm__("func_8004F334");
+int A4946H1BA30() __asm__("func_8001BA30");
+int A4946H4F1C8() __asm__("func_8004F1C8");
+int A4946H4EDE8() __asm__("func_8004EDE8");
+int A4946H4EF04() __asm__("func_8004EF04");
+int A4946H36A68() __asm__("func_80036A68");
+int A4946H55B18() __asm__("func_80055B18");
+void func_level_34_800793C4(unsigned char* input){
+ struct {int v18[4],v28[4],v38[4],v48[4],v58[4],v68[4];} frame;
+ register int work2 __asm__("$2");
+ register int work3 __asm__("$3");
+ register int arg4 __asm__("$4");
+ register int call5 __asm__("$5");
+ register unsigned char* ptr4 __asm__("$4");
+ register unsigned char* ptr6 __asm__("$6");
+ register unsigned char* ptr7 __asm__("$7");
+ register int saved16 __asm__("$16");
+ register int saved17 __asm__("$17");
+ register int saved18 __asm__("$18");
+ register int saved19 __asm__("$19");
+ register int counter20 __asm__("$20");
+ register unsigned char* owner21 __asm__("$21");
+ register unsigned char* private22 __asm__("$22");
+ register int saved23 __asm__("$23");
+ register unsigned char* ptr16 __asm__("$16");
+ register unsigned char* ptr17 __asm__("$17");
+ register unsigned char* ptr18 __asm__("$18");
+ register unsigned char* ptr19 __asm__("$19");
+ owner21=input;private22=A4946P(owner21,0);
+ switch(A4946B(owner21,0x49)){
+ case 0:
+  work3=0xB0000;__asm__("" : "=r"(work3) : "0"(work3));
+  if(!(A4946W(owner21,0x18)&work3))break;
+  A4946B(owner21,0x4A)=255;A4946B(owner21,0x4C)=60;
+  A4946W(private22,0)=0;
+  A4946W(private22,4)=A4946B(owner21,0x44);
+  A4946W(private22,8)=A4946B(owner21,0x45);
+  A4946W(private22,12)=A4946W(owner21,0x14);
+  if((A4946W(owner21,0x18)&0x30000)==0x10000)A4946B(owner21,0x49)=1;
+  else A4946B(owner21,0x49)=2;
+  break;
+ case 1:
+  A4946W(private22,0)+=A4946Delta;
+  if(A4946W(private22,0)<120){
+   saved18=0;ptr17=(unsigned char*)frame.v28;saved19=4;saved16=84;
+   do{
+    ptr4=owner21+32;call5=(int)frame.v18;
+    __asm__("" : "=r"(ptr4),"=r"(call5) : "0"(ptr4),"1"(call5));
+    work2=A4946F((unsigned char*)A4946Cos+saved16,unsigned short*,0);
+    __asm__ volatile("" : : "r"(work2) : "$6");
+    ptr6=(unsigned char*)call5;
+    __asm__("" : "=r"(ptr6) : "0"(ptr6));
+    work2=(short)work2>>4;__asm__("" : "=r"(work2) : "0"(work2));frame.v18[0]=work2;
+    work3=A4946F((unsigned char*)A4946Sin+saved16,unsigned short*,0);__asm__("" : "=r"(work3) : "0"(work3));
+    work2=384;__asm__("" : "=r"(work2) : "0"(work2));
+    frame.v18[2]=work2;__asm__ volatile("" : : "m"(frame.v18[2]));frame.v18[1]=(short)work3>>4;
+    A4946H4ED6C(ptr4,call5,ptr6);
+    A4946H4F178(ptr17,frame.v18);A4946H4F110(ptr17,4);
+    A4946H4F194(frame.v18,frame.v18,owner21+12);
+    work2=A4946Rand();work3=frame.v28[0];work3+=4;__asm__("" : "=r"(work3) : "0"(work3));frame.v28[0]=work3-(work2&7);
+    work2=A4946Rand();work3=frame.v28[1];work3+=4;__asm__("" : "=r"(work3) : "0"(work3));frame.v28[1]=work3-(work2&7);
+    A4946Particle(1,74,frame.v18,ptr17);
+    if(!(A4946Rand()&7)){
+     work2=A4946Rand();work3=frame.v18[0];work3+=8;__asm__("" : "=r"(work3) : "0"(work3));frame.v18[0]=work3-(work2&15);
+     work2=A4946Rand();work3=frame.v18[1];work3+=8;__asm__("" : "=r"(work3) : "0"(work3));frame.v18[1]=work3-(work2&15);
+     work2=A4946Rand()&7;frame.v28[0]=saved19-work2;
+     work2=A4946Rand();arg4=1;call5=3;ptr6=(unsigned char*)(frame.v18);ptr7=(unsigned char*)(ptr17);__asm__("" : "=r"(arg4),"=r"(call5),"=r"(ptr6),"=r"(ptr7) : "0"(arg4),"1"(call5),"2"(ptr6),"3"(ptr7));work2&=7;frame.v28[1]=saved19-work2;frame.v28[2]=8;
+     A4946Particle(arg4,call5,ptr6,ptr7);
+    }
+    saved18++;saved16+=170;
+   }while(saved18<3);
+   work3=A4946W(private22,0);__asm__("" : "=r"(work3) : "0"(work3));
+   if(work3>=57){
+    arg4=120;__asm__("" : "=r"(arg4) : "0"(arg4));
+    work2=(arg4-work3)>>1;
+    work3=(int)A4946P(private22,0x1C);
+    work2=(work2<<1)+work3;
+    __asm__("" : "=r"(work2) : "0"(work2));
+    work3=A4946W(private22,4);
+    work2=A4946B(work2,0);
+    work2+=work3;__asm__("" : "=r"(work2) : "0"(work2));
+    A4946B(owner21,0x44)=work2;
+    work2=(arg4-A4946W(private22,0))>>1;
+    work3=(int)A4946P(private22,0x1C);
+    work2=(work2<<1)+work3;
+    __asm__("" : "=r"(work2) : "0"(work2));
+    work3=A4946W(private22,8);
+    work2=A4946B(work2,1);
+    work2+=work3;__asm__("" : "=r"(work2) : "0"(work2));
+    A4946B(owner21,0x45)=work2;
+    work2=A4946W(private22,0);__asm__("" : "=r"(work2) : "0"(work2));arg4-=work2;__asm__("" : "=r"(arg4) : "0"(arg4));arg4>>=1;
+    work2=(int)A4946P(private22,0x1C);
+    arg4=(arg4<<1)+work2;__asm__("" : "=r"(arg4) : "0"(arg4));
+    work3=*(signed char*)arg4;__asm__("" : "=r"(work3) : "0"(work3));work2=*((signed char*)arg4+1);__asm__("" : "=r"(work2) : "0"(work2));
+    if(work3<0)work3=-work3;__asm__("" : "=r"(work3) : "0"(work3));if(work2<0)work2=-work2;__asm__("" : "=r"(work2) : "0"(work2));
+    work3+=work2;__asm__("" : "=r"(work3) : "0"(work3));work2=work3*6;__asm__("" : "=r"(work2) : "0"(work2));A4946W(owner21,0x14)=work2;
+    work2+=A4946W(private22,12);__asm__("" : "=r"(work2) : "0"(work2));A4946W(owner21,0x14)=work2;
+   }
+  }else{
+   A4946W(private22,0)=0;A4946W(private22,12)=A4946W(owner21,0x14);
+   A4946B(owner21,0x49)=2;
+  }
+  if(!A4946H3BFC0(owner21,A4946W(private22,0x18)))
+   A4946W(private22,0x18)=A4946H3BABC(owner21,2,4);
+  break;
+ case 2:
+  __asm__ volatile("" ::: "$4");
+  work2=A4946W(private22,0);
+  if(work2==0){
+   ptr4=owner21;__asm__("" : "=r"(ptr4) : "0"(ptr4));
+   A4946B(owner21,0x3C)=1;__asm__("" : "=r"(work2) : "0"(work2));A4946W(private22,0x10)=300;
+   if(A4946H3BFC0(ptr4,A4946W(private22,0x18)))
+    A4946H3BE70(A4946W(private22,0x18));
+   A4946H3BABC(owner21,0,0);
+   counter20=0;__asm__ volatile("" : : "r"(counter20));saved23=16;
+   for(;counter20<16;counter20++){
+    if(A4946C578-A4946C574<21)break;
+    ptr16=A4946Spawn(210,owner21);ptr19=A4946P(ptr16,0);
+    saved18=counter20<<5;
+    A4946B(ptr16,0x49)=(A4946Rand()&1)+18;
+    work2=A4946Rand();ptr17=(unsigned char*)A4946Cos;__asm__("" : "=r"(ptr17) : "0"(ptr17));ptr17=(unsigned char*)saved18+(int)ptr17;__asm__("" : "=r"(ptr17),"=r"(work2) : "0"(ptr17),"1"(work2));work2&=31;
+    arg4=A4946W(ptr16,12)-15;work3=(short)*(unsigned short*)ptr17>>4;__asm__("" : "=r"(work3) : "0"(work3));
+    work3+=work2;__asm__("" : "=r"(work3) : "0"(work3));arg4+=work3;__asm__("" : "=r"(arg4) : "0"(arg4));A4946W(ptr16,12)=arg4;
+    work2=A4946Rand();work3=(int)A4946Sin;__asm__("" : "=r"(work3) : "0"(work3));ptr18=(unsigned char*)saved18+work3;__asm__("" : "=r"(ptr18),"=r"(work2) : "0"(ptr18),"1"(work2));work2&=31;
+    arg4=A4946W(ptr16,16)-15;work3=(short)*(unsigned short*)ptr18>>4;__asm__("" : "=r"(work3) : "0"(work3));
+    work3+=work2;__asm__("" : "=r"(work3) : "0"(work3));arg4+=work3;__asm__("" : "=r"(arg4) : "0"(arg4));A4946W(ptr16,16)=arg4;
+    work2=A4946Rand();work3=A4946W(ptr16,20);work3+=128;__asm__("" : "=r"(work3) : "0"(work3));work3+=work2&255;__asm__("" : "=r"(work3) : "0"(work3));A4946W(ptr16,20)=work3;
+    work2=A4946Rand()&31;work3=(short)*(unsigned short*)ptr17>>5;__asm__("" : "=r"(work3) : "0"(work3));
+    work3+=work2;__asm__("" : "=r"(work3) : "0"(work3));work3-=15;__asm__("" : "=r"(work3) : "0"(work3));A4946W(ptr19,0)=work3;
+    work2=A4946Rand()&31;work3=(short)*(unsigned short*)ptr18>>5;__asm__("" : "=r"(work3) : "0"(work3));
+    work3+=work2;__asm__("" : "=r"(work3) : "0"(work3));work3-=15;__asm__("" : "=r"(work3) : "0"(work3));A4946W(ptr19,4)=work3;
+    A4946W(ptr19,8)=(A4946Rand()&31)+40;
+    A4946B(ptr16,0x44)=A4946Rand();A4946B(ptr16,0x45)=A4946Rand();
+    A4946B(ptr16,0x46)=A4946Rand();
+    work2=A4946Rand()&31;A4946B(ptr19,0x10)=saved23-work2;
+    work2=A4946Rand()&31;A4946B(ptr19,0x11)=saved23-work2;
+    work2=A4946Rand()&31;A4946B(ptr19,0x12)=saved23-work2;
+    A4946W(ptr19,12)=A4946W(owner21,20);
+   }
+   counter20=0;ptr16=(unsigned char*)frame.v38;saved17=8;
+   do{
+    A4946H4F178(ptr16,owner21+12);counter20++;
+    work2=A4946Rand();work3=frame.v38[0];work3+=128;__asm__("" : "=r"(work3) : "0"(work3));frame.v38[0]=work3-(work2&255);
+    work2=A4946Rand();work3=frame.v38[1];work3+=128;__asm__("" : "=r"(work3) : "0"(work3));frame.v38[1]=work3-(work2&255);
+    work2=A4946Rand();work3=frame.v38[2];__asm__("" : "=r"(work3) : "0"(work3));work3+=work2&255;__asm__("" : "=r"(work3) : "0"(work3));frame.v38[2]=work3;
+    work2=A4946Rand()&15;__asm__("" : "=r"(work2) : "0"(work2));frame.v48[0]=saved17-work2;
+    work2=A4946Rand()&15;__asm__("" : "=r"(work2) : "0"(work2));frame.v48[1]=saved17-work2;
+    work2=A4946Rand();arg4=1;call5=1;ptr6=(unsigned char*)(ptr16);ptr7=(unsigned char*)(frame.v48);__asm__("" : "=r"(arg4),"=r"(call5),"=r"(ptr6),"=r"(ptr7) : "0"(arg4),"1"(call5),"2"(ptr6),"3"(ptr7));work2&=7;frame.v48[2]=work2;
+    A4946Particle(arg4,call5,ptr6,ptr7);
+   }while(counter20<8);
+   A4946B(owner21,0x49)=144;counter20=0;__asm__ volatile("" : : "r"(counter20));saved16=3;
+   for(;counter20<8;counter20++){
+    if(A4946C578-A4946C574<21)break;
+    ptr4=(unsigned char*)309;call5=(int)owner21;__asm__("" : "=r"(ptr4),"=r"(call5) : "0"(ptr4),"1"(call5));work2=(int)A4946Spawn(ptr4,call5);
+    A4946B(work2,0x49)=saved16;
+   }
+   A4946B(owner21,0x49)=2;work2=A4946W(private22,0);__asm__("" : "=r"(work2) : "0"(work2));
+  }
+  work3=work2+A4946Delta;__asm__("" : "=r"(work3) : "0"(work3));A4946W(private22,0)=work3;
+  if(work3<27){
+   ptr17=(unsigned char*)A4946List;ptr16=*(unsigned char**)ptr17;ptr17+=4;
+   work3+=2;work2=work3*25;__asm__("" : "=r"(work2) : "0"(work2));saved19=work2<<2;
+   if(ptr16){
+    saved18=2;
+    do{
+     if(A4946H(ptr16,0x36)==A4946H(owner21,0x36)&&ptr16!=owner21){
+      work2=A4946H4F334(owner21+12,ptr16+12);__asm__("" : "=r"(work2) : "0"(work2));
+      {int a=A4946W(private22,12),c=A4946W(ptr16,20);work3=a-c;__asm__("" : "=r"(work3) : "0"(work3));if(work3<0)work3=c-a;__asm__("" : "=r"(work3) : "0"(work3));}
+      if(work2<saved19){work2=work3<500;__asm__("" : "=r"(work2) : "0"(work2));if(work2&&A4946B(ptr16,0x49)!=saved18){
+       work3=(int)A4946P(ptr16,0);__asm__("" : "=r"(work3) : "0"(work3));A4946B(ptr16,0x49)=saved18;
+       A4946W(work3,0)=0;A4946W(work3,12)=A4946W(ptr16,20);
+      }}
+     }
+     ptr16=*(unsigned char**)ptr17;ptr17+=4;
+    }while(ptr16);
+   }
+  }
+  if(A4946W(private22,0)<15){
+   ptr16=(unsigned char*)frame.v48;A4946H4F178(ptr16,owner21+12);
+   frame.v48[2]=A4946W(private22,12)+384;
+   A4946H1BA30(ptr16,(A4946W(private22,0)+2)<<7,1,0,0x10000,owner21);
+   if(!A4946W(private22,0x14)){
+    ptr17=(unsigned char*)frame.v58;ptr4=ptr17;__asm__ volatile("" : : "r"(ptr4));ptr18=A4946Player;
+    A4946H4F1C8(ptr17,ptr18,ptr16);frame.v58[2]<<=1;
+    work2=A4946H4EDE8(ptr17,1);__asm__("" : "=r"(work2) : "0"(work2));work3=(A4946W(private22,0)+2)<<7;__asm__("" : "=r"(work3) : "0"(work3));
+    if(work2<work3){
+     ptr16=ptr18+0x21C;A4946H4F178(ptr16,ptr17);
+     A4946P224=0;A4946H4EF04(ptr16,128);
+     work2=A4946P24;__asm__("" : "=r"(work2) : "0"(work2));A4946P224=32;__asm__ volatile("" ::: "memory");A4946P24=work2|0x86;
+     A4946W(private22,0x14)=1;
+    }
+   }
+  }
+  work2=A4946W(owner21,20);arg4=A4946W(private22,16);work2+=arg4;__asm__("" : "=r"(work2) : "0"(work2));
+  work3=A4946B(owner21,0x45)+4;__asm__("" : "=r"(work3) : "0"(work3));A4946W(owner21,20)=work2;A4946B(owner21,0x45)=work3;
+  work2=A4946W(private22,16)-10;__asm__("" : "=r"(work2) : "0"(work2));A4946W(private22,16)=work2;
+  if(work2>=-300)break;
+  A4946B(owner21,0x49)=112;counter20=0;__asm__ volatile("" : : "r"(counter20));saved17=5;saved16=1;
+  for(;counter20<16;counter20++){
+   if(A4946C578-A4946C574<21)break;
+   work3=(int)A4946Spawn(309,owner21);__asm__("" : "=r"(work3) : "0"(work3));
+   if(counter20<6)A4946B(work3,0x49)=saved17;
+   A4946B(work3,0x3C)=saved16;
+  }
+  counter20=0;ptr16=(unsigned char*)frame.v68;
+  do{
+   A4946H4F178(ptr16,owner21+12);counter20++;
+   work2=A4946Rand();work3=frame.v68[0];work3+=128;__asm__("" : "=r"(work3) : "0"(work3));frame.v68[0]=work3-(work2&255);
+   work2=A4946Rand();work3=frame.v68[1];work3+=128;__asm__("" : "=r"(work3) : "0"(work3));frame.v68[1]=work3-(work2&255);
+   work2=A4946Rand();arg4=1;call5=2;ptr6=(unsigned char*)(ptr16);ptr7=(unsigned char*)(0);__asm__("" : "=r"(arg4),"=r"(call5),"=r"(ptr6),"=r"(ptr7) : "0"(arg4),"1"(call5),"2"(ptr6),"3"(ptr7));work2&=511;frame.v68[2]+=work2;
+   A4946Particle(arg4,call5,ptr6,ptr7);A4946Particle(4,70,ptr16,24);
+  }while(counter20<4);
+  A4946H36A68(owner21,0,0,0);A4946H3BABC(owner21,1,0);A4946H55B18(owner21);
+  break;
+ }
+}
+#undef A4946F
+#undef A4946W
+#undef A4946P
+#undef A4946B
+#undef A4946H
+
 
 typedef struct {
     Vector3D step;
@@ -3240,7 +3490,489 @@ retire:
     func_80055B18(moby);
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_34/moby", func_level_34_8007B1B8);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0; three original899-word actor functions.
+* AI generated; not human reviewed. Every native/linked word, actual branch,
+* internal-J/call target, original symbol/addend and complete retail EXE and
+* every-overlay hash must pass. No selectors or separate owned data.
+* Original C8hex frame saves S0..S7/FP/RA; locals occupy SP18..9F, including
+* the original three vector triples, two matrices, three-byte angle view,
+* vector at SP68 and pointer words SP90/SP98 with original padding.
+* Raw private fields and buffer sizes/strides follow original loads/stores:
+* signed cursor0, unsigned count2, twelve12-byte positions, ten12-byte
+* vertices, eight colour bytes and five8-byte records. No gameplay meaning
+* beyond those words is asserted by these local role names.
+* Both ring /12 paths initialize the entire signed64 product of a complete
+* signed input and 0x2AAAAAAB before projecting its initialized high word.
+* The compiler-local union word order is explicit and never escapes or
+* represents retail memory. A matching full64 x-input/x-output identity on
+* the second complete product preserves its original delayed consumption;
+* no isolated HI/LO operand or partial-product assembly is used.
+* Original low32 counter*7 is explicit. Five-element vector loops retain
+* the original /5, signed halfword products75/25 and shifts11/10; subsequent
+* colour /12 and record %5 use ordinary initialized C integer arithmetic.
+* Empty metadata observes complete initialized words, addresses, an entire
+* product, or written fields; dead-register boundaries precede fresh phases.
+* Staged pitch/yaw loads leave the original stores movable into delay slots.
+* Initialized S4 offset ownership transfers into an ordinary retained value;
+* FP is never bound explicitly. Every fixed GP role has a disjoint live range.
+* No CPU opcode asm, fixed FP, undefined incoming saved read or live aliases.
+* Typed ABI views follow tracers.h:29/30, spu.h:89 and stdutil.h:20/34/35.
+* Source assembly identities and hashes are recorded in the family proof.
+* Full helper/caller chains, physical units/fixed-point representations,
+* cadence, Rev1 correspondence, human review and synchronized retail captures
+* remain open. Compiler, filters and acceptance flags are unchanged.
+*/
+#include "mobyutil.h"
+#include "spyro.h"
+#include "camera.h"
+extern Vector3D Original899PlayerPositionView __asm__("D_80070328");
+extern Vector3D Original899CameraPositionView __asm__("D_8006E020");
+/* Local views preserve existing TU declarations. Symbols and word ABI are
+* verified against original callers and existing tracers.h/tracers.c. */
+void* Original899CreateHandleView(int,int,int,int,int) __asm__("func_80050B00");
+void Original899ReleaseHandleView(int*) __asm__("func_80050B88");
+#include "ovl_header.h"
+extern int D_8006C574,D_8006C578,D_8006C640,D_8006C7E8,D_80071924,D_80071934;
+extern unsigned char* Original899ModelTableView[] __asm__("D_8006EE2C");
+extern unsigned char D_8006D048[];
+extern short D_800658A0[256],D_80065920[256];
+int func_8001830C(Vector3D*,Vector3D*,int,int,int);
+int func_80019138(Vector3D*,int,int,int,int,Moby*);
+Moby* func_8001BA30(Vector3D*,int,int,int,int,Moby*);
+int func_80040954(int);
+void func_8004EA90(Angle*,SHORTMATRIX*,int);
+void func_8004F0E8(Vector3D*,int);
+void Original899MatrixCallView(void*, Vector3D*, Vector3D*) __asm__("func_8004ED6C");
+int func_8004EDE8(Vector3D*,int);
+int Original899Call3BABCView(Moby*,int,int) __asm__("func_8003BABC");
+void func_80055D24(Moby*,int);
+int rand(void);
+typedef struct {
+    unsigned char current0,next1,other2,otherNext3,byte4,byte5,byte6,byte7;
+}
+Original899IndexWords;
+typedef struct {
+    short cursor0;
+    unsigned short count2;
+    Vector3D positions4[12];
+    Vector3D vertices94[10];
+    int sentinel10C;
+    unsigned char colours110[8];
+    Original899IndexWords indices118[5];
+    int sentinel140;
+}
+Original899Buffer;
+typedef struct {
+    Vector3D16 vector0;
+    unsigned char byte6,timer7;
+    Original899Buffer* buffer8;
+    int* handleC;
+    int words10[2];
+}
+Original899PrivateRecord;
+typedef struct {
+    int word0;
+    unsigned int word4;
+}
+Original899FlagWords;
+static __inline__ void Original899InitializeChild(Moby* child) {
+    unsigned char* descriptor;
+    unsigned int first,flag;
+    ((volatile Moby*)child)->state=1;
+    child->unknown3[1]=0;
+    descriptor=*(unsigned char**)(Original899ModelTableView[child->mobyClass]+0x40);
+    first=*descriptor;
+    child->animationState.id=1;
+    child->animationState.nextId=1;
+    child->animationState.nextFrame=1;
+    child->animationState.frame=0;
+    child->state=2;
+    flag=first<2;
+    flag^=1;
+    flag=-flag;
+    child->animationProgress=flag&0x30;
+}
+/* Compiler-local value view, never an addressable retail memory layout.
+* Both words are initialized by the signed64 C multiplication. The frozen
+* compiler uses MIPSEB word order even though the final image is assembled EL.
+* Selecting its high component never reads an undefined or incoming value. */
+typedef union {
+    long long full;
+    struct {
+#if defined(__MIPSEB__)
+        int high;
+        unsigned int low;
+#else
+        unsigned int low;
+        int high;
+#endif
+    }
+    words;
+}
+Original899CompleteProduct;
+void func_level_34_8007B1B8(Moby* arg0) {
+    Moby* owner=arg0;
+    int x=owner->position.x;
+    register Original899PrivateRecord* tag __asm__("$22")=owner->mobyTag;
+    int y;
+    struct {
+        Vector3D position18;
+        int gap24;
+        Vector3D vector28;
+        int gap34;
+        Vector3D vector38;
+        int gap44;
+        SHORTMATRIX matrix48;
+        int gap5C;
+        Angle angle60;
+        unsigned char gap63[8-sizeof(Angle)];
+        Vector3D vector68;
+        int gap74;
+        SHORTMATRIX matrix78;
+        int gap8C;
+    }
+    originalFrame;
+    Vector3D* vertices;
+    Original899IndexWords* indices;
+    if(x<1024 || (y=owner->position.y)<1024 || owner->position.z<1024 || x>0x3C000 || y>0x3C000) {
+        if(tag->handleC)Original899ReleaseHandleView(tag->handleC);
+        func_80055B18(owner);
+        /* Original continues after this helper; no early return is added. */
+    }
+    __asm__(""::"r"(tag));
+    if(owner->state!=2 && owner->substate==0) {
+        Vector3D* position=&owner->position;
+        Original899Buffer* buffer=tag->buffer8;
+        Moby* target;
+        owner->substate=1;
+        func_8004F178(buffer->positions4,position);
+        buffer->cursor0=1;
+        buffer->count2=1;
+        target=func_8001BA30(position,600,0,0,0x950000,owner);
+        if(target) {
+            int angle=func_8004E880(tag->vector0.x,tag->vector0.y,0);
+            target->unkb=angle;
+            if(!(angle&255))target->unkb=1;
+            owner->state=1;
+        }
+        if(func_8001830C(&owner->position,&Original899PlayerPositionView,2,0,0))owner->state=1;
+    }
+    switch((int)owner->state) {
+    case 0:
+        {
+            Vector3D* position=&owner->position;
+            Moby* target;
+            func_8004F178(&originalFrame.position18,position);
+            owner->position.x+=tag->vector0.x;
+            owner->position.y+=tag->vector0.y;
+            owner->position.z+=tag->vector0.z;
+            __asm__("" : : : "memory");
+            D_80071934=0;
+            if(func_8001830C(&originalFrame.position18,position,2,0x950000,0)) {
+                func_8004F178(position,&originalFrame.position18);
+                owner->state=1;
+            }
+            target=func_8001BA30(position,400,0,0,0x950000,owner);
+            if(target) {
+                unsigned short targetClass;
+                int angle=func_8004E880(tag->vector0.x,tag->vector0.y,0);
+                target->unkb=angle;
+                if(!(angle&255))target->unkb=1;
+                targetClass=target->mobyClass;
+                if((unsigned int)(targetClass-200)>=2 && (short)targetClass!=209 && (short)targetClass!=272 && (short)targetClass!=563 && owner->mobyClass!=208)owner->state=1;
+            }
+            func_80019138(&owner->position,300,2,0,0x950000,owner);
+            if(!(D_8006C640&3) && D_8006C578-D_8006C574>=21) {
+                Moby* child=SpawnMoby(483,owner);
+                if(child) {
+                    originalFrame.vector28.x=tag->vector0.x;
+                    originalFrame.vector28.y=tag->vector0.y;
+                    child->angle.pitch=func_8004E880(func_8004EDE8(&originalFrame.vector28,0),tag->vector0.z,0);
+                    child->angle.yaw=func_8004E880(tag->vector0.x,tag->vector0.y,0);
+                    Original899InitializeChild(child);
+                }
+            }
+            if(owner->state==0 && func_800359A4((char*)&tag->timer7,1)) {
+                if(tag->handleC)Original899ReleaseHandleView(tag->handleC);
+                tag->handleC=0;
+                owner->state=1;
+            }
+            break;
+        }
+    case 1:
+        {
+            register int loopIndex __asm__("$20");
+            Original899Call3BABCView(owner,1,0);
+            if(D_8006C578-D_8006C574>=21 && D_8006C7E8>=30001) {
+                Moby* child=SpawnMoby(326,owner);
+                if(child) {
+                    D_8006C7E8-=1500;
+                    child->unknown4=7;
+                }
+            }
+            loopIndex=0;
+            if(D_8006C578-D_8006C574>=21) {
+                register Vector3D* cameraPosition __asm__("$21")=&Original899CameraPositionView;
+                register int pitch __asm__("$19")=0;
+                __asm__("" : "=r"(cameraPosition) : "0"(cameraPosition));
+            spawnNext899:
+                if(D_8006C7E8>=30001) {
+                    Moby* child=SpawnMoby(541,owner);
+                    if(child) {
+                        int angle;
+                        D_8006C7E8-=1000;
+                        angle=func_8004E880(owner->position.x-cameraPosition->x,owner->position.y-cameraPosition->y,0);
+                        child->angle.yaw=angle+64+(rand()&31);
+                        child->angle.pitch=pitch+(rand()&30)-15;
+                        child->unknown4=8;
+                        child->lowDrawDistance=42;
+                    }
+                    loopIndex++;
+                    pitch+=51;
+                    if(loopIndex<5 && D_8006C578-D_8006C574>=21)goto spawnNext899;
+                }
+            }
+            __asm__("" : : : "$4");
+            func_80055D24(owner,2);
+            owner->unknown3[0]=0;
+            owner->lowDrawDistance=0;
+            owner->drawn=0;
+            tag->timer7=20;
+            owner->state=3;
+        }
+        /* Original state1 falls through to3. */
+    case 3:
+        {
+            int radius=600;
+            Moby* target;
+            if(tag->timer7>=6) {
+                int loopIndex=0;
+                do {
+                    originalFrame.angle60.roll=0;
+                    originalFrame.angle60.pitch=rand();
+                    originalFrame.angle60.yaw=rand();
+                    func_8004EA90(&originalFrame.angle60,&originalFrame.matrix48,0);
+                    loopIndex++;
+                    originalFrame.vector28.x=(rand()&31)+48;
+                    originalFrame.vector28.y=0;
+                    originalFrame.vector28.z=0;
+                    Original899MatrixCallView(&originalFrame.matrix48,&originalFrame.vector28,&originalFrame.vector28);
+                    func_8004F178(&originalFrame.vector38,&originalFrame.vector28);
+                    func_8004F0E8(&originalFrame.vector38,2);
+                    func_8004F194(&originalFrame.vector38,&originalFrame.vector38,&owner->position);
+                    SpawnParticle(1,13,&originalFrame.vector38,&originalFrame.vector28);
+                }
+                while(loopIndex<4);
+                SpawnParticle(6,70,&owner->position,(Vector3D*)16);
+            }
+            if(!(D_8006C640&1) && D_8006C578-D_8006C574>=21 && D_8006C7E8>=30001) {
+                Moby* child=SpawnMoby(482,owner);
+                if(child){
+                    D_8006C7E8-=1500;
+                    child->lowDrawDistance=42;
+                    child->unknown4=10;
+                }
+            }
+            if(tag->timer7>=11)radius=(radius>>1)+(radius*(20-tag->timer7))/20;
+            else radius=(radius>>1)+(radius*tag->timer7)/20;
+            target=func_8001BA30(&owner->position,radius+1000,0,0,0x950000,owner);
+            if(target) {
+                int angle=func_8004E880(target->position.x-owner->position.x,target->position.y-owner->position.y,0);
+                target->unkb=angle;
+                if(!(angle&255))target->unkb=1;
+            }
+            if(func_80019138(&owner->position,radius+700,2,0,0x950000,owner)) {
+                int* sourceWord=&D_80071924;
+                __asm__("" : "=r"(sourceWord) : "0"(sourceWord));
+                if(func_80040954(*sourceWord)==3) {
+                    Original899FlagWords* flags=(*(Original899FlagWords***)(D_8006D048+0x14))[*sourceWord&63];
+                    flags->word4|=0x950000;
+                }
+            }
+            if(func_800359A4((char*)&tag->timer7,1)) {
+                if(tag->handleC)Original899ReleaseHandleView(tag->handleC);
+                func_80055B18(owner);
+            }
+            break;
+        }
+    case 2:
+        if(func_800359A4((char*)&tag->timer7,1)) {
+            func_80055B18(owner);
+            return;
+        }
+        owner->size=16384/(1024-tag->timer7*20);
+        if(owner->size>=128)owner->size=127;
+        if(owner->size<18)owner->size=18;
+        owner->colour.r=tag->timer7*4;
+        owner->colour.g=tag->timer7*2;
+        break;
+    }
+    if(owner->state!=2) {
+        Original899Buffer* buffer=tag->buffer8;
+        register int previousCursor3 __asm__("$3")=buffer->cursor0;
+        register int previousPositionByteOffset2 __asm__("$2")=previousCursor3*12;
+        register int initialPositionByteOffset20 __asm__("$20");
+        int retainedPositionByteOffset;
+        register int nextCursorInput6 __asm__("$6")=previousCursor3+1;
+        Original899CompleteProduct completeDivisionProduct;
+        register int divisionSign2 __asm__("$2");
+        register int divisionHighShift3 __asm__("$3");
+        register int previousRingNext23 __asm__("$23");
+        register int scaledQuotient2 __asm__("$2");
+        register unsigned char* colourWords21 __asm__("$21");
+        register Vector3D* currentVertex20 __asm__("$20");
+        Vector3D* firstVector68;
+        int loopIndex;
+        unsigned char originalPitchByte,originalYawByte;
+        register unsigned short incrementedCount4 __asm__("$4");
+        register int countBelow13_4 __asm__("$4");
+        register int newRingCursor5 __asm__("$5");
+        register Vector3D* firstPositionArgument4 __asm__("$4");
+        register Vector3D* ownerPositionArgument5 __asm__("$5");
+        register Angle* angleArgument4 __asm__("$4");
+        register SHORTMATRIX* matrixArgument5 __asm__("$5");
+        register int matrixZeroArgument6 __asm__("$6");
+        __asm__("":"=r"(previousPositionByteOffset2):"0"(previousPositionByteOffset2),"r"(previousCursor3));
+        initialPositionByteOffset20=previousPositionByteOffset2+4;
+        completeDivisionProduct.full=(long long)nextCursorInput6*(long long)0x2AAAAAAB;
+        firstPositionArgument4=(Vector3D*)((unsigned char*)buffer+initialPositionByteOffset20);
+        ownerPositionArgument5=&owner->position;
+        __asm__ volatile(""::"r"(firstPositionArgument4),"r"(ownerPositionArgument5):"$2");
+        divisionSign2=nextCursorInput6>>31;
+        divisionHighShift3=(completeDivisionProduct.words.high)>>1;
+        __asm__("":"=r"(divisionHighShift3):"0"(divisionHighShift3),"r"(divisionSign2));
+        previousRingNext23=divisionHighShift3-divisionSign2;
+        __asm__("":"=r"(previousRingNext23):"0"(previousRingNext23),"r"(nextCursorInput6));
+        scaledQuotient2=previousRingNext23*12;
+        __asm__("":"=r"(scaledQuotient2):"0"(scaledQuotient2),"r"(previousRingNext23));
+        previousRingNext23=nextCursorInput6-scaledQuotient2;
+        func_8004F178(firstPositionArgument4,ownerPositionArgument5);
+        newRingCursor5=buffer->cursor0;
+        __asm__ volatile(""::"r"(newRingCursor5):"memory");
+        newRingCursor5=newRingCursor5+1;
+        completeDivisionProduct.full=(long long)newRingCursor5*(long long)0x2AAAAAAB;
+        incrementedCount4=buffer->count2;
+        __asm__ volatile("":::"$21","memory");
+        colourWords21=buffer->colours110;
+        incrementedCount4=incrementedCount4+1;
+        __asm__ volatile(""::"r"(incrementedCount4):"$2");
+        divisionSign2=newRingCursor5>>31;
+        buffer->count2=incrementedCount4;
+        countBelow13_4=(short)incrementedCount4<13;
+        __asm__ volatile("":"=x"(completeDivisionProduct.full):"0"(completeDivisionProduct.full),"r"(countBelow13_4):"memory");
+        divisionHighShift3=completeDivisionProduct.words.high>>1;
+        __asm__("":"=r"(divisionHighShift3):"0"(divisionHighShift3),"r"(divisionSign2));
+        divisionHighShift3=divisionHighShift3-divisionSign2;
+        scaledQuotient2=divisionHighShift3*12;
+        newRingCursor5=newRingCursor5-scaledQuotient2;
+        buffer->cursor0=newRingCursor5;
+        vertices=buffer->vertices94;
+        indices=buffer->indices118;
+        if(!countBelow13_4)buffer->count2=12;
+        if((short)buffer->count2<12)previousRingNext23=0;
+        angleArgument4=&originalFrame.angle60;
+        matrixArgument5=&originalFrame.matrix78;
+        matrixZeroArgument6=0;
+        __asm__ volatile(""::"r"(angleArgument4),"r"(matrixArgument5),"r"(matrixZeroArgument6):"memory");
+        __asm__("":"=r"(retainedPositionByteOffset):"0"(initialPositionByteOffset20));
+        currentVertex20=vertices;
+        originalFrame.angle60.roll=(unsigned int)D_8006C640*7;
+        __asm__ volatile(""::"r"(currentVertex20));
+        originalPitchByte=owner->angle.pitch;
+        __asm__ volatile("":::"$16","memory");
+        loopIndex=0;
+        originalFrame.angle60.pitch=originalPitchByte;
+        originalYawByte=owner->angle.yaw;
+        __asm__ volatile("":::"$17","memory");
+        firstVector68=&originalFrame.vector68;
+        originalFrame.angle60.yaw=originalYawByte;
+        func_8004EA90(angleArgument4,matrixArgument5,matrixZeroArgument6);
+        func_80055D24(owner,4);
+        __asm__(""::"r"(firstVector68));
+        do {
+            int angle=(loopIndex<<8)/5;
+            originalFrame.vector68.x=0;
+            originalFrame.vector68.y=(D_80065920[angle]*75)>>11;
+            originalFrame.vector68.z=(D_800658A0[angle]*75)>>11;
+            Original899MatrixCallView(&originalFrame.matrix78,firstVector68,firstVector68);
+            func_8004F194(currentVertex20,(Vector3D*)((unsigned char*)buffer+retainedPositionByteOffset),firstVector68);
+            loopIndex++;
+            currentVertex20++;
+        }
+        while(loopIndex<5);
+        loopIndex=0;
+        {
+            short* table65920=D_80065920;
+            register Vector3D* secondVector18 __asm__("$18");
+            register int nextVertexByteOffset17 __asm__("$17");
+            int nextPositionByteOffset;
+            __asm__("" : "=r"(table65920) : "0"(table65920),"r"(previousRingNext23):"$20");
+            secondVector18=firstVector68;
+            __asm__("" : : "r"(secondVector18));
+            nextPositionByteOffset=previousRingNext23*12+4;
+            nextVertexByteOffset17=60;
+            __asm__("" : "=r"(table65920) : "0"(table65920),"r"(secondVector18));
+            do {
+                int angle=(loopIndex<<8)/5;
+                originalFrame.vector68.x=0;
+                originalFrame.vector68.y=(table65920[angle]*25)>>10;
+                originalFrame.vector68.z=(D_800658A0[angle]*25)>>10;
+                Original899MatrixCallView(&originalFrame.matrix78,secondVector18,secondVector18);
+                func_8004F194((Vector3D*)((unsigned char*)vertices+nextVertexByteOffset17),(Vector3D*)((unsigned char*)buffer+nextPositionByteOffset),secondVector18);
+                loopIndex++;
+                nextVertexByteOffset17+=12;
+            }
+            while(loopIndex<5);
+        }
+        *(int*)((unsigned char*)vertices+0x78)=-1;
+        colourWords21[0]=140;
+        colourWords21[1]=100;
+        colourWords21[2]=40;
+        if((short)buffer->count2<12) {
+            colourWords21[4]=(colourWords21[0]*(12-(short)buffer->count2))/12;
+            colourWords21[5]=(colourWords21[1]*(12-(short)buffer->count2))/12;
+            colourWords21[6]=(colourWords21[2]*(12-(short)buffer->count2))/12;
+        }
+        else{
+            colourWords21[4]=0;
+            colourWords21[5]=0;
+            colourWords21[6]=0;
+        }
+        loopIndex=0;
+        do {
+            register int nextIndex __asm__("$3")=loopIndex+1;
+            int remainder=nextIndex%5;
+            Original899IndexWords* item=(Original899IndexWords*)(loopIndex*8+(int)indices);
+            item->current0=loopIndex;
+            item->other2=loopIndex+5;
+            loopIndex=nextIndex;
+            item->byte4=0;
+            item->byte5=0;
+            item->byte6=1;
+            item->byte7=1;
+            {
+                register int result __asm__("$2")=remainder;
+                __asm__("" : "=r"(result) : "0"(result));
+                item->next1=result;
+                item->otherNext3=result+5;
+            }
+        }
+        while(loopIndex<5);
+        *(int*)(indices+5)=-1;
+        if(!tag->handleC) {
+            register int callColours __asm__("$5")=(int)colourWords21;
+            register int callWords __asm__("$7")=(int)tag->words10;
+            register int callVertices __asm__("$4")=(int)vertices;
+            register int callIndices __asm__("$6")=(int)indices;
+            __asm__("" : : "r"(callColours),"r"(callWords),"r"(callVertices),"r"(callIndices) : "memory");
+            tag->handleC=(int*)Original899CreateHandleView(callVertices,callColours,callIndices,callWords,1);
+        }
+    }
+}
+
 
 typedef struct { Moby* actor; int timer; } DecodedParticleAttachment;
 extern int D_8006C648,D_8006C578,D_8006C574,D_8006C79C,D_8006C58C;
@@ -5814,15 +6546,5401 @@ void func_level_34_80080384(Moby* moby) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_34/moby", func_level_34_800805E4);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original800805E4.
+ * AI generated; not human reviewed. All3220 native instructions,47 absolute
+ * selectors,one original zero pad,actual targets/relocations and every linked
+ * EXE/overlay retail hash remain mandatory. Compiler/filter/pipeline unchanged.
+ * Original238-byte frame saves S0..S6/RA at SP218..234. Addressable scalar and
+ * vector homes span SP28..214; outgoing argument homes are compiler generated.
+ * No fixed FP/SP,manual outgoing homes,incoming saved C values or live aliases.
+ * OwnerS3 is the parameter;privateS2 is owner+0. Saved address/count/distance
+ * roles have separate initialized phases. Unused frame contents are not read.
+ * Primary original CFG and EXE vector helpers prove local consumers; constant
+ * products retain signed16/low32 domains and real DIV/BREAK behavior. No MULT.
+ * Original M2C hoisted several loads/addresses before calls; these occur after
+ * their actual retail calls here. The shared ten-word callback has distinct
+ * SP148/SP178 and SP188/SP1B8 position/velocity paths to one original JALR.
+ * Actual player+8 and+B8 data views subtract full32 offsets to the same retail
+ * root. Every hi/lo relocation and resulting original address is independently
+ * audited; these views do not create distinct runtime objects or portable C.
+ * Empty metadata emits zero CPU instructions. It observes only full initialized
+ * values/addresses or actual fields. Dead GP clobbers end an old role before
+ * its real fresh producer. Actual branch/frame/predicate contexts are retained;
+ * arbitrary tags,partial HILO values or uninitialized operands are never used.
+ * Helper types are four-byte ABI views,not claims of complete helper semantics.
+ * External allocation/writer closure,global-coordinate units/cadence,Rev1
+ * correspondence,retail runtime captures and human review remain unresolved.
+ * This establishes original-compiler identity for this slice,not complete game
+ * behavior,portable signed-overflow semantics or reviewed original source.
+ */
+extern int (*Level34_805E4_unk_ovlheader_800743B4)(void*,int,int,int,int,int,int,int,void*,void*) __asm__("unk_ovlheader_800743B4");
+extern void (*Level34_805E4_unk_ovlheader_80074330)(void*,int,int) __asm__("unk_ovlheader_80074330");
+/* SCUS-94467 USA Rev0 original3220native+ownedselectors. AI generated; not human reviewed. Uninstalled original-backed probe. */
+#define Level34_805E4Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+#define Level34_805E4CompleteValue(v) __asm__("":"=r"(v):"0"(v))
+void Level34_805E4_func_80013AE4(void*,void*) __asm__("func_80013AE4");
+void Level34_805E4_func_80013B7C(int) __asm__("func_80013B7C");
+void Level34_805E4_func_80013D44(void*,int,void*,int) __asm__("func_80013D44");
+int Level34_805E4_func_80013E38(void*,void*,int) __asm__("func_80013E38");
+int Level34_805E4_func_8001A358(void*,int) __asm__("func_8001A358");
+void Level34_805E4_func_80021ED8(int,int,int) __asm__("func_80021ED8");
+int Level34_805E4_func_80021F3C(int) __asm__("func_80021F3C");
+int Level34_805E4_func_8002EC50(int,int,int) __asm__("func_8002EC50");
+void Level34_805E4_func_80034F40(void*,int) __asm__("func_80034F40");
+int Level34_805E4_func_80035194(void*,void*) __asm__("func_80035194");
+void Level34_805E4_func_8003573C(void*,int,int,int) __asm__("func_8003573C");
+void Level34_805E4_func_8003585C(void*,int,int,int,int,int) __asm__("func_8003585C");
+int Level34_805E4_func_800359A4(void*,int) __asm__("func_800359A4");
+int Level34_805E4_func_80036220(void*,void*,int,int) __asm__("func_80036220");
+int Level34_805E4_func_8003636C(int,int) __asm__("func_8003636C");
+void Level34_805E4_func_800369B8(void*,int) __asm__("func_800369B8");
+void Level34_805E4_func_80036A68(void*,int,int,int) __asm__("func_80036A68");
+void Level34_805E4_func_80038BF8(void*,void*,int,int) __asm__("func_80038BF8");
+void Level34_805E4_func_8003B7B4(void*,int,void*) __asm__("func_8003B7B4");
+void Level34_805E4_func_8003BA00(void*) __asm__("func_8003BA00");
+int Level34_805E4_func_8003BABC(void*,int,int) __asm__("func_8003BABC");
+int Level34_805E4_func_8003BB10(void*,int,int) __asm__("func_8003BB10");
+void Level34_805E4_func_8003BE70(int) __asm__("func_8003BE70");
+int Level34_805E4_func_8003BFC0(void*,int) __asm__("func_8003BFC0");
+int Level34_805E4_func_8004E880(int,int,int) __asm__("func_8004E880");
+int Level34_805E4_func_8004EDE8(void*,int) __asm__("func_8004EDE8");
+void Level34_805E4_func_8004F08C(void*,int,int) __asm__("func_8004F08C");
+void Level34_805E4_func_8004F110(void*,int) __asm__("func_8004F110");
+void Level34_805E4_func_8004F178(void*,void*) __asm__("func_8004F178");
+void Level34_805E4_func_8004F194(void*,void*,void*) __asm__("func_8004F194");
+void Level34_805E4_func_8004F1C8(void*,void*,void*) __asm__("func_8004F1C8");
+int Level34_805E4_func_8004F264(int,int) __asm__("func_8004F264");
+int Level34_805E4_func_8004F334(void*,void*) __asm__("func_8004F334");
+void Level34_805E4_func_80055B18(void*) __asm__("func_80055B18");
+void Level34_805E4_func_80055D24(void*,int) __asm__("func_80055D24");
+int Level34_805E4_func_80055E84(void*) __asm__("func_80055E84");
+void Level34_805E4_func_80055F14(void*,int,void*) __asm__("func_80055F14");
+int Level34_805E4_rand(void) __asm__("rand");
+extern int Level34_805E4_D_800658A0 __asm__("D_800658A0");
+extern int Level34_805E4_D_80065920 __asm__("D_80065920");
+extern int Level34_805E4_D_8006C550 __asm__("D_8006C550");
+extern int Level34_805E4_D_8006C58C __asm__("D_8006C58C");
+extern int Level34_805E4_D_8006C640 __asm__("D_8006C640");
+extern int Level34_805E4_D_8006C770 __asm__("D_8006C770");
+extern unsigned char Level34_805E4_D_8006C7B4 __asm__("D_8006C7B4");
+extern int Level34_805E4_D_8006C7F8 __asm__("D_8006C7F8");
+extern int Level34_805E4_D_8006E020 __asm__("D_8006E020");
+extern int Level34_805E4_D_8006E024 __asm__("D_8006E024");
+extern unsigned short Level34_805E4_D_8006E040 __asm__("D_8006E040");
+extern int Level34_805E4_D_8006E048 __asm__("D_8006E048");
+extern int Level34_805E4_D_80070300 __asm__("D_80070300");
+extern int Level34_805E4_D_80070328 __asm__("D_80070328");
+extern unsigned char Level34_805E4_PlayerZView[] __asm__("D_80070328 + 8");
+extern unsigned char Level34_805E4_PlayerB8View[] __asm__("D_80070328 + 184");
+extern int Level34_805E4_D_80071908 __asm__("D_80071908");
+extern int (*Level34_805E4_SpawnMoby)(int,void*) __asm__("SpawnMoby");
+void func_level_34_800805E4(void* ownerParameter) {
+    register int savedFrameDistanceOrActor16 __asm__("$16"),savedCountFrameOrActor17 __asm__("$17"),private18 __asm__("$18"),owner19 __asm__("$19"),retainedCountFrameOrDuration20 __asm__("$20"),savedVector21 __asm__("$21"),savedSlot22 __asm__("$22"),savedWord23 __asm__("$23");
+    register int resultOrArithmetic2 __asm__("$2"),fieldOrAddress3 __asm__("$3"),argumentOrAddress4 __asm__("$4"),argumentOrField5 __asm__("$5"),argumentOrFlag6 __asm__("$6"),argumentOrField7 __asm__("$7");
+    struct {
+        int sp28,sp2C,sp30,sp34,sp38,sp3C,sp40,sp44,sp48,sp4C,sp50,sp54,sp58,sp5C,sp60,sp64,sp68,sp6C,sp70,sp74,sp78,sp7C,sp80,sp84,sp88,sp8C,sp90,sp94,sp98,sp9C,spA0,spA4,spA8,spAC,spB0,spB4,spB8,spBC,spC0,spC4,spC8,spCC,spD0,spD4,spD8,spDC,spE0,spE4,spE8,spEC,spF0,spF4,spF8,spFC,sp100,sp104,sp108,sp10C,sp110,sp114,sp118,sp11C,sp120,sp124,sp128,sp12C,sp130,sp134,sp138,sp13C,sp140,sp144,sp148,sp14C,sp150,sp154,sp158,sp15C,sp160,sp164,sp168,sp16C,sp170,sp174,sp178,sp17C,sp180,sp184,sp188,sp18C,sp190,sp194,sp198,sp19C,sp1A0,sp1A4,sp1A8,sp1AC,sp1B0,sp1B4,sp1B8,sp1BC,sp1C0,sp1C4,sp1C8,sp1CC,sp1D0,sp1D4,sp1D8,sp1DC,sp1E0,sp1E4,sp1E8,sp1EC,sp1F0,sp1F4,sp1F8,sp1FC,sp200,sp204,sp208,sp20C,sp210,sp214;
+    }
+    originalFrame;
+    int captured_a0_10;
+    int captured_a0_15;
+    int captured_a0_23;
+    int captured_a0_2;
+    int captured_a1;
+    int captured_a1_2;
+    int captured_a1_3;
+    int captured_a1_4;
+    int captured_v1_18;
+    int captured_a0_11;
+    int captured_a0_12;
+    int captured_a0_21;
+    int captured_a0_22;
+    int captured_a0_26;
+    int captured_a0_27;
+    int captured_a0_29;
+    int captured_a0_31;
+    int captured_a0_32;
+    int captured_a0_3;
+    int captured_a0_4;
+    int captured_v0;
+    int captured_v0_10;
+    int captured_v0_11;
+    int captured_v0_12;
+    int captured_v0_13;
+    int captured_v0_14;
+    int captured_v0_15;
+    int captured_v0_17;
+    int captured_v0_18;
+    int captured_v0_19;
+    int captured_v0_20;
+    int captured_v0_24;
+    int captured_v0_25;
+    int captured_v0_26;
+    int captured_v0_27;
+    int captured_v0_28;
+    int captured_v0_2;
+    int captured_v0_33;
+    int captured_v0_34;
+    int captured_v0_35;
+    int captured_v0_36;
+    int captured_v0_42;
+    int captured_v0_43;
+    int captured_v0_45;
+    int captured_v0_46;
+    int captured_v0_47;
+    int captured_v0_48;
+    int captured_v0_57;
+    int captured_v0_58;
+    int captured_v0_5;
+    int captured_v0_8;
+    int captured_v0_9;
+    int captured_v1_7;
+    int captured_v1_8;
+    int working_a0_3;
+    int working_v0_20;
+    int captured_a0_18;
+    int captured_a1_5;
+    int captured_t0;
+    int captured_v0_16;
+    int captured_v0_22;
+    int captured_v0_37;
+    int captured_v0_49;
+    int captured_v0_4;
+    int captured_v0_54;
+    int captured_v0_56;
+    int captured_v0_6;
+    int captured_v1_21;
+    int working_a2_3;
+    int working_a2_4;
+    int working_v0;
+    int working_v0_10;
+    int working_v0_11;
+    int working_v0_13;
+    int working_v0_19;
+    int working_v0_22;
+    int working_v0_23;
+    int working_v0_24;
+    int working_v0_26;
+    int working_v0_27;
+    int working_v0_28;
+    int working_v0_29;
+    int working_v0_2;
+    int working_v0_30;
+    int working_v0_3;
+    int working_v0_6;
+    int working_v0_8;
+    int captured_v0_39;
+    int captured_v0_41;
+    int captured_v0_51;
+    int captured_v0_53;
+    int captured_v0_60;
+    int captured_a0_6;
+    int captured_a0_7;
+    int captured_v0_21;
+    int captured_v0_23;
+    int captured_v0_38;
+    int captured_v0_40;
+    int captured_v0_50;
+    int captured_v0_52;
+    int captured_v0_59;
+    int captured_v1;
+    int captured_v1_11;
+    int captured_v1_12;
+    int captured_v1_13;
+    int captured_v1_14;
+    int captured_v1_15;
+    int captured_v1_16;
+    int captured_v1_17;
+    int captured_v1_19;
+    int captured_v1_20;
+    int captured_v1_22;
+    int captured_v1_23;
+    int captured_v1_27;
+    int captured_v1_28;
+    int captured_v1_2;
+    int captured_v1_31;
+    int captured_v1_32;
+    int captured_v1_35;
+    int captured_v1_36;
+    int captured_v1_4;
+    int captured_v1_5;
+    int captured_v1_9;
+    int captured_a0;
+    int captured_a0_16;
+    int captured_a0_17;
+    int captured_a0_30;
+    int captured_a0_5;
+    int captured_v0_55;
+    int captured_v1_26;
+    int captured_v1_33;
+    int captured_v1_34;
+    int working_a0;
+    owner19=(int)ownerParameter;
+    Level34_805E4CompleteValue(owner19);
+    fieldOrAddress3=4;
+    Level34_805E4CompleteValue(fieldOrAddress3);
+    private18 = Level34_805E4Field(owner19, int*, 0);
+    resultOrArithmetic2=Level34_805E4Field(owner19,unsigned char*,0x48);
+    if (resultOrArithmetic2==fieldOrAddress3) {
+        goto block_16;
+    }
+    if (!(Level34_805E4Field(owner19, int *, 0x18) & 0x8B0000)) {
+        goto block_16;
+    }
+    captured_v0 = Level34_805E4Field(private18, int*, 8);
+    if (captured_v0 == 0) {
+        goto block_4;
+    }
+    Level34_805E4Field(captured_v0, signed char *, 0x10) = 0;
+    Level34_805E4Field(private18, int*, 8) = 0;
+block_4:
+    captured_v0_2 = Level34_805E4Field(private18, int*, 0xC);
+    if (captured_v0_2 == 0) {
+        goto block_6;
+    }
+    Level34_805E4Field(captured_v0_2, signed char *, 0x10) = 0;
+    Level34_805E4Field(private18, int*, 0xC) = 0;
+block_6:
+    captured_a0 = Level34_805E4Field(private18, int*, 0x10);
+    if (captured_a0 == 0) {
+        goto block_8;
+    }
+    Level34_805E4_func_80055B18((void*)(captured_a0));
+    Level34_805E4Field(private18, int*, 0x10) = 0;
+block_8:
+    if (Level34_805E4_func_8003BFC0((void*)(owner19),(int)( Level34_805E4Field(private18, int *, 0x50))) == 0) {
+        goto block_10;
+    }
+    Level34_805E4_func_8003BE70((int)(Level34_805E4Field(private18, int *, 0x50)));
+    Level34_805E4Field(private18, int *, 0x50) = -1;
+block_10:
+    resultOrArithmetic2=Level34_805E4Field(private18,int*,0x54);
+    argumentOrAddress4=owner19;
+    if(resultOrArithmetic2==0)goto block_12;
+    argumentOrField5=1;
+    argumentOrField7=Level34_805E4Field(resultOrArithmetic2,int*,0xC);
+    argumentOrFlag6=0;
+    goto block_15;
+block_12:
+    resultOrArithmetic2=Level34_805E4Field(owner19,int*,0x18);
+    Level34_805E4CompleteValue(resultOrArithmetic2);
+    fieldOrAddress3=0x10000;
+    Level34_805E4CompleteValue(fieldOrAddress3);
+    resultOrArithmetic2&=fieldOrAddress3;
+    argumentOrField5=1;
+    if(resultOrArithmetic2)goto block_14;
+    __asm__ volatile(""::"r"(owner19):"memory","$4","$2");
+    argumentOrAddress4=owner19;
+    argumentOrField5=0;
+block_14:
+    argumentOrFlag6=0;
+    argumentOrField7=0;
+block_15:
+    Level34_805E4_func_80036A68((void*)(argumentOrAddress4),(int)(argumentOrField5),(int)(argumentOrFlag6),(int)(argumentOrField7));
+    Level34_805E4_func_80038BF8((void*)(owner19),(void*)( private18 + 0x38),(int)( 2),(int)( 4));
+block_16:
+    captured_v1 = Level34_805E4Field(owner19, unsigned char *, 0x48);
+    if (captured_v1 >= 0x2FU) {
+        goto block_555;
+    }
+    switch(captured_v1){
+        default:goto block_555;
+    case 0:
+        Level34_805E4CompleteValue(owner19);
+        captured_v0_4 = Level34_805E4_func_8004F334((void*)(owner19+0xC),(void*)((int)Level34_805E4_PlayerZView-8));
+        if (captured_v0_4 >= 0x2800) {
+            goto block_20;
+        }
+        Level34_805E4_func_8003573C((void*)(owner19),(int)( 4),(int)( 1),(int)( 1));
+    block_20:
+        captured_v1_2 = Level34_805E4Field(private18, unsigned char *, 0);
+        if (captured_v1_2 != 1) {
+            goto block_22;
+        }
+        if (captured_v0_4 >= 0x1401) {
+            goto block_113;
+        }
+    block_22:
+        if (captured_v1_2 != 2) {
+            goto block_24;
+        }
+        Level34_805E4CompleteValue(owner19);
+        if (Level34_805E4_func_8004F334((void*)(owner19+0xC),(void*)((int)Level34_805E4_PlayerB8View-184)) >= 0x1401) {
+            goto block_117;
+        }
+    block_24:
+        if (Level34_805E4Field(private18, unsigned char *, 0) != 3) {
+            goto block_31;
+        }
+        fieldOrAddress3=Level34_805E4Field(private18,int*,0x2C);
+        resultOrArithmetic2=fieldOrAddress3*11;
+        fieldOrAddress3=Level34_805E4_D_8006C550;
+        resultOrArithmetic2*=8;
+        fieldOrAddress3+=resultOrArithmetic2;
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        if (Level34_805E4Field(fieldOrAddress3,short*,0x36)!=0x1F1) {
+            goto block_31;
+        }
+        argumentOrField5=(int)&Level34_805E4_D_80070328+8;
+        Level34_805E4CompleteValue(argumentOrField5);
+        resultOrArithmetic2=Level34_805E4Field(owner19, int *, 0x14);
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        fieldOrAddress3=Level34_805E4Field(argumentOrField5,int*,0);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2-=fieldOrAddress3;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        working_v0=resultOrArithmetic2;
+        if (working_v0 >= 0) {
+            goto block_28;
+        }
+        working_v0 = -working_v0;
+    block_28:
+        argumentOrAddress4=owner19+0xC;
+        if (working_v0 >= 0x899) {
+            goto block_30;
+        }
+        Level34_805E4CompleteValue(owner19);
+        resultOrArithmetic2=Level34_805E4_func_8004F334((void*)(argumentOrAddress4),(void*)(argumentOrField5-8));
+        argumentOrAddress4=(int)&originalFrame.sp28;
+        if(resultOrArithmetic2<0x1401)goto block_32;
+        __asm__("":"=r"(owner19):"0"(owner19),"r"(argumentOrAddress4));
+    block_30:
+        Level34_805E4Field(private18, short *, 4) = 0x1E;
+        goto block_125;
+    block_31:
+        argumentOrAddress4=(int)&originalFrame.sp28;
+    block_32:
+        Level34_805E4CompleteValue(owner19);
+        Level34_805E4_func_8004F178((void*)(argumentOrAddress4),(void*)(owner19+0xC));
+        originalFrame.sp30 += 0x12C;
+        if (Level34_805E4_func_800359A4((void*)(private18 + 4),(int)( 2)) == 0) {
+            goto block_555;
+        }
+        if (captured_v0_4 >= 0x2000) {
+            goto block_555;
+        }
+        resultOrArithmetic2=Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 8);
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        fieldOrAddress3=Level34_805E4Field(owner19, int *, 0x14);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2-=fieldOrAddress3;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        working_v0_2=resultOrArithmetic2;
+        if (working_v0_2 >= 0) {
+            goto block_36;
+        }
+        working_v0_2 = -working_v0_2;
+    block_36:
+        if (working_v0_2 >= 0x800) {
+            goto block_555;
+        }
+        if (Level34_805E4_func_8004F264((int)(Level34_805E4_func_8004E880((int)(Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 0) - Level34_805E4Field(owner19, int *, 0xC)),(int)( Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 4) - Level34_805E4Field(owner19, int *, 0x10)),(int)( 0))),(int)( Level34_805E4Field(owner19, unsigned char *, 0x46))) >= 0x10) {
+            goto block_555;
+        }
+        argumentOrFlag6=0;
+        Level34_805E4CompleteValue(argumentOrFlag6);
+        savedFrameDistanceOrActor16=(int)&Level34_805E4_D_8006E020;
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        if (Level34_805E4_func_8004F264((int)((int) (Level34_805E4_D_8006E040 << 0x10) >> 0x14),(int)( Level34_805E4_func_8004E880((int)(Level34_805E4Field(owner19,int*,0xC)-Level34_805E4Field(savedFrameDistanceOrActor16,int*,0)),(int)(Level34_805E4Field(owner19,int*,0x10)-Level34_805E4_D_8006E024),(int)(argumentOrFlag6))))>=0x16) {
+            goto block_555;
+        }
+        if (Level34_805E4_func_80013E38((void*)(&originalFrame.sp28),(void*)(savedFrameDistanceOrActor16),(int)(0)) == 0) {
+            goto block_555;
+        }
+        Level34_805E4Field(owner19, unsigned char *, 0x48) = 1U;
+        Level34_805E4_func_80034F40((void*)(owner19),(int)( 1));
+        return;
+    case 1:
+        retainedCountFrameOrDuration20 = Level34_805E4_func_80055E84((void*)(owner19));
+        savedFrameDistanceOrActor16 = Level34_805E4Field(private18, unsigned char *, 0);
+        if (savedFrameDistanceOrActor16 != 1) {
+            goto block_44;
+        }
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        Level34_805E4CompleteValue(owner19);
+        if (Level34_805E4_func_8004F334((void*)(owner19 + 0xC),(void*)( (int)&Level34_805E4_D_80070328)) < 0x1401) {
+            goto block_44;
+        }
+        captured_v0_5 = Level34_805E4Field(Level34_805E4Field(private18, int*, 0x34), int*, 0xC);
+        Level34_805E4_func_8003585C((void*)(owner19),(int)( Level34_805E4_func_8004E880((int)(Level34_805E4Field(captured_v0_5, int *, 0) - Level34_805E4Field(owner19, int *, 0xC)),(int)( Level34_805E4Field(captured_v0_5, int *, 4) - Level34_805E4Field(owner19, int *, 0x10)),(int)( 0))),(int)( 4),(int)( 1),(int)( (int) savedFrameDistanceOrActor16),(int)( 0));
+        working_v0_3 = retainedCountFrameOrDuration20 < 3;
+        goto block_45;
+    block_44:
+        Level34_805E4_func_8003573C((void*)(owner19),(int)( 4),(int)( 1),(int)( 1));
+        working_v0_3 = retainedCountFrameOrDuration20 < 3;
+    block_45:
+        if (working_v0_3 != 0) {
+            goto block_74;
+        }
+        Level34_805E4_func_80055D24((void*)(owner19),(int)( 5));
+        argumentOrAddress4=owner19;
+        argumentOrField5=0;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        Level34_805E4CompleteValue(argumentOrField5);
+        savedCountFrameOrActor17=(int)&originalFrame.sp38;
+        Level34_805E4CompleteValue(savedCountFrameOrActor17);
+        Level34_805E4_func_80055F14((void*)(argumentOrAddress4),(int)(argumentOrField5),(void*)(savedCountFrameOrActor17));
+        argumentOrAddress4=owner19;
+        argumentOrField5=1;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        Level34_805E4CompleteValue(argumentOrField5);
+        savedFrameDistanceOrActor16=(int)&originalFrame.sp48;
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        Level34_805E4_func_80055F14((void*)(argumentOrAddress4),(int)(argumentOrField5),(void*)(savedFrameDistanceOrActor16));
+        captured_v0_6 = Level34_805E4_func_8003636C((int)(0),(int)( 0xFF)) * 2;
+        originalFrame.sp58 = 0;
+        captured_a0_2 = Level34_805E4Field((int)&Level34_805E4_D_80065920,short*,0 + captured_v0_6);
+        originalFrame.sp5C = (int) (captured_a0_2 * 5) >> 8;
+        originalFrame.sp60 = (int) (Level34_805E4Field((int)&Level34_805E4_D_800658A0,short*,0 + captured_v0_6) * 5) >> 8;
+        resultOrArithmetic2=Level34_805E4_rand();
+        resultOrArithmetic2&=1;
+        argumentOrAddress4=(int)&originalFrame.sp68;
+        if(resultOrArithmetic2==0)goto block_48;
+        Level34_805E4CompleteValue(savedCountFrameOrActor17);
+        argumentOrField5=savedCountFrameOrActor17;
+        goto block_49;
+    block_48:
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        argumentOrField5=savedFrameDistanceOrActor16;
+    block_49:
+        Level34_805E4_func_8004F178((void*)(argumentOrAddress4),(void*)(argumentOrField5));
+        Level34_805E4_unk_ovlheader_800743B4((void*)(owner19),(int)( 0),(int)( 0),(int)( 0x3F004040),(int)( (int *)0xFE),(int)( 0x5F),(int)( 8),(int)( 3),(void*)( &originalFrame.sp68),(void*)( &originalFrame.sp58));
+        if (retainedCountFrameOrDuration20 < 0xA) {
+            goto block_58;
+        }
+        working_a0 = 0;
+        if (Level34_805E4Field(private18, int*, 0x10) != 0) {
+            goto block_52;
+        }
+        working_a0 = Level34_805E4_SpawnMoby((int)(0x1CF),(void*)( owner19));
+    block_52:
+        if (working_a0 == 0) {
+            goto block_54;
+        }
+        resultOrArithmetic2=0x3F00FFFF;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(working_a0,int*,0x54)=resultOrArithmetic2;
+        resultOrArithmetic2=0xFE;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(working_a0, signed char *, 0x4F)=resultOrArithmetic2;
+        Level34_805E4Field(working_a0, signed char *, 0x48) = 2;
+        Level34_805E4Field(working_a0, unsigned char *, 0x46) = (unsigned char) Level34_805E4Field(owner19, unsigned char *, 0x46);
+        Level34_805E4Field(Level34_805E4Field(working_a0, int*, 0), short *, 6) = -1;
+        Level34_805E4Field(private18, int*, 0x10) = working_a0;
+    block_54:
+        savedCountFrameOrActor17 = Level34_805E4Field(private18, int*, 0x10);
+        savedFrameDistanceOrActor16 = savedCountFrameOrActor17 + 0xC;
+        if (savedCountFrameOrActor17 == 0) {
+            goto block_58;
+        }
+        Level34_805E4_func_8004F194((void*)(savedFrameDistanceOrActor16),(void*)( &originalFrame.sp38),(void*)( &originalFrame.sp48));
+        Level34_805E4_func_8004F110((void*)(savedFrameDistanceOrActor16),(int)( 1));
+        fieldOrAddress3=Level34_805E4Field(savedCountFrameOrActor17,unsigned char*,0x4F);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2=(unsigned int)fieldOrAddress3<0x3D;
+        if(resultOrArithmetic2)goto block_58;
+        resultOrArithmetic2=fieldOrAddress3-0x11;
+        Level34_805E4Field(savedCountFrameOrActor17,unsigned char*,0x4F)=resultOrArithmetic2;
+        resultOrArithmetic2&=255;
+        if((unsigned int)resultOrArithmetic2>=0x3C)goto block_58;
+        Level34_805E4Field(savedCountFrameOrActor17,unsigned char*,0x4F)=0x3C;
+    block_58:
+        if (Level34_805E4Field(private18, int*, 8) != 0) {
+            goto block_60;
+        }
+        captured_v0_8 = Level34_805E4_func_8002EC50((int)(1),(int)( 0x80),(int)( 0x489090));
+        Level34_805E4Field(private18, int*, 8) = captured_v0_8;
+        if (captured_v0_8 == 0) {
+            goto block_66;
+        }
+    block_60:
+        captured_a0_3 = Level34_805E4Field(private18, int*, 8);
+        captured_v1_4 = Level34_805E4Field(captured_a0_3, unsigned char *, 0x11);
+        if (captured_v1_4 >= 0xF3U) {
+            goto block_62;
+        }
+        Level34_805E4Field(captured_a0_3, unsigned char *, 0x11) = (unsigned char) (captured_v1_4 + 0xC);
+    block_62:
+        if (retainedCountFrameOrDuration20 < 6) {
+            goto block_64;
+        }
+        Level34_805E4_func_8004F1C8((void*)(&originalFrame.sp58),(void*)( &originalFrame.sp48),(void*)( &originalFrame.sp38));
+        resultOrArithmetic2=Level34_805E4_func_8004EDE8((void*)(&originalFrame.sp58),(int)(1));
+        argumentOrAddress4=(int)&originalFrame.sp58;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        argumentOrField5=resultOrArithmetic2;
+        resultOrArithmetic2=retainedCountFrameOrDuration20-5;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        argumentOrFlag6=resultOrArithmetic2*10;
+        Level34_805E4_func_8004F08C((void*)(argumentOrAddress4),(int)(argumentOrField5),(int)(argumentOrFlag6));
+        Level34_805E4_func_8004F194((void*)(Level34_805E4Field(private18, int*, 8)),(void*)( &originalFrame.sp38),(void*)( &originalFrame.sp58));
+        goto block_65;
+    block_64:
+        Level34_805E4_func_8004F178((void*)(Level34_805E4Field(private18, int*, 8)),(void*)( &originalFrame.sp38));
+    block_65:
+        Level34_805E4Field(Level34_805E4Field(private18, int*, 8), signed char *, 0x13) = 8;
+    block_66:
+        if (Level34_805E4Field(private18, int*, 0xC) != 0) {
+            goto block_68;
+        }
+        captured_v0_9 = Level34_805E4_func_8002EC50((int)(1),(int)( 0x80),(int)( 0x489090));
+        Level34_805E4Field(private18, int*, 0xC) = captured_v0_9;
+        if (captured_v0_9 == 0) {
+            goto block_74;
+        }
+    block_68:
+        captured_a0_4 = Level34_805E4Field(private18, int*, 0xC);
+        captured_v1_5 = Level34_805E4Field(captured_a0_4, unsigned char *, 0x11);
+        if (captured_v1_5 >= 0xF3U) {
+            goto block_70;
+        }
+        Level34_805E4Field(captured_a0_4, unsigned char *, 0x11) = (unsigned char) (captured_v1_5 + 0xC);
+    block_70:
+        if (retainedCountFrameOrDuration20 < 6) {
+            goto block_72;
+        }
+        Level34_805E4_func_8004F1C8((void*)(&originalFrame.sp58),(void*)( &originalFrame.sp38),(void*)( &originalFrame.sp48));
+        resultOrArithmetic2=Level34_805E4_func_8004EDE8((void*)(&originalFrame.sp58),(int)(1));
+        argumentOrAddress4=(int)&originalFrame.sp58;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        argumentOrField5=resultOrArithmetic2;
+        resultOrArithmetic2=retainedCountFrameOrDuration20-5;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        argumentOrFlag6=resultOrArithmetic2*10;
+        Level34_805E4_func_8004F08C((void*)(argumentOrAddress4),(int)(argumentOrField5),(int)(argumentOrFlag6));
+        Level34_805E4_func_8004F194((void*)(Level34_805E4Field(private18, int*, 0xC)),(void*)( &originalFrame.sp48),(void*)( &originalFrame.sp58));
+        goto block_73;
+    block_72:
+        Level34_805E4_func_8004F178((void*)(Level34_805E4Field(private18, int*, 0xC)),(void*)( &originalFrame.sp48));
+    block_73:
+        Level34_805E4Field(Level34_805E4Field(private18, int*, 0xC), signed char *, 0x13) = 8;
+    block_74:
+        if (Level34_805E4_D_8006C770 == 0) {
+            goto block_555;
+        }
+        resultOrArithmetic2=Level34_805E4_SpawnMoby((int)(0x1CF),(void*)(owner19));
+        fieldOrAddress3=Level34_805E4Field(private18,int*,8);
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        retainedCountFrameOrDuration20=resultOrArithmetic2;
+        if (fieldOrAddress3 == 0) {
+            goto block_77;
+        }
+        Level34_805E4Field(fieldOrAddress3, signed char *, 0x10) = 0;
+        Level34_805E4Field(private18, int*, 8) = 0;
+    block_77:
+        captured_v0_10 = Level34_805E4Field(private18, int*, 0xC);
+        if (captured_v0_10 == 0) {
+            goto block_79;
+        }
+        Level34_805E4Field(captured_v0_10, signed char *, 0x10) = 0;
+        Level34_805E4Field(private18, int*, 0xC) = 0;
+    block_79:
+        captured_a0_5 = Level34_805E4Field(private18, int*, 0x10);
+        if (captured_a0_5 == 0) {
+            goto block_81;
+        }
+        Level34_805E4_func_80055B18((void*)(captured_a0_5));
+        Level34_805E4Field(private18, int*, 0x10) = 0;
+    block_81:
+        if (retainedCountFrameOrDuration20 == 0) {
+            goto block_93;
+        }
+        savedSlot22 = Level34_805E4Field(retainedCountFrameOrDuration20, int*, 0);
+        Level34_805E4_func_80055D24((void*)(owner19),(int)( 5));
+        Level34_805E4_func_80055F14((void*)(owner19),(int)( 0),(void*)( &originalFrame.sp78));
+        Level34_805E4_func_80055F14((void*)(owner19),(int)( 1),(void*)( &originalFrame.sp88));
+        savedVector21 = retainedCountFrameOrDuration20 + 0xC;
+        Level34_805E4_func_8004F194((void*)(savedVector21),(void*)( &originalFrame.sp78),(void*)( &originalFrame.sp88));
+        Level34_805E4_func_8004F110((void*)(savedVector21),(int)( 1));
+        Level34_805E4Field(retainedCountFrameOrDuration20, int *, 0x54) = 0x3F00FFFF;
+        Level34_805E4Field(retainedCountFrameOrDuration20, signed char *, 0x4F) = 0x3C;
+        Level34_805E4Field(retainedCountFrameOrDuration20, unsigned char *, 0x46) = (unsigned char) Level34_805E4Field(owner19, unsigned char *, 0x46);
+        Level34_805E4Field(savedSlot22, short *, 4) = 0x64;
+        Level34_805E4Field(savedSlot22, short *, 0x14) = 0xC8;
+        Level34_805E4Field(savedSlot22, short *, 6) = -1;
+        Level34_805E4_func_8004F178((void*)(&originalFrame.sp98),(void*)( (int)&Level34_805E4_D_80070328));
+        originalFrame.spA0 += 0x400;
+        if (Level34_805E4Field(private18, unsigned char *, 0) != 1) {
+            goto block_84;
+        }
+        savedFrameDistanceOrActor16 = Level34_805E4Field(Level34_805E4Field(private18, int*, 0x34), int*, 0xC);
+        Level34_805E4Field(retainedCountFrameOrDuration20, signed char *, 0x45) = Level34_805E4_func_8004E880((int)(Level34_805E4_func_8004F334((void*)(savedVector21),(void*)( savedFrameDistanceOrActor16))),(int)( Level34_805E4Field(savedFrameDistanceOrActor16, int *, 8) - Level34_805E4Field(retainedCountFrameOrDuration20, int *, 0x14)),(int)( 0));
+        Level34_805E4Field(retainedCountFrameOrDuration20, signed char *, 0x49) = 1;
+        Level34_805E4Field(savedSlot22, unsigned char *, 0x17) = (unsigned char) Level34_805E4Field(private18, unsigned char *, 7);
+        Level34_805E4_func_8004F178((void*)(savedSlot22 + 8),(void*)( Level34_805E4Field(Level34_805E4Field(private18, int*, 0x34), int*, 0xC) + 0x10));
+        goto block_90;
+    block_84:
+        if (Level34_805E4_func_80013E38((void*)(savedVector21),(void*)( (int)&Level34_805E4_D_80070328),(int)( 0)) != 0) {
+            goto block_86;
+        }
+        Level34_805E4Field(retainedCountFrameOrDuration20, signed char *, 0x45) = 0;
+        goto block_90;
+    block_86:
+        if (Level34_805E4_func_8001A358((void*)(&originalFrame.sp98),(int)( 0x1000)) == 0) {
+            goto block_88;
+        }
+        originalFrame.spA0 = Level34_805E4_D_80071908 + 0x80;
+        argumentOrAddress4=Level34_805E4_func_8004F334((void*)(savedVector21),(void*)(&originalFrame.sp98));
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        argumentOrFlag6=0;
+        argumentOrField5=Level34_805E4Field(retainedCountFrameOrDuration20,int*,0x14);
+        resultOrArithmetic2=originalFrame.spA0;
+        argumentOrField5-=0x180;
+        goto block_89;
+    block_88:
+        argumentOrAddress4=Level34_805E4_func_8004F334((void*)(savedVector21),(void*)((int)&Level34_805E4_D_80070328));
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        resultOrArithmetic2=Level34_805E4Field((int)&Level34_805E4_D_80070328,int*,8);
+        argumentOrField5=Level34_805E4Field(retainedCountFrameOrDuration20,int*,0x14);
+        __asm__ volatile(""::"r"(owner19):"memory","$6");
+        argumentOrFlag6=0;
+    block_89:
+        argumentOrField5=resultOrArithmetic2-argumentOrField5;
+        Level34_805E4Field(retainedCountFrameOrDuration20,signed char*,0x45)=Level34_805E4_func_8004E880((int)(argumentOrAddress4),(int)(argumentOrField5),(int)(argumentOrFlag6));
+    block_90:
+        if (Level34_805E4Field(savedSlot22, int*, 0) != 0) {
+            goto block_92;
+        }
+        captured_v0_11 = Level34_805E4_func_8002EC50((int)(1),(int)( 0xFE),(int)( 0x489090));
+        Level34_805E4Field(savedSlot22, int*, 0) = captured_v0_11;
+        if (captured_v0_11 == 0) {
+            goto block_93;
+        }
+    block_92:
+        Level34_805E4_func_8004F178((void*)(Level34_805E4Field(savedSlot22, int*, 0)),(void*)( retainedCountFrameOrDuration20 + 0xC));
+        Level34_805E4Field(Level34_805E4Field(savedSlot22, int*, 0), signed char *, 0x13) = 8;
+    block_93:
+        argumentOrAddress4=owner19;
+        argumentOrField5 = 2;
+        resultOrArithmetic2=0x1E;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(private18,short*,4)=resultOrArithmetic2;
+        resultOrArithmetic2 = 2;
+        goto block_477;
+    case 2:
+        if (Level34_805E4_func_800359A4((void*)(private18 + 4),(int)( 2)) == 0) {
+            goto block_555;
+        }
+        Level34_805E4Field(owner19, unsigned char *, 0x48) = 3U;
+        Level34_805E4_func_80034F40((void*)(owner19),(int)( 3));
+        return;
+    case 3:
+        if (Level34_805E4_func_8003BFC0((void*)(owner19),(int)( Level34_805E4Field(private18, int *, 0x50))) == 0) {
+            goto block_98;
+        }
+        Level34_805E4_func_8003BE70((int)(Level34_805E4Field(private18, int *, 0x50)));
+        Level34_805E4Field(private18, int *, 0x50) = -1;
+    block_98:
+        Level34_805E4_func_80055D24((void*)(owner19),(int)( 5));
+        Level34_805E4_func_80055F14((void*)(owner19),(int)( 0),(void*)( &originalFrame.spA8));
+        Level34_805E4_func_80055F14((void*)(owner19),(int)( 1),(void*)( &originalFrame.spB8));
+        captured_v1_7 = Level34_805E4Field(private18, int*, 8);
+        if (captured_v1_7 == 0) {
+            goto block_102;
+        }
+        captured_a0_6 = Level34_805E4Field(captured_v1_7, unsigned char *, 0x11);
+        if (captured_a0_6 < 0x51U) {
+            goto block_101;
+        }
+        Level34_805E4Field(captured_v1_7, unsigned char *, 0x11) = (unsigned char) (captured_a0_6 - 0xC);
+    block_101:
+        Level34_805E4_func_8004F178((void*)(Level34_805E4Field(private18, int*, 8)),(void*)( &originalFrame.spA8));
+        Level34_805E4Field(Level34_805E4Field(private18, int*, 8), signed char *, 0x13) = 8;
+    block_102:
+        captured_v1_8 = Level34_805E4Field(private18, int*, 0xC);
+        if (captured_v1_8 == 0) {
+            goto block_106;
+        }
+        captured_a0_7 = Level34_805E4Field(captured_v1_8, unsigned char *, 0x11);
+        if (captured_a0_7 < 0x51U) {
+            goto block_105;
+        }
+        Level34_805E4Field(captured_v1_8, unsigned char *, 0x11) = (unsigned char) (captured_a0_7 - 0xC);
+    block_105:
+        Level34_805E4_func_8004F178((void*)(Level34_805E4Field(private18, int*, 0xC)),(void*)( &originalFrame.spB8));
+        Level34_805E4Field(Level34_805E4Field(private18, int*, 0xC), signed char *, 0x13) = 8;
+    block_106:
+        if (Level34_805E4_D_8006C770 == 0) {
+            goto block_555;
+        }
+        captured_v0_12 = Level34_805E4Field(private18, int*, 8);
+        if (captured_v0_12 == 0) {
+            goto block_109;
+        }
+        Level34_805E4Field(captured_v0_12, signed char *, 0x10) = 0;
+        Level34_805E4Field(private18, int*, 8) = 0;
+    block_109:
+        captured_v0_13 = Level34_805E4Field(private18, int*, 0xC);
+        if (captured_v0_13 == 0) {
+            goto block_111;
+        }
+        Level34_805E4Field(captured_v0_13, signed char *, 0x10) = 0;
+        Level34_805E4Field(private18, int*, 0xC) = 0;
+    block_111:
+        Level34_805E4_func_80034F40((void*)(owner19),(int)( 0));
+        captured_v1_9 = Level34_805E4Field(private18, unsigned char *, 0);
+        if (captured_v1_9 != 1) {
+            goto block_114;
+        }
+        Level34_805E4CompleteValue(owner19);
+        if (Level34_805E4_func_8004F334((void*)(owner19 + 0xC),(void*)( (int)&Level34_805E4_D_80070328)) < 0x1401) {
+            goto block_129;
+        }
+    block_113:
+        Level34_805E4Field(private18, short *, 4) = 0x28;
+        Level34_805E4Field(owner19, unsigned char *, 0x48) = 0x22U;
+        return;
+    block_114:
+        if (captured_v1_9 != 2) {
+            goto block_119;
+        }
+        Level34_805E4CompleteValue(owner19);
+        if (Level34_805E4_func_8004F334((void*)(owner19 + 0xC),(void*)( (int)&Level34_805E4_D_80070328)) < 0x1401) {
+            goto block_129;
+        }
+        if (Level34_805E4Field(private18, short *, 4) >= 0x28) {
+            goto block_118;
+        }
+    block_117:
+        Level34_805E4Field(private18, short *, 4) = 0x28;
+    block_118:
+        Level34_805E4Field(owner19, unsigned char *, 0x48) = 0x25U;
+        return;
+    block_119:
+        if (captured_v1_9 != 3) {
+            goto block_127;
+        }
+        fieldOrAddress3=Level34_805E4Field(private18,int*,0x2C);
+        resultOrArithmetic2=fieldOrAddress3*11;
+        fieldOrAddress3=Level34_805E4_D_8006C550;
+        resultOrArithmetic2*=8;
+        fieldOrAddress3+=resultOrArithmetic2;
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        if (Level34_805E4Field(fieldOrAddress3,short*,0x36)!=0x1F1) {
+            goto block_126;
+        }
+        argumentOrField5=(int)&Level34_805E4_D_80070328+8;
+        Level34_805E4CompleteValue(argumentOrField5);
+        resultOrArithmetic2=Level34_805E4Field(owner19, int *, 0x14);
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        fieldOrAddress3=Level34_805E4Field(argumentOrField5,int*,0);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2-=fieldOrAddress3;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        working_v0_6=resultOrArithmetic2;
+        if (working_v0_6 >= 0) {
+            goto block_123;
+        }
+        working_v0_6 = -working_v0_6;
+    block_123:
+        argumentOrAddress4=owner19+0xC;
+        if (working_v0_6 >= 0x899) {
+            goto block_125;
+        }
+        Level34_805E4CompleteValue(owner19);
+        if (Level34_805E4_func_8004F334((void*)(argumentOrAddress4),(void*)( argumentOrField5-8)) < 0x1401) {
+            goto block_129;
+        }
+    block_125:
+    block_126:
+        Level34_805E4Field(owner19, unsigned char *, 0x48) = 0x20U;
+        return;
+    block_127:
+        if (captured_v1_9 != 4) {
+            goto block_129;
+        }
+        Level34_805E4Field(owner19, unsigned char *, 0x48) = 0x27U;
+        return;
+    block_129:
+        Level34_805E4Field(private18, short *, 4) = 0x3C;
+        Level34_805E4Field(owner19, unsigned char *, 0x48) = 0U;
+        return;
+    case 30:
+        resultOrArithmetic2=Level34_805E4_func_80055E84((void*)(owner19));
+        fieldOrAddress3=Level34_805E4Field(private18,int*,0x30);
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        savedCountFrameOrActor17=resultOrArithmetic2;
+        if (fieldOrAddress3 < 0) {
+            goto block_150;
+        }
+        fieldOrAddress3=fieldOrAddress3;
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2=fieldOrAddress3*11;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        fieldOrAddress3=Level34_805E4_D_8006C550;
+        __asm__ volatile(""::"r"(resultOrArithmetic2):"memory");
+        resultOrArithmetic2*=8;
+        savedFrameDistanceOrActor16=fieldOrAddress3+resultOrArithmetic2;
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        argumentOrAddress4=Level34_805E4Field(savedFrameDistanceOrActor16,short*,0x36);
+        __asm__ volatile(""::"r"(owner19):"memory","$6","$2");
+        argumentOrFlag6=0;
+        if (argumentOrAddress4 != 0x19A) {
+            goto block_133;
+        }
+        __asm__("":"=r"(argumentOrAddress4):"0"(argumentOrAddress4),"r"(argumentOrFlag6));
+        fieldOrAddress3=Level34_805E4Field(savedFrameDistanceOrActor16,unsigned char*,0x48);
+        __asm__ volatile(""::"r"(owner19):"memory","$2");
+        resultOrArithmetic2=0xC;
+        if(fieldOrAddress3==resultOrArithmetic2){
+            goto block_137;
+        }
+    block_133:
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        if (argumentOrAddress4 != 0x26C) {
+            goto block_136;
+        }
+        captured_v1_11 = Level34_805E4Field(savedFrameDistanceOrActor16, unsigned char *, 0x48);
+        if (captured_v1_11 == 5) {
+            goto block_137;
+        }
+        if (captured_v1_11 == 0xF) {
+            goto block_137;
+        }
+    block_136:
+        if (!(Level34_805E4Field(savedFrameDistanceOrActor16, unsigned char *, 0x48) & 0x80)) {
+            goto block_138;
+        }
+    block_137:
+        argumentOrFlag6 = 1;
+    block_138:
+        fieldOrAddress3=Level34_805E4Field(private18, int *, 0x2C);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2=fieldOrAddress3*11;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        fieldOrAddress3=Level34_805E4_D_8006C550;
+        __asm__ volatile(""::"r"(resultOrArithmetic2):"memory");
+        resultOrArithmetic2*=8;
+        savedFrameDistanceOrActor16=fieldOrAddress3+resultOrArithmetic2;
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        argumentOrAddress4=Level34_805E4Field(savedFrameDistanceOrActor16,short*,0x36);
+        __asm__ volatile(""::"r"(owner19):"memory","$5","$2");
+        argumentOrField5=0;
+        if (argumentOrAddress4 != 0x19A) {
+            goto block_140;
+        }
+        __asm__("":"=r"(argumentOrAddress4):"0"(argumentOrAddress4),"r"(argumentOrField5));
+        fieldOrAddress3=Level34_805E4Field(savedFrameDistanceOrActor16,unsigned char*,0x48);
+        __asm__ volatile(""::"r"(owner19):"memory","$2");
+        resultOrArithmetic2=0xC;
+        if(fieldOrAddress3==resultOrArithmetic2){
+            goto block_144;
+        }
+    block_140:
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        if (argumentOrAddress4 != 0x26C) {
+            goto block_143;
+        }
+        captured_v1_12 = Level34_805E4Field(savedFrameDistanceOrActor16, unsigned char *, 0x48);
+        if (captured_v1_12 == 5) {
+            goto block_144;
+        }
+        if (captured_v1_12 == 0xF) {
+            goto block_144;
+        }
+    block_143:
+        if (!(Level34_805E4Field(savedFrameDistanceOrActor16, unsigned char *, 0x48) & 0x80)) {
+            goto block_145;
+        }
+    block_144:
+        argumentOrField5 = 1;
+    block_145:
+        if (argumentOrFlag6 != 0) {
+            goto block_150;
+        }
+        if (argumentOrField5 == 0) {
+            goto block_148;
+        }
+        resultOrArithmetic2 = Level34_805E4Field(private18, int *, 0x30);
+        fieldOrAddress3 = resultOrArithmetic2 * 2;
+        goto block_151;
+    block_148:
+        savedFrameDistanceOrActor16=(int)&Level34_805E4_D_80070328;
+        argumentOrField5=savedFrameDistanceOrActor16;
+        fieldOrAddress3=Level34_805E4Field(private18,int*,0x30);
+        argumentOrAddress4=Level34_805E4_D_8006C550;
+        resultOrArithmetic2=fieldOrAddress3*11;
+        resultOrArithmetic2*=8;
+        argumentOrAddress4+=resultOrArithmetic2;
+        resultOrArithmetic2=Level34_805E4_func_8004F334((void*)(argumentOrAddress4+0xC),(void*)(argumentOrField5));
+        argumentOrField5=savedFrameDistanceOrActor16;
+        argumentOrAddress4=Level34_805E4Field(private18,int*,0x2C);
+        savedFrameDistanceOrActor16=resultOrArithmetic2;
+        fieldOrAddress3=argumentOrAddress4*11;
+        argumentOrAddress4=Level34_805E4_D_8006C550;
+        fieldOrAddress3*=8;
+        argumentOrAddress4+=fieldOrAddress3;
+        resultOrArithmetic2=Level34_805E4_func_8004F334((void*)(argumentOrAddress4+0xC),(void*)(argumentOrField5));
+        savedFrameDistanceOrActor16=savedFrameDistanceOrActor16<resultOrArithmetic2;
+        if(savedFrameDistanceOrActor16==0)goto block_150;
+        resultOrArithmetic2=Level34_805E4Field(private18,int*,0x30);
+        fieldOrAddress3=resultOrArithmetic2*2;
+        goto block_151;
+    block_150:
+        resultOrArithmetic2 = Level34_805E4Field(private18, int *, 0x2C);
+        fieldOrAddress3 = resultOrArithmetic2 * 2;
+    block_151:
+        /* Original selected-actor address: eleven-times index, then eight-byte scale. The previous flag A2 role is dead. */
+        fieldOrAddress3=((fieldOrAddress3+resultOrArithmetic2)*4)-resultOrArithmetic2;
+        resultOrArithmetic2=Level34_805E4_D_8006C550;
+        fieldOrAddress3*=8;
+        savedFrameDistanceOrActor16=resultOrArithmetic2+fieldOrAddress3;
+        __asm__ volatile(""::"r"(owner19):"memory","$6");
+        argumentOrFlag6=0;
+        if (Level34_805E4Field(savedFrameDistanceOrActor16, short *, 0x36) != 0x1F1) {
+            goto block_161;
+        }
+        Level34_805E4CompleteValue(argumentOrFlag6);
+        argumentOrField5=(int)&Level34_805E4_D_80070328+8;
+        Level34_805E4CompleteValue(argumentOrField5);
+        resultOrArithmetic2=Level34_805E4Field(owner19, int *, 0x14);
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        fieldOrAddress3=Level34_805E4Field(argumentOrField5,int*,0);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2-=fieldOrAddress3;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        working_v0_8=resultOrArithmetic2;
+        if (working_v0_8 >= 0) {
+            goto block_154;
+        }
+        working_v0_8 = -working_v0_8;
+    block_154:
+        argumentOrAddress4=owner19+0xC;
+        if (working_v0_8 >= 0x898) {
+            goto block_161;
+        }
+        Level34_805E4CompleteValue(owner19);
+        resultOrArithmetic2=Level34_805E4_func_8004F334((void*)(argumentOrAddress4),(void*)(argumentOrField5-8));
+        resultOrArithmetic2=resultOrArithmetic2<0x1400;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        argumentOrFlag6=0;
+        if(!resultOrArithmetic2)goto block_161;
+        __asm__("":"=r"(private18):"0"(private18),"r"(argumentOrFlag6));
+        captured_v0_14 = Level34_805E4Field(private18, int*, 8);
+        if (captured_v0_14 == 0) {
+            goto block_158;
+        }
+        Level34_805E4Field(captured_v0_14, signed char *, 0x10) = 0;
+        Level34_805E4Field(private18, int*, 8) = 0;
+    block_158:
+        captured_v0_15 = Level34_805E4Field(private18, int*, 0xC);
+        argumentOrAddress4=owner19;
+        if (captured_v0_15 == 0) {
+            goto block_160;
+        }
+        Level34_805E4Field(captured_v0_15, signed char *, 0x10) = 0;
+        Level34_805E4Field(private18, int*, 0xC) = 0;
+    block_160:
+        argumentOrField5=0;
+        resultOrArithmetic2=0xA;
+        goto clearStateWithOwnerContext;
+    block_161:
+        /* Original zero A2 phi is supplied by native910/928; no new common zero or fabricated initializer. */
+        Level34_805E4_func_8003585C((void*)(owner19),(int)( Level34_805E4_func_8004E880((int)(Level34_805E4Field(savedFrameDistanceOrActor16, int *, 0xC) - Level34_805E4Field(owner19, int *, 0xC)),(int)( Level34_805E4Field(savedFrameDistanceOrActor16, int *, 0x10) - Level34_805E4Field(owner19, int *, 0x10)),(int)( argumentOrFlag6))),(int)( 4),(int)( 1),(int)( 1),(int)( 0));
+        resultOrArithmetic2=savedCountFrameOrActor17<3;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        if (resultOrArithmetic2) {
+            goto block_175;
+        }
+        Level34_805E4_func_80055D24((void*)(owner19),(int)( 5));
+        argumentOrAddress4=owner19;
+        argumentOrField5=0;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        Level34_805E4CompleteValue(argumentOrField5);
+        savedCountFrameOrActor17=(int)&originalFrame.spC8;
+        Level34_805E4CompleteValue(savedCountFrameOrActor17);
+        Level34_805E4_func_80055F14((void*)(argumentOrAddress4),(int)(argumentOrField5),(void*)(savedCountFrameOrActor17));
+        argumentOrAddress4=owner19;
+        argumentOrField5=1;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        Level34_805E4CompleteValue(argumentOrField5);
+        savedFrameDistanceOrActor16=(int)&originalFrame.spD8;
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        Level34_805E4_func_80055F14((void*)(argumentOrAddress4),(int)(argumentOrField5),(void*)(savedFrameDistanceOrActor16));
+        captured_v0_16 = Level34_805E4_func_8003636C((int)(0),(int)( 0xFF)) * 2;
+        originalFrame.spE8 = 0;
+        captured_a0_10 = Level34_805E4Field((int)&Level34_805E4_D_80065920,short*,0 + captured_v0_16);
+        originalFrame.spEC = (int) (captured_a0_10 * 5) >> 8;
+        originalFrame.spF0 = (int) (Level34_805E4Field((int)&Level34_805E4_D_800658A0,short*,0 + captured_v0_16) * 5) >> 8;
+        resultOrArithmetic2=Level34_805E4_rand();
+        resultOrArithmetic2&=1;
+        argumentOrAddress4=(int)&originalFrame.spF8;
+        if(resultOrArithmetic2==0)goto block_164;
+        Level34_805E4CompleteValue(savedCountFrameOrActor17);
+        argumentOrField5=savedCountFrameOrActor17;
+        goto block_165;
+    block_164:
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        argumentOrField5=savedFrameDistanceOrActor16;
+    block_165:
+        Level34_805E4_func_8004F178((void*)(argumentOrAddress4),(void*)(argumentOrField5));
+        Level34_805E4_unk_ovlheader_800743B4((void*)(owner19),(int)( 0),(int)( 0),(int)( 0x3F004040),(int)( (int *)0xFE),(int)( 0x5F),(int)( 8),(int)( 3),(void*)( &originalFrame.spF8),(void*)( &originalFrame.spE8));
+        if (Level34_805E4Field(private18, int*, 8) != 0) {
+            goto block_167;
+        }
+        captured_v0_17 = Level34_805E4_func_8002EC50((int)(1),(int)( 0x80),(int)( 0x489090));
+        Level34_805E4Field(private18, int*, 8) = captured_v0_17;
+        if (captured_v0_17 == 0) {
+            goto block_170;
+        }
+    block_167:
+        captured_a0_11 = Level34_805E4Field(private18, int*, 8);
+        captured_v1_13 = Level34_805E4Field(captured_a0_11, unsigned char *, 0x11);
+        if (captured_v1_13 >= 0xF3U) {
+            goto block_169;
+        }
+        Level34_805E4Field(captured_a0_11, unsigned char *, 0x11) = (unsigned char) (captured_v1_13 + 0xC);
+    block_169:
+        Level34_805E4_func_8004F178((void*)(Level34_805E4Field(private18, int*, 8)),(void*)( &originalFrame.spC8));
+        Level34_805E4Field(Level34_805E4Field(private18, int*, 8), signed char *, 0x13) = 8;
+    block_170:
+        if (Level34_805E4Field(private18, int*, 0xC) != 0) {
+            goto block_172;
+        }
+        captured_v0_18 = Level34_805E4_func_8002EC50((int)(1),(int)( 0x80),(int)( 0x489090));
+        Level34_805E4Field(private18, int*, 0xC) = captured_v0_18;
+        if (captured_v0_18 == 0) {
+            goto block_175;
+        }
+    block_172:
+        captured_a0_12 = Level34_805E4Field(private18, int*, 0xC);
+        captured_v1_14 = Level34_805E4Field(captured_a0_12, unsigned char *, 0x11);
+        if (captured_v1_14 >= 0xF3U) {
+            goto block_174;
+        }
+        Level34_805E4Field(captured_a0_12, unsigned char *, 0x11) = (unsigned char) (captured_v1_14 + 0xC);
+    block_174:
+        Level34_805E4_func_8004F178((void*)(Level34_805E4Field(private18, int*, 0xC)),(void*)( &originalFrame.spD8));
+        Level34_805E4Field(Level34_805E4Field(private18, int*, 0xC), signed char *, 0x13) = 8;
+    block_175:
+        if (Level34_805E4_D_8006C770 == 0) {
+            goto block_555;
+        }
+        Level34_805E4_func_80034F40((void*)(owner19),(int)( 2));
+        Level34_805E4Field(owner19, unsigned char *, 0x48) = 0x1FU;
+        Level34_805E4Field(private18, unsigned char *, 6) = 3U;
+        Level34_805E4Field(private18, unsigned char *, 7) = 0U;
+        return;
+    case 31:
+        if (Level34_805E4Field(private18, unsigned char *, 1) == 0) {
+            goto block_183;
+        }
+        resultOrArithmetic2=Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 8);
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        fieldOrAddress3=Level34_805E4Field(owner19, int *, 0x14);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2-=fieldOrAddress3;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        working_v0_10=resultOrArithmetic2;
+        if (working_v0_10 >= 0) {
+            goto block_180;
+        }
+        working_v0_10 = -working_v0_10;
+    block_180:
+        if (working_v0_10 < 0xDAD) {
+            goto block_183;
+        }
+        if (Level34_805E4_func_8003BFC0((void*)(owner19),(int)( Level34_805E4Field(private18, int *, 0x50))) == 0) {
+            goto block_186;
+        }
+        Level34_805E4_func_8003BE70((int)(Level34_805E4Field(private18, int *, 0x50)));
+        working_v0_11 = -1;
+        goto block_185;
+    block_183:
+        if (Level34_805E4_func_8003BFC0((void*)(owner19),(int)( Level34_805E4Field(private18, int *, 0x50))) != 0) {
+            goto block_186;
+        }
+        working_v0_11 = Level34_805E4_func_8003BABC((void*)(owner19),(int)( 2),(int)( 4));
+    block_185:
+        Level34_805E4Field(private18, int *, 0x50) = working_v0_11;
+    block_186:
+        argumentOrAddress4=Level34_805E4Field(private18,int*,0x30);
+        argumentOrField7=0x19A;
+        if(argumentOrAddress4<0)goto block_202;
+        Level34_805E4CompleteValue(argumentOrField7);
+        fieldOrAddress3=Level34_805E4Field(private18,int*,0x2C);
+        resultOrArithmetic2=fieldOrAddress3*11;
+        fieldOrAddress3=Level34_805E4_D_8006C550;
+        resultOrArithmetic2*=8;
+        savedCountFrameOrActor17=fieldOrAddress3+resultOrArithmetic2;
+        Level34_805E4CompleteValue(savedCountFrameOrActor17);
+        resultOrArithmetic2=argumentOrAddress4*11;
+        resultOrArithmetic2*=8;
+        argumentOrAddress4=fieldOrAddress3+resultOrArithmetic2;
+        captured_a1 = Level34_805E4Field(argumentOrAddress4, short *, 0x36);
+        if (captured_a1 != argumentOrField7) {
+            goto block_189;
+        }
+        if (Level34_805E4Field(argumentOrAddress4, unsigned char *, 0x48) == 0xC) {
+            goto block_202;
+        }
+    block_189:
+        if (captured_a1 != 0x26C) {
+            goto block_192;
+        }
+        captured_v1_15 = Level34_805E4Field(argumentOrAddress4, unsigned char *, 0x48);
+        if (captured_v1_15 == 5) {
+            goto block_202;
+        }
+        if (captured_v1_15 == 0xF) {
+            goto block_202;
+        }
+    block_192:
+        if (Level34_805E4Field(argumentOrAddress4, unsigned char *, 0x48) & 0x80) {
+            goto block_202;
+        }
+        captured_a1_2 = Level34_805E4Field(savedCountFrameOrActor17, short *, 0x36);
+        if (captured_a1_2 != argumentOrField7) {
+            goto block_195;
+        }
+        if (Level34_805E4Field(savedCountFrameOrActor17, unsigned char *, 0x48) == 0xC) {
+            goto block_199;
+        }
+    block_195:
+        if (captured_a1_2 != 0x26C) {
+            goto block_198;
+        }
+        captured_v1_16 = Level34_805E4Field(savedCountFrameOrActor17, unsigned char *, 0x48);
+        if (captured_v1_16 == 5) {
+            goto block_199;
+        }
+        if (captured_v1_16 == 0xF) {
+            goto block_199;
+        }
+    block_198:
+        if (!(Level34_805E4Field(savedCountFrameOrActor17, unsigned char *, 0x48) & 0x80)) {
+            goto block_200;
+        }
+    block_199:
+        resultOrArithmetic2 = Level34_805E4Field(private18, int *, 0x30);
+        fieldOrAddress3 = resultOrArithmetic2 * 2;
+        goto block_203;
+    block_200:
+        savedFrameDistanceOrActor16=(int)&Level34_805E4_D_80070328;
+        resultOrArithmetic2=Level34_805E4_func_8004F334((void*)(argumentOrAddress4+0xC),(void*)(savedFrameDistanceOrActor16));
+        argumentOrAddress4=savedCountFrameOrActor17+0xC;
+        argumentOrField5=savedFrameDistanceOrActor16;
+        savedFrameDistanceOrActor16=resultOrArithmetic2;
+        resultOrArithmetic2=Level34_805E4_func_8004F334((void*)(argumentOrAddress4),(void*)(argumentOrField5));
+        savedFrameDistanceOrActor16=savedFrameDistanceOrActor16<resultOrArithmetic2;
+        if(savedFrameDistanceOrActor16==0)goto block_202;
+        resultOrArithmetic2=Level34_805E4Field(private18,int*,0x30);
+        fieldOrAddress3=resultOrArithmetic2*2;
+        goto block_203;
+    block_202:
+        resultOrArithmetic2 = Level34_805E4Field(private18, int *, 0x2C);
+        fieldOrAddress3 = resultOrArithmetic2 * 2;
+    block_203:
+        fieldOrAddress3=((fieldOrAddress3+resultOrArithmetic2)*4)-resultOrArithmetic2;
+        resultOrArithmetic2=Level34_805E4_D_8006C550;
+        fieldOrAddress3*=8;
+        savedCountFrameOrActor17=resultOrArithmetic2+fieldOrAddress3;
+        captured_a0_15 = Level34_805E4Field(savedCountFrameOrActor17, short *, 0x36);
+        if (captured_a0_15 != 0x19A) {
+            goto block_205;
+        }
+        if (Level34_805E4Field(savedCountFrameOrActor17, unsigned char *, 0x48) == 0xC) {
+            goto block_209;
+        }
+    block_205:
+        if (captured_a0_15 != 0x26C) {
+            goto block_208;
+        }
+        captured_v1_17 = Level34_805E4Field(savedCountFrameOrActor17, unsigned char *, 0x48);
+        if (captured_v1_17 == 5) {
+            goto block_209;
+        }
+        if (captured_v1_17 == 0xF) {
+            goto block_209;
+        }
+    block_208:
+        if (!(Level34_805E4Field(savedCountFrameOrActor17, unsigned char *, 0x48) & 0x80)) {
+            goto block_210;
+        }
+    block_209:
+        argumentOrAddress4=owner19;
+        argumentOrField5 = 3;
+        resultOrArithmetic2=0x1E;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(private18,short*,4)=resultOrArithmetic2;
+        resultOrArithmetic2 = 3;
+        Level34_805E4Field(private18, unsigned char *, 0) = 0U;
+        goto block_477;
+    block_210:
+        if (captured_a0_15 != 0x1F1) {
+            goto block_220;
+        }
+        argumentOrField5=(int)&Level34_805E4_D_80070328+8;
+        Level34_805E4CompleteValue(argumentOrField5);
+        resultOrArithmetic2=Level34_805E4Field(owner19, int *, 0x14);
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        fieldOrAddress3=Level34_805E4Field(argumentOrField5,int*,0);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2-=fieldOrAddress3;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        working_v0_13=resultOrArithmetic2;
+        if (working_v0_13 >= 0) {
+            goto block_213;
+        }
+        working_v0_13 = -working_v0_13;
+    block_213:
+        argumentOrAddress4=owner19+0xC;
+        if (working_v0_13 >= 0x898) {
+            goto block_220;
+        }
+        Level34_805E4CompleteValue(owner19);
+        if (Level34_805E4_func_8004F334((void*)(argumentOrAddress4),(void*)( argumentOrField5-8)) >= 0x1400) {
+            goto block_220;
+        }
+        captured_v0_19 = Level34_805E4Field(private18, int*, 8);
+        if (captured_v0_19 == 0) {
+            goto block_217;
+        }
+        Level34_805E4Field(captured_v0_19, signed char *, 0x10) = 0;
+        Level34_805E4Field(private18, int*, 8) = 0;
+    block_217:
+        captured_v0_20 = Level34_805E4Field(private18, int*, 0xC);
+        if (captured_v0_20 == 0) {
+            goto block_219;
+        }
+        Level34_805E4Field(captured_v0_20, signed char *, 0x10) = 0;
+        Level34_805E4Field(private18, int*, 0xC) = 0;
+    block_219:
+        argumentOrAddress4=owner19;
+        argumentOrField5=0;
+        resultOrArithmetic2 = 0xA;
+        goto block_443;
+    block_220:
+        if (Level34_805E4_func_80036220((void*)((int)&Level34_805E4_D_80070328),(void*)( private18 + 0x14),(int)( 0),(int)( 0xC00)) != 0) {
+            goto block_222;
+        }
+        argumentOrAddress4=owner19;
+        argumentOrField5 = 3;
+        resultOrArithmetic2 = 3;
+        Level34_805E4Field(private18,unsigned char*,0)=resultOrArithmetic2;
+        goto block_477;
+    block_222:
+        captured_v1_18 = Level34_805E4Field(savedCountFrameOrActor17, short *, 0x36);
+        if (captured_v1_18 != 0x26C) {
+            goto block_228;
+        }
+        if (Level34_805E4Field(Level34_805E4Field(savedCountFrameOrActor17, int*, 0), short *, 2) <= 0) {
+            goto block_228;
+        }
+        if ((unsigned char) Level34_805E4Field(savedCountFrameOrActor17, unsigned char *, 0x3D) >= 5U) {
+            goto block_227;
+        }
+        if ((unsigned char) Level34_805E4Field(savedCountFrameOrActor17, unsigned char *, 0x3C) >= 5U) {
+            goto block_227;
+        }
+        Level34_805E4Field(savedCountFrameOrActor17, unsigned char *, 0x48) = 8U;
+        Level34_805E4_func_80034F40((void*)(savedCountFrameOrActor17),(int)( 8));
+        Level34_805E4_func_80055D24((void*)(savedCountFrameOrActor17),(int)( 7));
+    block_227:
+        Level34_805E4Field(Level34_805E4Field(savedCountFrameOrActor17, int*, 0), short *, 2) = 0x3C;
+        goto block_236;
+    block_228:
+        if (captured_v1_18 != 0x19A) {
+            goto block_234;
+        }
+        if (Level34_805E4Field(Level34_805E4Field(savedCountFrameOrActor17, int*, 0), short *, 0x12) <= 0) {
+            goto block_234;
+        }
+        if ((unsigned char) Level34_805E4Field(savedCountFrameOrActor17, unsigned char *, 0x3D) >= 5U) {
+            goto block_233;
+        }
+        if ((unsigned char) Level34_805E4Field(savedCountFrameOrActor17, unsigned char *, 0x3C) >= 5U) {
+            goto block_233;
+        }
+        Level34_805E4Field(savedCountFrameOrActor17, unsigned char *, 0x48) = 5U;
+        Level34_805E4_func_80034F40((void*)(savedCountFrameOrActor17),(int)( 5));
+        Level34_805E4_func_80055D24((void*)(savedCountFrameOrActor17),(int)( 7));
+    block_233:
+        Level34_805E4Field(Level34_805E4Field(savedCountFrameOrActor17, int*, 0), short *, 0x12) = 0x3C;
+        goto block_236;
+    block_234:
+        if (Level34_805E4Field(savedCountFrameOrActor17, short *, 0x36) != 0x1F1) {
+            goto block_236;
+        }
+        Level34_805E4Field(Level34_805E4Field(savedCountFrameOrActor17, int*, 0), short *, 0x10) = 0x3C;
+    block_236:
+        Level34_805E4_func_8003585C((void*)(owner19),(int)( Level34_805E4_func_8004E880((int)(Level34_805E4Field(savedCountFrameOrActor17, int *, 0xC) - Level34_805E4Field(owner19, int *, 0xC)),(int)( Level34_805E4Field(savedCountFrameOrActor17, int *, 0x10) - Level34_805E4Field(owner19, int *, 0x10)),(int)( 0))),(int)( 4),(int)( 1),(int)( 1),(int)( 0));
+        Level34_805E4_func_80055D24((void*)(owner19),(int)( 5));
+        argumentOrAddress4=owner19;
+        argumentOrField5=0;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        Level34_805E4CompleteValue(argumentOrField5);
+        retainedCountFrameOrDuration20=(int)&originalFrame.spE8;
+        Level34_805E4CompleteValue(retainedCountFrameOrDuration20);
+        Level34_805E4_func_80055F14((void*)(argumentOrAddress4),(int)(argumentOrField5),(void*)(retainedCountFrameOrDuration20));
+        argumentOrAddress4=owner19;
+        argumentOrField5=1;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        Level34_805E4CompleteValue(argumentOrField5);
+        savedFrameDistanceOrActor16=(int)&originalFrame.sp108;
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        Level34_805E4_func_80055F14((void*)(argumentOrAddress4),(int)(argumentOrField5),(void*)(savedFrameDistanceOrActor16));
+        resultOrArithmetic2=Level34_805E4_rand();
+        resultOrArithmetic2&=1;
+        argumentOrAddress4=(int)&originalFrame.sp128;
+        if(resultOrArithmetic2==0)goto block_238;
+        Level34_805E4CompleteValue(retainedCountFrameOrDuration20);
+        argumentOrField5=retainedCountFrameOrDuration20;
+        goto block_239;
+    block_238:
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        argumentOrField5=savedFrameDistanceOrActor16;
+    block_239:
+        Level34_805E4_func_8004F178((void*)(argumentOrAddress4),(void*)(argumentOrField5));
+        captured_v0_21 = Level34_805E4Field(private18, unsigned char *, 6) - 1;
+        Level34_805E4Field(private18, unsigned char *, 6) = captured_v0_21;
+        if (captured_v0_21 & 0xFF) {
+            goto block_249;
+        }
+        Level34_805E4_func_8004F178((void*)(&originalFrame.sp138),(void*)( savedCountFrameOrActor17 + 0xC));
+        originalFrame.sp140 += 0x200;
+        Level34_805E4_func_8004F1C8((void*)(&originalFrame.sp118),(void*)( &originalFrame.sp138),(void*)( &originalFrame.sp128));
+        if (Level34_805E4Field(private18, unsigned char *, 7) != 0) {
+            goto block_242;
+        }
+        savedFrameDistanceOrActor16 = 0xC8;
+        goto block_243;
+    block_242:
+        savedFrameDistanceOrActor16 = Level34_805E4_func_8003636C((int)(0),(int)( 0xC8)) + 0x64;
+    block_243:
+        Level34_805E4_func_8004F08C((void*)(&originalFrame.sp118),(int)( Level34_805E4_func_8004EDE8((void*)(&originalFrame.sp118),(int)( 1))),(int)( savedFrameDistanceOrActor16));
+        captured_t0 = (Level34_805E4_func_8004F334((void*)(savedCountFrameOrActor17 + 0xC),(void*)( &originalFrame.sp128)) / savedFrameDistanceOrActor16) + 1;
+        argumentOrFlag6=2;
+        if (Level34_805E4Field(private18, unsigned char *, 7) != 0) {
+            goto block_245;
+        }
+        argumentOrFlag6 = 1;
+    block_245:
+        captured_v0_22 = Level34_805E4_unk_ovlheader_800743B4((void*)(owner19),(int)( 1),(int)( argumentOrFlag6),(int)( 0x3F008000),(int)( (int *)0x82),(int)( 0x32),(int)( captured_t0),(int)( 3),(void*)( &originalFrame.sp128),(void*)( &originalFrame.sp118));
+        Level34_805E4Field(private18, unsigned char *, 6) = 3U;
+        captured_v1_19 = Level34_805E4Field(private18, unsigned char *, 7);
+        if (captured_v1_19 != 0) {
+            goto block_247;
+        }
+        if (captured_v0_22 == 0) {
+            goto block_249;
+        }
+    block_247:
+        captured_v0_23 = captured_v1_19 + 1;
+        Level34_805E4Field(private18, unsigned char *, 7) = captured_v0_23;
+        if ((unsigned int) (captured_v0_23 & 0xFF) < 0xBU) {
+            goto block_249;
+        }
+        Level34_805E4Field(private18, unsigned char *, 7) = 0U;
+    block_249:
+        if (Level34_805E4Field(private18, int*, 8) != 0) {
+            goto block_251;
+        }
+        captured_v0_24 = Level34_805E4_func_8002EC50((int)(1),(int)( 0x80),(int)( 0x489090));
+        Level34_805E4Field(private18, int*, 8) = captured_v0_24;
+        if (captured_v0_24 == 0) {
+            goto block_252;
+        }
+    block_251:
+        Level34_805E4Field(Level34_805E4Field(private18, int*, 8), unsigned char *, 0x11) = 0xF3U;
+        Level34_805E4_func_8004F178((void*)(Level34_805E4Field(private18, int*, 8)),(void*)( &originalFrame.spE8));
+        Level34_805E4Field(Level34_805E4Field(private18, int*, 8), signed char *, 0x13) = 8;
+    block_252:
+        if (Level34_805E4Field(private18, int*, 0xC) != 0) {
+            goto block_254;
+        }
+        captured_v0_25 = Level34_805E4_func_8002EC50((int)(1),(int)( 0x80),(int)( 0x489090));
+        Level34_805E4Field(private18, int*, 0xC) = captured_v0_25;
+        if (captured_v0_25 == 0) {
+            goto block_555;
+        }
+    block_254:
+        Level34_805E4Field(Level34_805E4Field(private18, int*, 0xC), unsigned char *, 0x11) = 0xF3U;
+        Level34_805E4_func_8004F178((void*)(Level34_805E4Field(private18, int*, 0xC)),(void*)( &originalFrame.sp108));
+        Level34_805E4Field(Level34_805E4Field(private18, int*, 0xC), signed char *, 0x13) = 8;
+        return;
+    case 32:
+        captured_a0_16 = Level34_805E4_D_8006C550 + (Level34_805E4Field(private18, int *, 0x2C) * 0x58);
+        captured_a1_3 = Level34_805E4Field(captured_a0_16, short *, 0x36);
+        working_a2_3 = 0;
+        if (captured_a1_3 != 0x19A) {
+            goto block_257;
+        }
+        if (Level34_805E4Field(captured_a0_16, unsigned char *, 0x48) == 0xC) {
+            goto block_261;
+        }
+    block_257:
+        if (captured_a1_3 != 0x26C) {
+            goto block_260;
+        }
+        captured_v1_20 = Level34_805E4Field(captured_a0_16, unsigned char *, 0x48);
+        if (captured_v1_20 == 5) {
+            goto block_261;
+        }
+        if (captured_v1_20 == 0xF) {
+            goto block_261;
+        }
+    block_260:
+        if (!(Level34_805E4Field(captured_a0_16, unsigned char *, 0x48) & 0x80)) {
+            goto block_262;
+        }
+    block_261:
+        working_a2_3 = 1;
+    block_262:
+        if (working_a2_3 == 0) {
+            goto block_277;
+        }
+        captured_v1_21 = Level34_805E4Field(private18, int *, 0x30);
+        if (captured_v1_21 < 0) {
+            goto block_272;
+        }
+        captured_a0_17 = Level34_805E4_D_8006C550 + (captured_v1_21 * 0x58);
+        captured_a1_4 = Level34_805E4Field(captured_a0_17, short *, 0x36);
+        working_a2_4 = 0;
+        if (captured_a1_4 != 0x19A) {
+            goto block_266;
+        }
+        if (Level34_805E4Field(captured_a0_17, unsigned char *, 0x48) == 0xC) {
+            goto block_270;
+        }
+    block_266:
+        if (captured_a1_4 != 0x26C) {
+            goto block_269;
+        }
+        captured_v1_22 = Level34_805E4Field(captured_a0_17, unsigned char *, 0x48);
+        if (captured_v1_22 == 5) {
+            goto block_270;
+        }
+        if (captured_v1_22 == 0xF) {
+            goto block_270;
+        }
+    block_269:
+        if (!(Level34_805E4Field(captured_a0_17, unsigned char *, 0x48) & 0x80)) {
+            goto block_271;
+        }
+    block_270:
+        working_a2_4 = 1;
+    block_271:
+        if (working_a2_4 == 0) {
+            goto block_277;
+        }
+    block_272:
+        captured_v0_26 = Level34_805E4Field(private18, int*, 8);
+        if (captured_v0_26 == 0) {
+            goto block_274;
+        }
+        Level34_805E4Field(captured_v0_26, signed char *, 0x10) = 0;
+        Level34_805E4Field(private18, int*, 8) = 0;
+    block_274:
+        captured_v0_27 = Level34_805E4Field(private18, int*, 0xC);
+        if (captured_v0_27 == 0) {
+            goto block_276;
+        }
+        Level34_805E4Field(captured_v0_27, signed char *, 0x10) = 0;
+        Level34_805E4Field(private18, int*, 0xC) = 0;
+    block_276:
+        argumentOrAddress4=owner19;
+        argumentOrField5=0;
+        resultOrArithmetic2 = 0x3C;
+        Level34_805E4Field(private18, unsigned char *, 0) = 0U;
+        goto block_443;
+    block_277:
+        if (Level34_805E4_func_80036220((void*)((int)&Level34_805E4_D_80070328),(void*)( private18 + 0x14),(int)( 0),(int)( 0x1000)) == 0) {
+            goto block_555;
+        }
+        Level34_805E4_func_80034F40((void*)(owner19),(int)( 1));
+        Level34_805E4Field(private18, unsigned char *, 0) = 3U;
+        Level34_805E4Field(owner19, unsigned char *, 0x48) = 0x1EU;
+        return;
+    case 34:
+        Level34_805E4CompleteValue(owner19);
+        if (Level34_805E4_func_8004F334((void*)(owner19 + 0xC),(void*)( (int)&Level34_805E4_D_80070328)) < 0x1400) {
+            goto block_424;
+        }
+        if (Level34_805E4Field(private18, unsigned char *, 0) == 1) {
+            goto block_282;
+        }
+        Level34_805E4Field(private18, unsigned char *, 0) = 1U;
+        captured_v0_28 = Level34_805E4Field(Level34_805E4Field(private18, int*, 0x34), int*, 0xC);
+        Level34_805E4Field(owner19, unsigned char *, 0x46) = Level34_805E4_func_8004E880((int)(Level34_805E4Field(captured_v0_28, int *, 0) - Level34_805E4Field(owner19, int *, 0xC)),(int)( Level34_805E4Field(captured_v0_28, int *, 4) - Level34_805E4Field(owner19, int *, 0x10)),(int)( 0));
+    block_282:
+        if (Level34_805E4_func_800359A4((void*)(private18 + 4),(int)( 2)) == 0) {
+            goto block_555;
+        }
+        if (Level34_805E4_func_80036220((void*)((int)&Level34_805E4_D_80070328),(void*)( private18 + 0x14),(int)( 0),(int)( 0x4000)) == 0) {
+            goto block_555;
+        }
+        Level34_805E4Field(owner19, unsigned char *, 0x48) = 1U;
+        Level34_805E4_func_80034F40((void*)(owner19),(int)( 1));
+        Level34_805E4Field(private18, unsigned char *, 7) = (unsigned char) ((Level34_805E4Field(private18, unsigned char *, 7) + 1) & 1);
+        return;
+    case 43:
+        if (Level34_805E4Field(owner19, unsigned char *, 0x49) != 0) {
+            goto block_287;
+        }
+        Level34_805E4Field(owner19, unsigned char *, 0x49) = 4U;
+    block_287:
+        Level34_805E4Field(owner19, signed char *, 0x41) = 0;
+        Level34_805E4Field(owner19, signed char *, 0x4C) = 0;
+        Level34_805E4Field(owner19, signed char *, 0x4D) = 0;
+        Level34_805E4Field(owner19, int *, 8) = 0;
+        if (Level34_805E4Field(owner19, unsigned char *, 0x49) != 4) {
+            goto block_292;
+        }
+        fieldOrAddress3=Level34_805E4Field(private18,int*,0x2C);
+        resultOrArithmetic2=fieldOrAddress3*11;
+        fieldOrAddress3=Level34_805E4_D_8006C550;
+        resultOrArithmetic2*=8;
+        fieldOrAddress3+=resultOrArithmetic2;
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        captured_v1_23=Level34_805E4Field(fieldOrAddress3,unsigned char*,0x48);
+        captured_a0_18 = captured_v1_23 & 0xFF;
+        if (captured_a0_18 == 0x29) {
+            goto block_292;
+        }
+        if ((unsigned int) (captured_v1_23 - 0x27) < 2U) {
+            goto block_292;
+        }
+        if (captured_a0_18 == 3) {
+            goto block_292;
+        }
+        argumentOrAddress4=private18+4;
+        argumentOrField5=2;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        Level34_805E4CompleteValue(argumentOrField5);
+        savedFrameDistanceOrActor16=(int)&Level34_805E4_D_8006C7F8;
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        argumentOrFlag6=savedFrameDistanceOrActor16;
+        Level34_805E4Field(private18,short*,4)=0;
+        Level34_805E4_func_8003B7B4((void*)(argumentOrAddress4),(int)(argumentOrField5),(void*)(argumentOrFlag6));
+        argumentOrAddress4=owner19+0x49;
+        argumentOrField5=1;
+        argumentOrFlag6=savedFrameDistanceOrActor16;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        Level34_805E4CompleteValue(argumentOrField5);
+        Level34_805E4CompleteValue(argumentOrFlag6);
+        resultOrArithmetic2=5;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(owner19,unsigned char*,0x49)=resultOrArithmetic2;
+        resultOrArithmetic2=0x78;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(private18,short*,4)=resultOrArithmetic2;
+        resultOrArithmetic2=0xFF;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(owner19,signed char*,0x4A)=resultOrArithmetic2;
+        Level34_805E4_func_8003B7B4((void*)(argumentOrAddress4),(int)(argumentOrField5),(void*)(argumentOrFlag6));
+    block_292:
+        if (Level34_805E4Field(owner19, unsigned char *, 0x49) != 5) {
+            goto block_555;
+        }
+        resultOrArithmetic2=Level34_805E4_func_800359A4((void*)(private18+4),(int)(2));
+        savedCountFrameOrActor17=0;
+        if(resultOrArithmetic2==0)goto block_555;
+        retainedCountFrameOrDuration20=0;
+        savedFrameDistanceOrActor16 = 5;
+    loop_295:
+        fieldOrAddress3=Level34_805E4_func_80021F3C((int)(savedFrameDistanceOrActor16));
+        resultOrArithmetic2=fieldOrAddress3>>8;
+        argumentOrAddress4=resultOrArithmetic2&0xFF;
+        resultOrArithmetic2=argumentOrAddress4-0x15;
+        if(resultOrArithmetic2>=0)goto block_297;
+        resultOrArithmetic2=-resultOrArithmetic2;
+    block_297:
+        if(resultOrArithmetic2<2){
+            resultOrArithmetic2=fieldOrAddress3&2;
+            goto block_301;
+        }
+        resultOrArithmetic2=argumentOrAddress4-0x3F;
+        if(resultOrArithmetic2>=0)goto block_300;
+        resultOrArithmetic2=-resultOrArithmetic2;
+    block_300:
+        if(resultOrArithmetic2>=2){
+            resultOrArithmetic2=fieldOrAddress3&2;
+            goto block_303;
+        }
+        resultOrArithmetic2=fieldOrAddress3&2;
+    block_301:
+        if(resultOrArithmetic2==0){
+            resultOrArithmetic2=argumentOrAddress4-0x15;
+            goto block_306;
+        }
+        savedCountFrameOrActor17++;
+        goto block_313;
+    block_303:
+        if(resultOrArithmetic2==0)goto block_305;
+        Level34_805E4_func_80021ED8((int)(savedFrameDistanceOrActor16),(int)(0xFC),(int)(0));
+        retainedCountFrameOrDuration20=1;
+        goto block_313;
+    block_305:
+        resultOrArithmetic2=argumentOrAddress4-0x15;
+    block_306:
+        if(resultOrArithmetic2>=0)goto block_308;
+        resultOrArithmetic2=-resultOrArithmetic2;
+    block_308:
+        if(resultOrArithmetic2<2){
+            resultOrArithmetic2=argumentOrAddress4-0x3F;
+            goto block_312;
+        }
+        resultOrArithmetic2=argumentOrAddress4-0x3F;
+        if(resultOrArithmetic2>=0)goto block_311;
+        resultOrArithmetic2=-resultOrArithmetic2;
+    block_311:
+        if(resultOrArithmetic2>=2)goto block_313;
+    block_312:
+        Level34_805E4_func_80021ED8((int)(savedFrameDistanceOrActor16),(int)(0xFC),(int)(2));
+    block_313:
+        savedFrameDistanceOrActor16 += 1;
+        if (savedFrameDistanceOrActor16 < 8) {
+            goto loop_295;
+        }
+        if (retainedCountFrameOrDuration20 == 0) {
+            goto block_316;
+        }
+        Level34_805E4Field(private18, int *, 0x50) = Level34_805E4_func_8003BB10((void*)(owner19),(int)( 6),(int)( 0));
+    block_316:
+        if (savedCountFrameOrActor17 != 3) {
+            goto block_555;
+        }
+        captured_a1_5 = Level34_805E4Field(private18, int *, 0x50);
+        if (captured_a1_5 < 0) {
+            goto block_554;
+        }
+        if (Level34_805E4_func_8003BFC0((void*)(owner19),(int)( captured_a1_5)) == 0) {
+            goto block_554;
+        }
+        Level34_805E4_func_8003BE70((int)(Level34_805E4Field(private18, int *, 0x50)));
+        Level34_805E4Field(private18, int *, 0x50) = -1;
+        goto block_554;
+    case 42:
+        if (Level34_805E4Field(owner19, unsigned char *, 0x49) != 0) {
+            goto block_322;
+        }
+        Level34_805E4Field(owner19, unsigned char *, 0x49) = 4U;
+    block_322:
+        argumentOrFlag6=Level34_805E4Field(owner19,unsigned char*,0x49);
+        Level34_805E4Field(owner19,signed char*,0x41)=0;
+        Level34_805E4Field(owner19,signed char*,0x4C)=0;
+        Level34_805E4Field(owner19,signed char*,0x4D)=0;
+        Level34_805E4Field(owner19,int*,8)=0;
+        if(argumentOrFlag6!=4)goto block_328;
+        resultOrArithmetic2=Level34_805E4Field(private18,int*,0x2C);
+        argumentOrField5=Level34_805E4_D_8006C550;
+        argumentOrAddress4=Level34_805E4Field(private18,int*,0x30);
+        fieldOrAddress3=resultOrArithmetic2*11;
+        fieldOrAddress3*=8;
+        fieldOrAddress3=argumentOrField5+fieldOrAddress3;
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2=argumentOrAddress4*11;
+        resultOrArithmetic2*=8;
+        fieldOrAddress3=Level34_805E4Field(fieldOrAddress3,unsigned char*,0x48);
+        argumentOrField5=argumentOrField5+resultOrArithmetic2;
+        resultOrArithmetic2=fieldOrAddress3&0x80;
+        if(resultOrArithmetic2!=0)goto block_325;
+        if(fieldOrAddress3!=argumentOrFlag6)goto block_328;
+    block_325:
+        argumentOrField5=Level34_805E4Field(argumentOrField5,unsigned char*,0x48);
+        resultOrArithmetic2=argumentOrField5&0x80;
+        argumentOrAddress4=owner19+0x49;
+        if(resultOrArithmetic2!=0)goto block_327;
+        if(argumentOrField5!=argumentOrFlag6)goto block_328;
+    block_327:
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        argumentOrField5=1;
+        Level34_805E4CompleteValue(argumentOrField5);
+        savedFrameDistanceOrActor16=(int)&Level34_805E4_D_8006C7F8;
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        argumentOrFlag6=savedFrameDistanceOrActor16;
+        Level34_805E4CompleteValue(argumentOrFlag6);
+        resultOrArithmetic2=5;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(owner19,unsigned char*,0x49)=resultOrArithmetic2;
+        resultOrArithmetic2=0x3C;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(private18,short*,4)=resultOrArithmetic2;
+        resultOrArithmetic2=0xFF;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(owner19,signed char*,0x4A)=resultOrArithmetic2;
+        Level34_805E4_func_8003B7B4((void*)(argumentOrAddress4),(int)(argumentOrField5),(void*)(argumentOrFlag6));
+        Level34_805E4_func_8003B7B4((void*)(private18+4),(int)(2),(void*)(savedFrameDistanceOrActor16));
+    block_328:
+        if (Level34_805E4Field(owner19, unsigned char *, 0x49) != 5) {
+            goto block_555;
+        }
+        if (Level34_805E4_func_800359A4((void*)(private18 + 4),(int)( 2)) == 0) {
+            goto block_555;
+        }
+        fieldOrAddress3=Level34_805E4_func_80021F3C((int)(Level34_805E4Field(private18,short*,2)));
+        resultOrArithmetic2=fieldOrAddress3>>8;
+        resultOrArithmetic2&=0xFF;
+        if(resultOrArithmetic2!=0){
+            resultOrArithmetic2=fieldOrAddress3&2;
+            goto block_333;
+        }
+        resultOrArithmetic2=fieldOrAddress3&2;
+        if(resultOrArithmetic2==0)goto block_555;
+        goto block_554;
+    block_333:
+        if(resultOrArithmetic2==0)goto block_555;
+        argumentOrField5=0xFC;
+        argumentOrAddress4=Level34_805E4Field(private18,short*,2);
+        __asm__("":"=r"(argumentOrField5),"=r"(private18):"0"(argumentOrField5),"1"(private18));
+        goto sharedCommand21ED8;
+    case 35:
+        resultOrArithmetic2=Level34_805E4_func_80021F3C((int)(Level34_805E4Field(private18,short*,2)));
+        argumentOrAddress4=Level34_805E4Field(owner19,unsigned char*,0x49);
+        fieldOrAddress3=resultOrArithmetic2;
+        if(argumentOrAddress4!=0)goto block_342;
+        resultOrArithmetic2=fieldOrAddress3>>8;
+        argumentOrAddress4=resultOrArithmetic2&0xFF;
+        resultOrArithmetic2=fieldOrAddress3&0xF;
+        if(resultOrArithmetic2==0)goto block_340;
+        if(argumentOrAddress4!=0)goto block_341;
+        argumentOrField5=0xFC;
+        Level34_805E4Field(owner19,unsigned char*,0x49)=1U;
+        argumentOrAddress4=Level34_805E4Field(private18,short*,2);
+    sharedCommand21ED8:
+        Level34_805E4_func_80021ED8((int)(argumentOrAddress4),(int)(argumentOrField5),(int)(0));
+        return;
+    block_340:
+    block_341:
+        Level34_805E4Field(owner19,unsigned char*,0x49)=1U;
+        return;
+    block_342:
+        resultOrArithmetic2=1;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        if(argumentOrAddress4!=resultOrArithmetic2){
+            resultOrArithmetic2=fieldOrAddress3&0xF;
+            goto block_345;
+        }
+        resultOrArithmetic2=fieldOrAddress3&0xF;
+        if(resultOrArithmetic2==0)goto block_555;
+        Level34_805E4Field(owner19,unsigned char*,0x49)=2U;
+        return;
+    block_345:
+        if (resultOrArithmetic2 == 0) {
+            goto block_348;
+        }
+        captured_v1_26 = (Level34_805E4Field(private18, int *, 0x30) * 0x58) + Level34_805E4_D_8006C550;
+        if (Level34_805E4Field(captured_v1_26, unsigned char *, 0x48) & 0x80) {
+            goto block_348;
+        }
+        if (Level34_805E4Field(Level34_805E4Field(captured_v1_26, int*, 0), unsigned char *, 2) != 4) {
+            goto block_555;
+        }
+    block_348:
+        Level34_805E4Field(owner19, unsigned char *, 0x48) = 0x25U;
+        Level34_805E4Field(owner19, unsigned char *, 0x49) = 0U;
+        Level34_805E4Field(private18, unsigned char *, 0) = 2U;
+        return;
+    case 36:
+        retainedCountFrameOrDuration20 = Level34_805E4_func_80055E84((void*)(owner19));
+        if (Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 0xB8) != 0) {
+            goto block_360;
+        }
+        resultOrArithmetic2=Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 8);
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        fieldOrAddress3=Level34_805E4Field(owner19, int *, 0x14);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2-=fieldOrAddress3;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        working_v0_19=resultOrArithmetic2;
+        if (working_v0_19 >= 0) {
+            goto block_352;
+        }
+        working_v0_19 = -working_v0_19;
+    block_352:
+        argumentOrAddress4=owner19+0xC;
+        if (working_v0_19 >= 0x400) {
+            goto block_360;
+        }
+        Level34_805E4CompleteValue(owner19);
+        if (Level34_805E4_func_8004F334((void*)(argumentOrAddress4),(void*)( ((int)&Level34_805E4_D_80070328 + 0xB8) - 0xB8)) >= 0x1400) {
+            goto block_360;
+        }
+        captured_v0_33 = Level34_805E4Field(private18, int*, 8);
+        if (captured_v0_33 == 0) {
+            goto block_356;
+        }
+        Level34_805E4Field(captured_v0_33, signed char *, 0x10) = 0;
+        Level34_805E4Field(private18, int*, 8) = 0;
+    block_356:
+        captured_v0_34 = Level34_805E4Field(private18, int*, 0xC);
+        if (captured_v0_34 == 0) {
+            goto block_358;
+        }
+        Level34_805E4Field(captured_v0_34, signed char *, 0x10) = 0;
+        Level34_805E4Field(private18, int*, 0xC) = 0;
+    block_358:
+        Level34_805E4Field(private18, short *, 4) = 0x14;
+        Level34_805E4Field(owner19, unsigned char *, 0x48) = 0U;
+        Level34_805E4_func_80034F40((void*)(owner19),(int)( 0));
+        if (Level34_805E4_func_8003BFC0((void*)(owner19),(int)( Level34_805E4Field(private18, int *, 0x50))) == 0) {
+            goto block_555;
+        }
+        Level34_805E4_func_8003BE70((int)(Level34_805E4Field(private18, int *, 0x50)));
+        Level34_805E4Field(private18, int *, 0x50) = -1;
+        return;
+    block_360:
+        if (Level34_805E4_D_8006C770 == 0) {
+            goto block_363;
+        }
+        argumentOrAddress4=owner19;
+        if (Level34_805E4Field(owner19, unsigned char *, 0x3D) != 1) {
+            goto block_363;
+        }
+        Level34_805E4_func_80034F40((void*)(argumentOrAddress4),(int)(2));
+    block_363:
+        savedVector21 = Level34_805E4Field(Level34_805E4Field(private18, int*, 0x34), int*, 0xC);
+        Level34_805E4_func_8003585C((void*)(owner19),(int)( Level34_805E4_func_8004E880((int)(Level34_805E4Field(savedVector21, int *, 0) - Level34_805E4Field(owner19, int *, 0xC)),(int)( Level34_805E4Field(savedVector21, int *, 4) - Level34_805E4Field(owner19, int *, 0x10)),(int)( 0))),(int)( 4),(int)( 1),(int)( 1),(int)( 0));
+        Level34_805E4_func_80055D24((void*)(owner19),(int)( 5));
+        argumentOrAddress4=owner19;
+        argumentOrField5=0;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        Level34_805E4CompleteValue(argumentOrField5);
+        savedCountFrameOrActor17=(int)&originalFrame.sp158;
+        Level34_805E4CompleteValue(savedCountFrameOrActor17);
+        Level34_805E4_func_80055F14((void*)(argumentOrAddress4),(int)(argumentOrField5),(void*)(savedCountFrameOrActor17));
+        argumentOrAddress4=owner19;
+        argumentOrField5=1;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        Level34_805E4CompleteValue(argumentOrField5);
+        savedFrameDistanceOrActor16=(int)&originalFrame.sp168;
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        Level34_805E4_func_80055F14((void*)(argumentOrAddress4),(int)(argumentOrField5),(void*)(savedFrameDistanceOrActor16));
+        resultOrArithmetic2=Level34_805E4_rand();
+        resultOrArithmetic2&=1;
+        argumentOrAddress4=(int)&originalFrame.sp148;
+        if(resultOrArithmetic2==0)goto block_365;
+        Level34_805E4CompleteValue(savedCountFrameOrActor17);
+        argumentOrField5=savedCountFrameOrActor17;
+        goto block_366;
+    block_365:
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        argumentOrField5=savedFrameDistanceOrActor16;
+    block_366:
+        Level34_805E4_func_8004F178((void*)(argumentOrAddress4),(void*)(argumentOrField5));
+        if (Level34_805E4Field(private18, int*, 8) != 0) {
+            goto block_368;
+        }
+        captured_v0_35 = Level34_805E4_func_8002EC50((int)(1),(int)( 0x80),(int)( 0x489090));
+        Level34_805E4Field(private18, int*, 8) = captured_v0_35;
+        if (captured_v0_35 == 0) {
+            goto block_371;
+        }
+    block_368:
+        captured_a0_21 = Level34_805E4Field(private18, int*, 8);
+        captured_v1_27 = Level34_805E4Field(captured_a0_21, unsigned char *, 0x11);
+        if (captured_v1_27 >= 0xF3U) {
+            goto block_370;
+        }
+        Level34_805E4Field(captured_a0_21, unsigned char *, 0x11) = (unsigned char) (captured_v1_27 + 0xC);
+    block_370:
+        Level34_805E4_func_8004F178((void*)(Level34_805E4Field(private18, int*, 8)),(void*)( &originalFrame.sp158));
+        Level34_805E4Field(Level34_805E4Field(private18, int*, 8), signed char *, 0x13) = 8;
+    block_371:
+        if (Level34_805E4Field(private18, int*, 0xC) != 0) {
+            goto block_373;
+        }
+        captured_v0_36 = Level34_805E4_func_8002EC50((int)(1),(int)( 0x80),(int)( 0x489090));
+        Level34_805E4Field(private18, int*, 0xC) = captured_v0_36;
+        if (captured_v0_36 == 0) {
+            goto block_376;
+        }
+    block_373:
+        captured_a0_22 = Level34_805E4Field(private18, int*, 0xC);
+        captured_v1_28 = Level34_805E4Field(captured_a0_22, unsigned char *, 0x11);
+        if (captured_v1_28 >= 0xF3U) {
+            goto block_375;
+        }
+        Level34_805E4Field(captured_a0_22, unsigned char *, 0x11) = (unsigned char) (captured_v1_28 + 0xC);
+    block_375:
+        Level34_805E4_func_8004F178((void*)(Level34_805E4Field(private18, int*, 0xC)),(void*)( &originalFrame.sp168));
+        Level34_805E4Field(Level34_805E4Field(private18, int*, 0xC), signed char *, 0x13) = 8;
+    block_376:
+        /* Original2090 private+4 address exists on both state-test edges before the actual zero-argument producer. */
+        argumentOrAddress4=private18+4;
+        if (Level34_805E4Field(owner19, unsigned char *, 0x3D) != 1) {
+            goto block_379;
+        }
+        resultOrArithmetic2=retainedCountFrameOrDuration20<3;
+        __asm__("":"=r"(resultOrArithmetic2):"0"(resultOrArithmetic2),"r"(argumentOrAddress4));
+        argumentOrAddress4=0;
+        if(resultOrArithmetic2)goto block_555;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        captured_v0_37 = Level34_805E4_func_8003636C((int)(argumentOrAddress4),(int)(0xFF)) * 2;
+        originalFrame.sp178 = 0;
+        originalFrame.sp17C = (int) (Level34_805E4Field((int)&Level34_805E4_D_80065920,short*,0 + captured_v0_37) * 5) >> 8;
+        originalFrame.sp180 = (int) (Level34_805E4Field((int)&Level34_805E4_D_800658A0,short*,0 + captured_v0_37) * 5) >> 8;
+        Level34_805E4_unk_ovlheader_800743B4((void*)(owner19),(int)(0),(int)(0),(int)(0x3F004040),(int)(0xFE),(int)(0x5F),(int)(8),(int)(3),(void*)(&originalFrame.sp148),(void*)(&originalFrame.sp178));
+        goto sharedCallbackState20;
+    block_379:
+        if (Level34_805E4_func_800359A4((void*)(argumentOrAddress4),(int)(2)) != 0) {
+            goto block_381;
+        }
+        if (Level34_805E4_func_80036220((void*)((int)&Level34_805E4_D_80070328),(void*)( private18 + 0x14),(int)( 0),(int)( 0x4000)) != 0) {
+            goto block_382;
+        }
+    block_381:
+        argumentOrAddress4=owner19;
+        argumentOrField5 = 3;
+        resultOrArithmetic2=0x78;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(private18,short*,4)=resultOrArithmetic2;
+        resultOrArithmetic2 = 2;
+        goto block_476;
+    block_382:
+        if (Level34_805E4Field(private18, unsigned char *, 1) == 0) {
+            goto block_388;
+        }
+        resultOrArithmetic2=Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 8);
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        fieldOrAddress3=Level34_805E4Field(owner19, int *, 0x14);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2-=fieldOrAddress3;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        working_v0_22=resultOrArithmetic2;
+        if (working_v0_22 >= 0) {
+            goto block_385;
+        }
+        working_v0_22 = -working_v0_22;
+    block_385:
+        if (working_v0_22 < 0xDAD) {
+            goto block_388;
+        }
+        if (Level34_805E4_func_8003BFC0((void*)(owner19),(int)( Level34_805E4Field(private18, int *, 0x50))) == 0) {
+            goto block_391;
+        }
+        Level34_805E4_func_8003BE70((int)(Level34_805E4Field(private18, int *, 0x50)));
+        working_v0_23 = -1;
+        goto block_390;
+    block_388:
+        if (Level34_805E4_func_8003BFC0((void*)(owner19),(int)( Level34_805E4Field(private18, int *, 0x50))) != 0) {
+            goto block_391;
+        }
+        working_v0_23 = Level34_805E4_func_8003BABC((void*)(owner19),(int)( 2),(int)( 4));
+    block_390:
+        Level34_805E4Field(private18, int *, 0x50) = working_v0_23;
+    block_391:
+        captured_v0_38 = Level34_805E4Field(private18, unsigned char *, 7) - 1;
+        Level34_805E4Field(private18, unsigned char *, 7) = captured_v0_38;
+        captured_v0_39 = captured_v0_38 & 0xFF;
+        if (captured_v0_39 == 0) {
+            goto block_393;
+        }
+        if (captured_v0_39 < 0x81U) {
+            goto block_396;
+        }
+    block_393:
+        captured_a0_23 = Level34_805E4Field(private18, short *, 2);
+        if (captured_a0_23 < 0) {
+            goto block_396;
+        }
+        if (!(Level34_805E4_func_80021F3C((int)(captured_a0_23)) & 2)) {
+            goto block_396;
+        }
+        Level34_805E4_func_8003BABC((void*)(owner19),(int)( 0),(int)( 0));
+        Level34_805E4_func_80021ED8((int)(Level34_805E4Field(private18, short *, 2)),(int)( 0xFC),(int)( 0));
+        Level34_805E4Field(private18, unsigned char *, 7) = 0x7FU;
+    block_396:
+        captured_v0_40 = Level34_805E4Field(private18, unsigned char *, 6) - 1;
+        Level34_805E4Field(private18, unsigned char *, 6) = captured_v0_40;
+        captured_v0_41 = captured_v0_40 & 0xFF;
+        if (captured_v0_41 == 0) {
+            goto block_398;
+        }
+        if (captured_v0_41 < 0x81U) {
+            goto block_555;
+        }
+    block_398:
+        Level34_805E4_func_8004F1C8((void*)(&originalFrame.sp178),(void*)( savedVector21),(void*)( &originalFrame.sp148));
+        if (Level34_805E4Field(private18, unsigned char *, 7) != 0) {
+            goto block_400;
+        }
+        retainedCountFrameOrDuration20 = 0xC8;
+        goto block_401;
+    block_400:
+        retainedCountFrameOrDuration20 = Level34_805E4_func_8003636C((int)(0),(int)( 0xC8)) + 0x64;
+    block_401:
+        savedFrameDistanceOrActor16 = &originalFrame.sp178;
+        Level34_805E4_func_8004F08C((void*)(savedFrameDistanceOrActor16),(int)( Level34_805E4_func_8004EDE8((void*)(savedFrameDistanceOrActor16),(int)( 1))),(int)( retainedCountFrameOrDuration20));
+        working_a0_3 = savedVector21;
+        savedCountFrameOrActor17 = &originalFrame.sp148;
+        goto block_489;
+    case 37:
+        if (Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 0xB8) != 0) {
+            goto block_407;
+        }
+        resultOrArithmetic2=Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 8);
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        fieldOrAddress3=Level34_805E4Field(owner19, int *, 0x14);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2-=fieldOrAddress3;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        working_v0_24=resultOrArithmetic2;
+        if (working_v0_24 >= 0) {
+            goto block_405;
+        }
+        working_v0_24 = -working_v0_24;
+    block_405:
+        argumentOrAddress4=owner19+0xC;
+        if (working_v0_24 >= 0x400) {
+            goto block_407;
+        }
+        Level34_805E4CompleteValue(owner19);
+        if (Level34_805E4_func_8004F334((void*)(argumentOrAddress4),(void*)( ((int)&Level34_805E4_D_80070328 + 0xB8) - 0xB8)) < 0x1400) {
+            goto block_424;
+        }
+    block_407:
+        fieldOrAddress3=Level34_805E4Field(private18,int*,0x2C);
+        if(fieldOrAddress3<0)goto block_416;
+        resultOrArithmetic2=fieldOrAddress3*11;
+        fieldOrAddress3=Level34_805E4_D_8006C550;
+        resultOrArithmetic2*=8;
+        argumentOrAddress4=resultOrArithmetic2+fieldOrAddress3;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        fieldOrAddress3=Level34_805E4Field(argumentOrAddress4,unsigned char*,0x48);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2=fieldOrAddress3&0x80;
+        fieldOrAddress3&=0xFF;
+        if(resultOrArithmetic2!=0)goto block_416;
+        argumentOrField7=Level34_805E4Field(argumentOrAddress4,int*,0);
+        resultOrArithmetic2=0x25;
+        if(fieldOrAddress3!=resultOrArithmetic2)goto block_416;
+        argumentOrFlag6=Level34_805E4Field(private18,short*,4);
+        argumentOrAddress4=Level34_805E4Field(argumentOrField7,short*,4);
+        argumentOrField5=argumentOrFlag6;
+        Level34_805E4CompleteValue(argumentOrField5);
+        resultOrArithmetic2=argumentOrFlag6-argumentOrAddress4;
+        if(resultOrArithmetic2>=0)goto block_412;
+        resultOrArithmetic2=-resultOrArithmetic2;
+    block_412:
+        resultOrArithmetic2=resultOrArithmetic2<0x10E;
+        fieldOrAddress3=argumentOrAddress4;
+        if(resultOrArithmetic2==0)goto block_416;
+        resultOrArithmetic2=argumentOrAddress4<argumentOrFlag6;
+        if(resultOrArithmetic2==0)goto block_415;
+        resultOrArithmetic2=fieldOrAddress3+0x118;
+        Level34_805E4Field(private18,short*,4)=resultOrArithmetic2;
+        goto block_416;
+    block_415:
+        resultOrArithmetic2=argumentOrField5+0x118;
+        Level34_805E4Field(argumentOrField7,short*,4)=resultOrArithmetic2;
+    block_416:
+        if (Level34_805E4_func_80036220((void*)((int)&Level34_805E4_D_80070328),(void*)( private18 + 0x14),(int)( 0),(int)( 0x4000)) == 0) {
+            goto block_555;
+        }
+        if (Level34_805E4_func_800359A4((void*)(private18 + 4),(int)( 2)) == 0) {
+            goto block_555;
+        }
+        Level34_805E4_func_80034F40((void*)(owner19),(int)( 1));
+        Level34_805E4Field(owner19, unsigned char *, 0x48) = 0x24U;
+        Level34_805E4Field(private18, short *, 4) = 0x3C;
+        return;
+    case 41:
+        Level34_805E4Field(owner19, unsigned char *, 0x49) = 3U;
+        Level34_805E4Field(owner19, unsigned char *, 0x48) = 0x27U;
+        Level34_805E4_func_80021ED8((int)(6),(int)( 0xFC),(int)( 0));
+        Level34_805E4Field(private18, short *, 4) = 0x3C;
+    case 39:
+        argumentOrField5=(int)&Level34_805E4_D_80070328+8;
+        Level34_805E4CompleteValue(argumentOrField5);
+        resultOrArithmetic2=Level34_805E4Field(owner19, int *, 0x14);
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        fieldOrAddress3=Level34_805E4Field(argumentOrField5,int*,0);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2-=fieldOrAddress3;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        working_v0_26=resultOrArithmetic2;
+        if (working_v0_26 >= 0) {
+            goto block_422;
+        }
+        working_v0_26 = -working_v0_26;
+    block_422:
+        argumentOrAddress4=owner19+0xC;
+        if (working_v0_26 >= 0x400) {
+            goto block_428;
+        }
+        Level34_805E4CompleteValue(owner19);
+        resultOrArithmetic2=Level34_805E4_func_8004F334((void*)(argumentOrAddress4),(void*)(argumentOrField5-8));
+        argumentOrAddress4=private18+4;
+        if(resultOrArithmetic2>=0x1000)goto block_429;
+    block_424:
+        captured_v0_42 = Level34_805E4Field(private18, int*, 8);
+        if (captured_v0_42 == 0) {
+            goto block_426;
+        }
+        Level34_805E4Field(captured_v0_42, signed char *, 0x10) = 0;
+        Level34_805E4Field(private18, int*, 8) = 0;
+    block_426:
+        captured_v0_43 = Level34_805E4Field(private18, int*, 0xC);
+        if (captured_v0_43 == 0) {
+            goto block_442;
+        }
+        Level34_805E4Field(captured_v0_43, signed char *, 0x10) = 0;
+        Level34_805E4Field(private18, int*, 0xC) = 0;
+        goto block_442;
+    block_428:
+        argumentOrAddress4=private18+4;
+    block_429:
+        if (Level34_805E4_func_800359A4((void*)(argumentOrAddress4),(int)(2)) == 0) {
+            goto block_555;
+        }
+        if (Level34_805E4_func_80036220((void*)((int)&Level34_805E4_D_80070328),(void*)( private18 + 0x14),(int)( 0),(int)( 0x1000)) == 0) {
+            goto block_555;
+        }
+        argumentOrAddress4=owner19;
+        argumentOrField5 = 1;
+        resultOrArithmetic2=0x3C;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(private18,short*,4)=resultOrArithmetic2;
+        resultOrArithmetic2=0xF;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(private18,unsigned char*,7)=resultOrArithmetic2;
+        resultOrArithmetic2 = 0x28;
+        goto block_477;
+    case 40:
+        resultOrArithmetic2=Level34_805E4_func_80055E84((void*)(owner19));
+        argumentOrField5=(int)&Level34_805E4_D_80070328+8;
+        Level34_805E4CompleteValue(argumentOrField5);
+        fieldOrAddress3=Level34_805E4Field(owner19, int *, 0x14);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        argumentOrAddress4=Level34_805E4Field(argumentOrField5,int*,0);
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        fieldOrAddress3-=argumentOrAddress4;
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        fieldOrAddress3=fieldOrAddress3;
+        if (fieldOrAddress3 >= 0) {
+            goto block_434;
+        }
+        fieldOrAddress3 = -fieldOrAddress3;
+    block_434:
+        fieldOrAddress3=fieldOrAddress3<0x400;
+        retainedCountFrameOrDuration20=resultOrArithmetic2;
+        if (!fieldOrAddress3) {
+            goto block_444;
+        }
+        Level34_805E4CompleteValue(owner19);
+        if (Level34_805E4_func_8004F334((void*)(owner19 + 0xC),(void*)( argumentOrField5-8)) >= 0x1000) {
+            goto block_444;
+        }
+        captured_v0_45 = Level34_805E4Field(private18, int*, 8);
+        if (captured_v0_45 == 0) {
+            goto block_438;
+        }
+        Level34_805E4Field(captured_v0_45, signed char *, 0x10) = 0;
+        Level34_805E4Field(private18, int*, 8) = 0;
+    block_438:
+        captured_v0_46 = Level34_805E4Field(private18, int*, 0xC);
+        if (captured_v0_46 == 0) {
+            goto block_440;
+        }
+        Level34_805E4Field(captured_v0_46, signed char *, 0x10) = 0;
+        Level34_805E4Field(private18, int*, 0xC) = 0;
+    block_440:
+        if (Level34_805E4_func_8003BFC0((void*)(owner19),(int)( Level34_805E4Field(private18, int *, 0x50))) == 0) {
+            goto block_442;
+        }
+        Level34_805E4_func_8003BE70((int)(Level34_805E4Field(private18, int *, 0x50)));
+        Level34_805E4Field(private18, int *, 0x50) = -1;
+    block_442:
+        argumentOrAddress4=owner19;
+        argumentOrField5=0;
+        resultOrArithmetic2 = 0x14;
+    clearStateWithOwnerContext:
+        /* Both zero-CPU entry labels resolve to the SAME original shared native timer store. Full owner/A1zero context only. */
+        __asm__("":"=r"(argumentOrAddress4):"0"(argumentOrAddress4),"r"(argumentOrField5));
+    block_443:
+        /* Original shared timer store and owner-state reset; every incoming path supplies actual A0/A1/V0 values. */
+        Level34_805E4Field(private18, short *, 4) = resultOrArithmetic2;
+        Level34_805E4Field(argumentOrAddress4,signed char*,0x48)=0;
+        Level34_805E4_func_80034F40((void*)(argumentOrAddress4),(int)(argumentOrField5));
+        return;
+    block_444:
+        if (Level34_805E4_D_8006C770 == 0) {
+            goto block_447;
+        }
+        argumentOrAddress4=owner19;
+        if (Level34_805E4Field(owner19, unsigned char *, 0x3D) != 1) {
+            goto block_447;
+        }
+        Level34_805E4_func_80034F40((void*)(argumentOrAddress4),(int)(2));
+    block_447:
+        savedVector21 = Level34_805E4Field(Level34_805E4Field(private18, int*, 0x34), int*, 0xC);
+        Level34_805E4_func_8003585C((void*)(owner19),(int)( Level34_805E4_func_8004E880((int)(Level34_805E4Field(savedVector21, int *, 0) - Level34_805E4Field(owner19, int *, 0xC)),(int)( Level34_805E4Field(savedVector21, int *, 4) - Level34_805E4Field(owner19, int *, 0x10)),(int)( 0))),(int)( 4),(int)( 1),(int)( 1),(int)( 0));
+        Level34_805E4_func_80055D24((void*)(owner19),(int)( 5));
+        argumentOrAddress4=owner19;
+        argumentOrField5=0;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        Level34_805E4CompleteValue(argumentOrField5);
+        savedCountFrameOrActor17=(int)&originalFrame.sp198;
+        Level34_805E4CompleteValue(savedCountFrameOrActor17);
+        Level34_805E4_func_80055F14((void*)(argumentOrAddress4),(int)(argumentOrField5),(void*)(savedCountFrameOrActor17));
+        argumentOrAddress4=owner19;
+        argumentOrField5=1;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        Level34_805E4CompleteValue(argumentOrField5);
+        savedFrameDistanceOrActor16=(int)&originalFrame.sp1A8;
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        Level34_805E4_func_80055F14((void*)(argumentOrAddress4),(int)(argumentOrField5),(void*)(savedFrameDistanceOrActor16));
+        resultOrArithmetic2=Level34_805E4_rand();
+        resultOrArithmetic2&=1;
+        argumentOrAddress4=(int)&originalFrame.sp188;
+        if(resultOrArithmetic2==0)goto block_449;
+        Level34_805E4CompleteValue(savedCountFrameOrActor17);
+        argumentOrField5=savedCountFrameOrActor17;
+        goto block_450;
+    block_449:
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        argumentOrField5=savedFrameDistanceOrActor16;
+    block_450:
+        Level34_805E4_func_8004F178((void*)(argumentOrAddress4),(void*)(argumentOrField5));
+        if (Level34_805E4Field(private18, int*, 8) != 0) {
+            goto block_452;
+        }
+        captured_v0_47 = Level34_805E4_func_8002EC50((int)(1),(int)( 0x80),(int)( 0x489090));
+        Level34_805E4Field(private18, int*, 8) = captured_v0_47;
+        if (captured_v0_47 == 0) {
+            goto block_455;
+        }
+    block_452:
+        captured_a0_26 = Level34_805E4Field(private18, int*, 8);
+        captured_v1_31 = Level34_805E4Field(captured_a0_26, unsigned char *, 0x11);
+        if (captured_v1_31 >= 0xF3U) {
+            goto block_454;
+        }
+        Level34_805E4Field(captured_a0_26, unsigned char *, 0x11) = (unsigned char) (captured_v1_31 + 0xC);
+    block_454:
+        Level34_805E4_func_8004F178((void*)(Level34_805E4Field(private18, int*, 8)),(void*)( &originalFrame.sp198));
+        Level34_805E4Field(Level34_805E4Field(private18, int*, 8), signed char *, 0x13) = 8;
+    block_455:
+        if (Level34_805E4Field(private18, int*, 0xC) != 0) {
+            goto block_457;
+        }
+        captured_v0_48 = Level34_805E4_func_8002EC50((int)(1),(int)( 0x80),(int)( 0x489090));
+        Level34_805E4Field(private18, int*, 0xC) = captured_v0_48;
+        if (captured_v0_48 == 0) {
+            goto block_460;
+        }
+    block_457:
+        captured_a0_27 = Level34_805E4Field(private18, int*, 0xC);
+        captured_v1_32 = Level34_805E4Field(captured_a0_27, unsigned char *, 0x11);
+        if (captured_v1_32 >= 0xF3U) {
+            goto block_459;
+        }
+        Level34_805E4Field(captured_a0_27, unsigned char *, 0x11) = (unsigned char) (captured_v1_32 + 0xC);
+    block_459:
+        Level34_805E4_func_8004F178((void*)(Level34_805E4Field(private18, int*, 0xC)),(void*)( &originalFrame.sp1A8));
+        Level34_805E4Field(Level34_805E4Field(private18, int*, 0xC), signed char *, 0x13) = 8;
+    block_460:
+        if (Level34_805E4Field(owner19, unsigned char *, 0x3D) != 1) {
+            goto block_464;
+        }
+        resultOrArithmetic2=retainedCountFrameOrDuration20<3;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        argumentOrAddress4=0;
+        if(resultOrArithmetic2)goto block_555;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        captured_v0_49 = Level34_805E4_func_8003636C((int)(argumentOrAddress4),(int)(0xFF)) * 2;
+        originalFrame.sp1B8 = 0;
+        originalFrame.sp1BC = (int) (Level34_805E4Field((int)&Level34_805E4_D_80065920,short*,0 + captured_v0_49) * 5) >> 8;
+        originalFrame.sp1C0 = (int) (Level34_805E4Field((int)&Level34_805E4_D_800658A0,short*,0 + captured_v0_49) * 5) >> 8;
+        working_v0_20 = &originalFrame.sp1B8;
+    block_463:
+        Level34_805E4_unk_ovlheader_800743B4((void*)(owner19),(int)(0),(int)(0),(int)(0x3F004040),(int)(0xFE),(int)(0x5F),(int)(8),(int)(3),(void*)(&originalFrame.sp188),(void*)(&originalFrame.sp1B8));
+    sharedCallbackState20:
+        /* Original shared callback return tail: earlier path uses SP148/SP178, later path SP188/SP1B8. */
+        Level34_805E4Field(private18, unsigned char *, 7) = 0x14U;
+        return;
+    block_464:
+        if (Level34_805E4Field(private18, unsigned char *, 1) == 0) {
+            goto block_470;
+        }
+        resultOrArithmetic2=Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 8);
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        fieldOrAddress3=Level34_805E4Field(owner19, int *, 0x14);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2-=fieldOrAddress3;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        working_v0_27=resultOrArithmetic2;
+        if (working_v0_27 >= 0) {
+            goto block_467;
+        }
+        working_v0_27 = -working_v0_27;
+    block_467:
+        if (working_v0_27 < 0xDAD) {
+            goto block_470;
+        }
+        if (Level34_805E4_func_8003BFC0((void*)(owner19),(int)( Level34_805E4Field(private18, int *, 0x50))) == 0) {
+            goto block_473;
+        }
+        Level34_805E4_func_8003BE70((int)(Level34_805E4Field(private18, int *, 0x50)));
+        working_v0_28 = -1;
+        goto block_472;
+    block_470:
+        if (Level34_805E4_func_8003BFC0((void*)(owner19),(int)( Level34_805E4Field(private18, int *, 0x50))) != 0) {
+            goto block_473;
+        }
+        working_v0_28 = Level34_805E4_func_8003BABC((void*)(owner19),(int)( 2),(int)( 4));
+    block_472:
+        Level34_805E4Field(private18, int *, 0x50) = working_v0_28;
+    block_473:
+        if (Level34_805E4_func_800359A4((void*)(private18+4),(int)(2)) != 0) {
+            goto block_475;
+        }
+        if (Level34_805E4_func_80036220((void*)((int)&Level34_805E4_D_80070328),(void*)( private18 + 0x14),(int)( 0),(int)( 0x4000)) != 0) {
+            goto block_478;
+        }
+    block_475:
+        argumentOrAddress4=owner19;
+        argumentOrField5 = 3;
+        resultOrArithmetic2=0x3C;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(private18,short*,4)=resultOrArithmetic2;
+        resultOrArithmetic2 = 4;
+    block_476:
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(private18, unsigned char *, 0) = resultOrArithmetic2;
+        resultOrArithmetic2 = 3;
+    block_477:
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(argumentOrAddress4,signed char*,0x48)=resultOrArithmetic2;
+        Level34_805E4_func_80034F40((void*)(argumentOrAddress4),(int)(argumentOrField5));
+        return;
+    block_478:
+        captured_v0_50 = Level34_805E4Field(private18, unsigned char *, 7) - 1;
+        Level34_805E4Field(private18, unsigned char *, 7) = captured_v0_50;
+        captured_v0_51 = captured_v0_50 & 0xFF;
+        if (captured_v0_51 == 0) {
+            goto block_480;
+        }
+        if (captured_v0_51 < 0x81U) {
+            goto block_483;
+        }
+    block_480:
+        Level34_805E4_func_8003BB10((void*)(owner19),(int)( 6),(int)( 0));
+        Level34_805E4_func_80021ED8((int)(Level34_805E4Field(private18, short *, 2)),(int)( 0xFC),(int)( 0));
+        if (Level34_805E4Field(owner19, unsigned char *, 0x49) != 3) {
+            goto block_482;
+        }
+        Level34_805E4_func_80021ED8((int)(Level34_805E4Field(private18, short *, 2) + 1),(int)( 0xFC),(int)( 0));
+        Level34_805E4_func_80021ED8((int)(Level34_805E4Field(private18, short *, 2) + 2),(int)( 0xFC),(int)( 0));
+    block_482:
+        Level34_805E4Field(private18, unsigned char *, 7) = 0x7FU;
+    block_483:
+        captured_v0_52 = Level34_805E4Field(private18, unsigned char *, 6) - 1;
+        Level34_805E4Field(private18, unsigned char *, 6) = captured_v0_52;
+        captured_v0_53 = captured_v0_52 & 0xFF;
+        if (captured_v0_53 == 0) {
+            goto block_485;
+        }
+        if (captured_v0_53 < 0x81U) {
+            goto block_555;
+        }
+    block_485:
+        Level34_805E4_func_8004F1C8((void*)(&originalFrame.sp1B8),(void*)( savedVector21),(void*)( &originalFrame.sp188));
+        if (Level34_805E4Field(private18, unsigned char *, 7) != 0) {
+            goto block_487;
+        }
+        retainedCountFrameOrDuration20 = 0xC8;
+        goto block_488;
+    block_487:
+        retainedCountFrameOrDuration20 = Level34_805E4_func_8003636C((int)(0),(int)( 0xC8)) + 0x64;
+    block_488:
+        savedFrameDistanceOrActor16 = &originalFrame.sp1B8;
+        Level34_805E4_func_8004F08C((void*)(savedFrameDistanceOrActor16),(int)( Level34_805E4_func_8004EDE8((void*)(savedFrameDistanceOrActor16),(int)( 1))),(int)( retainedCountFrameOrDuration20));
+        working_a0_3 = savedVector21;
+        savedCountFrameOrActor17 = &originalFrame.sp188;
+    block_489:
+        /* Original separate mode3F800000 callback consumes the actual retained position/velocity roles. */
+        Level34_805E4_unk_ovlheader_800743B4((void*)(owner19),(int)( 1),(int)( 3),(int)( 0x3F800000),(int)( (int *)0x82),(int)( 0x32),(int)( (Level34_805E4_func_8004F334((void*)(working_a0_3),(void*)( savedCountFrameOrActor17)) / retainedCountFrameOrDuration20) + 1),(int)( 3),(void*)( savedCountFrameOrActor17),(void*)( savedFrameDistanceOrActor16));
+        Level34_805E4Field(private18, unsigned char *, 6) = 3U;
+        return;
+    case 45:
+    case 46:
+        if (Level34_805E4_D_8006C640 != 0) {
+            goto block_503;
+        }
+        if (Level34_805E4_D_8006C7B4 & 1) {
+            goto block_493;
+        }
+        if (!(Level34_805E4Field((int)&Level34_805E4_D_80070300 + Level34_805E4_D_8006C58C,unsigned char*,0) & 1)) {
+            goto block_503;
+        }
+    block_493:
+        captured_v0_54 = Level34_805E4_func_80021F3C((int)(0xE));
+        if ((captured_v0_54 >> 8) & 0xFF) {
+            goto block_496;
+        }
+        if (!(captured_v0_54 & 0xF)) {
+            goto block_496;
+        }
+        Level34_805E4_func_80021ED8((int)(0xE),(int)( 0xFC),(int)( 0));
+    block_496:
+        fieldOrAddress3=Level34_805E4Field(private18, int *, 0x2C);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2=fieldOrAddress3*11;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        fieldOrAddress3=Level34_805E4_D_8006C550;
+        __asm__ volatile(""::"r"(resultOrArithmetic2):"memory");
+        resultOrArithmetic2*=8;
+        savedFrameDistanceOrActor16=fieldOrAddress3+resultOrArithmetic2;
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        if (Level34_805E4Field(savedFrameDistanceOrActor16, unsigned char *, 0x48) & 0x80) {
+            goto block_502;
+        }
+        captured_v0_55 = Level34_805E4Field(savedFrameDistanceOrActor16, int*, 0);
+        captured_v1_33 = Level34_805E4Field(captured_v0_55, int*, 8);
+        if (captured_v1_33 == 0) {
+            goto block_499;
+        }
+        Level34_805E4Field(captured_v1_33, signed char *, 0x10) = 0;
+        Level34_805E4Field(captured_v0_55, int*, 8) = 0;
+    block_499:
+        captured_v1_34 = Level34_805E4Field(captured_v0_55, int*, 0xC);
+        if (captured_v1_34 == 0) {
+            goto block_501;
+        }
+        Level34_805E4Field(captured_v1_34, signed char *, 0x10) = 0;
+        Level34_805E4Field(captured_v0_55, int*, 0xC) = 0;
+    block_501:
+        Level34_805E4_func_8003BA00((void*)(savedFrameDistanceOrActor16));
+        Level34_805E4_func_80055B18((void*)(savedFrameDistanceOrActor16));
+        Level34_805E4_func_80036A68((void*)(savedFrameDistanceOrActor16),(int)( 1),(int)( 0),(int)( 0));
+    block_502:
+        Level34_805E4_func_80021ED8((int)(Level34_805E4Field(private18, short *, 2)),(int)( 0xFC),(int)( 0));
+        __asm__("":"=r"(owner19):"0"(owner19),"m"(Level34_805E4Field(private18,short*,2)));
+        goto block_554;
+    block_503:
+        Level34_805E4Field(owner19, signed char *, 0x41) = 0;
+        Level34_805E4Field(owner19, signed char *, 0x4C) = 0;
+        Level34_805E4Field(owner19, signed char *, 0x4D) = 0;
+        Level34_805E4Field(owner19, int *, 8) = 0;
+        if (Level34_805E4Field(owner19, unsigned char *, 0x49) != 0) {
+            goto block_508;
+        }
+        fieldOrAddress3=Level34_805E4Field(private18,int*,0x2C);
+        resultOrArithmetic2=fieldOrAddress3*11;
+        fieldOrAddress3=Level34_805E4_D_8006C550;
+        resultOrArithmetic2*=8;
+        fieldOrAddress3+=resultOrArithmetic2;
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        argumentOrAddress4=Level34_805E4Field(fieldOrAddress3,unsigned char*,0x48);
+        __asm__ volatile(""::"r"(owner19):"memory","$2");
+        resultOrArithmetic2=4;
+        __asm__("":"=r"(argumentOrAddress4),"=r"(resultOrArithmetic2):"0"(argumentOrAddress4),"1"(resultOrArithmetic2));
+        fieldOrAddress3=argumentOrAddress4&0xFF;
+        if (fieldOrAddress3==resultOrArithmetic2) {
+            goto block_507;
+        }
+        resultOrArithmetic2=argumentOrAddress4&0x80;
+        if (!resultOrArithmetic2) {
+            goto block_508;
+        }
+        Level34_805E4_func_8003BABC((void*)(owner19),(int)( 1),(int)( 0));
+        Level34_805E4_func_80021ED8((int)(Level34_805E4Field(private18, short *, 2)),(int)( 0xFC),(int)( 0));
+        goto block_554;
+    block_507:
+        argumentOrAddress4=0x10000000;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        resultOrArithmetic2=0xFF;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        Level34_805E4Field(owner19, signed char *, 0x4A)=resultOrArithmetic2;
+        Level34_805E4Field(owner19, unsigned char *, 0x49) = 6U;
+        resultOrArithmetic2=Level34_805E4Field((int)&Level34_805E4_D_80070328,int*,0x20C);
+        __asm__ volatile("":"=r"(argumentOrAddress4):"0"(argumentOrAddress4):"memory");
+        argumentOrAddress4|=2;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        resultOrArithmetic2|=argumentOrAddress4;
+        Level34_805E4Field((int)&Level34_805E4_D_80070328,int*,0x20C)=resultOrArithmetic2;
+        captured_a0_29 = Level34_805E4Field(Level34_805E4Field(private18, int*, 0x34), int*, 0xC);
+        Level34_805E4_func_80013AE4((void*)(captured_a0_29),(void*)( captured_a0_29 + 0x10));
+    block_508:
+        if (Level34_805E4Field(owner19, unsigned char *, 0x49) != 6) {
+            goto block_512;
+        }
+        Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 0x20C) = (int) (Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 0x20C) | 0x10000002);
+        if (Level34_805E4_D_8006E048 != 2) {
+            goto block_511;
+        }
+        Level34_805E4_func_8003BABC((void*)(owner19),(int)( 1),(int)( 0));
+        Level34_805E4_func_80021ED8((int)(Level34_805E4Field(private18, short *, 2)),(int)( 0xFC),(int)( 0));
+        Level34_805E4Field(owner19, unsigned char *, 0x49) = 7U;
+        Level34_805E4Field(private18, short *, 4) = 0x96;
+    block_511:
+    block_512:
+        if (Level34_805E4Field(owner19, unsigned char *, 0x49) != 7) {
+            goto block_521;
+        }
+        Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 0x20C) = (int) (Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 0x20C) | 0x10000002);
+        if (Level34_805E4Field(owner19, unsigned char *, 0x48) != 0x2E) {
+            goto block_517;
+        }
+        captured_a0_30 = Level34_805E4_D_8006C550 + (Level34_805E4Field(private18, int *, 0x30) * 0x58);
+        Level34_805E4_unk_ovlheader_80074330((void*)(captured_a0_30 + 0xC),(int)( (Level34_805E4Field(captured_a0_30, unsigned char *, 0x46) + 0x80) & 0xFF),(int)( 0));
+        captured_v0_56 = Level34_805E4_func_80021F3C((int)(0xE));
+        if ((captured_v0_56 >> 8) & 0xFF) {
+            goto block_517;
+        }
+        if (!(captured_v0_56 & 0xF)) {
+            goto block_517;
+        }
+        Level34_805E4_func_80021ED8((int)(0xE),(int)( 0xFC),(int)( 0));
+    block_517:
+        if (Level34_805E4_func_800359A4((void*)(private18 + 4),(int)( 2)) == 0) {
+            goto block_521;
+        }
+        if (Level34_805E4Field(owner19, unsigned char *, 0x48) == 0x2E) {
+            goto block_520;
+        }
+        Level34_805E4_func_80013B7C((int)(1));
+        goto block_554;
+    block_520:
+        Level34_805E4Field(owner19, unsigned char *, 0x49) = 8U;
+    block_521:
+        /* Original signed16 trig samples multiplied by39, arithmetic shift6, and explicit zero/height stores. */
+        if(Level34_805E4Field(owner19,unsigned char*,0x49)!=8)goto block_555;
+        argumentOrAddress4=0;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        fieldOrAddress3=Level34_805E4Field(private18,int*,0x30);
+        savedFrameDistanceOrActor16=Level34_805E4_D_8006C550;
+        __asm__("":"=r"(savedFrameDistanceOrActor16):"0"(savedFrameDistanceOrActor16),"r"(fieldOrAddress3));
+        resultOrArithmetic2=fieldOrAddress3*11;
+        resultOrArithmetic2*=8;
+        savedFrameDistanceOrActor16+=resultOrArithmetic2;
+        Level34_805E4_func_80013B7C((int)(argumentOrAddress4));
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        Level34_805E4Field(Level34_805E4Field(savedFrameDistanceOrActor16,int*,0),signed char*,5)=2;
+        resultOrArithmetic2=Level34_805E4Field(savedFrameDistanceOrActor16,unsigned char*,0x46);
+        __asm__ volatile(""::"r"(owner19):"memory","$17");
+        savedCountFrameOrActor17=(int)&originalFrame.sp1C8;
+        Level34_805E4CompleteValue(savedCountFrameOrActor17);
+        resultOrArithmetic2*=2;
+        fieldOrAddress3=Level34_805E4Field((int)&Level34_805E4_D_80065920,short*,resultOrArithmetic2);
+        __asm__ volatile(""::"r"(owner19):"memory","$4");
+        argumentOrAddress4=savedCountFrameOrActor17;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        resultOrArithmetic2=(fieldOrAddress3*0x27)>>6;
+        originalFrame.sp1C8=resultOrArithmetic2;
+        resultOrArithmetic2=Level34_805E4Field(savedFrameDistanceOrActor16,unsigned char*,0x46);
+        __asm__ volatile(""::"r"(owner19):"memory","$5");
+        argumentOrField5=savedCountFrameOrActor17;
+        Level34_805E4CompleteValue(argumentOrField5);
+        resultOrArithmetic2*=2;
+        fieldOrAddress3=Level34_805E4Field((int)&Level34_805E4_D_800658A0,short*,resultOrArithmetic2);
+        resultOrArithmetic2=Level34_805E4Field((int)&Level34_805E4_D_80070328,int*,0x44);
+        __asm__ volatile(""::"r"(owner19):"memory","$6");
+        argumentOrFlag6=savedFrameDistanceOrActor16+0xC;
+        Level34_805E4CompleteValue(argumentOrFlag6);
+        *(volatile int*)&originalFrame.sp1D0=0;
+        originalFrame.sp1D0=resultOrArithmetic2;
+        resultOrArithmetic2=(fieldOrAddress3*0x27)>>6;
+        originalFrame.sp1CC=resultOrArithmetic2;
+        Level34_805E4_func_8004F194((void*)(argumentOrAddress4),(void*)(argumentOrField5),(void*)(argumentOrFlag6));
+        Level34_805E4_func_80013D44((void*)(savedCountFrameOrActor17),(int)((Level34_805E4Field(savedFrameDistanceOrActor16,unsigned char*,0x46)+0x80)&0xFF),(void*)(0),(int)(0));
+        if (Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 0x280) >= 0) {
+            goto block_554;
+        }
+        Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 0x280) = 0;
+        goto block_554;
+    case 38:
+        Level34_805E4_func_80034F40((void*)(owner19),(int)( 2));
+        if (Level34_805E4Field(private18, unsigned char *, 1) == 0) {
+            goto block_530;
+        }
+        resultOrArithmetic2=Level34_805E4Field((int)&Level34_805E4_D_80070328, int *, 8);
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        fieldOrAddress3=Level34_805E4Field(owner19, int *, 0x14);
+        Level34_805E4CompleteValue(fieldOrAddress3);
+        resultOrArithmetic2-=fieldOrAddress3;
+        Level34_805E4CompleteValue(resultOrArithmetic2);
+        working_v0_29=resultOrArithmetic2;
+        if (working_v0_29 >= 0) {
+            goto block_527;
+        }
+        working_v0_29 = -working_v0_29;
+    block_527:
+        if (working_v0_29 < 0xDAD) {
+            goto block_530;
+        }
+        if (Level34_805E4_func_8003BFC0((void*)(owner19),(int)( Level34_805E4Field(private18, int *, 0x50))) == 0) {
+            goto block_533;
+        }
+        Level34_805E4_func_8003BE70((int)(Level34_805E4Field(private18, int *, 0x50)));
+        working_v0_30 = -1;
+        goto block_532;
+    block_530:
+        resultOrArithmetic2=Level34_805E4_func_8003BFC0((void*)(owner19),(int)(Level34_805E4Field(private18,int*,0x50)));
+        argumentOrAddress4=owner19;
+        if(resultOrArithmetic2!=0){
+            goto block_533;
+        }
+        working_v0_30 = Level34_805E4_func_8003BABC((void*)(argumentOrAddress4),(int)(2),(int)(4));
+    block_532:
+        Level34_805E4Field(private18, int *, 0x50) = working_v0_30;
+    block_533:
+        savedVector21 = Level34_805E4Field(Level34_805E4Field(private18, int*, 0x34), int*, 0xC);
+        Level34_805E4_func_8003585C((void*)(owner19),(int)( Level34_805E4_func_8004E880((int)(Level34_805E4Field(savedVector21, int *, 0) - Level34_805E4Field(owner19, int *, 0xC)),(int)( Level34_805E4Field(savedVector21, int *, 4) - Level34_805E4Field(owner19, int *, 0x10)),(int)( 0))),(int)( 4),(int)( 1),(int)( 1),(int)( 0));
+        Level34_805E4_func_80055D24((void*)(owner19),(int)( 5));
+        argumentOrAddress4=owner19;
+        argumentOrField5=0;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        Level34_805E4CompleteValue(argumentOrField5);
+        savedCountFrameOrActor17=(int)&originalFrame.sp1D8;
+        Level34_805E4CompleteValue(savedCountFrameOrActor17);
+        Level34_805E4_func_80055F14((void*)(argumentOrAddress4),(int)(argumentOrField5),(void*)(savedCountFrameOrActor17));
+        argumentOrAddress4=owner19;
+        argumentOrField5=1;
+        Level34_805E4CompleteValue(argumentOrAddress4);
+        Level34_805E4CompleteValue(argumentOrField5);
+        savedFrameDistanceOrActor16=(int)&originalFrame.sp1E8;
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        Level34_805E4_func_80055F14((void*)(argumentOrAddress4),(int)(argumentOrField5),(void*)(savedFrameDistanceOrActor16));
+        resultOrArithmetic2=Level34_805E4_rand();
+        resultOrArithmetic2&=1;
+        argumentOrAddress4=(int)&originalFrame.sp1C8;
+        if(resultOrArithmetic2==0)goto block_535;
+        Level34_805E4CompleteValue(savedCountFrameOrActor17);
+        argumentOrField5=savedCountFrameOrActor17;
+        goto block_536;
+    block_535:
+        Level34_805E4CompleteValue(savedFrameDistanceOrActor16);
+        argumentOrField5=savedFrameDistanceOrActor16;
+    block_536:
+        Level34_805E4_func_8004F178((void*)(argumentOrAddress4),(void*)(argumentOrField5));
+        if (Level34_805E4Field(private18, int*, 8) != 0) {
+            goto block_538;
+        }
+        captured_v0_57 = Level34_805E4_func_8002EC50((int)(1),(int)( 0x80),(int)( 0x489090));
+        Level34_805E4Field(private18, int*, 8) = captured_v0_57;
+        if (captured_v0_57 == 0) {
+            goto block_541;
+        }
+    block_538:
+        captured_a0_31 = Level34_805E4Field(private18, int*, 8);
+        captured_v1_35 = Level34_805E4Field(captured_a0_31, unsigned char *, 0x11);
+        if (captured_v1_35 >= 0xF3U) {
+            goto block_540;
+        }
+        Level34_805E4Field(captured_a0_31, unsigned char *, 0x11) = (unsigned char) (captured_v1_35 + 0xC);
+    block_540:
+        Level34_805E4_func_8004F178((void*)(Level34_805E4Field(private18, int*, 8)),(void*)( &originalFrame.sp1D8));
+        Level34_805E4Field(Level34_805E4Field(private18, int*, 8), signed char *, 0x13) = 8;
+    block_541:
+        if (Level34_805E4Field(private18, int*, 0xC) != 0) {
+            goto block_543;
+        }
+        captured_v0_58 = Level34_805E4_func_8002EC50((int)(1),(int)( 0x80),(int)( 0x489090));
+        Level34_805E4Field(private18, int*, 0xC) = captured_v0_58;
+        if (captured_v0_58 == 0) {
+            goto block_546;
+        }
+    block_543:
+        captured_a0_32 = Level34_805E4Field(private18, int*, 0xC);
+        captured_v1_36 = Level34_805E4Field(captured_a0_32, unsigned char *, 0x11);
+        if (captured_v1_36 >= 0xF3U) {
+            goto block_545;
+        }
+        Level34_805E4Field(captured_a0_32, unsigned char *, 0x11) = (unsigned char) (captured_v1_36 + 0xC);
+    block_545:
+        Level34_805E4_func_8004F178((void*)(Level34_805E4Field(private18, int*, 0xC)),(void*)( &originalFrame.sp1E8));
+        Level34_805E4Field(Level34_805E4Field(private18, int*, 0xC), signed char *, 0x13) = 8;
+    block_546:
+        captured_v0_59 = Level34_805E4Field(private18, unsigned char *, 6) - 1;
+        Level34_805E4Field(private18, unsigned char *, 6) = captured_v0_59;
+        captured_v0_60 = captured_v0_59 & 0xFF;
+        if (captured_v0_60 == 0) {
+            goto block_548;
+        }
+        if (captured_v0_60 < 0x81U) {
+            goto block_555;
+        }
+    block_548:
+        Level34_805E4_func_8004F1C8((void*)(&originalFrame.sp1F8),(void*)( savedVector21),(void*)( &originalFrame.sp1C8));
+        if (Level34_805E4Field(private18, unsigned char *, 7) != 0) {
+            goto block_550;
+        }
+        retainedCountFrameOrDuration20 = 0xC8;
+        goto block_551;
+    block_550:
+        retainedCountFrameOrDuration20 = Level34_805E4_func_8003636C((int)(0),(int)( 0xC8)) + 0x64;
+    block_551:
+        Level34_805E4_func_8004F08C((void*)(&originalFrame.sp1F8),(int)( Level34_805E4_func_8004EDE8((void*)(&originalFrame.sp1F8),(int)( 1))),(int)( retainedCountFrameOrDuration20));
+        Level34_805E4_unk_ovlheader_800743B4((void*)(owner19),(int)( 1),(int)( 3),(int)( 0x3F800000),(int)( (int *)0x82),(int)( 0x32),(int)( (Level34_805E4_func_8004F334((void*)(savedVector21),(void*)( &originalFrame.sp1C8)) / retainedCountFrameOrDuration20) + 1),(int)( 3),(void*)( &originalFrame.sp1C8),(void*)( &originalFrame.sp1F8));
+        Level34_805E4Field(private18, unsigned char *, 6) = 5U;
+        return;
+    case 4:
+        if (Level34_805E4_func_80035194((void*)(owner19),(void*)( private18 + 0x38)) != 0x100) {
+            goto block_555;
+        }
+        Level34_805E4_func_80055D24((void*)(owner19),(int)( 4));
+        Level34_805E4_func_8003BA00((void*)(owner19));
+        Level34_805E4_func_800369B8((void*)(owner19),(int)( 0x1E));
+    block_554:
+        Level34_805E4_func_80055B18((void*)(owner19));
+    block_555:
+        return;
+    }
+}
+#undef Level34_805E4Field
+#undef Level34_805E4CompleteValue
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_34/moby", func_level_34_80083834);
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_34/moby", func_level_34_80084D54);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original level34 controller80083834.
+ * Assembly SHA256 5f4c538dc42e808dd1d39856e82c21c70d8034952e0d7fa420de52eb0f10b6fb.
+ * AI generated; not human reviewed.1352 original native instructions,
+ * 23 absolute state selectors and one zero pad=1376 owned words.
+ * Every field width,offset,constant,helper word and control destination is
+ * from the original body; names identify raw storage roles only.
+ * The original256-byte frame preserves SP28..D3 scalar/vector homes.
+ * SP28/2C/30,58/5C/60 and78/7C/80 are explicitly initialized before matrix
+ * multiplication. SP38,48,68,88 are complete3word copies before local reads.
+ * Original55F14 writes all3 output words to SP98,A8,B8,C8 before reads;
+ * it captures A2 in T9 and returns only after stores0,4 and8 at5609C..A8.
+ * Helper-mode input0/1 and every original matrix/vector address are retained.
+ * The original scalar /3 starts from a signed16 timer*2,then its complete
+ * signed64 product with0x55555556. A whole initialized product identity
+ * precedes its high32 projection and subtraction of the signed numerator's
+ * sign. The compiler-local union follows __MIPSEB__ and never escapes.
+ * Original byte-index*88 address arithmetic has separate complete index,
+ * base and address phases. The initialized S4 return and later index do
+ * not alias; later index-5 factors keep the original complete S4 word.
+ * Each reused saved GP role has disjoint live phases. Local point vectors
+ * remain initialized across their original output helpers and consumers.
+ * The late child-null guard encloses all child-private reads/allocation;
+ * failed spawning skips that block exactly. Existing pointer and allocation
+ * return checks preserve all original null paths without invented defaults.
+ * Original state-clear and delete labels retain their physical shared
+ * entries; every actual branch/J/call/selector target must match.
+ * Empty metadata emits zero CPU words and observes complete initialized
+ * values/objects or ends a dead GP phase. No incoming saved value,unwritten
+ * consumed local,partial HI/LO input,opcode asm or fixed FP/SP is used.
+ * Known views reuse original vector/matrix/moby ABI. Other helpers retain
+ * only the original physical word call view. This is for the frozen MIPS
+ * compiler's32-bit numeric model; portable arithmetic,full helper/caller/
+ * asset/SFX meanings,units,cadence beyond invocation,Rev1 mappings and live
+ * captures remain open. Acceptance requires all original linked words,
+ * symbol+addends,23 selectors+pad and every retail EXE/overlay hash.
+ */
+#define Actor1352Keep(x) __asm__("":"=r"(x):"0"(x))
+#define Actor1352Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+int Actor1352_func_80019138() __asm__("func_80019138");
+int Actor1352_func_80019194(void*,int) __asm__("func_80019194");
+int Actor1352_func_8002EC50() __asm__("func_8002EC50");
+int Actor1352_func_80034F40() __asm__("func_80034F40");
+int Actor1352_func_80034F80() __asm__("func_80034F80");
+int Actor1352_func_8003585C(void*,int,int,int,int,int) __asm__("func_8003585C");
+int Actor1352_func_800359A4(void*,int) __asm__("func_800359A4");
+int Actor1352_func_80035A80() __asm__("func_80035A80");
+int Actor1352_func_80035DDC() __asm__("func_80035DDC");
+int Actor1352_func_80035EE0() __asm__("func_80035EE0");
+int Actor1352_func_8003636C(int,int) __asm__("func_8003636C");
+int Actor1352_func_800369B8() __asm__("func_800369B8");
+int Actor1352_func_8003BABC() __asm__("func_8003BABC");
+int Actor1352_func_8003BE70() __asm__("func_8003BE70");
+int Actor1352_func_8003BFC0() __asm__("func_8003BFC0");
+int Actor1352_func_8004E880(int,int,int) __asm__("func_8004E880");
+void Actor1352_func_8004ED6C(void*,void*,void*) __asm__("func_8004ED6C");
+int Actor1352_func_8004EDE8(void*,int) __asm__("func_8004EDE8");
+void Actor1352_func_8004F08C(void*,int,int) __asm__("func_8004F08C");
+void Actor1352_func_8004F110(void*,int) __asm__("func_8004F110");
+void Actor1352_func_8004F178(void*,void*) __asm__("func_8004F178");
+void Actor1352_func_8004F194(void*,void*,void*) __asm__("func_8004F194");
+void Actor1352_func_8004F1C8(void*,void*,void*) __asm__("func_8004F1C8");
+int Actor1352_func_8004F264(int,int) __asm__("func_8004F264");
+int Actor1352_func_8004F334(void*,void*) __asm__("func_8004F334");
+void Actor1352_func_80055B18(void*) __asm__("func_80055B18");
+int Actor1352_func_80055D24() __asm__("func_80055D24");
+int Actor1352_func_80055E84() __asm__("func_80055E84");
+void Actor1352_func_80055F14(void*,int,void*) __asm__("func_80055F14");
+int Actor1352_rand(void) __asm__("rand");
+extern int Actor1352_D_800658A0 __asm__("D_800658A0");
+extern int Actor1352_D_80065920 __asm__("D_80065920");
+extern int Actor1352_D_8006C550 __asm__("D_8006C550");
+extern int Actor1352_D_8006C770 __asm__("D_8006C770");
+extern int Actor1352_D_8006C7C4 __asm__("D_8006C7C4");
+extern int Actor1352_D_8006E020 __asm__("D_8006E020");
+extern int Actor1352_D_8006E024 __asm__("D_8006E024");
+extern unsigned short Actor1352_D_8006E040 __asm__("D_8006E040");
+extern int Actor1352_D_80070328 __asm__("D_80070328");
+extern int Actor1352_D_8007190C __asm__("D_8007190C");
+extern int(*Actor1352_SpawnMoby)() __asm__("SpawnMoby");
+extern int(*Actor1352_unk_ovlheader_800743B4)() __asm__("unk_ovlheader_800743B4");
+union Actor1352Product {long long full;struct {
+#if defined(__MIPSEB__)
+int high;unsigned int low;
+#else
+unsigned int low;int high;
+#endif
+}words;};
+void func_level_34_80083834(void* input) {
+    register int ownerAddress18 __asm__("$18"),privateAddress23 __asm__("$23"),retainedScalarOrAddress16 __asm__("$16"),retainedScalarOrAddress17 __asm__("$17"),retainedConstantOrAddress19 __asm__("$19"),retainedConstantOrIndex20 __asm__("$20"),retainedFlagOrPrivateAddress21 __asm__("$21"),retainedPositionAddress22 __asm__("$22");
+    register int resultWord2 __asm__("$2"),intermediateWord3 __asm__("$3"),argumentWord4 __asm__("$4"),argumentWord5 __asm__("$5"),argumentWord6 __asm__("$6"),argumentWord7 __asm__("$7");
+    struct {
+        int sp28;
+        int sp2C;
+        int sp30;
+        int sp34;
+        int sp38;
+        int sp3C;
+        int sp40;
+        int sp44;
+        int sp48;
+        int sp4C;
+        int sp50;
+        int sp54;
+        int sp58;
+        int sp5C;
+        int sp60;
+        int sp64;
+        int sp68;
+        int sp6C;
+        int sp70;
+        int sp74;
+        int sp78;
+        int sp7C;
+        int sp80;
+        int sp84;
+        int sp88;
+        int sp8C;
+        int sp90;
+        int sp94;
+        int sp98;
+        int sp9C;
+        int spA0;
+        int spA4;
+        int spA8;
+        int spAC;
+        int spB0;
+        int spB4;
+        int spB8;
+        int spBC;
+        int spC0;
+        int spC4;
+        int spC8;
+        int spCC;
+        int spD0;
+        int spD4;
+    }
+    originalFrame;
+    int temporaryWord10;
+    int temporaryWord30;
+    int temporaryWord2;
+    int temporaryWord3;
+    int temporaryWord5;
+    int temporaryWord8;
+    int temporaryWord18;
+    int temporaryWord19;
+    int temporaryWord6;
+    int temporaryWord9;
+    int temporaryWord12;
+    int temporaryWord14;
+    int temporaryWord15;
+    int temporaryWord16;
+    int temporaryWord17;
+    int temporaryWord24;
+    int temporaryWord32;
+    int temporaryWord34;
+    int temporaryWord1;
+    int temporaryWord22;
+    int temporaryWord28;
+    int temporaryWord29;
+    int temporaryWord33;
+    int temporaryWord4;
+    int temporaryWord7;
+    int temporaryWord11;
+    int temporaryWord13;
+    int temporaryWord20;
+    int temporaryWord21;
+    int temporaryWord23;
+    int temporaryWord25;
+    int temporaryWord26;
+    int temporaryWord27;
+    int temporaryWord31;
+    int temporaryWord35;
+    ownerAddress18=(int)input;
+    __asm__("":"=r"(ownerAddress18):"0"(ownerAddress18));
+    temporaryWord1 = Actor1352Field(ownerAddress18, unsigned char *, 0x48);
+    privateAddress23 = Actor1352Field(ownerAddress18, void **, 0);
+    if ((temporaryWord1 != 0x14) && (Actor1352Field(ownerAddress18, int *, 0x18) & 0x8B0000)) {
+        if ((temporaryWord1 == 0x18) || (temporaryWord1 == 2)) {
+            resultWord2=Actor1352Field(ownerAddress18,unsigned char*,0x3A);
+            Actor1352Keep(resultWord2);
+            intermediateWord3=resultWord2*88;
+            resultWord2=Actor1352_D_8006C550;
+            resultWord2+=intermediateWord3;
+            Actor1352Keep(resultWord2);
+            retainedScalarOrAddress16=Actor1352Field(resultWord2,int*,0);
+            temporaryWord13 = Actor1352Field(retainedScalarOrAddress16, void **, 0x50);
+            Actor1352Field(retainedScalarOrAddress16, short *, 6) = 0;
+            if (temporaryWord13 != 0) {
+                Actor1352Field(temporaryWord13, signed char *, 0x10) = 0;
+                Actor1352Field(retainedScalarOrAddress16, void **, 0x50) = 0;
+            }
+            temporaryWord20 = Actor1352Field(retainedScalarOrAddress16, void **, 0x54);
+            if (temporaryWord20 != 0) {
+                Actor1352Field(temporaryWord20, signed char *, 0x10) = 0;
+                Actor1352Field(retainedScalarOrAddress16, void **, 0x54) = 0;
+            }
+            temporaryWord4 = Actor1352Field(retainedScalarOrAddress16, void **, 0x58);
+            if (temporaryWord4 != 0) {
+                Actor1352_func_80055B18(temporaryWord4);
+                Actor1352Field(retainedScalarOrAddress16, void **, 0x58) = 0;
+            }
+        }
+        Actor1352Field(privateAddress23,short*,4)=350;
+        resultWord2=Actor1352_rand();
+        retainedScalarOrAddress16=-90;
+        if(resultWord2&1)retainedScalarOrAddress16=90;
+        argumentWord6=0;
+        resultWord2=Actor1352_func_8004E880(Actor1352_D_8006E020-Actor1352Field(ownerAddress18,int*,12),Actor1352_D_8006E024-Actor1352Field(ownerAddress18,int*,16),argumentWord6);
+        argumentWord4=ownerAddress18;
+        argumentWord5=1;
+        __asm__("":"=r"(argumentWord4),"=r"(argumentWord5):"0"(argumentWord4),"1"(argumentWord5));
+        resultWord2+=retainedScalarOrAddress16;
+        resultWord2&=255;
+        retainedScalarOrAddress17=180;
+        Actor1352Keep(retainedScalarOrAddress17);
+        retainedConstantOrAddress19=255;
+        Actor1352Keep(retainedConstantOrAddress19);
+        Actor1352Field(privateAddress23,unsigned short*,2)=resultWord2;
+        Actor1352Field(privateAddress23,short*,0)=retainedScalarOrAddress17;
+        Actor1352Field(ownerAddress18,unsigned char*,0x4A)=retainedConstantOrAddress19;
+        Actor1352Field(ownerAddress18,unsigned char*,0x44)=0;
+        Actor1352Field(ownerAddress18,unsigned char*,0x45)=0;
+        Actor1352_func_80034F80(argumentWord4,argumentWord5);
+        argumentWord4=ownerAddress18;
+        argumentWord5=2;
+        argumentWord6=0;
+        __asm__("":"=r"(argumentWord4),"=r"(argumentWord5),"=r"(argumentWord6):"0"(argumentWord4),"1"(argumentWord5),"2"(argumentWord6));
+        retainedConstantOrIndex20=20;
+        Actor1352Keep(retainedConstantOrIndex20);
+        Actor1352Field(ownerAddress18,unsigned char*,0x48)=retainedConstantOrIndex20;
+        Actor1352_func_8003BABC(argumentWord4,argumentWord5,argumentWord6);
+        if (Actor1352_func_8003BFC0(ownerAddress18, Actor1352Field(privateAddress23, int *, 0x14)) != 0) {
+            Actor1352_func_8003BE70(Actor1352Field(privateAddress23, int *, 0x14));
+        }
+        temporaryWord21 = Actor1352_SpawnMoby(0x16F, ownerAddress18);
+        if (temporaryWord21 != 0) {
+            temporaryWord27 = Actor1352Field(temporaryWord21, void **, 0);
+            Actor1352Field(temporaryWord27, short *, 4) = 0x12C;
+            resultWord2=Actor1352Field(privateAddress23,unsigned short*,2);
+            argumentWord4=temporaryWord21;
+            Actor1352Field(temporaryWord27,short*,0)=retainedScalarOrAddress17;
+            Actor1352Field(temporaryWord27,short*,2)=(resultWord2+128)&255;
+            Actor1352Field(temporaryWord21,unsigned char*,0x4A)=retainedConstantOrAddress19;
+            Actor1352Field(temporaryWord21, signed char *, 0x4C) = 0x20;
+            Actor1352Field(temporaryWord21, signed char *, 0x4E) = 0x20;
+            Actor1352Field(temporaryWord21, signed char *, 0x44) = 0;
+            Actor1352Field(temporaryWord21, signed char *, 0x45) = 0;
+            Actor1352Field(temporaryWord21, unsigned char *, 0x46) = (unsigned char) Actor1352Field(ownerAddress18, unsigned char *, 0x46);
+            Actor1352_func_80034F80(argumentWord4,4);
+            Actor1352Field(temporaryWord21,unsigned char*,0x48)=retainedConstantOrIndex20;
+        }
+    }
+    temporaryWord22 = Actor1352Field(ownerAddress18, unsigned char *, 0x48);
+    switch (temporaryWord22) {
+    case 23:
+        retainedScalarOrAddress16 = Actor1352Field(privateAddress23, void **, 8);
+        if (Actor1352Field(ownerAddress18, unsigned char *, 0x49) == 0) {
+            Actor1352_func_8003BABC(ownerAddress18, 0, 0);
+            Actor1352Field(ownerAddress18, unsigned char *, 0x49) = 2U;
+        }
+        Actor1352Field(privateAddress23, int *, 0x14) = -1;
+        Actor1352_func_80035DDC(ownerAddress18, 0xC8, 0, 0, 0);
+        Actor1352Field(retainedScalarOrAddress16, unsigned short *, 2) = (unsigned short) Actor1352Field(privateAddress23, unsigned short *, 0xC);
+        Actor1352Field(retainedScalarOrAddress16, unsigned short *, 0xA) = (unsigned short) Actor1352Field(privateAddress23, unsigned short *, 0xE);
+        temporaryWord23 = ((short) Actor1352Field(retainedScalarOrAddress16, unsigned short *, 2) * 0x10) + Actor1352Field(retainedScalarOrAddress16, int *, 0xC);
+        if (Actor1352_func_8004F264(Actor1352Field(ownerAddress18, unsigned char *, 0x46), Actor1352_func_8004E880(Actor1352Field(temporaryWord23, int *, 0) - Actor1352Field(ownerAddress18, int *, 0xC), Actor1352Field(temporaryWord23, int *, 4) - Actor1352Field(ownerAddress18, int *, 0x10), 0)) >= 0x29) {
+            Actor1352Field(ownerAddress18, unsigned char *, 0x48) = 0x16U;
+            goto clearOriginalEntryFlagAndReturn;
+        }
+    default:
+        return;
+    case 22:
+        retainedScalarOrAddress16 = Actor1352Field(privateAddress23, void **, 8);
+        if (Actor1352_func_8003BFC0(ownerAddress18, Actor1352Field(privateAddress23, int *, 0x14)) == 0) {
+            Actor1352Field(privateAddress23, int *, 0x14) = Actor1352_func_8003BABC(ownerAddress18, 1, 4);
+        }
+        Actor1352_func_80055D24(ownerAddress18, 5);
+        temporaryWord30 = Actor1352Field(retainedScalarOrAddress16, short *, 2);
+        temporaryWord24 = Actor1352Field(retainedScalarOrAddress16, int *, 0xC);
+        temporaryWord31 = (temporaryWord30 * 0x10) + temporaryWord24;
+        temporaryWord11 = (((int) (temporaryWord30 + Actor1352Field(retainedScalarOrAddress16, short *, 0xA)) % (short) Actor1352Field(retainedScalarOrAddress16, short *, 0)) * 0x10) + temporaryWord24;
+        temporaryWord12 = Actor1352Field(temporaryWord11, int *, 0);
+        resultWord2 = Actor1352_func_8004F264(Actor1352_func_8004E880(temporaryWord12 - Actor1352Field(temporaryWord31, int *, 0), Actor1352Field(temporaryWord11, int *, 4) - Actor1352Field(temporaryWord31, int *, 4), 0), Actor1352Field(ownerAddress18, unsigned char *, 0x46));
+        argumentWord4=Actor1352Field(privateAddress23,short*,6);
+        __asm__ volatile("":"=r"(resultWord2):"0"(resultWord2):"memory");
+        retainedFlagOrPrivateAddress21=resultWord2<65;
+        __asm__("":"=r"(argumentWord4),"=r"(retainedFlagOrPrivateAddress21):"0"(argumentWord4),"1"(retainedFlagOrPrivateAddress21));
+        originalFrame.sp2C = 0;
+        originalFrame.sp30 = 0;
+        originalFrame.sp28=argumentWord4;
+        if (retainedFlagOrPrivateAddress21 == 0) {
+            intermediateWord3=0x55555556;
+            Actor1352Keep(intermediateWord3);
+            resultWord2=argumentWord4*2;
+            {
+                union Actor1352Product completeDivisionProduct;
+                int initializedDivisionHigh;
+                completeDivisionProduct.full=(long long)resultWord2*(long long)intermediateWord3;
+                __asm__("":"=x"(completeDivisionProduct.full):"0"(completeDivisionProduct.full));
+                initializedDivisionHigh=completeDivisionProduct.words.high;
+                resultWord2=initializedDivisionHigh-(resultWord2>>31);
+            }
+            Actor1352Keep(resultWord2);
+            originalFrame.sp28=resultWord2;
+        }
+        Actor1352_func_8004ED6C(ownerAddress18 + 0x20, &originalFrame.sp28, &originalFrame.sp28);
+        retainedConstantOrAddress19 = ownerAddress18 + 0xC;
+        Actor1352_func_8004F194(retainedConstantOrAddress19, retainedConstantOrAddress19, &originalFrame.sp28);
+        retainedConstantOrIndex20 = Actor1352Field(ownerAddress18, unsigned char *, 0x45);
+        if ((int) retainedConstantOrIndex20 >= 0x81) {
+            retainedConstantOrIndex20 -= 0x100;
+        }
+        Actor1352_func_8004F178(&originalFrame.sp38, retainedConstantOrAddress19);
+        originalFrame.sp40 += 0x1F4;
+        if (Actor1352_func_80019194(&originalFrame.sp38, 0x320) != 0) {
+            Actor1352_func_8004F178(retainedConstantOrAddress19, (int)&Actor1352_D_8007190C);
+            Actor1352Field(ownerAddress18, int *, 0x14) = (int) (Actor1352Field(ownerAddress18, int *, 0x14) - 0x1F4);
+        }
+        Actor1352_func_8004F178(&originalFrame.sp38, Actor1352Field(retainedScalarOrAddress16, int *, 0xC) + ((short) Actor1352Field(privateAddress23, unsigned short *, 0xC) * 0x10));
+        originalFrame.sp40 += Actor1352Field(privateAddress23, short *, 0x10);
+        intermediateWord3 = Actor1352_func_8004E880(Actor1352_func_8004F334(retainedConstantOrAddress19, &originalFrame.sp38), originalFrame.sp40 - Actor1352Field(ownerAddress18, int *, 0x14), 0) - retainedConstantOrIndex20;
+        resultWord2=intermediateWord3<129;
+        if(!resultWord2)intermediateWord3-=256;
+        resultWord2=intermediateWord3<9;
+        if(!resultWord2){
+            intermediateWord3=8;
+            Actor1352Keep(intermediateWord3);
+        }
+        resultWord2=intermediateWord3<-8;
+        if(resultWord2)intermediateWord3=-8;
+        Actor1352Field(ownerAddress18,unsigned char*,0x45)=(unsigned char)(Actor1352Field(ownerAddress18,unsigned char*,0x45)+intermediateWord3);
+        Actor1352Field(retainedScalarOrAddress16, short *, 2) = (short) Actor1352Field(privateAddress23, unsigned short *, 0xC);
+        Actor1352Field(retainedScalarOrAddress16, short *, 0xA) = (short) Actor1352Field(privateAddress23, unsigned short *, 0xE);
+        if (retainedFlagOrPrivateAddress21 == 0) {
+            __asm__ volatile("":::"$21","memory");
+            argumentWord6=0;
+            Actor1352Keep(argumentWord6);
+            temporaryWord25 = (Actor1352Field(retainedScalarOrAddress16, short *, 2) * 0x10) + Actor1352Field(retainedScalarOrAddress16, int *, 0xC);
+            resultWord2 = Actor1352_func_8004E880(Actor1352Field(temporaryWord25, int *, 0) - Actor1352Field(ownerAddress18, int *, 0xC), Actor1352Field(temporaryWord25, int *, 4) - Actor1352Field(ownerAddress18, int *, 0x10), 0);
+            argumentWord4=ownerAddress18;
+            argumentWord5=resultWord2;
+            __asm__ volatile("":"=r"(argumentWord4),"=r"(argumentWord5):"0"(argumentWord4),"1"(argumentWord5),"r"(retainedScalarOrAddress16),"r"(privateAddress23));
+            argumentWord6=6;
+        }
+        else {
+            temporaryWord26 = (Actor1352Field(retainedScalarOrAddress16, short *, 2) * 0x10) + Actor1352Field(retainedScalarOrAddress16, int *, 0xC);
+            resultWord2 = Actor1352_func_8004E880(Actor1352Field(temporaryWord26, int *, 0) - Actor1352Field(ownerAddress18, int *, 0xC), Actor1352Field(temporaryWord26, int *, 4) - Actor1352Field(ownerAddress18, int *, 0x10), 0);
+            argumentWord4=ownerAddress18;
+            argumentWord5=resultWord2;
+            __asm__ volatile("":"=r"(argumentWord4),"=r"(argumentWord5):"0"(argumentWord4),"1"(argumentWord5),"r"(privateAddress23));
+            argumentWord6=4;
+        }
+        argumentWord7=2;
+        __asm__ volatile("":"=r"(argumentWord7):"0"(argumentWord7):"$2","memory");
+        resultWord2=1;
+        Actor1352Keep(resultWord2);
+        Actor1352_func_8003585C(argumentWord4,argumentWord5,argumentWord6,argumentWord7,resultWord2,0);
+        intermediateWord3=Actor1352Field(ownerAddress18,unsigned char*,0x49);
+        __asm__ volatile("":::"$2","memory");
+        resultWord2=1;
+        Actor1352Keep(resultWord2);
+        argumentWord4=ownerAddress18+12;
+        if(intermediateWord3==resultWord2){
+            argumentWord6=0;
+            Actor1352Keep(argumentWord6);
+            resultWord2=Actor1352Field(retainedScalarOrAddress16,short*,2);
+            __asm__ volatile("":::"memory");
+            intermediateWord3=Actor1352Field(retainedScalarOrAddress16,int*,12);
+            argumentWord4=Actor1352Field(ownerAddress18,int*,12);
+            argumentWord5=Actor1352Field(ownerAddress18,int*,16);
+            resultWord2=resultWord2*16+intermediateWord3;
+            Actor1352Keep(resultWord2);
+            intermediateWord3=Actor1352Field(resultWord2,int*,0);
+            resultWord2=Actor1352Field(resultWord2,int*,4);
+            argumentWord4=intermediateWord3-argumentWord4;
+            argumentWord5=resultWord2-argumentWord5;
+            resultWord2=Actor1352_func_8004E880(argumentWord4,argumentWord5,argumentWord6);
+            resultWord2=Actor1352_func_8004F264(Actor1352Field(ownerAddress18,unsigned char*,0x46),resultWord2);
+            __asm__ volatile("":"=r"(ownerAddress18),"=r"(resultWord2):"0"(ownerAddress18),"1"(resultWord2));
+            argumentWord4=ownerAddress18+12;
+            if(resultWord2>=65){
+                resultWord2=Actor1352Field(retainedScalarOrAddress16,short*,2);
+                argumentWord4=Actor1352Field(retainedScalarOrAddress16,short*,0xA);
+                intermediateWord3=Actor1352Field(retainedScalarOrAddress16,short*,0);
+                resultWord2=resultWord2+argumentWord4+intermediateWord3;
+                intermediateWord3=resultWord2%intermediateWord3;
+                __asm__ volatile("":"=r"(ownerAddress18),"=r"(intermediateWord3):"0"(ownerAddress18),"1"(intermediateWord3));
+                Actor1352Field(retainedScalarOrAddress16,short*,2)=intermediateWord3;
+                __asm__ volatile("":::"$4","memory");
+                argumentWord4=ownerAddress18+12;
+            }
+        }
+        Actor1352Keep(argumentWord4);
+        if (Actor1352_func_8004F334(argumentWord4, Actor1352Field(retainedScalarOrAddress16, int *, 0xC) + (Actor1352Field(retainedScalarOrAddress16, short *, 2) * 0x10)) < 0x200) {
+            Actor1352Field(ownerAddress18,unsigned char*,0x48)=21;
+        clearOriginalEntryFlagAndReturn:
+            Actor1352Field(ownerAddress18,unsigned char*,0x49)=0;
+            return;
+        }
+        break;
+    case 21:
+        retainedConstantOrAddress19 = Actor1352Field(privateAddress23, void **, 8);
+        if (Actor1352_func_8003BFC0(ownerAddress18, Actor1352Field(privateAddress23, int *, 0x14)) == 0) {
+            Actor1352Field(privateAddress23, int *, 0x14) = Actor1352_func_8003BABC(ownerAddress18, 1, 4);
+        }
+        intermediateWord3=Actor1352Field(ownerAddress18,unsigned char*,0x3A);
+        __asm__ volatile("":::"$2","memory");
+        resultWord2=255;
+        __asm__("":"=r"(intermediateWord3),"=r"(resultWord2):"0"(intermediateWord3),"1"(resultWord2));
+        if(intermediateWord3!=resultWord2){
+            resultWord2=intermediateWord3*88;
+            intermediateWord3=Actor1352_D_8006C550;
+            intermediateWord3+=resultWord2;
+            Actor1352Keep(intermediateWord3);
+            retainedScalarOrAddress17=Actor1352Field(intermediateWord3,int*,0);
+            retainedScalarOrAddress16 = ownerAddress18 + 0xC;
+            if ((Actor1352Field(retainedScalarOrAddress17, short *, 6) == 0) && (Actor1352_func_8004F334(retainedScalarOrAddress16, (int)&Actor1352_D_80070328) >= 0x3001) && (Actor1352_func_8004F264(((int)((unsigned int)Actor1352_D_8006E040<<16)>>20), Actor1352_func_8004E880(Actor1352Field(ownerAddress18, int *, 0xC) - Actor1352_D_8006E020, Actor1352Field(ownerAddress18, int *, 0x10) - Actor1352_D_8006E024, 0)) < 0x10) && (Actor1352_func_8004F264(Actor1352_func_8004E880(Actor1352_func_8004F334(retainedScalarOrAddress16, (int)&Actor1352_D_80070328), Actor1352Field((int)&Actor1352_D_80070328, int *, 8) - Actor1352Field(ownerAddress18, int *, 0x14), 0), Actor1352Field(ownerAddress18, unsigned char *, 0x45)) < 0x10)) {
+                Actor1352Field(retainedScalarOrAddress17, short *, 6) = 1;
+                Actor1352Field(ownerAddress18, unsigned char *, 0x48) = 0x18U;
+                return;
+            }
+        }
+        resultWord2=Actor1352Field(ownerAddress18,unsigned char*,0x45);
+        intermediateWord3=resultWord2;
+        if(resultWord2){
+            resultWord2=intermediateWord3<129;
+            if(!resultWord2){
+                resultWord2=intermediateWord3<252;
+                intermediateWord3+=4;
+                if(!resultWord2)goto originalHeadingZero;
+                Actor1352Keep(intermediateWord3);
+                Actor1352Field(ownerAddress18,unsigned char*,0x45)=intermediateWord3;
+            }
+            else{
+                resultWord2=intermediateWord3<5;
+                intermediateWord3-=4;
+                if(resultWord2){
+                    originalHeadingZero:intermediateWord3=0;
+                }
+                Actor1352Keep(intermediateWord3);
+                Actor1352Field(ownerAddress18,unsigned char*,0x45)=intermediateWord3;
+            }
+        }
+        Actor1352Field(retainedConstantOrAddress19, unsigned short *, 2) = (unsigned short) Actor1352Field(privateAddress23, unsigned short *, 0xC);
+        Actor1352Field(retainedConstantOrAddress19, unsigned short *, 0xA) = (unsigned short) Actor1352Field(privateAddress23, unsigned short *, 0xE);
+        Actor1352_func_80035A80(ownerAddress18, retainedConstantOrAddress19, 0x200, Actor1352Field(privateAddress23, short *, 6), 0, 5, 0x40, 0x20000);
+        retainedScalarOrAddress16=(int)&originalFrame.sp48;
+        argumentWord4=retainedScalarOrAddress16;
+        __asm__ volatile("":"=r"(retainedScalarOrAddress16),"=r"(argumentWord4):"0"(retainedScalarOrAddress16),"1"(argumentWord4):"$17","memory");
+        retainedScalarOrAddress17=ownerAddress18+12;
+        Actor1352Field(privateAddress23, unsigned short *, 0xC) = (unsigned short) Actor1352Field(retainedConstantOrAddress19, unsigned short *, 2);
+        Actor1352_func_8004F178(argumentWord4,retainedScalarOrAddress17);
+        originalFrame.sp50 += 0x1F4;
+        if (Actor1352_func_80019194(retainedScalarOrAddress16,0x320) != 0) {
+            Actor1352_func_8004F178(retainedScalarOrAddress17, (int)&Actor1352_D_8007190C);
+            Actor1352Field(ownerAddress18, int *, 0x14) = (int) (Actor1352Field(ownerAddress18, int *, 0x14) - 0x1F4);
+            return;
+        }
+        break;
+    case 24:
+        if (Actor1352_func_8003BFC0(ownerAddress18, Actor1352Field(privateAddress23, int *, 0x14)) == 0) {
+            Actor1352Field(privateAddress23, int *, 0x14) = Actor1352_func_8003BABC(ownerAddress18, 1, 4);
+        }
+        Actor1352_func_80055D24(ownerAddress18, 7);
+        argumentWord4=ownerAddress18+32;
+        retainedScalarOrAddress16=(int)&originalFrame.sp58;
+        argumentWord5=retainedScalarOrAddress16;
+        __asm__("":"=r"(argumentWord4),"=r"(argumentWord5),"=r"(retainedScalarOrAddress16):"0"(argumentWord4),"1"(argumentWord5),"2"(retainedScalarOrAddress16));
+        resultWord2=Actor1352Field(privateAddress23,short*,6);
+        __asm__ volatile("":::"$6","memory");
+        argumentWord6=retainedScalarOrAddress16;
+        Actor1352Keep(argumentWord6);
+        originalFrame.sp5C=0;
+        originalFrame.sp60=0;
+        originalFrame.sp58=resultWord2;
+        Actor1352_func_8004ED6C(argumentWord4,argumentWord5,argumentWord6);
+        temporaryWord5 = ownerAddress18 + 0xC;
+        Actor1352_func_8004F194(temporaryWord5, temporaryWord5, retainedScalarOrAddress16);
+        retainedScalarOrAddress16 = Actor1352Field(ownerAddress18, unsigned char *, 0x45);
+        if ((int) retainedScalarOrAddress16 >= 0x81) {
+            retainedScalarOrAddress16 -= 0x100;
+        }
+        Actor1352_func_8004F178(&originalFrame.sp68, (int)&Actor1352_D_80070328);
+        temporaryWord6 = originalFrame.sp70;
+        temporaryWord14 = temporaryWord6 - 0x80;
+        originalFrame.sp70 = temporaryWord14;
+        temporaryWord32 = temporaryWord14 - Actor1352Field(ownerAddress18, int *, 0x14);
+        if(temporaryWord32>=501){
+            resultWord2=temporaryWord6+5872;
+            goto storeFirstOriginalOffset;
+        }
+        resultWord2=temporaryWord32<-500;
+        if(resultWord2){
+            resultWord2=temporaryWord6-6128;
+            storeFirstOriginalOffset:Actor1352Keep(resultWord2);
+            originalFrame.sp70=resultWord2;
+        }
+        retainedConstantOrAddress19 = ownerAddress18 + 0xC;
+        intermediateWord3 = Actor1352_func_8004E880(Actor1352_func_8004F334(retainedConstantOrAddress19, &originalFrame.sp68), originalFrame.sp70 - Actor1352Field(ownerAddress18, int *, 0x14), 0) - retainedScalarOrAddress16;
+        resultWord2=intermediateWord3<129;
+        if(!resultWord2)intermediateWord3-=256;
+        resultWord2=intermediateWord3<3;
+        if(!resultWord2){
+            intermediateWord3=2;
+            Actor1352Keep(intermediateWord3);
+        }
+        resultWord2=intermediateWord3<-2;
+        if(resultWord2)intermediateWord3=-2;
+        Actor1352Field(ownerAddress18,unsigned char*,0x45)=(unsigned char)(Actor1352Field(ownerAddress18,unsigned char*,0x45)+intermediateWord3);
+        Actor1352_func_8003585C(ownerAddress18, Actor1352_func_8004E880(Actor1352Field((int)&Actor1352_D_80070328, int *, 0) - Actor1352Field(ownerAddress18, int *, 0xC), Actor1352Field((int)&Actor1352_D_80070328, int *, 4) - Actor1352Field(ownerAddress18, int *, 0x10), 0), 4, 1, 1, 0);
+        Actor1352_func_8004F178(&originalFrame.sp68, retainedConstantOrAddress19);
+        originalFrame.sp70 += 0x1F4;
+        if (Actor1352_func_80019194(&originalFrame.sp68, 0x320) != 0) {
+            Actor1352_func_8004F178(retainedConstantOrAddress19, (int)&Actor1352_D_8007190C);
+            Actor1352Field(ownerAddress18, int *, 0x14) = (int) (Actor1352Field(ownerAddress18, int *, 0x14) - 0x1F4);
+        }
+        temporaryWord15 = Actor1352_func_8004F334(retainedConstantOrAddress19, (int)&Actor1352_D_80070328);
+        retainedScalarOrAddress16 = temporaryWord15 < 0x800;
+        if ((retainedScalarOrAddress16 != 0) || (Actor1352_func_8004F264(((int)((unsigned int)Actor1352_D_8006E040<<16)>>20), Actor1352_func_8004E880(Actor1352Field(ownerAddress18, int *, 0xC) - Actor1352_D_8006E020, Actor1352Field(ownerAddress18, int *, 0x10) - Actor1352_D_8006E024, 0)) >= 0x18)) {
+            Actor1352Field(ownerAddress18, unsigned char *, 0x48) = 0x16U;
+            Actor1352Field(ownerAddress18, unsigned char *, 0x49) = 1U;
+            Actor1352Field(Actor1352Field((Actor1352Field(ownerAddress18, unsigned char *, 0x3A) * 0x58) + Actor1352_D_8006C550,int*,0), short *, 6) = 0;
+            if ((retainedScalarOrAddress16 != 0) && (Actor1352_func_8004F264(((int)((unsigned int)Actor1352_D_8006E040<<16)>>20), Actor1352_func_8004E880(Actor1352Field(ownerAddress18, int *, 0xC) - Actor1352_D_8006E020, Actor1352Field(ownerAddress18, int *, 0x10) - Actor1352_D_8006E024, 0)) < 0x10)) {
+                resultWord2=Actor1352Field(ownerAddress18,int*,0x14);
+                intermediateWord3=Actor1352Field((int)&Actor1352_D_80070328,int*,8);
+                __asm__("":"=r"(resultWord2),"=r"(intermediateWord3):"0"(resultWord2),"1"(intermediateWord3));
+                resultWord2=(int)((unsigned int)resultWord2-(unsigned int)intermediateWord3);
+                if(resultWord2<0)resultWord2=(int)(0U-(unsigned int)resultWord2);
+                if ((resultWord2 < 0x200) && (Actor1352_func_8004F264(Actor1352Field(ownerAddress18, unsigned char *, 0x46), Actor1352_func_8004E880(Actor1352Field((int)&Actor1352_D_80070328, int *, 0) - Actor1352Field(ownerAddress18, int *, 0xC), Actor1352Field((int)&Actor1352_D_80070328, int *, 4) - Actor1352Field(ownerAddress18, int *, 0x10), 0)) < 8)) {
+                    resultWord2=0x10000400;
+                    __asm__ volatile("":"=r"(resultWord2):"0"(resultWord2):"$4","$5","memory");
+                    argumentWord4=ownerAddress18+32;
+                    argumentWord5=(int)&originalFrame.sp78;
+                    __asm__ volatile("":"=r"(argumentWord4),"=r"(argumentWord5):"0"(argumentWord4),"1"(argumentWord5):"$3","memory");
+                    intermediateWord3=Actor1352Field(ownerAddress18,unsigned char*,0x46);
+                    Actor1352Field((int)&Actor1352_D_80070328,int*,0x20C)=resultWord2;
+                    Actor1352Field((int)&Actor1352_D_80070328, int *, 0x24) = 1;
+                    originalFrame.sp78 = 0x64;
+                    originalFrame.sp7C = 0;
+                    originalFrame.sp80 = 0;
+                    Actor1352Keep(intermediateWord3);
+                    Actor1352Field((int)&Actor1352_D_80070328,int*,0x298)=intermediateWord3;
+                    Actor1352_func_8004ED6C(argumentWord4,argumentWord5,argumentWord5);
+                    argumentWord4=ownerAddress18;
+                    Actor1352Keep(argumentWord4);
+                    intermediateWord3=originalFrame.sp78;
+                    argumentWord6=originalFrame.sp7C;
+                    __asm__ volatile("":::"$2","memory");
+                    resultWord2=75;
+                    Actor1352Field((int)&Actor1352_D_80070328,int*,0x224)=resultWord2;
+                    __asm__("":"=r"(intermediateWord3),"=r"(argumentWord6):"0"(intermediateWord3),"1"(argumentWord6));
+                    Actor1352Field((int)&Actor1352_D_80070328,int*,0x21C)=intermediateWord3;
+                    Actor1352Field((int)&Actor1352_D_80070328,int*,0x220)=argumentWord6;
+                    Actor1352_func_80034F80(argumentWord4,3,argumentWord6);
+                    Actor1352Field(ownerAddress18, unsigned char *, 0x48) = 3U;
+                }
+            }
+            if (Actor1352Field(privateAddress23, short *, 0x12) == 2) {
+                Actor1352Field(privateAddress23, short *, 0x12) = 1;
+                return;
+            }
+        }
+        else if ((Actor1352Field(privateAddress23, short *, 0x12) == 1) && (Actor1352_func_8004F264(Actor1352_func_8004E880(Actor1352Field((int)&Actor1352_D_80070328, int *, 0) - Actor1352Field(ownerAddress18, int *, 0xC), Actor1352Field((int)&Actor1352_D_80070328, int *, 4) - Actor1352Field(ownerAddress18, int *, 0x10), 0), Actor1352Field(ownerAddress18, unsigned char *, 0x46)) < 0x40) && ((unsigned int) (temporaryWord15 - 0x2801) < 0x17FFU)) {
+            temporaryWord33 = Actor1352Field(ownerAddress18, unsigned char *, 0x3A);
+            temporaryWord7 = Actor1352_D_8006C550 + (temporaryWord33 * 0x58);
+            retainedScalarOrAddress16 = Actor1352Field(temporaryWord7, void **, 0);
+            if ((temporaryWord33 != 0xFF) && (Actor1352Field(temporaryWord7, short *, 0x36) == 0x3D9) && !(Actor1352Field(temporaryWord7, unsigned char *, 0x48) & 0x80)) {
+                if (Actor1352Field(retainedScalarOrAddress16, unsigned char *, 3) == 0) {
+                    Actor1352Field(ownerAddress18, unsigned char *, 0x48) = 2U;
+                    Actor1352_func_80034F40(ownerAddress18, 2);
+                }
+                else {
+                    Actor1352Field(privateAddress23, short *, 0x12) = 2;
+                }
+                if (Actor1352_D_8006C7C4 == 2) {
+                    Actor1352Field(retainedScalarOrAddress16, unsigned char *, 3) = 0U;
+                    return;
+                }
+                if (Actor1352_D_8006C7C4 == 1) {
+                    Actor1352Field(retainedScalarOrAddress16, unsigned char *, 3) = (unsigned char) ((Actor1352Field(retainedScalarOrAddress16, unsigned char *, 3) + 1) & 1);
+                    return;
+                }
+                Actor1352Field(retainedScalarOrAddress16, unsigned char *, 3) = (unsigned char) ((Actor1352Field(retainedScalarOrAddress16, unsigned char *, 3) + 1) % 10);
+                return;
+            }
+            goto deleteOriginalOwnerAndReturn;
+        }
+        break;
+    case 3:
+        if (Actor1352_D_8006C770 != 0) {
+            Actor1352Field(ownerAddress18, unsigned char *, 0x48) = 0x16U;
+            Actor1352Field(ownerAddress18, unsigned char *, 0x49) = 1U;
+            Actor1352_func_80034F40(ownerAddress18, 0);
+            return;
+        }
+        break;
+    case 2:
+        resultWord2=Actor1352_func_80055E84(ownerAddress18);
+        argumentWord4=ownerAddress18;
+        Actor1352Keep(argumentWord4);
+        intermediateWord3=Actor1352Field(ownerAddress18,unsigned char*,0x3A);
+        retainedConstantOrIndex20=resultWord2;
+        resultWord2=intermediateWord3*88;
+        intermediateWord3=Actor1352_D_8006C550;
+        intermediateWord3+=resultWord2;
+        Actor1352Keep(intermediateWord3);
+        retainedFlagOrPrivateAddress21=Actor1352Field(intermediateWord3,int*,0);
+        __asm__ volatile("":::"$5","memory");
+        Actor1352_func_80055D24(argumentWord4,7);
+        argumentWord4=ownerAddress18+32;
+        retainedScalarOrAddress16=(int)&originalFrame.sp78;
+        argumentWord5=retainedScalarOrAddress16;
+        __asm__("":"=r"(argumentWord4),"=r"(argumentWord5),"=r"(retainedScalarOrAddress16):"0"(argumentWord4),"1"(argumentWord5),"2"(retainedScalarOrAddress16));
+        resultWord2=Actor1352Field(privateAddress23,short*,6);
+        __asm__ volatile("":::"$6","memory");
+        argumentWord6=retainedScalarOrAddress16;
+        Actor1352Keep(argumentWord6);
+        originalFrame.sp7C=0;
+        originalFrame.sp80=0;
+        originalFrame.sp78=resultWord2;
+        Actor1352_func_8004ED6C(argumentWord4,argumentWord5,argumentWord6);
+        temporaryWord8 = ownerAddress18 + 0xC;
+        Actor1352_func_8004F194(temporaryWord8, temporaryWord8, retainedScalarOrAddress16);
+        retainedScalarOrAddress16 = Actor1352Field(ownerAddress18, unsigned char *, 0x45);
+        if ((int) retainedScalarOrAddress16 >= 0x81) {
+            retainedScalarOrAddress16 -= 0x100;
+        }
+        Actor1352_func_8004F178(&originalFrame.sp88, (int)&Actor1352_D_80070328);
+        temporaryWord9 = originalFrame.sp90;
+        temporaryWord16 = temporaryWord9 - 0x80;
+        originalFrame.sp90 = temporaryWord16;
+        temporaryWord34 = temporaryWord16 - Actor1352Field(ownerAddress18, int *, 0x14);
+        if(temporaryWord34>=501){
+            resultWord2=temporaryWord9+5872;
+            goto storeSecondOriginalOffset;
+        }
+        resultWord2=temporaryWord34<-500;
+        if(resultWord2){
+            resultWord2=temporaryWord9-6128;
+            storeSecondOriginalOffset:Actor1352Keep(resultWord2);
+            originalFrame.sp90=resultWord2;
+        }
+        retainedScalarOrAddress17 = ownerAddress18 + 0xC;
+        argumentWord4=retainedScalarOrAddress17;
+        retainedConstantOrAddress19=(int)&originalFrame.sp88;
+        Actor1352Keep(retainedConstantOrAddress19);
+        intermediateWord3=Actor1352_func_8004E880(Actor1352_func_8004F334(argumentWord4,retainedConstantOrAddress19),originalFrame.sp90-Actor1352Field(ownerAddress18,int*,0x14),0)-retainedScalarOrAddress16;
+        resultWord2=intermediateWord3<129;
+        if(!resultWord2)intermediateWord3-=256;
+        resultWord2=intermediateWord3<3;
+        if(!resultWord2){
+            intermediateWord3=2;
+            Actor1352Keep(intermediateWord3);
+        }
+        resultWord2=intermediateWord3<-2;
+        if(resultWord2)intermediateWord3=-2;
+        Actor1352Field(ownerAddress18,unsigned char*,0x45)=(unsigned char)(Actor1352Field(ownerAddress18,unsigned char*,0x45)+intermediateWord3);
+        Actor1352_func_8003585C(ownerAddress18, Actor1352_func_8004E880(Actor1352Field((int)&Actor1352_D_80070328, int *, 0) - Actor1352Field(ownerAddress18, int *, 0xC), Actor1352Field((int)&Actor1352_D_80070328, int *, 4) - Actor1352Field(ownerAddress18, int *, 0x10), 0), 4, 1, 1, 0);
+        Actor1352_func_8004F178(retainedConstantOrAddress19,retainedScalarOrAddress17);
+        originalFrame.sp90 += 0x1F4;
+        if (Actor1352_func_80019194(retainedConstantOrAddress19,0x320) != 0) {
+            Actor1352_func_8004F178(retainedScalarOrAddress17, (int)&Actor1352_D_8007190C);
+            Actor1352Field(ownerAddress18, int *, 0x14) = (int) (Actor1352Field(ownerAddress18, int *, 0x14) - 0x1F4);
+        }
+        if(retainedConstantOrIndex20>=5) {
+            Actor1352_func_80055D24(ownerAddress18, 5);
+            argumentWord4=ownerAddress18;
+            argumentWord5=0;
+            __asm__ volatile("":"=r"(argumentWord4),"=r"(argumentWord5):"0"(argumentWord4),"1"(argumentWord5):"$17","memory");
+            retainedScalarOrAddress17=(int)&originalFrame.sp98;
+            Actor1352Keep(retainedScalarOrAddress17);
+            Actor1352_func_80055F14(argumentWord4,argumentWord5,retainedScalarOrAddress17);
+            argumentWord4=ownerAddress18;
+            argumentWord5=1;
+            __asm__ volatile("":"=r"(argumentWord4),"=r"(argumentWord5):"0"(argumentWord4),"1"(argumentWord5):"$16","memory");
+            retainedScalarOrAddress16=(int)&originalFrame.spA8;
+            Actor1352Keep(retainedScalarOrAddress16);
+            Actor1352_func_80055F14(argumentWord4,argumentWord5,retainedScalarOrAddress16);
+            temporaryWord17 = Actor1352_func_8003636C(0, 0xFF) * 2;
+            originalFrame.sp78 = 0;
+            temporaryWord10 = Actor1352Field((int)&Actor1352_D_80065920 + temporaryWord17,short*,0);
+            originalFrame.sp7C = (int) (temporaryWord10 * 5) >> 8;
+            originalFrame.sp80 = (int) (Actor1352Field((int)&Actor1352_D_800658A0 + temporaryWord17,short*,0) * 5) >> 8;
+            resultWord2=Actor1352_rand();
+            argumentWord4=retainedConstantOrAddress19;
+            if(resultWord2&1){
+                argumentWord5=retainedScalarOrAddress17;
+            }
+            else{
+                argumentWord5=retainedScalarOrAddress16;
+                Actor1352Keep(argumentWord5);
+            }
+            Actor1352_func_8004F178(argumentWord4,argumentWord5);
+            __asm__ volatile("":"=r"(retainedConstantOrAddress19):"0"(retainedConstantOrAddress19));
+            Actor1352_unk_ovlheader_800743B4(ownerAddress18, 0, 0, 0x3F004040, 0xFE, 0x5F, 8, 3, &originalFrame.sp88, &originalFrame.sp78);
+            if (retainedConstantOrIndex20 >= 9) {
+                temporaryWord35 = 0;
+                if (Actor1352Field(retainedFlagOrPrivateAddress21, void **, 0x58) == 0) {
+                    temporaryWord35 = Actor1352_SpawnMoby(0x1CF, ownerAddress18);
+                }
+                if (temporaryWord35 != 0) {
+                    resultWord2=0x3F00FFFF;
+                    Actor1352Keep(resultWord2);
+                    Actor1352Field(temporaryWord35,int*,0x54)=resultWord2;
+                    __asm__ volatile(""::"m"(Actor1352Field(temporaryWord35,int*,0x54)):"memory");
+                    resultWord2=254;
+                    Actor1352Keep(resultWord2);
+                    Actor1352Field(temporaryWord35,unsigned char*,0x4F)=resultWord2;
+                    Actor1352Field(temporaryWord35, signed char *, 0x48) = 2;
+                    Actor1352Field(temporaryWord35, unsigned char *, 0x46) = (unsigned char) Actor1352Field(ownerAddress18, unsigned char *, 0x46);
+                    Actor1352Field(Actor1352Field(temporaryWord35, void **, 0), short *, 6) = -1;
+                    Actor1352Field(retainedFlagOrPrivateAddress21, void **, 0x58) = temporaryWord35;
+                }
+                retainedScalarOrAddress17 = Actor1352Field(retainedFlagOrPrivateAddress21, void **, 0x58);
+                retainedScalarOrAddress16 = retainedScalarOrAddress17 + 0xC;
+                if (retainedScalarOrAddress17 != 0) {
+                    Actor1352_func_8004F194(retainedScalarOrAddress16, &originalFrame.sp98, &originalFrame.spA8);
+                    Actor1352_func_8004F110(retainedScalarOrAddress16, 1);
+                    intermediateWord3=Actor1352Field(retainedScalarOrAddress17,unsigned char*,0x4F);
+                    if((unsigned int)intermediateWord3>=61){
+                        resultWord2=intermediateWord3-17;
+                        Actor1352Field(retainedScalarOrAddress17,unsigned char*,0x4F)=resultWord2;
+                        __asm__ volatile(""::"m"(Actor1352Field(retainedScalarOrAddress17,unsigned char*,0x4F)):"memory");
+                        resultWord2&=255;
+                        if((unsigned int)resultWord2<60)Actor1352Field(retainedScalarOrAddress17,unsigned char*,0x4F)=60;
+                    }
+                }
+            }
+            if ((Actor1352Field(retainedFlagOrPrivateAddress21, int **, 0x50) != 0) || (temporaryWord18 = Actor1352_func_8002EC50(1, 0x80, 0x489090), Actor1352Field(retainedFlagOrPrivateAddress21, int **, 0x50) = temporaryWord18, (temporaryWord18 != 0))) {
+                temporaryWord2 = Actor1352Field(retainedFlagOrPrivateAddress21, int **, 0x50);
+                temporaryWord28 = Actor1352Field(temporaryWord2, unsigned char *, 0x11);
+                if (temporaryWord28 < 0xF3U) {
+                    Actor1352Field(temporaryWord2, unsigned char *, 0x11) = (unsigned char) (temporaryWord28 + 0xC);
+                }
+                if (retainedConstantOrIndex20 >= 6) {
+                    Actor1352_func_8004F1C8(&originalFrame.sp78, &originalFrame.spA8, &originalFrame.sp98);
+                    resultWord2=Actor1352_func_8004EDE8(&originalFrame.sp78,1);
+                    argumentWord4=(int)&originalFrame.sp78;
+                    argumentWord5=resultWord2;
+                    __asm__ volatile("":"=r"(argumentWord4),"=r"(argumentWord5):"0"(argumentWord4),"1"(argumentWord5):"$2","memory");
+                    resultWord2=retainedConstantOrIndex20-5;
+                    argumentWord6=resultWord2*5;
+                    argumentWord6*=2;
+                    Actor1352_func_8004F08C(argumentWord4,argumentWord5,argumentWord6);
+                    __asm__ volatile("":"=r"(retainedConstantOrIndex20):"0"(retainedConstantOrIndex20));
+                    Actor1352_func_8004F194(Actor1352Field(retainedFlagOrPrivateAddress21, int **, 0x50), &originalFrame.sp98, &originalFrame.sp78);
+                }
+                else {
+                    Actor1352_func_8004F178(Actor1352Field(retainedFlagOrPrivateAddress21, int **, 0x50), &originalFrame.sp98);
+                }
+                Actor1352Field(Actor1352Field(retainedFlagOrPrivateAddress21, int **, 0x50), signed char *, 0x13) = 8;
+            }
+            if ((Actor1352Field(retainedFlagOrPrivateAddress21, int **, 0x54) != 0) || (temporaryWord19 = Actor1352_func_8002EC50(1, 0x80, 0x489090), Actor1352Field(retainedFlagOrPrivateAddress21, int **, 0x54) = temporaryWord19, (temporaryWord19 != 0))) {
+                temporaryWord3 = Actor1352Field(retainedFlagOrPrivateAddress21, int **, 0x54);
+                temporaryWord29 = Actor1352Field(temporaryWord3, unsigned char *, 0x11);
+                if (temporaryWord29 < 0xF3U) {
+                    Actor1352Field(temporaryWord3, unsigned char *, 0x11) = (unsigned char) (temporaryWord29 + 0xC);
+                }
+                if (retainedConstantOrIndex20 >= 6) {
+                    Actor1352_func_8004F1C8(&originalFrame.sp78, &originalFrame.sp98, &originalFrame.spA8);
+                    resultWord2=Actor1352_func_8004EDE8(&originalFrame.sp78,1);
+                    argumentWord4=(int)&originalFrame.sp78;
+                    argumentWord5=resultWord2;
+                    __asm__ volatile("":"=r"(argumentWord4),"=r"(argumentWord5):"0"(argumentWord4),"1"(argumentWord5):"$2","memory");
+                    resultWord2=retainedConstantOrIndex20-5;
+                    argumentWord6=resultWord2*5;
+                    argumentWord6*=2;
+                    Actor1352_func_8004F08C(argumentWord4,argumentWord5,argumentWord6);
+                    __asm__ volatile("":"=r"(retainedConstantOrIndex20):"0"(retainedConstantOrIndex20));
+                    Actor1352_func_8004F194(Actor1352Field(retainedFlagOrPrivateAddress21, int **, 0x54), &originalFrame.spA8, &originalFrame.sp78);
+                }
+                else {
+                    Actor1352_func_8004F178(Actor1352Field(retainedFlagOrPrivateAddress21, int **, 0x54), &originalFrame.spA8);
+                }
+                Actor1352Field(Actor1352Field(retainedFlagOrPrivateAddress21, int **, 0x54), signed char *, 0x13) = 8;
+            }
+        }
+        if(Actor1352_D_8006C770!=0){
+            retainedConstantOrIndex20=Actor1352_SpawnMoby(463,ownerAddress18);
+            intermediateWord3=Actor1352Field(retainedFlagOrPrivateAddress21,int*,0x50);
+            if(intermediateWord3){
+                Actor1352Field(intermediateWord3,signed char*,0x10)=0;
+                Actor1352Field(retainedFlagOrPrivateAddress21,int*,0x50)=0;
+            }
+            resultWord2=Actor1352Field(retainedFlagOrPrivateAddress21,int*,0x54);
+            if(resultWord2){
+                Actor1352Field(resultWord2,signed char*,0x10)=0;
+                Actor1352Field(retainedFlagOrPrivateAddress21,int*,0x54)=0;
+            }
+            argumentWord4=Actor1352Field(retainedFlagOrPrivateAddress21,int*,0x58);
+            if(argumentWord4){
+                Actor1352_func_80055B18(argumentWord4);
+                Actor1352Field(retainedFlagOrPrivateAddress21,int*,0x58)=0;
+            }
+            Actor1352Keep(retainedConstantOrIndex20);
+            if(retainedConstantOrIndex20){
+                argumentWord4=ownerAddress18;
+                argumentWord5=0;
+                __asm__ volatile("":"=r"(argumentWord4),"=r"(argumentWord5):"0"(argumentWord4),"1"(argumentWord5):"$17","memory");
+                retainedScalarOrAddress17=(int)&originalFrame.spB8;
+                Actor1352Keep(retainedScalarOrAddress17);
+                retainedConstantOrAddress19=Actor1352Field(retainedConstantOrIndex20,int*,0);
+                Actor1352_func_80055F14(argumentWord4,argumentWord5,retainedScalarOrAddress17);
+                argumentWord4=ownerAddress18;
+                argumentWord5=1;
+                __asm__ volatile("":"=r"(argumentWord4),"=r"(argumentWord5):"0"(argumentWord4),"1"(argumentWord5):"$16","memory");
+                retainedScalarOrAddress16=(int)&originalFrame.spC8;
+                Actor1352Keep(retainedScalarOrAddress16);
+                Actor1352_func_80055F14(argumentWord4,argumentWord5,retainedScalarOrAddress16);
+                retainedPositionAddress22=retainedConstantOrIndex20+12;
+                Actor1352_func_8004F194(retainedPositionAddress22,retainedScalarOrAddress17,retainedScalarOrAddress16);
+                Actor1352_func_8004F110(retainedPositionAddress22,1);
+                resultWord2=0x3F00FFFF;
+                __asm__ volatile("":"=r"(resultWord2):"0"(resultWord2):"$4","memory");
+                argumentWord4=retainedPositionAddress22;
+                Actor1352Keep(argumentWord4);
+                Actor1352Field(retainedConstantOrIndex20,int*,0x54)=resultWord2;
+                Actor1352Field(retainedConstantOrIndex20,signed char*,0x4F)=60;
+                resultWord2=Actor1352Field(ownerAddress18,unsigned char*,0x46);
+                __asm__ volatile("":::"$5","memory");
+                argumentWord5=(int)&Actor1352_D_80070328;
+                Actor1352Keep(argumentWord5);
+                Actor1352Field(retainedConstantOrIndex20,unsigned char*,0x46)=resultWord2;
+                Actor1352Field(retainedConstantOrAddress19,short*,4)=100;
+                intermediateWord3=Actor1352Field(privateAddress23,unsigned short*,6);
+                Actor1352Field(retainedConstantOrAddress19,signed char*,0x16)=1;
+                Actor1352Field(retainedConstantOrAddress19,short*,6)=-1;
+                intermediateWord3+=50;
+                Actor1352Keep(intermediateWord3);
+                Actor1352Field(retainedConstantOrAddress19,short*,0x14)=intermediateWord3;
+                resultWord2=Actor1352_func_8004F334(argumentWord4,argumentWord5);
+                Actor1352Field(retainedConstantOrIndex20,unsigned char*,0x45)=Actor1352_func_8004E880(resultWord2,Actor1352Field((int)&Actor1352_D_80070328,int*,8)-Actor1352Field(retainedConstantOrIndex20,int*,0x14),0);
+                resultWord2=Actor1352Field(retainedConstantOrAddress19,int*,0);
+                if(!resultWord2){
+                    resultWord2=Actor1352_func_8002EC50(1,254,0x489090);
+                    Actor1352Field(retainedConstantOrAddress19,int*,0)=resultWord2;
+                }
+                if(resultWord2){
+                    Actor1352_func_8004F178(Actor1352Field(retainedConstantOrAddress19,int*,0),retainedPositionAddress22);
+                    Actor1352Field(Actor1352Field(retainedConstantOrAddress19,int*,0),signed char*,0x13)=8;
+                }
+            }
+            Actor1352Field(ownerAddress18, unsigned char *, 0x48) = 0x16U;
+            Actor1352Field(ownerAddress18, unsigned char *, 0x49) = 1U;
+            Actor1352_func_80034F40(ownerAddress18, 0);
+            Actor1352Field(retainedFlagOrPrivateAddress21, short *, 6) = 0;
+            return;
+        }
+        break;
+    case 20:
+        Actor1352Field(ownerAddress18, int *, 0x14) = (int) (Actor1352Field(ownerAddress18, int *, 0x14) + Actor1352Field(privateAddress23, short *, 4));
+        Actor1352Field(privateAddress23, short *, 4) = (short) ((unsigned short) Actor1352Field(privateAddress23, short *, 4) - 0x10);
+        Actor1352_func_80035EE0(ownerAddress18, (short) Actor1352Field(privateAddress23, unsigned short *, 2), 0x64, 0, 0, 0);
+        if ((Actor1352_func_800359A4(privateAddress23, 2) != 0) || ((Actor1352Field(privateAddress23, short *, 4) < 0) && (Actor1352_func_80019138(ownerAddress18 + 0xC, 0x258, 1, 0, 0, 0) != 0))) {
+            Actor1352_func_800369B8(ownerAddress18, 0x28);
+        deleteOriginalOwnerAndReturn:
+            Actor1352_func_80055B18(ownerAddress18);
+            return;
+        }
+        if (Actor1352Field(ownerAddress18, unsigned char *, 0x3D) == 4) {
+            Actor1352Field(ownerAddress18, unsigned char *, 0x45) = (unsigned char) (Actor1352Field(ownerAddress18, unsigned char *, 0x45) + 6);
+            Actor1352Field(ownerAddress18, unsigned char *, 0x44) = (unsigned char) (Actor1352Field(ownerAddress18, unsigned char *, 0x44) + 1);
+        }
+        break;
+    }
+}
+#undef Actor1352Field
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_34/moby", func_level_34_80085C2C);
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_34/moby", func_level_34_80086B20);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original80084D54.
+ * AI generated; not human reviewed. Acceptance requires950 native instructions,
+ * all actual transfer/data targets,47 original selectors+1 zero pad and every
+ * original EXE/overlay retail hash. Original assembly SHA256 follows below.
+ * The120-byte frame savesS0..S5/RA at58..70;initialized local storage20..57
+ * retains its original producers. No incoming saved-register value is read.
+ * Four tag scans read the current signed halfword before advancing two bytes
+ * in the original branch delay. Actor indices retain the original88-byte stride.
+ * Three named shared entries preserve distinct original forward branches for
+ * owner state updates,field updates and child removal. The signed39 and75
+ * trigonometric products retain exact staged shifts,narrowing and table indices.
+ * The /9 path forms a complete signed64 product with38E38E39,captures its whole
+ * high word,then applies the original sign correction. Falsifiable vectors:
+ * trunc(-2147483648/9)=-238609294;trunc(2147483647/9)=238609294;
+ * trunc(-10/9)=-1;trunc(10/9)=1. The two random calls and original remainder
+ * construction retain their independent producers and consumers.
+ * Existing Spyro.unk17a at20C and the existing eight-argument35A80 contract
+ * supply the original flag update and call. Natural C scheduling retains all
+ * four outgoing stores and their original interleaving with the flag load.
+ * Empty metadata observes initialized complete values or just-written fields,
+ * or clobbers dead roles before fresh producers. No instruction template,
+ * partial HILO,fixedFP/SP,overlapping live alias or padding read is present.
+ * Compiler,flags,filters and all acceptance gates remain unchanged.
+ * Confirmed after all gates:binary identity. Full allocation/caller/helper
+ * chains,physical units,fixed-point domains,cadence beyond invocation,Rev1
+ * correspondence and synchronized retail runtime remain unresolved. Next:
+ * human review and synchronized retail captures. Engine/browser unchanged.
+ */
+/* Original assembly SHA256 2f950ffcaee06d55c7d5088aff78e955c854b4d3f61390c6e0d3aa0e8f62d495 */
+#define Level34_84D54Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+#define Level34_84D54Keep(v) __asm__("":"=r"(v):"0"(v))
+void Level34_84D54Call13AE4View1(void*,void*) __asm__("func_80013AE4");
+void Level34_84D54Call13D44View1(void*,int,void*,int) __asm__("func_80013D44");
+int Level34_84D54Call21ED8View1() __asm__("func_80021ED8");
+void Level34_84D54Call34F40View1(void*,int) __asm__("func_80034F40");
+void Level34_84D54Call34F80View1(void*,int) __asm__("func_80034F80");
+int Level34_84D54Call359A4View1(void*,int) __asm__("func_800359A4");
+int Level34_84D54Call35A80View1(void*,void*,int,int,int,int,int,int) __asm__("func_80035A80");
+int Level34_84D54Call35DDCView1(void*,int,int,int,int) __asm__("func_80035DDC");
+int Level34_84D54Call36220View1(void*,void*,int,int) __asm__("func_80036220");
+int Level34_84D54Call3636CView1(int,int) __asm__("func_8003636C");
+int Level34_84D54Call365E4View1() __asm__("func_800365E4");
+int Level34_84D54Call37BBCView1(void*,int) __asm__("func_80037BBC");
+int Level34_84D54Call391E8View1() __asm__("func_800391E8");
+void Level34_84D54Call3B74CView1(void*) __asm__("func_8003B74C");
+void Level34_84D54Call3B7B4View1(void*,int,void*) __asm__("func_8003B7B4");
+int Level34_84D54Call3BB10View1(void*,int,int) __asm__("func_8003BB10");
+int Level34_84D54Call4E880View1() __asm__("func_8004E880");
+void Level34_84D54Call4F178View1(void*,void*) __asm__("func_8004F178");
+void Level34_84D54Call4F194View1(void*,void*,void*) __asm__("func_8004F194");
+int Level34_84D54Call512E4View1() __asm__("func_800512E4");
+void Level34_84D54Call55B18View1(void*) __asm__("func_80055B18");
+void Level34_84D54Call55D24View1(void*,int) __asm__("func_80055D24");
+int Level34_84D54Call55E84View1() __asm__("func_80055E84");
+void Level34_84D54Call55F14View1(void*,int,void*) __asm__("func_80055F14");
+int Level34_84D54CallrandView1() __asm__("rand");
+extern int Level34_84D54Data658A0View1 __asm__("D_800658A0");
+extern int Level34_84D54Data65920View1 __asm__("D_80065920");
+extern int Level34_84D54Data67898View1 __asm__("D_80067898");
+extern int Level34_84D54Data6C54CView1 __asm__("D_8006C54C");
+extern int Level34_84D54Data6C550View1 __asm__("D_8006C550");
+extern int Level34_84D54Data6C598View1 __asm__("D_8006C598");
+extern int Level34_84D54Data6C640View1 __asm__("D_8006C640");
+extern int Level34_84D54Data6C730View1 __asm__("D_8006C730");
+extern int Level34_84D54Data6C770View1 __asm__("D_8006C770");
+extern unsigned char Level34_84D54Data6C7B4View1 __asm__("D_8006C7B4");
+extern int Level34_84D54Data6C7F8View1 __asm__("D_8006C7F8");
+extern int Level34_84D54Data6D048View1 __asm__("D_8006D048");
+extern int Level34_84D54Data6D088View1 __asm__("D_8006D088");
+extern int Level34_84D54Data6E048View1 __asm__("D_8006E048");
+extern int Level34_84D54Data6E344View1 __asm__("D_8006E344");
+extern int Level34_84D54Data70328View1 __asm__("D_80070328");
+extern int(*Level34_84D54DataSpawnMobyView1)() __asm__("SpawnMoby");
+extern Spyro Level34_84D54Data70328View2 __asm__("D_80070328");
+void func_level_34_80084D54(unsigned char* ownerParameter) {
+    register int valueOrVector16 __asm__("$16");
+    register int countOrIndex17 __asm__("$17");
+    register int countOrField18 __asm__("$18");
+    register int tagCursor19 __asm__("$19");
+    register int owner20 __asm__("$20");
+    register int privateRecord21 __asm__("$21");
+    register int resultOrField2 __asm__("$2"),fieldOrIntermediate3 __asm__("$3"),argumentOrField4 __asm__("$4"),argumentOrField5 __asm__("$5"),argumentOrField6 __asm__("$6"),argumentOrField7 __asm__("$7"),capturedHigh10 __asm__("$10"),secondFlagBits8 __asm__("$8"),firstFlagBits9 __asm__("$9");
+    long long completeSignedProduct;
+    int wholeCapturedHigh;
+    struct {
+        int sp20,sp24,sp28,sp2C,sp30,sp34,sp38,sp3C,sp40,sp44,sp48,sp4C,sp50,sp54;
+    }
+    originalFrame;
+    int temp_a3_2;
+    int temp_v1_10;
+    int temp_v1_3;
+    int temp_v1_2;
+    int temp_v1_4;
+    int temp_v1_5;
+    int var_v0;
+    int temp_a0_3;
+    int temp_a0_4;
+    int temp_a0_7;
+    int temp_a0_8;
+    int temp_a0_9;
+    int temp_a3;
+    int temp_v0;
+    int temp_v0_3;
+    int temp_v0_4;
+    int temp_v0_6;
+    int temp_v1_8;
+    int temp_v1_9;
+    owner20=(int)ownerParameter;
+    Level34_84D54Keep(owner20);
+    privateRecord21 = Level34_84D54Field(owner20,int*, 0);
+    if (Level34_84D54Field(privateRecord21, short *, 0x28) == 0) {
+        temp_a3 = Level34_84D54Field(Level34_84D54Field((int)&Level34_84D54Data6D048View1,int*, 0x14),int*, 4);
+        if (Level34_84D54Field(temp_a3, int *, 4) & 0x80000) {
+            Level34_84D54Field(temp_a3, int *, 4) = 0;
+            Level34_84D54Field(privateRecord21, short *, 0x28) = 1;
+            Level34_84D54Field(privateRecord21, short *, 0x2A) = 0x78;
+            Level34_84D54Call21ED8View1(0xB, 0xFC, 0, temp_a3);
+            Level34_84D54Call3BB10View1(owner20, 7, 0);
+            countOrIndex17 = 0;
+            do {
+                temp_v0 = Level34_84D54Call391E8View1(1, 0x1A8, owner20, countOrIndex17, countOrIndex17, 0xC8, 0x100);
+                if (temp_v0 != 0) {
+                    argumentOrField4=temp_v0+12;
+                    argumentOrField5=(int)&Level34_84D54Data70328View1;
+                    __asm__("":"=r"(argumentOrField5):"0"(argumentOrField5):"$2");
+                    fieldOrIntermediate3=Level34_84D54Field(temp_v0,int*,0);
+                    resultOrField2=-100;
+                    Level34_84D54Field(fieldOrIntermediate3,short*,0)=0;
+                    Level34_84D54Field(fieldOrIntermediate3,short*,2)=0;
+                    Level34_84D54Field(fieldOrIntermediate3,short*,4)=resultOrField2;
+                    Level34_84D54Call4F178View1(argumentOrField4,argumentOrField5);
+                    resultOrField2=Level34_84D54Call3636CView1(0,2048);
+                    argumentOrField4=0;
+                    fieldOrIntermediate3=Level34_84D54Field(temp_v0,int*,12);
+                    argumentOrField5=2048;
+                    fieldOrIntermediate3-=1024;
+                    fieldOrIntermediate3+=resultOrField2;
+                    Level34_84D54Field(temp_v0,int*,12)=fieldOrIntermediate3;
+                    resultOrField2=Level34_84D54Call3636CView1(argumentOrField4,argumentOrField5);
+                    fieldOrIntermediate3=Level34_84D54Field(temp_v0,int*,16);
+                    fieldOrIntermediate3-=1024;
+                    fieldOrIntermediate3+=resultOrField2;
+                    Level34_84D54Field(temp_v0,int*,16)=fieldOrIntermediate3;
+                    Level34_84D54Field(temp_v0, int *, 0x14) = (int) Level34_84D54Field(owner20, int *, 0x14);
+                }
+                countOrIndex17 += 1;
+            }
+            while (countOrIndex17 < 5);
+        }
+    }
+    else if ((Level34_84D54Field(privateRecord21, short *, 0x2A) != 0) && (Level34_84D54Call359A4View1(privateRecord21 + 0x2A, 2) != 0)) {
+        Level34_84D54Call3BB10View1(owner20, 8, 0);
+        Level34_84D54Call21ED8View1(0xC, 0xFC, 0);
+    }
+    if ((Level34_84D54Data6C640View1 != 0) && (Level34_84D54Data6C54CView1 == 0)) {
+        resultOrField2=Level34_84D54CallrandView1();
+        fieldOrIntermediate3=0x38E38E39;
+        completeSignedProduct=(long long)(int)resultOrField2*(long long)(int)fieldOrIntermediate3;
+        __asm__ volatile(""::"x"(completeSignedProduct));
+        fieldOrIntermediate3=resultOrField2>>31;
+        __asm__("":"=h"(wholeCapturedHigh):"x"(completeSignedProduct));
+        capturedHigh10=wholeCapturedHigh;
+        Level34_84D54Keep(capturedHigh10);
+        argumentOrField4=capturedHigh10>>1;
+        valueOrVector16=argumentOrField4-fieldOrIntermediate3;
+        Level34_84D54Keep(valueOrVector16);
+        fieldOrIntermediate3=valueOrVector16*9;
+        valueOrVector16=resultOrField2-fieldOrIntermediate3;
+        resultOrField2=Level34_84D54CallrandView1(argumentOrField4);
+        resultOrField2&=3;
+        Level34_84D54Keep(resultOrField2);
+        argumentOrField4=(int)&Level34_84D54Data67898View1;
+        fieldOrIntermediate3=valueOrVector16*16;
+        Level34_84D54Keep(fieldOrIntermediate3);
+        fieldOrIntermediate3+=argumentOrField4;
+        resultOrField2=resultOrField2*4+fieldOrIntermediate3;
+        fieldOrIntermediate3=Level34_84D54Field(resultOrField2,int*,0);
+        fieldOrIntermediate3+=32;
+        Level34_84D54Field(resultOrField2,int*,0)=fieldOrIntermediate3;
+    }
+    temp_v1_2 = Level34_84D54Field(owner20, unsigned char *, 0x48);
+    switch (temp_v1_2) {
+    case 46:
+        Level34_84D54Field(privateRecord21, unsigned char *, 2) = 0U;
+        Level34_84D54Field(privateRecord21, signed char *, 5) = 1;
+        Level34_84D54Field(owner20, unsigned char *, 0x48) = 0U;
+        return;
+    case 0:
+        if ((Level34_84D54Data6C598View1 == 0) && (Level34_84D54Call37BBCView1(owner20, 0) != 0)) {
+            temp_v1_3 = Level34_84D54Field(privateRecord21, int *, 0) & 0xFF00FF;
+            if (temp_v1_3 == 6) {
+                var_v0 = Level34_84D54Data6C7B4View1 | 0x10;
+                goto block_22;
+            }
+            if (temp_v1_3 == 7) {
+                var_v0 = Level34_84D54Data6C7B4View1 | 0x20;
+            block_22:
+                Level34_84D54Data6C7B4View1 = var_v0;
+            }
+            Level34_84D54Call512E4View1(owner20, 0, 3);
+            argumentOrField4 = (unsigned char) Level34_84D54Field(privateRecord21, int *, 0);
+            if (argumentOrField4 == 0) {
+                Level34_84D54Field(owner20, unsigned char *, 0x48) = 3U;
+                return;
+            }
+            if (argumentOrField4 == 6) {
+                Level34_84D54Field(owner20, unsigned char *, 0x48) = 0x14U;
+                return;
+            }
+            Level34_84D54Field(owner20, unsigned char *, 0x48) = 0x15U;
+            return;
+        }
+    default:
+        return;
+    case 3:
+        if (Level34_84D54Data6E344View1 != 1) {
+            temp_v1_4 = Level34_84D54Field(privateRecord21, unsigned char *, 2);
+            if (temp_v1_4 == 1) {
+                Level34_84D54Field(owner20, unsigned char *, 0x48) = 0x2EU;
+                Level34_84D54Call3B7B4View1(owner20 + 0x48, 1, (int)&Level34_84D54Data6C7F8View1);
+                Level34_84D54Field(owner20, unsigned char *, 0x48) = 1U;
+                Level34_84D54Call34F40View1(owner20, 1);
+                return;
+            }
+            if (temp_v1_4 == 2) {
+                Level34_84D54Call3B74CView1((int)&Level34_84D54Data6D088View1);
+            }
+            argumentOrField4=owner20;
+            argumentOrField5=0;
+            resultOrField2=1;
+            goto applySharedOwnerState;
+        }
+        break;
+    case 20:
+        if (Level34_84D54Data6E344View1 != 1) {
+            temp_v1_5 = Level34_84D54Field(privateRecord21, unsigned char *, 2);
+            if(temp_v1_5==1){
+                tagCursor19 = Level34_84D54Field(Level34_84D54Data6C730View1,int*, 0x64);
+                do {
+                    resultOrField2=Level34_84D54Field(tagCursor19,unsigned short*,0);
+                    resultOrField2&=0x7FFF;
+                    fieldOrIntermediate3=resultOrField2*3;
+                    Level34_84D54Keep(fieldOrIntermediate3);
+                    fieldOrIntermediate3=fieldOrIntermediate3*4-resultOrField2;
+                    resultOrField2=Level34_84D54Data6C550View1;
+                    fieldOrIntermediate3*=8;
+                    countOrField18=resultOrField2+fieldOrIntermediate3;
+                    fieldOrIntermediate3 = Level34_84D54Field(countOrField18, unsigned char *, 0x49);
+                    valueOrVector16 = countOrField18 + 0x48;
+                    if (fieldOrIntermediate3 != 0) {
+                        countOrIndex17 = Level34_84D54Field(countOrField18, unsigned char *, 0x48);
+                        Level34_84D54Field(countOrField18, unsigned char *, 0x48) = fieldOrIntermediate3;
+                        Level34_84D54Call3B7B4View1(valueOrVector16, 1, (int)&Level34_84D54Data6D088View1);
+                        Level34_84D54Call3B7B4View1(valueOrVector16, 1, (int)&Level34_84D54Data6C7F8View1);
+                        Level34_84D54Field(countOrField18, unsigned char *, 0x48) = countOrIndex17;
+                    }
+                    resultOrField2=Level34_84D54Field(tagCursor19,short*,0);
+                    tagCursor19+=2;
+                }
+                while(resultOrField2>=0);
+                tagCursor19 = Level34_84D54Field(Level34_84D54Data6C730View1,int*, 0x60);
+                do {
+                    fieldOrIntermediate3=Level34_84D54Field(tagCursor19,unsigned short*,0);
+                    fieldOrIntermediate3&=0x7FFF;
+                    resultOrField2=fieldOrIntermediate3*3;
+                    Level34_84D54Keep(resultOrField2);
+                    resultOrField2=resultOrField2*4-fieldOrIntermediate3;
+                    fieldOrIntermediate3=Level34_84D54Data6C550View1;
+                    resultOrField2*=8;
+                    countOrField18=fieldOrIntermediate3+resultOrField2;
+                    valueOrVector16 = countOrField18 + 0x48;
+                    if (Level34_84D54Field(countOrField18, unsigned char *, 0x49) == 5) {
+                        countOrIndex17 = Level34_84D54Field(countOrField18, unsigned char *, 0x48);
+                        Level34_84D54Field(countOrField18, unsigned char *, 0x48) = 0x1EU;
+                        Level34_84D54Call3B7B4View1(valueOrVector16, 1, (int)&Level34_84D54Data6D088View1);
+                        Level34_84D54Call3B7B4View1(valueOrVector16, 1, (int)&Level34_84D54Data6C7F8View1);
+                        Level34_84D54Field(countOrField18, unsigned char *, 0x48) = countOrIndex17;
+                    }
+                    resultOrField2=Level34_84D54Field(tagCursor19,short*,0);
+                    tagCursor19+=2;
+                }
+                while(resultOrField2>=0);
+                Level34_84D54Field(owner20, unsigned char *, 0x48) = 0U;
+                Level34_84D54Call34F40View1(owner20, 0);
+                Level34_84D54Field(privateRecord21, signed char *, 5) = 2;
+                return;
+            }
+            else if(temp_v1_5==2){
+                Level34_84D54Field(owner20, unsigned char *, 0x48) = 1U;
+                Level34_84D54Call34F40View1(owner20, 1);
+                return;
+            }
+            else{
+                if(temp_v1_5==3)Level34_84D54Call3B74CView1((int)&Level34_84D54Data6D088View1);
+                argumentOrField4=owner20;
+                argumentOrField5=0;
+                resultOrField2=2;
+            applySharedOwnerState:
+                Level34_84D54Field(privateRecord21,unsigned char*,2)=resultOrField2;
+                Level34_84D54Call34F40View1(argumentOrField4,argumentOrField5);
+                Level34_84D54Field(owner20,unsigned char*,72)=0;
+                return;
+            }
+        }
+        break;
+    case 21:
+        if (Level34_84D54Data6E344View1 != 1) {
+            tagCursor19 = Level34_84D54Field(Level34_84D54Data6C730View1,int*, 0x64);
+            do {
+                resultOrField2=Level34_84D54Field(tagCursor19,unsigned short*,0);
+                resultOrField2&=0x7FFF;
+                fieldOrIntermediate3=resultOrField2*3;
+                Level34_84D54Keep(fieldOrIntermediate3);
+                fieldOrIntermediate3=fieldOrIntermediate3*4-resultOrField2;
+                resultOrField2=Level34_84D54Data6C550View1;
+                fieldOrIntermediate3*=8;
+                countOrField18=resultOrField2+fieldOrIntermediate3;
+                fieldOrIntermediate3 = Level34_84D54Field(countOrField18, unsigned char *, 0x49);
+                valueOrVector16 = countOrField18 + 0x48;
+                if (fieldOrIntermediate3 != 0) {
+                    countOrIndex17 = Level34_84D54Field(countOrField18, unsigned char *, 0x48);
+                    Level34_84D54Field(countOrField18, unsigned char *, 0x48) = fieldOrIntermediate3;
+                    Level34_84D54Call3B7B4View1(valueOrVector16, 1, (int)&Level34_84D54Data6D088View1);
+                    Level34_84D54Call3B7B4View1(valueOrVector16, 1, (int)&Level34_84D54Data6C7F8View1);
+                    Level34_84D54Field(countOrField18, unsigned char *, 0x48) = countOrIndex17;
+                }
+                resultOrField2=Level34_84D54Field(tagCursor19,short*,0);
+                tagCursor19+=2;
+            }
+            while(resultOrField2>=0);
+            tagCursor19 = Level34_84D54Field(Level34_84D54Data6C730View1,int*, 0x60);
+            do {
+                fieldOrIntermediate3=Level34_84D54Field(tagCursor19,unsigned short*,0);
+                fieldOrIntermediate3&=0x7FFF;
+                resultOrField2=fieldOrIntermediate3*3;
+                Level34_84D54Keep(resultOrField2);
+                resultOrField2=resultOrField2*4-fieldOrIntermediate3;
+                fieldOrIntermediate3=Level34_84D54Data6C550View1;
+                resultOrField2*=8;
+                countOrField18=fieldOrIntermediate3+resultOrField2;
+                valueOrVector16 = countOrField18 + 0x48;
+                if (Level34_84D54Field(countOrField18, unsigned char *, 0x49) == 5) {
+                    countOrIndex17 = Level34_84D54Field(countOrField18, unsigned char *, 0x48);
+                    Level34_84D54Field(countOrField18, unsigned char *, 0x48) = 0x1EU;
+                    Level34_84D54Call3B7B4View1(valueOrVector16, 1, (int)&Level34_84D54Data6D088View1);
+                    Level34_84D54Call3B7B4View1(valueOrVector16, 1, (int)&Level34_84D54Data6C7F8View1);
+                    Level34_84D54Field(countOrField18, unsigned char *, 0x48) = countOrIndex17;
+                }
+                resultOrField2=Level34_84D54Field(tagCursor19,short*,0);
+                tagCursor19+=2;
+            }
+            while(resultOrField2>=0);
+            Level34_84D54Field(owner20, unsigned char *, 0x48) = 0U;
+            goto applySharedFieldUpdate;
+        }
+        break;
+    case 1:
+        if ((Level34_84D54Field(owner20, unsigned char *, 0x49) == 0) && (Level34_84D54Call55E84View1(owner20) >= 0x18)) {
+            Level34_84D54Call55D24View1(owner20, 5);
+            Level34_84D54Call55F14View1(owner20, 0, &originalFrame.sp20);
+            tagCursor19 = 0;
+            do {
+                temp_v0_3 = Level34_84D54DataSpawnMobyView1(0x221, owner20);
+                if (temp_v0_3 != 0) {
+                    valueOrVector16 = Level34_84D54Field(owner20, unsigned char *, 0x46);
+                    countOrIndex17 = Level34_84D54Field(temp_v0_3,int*, 0);
+                    Level34_84D54Field(owner20, unsigned char *, 0x49) = 1U;
+                    if (tagCursor19 == 0) {
+                        resultOrField2 = valueOrVector16 - 0x10;
+                    }
+                    else {
+                        resultOrField2 = valueOrVector16 + 0x10;
+                    }
+                    valueOrVector16=resultOrField2&255;
+                    Level34_84D54Keep(valueOrVector16);
+                    Level34_84D54Call4F178View1(temp_v0_3+12,&originalFrame.sp20);
+                    argumentOrField4=valueOrVector16*2;
+                    resultOrField2=Level34_84D54Field((int)&Level34_84D54Data65920View1+argumentOrField4,short*,0);
+                    fieldOrIntermediate3=resultOrField2*5;
+                    Level34_84D54Keep(fieldOrIntermediate3);
+                    resultOrField2=fieldOrIntermediate3*15;
+                    resultOrField2>>=12;
+                    Level34_84D54Field(countOrIndex17,int*,0)=resultOrField2;
+                    argumentOrField4=Level34_84D54Field((int)&Level34_84D54Data658A0View1+argumentOrField4,short*,0);
+                    resultOrField2=50;
+                    Level34_84D54Field(countOrIndex17,int*,8)=resultOrField2;
+                    resultOrField2=10;
+                    Level34_84D54Field(countOrIndex17,int*,12)=0;
+                    Level34_84D54Field(countOrIndex17,short*,22)=resultOrField2;
+                    fieldOrIntermediate3=argumentOrField4*5;
+                    Level34_84D54Keep(fieldOrIntermediate3);
+                    resultOrField2=fieldOrIntermediate3*15;
+                    resultOrField2>>=12;
+                    Level34_84D54Field(countOrIndex17,int*,4)=resultOrField2;
+                    fieldOrIntermediate3=Level34_84D54Field(privateRecord21,int*,92);
+                    resultOrField2=450;
+                    Level34_84D54Field(countOrIndex17,short*,20)=resultOrField2;
+                    Level34_84D54Field(countOrIndex17,int*,16)=fieldOrIntermediate3;
+                    Level34_84D54Field(temp_v0_3, signed char *, 0x48) = 3;
+                    if ((unsigned char) Level34_84D54Field(privateRecord21, int *, 0) == 0) {
+                        Level34_84D54Call34F80View1(temp_v0_3, tagCursor19);
+                    }
+                }
+                tagCursor19 += 1;
+            }
+            while (tagCursor19 < 2);
+        }
+        if (Level34_84D54Data6C770View1 != 0) {
+            __asm__ volatile("":::"$4","memory");
+            Level34_84D54Field(owner20, unsigned char *, 0x48) = 0U;
+            applySharedFieldUpdate:Level34_84D54Call34F40View1(owner20,0);
+            return;
+        }
+        break;
+    case 30:
+        if (Level34_84D54Call359A4View1(privateRecord21 + 0x52, 2) != 0) {
+            Level34_84D54Field(owner20, signed char *, 0x41) = 0;
+            Level34_84D54Field(owner20, signed char *, 0x4C) = 0;
+            Level34_84D54Field(owner20, signed char *, 0x4D) = 0;
+            Level34_84D54Field(owner20, int *, 8) = 0;
+            if ((Level34_84D54Call36220View1((int)&Level34_84D54Data70328View1, privateRecord21 + 0x38, 0, 0x1000) != 0) && (Level34_84D54Field((int)&Level34_84D54Data70328View1, int *, 0xB8) == 0) && ({__asm__ volatile("":::"memory");fieldOrIntermediate3=Level34_84D54Field((int)&Level34_84D54Data70328View1,int*,8);resultOrField2=Level34_84D54Field(privateRecord21,int*,64);resultOrField2<fieldOrIntermediate3;})) {
+                resultOrField2=255;
+                Level34_84D54Keep(resultOrField2);
+                Level34_84D54Field(owner20,unsigned char*,74)=resultOrField2;
+                Level34_84D54Field(owner20, unsigned char *, 0x48) = 0x20U;
+                Level34_84D54Call4F178View1(owner20 + 0xC, Level34_84D54Field(Level34_84D54Field(privateRecord21,int*, 0x2C),int*, 0xC));
+                Level34_84D54Call13D44View1(Level34_84D54Field(Level34_84D54Field(privateRecord21,int*, 0x30),int*, 0xC) + 0x20, 0, 0, 0);
+                return;
+            }
+        }
+        break;
+    case 32:
+        Level34_84D54Field((int)&Level34_84D54Data70328View1, int *, 0x20C) = (int) (Level34_84D54Field((int)&Level34_84D54Data70328View1, int *, 0x20C) | 0x10000002);
+        if (Level34_84D54Data6E048View1 == 1) {
+            Level34_84D54Field(owner20, signed char *, 0x41) = 1;
+            Level34_84D54Field(owner20, signed char *, 0x4C) = 0x20;
+            Level34_84D54Field(owner20, signed char *, 0x4D) = 1;
+            temp_a0_3 = Level34_84D54Field(Level34_84D54Field(privateRecord21,int*, 0x30),int*, 0xC);
+            Level34_84D54Call13AE4View1(temp_a0_3, temp_a0_3 + 0x10);
+            Level34_84D54Call55D24View1(owner20, 7);
+            Level34_84D54Field((int)&Level34_84D54Data70328View1, int *, 0x20C) = (int) (Level34_84D54Field((int)&Level34_84D54Data70328View1, int *, 0x20C) | 0x10002000);
+            Level34_84D54Field(Level34_84D54Field(privateRecord21,int*, 0x2C), short *, 2) = 1;
+            Level34_84D54Field(Level34_84D54Field(privateRecord21,int*, 0x2C), short *, 0xA) = 1;
+            temp_v1_8 = Level34_84D54Field(privateRecord21,int*, 0x2C);
+            temp_v0_4 = (Level34_84D54Field(temp_v1_8, short *, 2) * 0x10) + Level34_84D54Field(temp_v1_8,int*, 0xC);
+            Level34_84D54Field(owner20, unsigned char *, 0x46) = Level34_84D54Call4E880View1(Level34_84D54Field(temp_v0_4, int *, 0) - Level34_84D54Field(owner20, int *, 0xC), Level34_84D54Field(temp_v0_4, int *, 4) - Level34_84D54Field(owner20, int *, 0x10), 0);
+            Level34_84D54Field(privateRecord21, short *, 0x50) = Level34_84D54Call365E4View1(owner20 + 0xC, Level34_84D54Field(Level34_84D54Field(privateRecord21,int*, 0x2C),int*, 0xC) + 0x10, 0x32, -0xA, &originalFrame.sp30);
+            Level34_84D54Field(owner20, unsigned char *, 0x48) = 0x21U;
+            return;
+        }
+        break;
+    case 33:
+        argumentOrField5=0x10000002;
+        Level34_84D54Keep(argumentOrField5);
+        argumentOrField4=0x10000000;
+        Level34_84D54Keep(argumentOrField4);
+        fieldOrIntermediate3=(int)&Level34_84D54Data70328View1+524;
+        resultOrField2=Level34_84D54Field(fieldOrIntermediate3,int*,0);
+        __asm__("":"=r"(argumentOrField4):"0"(argumentOrField4):"memory");
+        argumentOrField4|=0x2000;
+        Level34_84D54Keep(argumentOrField4);
+        resultOrField2|=argumentOrField5;
+        resultOrField2|=argumentOrField4;
+        Level34_84D54Field(fieldOrIntermediate3,int*,0)=resultOrField2;
+        temp_a0_4 = Level34_84D54Field(Level34_84D54Field(privateRecord21,int*, 0x30),int*, 0xC);
+        Level34_84D54Call13AE4View1(temp_a0_4, temp_a0_4 + 0x10);
+        if (Level34_84D54Data6E048View1 == 2) {
+            Level34_84D54Field(owner20, unsigned char *, 0x48) = 0x22U;
+            Level34_84D54Call34F80View1(owner20, 6);
+            return;
+        }
+        break;
+    case 34:
+        argumentOrField7=0x10000002;
+        Level34_84D54Keep(argumentOrField7);
+        argumentOrField6=0x10002000;
+        Level34_84D54Keep(argumentOrField6);
+        valueOrVector16=(int)&originalFrame.sp38;
+        argumentOrField4=valueOrVector16;
+        Level34_84D54Keep(argumentOrField4);
+        fieldOrIntermediate3=(int)&Level34_84D54Data70328View1+524;
+        resultOrField2=Level34_84D54Field(fieldOrIntermediate3,int*,0);
+        argumentOrField5=owner20+12;
+        resultOrField2|=argumentOrField7;
+        resultOrField2|=argumentOrField6;
+        Level34_84D54Field(fieldOrIntermediate3,int*,0)=resultOrField2;
+        Level34_84D54Call4F178View1(argumentOrField4,argumentOrField5);
+        originalFrame.sp40 = Level34_84D54Field(Level34_84D54Field(Level34_84D54Field(privateRecord21,int*, 0x30),int*, 0xC), int *, 8);
+        Level34_84D54Call13AE4View1(Level34_84D54Field(Level34_84D54Field(privateRecord21,int*, 0x30),int*, 0xC), &originalFrame.sp38);
+        Level34_84D54Field(owner20, int *, 0x14) = (int) (Level34_84D54Field(owner20, int *, 0x14) + Level34_84D54Field(privateRecord21, short *, 0x50));
+        Level34_84D54Field(privateRecord21, short *, 0x50) = (short) ((unsigned short) Level34_84D54Field(privateRecord21, short *, 0x50) - 0xA);
+        Level34_84D54Call35DDCView1(owner20, 0x32, 0, 0, 0);
+        if ((Level34_84D54Field(Level34_84D54Field(Level34_84D54Field(privateRecord21,int*, 0x2C),int*, 0xC), int *, 0x28) >= Level34_84D54Field(owner20, int *, 0x14)) && (Level34_84D54Field(privateRecord21, short *, 0x50) < 0)) {
+            Level34_84D54Field(owner20, unsigned char *, 0x48) = 5U;
+            Level34_84D54Call34F40View1(owner20, 5);
+            return;
+        }
+        break;
+    case 5:
+        fieldOrIntermediate3=0x10000002;
+        Level34_84D54Keep(fieldOrIntermediate3);
+        argumentOrField5=0x10000000;
+        Level34_84D54Keep(argumentOrField5);
+        argumentOrField4=(int)&Level34_84D54Data70328View1+524;
+        resultOrField2=Level34_84D54Field(argumentOrField4,int*,0);
+        __asm__("":"=r"(argumentOrField5):"0"(argumentOrField5):"memory");
+        argumentOrField5|=0x2000;
+        Level34_84D54Keep(argumentOrField5);
+        resultOrField2|=fieldOrIntermediate3;
+        fieldOrIntermediate3=Level34_84D54Data6C770View1;
+        resultOrField2|=argumentOrField5;
+        Level34_84D54Field(argumentOrField4,int*,0)=resultOrField2;
+        if(fieldOrIntermediate3!=0) {
+            Level34_84D54Call34F40View1(owner20, 4);
+            Level34_84D54Field(owner20, unsigned char *, 0x48) = 0x24U;
+            Level34_84D54Field(Level34_84D54Field(privateRecord21,int*, 0x2C), short *, 2) = 2;
+            return;
+        }
+        break;
+    case 36:
+        firstFlagBits9=0x10000002;
+        Level34_84D54Keep(firstFlagBits9);
+        secondFlagBits8=0x10002000;
+        Level34_84D54Keep(secondFlagBits8);
+        Level34_84D54Data70328View2.unk17a=Level34_84D54Data70328View2.unk17a|firstFlagBits9|secondFlagBits8;
+        if(Level34_84D54Call35A80View1(owner20,Level34_84D54Field(privateRecord21,void**,44),120,100,0,4,32,4)& 2) {
+            Level34_84D54Call34F40View1(owner20, 0);
+            resultOrField2=Level34_84D54Field(privateRecord21,int*,52);
+            if(resultOrField2<0){
+                resultOrField2=40;
+                goto storeOriginalNextState;
+            }
+            resultOrField2=Level34_84D54Field(privateRecord21,int*,84);
+            if(resultOrField2>=0){
+                resultOrField2=38;
+                goto storeOriginalNextState;
+            }
+            resultOrField2=40;
+        storeOriginalNextState:
+            Level34_84D54Field(owner20,unsigned char*,72)=resultOrField2;
+            __asm__ volatile("":::"$5");
+            Level34_84D54Call3B7B4View1(owner20 + 0x48, 1, (int)&Level34_84D54Data6C7F8View1);
+            Level34_84D54Field(Level34_84D54Field(owner20,int*, 0), signed char *, 5) = 2;
+            resultOrField2=Level34_84D54Field(owner20,unsigned char*,70);
+            __asm__ volatile("":::"$16","memory");
+            valueOrVector16=(int)&originalFrame.sp48;
+            Level34_84D54Keep(valueOrVector16);
+            resultOrField2*=2;
+            fieldOrIntermediate3=Level34_84D54Field((int)&Level34_84D54Data65920View1+resultOrField2,short*,0);
+            __asm__ volatile("":::"$4","memory");
+            argumentOrField4=valueOrVector16;
+            __asm__("":"=r"(argumentOrField4):"0"(argumentOrField4):"memory");
+            resultOrField2=fieldOrIntermediate3*5;
+            Level34_84D54Keep(resultOrField2);
+            resultOrField2=resultOrField2*8-fieldOrIntermediate3;
+            resultOrField2>>=6;
+            originalFrame.sp48=resultOrField2;
+            resultOrField2=Level34_84D54Field(owner20,unsigned char*,70);
+            __asm__ volatile("":::"$5","memory");
+            argumentOrField5=valueOrVector16;
+            __asm__("":"=r"(argumentOrField5):"0"(argumentOrField5):"memory");
+            resultOrField2*=2;
+            fieldOrIntermediate3=Level34_84D54Field((int)&Level34_84D54Data658A0View1+resultOrField2,short*,0);
+            resultOrField2=Level34_84D54Field((int)&Level34_84D54Data70328View1,int*,68);
+            __asm__ volatile("":::"$6","memory");
+            argumentOrField6=owner20+12;
+            originalFrame.sp50=0;
+            __asm__ volatile(""::"m"(originalFrame.sp50):"memory");
+            originalFrame.sp50=resultOrField2;
+            resultOrField2=fieldOrIntermediate3*5;
+            Level34_84D54Keep(resultOrField2);
+            resultOrField2=resultOrField2*8-fieldOrIntermediate3;
+            resultOrField2>>=6;
+            originalFrame.sp4C=resultOrField2;
+            Level34_84D54Call4F194View1(argumentOrField4,argumentOrField5,argumentOrField6);
+            Level34_84D54Call13D44View1(valueOrVector16, (Level34_84D54Field(owner20, unsigned char *, 0x46) + 0x80) & 0xFF, 0, 0);
+            if (Level34_84D54Field((int)&Level34_84D54Data70328View1, int *, 0x280) < 0) {
+                Level34_84D54Field((int)&Level34_84D54Data70328View1, int *, 0x280) = 0;
+            }
+            Level34_84D54Field(owner20, unsigned char *, 0x48) = 0U;
+            argumentOrField4=Level34_84D54Field(privateRecord21,int*,52);
+            if(argumentOrField4){
+                resultOrField2=argumentOrField4*3;
+                Level34_84D54Keep(resultOrField2);
+                resultOrField2=resultOrField2*4-argumentOrField4;
+                goto removeSharedChild;
+            }
+        }
+        break;
+    case 40:
+        resultOrField2=Level34_84D54Field(privateRecord21,int*,44);
+        argumentOrField4=owner20+12;
+        argumentOrField5=Level34_84D54Field(resultOrField2,short*,0);
+        resultOrField2=Level34_84D54Field(resultOrField2,int*,12);
+        argumentOrField5=argumentOrField5*16-16;
+        argumentOrField5=resultOrField2+argumentOrField5;
+        Level34_84D54Call4F178View1(argumentOrField4,argumentOrField5);
+        temp_v1_9 = Level34_84D54Field(privateRecord21,int*, 0x2C);
+        temp_v0_6 = (Level34_84D54Field(temp_v1_9, short *, 0) * 0x10) + Level34_84D54Field(temp_v1_9,int*, 0xC);
+        temp_a3_2 = Level34_84D54Field(temp_v0_6, int *, -0x10);
+        Level34_84D54Field(owner20, unsigned char *, 0x46) = Level34_84D54Call4E880View1(temp_a3_2 - Level34_84D54Field(temp_v0_6, int *, -0x20), Level34_84D54Field(temp_v0_6, int *, -0xC) - Level34_84D54Field(temp_v0_6, int *, -0x1C), 0, temp_a3_2);
+        Level34_84D54Field(owner20, unsigned char *, 0x48) = 0U;
+        temp_v1_10 = Level34_84D54Field(privateRecord21, int *, 0x34);
+        Level34_84D54Field(privateRecord21, unsigned char *, 2) = 1U;
+        if(temp_v1_10){
+            resultOrField2=temp_v1_10*3;
+            Level34_84D54Keep(resultOrField2);
+            resultOrField2=resultOrField2*4-temp_v1_10;
+        removeSharedChild:
+            fieldOrIntermediate3=Level34_84D54Data6C550View1;
+            resultOrField2*=8;
+            argumentOrField4=resultOrField2+fieldOrIntermediate3;
+            if(!(Level34_84D54Field(argumentOrField4,unsigned char*,72)&128))Level34_84D54Call55B18View1(argumentOrField4);
+        }
+        return;
+    case 38:
+        temp_a0_7 = (Level34_84D54Field(privateRecord21, int *, 0x58) * 0x58) + Level34_84D54Data6C550View1;
+        if (!(Level34_84D54Field(temp_a0_7, unsigned char *, 0x48) & 0x80)) {
+            Level34_84D54Call55B18View1(temp_a0_7);
+        }
+        temp_a0_8 = (Level34_84D54Field(privateRecord21, int *, 0x34) * 0x58) + Level34_84D54Data6C550View1;
+        if (!(Level34_84D54Field(temp_a0_8, unsigned char *, 0x48) & 0x80)) {
+            Level34_84D54Call55B18View1(temp_a0_8);
+        }
+        temp_a0_9 = (Level34_84D54Field(privateRecord21, int *, 0x54) * 0x58) + Level34_84D54Data6C550View1;
+        if (!(Level34_84D54Field(temp_a0_9, unsigned char *, 0x48) & 0x80)) {
+            Level34_84D54Call55B18View1(temp_a0_9);
+        }
+        Level34_84D54Field(owner20, unsigned char *, 0x48) = 0x2AU;
+        Level34_84D54Field(owner20, int *, 8) = 0;
+        Level34_84D54Field(owner20, signed char *, 0x41) = 0;
+        Level34_84D54Field(owner20, signed char *, 0x4C) = 0;
+        Level34_84D54Field(owner20, signed char *, 0x4D) = 0;
+        return;
+    case 44:
+        resultOrField2=255;
+        Level34_84D54Keep(resultOrField2);
+        Level34_84D54Field(owner20,unsigned char*,74)=resultOrField2;
+        Level34_84D54Field(owner20, int *, 8) = 0;
+        Level34_84D54Field(owner20, signed char *, 0x41) = 0;
+        Level34_84D54Field(owner20, signed char *, 0x4C) = 0;
+        Level34_84D54Field(owner20, signed char *, 0x4D) = 0;
+        Level34_84D54Field(owner20, unsigned char *, 0x48) = 0x2DU;
+        return;
+    case 45:
+        if (Level34_84D54Field((int)&Level34_84D54Data70328View1, int *, 0xB8) == 0) {
+            Level34_84D54Field(privateRecord21, int *, 0x60) = (int) Level34_84D54Field((int)&Level34_84D54Data70328View1, int *, 8);
+        }
+        break;
+    }
+}
+#undef Level34_84D54Field
+#undef Level34_84D54Keep
+
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI-generated; not human-reviewed.
+ * Retail source: SCUS-94467 USA Rev0, level34 80085C2C..80086B20.
+ * Original native words:957; selectors:27; padding:one zero word; frame:344.
+ * Locals and integer arithmetic retain the original PS1 widths and order.
+ * The two unsigned add/subtract identities preserve every height bit. Their
+ * frozen-GCC expansion retains the original automatic spill frame and118home;
+ * no explicit stack home, incoming saved value or reserve object is used.
+ * Register-oriented saved names describe compiler lifetimes, not game labels.
+ * Native/source/helper/linked and complete retail hashes are mandatory gates.
+ */
+#define Level34_85C2CField(p, t, o) (*(t)((unsigned char *)(p) + (o)))
+void Level34_85C2C_func_80013AE4(void *, void *) __asm__("func_80013AE4");
+void Level34_85C2C_func_80013B7C(int) __asm__("func_80013B7C");
+void Level34_85C2C_func_80034F40(void *, int) __asm__("func_80034F40");
+void Level34_85C2C_func_80034F80(void *, int) __asm__("func_80034F80");
+int Level34_85C2C_func_800359A4(void *, int) __asm__("func_800359A4");
+int Level34_85C2C_func_80035A80(void *, void *, int, int, int, int, int,
+                                int) __asm__("func_80035A80");
+int Level34_85C2C_func_80035D38(void *) __asm__("func_80035D38");
+int Level34_85C2C_func_8003636C(int, int) __asm__("func_8003636C");
+int Level34_85C2C_func_80037BBC(void *, int) __asm__("func_80037BBC");
+int Level34_85C2C_func_8003BABC(void *, int, int) __asm__("func_8003BABC");
+int Level34_85C2C_func_8004E880(int, int, int) __asm__("func_8004E880");
+void Level34_85C2C_func_8004EA90(void *, void *, void *) __asm__("func_8004EA90");
+void Level34_85C2C_func_8004ED6C(void *, void *, void *) __asm__("func_8004ED6C");
+void Level34_85C2C_func_8004F178(void *, void *) __asm__("func_8004F178");
+void Level34_85C2C_func_8004F194(void *, void *, void *) __asm__("func_8004F194");
+void Level34_85C2C_func_800512E4(void *, int, int) __asm__("func_800512E4");
+void Level34_85C2C_func_80055B18(void *) __asm__("func_80055B18");
+void Level34_85C2C_func_80055D24(void *, int) __asm__("func_80055D24");
+void Level34_85C2C_func_80055F14(void *, int, void *) __asm__("func_80055F14");
+extern int Level34_85C2C_D_800658A0 __asm__("D_800658A0");
+extern int Level34_85C2C_D_80065920 __asm__("D_80065920");
+extern int Level34_85C2C_D_8006C550 __asm__("D_8006C550");
+extern int Level34_85C2C_D_8006C58C __asm__("D_8006C58C");
+extern int Level34_85C2C_D_8006C640 __asm__("D_8006C640");
+extern unsigned char Level34_85C2C_D_8006C7B4 __asm__("D_8006C7B4");
+extern int Level34_85C2C_D_8006E048 __asm__("D_8006E048");
+extern int Level34_85C2C_D_8006E344 __asm__("D_8006E344");
+extern int Level34_85C2C_D_8006E788 __asm__("D_8006E788");
+extern int Level34_85C2C_D_80070300 __asm__("D_80070300");
+extern int Level34_85C2C_D_80070328 __asm__("D_80070328");
+extern void *(*Level34_85C2C_SpawnParticle)(int, int, void *, void *)__asm__("SpawnParticle");
+extern int (*Level34_85C2C_unk_ovlheader_800743B4)(void *, int, int, int, int, int, int, int,
+                                                   void *,
+                                                   void *) __asm__("unk_ovlheader_800743B4");
+void func_level_34_80085C2C(void *input) {
+    register int result __asm__("$2"), scratch __asm__("$3"), argument0 __asm__("$4"),
+        argument1 __asm__("$5"), argument2 __asm__("$6"), argument3 __asm__("$7"),
+        saved19 __asm__("$19"), saved20 __asm__("$20");
+    register void *owner __asm__("$18");
+    register int privateState __asm__("$22"), saved16 __asm__("$16"), saved17 __asm__("$17"),
+        saved21 __asm__("$21"), saved23 __asm__("$23");
+    struct {
+        int sp28, sp2C, sp30, sp34, sp38, sp3C, sp40, sp44, sp48, sp4C, sp50, sp54, sp58, sp5C,
+            sp60, sp64, sp68, sp6C, sp70, sp74, sp78, sp7C, sp80, sp84, sp88, sp8C, sp90, sp94,
+            sp98, sp9C, spA0, spA4, spA8, spAC, spB0, spB4, spB8, spBC, spC0, spC4, spC8, spCC,
+            spD0, spD4, spD8, spDC, spE0, spE4, spE8, spEC, spF0, spF4, spF8, spFC, sp100, sp104,
+            sp108, sp10C, sp110;
+    } locals;
+
+    int retainedHeight;
+    int var_a2;
+    int temp_a2;
+    int temp_fp_2;
+    int temp_fp;
+    int temp_v0_3;
+    int temp_v0_8;
+
+    int temp_v0_9;
+    int temp_v0_6;
+    int temp_a0;
+    int temp_v0_2;
+    int temp_v0_5;
+    int temp_v1;
+    int temp_v1_3;
+    int temp_v1_4;
+    int var_v0;
+    int temp_v0_4;
+    int temp_v0_7;
+    int temp_v1_2;
+    owner = input;
+    __asm__("" : "=r"(owner) : "0"(owner));
+    privateState = Level34_85C2CField(owner, void **, 0);
+    if (Level34_85C2CField(owner, unsigned char *, 0x49) == 0) {
+        if (Level34_85C2C_D_8006C640 == 0) {
+            if (!(Level34_85C2C_D_8006C7B4 & 1)) {
+                argument0 = owner;
+                if (!(Level34_85C2CField((int)&Level34_85C2C_D_80070300, unsigned char *,
+                                         Level34_85C2C_D_8006C58C) &
+                      1)) {
+                    goto block_5;
+                }
+                goto block_71;
+            }
+            goto block_70;
+        }
+    block_5:
+        Level34_85C2CField(owner, unsigned char *, 0x49) = 1U;
+        Level34_85C2CField(owner, signed char *, 0x4A) = 0x20;
+        Level34_85C2CField(owner, signed char *, 0x41) = 0;
+        Level34_85C2CField(owner, signed char *, 0x4C) = 0;
+        Level34_85C2CField(owner, signed char *, 0x4D) = 0;
+        Level34_85C2CField(owner, int *, 8) = 0;
+        Level34_85C2CField(owner, unsigned char *, 0x48) = 0x14U;
+        goto block_6;
+    }
+block_6:
+    temp_v1 = Level34_85C2CField(owner, unsigned char *, 0x48);
+    switch (temp_v1) {
+    case 20:
+        result = Level34_85C2CField(privateState, int *, 36) * 88 + Level34_85C2C_D_8006C550;
+        argument0 = Level34_85C2CField(result, unsigned char *, 72);
+        result = 4;
+        __asm__("" : "=r"(argument0) : "0"(argument0), "r"(result));
+        scratch = argument0 & 255;
+        if ((scratch == result) || (result = argument0 & 128)) {
+            Level34_85C2C_func_80055D24(owner, 7);
+            Level34_85C2CField(owner, signed char *, 0x41) = 1;
+            Level34_85C2CField(owner, signed char *, 0x4C) = 0x20;
+            Level34_85C2CField(owner, signed char *, 0x4D) = 1;
+            Level34_85C2CField(owner, signed char *, 0x4E) = 0x20;
+            Level34_85C2CField(owner, unsigned char *, 0x48) = 0U;
+            Level34_85C2C_func_80034F40(owner, 0);
+            Level34_85C2CField(
+                ((Level34_85C2CField(privateState, int *, 0x28) * 0x58) + Level34_85C2C_D_8006C550),
+                signed char *, 0x48) = 1;
+            Level34_85C2CField(
+                ((Level34_85C2CField(privateState, int *, 0x28) * 0x58) + Level34_85C2C_D_8006C550),
+                signed char *, 0x4A) = 0x20;
+            Level34_85C2CField(
+                ((Level34_85C2CField(privateState, int *, 0x2C) * 0x58) + Level34_85C2C_D_8006C550),
+                signed char *, 0x48) = 1;
+            Level34_85C2CField(
+                ((Level34_85C2CField(privateState, int *, 0x2C) * 0x58) + Level34_85C2C_D_8006C550),
+                signed char *, 0x4A) = 0x20;
+            return;
+        }
+    default:
+        return;
+    case 0:
+        if (Level34_85C2C_func_80037BBC(owner, 0) != 0) {
+            if (Level34_85C2CField(privateState, unsigned char *, 2) == 0) {
+                Level34_85C2C_D_8006C7B4 |= 1;
+            }
+            Level34_85C2C_func_800512E4(owner, 0, 1);
+            Level34_85C2CField(owner, unsigned char *, 0x48) = 1U;
+            return;
+        }
+        break;
+    case 1:
+        if (Level34_85C2C_D_8006E344 != 1) {
+            Level34_85C2CField(owner, unsigned char *, 0x48) = 0U;
+            Level34_85C2C_func_80034F40(owner, 0);
+            Level34_85C2CField(owner, unsigned char *, 0x48) = 0x19U;
+            Level34_85C2CField(privateState, int *, 0x20) = 0x78;
+            return;
+        }
+        break;
+    case 25:
+        Level34_85C2CField((int)&Level34_85C2C_D_80070328, int *, 0x20C) = 0x10000002;
+        if (Level34_85C2C_func_800359A4(privateState + 0x20, 4) != 0) {
+            Level34_85C2C_func_8004F178(&locals.sp28,
+                                        ((int)&Level34_85C2C_D_80070328 + 0x20C) - 0x20C);
+            argument0 = &locals.sp28;
+            argument1 = owner + 0xC;
+            locals.sp30 += 0x258;
+            goto block_30;
+        }
+        scratch = (int)&Level34_85C2C_D_8006E788;
+        argument0 = Level34_85C2CField(scratch, int *, 0);
+        scratch += 4;
+        if (!argument0)
+            return;
+        argument1 = 272;
+        do {
+            result = Level34_85C2CField(argument0, short *, 54);
+            if (result == argument1)
+                goto originalFoundRoot25;
+            argument0 = Level34_85C2CField(scratch, int *, 0);
+            scratch += 4;
+        } while (argument0);
+        return;
+    case 26:
+        Level34_85C2CField((int)&Level34_85C2C_D_80070328, int *, 0x20C) = 0x10000002;
+        argument0 = (int)&Level34_85C2C_D_8006E788;
+        scratch = Level34_85C2CField(argument0, int *, 0);
+        argument0 += 4;
+        if (!scratch)
+            goto block_29;
+        argument2 = 272;
+        argument1 = 1280;
+        do {
+            result = Level34_85C2CField(scratch, short *, 54);
+            if (result == argument2) {
+                Level34_85C2CField(privateState, int *, 52) = scratch;
+                result = Level34_85C2CField(scratch, unsigned short *, 72);
+                if (result != argument1)
+                    return;
+            }
+            scratch = Level34_85C2CField(argument0, int *, 0);
+            argument0 += 4;
+        } while (scratch);
+    block_29:
+        Level34_85C2C_func_8004F178(&locals.sp38, (int)&Level34_85C2C_D_80070328);
+        argument0 = &locals.sp38;
+        argument1 = owner + 0xC;
+        locals.sp40 += 0x258;
+    block_30:
+        Level34_85C2C_func_80013AE4(argument0, argument1);
+        Level34_85C2CField(owner, unsigned char *, 72) = 21;
+        return;
+        break;
+    case 21:
+        saved17 = owner + 0xC;
+        if (Level34_85C2C_D_8006E048 == 1) {
+            Level34_85C2C_func_8004F178(
+                saved17,
+                Level34_85C2CField(Level34_85C2CField(privateState, void **, 0x30), void **, 0xC));
+            Level34_85C2CField(Level34_85C2CField(privateState, void **, 0x30), short *, 2) = 1;
+            Level34_85C2CField(Level34_85C2CField(privateState, void **, 0x30), short *, 0xA) = 1;
+            scratch = Level34_85C2CField(privateState, int *, 48);
+            __asm__("" ::: "$4", "memory");
+            argument0 = Level34_85C2CField(owner, int *, 12);
+            argument1 = Level34_85C2CField(owner, int *, 16);
+            result = Level34_85C2CField(scratch, short *, 2);
+            scratch = Level34_85C2CField(scratch, int *, 12);
+            result *= 16;
+            result += scratch;
+            __asm__("" : "=r"(result) : "0"(result));
+            scratch = Level34_85C2CField(result, int *, 0);
+            result = Level34_85C2CField(result, int *, 4);
+            argument0 = scratch - argument0;
+            argument1 = result - argument1;
+            result = Level34_85C2C_func_8004E880(argument0, argument1, 0);
+            argument1 = saved17;
+            Level34_85C2CField(owner, unsigned char *, 70) = result;
+            scratch = Level34_85C2CField(privateState, int *, 44);
+            saved16 = Level34_85C2C_D_8006C550;
+            result = scratch * 88;
+            saved16 += result;
+            Level34_85C2C_func_8004F178(saved16 + 12, argument1);
+            argument0 = saved16;
+            argument1 = 0;
+            argument2 = 0;
+            __asm__(""
+                    : "=r"(argument2)
+                    : "0"(argument2), "r"(argument1), "r"(argument0)
+                    : "$3", "memory");
+            scratch = Level34_85C2CField(owner, unsigned char *, 70);
+            __asm__("" ::"r"(argument2) : "$2", "memory");
+            result = 3;
+            Level34_85C2CField(argument0, unsigned char *, 72) = result;
+            Level34_85C2CField(argument0, unsigned char *, 70) = scratch;
+            Level34_85C2C_func_8003BABC(argument0, argument1, argument2);
+            argument1 = saved17;
+            scratch = Level34_85C2CField(privateState, int *, 40);
+            saved16 = Level34_85C2C_D_8006C550;
+            result = scratch * 88;
+            saved16 += result;
+            Level34_85C2C_func_8004F178(saved16 + 12, argument1);
+            argument0 = (int)owner;
+            argument1 = 2;
+            scratch = Level34_85C2CField(argument0, unsigned char *, 70);
+            __asm__("" ::"r"(argument1) : "$2", "memory");
+            result = 2;
+            Level34_85C2CField(saved16, unsigned char *, 72) = result;
+            Level34_85C2CField(saved16, unsigned char *, 70) = scratch;
+            Level34_85C2CField(owner, unsigned char *, 0x48) = 0x16U;
+            Level34_85C2CField(owner, int *, 0x14) =
+                (int)(Level34_85C2CField(owner, int *, 0x14) + 0x200);
+            Level34_85C2CField(privateState, int *, 0x20) = 0x64;
+            Level34_85C2C_func_80034F80(argument0, argument1);
+            Level34_85C2C_func_8004F178(&locals.sp48, (int)&Level34_85C2C_D_80070328);
+            locals.sp50 += 0x258;
+            Level34_85C2C_func_80013AE4(&locals.sp48, saved17);
+            return;
+        }
+        break;
+    case 22:
+        temp_fp = Level34_85C2C_func_80035D38(owner);
+        argument1 = 5;
+        argument0 = Level34_85C2CField(privateState, int *, 44);
+        argument2 = Level34_85C2C_D_8006C550;
+        scratch = argument0 * 88;
+        saved23 = argument2 + scratch;
+        scratch = Level34_85C2CField(privateState, int *, 40);
+        argument0 = saved23;
+        result = scratch * 88;
+        saved17 = argument2 + result;
+        Level34_85C2C_func_80055D24(argument0, argument1);
+        result = Level34_85C2CField(owner, unsigned char *, 69);
+        result = (unsigned int)result < 16;
+        argument0 = saved23 + 12;
+        if (result) {
+            saved16 = (int)owner + 12;
+            Level34_85C2C_func_8004F178(argument0, saved16);
+            Level34_85C2CField(saved23, unsigned char *, 0x46) =
+                (unsigned char)Level34_85C2CField(owner, unsigned char *, 0x46);
+            temp_v0_2 = Level34_85C2CField(owner, unsigned char *, 0x45) + 1;
+            Level34_85C2CField(owner, unsigned char *, 0x45) = temp_v0_2;
+            Level34_85C2CField(saved23, unsigned char *, 0x45) = temp_v0_2;
+            temp_v0_3 = temp_fp + (Level34_85C2CField(owner, unsigned char *, 0x45) * 0x14);
+            Level34_85C2CField(saved23, int *, 0x14) = temp_v0_3;
+            Level34_85C2CField(owner, int *, 0x14) = temp_v0_3;
+            Level34_85C2C_func_8004F178(saved17 + 0xC, saved16);
+            Level34_85C2CField(saved17, unsigned char *, 0x46) =
+                (unsigned char)Level34_85C2CField(owner, unsigned char *, 0x46);
+            Level34_85C2CField(saved17, unsigned char *, 0x45) =
+                (unsigned char)Level34_85C2CField(owner, unsigned char *, 0x45);
+            Level34_85C2CField(owner, int *, 0x14) =
+                (int)(Level34_85C2CField(owner, int *, 0x14) + 0x200);
+        }
+        argument3 = (int)&locals.sp48;
+        result = Level34_85C2CField(owner, unsigned char *, 70);
+        __asm__("" ::: "$4", "memory");
+        argument0 = argument3;
+        __asm__("" : "=r"(argument3) : "0"(argument3), "r"(argument0));
+        result = (result + 128) & 255;
+        result *= 2;
+        scratch = Level34_85C2CField((int)&Level34_85C2C_D_80065920, short *, result);
+        __asm__("" ::: "$5", "memory");
+        argument1 = (int)owner + 12;
+        result = (scratch * 5) >> 8;
+        locals.sp58 = result;
+        result = Level34_85C2CField(owner, unsigned char *, 70);
+        __asm__("" ::: "$6", "memory");
+        argument2 = argument3;
+        __asm__("" : "=r"(argument3) : "0"(argument3), "r"(argument2));
+        result = (result + 128) & 255;
+        result *= 2;
+        scratch = Level34_85C2CField((int)&Level34_85C2C_D_800658A0, short *, result);
+        __asm__("" ::: "$21", "memory");
+        saved21 = 1;
+        __asm__("" : "=r"(saved21) : "0"(saved21) : "memory");
+        locals.sp60 = 0;
+        result = (scratch * 5) >> 8;
+        locals.sp5C = result;
+        result = Level34_85C2CField(owner, unsigned char *, 70);
+        __asm__("" ::: "$20", "memory");
+        saved20 = (int)&locals.sp70;
+        __asm__("" : "=r"(saved20) : "0"(saved20) : "memory");
+        result = (result + 128) & 255;
+        result *= 2;
+        scratch = Level34_85C2CField((int)&Level34_85C2C_D_80065920, short *, result);
+        __asm__("" ::: "$16", "memory");
+        saved16 = argument3;
+        result = (scratch * 25) >> 7;
+        locals.sp48 = result;
+        result = Level34_85C2CField(owner, unsigned char *, 70);
+        __asm__("" ::: "$7", "memory");
+        argument3 = (int)&locals.sp58;
+        __asm__("" : "=r"(argument3) : "0"(argument3));
+        result = (result + 128) & 255;
+        result *= 2;
+        scratch = Level34_85C2CField((int)&Level34_85C2C_D_800658A0, short *, result);
+        __asm__("" ::: "$19", "memory");
+        saved19 = argument3;
+        locals.sp50 = 0;
+        result = (scratch * 25) >> 7;
+        locals.sp4C = result;
+        Level34_85C2C_func_8004F194(argument0, argument1, argument2);
+        locals.sp50 = temp_fp;
+        Level34_85C2C_SpawnParticle(1, 0, saved16, saved19);
+        do {
+            Level34_85C2C_func_80055F14(saved23, saved21, &locals.sp88);
+            saved17 = 0;
+        loop_37:
+            result = Level34_85C2C_func_8003636C(0, 255);
+            argument0 = (int)&locals.sp68;
+            argument1 = saved20;
+            Level34_85C2CField(&locals.sp68, unsigned char *, 0) = result;
+            result = Level34_85C2CField(owner, unsigned char *, 69);
+            argument2 = 0;
+            Level34_85C2CField(&locals.sp68, unsigned char *, 1) = result;
+            __asm__(""
+                    : "=r"(saved17)
+                    : "0"(saved17), "r"(argument0), "r"(argument1), "r"(argument2)
+                    : "memory");
+            result = Level34_85C2CField(owner, unsigned char *, 70);
+            saved17++;
+            Level34_85C2CField(&locals.sp68, unsigned char *, 2) = result;
+            Level34_85C2C_func_8004EA90(argument0, argument1, argument2);
+            locals.sp48 = 0;
+            locals.sp4C = 0x32;
+            locals.sp50 = 0;
+            Level34_85C2C_func_8004ED6C(saved20, saved16, saved16);
+            locals.sp58 = -0x12C;
+            locals.sp5C = 0xC8;
+            locals.sp60 = 0;
+            Level34_85C2C_func_8004ED6C(saved20, saved19, saved19);
+            Level34_85C2C_func_8004F194(saved16, &locals.sp88, saved16);
+            Level34_85C2C_SpawnParticle(1, 0x55, saved16, saved19);
+            if (saved17 < 3) {
+                goto loop_37;
+            }
+            saved21 += 1;
+        } while (saved21 < 3);
+        Level34_85C2C_func_8004F178(saved16, (int)&Level34_85C2C_D_80070328);
+        locals.sp50 += 0x258;
+        Level34_85C2C_func_80013AE4(saved16, owner + 0xC);
+        if (Level34_85C2C_func_800359A4(privateState + 0x20, 4) != 0) {
+            Level34_85C2CField(saved23, signed char *, 0x48) = 4;
+            Level34_85C2CField(owner, unsigned char *, 0x48) = 0x17U;
+            Level34_85C2CField(owner, unsigned char *, 0x49) = 2U;
+            return;
+        }
+        break;
+    case 23:
+        retainedHeight = (int)(((unsigned)(Level34_85C2C_func_80035D38(owner))) +
+                               ((unsigned)__builtin_constant_p(1) << 16) - 0x10000u);
+        result =
+            Level34_85C2C_func_80035A80(owner, Level34_85C2CField(privateState, int *, 48), 220,
+                                        200, 0, Level34_85C2C_D_8006C640 & 1, 64, 0x20000);
+        result &= 2;
+        argument0 = Level34_85C2CField(privateState, int *, 44);
+        argument1 = Level34_85C2C_D_8006C550;
+        scratch = argument0 * 88;
+        argument0 = Level34_85C2CField(privateState, int *, 40);
+        saved23 = argument1 + scratch;
+        scratch = argument0 * 88;
+        temp_fp_2 = argument1 + scratch;
+        if (result) {
+            saved16 = 0;
+            do {
+                result = Level34_85C2C_func_8003636C(0, 512);
+                scratch = Level34_85C2CField(owner, int *, 12);
+                argument0 = 0;
+                argument1 = 512;
+                scratch -= 256;
+                __asm__("" : "=r"(scratch) : "0"(scratch), "r"(argument0), "r"(argument1));
+                scratch += result;
+                Level34_85C2CField(owner, int *, 12) = scratch;
+                result = Level34_85C2C_func_8003636C(argument0, argument1);
+                scratch = Level34_85C2CField(owner, int *, 16);
+                argument0 = 0;
+                argument1 = 512;
+                scratch -= 256;
+                __asm__("" : "=r"(scratch) : "0"(scratch), "r"(argument0), "r"(argument1));
+                scratch += result;
+                Level34_85C2CField(owner, int *, 16) = scratch;
+                result = Level34_85C2C_func_8003636C(argument0, argument1);
+                {
+                    int (*completeSpawnTarget)();
+                    argument0 = 1;
+                    argument1 = 12;
+                    argument2 = (int)owner;
+                    argument3 = 5;
+                    scratch = Level34_85C2CField(owner, int *, 20);
+                    completeSpawnTarget = Level34_85C2C_SpawnParticle;
+                    __asm__(""
+                            : "=r"(result)
+                            : "0"(result), "r"(completeSpawnTarget), "r"(scratch), "r"(argument0),
+                              "r"(argument1), "r"(argument2), "r"(argument3));
+                    scratch -= 256;
+                    scratch += result;
+                    Level34_85C2CField(owner, int *, 20) = scratch;
+                    temp_v0_4 = completeSpawnTarget(argument0, argument1, argument2, argument3);
+                }
+                if (temp_v0_4 != 0) {
+                    Level34_85C2CField(temp_v0_4, unsigned char *, 0xA) = 0x96;
+                    Level34_85C2CField(temp_v0_4, short *, 0x18) =
+                        (short)(Level34_85C2CField(temp_v0_4, short *, 0x18) * 3);
+                    Level34_85C2CField(temp_v0_4, short *, 0x1A) =
+                        (short)(Level34_85C2CField(temp_v0_4, short *, 0x1A) * 3);
+                    Level34_85C2CField(temp_v0_4, short *, 0x1C) =
+                        (short)(Level34_85C2CField(temp_v0_4, short *, 0x1C) * 3);
+                }
+                saved16 += 1;
+            } while (saved16 < 0x14);
+            argument0 = temp_fp_2;
+            Level34_85C2CField(owner, signed char *, 0x41) = 0;
+            Level34_85C2CField(owner, signed char *, 0x4C) = 0;
+            Level34_85C2CField(owner, signed char *, 0x4D) = 0;
+            Level34_85C2CField(privateState, int *, 0x20) = 0x28;
+            Level34_85C2CField(owner, unsigned char *, 0x48) = 0x18U;
+            Level34_85C2CField(saved23, signed char *, 0x48) = 5;
+            goto block_71;
+        } else {
+            temp_v1_3 = Level34_85C2CField(owner, unsigned char *, 0x49);
+            if (temp_v1_3 == 2) {
+                saved21 = 1;
+                saved20 = (int)&locals.spB8;
+                saved16 = (int)&locals.sp98;
+                saved19 = (int)&locals.spA8;
+                do {
+                    Level34_85C2C_func_80055F14(saved23, saved21, &locals.spD0);
+                    saved17 = 0;
+                loop_50:
+                    result = Level34_85C2C_func_8003636C(0, 255);
+                    argument0 = (int)&locals.sp68;
+                    argument1 = saved20;
+                    Level34_85C2CField(&locals.sp68, unsigned char *, 0) = result;
+                    result = Level34_85C2CField(owner, unsigned char *, 69);
+                    argument2 = 0;
+                    Level34_85C2CField(&locals.sp68, unsigned char *, 1) = result;
+                    __asm__(""
+                            : "=r"(saved17)
+                            : "0"(saved17), "r"(argument0), "r"(argument1), "r"(argument2)
+                            : "memory");
+                    result = Level34_85C2CField(owner, unsigned char *, 70);
+                    saved17++;
+                    Level34_85C2CField(&locals.sp68, unsigned char *, 2) = result;
+                    Level34_85C2C_func_8004EA90(argument0, argument1, argument2);
+                    locals.sp98 = 0;
+                    locals.sp9C = 0x32;
+                    locals.spA0 = 0;
+                    Level34_85C2C_func_8004ED6C(saved20, saved16, saved16);
+                    locals.spA8 = -0x12C;
+                    locals.spAC = 0xC8;
+                    locals.spB0 = 0;
+                    Level34_85C2C_func_8004ED6C(saved20, saved19, saved19);
+                    Level34_85C2C_func_8004F194(saved16, &locals.spD0, saved16);
+                    Level34_85C2C_SpawnParticle(1, 85, saved16, saved19);
+                    if (saved17 < 3) {
+                        goto loop_50;
+                    }
+                    saved21 += 1;
+                } while (saved21 < 3);
+                temp_v1_4 = Level34_85C2CField(owner, unsigned char *, 0x45);
+                if (temp_v1_4 < 0x20U) {
+                    Level34_85C2CField(owner, unsigned char *, 0x45) =
+                        (unsigned char)(temp_v1_4 + 2);
+                } else {
+                    var_v0 = 3;
+                    goto block_59;
+                }
+            } else if ((temp_v1_3 == 3) &&
+                       ((temp_v0_5 = Level34_85C2CField(owner, unsigned char *, 0x45) - 1,
+                         Level34_85C2CField(owner, unsigned char *, 0x45) = temp_v0_5,
+                         temp_v0_6 = temp_v0_5 & 0xFF, (temp_v0_6 == 0)) ||
+                        (temp_v0_6 >= 0x81U))) {
+                var_v0 = 1;
+                Level34_85C2CField(owner, unsigned char *, 0x45) = 0U;
+            block_59:
+                Level34_85C2CField(owner, unsigned char *, 0x49) = var_v0;
+            }
+            if (retainedHeight != 0) {
+                saved16 = (int)&locals.sp98;
+                __asm__("" : "=r"(saved16) : "0"(saved16));
+                locals.spA8 =
+                    (int)(Level34_85C2CField(
+                              (int)&Level34_85C2C_D_80065920, short *,
+                              (((Level34_85C2CField(owner, unsigned char *, 0x46) + 0x80) & 0xFF) *
+                               2)) *
+                          5) >>
+                    8;
+
+                locals.spAC = ({
+                    scratch = Level34_85C2CField(
+                        (int)&Level34_85C2C_D_800658A0, short *,
+                        (((Level34_85C2CField(owner, unsigned char *, 0x46) + 0x80) & 0xFF) * 2));
+                    __asm__("" ::: "$2", "memory");
+                    locals.spB0 = 0;
+                    (scratch * 5) >> 8;
+                });
+                result = Level34_85C2CField(owner, unsigned char *, 70);
+                result = (result + 128) & 255;
+                result *= 2;
+                scratch = Level34_85C2CField((int)&Level34_85C2C_D_80065920, short *, result);
+                __asm__("" ::: "$4", "memory");
+                argument0 = saved16;
+                __asm__("" : "=r"(saved16) : "0"(saved16), "r"(argument0));
+                result = (scratch * 25) >> 7;
+                locals.sp98 = result;
+                result = Level34_85C2CField(owner, unsigned char *, 70);
+                __asm__("" ::: "$5", "memory");
+                argument1 = (int)owner + 12;
+                result = (result + 128) & 255;
+                result *= 2;
+                scratch = Level34_85C2CField((int)&Level34_85C2C_D_800658A0, short *, result);
+                __asm__("" ::: "$6", "memory");
+                argument2 = saved16;
+                locals.spA0 = 0;
+                result = (scratch * 25) >> 7;
+                locals.sp9C = result;
+                Level34_85C2C_func_8004F194(argument0, argument1, argument2);
+                locals.spA0 = (int)(((unsigned)(retainedHeight)) +
+                                    ((unsigned)__builtin_constant_p(1) << 16) - 0x10000u);
+                Level34_85C2C_SpawnParticle(1, 0, saved16, &locals.spA8);
+                temp_v0_7 = Level34_85C2C_SpawnParticle(1, 50, saved16, 0);
+                if (temp_v0_7 != 0) {
+                    Level34_85C2CField(temp_v0_7, signed char *, 2) = 0x64;
+                    Level34_85C2CField(temp_v0_7, signed char *, 0xA) = 0x50;
+                }
+            }
+            __asm__("" ::: "$4", "memory");
+            argument0 = saved23 + 12;
+            __asm__("" ::"r"(argument0) : "$17", "memory");
+            saved17 = (int)owner + 12;
+            Level34_85C2C_func_8004F178(argument0, saved17);
+            Level34_85C2CField(saved23, unsigned char *, 0x46) =
+                (unsigned char)Level34_85C2CField(owner, unsigned char *, 0x46);
+            Level34_85C2CField(saved23, unsigned char *, 0x45) =
+                (unsigned char)Level34_85C2CField(owner, unsigned char *, 0x45);
+            Level34_85C2C_func_8004F178(temp_fp_2 + 0xC, saved17);
+            Level34_85C2CField(temp_fp_2, unsigned char *, 0x46) =
+                (unsigned char)Level34_85C2CField(owner, unsigned char *, 0x46);
+            Level34_85C2CField(temp_fp_2, unsigned char *, 0x45) =
+                (unsigned char)Level34_85C2CField(owner, unsigned char *, 0x45);
+            if (retainedHeight != 0) {
+                temp_v0_8 =
+                    retainedHeight + (Level34_85C2CField(owner, unsigned char *, 0x45) * 0x14);
+                Level34_85C2CField(saved23, int *, 0x14) = temp_v0_8;
+                Level34_85C2CField(temp_fp_2, int *, 0x14) = temp_v0_8;
+                Level34_85C2CField(owner, int *, 0x14) = (int)(temp_v0_8 + 0x200);
+            } else {
+                Level34_85C2CField(saved23, int *, 0x14) =
+                    (int)(Level34_85C2CField(saved23, int *, 0x14) - 0x200);
+                Level34_85C2CField(temp_fp_2, int *, 0x14) =
+                    (int)(Level34_85C2CField(temp_fp_2, int *, 0x14) - 0x200);
+                result = Level34_85C2C_func_8003636C(0, 255);
+                Level34_85C2CField(&locals.sp68, unsigned char *, 0) = result;
+                result = Level34_85C2CField(owner, unsigned char *, 69);
+                argument0 = 0;
+                Level34_85C2CField(&locals.sp68, unsigned char *, 1) = result;
+                result = Level34_85C2CField(owner, unsigned char *, 70);
+                __asm__("" ::: "$5", "memory");
+                argument1 = 256;
+                __asm__("" : "=r"(argument1) : "0"(argument1) : "memory");
+                locals.sp98 = 0;
+                Level34_85C2CField(&locals.sp68, unsigned char *, 2) = result;
+                result = Level34_85C2C_func_8003636C(argument0, argument1);
+                argument0 = (int)&locals.sp68;
+                __asm__("" ::"r"(argument0) : "$16", "memory");
+                saved16 = (int)&locals.spE0;
+                argument1 = saved16;
+                argument2 = 0;
+                __asm__(""
+                        : "=r"(result)
+                        : "0"(result), "r"(argument0), "r"(argument1), "r"(argument2)
+                        : "memory");
+                result += 256;
+                locals.sp9C = result;
+                locals.spA0 = 0;
+                Level34_85C2C_func_8004EA90(argument0, argument1, argument2);
+                argument0 = saved16;
+                saved16 = (int)&locals.sp98;
+                Level34_85C2C_func_8004ED6C(argument0, saved16, saved16);
+                Level34_85C2C_func_8004F194(saved16, saved17, saved16);
+                result = Level34_85C2C_func_8003636C(0, 200);
+                scratch = Level34_85C2CField(owner, unsigned char *, 70);
+                argument0 = 0;
+                scratch = (scratch + 128) & 255;
+                scratch *= 2;
+                argument2 = Level34_85C2CField((int)&Level34_85C2C_D_80065920, short *, scratch);
+                argument1 = 200;
+                scratch = argument2 * 100;
+                scratch += result;
+                locals.spA8 = scratch >> 12;
+                result = Level34_85C2C_func_8003636C(argument0, argument1);
+                argument0 = (int)owner;
+                argument1 = 1;
+                argument2 = 0;
+                __asm__(""
+                        : "=r"(argument2)
+                        : "0"(argument2), "r"(argument0), "r"(argument1)
+                        : "$3", "memory");
+                scratch = Level34_85C2CField(owner, unsigned char *, 70);
+                __asm__("" ::: "$7", "memory");
+                argument3 = 0x3F800000;
+                scratch = (scratch + 128) & 255;
+                scratch *= 2;
+                {
+                    int completeSineSample =
+                        Level34_85C2CField((int)&Level34_85C2C_D_800658A0, short *, scratch);
+                    __asm__("" : "=r"(argument3) : "0"(argument3) : "$3", "memory");
+                    argument3 |= 128;
+                    locals.spB0 = 0;
+                    scratch = completeSineSample * 100;
+                    scratch += result;
+                    locals.spAC = scratch >> 12;
+                }
+                Level34_85C2C_unk_ovlheader_800743B4(argument0, argument1, argument2, argument3,
+                                                     0x82, 0x32, 0xF, 5, &locals.sp98,
+                                                     &locals.spA8);
+            }
+            Level34_85C2C_func_8004F178(&locals.spF8, (int)&Level34_85C2C_D_80070328);
+            locals.sp100 += 0x258;
+            Level34_85C2C_func_80013AE4(&locals.spF8, owner + 0xC);
+            return;
+        }
+        break;
+    originalFoundRoot25:
+        Level34_85C2CField(privateState, int *, 52) = argument0;
+        Level34_85C2CField(owner, unsigned char *, 72) = 26;
+        return;
+    case 24:
+        if (Level34_85C2C_func_800359A4(privateState + 0x20, 4) != 0) {
+            Level34_85C2C_func_80013B7C(1);
+        block_70:
+            argument0 = owner;
+        block_71:
+            Level34_85C2C_func_80055B18(argument0);
+        }
+        break;
+    }
+}
+
+#undef Level34_85C2CField
+
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated;
+ not human reviewed. Original-instruction-derived C. Original source asm/nonmatchings/overlays/level_34/moby/func_level_34_80086B20.s SHA256 8ad1ad075868908502aa56cac8d1a8dccfd17983fc8bb6f40e07d57e7811f094. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
+#define Level34_86B20Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+extern Moby* Level34_86B20_D_8006C550 __asm__("D_8006C550");
+extern unsigned char Level34_86B20_D_80070300[40] __asm__("D_80070300");
+extern Spyro Level34_86B20_D_80070328 __asm__("D_80070328");
+extern void Level34_86B20_func_80021ED8(int, char, char) __asm__("func_80021ED8");
+void Level34_86B20_func_80034F40(Moby* moby, int newId) __asm__("func_80034F40");
+int Level34_86B20_func_8003573C(Moby* ownerRecord, int arg1, int arg2, int arg3) __asm__("func_8003573C");
+int Level34_86B20_func_8003585C(Moby*, int, int, int, int, int ) __asm__("func_8003585C");
+int Level34_86B20_func_800359A4(void*, int) __asm__("func_800359A4");
+int Level34_86B20_func_80035D38(Moby* moby) __asm__("func_80035D38");
+int Level34_86B20_func_80035DDC(Moby* ownerRecord, int arg1, int arg2, int arg3, int arg4) __asm__("func_80035DDC");
+void Level34_86B20_func_8003B7B4(void* addr, int len, Savepoint *save) __asm__("func_8003B7B4");
+extern int Level34_86B20_func_8004E880(int, int, int) __asm__("func_8004E880");
+extern void Level34_86B20_func_8004F178(Vector3D*, Vector3D*) __asm__("func_8004F178");
+extern int Level34_86B20_func_8004F334(Vector3D*, Vector3D*) __asm__("func_8004F334");
+extern void Level34_86B20_func_80055B18(Moby*) __asm__("func_80055B18");
+extern void Level34_86B20_func_80055D24(Moby*, int) __asm__("func_80055D24");
+extern int Level34_86B20_rand() __asm__("rand");
+struct _m2c_stack_func_level_34_80086B20 {
+    /* 0x00 */ char pad0[0x30];
+};
+                                                  /* size = 0x30 */
+
+int Level34_86B20_func_80035A80(Moby *, void *, int, int, int, int, int, int) __asm__("func_80035A80");
+ /* extern */
+int Level34_86B20_func_80037BBC(Moby *, unsigned char) __asm__("func_80037BBC");
+                 /* extern */
+unsigned int Level34_86B20_func_800512E4(Moby *, unsigned char, unsigned char) __asm__("func_800512E4");
+    /* extern */
+extern unsigned char Level34_86B20_D_80066FCC __asm__("D_80066FCC");
+extern int Level34_86B20_D_8006C54C __asm__("D_8006C54C");
+extern int Level34_86B20_D_8006C58C __asm__("D_8006C58C");
+extern int Level34_86B20_D_8006C598 __asm__("D_8006C598");
+extern int Level34_86B20_D_8006C640 __asm__("D_8006C640");
+extern int Level34_86B20_D_8006C770 __asm__("D_8006C770");
+extern int Level34_86B20_D_8006C774 __asm__("D_8006C774");
+extern unsigned char Level34_86B20_D_8006C7B4 __asm__("D_8006C7B4");
+extern Savepoint Level34_86B20_D_8006C7F8 __asm__("D_8006C7F8");
+extern Savepoint Level34_86B20_D_8006D088 __asm__("D_8006D088");
+extern int Level34_86B20_D_8006E344 __asm__("D_8006E344");
+extern unsigned char Level34_86B20_D_level_34_8009886C __asm__("D_level_34_8009886C");
+
+void func_level_34_80086B20(Moby *ownerRecord) {
+    /* SCUS-94467, 80086B20. Original 0x30-byte frame: saved16/17/18
+     * at SP+0x20/+0x24/+0x28 and RA at SP+0x2C. Table entries use
+     * signed halfword indices and a16-byte stride;
+      fields use byte offsets.
+     * The35D38 call precedes the owner-Z reload. Shared labels retain
+     * original301 callback,324 state0,443 state22,599 callback and626
+     * terminal helper placement. Empty initialized compiler constraints
+     * preserve original producers without instruction assembly.
+     * Physical units/fixed point, helper meanings and update cadence remain
+     * unresolved. Cadence is one invocation;
+      no synchronized runtime claim.
+     * Falsification: all635 instructions,36 selector/padding words, every
+     * native/linked target and complete EXE/every-overlay original hashes. */
+    register int differenceWord4 __asm__("4");
+    register int differenceWord5 __asm__("5");
+    register int indexedWord2 __asm__("2");
+    register int baseWord3 __asm__("3");
+    register Moby *callbackCaller4 __asm__("4");
+    register int callbackParameter5 __asm__("5");
+    register int randomWord2 __asm__("2");
+    register int zeroParameter6 __asm__("6");
+    int helperResultWord;
+    register int heightWord4 __asm__("4");
+    int temp_a1;
+    int temp_v1_10;
+    register int helperHeight3 __asm__("3");
+    register int returnedWord2 __asm__("2");
+    int temp_v1_9;
+    register unsigned char *statePointer16 __asm__("16");
+    register unsigned char *secondStatePointer16 __asm__("16");
+    unsigned int temp_v1;
+    unsigned int temp_v1_3;
+    unsigned int temp_v1_5;
+    register void *privateRecord __asm__("18");
+    void *temp_v0;
+    void *temp_v0_2;
+    void *temp_v0_3;
+    void *temp_v1_2;
+    void *temp_v1_6;
+    void *temp_v1_7;
+    void *temp_v1_8;
+
+    privateRecord = ownerRecord->mobyTag;
+    if ((Level34_86B20Field(privateRecord, unsigned char *, 0) == 0xB) && ((temp_v1 = ownerRecord->state, ((temp_v1 < 2U) != 0)) || (temp_v1 == 3)) && (Level34_86B20_D_8006C550[Level34_86B20Field(privateRecord, int *, 0x28)].state & 0x80)) {
+        zeroParameter6 = 0;
+         __asm__ volatile("" : "=r"(zeroParameter6) : "0"(zeroParameter6));
+         temp_v1_2 = Level34_86B20Field(privateRecord, void **, 0x24);
+         __asm__ volatile("" : : "r"(temp_v1_2) : "memory");
+        differenceWord4 = ownerRecord->position.x;
+         differenceWord5 = ownerRecord->position.y;
+         indexedWord2 = Level34_86B20Field(temp_v1_2, short *, 2);
+         baseWord3 = Level34_86B20Field(temp_v1_2, int *, 0xC);
+         indexedWord2 <<= 4;
+         __asm__("" : "=r"(indexedWord2) : "0"(indexedWord2));
+         indexedWord2 += baseWord3;
+         baseWord3 = Level34_86B20Field(indexedWord2, int *, 0);
+         indexedWord2 = Level34_86B20Field(indexedWord2, int *, 4);
+         differenceWord4 = baseWord3 - differenceWord4;
+         differenceWord5 = indexedWord2 - differenceWord5;
+        ownerRecord->angle.yaw = Level34_86B20_func_8004E880(differenceWord4, differenceWord5, zeroParameter6);
+        ownerRecord->state = 0x16;
+    }
+    if (((Level34_86B20_D_8006C54C - 1) == &Level34_86B20_D_level_34_8009886C) && (Level34_86B20_D_8006C774 != 0)) {
+        Level34_86B20_D_80070300[Level34_86B20Field(&Level34_86B20_D_80066FCC, unsigned char *, 0x1A)] = Level34_86B20_D_80070300[Level34_86B20Field(&Level34_86B20_D_80066FCC, unsigned char *, 0x1A)] & 0xFE;
+    }
+    temp_v1_3 = ownerRecord->state;
+    switch (temp_v1_3) {
+    case 32:
+        Level34_86B20_func_8004F178((Vector3D *)((unsigned char *)ownerRecord + 0xC), Level34_86B20Field(Level34_86B20Field(privateRecord, void **, 0x24), Vector3D **, 0xC));
+        ownerRecord->angle.yaw = Level34_86B20_func_8004E880(Level34_86B20_D_80070328.position.x - ownerRecord->position.x, Level34_86B20_D_80070328.position.y - ownerRecord->position.y, 0);
+        ownerRecord->state = 0;
+        return;
+    case 30:
+        if ((Level34_86B20_D_8006C640 != 0) || (!(Level34_86B20_D_8006C7B4 & 1) && !(Level34_86B20_D_80070300[Level34_86B20_D_8006C58C] & 1))) {
+            Level34_86B20_D_80070328.unk17a |= 0x10000002;
+            if (Level34_86B20_D_8006C598 == 0) {
+                Level34_86B20_func_8003573C(ownerRecord, 1, 0, 1);
+                Level34_86B20_func_80035DDC(ownerRecord, 0x78, 0, 0, 0);
+                returnedWord2 = Level34_86B20_func_80035D38(ownerRecord);
+                __asm__ volatile("" : : : "memory");
+                heightWord4 = ownerRecord->position.z;
+                helperHeight3 = returnedWord2 + 0x80;
+                if (helperHeight3 < heightWord4) {
+                    if ((heightWord4 - helperHeight3) >= 0xB) {
+                        returnedWord2 = heightWord4 - 0xA;
+                         __asm__("" : "=r"(returnedWord2) : "0"(returnedWord2));
+                         ownerRecord->position.z = returnedWord2;
+                    } else {
+                        ownerRecord->position.z = helperHeight3;
+                    }
+                }
+                if (Level34_86B20_func_8004F334(&ownerRecord->position, &Level34_86B20_D_80070328.position) < 0x898) {
+                    statePointer16 = &ownerRecord->state;
+                    { register void *saveCaller4 __asm__("4");
+                     register int saveParameter5 __asm__("5");
+                     register Savepoint *saveAddress6 __asm__("6");
+                    saveCaller4 = statePointer16;
+                     saveParameter5 = 1;
+                     saveAddress6 = &Level34_86B20_D_8006D088;
+                    __asm__("" : "=r"(saveCaller4), "=r"(saveParameter5), "=r"(saveAddress6) : "0"(saveCaller4), "1"(saveParameter5), "2"(saveAddress6));
+                    ownerRecord->state = 0x20;
+                    Level34_86B20_func_8003B7B4(saveCaller4, saveParameter5, saveAddress6);
+                    saveCaller4 = statePointer16;
+                     saveAddress6 = &Level34_86B20_D_8006C7F8;
+                    __asm__("" : "=r"(saveAddress6) : "0"(saveAddress6), "r"(saveCaller4));
+                    Level34_86B20_func_8003B7B4(saveCaller4, 1, saveAddress6);
+                    }
+                    goto block_42;
+                }
+            }
+        } else {
+            goto block_95;
+        }
+        break;
+    case 34:
+        Level34_86B20Field(privateRecord, signed char *, 2) = 0;
+        ownerRecord->state = 0;
+        /* fallthrough */
+    case 0:
+        if ((Level34_86B20_D_8006C640 != 0) || (!(Level34_86B20_D_8006C7B4 & 1) && !(Level34_86B20_D_80070300[Level34_86B20_D_8006C58C] & 1)) || (Level34_86B20Field(privateRecord, unsigned char *, 0) == 5)) {
+            if ((Level34_86B20_D_8006C7B4 & 1) && (Level34_86B20Field(privateRecord, unsigned char *, 0) != 5)) {
+block_28:
+                Level34_86B20_func_8003B7B4(&ownerRecord->state, 1, &Level34_86B20_D_8006D088);
+                Level34_86B20_func_8003B7B4(&ownerRecord->state, 1, &Level34_86B20_D_8006C7F8);
+                goto block_95;
+            }
+            if (Level34_86B20_D_8006C640 == 0) {
+                ownerRecord->position.z = Level34_86B20_func_80035D38(ownerRecord) + 0x80;
+            }
+            if (Level34_86B20_func_80037BBC(ownerRecord, 0) != 0) {
+                if (Level34_86B20Field(privateRecord, unsigned char *, 0) == 5) {
+                    ownerRecord->state = 0x22;
+                    secondStatePointer16 = &ownerRecord->state;
+                    Level34_86B20_func_8003B7B4(secondStatePointer16, 1, &Level34_86B20_D_8006D088);
+                    Level34_86B20_func_8003B7B4(secondStatePointer16, 1, &Level34_86B20_D_8006C7F8);
+                }
+                goto block_42;
+            }
+            if (Level34_86B20_func_800359A4(privateRecord + 0x20, 2) != 0) {
+                ownerRecord->state = 3;
+                Level34_86B20_func_80034F40(ownerRecord, 3);
+                return;
+            }
+            if (Level34_86B20_func_800359A4(privateRecord + 0x22, 2) != 0) {
+                ownerRecord->state = 1;
+                goto block_92;
+            }
+        } else {
+            goto block_95;
+        }
+        break;
+    case 1:
+        if (Level34_86B20_func_80037BBC(ownerRecord, 0) == 0) {
+            if (Level34_86B20_D_8006C770 != 0) {
+                randomWord2 = Level34_86B20_rand();
+                 callbackCaller4 = ownerRecord;
+                 callbackParameter5 = 0;
+                 __asm__("" : "=r"(callbackCaller4), "=r"(callbackParameter5) : "0"(callbackCaller4), "1"(callbackParameter5));
+                 Level34_86B20Field(privateRecord, short *, 0x22) = (short) (((randomWord2 & 1) * 0x96) + 0xC8);
+                goto block_45;
+            }
+        } else {
+            goto block_42;
+        }
+        break;
+    case 3:
+        if (Level34_86B20_func_80037BBC(ownerRecord, 0) != 0) {
+block_42:
+            Level34_86B20_func_800512E4(ownerRecord, 0, 2);
+            ownerRecord->state = 2;
+            return;
+        }
+        if (Level34_86B20_D_8006C770 != 0) {
+            randomWord2 = Level34_86B20_rand();
+             callbackCaller4 = ownerRecord;
+             callbackParameter5 = 0;
+             __asm__("" : "=r"(callbackCaller4), "=r"(callbackParameter5) : "0"(callbackCaller4), "1"(callbackParameter5));
+             Level34_86B20Field(privateRecord, short *, 0x20) = (short) (((randomWord2 & 1) * 0x64) + 0xFA);
+block_45:
+            callbackCaller4->state = 0;
+            Level34_86B20_func_80034F40(callbackCaller4, callbackParameter5);
+            return;
+        }
+        break;
+    case 2:
+        if (Level34_86B20_D_8006E344 != 1) {
+            if (Level34_86B20Field(privateRecord, unsigned char *, 0) == 5) {
+                temp_v1_5 = Level34_86B20Field(privateRecord, unsigned char *, 4);
+                if (temp_v1_5 < 3U) {
+                    Level34_86B20_func_80021ED8(0xA, -4, 0);
+                    goto block_52;
+                }
+                if (temp_v1_5 == 3) {
+                    { register void *saveCaller4 __asm__("4");
+                     register int saveParameter5 __asm__("5");
+                     register Savepoint *saveAddress6 __asm__("6");
+                    saveCaller4 = &ownerRecord->state;
+                     saveParameter5 = 1;
+                     saveAddress6 = &Level34_86B20_D_8006C7F8;
+                    __asm__("" : "=r"(saveCaller4), "=r"(saveParameter5), "=r"(saveAddress6) : "0"(saveCaller4), "1"(saveParameter5), "2"(saveAddress6));
+                    ownerRecord->state = 0x1C;
+                    Level34_86B20_func_8003B7B4(saveCaller4, saveParameter5, saveAddress6);
+                    }
+block_52:
+                    Level34_86B20_func_80034F40(ownerRecord, 0);
+                    ownerRecord->state = 0x14;
+                    return;
+                }
+                goto block_53;
+            }
+block_53:
+            if (Level34_86B20Field(privateRecord, void **, 0x24) != 0) {
+                ownerRecord->state = 0x1C;
+                { register void *saveCaller4 __asm__("4");
+                statePointer16 = &ownerRecord->state;
+                if (Level34_86B20Field(privateRecord, unsigned char *, 0) == 9) {
+                    Level34_86B20_func_8003B7B4(statePointer16, 1, &Level34_86B20_D_8006D088);
+                    saveCaller4 = statePointer16;
+                     goto saveSecond;
+                }
+                __asm__("" : "=r"(ownerRecord) : "0"(ownerRecord));
+                saveCaller4 = &ownerRecord->state;
+saveSecond:
+                __asm__("" : "=r"(saveCaller4) : "0"(saveCaller4));
+                Level34_86B20_func_8003B7B4(saveCaller4, 1, &Level34_86B20_D_8006C7F8);
+                }
+                Level34_86B20_func_80034F40(ownerRecord, 0);
+                ownerRecord->updateDistance = 0xFF;
+                if (Level34_86B20Field(privateRecord, unsigned char *, 0) == 3) {
+                    Level34_86B20Field(Level34_86B20Field(privateRecord, void **, 0x24), short *, 2) = 1;
+                } else {
+                    Level34_86B20Field(Level34_86B20Field(privateRecord, void **, 0x24), short *, 2) = 0;
+                }
+                Level34_86B20Field(Level34_86B20Field(privateRecord, void **, 0x24), short *, 0xA) = 1;
+                if (Level34_86B20Field(privateRecord, unsigned char *, 0) == 0xB) {
+                    ownerRecord->state = 0x1A;
+                    return;
+                }
+                goto block_65;
+            }
+            ownerRecord->state = 0;
+            Level34_86B20_func_80034F40(ownerRecord, 0);
+            return;
+        }
+        break;
+    case 26:
+        if (Level34_86B20_D_8006C550[Level34_86B20Field(privateRecord, int *, 0x28)].state & 0x80) {
+            zeroParameter6 = 0;
+             __asm__ volatile("" : "=r"(zeroParameter6) : "0"(zeroParameter6));
+             temp_v1_6 = Level34_86B20Field(privateRecord, void **, 0x24);
+             __asm__ volatile("" : : "r"(temp_v1_6) : "memory");
+            differenceWord4 = ownerRecord->position.x;
+             differenceWord5 = ownerRecord->position.y;
+             indexedWord2 = Level34_86B20Field(temp_v1_6, short *, 2);
+             baseWord3 = Level34_86B20Field(temp_v1_6, int *, 0xC);
+             indexedWord2 <<= 4;
+             __asm__("" : "=r"(indexedWord2) : "0"(indexedWord2));
+             indexedWord2 += baseWord3;
+             baseWord3 = Level34_86B20Field(indexedWord2, int *, 0);
+             indexedWord2 = Level34_86B20Field(indexedWord2, int *, 4);
+             differenceWord4 = baseWord3 - differenceWord4;
+             differenceWord5 = indexedWord2 - differenceWord5;
+            ownerRecord->angle.yaw = Level34_86B20_func_8004E880(differenceWord4, differenceWord5, zeroParameter6);
+block_65:
+            ownerRecord->state = 0x16;
+            return;
+        }
+        break;
+    case 22:
+        zeroParameter6 = 0;
+         __asm__ volatile("" : "=r"(zeroParameter6) : "0"(zeroParameter6));
+         temp_v1_7 = Level34_86B20Field(privateRecord, void **, 0x24);
+         __asm__ volatile("" : : "r"(temp_v1_7) : "memory");
+        differenceWord4 = ownerRecord->position.x;
+         differenceWord5 = ownerRecord->position.y;
+         indexedWord2 = Level34_86B20Field(temp_v1_7, short *, 2);
+         baseWord3 = Level34_86B20Field(temp_v1_7, int *, 0xC);
+         indexedWord2 <<= 4;
+         __asm__("" : "=r"(indexedWord2) : "0"(indexedWord2));
+         indexedWord2 += baseWord3;
+         baseWord3 = Level34_86B20Field(indexedWord2, int *, 0);
+         indexedWord2 = Level34_86B20Field(indexedWord2, int *, 4);
+         differenceWord4 = baseWord3 - differenceWord4;
+         differenceWord5 = indexedWord2 - differenceWord5;
+        if (Level34_86B20_func_8003585C(ownerRecord, Level34_86B20_func_8004E880(differenceWord4, differenceWord5, zeroParameter6), 5, 2, 1, 0) != 0) {
+            ownerRecord->unknownCollision = 0;
+            ownerRecord->state = 0x17;
+        }
+        Level34_86B20_func_80035DDC(ownerRecord, 0x5A, 0, 0, 0);
+        return;
+    case 23:
+        if (Level34_86B20Field(privateRecord, unsigned char *, 0) == 3) {
+            helperResultWord = Level34_86B20_func_80035A80(ownerRecord, Level34_86B20Field(privateRecord, void **, 0x24), 0x78, 0x78, 0, 2, 0x40, 0x20000);
+        } else {
+            helperResultWord = Level34_86B20_func_80035A80(ownerRecord, Level34_86B20Field(privateRecord, void **, 0x24), 0x78, 0x78, 0, 4, 0x20, 0);
+        }
+        if (helperResultWord & 2) {
+            Level34_86B20_func_80034F40(ownerRecord, 0);
+            ownerRecord->state = 0x19;
+            return;
+        }
+        temp_v1_8 = Level34_86B20Field(privateRecord, void **, 0x24);
+        temp_a1 = Level34_86B20Field(((Level34_86B20Field(temp_v1_8, short *, 2) * 0x10) + Level34_86B20Field(temp_v1_8, void **, 0xC)), int *, 8);
+        if (Level34_86B20Field(privateRecord, unsigned char *, 0) == 3) {
+            temp_v1_9 = ownerRecord->position.z;
+            if ((temp_v1_9 - temp_a1) >= 0x1F) {
+                ownerRecord->position.z = temp_v1_9 - 0x14;
+                return;
+            }
+            if ((temp_a1 - temp_v1_9) >= 0x1F) {
+                ownerRecord->position.z = temp_v1_9 + 0x14;
+                return;
+            }
+        } else {
+            temp_v1_10 = ownerRecord->position.z;
+            if ((temp_v1_10 - temp_a1) >= 0x65) {
+                ownerRecord->position.z = temp_v1_10 - 0x4B;
+                return;
+            }
+            if ((temp_a1 - temp_v1_10) >= 0x65) {
+                ownerRecord->position.z = temp_v1_10 + 0x4B;
+                return;
+            }
+        }
+        break;
+    case 25:
+        if (ownerRecord->size == 0) {
+            ownerRecord->size = 0x20;
+        }
+        ownerRecord->angle.yaw -= 8;
+        ownerRecord->size += 5;
+        Level34_86B20_func_80055D24(ownerRecord, 4);
+        if ((unsigned char) ownerRecord->size >= 0x7FU) {
+            SpawnParticle(6, 0xC, (Vector3D *) ownerRecord, (Vector3D *)5);
+            goto block_95;
+        }
+        SpawnParticle(1, 0xC, (Vector3D *) ownerRecord, (Vector3D *)3);
+        return;
+    case 24:
+        if (!(Level34_86B20_D_8006C7B4 & 1)) return;
+        goto block_28;
+    case 20:
+        if (Level34_86B20_func_800359A4(privateRecord + 0x22, 2) != 0) {
+            ownerRecord->state = 0x15;
+block_92:
+            Level34_86B20_func_80034F40(ownerRecord, 1);
+            return;
+        }
+        break;
+    case 21:
+        if (Level34_86B20_D_8006C770 != 0) {
+            randomWord2 = Level34_86B20_rand();
+             callbackCaller4 = ownerRecord;
+             callbackParameter5 = 0;
+             __asm__("" : "=r"(callbackCaller4), "=r"(callbackParameter5) : "0"(callbackCaller4), "1"(callbackParameter5));
+             Level34_86B20Field(privateRecord, short *, 0x22) = (short) (((randomWord2 & 1) * 0x64) + 0x12C);
+            callbackCaller4->state = 0x14;
+            Level34_86B20_func_80034F40(callbackCaller4, callbackParameter5);
+            return;
+        }
+        break;
+    case 28:
+block_95:
+        Level34_86B20_func_80055B18(ownerRecord);
+        return;
+    default:
+        return;
+    }
+}
+#undef Level34_86B20Field
+
 
 extern int D_8006C770;
 int rand(void);
@@ -5914,7 +12032,753 @@ void func_level_34_800876C0(Moby* argument) {
  }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_34/moby", func_level_34_800879A0);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original level34 controller800879A0.
+ * Assembly SHA256 bee400cd4db369cb439ccce7bb1cd6cd30b151d7381bfd79e63ed348107ebf14.
+ * AI generated; not human reviewed.1442 original native instructions,
+ * 41 absolute state selectors and one zero pad=1484 owned words.
+ * Field widths,offsets,constants,helper words and every branch/call entry
+ * come from the original body. Names identify physical storage roles;
+ * gameplay meaning,asset/SFX semantics and units are not inferred.
+ * Original200-byte frame and SP28..90 scalar/vector homes are retained.
+ * SP28/2C/30 and50/54/58 begin70,0,0 before original matrix multiplication.
+ * SP38/3C/40 and60/64/68 are complete signed16 table*75>>10 vectors with
+ * initialized Z=0 before vector addition. The separate state4 SP60 vector
+ * has initialized point X/Y and owner Z before its distance/heading calls.
+ * SP78..80 and88..90 have complete original4F178 producers before reads;
+ * the latter keeps original low32 *25 arithmetic and vector helpers.
+ * SP4C is initialized=-1 on every state3 entry before callback/output use.
+ * SP48,70,74 are original output addresses with no added C scalar read;
+ * full callback read/write contracts and archive/caller chains remain open.
+ * The ordinary selectedPointIndex has its sole assignment in the same
+ * original block that updates S6(selectedDistance22). S6 starts at zero;
+ * all selectedPointIndex consumers are guarded by S6!=0. C reads no incoming
+ * FP value, invents no initializer and has no manual FP binding. The original
+ * guard-delay SLL executes on the zero edge too, but its V1 result is discarded
+ * by the straight-line epilogue. C never reads selectedPointIndex on that edge.
+ * Independent original CFG and zero-edge liveness analysis prove both paths.
+ * Original private+14 load occurs AFTER4F334, so no caller V1 value is
+ * incorrectly kept live across that helper. Matrix command/flag and all
+ * reused GP roles have disjoint initialized phases. The saved player base
+ * in state10 is also produced on its last heading-failure edge, matching
+ * the original branch delay and following flag reload destination.
+ * Empty metadata emits zero CPU words and observes complete initialized
+ * values/objects or ends a dead GP phase. There is no opcode asm,fixed
+ * FP/SP,incoming saved-register read,partial HILO or invented default.
+ * Known physical ABI views reuse existing original helpers; remaining
+ * callbacks retain original word views. This source targets frozen32-bit
+ * MIPS wrap/narrow/shift behavior. Portable C arithmetic,full helper/asset/
+ * caller evidence,units,cadence beyond invocation,Rev1 mappings and original
+ * synchronized runtime captures remain open. Acceptance requires original
+ * linked native/data/addend/41selector/pad bytes and every retail hash.
+ */
+#define Actor1442Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+#define Actor1442Keep(v) __asm__("":"=r"(v):"0"(v))
+int Actor1442_func_8001BA30() __asm__("func_8001BA30");
+void Actor1442_func_80034F40(void*,int) __asm__("func_80034F40");
+void Actor1442_func_80034F80(void*,int) __asm__("func_80034F80");
+int Actor1442_func_80035194(void*,void*) __asm__("func_80035194");
+int Actor1442_func_8003573C(void*,int,int,int) __asm__("func_8003573C");
+void Actor1442_func_8003585C(void*,int,int,int,int,int) __asm__("func_8003585C");
+int Actor1442_func_800359A4(void*,int) __asm__("func_800359A4");
+int Actor1442_func_80035D38(void*) __asm__("func_80035D38");
+void Actor1442_func_80035DDC(void*,int,int,int,int) __asm__("func_80035DDC");
+int Actor1442_func_8003613C(int,int) __asm__("func_8003613C");
+int Actor1442_func_800368A4() __asm__("func_800368A4");
+int Actor1442_func_800369B8() __asm__("func_800369B8");
+void Actor1442_func_80036A68(void*,int,int,int) __asm__("func_80036A68");
+void Actor1442_func_80038BF8(void*,void*,int,int) __asm__("func_80038BF8");
+int Actor1442_func_8003BA00() __asm__("func_8003BA00");
+int Actor1442_func_8004E880(int,int,int) __asm__("func_8004E880");
+void Actor1442_func_8004ED6C(void*,void*,void*) __asm__("func_8004ED6C");
+void Actor1442_func_8004F110(void*,int) __asm__("func_8004F110");
+void Actor1442_func_8004F178(void*,void*) __asm__("func_8004F178");
+void Actor1442_func_8004F194(void*,void*,void*) __asm__("func_8004F194");
+int Actor1442_func_8004F264(int,int) __asm__("func_8004F264");
+int Actor1442_func_8004F334(void*,void*) __asm__("func_8004F334");
+void Actor1442_func_80055B18(void*) __asm__("func_80055B18");
+void Actor1442_func_80055D24(void*,int) __asm__("func_80055D24");
+int Actor1442_func_80055E84(void*) __asm__("func_80055E84");
+extern int Actor1442_D_800658A0 __asm__("D_800658A0");
+extern int Actor1442_D_80065920 __asm__("D_80065920");
+extern int Actor1442_D_8006C550 __asm__("D_8006C550");
+extern int Actor1442_D_8006C770 __asm__("D_8006C770");
+extern int Actor1442_D_8006E020 __asm__("D_8006E020");
+extern int Actor1442_D_8006E024 __asm__("D_8006E024");
+extern unsigned short Actor1442_D_8006E040 __asm__("D_8006E040");
+extern int Actor1442_D_80070328 __asm__("D_80070328");
+extern int Actor1442_D_80071908 __asm__("D_80071908");
+extern int(*Actor1442unk_ovlheader_80074414)() __asm__("unk_ovlheader_80074414");
+extern int(*Actor1442unk_ovlheader_80074418)() __asm__("unk_ovlheader_80074418");
+extern int(*Actor1442unk_ovlheader_8007442C)() __asm__("unk_ovlheader_8007442C");
+extern int(*Actor1442unk_ovlheader_80074430)() __asm__("unk_ovlheader_80074430");
+void func_level_34_800879A0(void* input) {
+    register int resultWord2 __asm__("$2");
+    register int intermediateWord3 __asm__("$3");
+    register int argumentWord4 __asm__("$4"),argumentWord5 __asm__("$5"),argumentWord7 __asm__("$7"),argumentWord6 __asm__("$6"),originalPlayerHeight8 __asm__("$8");
+    register int candidateDistance21 __asm__("$21"),originalPlayerAddress23 __asm__("$23");
+    register int ownerAddress17 __asm__("$17"),retainedScalarOrPositionAddress16 __asm__("$16"),privateOrGlobalAddress18 __asm__("$18"),retainedHeightOffsetOrAddress19 __asm__("$19"),retainedHeightOrPointIndex20 __asm__("$20"),selectedDistance22 __asm__("$22");
+    struct {
+        int sp28,sp2C,sp30,pad34;
+        int sp38,sp3C,sp40,pad44;
+        int sp48,sp4C,sp50,sp54,sp58,pad5C;
+        int sp60,sp64,sp68,pad6C;
+        int sp70,sp74;
+        int sp78[3],pad84;
+        int sp88,sp8C,sp90,unused94_9C[3];
+    }
+    originalFrame;
+    int temporaryWord10;
+    int temporaryWord4;
+    int temporaryWord5;
+    int temporaryWord6;
+    int temporaryWord7;
+    int temporaryWord9;
+    int selectedPointIndex;
+    int temporaryWord12;
+    int temporaryWord8;
+    int temporaryWord13;
+    int temporaryWord1;
+    int temporaryWord2;
+    int temporaryWord3;
+    ownerAddress17=(int)input;
+    Actor1442Keep(ownerAddress17);
+    resultWord2=12;
+    Actor1442Keep(resultWord2);
+    argumentWord4=Actor1442Field(ownerAddress17,unsigned char*,0x48);
+    privateOrGlobalAddress18=Actor1442Field(ownerAddress17,int*,0);
+    __asm__ volatile("":"=r"(argumentWord4):"0"(argumentWord4):"memory");
+    if (((argumentWord4 & 0xFF) != resultWord2) && ((resultWord2=argumentWord4-5),(unsigned int)resultWord2>=25) && (Actor1442Field(ownerAddress17, int *, 0x18) & 0x8A0000)) {
+        Actor1442_func_80036A68(ownerAddress17, 0, 0, 0);
+        Actor1442_func_80038BF8(ownerAddress17, privateOrGlobalAddress18 + 0x18, 1, 0xC);
+    }
+    Actor1442Field(privateOrGlobalAddress18, int *, 0x38) = Actor1442_func_800368A4(ownerAddress17, Actor1442Field(privateOrGlobalAddress18, int *, 0x38), 2);
+    Actor1442Field(ownerAddress17, int *, 0x18) = 0;
+    Actor1442_func_80055D24(ownerAddress17, 5);
+    if ((Actor1442Field(privateOrGlobalAddress18, short *, 0x12) != 0) && (Actor1442_func_800359A4(privateOrGlobalAddress18 + 0x12, 2) != 0) && ((unsigned int) (Actor1442Field(ownerAddress17, unsigned char *, 0x3C) - 7) < 5U) && ((unsigned int) (Actor1442Field(ownerAddress17, unsigned char *, 0x3D) - 7) < 5U)) {
+        Actor1442Field(ownerAddress17, int *, 0x18) = 0;
+        Actor1442Field(ownerAddress17, unsigned char *, 0x49) = 0U;
+        Actor1442Field(privateOrGlobalAddress18, short *, 0x10) = 0x1E;
+        Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 6U;
+        Actor1442_func_80034F40(ownerAddress17, 6);
+    }
+    temporaryWord8 = Actor1442Field(ownerAddress17, unsigned char *, 0x48);
+    switch (temporaryWord8) {
+    case 0:
+        retainedScalarOrPositionAddress16=Actor1442_func_8004F334(ownerAddress17+0xC,(int)&Actor1442_D_80070328);
+        intermediateWord3=Actor1442Field(privateOrGlobalAddress18,int*,0x14);
+        if(intermediateWord3<0)goto prepareOriginalDistancePredicate;
+        intermediateWord3=Actor1442Field(Actor1442_D_8006C550+intermediateWord3*88,unsigned char*,0x48);
+        if(intermediateWord3&128){
+            resultWord2=-1;
+            goto clearOriginalRetainedIndex;
+        }
+        resultWord2=4;
+        if(intermediateWord3!=resultWord2){
+            resultWord2=retainedScalarOrPositionAddress16<0x2800;
+            goto useOriginalDistancePredicate;
+        }
+        resultWord2=-1;
+    clearOriginalRetainedIndex:
+        Actor1442Field(privateOrGlobalAddress18,int*,0x14)=resultWord2;
+    prepareOriginalDistancePredicate:
+        resultWord2=retainedScalarOrPositionAddress16<0x2800;
+    useOriginalDistancePredicate:
+        if (resultWord2 != 0) {
+            Actor1442_func_8003573C(ownerAddress17, 6, 6, 1);
+        }
+        if ((Actor1442Field(privateOrGlobalAddress18, int *, 0x14) < 0) && (Actor1442_func_8004F264(Actor1442_func_8004E880(Actor1442Field((int)&Actor1442_D_80070328, int *, 0) - Actor1442Field(ownerAddress17, int *, 0xC), Actor1442Field((int)&Actor1442_D_80070328, int *, 4) - Actor1442Field(ownerAddress17, int *, 0x10), 0), Actor1442Field(ownerAddress17, unsigned char *, 0x46)) < 0xA) && (Actor1442_func_8004F264((int) (Actor1442_D_8006E040 << 0x10) >> 0x14, Actor1442_func_8004E880(Actor1442Field(ownerAddress17, int *, 0xC) - Actor1442_D_8006E020, Actor1442Field(ownerAddress17, int *, 0x10) - Actor1442_D_8006E024, 0)) < 0x16)) {
+            resultWord2=Actor1442Field((int)&Actor1442_D_80070328,int*,8);
+            intermediateWord3=Actor1442Field(ownerAddress17,int*,0x14);
+            Actor1442Keep(resultWord2);
+            resultWord2-=intermediateWord3;
+            if (resultWord2 < 0) {
+                resultWord2 = -resultWord2;
+            }
+            if (resultWord2 < 0x800) {
+                temporaryWord1 = Actor1442Field(privateOrGlobalAddress18, int *, 0xC);
+                temporaryWord12 = retainedScalarOrPositionAddress16 < 0x2000;
+                if (temporaryWord1 != 0) {
+                    temporaryWord12 = Actor1442unk_ovlheader_80074414(temporaryWord1, (int)&Actor1442_D_80070328);
+                }
+                if (temporaryWord12 != 0) {
+                    Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 2U;
+                    Actor1442_func_80034F40(ownerAddress17, 2);
+                    return;
+                }
+            }
+        }
+        else {
+        default:
+            return;
+        }
+        break;
+    case 34:
+        Actor1442_func_8003573C(ownerAddress17, 4, 4, 1);
+        argumentWord7=(int)&Actor1442_D_80070328+8;
+        Actor1442Keep(argumentWord7);
+        resultWord2=Actor1442Field(ownerAddress17,int*,0x14);
+        intermediateWord3=Actor1442Field(argumentWord7,int*,0);
+        Actor1442Keep(resultWord2);
+        resultWord2-=intermediateWord3;
+        if (resultWord2 < 0) {
+            resultWord2 = -resultWord2;
+        }
+        argumentWord6=0;
+        if(resultWord2>=0x800)break;
+        retainedScalarOrPositionAddress16=argumentWord7-8;
+        __asm__ volatile("":"=r"(argumentWord7):"0"(argumentWord7));
+        if ((Actor1442_func_8004F264(Actor1442_func_8004E880(Actor1442Field(argumentWord7,int*,-8) - Actor1442Field(ownerAddress17, int *, 0xC), Actor1442Field((int)&Actor1442_D_80070328, int *, 4) - Actor1442Field(ownerAddress17, int *, 0x10),argumentWord6), Actor1442Field(ownerAddress17, unsigned char *, 0x46)) < 0xA) && (Actor1442_func_8004F264((int) (Actor1442_D_8006E040 << 0x10) >> 0x14, Actor1442_func_8004E880(Actor1442Field(ownerAddress17, int *, 0xC) - Actor1442_D_8006E020, Actor1442Field(ownerAddress17, int *, 0x10) - Actor1442_D_8006E024, 0)) < 0x16) && (Actor1442unk_ovlheader_80074414(Actor1442Field(privateOrGlobalAddress18, int *, 0xC), retainedScalarOrPositionAddress16) != 0) && (Actor1442_func_800359A4(privateOrGlobalAddress18 + 0x10, 2) != 0)) {
+            Actor1442_func_80034F40(ownerAddress17, 2);
+            Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 0x23U;
+            return;
+        }
+        break;
+    case 35:
+        Actor1442_func_8003573C(ownerAddress17, 4, 4, 1);
+        if (Actor1442_D_8006C770 != 0) {
+            Actor1442_func_80034F40(ownerAddress17, 3);
+            Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 0x24U;
+            return;
+        }
+        break;
+    case 36:
+        Actor1442_func_8003573C(ownerAddress17, 4, 4, 1);
+        Actor1442_func_80035DDC(ownerAddress17, 0x96, 0, 0, 4);
+        resultWord2=Actor1442unk_ovlheader_80074414(Actor1442Field(privateOrGlobalAddress18,int*,0xC),(int)&Actor1442_D_80070328);
+        argumentWord4=ownerAddress17;
+        if(resultWord2)goto runOriginalState36CallbackSuccess;
+        __asm__ volatile(""::"r"(argumentWord4):"$2");
+        argumentWord5=0;
+        goto callOriginalSharedState34;
+    runOriginalState36CallbackSuccess:
+        __asm__ volatile("":"=r"(ownerAddress17):"0"(ownerAddress17));
+        argumentWord4=ownerAddress17;
+        if ((Actor1442_func_80035D38(argumentWord4) == 0) || ((Actor1442Field(ownerAddress17, int *, 0x14) - Actor1442_D_80071908) >= 0x191)) {
+            if (Actor1442Field(privateOrGlobalAddress18, short *, 0x32) != 0) {
+                Actor1442Field(ownerAddress17, unsigned char *, 0x51) = (unsigned char) Actor1442Field(ownerAddress17, unsigned char *, 0x46);
+                Actor1442_func_80036A68(ownerAddress17, 0x10, 0, 0);
+                Actor1442_func_80038BF8(ownerAddress17, privateOrGlobalAddress18 + 0x18, 1, 0xC);
+                Actor1442Field(privateOrGlobalAddress18, short *, 0x1E) = 0x32;
+                return;
+            }
+            Actor1442Field(privateOrGlobalAddress18, short *, 0x32) = 1;
+            goto runOriginalHeightAndCollision;
+        }
+    runOriginalHeightAndCollision:
+        __asm__ volatile("":::"$4","memory");
+        argumentWord4=ownerAddress17+0xC;
+        argumentWord5=1024;
+        argumentWord6=2;
+        resultWord2=Actor1442Field(ownerAddress17,short*,0x38);
+        intermediateWord3=Actor1442Field(ownerAddress17,int*,0x14);
+        originalPlayerHeight8=Actor1442Field((int)&Actor1442_D_80070328,int*,8);
+        argumentWord7=0;
+        intermediateWord3-=resultWord2;
+        __asm__("":"=r"(intermediateWord3):"0"(intermediateWord3),"r"(argumentWord4),"r"(argumentWord5),"r"(argumentWord6),"r"(argumentWord7));
+        retainedHeightOffsetOrAddress19=intermediateWord3-originalPlayerHeight8;
+        retainedScalarOrPositionAddress16=Actor1442_func_8001BA30(argumentWord4,argumentWord5,argumentWord6,argumentWord7,0,ownerAddress17);
+        if (retainedScalarOrPositionAddress16 != 0) {
+            resultWord2=Actor1442Field(ownerAddress17,int*,0x14);
+            intermediateWord3=Actor1442Field(retainedScalarOrPositionAddress16,int*,0x14);
+            Actor1442Keep(resultWord2);
+            resultWord2-=intermediateWord3;
+            if (resultWord2 < 0) {
+                resultWord2 = -resultWord2;
+            }
+            if (resultWord2 < 0x400) {
+                temporaryWord5 = Actor1442_func_8004E880(Actor1442Field(retainedScalarOrPositionAddress16, int *, 0xC) - Actor1442Field(ownerAddress17, int *, 0xC), Actor1442Field(retainedScalarOrPositionAddress16, int *, 0x10) - Actor1442Field(ownerAddress17, int *, 0x10), 0);
+                if (Actor1442_func_8004F264(temporaryWord5, Actor1442Field(ownerAddress17, unsigned char *, 0x46)) < 0x20) {
+                    Actor1442Field(retainedScalarOrPositionAddress16, int *, 0x18) = 0x20000;
+                    Actor1442Field(retainedScalarOrPositionAddress16, unsigned char *, 0x51) = (unsigned char) Actor1442Field(ownerAddress17, unsigned char *, 0x46);
+                    if (Actor1442_func_8003613C(Actor1442_func_8004E880(Actor1442Field((int)&Actor1442_D_80070328, int *, 0) - Actor1442Field(ownerAddress17, int *, 0xC), Actor1442Field((int)&Actor1442_D_80070328, int *, 4) - Actor1442Field(ownerAddress17, int *, 0x10), 0), temporaryWord5) > 0) {
+                        temporaryWord13 = Actor1442Field(retainedScalarOrPositionAddress16, unsigned char *, 0x51) + 0x20;
+                    }
+                    else {
+                        temporaryWord13 = Actor1442Field(retainedScalarOrPositionAddress16, unsigned char *, 0x51) - 0x20;
+                    }
+                    Actor1442Field(retainedScalarOrPositionAddress16,unsigned char*,0x51)=temporaryWord13;
+                    __asm__ volatile("":::"$4","$5","memory");
+                    Actor1442_func_80034F80(ownerAddress17,4);
+                    Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 0x26U;
+                    return;
+                }
+            }
+            goto testOriginalState36Player;
+        }
+    testOriginalState36Player:
+        if (Actor1442Field(ownerAddress17, unsigned char *, 0x3C) == 3) {
+            resultWord2=9;
+            Actor1442Keep(resultWord2);
+            retainedScalarOrPositionAddress16=(int)&Actor1442_D_80070328+0x50;
+            Actor1442Keep(retainedScalarOrPositionAddress16);
+            if ((Actor1442Field(retainedScalarOrPositionAddress16,int*,0) != resultWord2) && (Actor1442Field(retainedScalarOrPositionAddress16,int*,0) != 4) && (Actor1442Field((int)&Actor1442_D_80070328, int *, 0x240) == 0) && (Actor1442_func_8004F264((int) (Actor1442_D_8006E040 << 0x10) >> 0x14, Actor1442_func_8004E880(Actor1442Field(ownerAddress17, int *, 0xC) - Actor1442_D_8006E020, Actor1442Field(ownerAddress17, int *, 0x10) - Actor1442_D_8006E024, 0)) < 0x16) && (Actor1442_func_8004F264((int) Actor1442Field(ownerAddress17, unsigned char *, 0x46), Actor1442_func_8004E880(Actor1442Field(retainedScalarOrPositionAddress16, int *, -0x50) - Actor1442Field(ownerAddress17, int *, 0xC), Actor1442Field((int)&Actor1442_D_80070328, int *, 4) - Actor1442Field(ownerAddress17, int *, 0x10), 0)) < 8)) {
+                privateOrGlobalAddress18=retainedScalarOrPositionAddress16-80;
+                Actor1442Keep(privateOrGlobalAddress18);
+                if(Actor1442_func_8004F334(ownerAddress17+0xC,privateOrGlobalAddress18)<0x708 && ((resultWord2=retainedHeightOffsetOrAddress19+0x3FF),(unsigned int)resultWord2<0x47FU)) {
+                    Actor1442_func_80034F80(ownerAddress17, 4);
+                    intermediateWord3=0x10000400;
+                    Actor1442Keep(intermediateWord3);
+                    argumentWord4=ownerAddress17+0x20;
+                    argumentWord5=(int)&originalFrame.sp28;
+                    argumentWord6=argumentWord5;
+                    __asm__("":"=r"(argumentWord4),"=r"(argumentWord5),"=r"(argumentWord6):"0"(argumentWord4),"1"(argumentWord5),"2"(argumentWord6));
+                    argumentWord7=Actor1442Field(ownerAddress17,unsigned char*,0x46);
+                    Actor1442Field(ownerAddress17,unsigned char*,0x48)=38;
+                    Actor1442Field(retainedScalarOrPositionAddress16,int*,0x1BC)=intermediateWord3;
+                    intermediateWord3=Actor1442Field(retainedScalarOrPositionAddress16,int*,-0x2C);
+                    resultWord2=70;
+                    originalFrame.sp28=resultWord2;
+                    originalFrame.sp2C=0;
+                    originalFrame.sp30=0;
+                    intermediateWord3|=7;
+                    Actor1442Field(retainedScalarOrPositionAddress16,int*,0x248)=argumentWord7;
+                    Actor1442Field(retainedScalarOrPositionAddress16,int*,-0x2C)=intermediateWord3;
+                    Actor1442_func_8004ED6C(argumentWord4,argumentWord5,argumentWord6);
+                    intermediateWord3=originalFrame.sp28;
+                    argumentWord4=originalFrame.sp2C;
+                    resultWord2=10;
+                    Actor1442Field(retainedScalarOrPositionAddress16,int*,0x1D4)=resultWord2;
+                    Actor1442Field(retainedScalarOrPositionAddress16,int*,0x1CC)=intermediateWord3;
+                    Actor1442Field(retainedScalarOrPositionAddress16,int*,0x1D0)=argumentWord4;
+                    return;
+                }
+            }
+        }
+        break;
+    case 38:
+        if (Actor1442_D_8006C770 != 0) {
+            argumentWord4=ownerAddress17;
+            argumentWord5=0;
+            resultWord2=40;
+            Actor1442Field(privateOrGlobalAddress18,short*,0x10)=resultWord2;
+        callOriginalSharedState34:
+            __asm__ volatile(""::"r"(argumentWord4),"r"(argumentWord5):"memory");
+            Actor1442_func_80034F40(argumentWord4,argumentWord5);
+            Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 0x22U;
+            return;
+        }
+        break;
+    case 6:
+        if (Actor1442_D_8006C770 != 0) {
+            Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 0U;
+            Actor1442_func_80034F40(ownerAddress17, 0);
+            return;
+        }
+        break;
+    case 33:
+        if (Actor1442_func_8004F334(ownerAddress17 + 0xC, (int)&Actor1442_D_80070328) < 0x2800) {
+            Actor1442_func_8003573C(ownerAddress17, 6, 6, 1);
+        }
+        if ((Actor1442_func_8004F264(Actor1442_func_8004E880(Actor1442Field((int)&Actor1442_D_80070328, int *, 0) - Actor1442Field(ownerAddress17, int *, 0xC), Actor1442Field((int)&Actor1442_D_80070328, int *, 4) - Actor1442Field(ownerAddress17, int *, 0x10), 0), Actor1442Field(ownerAddress17, unsigned char *, 0x46)) < 0xA) && (Actor1442_func_8004F264((int) (Actor1442_D_8006E040 << 0x10) >> 0x14, Actor1442_func_8004E880(Actor1442Field(ownerAddress17, int *, 0xC) - Actor1442_D_8006E020, Actor1442Field(ownerAddress17, int *, 0x10) - Actor1442_D_8006E024, 0)) < 0x16)) {
+            resultWord2=Actor1442Field((int)&Actor1442_D_80070328,int*,8);
+            intermediateWord3=Actor1442Field(ownerAddress17,int*,0x14);
+            Actor1442Keep(resultWord2);
+            resultWord2-=intermediateWord3;
+            if (resultWord2 < 0) {
+                resultWord2 = -resultWord2;
+            }
+            if (resultWord2 < 0x800) {
+                temporaryWord2 = Actor1442Field(privateOrGlobalAddress18, int *, 0xC);
+                if ((temporaryWord2 != 0) && (Actor1442unk_ovlheader_80074414(temporaryWord2, (int)&Actor1442_D_80070328) != 0)) {
+                    argumentWord4=ownerAddress17;
+                    Actor1442Keep(argumentWord4);
+                    resultWord2=Actor1442Field(privateOrGlobalAddress18,int*,0xC);
+                    __asm__ volatile("":::"memory");
+                    intermediateWord3=Actor1442Field(privateOrGlobalAddress18,int*,0xC);
+                    resultWord2=Actor1442Field(resultWord2,int*,4);
+                    Actor1442Field(privateOrGlobalAddress18,int*,0)=resultWord2;
+                    resultWord2=Actor1442Field(intermediateWord3,int*,8);
+                    argumentWord5=2;
+                    Actor1442Field(privateOrGlobalAddress18,int*,4)=resultWord2;
+                    resultWord2=40;
+                    goto storeOriginalStateAndCall;
+                }
+            }
+        }
+        break;
+    case 40:
+        if ((Actor1442Field(ownerAddress17, unsigned char *, 0x3D) == 2) && (Actor1442_D_8006C770 != 0)) {
+            Actor1442_func_80034F40(ownerAddress17, 3);
+        }
+        Actor1442_func_8003585C(ownerAddress17, Actor1442_func_8004E880(Actor1442Field(privateOrGlobalAddress18, int *, 0) - Actor1442Field(ownerAddress17, int *, 0xC), Actor1442Field(privateOrGlobalAddress18, int *, 4) - Actor1442Field(ownerAddress17, int *, 0x10), 0), 4, 2, 1, 0);
+        Actor1442_func_80035DDC(ownerAddress17, 0x96, 0, 0, 4);
+        if (Actor1442unk_ovlheader_80074414(Actor1442Field(privateOrGlobalAddress18, int *, 0xC), ownerAddress17 + 0xC) != 0) {
+            Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 3U;
+            return;
+        }
+        break;
+    case 2:
+        Actor1442_func_8003573C(ownerAddress17, 4, 4, 1);
+        if (Actor1442_D_8006C770 != 0) {
+            Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 3U;
+            Actor1442_func_80034F40(ownerAddress17, 3);
+            return;
+        }
+        break;
+    case 3:
+        intermediateWord3=Actor1442Field(privateOrGlobalAddress18,short*,0x30);
+        resultWord2=-1;
+        originalFrame.sp4C=resultWord2;
+        if(intermediateWord3)goto followOriginalState3Path;
+        if (Actor1442Field(privateOrGlobalAddress18, int *, 0xC) != 0) {
+            argumentWord5=ownerAddress17+12;
+            resultWord2=Actor1442Field(ownerAddress17,unsigned char*,0x46);
+            __asm__ volatile("":::"$16","memory");
+            retainedScalarOrPositionAddress16=(int)&originalFrame.sp38;
+            resultWord2*=2;
+            resultWord2=Actor1442Field((int)&Actor1442_D_80065920,short*,resultWord2);
+            __asm__ volatile("":::"$4","memory");
+            argumentWord4=retainedScalarOrPositionAddress16;
+            Actor1442Keep(argumentWord4);
+            originalFrame.sp38=(resultWord2*75)>>10;
+            resultWord2=Actor1442Field(ownerAddress17,unsigned char*,0x46);
+            Actor1442Keep(resultWord2);
+            resultWord2*=2;
+            resultWord2=Actor1442Field((int)&Actor1442_D_800658A0,short*,resultWord2);
+            __asm__ volatile("":::"$3","memory");
+            argumentWord6=retainedScalarOrPositionAddress16;
+            originalFrame.sp40=0;
+            __asm__ volatile("":"=r"(resultWord2):"0"(resultWord2),"m"(originalFrame.sp40):"memory");
+            originalFrame.sp3C=(resultWord2*75)>>10;
+            Actor1442_func_8004F194(argumentWord4,argumentWord5,argumentWord6);
+            if (Actor1442unk_ovlheader_80074414(Actor1442Field(privateOrGlobalAddress18, int *, 0xC), &originalFrame.sp38) == 0) {
+                Actor1442Field(privateOrGlobalAddress18, short *, 0x30) = 1;
+                Actor1442unk_ovlheader_8007442C(ownerAddress17, (int)&Actor1442_D_80070328, Actor1442Field(privateOrGlobalAddress18, int *, 0xC), privateOrGlobalAddress18 + 0x34, privateOrGlobalAddress18 + 0x36);
+            }
+        }
+        if(Actor1442Field(privateOrGlobalAddress18,short*,0x30)==0)goto steerOriginalState3;
+    followOriginalState3Path:
+        if(Actor1442unk_ovlheader_80074430(ownerAddress17,150,4,4,(int)&Actor1442_D_80070328,Actor1442Field(privateOrGlobalAddress18,int*,0xC),privateOrGlobalAddress18+0x34,privateOrGlobalAddress18+0x36,100)!=0){
+            Actor1442Field(privateOrGlobalAddress18,short*,0x30)=0;
+        }
+        goto continueOriginalState3;
+    steerOriginalState3:
+        Actor1442_func_8003573C(ownerAddress17,4,4,1);
+        Actor1442_func_80035DDC(ownerAddress17,150,0,0,4);
+    continueOriginalState3:
+        if ((Actor1442_func_8004F264((int) Actor1442Field(ownerAddress17, unsigned char *, 0x46), Actor1442_func_8004E880(Actor1442Field((int)&Actor1442_D_80070328, int *, 0) - Actor1442Field(ownerAddress17, int *, 0xC), Actor1442Field((int)&Actor1442_D_80070328, int *, 4) - Actor1442Field(ownerAddress17, int *, 0x10), 0)) >= 0x41) || (Actor1442_func_8004F264((int) (Actor1442_D_8006E040 << 0x10) >> 0x14, Actor1442_func_8004E880(Actor1442Field(ownerAddress17, int *, 0xC) - Actor1442_D_8006E020, Actor1442Field(ownerAddress17, int *, 0x10) - Actor1442_D_8006E024, 0)) >= 0x18) || ((Actor1442Field(privateOrGlobalAddress18, int *, 0xC) != 0) && (Actor1442unk_ovlheader_80074418(Actor1442Field(privateOrGlobalAddress18, int *, 0xC), (int)&Actor1442_D_80070328, &originalFrame.sp48, &originalFrame.sp4C, (int) Actor1442Field((int)&Actor1442_D_80070328, unsigned char *, 0xE)) == 0))) {
+            resultWord2 = originalFrame.sp4C;
+            intermediateWord3 = resultWord2 * 8;
+            if (resultWord2 < 0) {
+                temporaryWord6 = Actor1442unk_ovlheader_80074418(Actor1442Field(privateOrGlobalAddress18, int *, 0xC), (int)&Actor1442_D_80070328, &originalFrame.sp48, &originalFrame.sp4C, (int) Actor1442Field((int)&Actor1442_D_80070328, unsigned char *, 0xE));
+                originalFrame.sp4C=temporaryWord6;
+                __asm__ volatile("":::"$2","memory");
+                resultWord2=originalFrame.sp4C;
+                intermediateWord3=resultWord2*8;
+            }
+            intermediateWord3-=resultWord2;
+            resultWord2=Actor1442Field(privateOrGlobalAddress18,int*,0xC);
+            intermediateWord3*=4;
+            resultWord2+=intermediateWord3;
+            argumentWord4=Actor1442Field(resultWord2,int*,0x14);
+            __asm__ volatile("":::"memory");
+            resultWord2=Actor1442Field(privateOrGlobalAddress18,int*,0xC);
+            resultWord2+=intermediateWord3;
+            Actor1442Field(privateOrGlobalAddress18,int*,0)=argumentWord4;
+            resultWord2=Actor1442Field(resultWord2,int*,0x18);
+            Actor1442Field(privateOrGlobalAddress18,int*,4)=resultWord2;
+            Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 0x1EU;
+            Actor1442Field(privateOrGlobalAddress18, short *, 0x30) = 0;
+        }
+        retainedHeightOffsetOrAddress19 = (int)&Actor1442_D_80070328 + 8;
+        Actor1442Keep(retainedHeightOffsetOrAddress19);
+        argumentWord4=Actor1442Field(ownerAddress17,short*,0x38);
+        resultWord2=Actor1442Field(ownerAddress17,int*,0x14);
+        intermediateWord3=Actor1442Field(retainedHeightOffsetOrAddress19,int*,0);
+        resultWord2-=argumentWord4;
+        Actor1442Keep(resultWord2);
+        retainedHeightOrPointIndex20=resultWord2-intermediateWord3;
+        if ((Actor1442Field(ownerAddress17, unsigned char *, 0x3C) == 3) && (Actor1442Field((int)&Actor1442_D_80070328, int *, 0x50) != 9) && (Actor1442Field((int)&Actor1442_D_80070328, int *, 0x50) != 4) && (Actor1442Field((int)&Actor1442_D_80070328, int *, 0x240) == 0) && (Actor1442_func_8004F264((int) (Actor1442_D_8006E040 << 0x10) >> 0x14, Actor1442_func_8004E880(Actor1442Field(ownerAddress17, int *, 0xC) - Actor1442_D_8006E020, Actor1442Field(ownerAddress17, int *, 0x10) - Actor1442_D_8006E024, 0)) < 0x18) && (Actor1442_func_8004F264((int) Actor1442Field(ownerAddress17, unsigned char *, 0x46), Actor1442_func_8004E880(Actor1442Field(retainedHeightOffsetOrAddress19, int *, -8) - Actor1442Field(ownerAddress17, int *, 0xC), Actor1442Field((int)&Actor1442_D_80070328, int *, 4) - Actor1442Field(ownerAddress17, int *, 0x10), 0)) < 8)) {
+            retainedScalarOrPositionAddress16=retainedHeightOffsetOrAddress19-8;
+            Actor1442Keep(retainedScalarOrPositionAddress16);
+            if(Actor1442_func_8004F334(ownerAddress17+0xC,retainedScalarOrPositionAddress16)<0x708 && ((resultWord2=retainedHeightOrPointIndex20+0x3FF),(unsigned int)resultWord2<0x47FU)) {
+                Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 4U;
+                Actor1442_func_80034F40(ownerAddress17, 4);
+                intermediateWord3=0x10000400;
+                Actor1442Keep(intermediateWord3);
+                argumentWord4=ownerAddress17+0x20;
+                argumentWord5=(int)&originalFrame.sp50;
+                __asm__("":"=r"(argumentWord4),"=r"(argumentWord5):"0"(argumentWord4),"1"(argumentWord5));
+                resultWord2=60;
+                Actor1442Field(privateOrGlobalAddress18,short*,0x30)=0;
+                Actor1442Field(privateOrGlobalAddress18,short*,0x10)=resultWord2;
+                argumentWord7=Actor1442Field(ownerAddress17,unsigned char*,0x46);
+                __asm__ volatile("":::"$6","memory");
+                argumentWord6=argumentWord5;
+                Actor1442Field(retainedHeightOffsetOrAddress19,int*,0x204)=intermediateWord3;
+                intermediateWord3=Actor1442Field(retainedHeightOffsetOrAddress19,int*,0x1C);
+                resultWord2=70;
+                originalFrame.sp50=resultWord2;
+                originalFrame.sp54=0;
+                originalFrame.sp58=0;
+                intermediateWord3|=7;
+                Actor1442Field(retainedHeightOffsetOrAddress19,int*,0x290)=argumentWord7;
+                Actor1442Field(retainedHeightOffsetOrAddress19,int*,0x1C)=intermediateWord3;
+                Actor1442_func_8004ED6C(argumentWord4,argumentWord5,argumentWord6);
+                intermediateWord3=originalFrame.sp50;
+                argumentWord4=originalFrame.sp54;
+                resultWord2=10;
+                Actor1442Field(retainedHeightOffsetOrAddress19,int*,0x21C)=resultWord2;
+                Actor1442Field(retainedHeightOffsetOrAddress19,int*,0x214)=intermediateWord3;
+                Actor1442Field(retainedHeightOffsetOrAddress19,int*,0x218)=argumentWord4;
+                return;
+            }
+        }
+        break;
+    case 4:
+        if ((Actor1442_D_8006C770 != 0) && (Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 0x1EU, Actor1442_func_80034F40(ownerAddress17, 1), intermediateWord3 = Actor1442Field(privateOrGlobalAddress18,int*,0xC), retainedHeightOrPointIndex20 = 0, (intermediateWord3 != 0))) {
+            resultWord2=Actor1442Field(intermediateWord3,unsigned char*,1);
+            Actor1442Keep(resultWord2);
+            selectedDistance22=0;
+            if(resultWord2>0){
+                originalPlayerAddress23=(int)&Actor1442_D_80070328;
+                Actor1442Keep(originalPlayerAddress23);
+                retainedHeightOffsetOrAddress19 = 0;
+                do {
+                    resultWord2=intermediateWord3+retainedHeightOffsetOrAddress19;
+                    resultWord2=Actor1442Field(resultWord2,int*,0x14);
+                    originalFrame.sp60=resultWord2;
+                    __asm__ volatile("":::"memory");
+                    resultWord2=Actor1442Field(privateOrGlobalAddress18,int*,0xC);
+                    resultWord2+=retainedHeightOffsetOrAddress19;
+                    resultWord2=Actor1442Field(resultWord2,int*,0x18);
+                    __asm__ volatile("":::"$4","memory");
+                    argumentWord4=(int)&originalFrame.sp60;
+                    Actor1442Keep(argumentWord4);
+                    originalFrame.sp64=resultWord2;
+                    resultWord2=Actor1442Field(ownerAddress17,int*,0x14);
+                    argumentWord5=originalPlayerAddress23;
+                    originalFrame.sp68=resultWord2;
+                    candidateDistance21=Actor1442_func_8004F334(argumentWord4,argumentWord5);
+                    if (selectedDistance22 < candidateDistance21) {
+                        resultWord2=Actor1442_func_8004E880(Actor1442Field(originalPlayerAddress23,int*,0)-Actor1442Field(ownerAddress17,int*,0xC),Actor1442Field((int)&Actor1442_D_80070328,int*,4)-Actor1442Field(ownerAddress17,int*,0x10),0);
+                        argumentWord6=0;
+                        Actor1442Keep(argumentWord6);
+                        retainedScalarOrPositionAddress16=resultWord2;
+                        argumentWord7=originalFrame.sp60;
+                        argumentWord4=Actor1442Field(ownerAddress17,int*,0xC);
+                        intermediateWord3=originalFrame.sp64;
+                        argumentWord5=Actor1442Field(ownerAddress17,int*,0x10);
+                        argumentWord4=argumentWord7-argumentWord4;
+                        argumentWord5=intermediateWord3-argumentWord5;
+                        if(Actor1442_func_8004F264(retainedScalarOrPositionAddress16,Actor1442_func_8004E880(argumentWord4,argumentWord5,argumentWord6))>=0x41) {
+                            selectedDistance22 = candidateDistance21;
+                            selectedPointIndex = retainedHeightOrPointIndex20;
+                        }
+                    }
+                    intermediateWord3=Actor1442Field(privateOrGlobalAddress18,int*,0xC);
+                    resultWord2=Actor1442Field(intermediateWord3,unsigned char*,1);
+                    __asm__ volatile("":"=r"(retainedHeightOrPointIndex20):"0"(retainedHeightOrPointIndex20):"memory");
+                    retainedHeightOrPointIndex20+=1;
+                    retainedHeightOffsetOrAddress19+=28;
+                }
+                while(retainedHeightOrPointIndex20<resultWord2);
+            }
+            if (selectedDistance22 != 0) {
+                temporaryWord9 = selectedPointIndex * 0x1C;
+                Actor1442Field(privateOrGlobalAddress18, int *, 0) = Actor1442Field((Actor1442Field(privateOrGlobalAddress18, int *, 0xC) + temporaryWord9), int *, 0x14);
+                Actor1442Field(privateOrGlobalAddress18, int *, 4) = (int) Actor1442Field((Actor1442Field(privateOrGlobalAddress18, int *, 0xC) + temporaryWord9), int *, 0x18);
+                return;
+            }
+        }
+        break;
+    case 30:
+        if (Actor1442_func_800359A4(privateOrGlobalAddress18 + 0x10, 2) == 0) {
+            Actor1442_func_80034F40(ownerAddress17, 1);
+            retainedHeightOrPointIndex20 = 0x32;
+            retainedHeightOffsetOrAddress19 = 4;
+        }
+        else {
+            Actor1442_func_80034F40(ownerAddress17, 3);
+            retainedHeightOrPointIndex20 = 0x96;
+            retainedHeightOffsetOrAddress19 = 6;
+        }
+        if(Actor1442Field(privateOrGlobalAddress18,short*,0x30)!=0)goto followOriginalState30Path;
+        {
+            resultWord2=Actor1442Field(privateOrGlobalAddress18,int*,0xC);
+            retainedScalarOrPositionAddress16=(int)&originalFrame.sp60;
+            if(resultWord2!=0){
+                resultWord2=Actor1442Field(ownerAddress17,unsigned char*,0x46);
+                Actor1442Keep(resultWord2);
+                resultWord2*=2;
+                resultWord2=Actor1442Field((int)&Actor1442_D_80065920,short*,resultWord2);
+                __asm__ volatile("":::"$4","memory");
+                argumentWord4=retainedScalarOrPositionAddress16;
+                Actor1442Keep(argumentWord4);
+                originalFrame.sp60=(resultWord2*75)>>10;
+                resultWord2=Actor1442Field(ownerAddress17,unsigned char*,0x46);
+                __asm__ volatile("":::"$5","memory");
+                argumentWord5=ownerAddress17+12;
+                resultWord2*=2;
+                resultWord2=Actor1442Field((int)&Actor1442_D_800658A0,short*,resultWord2);
+                __asm__ volatile("":::"$3","memory");
+                argumentWord6=retainedScalarOrPositionAddress16;
+                originalFrame.sp68=0;
+                __asm__ volatile("":"=r"(resultWord2):"0"(resultWord2),"m"(originalFrame.sp68):"memory");
+                originalFrame.sp64=(resultWord2*75)>>10;
+                Actor1442_func_8004F194(argumentWord4,argumentWord5,argumentWord6);
+                if (Actor1442unk_ovlheader_80074418(Actor1442Field(privateOrGlobalAddress18, int *, 0xC), (int *) &originalFrame.sp60, &originalFrame.sp70, &originalFrame.sp74, -1) == 0) {
+                    Actor1442Field(privateOrGlobalAddress18, short *, 0x30) = 1;
+                    Actor1442unk_ovlheader_8007442C(ownerAddress17, privateOrGlobalAddress18, Actor1442Field(privateOrGlobalAddress18, int *, 0xC), privateOrGlobalAddress18 + 0x34, privateOrGlobalAddress18 + 0x36);
+                }
+            }
+        }
+        if(Actor1442Field(privateOrGlobalAddress18,short*,0x30)==0)goto steerOriginalState30;
+    followOriginalState30Path:
+        if(Actor1442unk_ovlheader_80074430(ownerAddress17,retainedHeightOrPointIndex20,retainedHeightOffsetOrAddress19,4,privateOrGlobalAddress18,Actor1442Field(privateOrGlobalAddress18,int*,0xC),privateOrGlobalAddress18+0x34,privateOrGlobalAddress18+0x36,retainedHeightOrPointIndex20)!=0){
+            Actor1442Field(privateOrGlobalAddress18,short*,0x30)=0;
+        }
+        temporaryWord10=ownerAddress17+0xC;
+        goto testOriginalState30Distance;
+    steerOriginalState30:
+        Actor1442_func_8003585C(ownerAddress17,Actor1442_func_8004E880(Actor1442Field(privateOrGlobalAddress18,int*,0)-Actor1442Field(ownerAddress17,int*,0xC),Actor1442Field(privateOrGlobalAddress18,int*,4)-Actor1442Field(ownerAddress17,int*,0x10),0),retainedHeightOffsetOrAddress19,2,1,0);
+        Actor1442_func_80035DDC(ownerAddress17,retainedHeightOrPointIndex20,0,0,4);
+        temporaryWord10=ownerAddress17+0xC;
+    testOriginalState30Distance:
+        if (Actor1442_func_8004F334(temporaryWord10, privateOrGlobalAddress18) < 0x320) {
+            Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 0x1FU;
+            Actor1442_func_80034F40(ownerAddress17, 1);
+            return;
+        }
+        break;
+    case 31:
+        if (Actor1442_func_8003573C(ownerAddress17, 4, 4, 1) != 0) {
+            Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 0U;
+            Actor1442_func_80034F40(ownerAddress17, 0);
+            Actor1442Field(privateOrGlobalAddress18, short *, 0x10) = 0x1E;
+        }
+        argumentWord4=(int)&originalFrame.sp78;
+        Actor1442Keep(argumentWord4);
+        retainedScalarOrPositionAddress16=ownerAddress17+0xC;
+        Actor1442_func_8004F178(argumentWord4,retainedScalarOrPositionAddress16);
+        Actor1442_func_80035DDC(ownerAddress17, 0x32, 0, 0, 4);
+        temporaryWord3 = Actor1442Field(privateOrGlobalAddress18, int *, 0xC);
+        if ((temporaryWord3 != 0) && (Actor1442unk_ovlheader_80074414(temporaryWord3, retainedScalarOrPositionAddress16) == 0)) {
+            Actor1442_func_8004F178(retainedScalarOrPositionAddress16, &originalFrame.sp78);
+            return;
+        }
+        break;
+    case 5:
+        if (Actor1442_D_8006C770 != 0) {
+            Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 7U;
+            Actor1442_func_80034F80(ownerAddress17, 7);
+            Actor1442Field(privateOrGlobalAddress18, short *, 0x12) = 0x1E;
+            return;
+        }
+        break;
+    case 7:
+        resultWord2=Actor1442_func_8004F334(ownerAddress17+0xC,(int)&Actor1442_D_80070328);
+        argumentWord4=ownerAddress17;
+        argumentWord5=4;
+        argumentWord6=1;
+        argumentWord7=1;
+        __asm__("":"=r"(argumentWord4),"=r"(argumentWord5),"=r"(argumentWord6),"=r"(argumentWord7):"0"(argumentWord4),"1"(argumentWord5),"2"(argumentWord6),"3"(argumentWord7));
+        retainedScalarOrPositionAddress16=resultWord2;
+        Actor1442_func_8003573C(argumentWord4,argumentWord5,argumentWord6,argumentWord7);
+        if (retainedScalarOrPositionAddress16 < 0x2000) {
+            Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 8U;
+            Actor1442_func_80034F40(ownerAddress17, 8);
+            return;
+        }
+        break;
+    case 8:
+        Actor1442_func_8003573C(ownerAddress17, 4, 1, 1);
+        if (Actor1442_D_8006C770 != 0) {
+            Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 9U;
+            Actor1442_func_80034F40(ownerAddress17, 9);
+            return;
+        }
+        break;
+    case 9:
+        Actor1442_func_8003573C(ownerAddress17, 4, 1, 1);
+        resultWord2=Actor1442_func_800359A4(privateOrGlobalAddress18+0x10,2);
+        retainedScalarOrPositionAddress16=(int)&originalFrame.sp88;
+        if(resultWord2!=0){
+            argumentWord4=retainedScalarOrPositionAddress16;
+            Actor1442Keep(argumentWord4);
+            privateOrGlobalAddress18=(int)&Actor1442_D_80070328+0x98;
+            Actor1442Keep(privateOrGlobalAddress18);
+            Actor1442_func_8004F178(argumentWord4,privateOrGlobalAddress18);
+            temporaryWord4 = originalFrame.sp8C;
+            originalFrame.sp88 *= 0x19;
+            originalFrame.sp8C = temporaryWord4 * 0x19;
+            originalFrame.sp90 *= 0x19;
+            Actor1442_func_8004F110(&originalFrame.sp88, 6);
+            Actor1442_func_8004F194(&originalFrame.sp88, &originalFrame.sp88, privateOrGlobalAddress18 - 0x98);
+            temporaryWord7 = Actor1442_func_8004F334(ownerAddress17 + 0xC, &originalFrame.sp88);
+            if ((temporaryWord7 < 0xE00) && (Actor1442_func_8004F264(Actor1442_func_8004E880(Actor1442Field(privateOrGlobalAddress18, int *, -0x98) - Actor1442Field(ownerAddress17, int *, 0xC), Actor1442Field(privateOrGlobalAddress18, int *, -0x94) - Actor1442Field(ownerAddress17, int *, 0x10), 0), Actor1442Field(ownerAddress17, unsigned char *, 0x46)) < 0xA) && (Actor1442_func_8004F264((int) (Actor1442_D_8006E040 << 0x10) >> 0x14, Actor1442_func_8004E880(Actor1442Field(ownerAddress17, int *, 0xC) - Actor1442_D_8006E020, Actor1442Field(ownerAddress17, int *, 0x10) - Actor1442_D_8006E024, 0)) < 0x16)) {
+                Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 0xAU;
+                Actor1442_func_80034F40(ownerAddress17, 0xA);
+                return;
+            }
+            if (temporaryWord7 >= 0x2001) {
+                Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 0xBU;
+                Actor1442_func_80034F40(ownerAddress17, 0xB);
+                return;
+            }
+        }
+        break;
+    case 10:
+        Actor1442_func_8003573C(ownerAddress17, 4, 1, 1);
+        retainedScalarOrPositionAddress16 = (int)&Actor1442_D_80070328 + 8;
+        Actor1442Keep(retainedScalarOrPositionAddress16);
+        argumentWord4=Actor1442Field(ownerAddress17,short*,0x38);
+        resultWord2=Actor1442Field(ownerAddress17,int*,0x14);
+        intermediateWord3=Actor1442Field(retainedScalarOrPositionAddress16,int*,0);
+        resultWord2-=argumentWord4;
+        Actor1442Keep(resultWord2);
+        retainedHeightOrPointIndex20=resultWord2-intermediateWord3;
+        if ((Actor1442Field(ownerAddress17, unsigned char *, 0x49) != 1) && (Actor1442Field(ownerAddress17, unsigned char *, 0x3C) == 0xA) && (Actor1442_func_80055E84(ownerAddress17) >= 0x10) && (Actor1442_func_80055E84(ownerAddress17) < 0x14) && (Actor1442Field((int)&Actor1442_D_80070328, int *, 0x240) == 0)) {
+            resultWord2=(Actor1442_func_8004F264((int) Actor1442Field(ownerAddress17, unsigned char *, 0x46), Actor1442_func_8004E880(Actor1442Field(retainedScalarOrPositionAddress16, int *, -8) - Actor1442Field(ownerAddress17, int *, 0xC), Actor1442Field((int)&Actor1442_D_80070328, int *, 4) - Actor1442Field(ownerAddress17, int *, 0x10), 0)) < 8);
+            retainedHeightOffsetOrAddress19=retainedScalarOrPositionAddress16-8;
+            if(resultWord2){
+                Actor1442Keep(retainedHeightOffsetOrAddress19);
+                if((Actor1442_func_8004F264((int) (Actor1442_D_8006E040 << 0x10) >> 0x14, Actor1442_func_8004E880(Actor1442Field(ownerAddress17, int *, 0xC) - Actor1442_D_8006E020, Actor1442Field(ownerAddress17, int *, 0x10) - Actor1442_D_8006E024, 0)) < 0x16) && Actor1442_func_8004F334(ownerAddress17+0xC,retainedHeightOffsetOrAddress19)<0xc80 && ((resultWord2=retainedHeightOrPointIndex20+0x3FF),(unsigned int)resultWord2<0x47FU)) {
+                    Actor1442Field(retainedScalarOrPositionAddress16, int *, 0x290) = (int) Actor1442Field(ownerAddress17, unsigned char *, 0x46);
+                    Actor1442Field(retainedScalarOrPositionAddress16, int *, 0x1C) = (int) (Actor1442Field(retainedScalarOrPositionAddress16, int *, 0x1C) | 7);
+                    Actor1442Field(ownerAddress17, unsigned char *, 0x49) = 1U;
+                }
+            }
+        }
+        if (Actor1442_D_8006C770 != 0) {
+            argumentWord4=ownerAddress17;
+            argumentWord5=9;
+            resultWord2=30;
+            Actor1442Keep(resultWord2);
+            Actor1442Field(privateOrGlobalAddress18,short*,0x10)=resultWord2;
+            resultWord2=9;
+            Actor1442Keep(resultWord2);
+            Actor1442Field(argumentWord4,unsigned char*,0x49)=0;
+        storeOriginalStateAndCall:
+            Actor1442Field(argumentWord4,signed char*,0x48)=resultWord2;
+            Actor1442_func_80034F40(argumentWord4,argumentWord5);
+            return;
+        }
+        break;
+    case 11:
+        Actor1442_func_8003573C(ownerAddress17, 4, 1, 1);
+        if (Actor1442_D_8006C770 != 0) {
+            Actor1442Field(ownerAddress17, unsigned char *, 0x48) = 7U;
+            Actor1442_func_80034F40(ownerAddress17, 7);
+            return;
+        }
+        break;
+    case 12:
+        if (Actor1442_func_80035194(ownerAddress17, privateOrGlobalAddress18 + 0x18) == 0x100) {
+            Actor1442_func_80055D24(ownerAddress17, 4);
+            Actor1442_func_8003BA00(ownerAddress17);
+            Actor1442_func_800369B8(ownerAddress17, 0x1E);
+            Actor1442_func_80055B18(ownerAddress17);
+        }
+        break;
+    }
+}
+#undef Actor1442Field
+#undef Actor1442Keep
+
 
 int func_80039714(Moby*);
 void func_80055D24(Moby*, int);
@@ -5937,7 +12801,452 @@ void func_level_34_80089028(Moby* moby) {
     func_80055B18(argument);
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_34/moby", func_level_34_800890A8);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated;
+ not human reviewed. Original-instruction-derived C. Original source asm/nonmatchings/overlays/level_34/moby/func_level_34_800890A8.s SHA256 8fcf5a2017f8918ec42dc4f6d6de5a04180c01e80c8ddab640f2320c5388f3f1. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
+#define Level34_890A8Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+
+int Level34_890A8_func_8001830C() __asm__("func_8001830C");
+ /* extern */
+void *Level34_890A8_func_8001BA30() __asm__("func_8001BA30");
+ /* extern */
+int Level34_890A8_func_8001C288() __asm__("func_8001C288");
+        /* extern */
+int *Level34_890A8_func_8002EC50() __asm__("func_8002EC50");
+      /* extern */
+int Level34_890A8_func_80034F40() __asm__("func_80034F40");
+             /* extern */
+unsigned char Level34_890A8_func_80034F80() __asm__("func_80034F80");
+             /* extern */
+int Level34_890A8_func_800359A4() __asm__("func_800359A4");
+                 /* extern */
+int Level34_890A8_func_8003636C() __asm__("func_8003636C");
+           /* extern */
+unsigned char Level34_890A8_func_8003BABC() __asm__("func_8003BABC");
+    /* extern */
+unsigned char Level34_890A8_func_8003BE70() __asm__("func_8003BE70");
+                         /* extern */
+int Level34_890A8_func_8003BFC0() __asm__("func_8003BFC0");
+                     /* extern */
+int Level34_890A8_func_8004E880() __asm__("func_8004E880");
+                /* extern */
+unsigned char Level34_890A8_func_8004ED6C() __asm__("func_8004ED6C");
+        /* extern */
+int Level34_890A8_func_8004EDE8() __asm__("func_8004EDE8");
+                  /* extern */
+unsigned char Level34_890A8_func_8004F08C() __asm__("func_8004F08C");
+         /* extern */
+unsigned char Level34_890A8_func_8004F178() __asm__("func_8004F178");
+                /* extern */
+unsigned char Level34_890A8_func_8004F194() __asm__("func_8004F194");
+         /* extern */
+int Level34_890A8_func_8004F334() __asm__("func_8004F334");
+                   /* extern */
+unsigned char Level34_890A8_func_80055B18() __asm__("func_80055B18");
+                      /* extern */
+unsigned char Level34_890A8_func_80055D24() __asm__("func_80055D24");
+             /* extern */
+int Level34_890A8_rand() __asm__("rand");
+                                         /* extern */
+extern unsigned char Level34_890A8_D_800658A0 __asm__("D_800658A0");
+extern unsigned char Level34_890A8_D_80065920 __asm__("D_80065920");
+extern int Level34_890A8_D_8006C550 __asm__("D_8006C550");
+extern int Level34_890A8_D_8006C574 __asm__("D_8006C574");
+extern int Level34_890A8_D_8006C578 __asm__("D_8006C578");
+extern int Level34_890A8_D_8006C648 __asm__("D_8006C648");
+extern int Level34_890A8_D_8006E020 __asm__("D_8006E020");
+extern int Level34_890A8_D_8006E024 __asm__("D_8006E024");
+extern int Level34_890A8_D_8006E028 __asm__("D_8006E028");
+extern int Level34_890A8_D_8006E044 __asm__("D_8006E044");
+extern unsigned char Level34_890A8_D_80070328 __asm__("D_80070328");
+extern int Level34_890A8_D_80071900 __asm__("D_80071900");
+extern void *(*Level34_890A8_SpawnMoby)() __asm__("SpawnMoby");
+extern unsigned char (*Level34_890A8_unk_ovlheader_800743B4)() __asm__("unk_ovlheader_800743B4");
+
+void func_level_34_800890A8(void *inputOwner) {
+    /* Original frame0xB8 and SP28/SP38/SP48/SP58/SP68/SP78/SP88 retained.
+     * Signed LH and unsigned LHU selectors follow the original table reads.
+     * S2 is reused for the completion flag, first vector and later children;
+     * these source names preserve the original distinct register lifetimes.
+     * Raw helper-entry labels preserve the original before/after A0/A1 routes.
+     * Owner captures retain the original repeated position producers.
+     * Empty constraints and comment-only markers emit no instructions.
+     * Helper contracts, physical units/fixed point and frame cadence unresolved. */
+    register void* owner19 __asm__("$19")=inputOwner;
+    register int value2 __asm__("$2");
+    register int value3 __asm__("$3");
+    register int argument4 __asm__("$4");
+    register int argument5 __asm__("$5");
+    register int argument6 __asm__("$6");
+    register int argument7 __asm__("$7");
+    register int* world16 __asm__("$16");
+    register int* vector38_18 __asm__("$18");
+    register int* vector48_17 __asm__("$17");
+    register int* vector88_22 __asm__("$22");
+    struct {int sp28;
+     unsigned char pad2C[12];
+     int sp38;
+     int sp3C;
+     int sp40;
+     unsigned char pad44[4];
+     int sp48;
+     unsigned char pad4C[12];
+     int sp58;
+     int sp5C;
+     int sp60;
+     unsigned char pad64[4];
+     int sp68;
+     int sp6C;
+     int sp70;
+     unsigned char pad74[4];
+     int sp78;
+     int sp7C;
+     int sp80;
+     unsigned char pad84[4];
+     int sp88;
+     int sp8C;
+     int sp90;
+     unsigned char pad94[4];
+    } scratch;
+
+    short *temp_a1;
+    short *temp_v1_4;
+    short temp_v1_5;
+    int *temp_a0;
+    int *temp_a0_2;
+    int *temp_a1_2;
+    int *temp_a1_3;
+    register int *ownerPosition17 __asm__("$17");
+    register int *firstChildPosition17 __asm__("$17");
+    int *temp_v0_2;
+    int *temp_v0_7;
+    int temp_lo;
+    int temp_v0;
+    int temp_v1_2;
+    int temp_v1_3;
+    int var_a0;
+    register int completionFlag18 __asm__("$18");
+    register int firstIndex20 __asm__("$20");
+    register int secondIndex20 __asm__("$20");
+    int var_v0;
+    unsigned char temp_v1;
+    unsigned char temp_v1_6;
+    register void *firstChildPrivate16 __asm__("$16");
+    register void *secondChildPrivate16 __asm__("$16");
+    register void *thirdChildPrivate16 __asm__("$16");
+    register void *secondOwnerAngles17 __asm__("$17");
+    register void *thirdOwnerAngles17 __asm__("$17");
+    register void *private21 __asm__("$21");
+    register void *firstChild18 __asm__("$18");
+    register void *secondChild18 __asm__("$18");
+    register void *thirdChild18 __asm__("$18");
+    void *temp_v0_6;
+    void *temp_v0_8;
+    void *var_a0_2;
+
+    __asm__("" : "=r"(owner19):"0"(owner19));
+    temp_v1 = Level34_890A8Field(owner19, unsigned char *, 0x48);
+    private21 = Level34_890A8Field(owner19, void **, 0);
+    completionFlag18 = 0;
+    if (temp_v1 != 2) {
+        if (temp_v1 == 1) {
+            Level34_890A8Field(owner19, unsigned char *, 0x4F) = (unsigned char) (Level34_890A8Field(owner19, unsigned char *, 0x4F) - (Level34_890A8_D_8006C648 * 4));
+            if (Level34_890A8_func_800359A4(private21 + 4, 2) != 0) {
+                argument4=Level34_890A8_func_8004F334(owner19+12,world16=&Level34_890A8_D_8006E020);
+                argument6=0;
+                firstIndex20=0;
+                __asm__(""::"r"(argument6),"r"(firstIndex20));
+                vector38_18=&scratch.sp38;
+                value2=Level34_890A8_D_8006E028;
+                argument5=Level34_890A8Field(owner19,int*,20);
+                vector48_17=&scratch.sp48;
+                value2=Level34_890A8_func_8004E880(argument4,value2-argument5,argument6);
+                argument6=0;
+                __asm__(""::"r"(argument6));
+                Level34_890A8Field(owner19,unsigned char*,0x45)=value2;
+                value3=*world16;
+                __asm__("" : "=r"(value3):"0"(value3):"memory");
+                argument4=Level34_890A8Field(owner19,int*,12);
+                value2=Level34_890A8_D_8006E024;
+                argument5=Level34_890A8Field(owner19,int*,16);
+                value2=Level34_890A8_func_8004E880(value3-argument4,value2-argument5,0);
+                Level34_890A8Field(owner19,unsigned char*,0x46)=value2;
+loop_4:
+                if ((Level34_890A8_D_8006C578 - Level34_890A8_D_8006C574) >= 0x15) {
+                    Level34_890A8_func_80055D24(owner19, 4);
+                    scratch.sp38 = 0;
+                    scratch.sp3C = 0x64;
+                    scratch.sp40 = 0;
+                    Level34_890A8_func_8004ED6C(owner19 + 0x20, vector38_18, vector38_18);
+                    Level34_890A8_func_8004F178(vector48_17, vector38_18);
+                    Level34_890A8_func_8004F08C(vector48_17, Level34_890A8_func_8004EDE8(vector48_17, 1), 0x100);
+                    Level34_890A8_func_8004F194(vector48_17, owner19 + 0xC, vector48_17);
+                    argument4=(int)owner19;
+                    argument5=1;
+                    argument6=0;
+                    argument7=0x3F004040;
+                    __asm__(""::"r"(argument4),"r"(argument5),"r"(argument6),"r"(argument7));
+                    firstIndex20++;
+                    Level34_890A8_unk_ovlheader_800743B4(argument4,argument5,argument6,argument7,0x82,0x32,0xF,0x10,vector48_17,vector38_18);
+                    Level34_890A8Field(owner19, unsigned char *, 0x44) = (unsigned char) (Level34_890A8Field(owner19, unsigned char *, 0x44) + (Level34_890A8_D_8006C648 * 0x10));
+                    if (firstIndex20 < 8) {
+                        goto loop_4;
+                    }
+                }
+                Level34_890A8_func_80055B18(owner19);
+            }
+        } else {
+            if ((Level34_890A8_D_8006C578 - Level34_890A8_D_8006C574) >= 0x15) {
+                scratch.sp58 = 0;
+                scratch.sp5C = (int) (*(short*)((unsigned char*)&Level34_890A8_D_80065920+(Level34_890A8Field(owner19,unsigned char*,0x44)*2)) * 5) >> 8;
+                scratch.sp60 = (int) (*(short*)((unsigned char*)&Level34_890A8_D_800658A0+(Level34_890A8Field(owner19,unsigned char*,0x44)*2)) * 5) >> 8;
+                Level34_890A8Field(owner19, unsigned char *, 0x44) = (unsigned char) (Level34_890A8Field(owner19, unsigned char *, 0x44) + (Level34_890A8_func_8003636C(0, 0x20) + 0x20));
+                Level34_890A8_unk_ovlheader_800743B4(owner19, 1, 0, 0x3F004040, 0x82, 0x32, 0xF, 0x10, owner19 + 0xC, &scratch.sp58);
+            }
+            argument4=(int)&scratch.sp28;
+            __asm__("" : "=r"(argument4):"0"(argument4));
+            ownerPosition17 = owner19 + 0xC;
+            Level34_890A8_func_8004F178(argument4,ownerPosition17);
+            Level34_890A8_func_80055D24(owner19, 6);
+            scratch.sp68 = (int) Level34_890A8Field(private21, short *, 0x14);
+            scratch.sp6C = 0;
+            scratch.sp70 = 0;
+            Level34_890A8_func_8004ED6C(owner19 + 0x20, &scratch.sp68, &scratch.sp68);
+            Level34_890A8_func_8004F194(ownerPosition17, &scratch.sp68, ownerPosition17);
+            if ((unsigned char) Level34_890A8Field(owner19, unsigned char *, 0x56) < 0xFFU) {
+                temp_v0 = 0x64 - Level34_890A8Field(private21, short *, 4);
+                temp_v1_2 = temp_v0 * 2;
+                var_v0 = temp_v1_2;
+                if (temp_v1_2 < 0) {
+                    var_v0 = temp_v1_2 + 0xFF;
+                }
+                var_a0 = (int) (*(unsigned short*)((unsigned char*)&Level34_890A8_D_800658A0+((temp_v1_2-((var_v0>>8)<<8))*2)) << 0x10) >> 0x14;
+                if (var_a0 >= 0xFB) {
+                    var_a0 = 0xFF;
+                } else if (var_a0 < 0) {
+                    var_a0 = 0;
+                }
+                Level34_890A8Field(owner19, int *, 0x54) = (int) ((var_a0 << 0x10) + 0x3F00FFFF);
+            }
+            if ((Level34_890A8Field(private21, int **, 0) != 0) || (temp_v0_2 = Level34_890A8_func_8002EC50(1, 0xFE, 0x489090), Level34_890A8Field(private21, int **, 0) = temp_v0_2, (temp_v0_2 != 0))) {
+                Level34_890A8_func_8004F178(Level34_890A8Field(private21, int **, 0), owner19 + 0xC);
+                Level34_890A8Field(Level34_890A8Field(private21, int **, 0), signed char *, 0x13) = 8;
+            }
+            if (Level34_890A8_func_8001830C(&scratch.sp28, owner19 + 0xC, 3, 0, 0) != 0) {
+                if (Level34_890A8Field(owner19, unsigned char *, 0x49) == 1) {
+                    argument6=0;
+                    __asm__(""::"r"(argument6));
+                    secondIndex20=0;
+                    vector88_22=&scratch.sp88;
+                    __asm__("" : "=r"(vector88_22):"0"(vector88_22));
+                    Level34_890A8Field(owner19, unsigned char *, 0x44) = 0U;
+                    Level34_890A8Field(owner19, unsigned char *, 0x45) = 0U;
+                    Level34_890A8Field(owner19, unsigned char *, 0x46) = Level34_890A8_func_8004E880(Level34_890A8Field(private21, int *, 8) - Level34_890A8Field(owner19, int *, 0xC), Level34_890A8Field(private21, int *, 0xC) - Level34_890A8Field(owner19, int *, 0x10), 0);
+                    Level34_890A8_func_80055D24(owner19, 4);
+                    scratch.sp78 = 0x96;
+                    scratch.sp7C = 0;
+                    scratch.sp80 = 0;
+                    Level34_890A8_func_8004ED6C(owner19 + 0x20, &scratch.sp78, &scratch.sp78);
+loop_24:
+                    if ((Level34_890A8_D_8006C578 - Level34_890A8_D_8006C574) >= 0x15) {
+                        firstChild18 = Level34_890A8_SpawnMoby(0x1D1, owner19);
+                    __asm__("" : "=r"(firstChild18):"0"(firstChild18));
+                        value2=1;
+                        if (firstChild18 != 0) {
+                            value3=(secondIndex20-2)<<5;
+                            argument5=(int)&Level34_890A8_D_80065920;
+                            __asm__("" : "=r"(value3),"=r"(argument5):"0"(value3),"1"(argument5));
+                            value3&=0x1E0;
+                            temp_v1_3=value3;
+                            temp_a1=(short*)(value3+argument5);
+                            Level34_890A8Field(firstChild18, signed char *, 0x48) = value2;
+                            temp_v1_4 = temp_v1_3 + &Level34_890A8_D_800658A0;
+                            firstChildPrivate16 = Level34_890A8Field(firstChild18, void **, 0);
+                            Level34_890A8Field(firstChildPrivate16, int *, 8) = (int) ((int) ((scratch.sp78 * *temp_a1) - (scratch.sp7C * *temp_v1_4)) >> 0xC);
+                            value3=*temp_v1_4;
+                            value2=scratch.sp78;
+                            argument6=value2*value3;
+                            value3=*temp_a1;
+                            __asm__ volatile("" : "=r"(argument6):"0"(argument6));
+                            value2=scratch.sp7C;
+                            value3=value2*value3;
+                            argument4=0;
+                            argument5=150;
+                            __asm__("" : "=r"(value3):"0"(value3),"r"(argument4),"r"(argument5));
+                            value2=(argument6+value3)>>12;
+                            Level34_890A8Field(firstChildPrivate16,int*,12)=value2;
+                            Level34_890A8Field(firstChildPrivate16,int*,16)=Level34_890A8_func_8003636C(argument4,argument5)+50;
+                            Level34_890A8Field(firstChildPrivate16, signed char *, 0) = (signed char) (Level34_890A8_func_8003636C(0, 0xA) - 5);
+                            Level34_890A8Field(firstChildPrivate16, signed char *, 1) = (signed char) (Level34_890A8_func_8003636C(0, 0xA) - 5);
+                            Level34_890A8Field(firstChildPrivate16, signed char *, 2) = (signed char) (Level34_890A8_func_8003636C(0, 0xA) - 5);
+                            firstChildPosition17 = firstChild18 + 0xC;
+                            Level34_890A8Field(firstChildPrivate16, int *, 4) = 0x78;
+                            Level34_890A8Field(firstChildPrivate16, signed char *, 3) = 3;
+                            Level34_890A8Field(firstChild18, signed char *, 0x4F) = 0x6A;
+                            Level34_890A8Field(firstChild18, signed char *, 0x4C) = 0x20;
+                            Level34_890A8Field(firstChild18, signed char *, 0x47) = 0;
+                            Level34_890A8Field(firstChild18, unsigned char *, 0x4A) = 0xFF;
+                            Level34_890A8_func_8004F178(firstChildPosition17, &Level34_890A8_D_80071900);
+                            scratch.sp88 = 0x96;
+                            scratch.sp8C = Level34_890A8_func_8003636C(0, 0x1F4) - 0xFA;
+                            scratch.sp90 = Level34_890A8_func_8003636C(0, 0x1F4) - 0xFA;
+                            Level34_890A8_func_8004ED6C(owner19 + 0x20, vector88_22, vector88_22);
+                            Level34_890A8_func_8004F194(firstChildPosition17, firstChildPosition17, vector88_22);
+                            if (Level34_890A8_rand() & 1) {
+                                Level34_890A8_func_80034F80(firstChild18, 1);
+                            }
+                        }
+                        secondIndex20 += 1;
+                        if (secondIndex20 < 5) {
+                            goto loop_24;
+                        }
+                    }
+                    __asm__ volatile("":::"memory");
+                    secondChild18 = Level34_890A8_SpawnMoby(0x1D1, owner19);
+                    __asm__("" : "=r"(secondChild18):"0"(secondChild18));
+                    secondOwnerAngles17 = owner19 + 0x20;
+                    if (secondChild18 != 0) {
+                        secondChildPrivate16 = Level34_890A8Field(secondChild18, void **, 0);
+                        Level34_890A8Field(secondChild18, signed char *, 0x4C) = 0x20;
+                        Level34_890A8Field(secondChild18, unsigned char *, 0x4A) = 0xFF;
+                        Level34_890A8Field(secondChild18, signed char *, 0x47) = 0;
+                        temp_a1_2 = secondChildPrivate16 + 8;
+                        Level34_890A8Field(secondChildPrivate16, int *, 8) = 0x12C;
+                        Level34_890A8_func_8004ED6C(secondOwnerAngles17, temp_a1_2, temp_a1_2);
+                        Level34_890A8Field(secondChildPrivate16, int *, 4) = 0xF0;
+                        Level34_890A8Field(secondChildPrivate16, signed char *, 1) = 0xA;
+                        Level34_890A8Field(secondChild18, int *, 0x14) = (int) (Level34_890A8Field(secondChild18, int *, 0x14) + 0x320);
+                        Level34_890A8Field(secondChild18, int *, 0x1C) = (int) (Level34_890A8Field(secondChild18, int *, 0x1C) | 0x80000000);
+                        if (Level34_890A8_rand() & 1) {
+                            Level34_890A8_func_80034F80(secondChild18, 1);
+                        }
+                        Level34_890A8_func_8003BABC(secondChild18, 0, 0);
+                        if (Level34_890A8Field(private21, unsigned char *, 0x17) != 0) {
+                            scratch.sp78 = 0x400;
+                            scratch.sp7C = 0x5DC;
+                            scratch.sp80 = 0;
+                            Level34_890A8_func_8004ED6C(secondOwnerAngles17, &scratch.sp78, &scratch.sp78);
+                            temp_a0 = secondChild18 + 0xC;
+                            Level34_890A8_func_8004F194(temp_a0, temp_a0, &scratch.sp78);
+                        }
+                    }
+                    thirdChild18 = Level34_890A8_SpawnMoby(0x1D1, owner19);
+                    __asm__("" : "=r"(thirdChild18):"0"(thirdChild18));
+                    __asm__ volatile("":::"$17","memory");
+                    value2=32;
+                    if (thirdChild18 != 0) {
+                        thirdChildPrivate16 = Level34_890A8Field(thirdChild18, void **, 0);
+                        Level34_890A8Field(thirdChild18, signed char *, 0x4C) = value2;
+                        Level34_890A8Field(thirdChild18, signed char *, 0x47) = 0;
+                        Level34_890A8Field(thirdChild18, unsigned char *, 0x4A) = 0xFF;
+                            temp_a1_3 = thirdChildPrivate16 + 8;
+                        Level34_890A8Field(thirdChildPrivate16, int *, 8) = (int) (((Level34_890A8_rand() & 1) * 0x64) + 0xFA);
+                        thirdOwnerAngles17=owner19+32;
+                        Level34_890A8_func_8004ED6C(thirdOwnerAngles17,temp_a1_3,temp_a1_3);
+                        Level34_890A8Field(thirdChildPrivate16, int *, 4) = 0xF0;
+                        Level34_890A8Field(thirdChildPrivate16, signed char *, 1) = 0xA;
+                        Level34_890A8Field(thirdChild18, int *, 0x14) = (int) (Level34_890A8Field(thirdChild18, int *, 0x14) + 0x320);
+                        Level34_890A8Field(thirdChild18, int *, 0x1C) = (int) (Level34_890A8Field(thirdChild18, int *, 0x1C) | 0x80000000);
+                        if (Level34_890A8_rand() & 1) {
+                            Level34_890A8_func_80034F80(thirdChild18, 1);
+                        }
+                        Level34_890A8_func_8003BABC(thirdChild18, 0, 0);
+                        scratch.sp78 = 0;
+                        scratch.sp7C = -0x5DC;
+                        scratch.sp80 = 0;
+                        Level34_890A8_func_8004ED6C(thirdOwnerAngles17, &scratch.sp78, &scratch.sp78);
+                        temp_a0_2 = thirdChild18 + 0xC;
+                        Level34_890A8_func_8004F194(temp_a0_2, temp_a0_2, &scratch.sp78);
+                    }
+                }
+                completionFlag18 = 1;
+            }
+            if ((Level34_890A8Field(private21, unsigned char *, 0x16) != 0) && (Level34_890A8Field(owner19, int *, 0x18) != 0)) {
+                completionFlag18=1;
+                goto checkCompletion;
+            }
+            {
+                value3=Level34_890A8_D_8006E044;
+                value2=9;
+                if(value3==value2) goto setOwnerPosition;
+                value2=11;
+                argument4=(int)owner19+12;
+                if(value3==value2) goto setBound256;
+                value2=Level34_890A8Field(&Level34_890A8_D_80070328,int*,0x240);
+                argument5=256;
+                if(value2) goto callProbeWithBound;
+                __asm__ volatile("":::"$4");
+                __asm__("" : "=r"(owner19):"0"(owner19):"memory");
+                value2=Level34_890A8_func_8001C288(owner19+12,128,7);
+                __asm__("" : "=r"(owner19):"0"(owner19):"memory");
+                argument4=(int)owner19+12;
+                if(!value2) goto setBound256;
+                Level34_890A8Field(&Level34_890A8_D_80070328,int*,0x298)=Level34_890A8Field(owner19,unsigned char*,0x46);
+                completionFlag18=1;
+                goto checkCompletion;
+setOwnerPosition:
+                argument4=(int)owner19+12;
+setBound256:
+                argument5=256;
+callProbeWithBound:
+                temp_v0_6 = Level34_890A8_func_8001BA30(argument4, argument5, 2, 0, 0, Level34_890A8_D_8006C550 + (Level34_890A8Field(owner19, unsigned char *, 0x3A) * 0x58));
+                if (temp_v0_6 != 0) {
+                    temp_v1_5 = Level34_890A8Field(temp_v0_6, short *, 0x36);
+                    if (temp_v1_5 == 0x26C) {
+                        if (((unsigned char) Level34_890A8Field(temp_v0_6, unsigned char *, 0x3D) < 5U) && ((unsigned char) Level34_890A8Field(temp_v0_6, unsigned char *, 0x3C) < 5U)) {
+                            Level34_890A8Field(temp_v0_6, signed char *, 0x48) = 8;
+                            value2=Level34_890A8_func_80034F40(temp_v0_6,8);
+                            __asm__ volatile("# original callback8 return" : "=r"(value2):"0"(value2):"memory");
+                            completionFlag18 = 1;
+                            goto checkCompletion;
+                        } else {
+                            completionFlag18=1;
+                            goto checkCompletion;
+                        }
+                    } else if (temp_v1_5 == 0x19A) {
+                        if (((unsigned char) Level34_890A8Field(temp_v0_6, unsigned char *, 0x3D) < 5U) && ((unsigned char) Level34_890A8Field(temp_v0_6, unsigned char *, 0x3C) < 5U)) {
+                            Level34_890A8Field(temp_v0_6, signed char *, 0x48) = 5;
+                            value2=Level34_890A8_func_80034F40(temp_v0_6,5);
+                            __asm__ volatile("# original callback5 return" : "=r"(value2):"0"(value2):"memory");
+                            completionFlag18 = 1;
+                            goto checkCompletion;
+                        } else {
+                            completionFlag18=1;
+                            goto checkCompletion;
+                        }
+                    } else if (temp_v1_5 != 0x1CF) {
+                        Level34_890A8Field(temp_v0_6, int *, 0x18) = (int) (Level34_890A8Field(temp_v0_6, int *, 0x18) | 0x10030000);
+                        completionFlag18 = 1;
+                        Level34_890A8Field(temp_v0_6, unsigned char *, 0x51) = (unsigned char) Level34_890A8Field(owner19, unsigned char *, 0x46);
+                    }
+                }
+            }
+checkCompletion:
+            if ((completionFlag18 != 0) || (Level34_890A8_func_800359A4(private21 + 4, 2) != 0) || ((temp_v1_6 = Level34_890A8Field(owner19, unsigned char *, 0x3A), (temp_v1_6 != 0xFF)) && (Level34_890A8Field(((temp_v1_6 * 0x58) + Level34_890A8_D_8006C550), unsigned char *, 0x48) == 4))) {
+                Level34_890A8Field(private21, short *, 4) = 0xC;
+                Level34_890A8Field(owner19, unsigned char *, 0x48) = 1U;
+                if (Level34_890A8_func_8003BFC0(owner19, Level34_890A8Field(private21, short *, 6)) != 0) {
+                    Level34_890A8_func_8003BE70(Level34_890A8Field(private21, short *, 6));
+                }
+                temp_v0_7 = Level34_890A8Field(private21, int **, 0);
+                if (temp_v0_7 != 0) {
+                    Level34_890A8Field(temp_v0_7, signed char *, 0x10) = 0;
+                    Level34_890A8Field(private21, int **, 0) = 0;
+                }
+                temp_v0_8 = Level34_890A8_SpawnMoby(0x146, owner19);
+                if (temp_v0_8 != 0) {
+                    Level34_890A8Field(temp_v0_8, signed char *, 0x4C) = 0x20;
+                    Level34_890A8Field(temp_v0_8, unsigned char *, 0x4A) = 0xFF;
+                    Level34_890A8Field(temp_v0_8, signed char *, 0x47) = 8;
+                }
+            }
+        }
+    }
+}
+#undef Level34_890A8Field
+
 
 /* AI generated; not human reviewed. SCUS-94467 USA Rev0
  * 80089B60..80089EB8. Original local numeric branches and widths;
@@ -6025,7 +13334,205 @@ orient:
  moby->angle.pitch=Decoded464Pitch>>4;
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_34/moby", func_level_34_80089EB8);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+#define M2C_FIELD(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+
+
+int Controller89EB8_func_8001830C() __asm__("func_8001830C"); /* extern */
+int Controller89EB8_func_80019138() __asm__("func_80019138"); /* extern */
+int Controller89EB8_func_8001A310() __asm__("func_8001A310"); /* extern */
+int Controller89EB8_func_8001A358() __asm__("func_8001A358");         /* extern */
+int Controller89EB8_func_8001C288() __asm__("func_8001C288");    /* extern */
+int Controller89EB8_func_8004ED6C() __asm__("func_8004ED6C"); /* extern */
+int Controller89EB8_func_8004EDE8() __asm__("func_8004EDE8");             /* extern */
+int Controller89EB8_func_8004EF04() __asm__("func_8004EF04");         /* extern */
+int Controller89EB8_func_8004F08C() __asm__("func_8004F08C");   /* extern */
+int Controller89EB8_func_8004F1C8() __asm__("func_8004F1C8"); /* extern */
+int Controller89EB8_func_80055B18() __asm__("func_80055B18");                      /* extern */
+int Controller89EB8_func_80055D24() __asm__("func_80055D24");             /* extern */
+int Controller89EB8_func_8005629C() __asm__("func_8005629C");                      /* extern */
+extern unsigned char Controller89EB8_D_800658A0 __asm__("D_800658A0");
+extern unsigned char Controller89EB8_D_80065920 __asm__("D_80065920");
+extern int Controller89EB8_D_8006C574 __asm__("D_8006C574");
+extern int Controller89EB8_D_8006C578 __asm__("D_8006C578");
+extern int Controller89EB8_D_8006E044 __asm__("D_8006E044");
+extern unsigned char Byte70336 __asm__("D_80070328+0xE");
+extern Vector3D Controller89EB8_D_80070328 __asm__("D_80070328");
+extern Vector3D Controller89EB8_D_80071900 __asm__("D_80071900");
+extern int Controller89EB8_D_80071908 __asm__("D_80071908");
+extern Vector3D Controller89EB8_D_80071918 __asm__("D_80071918");
+extern int Controller89EB8_D_8007191C __asm__("D_8007191C");
+extern int Controller89EB8_D_80071920 __asm__("D_80071920");
+
+void func_level_34_80089EB8(Moby *input_arg0) {
+    struct {Vector3D sp18;int pad24;Vector3D sp28;int pad34;Vector3D sp38;int pad44;Vector3D sp48;int pad54;Vector3D sp58;int pad64;} originalStack;
+
+    register Moby *arg0 __asm__("$18")=input_arg0;
+
+    register Moby *temp_v0_7 __asm__("$17");
+    register Vector3D *vector20 __asm__("$20");register int value2 __asm__("$2");register int value3 __asm__("$3");register int call4 __asm__("$4");register int call5 __asm__("$5");register int call6 __asm__("$6");
+    register Vector3D *temp_a0 __asm__("$4");
+    register Vector3D * temp_s0 __asm__("$16");
+    register Vector3D * temp_s3 __asm__("$19");
+    register Vector3D *var_a1 __asm__("$5");
+    register short *temp_a1 __asm__("$5");
+    register short *temp_v1_2 __asm__("$3");
+    register int temp_a3 __asm__("$7");
+    register int temp_s0_2 __asm__("$16");
+    register int temp_v0_2 __asm__("$2");
+    int temp_v0_3;
+    int temp_v0_4;
+    int temp_v0_5;
+    int temp_v0_6;
+    register int temp_v1 __asm__("$3");
+    register int var_s3 __asm__("$19");
+    register int var_s5 __asm__("$21");
+    unsigned char temp_v0;
+    register void * temp_s0_3 __asm__("$16");
+    register void * temp_s1 __asm__("$17");
+    register void *var_a0 __asm__("$4");
+
+    __asm__("" : "=r"(arg0):"0"(arg0));
+    temp_s1 = arg0->mobyTag;
+    var_s5=0;value3=1;value2=arg0->state;
+    if(value2==value3) {__asm__ __volatile__("" ::: "$2","$3");
+        value2=Controller89EB8_func_80019138(&arg0->position,0x80,1,0,0,0);var_a0=temp_s1+4;__asm__("" : "=r"(var_a0):"0"(var_a0));if(value2!=0){
+            if (((Controller89EB8_D_80071918.x < 0x64) && (Controller89EB8_D_8007191C < 0x64)) || (temp_v0 = M2C_FIELD(temp_s1, unsigned char *, 3) - 1, M2C_FIELD(temp_s1, unsigned char *, 3) = temp_v0, ((temp_v0 & 0xFF) == 0))) {
+                M2C_FIELD(temp_s1, int *, 4) = 0;
+            }
+            temp_s0=&Controller89EB8_D_80071918;Controller89EB8_func_8004EF04(temp_s0,0x1000);
+            value3=M2C_FIELD(temp_s1,int*,8);value2=temp_s0->x;call5=value3*value2;value3=M2C_FIELD(temp_s1,int*,12);value2=Controller89EB8_D_8007191C;call4=value3*value2;value3=M2C_FIELD(temp_s1,int*,16);value2=Controller89EB8_D_80071920;value3=value3*value2;temp_v0_2=call5+call4+value3;
+            temp_a3 = temp_v0_2 >> 0xB;
+            var_a0=temp_s1+4;__asm__("" : "=r"(var_a0):"0"(var_a0));
+            if (temp_a3 < 0) {
+                call4=(int)temp_s0;call5=0x1000;__asm__("" : "=r"(call4),"=r"(call5):"0"(call4),"1"(call5));call6=temp_v0_2>>13;call6-=temp_a3;Controller89EB8_func_8004F08C(call4,call5,call6,temp_a3);
+                M2C_FIELD(temp_s1, int *, 8) = (int) (M2C_FIELD(temp_s1, int *, 8) + temp_s0->x);
+                M2C_FIELD(temp_s1, int *, 0xC) = (int) (M2C_FIELD(temp_s1, int *, 0xC) + Controller89EB8_D_8007191C);
+                M2C_FIELD(temp_s1, int *, 0x10) = (int) (M2C_FIELD(temp_s1, int *, 0x10) + Controller89EB8_D_80071920);
+                var_a0=temp_s1+4;__asm__("" : "=r"(var_a0):"0"(var_a0));
+            }
+        }
+        if (func_800359A4(temp_s1+4,4) != 0) {
+            func_800369B8(arg0, 0x28);
+            goto block_39;
+        }
+        arg0->position.x += M2C_FIELD(temp_s1, int *, 8);
+        arg0->position.y += M2C_FIELD(temp_s1, int *, 0xC);
+        temp_v0_3 = M2C_FIELD(temp_s1, int *, 0x10) - 0xA;
+        M2C_FIELD(temp_s1, int *, 0x10) = temp_v0_3;
+        if (temp_v0_3 < -0xC8) {
+            M2C_FIELD(temp_s1, int *, 0x10) = -0xC8;
+        }
+        arg0->position.z += M2C_FIELD(temp_s1, int *, 0x10);
+        arg0->angle.roll += M2C_FIELD(temp_s1, unsigned char *, 0);
+        arg0->angle.pitch += M2C_FIELD(temp_s1, unsigned char *, 1);
+        arg0->angle.yaw += M2C_FIELD(temp_s1, unsigned char *, 2);
+        return;
+    }
+    call4=(int)&originalStack.sp18;__asm__("" : "=r"(call4):"0"(call4):"$19");temp_s3=&arg0->position;func_8004F178(call4,temp_s3);
+    call4=(int)temp_s3;arg0->angle.roll += M2C_FIELD(temp_s1,unsigned char*,0);call5=(int)temp_s3;
+    temp_s0=temp_s1+8;arg0->angle.pitch += M2C_FIELD(temp_s1,unsigned char*,1);
+    arg0->angle.yaw += M2C_FIELD(temp_s1, unsigned char *, 2);
+    func_8004F194(call4,call5,temp_s0);
+    temp_v0_4 = M2C_FIELD(temp_s1, int *, 0x10) - 0x10;
+    M2C_FIELD(temp_s1, int *, 0x10) = temp_v0_4;
+    if (temp_v0_4 < -0xF0) {
+        M2C_FIELD(temp_s1, int *, 0x10) = -0xF0;
+    }
+    if (Controller89EB8_func_8001A310(temp_s3, 0x100, 3, 0) != 0) {
+        func_8003BABC(arg0, 0, 0);
+        M2C_FIELD(temp_s1, unsigned char *, 0) = (unsigned char) (M2C_FIELD(temp_s1, unsigned char *, 0) + (func_8003636C(0, 6) - 3));
+        M2C_FIELD(temp_s1, unsigned char *, 1) = (unsigned char) (M2C_FIELD(temp_s1, unsigned char *, 1) + (func_8003636C(0, 4) - 1));
+        M2C_FIELD(temp_s1, unsigned char *, 2) = (unsigned char) (M2C_FIELD(temp_s1, unsigned char *, 2) + (func_8003636C(0, 6) - 3));
+        temp_v0_5 = Controller89EB8_func_8004EDE8(temp_s0, 0);
+        Controller89EB8_func_8004F08C(temp_s0, temp_v0_5, (temp_v0_5 * 9) / 10);
+        M2C_FIELD(temp_s1, int *, 0x10) = 0x7D;
+        func_8004F178(&originalStack.sp38, temp_s3);
+        arg0->position.z = Controller89EB8_D_80071908;
+        func_800369B8(arg0, 0x1E);
+        func_800369B8(arg0, 0x1E);
+        func_8004F178(temp_s3, &originalStack.sp38);
+    }
+    Controller89EB8_func_8004F1C8(&originalStack.sp28, temp_s3, &originalStack.sp18);
+    originalStack.sp28.z = 0;
+    temp_v0_6 = Controller89EB8_func_8004EDE8(&originalStack.sp28, 0);
+    Controller89EB8_func_8004F08C(&originalStack.sp28, temp_v0_6, temp_v0_6 * 4);
+    func_8004F194(&originalStack.sp28, &originalStack.sp18, &originalStack.sp28);
+    temp_s0_2 = Controller89EB8_func_8001830C(&originalStack.sp18, &originalStack.sp28, 3, 0, 0);
+    if ((Controller89EB8_D_8006E044 != 9) && (Controller89EB8_D_8006E044 != 0xB) && (M2C_FIELD(&Controller89EB8_D_80070328, int *, 0x240) == 0) && (((Controller89EB8_D_80070328.z - arg0->position.z) < 0x201) || (M2C_FIELD(&Controller89EB8_D_80070328, int *, 0xB8) != 0)) && (Controller89EB8_func_8001C288(temp_s3, 0x320, 7) != 0)) {
+        call6=0;__asm__ __volatile__("" : "=r"(call6):"0"(call6));call4=M2C_FIELD(temp_s1,int*,8);call5=M2C_FIELD(temp_s1,int*,12);var_s5=1;value2=func_8004E880(call4,call5,call6);
+        M2C_FIELD(&Controller89EB8_D_80070328,int*,0x298)=value2;
+    }
+    if ((var_s5 != 0) || (temp_s0_2 != 0)) {
+        func_8003BABC(arg0, 0, 0);
+        Controller89EB8_func_80055D24(arg0, 4);
+        arg0->angle.roll = 0;
+        arg0->angle.pitch = 0;
+        if (var_s5 != 0) {
+            value2=Byte70336;arg0->angle.yaw=value2;
+            originalStack.sp48.x = (int) (M2C_FIELD(&Controller89EB8_D_80065920,short*,(value2 * 2)) * 0x4B) >> 0xB;
+            originalStack.sp48.y = (int) (M2C_FIELD(&Controller89EB8_D_800658A0,short*,(arg0->angle.yaw * 2)) * 0x4B) >> 0xB;
+            originalStack.sp48.z=0;
+        } else {
+            __asm__("" : "=r"(var_s5));arg0->angle.yaw = func_8004E880(Controller89EB8_D_80071918.x, Controller89EB8_D_8007191C, 0);
+            func_8004F178((Vector3D *) &originalStack.sp48, &Controller89EB8_D_80071918);
+            Controller89EB8_func_8004F08C((Vector3D *) &originalStack.sp48, Controller89EB8_func_8004EDE8((Vector3D *) &originalStack.sp48, 0), 0x96);
+        }
+        var_s3=0;vector20=&originalStack.sp58;
+loop_30:
+        call4=0x1D1;if ((Controller89EB8_D_8006C578 - Controller89EB8_D_8006C574) >= 0x15) {
+            temp_v0_7=SpawnMoby(call4,arg0);__asm__("" : "=r"(temp_v0_7):"0"(temp_v0_7));
+            value2=1;if (temp_v0_7 != 0) {
+                temp_v1=(var_s3-2)<<5;call5=(int)&Controller89EB8_D_80065920;temp_v1&=0x1E0;
+                temp_a1=(short*)(temp_v1+call5);
+                temp_v0_7->state=value2;
+                temp_v1_2 = temp_v1 + &Controller89EB8_D_800658A0;
+                temp_s0_3 = temp_v0_7->mobyTag;
+                M2C_FIELD(temp_s0_3, int *, 8) = (int) ((int) ((originalStack.sp48.x * *temp_a1) - (originalStack.sp48.y * *temp_v1_2)) >> 0xC);
+                value3=*temp_v1_2;value2=originalStack.sp48.x;call6=value2*value3;value3=*temp_a1;value2=originalStack.sp48.y;value3=value2*value3;value2=call6+value3;M2C_FIELD(temp_s0_3,int*,0xC)=value2>>12;
+                M2C_FIELD(temp_s0_3,int*,0x10)=0x64;M2C_FIELD(temp_s0_3, signed char *, 0) = (signed char) (func_8003636C(0, 0xA) - 5);
+                M2C_FIELD(temp_s0_3, signed char *, 1) = (signed char) (func_8003636C(0, 0xA) - 5);
+                M2C_FIELD(temp_s0_3, signed char *, 2) = (signed char) (func_8003636C(0, 0xA) - 5);
+                M2C_FIELD(temp_s0_3, int *, 4) = 0x78;
+                M2C_FIELD(temp_s0_3, signed char *, 3) = 3;
+                temp_v0_7->size = 0xD4;
+                temp_v0_7->lowDrawDistance = 0x3F;
+                temp_v0_7->unknown4 = 0;
+                temp_v0_7->updateDistance = 0xFF;
+                originalStack.sp58.x = 0;
+                originalStack.sp58.y = func_8003636C(0, 0x190) - 0xC8;
+                originalStack.sp58.z = func_8003636C(0, 0x190) - 0xC8;
+                Controller89EB8_func_8004ED6C(&arg0->rotationMatrix,vector20,vector20);
+                temp_a0 = &temp_v0_7->position;
+                func_8004F194(temp_a0,temp_a0,vector20);
+            }
+            var_s3 += 1;
+            if (var_s3 < 5) {
+                goto loop_30;
+            }
+        }
+        call4=(int)&arg0->position;if(var_s5!=0){
+            var_a1=&Controller89EB8_D_80070328;__asm__("" : "=r"(var_a1):"0"(var_a1));
+        } else {
+            var_a1 = &Controller89EB8_D_80071900;
+        }
+        func_8004F178(call4,var_a1);
+        func_800369B8(arg0, 0x1E);
+        func_800369B8(arg0, 0x1E);
+        goto block_39;
+    }
+    if (func_800359A4(temp_s1 + 4, 4) != 0) {
+block_39:
+        Controller89EB8_func_80055B18(arg0);
+        return;
+    }
+    Controller89EB8_func_8001A358(&arg0->position, 0x2000);
+    Controller89EB8_func_8005629C(arg0);
+}
+#undef M2C_FIELD
+
 
 typedef struct { int timer, speed; } DecodedMovingImpactTag;
 extern int DecodedImpactCameraMode __asm__("D_8006E044");
@@ -6077,9 +13584,1556 @@ tickTimer:
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_34/moby", func_level_34_8008A88C);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0; original 8008A88C, exactly660 instruction words.
+* Original assembly SHA256 f6fde55533d93f6d75a1b0c865619154652ecba241a4968239a0faf88059152a.
+* AI generated; not human reviewed. Every native/linked word, actual
+* conditional/internal-J/call target, data symbol/addend and full retail
+* EXE/every-overlay hash must pass. No selectors or separate owned data.
+* Original 98hex frame saves S0..S6/RA, with six explicitly placed triples
+* and padding in SP18..77; all callback reads follow original producers.
+* Original cursor/accumulator loops retain both64-byte limits, eight shift
+* steps, 0x8000/0x8005, exact text/data addresses, cursor strides and copies.
+* The two particle loops retain eight iterations, table byte stride64,
+* exact75*halfword>>8 arithmetic, three-word argument stores and callbacks.
+* All six MULT sites initialize complete signed64 products before three
+* LO and three HI captures. Each low32 truncation, original delayed capture,
+* signed-third correction and halfword/byte width follows retail words.
+* Original state2 enters inside state3's timer path. The three separate
+* turn paths retain every branch entry and halfword reload. An empty memory
+* boundary AFTER the first unsigned reload prevents folding distinct disc
+* blocks, while letting SUB occupy the original internal-J delay slot.
+* Metadata observes complete initialized words/addresses or written fields,
+* or clobbers dead registers before fresh producers; emits no CPU words.
+* Physical register roles have disjoint live ranges. No opcode asm, partial
+* HI/LO, fixed FP, undefined saved input or overlapping live aliases.
+* Existing mobyutil.h/spu.h/stdutil.h contracts supply typed helper ABI views.
+* Address-only text aliases are never dereferenced as character objects.
+* Raw offset/role names do not establish semantics, physical units or fixed
+* point beyond these arithmetic words. Full helper/caller chains, cadence,
+* Rev1 correspondence, human review and synchronized retail captures remain
+* open. Compiler, filters and acceptance flags are unchanged.
+*/
+#define Level34_8A88CKeepCompleteWord(v) __asm__("":"=r"(v):"0"(v))
+#define Level34_8A88CField(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+int Level34_8A88CCall359A4View1(void*,int) __asm__("func_800359A4");
+/* extern */
+int Level34_8A88CCall35EE0View1(void*,int,int,int,int,int) __asm__("func_80035EE0");
+/* extern */
+int Level34_8A88CCall3BABCView1(void*,int,int) __asm__("func_8003BABC");
+/* extern */
+int Level34_8A88CCall4E880View1(int,int,int) __asm__("func_8004E880");
+/* extern */
+unsigned char Level34_8A88CCall4ED6CView1() __asm__("func_8004ED6C");
+/* extern */
+unsigned char Level34_8A88CCall4F110View1() __asm__("func_8004F110");
+/* extern */
+void Level34_8A88CCall4F178View1(void*,void*) __asm__("func_8004F178");
+/* extern */
+void Level34_8A88CCall4F194View1(void*,void*,void*) __asm__("func_8004F194");
+/* extern */
+int Level34_8A88CCall4F264View1(int,int) __asm__("func_8004F264");
+/* extern */
+int Level34_8A88CCall4F334View1() __asm__("func_8004F334");
+/* extern */
+unsigned char Level34_8A88CCall55D24View1() __asm__("func_80055D24");
+/* extern */
+extern short Level34_8A88CData658A0View1 __asm__("D_800658A0");
+extern short Level34_8A88CData65920View1 __asm__("D_80065920");
+extern unsigned char Level34_8A88CData66FA4View1 __asm__("D_80066FA4");
+extern unsigned char Level34_8A88CData66FCCView1 __asm__("D_80066FCC");
+extern unsigned char Level34_8A88CData67014View1 __asm__("D_80067014");
+extern int Level34_8A88CData6C58CView1 __asm__("D_8006C58C");
+extern unsigned char Level34_8A88CData70328View1 __asm__("D_80070328");
+extern unsigned char Level34_8A88CData9886CView1 __asm__("D_level_34_8009886C");
+extern void *(*Level34_8A88CDataSpawnParticleView1)(unsigned char, unsigned char, int *, int *) __asm__("SpawnParticle");
+extern unsigned char Level34_8A88CData75618View1 __asm__("func_level_34_80075618");
+extern unsigned char Level34_8A88CDatamain_TEXT_ENDView1 __asm__("main_TEXT_END");
+extern unsigned char Level34_8A88CDatamain_TEXT_STARTView1 __asm__("main_TEXT_START");
+void func_level_34_8008A88C(unsigned char *ownerParameter) {
+    struct {
+        int sp18,sp1C,sp20,pad24;
+        int sp28[3],pad34;
+        int sp38,sp3C,sp40,pad44;
+        int sp48[3],pad54;
+        int sp58,sp5C,sp60,pad64;
+        int sp68[3],pad74;
+    }
+    originalFrame;
+    register short * firstTable65920Address17 __asm__("$17");
+    register short * secondTable65920Address19 __asm__("$19");
+    short var_v0_5;
+    register unsigned char * playerBase16 __asm__("$16");
+    register int * ownerPosition16Common __asm__("$16");
+    register int * ownerPosition16Default __asm__("$16");
+    register unsigned char *owner18 __asm__("$18")=ownerParameter;
+    register unsigned char *privateRecord17 __asm__("$17");
+    register int rawWord2 __asm__("$2"),rawWord3 __asm__("$3");
+    register int argumentWord4 __asm__("$4"),argumentWord5 __asm__("$5"),argumentWord6 __asm__("$6"),argumentWord7 __asm__("$7");
+    register unsigned char * playerAddress19 __asm__("$19");
+    long long completeSignedProduct;
+    int firstVectorProductLow,secondVectorProductLow,thirdVectorProductLow;
+    int firstTurnProductHigh,secondTurnProductHigh,thirdTurnProductHigh;
+    register int capturedProductHigh8 __asm__("$8"),capturedProductLow9 __asm__("$9");
+    register int angleDifference16 __asm__("$16");
+    register int firstRetainedZ21 __asm__("$21");
+    register int secondRetainedZ22 __asm__("$22");
+    int temp_v0_3;
+    register int targetAngle19 __asm__("$19");
+    int temp_v1_8;
+    register int firstParticleIndex16 __asm__("$16");
+    register int vectorMultiplier16 __asm__("$16");
+    register int secondParticleIndex16 __asm__("$16");
+    register int scalarOrTurnWord20 __asm__("$20");
+    void *privateTimerAddress4;
+    Level34_8A88CKeepCompleteWord(owner18);
+    privateRecord17=Level34_8A88CField(owner18,unsigned char**,0);
+    rawWord2=Level34_8A88CField(privateRecord17,volatile unsigned int*,20);
+    __asm__ volatile("":::"$3","memory");
+    rawWord3=(int)&Level34_8A88CData75618View1;
+    rawWord2=(unsigned int)rawWord2<(unsigned int)rawWord3;
+    scalarOrTurnWord20=200;
+    if(!rawWord2){
+        __asm__ volatile("":::"$2");
+        argumentWord5=0;
+        argumentWord6=(int)&Level34_8A88CData9886CView1;
+        Level34_8A88CKeepCompleteWord(argumentWord6);
+    readOriginalFirstCrcByte:
+        rawWord3=Level34_8A88CField(privateRecord17,unsigned int*,20);
+        rawWord2=(unsigned int)rawWord3<(unsigned int)argumentWord6;
+        if(rawWord2){
+            argumentWord4=0;
+            rawWord2=*(unsigned char*)rawWord3;
+            rawWord3=Level34_8A88CField(privateRecord17,int*,12);
+            rawWord2<<=8;
+            rawWord3^=rawWord2;
+            Level34_8A88CField(privateRecord17,int*,12)=rawWord3;
+            do{
+                rawWord3=Level34_8A88CField(privateRecord17,volatile int*,12);
+                rawWord2=rawWord3&0x8000;
+                if(rawWord2)rawWord2=((unsigned int)rawWord3<<1)^0x8005;
+                else rawWord2=(unsigned int)rawWord3<<1;
+                Level34_8A88CField(privateRecord17,volatile int*,12)=rawWord2;
+                argumentWord4++;
+                rawWord2=argumentWord4<8;
+            }
+            while(rawWord2);
+            rawWord2=Level34_8A88CField(privateRecord17,int*,20);
+            argumentWord5++;
+            rawWord2++;
+            Level34_8A88CField(privateRecord17,int*,20)=rawWord2;
+            rawWord2=argumentWord5<64;
+            if(rawWord2)goto readOriginalFirstCrcByte;
+        }
+    }
+    rawWord2=Level34_8A88CField(privateRecord17,unsigned int*,20);
+    if(!rawWord2){
+        rawWord2=Level34_8A88CData6C58CView1;
+        rawWord3=(int)(&Level34_8A88CDatamain_TEXT_STARTView1+2);
+        rawWord2+=rawWord3;
+        Level34_8A88CField(privateRecord17,volatile int*,20)=rawWord2;
+        rawWord2=Level34_8A88CField(privateRecord17,volatile int*,20);
+    }
+    rawWord3=(int)&Level34_8A88CDatamain_TEXT_ENDView1;
+    Level34_8A88CKeepCompleteWord(rawWord3);
+    rawWord2=(unsigned int)rawWord2<(unsigned int)rawWord3;
+    if(rawWord2){
+        argumentWord5=0;
+        argumentWord6=rawWord3;
+        Level34_8A88CKeepCompleteWord(argumentWord6);
+        do{
+            rawWord3=Level34_8A88CField(privateRecord17,unsigned int*,20);
+            rawWord2=(unsigned int)rawWord3<(unsigned int)argumentWord6;
+            if(!rawWord2)goto resetOriginalCodeCursor;
+            argumentWord4=0;
+            rawWord2=*(unsigned char*)rawWord3;
+            rawWord3=Level34_8A88CField(privateRecord17,int*,12);
+            rawWord2<<=8;
+            rawWord3^=rawWord2;
+            Level34_8A88CField(privateRecord17,int*,12)=rawWord3;
+            do{
+                rawWord3=Level34_8A88CField(privateRecord17,volatile int*,12);
+                rawWord2=rawWord3&0x8000;
+                if(rawWord2)rawWord2=((unsigned int)rawWord3<<1)^0x8005;
+                else rawWord2=(unsigned int)rawWord3<<1;
+                Level34_8A88CField(privateRecord17,volatile int*,12)=rawWord2;
+                argumentWord4++;
+                rawWord2=argumentWord4<8;
+            }
+            while(rawWord2);
+            argumentWord5++;
+            rawWord2=Level34_8A88CField(privateRecord17,int*,12);
+            rawWord3=Level34_8A88CField(privateRecord17,unsigned int*,20);
+            rawWord2&=3;
+            rawWord2++;
+            rawWord3+=rawWord2;
+            rawWord2=argumentWord5<64;
+            Level34_8A88CField(privateRecord17,int*,20)=rawWord3;
+        }
+        while(rawWord2);
+        rawWord2=(int)&Level34_8A88CDatamain_TEXT_ENDView1;
+        rawWord2=(unsigned int)rawWord3<(unsigned int)rawWord2;
+        if(!rawWord2){
+            resetOriginalCodeCursor:rawWord2=(int)&Level34_8A88CData75618View1;
+            Level34_8A88CField(privateRecord17,int*,20)=rawWord2;
+        }
+    }
+    rawWord3=Level34_8A88CField(privateRecord17,unsigned int*,20);
+    rawWord2=(int)&Level34_8A88CData9886CView1;
+    if(rawWord3==rawWord2){
+        rawWord2=Level34_8A88CField(privateRecord17,int*,12);
+        if(rawWord2){
+            rawWord3=1;
+            do{
+                rawWord2=*(&Level34_8A88CData67014View1+rawWord3);
+                *(&Level34_8A88CData67014View1+27+rawWord3)=rawWord2;
+                rawWord3++;
+                rawWord2=rawWord3<8;
+            }
+            while(rawWord2);
+            rawWord3=41;
+            do{
+                rawWord2=*(&Level34_8A88CData66FA4View1+10+rawWord3);
+                *(&Level34_8A88CData66FCCView1+rawWord3)=rawWord2;
+                rawWord3++;
+                rawWord2=rawWord3<48;
+            }
+            while(rawWord2);
+        }
+    }
+    if (Level34_8A88CField(privateRecord17, short *, 0x10) == 0) {
+        firstRetainedZ21=Level34_8A88CField(privateRecord17,int*,8);
+        rawWord3=Level34_8A88CField(owner18,int*,20);
+        rawWord2=firstRetainedZ21<rawWord3;
+        if(rawWord2){
+            rawWord2=rawWord3-50;
+            Level34_8A88CField(owner18,int*,20)=rawWord2;
+            rawWord2=firstRetainedZ21<rawWord2;
+            if(!rawWord2){
+                Level34_8A88CCall55D24View1(owner18, 4);
+                {
+                    register int* firstPositionVector19 __asm__("$19");
+                    register int* firstParticleWords20 __asm__("$20");
+                    firstParticleIndex16=0;
+                    Level34_8A88CKeepCompleteWord(firstParticleIndex16);
+                    firstPositionVector19=(int*)&originalFrame.sp48;
+                    Level34_8A88CKeepCompleteWord(firstPositionVector19);
+                    firstParticleWords20=&originalFrame.sp38;
+                    Level34_8A88CKeepCompleteWord(firstParticleWords20);
+                    firstTable65920Address17=&Level34_8A88CData65920View1;
+                    Level34_8A88CKeepCompleteWord(firstTable65920Address17);
+                    do{
+                        argumentWord4=(int)firstPositionVector19;
+                        rawWord2=*(short*)firstTable65920Address17;
+                        __asm__ volatile("":::"$5","memory");
+                        argumentWord5=(int)owner18+12;
+                        __asm__("":"=r"(rawWord2):"0"(rawWord2),"r"(argumentWord5));
+                        rawWord3=rawWord2*5;
+                        rawWord2=rawWord3*16-rawWord3;
+                        rawWord2>>=8;
+                        originalFrame.sp38=rawWord2;
+                        rawWord2=firstParticleIndex16<<6;
+                        rawWord2=*(short*)((unsigned char*)&Level34_8A88CData658A0View1+rawWord2);
+                        argumentWord6=(int)firstParticleWords20;
+                        originalFrame.sp40=0;
+                        __asm__("":"=r"(rawWord2):"0"(rawWord2),"r"(argumentWord6),"m"(originalFrame.sp40));
+                        rawWord3=rawWord2*5;
+                        rawWord2=rawWord3*16-rawWord3;
+                        rawWord2>>=8;
+                        originalFrame.sp3C=rawWord2;
+                        Level34_8A88CCall4F194View1((void*)argumentWord4,(void*)argumentWord5,(void*)argumentWord6);
+                        argumentWord4=1;
+                        argumentWord5=0;
+                        argumentWord6=(int)firstPositionVector19;
+                        argumentWord7=(int)firstParticleWords20;
+                        rawWord3=(int)Level34_8A88CDataSpawnParticleView1;
+                        __asm__ volatile(""::"r"(rawWord3):"$2");
+                        rawWord2=50;
+                        originalFrame.sp38=0;
+                        originalFrame.sp3C=0;
+                        originalFrame.sp40=rawWord2;
+                        rawWord3=((int(*)())rawWord3)(argumentWord4,argumentWord5,argumentWord6,argumentWord7);
+                        Level34_8A88CKeepCompleteWord(rawWord3);
+                        if(rawWord3){
+                            rawWord2=100;
+                            Level34_8A88CField(rawWord3,unsigned char*,10)=rawWord2;
+                        }
+                        argumentWord4=1;
+                        argumentWord5=70;
+                        argumentWord6=(int)firstPositionVector19;
+                        argumentWord7=24;
+                        firstTable65920Address17=(short*)((unsigned char*)firstTable65920Address17+64);
+                        Level34_8A88CKeepCompleteWord(firstTable65920Address17);
+                        __asm__ volatile(""::"r"(argumentWord4),"r"(argumentWord5),"r"(argumentWord6),"r"(argumentWord7):"$2");
+                        rawWord2=(int)Level34_8A88CDataSpawnParticleView1;
+                        firstParticleIndex16++;
+                        ((int(*)())rawWord2)(argumentWord4,argumentWord5,argumentWord6,argumentWord7);
+                    }
+                    while(firstParticleIndex16<8);
+                }
+                Level34_8A88CField(owner18, int *, 0x14) = firstRetainedZ21;
+            }
+        }
+    }
+    else {
+        Level34_8A88CCall359A4View1(privateRecord17 + 0x10, 2);
+        playerAddress19 = &Level34_8A88CData70328View1 + 0x50;
+        vectorMultiplier16 = 1;
+        if (Level34_8A88CField(&Level34_8A88CData70328View1, int *, 0x50) == 4) {
+            vectorMultiplier16 = 0x1E;
+        }
+        Level34_8A88CCall4F178View1(&originalFrame.sp18, playerAddress19 + 0x48);
+        rawWord2=originalFrame.sp18;
+        completeSignedProduct=(long long)rawWord2*(long long)vectorMultiplier16;
+        __asm__("":"=l"(firstVectorProductLow):"x"(completeSignedProduct));
+        argumentWord6=firstVectorProductLow;
+        Level34_8A88CKeepCompleteWord(argumentWord6);
+        rawWord2=originalFrame.sp1C;
+        __asm__("":"=r"(rawWord2):"0"(rawWord2),"r"(argumentWord6));
+        completeSignedProduct=(long long)rawWord2*(long long)vectorMultiplier16;
+        __asm__("":"=l"(secondVectorProductLow):"x"(completeSignedProduct));
+        rawWord3=secondVectorProductLow;
+        Level34_8A88CKeepCompleteWord(rawWord3);
+        rawWord2=originalFrame.sp20;
+        __asm__("":"=r"(rawWord2):"0"(rawWord2),"r"(rawWord3));
+        completeSignedProduct=(long long)rawWord2*(long long)vectorMultiplier16;
+        __asm__ volatile(""::"x"(completeSignedProduct):"$4","$5","memory");
+        argumentWord4=(int)&originalFrame.sp18;
+        argumentWord5=6;
+        __asm__ volatile(""::"r"(argumentWord4),"r"(argumentWord5):"memory");
+        originalFrame.sp18=argumentWord6;
+        originalFrame.sp1C=rawWord3;
+        __asm__("":"=l"(thirdVectorProductLow):"x"(completeSignedProduct),"m"(originalFrame.sp18),"m"(originalFrame.sp1C));
+        capturedProductLow9=thirdVectorProductLow;
+        Level34_8A88CKeepCompleteWord(capturedProductLow9);
+        originalFrame.sp20=capturedProductLow9;
+        Level34_8A88CCall4F110View1(argumentWord4,argumentWord5);
+        argumentWord4=(int)&originalFrame.sp18;
+        argumentWord5=argumentWord4;
+        __asm__ volatile(""::"r"(argumentWord4),"r"(argumentWord5):"$16");
+        playerBase16=playerAddress19-80;
+        Level34_8A88CCall4F194View1((void*)argumentWord4,(void*)argumentWord5,playerBase16);
+        rawWord3=Level34_8A88CField(owner18,unsigned char*,72);
+        if(rawWord3==2)goto enterOriginalStateTwo;
+        if(rawWord3==3){
+            temp_v1_8 = Level34_8A88CField(privateRecord17, int *, 8) + 0x3E8;
+            privateTimerAddress4 = privateRecord17 + 0x12;
+            if (Level34_8A88CField(owner18, int *, 0x14) < temp_v1_8) {
+                Level34_8A88CField(&Level34_8A88CData70328View1, int *, 0x24) = (int) (Level34_8A88CField(&Level34_8A88CData70328View1, int *, 0x24) | 0x16);
+                temp_v0_3 = Level34_8A88CField(owner18, int *, 0x14) + 0x32;
+                Level34_8A88CField(owner18, int *, 0x14) = temp_v0_3;
+                if (temp_v1_8 < temp_v0_3) {
+                    Level34_8A88CField(owner18, int *, 0x14) = temp_v1_8;
+                enterOriginalStateTwo:
+                    privateTimerAddress4 = privateRecord17 + 0x12;
+                }
+            }
+            if (Level34_8A88CCall359A4View1(privateTimerAddress4, 2) != 0) {
+                Level34_8A88CField(owner18, unsigned char *, 0x48) = 0U;
+                goto updateOriginalTurn;
+            }
+            return;
+        }
+        if(rawWord3==1){
+            secondRetainedZ22 = Level34_8A88CField(privateRecord17, int *, 8);
+            Level34_8A88CField(owner18, int *, 0x14) = (int) (Level34_8A88CField(owner18, int *, 0x14) - 0x96);
+            if (Level34_8A88CCall4F334View1(owner18 + 0xC, playerBase16) < 0x4E2) {
+                if ((unsigned char) Level34_8A88CField(privateRecord17, unsigned char *, 0x18) < 2U) {
+                    if (Level34_8A88CField(owner18, unsigned char *, 0x49) == 0) {
+                        Level34_8A88CField(owner18, unsigned char *, 0x49) = 1U;
+                        Level34_8A88CField(privateRecord17, unsigned char *, 0x18) = (unsigned char) (Level34_8A88CField(privateRecord17, unsigned char *, 0x18) + 1);
+                        Level34_8A88CField(&Level34_8A88CData70328View1, int *, 0x20C) = 0x10000400;
+                        Level34_8A88CField(&Level34_8A88CData70328View1, int *, 0x24) = (int) (Level34_8A88CField(&Level34_8A88CData70328View1, int *, 0x24) | 0x86);
+                        Level34_8A88CCall55D24View1(owner18, 4);
+                        originalFrame.sp38 = 0xFA;
+                        originalFrame.sp3C = 0;
+                        originalFrame.sp40 = 0;
+                        Level34_8A88CCall4ED6CView1(owner18 + 0x20, &originalFrame.sp38, &originalFrame.sp38);
+                        Level34_8A88CField(&Level34_8A88CData70328View1, int *, 0x224) = 0x4B;
+                        Level34_8A88CField(&Level34_8A88CData70328View1, int *, 0x21C) = originalFrame.sp38;
+                        Level34_8A88CField(&Level34_8A88CData70328View1, int *, 0x220) = originalFrame.sp3C;
+                    }
+                }
+                else {
+                    Level34_8A88CField(&Level34_8A88CData70328View1, int *, 0x298) = (int) Level34_8A88CField(owner18, unsigned char *, 0x46);
+                    Level34_8A88CField(&Level34_8A88CData70328View1, int *, 0x24) = (int) (Level34_8A88CField(&Level34_8A88CData70328View1, int *, 0x24) | 0x16);
+                }
+            }
+            if (secondRetainedZ22 >= Level34_8A88CField(owner18, int *, 0x14)) {
+                Level34_8A88CCall3BABCView1(owner18, 0, 0);
+                Level34_8A88CCall55D24View1(owner18, 4);
+                {
+                    register int* secondPositionVector20 __asm__("$20");
+                    register int* secondParticleWords21 __asm__("$21");
+                    secondParticleIndex16=0;
+                    Level34_8A88CKeepCompleteWord(secondParticleIndex16);
+                    secondPositionVector20=(int*)&originalFrame.sp68;
+                    Level34_8A88CKeepCompleteWord(secondPositionVector20);
+                    secondParticleWords21=&originalFrame.sp58;
+                    Level34_8A88CKeepCompleteWord(secondParticleWords21);
+                    secondTable65920Address19=&Level34_8A88CData65920View1;
+                    Level34_8A88CKeepCompleteWord(secondTable65920Address19);
+                    do{
+                        argumentWord4=(int)secondPositionVector20;
+                        rawWord2=*(short*)secondTable65920Address19;
+                        __asm__ volatile("":::"$5","memory");
+                        argumentWord5=(int)owner18+12;
+                        __asm__("":"=r"(rawWord2):"0"(rawWord2),"r"(argumentWord5));
+                        rawWord3=rawWord2*5;
+                        rawWord2=rawWord3*16-rawWord3;
+                        rawWord2>>=8;
+                        originalFrame.sp58=rawWord2;
+                        rawWord2=secondParticleIndex16<<6;
+                        rawWord2=*(short*)((unsigned char*)&Level34_8A88CData658A0View1+rawWord2);
+                        argumentWord6=(int)secondParticleWords21;
+                        originalFrame.sp60=0;
+                        __asm__("":"=r"(rawWord2):"0"(rawWord2),"r"(argumentWord6),"m"(originalFrame.sp60));
+                        rawWord3=rawWord2*5;
+                        rawWord2=rawWord3*16-rawWord3;
+                        rawWord2>>=8;
+                        originalFrame.sp5C=rawWord2;
+                        Level34_8A88CCall4F194View1((void*)argumentWord4,(void*)argumentWord5,(void*)argumentWord6);
+                        argumentWord4=1;
+                        argumentWord5=0;
+                        argumentWord6=(int)secondPositionVector20;
+                        argumentWord7=(int)secondParticleWords21;
+                        rawWord3=(int)Level34_8A88CDataSpawnParticleView1;
+                        __asm__ volatile(""::"r"(rawWord3):"$2");
+                        rawWord2=50;
+                        originalFrame.sp58=0;
+                        originalFrame.sp5C=0;
+                        originalFrame.sp60=rawWord2;
+                        rawWord3=((int(*)())rawWord3)(argumentWord4,argumentWord5,argumentWord6,argumentWord7);
+                        Level34_8A88CKeepCompleteWord(rawWord3);
+                        if(rawWord3){
+                            rawWord2=150;
+                            Level34_8A88CField(rawWord3,unsigned char*,10)=rawWord2;
+                        }
+                        argumentWord4=2;
+                        argumentWord5=70;
+                        argumentWord6=(int)secondPositionVector20;
+                        argumentWord7=24;
+                        secondTable65920Address19=(short*)((unsigned char*)secondTable65920Address19+64);
+                        Level34_8A88CKeepCompleteWord(secondTable65920Address19);
+                        __asm__ volatile(""::"r"(argumentWord4),"r"(argumentWord5),"r"(argumentWord6),"r"(argumentWord7):"$2");
+                        rawWord2=(int)Level34_8A88CDataSpawnParticleView1;
+                        secondParticleIndex16++;
+                        ((int(*)())rawWord2)(argumentWord4,argumentWord5,argumentWord6,argumentWord7);
+                    }
+                    while(secondParticleIndex16<8);
+                }
+                Level34_8A88CField(owner18, int *, 0x14) = secondRetainedZ22;
+                if (Level34_8A88CField(&Level34_8A88CData70328View1, int *, 0x24) & 0x10) {
+                    Level34_8A88CField(owner18, unsigned char *, 0x48) = 3U;
+                    var_v0_5 = 0x5A;
+                }
+                else {
+                    Level34_8A88CField(owner18, unsigned char *, 0x48) = 2U;
+                    var_v0_5 = 0x3C;
+                }
+                Level34_8A88CField(owner18, unsigned char *, 0x49) = 0U;
+                Level34_8A88CField(privateRecord17, short *, 0x12) = var_v0_5;
+                return;
+            }
+            return;
+        }
+        rawWord2=Level34_8A88CField(privateRecord17,int*,8);
+        argumentWord4=Level34_8A88CField(owner18,int*,20);
+        rawWord3=rawWord2+1000;
+        rawWord2=argumentWord4<rawWord3;
+        if(rawWord2){
+            rawWord2=argumentWord4+50;
+            Level34_8A88CField(owner18,int*,20)=rawWord2;
+            rawWord2=rawWord3<rawWord2;
+            if(rawWord2)Level34_8A88CField(owner18,int*,20)=rawWord3;
+        }
+        argumentWord6=0;
+        playerAddress19=&Level34_8A88CData70328View1;
+        Level34_8A88CKeepCompleteWord(playerAddress19);
+        rawWord2=Level34_8A88CCall4F264View1(Level34_8A88CCall4E880View1(Level34_8A88CField(playerAddress19,int*,0)-Level34_8A88CField(owner18,int*,12),Level34_8A88CField(&Level34_8A88CData70328View1,int*,4)-Level34_8A88CField(owner18,int*,16),0),Level34_8A88CField(owner18,unsigned char*,70));
+        rawWord2=rawWord2<65;
+        ownerPosition16Default=(int*)(owner18+12);
+        if(!rawWord2){
+            if ((Level34_8A88CCall4F334View1(ownerPosition16Default,playerAddress19) >= 0x4E2) && (Level34_8A88CCall4F334View1(ownerPosition16Default, &originalFrame.sp18) >= 0x3E8)) {
+                rawWord2=Level34_8A88CCall4E880View1(originalFrame.sp18-Level34_8A88CField(owner18,int*,12),originalFrame.sp1C-Level34_8A88CField(owner18,int*,16),0);
+                argumentWord5=Level34_8A88CField(owner18,unsigned char*,70);
+                argumentWord4=rawWord2;
+                argumentWord5+=128;
+                argumentWord5&=255;
+                goto compareOriginalAngleArguments;
+            }
+            goto setOriginalStateOne;
+        }
+        if ((Level34_8A88CCall4F334View1(ownerPosition16Default, &originalFrame.sp18) >= 0x3E8) && (Level34_8A88CCall4F334View1(ownerPosition16Default,playerAddress19) >= 0x4E2)) {
+            rawWord2=Level34_8A88CCall4E880View1(originalFrame.sp18-Level34_8A88CField(owner18,int*,12),originalFrame.sp1C-Level34_8A88CField(owner18,int*,16),0);
+            argumentWord5=Level34_8A88CField(owner18,unsigned char*,70);
+            __asm__ volatile("":::"$4","memory");
+            argumentWord4=rawWord2;
+        compareOriginalAngleArguments:
+            __asm__ volatile(""::"r"(argumentWord4),"r"(argumentWord5));
+            if (Level34_8A88CCall4F264View1(argumentWord4, argumentWord5) >= 0x47) {
+                goto setOriginalStateOne;
+            }
+        }
+        else {
+        setOriginalStateOne:
+            Level34_8A88CField(owner18, unsigned char *, 0x48) = 1U;
+            Level34_8A88CField(privateRecord17, short *, 0x1A) = 0;
+        }
+        goto updateOriginalTurn;
+        return;
+    updateOriginalTurn:
+        targetAngle19 = Level34_8A88CCall4E880View1(originalFrame.sp18 - Level34_8A88CField(owner18, int *, 0xC), originalFrame.sp1C - Level34_8A88CField(owner18, int *, 0x10), 0);
+        rawWord2=Level34_8A88CCall4F264View1(targetAngle19,Level34_8A88CField(owner18,unsigned char*,70));
+        argumentWord4=(int)&originalFrame.sp28;
+        argumentWord5=(int)owner18+12;
+        __asm__ volatile(""::"r"(argumentWord4),"r"(argumentWord5):"$16");
+        angleDifference16=rawWord2;
+        Level34_8A88CCall4F178View1((void*)argumentWord4,(void*)argumentWord5);
+        if (angleDifference16 < 4) {
+            scalarOrTurnWord20 = 0xA;
+        }
+        if (angleDifference16 < 6) {
+            scalarOrTurnWord20 = 0x19;
+        }
+        else if (angleDifference16 < 8) {
+            scalarOrTurnWord20 = 0x32;
+        }
+        else {
+            rawWord2=angleDifference16<10;
+            Level34_8A88CKeepCompleteWord(rawWord2);
+            if(rawWord2)scalarOrTurnWord20=150;
+        }
+        __asm__ volatile(""::"r"(angleDifference16));
+        argumentWord6 = scalarOrTurnWord20;
+        if (scalarOrTurnWord20 < 0) {
+            argumentWord6 = -argumentWord6;
+        }
+        if (argumentWord6 >= 0x96) {
+            argumentWord6 = 0xF;
+        }
+        else if (argumentWord6 >= 0x64) {
+            argumentWord6 = 8;
+        }
+        else if (argumentWord6 >= 0x32) {
+            argumentWord6 = 5;
+        }
+        else {
+            rawWord2=argumentWord6<25;
+            argumentWord6=2;
+            if(!rawWord2) {
+                argumentWord6 = 4;
+            }
+        }
+        rawWord3=Level34_8A88CField(owner18,unsigned char*,70);
+        rawWord2=(unsigned int)rawWord3<128;
+        if(!rawWord2)goto testOriginalUpperHalf;
+        rawWord2=targetAngle19<128;
+        if(rawWord2){
+            rawWord2=rawWord3<targetAngle19;
+            goto compareOriginalTurn;
+        }
+        rawWord2=rawWord3<targetAngle19;
+    testOriginalUpperHalf:
+        rawWord2=(unsigned int)rawWord3<129;
+        if(rawWord2)goto testOriginalCross;
+        rawWord2=targetAngle19<129;
+        if(rawWord2){
+            rawWord2=targetAngle19<128;
+            goto testOriginalNegativeCross;
+        }
+        rawWord2=targetAngle19<128;
+        rawWord3=Level34_8A88CField(owner18,unsigned char*,70);
+        rawWord2=rawWord3<targetAngle19;
+    compareOriginalTurn:
+        if(rawWord2)goto addOriginalTurnStep;
+        rawWord2=targetAngle19<rawWord3;
+        if(!rawWord2){
+            argumentWord4=(int)owner18;
+            goto useHeldOwnerArgument;
+        }
+        argumentWord4=(int)owner18;
+        rawWord2=Level34_8A88CField(privateRecord17,short*,26);
+        if(rawWord2 >0){
+            rawWord3=0x55555556;
+            rawWord2=(int)((unsigned int)rawWord2<<1);
+            completeSignedProduct=(long long)rawWord2*(long long)rawWord3;
+            __asm__ volatile(""::"x"(completeSignedProduct),"r"(argumentWord6));
+            rawWord2>>=31;
+            __asm__("":"=h"(firstTurnProductHigh):"x"(completeSignedProduct),"r"(rawWord2),"r"(argumentWord6));
+            capturedProductHigh8=firstTurnProductHigh;
+            Level34_8A88CKeepCompleteWord(capturedProductHigh8);
+            rawWord2=capturedProductHigh8-rawWord2;
+            Level34_8A88CField(privateRecord17,short*,26)=rawWord2;
+        }
+        rawWord2=Level34_8A88CField(privateRecord17,unsigned short*,26);
+        __asm__ volatile("":::"memory");
+        rawWord2-=argumentWord6;
+        goto storeOriginalTurn;
+    testOriginalNegativeCross:
+        if(!rawWord2)goto testOriginalCross;
+        rawWord2=Level34_8A88CField(privateRecord17,short*,26);
+        if(rawWord2 >0){
+            rawWord3=0x55555556;
+            rawWord2=(int)((unsigned int)rawWord2<<1);
+            completeSignedProduct=(long long)rawWord2*(long long)rawWord3;
+            __asm__ volatile(""::"x"(completeSignedProduct),"r"(targetAngle19));
+            rawWord2>>=31;
+            __asm__("":"=h"(secondTurnProductHigh):"x"(completeSignedProduct),"r"(rawWord2),"r"(targetAngle19));
+            capturedProductHigh8=secondTurnProductHigh;
+            Level34_8A88CKeepCompleteWord(capturedProductHigh8);
+            rawWord2=capturedProductHigh8-rawWord2;
+            Level34_8A88CField(privateRecord17,short*,26)=rawWord2;
+        }
+        rawWord2=Level34_8A88CField(privateRecord17,unsigned short*,26);
+        rawWord2-=argumentWord6;
+        goto storeOriginalTurn;
+    testOriginalCross:
+        rawWord2=Level34_8A88CField(owner18,unsigned char*,70);
+        rawWord2=(unsigned int)rawWord2<128;
+        if(!rawWord2)goto setOriginalOwnerArgument;
+        rawWord2=targetAngle19<129;
+        if(rawWord2){
+            argumentWord4=(int)owner18;
+            goto useHeldOwnerArgument;
+        }
+        argumentWord4=(int)owner18;
+    addOriginalTurnStep:
+        rawWord2=Level34_8A88CField(privateRecord17,short*,26);
+        if(rawWord2 <0){
+            rawWord3=0x55555556;
+            rawWord2=(int)((unsigned int)rawWord2<<1);
+            completeSignedProduct=(long long)rawWord2*(long long)rawWord3;
+            __asm__ volatile(""::"x"(completeSignedProduct),"r"(owner18));
+            rawWord2>>=31;
+            __asm__("":"=h"(thirdTurnProductHigh):"x"(completeSignedProduct),"r"(rawWord2),"r"(owner18));
+            capturedProductHigh8=thirdTurnProductHigh;
+            Level34_8A88CKeepCompleteWord(capturedProductHigh8);
+            rawWord2=capturedProductHigh8-rawWord2;
+            Level34_8A88CField(privateRecord17,short*,26)=rawWord2;
+        }
+        rawWord2=Level34_8A88CField(privateRecord17,unsigned short*,26);
+        rawWord2+=argumentWord6;
+    storeOriginalTurn:
+        Level34_8A88CField(privateRecord17,short*,26)=rawWord2;
+    setOriginalOwnerArgument:
+        argumentWord4=(int)owner18;
+    useHeldOwnerArgument:
+        scalarOrTurnWord20=Level34_8A88CField(privateRecord17,short*,26);
+        argumentWord5=Level34_8A88CField(owner18,unsigned char*,70);
+        argumentWord7=0;
+        argumentWord5=(argumentWord5+64)&255;
+        Level34_8A88CCall35EE0View1((void*)argumentWord4,argumentWord5,scalarOrTurnWord20,argumentWord7,0,0);
+        ownerPosition16Common = owner18 + 0xC;
+        if (Level34_8A88CCall4F334View1(ownerPosition16Common, privateRecord17) >= 0xB55) {
+            Level34_8A88CCall4F178View1(ownerPosition16Common, &originalFrame.sp28);
+            Level34_8A88CField(privateRecord17, short *, 0x1A) = 0;
+        }
+    }
+}
+#undef Level34_8A88CField
+#undef Level34_8A88CKeepCompleteWord
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_34/moby", func_level_34_8008B2DC);
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original level34 controller8008B2DC.
+ * Assembly SHA256 bec6103ec89b3d5f5b9a000b61aaaa8ee106753511e5f4525cd0b88d19a8eb8a.
+ * AI generated; not human reviewed.1405 original native instructions,
+ * 33 state selectors and one zero pad=1439 owned words. Field widths,
+ * offsets,constants,helper words and control entries come from this body;
+ * names describe physical storage roles and do not prove gameplay meaning.
+ * The original280-byte frame retains local SP18..C8 homes and the original
+ * reserved tail. SP18/1C/20 are explicitly initialized before vector add.
+ * SP28..30 and60..68 are complete original4F1C8 outputs before reads;
+ * SP38..40 are complete4F194 outputs. SP50,78,88,98,A8 andB8 vector homes
+ * have complete4F178 producers before reads or vector helper consumption.
+ * SP48,70 andC8 are initialized before every local consumer/output helper;
+ * SP58's later isolated store updates the already copied SP50 vector.
+ * All6 original MULTs start from complete initialized signed32 operands
+ * and produce entire signed64 products before high/low projection. /100
+ * takes the original low32 numerator*95,then0x51EB851F and high>>5 minus
+ * its sign. /70 uses0xEA0EA0EB,high+numerator,>>6 minus its sign. Coordinate
+ * products retain original signed16 reads,7/128 scaling and low32>>12;
+ * the squared helper return retains its complete product and original low
+ * word. Conditional union layout follows frozen compiler __MIPSEB__ and
+ * never escapes. No partial HILO value is an input or an invented value.
+ * T1's selected-pointer and product-half phases are disjoint. The ordinary
+ * owner-position scalar naturally occupies FP; no FP/SP binding is used.
+ * Every spawned pointer/private read follows its original nonnull guard.
+ * The physically distinct early/late zero-state exits preserve original
+ * conditional destinations; both-arm low-speed predicates and all shared
+ * scale/delete/spawn entries retain their original native destinations.
+ * Empty metadata emits zero CPU words and observes complete initialized
+ * values/objects or ends a dead GP phase. All manual aliases are disjoint;
+ * there is no incoming saved value,unwritten consumed local or opcode asm.
+ * Known physical ABI views reuse original vector/moby/math contracts.
+ * Other helpers retain only original physical word call views. Numeric
+ * wrap,narrowing,shifts and raw addresses target this frozen32-bit MIPS
+ * compiler; portable C arithmetic,semantic helper/asset/SFX meaning,
+ * units,invocation cadence,full caller chains,Rev1 mappings and original
+ * synchronized runtime captures remain open. Acceptance requires original
+ * linked native words,data/addends,33 selectors+pad and all retail hashes.
+ */
+#define Actor1405Keep(x) __asm__("":"=r"(x):"0"(x))
+#define Actor1405Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+int Actor1405_func_80013E38(void*,void*,int) __asm__("func_80013E38");
+int Actor1405_func_80018368(void*,void*) __asm__("func_80018368");
+int Actor1405_func_80019194(void*,int) __asm__("func_80019194");
+int Actor1405_func_8001A358() __asm__("func_8001A358");
+int Actor1405_func_8001BA30() __asm__("func_8001BA30");
+int Actor1405_func_80034F80() __asm__("func_80034F80");
+int Actor1405_func_800359A4(void*,int) __asm__("func_800359A4");
+int Actor1405_func_80035D38() __asm__("func_80035D38");
+int Actor1405_func_8003636C(int,int) __asm__("func_8003636C");
+int Actor1405_func_800365E4(void*,void*,int,int,void*) __asm__("func_800365E4");
+int Actor1405_func_8003BABC() __asm__("func_8003BABC");
+int Actor1405_func_80049484() __asm__("func_80049484");
+int Actor1405_func_8004E880(int,int,int) __asm__("func_8004E880");
+int Actor1405_func_8004EDE8(void*,int) __asm__("func_8004EDE8");
+int Actor1405_func_8004EF74(void*,void*,void*) __asm__("func_8004EF74");
+void Actor1405_func_8004F08C(void*,int,int) __asm__("func_8004F08C");
+void Actor1405_func_8004F110(void*,int) __asm__("func_8004F110");
+void Actor1405_func_8004F168(void*) __asm__("func_8004F168");
+void Actor1405_func_8004F178(void*,void*) __asm__("func_8004F178");
+void Actor1405_func_8004F194(void*,void*,void*) __asm__("func_8004F194");
+void Actor1405_func_8004F1C8(void*,void*,void*) __asm__("func_8004F1C8");
+int Actor1405_func_8004F264(int,int) __asm__("func_8004F264");
+int Actor1405_func_8004F334(void*,void*) __asm__("func_8004F334");
+int Actor1405_func_8004F388(int,int) __asm__("func_8004F388");
+void Actor1405_func_80055B18(void*) __asm__("func_80055B18");
+int Actor1405_func_80055D24() __asm__("func_80055D24");
+int Actor1405_func_8005629C() __asm__("func_8005629C");
+extern int Actor1405_D_800658A0 __asm__("D_800658A0");
+extern int Actor1405_D_80065920 __asm__("D_80065920");
+extern int Actor1405_D_8006C550 __asm__("D_8006C550");
+extern int Actor1405_D_8006C704 __asm__("D_8006C704");
+extern unsigned short Actor1405_D_8006E03E __asm__("D_8006E03E");
+extern unsigned short Actor1405_D_8006E040 __asm__("D_8006E040");
+extern int Actor1405_D_8006E044 __asm__("D_8006E044");
+extern int Actor1405_D_8006E344 __asm__("D_8006E344");
+extern int Actor1405_D_80070328 __asm__("D_80070328");
+extern int Actor1405_D_80071900 __asm__("D_80071900");
+extern int Actor1405_D_80071908 __asm__("D_80071908");
+extern int Actor1405_D_80071918 __asm__("D_80071918");
+extern int Actor1405_D_8007191C __asm__("D_8007191C");
+extern int Actor1405_D_80071920 __asm__("D_80071920");
+extern int Actor1405_D_80071930 __asm__("D_80071930");
+extern int(*Actor1405_SpawnMoby)() __asm__("SpawnMoby");
+union Actor1405Product{long long full;struct{
+#if defined(__MIPSEB__)
+int high;unsigned int low;
+#else
+unsigned int low;int high;
+#endif
+}words;};
+void func_level_34_8008B2DC(void* input) {
+    register int ownerAddress19 __asm__("$19"),privateAddress20 __asm__("$20"),retainedScalarOrVectorAddress16 __asm__("$16"),retainedAngleScoreOrAddress17 __asm__("$17"),retainedCandidatePathOrVector18 __asm__("$18"),retainedPositionOrClassWord21 __asm__("$21"),retainedCursorOrPointOffset22 __asm__("$22"),retainedCameraOrPointIndex23 __asm__("$23");
+    register int selectedOwnerOrProductHalf9 __asm__("$9"),firstScaleHigh8 __asm__("$8"),secondScaleHigh10 __asm__("$10");
+    union Actor1405Product scaleFirstProduct,scaleSecondProduct,coordinateFirstProduct,coordinateSecondProduct,division70Product,squareProduct;
+    register int resultWord2 __asm__("$2"),intermediateWord3 __asm__("$3"),argumentWord4 __asm__("$4"),argumentWord5 __asm__("$5"),argumentWord6 __asm__("$6"),argumentWord7 __asm__("$7");
+    struct {
+        int sp18,sp1C,sp20,sp24,sp28,sp2C,sp30,sp34,sp38,sp3C,sp40,sp44,sp48,sp4C,sp50,sp54,sp58,sp5C,sp60,sp64,sp68,sp6C,sp70,sp74,sp78,sp7C,sp80,sp84,sp88,sp8C,sp90,sp94,sp98,sp9C,spA0,spA4,spA8,spAC,spB0,spB4,spB8,spBC,spC0,spC4,spC8,spCC,spD0,spD4,spD8,spDC,spE0,spE4,spE8;
+    }
+    originalFrame;
+    int temporaryWord17;
+    int temporaryWord4;
+    int temporaryWord1;
+    int ownerPositionAddress;
+    int temporaryWord14;
+    int temporaryWord15;
+    int spawnedPositionAddress;
+    int sourcePositionAddress;
+    int temporaryWord2;
+    int temporaryWord13;
+    int initializedSquareLow;
+    int temporaryWord7;
+    int temporaryWord9;
+    int temporaryWord10;
+    int temporaryWord11;
+    int temporaryWord19;
+    int temporaryWord20;
+    int temporaryWord3;
+    int temporaryWord8;
+    int temporaryWord12;
+    ownerAddress19=(int)input;
+    __asm__("":"=r"(ownerAddress19):"0"(ownerAddress19));
+    temporaryWord12 = Actor1405Field(ownerAddress19, unsigned char *, 0x48);
+    privateAddress20 = Actor1405Field(ownerAddress19, int **, 0);
+    switch (temporaryWord12) {
+    case 0:
+        temporaryWord1 = ownerAddress19 + 0xC;
+        if (Actor1405Field(ownerAddress19, unsigned char *, 0x3C) == 0) {
+            Actor1405Field(ownerAddress19, int *, 0x14) = (int) (Actor1405Field(ownerAddress19, int *, 0x14) + 0x200);
+            temporaryWord7 = Actor1405_func_8001A358(temporaryWord1, 0x250);
+            Actor1405Field(ownerAddress19, int *, 0x14) = (int) (Actor1405Field(ownerAddress19, int *, 0x14) - 0x200);
+            Actor1405Field(ownerAddress19, unsigned char *, 0x46) = (unsigned char) (Actor1405Field(ownerAddress19, unsigned char *, 0x46) + Actor1405Field(privateAddress20, int *, 0));
+            Actor1405Field(ownerAddress19, signed char *, 0x44) = (signed char) (Actor1405Field(ownerAddress19, unsigned char *, 0x45) + Actor1405Field(privateAddress20, int *, 4));
+            Actor1405Field(ownerAddress19, int *, 0x14) = (int) (Actor1405Field(ownerAddress19, int *, 0x14) + Actor1405Field(privateAddress20, int *, 8));
+            Actor1405Field(privateAddress20, int *, 8) = (int) (Actor1405Field(privateAddress20, int *, 8) - 8);
+            if (temporaryWord7 != 0) {
+                retainedScalarOrVectorAddress16=(int)&Actor1405_D_80071908;
+                Actor1405Keep(retainedScalarOrVectorAddress16);
+                intermediateWord3=Actor1405Field(ownerAddress19,int*,0x14);
+                __asm__ volatile("":::"memory");
+                resultWord2=Actor1405Field(retainedScalarOrVectorAddress16,int*,0);
+                if(resultWord2>=intermediateWord3){
+                    Actor1405_func_8003BABC(ownerAddress19, 1, 0);
+                    Actor1405Field(ownerAddress19, int *, 0x14) = (int) (Actor1405Field(retainedScalarOrVectorAddress16,int*,0) + 0x37);
+                    Actor1405Field(privateAddress20, int *, 8) = Actor1405_func_8003636C(0x19, 0x3C);
+                    Actor1405Field(privateAddress20, int *, 0) = Actor1405_func_8003636C(0, 0xA) - 5;
+                    Actor1405Field(privateAddress20, int *, 4) = (int) (Actor1405_func_8003636C(0, 0xA) - 5);
+                }
+            }
+            goto checkOriginalAutomaticLink;
+        }
+        Actor1405Field(ownerAddress19, int *, 0x14) = (int) (Actor1405Field(ownerAddress19, int *, 0x14) + 0x200);
+        if (Actor1405_func_8001A358(temporaryWord1, 0x250) == 0) {
+            Actor1405Field(ownerAddress19, signed char *, 0x44) = 0;
+            Actor1405Field(ownerAddress19, unsigned char *, 0x45) = 0U;
+            Actor1405Field(ownerAddress19, int *, 0x14) = (int) (Actor1405Field(ownerAddress19, int *, 0x14) - 0x200);
+            Actor1405_func_8004F168(privateAddress20);
+            resultWord2=5;
+            Actor1405Keep(resultWord2);
+            Actor1405Field(privateAddress20, short *, 0x16) = resultWord2;
+            resultWord2 = 3;
+            Actor1405Field(privateAddress20, unsigned int *, 0xC) = 0U;
+            goto storeOriginalFinalState;
+        default:
+            return;
+        }
+        Actor1405Field(ownerAddress19, int *, 0x14) = (int) (Actor1405Field(ownerAddress19, int *, 0x14) - 0x200);
+    checkOriginalAutomaticLink:
+        if(Actor1405_func_8004F264(Actor1405Field((int)&Actor1405_D_80070328,unsigned char*,0xE),Actor1405_func_8004E880(Actor1405Field(ownerAddress19,int*,0xC)-Actor1405Field((int)&Actor1405_D_80070328,int*,0),Actor1405Field(ownerAddress19,int*,0x10)-Actor1405Field((int)&Actor1405_D_80070328,int*,4),0))>=0x10)goto skipOriginalAutomaticLink;
+        resultWord2=(Actor1405_func_8004F334(ownerAddress19+0xC,(int)&Actor1405_D_80070328)-0x258)<0xFA;
+        intermediateWord3=Actor1405Field(ownerAddress19,int*,0x14);
+        argumentWord4=Actor1405Field((int)&Actor1405_D_80070328,int*,8);
+        intermediateWord3+=0x164;
+        Actor1405Keep(intermediateWord3);
+        if(!resultWord2)goto skipOriginalAutomaticLink;
+        argumentWord4-=intermediateWord3;
+        resultWord2=argumentWord4<0x100;
+        if(!resultWord2)goto skipOriginalAutomaticLink;
+        if(Actor1405_D_8006E344==1)goto skipOriginalAutomaticLink;
+        if(Actor1405Field((int)&Actor1405_D_80070328,int*,0x170)!=0)goto skipOriginalAutomaticLink;
+        Actor1405Field((int)&Actor1405_D_80070328, int *, 0x20C) = 0x10000001;
+        Actor1405Field((int)&Actor1405_D_80070328, int ***, 0x218) = ownerAddress19;
+        Actor1405Field(ownerAddress19, signed char *, 0x4F) = 0x20;
+    skipOriginalAutomaticLink:
+        Actor1405Field(privateAddress20, unsigned int *, 0xC) = 0U;
+        return;
+    case 1:
+        Actor1405Field(ownerAddress19, int *, 8) = 0;
+        Actor1405Field(ownerAddress19, signed char *, 0x4C) = 0;
+        Actor1405Field(ownerAddress19, signed char *, 0x4D) = 0;
+        Actor1405Field(ownerAddress19, unsigned char *, 0x4A) = 0xFF;
+        return;
+    case 2:
+        originalFrame.sp48 = 0x186A0;
+        originalFrame.spC8 = 0;
+        Actor1405Field(ownerAddress19, signed char *, 0x4F) = 0x20;
+        Actor1405Field(ownerAddress19, signed char *, 0x4C) = 0x50;
+        Actor1405Field(ownerAddress19, signed char *, 0x4D) = 1;
+        Actor1405Field(ownerAddress19, unsigned char *, 0x45) = 0U;
+        Actor1405Field(privateAddress20, short *, 0x14) = 0x2BC;
+        argumentWord4=ownerAddress19+0xC;
+        if (Actor1405Field((int)&Actor1405_D_8006E044, int *, 0) == 7) {
+            __asm__ volatile("":"=r"(argumentWord4),"=r"(ownerAddress19):"0"(argumentWord4),"1"(ownerAddress19));
+            Actor1405_func_80049484(ownerAddress19+0xC);
+        }
+        else {
+            Actor1405Keep(argumentWord4);
+            Actor1405Field(ownerAddress19, int *, 0xC) = (int) ((int) (Actor1405Field((int)&Actor1405_D_80065920 + (Actor1405Field((int)&Actor1405_D_80070328, unsigned char *, 0xE) * 2),short*,0) * 0x4B) >> 9);
+            temporaryWord4 = Actor1405Field((int)&Actor1405_D_800658A0 + (Actor1405Field((int)&Actor1405_D_80070328, unsigned char *, 0xE) * 2),short*,0);
+            Actor1405Field(ownerAddress19, int *, 0x14) = 0xC8;
+            Actor1405Field(ownerAddress19, int *, 0x10) = (int) ((int) (temporaryWord4 * 0x4B) >> 9);
+            Actor1405_func_8004F194(argumentWord4,argumentWord4, ((int)&Actor1405_D_80070328 + 0xE) - 0xE);
+        }
+        argumentWord4=(int)&originalFrame.sp18;
+        Actor1405Keep(argumentWord4);
+        retainedAngleScoreOrAddress17=(int)&Actor1405_D_80070328+0xE;
+        Actor1405Keep(retainedAngleScoreOrAddress17);
+        argumentWord7=Actor1405Field(retainedAngleScoreOrAddress17,unsigned char*,0);
+        argumentWord5=argumentWord4;
+        argumentWord7*=2;
+        Actor1405Keep(argumentWord7);
+        intermediateWord3=Actor1405Field((int)&Actor1405_D_80065920,short*,argumentWord7);
+        argumentWord6=retainedAngleScoreOrAddress17-0xE;
+        originalFrame.sp18=(intermediateWord3*25)>>9;
+        intermediateWord3=Actor1405Field((int)&Actor1405_D_800658A0,short*,argumentWord7);
+        originalFrame.sp20=200;
+        originalFrame.sp1C=(intermediateWord3*25)>>9;
+        Actor1405_func_8004F194(argumentWord4,argumentWord5,argumentWord6);
+        argumentWord4=(int)&originalFrame.sp18;
+        Actor1405Keep(argumentWord4);
+        retainedScalarOrVectorAddress16 = ownerAddress19 + 0xC;
+        if (Actor1405_func_80018368(argumentWord4,retainedScalarOrVectorAddress16) != 0) {
+            Actor1405_func_8004F178((int *) retainedScalarOrVectorAddress16, &originalFrame.sp18);
+        }
+        Actor1405_func_8004F178(Actor1405_D_8006C550 + (Actor1405Field(privateAddress20, int *, 0x10) * 0x58) + 0xC, (int *) retainedScalarOrVectorAddress16);
+        Actor1405Field(ownerAddress19, unsigned char *, 0x46) = (unsigned char) (Actor1405Field(retainedAngleScoreOrAddress17,unsigned char*,0) + Actor1405Field((int)&Actor1405_D_80070328, unsigned char *, 0x12));
+        if (Actor1405Field((int)&Actor1405_D_8006E044, int *, 0) == 7) {
+            Actor1405Field(ownerAddress19, unsigned char *, 0x45) = (unsigned char) (0xE - ((int) (Actor1405_D_8006E03E << 0x10) >> 0x14));
+            Actor1405Field(ownerAddress19, unsigned char *, 0x46) = (unsigned char) ((unsigned short) Actor1405_D_8006E040 >> 4);
+        }
+        else {
+            Actor1405Field(ownerAddress19, unsigned char *, 0x45) = 0xEU;
+        }
+        retainedCursorOrPointOffset22 = Actor1405_D_8006C550;
+        if (retainedCursorOrPointOffset22 < (unsigned int) Actor1405_D_8006C704) {
+            retainedCameraOrPointIndex23=(int)&Actor1405_D_8006E044;
+            __asm__("":"=r"(retainedCameraOrPointIndex23):"0"(retainedCameraOrPointIndex23));
+            ownerPositionAddress = ownerAddress19 + 0xC;
+            retainedCandidatePathOrVector18 = retainedCursorOrPointOffset22;
+            retainedPositionOrClassWord21 = retainedCursorOrPointOffset22 + 0xC;
+            do {
+                if ((Actor1405Field(retainedCandidatePathOrVector18, short *, 0x36) == 0x221) && (Actor1405Field(retainedCandidatePathOrVector18, unsigned char *, 0x48) == 0x15)) {
+                    retainedAngleScoreOrAddress17 = (Actor1405_func_8004E880(Actor1405Field(retainedCandidatePathOrVector18, int *, 0xC) - Actor1405Field(ownerAddress19, int *, 0xC), Actor1405Field(retainedCandidatePathOrVector18, int *, 0x10) - Actor1405Field(ownerAddress19, int *, 0x10), 0) - Actor1405Field(ownerAddress19, unsigned char *, 0x46)) & 0xFF;
+                    if (retainedAngleScoreOrAddress17 >= 0x81) {
+                        retainedAngleScoreOrAddress17 -= 0x100;
+                    }
+                    if (Actor1405Field(retainedCameraOrPointIndex23, int *, 0) == 7) {
+                        retainedScalarOrVectorAddress16 = (Actor1405_func_8004E880(Actor1405_func_8004F334(retainedCameraOrPointIndex23 - 0x24, retainedPositionOrClassWord21), Actor1405Field(retainedCameraOrPointIndex23, int *, -0x1C) - Actor1405Field(retainedCandidatePathOrVector18, int *, 0x14), 1) - Actor1405Field(retainedCameraOrPointIndex23, short *, -6)) & 0xFFF;
+                        if (retainedScalarOrVectorAddress16 >= 0x801) {
+                            retainedScalarOrVectorAddress16 -= 0x1000;
+                        }
+                        temporaryWord19 = retainedScalarOrVectorAddress16;
+                        if (retainedScalarOrVectorAddress16 < 0) {
+                            temporaryWord19 = -temporaryWord19;
+                        }
+                        resultWord2=temporaryWord19<0x65;
+                        resultWord2^=1;
+                        resultWord2=-resultWord2;
+                        Actor1405Keep(resultWord2);
+                        retainedScalarOrVectorAddress16=resultWord2&0x63;
+                    }
+                    else {
+                        retainedScalarOrVectorAddress16 = (Actor1405_func_8004E880(Actor1405_func_8004F334((int *) (ownerAddress19 + 0xC), retainedPositionOrClassWord21), Actor1405Field(retainedCandidatePathOrVector18, int *, 0x14) - Actor1405Field(ownerAddress19, int *, 0x14), 0) - Actor1405Field(ownerAddress19, unsigned char *, 0x45)) & 0xFF;
+                        if (retainedScalarOrVectorAddress16 >= 0x81) {
+                            retainedScalarOrVectorAddress16 -= 0x100;
+                        }
+                    }
+                    if (retainedAngleScoreOrAddress17 < 0) {
+                        retainedAngleScoreOrAddress17 = -retainedAngleScoreOrAddress17;
+                    }
+                    Actor1405Keep(retainedAngleScoreOrAddress17);
+                    if ((retainedAngleScoreOrAddress17 < 0x14) && (retainedScalarOrVectorAddress16 < 0x20)) {
+                        intermediateWord3=Actor1405_func_8004F334(ownerPositionAddress,retainedPositionOrClassWord21);
+                        resultWord2=intermediateWord3<0x2000;
+                        Actor1405Keep(resultWord2);
+                        if(resultWord2){
+                            resultWord2=intermediateWord3<0x81;
+                            Actor1405Keep(resultWord2);
+                            if(!resultWord2){
+                                retainedAngleScoreOrAddress17=(retainedAngleScoreOrAddress17*8)+retainedScalarOrVectorAddress16;
+                                intermediateWord3>>=10;
+                                resultWord2=originalFrame.sp48;
+                                retainedAngleScoreOrAddress17+=intermediateWord3;
+                                if ((retainedAngleScoreOrAddress17 < resultWord2) && (Actor1405_func_80013E38((int *) ownerPositionAddress, retainedPositionOrClassWord21, 4) != 0)) {
+                                    originalFrame.spC8 = retainedCandidatePathOrVector18;
+                                    originalFrame.sp48 = retainedAngleScoreOrAddress17;
+                                }
+                            }
+                        }
+                    }
+                }
+                retainedCandidatePathOrVector18+=0x58;
+                Actor1405Keep(retainedCandidatePathOrVector18);
+                resultWord2=Actor1405_D_8006C704;
+                retainedCursorOrPointOffset22+=0x58;
+                Actor1405Keep(resultWord2);
+                retainedPositionOrClassWord21+=0x58;
+            }
+            while((unsigned int)retainedCursorOrPointOffset22<(unsigned int)resultWord2);
+        }
+        selectedOwnerOrProductHalf9=originalFrame.spC8;
+        retainedScalarOrVectorAddress16=(int)&originalFrame.sp28;
+        if(selectedOwnerOrProductHalf9!=0){
+            argumentWord4=retainedScalarOrVectorAddress16;
+            Actor1405Keep(argumentWord4);
+            argumentWord5=selectedOwnerOrProductHalf9+0xC;
+            retainedAngleScoreOrAddress17=ownerAddress19+0xC;
+            Actor1405_func_8004F1C8(argumentWord4,argumentWord5,retainedAngleScoreOrAddress17);
+            Actor1405_func_8004EDE8(&originalFrame.sp28, 0);
+            argumentWord4=0x51EB851F;
+            resultWord2=originalFrame.sp28;
+            argumentWord7=resultWord2*95;
+            __asm__("":"=r"(argumentWord4),"=r"(argumentWord7):"0"(argumentWord4),"1"(argumentWord7));
+            scaleFirstProduct.full=(long long)argumentWord7*(long long)argumentWord4;
+            resultWord2=originalFrame.sp2C;
+            intermediateWord3=resultWord2*3;
+            Actor1405Keep(intermediateWord3);
+            __asm__ volatile("":"=x"(scaleFirstProduct.full):"0"(scaleFirstProduct.full),"r"(resultWord2),"r"(intermediateWord3));
+            firstScaleHigh8=scaleFirstProduct.words.high;
+            Actor1405Keep(firstScaleHigh8);
+            intermediateWord3=intermediateWord3*32-resultWord2;
+            Actor1405Keep(intermediateWord3);
+            scaleSecondProduct.full=(long long)intermediateWord3*(long long)argumentWord4;
+            __asm__ volatile("":"=x"(scaleSecondProduct.full):"0"(scaleSecondProduct.full));
+            retainedCandidatePathOrVector18=(int)&originalFrame.sp38;
+            argumentWord5=retainedAngleScoreOrAddress17;
+            argumentWord6=retainedScalarOrVectorAddress16;
+            argumentWord7>>=31;
+            argumentWord4=retainedCandidatePathOrVector18;
+            resultWord2=(firstScaleHigh8>>5)-argumentWord7;
+            intermediateWord3>>=31;
+            originalFrame.sp28=resultWord2;
+            __asm__ volatile("":"=x"(scaleSecondProduct.full):"0"(scaleSecondProduct.full),"m"(originalFrame.sp28));
+            secondScaleHigh10=scaleSecondProduct.words.high;
+            Actor1405Keep(secondScaleHigh10);
+            resultWord2=(secondScaleHigh10>>5)-intermediateWord3;
+            originalFrame.sp2C=resultWord2;
+            Actor1405_func_8004F194(argumentWord4,argumentWord5,argumentWord6);
+            temporaryWord8 = Actor1405_func_8004E880(originalFrame.sp38 - Actor1405Field(ownerAddress19, int *, 0xC), originalFrame.sp3C - Actor1405Field(ownerAddress19, int *, 0x10), 0);
+            Actor1405Field(ownerAddress19, unsigned char *, 0x46) = temporaryWord8;
+            Actor1405Field(privateAddress20, int *, 0) = (int) (Actor1405Field((int)&Actor1405_D_80065920 + ((temporaryWord8 & 0xFF) * 2),short*,0) * 7) >> 7;
+            intermediateWord3=Actor1405Field((int)&Actor1405_D_800658A0,short*,Actor1405Field(ownerAddress19,unsigned char*,0x46)*2);
+            Actor1405Field(privateAddress20,int*,8)=0;
+            Actor1405Field(privateAddress20,int*,4)=(intermediateWord3*7)>>7;
+            Actor1405Field(privateAddress20, int *, 8) = Actor1405_func_800365E4((int *) retainedAngleScoreOrAddress17, &originalFrame.sp38, 0xE0, -8, &originalFrame.sp48);
+            selectedOwnerOrProductHalf9=originalFrame.spC8;
+            Actor1405Field(privateAddress20,unsigned int*,0xC)=selectedOwnerOrProductHalf9;
+        }
+        else{
+            resultWord2=Actor1405Field(ownerAddress19,unsigned char*,0x46);
+            Actor1405Keep(resultWord2);
+            resultWord2*=2;
+            argumentWord4=Actor1405Field((int)&Actor1405_D_80065920,short*,resultWord2);
+            resultWord2=Actor1405Field(ownerAddress19,unsigned char*,0x45);
+            __asm__ volatile("":"=r"(argumentWord4):"0"(argumentWord4):"memory");
+            intermediateWord3=argumentWord4*7;
+            resultWord2*=2;
+            resultWord2=Actor1405Field((int)&Actor1405_D_80065920,short*,resultWord2);
+            __asm__ volatile("":"=r"(intermediateWord3):"0"(intermediateWord3):"memory");
+            intermediateWord3>>=7;
+            __asm__("":"=r"(intermediateWord3),"=r"(resultWord2):"0"(intermediateWord3),"1"(resultWord2));
+            coordinateFirstProduct.full=(long long)intermediateWord3*(long long)resultWord2;
+            __asm__("":"=x"(coordinateFirstProduct.full):"0"(coordinateFirstProduct.full));
+            selectedOwnerOrProductHalf9=(int)coordinateFirstProduct.words.low;
+            Actor1405Keep(selectedOwnerOrProductHalf9);
+            resultWord2=selectedOwnerOrProductHalf9>>12;
+            Actor1405Field(privateAddress20,int*,0)=resultWord2;
+            resultWord2=Actor1405Field(ownerAddress19,unsigned char*,0x46);
+            Actor1405Keep(resultWord2);
+            resultWord2*=2;
+            argumentWord4=Actor1405Field((int)&Actor1405_D_800658A0,short*,resultWord2);
+            resultWord2=Actor1405Field(ownerAddress19,unsigned char*,0x45);
+            __asm__ volatile("":"=r"(argumentWord4):"0"(argumentWord4):"memory");
+            intermediateWord3=argumentWord4*7;
+            resultWord2*=2;
+            resultWord2=Actor1405Field((int)&Actor1405_D_80065920,short*,resultWord2);
+            __asm__ volatile("":"=r"(intermediateWord3):"0"(intermediateWord3):"memory");
+            intermediateWord3>>=7;
+            __asm__("":"=r"(intermediateWord3),"=r"(resultWord2):"0"(intermediateWord3),"1"(resultWord2));
+            coordinateSecondProduct.full=(long long)intermediateWord3*(long long)resultWord2;
+            __asm__("":"=x"(coordinateSecondProduct.full):"0"(coordinateSecondProduct.full));
+            selectedOwnerOrProductHalf9=(int)coordinateSecondProduct.words.low;
+            Actor1405Keep(selectedOwnerOrProductHalf9);
+            resultWord2=selectedOwnerOrProductHalf9>>12;
+            Actor1405Field(privateAddress20,int*,4)=resultWord2;
+            intermediateWord3=Actor1405Field((int)&Actor1405_D_800658A0,short*,Actor1405Field(ownerAddress19,unsigned char*,0x45)*2);
+            Actor1405Field(privateAddress20,unsigned int*,0xC)=0;
+            Actor1405Field(privateAddress20,int*,8)=(intermediateWord3*7)>>7;
+        }
+        resultWord2 = 3;
+        goto storeOriginalFinalState;
+    case 32:
+        argumentWord5=(int)&Actor1405_D_80070328+0xB8;
+        if(Actor1405Field(argumentWord5,int*,0)==0){
+            argumentWord4=ownerAddress19+0xC;
+            argumentWord5-=0xB8;
+            __asm__("":"=r"(argumentWord4),"=r"(argumentWord5):"0"(argumentWord4),"1"(argumentWord5));
+            intermediateWord3=1;
+            Actor1405Keep(intermediateWord3);
+            Actor1405Field(ownerAddress19,signed char*,0x4C)=32;
+            Actor1405Field(ownerAddress19,signed char*,0x41)=intermediateWord3;
+            Actor1405Field(ownerAddress19,signed char*,0x4D)=intermediateWord3;
+            Actor1405Field(privateAddress20, int *, 0) = 0;
+            Actor1405Field(privateAddress20, int *, 4) = 0;
+            Actor1405Field(privateAddress20, int *, 8) = 0;
+            Actor1405Field(privateAddress20, unsigned int *, 0xC) = 0U;
+            Actor1405Field(privateAddress20, short *, 0x16) = 0;
+            Actor1405Field(privateAddress20, short *, 0x14) = 0x1C2;
+            Actor1405_func_8004F178(argumentWord4,argumentWord5);
+            Actor1405Field(ownerAddress19, unsigned char *, 0x48) = 3U;
+            Actor1405Field(ownerAddress19, int *, 0x14) = (int) (Actor1405Field(ownerAddress19, int *, 0x14) + 0x1400);
+            return;
+        }
+        break;
+    case 3:
+        Actor1405_func_8004F178(&originalFrame.sp50, (int *) (ownerAddress19 + 0xC));
+        Actor1405Field(ownerAddress19, int *, 0xC) = (int) (Actor1405Field(ownerAddress19, int *, 0xC) + Actor1405Field(privateAddress20, int *, 0));
+        Actor1405Field(ownerAddress19, int *, 0x10) = (int) (Actor1405Field(ownerAddress19, int *, 0x10) + Actor1405Field(privateAddress20, int *, 4));
+        Actor1405Field(ownerAddress19, int *, 0x14) = (int) (Actor1405Field(ownerAddress19, int *, 0x14) + Actor1405Field(privateAddress20, int *, 8));
+        temporaryWord9 = Actor1405Field(privateAddress20, int *, 8) - 8;
+        Actor1405Field(privateAddress20, int *, 8) = temporaryWord9;
+        if (temporaryWord9 < -0x1F4) {
+            Actor1405Field(privateAddress20, int *, 8) = -0x1F4;
+        }
+        if (Actor1405_func_800359A4(privateAddress20 + 0x14, 2) != 0) {
+            resultWord2 = 0x20;
+            Actor1405Field(ownerAddress19, signed char *, 0x41) = 0;
+            Actor1405Field(ownerAddress19, signed char *, 0x4C) = 0;
+            Actor1405Field(ownerAddress19, signed char *, 0x4D) = 0;
+            goto storeOriginalFinalState;
+        }
+        if ((Actor1405Field(ownerAddress19, int *, 0xC) < 0x400) || (Actor1405Field(ownerAddress19, int *, 0x10) < 0x400) || (temporaryWord13 = privateAddress20 + 0x16, ((Actor1405Field(ownerAddress19, int *, 0x14) < 0x800) != 0))) {
+            intermediateWord3=Actor1405Field(privateAddress20,int*,0x10);
+            argumentWord4=0x30D40;
+            resultWord2=intermediateWord3*11;
+            Actor1405Keep(resultWord2);
+            intermediateWord3=Actor1405_D_8006C550;
+            resultWord2*=8;
+            intermediateWord3+=resultWord2;
+            Actor1405Keep(intermediateWord3);
+            resultWord2=Actor1405Field(intermediateWord3,int*,0);
+            retainedCandidatePathOrVector18=Actor1405Field(resultWord2,int*,0x2C);
+            retainedCameraOrPointIndex23=-1;
+            resultWord2=Actor1405Field(retainedCandidatePathOrVector18,short*,0);
+            __asm__ volatile("":::"$16","memory");
+            retainedScalarOrVectorAddress16=0;
+            originalFrame.sp70=argumentWord4;
+            if(resultWord2>0){
+                do {
+                    temporaryWord2 = (retainedScalarOrVectorAddress16 * 0x10) + Actor1405Field(retainedCandidatePathOrVector18, int *, 0xC);
+                    if ((Actor1405Field(temporaryWord2, int *, 8) - Actor1405Field((int)&Actor1405_D_80070328, int *, 8)) < 0x200) {
+                        temporaryWord10 = Actor1405_func_8004F334(Actor1405_D_8006C550 + (Actor1405Field(privateAddress20, int *, 0x10) * 0x58) + 0xC, temporaryWord2);
+                        if (temporaryWord10 < originalFrame.sp70) {
+                            originalFrame.sp70 = temporaryWord10;
+                            retainedCameraOrPointIndex23 = retainedScalarOrVectorAddress16;
+                        }
+                    }
+                    retainedScalarOrVectorAddress16 += 1;
+                }
+                while (retainedScalarOrVectorAddress16 < Actor1405Field(retainedCandidatePathOrVector18, short *, 0));
+            }
+            retainedScalarOrVectorAddress16=(int)&originalFrame.sp60;
+            if(retainedCameraOrPointIndex23!=-1){
+                argumentWord4=retainedScalarOrVectorAddress16;
+                Actor1405Keep(argumentWord4);
+                retainedPositionOrClassWord21=ownerAddress19+0xC;
+                argumentWord6=retainedPositionOrClassWord21;
+                argumentWord5=Actor1405Field(retainedCandidatePathOrVector18,int*,0xC);
+                retainedCursorOrPointOffset22=retainedCameraOrPointIndex23*16;
+                Actor1405_func_8004F1C8(argumentWord4,argumentWord5+retainedCursorOrPointOffset22,argumentWord6);
+                resultWord2=Actor1405_func_8004F334(retainedPositionOrClassWord21,Actor1405Field(retainedCandidatePathOrVector18,int*,0xC)+retainedCursorOrPointOffset22);
+                intermediateWord3=(int)0xEA0EA0EB;
+                Actor1405Keep(intermediateWord3);
+                division70Product.full=(long long)resultWord2*(long long)intermediateWord3;
+                __asm__("":"=x"(division70Product.full):"0"(division70Product.full));
+                selectedOwnerOrProductHalf9=division70Product.words.high;
+                Actor1405Keep(selectedOwnerOrProductHalf9);
+                intermediateWord3=selectedOwnerOrProductHalf9+resultWord2;
+                intermediateWord3>>=6;
+                Actor1405Keep(intermediateWord3);
+                resultWord2>>=31;
+                retainedAngleScoreOrAddress17=intermediateWord3-resultWord2;
+                if (retainedAngleScoreOrAddress17 == 0) {
+                    retainedAngleScoreOrAddress17 = 1;
+                }
+                Actor1405_func_8004F08C(&originalFrame.sp60, Actor1405_func_8004EDE8(&originalFrame.sp60, 0), retainedAngleScoreOrAddress17);
+                resultWord2=Actor1405_func_800365E4(retainedPositionOrClassWord21,Actor1405Field(retainedCandidatePathOrVector18,int*,0xC)+retainedCursorOrPointOffset22,retainedAngleScoreOrAddress17,-8,&originalFrame.sp70);
+                squareProduct.full=(long long)resultWord2*(long long)resultWord2;
+                __asm__ volatile("":"=x"(squareProduct.full):"0"(squareProduct.full));
+                originalFrame.sp68=resultWord2;
+                resultWord2=Actor1405Field(retainedCandidatePathOrVector18,int*,0xC);
+                intermediateWord3=Actor1405Field(ownerAddress19,int*,0x14);
+                resultWord2=retainedCursorOrPointOffset22+resultWord2;
+                Actor1405Keep(resultWord2);
+                resultWord2=Actor1405Field(resultWord2,int*,8);
+                resultWord2-=intermediateWord3;
+                argumentWord4=resultWord2*16;
+                __asm__ volatile("":"=x"(squareProduct.full):"0"(squareProduct.full),"r"(argumentWord4));
+                argumentWord5=(int)squareProduct.words.low;
+                Actor1405Keep(argumentWord5);
+                initializedSquareLow=argumentWord5;
+                if (initializedSquareLow < argumentWord4) {
+                    temporaryWord20 = Actor1405_func_8004F388(argumentWord4, initializedSquareLow);
+                    originalFrame.sp68 = temporaryWord20;
+                    if (temporaryWord20 < 0) {
+                        temporaryWord20 += 7;
+                    }
+                    resultWord2=temporaryWord20>>3;
+                    Actor1405Keep(resultWord2);
+                    retainedScalarOrVectorAddress16=resultWord2+0x14;
+                }
+                else {
+                    resultWord2=Actor1405_func_8004F388(initializedSquareLow-argumentWord4,initializedSquareLow);
+                    intermediateWord3=originalFrame.sp68;
+                    resultWord2=intermediateWord3+resultWord2;
+                    Actor1405Keep(resultWord2);
+                    retainedScalarOrVectorAddress16=resultWord2>>3;
+                    if(resultWord2<0){
+                        resultWord2+=7;
+                        retainedScalarOrVectorAddress16=resultWord2>>3;
+                    }
+                    retainedScalarOrVectorAddress16 = retainedScalarOrVectorAddress16 + 0x14;
+                }
+                if (retainedScalarOrVectorAddress16 >= 0x47) {
+                    retainedPositionOrClassWord21=ownerAddress19+0xC;
+                    argumentWord4=retainedPositionOrClassWord21;
+                    Actor1405Keep(argumentWord4);
+                    argumentWord5=Actor1405Field(retainedCandidatePathOrVector18,int*,0xC);
+                    retainedCursorOrPointOffset22=retainedCameraOrPointIndex23*16;
+                    retainedAngleScoreOrAddress17=Actor1405_func_8004F334(argumentWord4,argumentWord5+retainedCursorOrPointOffset22)/retainedScalarOrVectorAddress16;
+                    if (retainedAngleScoreOrAddress17 == 0) {
+                        retainedAngleScoreOrAddress17 = 1;
+                    }
+                    Actor1405_func_8004F08C(&originalFrame.sp60, Actor1405_func_8004EDE8(&originalFrame.sp60, 0), retainedAngleScoreOrAddress17);
+                    originalFrame.sp68 = Actor1405_func_800365E4((int *) retainedPositionOrClassWord21, Actor1405Field(retainedCandidatePathOrVector18, int *, 0xC) + retainedCursorOrPointOffset22, retainedAngleScoreOrAddress17, -8, &originalFrame.sp70);
+                }
+                Actor1405_func_8004F178(privateAddress20, &originalFrame.sp60);
+                if (Actor1405Field(ownerAddress19, int *, 0x14) < 0x800) {
+                    Actor1405Field(ownerAddress19, int *, 0x14) = 0x864;
+                }
+                Actor1405Field(privateAddress20, unsigned int *, 0xC) = 0U;
+                Actor1405Field(ownerAddress19, unsigned char *, 0x49) = 1U;
+                __asm__ volatile("":::"$4","memory");
+                temporaryWord13=privateAddress20+0x16;
+                goto runOriginalTimerAndCollision;
+            }
+            goto deleteOriginalOwner;
+        }
+    runOriginalTimerAndCollision:
+        if (Actor1405_func_800359A4(temporaryWord13, 2) != 0) {
+            argumentWord4=(int)&originalFrame.sp50;
+            Actor1405Keep(argumentWord4);
+            retainedAngleScoreOrAddress17=ownerAddress19+0xC;
+            if ((Actor1405_func_80018368(argumentWord4,retainedAngleScoreOrAddress17) != 0) || (Actor1405_func_80019194((int *) retainedAngleScoreOrAddress17, 0x50) != 0)) {
+                if (Actor1405Field(ownerAddress19, unsigned char *, 0x49) == 1) {
+                    argumentWord5=(int)&Actor1405_D_80071920;
+                    Actor1405Keep(argumentWord5);
+                    argumentWord4=Actor1405Field(argumentWord5,int*,0);
+                    if(argumentWord4!=0){
+                        resultWord2 = (int) (Actor1405Field(argumentWord5,int*,-8) * 0x64) / argumentWord4;
+                        if (resultWord2 < 0) {
+                            resultWord2 = -resultWord2;
+                        }
+                        __asm__ volatile("":"=r"(argumentWord5):"0"(argumentWord5),"r"(resultWord2));
+                        if (resultWord2 < 0x10) {
+                            argumentWord5-=8;
+                            Actor1405Keep(argumentWord5);
+                            resultWord2 = (int) (Actor1405_D_8007191C * 0x64) / argumentWord4;
+                            if (resultWord2 < 0) {
+                                resultWord2 = -resultWord2;
+                            }
+                            if (resultWord2 < 0x10) {
+                                if (Actor1405_func_8004EF74(privateAddress20, argumentWord5, privateAddress20) != 0) {
+                                    Actor1405_func_8004F110(privateAddress20, 2);
+                                }
+                                Actor1405Field(ownerAddress19, unsigned char *, 0x49) = 0U;
+                                goto runOriginalCommonVelocity;
+                            }
+                            goto copyOriginalGlobalVectors;
+                        }
+                        goto copyOriginalGlobalVectors;
+                    }
+                copyOriginalGlobalVectors:
+                    Actor1405_func_8004F178(&originalFrame.sp78, (int)&Actor1405_D_80071900);
+                    Actor1405_func_8004F178(&originalFrame.sp88, (int)&Actor1405_D_80071900 + 0x18);
+                    if ((Actor1405_func_80035D38(ownerAddress19) != 0) && (Actor1405Field((int)&Actor1405_D_80071920, int *, 0) != 0)) {
+                        resultWord2 = (int) (Actor1405Field((int)&Actor1405_D_80071900, int *, 0x18) * 0x64) / (int) Actor1405Field((int)&Actor1405_D_80071920, int *, 0);
+                        if (resultWord2 < 0) {
+                            resultWord2 = -resultWord2;
+                        }
+                        if (resultWord2 < 0x10) {
+                            resultWord2 = (int) (Actor1405_D_8007191C * 0x64) / (int) Actor1405Field((int)&Actor1405_D_80071920, int *, 0);
+                            if (resultWord2 < 0) {
+                                resultWord2 = -resultWord2;
+                            }
+                            if (resultWord2 < 0x10) {
+                                Actor1405_func_8004F178(&originalFrame.sp98, &originalFrame.sp88);
+                                Actor1405_func_8004F08C(&originalFrame.sp98, Actor1405_func_8004EDE8(&originalFrame.sp98, 1), 0x80);
+                                Actor1405_func_8004F194((int *) (ownerAddress19 + 0xC), &originalFrame.sp78, &originalFrame.sp98);
+                                return;
+                            }
+                        }
+                    }
+                }
+                else {
+                    if (Actor1405_func_8004EF74(privateAddress20, (int)&Actor1405_D_80071918, privateAddress20) != 0) {
+                        Actor1405_func_8004F110(privateAddress20, 2);
+                    }
+                runOriginalCommonVelocity:
+                    temporaryWord3 = Actor1405Field(privateAddress20, unsigned int *, 0xC);
+                    if (temporaryWord3 != 0) {
+                        retainedScalarOrVectorAddress16 = Actor1405_func_8004F334((int *) (ownerAddress19 + 0xC), temporaryWord3 + 0xC);
+                    }
+                    else {
+                        retainedScalarOrVectorAddress16 = 0x186A0;
+                    }
+                    if(Actor1405_func_8004EDE8(privateAddress20,1)<16){
+                        resultWord2=retainedScalarOrVectorAddress16<128;
+                        goto testOriginalLowSpeedVelocity;
+                    }
+                    resultWord2=retainedScalarOrVectorAddress16<128;
+                    if(!resultWord2)goto prepareOriginalFarVelocityVector;
+                testOriginalLowSpeedVelocity:
+                    __asm__ volatile(""::"r"(resultWord2));
+                    argumentWord4=Actor1405Field((int)&Actor1405_D_80071920,int*,0);
+                    if(!argumentWord4)goto scaleOriginalVelocity85;
+                    resultWord2=(int)((unsigned int)Actor1405_D_80071918*100U)/argumentWord4;
+                    if(resultWord2<0)resultWord2=-resultWord2;
+                    if(resultWord2>=15)goto scaleOriginalVelocity85;
+                    resultWord2=(int)((unsigned int)Actor1405_D_8007191C*100U)/argumentWord4;
+                    if(resultWord2<0)resultWord2=-resultWord2;
+                    if(resultWord2<15){
+                        resultWord2=22;
+                        goto stopOriginalLowSpeedVelocity;
+                    }
+                scaleOriginalVelocity85:
+                    Actor1405_func_8004F08C(privateAddress20,Actor1405_func_8004EDE8(privateAddress20,1),85);
+                    retainedScalarOrVectorAddress16=(int)&originalFrame.spA8;
+                    goto scaleOriginalVelocityVector;
+                stopOriginalLowSpeedVelocity:
+                    Actor1405Field(ownerAddress19,unsigned char*,0x48)=resultWord2;
+                    Actor1405Field(ownerAddress19,signed char*,0x4A)=16;
+                    originalFrame.sp58=Actor1405_D_80071908+55;
+                    Actor1405_func_8004F168(privateAddress20);
+                    temporaryWord14=ownerAddress19+0xC;
+                    goto copyOriginalPreviousVector;
+                prepareOriginalFarVelocityVector:
+                    __asm__ volatile("":::"$16","memory");
+                    retainedScalarOrVectorAddress16=(int)&originalFrame.spB8;
+                scaleOriginalVelocityVector:
+                    argumentWord4=retainedScalarOrVectorAddress16;
+                    Actor1405Keep(argumentWord4);
+                    retainedAngleScoreOrAddress17=(int)&Actor1405_D_80071918;
+                    Actor1405_func_8004F178(argumentWord4,retainedAngleScoreOrAddress17);
+                    Actor1405_func_8004F08C(retainedScalarOrVectorAddress16,Actor1405_func_8004EDE8(retainedScalarOrVectorAddress16,1),128);
+                    Actor1405_func_8004F194(&originalFrame.sp50,retainedAngleScoreOrAddress17-24,retainedScalarOrVectorAddress16);
+                    temporaryWord14=ownerAddress19+0xC;
+                copyOriginalPreviousVector:
+                    Actor1405_func_8004F178((int *) temporaryWord14, &originalFrame.sp50);
+                    intermediateWord3=Actor1405Field(ownerAddress19,unsigned char*,0x48);
+                    resultWord2=0x16;
+                    argumentWord4=ownerAddress19;
+                    if ((intermediateWord3 != resultWord2) || (temporaryWord17 = 0, (Actor1405Field(ownerAddress19, unsigned char *, 0x3D) != 0))) {
+                        temporaryWord17 = 1;
+                    }
+                    Actor1405Keep(argumentWord4);
+                    Actor1405_func_8003BABC(argumentWord4,temporaryWord17,0);
+                    temporaryWord15 = ownerAddress19 + 0xC;
+                    goto runOriginalCommonTail;
+                }
+            }
+            else {
+                temporaryWord11 = Actor1405_func_8001BA30((int *) retainedAngleScoreOrAddress17, 0x80, 1, 0, 0, ownerAddress19);
+                if (temporaryWord11 != 0) {
+                    Actor1405_func_8004F1C8(&originalFrame.sp78, (int *) retainedAngleScoreOrAddress17, temporaryWord11 + 0xC);
+                    if (Actor1405_func_8004EF74(privateAddress20, &originalFrame.sp78, privateAddress20) != 0) {
+                        Actor1405_func_8004F110(privateAddress20, 2);
+                    }
+                    if (Actor1405_func_8004EDE8(privateAddress20, 1) < 0x32) {
+                        Actor1405_func_8004F08C(privateAddress20, Actor1405_func_8004EDE8(privateAddress20, 1), 0x32);
+                    }
+                    Actor1405_func_8004F178((int *) retainedAngleScoreOrAddress17, &originalFrame.sp50);
+                }
+                goto prepareOriginalTailPosition;
+            }
+        }
+        else {
+        prepareOriginalTailPosition:
+            temporaryWord15 = ownerAddress19 + 0xC;
+        runOriginalCommonTail:
+            Actor1405_func_8001A358(temporaryWord15, 0x2000);
+            Actor1405_func_8005629C(ownerAddress19);
+            Actor1405_func_80055D24(ownerAddress19, 2);
+            return;
+        }
+        break;
+    case 22:
+        retainedCandidatePathOrVector18=Actor1405_D_8006C550;
+        if ((unsigned int)retainedCandidatePathOrVector18 < (unsigned int) Actor1405_D_8006C704) {
+            retainedPositionOrClassWord21=21;
+            retainedScalarOrVectorAddress16=(int)&originalFrame.sp78;
+            Actor1405Keep(retainedScalarOrVectorAddress16);
+            retainedAngleScoreOrAddress17=retainedCandidatePathOrVector18+0xC;
+        scanOriginalNearbyControllers:
+            if ((Actor1405Field(retainedAngleScoreOrAddress17, short *, 0x2A) == 0x221) && (Actor1405Field(retainedAngleScoreOrAddress17, unsigned char *, 0x3C) == retainedPositionOrClassWord21) && (Actor1405_func_8004F334((int *) (ownerAddress19 + 0xC), retainedAngleScoreOrAddress17) < 0x200)) {
+                Actor1405_func_8004F178(retainedScalarOrVectorAddress16, retainedAngleScoreOrAddress17);
+                originalFrame.sp80 += 0x400;
+                if ((Actor1405_func_80019194(retainedScalarOrVectorAddress16, 0x200) == 0) || (Actor1405_D_80071930 == 0)) {
+                    if (Actor1405Field(ownerAddress19, unsigned char *, 0x3C) == 0) {
+                        resultWord2=Actor1405_SpawnMoby(0x24A, ownerAddress19);
+                        Actor1405Keep(resultWord2);
+                        retainedScalarOrVectorAddress16=resultWord2;
+                        Actor1405Keep(retainedScalarOrVectorAddress16);
+                        if (retainedScalarOrVectorAddress16 != 0) {
+                            Actor1405Field(retainedAngleScoreOrAddress17, unsigned char *, 0x3C) = 0x1CU;
+                            Actor1405Field(retainedAngleScoreOrAddress17, signed char *, 0x3D) = 0x1C;
+                            Actor1405Field(Actor1405Field(retainedScalarOrVectorAddress16,int*,0), int *, 0x10) = (int) Actor1405Field(Actor1405Field(retainedCandidatePathOrVector18,int*,0), short *, 0x16);
+                            goto initializeOriginalNearbyChild;
+                        }
+                        goto clearOriginalEntryState;
+                    }
+                    resultWord2=Actor1405_SpawnMoby(0x24B, ownerAddress19);
+                    Actor1405Keep(resultWord2);
+                    retainedScalarOrVectorAddress16=resultWord2;
+                    Actor1405Keep(retainedScalarOrVectorAddress16);
+                    if (retainedScalarOrVectorAddress16 != 0) {
+                        Actor1405Field(retainedAngleScoreOrAddress17, unsigned char *, 0x3C) = 0x1AU;
+                        Actor1405Field(retainedAngleScoreOrAddress17, signed char *, 0x3D) = 0x1A;
+                    initializeOriginalNearbyChild:
+                        Actor1405Field(retainedAngleScoreOrAddress17, unsigned char *, 0x3C) = retainedPositionOrClassWord21;
+                        Actor1405Field(retainedScalarOrVectorAddress16, signed char *, 0x4C) = 0x20;
+                        Actor1405_func_8004F178((int *) (retainedScalarOrVectorAddress16 + 0xC), retainedAngleScoreOrAddress17);
+                        Actor1405_func_80034F80(retainedScalarOrVectorAddress16, 1);
+                        Actor1405Field(retainedScalarOrVectorAddress16, signed char *, 0x48) = 1;
+                        Actor1405Field(retainedScalarOrVectorAddress16, int *, 0x14) = Actor1405_func_80035D38(retainedScalarOrVectorAddress16);
+                        Actor1405Field(privateAddress20, unsigned int *, 0xC) = (unsigned int) retainedScalarOrVectorAddress16;
+                        Actor1405Field(ownerAddress19, unsigned char *, 0x48) = 0x17U;
+                        Actor1405Field(ownerAddress19, signed char *, 0x41) = 0;
+                        Actor1405Field(ownerAddress19, signed char *, 0x4C) = 0;
+                        Actor1405Field(ownerAddress19, signed char *, 0x4D) = 0;
+                        Actor1405Field(ownerAddress19, int *, 8) = 0;
+                        Actor1405Field(ownerAddress19, unsigned char *, 0x49) = 5U;
+                        return;
+                    }
+                    goto clearOriginalEntryState;
+                }
+                goto clearOriginalEntryState;
+            }
+            resultWord2=Actor1405_D_8006C704;
+            retainedCandidatePathOrVector18+=0x58;
+            Actor1405Keep(resultWord2);
+            retainedAngleScoreOrAddress17+=0x58;
+            if ((unsigned int)retainedCandidatePathOrVector18 >= (unsigned int)resultWord2) {
+                Actor1405Field(ownerAddress19, unsigned char *, 0x48) = 0U;
+                return;
+            }
+            goto scanOriginalNearbyControllers;
+        }
+        goto clearOriginalEntryState;
+    case 23:
+        if (Actor1405Field(Actor1405Field(privateAddress20, unsigned int *, 0xC), unsigned char *, 0x48) & 0x80) {
+            argumentWord4=ownerAddress19;
+            Actor1405Keep(argumentWord4);
+            argumentWord5=(int)&Actor1405_D_8006E040;
+            Actor1405Keep(argumentWord5);
+            resultWord2=Actor1405Field(argumentWord5,unsigned short*,0);
+            Actor1405Keep(resultWord2);
+            resultWord2=(int)((unsigned int)resultWord2<<16)>>20;
+            resultWord2=(resultWord2+16)&255;
+            resultWord2*=2;
+            intermediateWord3=Actor1405Field((int)&Actor1405_D_80065920,short*,resultWord2);
+            Actor1405Field(privateAddress20,int*,0)=(intermediateWord3*25)>>11;
+            resultWord2=Actor1405Field(argumentWord5,unsigned short*,0);
+            argumentWord5=7;
+            resultWord2=(int)((unsigned int)resultWord2<<16)>>20;
+            resultWord2=(resultWord2+16)&255;
+            resultWord2*=2;
+            intermediateWord3=Actor1405Field((int)&Actor1405_D_800658A0,short*,resultWord2);
+            Actor1405Field(privateAddress20,int*,8)=100;
+            Actor1405Field(privateAddress20,int*,4)=(intermediateWord3*25)>>11;
+            Actor1405Field(argumentWord4, unsigned char *, 0x49) = 0U;
+            Actor1405Field(privateAddress20, short *, 0x16) = 0xA;
+            Actor1405Field(privateAddress20, unsigned int *, 0xC) = 0U;
+            Actor1405Field(argumentWord4, unsigned char *, 0x48) = 3U;
+            Actor1405Field(argumentWord4, signed char *, 0x41) = 1;
+            Actor1405Field(argumentWord4, signed char *, 0x4C) = 0x18;
+            Actor1405Field(argumentWord4, signed char *, 0x4D) = 1;
+            Actor1405_func_80055D24(argumentWord4,argumentWord5);
+            return;
+        }
+        break;
+    case 24:
+        Actor1405_func_80034F80(ownerAddress19,1);
+    clearOriginalEntryState:
+        __asm__ volatile(""::"r"(ownerAddress19):"memory");
+        Actor1405Field(ownerAddress19,unsigned char*,0x48)=0;
+        return;
+    case 20:
+        resultWord2=0xC;
+        goto clearOriginalOwnerHeader;
+    case 21:
+        if (Actor1405Field(ownerAddress19, int *, 0x18) & 0x10000) {
+            Actor1405Field(ownerAddress19, int *, 0x18) = 0;
+            Actor1405Field(ownerAddress19, unsigned char *, 0x49) = 0U;
+            return;
+        }
+        break;
+    case 30:
+    deleteOriginalOwner:
+        Actor1405_func_80055B18(ownerAddress19);
+        return;
+    case 26:
+        resultWord2=Actor1405_SpawnMoby(0x221, ownerAddress19);
+        Actor1405Keep(resultWord2);
+        retainedAngleScoreOrAddress17=resultWord2;
+        Actor1405Keep(retainedAngleScoreOrAddress17);
+        if (retainedAngleScoreOrAddress17 != 0) {
+            retainedCandidatePathOrVector18 = Actor1405Field(retainedAngleScoreOrAddress17,int*,0);
+            resultWord2=Actor1405_SpawnMoby(0x24B, ownerAddress19);
+            Actor1405Keep(resultWord2);
+            retainedScalarOrVectorAddress16=resultWord2;
+            Actor1405Keep(retainedScalarOrVectorAddress16);
+            spawnedPositionAddress = retainedScalarOrVectorAddress16 + 0xC;
+            if (retainedScalarOrVectorAddress16 != 0) {
+                sourcePositionAddress = ownerAddress19 + 0xC;
+                goto initializeOriginalSpawnedChild;
+            }
+            goto deleteOriginalSpawnedController;
+        }
+        break;
+    case 28:
+        resultWord2=Actor1405_SpawnMoby(0x221, ownerAddress19);
+        Actor1405Keep(resultWord2);
+        retainedAngleScoreOrAddress17=resultWord2;
+        Actor1405Keep(retainedAngleScoreOrAddress17);
+        if (retainedAngleScoreOrAddress17 != 0) {
+            retainedCandidatePathOrVector18 = Actor1405Field(retainedAngleScoreOrAddress17,int*,0);
+            resultWord2=Actor1405_SpawnMoby(0x24A, ownerAddress19);
+            Actor1405Keep(resultWord2);
+            retainedScalarOrVectorAddress16=resultWord2;
+            Actor1405Keep(retainedScalarOrVectorAddress16);
+            spawnedPositionAddress = retainedScalarOrVectorAddress16 + 0xC;
+            if(retainedScalarOrVectorAddress16!=0)goto finishOriginalSecondSpawn;
+        deleteOriginalSpawnedController:
+            Actor1405_func_80055B18(retainedAngleScoreOrAddress17);
+            return;
+        finishOriginalSecondSpawn:
+            sourcePositionAddress=ownerAddress19+0xC;
+            Actor1405Field(Actor1405Field(retainedScalarOrVectorAddress16,int*,0), int *, 0x10) = (int) Actor1405Field(Actor1405Field(ownerAddress19, int **, 0), short *, 0x16);
+            goto initializeOriginalSpawnedChild;
+        }
+        break;
+    }
+    return;
+initializeOriginalSpawnedChild:
+    Actor1405Field(retainedScalarOrVectorAddress16, signed char *, 0x4C) = 0x20;
+    Actor1405_func_8004F178((int *) spawnedPositionAddress, (int *) sourcePositionAddress);
+    Actor1405_func_80034F80(retainedScalarOrVectorAddress16, 1);
+    Actor1405Field(retainedScalarOrVectorAddress16, signed char *, 0x48) = 1;
+    Actor1405Field(retainedScalarOrVectorAddress16, int *, 0x14) = Actor1405_func_80035D38(retainedScalarOrVectorAddress16);
+    Actor1405Field(retainedCandidatePathOrVector18, int ***, 0xC) = retainedScalarOrVectorAddress16;
+    resultWord2=Actor1405Field(privateAddress20,int*,0x10);
+    Actor1405Keep(resultWord2);
+    Actor1405Field(retainedCandidatePathOrVector18,int*,0x10)=resultWord2;
+    resultWord2=0x17;
+    Actor1405Keep(resultWord2);
+    Actor1405Field(retainedAngleScoreOrAddress17,signed char*,0x48)=resultWord2;
+    Actor1405Field(retainedAngleScoreOrAddress17, signed char *, 0x41) = 0;
+    Actor1405Field(retainedAngleScoreOrAddress17, signed char *, 0x4C) = 0;
+    Actor1405Field(retainedAngleScoreOrAddress17, signed char *, 0x4D) = 0;
+    Actor1405Field(retainedAngleScoreOrAddress17, int *, 8) = 0;
+    resultWord2=0xC;
+    goto clearOriginalOwnerHeader;
+clearOriginalOwnerHeader:
+    Actor1405Field(ownerAddress19, signed char *, 0x4A) = resultWord2;
+    resultWord2=0x15;
+    Actor1405Field(ownerAddress19, signed char *, 0x41) = 0;
+    Actor1405Field(ownerAddress19, signed char *, 0x4C) = 0;
+    Actor1405Field(ownerAddress19, signed char *, 0x4D) = 0;
+    Actor1405Field(ownerAddress19, int *, 8) = 0;
+storeOriginalFinalState:
+    Actor1405Field(ownerAddress19,unsigned char*,0x48)=resultWord2;
+}
+#undef Actor1405Field
+
 
 /* AI generated; not human reviewed. SCUS-94467 USA Rev0
  * 8008C8D0..8008CBFC. Original instructions define numeric requests;
@@ -6209,7 +15263,352 @@ void func_level_34_8008CBFC(Moby* moby) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_34/moby", func_level_34_8008CDE8);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated;
+ not human reviewed. Original-instruction-derived C. Original source asm/nonmatchings/overlays/level_34/moby/func_level_34_8008CDE8.s SHA256 f5be9bdc53b50d4c76e9c2e4adffa87fdb8e13cc6daf86f8d1fa15515da05b3f. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
+#define Level34_8CDE8Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+extern Spyro Level34_8CDE8_D_80070328 __asm__("D_80070328");
+int Level34_8CDE8_func_80013E38() __asm__("func_80013E38");
+int Level34_8CDE8_func_8001A358() __asm__("func_8001A358");
+void Level34_8CDE8_func_80034F40() __asm__("func_80034F40");
+int Level34_8CDE8_func_80035194() __asm__("func_80035194");
+int Level34_8CDE8_func_8003573C() __asm__("func_8003573C");
+int Level34_8CDE8_func_800359A4() __asm__("func_800359A4");
+void Level34_8CDE8_func_800369B8() __asm__("func_800369B8");
+void Level34_8CDE8_func_80038BF8() __asm__("func_80038BF8");
+void Level34_8CDE8_func_80038F14() __asm__("func_80038F14");
+void Level34_8CDE8_func_8003BA00() __asm__("func_8003BA00");
+int Level34_8CDE8_func_8004E880() __asm__("func_8004E880");
+void Level34_8CDE8_func_8004F178() __asm__("func_8004F178");
+int Level34_8CDE8_func_8004F264() __asm__("func_8004F264");
+int Level34_8CDE8_func_8004F334() __asm__("func_8004F334");
+void Level34_8CDE8_func_80055B18() __asm__("func_80055B18");
+void Level34_8CDE8_func_80055D24() __asm__("func_80055D24");
+int Level34_8CDE8_func_80055E84() __asm__("func_80055E84");
+
+unsigned char Level34_8CDE8_func_80034F80() __asm__("func_80034F80");
+             /* extern */
+unsigned char Level34_8CDE8_func_80036A68() __asm__("func_80036A68");
+ /* extern */
+unsigned char Level34_8CDE8_func_80055F14() __asm__("func_80055F14");
+ /* extern */
+extern int Level34_8CDE8_D_8006C770 __asm__("D_8006C770");
+extern Vector3D Level34_8CDE8_D_8006E020 __asm__("D_8006E020");
+extern int Level34_8CDE8_D_8006E024 __asm__("D_8006E024");
+extern unsigned short Level34_8CDE8_D_8006E040 __asm__("D_8006E040");
+extern int Level34_8CDE8_D_80071908 __asm__("D_80071908");
+
+void func_level_34_8008CDE8(Moby *inputOwner) {
+    /* Original frame0x58 and scratch SP10/SP20/SP30 retained.
+     * Initial helper call uses owner,1,0,0, matching its four original
+     * argument producers. Dispatch reuses the loaded state;
+      shared callbacks
+     * occupy their original later entries. Distance comparisons are repeated
+     * at both animation branches and the fallback, as in original words.
+     * Empty constraints preserve physical register lifetimes, emit no opcode.
+     * Units, helper contracts, fixed-point domains and cadence unresolved. */
+    register Moby *owner17 __asm__("$17")=inputOwner;
+    register int value2 __asm__("$2");
+    register int argument5 __asm__("$5");
+    register Moby *argument4 __asm__("$4");
+    register int argument6 __asm__("$6");
+    register int word3 __asm__("$3");
+    int dispatchBound;
+    struct {Vector3D sp10;
+     unsigned char pad1C[4];
+     Vector3D sp20;
+     unsigned char pad2C[4];
+     Vector3D sp30;
+     unsigned char pad3C[4];
+    } scratch;
+
+    register int selector16 __asm__("$16");
+    register Moby *firstChild16 __asm__("$16");
+    register Moby *secondChild16 __asm__("$16");
+    register Vector3D *ownerPosition16 __asm__("$16");
+    register Vector3D *firstChildPosition18 __asm__("$18");
+    register Vector3D *secondChildPosition19 __asm__("$19");
+    register int savedDistance19 __asm__("$19");
+    register int firstDistance4 __asm__("$4");
+    register int secondDistance4 __asm__("$4");
+    register int firstChildHeight5 __asm__("$5");
+    register int secondChildHeight5 __asm__("$5");
+
+
+
+
+    unsigned char entryState;
+    unsigned int dispatchState;
+    unsigned char animationId;
+    register void *private19 __asm__("$19");
+    void *firstChildPrivate;
+    void *secondChildPrivate;
+
+    entryState = owner17->state;
+    private19 = owner17->mobyTag;
+    if ((entryState != 5) && (entryState != 0xF)) {
+        if (entryState >= 9U) {
+            if (owner17->damageFlags & 0x90000) {
+                Level34_8CDE8_func_80036A68(owner17,1,0,0);
+                Level34_8CDE8_func_80038F14(owner17, private19 + 4, 1U, 0xF);
+            }
+        } else {
+            word3=0x8B0000;
+            value2=owner17->damageFlags;
+            value2=value2&word3;
+            __asm__("" : "=r"(value2):"0"(value2):"$4");
+            argument4=owner17;
+            if(value2) {
+            Level34_8CDE8_func_80036A68(argument4,0,0,0);
+            Level34_8CDE8_func_80038BF8(owner17,private19+4,1,5);
+            }
+        }
+    }
+    Level34_8CDE8_func_80055D24(owner17, 5);
+    if(Level34_8CDE8Field(private19,short*,2) && Level34_8CDE8_func_800359A4(private19+2,2)) {
+        dispatchState=owner17->state;
+        if(dispatchState<8U) goto dispatch;
+        if(dispatchState==15U) goto dispatch;
+        argument4=owner17;
+        argument5=9;
+        __asm__(""::"r"(argument5));
+        value2=30;
+        owner17->damageFlags=0;
+        owner17->substate=0;
+        Level34_8CDE8Field(private19,short*,0)=value2;
+        value2=9;
+        owner17->state=value2;
+        Level34_8CDE8_func_80034F40(argument4,argument5);
+    }
+    dispatchState=owner17->state;
+dispatch:
+    switch (value2=dispatchState) {
+        case 0:
+        case 10:
+            Level34_8CDE8_func_8003573C(owner17, 4, 4, 1);
+            if (Level34_8CDE8_func_8004F334(&owner17->position, &Level34_8CDE8_D_80070328.position) < 0x2000) {
+                Level34_8CDE8Field(private19, short *, 0) = 0x1E;
+                value2=owner17->state<8U;
+                if(value2) {value2=2;
+                goto setState2;
+                }
+                value2=0xC;
+                goto setState12;
+            }
+            break;
+        case 9:
+            if (Level34_8CDE8_D_8006C770 != 0) {
+                owner17->state = 0;
+                goto resetStateCallback;
+            }
+            break;
+        case 1:
+        case 11:
+            if (Level34_8CDE8_D_8006C770 != 0) {
+                if ((unsigned char) owner17->state < 8U) {
+                    owner17->state=0;
+resetStateCallback:
+                    Level34_8CDE8_func_80034F40(owner17,0);
+                    return;
+                }
+                owner17->state = 0xA;
+                Level34_8CDE8_func_80034F40(owner17, 0xA);
+                return;
+            }
+            break;
+        case 2:
+        case 12:
+            Level34_8CDE8_func_8003573C(owner17, 4, 4, 1);
+            if (Level34_8CDE8_D_8006C770 != 0) {
+                if ((unsigned char) owner17->state < 8U) {
+                    owner17->state = 4;
+                    Level34_8CDE8_func_80034F40(owner17, 4);
+                    return;
+                }
+                owner17->state = 0xE;
+                Level34_8CDE8_func_80034F40(owner17, 0xE);
+                return;
+            }
+            break;
+        case 3:
+        case 13:
+            animationId = owner17->animationState.id;
+            if(!((animationId==3)||(animationId==13))) goto shootFailed;
+            if(Level34_8CDE8_func_80055E84(owner17)>=3 || owner17->substate) goto shootFailed;
+            value2=Level34_8CDE8_func_8004F264(Level34_8CDE8_func_8004E880(Level34_8CDE8_D_80070328.position.x-owner17->position.x,Level34_8CDE8_D_80070328.position.y-owner17->position.y,0),owner17->angle.yaw);
+            argument6=0;
+            if(value2>=10) goto shootFailed;
+            value2=Level34_8CDE8_func_8004F264((int)(Level34_8CDE8_D_8006E040<<16)>>20,Level34_8CDE8_func_8004E880(owner17->position.x-Level34_8CDE8_D_8006E020.x,owner17->position.y-Level34_8CDE8_D_8006E024,argument6));
+            argument6=0;
+            if(value2>=22) goto shootFailed;
+            if(Level34_8CDE8_func_80013E38(&owner17->position,&Level34_8CDE8_D_8006E020,0)==0) goto shootFailed;
+            {
+                firstChild16 = SpawnMoby(0x1E4, owner17);
+                if (firstChild16 != 0) {
+                    firstChildPosition18 = &firstChild16->position;
+                    owner17->substate = 1;
+                    firstChild16->updateDistance = 0xFF;
+                    Level34_8CDE8_func_80055F14(owner17, 0, firstChildPosition18);
+                    firstChild16->angle.yaw = Level34_8CDE8_func_8004E880(Level34_8CDE8_D_80070328.position.x - firstChild16->position.x, Level34_8CDE8_D_80070328.position.y - firstChild16->position.y, 0);
+                    Level34_8CDE8_func_8004F178(&scratch.sp10, &Level34_8CDE8_D_80070328.position);
+                    scratch.sp10.z += 0x400;
+                    if (Level34_8CDE8_func_8001A358(&scratch.sp10, 0x2800) != 0) {
+                        scratch.sp10.z = Level34_8CDE8_D_80071908 + 0x80;
+                        firstDistance4 = Level34_8CDE8_func_8004F334(firstChildPosition18, &scratch.sp10);
+                    argument6=0;
+                    __asm__(""::"r"(argument6));
+                        value2 = scratch.sp10.z;
+                        firstChildHeight5 = firstChild16->position.z - 0x180;
+                    } else {
+                        firstDistance4 = Level34_8CDE8_func_8004F334(firstChildPosition18, &Level34_8CDE8_D_80070328.position);
+                        value2 = Level34_8CDE8_D_80070328.position.z;
+                        firstChildHeight5 = firstChild16->position.z;
+                    __asm__(""::"r"(firstChildHeight5),"r"(value2):"$6");
+                    argument6=0;
+                    __asm__(""::"r"(argument6));
+                    }
+                    firstChild16->angle.pitch=Level34_8CDE8_func_8004E880(firstDistance4,value2-firstChildHeight5,argument6);
+                    __asm__ volatile("":::"memory");
+                    firstChildPrivate = firstChild16->mobyTag;
+                    Level34_8CDE8Field(firstChildPrivate, int *, 8) = -1;
+                    Level34_8CDE8Field(firstChildPrivate, int *, 0) = 0x78;
+                    Level34_8CDE8Field(firstChildPrivate, int *, 4) = 0xC8;
+                }
+            }
+shootFailed:
+            if (Level34_8CDE8_D_8006C770 != 0) {
+                owner17->substate = 0;
+                Level34_8CDE8Field(private19, short *, 0) = 0x1E;
+                if ((unsigned char)owner17->state<8U) {
+                    value2=2;
+setState2:
+                    owner17->state=value2;
+                    Level34_8CDE8_func_80034F40(owner17,2);
+                    return;
+                }
+                value2=0xC;
+setState12:
+                owner17->state=value2;
+                Level34_8CDE8_func_80034F40(owner17,0xC);
+                return;
+            }
+            break;
+        case 4:
+        case 14:
+            Level34_8CDE8_func_8003573C(owner17, 4, 4, 1);
+            value2=Level34_8CDE8_func_800359A4(private19,2);
+            ownerPosition16=&owner17->position;
+            if(value2 != 0) {
+                value2=Level34_8CDE8_func_8004F334(ownerPosition16,&Level34_8CDE8_D_80070328.position);
+                argument4=(Moby*)&scratch.sp20;
+                argument5=(int)ownerPosition16;
+                __asm__("" : "=r"(argument4),"=r"(argument5):"0"(argument4),"1"(argument5));
+                savedDistance19=value2;
+                Level34_8CDE8_func_8004F178(argument4,argument5);
+                value2=scratch.sp20.z;
+                value2+=0x100;
+                scratch.sp20.z=value2;
+                __asm__ volatile("":::"memory");
+                value2=savedDistance19<0x2000;
+                if(!value2) goto checkDistanceFallback;
+                value2=savedDistance19<0x2001;
+                __asm__("" : "=r"(value2):"0"(value2));
+                word3=owner17->animationState.id;
+                value2=owner17->animationState.nextId;
+                if(word3==value2) {
+                    value2=savedDistance19<0x2001;
+                    __asm__("" : "=r"(value2):"0"(value2));
+                    if ((Level34_8CDE8_func_8004F264(Level34_8CDE8_func_8004E880(Level34_8CDE8_D_80070328.position.x - owner17->position.x, Level34_8CDE8_D_80070328.position.y - owner17->position.y, 0), (int) owner17->angle.yaw) < 0xA) && (Level34_8CDE8_func_8004F264((int) (Level34_8CDE8_D_8006E040 << 0x10) >> 0x14, Level34_8CDE8_func_8004E880(owner17->position.x - Level34_8CDE8_D_8006E020.x, owner17->position.y - Level34_8CDE8_D_8006E024, 0)) < 0x16) && (Level34_8CDE8_func_80013E38(&scratch.sp20, &Level34_8CDE8_D_8006E020, 0) != 0)) {
+                        secondChild16 = SpawnMoby(0x1E4, owner17);
+                        argument4=owner17;
+                        if (secondChild16 != 0) {
+                            argument5=0;
+                            __asm__(""::"r"(argument4),"r"(argument5):"$19");
+                            secondChildPosition19 = &secondChild16->position;
+                            owner17->substate = 1;
+                            secondChild16->updateDistance = 0xFF;
+                            Level34_8CDE8_func_80055F14(argument4,argument5,secondChildPosition19);
+                            secondChild16->angle.yaw = Level34_8CDE8_func_8004E880(Level34_8CDE8_D_80070328.position.x - secondChild16->position.x, Level34_8CDE8_D_80070328.position.y - secondChild16->position.y, 0);
+                            Level34_8CDE8_func_8004F178(&scratch.sp30, &Level34_8CDE8_D_80070328.position);
+                            scratch.sp30.z += 0x400;
+                            if (Level34_8CDE8_func_8001A358(&scratch.sp30, 0x2800) != 0) {
+                                scratch.sp30.z = Level34_8CDE8_D_80071908 + 0x80;
+                                secondDistance4 = Level34_8CDE8_func_8004F334(secondChildPosition19, &scratch.sp30);
+                            argument6=0;
+                    __asm__(""::"r"(argument6));
+                                value2 = scratch.sp30.z;
+                                secondChildHeight5 = secondChild16->position.z - 0x180;
+                            } else {
+                                secondDistance4 = Level34_8CDE8_func_8004F334(secondChildPosition19, &Level34_8CDE8_D_80070328.position);
+                                value2 = Level34_8CDE8_D_80070328.position.z;
+                                secondChildHeight5 = secondChild16->position.z;
+                    __asm__(""::"r"(secondChildHeight5),"r"(value2):"$6");
+                            argument6=0;
+                    __asm__(""::"r"(argument6));
+                            }
+                    secondChild16->angle.pitch=Level34_8CDE8_func_8004E880(secondDistance4,value2-secondChildHeight5,argument6);
+                    __asm__ volatile("":::"memory");
+                            secondChildPrivate = secondChild16->mobyTag;
+                            Level34_8CDE8Field(secondChildPrivate, int *, 8) = -1;
+                            Level34_8CDE8Field(secondChildPrivate, int *, 0) = 0x78;
+                            Level34_8CDE8Field(secondChildPrivate, int *, 4) = 0xC8;
+                            if ((unsigned char) owner17->state < 8U) {
+                                Level34_8CDE8_func_80034F80(owner17, 3);
+                                owner17->state = 3;
+                                return;
+                            }
+                            Level34_8CDE8_func_80034F80(owner17, 0xD);
+                            owner17->state = 0xD;
+                            return;
+                        }
+                    } else {
+                        value2 = savedDistance19 < 0x2001;
+                        goto checkDistanceFallback;
+                    }
+                } else {
+checkDistanceFallback:
+                    value2=savedDistance19<0x2001;
+                    if (value2 == 0) {
+                        if ((unsigned char) owner17->state < 8U) {
+                            owner17->state = 1;
+                            Level34_8CDE8_func_80034F40(owner17, 1);
+                            return;
+                        }
+                        owner17->state = 0xB;
+                        Level34_8CDE8_func_80034F40(owner17, 0xB);
+                        return;
+                    }
+                }
+            }
+            break;
+        case 5:
+        case 15:
+            if (Level34_8CDE8_func_80035194(owner17, private19 + 4) == 0x100) {
+                selector16 = 0x1E;
+                if (owner17->state == 0xF) {
+                    selector16 = 0x28;
+                }
+                Level34_8CDE8_func_80055D24(owner17, 4);
+                Level34_8CDE8_func_8003BA00(owner17);
+                Level34_8CDE8_func_800369B8(owner17, selector16);
+                Level34_8CDE8_func_80055B18(owner17);
+                return;
+            }
+            break;
+        case 8:
+            Level34_8CDE8_func_80055D24(owner17, 2);
+            if (Level34_8CDE8_D_8006C770 != 0) {
+                Level34_8CDE8_func_80034F80(owner17, 0xA);
+                owner17->state = 0xA;
+                Level34_8CDE8Field(private19, short *, 2) = 0x3C;
+            }
+            break;
+        }
+}
+#undef Level34_8CDE8Field
+
 
 void func_80034F80(Moby*, int);
 void func_level_34_8008D624(Moby* moby) {
@@ -6232,11 +15631,779 @@ void func_level_34_8008D624(Moby* moby) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_34/moby", func_level_34_8008D6C0);
+/* AI-generated; not human reviewed. Verified sibling C adapted only
+ * to this function's original SCUS-94467 instructions. Raw field units,
+ * helper meanings and update cadence remain unresolved. */
+/* AI generated; not human reviewed. Original SCUS-94467 USA Rev0
+ * level34:8008D6C0 complete266 instructions and six dispatch words in
+ * sibling4445. Verified46 signed modulo27 producer reused unchanged.
+ * Original offsets, helper arguments, widths and arithmetic only; meanings,
+ * physical units and cadence unresolved. All native/linked/hash gates required. */
+#define Actor34Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+extern int Actor34Table[] __asm__("D_80071A10");
+extern int Actor34Tick __asm__("D_8006C640");
+extern int Actor34Gate __asm__("D_8006C54C");
+int Actor34Helper34F80() __asm__("func_80034F80");
+int Actor34Helper55D24() __asm__("func_80055D24");
+int Actor34Helper55F14() __asm__("func_80055F14");
+int Actor34Helper4F178() __asm__("func_8004F178");
+int Actor34Helper55B18() __asm__("func_80055B18");
+extern unsigned char* (*Actor34SpawnMoby)(int,void*) __asm__("SpawnMoby");
+void func_level_34_8008D6C0(void* input) {
+ register unsigned char* owner __asm__("$18")=input;
+ int vector[4];
+ register unsigned char* child __asm__("$16");
+ register unsigned char* tag __asm__("$17");
+ register int heading __asm__("$19");
+ register int work2 __asm__("$2");
+ register int work3 __asm__("$3");
+ register int remainder4 __asm__("$4");
+ register int* table3 __asm__("$3");
+ register int* tableEntry4 __asm__("$4");
+ register void* call4 __asm__("$4");
+ register void* call6 __asm__("$6");
+ register int arg5 __asm__("$5");
+ __asm__("" : "=r"(owner):"0"(owner));
+ tag=Actor34Field(owner,unsigned char**,0);
+ switch(Actor34Field(owner,unsigned char*,0x48)) {
+ case 0:
+  Actor34Field(owner,unsigned char*,0x41)=0;
+  Actor34Field(owner,unsigned char*,0x4C)=0;
+  Actor34Field(owner,unsigned char*,0x4D)=0;
+  break;
+ case 1:
+  work3=1;
+  __asm__("" : "=r"(work3):"0"(work3));
+  work2=48;
+  Actor34Field(owner,unsigned char*,0x4C)=work2;
+  Actor34Field(owner,unsigned char*,0x4E)=work2;
+  __asm__ volatile("" ::: "memory");
+  work2=2;
+  __asm__("" : "=r"(work2):"0"(work2));
+  Actor34Field(owner,unsigned char*,0x41)=work3;
+  Actor34Field(owner,unsigned char*,0x4D)=work3;
+  Actor34Field(owner,unsigned char*,0x48)=work2;
+  work2=Actor34Tick;
+  call4=(void*)665;
+  if(work2 && !Actor34Gate) {
+        work2=rand();
+        __asm__("" : "=r"(work2) : "0"(work2) : "$12");
+        remainder4=work2/27;
+        __asm__("" : "=r"(remainder4) : "0"(remainder4), "r"(work2));
+        work3=remainder4*27;
+        remainder4=work2-work3;
+        __asm__("" : "=r"(remainder4) : "0"(remainder4));
+        table3=Actor34Table;
+        __asm__("" : "=r"(table3) : "0"(table3), "r"(remainder4));
+        work2=remainder4*4;
+        tableEntry4=(int*)(work2+(int)table3);
+        __asm__("" : "=r"(tableEntry4) : "0"(tableEntry4));
+        work3=*tableEntry4;
+        if(work2+0x49<work3) {
+            work2=work3-1;
+            __asm__("" : "=r"(work2) : "0"(work2));
+            *tableEntry4=work2;
+        }
+   call4=(void*)665;
+  }
+  child=Actor34SpawnMoby((int)call4,owner);
+  call4=child;
+  if(child) {
+   __asm__("" : "=r"(call4):"0"(call4));
+   Actor34Field(tag,void**,0)=child;
+   work2=Actor34Field(owner,unsigned char*,0x46);
+   __asm__("" : "=r"(work2):"0"(work2):"$5");
+   arg5=1;
+   __asm__("" : "=r"(arg5):"0"(arg5));
+   heading=work2&255;
+   __asm__("" : "=r"(heading):"0"(heading));
+   Actor34Field(child,unsigned char*,0x46)=work2;
+   Actor34Helper34F80(call4,arg5);
+   Actor34Helper55D24(child,5);
+   Actor34Helper55F14(child,0,vector);
+   Actor34Field(child,unsigned char*,0x48)=2;
+  }
+  Actor34Helper55D24(owner,5);
+  child=Actor34SpawnMoby(665,owner);
+  if(child) {
+   Actor34Field(tag,void**,8)=child;
+   Actor34Helper55F14(owner,0,child+12);
+   Actor34Field(child,unsigned char*,0x46)=Actor34Field(owner,unsigned char*,0x46);
+   Actor34Helper34F80(child,2);
+   Actor34Field(child,unsigned char*,0x48)=2;
+  }
+  child=Actor34SpawnMoby(665,owner);
+  if(child) {
+   Actor34Helper34F80(child,3);
+   Actor34Helper4F178(child+12,vector);
+   Actor34Field(child,unsigned char*,0x46)=heading;
+   Actor34Field(tag,void**,4)=child;
+   Actor34Field(child,unsigned char*,0x48)=2;
+  }
+  break;
+ case 2:break;
+ case 3:
+  call4=Actor34Field(tag,void**,0);
+  if(call4) {
+   Actor34Helper4F178(call4+12,owner+12);
+   Actor34Field(Actor34Field(tag,void**,0),unsigned char*,0x46)=Actor34Field(owner,unsigned char*,0x46);
+   Actor34Field(Actor34Field(tag,void**,0),unsigned char*,0x45)=Actor34Field(owner,unsigned char*,0x45);
+   Actor34Helper55D24(Actor34Field(tag,void**,0),5);
+   call6=Actor34Field(tag,void**,4);
+   if(call6) {
+    Actor34Helper55F14(Actor34Field(tag,void**,0),0,call6+12);
+    Actor34Field(Actor34Field(tag,void**,4),unsigned char*,0x46)=Actor34Field(Actor34Field(tag,void**,0),unsigned char*,0x46);
+   }
+  }
+  if(Actor34Field(tag,void**,8)) {
+   Actor34Helper55D24(owner,5);
+   Actor34Helper55F14(owner,0,Actor34Field(tag,unsigned char**,8)+12);
+   Actor34Field(Actor34Field(tag,void**,8),unsigned char*,0x46)=Actor34Field(owner,unsigned char*,0x46);
+   Actor34Field(Actor34Field(tag,void**,8),unsigned char*,0x45)-=40;
+  }
+  break;
+ case 4:
+  call4=Actor34Field(tag,void**,0);
+  if(call4) {
+   Actor34Helper4F178(call4+12,owner+12);
+   Actor34Field(Actor34Field(tag,void**,0),unsigned char*,0x46)=Actor34Field(owner,unsigned char*,0x46);
+   Actor34Field(Actor34Field(tag,void**,0),unsigned char*,0x45)=Actor34Field(owner,unsigned char*,0x45);
+   Actor34Helper55D24(Actor34Field(tag,void**,0),5);
+   call6=Actor34Field(tag,void**,4);
+   if(call6) {
+    Actor34Helper55F14(Actor34Field(tag,void**,0),0,call6+12);
+    Actor34Field(Actor34Field(tag,void**,4),unsigned char*,0x46)=Actor34Field(Actor34Field(tag,void**,0),unsigned char*,0x46);
+    Actor34Field(Actor34Field(tag,void**,4),unsigned char*,0x45)-=32;
+   }
+  }
+  if(Actor34Field(tag,void**,8)) {
+   Actor34Helper55D24(owner,5);
+   Actor34Helper55F14(owner,0,Actor34Field(tag,unsigned char**,8)+12);
+   Actor34Field(Actor34Field(tag,void**,8),unsigned char*,0x46)=Actor34Field(owner,unsigned char*,0x46);
+   Actor34Field(Actor34Field(tag,void**,8),unsigned char*,0x45)-=32;
+  }
+  break;
+ case 5:
+  call4=Actor34Field(tag,void**,0);if(call4) Actor34Helper55B18(call4);
+  call4=Actor34Field(tag,void**,4);if(call4) Actor34Helper55B18(call4);
+  call4=Actor34Field(tag,void**,8);if(call4) Actor34Helper55B18(call4);
+  Actor34Helper55B18(owner);
+  break;
+ }
+}
+#undef Actor34Field
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_34/moby", func_level_34_8008DAE8);
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_34/moby", func_level_34_8008E060);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated; not human reviewed. Instruction-matched C candidate. Original source asm/nonmatchings/overlays/level_34/moby/func_level_34_8008DAE8.s SHA256 d35bb0352ac253779e8fc4adb8b684d2a006054efef7cc908c58a502f603d66f. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
+#define M2C_FIELD(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+
+
+int ControllerDAE8_func_80021ED8() __asm__("func_80021ED8");       /* extern */
+int ControllerDAE8_func_80034F80() __asm__("func_80034F80");                 /* extern */
+int ControllerDAE8_func_800369D8() __asm__("func_800369D8");                              /* extern */
+int ControllerDAE8_func_8004ED6C() __asm__("func_8004ED6C"); /* extern */
+int ControllerDAE8_func_80055B18() __asm__("func_80055B18");                      /* extern */
+int ControllerDAE8_func_80055D24() __asm__("func_80055D24");             /* extern */
+int ControllerDAE8_rand() __asm__("rand");                                          /* extern */
+extern unsigned char ControllerDAE8_D_800658A0 __asm__("D_800658A0");
+extern unsigned char ControllerDAE8_D_80065920 __asm__("D_80065920");
+extern unsigned char ControllerDAE8_D_80066BC8 __asm__("D_80066BC8");
+extern int ControllerDAE8_D_8006C574 __asm__("D_8006C574");
+extern int ControllerDAE8_D_8006C578 __asm__("D_8006C578");
+extern int ControllerDAE8_D_8006C640 __asm__("D_8006C640");
+extern Savepoint ControllerDAE8_D_8006C7F8 __asm__("D_8006C7F8");
+extern unsigned char ControllerDAE8_D_8006D048 __asm__("D_8006D048");
+extern unsigned char ControllerDAE8ByteE __asm__("D_80070328+0xE");
+extern Vector3D ControllerDAE8_D_80070328 __asm__("D_80070328");
+extern short ControllerDAE8_D_800719DC __asm__("D_800719DC");
+
+void func_level_34_8008DAE8(Moby *inputOwner) {
+    struct {int sp10;int sp14;int sp18;char pad_1c[4];} originalStack;
+
+register Moby *owner19 __asm__("$19")=inputOwner;
+
+    register Moby *child16 __asm__("$16");
+    register Moby *spawned16 __asm__("$16");
+    register SHORTMATRIX * rotation22 __asm__("$22");
+    int callback5;
+    register int attempt17 __asm__("$17");
+    int state;
+    register void *record7 __asm__("$7");
+    register int value2 __asm__("$2");
+    register int value3 __asm__("$3");
+    register int sample4 __asm__("$4");
+    register int alpha23 __asm__("$23");
+    register int color21 __asm__("$21");
+    register void * tag18 __asm__("$18");
+    register void * ownerTag20 __asm__("$20");
+
+    __asm__("" : "=r"(owner19):"0"(owner19));
+    state = owner19->state;
+    ownerTag20 = owner19->mobyTag;
+    owner19->updateDistance = 0xFF;
+    switch (state) {                              /* Original states 0 and 1. */
+    case 0:
+        record7 = M2C_FIELD((M2C_FIELD(ownerTag20, int *, 0) * 4) + M2C_FIELD(&ControllerDAE8_D_8006D048, int *, 0x14), void **, 0);
+        if (ControllerDAE8_D_8006C640 == 0) {
+            M2C_FIELD(record7, int *, 4) = 0;
+        }
+        if (M2C_FIELD(record7, int *, 4) & M2C_FIELD(ownerTag20, int *, 8)) {
+            M2C_FIELD(record7, int *, 4) = 0;
+            owner19->state = 1;
+            func_8003B7B4(&owner19->state, 1, &ControllerDAE8_D_8006C7F8);
+            if (ControllerDAE8_func_800369D8(owner19->animationRun) == 1) {
+                M2C_FIELD(&ControllerDAE8_D_80066BC8, signed char *, 0xD) = 3;
+                ControllerDAE8_D_800719DC = 1;
+                PlaySound((int) D_8006C654->skillPoint, owner19, 0xA1);
+                child16 = SpawnMoby(0xD3, owner19);
+                if (child16 != 0) {
+                    func_8004F178(&child16->position, &ControllerDAE8_D_80070328);
+                    value2 = ControllerDAE8ByteE * 2;
+                    value3 = M2C_FIELD(&ControllerDAE8_D_80065920,short*,value2);
+                    __asm__("" : "=r"(value3):"0"(value3));
+                    value2 = value3 * 25;
+                    value3 = child16->position.x;
+                    child16->position.x = value3 + (value2 >> 7);
+                    __asm__("" ::: "memory");
+                    value2 = ControllerDAE8ByteE * 2;
+                    value3 = child16->position.z;
+                    sample4 = M2C_FIELD(&ControllerDAE8_D_800658A0,short*,value2);
+                    __asm__("" : "=r"(sample4):"0"(sample4));
+                    value3 += 500;
+                    __asm__("" : "=r"(value3):"0"(value3));
+                    child16->position.z = value3;
+                    __asm__("" ::: "memory");
+                    value3 = child16->position.y;
+                    __asm__("" : "=r"(value3):"0"(value3));
+                    value2 = sample4 * 25;
+                    child16->position.y = value3 + (value2 >> 7);
+                    return;
+                }
+            }
+        }
+        return;
+    case 1:
+        if (ControllerDAE8_D_8006C640 >= 5) {
+            callback5 = M2C_FIELD(ownerTag20, int *, 0x20);
+            if (callback5 != -1) {
+                func_8003BB10(owner19, callback5, 0);
+            }
+            if ((M2C_FIELD(ownerTag20, short *, 0xC) >= 0) && (M2C_FIELD(ownerTag20, short *, 0xE) > 0)) {
+                ControllerDAE8_func_80055D24(owner19, 4);
+                attempt17 = 0;
+                alpha23 = 0x3A;
+                color21 = 0xFF;
+                rotation22 = &owner19->rotationMatrix;
+nextSpawn:
+                if ((ControllerDAE8_D_8006C578 - ControllerDAE8_D_8006C574) >= 0x15) {
+                    spawned16 = SpawnMoby((int) M2C_FIELD(ownerTag20, short *, 0xC), owner19);
+                    if (spawned16 != 0) {
+                        __asm__("" : "=r"(spawned16):"0"(spawned16));
+                        tag18 = spawned16->mobyTag;
+                        if (attempt17 != 0) {
+                            if ((attempt17 != 0x1F) || (ControllerDAE8_rand() & 1)) {
+                                ControllerDAE8_func_80034F80(spawned16, (ControllerDAE8_rand() & 1) + 1);
+                                spawned16->size = func_8003636C(0xC, 0x34);
+                                if (attempt17 == ((attempt17 / 10) * 0xA)) {
+                                    spawned16->size = func_8003636C(0x20, 0x34);
+                                    spawned16->colour.a = alpha23;
+                                    spawned16->colour.r = color21;
+                                } else if (attempt17 == ((attempt17 / 11) * 0xB)) {
+                                    spawned16->size = func_8003636C(0x20, 0x34);
+                                    spawned16->colour.a = alpha23;
+                                    spawned16->colour.g = color21;
+                                } else if (attempt17 == ((attempt17 / 15) * 0xF)) {
+                                    spawned16->size = func_8003636C(0x20, 0x34);
+                                    spawned16->colour.g = 0x80;
+                                    spawned16->colour.a = alpha23;
+                                    spawned16->colour.r = color21;
+                                    spawned16->colour.b = 0x40;
+                                } else if (!(attempt17 & 0xF)) {
+                                    spawned16->size = func_8003636C(0x20, 0x34);
+                                    spawned16->colour.a = 0x3C;
+                                    spawned16->colour.r = color21;
+                                    spawned16->colour.g = color21;
+                                    spawned16->colour.b = color21;
+                                } else if (attempt17 >= 0x11) {
+                                    spawned16->size = func_8003636C(0xC, 0x20);
+                                }
+                            }
+                        }
+                        originalStack.sp10 = 0;
+                        originalStack.sp14 = func_8003636C(0, 0x1000) - 0x800;
+                        originalStack.sp18 = func_8003636C(0, 0x1400) - 0xA00;
+                        ControllerDAE8_func_8004ED6C(rotation22, &originalStack.sp10, &originalStack.sp10);
+                        func_8004F194(&spawned16->position, &owner19->position, (Vector3D *) &originalStack.sp10);
+                        originalStack.sp10 = 0x64;
+                        originalStack.sp14 = 0;
+                        originalStack.sp18 = 0;
+                        ControllerDAE8_func_8004ED6C(rotation22, &originalStack.sp10, &originalStack.sp10);
+                        M2C_FIELD(tag18, short *, 0) = (short) ((originalStack.sp10 + func_8003636C(0, 0x32)) - 0x19);
+                        M2C_FIELD(tag18, short *, 2) = (short) ((originalStack.sp14 + func_8003636C(0, 0x32)) - 0x19);
+                        M2C_FIELD(tag18, short *, 4) = (short) (originalStack.sp18 + func_8003636C(0, 0x32));
+                        spawned16->angle.pitch = ControllerDAE8_rand();
+                        spawned16->angle.yaw = ControllerDAE8_rand();
+                        M2C_FIELD(tag18, short *, 6) = (short) ((ControllerDAE8_rand() & 0x1F) - 0x10);
+                        M2C_FIELD(tag18, short *, 8) = (short) ((ControllerDAE8_rand() & 0x1F) - 0x10);
+                        M2C_FIELD(tag18, short *, 0xA) = (short) ((ControllerDAE8_rand() & 0x1F) - 0x10);
+                        spawned16->lowDrawDistance = 0x20;
+                        spawned16->updateDistance = color21;
+                        M2C_FIELD(tag18, short *, 0x10) = 0xC;
+                        M2C_FIELD(tag18, short *, 0x12) = 0xC8;
+                        M2C_FIELD(tag18, int *, 0x14) = 0x14;
+                        value3 = owner19->position.z;
+                        M2C_FIELD(tag18, short *, 0xC) = 0x32;
+                        M2C_FIELD(tag18, short *, 0xE) = value3 - 0x1800;
+                    }
+                    attempt17 += 1;
+                    if (attempt17 < 0x20) {
+                        goto nextSpawn;
+                    }
+                }
+            }
+        }
+        ControllerDAE8_func_80021ED8(M2C_FIELD(ownerTag20, int *, 4), 0xFC, 0);
+        ControllerDAE8_func_80055B18(owner19);
+        break;
+    }
+}
+#undef M2C_FIELD
+
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated;
+ not human reviewed. Original-instruction-derived C. Original source asm/nonmatchings/overlays/level_34/moby/func_level_34_8008E060.s SHA256 c21e4df4f8aa0834633685f7748ef29a8dd246f32dbed10f5bc404113af43b63. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
+#define Level34_8E060Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+
+unsigned char Level34_8E060_func_80013D44() __asm__("func_80013D44");
+ /* extern */
+unsigned char Level34_8E060_func_80021ED8() __asm__("func_80021ED8");
+   /* extern */
+int Level34_8E060_func_80021F3C() __asm__("func_80021F3C");
+                         /* extern */
+short Level34_8E060_func_8002803C() __asm__("func_8002803C");
+ /* extern */
+unsigned char Level34_8E060_func_80028154() __asm__("func_80028154");
+                         /* extern */
+int Level34_8E060_func_800359A4() __asm__("func_800359A4");
+                 /* extern */
+int Level34_8E060_func_80036220() __asm__("func_80036220");
+ /* extern */
+unsigned char Level34_8E060_func_80040F48() __asm__("func_80040F48");
+              /* extern */
+int Level34_8E060_func_8004E880() __asm__("func_8004E880");
+           /* extern */
+int Level34_8E060_func_8004EDE8() __asm__("func_8004EDE8");
+                  /* extern */
+unsigned char Level34_8E060_func_8004F08C() __asm__("func_8004F08C");
+             /* extern */
+unsigned char Level34_8E060_func_8004F178() __asm__("func_8004F178");
+                /* extern */
+unsigned char Level34_8E060_func_8004F194() __asm__("func_8004F194");
+        /* extern */
+unsigned char Level34_8E060_func_8004F1C8() __asm__("func_8004F1C8");
+     /* extern */
+int Level34_8E060_func_8004F334() __asm__("func_8004F334");
+                /* extern */
+unsigned char Level34_8E060_func_80055B18() __asm__("func_80055B18");
+                      /* extern */
+extern unsigned char Level34_8E060_D_800658A0 __asm__("D_800658A0");
+extern unsigned char Level34_8E060_D_80065920 __asm__("D_80065920");
+extern int Level34_8E060_D_8006C550 __asm__("D_8006C550");
+extern int Level34_8E060_D_8006C598 __asm__("D_8006C598");
+extern unsigned char Level34_8E060_D_8006C7B4 __asm__("D_8006C7B4");
+extern int Level34_8E060_D_8006E160 __asm__("D_8006E160");
+extern int Level34_8E060_D_8006E538 __asm__("D_8006E538");
+extern unsigned char Level34_8E060_D_80070328 __asm__("D_80070328");
+extern void *(*Level34_8E060_SpawnMoby)() __asm__("SpawnMoby");
+extern unsigned char Level34_8E060_func_80027A60 __asm__("func_80027A60");
+extern unsigned char Level34_8E060_func_80027EE4 __asm__("func_80027EE4");
+extern unsigned char Level34_8E060_func_80029AA0 __asm__("func_80029AA0");
+
+void func_level_34_8008E060(void *inputOwner) {
+    register void *owner __asm__("$19")=inputOwner;
+    /* Original frame 0x90;
+     all scratch offsets are retained.
+     * Initial distance/correction producer E0A4-E100, flags E190-E1B8,
+     * child-header/scalar producers E5C8-E678, and both ten-slot loops retain
+     * their original register widths and control targets.
+     * Signed LH trig consumers E85C/E890 and E930/E964 use exactly 39 >>6
+     * and 13 >>5. These are raw original operations, not tuned conversions.
+     * Original SP+0x60/+0x70 zero and height writes remain separate.
+     * Empty constraints emit no instructions and retain recorded producers.
+     * Physical units/fixed-point domains, cadence, helper meanings and full
+     * synchronized runtime chains remain unresolved. Machine identity only. */
+    struct {int sp20;
+     int sp24;
+     int sp28;
+     unsigned char pad2C[4];
+     int sp30;
+     unsigned char pad34[4];
+     int sp38;
+     unsigned char pad3C[4];
+     int sp40;
+     int sp44;
+     int sp48;
+     unsigned char pad4C[4];
+     int sp50;
+     unsigned char pad54[4];
+     int sp58;
+     int sp5C;
+     int sp60;
+     unsigned char pad64[4];
+     int sp68;
+     int sp6C;
+     int sp70;
+     unsigned char pad74[4];
+    } scratch;
+
+    short remainingCount;
+    register int privateCounter2 __asm__("$2");
+    int *referencePosition;
+    int *referencePosition2;
+    int referenceX;
+    int referenceX2;
+    register void *relatedPrivate3 __asm__("$3");
+    register int compare20 __asm__("$5");
+    register int word2 __asm__("$2");
+    register int trig3 __asm__("$3");
+    register void *argument4 __asm__("$4");
+    register void *argument6 __asm__("$6");
+    register void *scratch16 __asm__("$16");
+    register void *spyroBase16 __asm__("$16");
+    register int initialDistance3 __asm__("$3");
+    register int distanceCorrection16 __asm__("$16");
+    register void *vectorArgument5 __asm__("$5");
+    register int counter4 __asm__("$4");
+    int liveCount16;
+    int scaledPrivateValue;
+    register int slotCounter3 __asm__("$3");
+    int clearCounter;
+    unsigned short *privateTable;
+    unsigned char nextPrivateByte;
+    int direction16;
+    int direction17;
+    register int slotState2 __asm__("$2");
+    register int slotState2b __asm__("$2");
+    register int initialState3 __asm__("$3");
+    register int dispatchState3 __asm__("$3");
+    void *spawnedPrivate4;
+    void *relatedMoby17;
+    register void *ownerPrivate18 __asm__("$18");
+    void *slotMoby2;
+    void *spyroControl;
+    void *spyroControl2;
+    void *spawnedMoby;
+    void *slotMoby;
+    register void *slots4 __asm__("$4");
+    void *clearSlots;
+    register void *slots3 __asm__("$3");
+
+    initialState3 = Level34_8E060Field(owner, unsigned char *, 0x48);
+    ownerPrivate18 = Level34_8E060Field(owner, void **, 0);
+    __asm__("" : "=r"(initialState3):"0"(initialState3),"r"(ownerPrivate18));
+    if (((unsigned int) (initialState3 - 4) < 2U) || ((initialState3 & 0xFF) == 3)) {
+        spyroBase16=&Level34_8E060_D_80070328;
+        initialDistance3=Level34_8E060_func_8004F334(Level34_8E060Field(Level34_8E060Field(ownerPrivate18,void**,0x24),int**,0xC),spyroBase16);
+        word2=initialDistance3<0x4001;
+        argument4=&scratch.sp20;
+        if (!word2) {
+            vectorArgument5=spyroBase16;
+            __asm__("" : : "r"(vectorArgument5));
+            word2=(int)Level34_8E060Field(ownerPrivate18,void**,0x24);
+            distanceCorrection16=0x4000;
+            argument6=Level34_8E060Field((void*)word2,void**,0xC);
+            distanceCorrection16-=initialDistance3;
+            Level34_8E060_func_8004F1C8(argument4,vectorArgument5,argument6);
+            scratch.sp28 = 0;
+            Level34_8E060_func_8004F08C(&scratch.sp20, Level34_8E060_func_8004EDE8(&scratch.sp20, 1), distanceCorrection16);
+            Level34_8E060Field(&Level34_8E060_D_80070328, int *, 0x20C) = 0x10000008;
+            Level34_8E060Field(&Level34_8E060_D_80070328, int *, 0x224) = 0;
+            Level34_8E060Field(&Level34_8E060_D_80070328, int *, 0x21C) = scratch.sp20;
+            Level34_8E060Field(&Level34_8E060_D_80070328, int *, 0x220) = scratch.sp24;
+        }
+    }
+    dispatchState3 = Level34_8E060Field(owner, unsigned char *, 0x48);
+    switch (dispatchState3) {
+    case 0:
+        Level34_8E060Field(ownerPrivate18, short *, 0) = 0;
+        Level34_8E060Field(owner, unsigned char *, 0x48) = 1U;
+        return;
+    case 1:
+        Level34_8E060_func_800359A4(ownerPrivate18, 2);
+        if ((Level34_8E060Field(ownerPrivate18, int *, 0) & 0xFFFFFF) == 0x20000) {
+            word2=Level34_8E060_func_80021F3C(8);
+            trig3=word2>>8;
+            word2&=15;
+            if(word2 && !(trig3&255)) {
+                Level34_8E060_func_80021ED8(8, 0xFC, 0);
+            }
+        }
+        if ((Level34_8E060Field(ownerPrivate18, short *, 0) == 0) && (Level34_8E060_D_8006C598 == 0) && (Level34_8E060_func_80036220(&Level34_8E060_D_80070328, ownerPrivate18 + 8, 0, 0x3E80) != 0)) {
+            Level34_8E060_func_80021ED8(0xA, 0xFC, 0);
+            Level34_8E060Field(owner, unsigned char *, 0x48) = 2U;
+            privateCounter2 = 0x3C;
+            goto storePrivateCounter;
+        }
+    default:
+        return;
+    case 2:
+        referencePosition = Level34_8E060Field(Level34_8E060Field(ownerPrivate18, void **, 0x24), int **, 0xC);
+        referenceX = Level34_8E060Field(referencePosition, int *, 0);
+        direction16 = Level34_8E060_func_8004E880(referenceX - Level34_8E060Field(referencePosition, int *, 0x10), Level34_8E060Field(referencePosition, int *, 4) - Level34_8E060Field(referencePosition, int *, 0x14), 0, referenceX);
+        Level34_8E060_func_8004F178(&scratch.sp30, Level34_8E060Field(Level34_8E060Field(ownerPrivate18, void **, 0x24), int **, 0xC));
+        scratch.sp38 += 0x1388;
+        Level34_8E060_func_80013D44(&scratch.sp30, direction16, 0, 0x64);
+        Level34_8E060_func_80021ED8(9, 0xFC, 0);
+        Level34_8E060Field(ownerPrivate18, short *, 0) = 0x3C;
+        Level34_8E060Field(owner, unsigned char *, 0x49) = 0U;
+        Level34_8E060Field(owner, unsigned char *, 0x48) = 0xAU;
+        return;
+    case 3:
+        if (Level34_8E060Field(owner, unsigned char *, 0x49) == 0) {
+            Level34_8E060_func_80040F48(&scratch.sp40, 0);
+            if ((scratch.sp40 != 0) || (scratch.sp44 != 0) || (Level34_8E060_D_8006E538 & 0xE0)) {
+                Level34_8E060Field(owner, unsigned char *, 0x49) = 1U;
+            } else {
+                spyroControl = &Level34_8E060_D_80070328 + 0x20C;
+                Level34_8E060Field(&Level34_8E060_D_80070328, int *, 0x20C) = 0x10008000;
+                Level34_8E060Field(&Level34_8E060_D_80070328, int *, 0x23C) = 0x66;
+                Level34_8E060_func_8004F178(spyroControl + 0x20, spyroControl - 0x20C);
+                Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0x228) = (unsigned char) Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0xC);
+                Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0x229) = (unsigned char) Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0xD);
+                Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0x22A) = (unsigned char) Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0xE);
+            }
+        }
+        if (Level34_8E060_func_800359A4(ownerPrivate18, 2) != 0) {
+            Level34_8E060_func_80021ED8(9, 0xFC, 0);
+            Level34_8E060Field(ownerPrivate18, short *, 0) = 0x3C;
+            Level34_8E060Field(owner, unsigned char *, 0x48) = 5U;
+            return;
+        }
+        break;
+    case 10:
+        if (Level34_8E060Field(&Level34_8E060_D_80070328, int *, 0x280) >= 0) {
+            referencePosition2 = Level34_8E060Field(Level34_8E060Field(ownerPrivate18, void **, 0x24), int **, 0xC);
+            referenceX2 = Level34_8E060Field(referencePosition2, int *, 0);
+            direction17 = Level34_8E060_func_8004E880(referenceX2 - Level34_8E060Field(referencePosition2, int *, 0x10), Level34_8E060Field(referencePosition2, int *, 4) - Level34_8E060Field(referencePosition2, int *, 0x14), 0, referenceX2);
+            Level34_8E060_func_8004F178(&scratch.sp48, Level34_8E060Field(Level34_8E060Field(ownerPrivate18, void **, 0x24), int **, 0xC));
+            Level34_8E060Field(&Level34_8E060_D_80070328, int *, 0x20C) = 0x10008000;
+            Level34_8E060Field(&Level34_8E060_D_80070328, int *, 0x23C) = 0x66;
+            scratch.sp50 += 0x1388;
+            Level34_8E060_func_8004F178((&Level34_8E060_D_80070328 + 0x280) - 0x54, &scratch.sp48);
+            Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0x22A) = direction17;
+            Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0x228) = (unsigned char) Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0xC);
+            Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0x229) = (unsigned char) Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0xD);
+            if (Level34_8E060_D_8006E160 == 0) {
+                Level34_8E060Field(owner, unsigned char *, 0x48) = 4U;
+                Level34_8E060Field(ownerPrivate18, int *, 0x64) = 0;
+                Level34_8E060Field(ownerPrivate18, int *, 0x60) = (int) Level34_8E060_func_8002803C(0x17, 0x154, &Level34_8E060_func_80027EE4, &Level34_8E060_func_80027A60, &Level34_8E060_func_80029AA0, ownerPrivate18 + 0x64, (int) Level34_8E060Field(ownerPrivate18, short *, 4));
+                return;
+            }
+        }
+        break;
+    case 4:
+        if (Level34_8E060Field(owner, unsigned char *, 0x49) == 0) {
+            Level34_8E060_func_80040F48(&scratch.sp40, 0);
+            if ((scratch.sp40 != 0) || (scratch.sp44 != 0) || (Level34_8E060_D_8006E538 & 0xE0)) {
+                Level34_8E060Field(owner, unsigned char *, 0x49) = 1U;
+            } else {
+                spyroControl2 = &Level34_8E060_D_80070328 + 0x20C;
+                Level34_8E060Field(&Level34_8E060_D_80070328, int *, 0x20C) = 0x10008000;
+                Level34_8E060Field(&Level34_8E060_D_80070328, int *, 0x23C) = 0x66;
+                Level34_8E060_func_8004F178(spyroControl2 + 0x20, spyroControl2 - 0x20C);
+                Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0x228) = (unsigned char) Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0xC);
+                Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0x229) = (unsigned char) Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0xD);
+                Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0x22A) = (unsigned char) Level34_8E060Field(&Level34_8E060_D_80070328, unsigned char *, 0xE);
+            }
+        }
+        if (Level34_8E060_func_800359A4(ownerPrivate18, 2) != 0) {
+            spawnedMoby = Level34_8E060_SpawnMoby(0x16F, owner);
+            counter4 = 0;
+            if (spawnedMoby != 0) {
+                spawnedPrivate4 = Level34_8E060Field(spawnedMoby, void **, 0);
+                privateTable = Level34_8E060Field(ownerPrivate18, unsigned short **, 0x20);
+                Level34_8E060Field(spawnedPrivate4, unsigned short **, 8) = privateTable;
+                if (!((unsigned short) Level34_8E060Field(ownerPrivate18, short *, 4) & 1)) {
+                    word2=*privateTable;
+                    trig3=-1;
+                    Level34_8E060Field(spawnedPrivate4,short*,0xE)=trig3;
+                    Level34_8E060Field(spawnedPrivate4,short*,0xC)=word2-1;
+                } else {
+                    Level34_8E060Field(spawnedPrivate4, short *, 0xC) = 0;
+                    Level34_8E060Field(spawnedPrivate4, short *, 0xE) = 1;
+                }
+                if (Level34_8E060Field(ownerPrivate18, unsigned char *, 2) == 0) {
+                    scaledPrivateValue = Level34_8E060Field(ownerPrivate18, short *, 4) * 0x19;
+                } else {
+                    scaledPrivateValue = Level34_8E060Field(ownerPrivate18, short *, 4) * 0xF;
+                }
+                Level34_8E060Field(spawnedPrivate4, short *, 6) = (short) (scaledPrivateValue + 0xFA);
+                word2=Level34_8E060Field(ownerPrivate18,short*,4);
+                trig3=word2*1000;
+                Level34_8E060Field(spawnedPrivate4,short*,0x10)=trig3;
+                if ((unsigned char) Level34_8E060Field(ownerPrivate18, unsigned char *, 2) >= 2U) {
+                    Level34_8E060Field(spawnedPrivate4, short *, 0x12) = 1;
+                }
+                Level34_8E060Field(spawnedMoby, signed char *, 0x48) = 0x17;
+                Level34_8E060Field(spawnedMoby, signed char *, 0x4C) = 0x20;
+                Level34_8E060Field(spawnedMoby, unsigned char *, 0x4A) = 0xFF;
+                Level34_8E060Field(spawnedMoby, signed char *, 0x4E) = 0x20;
+                Level34_8E060Field(spawnedMoby, unsigned char *, 0x46) = (unsigned char) Level34_8E060Field(owner, unsigned char *, 0x46);
+                remainingCount = (unsigned short) Level34_8E060Field(ownerPrivate18, short *, 4) - 1;
+                Level34_8E060Field(ownerPrivate18, short *, 4) = remainingCount;
+                if ((remainingCount << 0x10) <= 0) {
+                    Level34_8E060Field(owner, unsigned char *, 0x48) = 3U;
+                }
+                Level34_8E060Field(((Level34_8E060Field(ownerPrivate18, short *, 4) * 4) + ownerPrivate18), void **, 0x28) = spawnedMoby;
+                Level34_8E060Field(ownerPrivate18, short *, 0) = 0x50;
+                __asm__("" : : "m"(Level34_8E060Field(ownerPrivate18,short*,0)):"$4");
+                counter4 = 0;
+            }
+            __asm__("" : : "r"(counter4):"$5");
+            compare20=20;
+            __asm__("" : : "r"(compare20):"$3");
+            slots3 = ownerPrivate18;
+            __asm__("" : "=r"(slots3):"0"(slots3));
+            do {
+                __asm__("" : "=r"(slots3):"0"(slots3));
+                slotMoby = Level34_8E060Field(slots3, void **, 0x28);
+                if ((slotMoby != 0) && ((slotState2 = Level34_8E060Field(slotMoby, unsigned char *, 0x48), (slotState2 == compare20)) || (slotState2 & 0x80))) {
+                    Level34_8E060Field(ownerPrivate18, int *, 0x64) = (int) (Level34_8E060Field(ownerPrivate18, int *, 0x64) + 1);
+                    Level34_8E060Field(slots3, void **, 0x28) = 0;
+                }
+                counter4 += 1;
+                slots3 += 4;
+            } while (counter4 < 0xA);
+            return;
+        }
+        break;
+    case 5:
+        liveCount16 = 0;
+        slotCounter3 = 0;
+        __asm__("" : : "r"(slotCounter3):"$5");
+        compare20=20;
+        __asm__("" : : "r"(compare20):"$4");
+        slots4 = ownerPrivate18;
+        __asm__("" : "=r"(slots4):"0"(slots4));
+        do {
+            __asm__("" : "=r"(slots4):"0"(slots4));
+            slotMoby2 = Level34_8E060Field(slots4, void **, 0x28);
+            if (slotMoby2 != 0) {
+                slotState2b = Level34_8E060Field(slotMoby2, unsigned char *, 0x48);
+                if ((slotState2b == compare20) || (slotState2b & 0x80)) {
+                    Level34_8E060Field(ownerPrivate18, int *, 0x64) = (int) (Level34_8E060Field(ownerPrivate18, int *, 0x64) + 1);
+                    Level34_8E060Field(slots4, void **, 0x28) = 0;
+                } else {
+                    liveCount16 += 1;
+                }
+            }
+            slotCounter3 += 1;
+            slots4 += 4;
+        } while (slotCounter3 < 0xA);
+        if (Level34_8E060_func_800359A4(ownerPrivate18, 2) != 0) {
+            clearCounter = 9;
+            if (liveCount16 == 0) {
+                clearSlots = ownerPrivate18 + 0x24;
+                do {
+                    Level34_8E060Field(clearSlots, int *, 0x28) = 0;
+                    clearCounter -= 1;
+                    clearSlots -= 4;
+                } while (clearCounter >= 0);
+                Level34_8E060_func_80028154(Level34_8E060Field(ownerPrivate18, int *, 0x60));
+                Level34_8E060Field(ownerPrivate18, int *, 0x60) = 0;
+                Level34_8E060Field(ownerPrivate18, short *, 4) = 0xA;
+                nextPrivateByte = Level34_8E060Field(ownerPrivate18, unsigned char *, 2) + 1;
+                Level34_8E060Field(ownerPrivate18, unsigned char *, 2) = nextPrivateByte;
+                relatedMoby17 = Level34_8E060_D_8006C550 + (Level34_8E060Field(ownerPrivate18, int *, 0x5C) * 0x58);
+                Level34_8E060Field(Level34_8E060Field(relatedMoby17, void **, 0), unsigned char *, 2) = nextPrivateByte;
+                if ((unsigned char) Level34_8E060Field(ownerPrivate18, unsigned char *, 2) >= 3U) {
+                    word2=Level34_8E060_D_8006C7B4;
+                    relatedPrivate3=Level34_8E060Field(relatedMoby17,void**,0);
+                    __asm__("" : "=r"(word2):"0"(word2),"r"(relatedPrivate3));
+                    word2|=8;
+                    Level34_8E060_D_8006C7B4=word2;
+                    word2=2;
+                    Level34_8E060Field(relatedPrivate3,signed char*,5)=word2;
+                    word2=Level34_8E060Field(relatedMoby17,unsigned char*,0x46);
+                    scratch16=&scratch.sp58;
+                    word2*=2;
+                    trig3=Level34_8E060Field(&Level34_8E060_D_80065920,short*,word2);
+                    __asm__("" : "=r"(trig3):"0"(trig3):"$4");
+                    argument4=scratch16;
+                    __asm__("" : : "r"(argument4));
+                    word2=(trig3*39)>>6;
+                    scratch.sp58=word2;
+                    word2=Level34_8E060Field(relatedMoby17,unsigned char*,0x46);
+                    __asm__("" : "=r"(word2):"0"(word2):"$5");
+                    vectorArgument5=scratch16;
+                    __asm__("" : : "r"(vectorArgument5));
+                    word2*=2;
+                    trig3=Level34_8E060Field(&Level34_8E060_D_800658A0,short*,word2);
+                    word2=Level34_8E060Field(&Level34_8E060_D_80070328,int*,0x44);
+                    __asm__("" : "=r"(word2):"0"(word2),"r"(trig3):"$6");
+                    argument6=relatedMoby17+12;
+                    *(volatile int*)&scratch.sp60=0;
+                    scratch.sp60=word2;
+                    word2=(trig3*39)>>6;
+                    scratch.sp5C=word2;
+                    Level34_8E060_func_8004F194(argument4,vectorArgument5,argument6);
+                    Level34_8E060_func_80013D44(&scratch.sp58, (Level34_8E060Field(relatedMoby17, unsigned char *, 0x46) + 0x80) & 0xFF, 0, 0x64);
+                    if (Level34_8E060Field(&Level34_8E060_D_80070328, int *, 0x280) < 0) {
+                        Level34_8E060Field(&Level34_8E060_D_80070328, int *, 0x280) = 0;
+                    }
+                    Level34_8E060Field(relatedMoby17, signed char *, 0x48) = 0;
+                    Level34_8E060_func_80055B18(owner);
+                    return;
+                }
+                Level34_8E060Field(Level34_8E060Field(relatedMoby17, void **, 0), signed char *, 5) = 2;
+                word2=Level34_8E060Field(relatedMoby17,unsigned char*,0x46);
+                    scratch16=&scratch.sp68;
+                    word2*=2;
+                    trig3=Level34_8E060Field(&Level34_8E060_D_80065920,short*,word2);
+                    __asm__("" : "=r"(trig3):"0"(trig3):"$4");
+                    argument4=scratch16;
+                    __asm__("" : : "r"(argument4));
+                    word2=(trig3*13)>>5;
+                    scratch.sp68=word2;
+                    word2=Level34_8E060Field(relatedMoby17,unsigned char*,0x46);
+                    __asm__("" : "=r"(word2):"0"(word2):"$5");
+                    vectorArgument5=scratch16;
+                    __asm__("" : : "r"(vectorArgument5));
+                    word2*=2;
+                    trig3=Level34_8E060Field(&Level34_8E060_D_800658A0,short*,word2);
+                    word2=Level34_8E060Field(&Level34_8E060_D_80070328,int*,0x44);
+                    __asm__("" : "=r"(word2):"0"(word2),"r"(trig3):"$6");
+                    argument6=relatedMoby17+12;
+                    *(volatile int*)&scratch.sp70=0;
+                    scratch.sp70=word2;
+                    word2=(trig3*13)>>5;
+                    scratch.sp6C=word2;
+                    Level34_8E060_func_8004F194(argument4,vectorArgument5,argument6);
+                    Level34_8E060_func_80013D44(&scratch.sp68, (Level34_8E060Field(relatedMoby17, unsigned char *, 0x46) + 0x80) & 0xFF, 0, 0x64);
+                if (Level34_8E060Field(&Level34_8E060_D_80070328, int *, 0x280) < 0) {
+                    Level34_8E060Field(&Level34_8E060_D_80070328, int *, 0x280) = 0;
+                }
+                Level34_8E060Field(relatedMoby17, signed char *, 0x48) = 0;
+                Level34_8E060Field(owner, unsigned char *, 0x48) = 1U;
+                __asm__("" : : "m"(Level34_8E060Field(owner,unsigned char*,0x48)):"$2");
+                privateCounter2 = 0x1E;
+                goto storePrivateCounter;
+            }
+        }
+        break;
+    }
+    return;
+storePrivateCounter:
+    Level34_8E060Field(ownerPrivate18,short*,0)=privateCounter2;
+}
+#undef Level34_8E060Field
+
 
 typedef struct {
     int bounds[6];

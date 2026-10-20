@@ -33,7 +33,10 @@ def fix_section(lines):
                         expected_entries = len(re.findall(r"\.word\s+\.L", table))
                         assert entries == expected_entries, (function, entries, expected_entries)
                         padding = len(re.findall(r"\.word\s+0x00000000", table))
-                        yield ".section .rodata\n"
+                        original_prefix = original_text[:original_text.index(table) + len(table)]
+                        original_sections = re.findall(r"(?m)^\s*\.section\s+(\.rodata(?:\.jtbl)?)\s*$", original_prefix)
+                        assert original_sections, (function, "original table section missing")
+                        yield ".section " + original_sections[-1] + "\n"
                         yield next_line
                         for item in block:
                             if item.strip() == ".text":

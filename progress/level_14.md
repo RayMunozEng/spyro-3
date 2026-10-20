@@ -1,10 +1,10 @@
 <!-- animation.c -->
-- [ ] func_level_14_80093F80
+- [x] func_level_14_80093F80
 - [x] func_level_14_800960DC
 - [x] func_level_14_80096874
 - [x] func_level_14_8009697C
 - [x] func_level_14_80096A68
-- [ ] func_level_14_80097AD0
+- [x] func_level_14_80097AD0
 
 <!-- camera.c -->
 - [x] func_level_14_800990A4
@@ -27,7 +27,7 @@
 - [x] func_level_14_8008F74C
 - [x] func_level_14_8008FB88
 - [x] func_level_14_8008FCBC
-- [ ] func_level_14_8008FF40
+- [x] func_level_14_8008FF40
 
 <!-- moby.c -->
 - [x] func_level_14_80075454
@@ -54,41 +54,41 @@
 - [x] func_level_14_8007C69C
 - [x] func_level_14_8007C6BC
 - [x] func_level_14_8007C8BC
-- [ ] func_level_14_8007CB70
+- [x] func_level_14_8007CB70
 - [x] func_level_14_8007D730
 - [x] func_level_14_8007DACC
 - [x] func_level_14_8007DE24
-- [ ] func_level_14_8007DF60
-- [ ] func_level_14_8007FD04
-- [ ] func_level_14_800801D4
-- [ ] func_level_14_800810B4
-- [ ] func_level_14_800828F4
-- [ ] func_level_14_80082D48
-- [ ] func_level_14_80083318
+- [x] func_level_14_8007DF60
+- [x] func_level_14_8007FD04
+- [x] func_level_14_800801D4
+- [x] func_level_14_800810B4
+- [x] func_level_14_800828F4
+- [x] func_level_14_80082D48
+- [x] func_level_14_80083318
 - [x] func_level_14_80083F7C
-- [ ] func_level_14_80083F9C
-- [ ] func_level_14_800848EC
-- [ ] func_level_14_80084FD0
-- [ ] func_level_14_800856EC
-- [ ] func_level_14_8008610C
-- [ ] func_level_14_80086C10
-- [ ] func_level_14_80087104
-- [ ] func_level_14_80087FC4
-- [ ] func_level_14_80088F6C
+- [x] func_level_14_80083F9C
+- [x] func_level_14_800848EC
+- [x] func_level_14_80084FD0
+- [x] func_level_14_800856EC
+- [x] func_level_14_8008610C
+- [x] func_level_14_80086C10
+- [x] func_level_14_80087104
+- [x] func_level_14_80087FC4
+- [x] func_level_14_80088F6C
 - [x] func_level_14_800898B4
-- [ ] func_level_14_80089934
-- [ ] func_level_14_8008AB2C
-- [ ] func_level_14_8008B0EC
+- [x] func_level_14_80089934
+- [x] func_level_14_8008AB2C
+- [x] func_level_14_8008B0EC
 - [x] func_level_14_8008B798
-- [ ] func_level_14_8008B7C8
+- [x] func_level_14_8008B7C8
 - [x] func_level_14_8008BE8C
 - [x] func_level_14_8008C07C
-- [ ] func_level_14_8008C210
-- [ ] func_level_14_8008CB2C
+- [x] func_level_14_8008C210
+- [x] func_level_14_8008CB2C
 
 <!-- parts_spawn.c -->
-- [ ] func_level_14_80092670
+- [x] func_level_14_80092670
 
 <!-- parts_update.c -->
-- [ ] func_level_14_80090754
+- [x] func_level_14_80090754
 

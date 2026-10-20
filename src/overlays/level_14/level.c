@@ -1818,4 +1818,364 @@ outside:
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_14/level", func_level_14_8008FF40);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated;
+ not human reviewed. Original-instruction-derived C. Original source asm/nonmatchings/overlays/level_14/level/func_level_14_8008FF40.s SHA256 8707a9600996bf03ed4e40bf5d6ed5da640ff42479a31a1b7e3cb8ccfadfb05b. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
+#define Level14_8FF40Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+extern Spyro Level14_8FF40_D_80070328 __asm__("D_80070328");
+int Level14_8FF40_func_8003636C(int low, int high) __asm__("func_8003636C");
+extern void Level14_8FF40_func_8004ED6C(SHORTMATRIX*, Vector3D*, Vector3D*) __asm__("func_8004ED6C");
+extern void Level14_8FF40_func_8004F110(Vector3D*, int) __asm__("func_8004F110");
+extern void Level14_8FF40_func_8004F178(Vector3D*, Vector3D*) __asm__("func_8004F178");
+extern void Level14_8FF40_func_8004F194(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004F194");
+extern void Level14_8FF40_func_80055B18(Moby*) __asm__("func_80055B18");
+extern int Level14_8FF40_rand() __asm__("rand");
+
+void Level14_8FF40_func_8004EA90(unsigned char*, SHORTMATRIX*, void*) __asm__("func_8004EA90");
+ /* extern */
+void Level14_8FF40_func_8004F168(Vector3D*) __asm__("func_8004F168");
+                       /* extern */
+extern int Level14_8FF40_D_8006C640 __asm__("D_8006C640");
+
+int func_level_14_8008FF40(void) {
+    /* SCUS-94467 original8008FF40;
+     assembly SHA256 above.
+     * Original0x110 frame: scratchSP10..E7;
+      saved16..23 atE8..104,
+     * RA108. Vectors span12 bytes, matrices20. Packed SP70/71/72
+     * are three byte stores;
+      existing padding covers the original word read.
+     * Original ADDIU offsets-84/-B4 from wordB4 and-220/-250 from slot250
+     * are BYTES. Typed pointer subtraction would apply an extra element
+     * size and is invalid here. Matrix30-30 likewise identifies byte origin0.
+     * Callback slots800742E0/E4 contain8008CB2C/80092670 in level14;
+     * contracts15123.json records the verified image offsets.4EA90 reads
+     * the packed source word and optional pointer6;
+     4F168 zeros three words.
+     * Byte units and signed shifts are proven;
+      physical units/fixed point
+     * and helper/asset meanings remain unresolved. Cadence per invocation.
+     * Raw word3 precedes the180/zero stores, then shifts AFTER them.
+     * Literal2 constrains that producer while leaving automatic3 available
+     * for the original first signed modulo high result. Matrix4/5 precede
+     * wordF4_2;
+      vector6 is the original saved pointer, not a copy of5.
+     * Each matrix4 constructor stays on its incoming actor path;
+      no value
+     * is retained across the factory call. Actor18 and matrix19 have the
+     * original disjoint roles. Batch counters increment in callback delays.
+     * Packet4/5 precede X2/callback3, then destination6;
+      Y8 is read before
+     * the F4 word2 store. Using automatic callback3 keeps3 available for
+     * the earlier modulo;
+      explicit Y8 preserves the earlier MFHI9 allocation.
+     * Fast paths return original literal3. Dead4 precedes new argument4;
+     * the initialized final return2 identity preserves the branch that skips
+     * the duplicate initializer. All empty constraints consume initialized
+     * original producers and emit no CPU opcodes. Compiler/flags unchanged.
+     * Falsification: all517 native/linked instructions and transfer targets,
+     * full original EXE/every-overlay hashes. No synchronized runtime or
+     * subsystem completion claim. AI generated;
+      not human reviewed. */
+    struct { Vector3D sp10;
+     unsigned char pad1C[4];
+     Vector3D vector20;
+     unsigned char pad2C[4];
+     Vector3D sp30;
+     unsigned char pad3C[4];
+     Vector3D vector40;
+     unsigned char pad4C[4];
+     Vector3D vector50;
+     unsigned char pad5C[4];
+     Vector3D sp60;
+     unsigned char pad6C[4];
+     unsigned char sp70;
+     unsigned char sp71;
+     unsigned char sp72;
+     unsigned char pad73[5];
+     SHORTMATRIX sp78;
+     unsigned char pad8C[4];
+     Vector3D vector90;
+     unsigned char pad9C[4];
+     Vector3D vectorA0;
+     unsigned char padAC[4];
+     SHORTMATRIX spB0;
+     unsigned char padC4[4];
+     Vector3D vectorC8;
+     unsigned char padD4[4];
+     Vector3D vectorD8;
+     unsigned char padE4[4];
+     } scratch;
+    Moby **matrixArgument4;
+    Moby *firstRemovedActor4;
+    Moby *secondRemovedActor4;
+    Moby *firstActor18;
+    register Moby *secondActor18 __asm__("18");
+    Moby *firstNewActor2;
+    Moby *secondNewActor2;
+    int *matrix30Pointer21;
+    int secondWord64_21;
+    int firstWord64_22;
+    int scaledWordAC_23;
+    register int *wordB4_17 __asm__("17");
+    register Moby **slot250_19 __asm__("19");
+    int coefficient4;
+    int entryIndex16;
+    int firstBatchIndex20;
+    int secondBatchIndex20;
+    int initialResult;
+    signed char *firstPacket3;
+    signed char *secondPacket3;
+    signed char *thirdPacket3;
+    void *privateRecord21;
+
+    wordB4_17 = &Level14_8FF40_D_80070328.unk8[1];
+    entryIndex16 = 0;
+    matrix30Pointer21 = ((unsigned char *)wordB4_17) - 0x84;
+    do {
+        if ((*wordB4_17 >= 0x401) && (entryIndex16 < 2) && (Level14_8FF40_D_8006C640 & 1)) {
+            Level14_8FF40_func_8004F178(&scratch.sp10, (Vector3D *) (((unsigned char *)wordB4_17) - 0xB4));
+            { int word3;
+             register int literal2 __asm__("2");
+             word3 = Level14_8FF40Field(wordB4_17,int*,-4);
+             __asm__("" : "=r"(word3) : "0"(word3));
+             literal2 = 0xB4;
+             __asm__("" : "=r"(literal2) : "0"(literal2));
+             scratch.vector20.y = literal2;
+             scratch.vector20.z = 0;
+             __asm__ volatile("" : "=r"(word3) : "0"(word3) : "memory");
+             word3 >>= 5;
+             scratch.vector20.x = word3;
+             }
+            if (entryIndex16 != 0) {
+                scratch.vector20.y = -0xB4;
+            }
+            Level14_8FF40_func_8004ED6C((SHORTMATRIX *) matrix30Pointer21, (Vector3D *) &scratch.vector20, &scratch.sp30);
+            Level14_8FF40_func_8004F194(&scratch.sp10, &scratch.sp10, &scratch.sp30);
+            { register SHORTMATRIX *matrix4 __asm__("4");
+             register Vector3D *input5 __asm__("5");
+             register Vector3D *output6 __asm__("6");
+             register int word2 __asm__("2");
+             matrix4 = (SHORTMATRIX *)matrix30Pointer21;
+             input5 = (Vector3D *)&scratch.vector20;
+             __asm__("" : "=r"(matrix4), "=r"(input5) : "0"(matrix4), "1"(input5));
+             word2 = Level14_8FF40Field(wordB4_17,int*,0x40);
+             output6 = (Vector3D *)&scratch.vector20;
+             scratch.vector20.x = 0;
+             scratch.sp10.z = word2;
+             Level14_8FF40_func_8004ED6C(matrix4,input5,output6);
+             }
+            Level14_8FF40_func_8004F110((Vector3D *) &scratch.vector20, 3);
+            firstPacket3 = SpawnParticle(1, 0x2A, &scratch.sp10, (Vector3D *) &scratch.vector20);
+            if (firstPacket3 != 0) {
+                Level14_8FF40Field(firstPacket3, signed char *, 0xA) = 0x28;
+            }
+        } else if ((*wordB4_17 < 0x201) && (entryIndex16 == 0) && !(Level14_8FF40_D_8006C640 & 7) && !(Level14_8FF40_rand() & 3)) {
+            scratch.vector40.x = 0x80;
+            scratch.vector40.y = 0;
+            scratch.vector40.z = 0;
+            Level14_8FF40_func_8004ED6C((SHORTMATRIX *) (((unsigned char *)wordB4_17) - 0x84), (Vector3D *) &scratch.vector40, (Vector3D *) &scratch.vector40);
+            Level14_8FF40_func_8004F194((Vector3D *) &scratch.vector40, (Vector3D *) &scratch.vector40, (Vector3D *) (((unsigned char *)wordB4_17) - 0xB4));
+            scratch.vector40.z = Level14_8FF40Field(wordB4_17,int*,0x40);
+            SpawnParticle(1, 0x2B, (Vector3D *) &scratch.vector40, (Vector3D *)1);
+        }
+        entryIndex16 += 1;
+    } while (entryIndex16 < 2);
+    slot250_19 = &Level14_8FF40_D_80070328.critterMobyPtr;
+    initialResult = 0;
+    if ((*slot250_19) != 0) {
+        privateRecord21 = (*slot250_19)->mobyTag;
+        coefficient4 = 0x6F;
+        if (Level14_8FF40_D_80070328.horizontalSpeed >= 0x1389) {
+            coefficient4 = 0x8F;
+        }
+        scaledWordAC_23 = (Level14_8FF40_D_80070328.horizontalSpeed * coefficient4) / 9216;
+        if (Level14_8FF40_D_80070328.unk8[1] < 0x1F4) {
+            firstRemovedActor4 = Level14_8FF40Field(privateRecord21, Moby **, 0x10);
+            if (firstRemovedActor4 != 0) {
+                Level14_8FF40_func_80055B18(firstRemovedActor4);
+                Level14_8FF40Field(privateRecord21, Moby **, 0x10) = 0;
+            }
+            secondRemovedActor4 = Level14_8FF40Field(privateRecord21, Moby **, 0x14);
+            if (secondRemovedActor4 != 0) {
+                Level14_8FF40_func_80055B18(secondRemovedActor4);
+                Level14_8FF40Field(privateRecord21, Moby **, 0x14) = 0;
+            }
+            initialResult = 1;
+            if (Level14_8FF40_D_80070328.unk8[1] != 0) {
+                if (Level14_8FF40Field(privateRecord21, short *, 0xC) == 0) {
+                    scratch.vector50.x = -0x1F4;
+                    scratch.vector50.y = -0x190;
+                    scratch.vector50.z = -0xFA;
+                    Level14_8FF40_func_8004ED6C((SHORTMATRIX *) (((unsigned char *)slot250_19) - 0x220), (Vector3D *) &scratch.vector50, (Vector3D *) &scratch.vector50);
+                    Level14_8FF40_func_8004F194(&scratch.sp60, (Vector3D *) (((unsigned char *)slot250_19) - 0x250), (Vector3D *) &scratch.vector50);
+                    Level14_8FF40_func_8004F168(&scratch.vector50);
+                    secondPacket3 = SpawnParticle(1, 0x37, &scratch.sp60, (Vector3D *) &scratch.vector50);
+                    if (secondPacket3 != 0) {
+                        Level14_8FF40Field(secondPacket3, signed char *, 0xA) = 0x19;
+                    }
+                }
+                if (Level14_8FF40Field(privateRecord21, short *, 0xE) == 0) {
+                    scratch.vector50.x = -0x1F4;
+                    scratch.vector50.y = 0x190;
+                    scratch.vector50.z = -0xFA;
+                    Level14_8FF40_func_8004ED6C(&Level14_8FF40_D_80070328.mat30, (Vector3D *) &scratch.vector50, (Vector3D *) &scratch.vector50);
+                    Level14_8FF40_func_8004F194(&scratch.sp60, ((unsigned char *)&Level14_8FF40_D_80070328.mat30) - 0x30, (Vector3D *) &scratch.vector50);
+                    Level14_8FF40_func_8004F168(&scratch.vector50);
+                    thirdPacket3 = SpawnParticle(1, 0x37, &scratch.sp60, (Vector3D *) &scratch.vector50);
+                    if (thirdPacket3 != 0) {
+                        Level14_8FF40Field(thirdPacket3, signed char *, 0xA) = 0x19;
+                    }
+                }
+                Level14_8FF40Field(privateRecord21, short *, 0xC) = (short) ((Level14_8FF40Field(privateRecord21, short *, 0xC) + 1) % 3);
+                Level14_8FF40Field(privateRecord21, short *, 0xE) = (short) ((Level14_8FF40Field(privateRecord21, short *, 0xE) + 1) % 3);
+                return 2;
+            }
+            return initialResult;
+        }
+        if (Level14_8FF40Field(privateRecord21, Moby **, 0x10) == 0) {
+            firstNewActor2 = SpawnMoby(0x217, 0);
+            Level14_8FF40Field(privateRecord21, Moby **, 0x10) = firstNewActor2;
+            if (firstNewActor2 != 0) {
+                matrixArgument4 = ((unsigned char *)slot250_19) - 0x220;
+                goto block_34;
+            }
+        } else {
+            matrixArgument4 = ((unsigned char *)slot250_19) - 0x220;
+block_34:
+            firstActor18 = Level14_8FF40Field(privateRecord21, Moby **, 0x10);
+            scratch.vector50.x = -0x1F4;
+            scratch.vector50.y = -0x190;
+            scratch.vector50.z = -0xFA;
+            Level14_8FF40_func_8004ED6C((SHORTMATRIX *) matrixArgument4, (Vector3D *) &scratch.vector50, (Vector3D *) &scratch.vector50);
+            Level14_8FF40_func_8004F194(&firstActor18->position, (Vector3D *) (((unsigned char *)slot250_19) - 0x250), (Vector3D *) &scratch.vector50);
+            firstActor18->size = Level14_8FF40_func_8003636C(0, 0x40) - (scaledWordAC_23 + 0x41);
+            firstActor18->angle.roll = Level14_8FF40_func_8003636C(0, 8) * 0x10;
+            firstActor18->angle.pitch = (unsigned char) -((int) Level14_8FF40_D_80070328.rotation.pitch >> 4);
+            firstActor18->angle.yaw = ((int) Level14_8FF40_D_80070328.rotation.yaw >> 4) - 0x80;
+            if (Level14_8FF40_D_80070328.horizontalSpeed >= 0x1389) {
+                firstBatchIndex20 = 0;
+                firstWord64_22 = (int) Level14_8FF40_D_80070328.rotation.yaw >> 4;
+                do {
+                    scratch.sp70 = Level14_8FF40_func_8003636C(0, 0xFF);
+                    scratch.sp71 = 0;
+                    scratch.sp72 = (signed char) firstWord64_22;
+                    Level14_8FF40_func_8004EA90(&scratch.sp70, &scratch.sp78, 0);
+                    scratch.vector90.x = 0;
+                    scratch.vector90.y = 0x32;
+                    scratch.vector90.z = 0;
+                    Level14_8FF40_func_8004ED6C(&scratch.sp78, (Vector3D *) &scratch.vector90, (Vector3D *) &scratch.vector90);
+                    scratch.vectorA0.x = -0x96;
+                    scratch.vectorA0.y = 0x96;
+                    scratch.vectorA0.z = 0;
+                    Level14_8FF40_func_8004ED6C(&scratch.sp78, (Vector3D *) &scratch.vectorA0, (Vector3D *) &scratch.vectorA0);
+                    Level14_8FF40_func_8004F194((Vector3D *) &scratch.vector90, &firstActor18->position, (Vector3D *) &scratch.vector90);
+                    SpawnParticle(1, 0x55, (Vector3D *) &scratch.vector90, (Vector3D *) &scratch.vectorA0);
+                    firstBatchIndex20 += 1;
+                } while (firstBatchIndex20 < 3);
+                if (Level14_8FF40_func_8003636C(0, 0xA) == 0) {
+                    { register int parameter4 __asm__("4");
+                     register int kind5 __asm__("5");
+                     register int x2 __asm__("2");
+                     char *(*callback3)(int,int,Vector3D*,Vector3D*);
+                     register Vector3D *destination6 __asm__("6");
+                     register int y8 __asm__("8");
+                     register int wordF4_2 __asm__("2");
+                     register Vector3D *mode7 __asm__("7");
+                     parameter4 = 1;
+                     kind5 = 0x29;
+                     __asm__("" : "=r"(parameter4), "=r"(kind5) : "0"(parameter4), "1"(kind5));
+                     x2 = firstActor18->position.x;
+                     callback3 = SpawnParticle;
+                     __asm__ volatile("" : "=r"(x2), "=r"(callback3) : "0"(x2), "1"(callback3) : "6");
+                     destination6 = (Vector3D *)&scratch.vectorA0;
+                     __asm__("" : "=r"(x2), "=r"(callback3), "=r"(destination6) : "0"(x2), "1"(callback3), "2"(destination6));
+                     scratch.vectorA0.x = x2;
+                     y8 = firstActor18->position.y;
+                     wordF4_2 = Level14_8FF40_D_80070328.unk9ha[4];
+                     mode7 = 0;
+                     scratch.vectorA0.z = wordF4_2;
+                     scratch.vectorA0.y = y8;
+                     callback3(parameter4,kind5,destination6,mode7);
+                     }
+                }
+            }
+        }
+        if ((Level14_8FF40Field(privateRecord21, Moby **, 0x14) != 0) || (secondNewActor2 = SpawnMoby(0x217, 0), Level14_8FF40Field(privateRecord21, Moby **, 0x14) = secondNewActor2, (secondNewActor2 != 0))) {
+            secondActor18 = Level14_8FF40Field(privateRecord21, Moby **, 0x14);
+            scratch.vector50.x = -0x1F4;
+            scratch.vector50.y = 0x190;
+            scratch.vector50.z = -0xFA;
+            Level14_8FF40_func_8004ED6C(&Level14_8FF40_D_80070328.mat30, (Vector3D *) &scratch.vector50, (Vector3D *) &scratch.vector50);
+            Level14_8FF40_func_8004F194(&secondActor18->position, ((unsigned char *)&Level14_8FF40_D_80070328.mat30) - 0x30, (Vector3D *) &scratch.vector50);
+            secondActor18->size = Level14_8FF40_func_8003636C(0, 0x40) - (scaledWordAC_23 + 0x41);
+            secondActor18->angle.roll = Level14_8FF40_func_8003636C(0, 8) * 0x10;
+            secondActor18->angle.pitch = (unsigned char) -((int) Level14_8FF40_D_80070328.rotation.pitch >> 4);
+            secondActor18->angle.yaw = ((int) Level14_8FF40_D_80070328.rotation.yaw >> 4) - 0x80;
+            ;
+            if (Level14_8FF40_D_80070328.horizontalSpeed >= 0x1389) {
+                secondBatchIndex20 = 0;
+                secondWord64_21 = (int) Level14_8FF40_D_80070328.rotation.yaw >> 4;
+                do {
+                    scratch.sp70 = Level14_8FF40_func_8003636C(0, 0xFF);
+                    scratch.sp71 = 0;
+                    scratch.sp72 = (signed char) secondWord64_21;
+                    Level14_8FF40_func_8004EA90(&scratch.sp70, &scratch.spB0, 0);
+                    scratch.vectorC8.x = 0;
+                    scratch.vectorC8.y = 0x32;
+                    scratch.vectorC8.z = 0;
+                    Level14_8FF40_func_8004ED6C(&scratch.spB0, (Vector3D *) &scratch.vectorC8, (Vector3D *) &scratch.vectorC8);
+                    scratch.vectorD8.x = -0x96;
+                    scratch.vectorD8.y = 0x96;
+                    scratch.vectorD8.z = 0;
+                    Level14_8FF40_func_8004ED6C(&scratch.spB0, (Vector3D *) &scratch.vectorD8, (Vector3D *) &scratch.vectorD8);
+                    Level14_8FF40_func_8004F194((Vector3D *) &scratch.vectorC8, &secondActor18->position, (Vector3D *) &scratch.vectorC8);
+                    SpawnParticle(1, 0x55, (Vector3D *) &scratch.vectorC8, (Vector3D *) &scratch.vectorD8);
+                    secondBatchIndex20 += 1;
+                } while (secondBatchIndex20 < 3);
+                ;
+                if (Level14_8FF40_func_8003636C(0, 0xA) == 0) {
+                    __asm__ volatile("" : : : "4");
+                    { register int parameter4 __asm__("4");
+                     register int kind5 __asm__("5");
+                     register int x2 __asm__("2");
+                     char *(*callback3)(int,int,Vector3D*,Vector3D*);
+                     register Vector3D *destination6 __asm__("6");
+                     register int y8 __asm__("8");
+                     register int wordF4_2 __asm__("2");
+                     register Vector3D *mode7 __asm__("7");
+                     parameter4 = 1;
+                     kind5 = 0x29;
+                     __asm__("" : "=r"(parameter4), "=r"(kind5) : "0"(parameter4), "1"(kind5));
+                     x2 = secondActor18->position.x;
+                     callback3 = SpawnParticle;
+                     __asm__ volatile("" : "=r"(x2), "=r"(callback3) : "0"(x2), "1"(callback3) : "6");
+                     destination6 = (Vector3D *)&scratch.vectorD8;
+                     __asm__("" : "=r"(x2), "=r"(callback3), "=r"(destination6) : "0"(x2), "1"(callback3), "2"(destination6));
+                     scratch.vectorD8.x = x2;
+                     y8 = secondActor18->position.y;
+                     wordF4_2 = Level14_8FF40_D_80070328.unk9ha[4];
+                     mode7 = 0;
+                     scratch.vectorD8.z = wordF4_2;
+                     scratch.vectorD8.y = y8;
+                     callback3(parameter4,kind5,destination6,mode7);
+                     }
+                    goto block_46;
+                }
+            }
+        } else {
+block_46:
+            ;
+        }
+        { register int returning2 __asm__("2");
+         returning2 = 3;
+         __asm__("" : "=r"(returning2) : "0"(returning2));
+         return returning2;
+         }
+    }
+    return initialResult;
+}
+#undef Level14_8FF40Field
+

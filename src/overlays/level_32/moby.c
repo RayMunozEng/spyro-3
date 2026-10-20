@@ -3037,11 +3037,1582 @@ void func_level_32_8007A8F4(Moby* moby) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/moby", func_level_32_8007AC10);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original8007AC10.
+* AI generated; not human reviewed. All789 original instructions,21 selectors,
+* one zero pad and every actual destination must match:811 owned words.
+* Frame88hex=136 bytes saves S0..S7/FP/RA;SP20..5F keeps original vectors.
+* The first helper's complete distance allocates naturally to FP. No fixedFP
+* binding is present. Original full1/20 saved scalars retain list byte writes,
+* private flags and comparisons. List stride88 retains every original full
+* index/base/record producer and signed short path index*16-minus16.
+* Original default773 enters the common callback,not state0's else chain.
+* Original state2 writer follows state20;state3 writer656 follows state5.
+* Mode byte branches retain shared call371,read373 and comparison374 entries.
+* Original297 enters316 before the owner argument;304/311 enter317 after
+* producing it. The full-target gate caught304's wrong316 entry after all789
+* instruction shapes matched;the distinct initialized entry is restored.
+* Private S3 becomes the original full4 count only after its pointer's last
+* consumer. Particle128/count and (index<<8)/count are ordinary signed C
+* divisions,including every original zero/overflow guard. Count4,index3 gives
+* 32 and192. Both divisions precede RNG and the original SP38-to-SP48 copy.
+* Full retained helper results,byte254 before truncation,opaque whole player
+* pointer and signed trig table products keep original memory widths/order.
+* Empty metadata consumes initialized complete words/addresses or clobbers
+* dead values before fresh complete producers;zero CPU instructions. No CPU
+* opcode asm,partialHI,undefined saved input,live overlapping aliases or build
+* pipeline changes. Known timer,angle and callback views reuse EXE/headers.
+* Units/fixed point,complete helper/caller chains,cadence beyond invocation,
+* Rev1 mapping and synchronized retail runtime remain open. Confidence is
+* binary identity after all gates. Next:human review and retail captures.
+* Every native/linked word,target,selector/pad byte and full EXE/every-overlay
+* retail hash must remain identical.
+*/
+/* Original assembly SHA256 ff8f4e31f4c59a7a34988d2670d6bbf2a16be91f452b9b0fa7c00f3edf61e785 */
+#define Level32_7AC10Field(p, t, o) (*(t)((unsigned char*)(p)+(o)))
+int Level32_7AC10Call34F40View1() __asm__("func_80034F40");
+int Level32_7AC10Call35030View1() __asm__("func_80035030");
+int Level32_7AC10Call35734View1() __asm__("func_80035734");
+int Level32_7AC10Call3573CView1() __asm__("func_8003573C");
+int Level32_7AC10Call359A4View1(void*, int) __asm__("func_800359A4");
+int Level32_7AC10Call35A80View1() __asm__("func_80035A80");
+int Level32_7AC10Call360F8View1() __asm__("func_800360F8");
+int Level32_7AC10Call36220View1() __asm__("func_80036220");
+int Level32_7AC10Call3636CView1() __asm__("func_8003636C");
+int Level32_7AC10Call363DCView1() __asm__("func_800363DC");
+int Level32_7AC10Call36A68View1() __asm__("func_80036A68");
+int Level32_7AC10Call37014View1() __asm__("func_80037014");
+int Level32_7AC10Call3BA00View1() __asm__("func_8003BA00");
+int Level32_7AC10Call4E880View1(int, int, int) __asm__("func_8004E880");
+int Level32_7AC10Call4F110View1() __asm__("func_8004F110");
+int Level32_7AC10Call4F178View1() __asm__("func_8004F178");
+int Level32_7AC10Call4F194View1() __asm__("func_8004F194");
+int Level32_7AC10Call4F264View1(int, int) __asm__("func_8004F264");
+int Level32_7AC10Call4F334View1() __asm__("func_8004F334");
+int Level32_7AC10Call55B18View1() __asm__("func_80055B18");
+int Level32_7AC10Call55D24View1() __asm__("func_80055D24");
+int Level32_7AC10Call55F14View1() __asm__("func_80055F14");
+int Level32_7AC10DatarandView1(void) __asm__("rand");
+extern int Level32_7AC10Data658A0View1 __asm__("D_800658A0");
+extern int Level32_7AC10Data65920View1 __asm__("D_80065920");
+extern int Level32_7AC10Data6C550View1 __asm__("D_8006C550");
+extern int Level32_7AC10Data6C640View1 __asm__("D_8006C640");
+extern int Level32_7AC10Data6C770View1 __asm__("D_8006C770");
+extern int Level32_7AC10Data70328View1 __asm__("D_80070328");
+extern void*(*Level32_7AC10DataSpawnParticleView1)(int, int, void*, void*) __asm__("SpawnParticle");
+void func_level_32_8007AC10(void *ownerParameter) {
+    register int originalEnabledValueOne22 __asm__("$22"), originalStateValueTwenty23 __asm__("$23");
+    register int rawWord2 __asm__("$2"), rawWord3 __asm__("$3"), argumentWord4 __asm__("$4"), argumentWord5 __asm__("$5"), argumentWord6 __asm__("$6"), argumentWord7 __asm__("$7");
+    register void *ownerRecord18 __asm__("$18");
+    register int privateCursorOrLateParticleCount19 __asm__("$19"), retainedRecordDistanceOrParticleIndex16 __asm__("$16"), retainedPrivatePlayerViewOrParticleIndex17 __asm__("$17"), retainedListIndexOrParticleDistance20 __asm__("$20"), retainedHeightOffsetOrParticleVector21 __asm__("$21");
+    struct{
+        int sp20, sp24, sp28, sp2C, sp30, sp34, sp38, sp3C, sp40, sp44, sp48, sp4C, sp50, sp54, sp58, sp5C;
+    }
+    originalFrame;
+    int retainedOriginalDistance;
+    int temp_lo;
+    int temporaryWord4;
+    int temporaryWord8;
+    int temporaryWord1;
+    int temporaryWord5;
+    int temporaryWord6;
+    int temporaryWord7;
+    int temporaryWord9;
+    int temporaryWord2;
+    int temporaryWord3;
+    ownerRecord18 = ownerParameter;
+    __asm__("":"=r"(ownerRecord18):"0"(ownerRecord18));
+    privateCursorOrLateParticleCount19 = Level32_7AC10Field(ownerRecord18, void **, 0);
+    retainedOriginalDistance = Level32_7AC10Call4F334View1(ownerRecord18 + 0xC, (int)&Level32_7AC10Data70328View1);
+    if ((Level32_7AC10Field(ownerRecord18, int *, 0x18) & 0x50000) && ((unsigned int) (Level32_7AC10Field(ownerRecord18, unsigned char *, 0x48) - 8) >= 2U)) {
+        Level32_7AC10Field(privateCursorOrLateParticleCount19, int *, 0) = 0x154;
+        Level32_7AC10Field(privateCursorOrLateParticleCount19, int *, 4) = 0;
+        temporaryWord9 = Level32_7AC10Field(ownerRecord18, unsigned char *, 0x51);
+        if (temporaryWord9 == 0) {
+            temporaryWord9 = Level32_7AC10Call360F8View1(Level32_7AC10Call4E880View1(Level32_7AC10Field(ownerRecord18, int *, 0xC) - Level32_7AC10Field((int)&Level32_7AC10Data70328View1, int *, 0), Level32_7AC10Field(ownerRecord18, int *, 0x10) - Level32_7AC10Field((int)&Level32_7AC10Data70328View1, int *, 4), 0), Level32_7AC10Field((int)&Level32_7AC10Data70328View1, unsigned char *, 0xE), 0x20, 0x40);
+        }
+        retainedListIndexOrParticleDistance20 = 0;
+        __asm__("":"=r"(retainedListIndexOrParticleDistance20):"0"(retainedListIndexOrParticleDistance20):"$23");
+        originalStateValueTwenty23 = 20;
+        __asm__("":"=r"(originalStateValueTwenty23):"0"(originalStateValueTwenty23):"$22");
+        originalEnabledValueOne22 = 1;
+        __asm__("":"=r"(originalEnabledValueOne22):"0"(originalEnabledValueOne22):"$21");
+        retainedHeightOffsetOrParticleVector21 = 0;
+        Level32_7AC10Field(privateCursorOrLateParticleCount19, int *, 8) = (int) temporaryWord9;
+        Level32_7AC10Field(ownerRecord18, signed char *, 0x47) = 9;
+        do {
+            rawWord3 = Level32_7AC10Field(privateCursorOrLateParticleCount19, int*, 60+retainedListIndexOrParticleDistance20*4);
+            argumentWord5 = 1;
+            rawWord2 = rawWord3*11;
+            rawWord3 = Level32_7AC10Data6C550View1;
+            rawWord2 *= 8;
+            retainedRecordDistanceOrParticleIndex16 = rawWord3+rawWord2;
+            argumentWord4 = retainedRecordDistanceOrParticleIndex16;
+            rawWord2 = 48;
+            Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, signed char*, 76) = rawWord2;
+            rawWord2 = Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, int*, 28);
+            retainedPrivatePlayerViewOrParticleIndex17 = Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, int*, 0);
+            rawWord3 = 0x80000000;
+            Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, signed char*, 65) = originalEnabledValueOne22;
+            Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, signed char*, 77) = originalEnabledValueOne22;
+            Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, int*, 28) = rawWord2|rawWord3;
+            Level32_7AC10Call55D24View1(argumentWord4, argumentWord5);
+            Level32_7AC10Call4F178View1(retainedRecordDistanceOrParticleIndex16 + 0xC, ownerRecord18 + 0xC);
+            Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, signed char *, 0x4A) = 0x28;
+            Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, int *, 0x14) = (int) (Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, int *, 0x14) + retainedHeightOffsetOrParticleVector21);
+            rawWord2 = Level32_7AC10Field(ownerRecord18, unsigned char*, 70);
+            Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, signed char*, 72) = originalStateValueTwenty23;
+            Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, unsigned char*, 70) = rawWord2;
+            Level32_7AC10Field(retainedPrivatePlayerViewOrParticleIndex17, short *, 0x34) = 0;
+            rawWord2 = Level32_7AC10Field(privateCursorOrLateParticleCount19, int*, 8);
+            __asm__("":"=r"(rawWord2):"0"(rawWord2));
+            Level32_7AC10Field(retainedPrivatePlayerViewOrParticleIndex17, int*, 4) = rawWord2;
+            rawWord3 = Level32_7AC10Field(privateCursorOrLateParticleCount19, int*, 0);
+            Level32_7AC10Field(retainedPrivatePlayerViewOrParticleIndex17, signed char*, 41) = originalStateValueTwenty23;
+            Level32_7AC10Field(retainedPrivatePlayerViewOrParticleIndex17, unsigned char*, 40) = 25;
+            Level32_7AC10Field(retainedPrivatePlayerViewOrParticleIndex17, int*, 0) = rawWord3;
+            if (Level32_7AC10Field(privateCursorOrLateParticleCount19, short *, 0x1A) == originalEnabledValueOne22) {
+                Level32_7AC10Field(retainedPrivatePlayerViewOrParticleIndex17, unsigned char *, 0x28) = 0x3CU;
+            }
+            if (retainedListIndexOrParticleDistance20 == 0) {
+                temporaryWord5 = Level32_7AC10Field(retainedPrivatePlayerViewOrParticleIndex17, unsigned char *, 0x28);
+                Level32_7AC10Field(retainedPrivatePlayerViewOrParticleIndex17, unsigned char *, 0x28) = (unsigned char) (temporaryWord5 + 0x14);
+                if (Level32_7AC10Field(privateCursorOrLateParticleCount19, short *, 0x1A) == originalEnabledValueOne22) {
+                    Level32_7AC10Field(retainedPrivatePlayerViewOrParticleIndex17, unsigned char *, 0x28) = (unsigned char) (temporaryWord5 + 0x23);
+                }
+            }
+            else {
+                Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, int *, 0xC) = (int) (Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, int *, 0xC) + ((int) (Level32_7AC10Field((int)&Level32_7AC10Data65920View1, short*, (Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, unsigned char *, 0x46) * 2)) * 0x19) >> 9));
+                Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, int *, 0x10) = (int) (Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, int *, 0x10) + ((int) (Level32_7AC10Field((int)&Level32_7AC10Data658A0View1, short*, (Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, unsigned char *, 0x46) * 2)) * 0x19) >> 9));
+            }
+            Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, signed char *, 0x49) = retainedListIndexOrParticleDistance20;
+            retainedListIndexOrParticleDistance20 += 1;
+            retainedHeightOffsetOrParticleVector21 += 0x258;
+        }
+        while (retainedListIndexOrParticleDistance20 < 2);
+        Level32_7AC10Call3BA00View1(ownerRecord18);
+        Level32_7AC10Call36A68View1(ownerRecord18, 1, 0, 0);
+        Level32_7AC10Field(ownerRecord18, unsigned char *, 0x48) = 8U;
+        Level32_7AC10Call34F40View1(ownerRecord18, 8);
+    }
+    rawWord2 = Level32_7AC10Data6C640View1;
+    __asm__("":"=r"(rawWord2):"0"(rawWord2):"memory");
+    Level32_7AC10Field(ownerRecord18, int*, 24) = 0;
+    if (rawWord2 == 0 && ({rawWord3 = Level32_7AC10Field(privateCursorOrLateParticleCount19, short*, 26);rawWord2 = 3;__asm__("":"=r"(rawWord2):"0"(rawWord2));rawWord3 == rawWord2;})) {
+        if (Level32_7AC10Call4F334View1(ownerRecord18+12, (int)&Level32_7AC10Data70328View1) < 10000){
+            retainedListIndexOrParticleDistance20 = 0;
+            originalEnabledValueOne22 = 1;
+            __asm__("":"=r"(originalEnabledValueOne22):"0"(originalEnabledValueOne22));
+            do {
+                rawWord3 = Level32_7AC10Field(privateCursorOrLateParticleCount19, int*, 60);
+                privateCursorOrLateParticleCount19 += 4;
+                retainedListIndexOrParticleDistance20 += 1;
+                retainedRecordDistanceOrParticleIndex16 = Level32_7AC10Data6C550View1;
+                rawWord2 = rawWord3*88;
+                retainedRecordDistanceOrParticleIndex16 += rawWord2;
+                rawWord2 = 48;
+                Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, signed char*, 76) = rawWord2;
+                rawWord2 = Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, int*, 28);
+                retainedPrivatePlayerViewOrParticleIndex17 = Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, int*, 0);
+                rawWord3 = 0x80000000;
+                Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, signed char*, 65) = originalEnabledValueOne22;
+                Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, signed char*, 77) = originalEnabledValueOne22;
+                Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, int*, 28) = rawWord2|rawWord3;
+                temporaryWord2 = Level32_7AC10Field(retainedPrivatePlayerViewOrParticleIndex17, int*, 12);
+                rawWord2 = temporaryWord2;
+                argumentWord5 = Level32_7AC10Field(rawWord2, short*, 0)*16;
+                rawWord2 = Level32_7AC10Field(rawWord2, int*, 12);
+                argumentWord5 -= 16;
+                Level32_7AC10Call4F178View1(retainedRecordDistanceOrParticleIndex16+12, rawWord2+argumentWord5);
+                Level32_7AC10Call37014View1(retainedRecordDistanceOrParticleIndex16);
+                Level32_7AC10Call55D24View1(retainedRecordDistanceOrParticleIndex16, 3);
+                Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, signed char *, 0x46) = Level32_7AC10Call4E880View1(Level32_7AC10Field((int)&Level32_7AC10Data70328View1, int *, 0) - Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, int *, 0xC), Level32_7AC10Field((int)&Level32_7AC10Data70328View1, int *, 4) - Level32_7AC10Field(retainedRecordDistanceOrParticleIndex16, int *, 0x10), 0);
+                Level32_7AC10Field(retainedPrivatePlayerViewOrParticleIndex17, short *, 0x34) = 0;
+                Level32_7AC10Field(retainedPrivatePlayerViewOrParticleIndex17, signed char *, 0x37) = 0;
+            }
+            while (retainedListIndexOrParticleDistance20 < 2);
+            Level32_7AC10Call36A68View1(ownerRecord18, 1, 0, 0);
+            goto removeOriginalOwner769;
+        }
+    }
+    temporaryWord6 = Level32_7AC10Field(ownerRecord18, unsigned char *, 0x48);
+    switch (temporaryWord6) {
+    case 0:
+    case 1:
+        if ((Level32_7AC10Field(privateCursorOrLateParticleCount19, short *, 0x16) != 0) && (Level32_7AC10Call36220View1((int)&Level32_7AC10Data70328View1, privateCursorOrLateParticleCount19 + 0x44, 0, 0) != 0)) {
+            temporaryWord3 = Level32_7AC10Field(privateCursorOrLateParticleCount19, void **, 0x1C);
+            Level32_7AC10Field(privateCursorOrLateParticleCount19, short *, 0x16) = 0;
+            Level32_7AC10Field(privateCursorOrLateParticleCount19, short *, 0x1A) = 0;
+            rawWord2 = temporaryWord3;
+            argumentWord5 = Level32_7AC10Field(rawWord2, short*, 0)*16;
+            rawWord2 = Level32_7AC10Field(rawWord2, int*, 12);
+            argumentWord5 -= 16;
+            Level32_7AC10Call4F178View1(ownerRecord18+12, rawWord2+argumentWord5);
+            Level32_7AC10Call37014View1(ownerRecord18);
+            argumentWord4 = (int)ownerRecord18;
+            argumentWord5 = 2;
+            __asm__("":"=r"(argumentWord4):"0"(argumentWord4), "r"(argumentWord5):"$2");
+            rawWord2 = 254;
+            Level32_7AC10Field(ownerRecord18, unsigned char*, 82) = rawWord2;
+            Level32_7AC10Call55D24View1(argumentWord4, argumentWord5);
+        }
+        if (Level32_7AC10Field(privateCursorOrLateParticleCount19, short *, 0x1A) == 2) {
+            Level32_7AC10Field(privateCursorOrLateParticleCount19, short *, 0x1A) = 0;
+            if (Level32_7AC10Field(ownerRecord18, unsigned char *, 0x3D) != 7) {
+                Level32_7AC10Data6C770View1 = 0;
+                temporaryWord7 = Level32_7AC10Field(ownerRecord18, unsigned char *, 0x3D);
+                temporaryWord1 = Level32_7AC10Field(ownerRecord18, unsigned char *, 0x3F);
+                Level32_7AC10Field(ownerRecord18, signed char *, 0x40) = 0x72;
+                Level32_7AC10Field(ownerRecord18, unsigned char *, 0x3D) = 7U;
+                Level32_7AC10Field(ownerRecord18, unsigned char *, 0x3F) = 0U;
+                Level32_7AC10Field(ownerRecord18, unsigned char *, 0x3C) = temporaryWord7;
+                Level32_7AC10Field(ownerRecord18, unsigned char *, 0x3E) = temporaryWord1;
+                Level32_7AC10Call35734View1(ownerRecord18, temporaryWord1);
+            }
+            Level32_7AC10Field(ownerRecord18, unsigned char *, 0x48) = 0x14U;
+        }
+        else if (Level32_7AC10Field(privateCursorOrLateParticleCount19, short *, 0x16) != 0) {
+            rawWord2 = Level32_7AC10Call36220View1((int)&Level32_7AC10Data70328View1, privateCursorOrLateParticleCount19+36, 0, 0);
+            argumentWord4 = (int)ownerRecord18;
+            if (rawWord2 && ({rawWord3 = Level32_7AC10Field((int)&Level32_7AC10Data70328View1, int*, 8);rawWord2 = Level32_7AC10Field(privateCursorOrLateParticleCount19, int*, 44);rawWord2 = rawWord2 < rawWord3;__asm__("":"=r"(rawWord2):"0"(rawWord2));rawWord2;})){
+                rawWord2 = 7;
+                argumentWord5 = 7;
+                Level32_7AC10Field(privateCursorOrLateParticleCount19, short*, 22) = 0;
+                goto callOriginalStateWriter656;
+            }
+            else{
+                goto callOriginalIdle317;
+            }
+        }
+        else{
+            produceOriginalIdleOwner316:argumentWord4 = (int)ownerRecord18;
+            callOriginalIdle317:__asm__ volatile(""::"r"(argumentWord4));
+            Level32_7AC10Call3573CView1(argumentWord4, 4, 0, 0);
+            if ((Level32_7AC10Call359A4View1(privateCursorOrLateParticleCount19 + 0x10, 4) == 0) || (retainedOriginalDistance >= 0x251C)) {
+                Level32_7AC10Call359A4View1(privateCursorOrLateParticleCount19 + 0x14, 2);
+                if (Level32_7AC10Data6C770View1 != 0) {
+                    rawWord2 = Level32_7AC10Field(privateCursorOrLateParticleCount19, short*, 20);
+                    argumentWord4 = 700;
+                    if (rawWord2 == 0){
+                        Level32_7AC10Field(privateCursorOrLateParticleCount19, short*, 20) = Level32_7AC10Call3636CView1(argumentWord4, 1000);
+                        rawWord3 = Level32_7AC10Field(ownerRecord18, unsigned char*, 61);
+                        __asm__ volatile("":::"$2", "memory");
+                        rawWord2 = 1;
+                        argumentWord4 = (int)ownerRecord18;
+                        if (rawWord3 == rawWord2) goto compareOriginalMode374;
+                        Level32_7AC10Data6C770View1 = 0;
+                        rawWord3 = Level32_7AC10Field(ownerRecord18, unsigned char*, 61);
+                        argumentWord5 = Level32_7AC10Field(ownerRecord18, unsigned char*, 63);
+                        rawWord2 = 114;
+                        Level32_7AC10Field(ownerRecord18, signed char*, 64) = rawWord2;
+                        Level32_7AC10Field(ownerRecord18, unsigned char*, 61) = 1;
+                        Level32_7AC10Field(ownerRecord18, unsigned char*, 63) = 0;
+                        Level32_7AC10Field(ownerRecord18, unsigned char*, 60) = rawWord3;
+                        goto callOriginalModeUpdate371;
+                    }
+                    else{
+                        rawWord2 = Level32_7AC10Field(ownerRecord18, unsigned char*, 61);
+                        argumentWord4 = (int)ownerRecord18;
+                        if (!rawWord2) goto readOriginalMode373;
+                        Level32_7AC10Data6C770View1 = 0;
+                        rawWord2 = Level32_7AC10Field(ownerRecord18, unsigned char*, 61);
+                        argumentWord5 = Level32_7AC10Field(ownerRecord18, unsigned char*, 63);
+                        rawWord3 = 114;
+                        Level32_7AC10Field(ownerRecord18, signed char*, 64) = rawWord3;
+                        Level32_7AC10Field(ownerRecord18, unsigned char*, 61) = 0;
+                        Level32_7AC10Field(ownerRecord18, unsigned char*, 63) = 0;
+                        Level32_7AC10Field(ownerRecord18, unsigned char*, 60) = rawWord2;
+                    }
+                    callOriginalModeUpdate371:Level32_7AC10Field(ownerRecord18, unsigned char*, 62) = argumentWord5;
+                    Level32_7AC10Call35734View1(argumentWord4, argumentWord5);
+                }
+                readOriginalMode373:rawWord3 = Level32_7AC10Field(ownerRecord18, unsigned char*, 61);
+                compareOriginalMode374:rawWord2 = 7;
+                argumentWord4 = (int)ownerRecord18;
+                if (rawWord3 != rawWord2) goto callOriginalCommon774;
+                rawWord2 = 114;
+                Level32_7AC10Data6C770View1 = 0;
+                Level32_7AC10Field(ownerRecord18, signed char*, 64) = rawWord2;
+                Level32_7AC10Field(ownerRecord18, unsigned char*, 61) = 0;
+                Level32_7AC10Field(ownerRecord18, unsigned char*, 63) = 0;
+                Level32_7AC10Call35734View1(argumentWord4);
+            }
+            else {
+                goto writeOriginalStateTwo462;
+            }
+        }
+        goto produceOriginalDefaultOwner773;
+    case 7:
+        rawWord2 = Level32_7AC10Call35A80View1(ownerRecord18, Level32_7AC10Field(privateCursorOrLateParticleCount19, int*, 28), 256, 170, 0, 6, 40, 5);
+        argumentWord4 = (int)ownerRecord18+12;
+        argumentWord5 = (int)&Level32_7AC10Data70328View1;
+        __asm__("":"=r"(argumentWord5):"0"(argumentWord5), "r"(argumentWord4), "r"(rawWord2):"$16");
+        retainedRecordDistanceOrParticleIndex16 = rawWord2;
+        if (Level32_7AC10Call4F334View1(argumentWord4, argumentWord5) < 3500) {
+            Level32_7AC10Field(ownerRecord18, unsigned char *, 0x48) = 2U;
+            Level32_7AC10Call34F40View1(ownerRecord18, 2);
+        }
+        rawWord2 = retainedRecordDistanceOrParticleIndex16&1;
+        __asm__("":"=r"(rawWord2):"0"(rawWord2), "r"(retainedRecordDistanceOrParticleIndex16));
+        if (rawWord2 && (Level32_7AC10Field(Level32_7AC10Field(privateCursorOrLateParticleCount19, void **, 0x1C), short *, 2) == 0)) {
+            Level32_7AC10Field(ownerRecord18, unsigned char *, 0x48) = 0U;
+        }
+        argumentWord4 = (int)ownerRecord18;
+        goto callOriginalCommon774;
+    case 20:
+        rawWord2 = Level32_7AC10Call36220View1((int)&Level32_7AC10Data70328View1, privateCursorOrLateParticleCount19+36, 0, 0);
+        argumentWord4 = (int)ownerRecord18;
+        if (rawWord2){
+            argumentWord5 = 7;
+            rawWord2 = 7;
+            Level32_7AC10Field(privateCursorOrLateParticleCount19, short *, 0x16) = 0;
+            goto callOriginalStateWriter656;
+        }
+        __asm__ volatile("":::"$2");
+        Level32_7AC10Call35A80View1(ownerRecord18, Level32_7AC10Field(privateCursorOrLateParticleCount19, int*, 32), 256, 90, 0, 6, 20, 5);
+        if ((retainedOriginalDistance < 0x1B58) && (Level32_7AC10Call4F264View1(Level32_7AC10Field(ownerRecord18, unsigned char *, 0x46), Level32_7AC10Call4E880View1(Level32_7AC10Field((int)&Level32_7AC10Data70328View1, int *, 0) - Level32_7AC10Field(ownerRecord18, int *, 0xC), Level32_7AC10Field((int)&Level32_7AC10Data70328View1, int *, 4) - Level32_7AC10Field(ownerRecord18, int *, 0x10), 0)) < 0x20)) {
+            writeOriginalStateTwo462:Level32_7AC10Field(ownerRecord18, unsigned char*, 72) = 2;
+            Level32_7AC10Call34F40View1(ownerRecord18, 2);
+            argumentWord4 = (int)ownerRecord18;
+            goto callOriginalCommon774;
+        }
+        goto produceOriginalDefaultOwner773;
+    case 2:
+        Level32_7AC10Call3573CView1(ownerRecord18, 4, 0, 0);
+        if (Level32_7AC10Data6C770View1 != 0) {
+            Level32_7AC10Field(ownerRecord18, unsigned char *, 0x48) = 3U;
+            Level32_7AC10Call34F40View1(ownerRecord18, 3);
+        }
+        argumentWord4 = (int)ownerRecord18;
+        goto callOriginalCommon774;
+    case 3:
+        retainedPrivatePlayerViewOrParticleIndex17 = (int)&Level32_7AC10Data70328View1+80;
+        __asm__("":"=r"(retainedPrivatePlayerViewOrParticleIndex17):"0"(retainedPrivatePlayerViewOrParticleIndex17));
+        retainedRecordDistanceOrParticleIndex16 = 5;
+        if (Level32_7AC10Field(retainedPrivatePlayerViewOrParticleIndex17, int*, 0) == 4) {
+            retainedRecordDistanceOrParticleIndex16 = 0xF;
+        }
+        Level32_7AC10Call4F178View1(&originalFrame.sp20, retainedPrivatePlayerViewOrParticleIndex17 + 0x48);
+        temp_lo = originalFrame.sp20 * retainedRecordDistanceOrParticleIndex16;
+        originalFrame.sp20 = temp_lo;
+        originalFrame.sp24 *= retainedRecordDistanceOrParticleIndex16;
+        originalFrame.sp28 *= retainedRecordDistanceOrParticleIndex16;
+        Level32_7AC10Call4F110View1(&originalFrame.sp20, 6);
+        Level32_7AC10Call4F194View1(&originalFrame.sp20, &originalFrame.sp20, retainedPrivatePlayerViewOrParticleIndex17 - 0x50);
+        rawWord2 = Level32_7AC10Call4F334View1(ownerRecord18+12, &originalFrame.sp20);
+        argumentWord4 = (int)ownerRecord18;
+        argumentWord5 = 4;
+        argumentWord6 = 0;
+        argumentWord7 = 0;
+        __asm__("":"=r"(argumentWord7):"0"(argumentWord7), "r"(argumentWord4), "r"(argumentWord5), "r"(argumentWord6), "r"(rawWord2):"$16");
+        retainedRecordDistanceOrParticleIndex16 = rawWord2;
+        Level32_7AC10Call3573CView1(argumentWord4, argumentWord5, argumentWord6, argumentWord7);
+        argumentWord4 = privateCursorOrLateParticleCount19+16;
+        if (retainedOriginalDistance >= 0x2AF9) {
+            Level32_7AC10Field(ownerRecord18, unsigned char *, 0x48) = 6U;
+            Level32_7AC10Call34F40View1(ownerRecord18, 6);
+            __asm__("":"=r"(privateCursorOrLateParticleCount19):"0"(privateCursorOrLateParticleCount19));
+            argumentWord4 = privateCursorOrLateParticleCount19+16;
+        }
+        if (Level32_7AC10Call359A4View1(argumentWord4, 4) != 0 && ({rawWord2 = retainedRecordDistanceOrParticleIndex16 < 3500;__asm__("":"=r"(rawWord2):"0"(rawWord2), "r"(retainedRecordDistanceOrParticleIndex16));rawWord2;})) {
+            if (Level32_7AC10Call4F264View1(Level32_7AC10Field((int)&Level32_7AC10Data70328View1, unsigned char *, 0xE), Level32_7AC10Call4E880View1(Level32_7AC10Field(ownerRecord18, int*, 12)-Level32_7AC10Field(retainedPrivatePlayerViewOrParticleIndex17, int*, -80), Level32_7AC10Field(ownerRecord18, int*, 16)-Level32_7AC10Field((int)&Level32_7AC10Data70328View1, int*, 4), 0)) < 0x32) {
+                temporaryWord8 = Level32_7AC10Field(ownerRecord18, int *, 0x14) - Level32_7AC10Field(ownerRecord18, short *, 0x38);
+                temporaryWord4 = temporaryWord8 - Level32_7AC10Field((int)&Level32_7AC10Data70328View1, int *, 8);
+                if (temporaryWord4 >= 0) {
+                    if (temporaryWord4 >= 0x4B0) {
+                    }
+                    else {
+                        goto writeOriginalTrigVector571;
+                    }
+                }
+                else if ((Level32_7AC10Field((int)&Level32_7AC10Data70328View1, int *, 8) - temporaryWord8) < 0x4B0) {
+                writeOriginalTrigVector571:
+                    rawWord2 = Level32_7AC10Field(ownerRecord18, unsigned char*, 70)*2;
+                    rawWord3 = Level32_7AC10Field((int)&Level32_7AC10Data65920View1, short*, rawWord2);
+                    __asm__ volatile("":::"$4", "memory");
+                    argumentWord4 = (int)ownerRecord18;
+                    rawWord2 = (rawWord3*25) >> 10;
+                    Level32_7AC10Field((int)&Level32_7AC10Data70328View1, int*, 540) = rawWord2;
+                    rawWord2 = Level32_7AC10Field(ownerRecord18, unsigned char*, 70)*2;
+                    argumentWord5 = 4;
+                    rawWord3 = Level32_7AC10Field((int)&Level32_7AC10Data658A0View1, short*, rawWord2);
+                    rawWord2 = 40;
+                    __asm__("":"=r"(rawWord2):"0"(rawWord2));
+                    Level32_7AC10Field((int)&Level32_7AC10Data70328View1, int*, 548) = rawWord2;
+                    rawWord2 = (rawWord3*25) >> 10;
+                    Level32_7AC10Field((int)&Level32_7AC10Data70328View1, int*, 544) = rawWord2;
+                    __asm__ volatile("":::"$2", "memory");
+                    rawWord2 = 4;
+                    Level32_7AC10Field(privateCursorOrLateParticleCount19, int*, 92) = 0;
+                    goto callOriginalStateWriter656;
+                }
+            }
+        }
+        argumentWord4 = (int)ownerRecord18;
+        goto callOriginalCommon774;
+    case 6:
+        Level32_7AC10Call3573CView1(ownerRecord18, 4, 0, 0);
+        if (Level32_7AC10Data6C770View1 != 0) {
+            Level32_7AC10Field(ownerRecord18, unsigned char *, 0x48) = 0U;
+            Level32_7AC10Call34F40View1(ownerRecord18, 0);
+        }
+        argumentWord4 = (int)ownerRecord18;
+        goto callOriginalCommon774;
+    case 4:
+        Level32_7AC10Call3573CView1(ownerRecord18, 4, 0, 0);
+        if ((unsigned int) (Level32_7AC10Field((int)&Level32_7AC10Data70328View1, int *, 0x50) - 7) < 2U) {
+            Level32_7AC10Field(privateCursorOrLateParticleCount19, int *, 0x5C) = 1;
+        }
+        if (Level32_7AC10Data6C770View1 != 0) {
+            if (Level32_7AC10Field(privateCursorOrLateParticleCount19, int *, 0x5C) != 0) {
+                Level32_7AC10Field(ownerRecord18, unsigned char *, 0x48) = 5U;
+                Level32_7AC10Call34F40View1(ownerRecord18, 5);
+            }
+            else {
+                goto writeOriginalTimer120At652;
+            }
+        }
+        argumentWord4 = (int)ownerRecord18;
+        goto callOriginalCommon774;
+    case 5:
+        rawWord2 = Level32_7AC10Data6C770View1;
+        argumentWord4 = (int)ownerRecord18;
+        if (!rawWord2) goto callOriginalCommon774;
+        writeOriginalTimer120At652:argumentWord5 = 3;
+        rawWord2 = 120;
+        Level32_7AC10Field(privateCursorOrLateParticleCount19, int*, 16) = rawWord2;
+        rawWord2 = 3;
+        callOriginalStateWriter656:Level32_7AC10Field(ownerRecord18, unsigned char*, 72) = rawWord2;
+        Level32_7AC10Call34F40View1(argumentWord4, argumentWord5);
+        argumentWord4 = (int)ownerRecord18;
+        goto callOriginalCommon774;
+    case 8:
+        argumentWord4 = (int)ownerRecord18;
+        argumentWord5 = privateCursorOrLateParticleCount19;
+        argumentWord7 = 0;
+        privateCursorOrLateParticleCount19 = 4;
+        __asm__("":"=r"(privateCursorOrLateParticleCount19):"0"(privateCursorOrLateParticleCount19), "r"(argumentWord4), "r"(argumentWord5), "r"(argumentWord7));
+        retainedPrivatePlayerViewOrParticleIndex17 = 0;
+        retainedHeightOffsetOrParticleVector21 = (int)&originalFrame.sp40;
+        Level32_7AC10Call35030View1(argumentWord4, argumentWord5, Level32_7AC10Field(argumentWord5, int*, 8), argumentWord7, 12, 0, 0, 1);
+        Level32_7AC10Call55D24View1(ownerRecord18, 4);
+        argumentWord4 = (int)ownerRecord18;
+        argumentWord5 = 0;
+        __asm__ volatile(""::"r"(argumentWord4), "r"(argumentWord5):"$16");
+        retainedRecordDistanceOrParticleIndex16 = (int)&originalFrame.sp30;
+        Level32_7AC10Call55F14View1(argumentWord4, argumentWord5, retainedRecordDistanceOrParticleIndex16);
+        retainedListIndexOrParticleDistance20 = Level32_7AC10Call4F334View1(ownerRecord18+12, retainedRecordDistanceOrParticleIndex16);
+        do {
+            Level32_7AC10Call4F178View1(retainedHeightOffsetOrParticleVector21, ownerRecord18+12);
+            argumentWord5 = 128/privateCursorOrLateParticleCount19;
+            __asm__("":"=r"(argumentWord5):"0"(argumentWord5));
+            retainedRecordDistanceOrParticleIndex16 = (retainedPrivatePlayerViewOrParticleIndex17 << 8)/privateCursorOrLateParticleCount19;
+            __asm__("":"=r"(retainedRecordDistanceOrParticleIndex16):"0"(retainedRecordDistanceOrParticleIndex16), "r"(argumentWord5):"memory");
+            rawWord2 = originalFrame.sp38;
+            argumentWord4 = 0;
+            originalFrame.sp48 = rawWord2;
+            rawWord2 = Level32_7AC10Call363DCView1(argumentWord4, argumentWord5);
+            retainedRecordDistanceOrParticleIndex16 += rawWord2;
+            __asm__("":"=r"(retainedRecordDistanceOrParticleIndex16):"0"(retainedRecordDistanceOrParticleIndex16));
+            retainedRecordDistanceOrParticleIndex16 &= 255;
+            __asm__("":"=r"(retainedRecordDistanceOrParticleIndex16):"0"(retainedRecordDistanceOrParticleIndex16));
+            retainedRecordDistanceOrParticleIndex16 *= 2;
+            originalFrame.sp40 += (int) (Level32_7AC10Field((int)&Level32_7AC10Data65920View1, short*, retainedRecordDistanceOrParticleIndex16) * retainedListIndexOrParticleDistance20) >> 0xC;
+            retainedPrivatePlayerViewOrParticleIndex17 += 1;
+            originalFrame.sp44 += (int) (Level32_7AC10Field((int)&Level32_7AC10Data658A0View1, short*, retainedRecordDistanceOrParticleIndex16) * retainedListIndexOrParticleDistance20) >> 0xC;
+            originalFrame.sp50 = (Level32_7AC10DatarandView1() & 0x1F) - 0x10;
+            originalFrame.sp54 = (Level32_7AC10DatarandView1() & 0x1F) - 0x10;
+            originalFrame.sp58 = Level32_7AC10Call3636CView1(0x12, 0x18);
+            Level32_7AC10DataSpawnParticleView1(1, 13, retainedHeightOffsetOrParticleVector21, &originalFrame.sp50);
+        }
+        while (retainedPrivatePlayerViewOrParticleIndex17 < privateCursorOrLateParticleCount19);
+        if (Level32_7AC10Data6C770View1 != 0) {
+        removeOriginalOwner769:
+            Level32_7AC10Call55B18View1(ownerRecord18);
+            return;
+        }
+        argumentWord4 = (int)ownerRecord18;
+        goto callOriginalCommon774;
+        default:goto produceOriginalDefaultOwner773;
+    }
+    produceOriginalDefaultOwner773:argumentWord4 = (int)ownerRecord18;
+    callOriginalCommon774:Level32_7AC10Call55D24View1(argumentWord4, 1);
+    return;
+}
+#undef Level32_7AC10Field
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/moby", func_level_32_8007B864);
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/moby", func_level_32_8007C438);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original8007B864.
+* Assembly SHA256 0fcc92dfe99491f469b25073d7d80d5cfc74659ebe2d1dac1f2b96f44a493673.
+* AI generated;not human reviewed. All757 instructions,22 selector words
+* and every actual native/linked transfer/table target must match. Frame78
+* retains S0..S5/RA and full SP20..57 local extent. Private34 dispatch0/2
+* and owner-byte states retain original physical order. Shared35734 entry
+* occurs after state20's transition9 producers;the effect/child tail occurs
+* after states8/10. Both returned S0 values survive3573C through their
+* original call-delay copies. Signed raw difference1800/word-plus300 paths,
+* the early halfword2C clear,post-store signed LH2C and late callback
+* arguments retain exact producers and destinations. The final result-byte
+* load,A1 literal15 and S0+128 preserve their original call-delay positions.
+* Trig table reads consume original signed halfwords at byte offsets;
+* vector shifts,random calls and child byte4F clamp32 remain unchanged.
+* All empty identities/late inputs/dead clobbers are initialized and emit
+* zero instructions. No opcode assembly,partialHI,fixedFP or overlapping
+* live fixed aliases. Confidence is binary identity after all gates.
+* Raw units/fixed point,full helper contracts,caller cadence,synchronized
+* retail runtime and subsystem completion remain open. Cadence recorded
+* here is per invocation. Falsification:every native/linked word,target,
+* original data byte,complete EXE and every overlay retail hash. */
+#define Actor32_7B864Field(p, t, o) (*(t)((unsigned char*)(p)+(o)))
+int Actor32_7B864Call1A358View1() __asm__("func_8001A358");
+int Actor32_7B864Call34F40View1() __asm__("func_80034F40");
+int Actor32_7B864Call35030View1() __asm__("func_80035030");
+int Actor32_7B864Call35194View1() __asm__("func_80035194");
+int Actor32_7B864Call35734View1() __asm__("func_80035734");
+int Actor32_7B864Call3573CView1() __asm__("func_8003573C");
+int Actor32_7B864Call359A4View1() __asm__("func_800359A4");
+int Actor32_7B864Call35A80View1() __asm__("func_80035A80");
+int Actor32_7B864Call3636CView1() __asm__("func_8003636C");
+int Actor32_7B864Call363DCView1() __asm__("func_800363DC");
+int Actor32_7B864Call365E4View1() __asm__("func_800365E4");
+int Actor32_7B864Call369B8View1() __asm__("func_800369B8");
+int Actor32_7B864Call36A68View1() __asm__("func_80036A68");
+int Actor32_7B864Call37014View1() __asm__("func_80037014");
+int Actor32_7B864Call37A60View1() __asm__("func_80037A60");
+int Actor32_7B864Call38BF8View1() __asm__("func_80038BF8");
+int Actor32_7B864Call3BA00View1() __asm__("func_8003BA00");
+int Actor32_7B864Call4E880View1() __asm__("func_8004E880");
+int Actor32_7B864Call4EDE8View1() __asm__("func_8004EDE8");
+int Actor32_7B864Call4F08CView1() __asm__("func_8004F08C");
+int Actor32_7B864Call4F178View1() __asm__("func_8004F178");
+int Actor32_7B864Call4F1C8View1() __asm__("func_8004F1C8");
+int Actor32_7B864Call4F264View1() __asm__("func_8004F264");
+int Actor32_7B864Call4F334View1() __asm__("func_8004F334");
+int Actor32_7B864Call55B18View1() __asm__("func_80055B18");
+int Actor32_7B864Call55D24View1() __asm__("func_80055D24");
+int Actor32_7B864Call55E84View1() __asm__("func_80055E84");
+int Actor32_7B864Call55F14View1() __asm__("func_80055F14");
+int Actor32_7B864DatarandView1() __asm__("rand");
+extern int Actor32_7B864Data658A0View1 __asm__("D_800658A0");
+extern int Actor32_7B864Data65920View1 __asm__("D_80065920");
+extern int Actor32_7B864Data6C770View1 __asm__("D_8006C770");
+extern int Actor32_7B864Data6E020View1 __asm__("D_8006E020");
+extern int Actor32_7B864Data6E024View1 __asm__("D_8006E024");
+extern unsigned short Actor32_7B864Data6E040View1 __asm__("D_8006E040");
+extern int Actor32_7B864Data70328View1 __asm__("D_80070328");
+extern int(*Actor32_7B864DataSpawnMobyView1)() __asm__("SpawnMoby");
+extern int(*Actor32_7B864DataSpawnParticleView1)() __asm__("SpawnParticle");
+extern int(*Actor32_7B864Data74410View1)() __asm__("unk_ovlheader_80074410");
+void func_level_32_8007B864(void *input) {
+    register int rawWord2 __asm__("$2"), rawWord3 __asm__("$3"), argumentWord4 __asm__("$4"), argumentWord5 __asm__("$5"), argumentWord6 __asm__("$6"), argumentWord7 __asm__("$7");
+    register void *ownerRecord17 __asm__("$17");
+    register int privateRecord18 __asm__("$18"), resultOrBound16 __asm__("$16"), recordOrFlag19 __asm__("$19"), argumentBound20 __asm__("$20"), retainedResult21 __asm__("$21");
+    struct{
+        int sp20, sp24, sp28, sp2C, sp30, sp34, sp38, sp3C, sp40, sp44, sp48, sp4C, sp50, sp54;
+    }
+    originalFrame;
+    int temporaryWord7;
+    int temporaryWord13;
+    int temporaryWord3;
+    int temporaryWord8;
+    int temporaryWord11;
+    int temporaryWord14;
+    int temporaryWord9;
+    int temporaryWord1;
+    int temporaryWord2;
+    int temporaryWord4;
+    int temporaryWord5;
+    int temporaryWord6;
+    int temporaryWord10;
+    int temporaryWord12;
+    ownerRecord17 = input;
+    __asm__("":"=r"(ownerRecord17):"0"(ownerRecord17));
+    privateRecord18 = Actor32_7B864Field(ownerRecord17, void **, 0);
+    temporaryWord7 = Actor32_7B864Field(privateRecord18, short *, 0x34);
+    switch (temporaryWord7) {
+    case 2:
+        Actor32_7B864Field(ownerRecord17, signed char *, 0x41) = 0;
+        Actor32_7B864Field(ownerRecord17, signed char *, 0x4C) = 0;
+        Actor32_7B864Field(ownerRecord17, signed char *, 0x4D) = 0;
+        Actor32_7B864Field(ownerRecord17, int *, 8) = 0;
+        Actor32_7B864Field(privateRecord18, short *, 0x34) = 1;
+        return;
+    case 0:
+        Actor32_7B864Call359A4View1(privateRecord18 + 0x28, 1);
+        Actor32_7B864Call359A4View1(privateRecord18 + 0x29, 1);
+        temporaryWord8 = Actor32_7B864Field(ownerRecord17, int *, 0x18);
+        if (((temporaryWord8 & 0x10000) && (Actor32_7B864Field(privateRecord18, unsigned char *, 0x29) == 0)) || (temporaryWord8 & 0x8A0000)) {
+            temporaryWord9 = Actor32_7B864Field(ownerRecord17, unsigned char *, 0x48);
+            if ((temporaryWord9 != 8) && (temporaryWord9 != 0xA)) {
+                temporaryWord1 = Actor32_7B864Field(privateRecord18, void **, 0x30);
+                if (temporaryWord1 != 0) {
+                    Actor32_7B864Call55B18View1(temporaryWord1);
+                    Actor32_7B864Field(privateRecord18, void **, 0x30) = 0;
+                }
+                if (Actor32_7B864Field(ownerRecord17, int *, 0x18) == 0x10000) {
+                    Actor32_7B864Field(privateRecord18, unsigned char *, 0x37) = 1U;
+                }
+                Actor32_7B864Call36A68View1(ownerRecord17, 0, 0, 0);
+                Actor32_7B864Call38BF8View1(ownerRecord17, privateRecord18 + 0x10, 1, 0xA);
+            }
+        }
+        Actor32_7B864Field(ownerRecord17, int *, 0x18) = 0;
+        switch (Actor32_7B864Field(ownerRecord17, unsigned char *, 0x48)) {
+        case 0:
+            Actor32_7B864Call37A60View1(ownerRecord17, privateRecord18 + 0x16, 2, 0xA, -0xC8);
+            Actor32_7B864Call359A4View1(privateRecord18 + 0x2A, 2);
+            if (Actor32_7B864Field(privateRecord18, short *, 0x2A) < 0x3C) {
+                if (Actor32_7B864Field(privateRecord18, void **, 0x30) != 0) {
+                    Actor32_7B864Field(ownerRecord17, unsigned char *, 0x48) = 4U;
+                    Actor32_7B864Call34F40View1(ownerRecord17, 4);
+                    return;
+                }
+                Actor32_7B864Field(ownerRecord17, unsigned char *, 0x48) = 3U;
+                Actor32_7B864Call34F40View1(ownerRecord17, 3);
+                return;
+            }
+            if ((Actor32_7B864Call3573CView1(ownerRecord17, 5, 0, 0) != 0) && (Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) != 0)) {
+                argumentWord4 = (int)ownerRecord17;
+                Actor32_7B864Data6C770View1 = 0;
+                Actor32_7B864Field(ownerRecord17, signed char *, 0x40) = 0x72;
+                Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) = 0U;
+                goto clearOwnerByteAndCall35734;
+            }
+            default:goto updateSharedEffectAndChild;
+        case 3:
+            rawWord2 = Actor32_7B864Call55E84View1(ownerRecord17);
+            argumentWord4 = (int)ownerRecord17;
+            argumentWord5 = 7;
+            argumentWord6 = 0;
+            argumentWord7 = 0;
+            __asm__(""::"r"(argumentWord4), "r"(argumentWord5), "r"(argumentWord6), "r"(argumentWord7):"$16");
+            resultOrBound16 = rawWord2;
+            Actor32_7B864Call3573CView1(argumentWord4, argumentWord5, argumentWord6, argumentWord7);
+            if ((Actor32_7B864Field(privateRecord18, void **, 0x30) == 0) && (rawWord2 = resultOrBound16 < 19, !rawWord2)) {
+                Actor32_7B864Call55D24View1(ownerRecord17, 4);
+                Actor32_7B864Call55F14View1(ownerRecord17, 0, &originalFrame.sp20);
+                Actor32_7B864Data74410View1(&originalFrame.sp20, 0x3A, 0xC, 8, 0xC);
+                temporaryWord2 = Actor32_7B864DataSpawnMobyView1(0x249, ownerRecord17);
+                Actor32_7B864Field(privateRecord18, void **, 0x30) = temporaryWord2;
+                if (temporaryWord2 != 0) {
+                    Actor32_7B864Field(temporaryWord2, signed char *, 0x48) = 0x64;
+                    Actor32_7B864Field(Actor32_7B864Field(privateRecord18, void **, 0x30), unsigned char *, 0x4F) = 0x50U;
+                }
+            }
+            if (Actor32_7B864Data6C770View1 != 0) {
+                Actor32_7B864Field(ownerRecord17, unsigned char *, 0x48) = 4U;
+                Actor32_7B864Call34F40View1(ownerRecord17, 4);
+            }
+            goto updateSharedEffectAndChild;
+        case 4:
+            Actor32_7B864Call37A60View1(ownerRecord17, privateRecord18 + 0x16, 2, 0xA, -0xC8);
+            Actor32_7B864Call3573CView1(ownerRecord17, 6, 0, 0);
+            if ((Actor32_7B864Call359A4View1(privateRecord18 + 0x2A, 2) != 0) && (Actor32_7B864Call4F334View1(ownerRecord17 + 0xC, &Actor32_7B864Data70328View1) < 0x2134)) {
+                temporaryWord11 = Actor32_7B864Field(ownerRecord17, int *, 0x14) - Actor32_7B864Field(ownerRecord17, short *, 0x38);
+                temporaryWord3 = temporaryWord11 - Actor32_7B864Field(&Actor32_7B864Data70328View1, int *, 8);
+                if (temporaryWord3 >= 0) {
+                    if (temporaryWord3 < 0x320) {
+                        goto block_35;
+                    }
+                }
+                else if ((Actor32_7B864Field(&Actor32_7B864Data70328View1, int *, 8) - temporaryWord11) < 0x320) {
+                block_35:
+                    if ((((Actor32_7B864Field(ownerRecord17, int *, 0x14) - Actor32_7B864Field(ownerRecord17, short *, 0x38)) - Actor32_7B864Field(&Actor32_7B864Data70328View1, int *, 8)) < 0xC8) && (Actor32_7B864Field(&Actor32_7B864Data70328View1, int *, 0xB8) == 0) && (Actor32_7B864Call4F264View1((int) (Actor32_7B864Data6E040View1 << 0x10) >> 0x14, Actor32_7B864Call4E880View1(Actor32_7B864Field(ownerRecord17, int *, 0xC) - Actor32_7B864Data6E020View1, Actor32_7B864Field(ownerRecord17, int *, 0x10) - Actor32_7B864Data6E024View1, 0)) < 0x18) && (Actor32_7B864Call4F264View1((int) Actor32_7B864Field(ownerRecord17, unsigned char *, 0x46), Actor32_7B864Call4E880View1(Actor32_7B864Field(&Actor32_7B864Data70328View1, int *, 0) - Actor32_7B864Field(ownerRecord17, int *, 0xC), Actor32_7B864Field(&Actor32_7B864Data70328View1, int *, 4) - Actor32_7B864Field(ownerRecord17, int *, 0x10), 0)) < 8)) {
+                        Actor32_7B864Field(ownerRecord17, unsigned char *, 0x48) = 2U;
+                        Actor32_7B864Call34F40View1(ownerRecord17, 2);
+                    }
+                }
+            }
+            goto updateSharedEffectAndChild;
+        case 2:
+            rawWord2 = Actor32_7B864Call55E84View1(ownerRecord17);
+            argumentWord4 = (int)ownerRecord17;
+            argumentWord5 = 7;
+            argumentWord6 = 0;
+            argumentWord7 = 0;
+            __asm__(""::"r"(argumentWord4), "r"(argumentWord5), "r"(argumentWord6), "r"(argumentWord7):"$16");
+            resultOrBound16 = rawWord2;
+            Actor32_7B864Call3573CView1(argumentWord4, argumentWord5, argumentWord6, argumentWord7);
+            if ((Actor32_7B864Field(privateRecord18, short *, 0x2A) == 0) && (rawWord2 = resultOrBound16 < 16, !rawWord2)) {
+                temporaryWord12 = Actor32_7B864Field(privateRecord18, void **, 0x30);
+                recordOrFlag19 = Actor32_7B864Field(temporaryWord12, void **, 0);
+                Actor32_7B864Field(temporaryWord12, signed char *, 0x48) = 0x63;
+                Actor32_7B864Field(privateRecord18, short *, 0x2A) = 0x14;
+                Actor32_7B864Call4F178View1(&originalFrame.sp30, &Actor32_7B864Data70328View1);
+                rawWord2 = Actor32_7B864Call1A358View1(&originalFrame.sp30, 0x1000);
+                argumentWord4 = originalFrame.sp38;
+                rawWord3 = rawWord2;
+                rawWord2 = argumentWord4-rawWord3;
+                if (rawWord2 < 0) goto compareOppositeRawDifference;
+                rawWord2 = rawWord2 < 1800;
+                if (rawWord2) goto storeOriginalWordPlus300;
+                argumentWord4 = recordOrFlag19;
+                goto copyOriginalPrivateVector;
+                compareOppositeRawDifference:rawWord2 = rawWord3-argumentWord4;
+                rawWord2 = rawWord2 < 1800;
+                if (!rawWord2) goto keepOriginalFrameWord;
+                storeOriginalWordPlus300:rawWord2 = rawWord3+300;
+                originalFrame.sp38 = rawWord2;
+                keepOriginalFrameWord:argumentWord4 = recordOrFlag19;
+                copyOriginalPrivateVector:Actor32_7B864Call4F1C8View1(argumentWord4, &originalFrame.sp30, Actor32_7B864Field(privateRecord18, void**, 0x30)+12);
+                Actor32_7B864Call4F08CView1(recordOrFlag19, Actor32_7B864Call4EDE8View1(recordOrFlag19, 1), 0xFA);
+                Actor32_7B864Field(recordOrFlag19, short *, 0x10) = 0x78;
+                Actor32_7B864Field(recordOrFlag19, signed char *, 0x15) = 0x10;
+                Actor32_7B864Field(privateRecord18, void **, 0x30) = 0;
+            }
+            Actor32_7B864Call37A60View1(ownerRecord17, privateRecord18 + 0x16, 2, 0xA, -0xC8);
+            if (Actor32_7B864Data6C770View1 != 0) {
+                Actor32_7B864Field(ownerRecord17, unsigned char *, 0x48) = 3U;
+                Actor32_7B864Call34F40View1(ownerRecord17, 3);
+            }
+            goto updateSharedEffectAndChild;
+        case 20:
+            if (Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) != 8) {
+                Actor32_7B864Data6C770View1 = 0;
+                Actor32_7B864Field(ownerRecord17, signed char *, 0x40) = 0x72;
+                Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) = 8U;
+                Actor32_7B864Field(ownerRecord17, signed char *, 0x3F) = 0;
+                Actor32_7B864Call35734View1(ownerRecord17);
+            }
+            if (Actor32_7B864Field(privateRecord18, unsigned char *, 0x36) != 0) {
+                Actor32_7B864Call35030View1(ownerRecord17, privateRecord18, Actor32_7B864Field(privateRecord18, int *, 4), 0, 0xC, 0, 0x12C, 0x4001);
+                Actor32_7B864Call37014View1(ownerRecord17);
+            }
+            else {
+                Actor32_7B864Call35030View1(ownerRecord17, privateRecord18, Actor32_7B864Field(privateRecord18, int *, 4), privateRecord18 + 8, 0xC, 0x10, 0x12C, 0x4001);
+                Actor32_7B864Field(privateRecord18, short *, 0x16) = (short) Actor32_7B864Field(privateRecord18, int *, 8);
+            }
+            if (Actor32_7B864Field(ownerRecord17, unsigned char *, 0x49) != 0) {
+                Actor32_7B864Field(ownerRecord17, int *, 0x14) = (int) (Actor32_7B864Field(ownerRecord17, int *, 0x14) + 0x28A);
+            }
+            if (Actor32_7B864Field(privateRecord18, unsigned char *, 0x28) == 0) {
+                if (Actor32_7B864Field(ownerRecord17, unsigned char *, 0x49) == 0) {
+                    if (Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) != 1) {
+                        Actor32_7B864Data6C770View1 = 0;
+                        Actor32_7B864Field(ownerRecord17, signed char *, 0x40) = 0x72;
+                        Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) = 1U;
+                        Actor32_7B864Field(ownerRecord17, signed char *, 0x3F) = 0;
+                        Actor32_7B864Call35734View1(ownerRecord17);
+                    }
+                    Actor32_7B864Field(privateRecord18, short *, 0x16) = 0;
+                }
+                else {
+                    if (Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) != 5) {
+                        Actor32_7B864Data6C770View1 = 0;
+                        Actor32_7B864Field(ownerRecord17, signed char *, 0x40) = 0x72;
+                        Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) = 5U;
+                        Actor32_7B864Field(ownerRecord17, signed char *, 0x3F) = 0;
+                        Actor32_7B864Call35734View1(ownerRecord17);
+                    }
+                    Actor32_7B864Field(privateRecord18, short *, 0x16) = 0x8C;
+                }
+                Actor32_7B864Field(ownerRecord17, unsigned char *, 0x48) = 0x15U;
+            }
+            goto updateSharedEffectAndChild;
+        case 21:
+            rawWord2 = Actor32_7B864Call55E84View1(ownerRecord17);
+            resultOrBound16 = 200;
+            recordOrFlag19 = 0;
+            argumentBound20 = 40;
+            retainedResult21 = rawWord2;
+            if (Actor32_7B864Field(privateRecord18, void **, 0x30) == 0) {
+                temporaryWord4 = Actor32_7B864DataSpawnMobyView1(0x249, ownerRecord17);
+                Actor32_7B864Field(privateRecord18, void **, 0x30) = temporaryWord4;
+                if (temporaryWord4 != 0) {
+                    Actor32_7B864Field(temporaryWord4, signed char *, 0x48) = 0x64;
+                }
+            }
+            if (Actor32_7B864Data6C770View1 != 0) {
+                if (Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) == 5) {
+                    Actor32_7B864Data6C770View1 = 0;
+                    Actor32_7B864Field(ownerRecord17, signed char *, 0x40) = 0x72;
+                    Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) = 6U;
+                    Actor32_7B864Field(ownerRecord17, signed char *, 0x3F) = 0;
+                    Actor32_7B864Call35734View1(ownerRecord17);
+                }
+                if (Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) == 7) {
+                    Actor32_7B864Data6C770View1 = 0;
+                    Actor32_7B864Field(ownerRecord17, signed char *, 0x40) = 0x72;
+                    Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) = 1U;
+                    Actor32_7B864Field(ownerRecord17, signed char *, 0x3F) = 0;
+                    Actor32_7B864Call35734View1(ownerRecord17);
+                    goto block_75;
+                }
+                goto block_76;
+            }
+            block_75:if (Actor32_7B864Field(ownerRecord17, unsigned char*, 0x3D) == 7) goto clearPrivateHalfwordAndReturn;
+        block_76:
+            if ((Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) == 5) && (retainedResult21 < 5)) {
+                clearPrivateHalfwordAndReturn:Actor32_7B864Field(privateRecord18, unsigned short*, 0x2C) = 0;
+                return;
+            }
+            if (Actor32_7B864Call37A60View1(ownerRecord17, privateRecord18 + 0x16, 2, 0xA, -0xC8) != 0) {
+                resultOrBound16 = 0xA0;
+                if (Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) == 9) {
+                    Actor32_7B864Data6C770View1 = 0;
+                    Actor32_7B864Field(ownerRecord17, signed char *, 0x40) = 0x72;
+                    Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) = 1U;
+                    Actor32_7B864Field(ownerRecord17, signed char *, 0x3F) = 0;
+                    Actor32_7B864Call35734View1(ownerRecord17);
+                }
+                if (Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) == 6) {
+                    Actor32_7B864Field(ownerRecord17, unsigned char *, 0x49) = 0U;
+                    if (Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) != 7) {
+                        Actor32_7B864Data6C770View1 = 0;
+                        Actor32_7B864Field(ownerRecord17, signed char *, 0x40) = 0x72;
+                        Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) = 7U;
+                        Actor32_7B864Field(ownerRecord17, signed char *, 0x3F) = 0;
+                        Actor32_7B864Call35734View1(ownerRecord17);
+                    }
+                }
+            }
+            else {
+                recordOrFlag19 = 1;
+            }
+            if (Actor32_7B864Field(ownerRecord17, unsigned char *, 0x49) == 1) {
+                resultOrBound16 = 0xA0;
+                argumentBound20 = 0x80;
+            }
+            if (recordOrFlag19 != 0) {
+                temporaryWord14 = Actor32_7B864Field(privateRecord18, unsigned short *, 0x2C) + 0x1E;
+            }
+            else {
+                temporaryWord14 = Actor32_7B864Field(privateRecord18, unsigned short *, 0x2C) + 0xF;
+            }
+            Actor32_7B864Field(privateRecord18, unsigned short*, 0x2C) = temporaryWord14;
+            __asm__ __volatile__("":::"memory");
+            if (resultOrBound16 < Actor32_7B864Field(privateRecord18, short*, 0x2C)) {
+                Actor32_7B864Field(privateRecord18, unsigned short *, 0x2C) = (unsigned short) resultOrBound16;
+            }
+            if (Actor32_7B864Call35A80View1(ownerRecord17, Actor32_7B864Field(privateRecord18, void **, 0xC), 0x100, (short) Actor32_7B864Field(privateRecord18, unsigned short *, 0x2C), 0, 8, argumentBound20, 1) & 1) {
+                temporaryWord5 = Actor32_7B864Field(privateRecord18, void **, 0xC);
+                temporaryWord13 = Actor32_7B864Field(temporaryWord5, short *, 2);
+                if (temporaryWord13 > 0) {
+                    if (Actor32_7B864Field(((temporaryWord13 * 0x10) + Actor32_7B864Field(temporaryWord5, int *, 0xC)), int *, -4) == 1) {
+                        Actor32_7B864Field(privateRecord18, short *, 0x2E) = 1;
+                    }
+                }
+                if (Actor32_7B864Field(Actor32_7B864Field(privateRecord18, void **, 0xC), short *, 2) == 0) {
+                    Actor32_7B864Field(privateRecord18, unsigned char *, 0x37) = 0U;
+                    Actor32_7B864Field(ownerRecord17, unsigned char *, 0x48) = 0U;
+                }
+            }
+            if ((Actor32_7B864Field(privateRecord18, short *, 0x2E) != 0) && (Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) == 1) && ((rawWord2 = retainedResult21-9, (unsigned int)rawWord2 < 4U))) {
+                temporaryWord6 = Actor32_7B864Field(privateRecord18, void **, 0xC);
+                Actor32_7B864Field(privateRecord18, short *, 0x2E) = 0;
+                Actor32_7B864Field(privateRecord18, short *, 0x16) = Actor32_7B864Call365E4View1(ownerRecord17 + 0xC, Actor32_7B864Field(temporaryWord6, int *, 0xC) + (Actor32_7B864Field(temporaryWord6, short *, 2) * 0x10), 0xC8, -0xA, &originalFrame.sp40);
+                if (Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) != 9) {
+                    argumentWord4 = (int)ownerRecord17;
+                    Actor32_7B864Data6C770View1 = 0;
+                    Actor32_7B864Field(ownerRecord17, signed char *, 0x40) = 0x72;
+                    Actor32_7B864Field(ownerRecord17, unsigned char *, 0x3D) = 9U;
+                    clearOwnerByteAndCall35734:Actor32_7B864Field(ownerRecord17, signed char*, 0x3F) = 0;
+                    Actor32_7B864Call35734View1(argumentWord4);
+                }
+            }
+            goto updateSharedEffectAndChild;
+        case 8:
+        case 10:
+            if (Actor32_7B864Call35194View1(ownerRecord17, privateRecord18 + 0x10) == 0x100) {
+                Actor32_7B864Call55D24View1(ownerRecord17, 4);
+                Actor32_7B864Call3BA00View1(ownerRecord17);
+                Actor32_7B864Call369B8View1(ownerRecord17, 0x20);
+                Actor32_7B864Call55B18View1(ownerRecord17);
+                return;
+            }
+            goto updateSharedEffectAndChild;
+        }
+        break;
+    }
+    return;
+updateSharedEffectAndChild:
+    if (Actor32_7B864Field(privateRecord18, unsigned char *, 0x37) != 0) {
+        Actor32_7B864Call4F178View1(&originalFrame.sp20, ownerRecord17 + 0xC);
+        rawWord2 = Actor32_7B864Call363DCView1(0, 50);
+        rawWord3 = originalFrame.sp28;
+        __asm__("":"=r"(rawWord3):"0"(rawWord3):"$4");
+        argumentWord4 = 0;
+        __asm__("":"=r"(rawWord3), "=r"(argumentWord4):"0"(rawWord3), "1"(argumentWord4));
+        rawWord3 += 350;
+        rawWord3 += rawWord2;
+        originalFrame.sp28 = rawWord3;
+        resultOrBound16 = Actor32_7B864Field(ownerRecord17, unsigned char*, 0x46);
+        __asm__("":"=r"(resultOrBound16):"0"(resultOrBound16):"$5");
+        argumentWord5 = 15;
+        __asm__("":"=r"(argumentWord5):"0"(argumentWord5));
+        resultOrBound16 += 128;
+        rawWord2 = Actor32_7B864Call363DCView1(argumentWord4, argumentWord5);
+        resultOrBound16 += rawWord2;
+        __asm__("":"=r"(resultOrBound16):"0"(resultOrBound16));
+        resultOrBound16 &= 255;
+        resultOrBound16 <<= 1;
+        originalFrame.sp20 += (int) (Actor32_7B864Field(&Actor32_7B864Data65920View1, short*, resultOrBound16) * 0xE1) >> 0xB;
+        originalFrame.sp24 += (int) (Actor32_7B864Field(&Actor32_7B864Data658A0View1, short*, resultOrBound16) * 0xE1) >> 0xB;
+        originalFrame.sp48 = (Actor32_7B864DatarandView1() & 0x1F) - 0x10;
+        originalFrame.sp4C = (Actor32_7B864DatarandView1() & 0x1F) - 0x10;
+        originalFrame.sp50 = Actor32_7B864Call3636CView1(0x12, 0x18);
+        Actor32_7B864DataSpawnParticleView1(1, 0xD, &originalFrame.sp20, &originalFrame.sp48);
+    }
+    if (Actor32_7B864Field(privateRecord18, void **, 0x30) != 0) {
+        Actor32_7B864Call55D24View1(ownerRecord17, 4);
+        Actor32_7B864Call55F14View1(ownerRecord17, 0, Actor32_7B864Field(privateRecord18, void **, 0x30) + 0xC);
+        temporaryWord10 = Actor32_7B864Field(privateRecord18, void **, 0x30);
+        Actor32_7B864Field(temporaryWord10, unsigned char *, 0x4F) = (unsigned char) (Actor32_7B864Field(temporaryWord10, unsigned char *, 0x4F) - 8);
+        argumentWord4 = Actor32_7B864Field(privateRecord18, int*, 0x30);
+        if (Actor32_7B864Field(argumentWord4, unsigned char*, 0x4F) < 32){
+            Actor32_7B864Field(argumentWord4, unsigned char*, 0x4F) = 32;
+        }
+    }
+    return;
+}
+#undef Actor32_7B864Field
+
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original8007C438.
+* AI generated; not human reviewed. All1105 instructions and52 selectors,
+* 1157 owned original words, require every native/linked word and actual
+* transfer/table destination. Frame70 saves S0..S7/RA,SP20..47 locals.
+* Original zero/one/two dispatch,distinct first clear304/later clear359,
+* reset366,state40 literal/store815/816,increment935,halfword reset946,
+* removal1063 and final flags/helper1087/1091 retain physical entries.
+* Packed pointer table indexes are raw4-byte offsets. Each halfword list
+* processes the current masked15-bit entry,then tests that same entry's
+* signed high bit before advancing2. [0x0002,0x800B] processes2 and11 and
+* stops before a third entry. Original633..644/669..672 prove this order.
+* Full saved one,selector,list pointer,index and linked record lifetimes
+* remain disjoint. Whole adjusted angle returns precede fresh arguments.
+* Signed descriptor cap192/minimum80 and independent mask435/446 entries
+* retain original producers. Last helper return remains complete until
+* new SP38/position/height inputs precede original saved-result move1046.
+* Complete dispatch byte survives through its selector only where used.
+* Empty metadata reads initialized complete values/addresses or clobbers
+* dead values before complete producers;zero CPU instructions. No partialHI,
+* fixedFP,undefined saved inputs,live alias overlap or pipeline changes.
+* Units/fixed point,complete helper/caller chains,cadence beyond invocation
+* and synchronized runtime remain open. Confidence: binary identity only
+* after every gate. Next: human review and synchronized retail captures.
+* Falsification: native/linked words,actual targets,owned selectors and
+* full EXE/every-overlay retail hashes must remain identical.
+*/
+/* Original assembly SHA256 c1f85c1d7afaabf6294e6bae8fbe086d7739670a6890d2182f379d846f37c28a */
+#define Level32_7C438Field(p, t, o) (*(t)((unsigned char*)(p)+(o)))
+void Level32_7C438Call34F40View1(void*, int) __asm__("func_80034F40");
+int Level32_7C438Call35734View1() __asm__("func_80035734");
+int Level32_7C438Call3573CView1() __asm__("func_8003573C");
+int Level32_7C438Call3585CView1() __asm__("func_8003585C");
+int Level32_7C438Call359A4View1(void*, int) __asm__("func_800359A4");
+int Level32_7C438Call35A80View1() __asm__("func_80035A80");
+int Level32_7C438Call35DDCView1() __asm__("func_80035DDC");
+int Level32_7C438Call36220View1() __asm__("func_80036220");
+int Level32_7C438Call3645CView1() __asm__("func_8003645C");
+int Level32_7C438Call365E4View1() __asm__("func_800365E4");
+int Level32_7C438Call37014View1() __asm__("func_80037014");
+int Level32_7C438Call37A60View1() __asm__("func_80037A60");
+int Level32_7C438Call37BBCView1() __asm__("func_80037BBC");
+int Level32_7C438Call3B634View1() __asm__("func_8003B634");
+int Level32_7C438Call3B74CView1() __asm__("func_8003B74C");
+int Level32_7C438Call3B7B4View1() __asm__("func_8003B7B4");
+int Level32_7C438Call492DCView1() __asm__("func_800492DC");
+int Level32_7C438Call4E880View1(int, int, int) __asm__("func_8004E880");
+int Level32_7C438Call4F178View1() __asm__("func_8004F178");
+int Level32_7C438Call4F264View1(int, int) __asm__("func_8004F264");
+int Level32_7C438Call4F334View1() __asm__("func_8004F334");
+int Level32_7C438Call512E4View1() __asm__("func_800512E4");
+int Level32_7C438Call55B18View1() __asm__("func_80055B18");
+int Level32_7C438Call55D24View1() __asm__("func_80055D24");
+int Level32_7C438Call55E84View1() __asm__("func_80055E84");
+extern int Level32_7C438Data658A0View1 __asm__("D_800658A0");
+extern int Level32_7C438Data65920View1 __asm__("D_80065920");
+extern int Level32_7C438Data6C550View1 __asm__("D_8006C550");
+extern int Level32_7C438Data6C58CView1 __asm__("D_8006C58C");
+extern int Level32_7C438Data6C5C8View1 __asm__("D_8006C5C8");
+extern int Level32_7C438Data6C640View1 __asm__("D_8006C640");
+extern int Level32_7C438Data6C648View1 __asm__("D_8006C648");
+extern int Level32_7C438Data6C65CView1 __asm__("D_8006C65C");
+extern unsigned short** Level32_7C438Data6C730View1 __asm__("D_8006C730");
+extern int Level32_7C438Data6C770View1 __asm__("D_8006C770");
+extern unsigned char Level32_7C438Data6C7B4View1 __asm__("D_8006C7B4");
+extern int Level32_7C438Data6C7F8View1 __asm__("D_8006C7F8");
+extern int Level32_7C438Data6D088View1 __asm__("D_8006D088");
+extern int Level32_7C438Data6E044View1 __asm__("D_8006E044");
+extern int Level32_7C438Data6E344View1 __asm__("D_8006E344");
+extern int Level32_7C438Data70300View1 __asm__("D_80070300");
+extern int Level32_7C438Data70328View1 __asm__("D_80070328");
+extern int(*Level32_7C438DataSpawnMobyView1)() __asm__("SpawnMoby");
+void func_level_32_8007C438(void *ownerParameter) {
+    register int rawWord2 __asm__("$2"), rawWord3 __asm__("$3"), argumentWord4 __asm__("$4"), argumentWord5 __asm__("$5"), argumentWord6 __asm__("$6"), argumentWord7 __asm__("$7"), retainedOne22 __asm__("$22");
+    register void *ownerRecord18 __asm__("$18");
+    register int privateRecord20 __asm__("$20"), retainedPrivateRecordStepOrResult16 __asm__("$16"), retainedOneStepListOrPosition17 __asm__("$17"), retainedLinkedRecordResultOrListIndex19 __asm__("$19"), retainedSignedSelector21 __asm__("$21"), retainedLinkedRecord23 __asm__("$23");
+    struct{
+        int sp20, sp24, sp28, sp2C, sp30, sp34, sp38, sp3C, sp40, sp44;
+    }
+    originalFrame;
+    int temporaryWord7;
+    int temporaryWord8;
+    int temporaryWord23;
+    int temporaryWord1;
+    int temporaryWord2;
+    int temporaryWord3;
+    int temporaryWord4;
+    int temporaryWord9;
+    int temporaryWord10;
+    int temporaryWord12;
+    int temporaryWord19;
+    int temporaryWord20;
+    int temporaryWord22;
+    int temporaryWord13;
+    int temporaryWord17;
+    int temporaryWord18;
+    int temporaryWord21;
+    int temporaryWord5;
+    int temporaryWord6;
+    int temporaryWord11;
+    int temporaryWord14;
+    int temporaryWord15;
+    int temporaryWord16;
+    int temporaryWord24;
+    int temporaryWord25;
+    ownerRecord18 = ownerParameter;
+    __asm__("":"=r"(ownerRecord18):"0"(ownerRecord18));
+    privateRecord20 = Level32_7C438Field(ownerRecord18, void **, 0);
+    rawWord3 = Level32_7C438Field(privateRecord20, int*, 152);
+    argumentWord4 = Level32_7C438Field(ownerRecord18, int*, 24);
+    rawWord2 = rawWord3*88;
+    rawWord3 = Level32_7C438Data6C550View1;
+    retainedLinkedRecordResultOrListIndex19 = rawWord3+rawWord2;
+    if (argumentWord4){
+        rawWord3 = Level32_7C438Field(ownerRecord18, unsigned char*, 72);
+        if (!rawWord3) goto resetOriginalStateSix;
+        rawWord2 = 40;
+        if (rawWord3 != rawWord2){
+            rawWord2 = (unsigned int)rawWord3 < 52;
+            goto originalBoundReady;
+        }
+    resetOriginalStateSix:
+        Level32_7C438Field(ownerRecord18, unsigned char*, 72) = 6;
+        Level32_7C438Call34F40View1(ownerRecord18, 6);
+    }
+    rawWord3 = Level32_7C438Field(ownerRecord18, unsigned char*, 72);
+    rawWord2 = (unsigned int)rawWord3 < 52;
+originalBoundReady:
+    Level32_7C438Field(ownerRecord18, int*, 24) = 0;
+    switch (rawWord3){
+    case 6:__asm__ volatile(""::"r"(rawWord3));
+        if (Level32_7C438Data6C770View1 == 0)break;
+        if (Level32_7C438Data6C5C8View1 == 0) goto resetOriginalOwnerState366;
+        if (Level32_7C438Field(ownerRecord18, unsigned char*, 61) == 0) goto produceOriginalStateForty815;
+        Level32_7C438Data6C770View1 = 0;
+        Level32_7C438Field(ownerRecord18, signed char*, 64) = 114;
+        Level32_7C438Field(ownerRecord18, unsigned char*, 61) = 0;
+        Level32_7C438Field(ownerRecord18, signed char*, 63) = 0;
+        Level32_7C438Call35734View1(ownerRecord18);
+        rawWord2 = 40;
+        goto writeOriginalStateForty816;
+    case 0x0:
+        rawWord2 = Level32_7C438Data6C640View1;
+        if (rawWord2 == 0){
+            rawWord2 = Level32_7C438Field(privateRecord20, short*, 144);
+            retainedOneStepListOrPosition17 = 1;
+            if (rawWord2 != retainedOneStepListOrPosition17){
+                if (!(Level32_7C438Data6C7B4View1 & 1) && !(Level32_7C438Field((int)&Level32_7C438Data70300View1, unsigned char*, Level32_7C438Data6C58CView1) & 1)) {
+                    if (Level32_7C438Call36220View1((int)&Level32_7C438Data70328View1, privateRecord20 + 0x60, 0, 0) != 0) {
+                        Level32_7C438Field(Level32_7C438Field(privateRecord20, void **, 0x3C), short *, 2) = 0x12;
+                        rawWord2 = Level32_7C438Field(privateRecord20, int*, 60);
+                        argumentWord4 = (int)ownerRecord18+12;
+                        argumentWord5 = Level32_7C438Field(rawWord2, short*, 2);
+                        rawWord2 = Level32_7C438Field(rawWord2, int*, 12);
+                        argumentWord5 = (argumentWord5*16)-16;
+                        argumentWord5 = rawWord2+argumentWord5;
+                        Level32_7C438Call4F178View1(argumentWord4, argumentWord5);
+                        Level32_7C438Call37014View1(ownerRecord18);
+                        Level32_7C438Field(ownerRecord18, unsigned char *, 0x52) = 0xFE;
+                        Level32_7C438Call55D24View1(ownerRecord18, 2);
+                        Level32_7C438Field(privateRecord20, unsigned char *, 2) = 2U;
+                        Level32_7C438Field(privateRecord20, signed char *, 5) = 0;
+                        Level32_7C438Field(privateRecord20, int *, 0x44) = 2;
+                        goto writeSharedOriginalPrivateOne155;
+                    }
+                    if (Level32_7C438Call36220View1((int)&Level32_7C438Data70328View1, privateRecord20 + 0x78, 0, 0) != 0) {
+                        Level32_7C438Field(Level32_7C438Field(privateRecord20, void **, 0x3C), short *, 2) = 0x1E;
+                        rawWord2 = Level32_7C438Field(privateRecord20, int*, 60);
+                        argumentWord4 = (int)ownerRecord18+12;
+                        argumentWord5 = Level32_7C438Field(rawWord2, short*, 2);
+                        rawWord2 = Level32_7C438Field(rawWord2, int*, 12);
+                        argumentWord5 = (argumentWord5*16)-16;
+                        argumentWord5 = rawWord2+argumentWord5;
+                        Level32_7C438Call4F178View1(argumentWord4, argumentWord5);
+                        Level32_7C438Call37014View1(ownerRecord18);
+                        Level32_7C438Field(ownerRecord18, unsigned char *, 0x52) = 0xFE;
+                        Level32_7C438Call55D24View1(ownerRecord18, 2);
+                        Level32_7C438Field(privateRecord20, unsigned char *, 2) = 2U;
+                        Level32_7C438Field(privateRecord20, signed char *, 5) = 0;
+                        Level32_7C438Field(privateRecord20, int*, 68) = retainedOneStepListOrPosition17;
+                    writeSharedOriginalPrivateOne155:
+                        Level32_7C438Field(privateRecord20, int*, 80) = retainedOneStepListOrPosition17;
+                    }
+                    rawWord2 = Level32_7C438Data6C640View1;
+                    rawWord2 = rawWord2 < 2;
+                    goto testSharedOriginalSignedBound160;
+                }
+                goto callSharedOriginalRemoval1063;
+            }
+            rawWord2 = 40;
+            goto writeOriginalStateForty816;
+        }
+        else{
+            rawWord2 = rawWord2 < 2;
+        }
+    testSharedOriginalSignedBound160:
+        if (rawWord2)break;
+        rawWord2 = 10;
+        rawWord3 = Level32_7C438Data6E044View1;
+        if (rawWord3 != rawWord2){
+            retainedPrivateRecordStepOrResult16 = privateRecord20 + 0x48;
+            if (Level32_7C438Field(privateRecord20, int *, 0x48) == 0) {
+                Level32_7C438Field(privateRecord20, int *, 0x48) = 1;
+                Level32_7C438Call3B7B4View1(retainedPrivateRecordStepOrResult16, 4, (int)&Level32_7C438Data6D088View1);
+                Level32_7C438Call3B7B4View1(retainedPrivateRecordStepOrResult16, 4, (int)&Level32_7C438Data6C7F8View1);
+                Level32_7C438Field((int)&Level32_7C438Data70328View1, int *, 0x20C) = 0x10000002;
+                Level32_7C438Field(ownerRecord18, unsigned char *, 0x48) = 0x15U;
+                return;
+            }
+            if (Level32_7C438Field(Level32_7C438Field(privateRecord20, void **, 0x3C), short *, 2) == 0) {
+                Level32_7C438Field(privateRecord20, int *, 0x44) = 0;
+            }
+            if (Level32_7C438Field(privateRecord20, int *, 0x44) != 1) {
+                if ((Level32_7C438Call3573CView1(ownerRecord18, 4, 0, 0) != 0) && (Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D) != 0)) {
+                    Level32_7C438Data6C770View1 = 0;
+                    Level32_7C438Field(ownerRecord18, signed char *, 0x40) = 0x72;
+                    Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D) = 0U;
+                    Level32_7C438Field(ownerRecord18, signed char *, 0x3F) = 0;
+                    Level32_7C438Call35734View1(ownerRecord18);
+                }
+            }
+            else {
+                temporaryWord11 = (Level32_7C438Field(((Level32_7C438Field(privateRecord20, int *, 0x50) * 4) + privateRecord20), int *, 0x54) * 0x58) + Level32_7C438Data6C550View1;
+                ({rawWord2 = Level32_7C438Call4E880View1(Level32_7C438Field(temporaryWord11, int*, 12)-Level32_7C438Field(ownerRecord18, int*, 12), Level32_7C438Field(temporaryWord11, int*, 16)-Level32_7C438Field(ownerRecord18, int*, 16), 0);rawWord2 -= 64;__asm__("":"=r"(rawWord2):"0"(rawWord2):"$4");argumentWord4 = (int)ownerRecord18;argumentWord5 = rawWord2&255;Level32_7C438Call3585CView1(argumentWord4, argumentWord5, 4, 0, 0, 0);});
+            }
+            if ((Level32_7C438Field(privateRecord20, int *, 0x50) != 1) && (Level32_7C438Call37BBCView1(ownerRecord18, 0) != 0)) {
+                Level32_7C438Call512E4View1(ownerRecord18, 0, 1);
+                Level32_7C438Field(ownerRecord18, unsigned char *, 0x48) = 1U;
+            }
+            rawWord3 = Level32_7C438Field(privateRecord20, int*, 68);
+            if (!rawWord3) goto resetOriginalPrivateHalfword946;
+            rawWord2 = 1;
+            if (rawWord3 != rawWord2) goto testOriginalStateTwo;
+            {
+                temporaryWord21 = Level32_7C438Field(ownerRecord18, unsigned char *, 0x3C);
+                if ((temporaryWord21 == Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D)) && (temporaryWord21 != 3)) {
+                    Level32_7C438Data6C770View1 = 0;
+                    Level32_7C438Field(ownerRecord18, signed char *, 0x40) = 0x72;
+                    Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D) = 3U;
+                    Level32_7C438Field(ownerRecord18, signed char *, 0x3F) = 0;
+                    Level32_7C438Call35734View1(ownerRecord18);
+                }
+                temporaryWord1 = Level32_7C438Field(privateRecord20, int *, 0x50);
+                if ((temporaryWord1 < 2) && ((unsigned char) Level32_7C438Field(((Level32_7C438Field(((temporaryWord1 * 4) + privateRecord20), int *, 0x54) * 0x58) + Level32_7C438Data6C550View1), unsigned char *, 0x48) >= 0x80U)) {
+                    Level32_7C438Field(privateRecord20, int *, 0x50) = (int) (temporaryWord1 + 1);
+                clearOriginalPrivateStatus304:
+                    __asm__ volatile("":::"memory");
+                    Level32_7C438Field(privateRecord20, int *, 0x44) = 0;
+                    return;
+                }
+                break;
+            }
+        testOriginalStateTwo:
+            rawWord2 = 2;
+            if (rawWord3 != rawWord2)break;
+            {
+                Level32_7C438Call3645CView1((int)&Level32_7C438Data70328View1, Level32_7C438Field(privateRecord20, void **, 0x3C), &originalFrame.sp20);
+                if (Level32_7C438Call4F334View1(ownerRecord18 + 0xC, (int)&Level32_7C438Data70328View1) < 0x1B58) {
+                    temporaryWord22 = Level32_7C438Field(ownerRecord18, int *, 0x14) - Level32_7C438Field(ownerRecord18, short *, 0x38);
+                    temporaryWord12 = temporaryWord22 - Level32_7C438Field((int)&Level32_7C438Data70328View1, int *, 8);
+                    if (temporaryWord12 >= 0){
+                        rawWord2 = temporaryWord12 < 1000;
+                        argumentWord6 = 0;
+                        if (rawWord2) goto checkOriginalAngle336;
+                        goto checkOriginalDescriptorBound352;
+                    }
+                    if ((Level32_7C438Field((int)&Level32_7C438Data70328View1, int *, 8) - temporaryWord22) < 0x3E8) {
+                    checkOriginalAngle336:
+                        if (Level32_7C438Call4F264View1(Level32_7C438Field((int)&Level32_7C438Data70328View1, unsigned char *, 0xE), Level32_7C438Call4E880View1(Level32_7C438Field(ownerRecord18, int *, 0xC) - Level32_7C438Field((int)&Level32_7C438Data70328View1, int *, 0), Level32_7C438Field(ownerRecord18, int *, 0x10) - Level32_7C438Field((int)&Level32_7C438Data70328View1, int *, 4), 0)) >= 0x18) {
+                            goto checkOriginalDescriptorBound352;
+                        }
+                        goto clearOriginalPrivateStatus304;
+                    }
+                    goto checkOriginalDescriptorBound352;
+                }
+            checkOriginalDescriptorBound352:
+                if (Level32_7C438Field(Level32_7C438Field(privateRecord20, void **, 0x3C), short *, 2) < originalFrame.sp20) {
+                    Level32_7C438Field(privateRecord20, int *, 0x44) = 0;
+                    return;
+                }
+                break;
+            }
+        }
+        break;
+    case 1:
+        if (Level32_7C438Data6E344View1 == 1)break;
+    resetOriginalOwnerState366:
+        Level32_7C438Field(ownerRecord18, unsigned char*, 72) = 0;
+        Level32_7C438Call34F40View1(ownerRecord18, 0);
+        return;
+    case 0x14:
+        rawWord2 = Level32_7C438Call55E84View1(ownerRecord18);
+        retainedOneStepListOrPosition17 = 220;
+        retainedPrivateRecordStepOrResult16 = 4;
+        rawWord3 = Level32_7C438Field(privateRecord20, short*, 78);
+        retainedLinkedRecordResultOrListIndex19 = rawWord2;
+        if (rawWord3 != 0) {
+            retainedPrivateRecordStepOrResult16 = 0x80;
+        }
+        if (Level32_7C438Call37A60View1(ownerRecord18, privateRecord20 + 0x40, 4, 0xA, -0xC8) != 0) {
+            retainedOneStepListOrPosition17 = 0xA0;
+            if (Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D) == 5) {
+                Level32_7C438Data6C770View1 = 0;
+                Level32_7C438Field(ownerRecord18, signed char *, 0x40) = 0x72;
+                Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D) = 4U;
+                Level32_7C438Field(ownerRecord18, signed char *, 0x3F) = 0;
+                Level32_7C438Call35734View1(ownerRecord18);
+            }
+        }
+        argumentWord4 = Level32_7C438Call35A80View1(ownerRecord18, Level32_7C438Field(privateRecord20, void **, 0x3C), 0x100, retainedOneStepListOrPosition17, 0, (int) (Level32_7C438Field(privateRecord20, unsigned short *, 0x4C) << 0x10) >> 0x14, retainedPrivateRecordStepOrResult16, 1);
+        if (argumentWord4 & 4) {
+            temporaryWord13 = Level32_7C438Field(privateRecord20, unsigned short *, 0x4C) + (Level32_7C438Data6C648View1 * 2);
+            Level32_7C438Field(privateRecord20, unsigned short *, 0x4C) = temporaryWord13;
+            if ((short)temporaryWord13 >= 193){
+                rawWord2 = 192;
+                Level32_7C438Field(privateRecord20, short*, 76) = rawWord2;
+            }
+            else{
+                rawWord2 = 192;
+            }
+            __asm__ volatile(""::"r"(rawWord2));
+            rawWord2 = Level32_7C438Field(privateRecord20, short*, 78);
+            if (rawWord2 == 0){
+                rawWord2 = argumentWord4&1;
+                __asm__ volatile(""::"r"(rawWord2));
+                if ((short) Level32_7C438Field(privateRecord20, unsigned short *, 0x4C) < 0x50) {
+                    Level32_7C438Field(privateRecord20, unsigned short *, 0x4C) = 0x50U;
+                }
+                goto reloadOriginalDescriptorFlag446;
+            }
+            else{
+                rawWord2 = argumentWord4&1;
+            }
+        }
+        else {
+            Level32_7C438Field(privateRecord20, unsigned short *, 0x4C) = 0x20U;
+            Level32_7C438Field(privateRecord20, short *, 0x4E) = 1;
+        reloadOriginalDescriptorFlag446:
+            rawWord2 = argumentWord4 & 1;
+        }
+        if (rawWord2 != 0) {
+            temporaryWord14 = Level32_7C438Field(privateRecord20, void **, 0x3C);
+            temporaryWord23 = Level32_7C438Field(temporaryWord14, short *, 2);
+            if ((temporaryWord23 > 0) && (Level32_7C438Field(((temporaryWord23 * 0x10) + Level32_7C438Field(temporaryWord14, int *, 0xC)), int *, 0xC) & 1)) {
+                Level32_7C438Field(privateRecord20, int *, 0x5C) = 1;
+            }
+            temporaryWord24 = Level32_7C438Field(privateRecord20, void **, 0x3C);
+            rawWord3 = Level32_7C438Field(((Level32_7C438Field(temporaryWord24, short *, 2) * 0x10) + Level32_7C438Field(temporaryWord24, int *, 0xC)), int *, -4);
+            argumentWord4 = rawWord3 & 6;
+            if (argumentWord4 == 6) {
+                Level32_7C438Field(ownerRecord18, unsigned char *, 0x48) = 0x1EU;
+                return;
+            }
+            rawWord3 = rawWord3 >> 1;
+            if (argumentWord4 != 0) {
+                Level32_7C438Field(privateRecord20, int *, 0x44) = rawWord3;
+                if (rawWord3 == 1) {
+                    Level32_7C438Field(privateRecord20, unsigned char *, 2) = (unsigned char) (Level32_7C438Field(privateRecord20, unsigned char *, 2) + 1);
+                }
+                Level32_7C438Field(ownerRecord18, unsigned char *, 0x48) = 0U;
+                return;
+            }
+            goto checkOriginalDescriptorEvent490;
+        }
+    checkOriginalDescriptorEvent490:
+        if ((Level32_7C438Field(privateRecord20, int *, 0x5C) != 0) && (Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D) == 4) && ({rawWord2 = retainedLinkedRecordResultOrListIndex19-13;(unsigned int)rawWord2 < 3U;})) {
+            temporaryWord15 = Level32_7C438Field(privateRecord20, void **, 0x3C);
+            Level32_7C438Field(privateRecord20, int *, 0x5C) = 0;
+            Level32_7C438Field(privateRecord20, int *, 0x40) = Level32_7C438Call365E4View1(ownerRecord18 + 0xC, Level32_7C438Field(temporaryWord15, int *, 0xC) + (Level32_7C438Field(temporaryWord15, short *, 2) * 0x10), 0xDC, -0xA, &originalFrame.sp24);
+            if (Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D) != 5) {
+                Level32_7C438Data6C770View1 = 0;
+                Level32_7C438Field(ownerRecord18, signed char *, 0x40) = 0x72;
+                Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D) = 5U;
+                Level32_7C438Field(ownerRecord18, signed char *, 0x3F) = 0;
+                Level32_7C438Call35734View1(ownerRecord18);
+                return;
+            }
+        }
+        break;
+    case 0x1E:
+        temporaryWord25 = Level32_7C438Field(privateRecord20, void **, 0x3C);
+        temporaryWord16 = (Level32_7C438Field(temporaryWord25, short *, 0) * 0x10) + Level32_7C438Field(temporaryWord25, int *, 0xC);
+        if (({rawWord2 = Level32_7C438Call4E880View1(Level32_7C438Field(temporaryWord16, int*, -48)-Level32_7C438Field(ownerRecord18, int*, 12), Level32_7C438Field(temporaryWord16, int*, -44)-Level32_7C438Field(ownerRecord18, int*, 16), 0);rawWord2 -= 12;__asm__("":"=r"(rawWord2):"0"(rawWord2):"$4");argumentWord4 = (int)ownerRecord18;argumentWord5 = rawWord2&255;Level32_7C438Call3585CView1(argumentWord4, argumentWord5, 4, 2, 1, 0);}) != 0) {
+            if (Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D) != 0) {
+                Level32_7C438Data6C770View1 = 0;
+                Level32_7C438Field(ownerRecord18, signed char *, 0x40) = 0x72;
+                Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D) = 0U;
+                Level32_7C438Field(ownerRecord18, signed char *, 0x3F) = 0;
+                Level32_7C438Call35734View1(ownerRecord18);
+            }
+            Level32_7C438Field(privateRecord20, signed char *, 5) = 1;
+            Level32_7C438Field(privateRecord20, unsigned char *, 2) = 3U;
+            if (Level32_7C438Call37BBCView1(ownerRecord18, 0) != 0) {
+                Level32_7C438Field(retainedLinkedRecordResultOrListIndex19, unsigned char *, 0x49) = 1U;
+                Level32_7C438Field(((Level32_7C438Field(privateRecord20, int *, 0xA0) * 0x58) + Level32_7C438Data6C550View1), signed char *, 0x49) = 1;
+                Level32_7C438Call512E4View1(ownerRecord18, 0, 1);
+                Level32_7C438Field(ownerRecord18, unsigned char *, 0x48) = 0x1FU;
+                return;
+            }
+        }
+        break;
+    case 0x1F:
+        if (Level32_7C438Data6E344View1 != 1) {
+            Level32_7C438Call34F40View1(ownerRecord18, 0);
+            Level32_7C438Field(privateRecord20, int *, 0x40) = 0;
+            Level32_7C438Field(ownerRecord18, unsigned char *, 0x48) = 0x32U;
+            return;
+        }
+        break;
+    case 0x28:
+        rawWord3 = Level32_7C438Field(privateRecord20, int*, 148);
+        rawWord2 = rawWord3*88;
+        rawWord3 = Level32_7C438Data6C550View1;
+        retainedLinkedRecord23 = rawWord3+rawWord2;
+        retainedPrivateRecordStepOrResult16 = Level32_7C438Field(retainedLinkedRecord23, void **, 0);
+        if ((Level32_7C438Field(privateRecord20, unsigned char *, 0x92) == 0) && (Level32_7C438Field(retainedPrivateRecordStepOrResult16, short *, 0x64) < 2)) {
+            if (({rawWord2 = Level32_7C438Call36220View1((int)&Level32_7C438Data70328View1, privateRecord20+96, 0, 0);retainedLinkedRecordResultOrListIndex19 = 0;rawWord2;}) != 0){
+                retainedOne22 = 1;
+                __asm__("":"=r"(retainedOne22):"0"(retainedOne22));
+                retainedSignedSelector21 = Level32_7C438Field(retainedPrivateRecordStepOrResult16, short *, 0x64);
+                Level32_7C438Field(privateRecord20, unsigned char *, 0x92) = 1U;
+            loadOriginalPackedList627:
+                retainedOneStepListOrPosition17 = Level32_7C438Field((int)Level32_7C438Data6C730View1+retainedLinkedRecordResultOrListIndex19*4, int*, 0);
+                do {
+                    rawWord2 = Level32_7C438Field(retainedOneStepListOrPosition17, unsigned short*, 0)&32767;
+                    rawWord3 = rawWord2*88;
+                    rawWord2 = Level32_7C438Data6C550View1;
+                    retainedPrivateRecordStepOrResult16 = rawWord2+rawWord3;
+                    if (retainedLinkedRecordResultOrListIndex19 != retainedSignedSelector21) {
+                        if ((unsigned char) Level32_7C438Field(retainedPrivateRecordStepOrResult16, unsigned char *, 0x48) < 0x80U) {
+                            Level32_7C438Field(retainedPrivateRecordStepOrResult16, signed char *, 0x41) = 0;
+                            Level32_7C438Field(retainedPrivateRecordStepOrResult16, signed char *, 0x4C) = 0;
+                            Level32_7C438Field(retainedPrivateRecordStepOrResult16, signed char *, 0x4D) = 0;
+                            Level32_7C438Field(retainedPrivateRecordStepOrResult16, int *, 8) = 0;
+                            Level32_7C438Field(retainedPrivateRecordStepOrResult16, signed char *, 0x4A) = 0;
+                        }
+                    }
+                    else if ((unsigned char) Level32_7C438Field(retainedPrivateRecordStepOrResult16, unsigned char *, 0x48) < 0x80U) {
+                        Level32_7C438Field(retainedPrivateRecordStepOrResult16, signed char*, 65) = retainedOne22;
+                        Level32_7C438Field(retainedPrivateRecordStepOrResult16, signed char *, 0x4C) = 0x3F;
+                        Level32_7C438Field(retainedPrivateRecordStepOrResult16, signed char*, 77) = retainedOne22;
+                        Level32_7C438Call55D24View1(retainedPrivateRecordStepOrResult16, 1);
+                        Level32_7C438Field(retainedPrivateRecordStepOrResult16, unsigned char *, 0x4A) = 0xFF;
+                    }
+                    rawWord2 = Level32_7C438Field(retainedOneStepListOrPosition17, short*, 0);
+                    retainedOneStepListOrPosition17 += 2;
+                }
+                while (rawWord2 >= 0);
+                retainedLinkedRecordResultOrListIndex19 += 1;
+                if (retainedLinkedRecordResultOrListIndex19 < 2) {
+                    goto loadOriginalPackedList627;
+                }
+            }
+            goto checkOriginalLinkedRecordState679;
+        }
+        if ((Level32_7C438Field((int)&Level32_7C438Data70328View1, int *, 0x244) != 0) && (Level32_7C438Field(Level32_7C438Field((int)&Level32_7C438Data70328View1, void **, 0x250), short *, 0x36) == 0x72) && (Level32_7C438Call36220View1(((int)&Level32_7C438Data70328View1 + 0x244) - 0x244, privateRecord20 + 0x60, 0, 0x1388) != 0)) {
+            Level32_7C438Call3B74CView1((int)&Level32_7C438Data6D088View1);
+            return;
+        }
+    checkOriginalLinkedRecordState679:
+        if ((Level32_7C438Field(retainedLinkedRecord23, unsigned char *, 0x48) != 1) && (Level32_7C438Call37BBCView1(ownerRecord18, 0) != 0)) {
+            Level32_7C438Field(privateRecord20, unsigned char *, 0x92) = 0U;
+            Level32_7C438Call512E4View1(ownerRecord18, 0, 1);
+            Level32_7C438Field(ownerRecord18, unsigned char *, 0x48) = 0x29U;
+            return;
+        }
+        break;
+    case 0x29:
+        if ((Level32_7C438Data6C65CView1 == 0) && (Level32_7C438Field((int)&Level32_7C438Data70328View1, int *, 0x280) > 0)) {
+            Level32_7C438Data6C65CView1 = Level32_7C438DataSpawnMobyView1(0x78, ownerRecord18);
+        }
+        rawWord2 = Level32_7C438Data6E344View1;
+        argumentWord6 = 1;
+        if (rawWord2 != argumentWord6){
+            rawWord2 = Level32_7C438Field(privateRecord20, int*, 148);
+            argumentWord4 = Level32_7C438Data6C550View1;
+            argumentWord5 = Level32_7C438Field(privateRecord20, unsigned char*, 4);
+            Level32_7C438Field(privateRecord20, unsigned char*, 146) = 0;
+            rawWord3 = rawWord2*88;
+            retainedOneStepListOrPosition17 = argumentWord4+rawWord3;
+            if ((argumentWord5 == argumentWord6) || (argumentWord5 == 6) || (argumentWord5 == 9)) {
+                Level32_7C438Call4F178View1(&originalFrame.sp28, ownerRecord18 + 0xC);
+                temporaryWord9 = originalFrame.sp28 + ((int) (Level32_7C438Field((int)&Level32_7C438Data65920View1, short*, (Level32_7C438Field(ownerRecord18, unsigned char *, 0x46) * 2)) * 0xD) >> 5);
+                originalFrame.sp28 = temporaryWord9;
+                temporaryWord3 = originalFrame.sp2C + ((int) (Level32_7C438Field((int)&Level32_7C438Data658A0View1, short*, (Level32_7C438Field(ownerRecord18, unsigned char *, 0x46) * 2)) * 0xD) >> 5);
+                originalFrame.sp2C = temporaryWord3;
+                Level32_7C438Call3B634View1((int)&Level32_7C438Data6D088View1, &originalFrame.sp28, Level32_7C438Call4E880View1(Level32_7C438Field(ownerRecord18, int *, 0xC) - temporaryWord9, Level32_7C438Field(ownerRecord18, int *, 0x10) - temporaryWord3, 0) & 0xFF);
+                if (Level32_7C438Field(privateRecord20, unsigned char *, 4) == 1) {
+                    Level32_7C438Field(privateRecord20, signed char *, 0x93) = 0;
+                }
+                else {
+                    Level32_7C438Field(privateRecord20, signed char *, 0x93) = 1;
+                }
+                Level32_7C438Field(retainedOneStepListOrPosition17, signed char *, 0x48) = 1;
+            }
+            if (Level32_7C438Field(privateRecord20, unsigned char *, 4) == 3) {
+                Level32_7C438Field(privateRecord20, signed char *, 5) = 2;
+            }
+        produceOriginalStateForty815:
+            rawWord2 = 40;
+        writeOriginalStateForty816:
+            Level32_7C438Field(ownerRecord18, unsigned char*, 72) = rawWord2;
+            return;
+        }
+        break;
+    case 0x15:
+        temporaryWord17 = Level32_7C438Field(ownerRecord18, unsigned char *, 0x49);
+        switch (temporaryWord17) {
+        case 0:
+            Level32_7C438Field((int)&Level32_7C438Data70328View1, int *, 0x20C) = 0x10000002;
+            if (Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D) != 4) {
+                Level32_7C438Data6C770View1 = 0;
+                Level32_7C438Field(ownerRecord18, signed char *, 0x40) = 0x72;
+                Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D) = 4U;
+                Level32_7C438Field(ownerRecord18, signed char *, 0x3F) = 0;
+                Level32_7C438Call35734View1(ownerRecord18);
+            }
+            Level32_7C438Call4F178View1(&originalFrame.sp28, ((int)&Level32_7C438Data70328View1 + 0x20C) - 0x20C);
+            temporaryWord2 = Level32_7C438Field((int)&Level32_7C438Data70328View1, unsigned char *, 0xE) * 2;
+            temporaryWord10 = originalFrame.sp28 + ((int) (Level32_7C438Field((int)&Level32_7C438Data65920View1, short*, temporaryWord2) * 0x177) >> 0xA);
+            originalFrame.sp28 = temporaryWord10;
+            temporaryWord4 = originalFrame.sp2C + ((int) (Level32_7C438Field((int)&Level32_7C438Data658A0View1, short*, temporaryWord2) * 0x177) >> 0xA);
+            originalFrame.sp2C = temporaryWord4;
+            Level32_7C438Call3585CView1(ownerRecord18, Level32_7C438Call4E880View1(temporaryWord10 - Level32_7C438Field(ownerRecord18, int *, 0xC), temporaryWord4 - Level32_7C438Field(ownerRecord18, int *, 0x10), 0), 7, 0, 0, 0);
+            Level32_7C438Call35DDCView1(ownerRecord18, 0x8C, 0, 0, 5);
+            if (Level32_7C438Call4F334View1(ownerRecord18 + 0xC, &originalFrame.sp28) < 0x96) {
+                if (Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D) != 0) {
+                    Level32_7C438Data6C770View1 = 0;
+                    Level32_7C438Field(ownerRecord18, signed char *, 0x40) = 0x72;
+                    Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D) = 0U;
+                    Level32_7C438Field(ownerRecord18, signed char *, 0x3F) = 0;
+                    Level32_7C438Call35734View1(ownerRecord18);
+                }
+                goto incrementOriginalOwnerSubstate935;
+            }
+            break;
+        case 1:
+            Level32_7C438Field((int)&Level32_7C438Data70328View1, int *, 0x20C) = 0x10000002;
+            if (Level32_7C438Call3573CView1(ownerRecord18, 7, 0, 0) != 0) {
+                Level32_7C438Call512E4View1(ownerRecord18, 0, 1);
+            incrementOriginalOwnerSubstate935:
+                Level32_7C438Field(ownerRecord18, unsigned char *, 0x49) = (unsigned char) (Level32_7C438Field(ownerRecord18, unsigned char *, 0x49) + 1);
+                return;
+            }
+            break;
+        case 2:
+            if (Level32_7C438Data6E344View1 != 1) {
+                Level32_7C438Field(privateRecord20, int*, 68) = 0;
+            resetOriginalPrivateHalfword946:
+                Level32_7C438Field(privateRecord20, short *, 0x4E) = 0;
+                if (Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D) != 4) {
+                    Level32_7C438Data6C770View1 = 0;
+                    Level32_7C438Field(ownerRecord18, signed char *, 0x40) = 0x72;
+                    Level32_7C438Field(ownerRecord18, unsigned char *, 0x3D) = 4U;
+                    Level32_7C438Field(ownerRecord18, signed char *, 0x3F) = 0;
+                    Level32_7C438Call35734View1(ownerRecord18);
+                }
+                Level32_7C438Field(ownerRecord18, unsigned char *, 0x48) = 0x14U;
+                return;
+            }
+            break;
+        }
+        break;
+    case 0x32:
+        if (Level32_7C438Call359A4View1(privateRecord20 + 0x40, 4) != 0) {
+            Level32_7C438Field(ownerRecord18, unsigned char *, 0x49) = 0U;
+            Level32_7C438Field(Level32_7C438Field(privateRecord20, void **, 0x9C), short *, 2) = 0;
+            Level32_7C438Call34F40View1(ownerRecord18, 4);
+            Level32_7C438Field(ownerRecord18, unsigned char *, 0x48) = 0x33U;
+        }
+        goto writeOriginalPlayerFlags1087;
+    case 0x33:
+        temporaryWord18 = Level32_7C438Field(ownerRecord18, unsigned char *, 0x49);
+        retainedSignedSelector21 = Level32_7C438Field(Level32_7C438Field(privateRecord20, void **, 0x9C), short *, 2);
+        switch (temporaryWord18) {
+        case 0:
+            if (Level32_7C438Call35A80View1(ownerRecord18, Level32_7C438Field(privateRecord20, void **, 0x9C), 0x200, 0x80, 0, 8, 0xC, 5) & 1) {
+                if ((unsigned char) Level32_7C438Field(retainedLinkedRecordResultOrListIndex19, unsigned char *, 0x49) < 0xAU) {
+                    Level32_7C438Field(retainedLinkedRecordResultOrListIndex19, unsigned char *, 0x49) = 0xAU;
+                }
+                temporaryWord5 = Level32_7C438Field(privateRecord20, void **, 0x9C);
+                temporaryWord7 = Level32_7C438Field(temporaryWord5, short *, 2);
+                if (temporaryWord7 != 0) {
+                    temporaryWord19 = Level32_7C438Field(temporaryWord5, int *, 0xC);
+                    if (Level32_7C438Field(((retainedSignedSelector21 * 0x10) + temporaryWord19), int *, 0xC) & 1) {
+                        Level32_7C438Field(privateRecord20, int *, 0x40) = Level32_7C438Call365E4View1(ownerRecord18 + 0xC, temporaryWord19 + (temporaryWord7 * 0x10), 0x80, -0xC, 0);
+                        Level32_7C438Field(ownerRecord18, unsigned char *, 0x49) = 1U;
+                    }
+                    goto checkOriginalLinkedSubstate1082;
+                }
+                goto callSharedOriginalRemoval1063;
+            }
+            default:goto checkOriginalLinkedSubstate1082;
+        case 1:
+            rawWord2 = Level32_7C438Call35A80View1(ownerRecord18, Level32_7C438Field(privateRecord20, void**, 156), 512, 128, 0, 8, 12, 0);
+            argumentWord4 = (int)&originalFrame.sp38;
+            retainedOneStepListOrPosition17 = (int)ownerRecord18+12;
+            argumentWord6 = Level32_7C438Field(privateRecord20, int*, 64);
+            argumentWord5 = retainedOneStepListOrPosition17;
+            argumentWord6 -= 12;
+            Level32_7C438Field(privateRecord20, int*, 64) = argumentWord6;
+            rawWord3 = Level32_7C438Field(ownerRecord18, int*, 20);
+            __asm__("":"=r"(rawWord3):"0"(rawWord3), "r"(rawWord2), "r"(argumentWord4), "r"(argumentWord5), "r"(argumentWord6):"$16");
+            retainedPrivateRecordStepOrResult16 = rawWord2;
+            rawWord3 += argumentWord6;
+            Level32_7C438Field(ownerRecord18, int*, 20) = rawWord3;
+            Level32_7C438Call4F178View1(argumentWord4, argumentWord5);
+            rawWord2 = originalFrame.sp40;
+            rawWord2 += 512;
+            originalFrame.sp40 = rawWord2;
+            rawWord2 = retainedPrivateRecordStepOrResult16&1;
+            if (rawWord2){
+                temporaryWord6 = Level32_7C438Field(privateRecord20, void **, 0x9C);
+                temporaryWord8 = Level32_7C438Field(temporaryWord6, short *, 2);
+                if (temporaryWord8 == 0){
+                callSharedOriginalRemoval1063:
+                    Level32_7C438Call55B18View1(ownerRecord18);
+                    return;
+                }
+                temporaryWord20 = Level32_7C438Field(temporaryWord6, int *, 0xC);
+                if (Level32_7C438Field(((retainedSignedSelector21 * 0x10) + temporaryWord20), int *, 0xC) & 1) {
+                    Level32_7C438Field(privateRecord20, int *, 0x40) = Level32_7C438Call365E4View1(retainedOneStepListOrPosition17, temporaryWord20 + (temporaryWord8 * 0x10), 0x80, -0xC, 0);
+                }
+                goto checkOriginalLinkedSubstate1082;
+            }
+            goto checkOriginalLinkedSubstate1082;
+        }
+    checkOriginalLinkedSubstate1082:
+        if (Level32_7C438Field(retainedLinkedRecordResultOrListIndex19, unsigned char*, 73) >= 11) goto callOriginalFinalHelper1091;
+    writeOriginalPlayerFlags1087:
+        Level32_7C438Field((int)&Level32_7C438Data70328View1, int *, 0x20C) = 0x10000002;
+    callOriginalFinalHelper1091:
+        Level32_7C438Call492DCView1(ownerRecord18 + 0xC);
+        break;
+    }
+}
+#undef Level32_7C438Field
+
 
 typedef struct {
     unsigned char reserved00[0x18];
@@ -3102,13 +4673,7604 @@ void func_level_32_8007D748(Moby* moby) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/moby", func_level_32_8007D7D8);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* Original3159 instructions; AI generated, not human reviewed; uninstalled. */
+#define Level32_7D7D8Keep(v) __asm__("" : "=r"(v) : "0"(v))
+#define Level32_7D7D8Field(p, t, o) (*(t)((unsigned char *)(p) + (o)))
+typedef union {
+    long long full;
+    struct {
+        unsigned int low;
+        int high;
+    } words;
+} Level32_7D7D8Product;
+int Level32_7D7D8_PlaySound() __asm__("PlaySound");
+int Level32_7D7D8_func_80013D44() __asm__("func_80013D44");
+int Level32_7D7D8_func_8001A358() __asm__("func_8001A358");
+int Level32_7D7D8_func_8002803C() __asm__("func_8002803C");
+int Level32_7D7D8_func_80028154() __asm__("func_80028154");
+int Level32_7D7D8_func_80034F40() __asm__("func_80034F40");
+int Level32_7D7D8_func_80035194() __asm__("func_80035194");
+int Level32_7D7D8_func_80035734() __asm__("func_80035734");
+int Level32_7D7D8_func_800359A4() __asm__("func_800359A4");
+int Level32_7D7D8_func_8003613C() __asm__("func_8003613C");
+int Level32_7D7D8_func_8003636C() __asm__("func_8003636C");
+int Level32_7D7D8_func_800363DC() __asm__("func_800363DC");
+int Level32_7D7D8_func_800369B8() __asm__("func_800369B8");
+int Level32_7D7D8_func_800369D8() __asm__("func_800369D8");
+int Level32_7D7D8_func_80037014() __asm__("func_80037014");
+int Level32_7D7D8_func_80037BBC() __asm__("func_80037BBC");
+int Level32_7D7D8_func_80038BF8() __asm__("func_80038BF8");
+int Level32_7D7D8_func_8003B634() __asm__("func_8003B634");
+int Level32_7D7D8_func_8003B74C() __asm__("func_8003B74C");
+int Level32_7D7D8_func_8003B7B4() __asm__("func_8003B7B4");
+int Level32_7D7D8_func_8003BABC() __asm__("func_8003BABC");
+int Level32_7D7D8_func_8003BE70() __asm__("func_8003BE70");
+int Level32_7D7D8_func_8003BEDC() __asm__("func_8003BEDC");
+int Level32_7D7D8_func_8003BFC0() __asm__("func_8003BFC0");
+int Level32_7D7D8_func_8003C140() __asm__("func_8003C140");
+int Level32_7D7D8_func_8004E880() __asm__("func_8004E880");
+int Level32_7D7D8_func_8004F178() __asm__("func_8004F178");
+int Level32_7D7D8_func_8004F264() __asm__("func_8004F264");
+int Level32_7D7D8_func_8004F334() __asm__("func_8004F334");
+int Level32_7D7D8_func_800512E4() __asm__("func_800512E4");
+int Level32_7D7D8_func_80055B18() __asm__("func_80055B18");
+int Level32_7D7D8_func_80055D24() __asm__("func_80055D24");
+int Level32_7D7D8_func_80055F14() __asm__("func_80055F14");
+int Level32_7D7D8_func_8005629C() __asm__("func_8005629C");
+extern int Level32_7D7D8_D_800658A0 __asm__("D_800658A0");
+extern int Level32_7D7D8_D_80065920 __asm__("D_80065920");
+extern int Level32_7D7D8_D_80066BC8 __asm__("D_80066BC8");
+extern int Level32_7D7D8_D_800676E8 __asm__("D_800676E8");
+extern int Level32_7D7D8_D_8006C550 __asm__("D_8006C550");
+extern int Level32_7D7D8_D_8006C58C __asm__("D_8006C58C");
+extern int Level32_7D7D8_D_8006C598 __asm__("D_8006C598");
+extern int Level32_7D7D8_D_8006C5C8 __asm__("D_8006C5C8");
+extern int Level32_7D7D8_D_8006C628 __asm__("D_8006C628");
+extern int Level32_7D7D8_D_8006C640 __asm__("D_8006C640");
+extern int Level32_7D7D8_D_8006C648 __asm__("D_8006C648");
+extern int Level32_7D7D8_D_8006C650 __asm__("D_8006C650");
+extern int Level32_7D7D8_D_8006C654 __asm__("D_8006C654");
+extern int Level32_7D7D8_D_8006C700 __asm__("D_8006C700");
+extern int Level32_7D7D8_D_8006C730 __asm__("D_8006C730");
+extern int Level32_7D7D8_D_8006C770 __asm__("D_8006C770");
+extern int Level32_7D7D8_D_8006C784 __asm__("D_8006C784");
+extern int Level32_7D7D8_D_8006C7B4 __asm__("D_8006C7B4");
+extern int Level32_7D7D8_D_8006C7C4 __asm__("D_8006C7C4");
+extern int Level32_7D7D8_D_8006C7F8 __asm__("D_8006C7F8");
+extern int Level32_7D7D8_D_8006D088 __asm__("D_8006D088");
+extern int Level32_7D7D8_D_8006E048 __asm__("D_8006E048");
+extern int Level32_7D7D8_D_8006E160 __asm__("D_8006E160");
+extern int Level32_7D7D8_D_8006E344 __asm__("D_8006E344");
+extern int Level32_7D7D8_D_8006E538 __asm__("D_8006E538");
+extern int Level32_7D7D8_D_8006EE2C __asm__("D_8006EE2C");
+extern int Level32_7D7D8_D_80070328 __asm__("D_80070328");
+extern int Level32_7D7D8_D_8007159A __asm__("D_8007159A");
+extern int Level32_7D7D8_D_800716B0 __asm__("D_800716B0");
+extern int Level32_7D7D8_D_800718D4 __asm__("D_800718D4");
+extern int Level32_7D7D8_D_800719DC __asm__("D_800719DC");
+extern int Level32_7D7D8_SpawnMoby __asm__("SpawnMoby");
+extern int Level32_7D7D8_SpawnParticle __asm__("SpawnParticle");
+extern int Level32_7D7D8_func_80027A60 __asm__("func_80027A60");
+extern int Level32_7D7D8_func_80027D60 __asm__("func_80027D60");
+extern int Level32_7D7D8_func_80027E40 __asm__("func_80027E40");
+extern int Level32_7D7D8_func_80027EE4 __asm__("func_80027EE4");
+extern int Level32_7D7D8_func_8002982C __asm__("func_8002982C");
+extern int Level32_7D7D8_func_80029904 __asm__("func_80029904");
+extern int Level32_7D7D8_func_80029AA0 __asm__("func_80029AA0");
+extern int Level32_7D7D8_unk_ovlheader_80074364 __asm__("unk_ovlheader_80074364");
+extern int Level32_7D7D8_unk_ovlheader_80074368 __asm__("unk_ovlheader_80074368");
+extern int Level32_7D7D8_unk_ovlheader_8007436C __asm__("unk_ovlheader_8007436C");
+extern int Level32_7D7D8_unk_ovlheader_80074370 __asm__("unk_ovlheader_80074370");
+extern int Level32_7D7D8_unk_ovlheader_80074394 __asm__("unk_ovlheader_80074394");
+extern int Level32_7D7D8_unk_ovlheader_800743DC __asm__("unk_ovlheader_800743DC");
+extern int Level32_7D7D8_unk_ovlheader_800743E8 __asm__("unk_ovlheader_800743E8");
+extern int Level32_7D7D8_unk_ovlheader_80074440 __asm__("unk_ovlheader_80074440");
+extern int Level32_7D7D8_unk_ovlheader_8007447C __asm__("unk_ovlheader_8007447C");
+extern int Level32_7D7D8OriginalGlobalField0 __asm__("D_80070328+356");
+int Level32_7D7D8TypedSound(int, int, int, int, int, void *, int) __asm__("func_8002803C");
+void func_level_32_8007D7D8(void *ownerInput) {
+    register int temporary2 __asm__("$2");
+    register int temporary3 __asm__("$3");
+    register int argument0 __asm__("$4");
+    register int argument1 __asm__("$5");
+    register int argument2 __asm__("$6");
+    register int argument3 __asm__("$7");
+    register int temporary8 __asm__("$8");
+    register int temporary9 __asm__("$9");
+    register int temporary10 __asm__("$10");
+    register int temporary11 __asm__("$11");
+    register int temporary12 __asm__("$12");
+    register int temporary13 __asm__("$13");
+    register int temporary14 __asm__("$14");
+    register int temporary15 __asm__("$15");
+    register int saved16 __asm__("$16");
+    register int saved17 __asm__("$17");
+    register int saved18 __asm__("$18");
+    register int privateState __asm__("$19");
+    register int saved20 __asm__("$20");
+    register int saved21 __asm__("$21");
+    register int owner __asm__("$22");
+    register int saved23 __asm__("$23");
+    register int temporary24 __asm__("$24");
+    register int temporary25 __asm__("$25");
+    int savedValue30, stackArgument4, stackArgument5, stackArgument6;
+    struct {
+        int sp20;
+        int sp24;
+        int sp28;
+        int sp2C;
+        int sp30;
+        int sp34;
+        int sp38;
+        int sp3C;
+        int sp40;
+        int sp44;
+        int sp48;
+        int sp4C;
+        int sp50;
+        int sp54;
+        int sp58;
+        int sp5C;
+        int sp60;
+        int sp64;
+        int sp68;
+        int sp6C;
+        int sp70;
+        int sp74;
+        int sp78;
+        int sp7C;
+        int sp80;
+        int sp84;
+    } locals;
+    Level32_7D7D8Product wholeProduct92, wholeProduct1080, wholeProduct1102, wholeProduct1556,
+        wholeProduct1567, wholeProduct1723, wholeProduct1763, wholeProduct1773, wholeProduct1781,
+        wholeProduct1793, wholeProduct1801, wholeProduct1813, wholeProduct2475, wholeProduct2488,
+        wholeProduct2540, wholeProduct2553, wholeProduct2689, wholeProduct2697, wholeProduct2705,
+        wholeProduct2715, wholeProduct2723, wholeProduct2733;
+    __asm__("" : "=m"(locals.sp78));
+    owner = (int)ownerInput;
+    Level32_7D7D8Keep(owner);
+    argument0 = (int)ownerInput;
+    privateState = Level32_7D7D8Field(owner, int *, 0);
+    Level32_7D7D8Keep(privateState);
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/moby", func_level_32_80080934);
+    temporary2 = Level32_7D7D8Field(privateState, int *, 96);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = (int)0x80070000U;
+    Level32_7D7D8Keep(argument0);
+    argument0 = Level32_7D7D8Field(argument0, int *, -15024);
+    Level32_7D7D8Keep(argument0);
+    temporary3 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = (int)((unsigned int)temporary3 << 2);
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = temporary3 - temporary2;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = (int)((unsigned int)temporary3 << 3);
+    Level32_7D7D8Keep(temporary3);
+    saved23 = argument0 + temporary3;
+    Level32_7D7D8Keep(saved23);
+    temporary10 = Level32_7D7D8Field(saved23, int *, 0);
+    Level32_7D7D8Keep(temporary10);
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, -14784);
+    Level32_7D7D8Keep(temporary2);
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/moby", func_level_32_80081420);
+    Level32_7D7D8Field(&locals.sp20, int *, 80) = temporary10;
+    if (temporary2 != 0)
+        goto original3159_45;
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, unsigned char *, -14412);
+    Level32_7D7D8Keep(temporary2);
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/moby", func_level_32_80082BA8);
+    temporary2 = temporary2 & 32;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0)
+        goto original3159_45;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 100);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = (int)((unsigned int)temporary3 << 2);
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = temporary3 - temporary2;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = (int)((unsigned int)temporary3 << 3);
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = temporary3 + argument0;
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 1;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(temporary3, unsigned char *, 73) = temporary2;
+original3159_45:
+    __asm__ volatile("" ::"r"(temporary2));
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, unsigned char *, 5530);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 == 0 ? ({
+            temporary3 = (int)0x00100000U;
+            Level32_7D7D8Keep(temporary3);
+            1;
+        })
+                        : ({
+                              temporary3 = (int)0x00100000U;
+                              Level32_7D7D8Keep(temporary3);
+                              0;
+                          }))
+        goto original3159_54;
+    argument0 = owner + 0;
+    Level32_7D7D8_func_80055B18(argument0);
+
+    goto original3159Return;
+original3159_54:
+    temporary2 = Level32_7D7D8Field(owner, int *, 24);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 & temporary3;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0 ? (temporary2 = 0 + 21, 1) : (temporary2 = 0 + 21, 0))
+        goto original3159_157;
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 72);
+    Level32_7D7D8Keep(temporary3);
+
+    argument0 = owner + 0;
+    if (temporary3 != temporary2)
+        goto original3159_158;
+    argument1 = privateState + 392;
+    Level32_7D7D8Keep(argument1);
+    argument2 = 0 + 6;
+    Level32_7D7D8Keep(argument2);
+    argument3 = 0 + 5;
+    Level32_7D7D8_func_80038BF8(argument0, argument1, argument2, argument3);
+    argument0 = owner + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = Level32_7D7D8Field(privateState, int *, 460);
+    Level32_7D7D8Keep(argument1);
+    temporary2 = 0 + 120;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, unsigned char *, 414) = temporary2;
+    temporary2 = Level32_7D7D8_func_8003BFC0(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = owner + 0;
+    if (temporary2 == 0)
+        goto original3159_78;
+    argument0 = Level32_7D7D8Field(privateState, int *, 460);
+
+    Level32_7D7D8_func_8003BE70(argument0);
+    argument0 = owner + 0;
+    Level32_7D7D8Keep(argument0);
+original3159_78:
+    argument1 = Level32_7D7D8Field(privateState, int *, 456);
+    Level32_7D7D8Keep(argument1);
+    saved16 = 0 + -1;
+    Level32_7D7D8Keep(saved16);
+    Level32_7D7D8Field(privateState, int *, 460) = saved16;
+    temporary2 = Level32_7D7D8_func_8003BFC0(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = (int)0x66660000U;
+    if (temporary2 == 0)
+        goto original3159_88;
+    __asm__ volatile("" ::);
+    argument0 = Level32_7D7D8Field(privateState, int *, 456);
+
+    Level32_7D7D8_func_8003BE70(argument0);
+    temporary3 = (int)0x66660000U;
+    Level32_7D7D8Keep(temporary3);
+original3159_88:
+    Level32_7D7D8Field(privateState, int *, 456) = saved16;
+    __asm__ volatile("" ::"m"(Level32_7D7D8Field(privateState, int *, 456)) : "$2");
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 984);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary3 | 26215;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(temporary3);
+    wholeProduct92.full = (long long)temporary2 * (long long)temporary3;
+    __asm__("" : "=x"(wholeProduct92.full) : "0"(wholeProduct92.full));
+    temporary2 = (temporary2 >> 31);
+    Level32_7D7D8Keep(temporary2);
+    {
+        int projection;
+        __asm__("" : "=h"(projection) : "x"(wholeProduct92.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary3 = (temporary10 >> 5);
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = temporary3 - temporary2;
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = Level32_7D7D8Field(privateState, unsigned short *, 396);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(argument0);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, short *, 396) = temporary2;
+    if (argument0 == 0)
+        goto original3159_157;
+    saved16 = Level32_7D7D8Field(argument0, int *, 0);
+    Level32_7D7D8Keep(saved16);
+    temporary2 = 0 + 30;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(argument0, unsigned char *, 73) = 0;
+    Level32_7D7D8Field(saved16, short *, 14) = temporary2;
+    temporary2 = 0 + 120;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(saved16, short *, 12) = temporary2;
+    temporary2 = 0 + 12;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(saved16, short *, 18) = 0;
+    Level32_7D7D8Field(saved16, short *, 16) = temporary2;
+    temporary2 = Level32_7D7D8Field(privateState, unsigned char *, 409);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_80065920 + temporary2), short *, 0);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = (int)((unsigned int)temporary3 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (temporary2 >> 10);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(saved16, int *, 0) = temporary2;
+    temporary2 = Level32_7D7D8Field(privateState, unsigned char *, 409);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = 0 + 4;
+    Level32_7D7D8Keep(argument1);
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_800658A0 + temporary2), short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 125;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(saved16, int *, 8) = temporary2;
+    temporary2 = (int)((unsigned int)temporary3 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (temporary2 >> 10);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(saved16, int *, 4) = temporary2;
+    argument0 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(argument0);
+    argument2 = 0 + 0;
+    temporary2 = Level32_7D7D8_func_8003BABC(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    saved17 = 0 + -1;
+    Level32_7D7D8Keep(saved17);
+    Level32_7D7D8Field(saved16, short *, 22) = saved17;
+    Level32_7D7D8Field(saved16, short *, 20) = saved17;
+    temporary3 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 1;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(temporary3, unsigned char *, 72) = temporary2;
+    argument1 = Level32_7D7D8Field(saved16, short *, 20);
+    Level32_7D7D8Keep(argument1);
+    argument0 = owner + 0;
+    temporary2 = Level32_7D7D8_func_8003BFC0(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0)
+        goto original3159_155;
+    argument0 = Level32_7D7D8Field(saved16, short *, 20);
+
+    Level32_7D7D8_func_8003BE70(argument0);
+original3159_155:
+    Level32_7D7D8Field(saved16, short *, 20) = saved17;
+    Level32_7D7D8Field(privateState, int *, 132) = 0;
+original3159_157:
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 72);
+    Level32_7D7D8Keep(temporary3);
+original3159_158:
+
+    Level32_7D7D8Field(owner, int *, 24) = 0;
+    if (temporary3 == 0)
+        goto original3159_170;
+    temporary2 = 0 + 14;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 == temporary2 ? (temporary2 = 0 + 20, 1) : (temporary2 = 0 + 20, 0))
+        goto original3159_170;
+    if (temporary3 == temporary2 ? (temporary2 = 0 + 4, 1) : (temporary2 = 0 + 4, 0))
+        goto original3159_170;
+    temporary3 = Level32_7D7D8Field(privateState, int *, 452);
+    Level32_7D7D8Keep(temporary3);
+
+    if (temporary3 != temporary2)
+        goto original3159_222;
+original3159_170:
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, unsigned char *, -14412);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 & 16;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0 ? (temporary2 = 0 + 20, 1) : (temporary2 = 0 + 20, 0))
+        goto original3159_180;
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 72);
+    Level32_7D7D8Keep(temporary3);
+
+    if (temporary3 != temporary2)
+        goto original3159_222;
+original3159_180:
+    argument0 = 0 + 0;
+    temporary2 = Level32_7D7D8_func_800369D8(argument0);
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0)
+        goto original3159_222;
+    saved18 = 0 + 0;
+    Level32_7D7D8Keep(saved18);
+    saved17 = privateState + 0;
+    Level32_7D7D8Keep(saved17);
+original3159_186:
+    temporary3 = Level32_7D7D8Field(saved17, int *, 224);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 2);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, -15024);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    saved16 = temporary3 + temporary2;
+    Level32_7D7D8Keep(saved16);
+    temporary2 = Level32_7D7D8Field(saved16, unsigned char *, 72);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (unsigned int)temporary2 < 128;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0)
+        goto original3159_216;
+    temporary2 = Level32_7D7D8Field(saved16, int *, 0);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = Level32_7D7D8Field(temporary2, int *, 64);
+    Level32_7D7D8Keep(argument0);
+
+    if (argument0 == 0)
+        goto original3159_214;
+    temporary2 = Level32_7D7D8Field(argument0, unsigned char *, 72);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (unsigned int)temporary2 < 128;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0)
+        goto original3159_214;
+
+    Level32_7D7D8_func_80055B18(argument0);
+original3159_214:
+    argument0 = saved16 + 0;
+    Level32_7D7D8_func_80055B18(argument0);
+original3159_216:
+    saved18 = saved18 + 1;
+    Level32_7D7D8Keep(saved18);
+    temporary2 = saved18 < 5;
+    Level32_7D7D8Keep(temporary2);
+    saved17 = saved17 + 4;
+    if (temporary2 != 0)
+        goto original3159_186;
+
+    Level32_7D7D8_func_8003BEDC();
+original3159_222:
+    temporary2 = Level32_7D7D8Field(owner, unsigned char *, 72);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 + -20;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (unsigned int)temporary2 < 2;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0)
+        goto original3159_232;
+    argument0 = 0 + 1;
+    temporary2 = Level32_7D7D8_func_800369D8(argument0);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C628, int *, 0) = temporary2;
+original3159_232:
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 72);
+    Level32_7D7D8Keep(temporary3);
+
+    switch ((unsigned int)temporary3) {
+    case 0:
+        goto original3159_695;
+    case 1:
+        goto original3159_2589;
+    case 2:
+        goto original3159_2589;
+    case 3:
+        goto original3159_2589;
+    case 4:
+        goto original3159_2589;
+    case 5:
+        goto original3159_1400;
+    case 6:
+        goto original3159_2589;
+    case 7:
+        goto original3159_2589;
+    case 8:
+        goto original3159_2589;
+    case 9:
+        goto original3159_2589;
+    case 10:
+        goto original3159_2589;
+    case 11:
+        goto original3159_2589;
+    case 12:
+        goto original3159_2589;
+    case 13:
+        goto original3159_2589;
+    case 14:
+        goto original3159_715;
+    case 15:
+        goto original3159_2589;
+    case 16:
+        goto original3159_2589;
+    case 17:
+        goto original3159_2589;
+    case 18:
+        goto original3159_2589;
+    case 19:
+        goto original3159_2589;
+    case 20:
+        goto original3159_1136;
+    case 21:
+        goto original3159_1400;
+    case 22:
+        goto original3159_2589;
+    case 23:
+        goto original3159_2589;
+    case 24:
+        goto original3159_2589;
+    case 25:
+        goto original3159_2589;
+    case 26:
+        goto original3159_2589;
+    case 27:
+        goto original3159_2589;
+    case 28:
+        goto original3159_2589;
+    case 29:
+        goto original3159_2589;
+    case 30:
+        goto original3159_782;
+    case 31:
+        goto original3159_982;
+    case 32:
+        goto original3159_2589;
+    case 33:
+        goto original3159_2589;
+    case 34:
+        goto original3159_2589;
+    case 35:
+        goto original3159_2589;
+    case 36:
+        goto original3159_2589;
+    case 37:
+        goto original3159_2589;
+    case 38:
+        goto original3159_2589;
+    case 39:
+        goto original3159_2589;
+    case 40:
+        goto original3159_2413;
+    case 41:
+        goto original3159_2498;
+    case 42:
+        goto original3159_2589;
+    case 43:
+        goto original3159_2589;
+    case 44:
+        goto original3159_2589;
+    case 45:
+        goto original3159_2589;
+    case 46:
+        goto original3159_2589;
+    case 47:
+        goto original3159_2589;
+    case 48:
+        goto original3159_2589;
+    case 49:
+        goto original3159_2589;
+    case 50:
+        goto original3159_243;
+    case 51:
+        goto original3159_2589;
+    case 52:
+        goto original3159_2589;
+    case 53:
+        goto original3159_2589;
+    case 54:
+        goto original3159_2589;
+    case 55:
+        goto original3159_2589;
+    case 56:
+        goto original3159_2589;
+    case 57:
+        goto original3159_2589;
+    case 58:
+        goto original3159_2589;
+    case 59:
+        goto original3159_2589;
+    case 60:
+        goto original3159_2589;
+    case 61:
+        goto original3159_2589;
+    case 62:
+        goto original3159_2589;
+    case 63:
+        goto original3159_2589;
+    case 64:
+        goto original3159_2589;
+    case 65:
+        goto original3159_2589;
+    case 66:
+        goto original3159_2589;
+    case 67:
+        goto original3159_2589;
+    case 68:
+        goto original3159_2589;
+    case 69:
+        goto original3159_2589;
+    case 70:
+        goto original3159_2589;
+    case 71:
+        goto original3159_2589;
+    case 72:
+        goto original3159_2589;
+    case 73:
+        goto original3159_2589;
+    case 74:
+        goto original3159_2589;
+    case 75:
+        goto original3159_2589;
+    case 76:
+        goto original3159_2589;
+    case 77:
+        goto original3159_2589;
+    case 78:
+        goto original3159_2589;
+    case 79:
+        goto original3159_2589;
+    case 80:
+        goto original3159_2589;
+    case 81:
+        goto original3159_2589;
+    case 82:
+        goto original3159_2589;
+    case 83:
+        goto original3159_2589;
+    case 84:
+        goto original3159_2589;
+    case 85:
+        goto original3159_2589;
+    case 86:
+        goto original3159_2589;
+    case 87:
+        goto original3159_2589;
+    case 88:
+        goto original3159_2589;
+    case 89:
+        goto original3159_2589;
+    case 90:
+        goto original3159_2589;
+    case 91:
+        goto original3159_2589;
+    case 92:
+        goto original3159_2589;
+    case 93:
+        goto original3159_2589;
+    case 94:
+        goto original3159_2589;
+    case 95:
+        goto original3159_2589;
+    case 96:
+        goto original3159_2589;
+    case 97:
+        goto original3159_2589;
+    case 98:
+        goto original3159_1400;
+    default:
+        goto original3159_2590;
+    }
+original3159_243:
+    __asm__("" ::"r"(temporary3));
+    temporary3 = Level32_7D7D8Field(privateState, int *, 452);
+    Level32_7D7D8Keep(temporary3);
+    saved16 = 0 + 1;
+    Level32_7D7D8Keep(saved16);
+    temporary2 = temporary3 < 2;
+    if (temporary3 == saved16)
+        goto original3159_364;
+    if (temporary2 == 0)
+        goto original3159_253;
+    if (temporary3 == 0)
+        goto original3159_260;
+
+    goto original3159_2589;
+original3159_253:
+    temporary2 = 0 + 2;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 == temporary2 ? (temporary2 = 0 + 4, 1) : (temporary2 = 0 + 4, 0))
+        goto original3159_371;
+    if (temporary3 == temporary2) {
+        temporary3 = (int)0x10000000U;
+        goto original3159_614;
+    }
+    temporary3 = (int)0x10000000U;
+    __asm__ volatile("" ::);
+
+    goto original3159_2589;
+original3159_260:
+    temporary3 = (int)&Level32_7D7D8_D_800718D4;
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = Level32_7D7D8Field(temporary3, int *, 0);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 != 0 ? (temporary2 = 0 + 6300, 1) : (temporary2 = 0 + 6300, 0))
+        goto original3159_267;
+    Level32_7D7D8Field(temporary3, int *, 0) = temporary2;
+original3159_267:
+    temporary2 = Level32_7D7D8Field(owner, unsigned char *, 76);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = owner + 0;
+    if (temporary2 == 0)
+        goto original3159_279;
+    argument1 = 0 + 0;
+    temporary2 = Level32_7D7D8_func_80037BBC(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = owner + 0;
+    if (temporary2 == 0)
+        goto original3159_279;
+    argument1 = 0 + 0;
+    Level32_7D7D8Keep(argument1);
+    argument2 = 0 + 14;
+    Level32_7D7D8_func_800512E4(argument0, argument1, argument2);
+    Level32_7D7D8Field(privateState, int *, 452) = saved16;
+original3159_279:
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, -7840);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 != 0 ? (temporary2 = 0 + 19, 1) : (temporary2 = 0 + 19, 0))
+        goto original3159_2589;
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, 888);
+    Level32_7D7D8Keep(temporary3);
+
+    saved16 = 0 + -1;
+    if (temporary3 != temporary2)
+        goto original3159_2589;
+    saved17 = 0 + 1;
+    Level32_7D7D8Keep(saved17);
+    temporary2 = Level32_7D7D8Field(privateState, int *, 160);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 164) = 0;
+    Level32_7D7D8Field(privateState, int *, 168) = saved17;
+    Level32_7D7D8Field(privateState, short *, 308) = 0;
+    Level32_7D7D8Field(privateState, int *, 416) = 0;
+    Level32_7D7D8Field(privateState, int *, 448) = 0;
+    Level32_7D7D8Field(privateState, int *, 264) = saved17;
+    if (temporary2 != saved16)
+        goto original3159_313;
+    argument0 = 0 + 50;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 3;
+    Level32_7D7D8Keep(argument1);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    argument3 = 0 + 0;
+    Level32_7D7D8Keep(argument3);
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, 17264);
+    temporary2 = Level32_7D7D8_func_8002803C(argument0, argument1, argument2, argument3, temporary3,
+                                             (privateState + 448), (0 | 35940));
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 16);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (temporary2 >> 16);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 160) = temporary2;
+original3159_313:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 108);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = 0 + 17;
+    if (temporary2 != saved16)
+        goto original3159_333;
+    temporary2 = Level32_7D7D8TypedSound(
+        argument0, 321, Level32_7D7D8_unk_ovlheader_80074368, Level32_7D7D8_unk_ovlheader_8007436C,
+        Level32_7D7D8_unk_ovlheader_80074364, (void *)(privateState + 164), 900);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 16);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (temporary2 >> 16);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 108) = temporary2;
+original3159_333:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 112);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = 0 + 21;
+    if (temporary2 != saved16)
+        goto original3159_353;
+    argument1 = 0 + 2000;
+    Level32_7D7D8Keep(argument1);
+    argument2 = (int)&Level32_7D7D8_func_80027EE4;
+    Level32_7D7D8Keep(argument2);
+    argument3 = (int)&Level32_7D7D8_func_80027A60;
+    Level32_7D7D8Keep(argument3);
+    temporary2 = Level32_7D7D8_func_8002803C(argument0, argument1, argument2, argument3,
+                                             ((int)&Level32_7D7D8_func_80029AA0),
+                                             (privateState + 264), (0 + 3));
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 16);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (temporary2 >> 16);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 112) = temporary2;
+original3159_353:
+    temporary10 = Level32_7D7D8Field(&locals.sp20, volatile int *, 80);
+    Level32_7D7D8Keep(temporary10);
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 17472);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = temporary10 + 100;
+    Level32_7D7D8Keep(argument0);
+    Level32_7D7D8Field(temporary10, int *, 140) = saved17;
+    ((int (*)())temporary2)(argument0);
+    temporary2 = 0 + 2;
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C650, int *, 0) = saved17;
+    Level32_7D7D8Field(privateState, int *, 452) = temporary2;
+    goto original3159_2589;
+original3159_364:
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, -7356);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 == temporary3)
+        goto original3159_2589;
+    Level32_7D7D8Field(privateState, int *, 452) = 0;
+    goto original3159_2589;
+original3159_371:
+    saved17 = Level32_7D7D8Field(privateState, int *, 268);
+    Level32_7D7D8Keep(saved17);
+
+    temporary3 = Level32_7D7D8Field(saved17, short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    saved16 = Level32_7D7D8Field(privateState, int *, 220);
+    Level32_7D7D8Keep(saved16);
+    temporary2 = temporary3 + 1;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = saved16 + temporary2;
+    Level32_7D7D8Keep(temporary2);
+    saved20 = temporary2 % temporary3;
+    Level32_7D7D8Keep(saved20);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    saved16 = (int)((unsigned int)saved16 << 4);
+    Level32_7D7D8Keep(saved16);
+    temporary3 = Level32_7D7D8Field(saved17, int *, 12);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (int)((unsigned int)saved20 << 4);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = saved16 + temporary3;
+    Level32_7D7D8Keep(temporary3);
+    argument3 = Level32_7D7D8Field(temporary2, int *, 0);
+    Level32_7D7D8Keep(argument3);
+    argument0 = Level32_7D7D8Field(temporary3, int *, 0);
+    Level32_7D7D8Keep(argument0);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 4);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = Level32_7D7D8Field(temporary3, int *, 4);
+    Level32_7D7D8Keep(argument1);
+    argument0 = argument3 - argument0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary2 - argument1;
+    temporary2 = Level32_7D7D8_func_8004E880(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = (int)&locals.sp20;
+    Level32_7D7D8Keep(argument0);
+    argument1 = (int)&Level32_7D7D8_D_80070328;
+    Level32_7D7D8Keep(argument1);
+    saved18 = temporary2 + 0;
+    Level32_7D7D8_func_8004F178(argument0, argument1);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    temporary2 = Level32_7D7D8Field(saved17, int *, 12);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(&locals.sp20, volatile int *, 0);
+    Level32_7D7D8Keep(temporary3);
+    saved16 = saved16 + temporary2;
+    Level32_7D7D8Keep(saved16);
+    argument0 = Level32_7D7D8Field(saved16, int *, 0);
+    Level32_7D7D8Keep(argument0);
+    temporary2 = Level32_7D7D8Field(&locals.sp20, volatile int *, 4);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = Level32_7D7D8Field(saved16, int *, 4);
+    Level32_7D7D8Keep(argument1);
+    argument0 = temporary3 - argument0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary2 - argument1;
+    temporary2 = Level32_7D7D8_func_8004E880(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = saved18 & 255;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary2 & 255;
+    temporary2 = Level32_7D7D8_func_8004F264(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 < 64;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0 ? (temporary2 = 0 + 179, 1) : (temporary2 = 0 + 179, 0))
+        goto original3159_428;
+    Level32_7D7D8Field(privateState, int *, 220) = saved20;
+    if (saved20 != temporary2)
+        goto original3159_428;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 264);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 + 1;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 264) = temporary2;
+original3159_428:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 448);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = (int)0x80070000U;
+    Level32_7D7D8Keep(argument0);
+    argument0 = Level32_7D7D8Field(argument0, int *, -14776);
+    Level32_7D7D8Keep(argument0);
+    temporary3 = Level32_7D7D8Field(privateState, int *, 264);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = temporary2 + argument0;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary3 < 4;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(privateState, int *, 448) = temporary2;
+    if (temporary3 != 0)
+        goto original3159_544;
+    argument0 = Level32_7D7D8Field(privateState, int *, 160);
+    Level32_7D7D8Keep(argument0);
+    saved16 = 0 + -1;
+    Level32_7D7D8Keep(saved16);
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(privateState, int *, 452) = 0;
+    if (argument0 == saved16)
+        goto original3159_442;
+
+    Level32_7D7D8_func_80028154(argument0);
+original3159_442:
+    argument0 = Level32_7D7D8Field(privateState, int *, 108);
+    Level32_7D7D8Keep(argument0);
+
+    Level32_7D7D8Field(privateState, int *, 160) = saved16;
+    if (argument0 == saved16)
+        goto original3159_448;
+
+    Level32_7D7D8_func_80028154(argument0);
+original3159_448:
+    argument0 = Level32_7D7D8Field(privateState, int *, 112);
+    Level32_7D7D8Keep(argument0);
+
+    Level32_7D7D8Field(privateState, int *, 108) = saved16;
+    if (argument0 == saved16)
+        goto original3159_454;
+
+    Level32_7D7D8_func_80028154(argument0);
+original3159_454:
+    temporary3 = Level32_7D7D8Field(privateState, int *, 100);
+    Level32_7D7D8Keep(temporary3);
+    argument0 = (int)&locals.sp20;
+    Level32_7D7D8Keep(argument0);
+    Level32_7D7D8Field(privateState, int *, 112) = saved16;
+    saved16 = (int)0x80070000U;
+    Level32_7D7D8Keep(saved16);
+    saved16 = Level32_7D7D8Field(saved16, int *, -15024);
+    Level32_7D7D8Keep(saved16);
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 2);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    saved16 = saved16 + temporary2;
+    Level32_7D7D8Keep(saved16);
+    argument1 = saved16 + 12;
+    Level32_7D7D8Keep(argument1);
+    Level32_7D7D8Field(saved16, unsigned char *, 73) = 0;
+    Level32_7D7D8_func_8004F178(argument0, argument1);
+    temporary2 = Level32_7D7D8Field(saved16, unsigned char *, 70);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_80065920 + temporary2), short *, 0);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 4);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 2);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = 0 - temporary2;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(&locals.sp20, volatile int *, 0);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (temporary2 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 0) = temporary3;
+    temporary2 = Level32_7D7D8Field(saved16, unsigned char *, 70);
+    Level32_7D7D8Keep(temporary2);
+    saved18 = (int)&Level32_7D7D8_D_8006D088;
+    Level32_7D7D8Keep(saved18);
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_800658A0 + temporary2), short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    argument0 = saved18 + 0;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 4);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 2);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = 0 - temporary2;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(&locals.sp20, volatile int *, 4);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (temporary2 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 4) = temporary3;
+    argument2 = Level32_7D7D8Field(saved16, unsigned char *, 70);
+    Level32_7D7D8Keep(argument2);
+    argument1 = (int)&locals.sp20;
+    Level32_7D7D8_func_8003B634(argument0, argument1, argument2);
+    saved16 = privateState + 448;
+    Level32_7D7D8Keep(saved16);
+    argument0 = saved16 + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 4;
+    Level32_7D7D8Keep(argument1);
+    argument2 = saved18 + 0;
+    Level32_7D7D8Keep(argument2);
+    temporary2 = 0 + 4;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(saved23, unsigned char *, 72) = 0;
+    Level32_7D7D8Field(privateState, int *, 452) = temporary2;
+    Level32_7D7D8_func_8003B7B4(argument0, argument1, argument2);
+    argument0 = saved16 + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 4;
+    Level32_7D7D8Keep(argument1);
+    saved17 = (int)&Level32_7D7D8_D_8006C7F8;
+    Level32_7D7D8Keep(saved17);
+    argument2 = saved17 + 0;
+    Level32_7D7D8_func_8003B7B4(argument0, argument1, argument2);
+    saved16 = privateState + 452;
+    Level32_7D7D8Keep(saved16);
+    argument0 = saved16 + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 4;
+    Level32_7D7D8Keep(argument1);
+    argument2 = saved18 + 0;
+    Level32_7D7D8_func_8003B7B4(argument0, argument1, argument2);
+    argument0 = saved16 + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 4;
+    Level32_7D7D8Keep(argument1);
+    argument2 = saved17 + 0;
+    Level32_7D7D8_func_8003B7B4(argument0, argument1, argument2);
+    saved16 = owner + 72;
+    Level32_7D7D8Keep(saved16);
+    argument0 = saved16 + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 1;
+    Level32_7D7D8Keep(argument1);
+    argument2 = saved18 + 0;
+    Level32_7D7D8_func_8003B7B4(argument0, argument1, argument2);
+    argument0 = saved16 + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 1;
+    Level32_7D7D8Keep(argument1);
+    argument2 = saved17 + 0;
+    Level32_7D7D8_func_8003B7B4(argument0, argument1, argument2);
+    argument0 = saved18 + 0;
+    goto original3159_609;
+original3159_544:
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, -14768);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 2;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 != temporary2)
+        goto original3159_2589;
+    saved18 = (int)&locals.sp30;
+    Level32_7D7D8Keep(saved18);
+    temporary3 = Level32_7D7D8Field(privateState, int *, 100);
+    Level32_7D7D8Keep(temporary3);
+    saved16 = (int)0x80070000U;
+    Level32_7D7D8Keep(saved16);
+    saved16 = Level32_7D7D8Field(saved16, int *, -15024);
+    Level32_7D7D8Keep(saved16);
+    argument0 = saved18 + 0;
+    Level32_7D7D8Keep(argument0);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C650, int *, 0) = 0;
+    __asm__ volatile("" ::: "memory", "$2");
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 2);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    saved16 = saved16 + temporary2;
+    Level32_7D7D8Keep(saved16);
+    argument1 = saved16 + 12;
+    Level32_7D7D8Keep(argument1);
+    Level32_7D7D8Field(saved16, unsigned char *, 73) = 0;
+    Level32_7D7D8_func_8004F178(argument0, argument1);
+    temporary2 = Level32_7D7D8Field(saved16, unsigned char *, 70);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_80065920 + temporary2), short *, 0);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 4);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 2);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = 0 - temporary2;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(&locals.sp20, volatile int *, 16);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (temporary2 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 16) = temporary3;
+    temporary2 = Level32_7D7D8Field(saved16, unsigned char *, 70);
+    Level32_7D7D8Keep(temporary2);
+    saved17 = (int)&Level32_7D7D8_D_8006D088;
+    Level32_7D7D8Keep(saved17);
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_800658A0 + temporary2), short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    argument0 = saved17 + 0;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 4);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 2);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = 0 - temporary2;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(&locals.sp20, volatile int *, 20);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (temporary2 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 20) = temporary3;
+    argument2 = Level32_7D7D8Field(saved16, unsigned char *, 70);
+    Level32_7D7D8Keep(argument2);
+    argument1 = saved18 + 0;
+    Level32_7D7D8_func_8003B634(argument0, argument1, argument2);
+    argument0 = saved17 + 0;
+    Level32_7D7D8Keep(argument0);
+    Level32_7D7D8Field(saved23, unsigned char *, 72) = 0;
+original3159_609:
+
+    Level32_7D7D8_func_8003B74C(argument0);
+    temporary2 = 0 + 3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 452) = temporary2;
+    goto original3159Return;
+original3159_614:
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = temporary3 | 2;
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, -7356);
+    Level32_7D7D8Keep(temporary2);
+    saved17 = (int)&Level32_7D7D8_D_80070328 + 524;
+    Level32_7D7D8Keep(saved17);
+    Level32_7D7D8Field(saved17, int *, 0) = temporary3;
+    if (temporary2 != 0)
+        goto original3159_2589;
+    temporary3 = (int)&Level32_7D7D8_D_80066BC8 + 10;
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = Level32_7D7D8Field(temporary3, unsigned char *, 0);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 & 1;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0)
+        goto original3159_687;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 448);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 < 6301;
+    Level32_7D7D8Keep(temporary2);
+    argument1 = owner + 0;
+    if (temporary2 == 0)
+        goto original3159_687;
+    temporary2 = 0 + 3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(temporary3, unsigned char *, 0) = temporary2;
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, -14764);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 1;
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_800719DC, short *, 0) = temporary2;
+    argument0 = Level32_7D7D8Field(temporary3, unsigned char *, 35);
+    Level32_7D7D8Keep(argument0);
+    argument2 = 0 + 161;
+    temporary2 = Level32_7D7D8_PlaySound(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = 0 + 211;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 17120);
+    Level32_7D7D8Keep(temporary2);
+
+    argument1 = owner + 0;
+    temporary2 = ((int (*)())temporary2)(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    saved16 = temporary2 + 0;
+    Level32_7D7D8Keep(saved16);
+    argument0 = saved16 + 12;
+    if (saved16 == 0)
+        goto original3159_687;
+    argument1 = saved17 + -524;
+    Level32_7D7D8_func_8004F178(argument0, argument1);
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, unsigned char *, 822);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_80065920 + temporary2), short *, 0);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(saved16, int *, 12);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (temporary2 >> 7);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(saved16, int *, 12) = temporary3;
+    __asm__ volatile("" ::"m"(Level32_7D7D8Field(saved16, int *, 12)) : "$2");
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, unsigned char *, 822);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(saved16, int *, 20);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_800658A0 + temporary2), short *, 0);
+    Level32_7D7D8Keep(argument0);
+    temporary3 = temporary3 + 500;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(saved16, int *, 20) = temporary3;
+    temporary3 = Level32_7D7D8Field(saved16, int *, 16);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (int)((unsigned int)argument0 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + argument0;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + argument0;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (temporary2 >> 7);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(saved16, int *, 16) = temporary3;
+original3159_687:
+    __asm__ volatile("" ::"r"(temporary2));
+    argument0 = Level32_7D7D8Field(privateState, int *, 448);
+    Level32_7D7D8Keep(argument0);
+    __asm__ volatile("" ::"r"(argument0) : "$2");
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 17532);
+
+    ((int (*)())temporary2)(argument0);
+    Level32_7D7D8Field(privateState, int *, 452) = 0;
+    goto original3159_2589;
+original3159_695:
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, unsigned char *, -14412);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 & 32;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0 ? (temporary2 = 0 + 50, 1) : (temporary2 = 0 + 50, 0))
+        goto original3159_704;
+    Level32_7D7D8Field(owner, unsigned char *, 72) = temporary2;
+    Level32_7D7D8Field(privateState, int *, 452) = 0;
+    goto original3159Return;
+original3159_704:
+    argument0 = owner + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 0;
+    temporary2 = Level32_7D7D8_func_80037BBC(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = 0 + 0;
+    if (temporary2 == 0)
+        goto original3159_2589;
+    argument0 = owner + 0;
+    Level32_7D7D8Keep(argument0);
+    argument2 = 0 + 14;
+    Level32_7D7D8_func_800512E4(argument0, argument1, argument2);
+    temporary2 = 0 + 14;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 72) = temporary2;
+    goto original3159_2589;
+original3159_715:
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, -7356);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 1;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 == temporary2 ? (temporary2 = 0 + 2, 1) : (temporary2 = 0 + 2, 0))
+        goto original3159_2589;
+    temporary3 = Level32_7D7D8Field(privateState, unsigned char *, 4);
+    Level32_7D7D8Keep(temporary3);
+
+    if (temporary3 == temporary2 ? (temporary2 = 0 + 5, 1) : (temporary2 = 0 + 5, 0))
+        goto original3159_726;
+    if (temporary3 != temporary2 ? (temporary2 = 0 + 9, 1) : (temporary2 = 0 + 9, 0))
+        goto original3159_746;
+original3159_726:
+    Level32_7D7D8Field(owner, unsigned char *, 73) = 0;
+    __asm__ volatile("" ::"m"(Level32_7D7D8Field(owner, unsigned char *, 73)) : "$2");
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, -14964);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary3);
+
+    argument0 =
+        Level32_7D7D8Field(((int)&Level32_7D7D8_D_800716B0 + temporary3), unsigned char *, 0);
+    Level32_7D7D8Keep(argument0);
+
+    temporary2 = (unsigned int)argument0 < 255;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0 ? (temporary2 = argument0 + 1, 1) : (temporary2 = argument0 + 1, 0))
+        goto original3159_743;
+
+    Level32_7D7D8Field(((int)&Level32_7D7D8_D_800716B0 + temporary3), unsigned char *, 0) =
+        temporary2;
+original3159_743:
+    temporary2 = 0 + 30;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 72) = temporary2;
+    goto original3159Return;
+original3159_746:
+    if (temporary3 == temporary2 ? (temporary2 = 0 + 12, 1) : (temporary2 = 0 + 12, 0))
+        goto original3159_750;
+    if (temporary3 != temporary2 ? (temporary2 = 0 + 7, 1) : (temporary2 = 0 + 7, 0))
+        goto original3159_770;
+original3159_750:
+    Level32_7D7D8Field(owner, unsigned char *, 73) = 0;
+    __asm__ volatile("" ::"m"(Level32_7D7D8Field(owner, unsigned char *, 73)) : "$2");
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, -14964);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary3);
+
+    argument0 =
+        Level32_7D7D8Field(((int)&Level32_7D7D8_D_800716B0 + 1 + temporary3), unsigned char *, 0);
+    Level32_7D7D8Keep(argument0);
+
+    temporary2 = (unsigned int)argument0 < 255;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0 ? (temporary2 = argument0 + 1, 1) : (temporary2 = argument0 + 1, 0))
+        goto original3159_767;
+
+    Level32_7D7D8Field(((int)&Level32_7D7D8_D_800716B0 + 1 + temporary3), unsigned char *, 0) =
+        temporary2;
+original3159_767:
+    temporary2 = 0 + 20;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 72) = temporary2;
+    goto original3159Return;
+original3159_770:
+    temporary3 = Level32_7D7D8Field(privateState, unsigned char *, 4);
+    Level32_7D7D8Keep(temporary3);
+
+    Level32_7D7D8Field(privateState, unsigned char *, 5) = 0;
+    if (temporary3 != temporary2)
+        goto original3159_776;
+    temporary2 = 0 + 2;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, unsigned char *, 5) = temporary2;
+original3159_776:
+    Level32_7D7D8Field(owner, unsigned char *, 72) = 0;
+    argument0 = owner + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 0;
+    Level32_7D7D8_func_80034F40(argument0, argument1);
+
+    goto original3159_2589;
+original3159_782:
+    temporary3 = Level32_7D7D8Field(privateState, int *, 100);
+    Level32_7D7D8Keep(temporary3);
+    saved16 = Level32_7D7D8Field(owner, unsigned char *, 73);
+    Level32_7D7D8Keep(saved16);
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 2);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, -15024);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    saved17 = temporary3 + temporary2;
+    Level32_7D7D8Keep(saved17);
+    temporary2 = 0 + 1;
+    Level32_7D7D8Keep(temporary2);
+    if (saved16 == temporary2 ? (temporary2 = saved16 < 2, 1) : (temporary2 = saved16 < 2, 0))
+        goto original3159_847;
+    if (temporary2 == 0)
+        goto original3159_801;
+    argument0 = (int)&locals.sp20;
+    if (saved16 == 0)
+        goto original3159_806;
+
+    goto original3159_2589;
+original3159_801:
+    temporary2 = 0 + 2;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = 0 + 0;
+    if (saved16 == temporary2)
+        goto original3159_870;
+
+    goto original3159_2589;
+original3159_806:
+    Level32_7D7D8Keep(saved16);
+    argument1 = saved17 + 12;
+    Level32_7D7D8_func_8004F178(argument0, argument1);
+    temporary2 = Level32_7D7D8Field(saved17, unsigned char *, 70);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_80065920 + temporary2), short *, 0);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 4);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = 0 - temporary2;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(&locals.sp20, volatile int *, 0);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (temporary2 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 0) = temporary3;
+    temporary2 = Level32_7D7D8Field(saved17, unsigned char *, 70);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = (int)&locals.sp20;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_800658A0 + temporary2), short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 4);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = 0 - temporary2;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(&locals.sp20, volatile int *, 4);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (temporary2 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 4) = temporary3;
+original3159_842:
+    argument1 = Level32_7D7D8Field(saved17, unsigned char *, 70);
+    Level32_7D7D8Keep(argument1);
+    argument3 = 0 + 0;
+    Level32_7D7D8_func_80013D44(argument0, argument1, argument2, argument3);
+
+    goto original3159_1378;
+original3159_847:
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, -8120);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 & 1;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0)
+        goto original3159_2589;
+    argument0 = 0 + 0;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 17372);
+    Level32_7D7D8Keep(temporary2);
+
+    argument1 = 0 + 20;
+    ((int (*)())temporary2)(argument0, argument1);
+    Level32_7D7D8Field(saved17, unsigned char *, 73) = 0;
+    temporary10 = Level32_7D7D8Field(&locals.sp20, volatile int *, 80);
+    Level32_7D7D8Keep(temporary10);
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 17472);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = temporary10 + 100;
+    Level32_7D7D8Keep(argument0);
+    Level32_7D7D8Field(temporary10, int *, 140) = saved16;
+    ((int (*)())temporary2)(argument0);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C650, int *, 0) = saved16;
+
+    goto original3159_1378;
+original3159_870:
+    argument2 = 0 + 180;
+    Level32_7D7D8Keep(argument2);
+    argument1 = 0 + 1;
+    Level32_7D7D8Keep(argument1);
+    temporary3 = privateState + 0;
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + -1;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, short *, 140) = temporary2;
+    Level32_7D7D8Field(privateState, short *, 142) = temporary2;
+    temporary2 = 0 + 60;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, short *, 144) = temporary2;
+    temporary2 = 0 + 50;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, short *, 146) = temporary2;
+    temporary2 = 0 + 1;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, short *, 154) = temporary2;
+    Level32_7D7D8Field(privateState, int *, 156) = 0;
+    Level32_7D7D8Field(owner, unsigned char *, 73) = 0;
+original3159_884:
+    Level32_7D7D8Field(temporary3, int *, 200) = argument2;
+    Level32_7D7D8Field(temporary3, int *, 244) = argument1;
+    __asm__ volatile("" ::"m"(Level32_7D7D8Field(temporary3, int *, 244)), "r"(argument0));
+    argument0 = argument0 + 1;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = argument0 < 6;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary3 + 4;
+    if (temporary2 != 0)
+        goto original3159_884;
+    temporary2 = 0 + 1;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 168) = temporary2;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 220);
+    Level32_7D7D8Keep(temporary2);
+    saved17 = 0 + 5;
+    Level32_7D7D8Keep(saved17);
+    temporary2 = temporary2 + -1;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 220) = temporary2;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 160);
+    Level32_7D7D8Keep(temporary2);
+    saved16 = 0 + -1;
+    Level32_7D7D8Keep(saved16);
+    Level32_7D7D8Field(privateState, short *, 182) = 0;
+    Level32_7D7D8Field(privateState, int *, 164) = 0;
+    Level32_7D7D8Field(privateState, short *, 308) = 0;
+    Level32_7D7D8Field(privateState, int *, 304) = saved17;
+    Level32_7D7D8Field(privateState, int *, 416) = 0;
+    if (temporary2 != saved16)
+        goto original3159_919;
+    argument0 = 0 + 50;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 3;
+    Level32_7D7D8Keep(argument1);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    argument3 = 0 + 0;
+    Level32_7D7D8Keep(argument3);
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, 17264);
+    temporary2 = Level32_7D7D8_func_8002803C(argument0, argument1, argument2, argument3, temporary3,
+                                             (privateState + 448), (0 | 35940));
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 16);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (temporary2 >> 16);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 160) = temporary2;
+original3159_919:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 108);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = 0 + 17;
+    if (temporary2 != saved16)
+        goto original3159_939;
+    temporary2 = Level32_7D7D8TypedSound(
+        argument0, 321, Level32_7D7D8_unk_ovlheader_80074368, Level32_7D7D8_unk_ovlheader_8007436C,
+        Level32_7D7D8_unk_ovlheader_80074364, (void *)(privateState + 164), 900);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 16);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (temporary2 >> 16);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 108) = temporary2;
+original3159_939:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 112);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = 0 + 21;
+    if (temporary2 != saved16)
+        goto original3159_959;
+    argument1 = 0 + 2000;
+    Level32_7D7D8Keep(argument1);
+    argument2 = (int)&Level32_7D7D8_func_80027EE4;
+    Level32_7D7D8Keep(argument2);
+    argument3 = (int)&Level32_7D7D8_func_80027A60;
+    Level32_7D7D8Keep(argument3);
+    temporary2 = Level32_7D7D8_func_8002803C(argument0, argument1, argument2, argument3,
+                                             ((int)&Level32_7D7D8_func_80029AA0),
+                                             (privateState + 264), (0 + 3));
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 16);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (temporary2 >> 16);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 112) = temporary2;
+original3159_959:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 116);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 != saved16 ? (temporary2 = 0 + 31, 1) : (temporary2 = 0 + 31, 0))
+        goto original3159_980;
+    argument0 = 0 + 23;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 2001;
+    Level32_7D7D8Keep(argument1);
+    argument2 = (int)&Level32_7D7D8_func_80027D60;
+    Level32_7D7D8Keep(argument2);
+    argument3 = (int)0x80070000U;
+    Level32_7D7D8Keep(argument3);
+    argument3 = Level32_7D7D8Field(argument3, int *, 17300);
+    Level32_7D7D8Keep(argument3);
+    temporary2 = Level32_7D7D8_func_8002803C(argument0, argument1, argument2, argument3,
+                                             ((int)&Level32_7D7D8_func_8002982C),
+                                             (privateState + 304), saved17);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 16);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (temporary2 >> 16);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 116) = temporary2;
+    temporary2 = 0 + 31;
+    Level32_7D7D8Keep(temporary2);
+original3159_980:
+    __asm__ volatile("" ::"r"(temporary2), "r"(owner));
+    Level32_7D7D8Field(owner, unsigned char *, 72) = temporary2;
+    goto original3159_2589;
+original3159_982:
+    temporary2 = Level32_7D7D8Field(owner, unsigned char *, 73);
+    Level32_7D7D8Keep(temporary2);
+
+    saved16 = privateState + 0;
+    if (temporary2 != 0)
+        goto original3159_2589;
+original3159_986:
+    saved18 = Level32_7D7D8Field(privateState, int *, 268);
+    Level32_7D7D8Keep(saved18);
+
+    temporary3 = Level32_7D7D8Field(saved18, short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    saved17 = Level32_7D7D8Field(saved16, int *, 200);
+    Level32_7D7D8Keep(saved17);
+    temporary2 = temporary3 + 1;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = saved17 + temporary2;
+    Level32_7D7D8Keep(temporary2);
+    saved20 = temporary2 % temporary3;
+    Level32_7D7D8Keep(saved20);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    argument0 = Level32_7D7D8Field(saved18, int *, 12);
+    Level32_7D7D8Keep(argument0);
+    temporary2 = (int)((unsigned int)saved17 << 4);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + argument0;
+    Level32_7D7D8Keep(temporary2);
+    argument1 = Level32_7D7D8Field(temporary2, int *, 4);
+    Level32_7D7D8Keep(argument1);
+    temporary3 = (int)((unsigned int)saved20 << 4);
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = temporary3 + argument0;
+    Level32_7D7D8Keep(temporary3);
+    argument3 = Level32_7D7D8Field(temporary3, int *, 0);
+    Level32_7D7D8Keep(argument3);
+    argument0 = Level32_7D7D8Field(temporary2, int *, 0);
+    Level32_7D7D8Keep(argument0);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, 4);
+    Level32_7D7D8Keep(temporary3);
+    argument0 = argument3 - argument0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary3 - argument1;
+    temporary2 = Level32_7D7D8_func_8004E880(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    saved21 = temporary2 + 0;
+    Level32_7D7D8Keep(saved21);
+    temporary2 = privateState + 20;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = saved16 < temporary2;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = (int)&locals.sp20;
+    if (temporary2 == 0)
+        goto original3159_1032;
+    temporary2 = Level32_7D7D8Field(saved16, int *, 224);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = (int)0x80070000U;
+    Level32_7D7D8Keep(argument1);
+    argument1 = Level32_7D7D8Field(argument1, int *, -15024);
+    Level32_7D7D8Keep(argument1);
+    temporary3 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = (int)((unsigned int)temporary3 << 2);
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = temporary3 - temporary2;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = (int)((unsigned int)temporary3 << 3);
+    Level32_7D7D8Keep(temporary3);
+    argument1 = argument1 + temporary3;
+    Level32_7D7D8Keep(argument1);
+    argument1 = argument1 + 12;
+    goto original3159_1034;
+original3159_1032:
+    argument1 = (int)&Level32_7D7D8_D_80070328;
+    Level32_7D7D8Keep(argument1);
+original3159_1034:
+
+    Level32_7D7D8_func_8004F178(argument0, argument1);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    temporary2 = (int)((unsigned int)saved17 << 4);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(saved18, int *, 12);
+    Level32_7D7D8Keep(temporary3);
+    argument3 = Level32_7D7D8Field(&locals.sp20, volatile int *, 0);
+    Level32_7D7D8Keep(argument3);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = Level32_7D7D8Field(temporary2, int *, 0);
+    Level32_7D7D8Keep(argument0);
+    temporary3 = Level32_7D7D8Field(&locals.sp20, volatile int *, 4);
+    Level32_7D7D8Keep(temporary3);
+    argument1 = Level32_7D7D8Field(temporary2, int *, 4);
+    Level32_7D7D8Keep(argument1);
+    argument0 = argument3 - argument0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary3 - argument1;
+    temporary2 = Level32_7D7D8_func_8004E880(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = saved21 & 255;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary2 & 255;
+    temporary2 = Level32_7D7D8_func_8004F264(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 < 64;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0 ? (temporary2 = 0 + 179, 1) : (temporary2 = 0 + 179, 0))
+        goto original3159_1059;
+    Level32_7D7D8Field(saved16, int *, 200) = saved20;
+    if (saved20 != temporary2)
+        goto original3159_1059;
+    temporary2 = Level32_7D7D8Field(saved16, int *, 244);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 + 1;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(saved16, int *, 244) = temporary2;
+original3159_1059:
+    saved16 = saved16 + 4;
+    Level32_7D7D8Keep(saved16);
+    temporary2 = privateState + 24;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = saved16 < temporary2;
+    Level32_7D7D8Keep(temporary2);
+    temporary8 = 0 + 0;
+    if (temporary2 != 0)
+        goto original3159_986;
+    temporary9 = (int)0x00980000U;
+    Level32_7D7D8Keep(temporary9);
+    argument1 = Level32_7D7D8Field(privateState, int *, 220);
+    Level32_7D7D8Keep(argument1);
+
+    temporary2 = argument1 < 179;
+    Level32_7D7D8Keep(temporary2);
+    temporary9 = temporary9 | 38527;
+    if (temporary2 != 0)
+        goto original3159_1075;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 268);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(temporary2);
+
+    argument1 = argument1 - temporary2;
+    Level32_7D7D8Keep(argument1);
+original3159_1075:
+    Level32_7D7D8Keep(temporary8);
+    temporary2 = Level32_7D7D8Field(privateState, int *, 268);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = Level32_7D7D8Field(privateState, int *, 264);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(temporary3);
+    wholeProduct1080.full = (long long)temporary2 * (long long)temporary3;
+    __asm__("" : "=x"(wholeProduct1080.full) : "0"(wholeProduct1080.full));
+    argument3 = 0 + 0;
+    Level32_7D7D8Keep(argument3);
+    argument2 = privateState + 0;
+    Level32_7D7D8Keep(argument2);
+    temporary2 = argument1 + -179;
+    Level32_7D7D8Keep(temporary2);
+    argument1 = temporary2 + temporary3;
+    Level32_7D7D8Keep(argument1);
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct1080.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    argument1 = argument1 + temporary10;
+    Level32_7D7D8Keep(argument1);
+original3159_1087:
+    argument0 = Level32_7D7D8Field(argument2, int *, 200);
+    Level32_7D7D8Keep(argument0);
+
+    temporary2 = argument0 < 179;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0)
+        goto original3159_1097;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 268);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = argument0 - temporary2;
+    Level32_7D7D8Keep(argument0);
+original3159_1097:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 268);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = Level32_7D7D8Field(argument2, int *, 244);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(temporary3);
+    wholeProduct1102.full = (long long)temporary2 * (long long)temporary3;
+    __asm__("" : "=x"(wholeProduct1102.full) : "0"(wholeProduct1102.full));
+    temporary2 = argument0 + -179;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = temporary2 + temporary3;
+    Level32_7D7D8Keep(argument0);
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct1102.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    argument0 = argument0 + temporary10;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = argument1 < argument0;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = argument0 - argument1;
+    if (temporary2 == 0)
+        goto original3159_1118;
+    temporary2 = temporary3 < temporary9;
+    if (temporary3 >= 0)
+        goto original3159_1114;
+    temporary3 = argument1 - argument0;
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = temporary3 < temporary9;
+    Level32_7D7D8Keep(temporary2);
+original3159_1114:
+    if (temporary2 == 0)
+        goto original3159_1117;
+    temporary9 = temporary3 + 0;
+    Level32_7D7D8Keep(temporary9);
+original3159_1117:
+    temporary8 = temporary8 + 1;
+    Level32_7D7D8Keep(temporary8);
+original3159_1118:
+    argument3 = argument3 + 1;
+    Level32_7D7D8Keep(argument3);
+    temporary2 = argument3 < 5;
+    Level32_7D7D8Keep(temporary2);
+    argument2 = argument2 + 4;
+    if (temporary2 != 0)
+        goto original3159_1087;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 304);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary8 == temporary2 ? (temporary2 = temporary9 < 2, 1)
+                                 : (temporary2 = temporary9 < 2, 0))
+        goto original3159_1129;
+    if (temporary2 != 0)
+        goto original3159_1129;
+    Level32_7D7D8Field(privateState, int *, 304) = temporary8;
+original3159_1129:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 264);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 < 4;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0 ? (temporary2 = 0 + 40, 1) : (temporary2 = 0 + 40, 0))
+        goto original3159_2589;
+    Level32_7D7D8Field(owner, unsigned char *, 73) = 0;
+    goto original3159_1596;
+original3159_1136:
+    argument0 = Level32_7D7D8Field(privateState, int *, 328);
+    Level32_7D7D8Keep(argument0);
+    temporary3 = Level32_7D7D8Field(privateState, int *, 100);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 179;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 324) = argument0;
+    Level32_7D7D8Field(argument0, short *, 2) = temporary2;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 324);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = (int)&locals.sp20;
+    Level32_7D7D8Keep(argument0);
+    argument1 = Level32_7D7D8Field(temporary2, int *, 12);
+    Level32_7D7D8Keep(argument1);
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 2);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, -15024);
+    Level32_7D7D8Keep(temporary3);
+    argument1 = argument1 + 2864;
+    Level32_7D7D8Keep(argument1);
+    saved17 = temporary3 + temporary2;
+    Level32_7D7D8_func_8004F178(argument0, argument1);
+    temporary2 = Level32_7D7D8Field(privateState, int *, 324);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 12);
+    Level32_7D7D8Keep(temporary2);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    argument3 = Level32_7D7D8Field(temporary2, int *, 16);
+    Level32_7D7D8Keep(argument3);
+    argument0 = Level32_7D7D8Field(temporary2, int *, 0);
+    Level32_7D7D8Keep(argument0);
+    temporary3 = Level32_7D7D8Field(temporary2, int *, 20);
+    Level32_7D7D8Keep(temporary3);
+    argument1 = Level32_7D7D8Field(temporary2, int *, 4);
+    Level32_7D7D8Keep(argument1);
+    argument0 = argument3 - argument0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary3 - argument1;
+    temporary2 = Level32_7D7D8_func_8004E880(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    saved16 = Level32_7D7D8Field(owner, unsigned char *, 73);
+    Level32_7D7D8Keep(saved16);
+    temporary2 = 0 + 1;
+    Level32_7D7D8Keep(temporary2);
+    if (saved16 == temporary2 ? (temporary2 = saved16 < 2, 1) : (temporary2 = saved16 < 2, 0))
+        goto original3159_1218;
+    if (temporary2 == 0)
+        goto original3159_1175;
+    if (saved16 == 0 ? (saved16 = (int)&locals.sp40, 1) : (saved16 = (int)&locals.sp40, 0))
+        goto original3159_1180;
+    __asm__ volatile("" ::);
+
+    goto original3159_2589;
+original3159_1175:
+    temporary2 = 0 + 2;
+    Level32_7D7D8Keep(temporary2);
+    if (saved16 == temporary2 ? (temporary2 = 0 + 300, 1) : (temporary2 = 0 + 300, 0))
+        goto original3159_1383;
+    __asm__ volatile("" ::);
+
+    goto original3159_2589;
+original3159_1180:
+    argument0 = saved16 + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = saved17 + 12;
+    Level32_7D7D8_func_8004F178(argument0, argument1);
+    temporary2 = Level32_7D7D8Field(saved17, unsigned char *, 70);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_80065920 + temporary2), short *, 0);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 4);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = 0 - temporary2;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(&locals.sp20, volatile int *, 32);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (temporary2 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 32) = temporary3;
+    temporary2 = Level32_7D7D8Field(saved17, unsigned char *, 70);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = saved16 + 0;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_800658A0 + temporary2), short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 4);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = 0 - temporary2;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(&locals.sp20, volatile int *, 36);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (temporary2 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(&locals.sp20, int *, 36) = temporary3;
+    goto original3159_842;
+original3159_1218:
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, -8120);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 & 1;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0)
+        goto original3159_2589;
+    argument0 = owner + 12;
+    Level32_7D7D8Keep(argument0);
+    argument1 = (int)&locals.sp20;
+    Level32_7D7D8_func_8004F178(argument0, argument1);
+    argument0 = owner + 0;
+    Level32_7D7D8Keep(argument0);
+    temporary3 = Level32_7D7D8Field(owner, short *, 56);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = Level32_7D7D8Field(owner, int *, 20);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = 0 + 2;
+    Level32_7D7D8Keep(argument1);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, int *, 20) = temporary2;
+    Level32_7D7D8_func_80055D24(argument0, argument1);
+    temporary3 = Level32_7D7D8Field(privateState, int *, 324);
+    Level32_7D7D8Keep(temporary3);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    temporary2 = Level32_7D7D8Field(temporary3, short *, 2);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, 12);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (int)((unsigned int)temporary2 << 4);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    argument3 = Level32_7D7D8Field(temporary2, int *, 16);
+    Level32_7D7D8Keep(argument3);
+    argument0 = Level32_7D7D8Field(temporary2, int *, 0);
+    Level32_7D7D8Keep(argument0);
+    temporary3 = Level32_7D7D8Field(temporary2, int *, 20);
+    Level32_7D7D8Keep(temporary3);
+    argument1 = Level32_7D7D8Field(temporary2, int *, 4);
+    Level32_7D7D8Keep(argument1);
+    argument0 = argument3 - argument0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary3 - argument1;
+    temporary2 = Level32_7D7D8_func_8004E880(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = 0 + 50;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 3;
+    Level32_7D7D8Keep(argument1);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    argument3 = 0 + 0;
+    Level32_7D7D8Keep(argument3);
+    Level32_7D7D8Field(owner, unsigned char *, 70) = temporary2;
+    Level32_7D7D8Field(saved17, unsigned char *, 73) = 0;
+    __asm__ volatile("" ::"m"(Level32_7D7D8Field(owner, unsigned char *, 70)),
+                     "m"(Level32_7D7D8Field(saved17, unsigned char *, 73))
+                     : "$3");
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, 17264);
+    __asm__ volatile("" ::: "memory", "$2");
+    temporary2 = 0 + 180;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 200) = temporary2;
+    temporary2 = 0 + 179;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 220) = temporary2;
+    temporary2 = privateState + 448;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 244) = saved16;
+    Level32_7D7D8Field(privateState, int *, 264) = saved16;
+    Level32_7D7D8Field(privateState, short *, 182) = 0;
+    Level32_7D7D8Field(privateState, int *, 164) = 0;
+    Level32_7D7D8Field(privateState, int *, 168) = saved16;
+    Level32_7D7D8Field(privateState, short *, 308) = 0;
+    Level32_7D7D8Field(privateState, int *, 304) = saved16;
+    Level32_7D7D8Field(privateState, int *, 416) = 0;
+    temporary2 = Level32_7D7D8_func_8002803C(argument0, argument1, argument2, argument3, temporary3,
+                                             (temporary2), (0 | 35940));
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 16);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (temporary2 >> 16);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 160) = temporary2;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 108);
+    Level32_7D7D8Keep(temporary2);
+    saved17 = 0 + -1;
+    Level32_7D7D8Keep(saved17);
+    argument0 = 0 + 17;
+    if (temporary2 != saved17)
+        goto original3159_1296;
+    temporary2 = Level32_7D7D8TypedSound(
+        argument0, 321, Level32_7D7D8_unk_ovlheader_80074368, Level32_7D7D8_unk_ovlheader_8007436C,
+        Level32_7D7D8_unk_ovlheader_80074364, (void *)(privateState + 164), 900);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 16);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (temporary2 >> 16);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 108) = temporary2;
+original3159_1296:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 112);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = 0 + 21;
+    if (temporary2 != saved17)
+        goto original3159_1316;
+    argument1 = 0 + 2000;
+    Level32_7D7D8Keep(argument1);
+    argument2 = (int)&Level32_7D7D8_func_80027EE4;
+    Level32_7D7D8Keep(argument2);
+    argument3 = (int)&Level32_7D7D8_func_80027A60;
+    Level32_7D7D8Keep(argument3);
+    temporary2 = Level32_7D7D8_func_8002803C(argument0, argument1, argument2, argument3,
+                                             ((int)&Level32_7D7D8_func_80029AA0),
+                                             (privateState + 264), (0 + 3));
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 16);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (temporary2 >> 16);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 112) = temporary2;
+original3159_1316:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 116);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = 0 + 23;
+    if (temporary2 != saved17)
+        goto original3159_1336;
+    argument1 = 0 + 2001;
+    Level32_7D7D8Keep(argument1);
+    argument2 = (int)&Level32_7D7D8_func_80027D60;
+    Level32_7D7D8Keep(argument2);
+    argument3 = (int)0x80070000U;
+    Level32_7D7D8Keep(argument3);
+    argument3 = Level32_7D7D8Field(argument3, int *, 17300);
+    Level32_7D7D8Keep(argument3);
+    temporary2 = Level32_7D7D8_func_8002803C(argument0, argument1, argument2, argument3,
+                                             ((int)&Level32_7D7D8_func_8002982C),
+                                             (privateState + 304), (0 + 5));
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 16);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (temporary2 >> 16);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 116) = temporary2;
+original3159_1336:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 120);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = 0 + 22;
+    if (temporary2 != saved17)
+        goto original3159_1358;
+    argument1 = 0 + 322;
+    Level32_7D7D8Keep(argument1);
+    argument2 = (int)&Level32_7D7D8_func_80027E40;
+    Level32_7D7D8Keep(argument2);
+    argument3 = (int)&Level32_7D7D8_func_80027A60;
+    Level32_7D7D8Keep(argument3);
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, -14808);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = Level32_7D7D8_func_8002803C(argument0, argument1, argument2, argument3,
+                                             ((int)&Level32_7D7D8_func_80029904),
+                                             ((int)&Level32_7D7D8_D_8006C628), temporary3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 16);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (temporary2 >> 16);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 120) = temporary2;
+original3159_1358:
+    temporary10 = Level32_7D7D8Field(&locals.sp20, volatile int *, 80);
+    Level32_7D7D8Keep(temporary10);
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 17472);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = temporary10 + 100;
+    Level32_7D7D8Keep(argument0);
+    Level32_7D7D8Field(temporary10, int *, 140) = saved16;
+    ((int (*)())temporary2)(argument0);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C650, int *, 0) = saved16;
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 61);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 3;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = owner + 0;
+    if (temporary3 == temporary2)
+        goto original3159_1378;
+    temporary2 = 0 + 114;
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C770, int *, 0) = 0;
+    Level32_7D7D8Field(owner, unsigned char *, 64) = temporary2;
+    temporary2 = 0 + 3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 61) = temporary2;
+    Level32_7D7D8Field(owner, unsigned char *, 63) = 0;
+    Level32_7D7D8_func_80035734(argument0);
+original3159_1378:
+    temporary2 = Level32_7D7D8Field(owner, unsigned char *, 73);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 + 1;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 73) = temporary2;
+    goto original3159_2589;
+original3159_1383:
+    Level32_7D7D8Field(privateState, int *, 312) = temporary2;
+    Level32_7D7D8Field(privateState, int *, 316) = temporary2;
+    temporary2 = 0 + -1;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, short *, 140) = temporary2;
+    Level32_7D7D8Field(privateState, short *, 142) = temporary2;
+    temporary2 = 0 + 40;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, short *, 146) = temporary2;
+    temporary2 = 0 + 1;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, short *, 154) = temporary2;
+    Level32_7D7D8Field(privateState, int *, 156) = 0;
+    Level32_7D7D8Field(owner, unsigned char *, 73) = 0;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 312);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field(privateState, short *, 144) = temporary2;
+    temporary2 = 0 + 21;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 72) = temporary2;
+    goto original3159_2589;
+original3159_1400:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(temporary2);
+    savedValue30 = Level32_7D7D8Field(privateState, int *, 324);
+    Level32_7D7D8Keep(savedValue30);
+    argument0 = owner + 0;
+    if (temporary2 != 0)
+        goto original3159_1456;
+    argument0 = 0 + 623;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = 0 + 6;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 71) = temporary2;
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 17120);
+    Level32_7D7D8Keep(temporary2);
+
+    argument1 = owner + 0;
+    temporary2 = ((int (*)())temporary2)(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 132) = temporary2;
+    if (temporary2 == 0)
+        goto original3159_1470;
+    temporary3 = Level32_7D7D8Field(temporary2, int *, 0);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + -1;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(temporary3, short *, 22) = temporary2;
+    Level32_7D7D8Field(temporary3, short *, 20) = temporary2;
+    temporary3 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 2;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(temporary3, unsigned char *, 71) = temporary2;
+    temporary3 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 63;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(temporary3, unsigned char *, 76) = temporary2;
+    temporary3 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = Level32_7D7D8Field(temporary3, unsigned char *, 76);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field(temporary3, unsigned char *, 78) = temporary2;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 324);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 12);
+    Level32_7D7D8Keep(temporary2);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    argument3 = Level32_7D7D8Field(temporary2, int *, 16);
+    Level32_7D7D8Keep(argument3);
+    argument0 = Level32_7D7D8Field(temporary2, int *, 0);
+    Level32_7D7D8Keep(argument0);
+    temporary3 = Level32_7D7D8Field(temporary2, int *, 20);
+    Level32_7D7D8Keep(temporary3);
+    argument1 = Level32_7D7D8Field(temporary2, int *, 4);
+    Level32_7D7D8Keep(argument1);
+    argument0 = argument3 - argument0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary3 - argument1;
+    temporary2 = Level32_7D7D8_func_8004E880(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(temporary3);
+
+    Level32_7D7D8Field(temporary3, unsigned char *, 70) = temporary2;
+    argument0 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(argument0);
+    temporary3 = Level32_7D7D8Field(owner, short *, 56);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = Level32_7D7D8Field(argument0, int *, 20);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(argument0, int *, 20) = temporary2;
+    temporary3 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 24;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(temporary3, unsigned char *, 79) = temporary2;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = owner + 0;
+    if (temporary2 == 0)
+        goto original3159_1470;
+original3159_1456:
+    argument1 = 0 + 4;
+    Level32_7D7D8_func_80055D24(argument0, argument1);
+    argument0 = owner + 0;
+    Level32_7D7D8Keep(argument0);
+    argument2 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(argument2);
+    argument1 = 0 + 0;
+    Level32_7D7D8Keep(argument1);
+    argument2 = argument2 + 12;
+    Level32_7D7D8_func_80055F14(argument0, argument1, argument2);
+    temporary2 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(owner, signed char *, 68);
+    Level32_7D7D8Keep(temporary3);
+    argument0 = Level32_7D7D8Field(owner, signed char *, 69);
+    Level32_7D7D8Keep(argument0);
+    argument1 = Level32_7D7D8Field(owner, signed char *, 70);
+    Level32_7D7D8Keep(argument1);
+    Level32_7D7D8Field(temporary2, unsigned char *, 68) = temporary3;
+    Level32_7D7D8Field(temporary2, unsigned char *, 69) = argument0;
+    Level32_7D7D8Field(temporary2, unsigned char *, 70) = argument1;
+original3159_1470:
+    saved21 = 0 + 0;
+    Level32_7D7D8Keep(saved21);
+    saved20 = privateState + 0;
+    Level32_7D7D8Keep(saved20);
+original3159_1472:
+    saved17 = Level32_7D7D8Field(privateState, int *, 268);
+    Level32_7D7D8Keep(saved17);
+    temporary2 = 0 + 5;
+    if (saved21 != 0)
+        goto original3159_1478;
+    argument0 = (int)&locals.sp30;
+    Level32_7D7D8Keep(argument0);
+    argument1 = owner + 12;
+    goto original3159_1482;
+original3159_1478:
+    argument0 = (int)&locals.sp30;
+    if (saved21 != temporary2)
+        goto original3159_1535;
+    argument1 = (int)&Level32_7D7D8_D_80070328;
+    Level32_7D7D8Keep(argument1);
+original3159_1482:
+
+    Level32_7D7D8_func_8004F178(argument0, argument1);
+    temporary3 = Level32_7D7D8Field(saved17, short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    saved16 = Level32_7D7D8Field(saved20, int *, 200);
+    Level32_7D7D8Keep(saved16);
+    temporary2 = temporary3 + 1;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = saved16 + temporary2;
+    Level32_7D7D8Keep(temporary2);
+    saved18 = temporary2 % temporary3;
+    Level32_7D7D8Keep(saved18);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    saved16 = (int)((unsigned int)saved16 << 4);
+    Level32_7D7D8Keep(saved16);
+    temporary3 = Level32_7D7D8Field(saved17, int *, 12);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (int)((unsigned int)saved18 << 4);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = saved16 + temporary3;
+    Level32_7D7D8Keep(temporary3);
+    argument3 = Level32_7D7D8Field(temporary2, int *, 0);
+    Level32_7D7D8Keep(argument3);
+    argument0 = Level32_7D7D8Field(temporary3, int *, 0);
+    Level32_7D7D8Keep(argument0);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 4);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = Level32_7D7D8Field(temporary3, int *, 4);
+    Level32_7D7D8Keep(argument1);
+    argument0 = argument3 - argument0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary2 - argument1;
+    temporary2 = Level32_7D7D8_func_8004E880(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    temporary3 = Level32_7D7D8Field(saved17, int *, 12);
+    Level32_7D7D8Keep(temporary3);
+    argument3 = Level32_7D7D8Field(&locals.sp20, volatile int *, 16);
+    Level32_7D7D8Keep(argument3);
+    saved16 = saved16 + temporary3;
+    Level32_7D7D8Keep(saved16);
+    argument0 = Level32_7D7D8Field(saved16, int *, 0);
+    Level32_7D7D8Keep(argument0);
+    argument1 = Level32_7D7D8Field(saved16, int *, 4);
+    Level32_7D7D8Keep(argument1);
+    saved16 = temporary2 + 0;
+    Level32_7D7D8Keep(saved16);
+    temporary3 = Level32_7D7D8Field(&locals.sp20, volatile int *, 20);
+    Level32_7D7D8Keep(temporary3);
+    argument0 = argument3 - argument0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary3 - argument1;
+    temporary2 = Level32_7D7D8_func_8004E880(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = saved16 & 255;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary2 & 255;
+    temporary2 = Level32_7D7D8_func_8004F264(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 < 64;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0 ? (temporary2 = 0 + 179, 1) : (temporary2 = 0 + 179, 0))
+        goto original3159_1535;
+    Level32_7D7D8Field(saved20, int *, 200) = saved18;
+    if (saved18 != temporary2)
+        goto original3159_1535;
+    temporary2 = Level32_7D7D8Field(saved20, int *, 244);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 + 1;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(saved20, int *, 244) = temporary2;
+original3159_1535:
+    saved21 = saved21 + 1;
+    Level32_7D7D8Keep(saved21);
+    temporary2 = saved21 < 6;
+    Level32_7D7D8Keep(temporary2);
+    saved20 = saved20 + 4;
+    if (temporary2 != 0)
+        goto original3159_1472;
+    Level32_7D7D8Keep(temporary2);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    argument3 = (int)0x00980000U;
+    Level32_7D7D8Keep(argument3);
+    argument1 = Level32_7D7D8Field(privateState, int *, 220);
+    Level32_7D7D8Keep(argument1);
+
+    temporary2 = argument1 < 179;
+    Level32_7D7D8Keep(temporary2);
+    argument3 = argument3 | 38527;
+    if (temporary2 != 0)
+        goto original3159_1551;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 268);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(temporary2);
+
+    argument1 = argument1 - temporary2;
+    Level32_7D7D8Keep(argument1);
+original3159_1551:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 268);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(argument0);
+    temporary2 = Level32_7D7D8Field(privateState, int *, 264);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(argument0);
+    wholeProduct1556.full = (long long)temporary2 * (long long)argument0;
+    __asm__("" : "=x"(wholeProduct1556.full) : "0"(wholeProduct1556.full));
+    temporary3 = Level32_7D7D8Field(privateState, int *, 200);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = argument1 + -179;
+    Level32_7D7D8Keep(temporary2);
+    argument1 = temporary2 + argument0;
+    Level32_7D7D8Keep(argument1);
+    temporary2 = temporary3 < 179;
+    Level32_7D7D8Keep(temporary2);
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct1556.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    argument1 = argument1 + temporary10;
+    if (temporary2 != 0)
+        goto original3159_1565;
+    temporary3 = temporary3 - argument0;
+    Level32_7D7D8Keep(temporary3);
+original3159_1565:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 244);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(argument0);
+    wholeProduct1567.full = (long long)temporary2 * (long long)argument0;
+    __asm__("" : "=x"(wholeProduct1567.full) : "0"(wholeProduct1567.full));
+    temporary2 = temporary3 + -179;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary2 + argument0;
+    Level32_7D7D8Keep(temporary3);
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct1567.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary3 = temporary3 + temporary10;
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = argument1 < temporary3;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = temporary3 - argument1;
+    if (temporary2 == 0)
+        goto original3159_1582;
+    temporary2 = argument0 < argument3;
+    if (argument0 >= 0)
+        goto original3159_1579;
+    argument0 = argument1 - temporary3;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = argument0 < argument3;
+    Level32_7D7D8Keep(temporary2);
+original3159_1579:
+    argument2 = 0 + 1;
+    if (temporary2 == 0)
+        goto original3159_1582;
+    argument3 = argument0 + 0;
+    Level32_7D7D8Keep(argument3);
+original3159_1582:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 304);
+    Level32_7D7D8Keep(temporary2);
+
+    if (argument2 == temporary2 ? (temporary2 = argument3 < 2, 1) : (temporary2 = argument3 < 2, 0))
+        goto original3159_1589;
+    if (temporary2 != 0)
+        goto original3159_1589;
+    Level32_7D7D8Field(privateState, int *, 304) = argument2;
+original3159_1589:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 264);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 < 4;
+    Level32_7D7D8Keep(temporary2);
+    saved18 = 0 + 1;
+    if (temporary2 != 0)
+        goto original3159_1598;
+    temporary2 = 0 + 41;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 73) = 0;
+original3159_1596:
+    Level32_7D7D8Field(owner, unsigned char *, 72) = temporary2;
+    goto original3159Return;
+original3159_1598:
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, -14544);
+    Level32_7D7D8Keep(temporary2);
+
+    saved17 = Level32_7D7D8Field(temporary2, int *, 4);
+    Level32_7D7D8Keep(saved17);
+original3159_1602:
+
+    temporary3 = Level32_7D7D8Field(saved17, unsigned short *, 0);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary3 = temporary3 & 32767;
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 2);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, -15024);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    saved16 = temporary3 + temporary2;
+    Level32_7D7D8Keep(saved16);
+    temporary2 = Level32_7D7D8Field(saved16, unsigned char *, 72);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (unsigned int)temporary2 < 128;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0)
+        goto original3159_1652;
+    argument0 = owner + 12;
+    Level32_7D7D8Keep(argument0);
+    argument1 = saved16 + 12;
+    temporary2 = Level32_7D7D8_func_8004F334(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 < 1000;
+    Level32_7D7D8Keep(temporary2);
+    argument2 = 0 + 0;
+    if (temporary2 == 0)
+        goto original3159_1652;
+    temporary3 = Level32_7D7D8Field(saved16, int *, 12);
+    Level32_7D7D8Keep(temporary3);
+    argument0 = Level32_7D7D8Field(owner, int *, 12);
+    Level32_7D7D8Keep(argument0);
+    temporary2 = Level32_7D7D8Field(saved16, int *, 16);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = Level32_7D7D8Field(owner, int *, 16);
+    Level32_7D7D8Keep(argument1);
+    argument0 = temporary3 - argument0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary2 - argument1;
+    temporary2 = Level32_7D7D8_func_8004E880(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = Level32_7D7D8Field(owner, unsigned char *, 70);
+    Level32_7D7D8Keep(argument1);
+    argument0 = temporary2 + 0;
+    temporary2 = Level32_7D7D8_func_8004F264(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 < 48;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0 ? ({
+            temporary3 = (int)0x00020000U;
+            Level32_7D7D8Keep(temporary3);
+            1;
+        })
+                        : ({
+                              temporary3 = (int)0x00020000U;
+                              Level32_7D7D8Keep(temporary3);
+                              0;
+                          }))
+        goto original3159_1652;
+    temporary2 = Level32_7D7D8Field(saved16, int *, 0);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field(temporary2, int *, 76) = saved18;
+    temporary2 = 0 + 255;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(saved16, unsigned char *, 74) = temporary2;
+    temporary2 = Level32_7D7D8Field(saved16, int *, 24);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 | temporary3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(saved16, int *, 24) = temporary2;
+    temporary2 = Level32_7D7D8Field(owner, unsigned char *, 70);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field(saved16, unsigned char *, 81) = temporary2;
+    if (temporary2 != 0)
+        goto original3159_1652;
+    Level32_7D7D8Field(saved16, unsigned char *, 81) = saved18;
+original3159_1652:
+    temporary2 = Level32_7D7D8Field(saved17, short *, 0);
+    Level32_7D7D8Keep(temporary2);
+
+    saved17 = saved17 + 2;
+    if (temporary2 >= 0)
+        goto original3159_1602;
+    argument0 = privateState + 316;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 4;
+    temporary2 = Level32_7D7D8_func_800359A4(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0)
+        goto original3159_1670;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 320);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 + 20;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 320) = temporary2;
+    temporary2 = temporary2 < 201;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0 ? (temporary2 = 0 + 200, 1) : (temporary2 = 0 + 200, 0))
+        goto original3159_1676;
+    Level32_7D7D8Field(privateState, int *, 320) = temporary2;
+    goto original3159_1676;
+original3159_1670:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 320);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 + -20;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 320) = temporary2;
+    if (temporary2 >= 0)
+        goto original3159_1676;
+    Level32_7D7D8Field(privateState, int *, 320) = 0;
+original3159_1676:
+    argument0 = owner + 12;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = Level32_7D7D8Field(privateState, int *, 312);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(privateState, int *, 320);
+    Level32_7D7D8Keep(temporary3);
+    argument1 = (int)&Level32_7D7D8_D_80070328;
+    Level32_7D7D8Keep(argument1);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, short *, 144) = temporary2;
+    temporary2 = Level32_7D7D8_func_8004F334(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(privateState, int *, 304);
+    Level32_7D7D8Keep(temporary3);
+
+    argument0 = temporary2 + 0;
+    if (temporary3 != 0)
+        goto original3159_1701;
+    temporary2 = argument0 < 20481;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0)
+        goto original3159_1694;
+    temporary2 = Level32_7D7D8Field(privateState, unsigned short *, 144);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + 30;
+    goto original3159_1700;
+original3159_1694:
+    temporary2 = argument0 < 10241;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0)
+        goto original3159_1701;
+    temporary2 = Level32_7D7D8Field(privateState, unsigned short *, 144);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 + 15;
+    Level32_7D7D8Keep(temporary2);
+original3159_1700:
+    Level32_7D7D8Field(privateState, short *, 144) = temporary2;
+original3159_1701:
+    __asm__ volatile("" ::"r"(temporary3));
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, -14396);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = 0 + 2;
+    if (temporary3 == 0)
+        goto original3159_1716;
+    if (temporary3 != temporary2 ? ({
+            argument0 = (int)0x51EB0000U;
+            Level32_7D7D8Keep(argument0);
+            1;
+        })
+                                 : ({
+                                       argument0 = (int)0x51EB0000U;
+                                       Level32_7D7D8Keep(argument0);
+                                       0;
+                                   }))
+        goto original3159_1729;
+    temporary3 = Level32_7D7D8Field(privateState, short *, 144);
+    Level32_7D7D8Keep(temporary3);
+    argument0 = argument0 | 34079;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = (int)((unsigned int)temporary3 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    goto original3159_1723;
+original3159_1716:
+    argument0 = (int)0x51EB0000U;
+    Level32_7D7D8Keep(argument0);
+    temporary3 = Level32_7D7D8Field(privateState, short *, 144);
+    Level32_7D7D8Keep(temporary3);
+    argument0 = argument0 | 34079;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 5);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+original3159_1723:
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(argument0);
+    wholeProduct1723.full = (long long)temporary2 * (long long)argument0;
+    __asm__("" : "=x"(wholeProduct1723.full) : "0"(wholeProduct1723.full));
+    temporary2 = (temporary2 >> 31);
+    Level32_7D7D8Keep(temporary2);
+    {
+        int projection;
+        __asm__("" : "=h"(projection) : "x"(wholeProduct1723.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary3 = (temporary10 >> 5);
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = temporary3 - temporary2;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(privateState, short *, 144) = temporary3;
+original3159_1729:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 316);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 == 0)
+        goto original3159_1850;
+    argument0 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(argument0);
+
+    if (argument0 == 0)
+        goto original3159_1850;
+    argument1 = 0 + 4;
+    Level32_7D7D8_func_80055D24(argument0, argument1);
+    saved17 = 0 + 0;
+    Level32_7D7D8Keep(saved17);
+    saved18 = (int)&locals.sp50;
+    Level32_7D7D8Keep(saved18);
+    saved20 = (int)&Level32_7D7D8_D_80065920;
+    Level32_7D7D8Keep(saved20);
+    saved21 = (int)&Level32_7D7D8_D_800658A0;
+    Level32_7D7D8Keep(saved21);
+    argument1 = (int)((unsigned int)saved17 >> 31);
+    Level32_7D7D8Keep(argument1);
+original3159_1746:
+    argument1 = saved17 + argument1;
+    Level32_7D7D8Keep(argument1);
+    argument1 = (argument1 >> 1);
+    Level32_7D7D8Keep(argument1);
+    argument1 = (int)((unsigned int)argument1 << 1);
+    Level32_7D7D8Keep(argument1);
+    argument1 = saved17 - argument1;
+    Level32_7D7D8Keep(argument1);
+    argument0 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(argument0);
+    argument2 = saved18 + 0;
+    Level32_7D7D8_func_80055F14(argument0, argument1, argument2);
+    argument0 = 0 + 0;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = Level32_7D7D8Field(privateState, unsigned short *, 144);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = 0 + 140;
+    Level32_7D7D8Keep(argument1);
+    temporary2 = (int)((unsigned int)temporary2 << 16);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = (temporary2 >> 16);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (int)((unsigned int)temporary2 >> 31);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    saved16 = (temporary3 >> 1);
+    temporary2 = Level32_7D7D8_func_800363DC(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + 256;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(saved16);
+    Level32_7D7D8Keep(temporary2);
+    wholeProduct1763.full = (long long)saved16 * (long long)temporary2;
+    __asm__("" : "=x"(wholeProduct1763.full) : "0"(wholeProduct1763.full));
+    temporary3 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = Level32_7D7D8Field(temporary3, unsigned char *, 70);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + saved20;
+    Level32_7D7D8Keep(temporary2);
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct1763.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary2 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(temporary2);
+    saved16 = (temporary10 >> 8);
+    Level32_7D7D8Keep(saved16);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(saved16);
+    wholeProduct1773.full = (long long)temporary2 * (long long)saved16;
+    __asm__("" : "=x"(wholeProduct1773.full) : "0"(wholeProduct1773.full));
+    temporary2 = Level32_7D7D8Field(temporary3, unsigned char *, 69);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + saved20;
+    Level32_7D7D8Keep(temporary2);
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct1773.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary3 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (temporary10 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(temporary3);
+    wholeProduct1781.full = (long long)temporary2 * (long long)temporary3;
+    __asm__("" : "=x"(wholeProduct1781.full) : "0"(wholeProduct1781.full));
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct1781.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary2 = (temporary10 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 64) = temporary2;
+    temporary3 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = Level32_7D7D8Field(temporary3, unsigned char *, 70);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + saved21;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(saved16);
+    wholeProduct1793.full = (long long)temporary2 * (long long)saved16;
+    __asm__("" : "=x"(wholeProduct1793.full) : "0"(wholeProduct1793.full));
+    temporary2 = Level32_7D7D8Field(temporary3, unsigned char *, 69);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + saved20;
+    Level32_7D7D8Keep(temporary2);
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct1793.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary3 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (temporary10 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(temporary3);
+    wholeProduct1801.full = (long long)temporary2 * (long long)temporary3;
+    __asm__("" : "=x"(wholeProduct1801.full) : "0"(wholeProduct1801.full));
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct1801.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary2 = (temporary10 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 68) = temporary2;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = Level32_7D7D8Field(temporary2, unsigned char *, 69);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + saved21;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(saved16);
+    wholeProduct1813.full = (long long)temporary2 * (long long)saved16;
+    __asm__ volatile("" : "=x"(wholeProduct1813.full) : "0"(wholeProduct1813.full) : "memory");
+    saved17 = saved17 + 1;
+    Level32_7D7D8Keep(saved17);
+    argument0 = 0 + 1;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 13;
+    Level32_7D7D8Keep(argument1);
+    argument2 = saved18 + 0;
+    Level32_7D7D8Keep(argument2);
+    argument3 = (int)&locals.sp60;
+    Level32_7D7D8Keep(argument3);
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, 17124);
+    Level32_7D7D8Keep(temporary3);
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct1813.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary2 = (temporary10 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(&locals.sp20, int *, 72) = temporary2;
+    temporary2 = ((int (*)())temporary3)(argument0, argument1, argument2, argument3);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = 0 + 255;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(temporary2, unsigned char *, 11) = temporary3;
+    temporary2 = saved17 < 4;
+    Level32_7D7D8Keep(temporary2);
+    argument1 = (int)((unsigned int)saved17 >> 31);
+    if (temporary2 != 0)
+        goto original3159_1746;
+    argument1 = Level32_7D7D8Field(privateState, int *, 456);
+    Level32_7D7D8Keep(argument1);
+    argument0 = owner + 0;
+    temporary2 = Level32_7D7D8_func_8003BFC0(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = owner + 0;
+    if (temporary2 != 0)
+        goto original3159_1839;
+    Level32_7D7D8Keep(temporary2);
+    argument1 = 0 + 0;
+    Level32_7D7D8Keep(argument1);
+    argument2 = 0 + 4;
+    temporary2 = Level32_7D7D8_func_8003BABC(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 456) = temporary2;
+original3159_1839:
+    argument1 = Level32_7D7D8Field(privateState, int *, 460);
+    Level32_7D7D8Keep(argument1);
+    argument0 = owner + 0;
+    temporary2 = Level32_7D7D8_func_8003BFC0(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0 ? (temporary2 = 0 + -1, 1) : (temporary2 = 0 + -1, 0))
+        goto original3159_1848;
+    argument0 = Level32_7D7D8Field(privateState, int *, 460);
+
+    Level32_7D7D8_func_8003BE70(argument0);
+    temporary2 = 0 + -1;
+    Level32_7D7D8Keep(temporary2);
+original3159_1848:
+    Level32_7D7D8Field(privateState, int *, 460) = temporary2;
+    goto original3159_1869;
+original3159_1850:
+    argument1 = Level32_7D7D8Field(privateState, int *, 460);
+    Level32_7D7D8Keep(argument1);
+    argument0 = owner + 0;
+    temporary2 = Level32_7D7D8_func_8003BFC0(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = owner + 0;
+    if (temporary2 != 0)
+        goto original3159_1859;
+    argument1 = 0 + 1;
+    Level32_7D7D8Keep(argument1);
+    argument2 = 0 + 4;
+    temporary2 = Level32_7D7D8_func_8003BABC(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 460) = temporary2;
+original3159_1859:
+    argument1 = Level32_7D7D8Field(privateState, int *, 456);
+    Level32_7D7D8Keep(argument1);
+    argument0 = owner + 0;
+    temporary2 = Level32_7D7D8_func_8003BFC0(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0 ? (temporary2 = 0 + -1, 1) : (temporary2 = 0 + -1, 0))
+        goto original3159_1868;
+    argument0 = Level32_7D7D8Field(privateState, int *, 456);
+
+    Level32_7D7D8_func_8003BE70(argument0);
+    temporary2 = 0 + -1;
+    Level32_7D7D8Keep(temporary2);
+original3159_1868:
+    Level32_7D7D8Field(privateState, int *, 456) = temporary2;
+original3159_1869:
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 72);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 21;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 == temporary2 ? (temporary2 = temporary3 < 22, 1)
+                                 : (temporary2 = temporary3 < 22, 0))
+        goto original3159_2050;
+    if (temporary2 == 0 ? (temporary2 = 0 + 5, 1) : (temporary2 = 0 + 5, 0))
+        goto original3159_1879;
+    argument0 = owner + 0;
+    if (temporary3 == temporary2)
+        goto original3159_1884;
+    temporary2 = 0 + 31;
+    goto original3159_2591;
+original3159_1879:
+    temporary2 = 0 + 98;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 == temporary2 ? (temporary2 = 0 + 3, 1) : (temporary2 = 0 + 3, 0))
+        goto original3159_1902;
+    __asm__ volatile("" ::);
+
+    goto original3159_2589;
+original3159_1884:
+    argument1 = 0 + 1;
+    Level32_7D7D8_func_80055D24(argument0, argument1);
+    argument0 = owner + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = privateState + 392;
+    temporary2 = Level32_7D7D8_func_80035194(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = 0 + 256;
+    Level32_7D7D8Keep(temporary3);
+    if (temporary2 != temporary3)
+        goto original3159_2589;
+    argument0 = owner + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 4;
+    Level32_7D7D8_func_80055D24(argument0, argument1);
+    argument0 = owner + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 48;
+    Level32_7D7D8_func_800369B8(argument0, argument1);
+    temporary2 = 0 + 98;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 73) = 0;
+    __asm__ volatile("" ::"r"(privateState), "X"(98));
+    Level32_7D7D8Field(owner, unsigned char *, 72) = temporary2;
+    Level32_7D7D8Keep(privateState);
+    goto original3159_2589;
+original3159_1902:
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 60);
+    Level32_7D7D8Keep(temporary3);
+
+    if (temporary3 == temporary2 ? (temporary3 = 0 + 3, 1) : (temporary3 = 0 + 3, 0))
+        goto original3159_1927;
+    temporary2 = Level32_7D7D8Field(owner, short *, 54);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 2);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_8006EE2C + temporary2), int *, 0);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 72);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C770, int *, 0) = 0;
+    temporary2 = Level32_7D7D8Field(temporary2, unsigned char *, 0);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 60) = temporary3;
+    Level32_7D7D8Field(owner, unsigned char *, 61) = temporary3;
+    temporary3 = 0 + 1;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(owner, unsigned char *, 62) = 0;
+    __asm__ volatile("" ::"m"(Level32_7D7D8Field(owner, unsigned char *, 62)));
+    Level32_7D7D8Field(owner, unsigned char *, 63) = temporary3;
+    __asm__ volatile("" ::"m"(Level32_7D7D8Field(owner, unsigned char *, 63)));
+    temporary2 = (unsigned int)temporary2 < 2;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 ^ 1;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = 0 - temporary2;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 & 48;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 64) = temporary2;
+original3159_1927:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 328);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(privateState, int *, 220);
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(privateState, int *, 324) = temporary2;
+    Level32_7D7D8Field(temporary2, short *, 2) = temporary3;
+    argument1 = Level32_7D7D8Field(privateState, int *, 324);
+    Level32_7D7D8Keep(argument1);
+
+    temporary2 = Level32_7D7D8Field(argument1, short *, 10);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = (int)((unsigned int)temporary2 << 2);
+    Level32_7D7D8Keep(argument0);
+    argument0 = argument0 + temporary2;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = Level32_7D7D8Field(argument1, short *, 2);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(argument1, short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = temporary2 - argument0;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary2 % temporary3;
+    Level32_7D7D8Keep(temporary3);
+
+    Level32_7D7D8Field(argument1, short *, 2) = temporary3;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 324);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = Level32_7D7D8Field(temporary2, short *, 2);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = Level32_7D7D8Field(privateState, int *, 200);
+    Level32_7D7D8Keep(temporary2);
+
+    argument1 = privateState + 0;
+    if (temporary2 == temporary3)
+        goto original3159_1995;
+    argument2 = 0 + 179;
+    Level32_7D7D8Keep(argument2);
+original3159_1962:
+    temporary2 = Level32_7D7D8Field(argument1, int *, 200);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 != argument2)
+        goto original3159_1970;
+    temporary2 = Level32_7D7D8Field(argument1, int *, 244);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 + -1;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(argument1, int *, 244) = temporary2;
+original3159_1970:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 324);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(argument0);
+    temporary2 = Level32_7D7D8Field(argument1, int *, 200);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = argument0 + -1;
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary2 % argument0;
+    Level32_7D7D8Keep(temporary3);
+
+    Level32_7D7D8Field(argument1, int *, 200) = temporary3;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 324);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = Level32_7D7D8Field(temporary2, short *, 2);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary3 != temporary2)
+        goto original3159_1962;
+original3159_1995:
+    argument2 = Level32_7D7D8Field(privateState, int *, 324);
+    Level32_7D7D8Keep(argument2);
+
+    argument1 = Level32_7D7D8Field(argument2, short *, 2);
+    Level32_7D7D8Keep(argument1);
+    temporary2 = Level32_7D7D8Field(argument2, short *, 10);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(argument2, short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = argument1 + temporary2;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    saved16 = temporary2 % temporary3;
+    Level32_7D7D8Keep(saved16);
+    argument0 = owner + 12;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = Level32_7D7D8Field(argument2, int *, 12);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = (int)((unsigned int)argument1 << 4);
+    Level32_7D7D8Keep(argument1);
+    argument1 = temporary2 + argument1;
+    Level32_7D7D8_func_8004F178(argument0, argument1);
+    argument0 = owner + 0;
+    Level32_7D7D8_func_80037014(argument0);
+    argument0 = owner + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 2;
+    Level32_7D7D8Keep(argument1);
+    temporary2 = 0 + 254;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 82) = temporary2;
+    Level32_7D7D8_func_80055D24(argument0, argument1);
+    Level32_7D7D8Field(owner, unsigned char *, 68) = 0;
+    Level32_7D7D8Field(owner, unsigned char *, 69) = 0;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 324);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = Level32_7D7D8Field(temporary2, int *, 12);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = Level32_7D7D8Field(temporary2, short *, 2);
+    Level32_7D7D8Keep(temporary2);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    temporary2 = (int)((unsigned int)temporary2 << 4);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = Level32_7D7D8Field(temporary2, int *, 0);
+    Level32_7D7D8Keep(argument0);
+    argument1 = Level32_7D7D8Field(temporary2, int *, 4);
+    Level32_7D7D8Keep(argument1);
+    saved16 = (int)((unsigned int)saved16 << 4);
+    Level32_7D7D8Keep(saved16);
+    saved16 = saved16 + temporary3;
+    Level32_7D7D8Keep(saved16);
+    argument3 = Level32_7D7D8Field(saved16, int *, 0);
+    Level32_7D7D8Keep(argument3);
+    temporary3 = Level32_7D7D8Field(saved16, int *, 4);
+    Level32_7D7D8Keep(temporary3);
+    argument0 = argument3 - argument0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary3 - argument1;
+    temporary2 = Level32_7D7D8_func_8004E880(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 70) = temporary2;
+    temporary2 = 0 + 21;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 316) = 0;
+    Level32_7D7D8Field(privateState, int *, 320) = 0;
+    Level32_7D7D8Field(privateState, int *, 272) = 0;
+    Level32_7D7D8Field(owner, unsigned char *, 72) = temporary2;
+    Level32_7D7D8Keep(privateState);
+    goto original3159_2589;
+original3159_2050:
+    argument0 = owner + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = Level32_7D7D8Field(privateState, int *, 324);
+    Level32_7D7D8Keep(argument1);
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 17384);
+    Level32_7D7D8Keep(temporary2);
+
+    argument2 = privateState + 140;
+    temporary2 = ((int (*)())temporary2)(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = 0 + 1;
+    Level32_7D7D8Keep(temporary3);
+    argument0 = owner + 12;
+    if (temporary2 != temporary3)
+        goto original3159_2158;
+    argument0 = Level32_7D7D8Field(privateState, int *, 324);
+    Level32_7D7D8Keep(argument0);
+
+    temporary2 = Level32_7D7D8Field(argument0, short *, 2);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = Level32_7D7D8Field(argument0, short *, 10);
+    Level32_7D7D8Keep(argument1);
+    temporary3 = Level32_7D7D8Field(argument0, short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = temporary2 - argument1;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    saved18 = temporary2 % temporary3;
+    Level32_7D7D8Keep(saved18);
+    temporary3 = Level32_7D7D8Field(argument0, int *, 12);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (int)((unsigned int)saved18 << 4);
+    Level32_7D7D8Keep(temporary2);
+    saved17 = temporary3 + temporary2;
+    Level32_7D7D8Keep(saved17);
+    temporary2 = Level32_7D7D8Field(saved17, unsigned char *, 15);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 == 0)
+        goto original3159_2086;
+    Level32_7D7D8Field(privateState, int *, 316) = temporary2;
+original3159_2086:
+    temporary2 = Level32_7D7D8Field(saved17, unsigned char *, 14);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(saved17, unsigned char *, 13);
+    Level32_7D7D8Keep(temporary3);
+    saved16 = (int)((unsigned int)temporary2 >> 5);
+    Level32_7D7D8Keep(saved16);
+    temporary2 = temporary2 & 31;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(saved17, unsigned char *, 14) = temporary2;
+    if (temporary3 != 0)
+        goto original3159_2096;
+    temporary2 = Level32_7D7D8Field(saved17, unsigned char *, 12);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 == 0)
+        goto original3159_2143;
+original3159_2096:
+    argument0 = 0 + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 100;
+    temporary2 = Level32_7D7D8_func_8003636C(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(savedValue30, short *, 0);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary3 = temporary3 + -1;
+    Level32_7D7D8Keep(temporary3);
+    argument0 = temporary2 + 0;
+    if (saved18 != temporary3)
+        goto original3159_2105;
+    argument0 = 0 + 100;
+    Level32_7D7D8Keep(argument0);
+original3159_2105:
+    temporary2 = (int)((unsigned int)saved16 << 2);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + saved16;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 2);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = argument0 + temporary2;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = argument0 < 31;
+    Level32_7D7D8Keep(temporary2);
+    saved16 = saved16 + 1;
+    if (temporary2 != 0)
+        goto original3159_2135;
+    saved16 = Level32_7D7D8Field(saved17, unsigned char *, 13);
+    Level32_7D7D8Keep(saved16);
+    argument0 = (int)&locals.sp50;
+    Level32_7D7D8Keep(argument0);
+    saved16 = (int)((unsigned int)saved16 << 2);
+    Level32_7D7D8Keep(saved16);
+    saved16 = saved16 + privateState;
+    Level32_7D7D8Keep(saved16);
+    temporary2 = Level32_7D7D8Field(saved16, int *, 328);
+    Level32_7D7D8Keep(temporary2);
+    saved17 = Level32_7D7D8Field(saved17, unsigned char *, 12);
+    Level32_7D7D8Keep(saved17);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 12);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = (int)((unsigned int)saved17 << 4);
+    Level32_7D7D8Keep(argument1);
+    argument1 = temporary2 + argument1;
+    Level32_7D7D8_func_8004F178(argument0, argument1);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    temporary3 = Level32_7D7D8Field(&locals.sp20, volatile int *, 48);
+    Level32_7D7D8Keep(temporary3);
+    argument0 = Level32_7D7D8Field(owner, int *, 12);
+    Level32_7D7D8Keep(argument0);
+    temporary2 = Level32_7D7D8Field(&locals.sp20, volatile int *, 52);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = Level32_7D7D8Field(owner, int *, 16);
+    Level32_7D7D8Keep(argument1);
+    argument0 = temporary3 - argument0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary2 - argument1;
+    temporary2 = Level32_7D7D8_func_8004E880(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(saved16, int *, 328);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field(privateState, int *, 324) = temporary2;
+    Level32_7D7D8Field(temporary2, short *, 2) = saved17;
+    goto original3159_2143;
+original3159_2135:
+    temporary2 = saved16 < 8;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0)
+        goto original3159_2139;
+    saved16 = 0 + 7;
+    Level32_7D7D8Keep(saved16);
+original3159_2139:
+    temporary2 = Level32_7D7D8Field(saved17, unsigned char *, 14);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = (int)((unsigned int)saved16 << 5);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = temporary2 | temporary3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(saved17, unsigned char *, 14) = temporary2;
+original3159_2143:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 272);
+    Level32_7D7D8Keep(temporary2);
+    savedValue30 = Level32_7D7D8Field(privateState, int *, 324);
+    Level32_7D7D8Keep(savedValue30);
+    if (temporary2 != 0)
+        goto original3159_2157;
+    temporary2 = Level32_7D7D8Field(savedValue30, short *, 2);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(savedValue30, int *, 12);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (int)((unsigned int)temporary2 << 4);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = Level32_7D7D8Field(temporary3, unsigned char *, 14);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 276) = 0;
+    Level32_7D7D8Field(privateState, int *, 280) = 0;
+    Level32_7D7D8Field(privateState, int *, 284) = 0;
+    __asm__ volatile("" ::"r"(temporary2), "m"(Level32_7D7D8Field(privateState, int *, 276)),
+                     "m"(Level32_7D7D8Field(privateState, int *, 280)),
+                     "m"(Level32_7D7D8Field(privateState, int *, 284)));
+    temporary2 = temporary2 & 31;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 272) = temporary2;
+original3159_2157:
+    argument0 = owner + 12;
+    Level32_7D7D8Keep(argument0);
+original3159_2158:
+    argument1 = 0 + 12000;
+    temporary2 = Level32_7D7D8_func_8001A358(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = owner + 0;
+    Level32_7D7D8_func_8005629C(argument0);
+    temporary2 = Level32_7D7D8Field(privateState, int *, 272);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = temporary2 + -12;
+    if (temporary2 != 0)
+        goto original3159_2189;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = Level32_7D7D8Field(owner, unsigned char *, 68);
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 0;
+    temporary2 = Level32_7D7D8_func_8003613C(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary2 + 0;
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = temporary3 + 0;
+    if (temporary3 >= 0)
+        goto original3159_2173;
+    temporary2 = 0 - temporary2;
+    Level32_7D7D8Keep(temporary2);
+original3159_2173:
+    if (temporary2 <= 0 ? (temporary2 = temporary3 < 5, 1) : (temporary2 = temporary3 < 5, 0))
+        goto original3159_2186;
+    if (temporary2 != 0 ? (temporary2 = temporary3 < -4, 1) : (temporary2 = temporary3 < -4, 0))
+        goto original3159_2179;
+    temporary3 = 0 + 4;
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = temporary3 < -4;
+    Level32_7D7D8Keep(temporary2);
+original3159_2179:
+    if (temporary2 == 0)
+        goto original3159_2182;
+    temporary3 = 0 + -4;
+    Level32_7D7D8Keep(temporary3);
+original3159_2182:
+    temporary2 = Level32_7D7D8Field(owner, unsigned char *, 68);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 68) = temporary2;
+original3159_2186:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 272);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = temporary2 + -12;
+    Level32_7D7D8Keep(temporary3);
+original3159_2189:
+    switch ((unsigned int)temporary3) {
+    case 0:
+        goto original3159_2269;
+    case 1:
+        goto original3159_2269;
+    case 2:
+        goto original3159_2589;
+    case 3:
+        goto original3159_2589;
+    case 4:
+        goto original3159_2198;
+    case 5:
+        goto original3159_2198;
+    case 6:
+        goto original3159_2589;
+    case 7:
+        goto original3159_2589;
+    case 8:
+        goto original3159_2332;
+    case 9:
+        goto original3159_2332;
+    case 10:
+        goto original3159_2589;
+    case 11:
+        goto original3159_2589;
+    case 12:
+        goto original3159_2269;
+    case 13:
+        goto original3159_2269;
+    case 14:
+        goto original3159_2589;
+    case 15:
+        goto original3159_2589;
+    case 16:
+        goto original3159_2198;
+    case 17:
+        goto original3159_2198;
+    case 18:
+        goto original3159_2589;
+    case 19:
+        goto original3159_2589;
+    case 20:
+        goto original3159_2332;
+    case 21:
+        goto original3159_2332;
+    default:
+        goto original3159_2589;
+    }
+original3159_2198:
+    __asm__ volatile("" ::"r"(temporary3));
+    temporary3 = Level32_7D7D8Field(privateState, int *, 272);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 28;
+    Level32_7D7D8Keep(temporary2);
+    saved16 = 0 + 256;
+    if (temporary3 == temporary2)
+        goto original3159_2205;
+    temporary2 = 0 + 17;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 != temporary2)
+        goto original3159_2206;
+original3159_2205:
+    saved16 = 0 + 512;
+    Level32_7D7D8Keep(saved16);
+original3159_2206:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 272);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 + -16;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (unsigned int)temporary2 < 2;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0)
+        goto original3159_2213;
+    saved16 = saved16 + 512;
+    Level32_7D7D8Keep(saved16);
+original3159_2213:
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 61);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 3;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = owner + 0;
+    if (temporary3 != temporary2)
+        goto original3159_2223;
+    temporary2 = 0 + 114;
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C770, int *, 0) = 0;
+    Level32_7D7D8Field(owner, unsigned char *, 64) = temporary2;
+    temporary2 = 0 + 7;
+    goto original3159_2235;
+original3159_2223:
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, -14480);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 == 0 ? (temporary2 = 0 + 8, 1) : (temporary2 = 0 + 8, 0))
+        goto original3159_2238;
+    Level32_7D7D8Keep(owner);
+    argument0 = owner + 0;
+    if (temporary3 == temporary2)
+        goto original3159_2238;
+    temporary2 = 0 + 114;
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C770, int *, 0) = 0;
+    Level32_7D7D8Field(owner, unsigned char *, 64) = temporary2;
+    temporary2 = 0 + 8;
+    Level32_7D7D8Keep(temporary2);
+original3159_2235:
+    Level32_7D7D8Field(owner, unsigned char *, 61) = temporary2;
+    Level32_7D7D8Field(owner, unsigned char *, 63) = 0;
+    Level32_7D7D8_func_80035734(argument0);
+original3159_2238:
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 60);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 8;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 != temporary2)
+        goto original3159_2259;
+    argument1 = Level32_7D7D8Field(privateState, int *, 276);
+    Level32_7D7D8Keep(argument1);
+
+    temporary2 = argument1 + 0;
+    if (argument1 >= 0)
+        goto original3159_2247;
+    temporary2 = 0 - temporary2;
+    Level32_7D7D8Keep(temporary2);
+original3159_2247:
+    temporary3 = temporary2 + -12;
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = saved16 < temporary3;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = 0 + -12;
+    if (temporary2 == 0)
+        goto original3159_2252;
+    argument0 = temporary3 - saved16;
+    Level32_7D7D8Keep(argument0);
+original3159_2252:
+    temporary2 = argument1 + -12;
+    if (argument0 == 0)
+        goto original3159_2259;
+    Level32_7D7D8Field(privateState, int *, 276) = temporary2;
+    temporary2 = Level32_7D7D8Field(owner, unsigned char *, 68);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 + -12;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 68) = temporary2;
+original3159_2259:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 276);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 >= 0)
+        goto original3159_2264;
+    temporary2 = 0 - temporary2;
+    Level32_7D7D8Keep(temporary2);
+original3159_2264:
+    temporary2 = saved16 < temporary2;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0)
+        goto original3159_2589;
+
+    goto original3159_2394;
+original3159_2269:
+    __asm__ volatile("" ::"r"(temporary3));
+    temporary3 = Level32_7D7D8Field(privateState, int *, 272);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 25;
+    Level32_7D7D8Keep(temporary2);
+    saved16 = 0 + 256;
+    if (temporary3 == temporary2)
+        goto original3159_2276;
+    temporary2 = 0 + 13;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 != temporary2)
+        goto original3159_2277;
+original3159_2276:
+    saved16 = 0 + 512;
+    Level32_7D7D8Keep(saved16);
+original3159_2277:
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 61);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 3;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = owner + 0;
+    if (temporary3 != temporary2)
+        goto original3159_2287;
+    temporary2 = 0 + 114;
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C770, int *, 0) = 0;
+    Level32_7D7D8Field(owner, unsigned char *, 64) = temporary2;
+    temporary2 = 0 + 7;
+    goto original3159_2299;
+original3159_2287:
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, -14480);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 == 0 ? (temporary2 = 0 + 8, 1) : (temporary2 = 0 + 8, 0))
+        goto original3159_2302;
+    Level32_7D7D8Keep(owner);
+    argument0 = owner + 0;
+    if (temporary3 == temporary2)
+        goto original3159_2302;
+    temporary2 = 0 + 114;
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C770, int *, 0) = 0;
+    Level32_7D7D8Field(owner, unsigned char *, 64) = temporary2;
+    temporary2 = 0 + 8;
+    Level32_7D7D8Keep(temporary2);
+original3159_2299:
+    Level32_7D7D8Field(owner, unsigned char *, 61) = temporary2;
+    Level32_7D7D8Field(owner, unsigned char *, 63) = 0;
+    Level32_7D7D8_func_80035734(argument0);
+original3159_2302:
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 60);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 8;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 != temporary2)
+        goto original3159_2319;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 280);
+    Level32_7D7D8Keep(temporary2);
+
+    argument1 = temporary2 + 12;
+    Level32_7D7D8Keep(argument1);
+    temporary3 = argument1 + 0;
+    if (argument1 >= 0)
+        goto original3159_2312;
+    temporary3 = 0 - temporary3;
+    Level32_7D7D8Keep(temporary3);
+original3159_2312:
+    temporary2 = saved16 < temporary3;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = 0 + 12;
+    if (temporary2 == 0)
+        goto original3159_2316;
+    argument0 = temporary3 - saved16;
+    Level32_7D7D8Keep(argument0);
+original3159_2316:
+    if (argument0 == 0)
+        goto original3159_2319;
+    Level32_7D7D8Field(privateState, int *, 280) = argument1;
+original3159_2319:
+    temporary3 = Level32_7D7D8Field(privateState, int *, 280);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = temporary3 + 0;
+    if (temporary3 >= 0)
+        goto original3159_2324;
+    temporary2 = 0 - temporary2;
+    Level32_7D7D8Keep(temporary2);
+original3159_2324:
+    temporary2 = saved16 < temporary2;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0)
+        goto original3159_2394;
+    temporary2 = Level32_7D7D8Field(owner, unsigned char *, 69);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 69) = temporary2;
+    goto original3159_2589;
+original3159_2332:
+    __asm__ volatile("" ::"r"(temporary3));
+    temporary3 = Level32_7D7D8Field(privateState, int *, 272);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 21;
+    Level32_7D7D8Keep(temporary2);
+    saved16 = 0 + 256;
+    if (temporary3 == temporary2)
+        goto original3159_2339;
+    temporary2 = 0 + 33;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 != temporary2)
+        goto original3159_2340;
+original3159_2339:
+    saved16 = 0 + 512;
+    Level32_7D7D8Keep(saved16);
+original3159_2340:
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 61);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 3;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = owner + 0;
+    if (temporary3 != temporary2)
+        goto original3159_2350;
+    temporary2 = 0 + 114;
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C770, int *, 0) = 0;
+    Level32_7D7D8Field(owner, unsigned char *, 64) = temporary2;
+    temporary2 = 0 + 7;
+    goto original3159_2362;
+original3159_2350:
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, -14480);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 == 0 ? (temporary2 = 0 + 8, 1) : (temporary2 = 0 + 8, 0))
+        goto original3159_2365;
+    Level32_7D7D8Keep(owner);
+    argument0 = owner + 0;
+    if (temporary3 == temporary2)
+        goto original3159_2365;
+    temporary2 = 0 + 114;
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C770, int *, 0) = 0;
+    Level32_7D7D8Field(owner, unsigned char *, 64) = temporary2;
+    temporary2 = 0 + 8;
+    Level32_7D7D8Keep(temporary2);
+original3159_2362:
+    Level32_7D7D8Field(owner, unsigned char *, 61) = temporary2;
+    Level32_7D7D8Field(owner, unsigned char *, 63) = 0;
+    Level32_7D7D8_func_80035734(argument0);
+original3159_2365:
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 60);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 8;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 != temporary2)
+        goto original3159_2386;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 284);
+    Level32_7D7D8Keep(temporary2);
+
+    argument1 = temporary2 + 14;
+    Level32_7D7D8Keep(argument1);
+    temporary3 = argument1 + 0;
+    if (argument1 >= 0)
+        goto original3159_2375;
+    temporary3 = 0 - temporary3;
+    Level32_7D7D8Keep(temporary3);
+original3159_2375:
+    temporary2 = saved16 < temporary3;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = 0 + 14;
+    if (temporary2 == 0)
+        goto original3159_2379;
+    argument0 = temporary3 - saved16;
+    Level32_7D7D8Keep(argument0);
+original3159_2379:
+    if (argument0 == 0)
+        goto original3159_2386;
+    Level32_7D7D8Field(privateState, int *, 284) = argument1;
+    temporary2 = Level32_7D7D8Field(owner, unsigned char *, 70);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 + 14;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 70) = temporary2;
+original3159_2386:
+    temporary3 = Level32_7D7D8Field(privateState, int *, 284);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = temporary3 + 0;
+    if (temporary3 >= 0)
+        goto original3159_2391;
+    temporary2 = 0 - temporary2;
+    Level32_7D7D8Keep(temporary2);
+original3159_2391:
+    temporary2 = temporary2 < saved16;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0)
+        goto original3159_2408;
+original3159_2394:
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 61);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 3;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = owner + 0;
+    if (temporary3 == temporary2)
+        goto original3159_2406;
+    temporary2 = 0 + 114;
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C770, int *, 0) = 0;
+    Level32_7D7D8Field(owner, unsigned char *, 64) = temporary2;
+    temporary2 = 0 + 3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 61) = temporary2;
+    Level32_7D7D8Field(owner, unsigned char *, 63) = 0;
+    Level32_7D7D8_func_80035734(argument0);
+original3159_2406:
+    Level32_7D7D8Field(privateState, int *, 272) = 0;
+    goto original3159_2589;
+original3159_2408:
+    temporary2 = Level32_7D7D8Field(owner, unsigned char *, 70);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 70) = temporary2;
+    goto original3159_2589;
+    {
+        int frameAddress16;
+    original3159_2413:
+        saved17 = 0 + 1664;
+        Level32_7D7D8Keep(saved17);
+        temporary3 = Level32_7D7D8Field(privateState, int *, 304);
+        Level32_7D7D8Keep(temporary3);
+        temporary2 = 0 + 4;
+        Level32_7D7D8Keep(temporary2);
+        Level32_7D7D8Field(privateState, unsigned char *, 2) = temporary2;
+        temporary2 = 0 + 2;
+        Level32_7D7D8Keep(temporary2);
+        Level32_7D7D8Field(privateState, unsigned char *, 5) = temporary2;
+        if (temporary3 != 0)
+            goto original3159_2426;
+        temporary2 = (int)0x80070000U;
+        Level32_7D7D8Keep(temporary2);
+        temporary2 = Level32_7D7D8Field(temporary2, unsigned char *, -14412);
+        Level32_7D7D8Keep(temporary2);
+        saved17 = 0 + 2496;
+        Level32_7D7D8Keep(saved17);
+        temporary2 = temporary2 | 16;
+        Level32_7D7D8Keep(temporary2);
+
+        Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C7B4, unsigned char *, 0) = temporary2;
+    original3159_2426:
+        temporary3 = (int)&Level32_7D7D8_D_80066BC8 + 10;
+        Level32_7D7D8Keep(temporary3);
+        temporary2 = Level32_7D7D8Field(temporary3, unsigned char *, 0);
+        Level32_7D7D8Keep(temporary2);
+
+        temporary2 = temporary2 & 1;
+        Level32_7D7D8Keep(temporary2);
+        frameAddress16 = (int)&locals.sp30;
+        if (temporary2 != 0)
+            goto original3159_2460;
+        temporary2 = Level32_7D7D8Field(privateState, int *, 448);
+        Level32_7D7D8Keep(temporary2);
+
+        temporary2 = temporary2 < 6301;
+        Level32_7D7D8Keep(temporary2);
+        argument1 = owner + 0;
+        if (temporary2 == 0)
+            goto original3159_2460;
+        temporary2 = 0 + 3;
+        Level32_7D7D8Keep(temporary2);
+        Level32_7D7D8Field(temporary3, unsigned char *, 0) = temporary2;
+        temporary3 = (int)0x80070000U;
+        Level32_7D7D8Keep(temporary3);
+        temporary3 = Level32_7D7D8Field(temporary3, int *, -14764);
+        Level32_7D7D8Keep(temporary3);
+        temporary2 = 0 + 1;
+        Level32_7D7D8Keep(temporary2);
+
+        Level32_7D7D8Field((int)&Level32_7D7D8_D_800719DC, short *, 0) = temporary2;
+        argument0 = Level32_7D7D8Field(temporary3, unsigned char *, 35);
+        Level32_7D7D8Keep(argument0);
+        argument2 = 0 + 161;
+        temporary2 = Level32_7D7D8_PlaySound(argument0, argument1, argument2);
+        Level32_7D7D8Keep(temporary2);
+        temporary2 = (int)0x80070000U;
+        Level32_7D7D8Keep(temporary2);
+        temporary2 = Level32_7D7D8Field(temporary2, int *, -14460);
+        Level32_7D7D8Keep(temporary2);
+
+        temporary2 = temporary2 + 1;
+        Level32_7D7D8Keep(temporary2);
+
+        Level32_7D7D8_D_8006C784 = temporary2;
+        temporary2 = temporary2 < 100;
+        Level32_7D7D8Keep(temporary2);
+        __asm__ volatile("" : "=r"(frameAddress16) : "0"(frameAddress16));
+        frameAddress16 = (int)&locals.sp30;
+        if (temporary2 != 0)
+            goto original3159_2460;
+        temporary2 = 0 + 99;
+        Level32_7D7D8Keep(temporary2);
+
+        Level32_7D7D8_D_8006C784 = temporary2;
+    original3159_2460:
+        argument0 = frameAddress16 + 0;
+        Level32_7D7D8Keep(argument0);
+        argument1 = privateState + 380;
+        Level32_7D7D8_func_8004F178(argument0, argument1);
+        temporary2 = Level32_7D7D8Field(&locals.sp20, volatile int *, 24);
+        Level32_7D7D8Keep(temporary2);
+        temporary3 = Level32_7D7D8Field(owner, short *, 56);
+        Level32_7D7D8Keep(temporary3);
+        temporary2 = temporary2 + 356;
+        Level32_7D7D8Keep(temporary2);
+        temporary2 = temporary2 - temporary3;
+        Level32_7D7D8Keep(temporary2);
+        Level32_7D7D8Field(&locals.sp20, volatile int *, 24) = temporary2;
+        temporary2 = Level32_7D7D8Field(privateState, int *, 376);
+        Level32_7D7D8Keep(temporary2);
+
+        temporary2 = (int)((unsigned int)temporary2 << 1);
+        Level32_7D7D8Keep(temporary2);
+
+        temporary2 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_80065920 + temporary2), short *, 0);
+        Level32_7D7D8Keep(temporary2);
+
+        Level32_7D7D8Keep(temporary2);
+        Level32_7D7D8Keep(saved17);
+        wholeProduct2475.full = (long long)temporary2 * (long long)saved17;
+        __asm__("" : "=x"(wholeProduct2475.full) : "0"(wholeProduct2475.full));
+        temporary2 = Level32_7D7D8Field(&locals.sp20, volatile int *, 16);
+        Level32_7D7D8Keep(temporary2);
+        {
+            int projection;
+            __asm__("" : "=l"(projection) : "x"(wholeProduct2475.full));
+            temporary10 = projection;
+            Level32_7D7D8Keep(temporary10);
+        }
+        temporary3 = (temporary10 >> 12);
+        Level32_7D7D8Keep(temporary3);
+        temporary2 = temporary2 + temporary3;
+        Level32_7D7D8Keep(temporary2);
+        Level32_7D7D8Field(&locals.sp20, volatile int *, 16) = temporary2;
+        temporary2 = Level32_7D7D8Field(privateState, int *, 376);
+        Level32_7D7D8Keep(temporary2);
+
+        temporary2 = (int)((unsigned int)temporary2 << 1);
+        Level32_7D7D8Keep(temporary2);
+
+        temporary2 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_800658A0 + temporary2), short *, 0);
+        Level32_7D7D8Keep(temporary2);
+
+        Level32_7D7D8Keep(temporary2);
+        Level32_7D7D8Keep(saved17);
+        wholeProduct2488.full = (long long)temporary2 * (long long)saved17;
+        __asm__("" : "=x"(wholeProduct2488.full) : "0"(wholeProduct2488.full));
+        argument1 = frameAddress16 + 0;
+        Level32_7D7D8Keep(argument1);
+        saved17 = (int)&Level32_7D7D8_D_8006D088;
+        Level32_7D7D8Keep(saved17);
+        temporary2 = Level32_7D7D8Field(&locals.sp20, volatile int *, 20);
+        Level32_7D7D8Keep(temporary2);
+        {
+            int projection;
+            __asm__("" : "=l"(projection) : "x"(wholeProduct2488.full));
+            temporary10 = projection;
+            Level32_7D7D8Keep(temporary10);
+        }
+        temporary3 = (temporary10 >> 12);
+        Level32_7D7D8Keep(temporary3);
+        temporary2 = temporary2 + temporary3;
+        Level32_7D7D8Keep(temporary2);
+        Level32_7D7D8Field(&locals.sp20, int *, 20) = temporary2;
+        goto original3159_2562;
+    }
+original3159_2498:
+    saved17 = 0 + 1664;
+    Level32_7D7D8Keep(saved17);
+    temporary3 = Level32_7D7D8Field(privateState, int *, 304);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 15;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, unsigned char *, 2) = temporary2;
+    temporary2 = 0 + 2;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, unsigned char *, 5) = temporary2;
+    if (temporary3 != 0)
+        goto original3159_2524;
+    argument0 = 0 + 1;
+    temporary2 = Level32_7D7D8_func_800369D8(argument0);
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0)
+        goto original3159_2515;
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, unsigned char *, -14412);
+    Level32_7D7D8Keep(temporary2);
+    saved17 = 0 + 2496;
+    Level32_7D7D8Keep(saved17);
+    temporary2 = temporary2 | 32;
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C7B4, unsigned char *, 0) = temporary2;
+original3159_2515:
+    __asm__ volatile("" ::"r"(temporary2));
+    temporary2 = Level32_7D7D8Field(privateState, int *, 304);
+    Level32_7D7D8Keep(temporary2);
+
+    saved16 = (int)&locals.sp40;
+    if (temporary2 != 0)
+        goto original3159_2525;
+    argument0 = 0 + 1;
+    temporary2 = Level32_7D7D8_func_800369D8(argument0);
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0 ? (temporary2 = 0 + 14, 1) : (temporary2 = 0 + 14, 0))
+        goto original3159_2524;
+    Level32_7D7D8Field(privateState, unsigned char *, 2) = temporary2;
+original3159_2524:
+    saved16 = (int)&locals.sp40;
+    Level32_7D7D8Keep(saved16);
+original3159_2525:
+    argument0 = saved16 + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = privateState + 380;
+    Level32_7D7D8_func_8004F178(argument0, argument1);
+    temporary2 = Level32_7D7D8Field(&locals.sp20, volatile int *, 40);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(owner, short *, 56);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = temporary2 + 356;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 40) = temporary2;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 376);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_80065920 + temporary2), short *, 0);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(saved17);
+    wholeProduct2540.full = (long long)temporary2 * (long long)saved17;
+    __asm__("" : "=x"(wholeProduct2540.full) : "0"(wholeProduct2540.full));
+    temporary2 = Level32_7D7D8Field(&locals.sp20, volatile int *, 32);
+    Level32_7D7D8Keep(temporary2);
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct2540.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary3 = (temporary10 >> 12);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 32) = temporary2;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 376);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = Level32_7D7D8Field(((int)&Level32_7D7D8_D_800658A0 + temporary2), short *, 0);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(saved17);
+    wholeProduct2553.full = (long long)temporary2 * (long long)saved17;
+    __asm__("" : "=x"(wholeProduct2553.full) : "0"(wholeProduct2553.full));
+    argument1 = saved16 + 0;
+    Level32_7D7D8Keep(argument1);
+    saved17 = (int)&Level32_7D7D8_D_8006D088;
+    Level32_7D7D8Keep(saved17);
+    temporary2 = Level32_7D7D8Field(&locals.sp20, volatile int *, 36);
+    Level32_7D7D8Keep(temporary2);
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct2553.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary3 = (temporary10 >> 12);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 36) = temporary2;
+original3159_2562:
+    argument2 = Level32_7D7D8Field(privateState, int *, 376);
+    Level32_7D7D8Keep(argument2);
+    argument0 = saved17 + 0;
+    Level32_7D7D8Keep(argument0);
+    argument2 = argument2 + 128;
+    Level32_7D7D8Keep(argument2);
+    argument2 = argument2 & 255;
+    Level32_7D7D8_func_8003B634(argument0, argument1, argument2);
+    saved16 = privateState + 2;
+    Level32_7D7D8Keep(saved16);
+    argument0 = saved16 + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 1;
+    Level32_7D7D8Keep(argument1);
+    argument2 = saved17 + 0;
+    Level32_7D7D8_func_8003B7B4(argument0, argument1, argument2);
+    argument0 = saved16 + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 1;
+    Level32_7D7D8Keep(argument1);
+    saved18 = (int)&Level32_7D7D8_D_8006C7F8;
+    Level32_7D7D8Keep(saved18);
+    argument2 = saved18 + 0;
+    Level32_7D7D8_func_8003B7B4(argument0, argument1, argument2);
+    saved16 = privateState + 5;
+    Level32_7D7D8Keep(saved16);
+    argument0 = saved16 + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 1;
+    Level32_7D7D8Keep(argument1);
+    argument2 = saved17 + 0;
+    Level32_7D7D8_func_8003B7B4(argument0, argument1, argument2);
+    argument0 = saved16 + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 1;
+    Level32_7D7D8Keep(argument1);
+    argument2 = saved18 + 0;
+    Level32_7D7D8_func_8003B7B4(argument0, argument1, argument2);
+    argument0 = saved17 + 0;
+    Level32_7D7D8_func_8003B74C(argument0);
+original3159_2589:
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 72);
+    Level32_7D7D8Keep(temporary3);
+original3159_2590:
+    temporary2 = 0 + 31;
+    Level32_7D7D8Keep(temporary2);
+original3159_2591:
+    if (temporary3 == temporary2 ? (temporary2 = 0 + 21, 1) : (temporary2 = 0 + 21, 0))
+        goto original3159_2601;
+    if (temporary3 == temporary2)
+        goto original3159_2601;
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, unsigned char *, -14412);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 & 32;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0)
+        goto original3159_2794;
+original3159_2601:
+    __asm__ volatile("" ::"r"(temporary2));
+    temporary10 = Level32_7D7D8Field(&locals.sp20, volatile int *, 80);
+    Level32_7D7D8Keep(temporary10);
+
+    temporary2 = Level32_7D7D8Field(temporary10, int *, 228);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary3 = temporary2 + 0;
+    if (temporary2 == 0)
+        goto original3159_2622;
+    temporary2 = temporary3 < 501;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0)
+        goto original3159_2611;
+    temporary3 = 0 + 500;
+    Level32_7D7D8Keep(temporary3);
+original3159_2611:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 164);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 164) = temporary2;
+    temporary2 = temporary2 < 901;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0 ? (temporary2 = 0 + 900, 1) : (temporary2 = 0 + 900, 0))
+        goto original3159_2619;
+    Level32_7D7D8Field(privateState, int *, 164) = temporary2;
+original3159_2619:
+    temporary10 = Level32_7D7D8Field(&locals.sp20, volatile int *, 80);
+    Level32_7D7D8Keep(temporary10);
+
+    Level32_7D7D8Field(temporary10, int *, 228) = 0;
+original3159_2622:
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, 888);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 19;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 != temporary2)
+        goto original3159_2754;
+
+    Level32_7D7D8OriginalGlobalField0 = 0;
+    temporary2 = Level32_7D7D8Field(privateState, short *, 308);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 != 0)
+        goto original3159_2639;
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, -6856);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 & 128;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0)
+        goto original3159_2754;
+original3159_2639:
+    __asm__ volatile("" ::"r"(temporary2) : "$4");
+    argument0 = privateState + 308;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 2;
+    temporary2 = Level32_7D7D8_func_800359A4(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = privateState + 164;
+    if (temporary2 == 0)
+        goto original3159_2648;
+    argument1 = 0 + 4;
+    temporary2 = Level32_7D7D8_func_800359A4(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0)
+        goto original3159_2754;
+original3159_2648:
+    temporary2 = 0 + 1;
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8OriginalGlobalField0 = temporary2;
+    argument1 = Level32_7D7D8Field(privateState, int *, 444);
+    Level32_7D7D8Keep(argument1);
+    argument0 = saved23 + 0;
+    temporary2 = Level32_7D7D8_func_8003BFC0(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = saved23 + 0;
+    if (temporary2 != 0)
+        goto original3159_2661;
+    argument1 = 0 + 6;
+    Level32_7D7D8Keep(argument1);
+    argument2 = 0 + 4;
+    temporary2 = Level32_7D7D8_func_8003BABC(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 444) = temporary2;
+    argument0 = saved23 + 0;
+    Level32_7D7D8Keep(argument0);
+original3159_2661:
+    argument1 = 0 + 4;
+    Level32_7D7D8_func_80055D24(argument0, argument1);
+    savedValue30 = 0 + 6;
+    Level32_7D7D8Keep(savedValue30);
+    saved17 = 0 + 0;
+    Level32_7D7D8Keep(saved17);
+    saved18 = (int)&locals.sp30;
+    Level32_7D7D8Keep(saved18);
+    saved20 = (int)&Level32_7D7D8_D_80065920;
+    Level32_7D7D8Keep(saved20);
+    saved21 = (int)&Level32_7D7D8_D_800658A0;
+    Level32_7D7D8Keep(saved21);
+    argument0 = saved23 + 0;
+    Level32_7D7D8Keep(argument0);
+original3159_2671:
+    argument1 = (int)((unsigned int)saved17 >> 31);
+    Level32_7D7D8Keep(argument1);
+    argument1 = saved17 + argument1;
+    Level32_7D7D8Keep(argument1);
+    argument1 = (argument1 >> 1);
+    Level32_7D7D8Keep(argument1);
+    argument1 = (int)((unsigned int)argument1 << 1);
+    Level32_7D7D8Keep(argument1);
+    argument1 = saved17 - argument1;
+    Level32_7D7D8Keep(argument1);
+    argument2 = saved18 + 0;
+    Level32_7D7D8_func_80055F14(argument0, argument1, argument2);
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 984);
+    Level32_7D7D8Keep(temporary2);
+
+    saved16 = (temporary2 >> 6);
+    if (temporary2 >= 0)
+        goto original3159_2685;
+    temporary2 = temporary2 + 63;
+    Level32_7D7D8Keep(temporary2);
+    saved16 = (temporary2 >> 6);
+    Level32_7D7D8Keep(saved16);
+original3159_2685:
+    argument0 = 0 + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = 0 + 140;
+    temporary2 = Level32_7D7D8_func_800363DC(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + 256;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(saved16);
+    Level32_7D7D8Keep(temporary2);
+    wholeProduct2689.full = (long long)saved16 * (long long)temporary2;
+    __asm__("" : "=x"(wholeProduct2689.full) : "0"(wholeProduct2689.full));
+    temporary2 = Level32_7D7D8Field(saved23, unsigned char *, 70);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + saved20;
+    Level32_7D7D8Keep(temporary2);
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct2689.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary2 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(temporary2);
+    saved16 = (temporary10 >> 8);
+    Level32_7D7D8Keep(saved16);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(saved16);
+    wholeProduct2697.full = (long long)temporary2 * (long long)saved16;
+    __asm__("" : "=x"(wholeProduct2697.full) : "0"(wholeProduct2697.full));
+    temporary2 = Level32_7D7D8Field(saved23, unsigned char *, 69);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + saved20;
+    Level32_7D7D8Keep(temporary2);
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct2697.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary3 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (temporary10 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(temporary3);
+    wholeProduct2705.full = (long long)temporary2 * (long long)temporary3;
+    __asm__("" : "=x"(wholeProduct2705.full) : "0"(wholeProduct2705.full));
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct2705.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary2 = (temporary10 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 32) = temporary2;
+    temporary2 = Level32_7D7D8Field(saved23, unsigned char *, 70);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + saved21;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(saved16);
+    wholeProduct2715.full = (long long)temporary2 * (long long)saved16;
+    __asm__("" : "=x"(wholeProduct2715.full) : "0"(wholeProduct2715.full));
+    temporary2 = Level32_7D7D8Field(saved23, unsigned char *, 69);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + saved20;
+    Level32_7D7D8Keep(temporary2);
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct2715.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary3 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (temporary10 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(temporary3);
+    wholeProduct2723.full = (long long)temporary2 * (long long)temporary3;
+    __asm__("" : "=x"(wholeProduct2723.full) : "0"(wholeProduct2723.full));
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct2723.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary2 = (temporary10 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 36) = temporary2;
+    temporary2 = Level32_7D7D8Field(saved23, unsigned char *, 69);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = (int)((unsigned int)temporary2 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + saved21;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, short *, 0);
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Keep(saved16);
+    wholeProduct2733.full = (long long)temporary2 * (long long)saved16;
+    __asm__("" : "=x"(wholeProduct2733.full) : "0"(wholeProduct2733.full));
+    {
+        int projection;
+        __asm__("" : "=l"(projection) : "x"(wholeProduct2733.full));
+        temporary10 = projection;
+        Level32_7D7D8Keep(temporary10);
+    }
+    temporary2 = (temporary10 >> 12);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 40) = temporary2;
+    temporary2 = Level32_7D7D8Field(privateState, short *, 308);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = 0 + 1;
+    if (temporary2 == 0)
+        goto original3159_2743;
+    argument1 = 0 + 57;
+    goto original3159_2744;
+original3159_2743:
+    argument1 = 0 + 13;
+    Level32_7D7D8Keep(argument1);
+original3159_2744:
+    argument2 = saved18 + 0;
+    Level32_7D7D8Keep(argument2);
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 17124);
+    Level32_7D7D8Keep(temporary2);
+
+    argument3 = (int)&locals.sp40;
+    temporary2 = ((int (*)())temporary2)(argument0, argument1, argument2, argument3);
+    Level32_7D7D8Keep(temporary2);
+    saved17 = saved17 + 1;
+    Level32_7D7D8Keep(saved17);
+    temporary2 = saved17 < savedValue30;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = saved23 + 0;
+    if (temporary2 != 0)
+        goto original3159_2671;
+original3159_2754:
+    __asm__ volatile("" ::"r"(temporary2));
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 1164);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 == 0 ? (temporary2 = 0 + 21, 1) : (temporary2 = 0 + 21, 0))
+        goto original3159_2764;
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, 880);
+    Level32_7D7D8Keep(temporary3);
+
+    if (temporary3 != temporary2)
+        goto original3159_2775;
+original3159_2764:
+    argument1 = Level32_7D7D8Field(privateState, int *, 444);
+    Level32_7D7D8Keep(argument1);
+    argument0 = saved23 + 0;
+    temporary2 = Level32_7D7D8_func_8003BFC0(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0 ? (temporary2 = 0 + -1, 1) : (temporary2 = 0 + -1, 0))
+        goto original3159_2773;
+    argument0 = Level32_7D7D8Field(privateState, int *, 444);
+
+    Level32_7D7D8_func_8003BE70(argument0);
+    temporary2 = 0 + -1;
+    Level32_7D7D8Keep(temporary2);
+original3159_2773:
+    Level32_7D7D8Field(privateState, int *, 444) = temporary2;
+    goto original3159_2794;
+original3159_2775:
+    argument0 = Level32_7D7D8Field(privateState, int *, 444);
+    Level32_7D7D8Keep(argument0);
+
+    if (argument0 < 0)
+        goto original3159_2794;
+    __asm__ volatile("" ::"r"(owner));
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, 984);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = temporary3 + -7000;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 >= 0 ? (temporary2 = (temporary2 >> 2), 1) : (temporary2 = (temporary2 >> 2), 0))
+        goto original3159_2787;
+    temporary2 = temporary3 + -6997;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (temporary2 >> 2);
+    Level32_7D7D8Keep(temporary2);
+original3159_2787:
+    argument1 = temporary2 + 1024;
+    Level32_7D7D8Keep(argument1);
+    temporary2 = argument1 < 5001;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0)
+        goto original3159_2792;
+    argument1 = 0 + 5000;
+    Level32_7D7D8Keep(argument1);
+original3159_2792:
+
+    Level32_7D7D8_func_8003C140(argument0, argument1);
+original3159_2794:
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 72);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 31;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 == temporary2 ? (temporary2 = 0 + 21, 1) : (temporary2 = 0 + 21, 0))
+        goto original3159_2804;
+    if (temporary3 == temporary2 ? (temporary2 = 0 + 5, 1) : (temporary2 = 0 + 5, 0))
+        goto original3159_2804;
+    if (temporary3 == temporary2 ? (temporary2 = 0 + 98, 1) : (temporary2 = 0 + 98, 0))
+        goto original3159_2804;
+    if (temporary3 != temporary2)
+        goto original3159_2810;
+original3159_2804:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 448);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, -14776);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, int *, 448) = temporary2;
+original3159_2810:
+    argument0 = Level32_7D7D8Field(owner, unsigned char *, 72);
+    Level32_7D7D8Keep(argument0);
+    temporary2 = 0 + 31;
+    Level32_7D7D8Keep(temporary2);
+    argument1 = 0 + 21;
+    if (argument0 == temporary2)
+        goto original3159_2824;
+    temporary2 = 0 + 50;
+    if (argument0 == argument1)
+        goto original3159_2824;
+    if (argument0 != temporary2 ? (temporary2 = 0 + 2, 1) : (temporary2 = 0 + 2, 0))
+        goto original3159Return;
+    temporary3 = Level32_7D7D8Field(privateState, int *, 452);
+    Level32_7D7D8Keep(temporary3);
+
+    if (temporary3 != temporary2)
+        goto original3159Return;
+    __asm__ volatile("" ::);
+    Level32_7D7D8Keep(argument0);
+    if (argument0 != argument1)
+        goto original3159_2837;
+original3159_2824:
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, -14768);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 2;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 != temporary2)
+        goto original3159_2837;
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C650, int *, 0) = 0;
+    argument0 = (int)&Level32_7D7D8_D_8006D088;
+
+    Level32_7D7D8_func_8003B74C(argument0);
+
+    goto original3159Return;
+original3159_2837:
+    temporary3 = Level32_7D7D8Field(owner, unsigned char *, 73);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 1;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 == temporary2 ? (temporary2 = 0 + 2, 1) : (temporary2 = 0 + 2, 0))
+        goto original3159_2845;
+    if (temporary3 == temporary2)
+        goto original3159_2971;
+
+    goto original3159_3032;
+original3159_2845:
+    saved21 = (int)0x00980000U;
+    Level32_7D7D8Keep(saved21);
+    saved21 = saved21 | 38527;
+    Level32_7D7D8Keep(saved21);
+    temporary3 = Level32_7D7D8Field(privateState, int *, 184);
+    Level32_7D7D8Keep(temporary3);
+    saved17 = 0 + 0;
+    Level32_7D7D8Keep(saved17);
+    temporary2 = Level32_7D7D8Field(temporary3, short *, 0);
+    Level32_7D7D8Keep(temporary2);
+
+    saved20 = 0 + 0;
+    if (temporary2 <= 0)
+        goto original3159_2922;
+    saved23 = (int)&Level32_7D7D8_D_80070328;
+    Level32_7D7D8Keep(saved23);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+original3159_2856:
+    saved18 = (int)((unsigned int)saved17 << 4);
+    Level32_7D7D8Keep(saved18);
+    temporary2 = Level32_7D7D8Field(temporary3, int *, 12);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = Level32_7D7D8Field(saved23, int *, 0);
+    Level32_7D7D8Keep(argument0);
+    argument1 = Level32_7D7D8Field(saved23, int *, 4);
+    Level32_7D7D8Keep(argument1);
+    temporary2 = saved18 + temporary2;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(temporary2, int *, 0);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 4);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = temporary3 - argument0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary2 - argument1;
+    temporary2 = Level32_7D7D8_func_8004E880(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    argument3 = Level32_7D7D8Field(privateState, int *, 184);
+    Level32_7D7D8Keep(argument3);
+
+    argument0 = Level32_7D7D8Field(argument3, short *, 0);
+    Level32_7D7D8Keep(argument0);
+
+    temporary3 = argument0 + 1;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = saved17 + temporary3;
+    Level32_7D7D8Keep(temporary3);
+    argument1 = temporary3 % argument0;
+    Level32_7D7D8Keep(argument1);
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+    saved16 = temporary2 + 0;
+    Level32_7D7D8Keep(saved16);
+    temporary3 = Level32_7D7D8Field(argument3, int *, 12);
+    Level32_7D7D8Keep(temporary3);
+    argument1 = (int)((unsigned int)argument1 << 4);
+    Level32_7D7D8Keep(argument1);
+    argument1 = argument1 + temporary3;
+    Level32_7D7D8Keep(argument1);
+    temporary3 = saved18 + temporary3;
+    Level32_7D7D8Keep(temporary3);
+    temporary8 = Level32_7D7D8Field(argument1, int *, 0);
+    Level32_7D7D8Keep(temporary8);
+    argument0 = Level32_7D7D8Field(temporary3, int *, 0);
+    Level32_7D7D8Keep(argument0);
+    argument3 = Level32_7D7D8Field(argument1, int *, 4);
+    Level32_7D7D8Keep(argument3);
+    argument1 = Level32_7D7D8Field(temporary3, int *, 4);
+    Level32_7D7D8Keep(argument1);
+    argument0 = temporary8 - argument0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = argument3 - argument1;
+    temporary2 = Level32_7D7D8_func_8004E880(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = saved16 + 0;
+    Level32_7D7D8Keep(argument0);
+    saved16 = temporary2 + 0;
+    Level32_7D7D8Keep(saved16);
+    argument1 = saved16 + 0;
+    temporary2 = Level32_7D7D8_func_8004F264(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 < 65;
+    Level32_7D7D8Keep(temporary2);
+    argument0 = saved23 + 0;
+    if (temporary2 != 0)
+        goto original3159_2915;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 184);
+    Level32_7D7D8Keep(temporary2);
+
+    argument1 = Level32_7D7D8Field(temporary2, int *, 12);
+    Level32_7D7D8Keep(argument1);
+    argument1 = argument1 + saved18;
+    temporary2 = Level32_7D7D8_func_8004F334(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary2 + 0;
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = temporary3 < saved21;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0)
+        goto original3159_2915;
+    saved20 = saved17 + 0;
+    Level32_7D7D8Keep(saved20);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 88) = saved16;
+    saved21 = temporary3 + 0;
+    Level32_7D7D8Keep(saved21);
+original3159_2915:
+    temporary3 = Level32_7D7D8Field(privateState, int *, 184);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = Level32_7D7D8Field(temporary3, short *, 0);
+    Level32_7D7D8Keep(temporary2);
+    saved17 = saved17 + 1;
+    Level32_7D7D8Keep(saved17);
+    temporary2 = saved17 < temporary2;
+    Level32_7D7D8Keep(temporary2);
+    argument2 = 0 + 0;
+    if (temporary2 != 0)
+        goto original3159_2856;
+original3159_2922:
+    temporary2 = 0 + 26;
+    Level32_7D7D8Keep(temporary2);
+    argument2 = 0 + 0;
+    if (saved20 != temporary2)
+        goto original3159_2955;
+    argument0 = Level32_7D7D8Field(privateState, int *, 184);
+    Level32_7D7D8Keep(argument0);
+
+    temporary3 = Level32_7D7D8Field(argument0, short *, 0);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = temporary3 + 26;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = temporary2 % temporary3;
+    Level32_7D7D8Keep(temporary3);
+    saved20 = 0 + 25;
+    Level32_7D7D8Keep(saved20);
+    temporary2 = Level32_7D7D8Field(argument0, int *, 12);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = Level32_7D7D8Field(temporary2, int *, 400);
+    Level32_7D7D8Keep(argument0);
+    argument1 = Level32_7D7D8Field(temporary2, int *, 404);
+    Level32_7D7D8Keep(argument1);
+    temporary3 = (int)((unsigned int)temporary3 << 4);
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    argument3 = Level32_7D7D8Field(temporary3, int *, 0);
+    Level32_7D7D8Keep(argument3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, 4);
+    Level32_7D7D8Keep(temporary3);
+    argument0 = argument3 - argument0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = temporary3 - argument1;
+    temporary2 = Level32_7D7D8_func_8004E880(argument0, argument1, argument2);
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(&locals.sp20, volatile int *, 88) = temporary2;
+    __asm__ volatile("" ::"m"(Level32_7D7D8Field(&locals.sp20, int *, 88)) : "$6");
+    argument2 = 0 + 0;
+    Level32_7D7D8Keep(argument2);
+original3159_2955:
+    argument3 = 0 + 0;
+    Level32_7D7D8Keep(argument3);
+    temporary2 = Level32_7D7D8Field(privateState, int *, 184);
+    Level32_7D7D8Keep(temporary2);
+    argument0 = (int)((unsigned int)saved20 << 4);
+    Level32_7D7D8Keep(argument0);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 12);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = Level32_7D7D8Field(&locals.sp20, volatile int *, 88);
+    Level32_7D7D8Keep(argument1);
+    argument0 = temporary2 + argument0;
+    Level32_7D7D8_func_80013D44(argument0, argument1, argument2, argument3);
+    argument1 = (int)&Level32_7D7D8_D_80070328;
+    Level32_7D7D8Keep(argument1);
+    argument0 = privateState + 188;
+    Level32_7D7D8_func_8004F178(argument0, argument1);
+    temporary2 = Level32_7D7D8Field(owner, unsigned char *, 73);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 + 1;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(owner, unsigned char *, 73) = temporary2;
+    goto original3159_3032;
+original3159_2971:
+    __asm__ volatile("" ::"r"(temporary2));
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, -8120);
+    Level32_7D7D8Keep(temporary2);
+
+    temporary2 = temporary2 & 1;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0 ? (temporary2 = 0 + 19, 1) : (temporary2 = 0 + 19, 0))
+        goto original3159_3032;
+    saved17 = (int)&Level32_7D7D8_D_80070328 + 80;
+    Level32_7D7D8Keep(saved17);
+    temporary3 = Level32_7D7D8Field(saved17, int *, 0);
+    Level32_7D7D8Keep(temporary3);
+
+    if (temporary3 == temporary2)
+        goto original3159_3032;
+    temporary10 = Level32_7D7D8Field(&locals.sp20, volatile int *, 80);
+    Level32_7D7D8Keep(temporary10);
+
+    Level32_7D7D8Field(temporary10, int *, 136) = 0;
+    Level32_7D7D8Field(temporary10, int *, 232) = 0;
+    Level32_7D7D8Field(temporary10, short *, 242) = 0;
+    Level32_7D7D8_func_8003BEDC();
+    temporary3 = Level32_7D7D8Field(privateState, int *, 132);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = 0 + -1;
+    if (temporary3 == 0)
+        goto original3159_2997;
+    temporary3 = Level32_7D7D8Field(temporary3, int *, 0);
+    Level32_7D7D8Keep(temporary3);
+
+    Level32_7D7D8Field(temporary3, short *, 22) = temporary2;
+    Level32_7D7D8Field(temporary3, short *, 20) = temporary2;
+original3159_2997:
+    saved16 = (int)&locals.sp30;
+    Level32_7D7D8Keep(saved16);
+    argument0 = saved16 + 0;
+    Level32_7D7D8Keep(argument0);
+    argument1 = saved17 + -80;
+    Level32_7D7D8_func_8004F178(argument0, argument1);
+    argument0 = saved23 + 12;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = Level32_7D7D8Field(&locals.sp20, volatile int *, 24);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = saved16 + 0;
+    Level32_7D7D8Keep(argument1);
+    temporary2 = temporary2 + -356;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(&locals.sp20, int *, 24) = temporary2;
+    Level32_7D7D8_func_8004F178(argument0, argument1);
+    argument0 = (int)0x10000000U;
+    Level32_7D7D8Keep(argument0);
+    argument0 = argument0 | 128;
+    Level32_7D7D8Keep(argument0);
+    Level32_7D7D8Field(saved23, unsigned char *, 68) = 0;
+    __asm__ volatile("" ::"m"(Level32_7D7D8Field(saved23, unsigned char *, 68)));
+    Level32_7D7D8Field(saved23, unsigned char *, 69) = 0;
+    __asm__ volatile("" ::"m"(Level32_7D7D8Field(saved23, unsigned char *, 69)));
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, unsigned char *, 822);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 32;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(saved23, unsigned char *, 76) = temporary2;
+    Level32_7D7D8Field(saved23, unsigned char *, 70) = temporary3;
+    __asm__ volatile("" ::"m"(Level32_7D7D8Field(saved23, unsigned char *, 76)),
+                     "m"(Level32_7D7D8Field(saved23, unsigned char *, 70))
+                     : "$3");
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, 1332);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 36;
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_80070328 + 572, int *, 0) = temporary2;
+    temporary2 = 0 + 4;
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_80070328 + 592, int *, 0) = saved23;
+    __asm__ volatile("" ::"r"(temporary3) : "memory");
+    temporary3 = temporary3 | argument0;
+    Level32_7D7D8Keep(temporary3);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_80070328 + 524, int *, 0) = temporary3;
+    Level32_7D7D8Field(saved23, unsigned char *, 72) = temporary2;
+    temporary2 = 0 + 9280;
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8Field((int)&Level32_7D7D8_D_8006C700, int *, 0) = temporary2;
+    Level32_7D7D8Field(owner, unsigned char *, 73) = 0;
+original3159_3032:
+    argument0 = (int)&Level32_7D7D8_D_80070328 + 80;
+    Level32_7D7D8Keep(argument0);
+    temporary3 = Level32_7D7D8Field(argument0, int *, 0);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 19;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 != temporary2)
+        goto original3159_3070;
+    temporary2 = Level32_7D7D8Field(privateState, short *, 182);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = argument0 + -80;
+    if (temporary2 != 0)
+        goto original3159_3074;
+    temporary3 = Level32_7D7D8Field(privateState, int *, 100);
+    Level32_7D7D8Keep(temporary3);
+    argument1 = (int)0x80070000U;
+    Level32_7D7D8Keep(argument1);
+    argument1 = Level32_7D7D8Field(argument1, int *, -15024);
+    Level32_7D7D8Keep(argument1);
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 2);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    argument1 = argument1 + temporary2;
+    Level32_7D7D8Keep(argument1);
+    argument1 = argument1 + 12;
+    temporary2 = Level32_7D7D8_func_8004F334(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 < 2201;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 != 0)
+        goto original3159_3070;
+    temporary3 = Level32_7D7D8Field(privateState, int *, 100);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = (int)((unsigned int)temporary3 << 1);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = (int)((unsigned int)temporary2 << 2);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, -15024);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (int)((unsigned int)temporary2 << 3);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + temporary3;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = 0 + 1;
+    Level32_7D7D8Keep(temporary3);
+    Level32_7D7D8Field(temporary2, unsigned char *, 73) = temporary3;
+    temporary2 = 0 + 1;
+    Level32_7D7D8Keep(temporary2);
+    Level32_7D7D8Field(privateState, short *, 182) = temporary2;
+original3159_3070:
+    temporary2 = Level32_7D7D8Field(privateState, short *, 182);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 == 0)
+        goto original3159Return;
+original3159_3074:
+    temporary2 = Level32_7D7D8Field(owner, unsigned char *, 73);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 != 0)
+        goto original3159Return;
+    __asm__ volatile("" ::"r"(owner));
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, -14952);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 != 0)
+        goto original3159Return;
+    argument0 = (int)&Level32_7D7D8_D_800676E8;
+    Level32_7D7D8Keep(argument0);
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, -14964);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, -14904);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (int)((unsigned int)temporary2 << 4);
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = temporary2 + argument0;
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = (int)((unsigned int)temporary3 << 2);
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = temporary3 + temporary2;
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary2);
+    temporary2 = Level32_7D7D8Field(temporary2, int *, 816);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, 0);
+    Level32_7D7D8Keep(temporary3);
+
+    temporary2 = temporary2 - temporary3;
+    Level32_7D7D8Keep(temporary2);
+    saved16 = temporary2 < 3500;
+    Level32_7D7D8Keep(saved16);
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, 888);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 19;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 == temporary2)
+        goto original3159_3113;
+    temporary2 = Level32_7D7D8Field(privateState, int *, 416);
+    Level32_7D7D8Keep(temporary2);
+
+    if (temporary2 != 0 ? (temporary2 = (unsigned int)temporary3 < 2, 1)
+                        : (temporary2 = (unsigned int)temporary3 < 2, 0))
+        goto original3159_3123;
+    if (temporary2 != 0 ? (temporary2 = 0 + 4, 1) : (temporary2 = 0 + 4, 0))
+        goto original3159_3112;
+    if (temporary3 != temporary2)
+        goto original3159_3113;
+original3159_3112:
+    saved16 = 0 + 1;
+    Level32_7D7D8Keep(saved16);
+original3159_3113:
+    temporary2 = Level32_7D7D8Field(privateState, int *, 416);
+    Level32_7D7D8Keep(temporary2);
+
+    argument0 = privateState + 416;
+    if (temporary2 != 0)
+        goto original3159_3124;
+    temporary3 = (int)0x80070000U;
+    Level32_7D7D8Keep(temporary3);
+    temporary3 = Level32_7D7D8Field(temporary3, int *, 880);
+    Level32_7D7D8Keep(temporary3);
+    temporary2 = 0 + 28;
+    Level32_7D7D8Keep(temporary2);
+    if (temporary3 != temporary2 ? (temporary2 = 0 + 40, 1) : (temporary2 = 0 + 40, 0))
+        goto original3159_3124;
+    Level32_7D7D8Field(privateState, int *, 416) = temporary2;
+original3159_3123:
+    argument0 = privateState + 416;
+    Level32_7D7D8Keep(argument0);
+original3159_3124:
+    argument1 = 0 + 4;
+    temporary2 = Level32_7D7D8_func_800359A4(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    temporary3 = 0 + 2;
+    Level32_7D7D8Keep(temporary3);
+    if (temporary2 != temporary3)
+        goto original3159_3130;
+    saved16 = 0 + 1;
+    Level32_7D7D8Keep(saved16);
+original3159_3130:
+    if (saved16 == 0)
+        goto original3159Return;
+    argument1 = Level32_7D7D8Field(privateState, int *, 444);
+    Level32_7D7D8Keep(argument1);
+    argument0 = owner + 0;
+    temporary2 = Level32_7D7D8_func_8003BFC0(argument0, argument1);
+    Level32_7D7D8Keep(temporary2);
+    if (temporary2 == 0 ? (temporary2 = 0 + -1, 1) : (temporary2 = 0 + -1, 0))
+        goto original3159_3141;
+    argument0 = Level32_7D7D8Field(privateState, int *, 444);
+
+    Level32_7D7D8_func_8003BE70(argument0);
+    temporary2 = 0 + -1;
+    Level32_7D7D8Keep(temporary2);
+original3159_3141:
+    Level32_7D7D8Field(privateState, int *, 444) = temporary2;
+    temporary2 = 0 + 1;
+    Level32_7D7D8Keep(temporary2);
+
+    Level32_7D7D8OriginalGlobalField0 = 0;
+    Level32_7D7D8Field(owner, unsigned char *, 73) = temporary2;
+original3159Return:
+    return;
+}
+#undef Level32_7D7D8Field
+#undef Level32_7D7D8Keep
+#undef Level32_7D7D8Low
+
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original80080934.
+* AI generated; not human reviewed. All699 instructions,31 selectors and
+* one zero padding word,731 owned words,require every native/linked word
+* and actual transfer/table destination. Frame90 saves S0..S6/RA,SP20..6F.
+* Retained S4 first holds1250,then a separate full divisor/count4 in state2.
+* Both signed divisions128/count and (index<<8)/count preserve original
+* DIV/MFLO and all zero/overflow checks. No synthetic partial HI/LO values.
+* The particle vector retains original S6 address and runtime count/stride.
+* Shared cleanup653 follows final state. Current height loads after35D38
+* returns;full signed +/-70 clamp and distinct comparison entries remain.
+* Signed caller heading retains full short-to-word shift before byte callee.
+* Callback byte clear follows the result at original316. Full constructor,
+* result and animation-byte snapshots retain original load/store widths.
+* Second height check preserves two full sum producers,store463,complete
+* copy-pointer464 and independent already-prepared entry465. Original
+* initial metadata clobbers dead S4 before its complete1250 producer;all
+* other empty constraints consume complete initialized words/addresses or
+* clobber dead values before complete producers. Zero CPU instructions.
+* No fixedFP,undefined saved inputs,live alias overlap or pipeline changes.
+* Units/fixed point,complete helper/caller chains,cadence beyond invocation
+* and synchronized runtime remain open. Confidence: binary identity only
+* after every gate. Next: human review and synchronized retail captures.
+* Falsification: native/linked words,actual targets,owned selectors/padding
+* and full EXE/every-overlay retail hashes must remain identical.
+*/
+/* Original assembly SHA256 fc7dbe3fbb32fa5d2b61364894277a97afa0a848250244bc0486a61c195d4d18 */
+#define Level32_80934Field(p, t, o) (*(t)((unsigned char*)(p)+(o)))
+int Level32_80934Call1A358View1() __asm__("func_8001A358");
+void Level32_80934Call34F40View1(void*, int) __asm__("func_80034F40");
+int Level32_80934Call35030View1() __asm__("func_80035030");
+int Level32_80934Call35734View1() __asm__("func_80035734");
+int Level32_80934Call3573CView1() __asm__("func_8003573C");
+int Level32_80934Call3585CView1() __asm__("func_8003585C");
+int Level32_80934Call359A4View1(void*, int) __asm__("func_800359A4");
+int Level32_80934Call35A80View1() __asm__("func_80035A80");
+int Level32_80934Call35D38View1() __asm__("func_80035D38");
+int Level32_80934Call35DDCView1() __asm__("func_80035DDC");
+int Level32_80934Call360F8View1() __asm__("func_800360F8");
+int Level32_80934Call3636CView1() __asm__("func_8003636C");
+int Level32_80934Call363DCView1() __asm__("func_800363DC");
+int Level32_80934Call369B8View1() __asm__("func_800369B8");
+int Level32_80934Call36A68View1() __asm__("func_80036A68");
+int Level32_80934Call391E8View1() __asm__("func_800391E8");
+int Level32_80934Call3BA00View1() __asm__("func_8003BA00");
+int Level32_80934Call4E880View1(int, int, int) __asm__("func_8004E880");
+int Level32_80934Call4EDE8View1() __asm__("func_8004EDE8");
+int Level32_80934Call4F08CView1() __asm__("func_8004F08C");
+int Level32_80934Call4F178View1() __asm__("func_8004F178");
+int Level32_80934Call4F1C8View1() __asm__("func_8004F1C8");
+int Level32_80934Call4F264View1(int, int) __asm__("func_8004F264");
+int Level32_80934Call4F334View1() __asm__("func_8004F334");
+int Level32_80934Call55B18View1() __asm__("func_80055B18");
+int Level32_80934Call55D24View1() __asm__("func_80055D24");
+int Level32_80934Call55E84View1() __asm__("func_80055E84");
+int Level32_80934Call55F14View1() __asm__("func_80055F14");
+int Level32_80934Call5629CView1() __asm__("func_8005629C");
+int Level32_80934DatarandView1(void) __asm__("rand");
+extern int Level32_80934Data658A0View1 __asm__("D_800658A0");
+extern int Level32_80934Data65920View1 __asm__("D_80065920");
+extern int Level32_80934Data6C550View1 __asm__("D_8006C550");
+extern int Level32_80934Data6C640View1 __asm__("D_8006C640");
+extern int Level32_80934Data6C770View1 __asm__("D_8006C770");
+extern int Level32_80934Data6E020View1 __asm__("D_8006E020");
+extern int Level32_80934Data6E024View1 __asm__("D_8006E024");
+extern unsigned short Level32_80934Data6E040View1 __asm__("D_8006E040");
+extern int Level32_80934Data70328View1 __asm__("D_80070328");
+extern int(*Level32_80934DataSpawnMobyView1)() __asm__("SpawnMoby");
+extern void*(*Level32_80934DataSpawnParticleView1)(int, int, void*, void*) __asm__("SpawnParticle");
+extern int(*Level32_80934Data743C8View1)() __asm__("unk_ovlheader_800743C8");
+extern int(*Level32_80934Data743ECView1)() __asm__("unk_ovlheader_800743EC");
+extern int(*Level32_80934Data74410View1)() __asm__("unk_ovlheader_80074410");
+void func_level_32_80080934(void *ownerParameter) {
+    register int rawWord2 __asm__("$2"), rawWord3 __asm__("$3"), argumentWord4 __asm__("$4"), argumentWord5 __asm__("$5"), argumentWord6 __asm__("$6"), argumentWord7 __asm__("$7"), retainedHeightTargetOrDivisor20 __asm__("$20"), retainedParticleVector22 __asm__("$22");
+    register void *ownerRecord19 __asm__("$19");
+    register int privateRecord18 __asm__("$18"), retainedPrivateResultOrAngle16 __asm__("$16"), retainedLinkedRecordPrivateOrCounter17 __asm__("$17"), retainedParticleDistance21 __asm__("$21");
+    struct{
+        int sp20, sp24, sp28, sp2C, sp30, sp34, sp38, sp3C, sp40, sp44, sp48, sp4C, sp50, sp54, sp58, sp5C, sp60, sp64, sp68, sp6C;
+    }
+    originalFrame;
+    int temporaryWord12;
+    int temporaryWord2;
+    int temporaryWord5;
+    int temporaryWord6;
+    int temporaryWord8;
+    int temporaryWord7;
+    int temporaryWord13;
+    int temporaryWord1;
+    int temporaryWord3;
+    int temporaryWord4;
+    int temporaryWord9;
+    int temporaryWord10;
+    int temporaryWord11;
+    ownerRecord19 = ownerParameter;
+    __asm__("":"=r"(ownerRecord19):"0"(ownerRecord19):"$20");
+    rawWord3 = 0x830000;
+    rawWord2 = Level32_80934Field(ownerRecord19, int*, 24);
+    privateRecord18 = Level32_80934Field(ownerRecord19, void**, 0);
+    rawWord2 &= rawWord3;
+    retainedHeightTargetOrDivisor20 = 1250;
+    if (rawWord2){
+        if (Level32_80934Field(ownerRecord19, unsigned char *, 0x48) != 2) {
+            temporaryWord1 = Level32_80934Field(privateRecord18, void **, 0x2C);
+            if (temporaryWord1 != 0) {
+                Level32_80934Call55B18View1(temporaryWord1);
+                Level32_80934Field(privateRecord18, void **, 0x2C) = 0;
+            }
+            Level32_80934Field(privateRecord18, int *, 4) = 0xFA;
+            Level32_80934Field(privateRecord18, int *, 8) = 0x5A;
+            temporaryWord13 = Level32_80934Field(ownerRecord19, unsigned char *, 0x51);
+            if (temporaryWord13 == 0) {
+                temporaryWord13 = Level32_80934Call360F8View1(Level32_80934Call4E880View1(Level32_80934Field(ownerRecord19, int *, 0xC) - Level32_80934Field((int)&Level32_80934Data70328View1, int *, 0), Level32_80934Field(ownerRecord19, int *, 0x10) - Level32_80934Field((int)&Level32_80934Data70328View1, int *, 4), 0), Level32_80934Field((int)&Level32_80934Data70328View1, unsigned char *, 0xE), 0x20, 0x40);
+            }
+            Level32_80934Field(privateRecord18, int *, 0) = (int) temporaryWord13;
+            Level32_80934Field(ownerRecord19, signed char *, 0x47) = 9;
+            temporaryWord6 = Level32_80934Field(privateRecord18, int *, 0x48);
+            argumentWord5 = 1;
+            if (temporaryWord6 != -1){
+                rawWord3 = temporaryWord6;
+                rawWord2 = rawWord3*88;
+                rawWord3 = Level32_80934Data6C550View1;
+                retainedLinkedRecordPrivateOrCounter17 = rawWord3+rawWord2;
+                argumentWord4 = retainedLinkedRecordPrivateOrCounter17;
+                rawWord3 = 1;
+                rawWord2 = 48;
+                Level32_80934Field(retainedLinkedRecordPrivateOrCounter17, signed char*, 65) = rawWord3;
+                Level32_80934Field(retainedLinkedRecordPrivateOrCounter17, signed char*, 77) = rawWord3;
+                rawWord3 = 0x80000000;
+                Level32_80934Field(retainedLinkedRecordPrivateOrCounter17, signed char*, 76) = rawWord2;
+                rawWord2 = Level32_80934Field(retainedLinkedRecordPrivateOrCounter17, int*, 28);
+                retainedPrivateResultOrAngle16 = Level32_80934Field(retainedLinkedRecordPrivateOrCounter17, int*, 0);
+                rawWord2 |= rawWord3;
+                Level32_80934Field(retainedLinkedRecordPrivateOrCounter17, int*, 28) = rawWord2;
+                Level32_80934Call55D24View1(argumentWord4, argumentWord5);
+                Level32_80934Call4F178View1(retainedLinkedRecordPrivateOrCounter17 + 0xC, ownerRecord19 + 0xC);
+                rawWord2 = Level32_80934Field(ownerRecord19, unsigned char*, 70);
+                argumentWord4 = 20;
+                Level32_80934Field(retainedLinkedRecordPrivateOrCounter17, signed char*, 72) = argumentWord4;
+                Level32_80934Field(retainedLinkedRecordPrivateOrCounter17, unsigned char*, 70) = rawWord2;
+                Level32_80934Field(retainedPrivateResultOrAngle16, short*, 52) = 0;
+                rawWord2 = Level32_80934Field(privateRecord18, int*, 0);
+                Level32_80934Field(retainedPrivateResultOrAngle16, int*, 4) = rawWord2;
+                rawWord2 = Level32_80934Field(privateRecord18, int*, 4);
+                Level32_80934Field(retainedPrivateResultOrAngle16, int*, 0) = rawWord2;
+                rawWord3 = Level32_80934Field(privateRecord18, int*, 8);
+                rawWord2 = 25;
+                Level32_80934Field(retainedPrivateResultOrAngle16, signed char*, 41) = argumentWord4;
+                Level32_80934Field(retainedPrivateResultOrAngle16, signed char*, 40) = rawWord2;
+                Level32_80934Field(retainedPrivateResultOrAngle16, int*, 8) = rawWord3;
+                if (!(Level32_80934Field(ownerRecord19, int *, 0x18) & 0x10000)) {
+                    Level32_80934Field(retainedPrivateResultOrAngle16, signed char *, 0x37) = 0;
+                }
+                Level32_80934Field(retainedPrivateResultOrAngle16, signed char *, 0x36) = 0;
+                Level32_80934Field(retainedLinkedRecordPrivateOrCounter17, signed char *, 0x4C) = 0x20;
+            }
+            Level32_80934Call36A68View1(ownerRecord19, 1, 0, 0);
+            if (Level32_80934Field(ownerRecord19, int *, 0x18) & 0x820000) {
+                Level32_80934Call391E8View1(0xA, 0x91, ownerRecord19, 0, 2, 0xB4, 0xC8);
+                Level32_80934Call391E8View1(5, 0x92, ownerRecord19, 0, 2, 0xB4, 0xC8);
+                Level32_80934Call55D24View1(ownerRecord19, 4);
+                Level32_80934Call3BA00View1(ownerRecord19);
+                Level32_80934Call369B8View1(ownerRecord19, 0x18);
+                goto callSharedOriginalRemoval649;
+            }
+            Level32_80934Field(ownerRecord19, unsigned char *, 0x48) = 2U;
+            Level32_80934Call34F40View1(ownerRecord19, 2);
+            goto block_13;
+        }
+        goto block_14;
+    }
+block_13:
+block_14:
+    if (Level32_80934Field(ownerRecord19, unsigned char *, 0x48) != 0x1E) {
+        rawWord2 = Level32_80934Call35D38View1(ownerRecord19);
+        argumentWord4 = Level32_80934Field(ownerRecord19, int*, 20);
+        rawWord2 = argumentWord4-rawWord2;
+        rawWord3 = retainedHeightTargetOrDivisor20-rawWord2;
+        rawWord2 = rawWord3;
+        if (rawWord3 < 0)rawWord2 = -rawWord2;
+        if (rawWord2 >= 71){
+            rawWord2 = rawWord3 < 71;
+            if (rawWord2){
+                rawWord2 = rawWord3 < -70;
+            }
+            else{
+                rawWord2 = rawWord3 < -70;
+                __asm__ volatile(""::"r"(rawWord2));
+                rawWord3 = 70;
+                __asm__("":"=r"(rawWord3):"0"(rawWord3));
+                rawWord2 = rawWord3 < -70;
+            }
+            if (!rawWord2){
+                rawWord2 = argumentWord4+rawWord3;
+                goto writeOriginalHeight171;
+            }
+            rawWord3 = -70;
+            __asm__("":"=r"(rawWord3):"0"(rawWord3));
+            rawWord2 = argumentWord4+rawWord3;
+        writeOriginalHeight171:
+            Level32_80934Field(ownerRecord19, int*, 20) = rawWord2;
+        }
+    }
+    if ((Level32_80934Field(ownerRecord19, unsigned char *, 0x4D) != 0) || (Level32_80934Field(ownerRecord19, unsigned char *, 0x48) == 2)) {
+        temporaryWord7 = Level32_80934Field(ownerRecord19, unsigned char *, 0x48);
+        switch (temporaryWord7) {
+        case 0:
+            retainedPrivateResultOrAngle16 = Level32_80934Call4F334View1(ownerRecord19 + 0xC, (int)&Level32_80934Data70328View1);
+            if (Level32_80934Field(privateRecord18, void **, 0x34) != 0) {
+                Level32_80934Field(ownerRecord19, unsigned char *, 0x48) = 0x1EU;
+                goto callSharedOriginalCleanup653;
+            }
+            rawWord2 = Level32_80934Field(ownerRecord19, unsigned char*, 61);
+            argumentWord4 = (int)ownerRecord19;
+            if (rawWord2){
+                Level32_80934Data6C770View1 = 0;
+                rawWord2 = Level32_80934Field(ownerRecord19, unsigned char*, 61);
+                argumentWord5 = Level32_80934Field(ownerRecord19, unsigned char*, 63);
+                rawWord3 = 114;
+                Level32_80934Field(ownerRecord19, signed char*, 64) = rawWord3;
+                Level32_80934Field(ownerRecord19, unsigned char*, 61) = 0;
+                Level32_80934Field(ownerRecord19, unsigned char*, 63) = 0;
+                Level32_80934Field(ownerRecord19, unsigned char*, 60) = rawWord2;
+                Level32_80934Field(ownerRecord19, unsigned char*, 62) = argumentWord5;
+                Level32_80934Call35734View1(argumentWord4, argumentWord5);
+            }
+            Level32_80934Call3573CView1(ownerRecord19, 4, 0, 0);
+            if ((Level32_80934Call359A4View1(privateRecord18 + 0x1C, 4) != 0) && (retainedPrivateResultOrAngle16 >= 0x5DD) && ({rawWord2 = Level32_80934Field(privateRecord18, int*, 48);rawWord2 = retainedPrivateResultOrAngle16 < rawWord2;__asm__("":"=r"(rawWord2):"0"(rawWord2));rawWord2;})) {
+                temporaryWord8 = Level32_80934Field(ownerRecord19, int *, 0x14) - Level32_80934Field(ownerRecord19, short *, 0x38);
+                temporaryWord2 = temporaryWord8 - Level32_80934Field((int)&Level32_80934Data70328View1, int *, 8);
+                if (temporaryWord2 >= 0){
+                    rawWord2 = temporaryWord2 < 2000;
+                    argumentWord6 = 0;
+                    if (rawWord2) goto checkOriginalAngle250;
+                    goto checkOriginalTimedState286;
+                }
+                if ((Level32_80934Field((int)&Level32_80934Data70328View1, int *, 8) - temporaryWord8) < 0x7D0) {
+                checkOriginalAngle250:
+                    if ((Level32_80934Call4F264View1(Level32_80934Field(ownerRecord19, unsigned char *, 0x46), Level32_80934Call4E880View1(Level32_80934Field((int)&Level32_80934Data70328View1, int *, 0) - Level32_80934Field(ownerRecord19, int *, 0xC), Level32_80934Field((int)&Level32_80934Data70328View1, int *, 4) - Level32_80934Field(ownerRecord19, int *, 0x10), 0)) < 4) && (Level32_80934Call4F264View1(((int)(Level32_80934Data6E040View1 << 16) >> 20), Level32_80934Call4E880View1(Level32_80934Field(ownerRecord19, int *, 0xC) - Level32_80934Data6E020View1, Level32_80934Field(ownerRecord19, int *, 0x10) - Level32_80934Data6E024View1, 0)) < 0x1C)) {
+                        Level32_80934Field(ownerRecord19, unsigned char *, 0x48) = 1U;
+                        Level32_80934Call34F40View1(ownerRecord19, 1);
+                        return;
+                    }
+                    goto checkOriginalTimedState286;
+                }
+                goto checkOriginalTimedState286;
+            }
+        checkOriginalTimedState286:
+            if ((Level32_80934Field(privateRecord18, int *, 0x24) != 0) && (Level32_80934Call359A4View1(privateRecord18 + 0x28, 4) != 0)) {
+                Level32_80934Field(privateRecord18, int *, 0x28) = Level32_80934Call3636CView1(0x8C, 0xB4);
+                Level32_80934Field(ownerRecord19, unsigned char *, 0x48) = 0x15U;
+                return;
+            }
+            goto callSharedOriginalCleanup653;
+        case 30:
+            if (({rawWord2 = Level32_80934Data743ECView1(ownerRecord19, Level32_80934Field(privateRecord18, void**, 52), privateRecord18+56, privateRecord18+68, 30, 0)&1;Level32_80934Field(ownerRecord19, signed char*, 69) = 0;rawWord2;}) && (Level32_80934Field(Level32_80934Field(privateRecord18, void **, 0x34), short *, 2) == 0)) {
+                Level32_80934Field(privateRecord18, void **, 0x34) = 0;
+                Level32_80934Field(ownerRecord19, unsigned char *, 0x48) = 0U;
+            }
+            goto callSharedOriginalCleanup653;
+        case 20:
+            temporaryWord3 = (Level32_80934Field(privateRecord18, int *, 0x20) * 0x10) + Level32_80934Field(Level32_80934Field(privateRecord18, void **, 0xC), int *, 0xC);
+            if (Level32_80934Call3585CView1(ownerRecord19, Level32_80934Call4E880View1(Level32_80934Field(temporaryWord3, int *, 0) - Level32_80934Field(ownerRecord19, int *, 0xC), Level32_80934Field(temporaryWord3, int *, 4) - Level32_80934Field(ownerRecord19, int *, 0x10), 0), 5, 0x28, 1, 0) != 0) {
+                Level32_80934Call35DDCView1(ownerRecord19, 0x78, 0, 0, 0);
+                if (Level32_80934Call4F334View1(ownerRecord19 + 0xC, Level32_80934Field(Level32_80934Field(privateRecord18, void **, 0xC), int *, 0xC) + (Level32_80934Field(privateRecord18, int *, 0x20) * 0x10)) < 0x100) {
+                    Level32_80934Field(Level32_80934Field(privateRecord18, void **, 0xC), short *, 2) = (short) Level32_80934Field(privateRecord18, int *, 0x20);
+                    Level32_80934Field(ownerRecord19, unsigned char *, 0x48) = 0U;
+                }
+            }
+            goto callSharedOriginalCleanup653;
+        case 21:
+            if (Level32_80934Call35A80View1(ownerRecord19, Level32_80934Field(privateRecord18, void **, 0xC), 0x12C, 0x78, 0, 5, 0x28, 0) & 1) {
+                Level32_80934Field(ownerRecord19, unsigned char *, 0x48) = 0U;
+            }
+            goto callSharedOriginalCleanup653;
+        case 1:
+            rawWord2 = Level32_80934Call55E84View1(ownerRecord19);
+            argumentWord4 = (int)ownerRecord19;
+            argumentWord5 = 7;
+            argumentWord6 = 0;
+            argumentWord7 = 0;
+            __asm__("":"=r"(argumentWord7):"0"(argumentWord7), "r"(argumentWord4), "r"(argumentWord5), "r"(argumentWord6), "r"(rawWord2):"$16");
+            retainedPrivateResultOrAngle16 = rawWord2;
+            Level32_80934Call3573CView1(argumentWord4, argumentWord5, argumentWord6, argumentWord7);
+            rawWord2 = Level32_80934Field(privateRecord18, int*, 44);
+            if (rawWord2 == 0){
+                rawWord2 = retainedPrivateResultOrAngle16 < 22;
+                __asm__ volatile(""::"r"(rawWord2));
+                if ((unsigned int) (retainedPrivateResultOrAngle16 - 5) < 0x10U) {
+                    Level32_80934Call55D24View1(ownerRecord19, 4);
+                    Level32_80934Call55F14View1(ownerRecord19, 0, &originalFrame.sp20);
+                    Level32_80934Data74410View1(&originalFrame.sp20, 0x3A, 0xC, 8, 0xC);
+                    temporaryWord4 = Level32_80934DataSpawnMobyView1(0x249, ownerRecord19);
+                    Level32_80934Field(privateRecord18, void **, 0x2C) = temporaryWord4;
+                    if (temporaryWord4 != 0) {
+                        Level32_80934Field(temporaryWord4, signed char *, 0x48) = 0x64;
+                        Level32_80934Field(Level32_80934Field(privateRecord18, void **, 0x2C), unsigned char *, 0x4F) = 0x50U;
+                    }
+                }
+                rawWord2 = retainedPrivateResultOrAngle16 < 22;
+            }
+            else{
+                rawWord2 = retainedPrivateResultOrAngle16 < 22;
+            }
+            if (rawWord2 == 0){
+                temporaryWord10 = Level32_80934Field(privateRecord18, void **, 0x2C);
+                if (temporaryWord10 != 0) {
+                    retainedLinkedRecordPrivateOrCounter17 = Level32_80934Field(temporaryWord10, void **, 0);
+                    Level32_80934Field(temporaryWord10, signed char *, 0x48) = 0x63;
+                    Level32_80934Field(privateRecord18, int *, 0x1C) = 0x78;
+                    Level32_80934Call4F178View1(&originalFrame.sp30, (int)&Level32_80934Data70328View1);
+                    rawWord2 = Level32_80934Call1A358View1(&originalFrame.sp30, 4096);
+                    argumentWord4 = originalFrame.sp38;
+                    rawWord3 = rawWord2;
+                    rawWord2 = argumentWord4-rawWord3;
+                    if (rawWord2 >= 0){
+                        rawWord2 = rawWord2 < 1800;
+                        if (rawWord2){
+                            rawWord2 = rawWord3+300;
+                            goto writeOriginalFrameHeight463;
+                        }
+                        rawWord2 = rawWord3+300;
+                        argumentWord4 = retainedLinkedRecordPrivateOrCounter17;
+                        goto copyOriginalPreparedFrame465;
+                    }
+                    rawWord2 = rawWord3-argumentWord4;
+                    if (rawWord2 < 1800){
+                        rawWord2 = rawWord3+300;
+                    writeOriginalFrameHeight463:
+                        originalFrame.sp38 = rawWord2;
+                    }
+                    else{
+                        rawWord2 = rawWord3+300;
+                    }
+                prepareOriginalFrameCopy464:
+                    argumentWord4 = retainedLinkedRecordPrivateOrCounter17;
+                copyOriginalPreparedFrame465:
+                    __asm__ volatile(""::"r"(rawWord2));
+                    Level32_80934Call4F1C8View1(argumentWord4, &originalFrame.sp30, Level32_80934Field(privateRecord18, void**, 44)+12);
+                    Level32_80934Call4F08CView1(retainedLinkedRecordPrivateOrCounter17, Level32_80934Call4EDE8View1(retainedLinkedRecordPrivateOrCounter17, 1), 0xFA);
+                    Level32_80934Field(retainedLinkedRecordPrivateOrCounter17, short *, 0x10) = 0x78;
+                    Level32_80934Field(retainedLinkedRecordPrivateOrCounter17, signed char *, 0x15) = 0x10;
+                    Level32_80934Field(privateRecord18, void **, 0x2C) = 0;
+                }
+            }
+            if (Level32_80934Data6C770View1 != 0) {
+                if (Level32_80934Field(ownerRecord19, unsigned char *, 0x3D) != 0) {
+                    Level32_80934Data6C770View1 = 0;
+                    Level32_80934Field(ownerRecord19, signed char *, 0x40) = 0x72;
+                    Level32_80934Field(ownerRecord19, unsigned char *, 0x3D) = 0U;
+                    Level32_80934Field(ownerRecord19, unsigned char *, 0x3F) = 0U;
+                    Level32_80934Call35734View1(ownerRecord19);
+                }
+                if (Level32_80934Field(privateRecord18, int *, 0x24) != 0) {
+                    Level32_80934Field(ownerRecord19, unsigned char *, 0x48) = 0x15U;
+                }
+                else {
+                    temporaryWord5 = Level32_80934Data743C8View1(Level32_80934Field(privateRecord18, void **, 0xC));
+                    temporaryWord11 = Level32_80934Field(privateRecord18, void **, 0xC);
+                    Level32_80934Field(privateRecord18, int *, 0x20) = temporaryWord5;
+                    if (temporaryWord5 == Level32_80934Field(temporaryWord11, short *, 2)) {
+                        temporaryWord12 = Level32_80934Field(temporaryWord11, short *, 0);
+                        Level32_80934Field(privateRecord18, int *, 0x20) = (int) ((int) (temporaryWord5 + Level32_80934Field(temporaryWord11, short *, 0xA) + temporaryWord12) % temporaryWord12);
+                    }
+                    Level32_80934Field(ownerRecord19, unsigned char *, 0x48) = 0x14U;
+                }
+            }
+            goto callSharedOriginalCleanup653;
+        case 2:
+            argumentWord4 = (int)ownerRecord19;
+            argumentWord5 = privateRecord18+4;
+            argumentWord7 = privateRecord18+8;
+            retainedHeightTargetOrDivisor20 = 4;
+            retainedLinkedRecordPrivateOrCounter17 = 0;
+            __asm__("":"=r"(retainedHeightTargetOrDivisor20):"0"(retainedHeightTargetOrDivisor20), "r"(argumentWord4), "r"(argumentWord5), "r"(argumentWord7):"$2", "memory");
+            retainedParticleVector22 = (int)&originalFrame.sp50;
+            Level32_80934Call35030View1(argumentWord4, argumentWord5, Level32_80934Field(privateRecord18, int*, 0), argumentWord7, 12, 16, 300, 0x4001);
+            Level32_80934Call55D24View1(ownerRecord19, 4);
+            Level32_80934Call55F14View1(ownerRecord19, 5, &originalFrame.sp40);
+            retainedParticleDistance21 = Level32_80934Call4F334View1(ownerRecord19 + 0xC, &originalFrame.sp40);
+            do {
+                Level32_80934Call4F178View1(retainedParticleVector22, (int)ownerRecord19+12);
+                argumentWord5 = 128;
+                argumentWord5 = argumentWord5/retainedHeightTargetOrDivisor20;
+                retainedPrivateResultOrAngle16 = retainedLinkedRecordPrivateOrCounter17 << 8;
+                retainedPrivateResultOrAngle16 = retainedPrivateResultOrAngle16/retainedHeightTargetOrDivisor20;
+                rawWord2 = originalFrame.sp48;
+                argumentWord4 = 0;
+                originalFrame.sp58 = rawWord2;
+                rawWord2 = Level32_80934Call363DCView1(argumentWord4, argumentWord5);
+                retainedPrivateResultOrAngle16 += rawWord2;
+                retainedPrivateResultOrAngle16 = (retainedPrivateResultOrAngle16&255)*2;
+                originalFrame.sp50 += (int) (Level32_80934Field((int)&Level32_80934Data65920View1, short*, retainedPrivateResultOrAngle16) * retainedParticleDistance21) >> 0xC;
+                retainedLinkedRecordPrivateOrCounter17 += 1;
+                originalFrame.sp54 += (int) (Level32_80934Field((int)&Level32_80934Data658A0View1, short*, retainedPrivateResultOrAngle16) * retainedParticleDistance21) >> 0xC;
+                originalFrame.sp60 = (Level32_80934DatarandView1() & 0x1F) - 0x10;
+                originalFrame.sp64 = (Level32_80934DatarandView1() & 0x1F) - 0x10;
+                originalFrame.sp68 = Level32_80934Call3636CView1(0x12, 0x18);
+                Level32_80934DataSpawnParticleView1(1, 0xD, retainedParticleVector22, &originalFrame.sp60);
+            }
+            while (retainedLinkedRecordPrivateOrCounter17 < retainedHeightTargetOrDivisor20);
+            if (Level32_80934Data6C770View1 != 0) {
+                Level32_80934Call3BA00View1(ownerRecord19);
+            callSharedOriginalRemoval649:
+                Level32_80934Call55B18View1(ownerRecord19);
+                return;
+            }
+            goto callSharedOriginalCleanup653;
+        default:
+        callSharedOriginalCleanup653:
+            if (Level32_80934Field(privateRecord18, void **, 0x2C) != 0) {
+                Level32_80934Call55D24View1(ownerRecord19, 4);
+                Level32_80934Call55F14View1(ownerRecord19, 0, Level32_80934Field(privateRecord18, void **, 0x2C) + 0xC);
+                temporaryWord9 = Level32_80934Field(privateRecord18, void **, 0x2C);
+                Level32_80934Field(temporaryWord9, unsigned char *, 0x4F) = (unsigned char) (Level32_80934Field(temporaryWord9, unsigned char *, 0x4F) - 8);
+                argumentWord4 = Level32_80934Field(privateRecord18, void **, 0x2C);
+                if ((unsigned char) Level32_80934Field(argumentWord4, unsigned char *, 0x4F) < 0x20U) {
+                    Level32_80934Field(argumentWord4, unsigned char *, 0x4F) = 0x20U;
+                }
+            }
+            if (Level32_80934Data6C640View1 & 3) {
+                Level32_80934Call35D38View1(ownerRecord19);
+                Level32_80934Call5629CView1(ownerRecord19);
+            }
+            break;
+        }
+    }
+}
+#undef Level32_80934Field
+
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original80081420.
+ * AI generated; not human reviewed. All1506 native words,11 selectors and
+ * one zero pad must match. Two original tables have5 and6 entries,pad after5.
+ * Frame170 (368 bytes) saves S0..S7/FP/RA at SP148..16C. Explicit local
+ * storage spans SP20..147. Vector homes begin20/30/40/50/60/78/88/98;
+ * original controller words occupy A8/B0/B8/C0/C8/D0/D8/E0/E8/F0/F8/100/108/110.
+ * Reserve contents are never read. Retained pitch is ordinary C naturally
+ * allocated into FP;there is no fixed FP/SP or overlapping live GP alias.
+ * Every local read has a producer on its original path,including frameE8
+ * in each of the four count0..3 arms. No incoming saved value is consumed.
+ * Original state0..4 and substate0..5 keep all callbacks,byte/halfword loads,
+ * physical shared entries,record scans,target selection,bounded angle steps,
+ * frame timers,four created owners and projectile/particle branches.
+ * Tag scans use LHU masked7FFF,index*88,then separate signed LH of the
+ * CURRENT entry before byte increment2 in the branch delay. They do not
+ * inspect the following entry for termination. Pointer-table dereference
+ * and byte-domain field offsets retain every original load.
+ * All14 variable MULT sites form complete signed64 products from staged
+ * signed32 operands. Five high and nine low captures use initialized full
+ * values;low32 narrowing precedes each original signed shift. The two /100
+ * precomputations store high>>5 and sign SEPARATELY,then subtract later.
+ * Raw vectors:4500 gives high>>5=45,sign0; -4500 gives-46,sign-1,quotient-45.
+ * /5(-100)=-20;32767*375>>10=11999;11999*32767 low32>>12=95989.
+ * The /3 B0 high result executes before the negative sound-handle skip.
+ * Original dynamic remainder DIV guards remain. HUD2803C is narrowed short
+ * by the original caller:00018001 becomesFFFF8001.
+ * Complete A0/A1 identities precede saved-result copies,allowing the two
+ * original E880 returns to move into S0 in EDE8 call delays. Actual helper
+ * inputs remain typed. 4F168 uses its single actual vector argument;the
+ * original A1 setup survives because the preceding global store uses it.
+ * Empty metadata consumes initialized values,original addresses or freshly
+ * written fields,and clobbers dead GP roles only before their fresh producer.
+ * It emits zero CPU instructions. No opcode asm or partial HILO input exists.
+ * Level32 alone indexes both original tag lists by private halfword64,
+ * conditions HUD creation on that value<2,and performs the identified wave
+ * completion chain. The bit uses halfword64+1;byte64+3 and byte5 are saved
+ * separately,then the incremented halfword64 is saved with length2. S3 is
+ * reused as the checkpoint descriptor only after the owner state3 write,
+ * its last owner use on that returning path. Projectile private0 is400.
+ * Compiler,filter,flags,actual transfer/data-target and all EXE/overlay retail
+ * hashes stay unchanged and mandatory. Confidence after gates is binary
+ * identity. Complete allocation/caller/helper chains,units,fixed-point
+ * domains,cadence beyond invocation,Rev1 mapping and synchronized retail
+ * runtime verification remain open. Next:human review and retail captures.
+ */
+/* Original assembly SHA256 7464add17f85b9d674d6bfb4538aae1272f4b18b6edd75d514c434de2160c16a */
+#define Level32_81420Keep(v) __asm__("":"=r"(v):"0"(v))
+#define Level32_81420MultiplyComplete(a,b) do{completeSignedProduct=(long long)(int)(a)*(long long)(int)(b);__asm__ volatile(""::"x"(completeSignedProduct));}while(0)
+#define Level32_81420CaptureHigh(dst) do{int wholeCapturedHigh;__asm__("":"=h"(wholeCapturedHigh):"x"(completeSignedProduct));(dst)=wholeCapturedHigh;Level32_81420Keep(dst);}while(0)
+#define Level32_81420CaptureLow(dst) do{int wholeCapturedLow;__asm__("":"=l"(wholeCapturedLow):"x"(completeSignedProduct));(dst)=wholeCapturedLow;Level32_81420Keep(dst);}while(0)
+#define Level32_81420Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+void Level32_81420Call135A4View1(void*,void*,int) __asm__("func_800135A4");
+void Level32_81420Call135F8View1(void*,void*,void*) __asm__("func_800135F8");
+int Level32_81420Call136F0View1(void*,void*,void*) __asm__("func_800136F0");
+void Level32_81420Call13AE4View1(void*,void*) __asm__("func_80013AE4");
+void Level32_81420Call13B7CView1(int) __asm__("func_80013B7C");
+int Level32_81420Call13E38View1(void*,void*,int) __asm__("func_80013E38");
+int Level32_81420Call18368View1(void*,void*) __asm__("func_80018368");
+int Level32_81420Call2803CView1(int,int,void*,void*,void*,int*,int) __asm__("func_8002803C");
+int Level32_81420Call3585CView1(void*,int,int,int,int,int) __asm__("func_8003585C");
+int Level32_81420Call359A4View1(void*,int) __asm__("func_800359A4");
+int Level32_81420Call3615CView1(int,int) __asm__("func_8003615C");
+int Level32_81420Call3636CView1(int,int) __asm__("func_8003636C");
+int Level32_81420Call363DCView1(int,int) __asm__("func_800363DC");
+int Level32_81420Call369D8View1(int) __asm__("func_800369D8");
+void Level32_81420Call3B7B4View1(void*,int,void*) __asm__("func_8003B7B4");
+void Level32_81420Call3B74CView1(void*) __asm__("func_8003B74C");
+int Level32_81420Call3BABCView1(void*,int,int) __asm__("func_8003BABC");
+void Level32_81420Call3BE70View1(int) __asm__("func_8003BE70");
+int Level32_81420Call3BFC0View1(void*,int) __asm__("func_8003BFC0");
+void Level32_81420Call3C0B0View1(int,int) __asm__("func_8003C0B0");
+int Level32_81420Call4E880View1(int,int,int) __asm__("func_8004E880");
+int Level32_81420Call4E9E4View1(int) __asm__("func_8004E9E4");
+int Level32_81420Call4EA2CView1(int) __asm__("func_8004EA2C");
+int Level32_81420Call4EDE8View1(void*,int) __asm__("func_8004EDE8");
+void Level32_81420Call4F08CView1(void*,int,int) __asm__("func_8004F08C");
+void Level32_81420Call4F168View1(void*) __asm__("func_8004F168");
+void Level32_81420Call4F178View1(void*,void*) __asm__("func_8004F178");
+void Level32_81420Call4F194View1(void*,void*,void*) __asm__("func_8004F194");
+void Level32_81420Call4F1C8View1(void*,void*,void*) __asm__("func_8004F1C8");
+void Level32_81420Call55B18View1(void*) __asm__("func_80055B18");
+void Level32_81420Call55D24View1(void*,int) __asm__("func_80055D24");
+void Level32_81420Call55F14View1(void*,int,void*) __asm__("func_80055F14");
+extern unsigned char Level32_81420Data658A0View1 __asm__("D_800658A0");
+extern unsigned char Level32_81420Data658A0View2 __asm__("D_800658A0");
+extern unsigned char Level32_81420Data65920View1 __asm__("D_80065920");
+extern unsigned char Level32_81420Data66FCCView1 __asm__("D_80066FCC");
+extern unsigned char Level32_81420Data68F7CView1 __asm__("D_80068F7C");
+extern unsigned char Level32_81420Data68F90View1 __asm__("D_80068F90");
+extern unsigned char Level32_81420Data69210View1 __asm__("D_80069210");
+extern int Level32_81420Data6C54CView1 __asm__("D_8006C54C");
+extern int Level32_81420Data6C550View1 __asm__("D_8006C550");
+extern int Level32_81420Data6C628View1 __asm__("D_8006C628");
+extern int Level32_81420Data6C640View1 __asm__("D_8006C640");
+extern int Level32_81420Data6C648View1 __asm__("D_8006C648");
+extern int Level32_81420Data6C6C4View1 __asm__("D_8006C6C4");
+extern int Level32_81420Data6C6D0View1 __asm__("D_8006C6D0");
+extern int Level32_81420Data6C730View1 __asm__("D_8006C730");
+extern unsigned char Level32_81420Data6C7B4View1 __asm__("D_8006C7B4");
+extern unsigned char Level32_81420Data6C7F8View1 __asm__("D_8006C7F8");
+extern int Level32_81420Data6C770View1 __asm__("D_8006C770");
+extern unsigned char Level32_81420Data6D088View1 __asm__("D_8006D088");
+extern int Level32_81420Data6E048View1 __asm__("D_8006E048");
+extern int Level32_81420Data6E160View1 __asm__("D_8006E160");
+extern int Level32_81420Data6E174View1 __asm__("D_8006E174");
+extern int Level32_81420Data6E178View1 __asm__("D_8006E178");
+extern int Level32_81420Data6E17CView1 __asm__("D_8006E17C");
+extern int Level32_81420Data6E53CView1 __asm__("D_8006E53C");
+extern unsigned char Level32_81420Data6EE2CView1 __asm__("D_8006EE2C");
+extern unsigned char Level32_81420Data70300View1 __asm__("D_80070300");
+extern int Level32_81420Data70328View1 __asm__("D_80070328");
+extern signed char Level32_81420Data71595View1 __asm__("D_80071595");
+extern signed char Level32_81420Data71596View1 __asm__("D_80071596");
+extern signed char Level32_81420Data71597View1 __asm__("D_80071597");
+extern signed char Level32_81420Data71598View1 __asm__("D_80071598");
+extern signed char Level32_81420Data71599View1 __asm__("D_80071599");
+extern int Level32_81420Data719A8View1 __asm__("D_800719A8");
+extern int Level32_81420Data719F0View1 __asm__("D_800719F0");
+extern void(*Level32_81420DataSpawnFragmentsView1)(int,int,void*,void*,int,short) __asm__("SpawnFragments");
+extern void*(*Level32_81420DataSpawnMobyView1)(int,void*) __asm__("SpawnMoby");
+extern void*(*Level32_81420DataSpawnParticleView1)(int,int,void*,void*) __asm__("SpawnParticle");
+extern unsigned char Level32_81420Call27A60View1 __asm__("func_80027A60");
+extern unsigned char Level32_81420Call27EE4View1 __asm__("func_80027EE4");
+extern unsigned char Level32_81420Call29AA0View1 __asm__("func_80029AA0");
+extern void(*Level32_81420Data74318View1)(void*,int) __asm__("unk_ovlheader_80074318");
+extern void(*Level32_81420Data74410View1)(void*,int,int,int,int) __asm__("unk_ovlheader_80074410");
+void func_level_32_80081420(void* ownerParameter) {
+    register int vectorOrScalar16 __asm__("$16"),counterSelectedOwnerOrCosine17 __asm__("$17"),selectedOwnerVectorOrSine18 __asm__("$18"),ownerOrCompletedWaveDescriptor19 __asm__("$19"),privateRecord20 __asm__("$20"),tagCursorRecordCursorOrParticleCount21 __asm__("$21"),positionOrInitializedOne22 __asm__("$22"),differenceVectorOrTimerBound23 __asm__("$23");
+    register int resultOrField2 __asm__("$2"),fieldOrIntermediate3 __asm__("$3"),argumentOrField4 __asm__("$4"),argumentOrField5 __asm__("$5"),argumentOrField6 __asm__("$6"),argumentOrField7 __asm__("$7"),scratchOrCapturedHalf8 __asm__("$8"),scratchOrCapturedHalf9 __asm__("$9"),capturedHigh10 __asm__("$10");
+    int retainedOriginalPitch;
+    long long completeSignedProduct;
+    struct {
+        int sp20,sp24,sp28,sp2C,sp30,sp34,sp38,sp3C,sp40,sp44,sp48,sp4C,sp50,sp54,sp58,sp5C,sp60,sp64,sp68,sp6C,sp70,sp74,sp78,sp7C,sp80,sp84,sp88,sp8C,sp90,sp94,sp98,sp9C,spA0,spA4,spA8,spAC,spB0,spB4,spB8,spBC,spC0,spC4,spC8,spCC,spD0,spD4,spD8,spDC,spE0,spE4,spE8,spEC,spF0,spF4,spF8,spFC,sp100,sp104,sp108,sp10C,sp110,sp114,sp118,sp11C,sp120,sp124,sp128,sp12C,sp130,sp134,sp138,sp13C,sp140,sp144;
+    }
+    originalFrame;
+    int temp_a1;
+    int temp_v0;
+    int temp_v0_8;
+    int temp_v1;
+    int temp_v1_2;
+    int temp_v1_5;
+    int temp_a0;
+    int temp_v0_9;
+    int var_a0_5;
+    ownerOrCompletedWaveDescriptor19=(int)ownerParameter;
+    Level32_81420Keep(ownerOrCompletedWaveDescriptor19);
+    privateRecord20 = Level32_81420Field(ownerOrCompletedWaveDescriptor19, int*, 0);
+    if (Level32_81420Field(privateRecord20, short *, 0x66) == 0) {
+        goto block_9;
+    }
+    if ((unsigned int) (Level32_81420Field(ownerOrCompletedWaveDescriptor19, unsigned char *, 0x48) - 3) < 2U) {
+        goto block_9;
+    }
+    counterSelectedOwnerOrCosine17 = 0;
+    vectorOrScalar16 = privateRecord20;
+loop_3:
+    temp_a0 = Level32_81420Field(vectorOrScalar16,int*,0);
+    if (temp_a0 == 0) {
+        goto block_5;
+    }
+    Level32_81420Call55B18View1(temp_a0);
+    Level32_81420Field(vectorOrScalar16,int*,0) = 0;
+block_5:
+    counterSelectedOwnerOrCosine17 += 1;
+    vectorOrScalar16 += 4;
+    if (counterSelectedOwnerOrCosine17 < 4) {
+        goto loop_3;
+    }
+    if (Level32_81420Call3BFC0View1(ownerOrCompletedWaveDescriptor19, Level32_81420Field(privateRecord20, int *, 0x34)) == 0) {
+        goto block_8;
+    }
+    Level32_81420Call3BE70View1(Level32_81420Field(privateRecord20, int *, 0x34));
+block_8:
+    __asm__ volatile(""::"m"(Level32_81420Field(privateRecord20,int*,52)));
+    Level32_81420Field(privateRecord20, int *, 0x34) = -1;
+    Level32_81420Field(ownerOrCompletedWaveDescriptor19, int *, 0x18) = 0x10000;
+    Level32_81420Field(ownerOrCompletedWaveDescriptor19, unsigned char *, 0x51) = (unsigned char) Level32_81420Field(ownerOrCompletedWaveDescriptor19, unsigned char *, 0x46);
+    Level32_81420DataSpawnFragmentsView1(9, 0x8E, ownerOrCompletedWaveDescriptor19, Level32_81420Field(privateRecord20, int *, 0x78), 0, 0x100);
+    Level32_81420Data74410View1(ownerOrCompletedWaveDescriptor19 + 0xC, 0x27, 0x30, 0x50, 0x78);
+    argumentOrField5=0x10000080;
+    fieldOrIntermediate3=(int)&Level32_81420Data70328View1+580;
+    resultOrField2=40;
+    Level32_81420Field(privateRecord20,int*,16)=resultOrField2;
+    resultOrField2=57;
+    Level32_81420Field(fieldOrIntermediate3,int*,0)=0;
+    Level32_81420Field((int)&Level32_81420Data70328View1,int*,524)=argumentOrField5;
+    Level32_81420Field((int)&Level32_81420Data70328View1,int*,572)=resultOrField2;
+    Level32_81420Call4F168View1(fieldOrIntermediate3-440);
+    Level32_81420Field(ownerOrCompletedWaveDescriptor19, signed char *, 0x41) = 0;
+    Level32_81420Field(ownerOrCompletedWaveDescriptor19, signed char *, 0x4C) = 0;
+    Level32_81420Field(ownerOrCompletedWaveDescriptor19, signed char *, 0x4D) = 0;
+    Level32_81420Field(ownerOrCompletedWaveDescriptor19, unsigned char *, 0x48) = 4U;
+block_9:
+    resultOrField2=Level32_81420Data6C640View1;
+    Level32_81420Field(ownerOrCompletedWaveDescriptor19,int*,24)=0;
+    if (resultOrField2 == 0) {
+        goto block_12;
+    }
+    if (Level32_81420Data6C54CView1 != 0) {
+        goto block_12;
+    }
+    Level32_81420Field((int)&Level32_81420Data70300View1,unsigned char*,Level32_81420Field((int)&Level32_81420Data66FCCView1, unsigned char *, 0x12)) = 0;
+    Level32_81420Field((int)&Level32_81420Data70300View1,unsigned char*,Level32_81420Field((int)&Level32_81420Data66FCCView1, unsigned char *, 0x1C)) = 0;
+    Level32_81420Field((int)&Level32_81420Data70300View1,unsigned char*,Level32_81420Field((int)&Level32_81420Data66FCCView1, unsigned char *, 0x26)) = 0;
+    Level32_81420Field((int)&Level32_81420Data70300View1,unsigned char*,Level32_81420Field((int)&Level32_81420Data66FCCView1, unsigned char *, 0x30)) = 0;
+    Level32_81420Data71599View1 = 0;
+    Level32_81420Data71595View1 = 0;
+    Level32_81420Data71596View1 = 0;
+    Level32_81420Data71597View1 = 0;
+    Level32_81420Data71598View1 = 0;
+block_12:
+    temp_v1 = Level32_81420Field(ownerOrCompletedWaveDescriptor19, unsigned char *, 0x48);
+    if (temp_v1 >= 5U) {
+        goto block_189;
+    }
+    switch (temp_v1){
+    case 0:
+        Level32_81420Field(ownerOrCompletedWaveDescriptor19, signed char *, 0x4F) = 0x14;
+        Level32_81420Field(ownerOrCompletedWaveDescriptor19, unsigned char *, 0x49) = 0U;
+        return;
+    case 4:
+        if (Level32_81420Field(privateRecord20, int *, 0x10) >= 0x26) {
+            goto block_17;
+        }
+        Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0x20C) = 0x10000002;
+    block_17:
+        Level32_81420Call4F168View1((int)&Level32_81420Data70328View1 + 0x8C);
+        if (Level32_81420Call359A4View1(privateRecord20 + 0x10, 4) == 0) {
+            goto block_189;
+        }
+        goto commitOriginalWaveFields;
+    case 1:
+        Level32_81420Call4F178View1(&originalFrame.sp20, ownerOrCompletedWaveDescriptor19 + 0xC);
+        originalFrame.sp28 += 0x1F4;
+        temp_v1_2 = Level32_81420Field(ownerOrCompletedWaveDescriptor19, unsigned char *, 0x49);
+        if (temp_v1_2 >= 6U) {
+            goto block_189;
+        }
+        switch (temp_v1_2){
+        case 0:
+            Level32_81420Call4F178View1((int)&Level32_81420Data6E17CView1, Level32_81420Field(Level32_81420Field(privateRecord20, int*, 0x3C), int *, 0xC) + 0x10);
+            temp_a1 = Level32_81420Field(Level32_81420Field(privateRecord20, int*, 0x3C), int *, 0xC);
+            Level32_81420Call136F0View1((int)&Level32_81420Data6E17CView1 - 0x14, temp_a1, temp_a1 + 0x10);
+            Level32_81420Data6E174View1 = 0;
+            Level32_81420Data6E178View1 = 0;
+            Level32_81420Data6E160View1 = 0x11;
+            goto block_36;
+        case 1:
+            Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0x20C) = 0x10000002;
+            goto block_36;
+        case 2:
+            if (Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0x214) >= 2) {
+                goto block_25;
+            }
+            Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0x20C) = 0x10000040;
+            Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0x218) = 0;
+            vectorOrScalar16 = (int)&Level32_81420Data70328View1 + 0x214 + 0x18;
+            Level32_81420Call4F178View1(vectorOrScalar16, Level32_81420Field(Level32_81420Field(privateRecord20, int*, 0x38), int*, 0xC));
+            Level32_81420Call4F1C8View1(&originalFrame.sp20, &originalFrame.sp20, vectorOrScalar16);
+            Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0x238) = Level32_81420Call4E880View1(originalFrame.sp20, originalFrame.sp24, 0);
+            return;
+        block_25:
+            Level32_81420Field(ownerOrCompletedWaveDescriptor19, signed char *, 0x47) = 7;
+            Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0x214) = 0;
+            resultOrField2=Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,73);
+            Level32_81420Field(ownerOrCompletedWaveDescriptor19,int*,8)=0;
+            goto incrementLoadedSubstate;
+        case 3:
+            Level32_81420Call4F1C8View1(&originalFrame.sp30, &originalFrame.sp20, (int)&Level32_81420Data70328View1);
+            if (Level32_81420Call4EDE8View1(&originalFrame.sp30, 1) < 0x201) {
+                goto block_28;
+            }
+            Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0x20C) = 0x10000100;
+            Level32_81420Call4F178View1((int)&Level32_81420Data70328View1 + 0x22C, &originalFrame.sp20);
+            return;
+        block_28:
+            Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0x288) = 1;
+            Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0x1CC) = 0x5A;
+            Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0x20C) = 0x10000002;
+            Level32_81420Field(ownerOrCompletedWaveDescriptor19, signed char *, 0x47) = 2;
+            if (Level32_81420Field(ownerOrCompletedWaveDescriptor19, unsigned char *, 0x3C) == 1) {
+                goto block_36;
+            }
+            fieldOrIntermediate3=1;
+            resultOrField2=Level32_81420Field(ownerOrCompletedWaveDescriptor19,short*,54);
+            resultOrField2*=4;
+            resultOrField2=Level32_81420Field((int)&Level32_81420Data6EE2CView1,int*,resultOrField2);
+            resultOrField2=Level32_81420Field(resultOrField2,int*,64);
+            Level32_81420Data6C770View1=0;
+            resultOrField2=Level32_81420Field(resultOrField2,unsigned char*,0);
+            fieldOrIntermediate3=1;
+            Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,60)=fieldOrIntermediate3;
+            Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,61)=fieldOrIntermediate3;
+            Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,62)=0;
+            Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,63)=fieldOrIntermediate3;
+            resultOrField2=-((unsigned int)resultOrField2>=2U)&48;
+            Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,64)=resultOrField2;
+            goto block_36;
+        case 4:
+            if (Level32_81420Data6C770View1 == 0) {
+                goto block_34;
+            }
+            if (Level32_81420Field(ownerOrCompletedWaveDescriptor19, unsigned char *, 0x3D) != 1) {
+                goto block_34;
+            }
+            if (Level32_81420Field(ownerOrCompletedWaveDescriptor19, unsigned char *, 0x3C) == 2) {
+                goto block_34;
+            }
+            fieldOrIntermediate3=2;
+            resultOrField2=Level32_81420Field(ownerOrCompletedWaveDescriptor19,short*,54);
+            resultOrField2*=4;
+            resultOrField2=Level32_81420Field((int)&Level32_81420Data6EE2CView1,int*,resultOrField2);
+            resultOrField2=Level32_81420Field(resultOrField2,int*,68);
+            Level32_81420Data6C770View1=0;
+            resultOrField2=Level32_81420Field(resultOrField2,unsigned char*,0);
+            Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,60)=fieldOrIntermediate3;
+            Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,61)=fieldOrIntermediate3;
+            fieldOrIntermediate3=1;
+            Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,62)=0;
+            Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,63)=fieldOrIntermediate3;
+            resultOrField2=-((unsigned int)resultOrField2>=2U)&48;
+            Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,64)=resultOrField2;
+        block_34:
+            __asm__ volatile("":::"$16");
+            resultOrField2=Level32_81420Field(privateRecord20,int*,56);
+            vectorOrScalar16=(int)&originalFrame.sp40;
+            argumentOrField5=Level32_81420Field(resultOrField2,int*,12);
+            argumentOrField4=vectorOrScalar16;
+            Level32_81420Call4F178View1(argumentOrField4,argumentOrField5+16);
+            resultOrField2=Level32_81420Call3585CView1(ownerOrCompletedWaveDescriptor19, Level32_81420Call4E880View1(originalFrame.sp40 - Level32_81420Field(ownerOrCompletedWaveDescriptor19, int *, 0xC), originalFrame.sp44 - Level32_81420Field(ownerOrCompletedWaveDescriptor19, int *, 0x10), 0) & 0xFF, 5, 1, 0, 0);
+            __asm__("":"=r"(ownerOrCompletedWaveDescriptor19):"0"(ownerOrCompletedWaveDescriptor19),"r"(resultOrField2));
+            selectedOwnerVectorOrSine18=(int)&originalFrame.sp50;
+            argumentOrField4=selectedOwnerVectorOrSine18;
+            argumentOrField5=vectorOrScalar16;
+            __asm__("":"=r"(argumentOrField4):"0"(argumentOrField4),"r"(argumentOrField5));
+            counterSelectedOwnerOrCosine17=ownerOrCompletedWaveDescriptor19+12;
+            Level32_81420Call4F1C8View1(argumentOrField4,argumentOrField5,counterSelectedOwnerOrCosine17);
+            temp_v0 = Level32_81420Call4EDE8View1(&originalFrame.sp50, 1);
+            Level32_81420Call4F08CView1(&originalFrame.sp50, temp_v0, 0x50);
+            Level32_81420Call4F194View1(counterSelectedOwnerOrCosine17, counterSelectedOwnerOrCosine17, &originalFrame.sp50);
+            if (temp_v0 >= 0x200) {
+                goto block_38;
+            }
+            Level32_81420Call4F178View1((int)&Level32_81420Data70328View1, Level32_81420Field(Level32_81420Field(privateRecord20, int*, 0x38), int*, 0xC) + 0x20);
+            Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0x64) = (int) (Level32_81420Field(ownerOrCompletedWaveDescriptor19, unsigned char *, 0x46) * 0x10);
+            Level32_81420Field(ownerOrCompletedWaveDescriptor19, signed char *, 0x4F) = 0x20;
+            Level32_81420Call135A4View1(&originalFrame.sp60, (int)&Level32_81420Data69210View1, Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0x64));
+            Level32_81420Call135F8View1(&originalFrame.sp50, &originalFrame.sp60, (int)&Level32_81420Data70328View1);
+            Level32_81420Call13AE4View1(&originalFrame.sp50, (int)&Level32_81420Data70328View1);
+        block_36:
+        block_37:
+            resultOrField2=Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,73);
+            incrementLoadedSubstate:resultOrField2++;
+            Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,73)=resultOrField2;
+            return;
+        block_38:
+            Level32_81420Call4F178View1((int)&Level32_81420Data70328View1, counterSelectedOwnerOrCosine17);
+            return;
+        case 5:
+            Level32_81420Data74318View1(ownerOrCompletedWaveDescriptor19, 0x96);
+            if (Level32_81420Data6E048View1 != 2) {
+                goto block_189;
+            }
+            Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0x280) = 3;
+            Level32_81420Field(ownerOrCompletedWaveDescriptor19, unsigned char *, 0x48) = 2U;
+            Level32_81420Call13B7CView1(0);
+            return;
+            default:return;
+        }
+    case 2:
+    case 3:
+        scratchOrCapturedHalf8=1;
+        originalFrame.spA8=0;
+        originalFrame.spB0=0;
+        originalFrame.spB8=0;
+        originalFrame.spC0=scratchOrCapturedHalf8;
+        if (Level32_81420Field(ownerOrCompletedWaveDescriptor19, unsigned char *, 0x48) != 2) {
+            goto block_43;
+        }
+        Level32_81420Data74318View1(ownerOrCompletedWaveDescriptor19, 0x96);
+    block_43:
+        Level32_81420Data6C6D0View1 = 0;
+        Level32_81420Call135A4View1((int)&Level32_81420Data719A8View1, (int)&Level32_81420Data68F7CView1, 0);
+        Level32_81420Call135A4View1((int)&Level32_81420Data719F0View1, (int)&Level32_81420Data68F90View1, 0);
+        Level32_81420Call55D24View1(ownerOrCompletedWaveDescriptor19, 4);
+        resultOrField2=Level32_81420Call3BFC0View1(ownerOrCompletedWaveDescriptor19,Level32_81420Field(privateRecord20,int*,52));
+        fieldOrIntermediate3=0x55550000;
+        if(resultOrField2)goto prepareOriginalHandlePitch;
+        Level32_81420Keep(resultOrField2);
+        resultOrField2=Level32_81420Call3BABCView1(ownerOrCompletedWaveDescriptor19,(argumentOrField5=0),4);
+        Level32_81420Field(privateRecord20,int*,52)=resultOrField2;
+        fieldOrIntermediate3=0x55550000;
+        prepareOriginalHandlePitch:resultOrField2=Level32_81420Field((int)&Level32_81420Data70328View1,int*,176);
+        fieldOrIntermediate3|=0x5556;
+        Level32_81420MultiplyComplete(resultOrField2,fieldOrIntermediate3);
+        argumentOrField4=Level32_81420Field(privateRecord20,int*,52);
+        resultOrField2>>=31;
+        Level32_81420CaptureHigh(scratchOrCapturedHalf9);
+        resultOrField2=scratchOrCapturedHalf9-resultOrField2;
+        argumentOrField5=resultOrField2+3048;
+        if(argumentOrField4>=0)Level32_81420Call3C0B0View1(argumentOrField4,argumentOrField5);
+        block_47:argumentOrField4=Level32_81420Field(privateRecord20,short*,100);
+        if(argumentOrField4>=2)goto block_49;
+        resultOrField2=-1;
+        fieldOrIntermediate3=Level32_81420Field(privateRecord20,int*,124);
+        if(fieldOrIntermediate3!=resultOrField2)goto block_49;
+        resultOrField2=Level32_81420Call369D8View1(argumentOrField4);
+        Level32_81420Data6C6C4View1=resultOrField2;
+        Level32_81420Field(privateRecord20,int*,124)=(short)Level32_81420Call2803CView1(23,320,&Level32_81420Call27EE4View1,&Level32_81420Call27A60View1,&Level32_81420Call29AA0View1,&Level32_81420Data6C628View1,resultOrField2);
+        block_49:argumentOrField5=Level32_81420Data6C550View1;
+        resultOrField2=Level32_81420Field(privateRecord20,short*,100);
+        __asm__ volatile(""::"m"(Level32_81420Field(privateRecord20,short*,100)):"$3");
+        fieldOrIntermediate3=Level32_81420Data6C730View1;
+        Level32_81420Data6C628View1=0;
+        resultOrField2*=4;
+        resultOrField2+=fieldOrIntermediate3;
+        argumentOrField4=Level32_81420Field(resultOrField2,int*,0);
+        loop_50:resultOrField2=Level32_81420Field(argumentOrField4,unsigned short*,0);
+        resultOrField2&=32767;
+        fieldOrIntermediate3=resultOrField2*11;
+        fieldOrIntermediate3*=8;
+        fieldOrIntermediate3=argumentOrField5+fieldOrIntermediate3;
+        resultOrField2=Level32_81420Field(fieldOrIntermediate3,unsigned char*,72);
+        resultOrField2=(unsigned int)resultOrField2<128U;
+        if(!resultOrField2)goto block_52;
+        resultOrField2=Level32_81420Field(fieldOrIntermediate3,unsigned char*,61);
+        if(!resultOrField2)goto block_53;
+        block_52:resultOrField2=Level32_81420Data6C628View1;
+        resultOrField2++;
+        Level32_81420Data6C628View1=resultOrField2;
+        block_53:resultOrField2=Level32_81420Field(argumentOrField4,short*,0);
+        argumentOrField4+=2;
+        if(resultOrField2>=0)goto loop_50;
+        argumentOrField4=Level32_81420Field(privateRecord20,short*,100);
+        tagCursorRecordCursorOrParticleCount21=1;
+        if(argumentOrField4>=2)goto chooseOriginalParticleFrequency;
+        resultOrField2=Level32_81420Call369D8View1(argumentOrField4);
+        argumentOrField5=1;
+        if(resultOrField2)goto processRemainingOriginalWave;
+        fieldOrIntermediate3=Level32_81420Field(privateRecord20,int*,72);
+        resultOrField2=fieldOrIntermediate3*11;
+        fieldOrIntermediate3=Level32_81420Data6C550View1;
+        resultOrField2*=8;
+        fieldOrIntermediate3+=resultOrField2;
+        Level32_81420Keep(fieldOrIntermediate3);
+        counterSelectedOwnerOrCosine17=Level32_81420Field(fieldOrIntermediate3,int*,0);
+        resultOrField2=3;
+        Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,72)=resultOrField2;
+        ownerOrCompletedWaveDescriptor19=(int)&Level32_81420Data6D088View1;
+        argumentOrField6=ownerOrCompletedWaveDescriptor19;
+        Level32_81420Keep(argumentOrField6);
+        resultOrField2=1;
+        argumentOrField4=Level32_81420Field(privateRecord20,short*,100);
+        fieldOrIntermediate3=Level32_81420Data6C7B4View1;
+        argumentOrField4++;
+        resultOrField2<<=argumentOrField4;
+        fieldOrIntermediate3|=resultOrField2;
+        vectorOrScalar16=counterSelectedOwnerOrCosine17+2;
+        Level32_81420Data6C7B4View1=fieldOrIntermediate3;
+        resultOrField2=Level32_81420Field(privateRecord20,unsigned char*,100);
+        argumentOrField4=vectorOrScalar16;
+        resultOrField2+=3;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,2)=resultOrField2;
+        Level32_81420Call3B7B4View1(argumentOrField4,argumentOrField5,argumentOrField6);
+        argumentOrField4=vectorOrScalar16;
+        argumentOrField5=1;
+        Level32_81420Keep(argumentOrField5);
+        selectedOwnerVectorOrSine18=(int)&Level32_81420Data6C7F8View1;
+        Level32_81420Call3B7B4View1(argumentOrField4,argumentOrField5,selectedOwnerVectorOrSine18);
+        vectorOrScalar16=counterSelectedOwnerOrCosine17+5;
+        argumentOrField4=vectorOrScalar16;
+        argumentOrField5=1;
+        argumentOrField6=ownerOrCompletedWaveDescriptor19;
+        __asm__("":"=r"(argumentOrField4),"=r"(argumentOrField5),"=r"(argumentOrField6):"0"(argumentOrField4),"1"(argumentOrField5),"2"(argumentOrField6));
+        resultOrField2=2;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,5)=resultOrField2;
+        Level32_81420Call3B7B4View1(argumentOrField4,argumentOrField5,argumentOrField6);
+        Level32_81420Call3B7B4View1(vectorOrScalar16,1,selectedOwnerVectorOrSine18);
+        vectorOrScalar16=privateRecord20+100;
+        argumentOrField4=vectorOrScalar16;
+        argumentOrField5=2;
+        resultOrField2=Level32_81420Field(privateRecord20,unsigned short*,100);
+        argumentOrField6=ownerOrCompletedWaveDescriptor19;
+        resultOrField2++;
+        Level32_81420Field(privateRecord20,unsigned short*,100)=resultOrField2;
+        Level32_81420Call3B7B4View1(argumentOrField4,argumentOrField5,argumentOrField6);
+        Level32_81420Call3B7B4View1(vectorOrScalar16,2,selectedOwnerVectorOrSine18);
+        commitOriginalWaveFields:Level32_81420Call3B74CView1((int)&Level32_81420Data6D088View1);
+        return;
+        processRemainingOriginalWave:resultOrField2=Level32_81420Field(privateRecord20,short*,100);
+        argumentOrField4=ownerOrCompletedWaveDescriptor19;
+        if(resultOrField2>=2)goto block_165;
+        argumentOrField5=1;
+        Level32_81420Keep(argumentOrField5);
+        vectorOrScalar16=(int)&originalFrame.sp60;
+        scratchOrCapturedHalf8=Level32_81420Field((int)&Level32_81420Data70328View1,int*,100);
+        retainedOriginalPitch=Level32_81420Field((int)&Level32_81420Data70328View1,int*,96);
+        argumentOrField6=vectorOrScalar16;
+        originalFrame.spD0=0;
+        originalFrame.spC8=scratchOrCapturedHalf8;
+        Level32_81420Call55F14View1(argumentOrField4,argumentOrField5,argumentOrField6);
+        scratchOrCapturedHalf9=99999999;
+        differenceVectorOrTimerBound23=(int)&originalFrame.sp30;
+        originalFrame.spD8=scratchOrCapturedHalf9;
+        originalFrame.spE0=vectorOrScalar16;
+        resultOrField2=Level32_81420Field(privateRecord20,short*,100);
+        fieldOrIntermediate3=Level32_81420Data6C730View1;
+        resultOrField2*=4;
+        resultOrField2+=fieldOrIntermediate3;
+        tagCursorRecordCursorOrParticleCount21=Level32_81420Field(resultOrField2,int*,0);
+        loop_56:fieldOrIntermediate3=Level32_81420Field(tagCursorRecordCursorOrParticleCount21,unsigned short*,0);
+        fieldOrIntermediate3&=32767;
+        resultOrField2=fieldOrIntermediate3*11;
+        fieldOrIntermediate3=Level32_81420Data6C550View1;
+        resultOrField2*=8;
+        selectedOwnerVectorOrSine18=fieldOrIntermediate3+resultOrField2;
+        fieldOrIntermediate3=Level32_81420Field(selectedOwnerVectorOrSine18,unsigned char*,72);
+        resultOrField2=(unsigned int)fieldOrIntermediate3<128U;
+        if(!resultOrField2)goto block_68;
+        resultOrField2=1;
+        if(fieldOrIntermediate3==resultOrField2)goto block_68;
+        counterSelectedOwnerOrCosine17=99999999;
+        argumentOrField4=differenceVectorOrTimerBound23;
+        positionOrInitializedOne22=selectedOwnerVectorOrSine18+12;
+        argumentOrField6=originalFrame.spE0;
+        Level32_81420Call4F1C8View1(argumentOrField4,positionOrInitializedOne22,argumentOrField6);
+        resultOrField2=Level32_81420Call4E880View1(originalFrame.sp30,originalFrame.sp34,1);
+        argumentOrField4=differenceVectorOrTimerBound23;
+        argumentOrField5=0;
+        __asm__("":"=r"(argumentOrField4),"=r"(argumentOrField5):"0"(argumentOrField4),"1"(argumentOrField5));
+        vectorOrScalar16=resultOrField2;
+        resultOrField2=Level32_81420Call4EDE8View1(argumentOrField4,argumentOrField5);
+        argumentOrField4=resultOrField2;
+        argumentOrField5=originalFrame.sp38;
+        resultOrField2=Level32_81420Call4E880View1(argumentOrField4,argumentOrField5,1);
+        argumentOrField5=vectorOrScalar16;
+        argumentOrField4=originalFrame.spC8;
+        vectorOrScalar16=resultOrField2;
+        resultOrField2=Level32_81420Call3615CView1(argumentOrField4,argumentOrField5);
+        argumentOrField4=retainedOriginalPitch;
+        argumentOrField5=vectorOrScalar16;
+        vectorOrScalar16=resultOrField2;
+        resultOrField2=Level32_81420Call3615CView1(argumentOrField4,argumentOrField5);
+        if(vectorOrScalar16>=0)goto block_60;
+        vectorOrScalar16=-vectorOrScalar16;
+        block_60:if(vectorOrScalar16>=512)goto block_66;
+        if(resultOrField2>=0)goto block_63;
+        resultOrField2=-resultOrField2;
+        block_63:if(resultOrField2>=512)goto block_66;
+        resultOrField2=Level32_81420Call13E38View1(originalFrame.spE0,positionOrInitializedOne22,0);
+        argumentOrField4=differenceVectorOrTimerBound23;
+        if(!resultOrField2)goto block_66;
+        counterSelectedOwnerOrCosine17=Level32_81420Call4EDE8View1(argumentOrField4,1);
+        block_66:scratchOrCapturedHalf8=originalFrame.spD8;
+        resultOrField2=counterSelectedOwnerOrCosine17<scratchOrCapturedHalf8;
+        if(!resultOrField2)goto block_68;
+        originalFrame.spB0=selectedOwnerVectorOrSine18;
+        originalFrame.spD8=counterSelectedOwnerOrCosine17;
+        block_68:resultOrField2=Level32_81420Field(tagCursorRecordCursorOrParticleCount21,short*,0);
+        tagCursorRecordCursorOrParticleCount21+=2;
+        if(resultOrField2>=0)goto loop_56;
+        scratchOrCapturedHalf9=originalFrame.spB0;
+        if(scratchOrCapturedHalf9)goto block_72;
+        resultOrField2=Level32_81420Field(privateRecord20,int*,44);
+        if(resultOrField2)goto block_72;
+        Level32_81420Keep(resultOrField2);
+        Level32_81420Field(privateRecord20,int*,28)=0;
+        Level32_81420Field(privateRecord20,int*,32)=0;
+        Level32_81420Field(privateRecord20,int*,40)=0;
+        Level32_81420Field(privateRecord20,int*,36)=0;
+    block_72:
+        temp_v1_5 = Level32_81420Field(Level32_81420Field(privateRecord20, int*, 0x1C), unsigned char *, 0x48);
+        if (temp_v1_5 >= 0x80U) {
+            goto block_74;
+        }
+        if (temp_v1_5 != 1) {
+            goto block_75;
+        }
+    block_74:
+        Level32_81420Field(privateRecord20, int*, 0x1C) = 0;
+        Level32_81420Field(privateRecord20, int*, 0x30) = 0;
+        Level32_81420Field(privateRecord20, int *, 0x2C) = 0;
+        Level32_81420Field(privateRecord20, int *, 0x28) = 0;
+        block_75:resultOrField2=Level32_81420Field(privateRecord20,int*,40);
+        if(resultOrField2)goto block_82;
+        resultOrField2=Level32_81420Field(privateRecord20,int*,28);
+        scratchOrCapturedHalf8=originalFrame.spB0;
+        if(scratchOrCapturedHalf8==resultOrField2)goto block_82;
+        resultOrField2=Level32_81420Field(privateRecord20,int*,32);
+        if(resultOrField2==scratchOrCapturedHalf8)goto block_79;
+        Level32_81420Field(privateRecord20,int*,36)=0;
+        block_79:scratchOrCapturedHalf9=originalFrame.spB0;
+        resultOrField2=Level32_81420Field(privateRecord20,int*,36);
+        fieldOrIntermediate3=Level32_81420Data6C648View1;
+        argumentOrField4=Level32_81420Field(privateRecord20,int*,28);
+        resultOrField2+=fieldOrIntermediate3;
+        Level32_81420Field(privateRecord20,int*,32)=scratchOrCapturedHalf9;
+        Level32_81420Field(privateRecord20,int*,36)=resultOrField2;
+        if(!argumentOrField4)goto block_81;
+        if(resultOrField2<41)goto block_82;
+        block_81:resultOrField2=Level32_81420Field(privateRecord20,int*,32);
+        Level32_81420Field(privateRecord20,int*,36)=0;
+        Level32_81420Field(privateRecord20,int*,40)=0;
+        Level32_81420Field(privateRecord20,int*,28)=resultOrField2;
+        block_82:argumentOrField5=Level32_81420Field(privateRecord20,int*,28);
+        selectedOwnerVectorOrSine18=(int)&originalFrame.sp78;
+        if(!argumentOrField5)goto block_106;
+        argumentOrField4=selectedOwnerVectorOrSine18;
+        Level32_81420Keep(argumentOrField4);
+        argumentOrField5+=12;
+        Level32_81420Call4F1C8View1(argumentOrField4,argumentOrField5,&originalFrame.sp60);
+        resultOrField2=Level32_81420Call4E880View1(originalFrame.sp78,originalFrame.sp7C,1);
+        argumentOrField4=selectedOwnerVectorOrSine18;
+        argumentOrField5=0;
+        __asm__("":"=r"(argumentOrField4),"=r"(argumentOrField5):"0"(argumentOrField4),"1"(argumentOrField5));
+        vectorOrScalar16=resultOrField2;
+        resultOrField2=Level32_81420Call4EDE8View1(argumentOrField4,argumentOrField5);
+        argumentOrField4=resultOrField2;
+        argumentOrField5=originalFrame.sp80;
+        resultOrField2=Level32_81420Call4E880View1(argumentOrField4,argumentOrField5,1);
+        argumentOrField5=vectorOrScalar16;
+        argumentOrField4=originalFrame.spC8;
+        vectorOrScalar16=resultOrField2;
+        resultOrField2=Level32_81420Call3615CView1(argumentOrField4,argumentOrField5);
+        counterSelectedOwnerOrCosine17=resultOrField2;
+        argumentOrField4=retainedOriginalPitch;
+        argumentOrField5=vectorOrScalar16;
+        resultOrField2=Level32_81420Call3615CView1(argumentOrField4,argumentOrField5);
+        fieldOrIntermediate3=resultOrField2;
+        resultOrField2=counterSelectedOwnerOrCosine17<833;
+        if(resultOrField2)goto block_85;
+        counterSelectedOwnerOrCosine17=832;
+        Level32_81420Keep(counterSelectedOwnerOrCosine17);
+        block_85:resultOrField2=counterSelectedOwnerOrCosine17<-832;
+        if(!resultOrField2)goto block_87;
+        counterSelectedOwnerOrCosine17=-832;
+        block_87:resultOrField2=fieldOrIntermediate3<833;
+        if(resultOrField2)goto block_89;
+        fieldOrIntermediate3=832;
+        Level32_81420Keep(fieldOrIntermediate3);
+        block_89:resultOrField2=fieldOrIntermediate3<-832;
+        argumentOrField4=selectedOwnerVectorOrSine18;
+        if(!resultOrField2)goto block_91;
+        fieldOrIntermediate3=-832;
+        block_91:scratchOrCapturedHalf8=originalFrame.spC8;
+        argumentOrField5=1;
+        resultOrField2=(scratchOrCapturedHalf8+counterSelectedOwnerOrCosine17)&4095;
+        originalFrame.spC8=resultOrField2;
+        resultOrField2=retainedOriginalPitch+fieldOrIntermediate3;
+        retainedOriginalPitch=resultOrField2&4095;
+        resultOrField2=Level32_81420Call4EDE8View1(argumentOrField4,argumentOrField5);
+        fieldOrIntermediate3=Level32_81420Field(privateRecord20,int*,28);
+        originalFrame.spD0=resultOrField2;
+        if(!fieldOrIntermediate3)goto block_106;
+        argumentOrField5=Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,70);
+        argumentOrField4=originalFrame.spC8;
+        argumentOrField5*=16;
+        resultOrField2=Level32_81420Call3615CView1(argumentOrField4,argumentOrField5);
+        argumentOrField4=retainedOriginalPitch;
+        argumentOrField5=Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,69);
+        vectorOrScalar16=resultOrField2;
+        argumentOrField5*=16;
+        resultOrField2=Level32_81420Call3615CView1(argumentOrField4,argumentOrField5);
+        argumentOrField4=250;
+        fieldOrIntermediate3=Level32_81420Field(privateRecord20,int*,40);
+        argumentOrField5=resultOrField2;
+        if(!fieldOrIntermediate3)goto block_94;
+        argumentOrField4=312;
+        block_94:resultOrField2=vectorOrScalar16;
+        if(vectorOrScalar16>=0)goto block_96;
+        resultOrField2=-resultOrField2;
+        block_96:Level32_81420Field(privateRecord20,int*,20)=retainedOriginalPitch;
+        scratchOrCapturedHalf9=originalFrame.spC8;
+        resultOrField2=resultOrField2<argumentOrField4;
+        Level32_81420Field(privateRecord20,int*,24)=scratchOrCapturedHalf9;
+        if(!resultOrField2)goto block_101;
+        resultOrField2=argumentOrField5;
+        if(argumentOrField5>=0)goto block_99;
+        resultOrField2=-resultOrField2;
+        block_99:resultOrField2=resultOrField2<argumentOrField4;
+        if(!resultOrField2)goto block_101;
+        __asm__ volatile(""::"r"(resultOrField2));
+        scratchOrCapturedHalf8=1;
+        originalFrame.spA8=scratchOrCapturedHalf8;
+        block_101:argumentOrField5=Level32_81420Field(privateRecord20,int*,28);
+        argumentOrField4=(int)&originalFrame.sp60;
+        if(!argumentOrField5)goto block_106;
+        argumentOrField5+=12;
+        resultOrField2=Level32_81420Call13E38View1(argumentOrField4,argumentOrField5,0);
+        argumentOrField4=privateRecord20+44;
+        if(resultOrField2)goto block_107;
+        resultOrField2=Level32_81420Field(privateRecord20,int*,44);
+        if(resultOrField2<16)goto block_105;
+        resultOrField2=15;
+        Level32_81420Field(privateRecord20,int*,44)=resultOrField2;
+        block_105:originalFrame.spC0=0;
+        block_106:argumentOrField4=privateRecord20+44;
+        block_107:resultOrField2=Level32_81420Call359A4View1(argumentOrField4,4);
+        if(!resultOrField2)goto block_109;
+        scratchOrCapturedHalf9=originalFrame.spA8;
+        if(!scratchOrCapturedHalf9)goto block_120;
+        block_109:resultOrField2=Level32_81420Field(privateRecord20,int*,40);
+        fieldOrIntermediate3=Level32_81420Data6C648View1;
+        resultOrField2+=fieldOrIntermediate3;
+        Level32_81420Field(privateRecord20,int*,40)=resultOrField2;
+        scratchOrCapturedHalf8=originalFrame.spA8;
+        if(!scratchOrCapturedHalf8)goto block_114;
+        resultOrField2=Level32_81420Field(privateRecord20,int*,28);
+        if(!resultOrField2)goto block_114;
+        scratchOrCapturedHalf9=originalFrame.spC0;
+        if(!scratchOrCapturedHalf9)goto block_114;
+        resultOrField2=Level32_81420Field(privateRecord20,int*,44);
+        if(resultOrField2>=15)goto block_114;
+        resultOrField2=15;
+        Level32_81420Field(privateRecord20,int*,44)=resultOrField2;
+        block_114:resultOrField2=Level32_81420Field(privateRecord20,int*,40);
+        if(resultOrField2<181)goto block_121;
+        scratchOrCapturedHalf8=originalFrame.spB0;
+        resultOrField2=60;
+        if(!scratchOrCapturedHalf8)goto block_117;
+        Level32_81420Field(privateRecord20,int*,44)=resultOrField2;
+        block_117:resultOrField2=Level32_81420Field(privateRecord20,int*,28);
+        scratchOrCapturedHalf9=1;
+        if(!resultOrField2)goto block_119;
+        Level32_81420Field(privateRecord20,int*,48)=resultOrField2;
+        block_119:originalFrame.spB8=scratchOrCapturedHalf9;
+        goto block_121;
+        block_120:Level32_81420Keep(scratchOrCapturedHalf9);
+        Level32_81420Field(privateRecord20,int*,40)=0;
+        block_121:resultOrField2=Level32_81420Field(privateRecord20,int*,28);
+        scratchOrCapturedHalf8=0x51EB0000;
+        if(!resultOrField2)goto block_127;
+        scratchOrCapturedHalf8=originalFrame.spA8;
+        fieldOrIntermediate3=Level32_81420Field(resultOrField2,int*,0);
+        resultOrField2=1;
+        if(!scratchOrCapturedHalf8)goto block_124;
+        Level32_81420Field(fieldOrIntermediate3,int*,68)=resultOrField2;
+        block_124:scratchOrCapturedHalf9=originalFrame.spB8;
+        Level32_81420Keep(resultOrField2);
+        resultOrField2=1;
+        if(!scratchOrCapturedHalf9)goto block_126;
+        Level32_81420Field(fieldOrIntermediate3,int*,76)=resultOrField2;
+        block_126:scratchOrCapturedHalf8=0x51EB0000;
+    block_127:
+        scratchOrCapturedHalf9=originalFrame.spD0;
+        scratchOrCapturedHalf8|=0x851F;
+        resultOrField2=scratchOrCapturedHalf9*3;
+        Level32_81420Keep(resultOrField2);
+        fieldOrIntermediate3=resultOrField2*16-resultOrField2;
+        Level32_81420Keep(fieldOrIntermediate3);
+        Level32_81420MultiplyComplete(fieldOrIntermediate3,scratchOrCapturedHalf8);
+        Level32_81420CaptureHigh(argumentOrField4);
+        resultOrField2=fieldOrIntermediate3*2;
+        Level32_81420MultiplyComplete(resultOrField2,scratchOrCapturedHalf8);
+        selectedOwnerVectorOrSine18=0;
+        positionOrInitializedOne22=1;
+        tagCursorRecordCursorOrParticleCount21=privateRecord20;
+        differenceVectorOrTimerBound23=60;
+        originalFrame.spF0=scratchOrCapturedHalf8;
+        __asm__("":"=r"(fieldOrIntermediate3):"0"(fieldOrIntermediate3),"m"(originalFrame.spF0));
+        fieldOrIntermediate3>>=31;
+        originalFrame.sp100=fieldOrIntermediate3;
+        __asm__("":"=r"(resultOrField2):"0"(resultOrField2),"m"(originalFrame.sp100));
+        resultOrField2>>=31;
+        argumentOrField4>>=5;
+        originalFrame.sp110=resultOrField2;
+        originalFrame.spF8=argumentOrField4;
+        Level32_81420CaptureHigh(capturedHigh10);
+        capturedHigh10>>=5;
+        originalFrame.sp108=capturedHigh10;
+        loop_128:argumentOrField4=Level32_81420Field(tagCursorRecordCursorOrParticleCount21,int*,0);
+        if(argumentOrField4)goto block_134;
+        resultOrField2=Level32_81420DataSpawnMobyView1(143,ownerOrCompletedWaveDescriptor19);
+        fieldOrIntermediate3=resultOrField2;
+        scratchOrCapturedHalf8=3;
+        Level32_81420Field(tagCursorRecordCursorOrParticleCount21,int*,0)=fieldOrIntermediate3;
+        if(selectedOwnerVectorOrSine18!=scratchOrCapturedHalf8)goto block_133;
+        fieldOrIntermediate3=Level32_81420Field(privateRecord20,int*,12);
+        resultOrField2=Level32_81420Field(fieldOrIntermediate3,unsigned char*,60);
+        if(resultOrField2==positionOrInitializedOne22)goto block_132;
+        Level32_81420Field(fieldOrIntermediate3,unsigned char*,66)=0;
+        fieldOrIntermediate3=Level32_81420Field(privateRecord20,int*,12);
+        resultOrField2=Level32_81420Field(fieldOrIntermediate3,short*,54);
+        resultOrField2*=4;
+        resultOrField2=Level32_81420Field((int)&Level32_81420Data6EE2CView1,int*,resultOrField2);
+        resultOrField2=Level32_81420Field(resultOrField2,int*,64);
+        resultOrField2=Level32_81420Field(resultOrField2,unsigned char*,0);
+        resultOrField2=-((unsigned int)resultOrField2>=2U)&48;
+        Level32_81420Field(fieldOrIntermediate3,unsigned char*,64)=resultOrField2;
+        resultOrField2=Level32_81420Field(privateRecord20,int*,12);
+        Level32_81420Field(resultOrField2,unsigned char*,60)=positionOrInitializedOne22;
+        resultOrField2=Level32_81420Field(privateRecord20,int*,12);
+        Level32_81420Field(resultOrField2,unsigned char*,61)=positionOrInitializedOne22;
+        resultOrField2=Level32_81420Field(privateRecord20,int*,12);
+        Level32_81420Field(resultOrField2,unsigned char*,62)=0;
+        resultOrField2=Level32_81420Field(privateRecord20,int*,12);
+        Level32_81420Field(resultOrField2,unsigned char*,63)=positionOrInitializedOne22;
+        fieldOrIntermediate3=Level32_81420Field(privateRecord20,int*,12);
+        block_132:resultOrField2=24;
+        Level32_81420Field(fieldOrIntermediate3,unsigned char*,79)=resultOrField2;
+        goto block_164;
+        block_133:resultOrField2=selectedOwnerVectorOrSine18*15+32;
+        Level32_81420Field(fieldOrIntermediate3,unsigned char*,79)=resultOrField2;
+        goto block_164;
+        block_134:counterSelectedOwnerOrCosine17=argumentOrField4;
+        if(selectedOwnerVectorOrSine18==positionOrInitializedOne22)goto block_142;
+        resultOrField2=selectedOwnerVectorOrSine18<2;
+        if(!resultOrField2)goto block_138;
+        resultOrField2=0x66660000;
+        if(!selectedOwnerVectorOrSine18)goto block_141;
+        argumentOrField4=counterSelectedOwnerOrCosine17+12;
+        goto block_147;
+        block_138:resultOrField2=2;
+        scratchOrCapturedHalf9=3;
+        if(selectedOwnerVectorOrSine18==resultOrField2)goto block_143;
+        argumentOrField4=counterSelectedOwnerOrCosine17+12;
+        if(selectedOwnerVectorOrSine18==scratchOrCapturedHalf9)goto block_145;
+        goto block_147;
+        block_141:scratchOrCapturedHalf8=originalFrame.spD0;
+        resultOrField2|=0x6667;
+        Level32_81420MultiplyComplete(scratchOrCapturedHalf8,resultOrField2);
+        resultOrField2=scratchOrCapturedHalf8>>31;
+        Level32_81420CaptureHigh(scratchOrCapturedHalf9);
+        fieldOrIntermediate3=scratchOrCapturedHalf9>>1;
+        goto block_144;
+        block_142:scratchOrCapturedHalf8=originalFrame.spF8;
+        scratchOrCapturedHalf9=originalFrame.sp100;
+        scratchOrCapturedHalf8-=scratchOrCapturedHalf9;
+        originalFrame.spE8=scratchOrCapturedHalf8;
+        goto block_146;
+        block_143:scratchOrCapturedHalf8=originalFrame.spD0;
+        scratchOrCapturedHalf9=originalFrame.spF0;
+        resultOrField2=scratchOrCapturedHalf8*70;
+        Level32_81420MultiplyComplete(resultOrField2,scratchOrCapturedHalf9);
+        resultOrField2>>=31;
+        Level32_81420CaptureHigh(scratchOrCapturedHalf8);
+        fieldOrIntermediate3=scratchOrCapturedHalf8>>5;
+        block_144:fieldOrIntermediate3-=resultOrField2;
+        originalFrame.spE8=fieldOrIntermediate3;
+        goto block_146;
+        block_145:scratchOrCapturedHalf9=originalFrame.sp108;
+        scratchOrCapturedHalf8=originalFrame.sp110;
+        scratchOrCapturedHalf9-=scratchOrCapturedHalf8;
+        originalFrame.spE8=scratchOrCapturedHalf9;
+        block_146:argumentOrField4=counterSelectedOwnerOrCosine17+12;
+        block_147:scratchOrCapturedHalf9=originalFrame.spC8;
+        argumentOrField5=(int)&originalFrame.sp60;
+        resultOrField2=scratchOrCapturedHalf9>>4;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,70)=resultOrField2;
+        resultOrField2=retainedOriginalPitch>>4;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,69)=resultOrField2;
+        Level32_81420Call4F178View1(argumentOrField4,argumentOrField5);
+        resultOrField2=Level32_81420Call4EA2CView1(originalFrame.spC8);
+        argumentOrField4=retainedOriginalPitch;
+        vectorOrScalar16=resultOrField2;
+        resultOrField2=Level32_81420Call4EA2CView1(argumentOrField4);
+        scratchOrCapturedHalf8=originalFrame.spE8;
+        Level32_81420MultiplyComplete(vectorOrScalar16,scratchOrCapturedHalf8);
+        Level32_81420CaptureLow(scratchOrCapturedHalf9);
+        fieldOrIntermediate3=scratchOrCapturedHalf9>>12;
+        Level32_81420MultiplyComplete(fieldOrIntermediate3,resultOrField2);
+        argumentOrField4=originalFrame.spC8;
+        resultOrField2=Level32_81420Field(counterSelectedOwnerOrCosine17,int*,12);
+        Level32_81420CaptureLow(scratchOrCapturedHalf8);
+        fieldOrIntermediate3=scratchOrCapturedHalf8>>12;
+        resultOrField2+=fieldOrIntermediate3;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,int*,12)=resultOrField2;
+        resultOrField2=Level32_81420Call4E9E4View1(argumentOrField4);
+        argumentOrField4=retainedOriginalPitch;
+        vectorOrScalar16=resultOrField2;
+        resultOrField2=Level32_81420Call4EA2CView1(argumentOrField4);
+        scratchOrCapturedHalf9=originalFrame.spE8;
+        Level32_81420MultiplyComplete(vectorOrScalar16,scratchOrCapturedHalf9);
+        Level32_81420CaptureLow(scratchOrCapturedHalf8);
+        fieldOrIntermediate3=scratchOrCapturedHalf8>>12;
+        Level32_81420MultiplyComplete(fieldOrIntermediate3,resultOrField2);
+        argumentOrField4=retainedOriginalPitch;
+        resultOrField2=Level32_81420Field(counterSelectedOwnerOrCosine17,int*,16);
+        Level32_81420CaptureLow(scratchOrCapturedHalf9);
+        fieldOrIntermediate3=scratchOrCapturedHalf9>>12;
+        resultOrField2+=fieldOrIntermediate3;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,int*,16)=resultOrField2;
+        resultOrField2=Level32_81420Call4E9E4View1(argumentOrField4);
+        scratchOrCapturedHalf8=originalFrame.spE8;
+        Level32_81420MultiplyComplete(resultOrField2,scratchOrCapturedHalf8);
+        resultOrField2=Level32_81420Field(counterSelectedOwnerOrCosine17,int*,20);
+        Level32_81420CaptureLow(scratchOrCapturedHalf9);
+        fieldOrIntermediate3=scratchOrCapturedHalf9>>12;
+        resultOrField2+=fieldOrIntermediate3;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,int*,20)=resultOrField2;
+        resultOrField2=selectedOwnerVectorOrSine18<3;
+        if(!resultOrField2)goto block_149;
+        resultOrField2=Level32_81420Field(privateRecord20,int*,28);
+        if(!resultOrField2)goto block_151;
+        block_149:scratchOrCapturedHalf8=3;
+        resultOrField2=32;
+        if(selectedOwnerVectorOrSine18!=scratchOrCapturedHalf8)goto block_152;
+        scratchOrCapturedHalf9=originalFrame.spB8;
+        if(scratchOrCapturedHalf9)goto block_152;
+        block_151:Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,65)=0;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,76)=0;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,77)=0;
+        goto block_153;
+        block_152:Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,65)=positionOrInitializedOne22;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,76)=resultOrField2;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,77)=positionOrInitializedOne22;
+        block_153:scratchOrCapturedHalf8=originalFrame.spB8;
+        if(scratchOrCapturedHalf8)goto block_155;
+        resultOrField2=Level32_81420Field(privateRecord20,int*,40);
+        resultOrField2=differenceVectorOrTimerBound23<resultOrField2;
+        if(!resultOrField2)goto block_161;
+        block_155:resultOrField2=Level32_81420Field(tagCursorRecordCursorOrParticleCount21,int*,104);
+        if(resultOrField2)goto block_160;
+        resultOrField2=2;
+        Level32_81420Field(tagCursorRecordCursorOrParticleCount21,int*,104)=positionOrInitializedOne22;
+        if(selectedOwnerVectorOrSine18!=resultOrField2)goto block_158;
+        argumentOrField4=ownerOrCompletedWaveDescriptor19;
+        argumentOrField5=3;
+        goto block_159;
+        block_158:argumentOrField4=ownerOrCompletedWaveDescriptor19;
+        argumentOrField5=1;
+        block_159:Level32_81420Call3BABCView1(argumentOrField4,argumentOrField5,0);
+        block_160:resultOrField2=63;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,87)=resultOrField2;
+        resultOrField2=255;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,84)=resultOrField2;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,85)=0;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,86)=0;
+        goto block_164;
+        block_161:scratchOrCapturedHalf9=originalFrame.spA8;
+        resultOrField2=63;
+        if(!scratchOrCapturedHalf9)goto block_163;
+        Level32_81420Field(tagCursorRecordCursorOrParticleCount21,int*,104)=0;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,87)=resultOrField2;
+        resultOrField2=255;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,84)=0;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,85)=resultOrField2;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,86)=0;
+        goto block_164;
+        block_163:Level32_81420Keep(scratchOrCapturedHalf9);
+        Level32_81420Keep(scratchOrCapturedHalf8);
+        resultOrField2=48;
+        Level32_81420Field(tagCursorRecordCursorOrParticleCount21,int*,104)=0;
+        Level32_81420Field(counterSelectedOwnerOrCosine17,unsigned char*,87)=resultOrField2;
+        block_164:tagCursorRecordCursorOrParticleCount21+=4;
+        selectedOwnerVectorOrSine18++;
+        differenceVectorOrTimerBound23+=60;
+        if(selectedOwnerVectorOrSine18<4)goto loop_128;
+    block_165:
+        tagCursorRecordCursorOrParticleCount21 = 1;
+    chooseOriginalParticleFrequency:
+        counterSelectedOwnerOrCosine17 = 2;
+        if (Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0xB0) < 0x1771) {
+            goto block_167;
+        }
+        tagCursorRecordCursorOrParticleCount21 = 2;
+        counterSelectedOwnerOrCosine17 = 1;
+    block_167:
+        if (Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0xB0) >= 0xFA0) {
+            goto block_169;
+        }
+        counterSelectedOwnerOrCosine17 = 2;
+    block_169:
+        if (Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0xB0) >= 0x7D0) {
+            goto block_171;
+        }
+        counterSelectedOwnerOrCosine17 = 4;
+    block_171:
+        if (Level32_81420Field((int)&Level32_81420Data70328View1, int *, 0xB0) >= 0x4B0) {
+            goto block_173;
+        }
+        counterSelectedOwnerOrCosine17 = 7;
+    block_173:
+        if (counterSelectedOwnerOrCosine17 == 1) {
+            goto block_175;
+        }
+        var_a0_5 = privateRecord20 + 0x10;
+        if (((int) Level32_81420Data6C640View1 % counterSelectedOwnerOrCosine17) != 0) {
+            goto block_181;
+        }
+    block_175:
+        __asm__ volatile(""::"r"(counterSelectedOwnerOrCosine17),"r"(tagCursorRecordCursorOrParticleCount21));
+        vectorOrScalar16 = 0;
+        if (tagCursorRecordCursorOrParticleCount21 == 0) {
+            goto block_180;
+        }
+        selectedOwnerVectorOrSine18=(int)&originalFrame.sp88;
+        Level32_81420Keep(selectedOwnerVectorOrSine18);
+    loop_177:
+        Level32_81420Call55F14View1(ownerOrCompletedWaveDescriptor19,0,selectedOwnerVectorOrSine18);
+        originalFrame.sp88 += Level32_81420Call363DCView1(0, 0x96);
+        originalFrame.sp8C += Level32_81420Call363DCView1(0, 0x96);
+        originalFrame.sp90 += Level32_81420Call363DCView1(0, 0x96);
+        originalFrame.sp98 = Level32_81420Call363DCView1(0, 0xA);
+        originalFrame.sp9C = Level32_81420Call363DCView1(0, 0xA);
+        temp_v0_8 = Level32_81420Call3636CView1(5, 8);
+        originalFrame.spA0 = temp_v0_8;
+        if (counterSelectedOwnerOrCosine17 != 1) {
+            goto block_179;
+        }
+        originalFrame.spA0 = temp_v0_8 * 2;
+    block_179:
+        argumentOrField4=1;
+        argumentOrField5=39;
+        argumentOrField6=selectedOwnerVectorOrSine18;
+        argumentOrField7=(int)&originalFrame.sp98;
+        __asm__("":"=r"(argumentOrField4),"=r"(argumentOrField5),"=r"(argumentOrField6),"=r"(argumentOrField7):"0"(argumentOrField4),"1"(argumentOrField5),"2"(argumentOrField6),"3"(argumentOrField7));
+        vectorOrScalar16++;
+        Level32_81420DataSpawnParticleView1(argumentOrField4,argumentOrField5,argumentOrField6,argumentOrField7);
+        if (vectorOrScalar16 < tagCursorRecordCursorOrParticleCount21) {
+            goto loop_177;
+        }
+    block_180:
+        var_a0_5 = privateRecord20 + 0x10;
+    block_181:
+        if (Level32_81420Call359A4View1(var_a0_5, 4) == 0) {
+            goto block_189;
+        }
+        if (!(Level32_81420Data6E53CView1 & 0x20)) {
+            goto block_189;
+        }
+        temp_v0_9 = Level32_81420DataSpawnMobyView1(0x8D, ownerOrCompletedWaveDescriptor19);
+        if (temp_v0_9 == 0) {
+            goto block_189;
+        }
+        tagCursorRecordCursorOrParticleCount21 = Level32_81420Field(temp_v0_9, int*, 0);
+        Level32_81420Call3BABCView1(ownerOrCompletedWaveDescriptor19, 2, 0);
+        resultOrField2=Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,70);
+        fieldOrIntermediate3=Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,69);
+        resultOrField2*=2;
+        fieldOrIntermediate3*=2;
+        argumentOrField4=Level32_81420Field((int)&Level32_81420Data65920View1,short*,resultOrField2);
+        fieldOrIntermediate3=Level32_81420Field((int)&Level32_81420Data65920View1,short*,fieldOrIntermediate3);
+        resultOrField2=argumentOrField4*375;
+        resultOrField2>>=10;
+        Level32_81420MultiplyComplete(resultOrField2,fieldOrIntermediate3);
+        resultOrField2=Level32_81420Field(temp_v0_9,int*,12);
+        Level32_81420CaptureLow(scratchOrCapturedHalf8);
+        fieldOrIntermediate3=scratchOrCapturedHalf8>>12;
+        resultOrField2+=fieldOrIntermediate3;
+        Level32_81420Field(temp_v0_9,int*,12)=resultOrField2;
+        resultOrField2=Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,70);
+        fieldOrIntermediate3=Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,69);
+        resultOrField2*=2;
+        fieldOrIntermediate3*=2;
+        argumentOrField4=Level32_81420Field((int)&Level32_81420Data658A0View2,short*,resultOrField2);
+        fieldOrIntermediate3=Level32_81420Field((int)&Level32_81420Data65920View1,short*,fieldOrIntermediate3);
+        resultOrField2=argumentOrField4*375;
+        resultOrField2>>=10;
+        Level32_81420MultiplyComplete(resultOrField2,fieldOrIntermediate3);
+        resultOrField2=Level32_81420Field(temp_v0_9,int*,16);
+        Level32_81420CaptureLow(scratchOrCapturedHalf9);
+        fieldOrIntermediate3=scratchOrCapturedHalf9>>12;
+        resultOrField2+=fieldOrIntermediate3;
+        Level32_81420Field(temp_v0_9,int*,16)=resultOrField2;
+        Level32_81420Field(temp_v0_9, int *, 0x14) = (int) (Level32_81420Field(temp_v0_9, int *, 0x14) + ((int) (Level32_81420Field((int)&Level32_81420Data658A0View2,short*,(Level32_81420Field(ownerOrCompletedWaveDescriptor19, unsigned char *, 0x45) * 2)) * 0x177) >> 0xA) + 0x1F4);
+        __asm__ volatile(""::"m"(Level32_81420Field(temp_v0_9,int*,20)):"$17");
+        resultOrField2=Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,70);
+        counterSelectedOwnerOrCosine17=(int)&Level32_81420Data65920View1;
+        Level32_81420Field(temp_v0_9,unsigned char*,70)=resultOrField2;
+        fieldOrIntermediate3=Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,69);
+        resultOrField2=48;
+        Level32_81420Field(temp_v0_9,unsigned char*,76)=resultOrField2;
+        Level32_81420Field(temp_v0_9,unsigned char*,78)=resultOrField2;
+        resultOrField2=300;
+        Level32_81420Field(temp_v0_9,unsigned char*,69)=fieldOrIntermediate3;
+        Level32_81420Field(tagCursorRecordCursorOrParticleCount21,int*,4)=resultOrField2;
+        resultOrField2=400;
+        Level32_81420Field(tagCursorRecordCursorOrParticleCount21,int*,0)=resultOrField2;
+        __asm__ volatile(""::"m"(Level32_81420Field(tagCursorRecordCursorOrParticleCount21,int*,0)):"$18");
+        scratchOrCapturedHalf8=originalFrame.spB8;
+        __asm__ volatile(""::"r"(scratchOrCapturedHalf8):"$18");
+        selectedOwnerVectorOrSine18=(int)&Level32_81420Data658A0View1;
+        argumentOrField4=ownerOrCompletedWaveDescriptor19+12;
+        if(!scratchOrCapturedHalf8)goto block_186;
+        resultOrField2=Level32_81420Field(privateRecord20,int*,48);
+        Level32_81420Field(tagCursorRecordCursorOrParticleCount21,int*,8)=resultOrField2;
+        block_186:resultOrField2=Level32_81420Call18368View1(argumentOrField4,temp_v0_9+12);
+        if(!resultOrField2)goto block_188;
+        resultOrField2=1;
+        Level32_81420Field(temp_v0_9,unsigned char*,72)=resultOrField2;
+        resultOrField2=Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,70);
+        resultOrField2*=2;
+        resultOrField2+=counterSelectedOwnerOrCosine17;
+        fieldOrIntermediate3=Level32_81420Field(resultOrField2,short*,0);
+        resultOrField2=-(fieldOrIntermediate3*750);
+        fieldOrIntermediate3=Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,69);
+        fieldOrIntermediate3*=2;
+        fieldOrIntermediate3+=counterSelectedOwnerOrCosine17;
+        fieldOrIntermediate3=Level32_81420Field(fieldOrIntermediate3,short*,0);
+        resultOrField2>>=12;
+        Level32_81420MultiplyComplete(resultOrField2,fieldOrIntermediate3);
+        resultOrField2=Level32_81420Field(temp_v0_9,int*,12);
+        Level32_81420CaptureLow(scratchOrCapturedHalf9);
+        fieldOrIntermediate3=scratchOrCapturedHalf9>>12;
+        resultOrField2+=fieldOrIntermediate3;
+        Level32_81420Field(temp_v0_9,int*,12)=resultOrField2;
+        resultOrField2=Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,70);
+        resultOrField2*=2;
+        resultOrField2+=selectedOwnerVectorOrSine18;
+        fieldOrIntermediate3=Level32_81420Field(resultOrField2,short*,0);
+        resultOrField2=-(fieldOrIntermediate3*750);
+        fieldOrIntermediate3=Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,69);
+        fieldOrIntermediate3*=2;
+        fieldOrIntermediate3+=counterSelectedOwnerOrCosine17;
+        fieldOrIntermediate3=Level32_81420Field(fieldOrIntermediate3,short*,0);
+        resultOrField2>>=12;
+        Level32_81420MultiplyComplete(resultOrField2,fieldOrIntermediate3);
+        resultOrField2=Level32_81420Field(temp_v0_9,int*,16);
+        Level32_81420CaptureLow(scratchOrCapturedHalf8);
+        fieldOrIntermediate3=scratchOrCapturedHalf8>>12;
+        resultOrField2+=fieldOrIntermediate3;
+        Level32_81420Field(temp_v0_9,int*,16)=resultOrField2;
+        resultOrField2=Level32_81420Field(ownerOrCompletedWaveDescriptor19,unsigned char*,69);
+        resultOrField2*=2;
+        resultOrField2+=selectedOwnerVectorOrSine18;
+        fieldOrIntermediate3=Level32_81420Field(resultOrField2,short*,0);
+        resultOrField2=-(fieldOrIntermediate3*750);
+        fieldOrIntermediate3=Level32_81420Field(temp_v0_9,int*,20);
+        resultOrField2>>=12;
+        fieldOrIntermediate3+=resultOrField2;
+        Level32_81420Field(temp_v0_9,int*,20)=fieldOrIntermediate3;
+    block_188:
+        Level32_81420Field(privateRecord20, int *, 0x10) = 0x3C;
+    block_189:
+        return;
+        default:return;
+    }
+}
+#undef Level32_81420Field
+
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* func_level_32_80082BA8, SCUS-94467 USA Rev0. Original assembly SHA256 0289015e9ffe8774594cccd89f6dce44f80a5d28ee3d978c68465e05851c40de.
+ * AI generated; not human reviewed. 923 original native instructions,
+ * 12 original selector entries, no selector padding; original frame248 bytes.
+ * Reuses the separately verified shared923/1053 controller evidence;
+ * target-specific entry guards, state1 additions, constants and data are
+ * retained from each original source. This changes no game/helper contract.
+ * The pitch difference is produced by original8003613C (8 native words,
+ * SHA492e2c022ca7e03e29c8fa084e2663c9d1eb6b03d0a3f63371cd6ee9b5a09939).
+ * Its AND255 and >=129/subtract256 result is always[-127,128]. Thus the
+ * initialized __builtin_abs input cannot be INT_MIN. Explicit GNU abs emits
+ * the original BGEZ/MOVE/NEGU and fixes cc1's false-edge V0 liveness;
+ * first BEQZ now executes SLTI(S1,7) in its delay and enters Apply directly.
+ * Complete signed64 C products feed whole x inputs and h projections;
+ * no partial HI/LO input, CPU opcode asm, fixedFP/SP, explicit incoming
+ * saved value, invented default or overlapping live fixed alias is added.
+ * Empty metadata observes complete initialized values or ends a dead GP
+ * phase. Helper views specify only independently observed32-bit argument
+ * words; unresolved meanings retain original word ABI and source labels.
+ * Angles in this clamp use original256-unit byte-domain deltas and +/-6
+ * step bounds. Other units, cadence beyond per invocation, full external
+ * helper/asset/SFX meaning, Rev1 mapping and synchronized captures are open.
+ * Original selector section is.rodata; frozen uninstalled wrapper fallback
+ * is.rodata.jtbl. Parent metadata-aware linked build must preserve.rodata.
+ * Acceptance requires every native/linked word, actual branch/J/call/table
+ * target, original symbol/addend and complete EXE/every-overlay hashes.
+ */
+#define Actor923Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+#define Actor923Keep(v) __asm__("":"=r"(v):"0"(v))
+int Actor923_func_80035194() __asm__("func_80035194");
+int Actor923_func_800359A4(int,int) __asm__("func_800359A4");
+int Actor923_func_8003613C(int,int) __asm__("func_8003613C");
+int Actor923_func_8003636C(int,int) __asm__("func_8003636C");
+int Actor923_func_800363DC(int,int) __asm__("func_800363DC");
+int Actor923_func_800369B8() __asm__("func_800369B8");
+int Actor923_func_80038BF8() __asm__("func_80038BF8");
+int Actor923_func_8003BA00() __asm__("func_8003BA00");
+int Actor923_func_8003BABC() __asm__("func_8003BABC");
+int Actor923_func_8004E880() __asm__("func_8004E880");
+int Actor923_func_8004EDE8() __asm__("func_8004EDE8");
+int Actor923_func_8004F110() __asm__("func_8004F110");
+int Actor923_func_8004F178() __asm__("func_8004F178");
+int Actor923_func_8004F194() __asm__("func_8004F194");
+int Actor923_func_8004F1C8() __asm__("func_8004F1C8");
+int Actor923_func_8004F264() __asm__("func_8004F264");
+int Actor923_func_8004F334(void*,void*) __asm__("func_8004F334");
+int Actor923_func_80055B18() __asm__("func_80055B18");
+int Actor923_func_80055D24() __asm__("func_80055D24");
+int Actor923_func_80055F14() __asm__("func_80055F14");
+extern unsigned char Actor923_D_800658A0 __asm__("D_800658A0");
+extern unsigned char Actor923_D_80065920 __asm__("D_80065920");
+extern int Actor923_D_8006C640 __asm__("D_8006C640");
+extern int Actor923_D_8006C648 __asm__("D_8006C648");
+extern volatile unsigned char Actor923_D_8006C7B4 __asm__("D_8006C7B4");
+extern int Actor923_D_8006C7C4 __asm__("D_8006C7C4");
+extern int Actor923_D_80070328 __asm__("D_80070328");
+extern int(*Actor923SpawnFragments)() __asm__("SpawnFragments");
+extern int(*Actor923SpawnMoby)() __asm__("SpawnMoby");
+extern int(*Actor923SpawnParticle)() __asm__("SpawnParticle");
+extern int(*Actor923unk_ovlheader_800743E8)() __asm__("unk_ovlheader_800743E8");
+extern int(*Actor923unk_ovlheader_80074410)() __asm__("unk_ovlheader_80074410");
+#define Actor923MUL(a,b) do{completeSignedProduct=(long long)(int)(a)*(long long)(int)(b);__asm__ volatile(""::"x"(completeSignedProduct));}while(0)
+#define Actor923HI(dst) do{int completeProductHigh;__asm__("":"=h"(completeProductHigh):"x"(completeSignedProduct));(dst)=completeProductHigh;Actor923Keep(dst);}while(0)
+void func_level_32_80082BA8(unsigned char* input) {
+    register int retainedHeadingOrVector16 __asm__("$16");
+    register int retainedAngleOrWord17 __asm__("$17");
+    register int retainedWord18 __asm__("$18");
+    register int retainedWord19 __asm__("$19");
+    register int privateRecord20 __asm__("$20");
+    register int ownerRecord21 __asm__("$21");
+    register int rawWord2 __asm__("$2"),rawWord3 __asm__("$3"),argumentWord4 __asm__("$4"),argumentWord5 __asm__("$5"),argumentWord6 __asm__("$6"),argumentWord7 __asm__("$7"),rawWord8 __asm__("$8");
+    long long completeSignedProduct;
+    struct {
+        int sp18,sp1C,sp20,sp24,sp28,sp2C,sp30,sp34,sp38,sp3C,sp40,sp44,sp48,sp4C,sp50,sp54,sp58,sp5C,sp60,sp64,sp68,sp6C,sp70,sp74,sp78,sp7C,sp80,sp84,sp88,sp8C,sp90,sp94,sp98,sp9C,spA0,spA4,spA8,spAC,spB0,spB4,spB8,spBC,spC0,spC4,spC8,spCC,spD0,spD4;
+    }
+    originalFrame;
+    int temp_v1_10;
+    int temp_v1_13;
+    int temp_v1_4;
+    int temp_v1_6;
+    int temp_v1_7;
+    int temp_v0_3;
+    int temp_v0_7;
+    int temp_v1_11;
+    int var_v1;
+    int temp_v0_4;
+    int temp_v0_5;
+    int temp_v1;
+    int temp_v1_2;
+    int temp_a0;
+    int temp_a1;
+    int temp_a1_2;
+    int temp_a1_3;
+    int temp_v0_2;
+    int temp_v0_8;
+    int temp_v1_12;
+    int temp_v1_14;
+    int temp_v1_3;
+    int temp_v1_5;
+    int temp_v1_8;
+    int temp_v1_9;
+    rawWord2=Actor923_D_8006C7B4;
+    ownerRecord21=(int)input;
+    __asm__("":"=r"(ownerRecord21):"0"(ownerRecord21),"r"(rawWord2));
+    privateRecord20=Actor923Field(ownerRecord21,int*,0);
+    __asm__("":"=r"(rawWord2):"0"(rawWord2),"r"(privateRecord20));
+    rawWord2&=2;
+    __asm__("":"=r"(ownerRecord21),"=r"(privateRecord20),"=r"(rawWord2):"0"(ownerRecord21),"1"(privateRecord20),"2"(rawWord2));
+    if (rawWord2 && (Actor923Field(ownerRecord21, unsigned char *, 0x43) == 0)) {
+        Actor923_func_80055B18(input);
+        __asm__ volatile(""::"r"(ownerRecord21));
+        return;
+    }
+    if (!(Actor923_D_8006C7B4 & 4) || (Actor923Field(ownerRecord21, unsigned char *, 0x43) != 1)) {
+        if (Actor923Field(ownerRecord21, int *, 0x18) & 0x100000) {
+            temp_v1 = Actor923Field(ownerRecord21, unsigned char *, 0x48);
+            if ((temp_v1 != 3) && (temp_v1 != 1)) {
+                Actor923Field(ownerRecord21, unsigned char *, 0x48) = 3U;
+            }
+        }
+        Actor923_func_8004F1C8(&originalFrame.sp18, ownerRecord21 + 0xC, (int)&Actor923_D_80070328);
+        rawWord2=Actor923_func_8004EDE8(&originalFrame.sp18,1);
+        rawWord3=Actor923Field(privateRecord20,int*,24);
+        rawWord2=rawWord2<rawWord3;
+        Actor923Field(privateRecord20,int*,20)=0;
+        if(rawWord2)Actor923Field(privateRecord20,int*,20)=1;
+        rawWord2=Actor923_func_8004E880(originalFrame.sp18,originalFrame.sp1C,0);
+        argumentWord4=(int)&originalFrame.sp18;
+        argumentWord5=0;
+        __asm__("":"=r"(argumentWord4),"=r"(argumentWord5):"0"(argumentWord4),"1"(argumentWord5));
+        retainedHeadingOrVector16=rawWord2;
+        rawWord2=Actor923_func_8004EDE8(argumentWord4,argumentWord5);
+        argumentWord4=rawWord2;
+        argumentWord5=originalFrame.sp20;
+        rawWord2=Actor923_func_8004E880(argumentWord4,argumentWord5,0);
+        argumentWord5=retainedHeadingOrVector16;
+        argumentWord4=Actor923Field((int)&Actor923_D_80070328,unsigned char*,14);
+        retainedAngleOrWord17=rawWord2;
+        rawWord2=Actor923_func_8003613C(argumentWord4,argumentWord5);
+        retainedHeadingOrVector16=rawWord2;
+        argumentWord4=Actor923Field((int)&Actor923_D_80070328,unsigned char*,13);
+        if(retainedHeadingOrVector16<0)retainedHeadingOrVector16=-retainedHeadingOrVector16;
+        rawWord2=Actor923_func_8003613C(argumentWord4,retainedAngleOrWord17);
+        if(rawWord2<0)rawWord2=-rawWord2;
+        Actor923Keep(rawWord2);
+        retainedHeadingOrVector16=retainedHeadingOrVector16<512;
+        Actor923Keep(retainedHeadingOrVector16);
+        if(retainedHeadingOrVector16){
+            rawWord2=rawWord2<512;
+            if(rawWord2)Actor923Field(privateRecord20,int*,20)=1;
+        }
+        Actor923_func_800359A4(privateRecord20 + 0x62, 2);
+        temp_v1_2 = Actor923Field(ownerRecord21, unsigned char *, 0x48);
+        switch (temp_v1_2) {
+        case 0:
+            Actor923_func_8004F1C8(&originalFrame.sp28, ownerRecord21 + 0xC, (int)&Actor923_D_80070328);
+            Actor923_func_8004EDE8(&originalFrame.sp28, 1);
+            if (Actor923Field(privateRecord20, int *, 0x14) != 0) {
+                Actor923Field(ownerRecord21, unsigned char *, 0x48) = 0xAU;
+            }
+            goto runOriginalCommonTail;
+            default:goto runOriginalCommonTail;
+        case 10:
+            temp_v1_3 = Actor923Field(privateRecord20, void **, 0);
+            temp_v1_4 = Actor923Field(temp_v1_3, short *, 0);
+            retainedHeadingOrVector16 = (int) (Actor923Field(temp_v1_3, short *, 2) + (Actor923Field(temp_v1_3, short *, 0xA) * 2) + temp_v1_4) % temp_v1_4;
+            argumentWord5=(int)&Actor923_D_80070328;
+            Actor923Keep(argumentWord5);
+            retainedAngleOrWord17=ownerRecord21+12;
+            Actor923_func_8004F1C8(&originalFrame.sp38,argumentWord5,retainedAngleOrWord17);
+            Actor923_func_8004F1C8(&originalFrame.sp48, Actor923Field(Actor923Field(privateRecord20, void **, 0), int *, 0xC) + (retainedHeadingOrVector16 * 0x10), retainedAngleOrWord17);
+            rawWord2=Actor923_func_8004E880(originalFrame.sp38,originalFrame.sp3C,0);
+            argumentWord6=0;
+            __asm__("":"=r"(argumentWord6):"0"(argumentWord6):"memory");
+            argumentWord4=originalFrame.sp48;
+            argumentWord5=originalFrame.sp4C;
+            retainedHeadingOrVector16=rawWord2;
+            rawWord2=Actor923_func_8004E880(argumentWord4,argumentWord5,argumentWord6);
+            if(Actor923_func_8004F264(retainedHeadingOrVector16,rawWord2)<64) {
+                temp_v1_5 = Actor923Field(privateRecord20, void **, 0);
+                rawWord2=Actor923Field(temp_v1_5,short*,10);
+                Actor923Keep(rawWord2);
+                rawWord2=-rawWord2;
+                Actor923Field(temp_v1_5,short*,10)=rawWord2;
+                temp_a1 = Actor923Field(privateRecord20, void **, 0);
+                temp_v1_6 = Actor923Field(temp_a1, short *, 0);
+                Actor923Field(temp_a1, short *, 2) = (short) ((int) (Actor923Field(temp_a1, short *, 2) + (Actor923Field(temp_a1, short *, 0xA) * 2) + temp_v1_6) % temp_v1_6);
+            }
+            else {
+                temp_a0 = Actor923Field(privateRecord20, void **, 0);
+                temp_v1_7 = Actor923Field(temp_a0, short *, 0);
+                Actor923Field(temp_a0, short *, 2) = (short) ((int) (Actor923Field(temp_a0, short *, 2) + Actor923Field(temp_a0, short *, 0xA) + temp_v1_7) % temp_v1_7);
+            }
+            if (Actor923Field(privateRecord20, int *, 0x5C) != 0) {
+                rawWord2=Actor923_func_8003636C(120,300);
+                rawWord3=rawWord2;
+                argumentWord4=Actor923_D_8006C7C4;
+                rawWord2=2;
+                Actor923Field(privateRecord20,short*,96)=rawWord3;
+                if(argumentWord4==rawWord2){
+                    argumentWord4=0x51EB851F;
+                    Actor923Keep(argumentWord4);
+                    rawWord3=(short)rawWord3;
+                    Actor923Keep(rawWord3);
+                    rawWord2=rawWord3*5;
+                    Actor923Keep(rawWord2);
+                    rawWord3=rawWord2*16;
+                    rawWord2+=rawWord3;
+                    goto projectFirstOriginalTimerProduct;
+                }
+                else{
+                    rawWord2=11;
+                    if(argumentWord4)goto finishFirstOriginalTimer;
+                    argumentWord4=0x51EB851F;
+                    Actor923Keep(argumentWord4);
+                    rawWord2=(short)rawWord3;
+                    Actor923Keep(rawWord2);
+                    rawWord3=rawWord2*5;
+                    Actor923Keep(rawWord3);
+                    rawWord2=rawWord3*15;
+                    rawWord2*=2;
+                }
+            projectFirstOriginalTimerProduct:
+                Actor923MUL(rawWord2,argumentWord4);
+                rawWord2>>=31;
+                Actor923HI(rawWord8);
+                rawWord3=rawWord8>>5;
+                rawWord3-=rawWord2;
+                Actor923Field(privateRecord20,short*,96)=rawWord3;
+                finishFirstOriginalTimer:;
+            }
+            Actor923Field(ownerRecord21, unsigned char *, 0x48) = 0xBU;
+            goto runOriginalCommonTail;
+        case 11:
+            retainedHeadingOrVector16=(int)&originalFrame.sp58;
+            Actor923Keep(retainedHeadingOrVector16);
+            temp_v0_2 = Actor923Field(privateRecord20, void **, 0);
+            Actor923_func_8004F1C8(retainedHeadingOrVector16, Actor923Field(temp_v0_2, int *, 0xC) + (Actor923Field(temp_v0_2, short *, 2) * 0x10), ownerRecord21 + 0xC);
+            rawWord2=Actor923_func_8004E880(originalFrame.sp58,originalFrame.sp5C,0);
+            argumentWord4=retainedHeadingOrVector16;
+            argumentWord5=0;
+            __asm__("":"=r"(argumentWord4),"=r"(argumentWord5):"0"(argumentWord4),"1"(argumentWord5));
+            retainedHeadingOrVector16=rawWord2;
+            rawWord2=Actor923_func_8004EDE8(argumentWord4,argumentWord5);
+            argumentWord4=rawWord2;
+            argumentWord5=originalFrame.sp60;
+            rawWord2=Actor923_func_8004E880(argumentWord4,argumentWord5,0);
+            argumentWord5=retainedHeadingOrVector16;
+            argumentWord4=Actor923Field(ownerRecord21,unsigned char*,70);
+            retainedHeadingOrVector16=rawWord2;
+            rawWord2=Actor923_func_8003613C(argumentWord4,argumentWord5);
+            retainedAngleOrWord17=rawWord2;
+            argumentWord4=Actor923Field(ownerRecord21,unsigned char*,69);
+            rawWord2=Actor923_func_8003613C(argumentWord4,retainedHeadingOrVector16);
+            argumentWord4=rawWord2;
+            rawWord2=retainedAngleOrWord17;
+            if(retainedAngleOrWord17<0)rawWord2=-rawWord2;
+            rawWord2=rawWord2<10;
+            if(!rawWord2){
+                rawWord2=retainedAngleOrWord17<7;
+                goto applyOriginalYawClamp;
+            }
+            rawWord2=__builtin_abs(argumentWord4);
+            rawWord2=rawWord2<10;
+            if(!rawWord2){
+                rawWord2=retainedAngleOrWord17<7;
+                goto applyOriginalYawClamp;
+            }
+            rawWord2=Actor923Field(ownerRecord21,unsigned char*,70);
+            Actor923Keep(rawWord2);
+            rawWord2*=16;
+            Actor923Field(privateRecord20,short*,54)=rawWord2;
+            rawWord2=Actor923Field(ownerRecord21,unsigned char*,69);
+            Actor923Field(privateRecord20,short*,56)=0;
+            rawWord2*=16;
+            Actor923Field(privateRecord20,short*,52)=rawWord2;
+            rawWord2=2;
+            Actor923Field(ownerRecord21,unsigned char*,72)=rawWord2;
+            rawWord2=retainedAngleOrWord17<7;
+        applyOriginalYawClamp:
+            if(!rawWord2){
+                retainedAngleOrWord17=6;
+                Actor923Keep(retainedAngleOrWord17);
+                rawWord2=retainedAngleOrWord17<-6;
+            }
+            else rawWord2=retainedAngleOrWord17<-6;
+            if(rawWord2)retainedAngleOrWord17=-6;
+            rawWord2=argumentWord4<7;
+            if(!rawWord2){
+                argumentWord4=6;
+                Actor923Keep(argumentWord4);
+                rawWord2=argumentWord4<-6;
+            }
+            else rawWord2=argumentWord4<-6;
+            if(rawWord2)argumentWord4=-6;
+            rawWord2=Actor923Field(ownerRecord21,unsigned char*,70);
+            rawWord3=Actor923Field(ownerRecord21,unsigned char*,69);
+            rawWord2+=retainedAngleOrWord17;
+            rawWord3+=argumentWord4;
+            Actor923Field(ownerRecord21,unsigned char*,70)=rawWord2;
+            Actor923Field(ownerRecord21,unsigned char*,69)=rawWord3;
+            goto runOriginalCommonTail;
+        case 2:
+            Actor923_func_8004F1C8(&originalFrame.sp68, (int)&Actor923_D_80070328, ownerRecord21 + 0xC);
+            temp_v0_3 = Actor923_func_8004EDE8(&originalFrame.sp68, 1);
+            Actor923Field(privateRecord20, short *, 0x3A) = 0x48;
+            if ((Actor923Field(privateRecord20, int *, 0x14) != 0) && (temp_v0_3 < 0x6000)) {
+                var_v1 = 0x14A;
+                if (temp_v0_3 >= 0x1800) {
+                    var_v1 = 0x12C;
+                    if (temp_v0_3 >= 0x2800) {
+                        if (temp_v0_3 < 0x3800) {
+                            var_v1 = 0x118;
+                        }
+                        else {
+                            var_v1 = 0xE6;
+                            if (temp_v0_3 < 0x4800) {
+                                var_v1 = 0xFA;
+                            }
+                        }
+                    }
+                }
+                temp_v0_4 = Actor923Field(privateRecord20, unsigned short *, 0x38) + 0x1E;
+                Actor923Field(privateRecord20, unsigned short *, 0x38) = temp_v0_4;
+                if (var_v1 < (short) temp_v0_4) {
+                    Actor923Field(privateRecord20, unsigned short *, 0x38) = (unsigned short) var_v1;
+                }
+            }
+            else {
+                temp_v0_5 = Actor923Field(privateRecord20, unsigned short *, 0x38) + 0x1E;
+                Actor923Field(privateRecord20, unsigned short *, 0x38) = temp_v0_5;
+                if ((short) temp_v0_5 >= 0xC9) {
+                    Actor923Field(privateRecord20, unsigned short *, 0x38) = 0xC8U;
+                }
+            }
+            rawWord3=Actor923_D_8006C7C4;
+            rawWord2=2;
+            argumentWord4=ownerRecord21;
+            if(rawWord3==rawWord2){
+                argumentWord4=0x51EB0000;
+                rawWord3=Actor923Field(privateRecord20,short*,56);
+                __asm__("":"=r"(argumentWord4):"0"(argumentWord4):"memory");
+                argumentWord4|=0x851F;
+                Actor923Keep(argumentWord4);
+                rawWord2=rawWord3*7;
+                Actor923Keep(rawWord2);
+                rawWord2=rawWord2*8-rawWord3;
+                rawWord2*=2;
+                Actor923MUL(rawWord2,argumentWord4);
+                rawWord2>>=31;
+                Actor923HI(rawWord8);
+                rawWord3=rawWord8>>5;
+                rawWord3-=rawWord2;
+                Actor923Field(privateRecord20,short*,56)=rawWord3;
+                __asm__ volatile("":::"$4","memory");
+                argumentWord4=ownerRecord21;
+            }
+            Actor923unk_ovlheader_800743E8(argumentWord4,Actor923Field(privateRecord20,int*,0),privateRecord20+52);
+            if (Actor923Field(privateRecord20, int *, 0x44) != 0) {
+                Actor923Field(privateRecord20, int *, 0x48) = (int) (Actor923Field(privateRecord20, int *, 0x48) + Actor923_D_8006C648);
+            }
+            else {
+                Actor923Field(privateRecord20, int *, 0x48) = 0;
+            }
+            if (Actor923Field(privateRecord20, int *, 0x4C) != 0) {
+                Actor923Field(privateRecord20, int *, 0x50) = (int) (Actor923Field(privateRecord20, int *, 0x50) + Actor923_D_8006C648);
+            }
+            else {
+                Actor923Field(privateRecord20, int *, 0x50) = 0;
+            }
+            if (Actor923Field(privateRecord20, int *, 0x44) != 0) {
+                temp_v1_8 = Actor923Field(privateRecord20, void **, 0);
+                if (Actor923Field(((Actor923Field(temp_v1_8, short *, 2) * 0x10) + Actor923Field(temp_v1_8, int *, 0xC)), int *, 0xC) == 0) {
+                    if ((Actor923Field(privateRecord20, int *, 0x5C) != 0) && (Actor923_func_800359A4(privateRecord20 + 0x60, 2) != 0)) {
+                        rawWord2=Actor923_func_8003636C(180,420);
+                        rawWord3=rawWord2;
+                        argumentWord4=Actor923_D_8006C7C4;
+                        rawWord2=2;
+                        Actor923Field(privateRecord20,short*,96)=rawWord3;
+                        if(argumentWord4==rawWord2){
+                            argumentWord4=0x51EB851F;
+                            Actor923Keep(argumentWord4);
+                            rawWord3=(short)rawWord3;
+                            Actor923Keep(rawWord3);
+                            rawWord2=rawWord3*5;
+                            Actor923Keep(rawWord2);
+                            rawWord3=rawWord2*16;
+                            rawWord2+=rawWord3;
+                            goto secondTimerDoneDivide;
+                        }
+                        else{
+                            rawWord2=11;
+                            if(argumentWord4)goto secondTimerDone;
+                            argumentWord4=0x51EB851F;
+                            Actor923Keep(argumentWord4);
+                            rawWord2=(short)rawWord3;
+                            Actor923Keep(rawWord2);
+                            rawWord3=rawWord2*5;
+                            Actor923Keep(rawWord3);
+                            rawWord2=rawWord3*15;
+                            rawWord2*=2;
+                        }
+                    secondTimerDoneDivide:
+                        Actor923MUL(rawWord2,argumentWord4);
+                        rawWord2>>=31;
+                        Actor923HI(rawWord8);
+                        rawWord3=rawWord8>>5;
+                        rawWord3-=rawWord2;
+                        Actor923Field(privateRecord20,short*,96)=rawWord3;
+                        secondTimerDone:;
+                        temp_v1_9 = Actor923Field(privateRecord20, void **, 0);
+                        Actor923Field(privateRecord20, short *, 0x62) = 0x96;
+                        rawWord2=Actor923Field(temp_v1_9,short*,10);
+                        Actor923Keep(rawWord2);
+                        rawWord2=-rawWord2;
+                        Actor923Field(temp_v1_9,short*,10)=rawWord2;
+                        temp_a1_2 = Actor923Field(privateRecord20, void **, 0);
+                        temp_v1_10 = Actor923Field(temp_a1_2, short *, 0);
+                        Actor923Field(temp_a1_2, short *, 2) = (short) ((int) (Actor923Field(temp_a1_2, short *, 2) + (Actor923Field(temp_a1_2, short *, 0xA) * 2) + temp_v1_10) % temp_v1_10);
+                        Actor923Field(ownerRecord21, unsigned char *, 0x48) = 0xBU;
+                    }
+                    if ((Actor923Field(privateRecord20, int *, 0x54) != 0) && (Actor923_func_800359A4(privateRecord20 + 0x58, 4) != 0) && (Actor923_func_8004F334(ownerRecord21 + 0xC, (int)&Actor923_D_80070328) < 0x5000)) {
+                        temp_v1_11 = Actor923Field(ownerRecord21, int *, 0x14) - Actor923Field(ownerRecord21, short *, 0x38);
+                        temp_v0_7 = temp_v1_11 - Actor923Field((int)&Actor923_D_80070328, int *, 8);
+                        if (temp_v0_7 >= 0) {
+                            if (temp_v0_7 >= 0x1B58) {
+                            }
+                            else {
+                                goto block_86;
+                            }
+                        }
+                        else if ((Actor923Field((int)&Actor923_D_80070328, int *, 8) - temp_v1_11) < 0x1B58) {
+                        block_86:
+                            temp_v0_8 = Actor923SpawnMoby(0x189, ownerRecord21);
+                            if (temp_v0_8 != 0) {
+                                retainedWord18 = Actor923Field(temp_v0_8, void **, 0);
+                                Actor923_func_8003BABC(ownerRecord21, 0, 0);
+                                argumentWord4=temp_v0_8+12;
+                                Actor923Keep(argumentWord4);
+                                retainedHeadingOrVector16=ownerRecord21+12;
+                                Actor923_func_8004F178(argumentWord4,retainedHeadingOrVector16);
+                                Actor923Field(temp_v0_8, signed char *, 0x4C) = 0x3F;
+                                Actor923Field(temp_v0_8, signed char *, 0x4E) = 0x3F;
+                                Actor923Field(temp_v0_8, int *, 0x14) = (int) (Actor923Field(temp_v0_8, int *, 0x14) + 0x1F4);
+                                rawWord2=Actor923_func_8004E880(Actor923Field((int)&Actor923_D_80070328,int*,0)-Actor923Field(ownerRecord21,int*,12),Actor923Field((int)&Actor923_D_80070328,int*,4)-Actor923Field(ownerRecord21,int*,16),0);
+                                retainedAngleOrWord17=(int)&originalFrame.sp78;
+                                argumentWord4=retainedAngleOrWord17;
+                                Actor923Keep(argumentWord4);
+                                argumentWord5=retainedHeadingOrVector16;
+                                retainedHeadingOrVector16=rawWord2;
+                                Actor923_func_8004F178(argumentWord4,argumentWord5);
+                                retainedHeadingOrVector16 = (retainedHeadingOrVector16 & 0xFF) * 2;
+                                originalFrame.sp80 = Actor923Field((int)&Actor923_D_80070328, int *, 8);
+                                originalFrame.sp78 += (int) (Actor923Field((int)&Actor923_D_80065920 + retainedHeadingOrVector16,short*,0) * 0x7D) >> 7;
+                                originalFrame.sp7C += (int) (Actor923Field((int)&Actor923_D_800658A0 + retainedHeadingOrVector16,short*,0) * 0x7D) >> 7;
+                                Actor923_func_8004F178(&originalFrame.sp78, (int)&Actor923_D_80070328 + 0x98);
+                                originalFrame.sp78 *= 0x1E;
+                                originalFrame.sp7C *= 0x1E;
+                                originalFrame.sp80 *= 0x1E;
+                                Actor923_func_8004F110(&originalFrame.sp78, 6);
+                                Actor923_func_8004F194(&originalFrame.sp78, &originalFrame.sp78, (int)&Actor923_D_80070328);
+                                Actor923Field(retainedWord18, int *, 0) = 0x1E;
+                                Actor923Field(retainedWord18, unsigned char *, 6) = Actor923_func_8004E880(originalFrame.sp78 - Actor923Field(ownerRecord21, int *, 0xC), originalFrame.sp7C - Actor923Field(ownerRecord21, int *, 0x10), 0);
+                                Actor923Field(retainedWord18, short *, 4) = 0x28;
+                                Actor923Field(retainedWord18, short *, 8) = Actor923_func_800363DC(4, 0xB);
+                                Actor923Field(retainedWord18, short *, 0xA) = Actor923_func_800363DC(4, 0xB);
+                                Actor923Field(retainedWord18, signed char *, 7) = 0x14;
+                            }
+                            rawWord2=Actor923_func_8003636C(120,240);
+                            argumentWord5=rawWord2;
+                            Actor923Keep(argumentWord5);
+                            rawWord3=Actor923_D_8006C7C4;
+                            rawWord2=2;
+                            Actor923Field(privateRecord20,int*,88)=argumentWord5;
+                            if(rawWord3==rawWord2){
+                                argumentWord4=0x51EB851F;
+                                Actor923Keep(argumentWord4);
+                                rawWord3=argumentWord5*3;
+                                Actor923Keep(rawWord3);
+                                rawWord2=rawWord3*15;
+                            }
+                            else{
+                                if(rawWord3){
+                                    argumentWord4=0x51EB0000;
+                                    Actor923Keep(argumentWord4);
+                                    goto finishThirdOriginalTimer;
+                                }
+                                argumentWord4=0x51EB851F;
+                                Actor923Keep(argumentWord4);
+                                rawWord2=argumentWord5*5;
+                                Actor923Keep(rawWord2);
+                                rawWord3=rawWord2*16;
+                                rawWord2+=rawWord3;
+                            }
+                            rawWord2*=2;
+                            Actor923MUL(rawWord2,argumentWord4);
+                            rawWord2>>=31;
+                            Actor923HI(rawWord8);
+                            rawWord3=rawWord8>>5;
+                            rawWord3-=rawWord2;
+                            Actor923Field(privateRecord20,int*,88)=rawWord3;
+                            finishThirdOriginalTimer:;
+                        }
+                    }
+                }
+            }
+            if ((Actor923Field(privateRecord20, short *, 0x62) == 0) && (Actor923Field(privateRecord20, int *, 0x14) != 0) && (Actor923_func_8004F264(Actor923_func_8004E880(originalFrame.sp68, originalFrame.sp6C, 0), Actor923Field(ownerRecord21, unsigned char *, 0x46)) < 0x30)) {
+                temp_v1_12 = Actor923Field(privateRecord20, void **, 0);
+                rawWord2=Actor923Field(temp_v1_12,short*,10);
+                Actor923Keep(rawWord2);
+                rawWord2=-rawWord2;
+                Actor923Field(temp_v1_12,short*,10)=rawWord2;
+                temp_a1_3 = Actor923Field(privateRecord20, void **, 0);
+                temp_v1_13 = Actor923Field(temp_a1_3, short *, 0);
+                Actor923Field(temp_a1_3, short *, 2) = (short) ((int) (Actor923Field(temp_a1_3, short *, 2) + (Actor923Field(temp_a1_3, short *, 0xA) * 2) + temp_v1_13) % temp_v1_13);
+                Actor923Field(ownerRecord21, unsigned char *, 0x48) = 0xBU;
+            }
+            if (Actor923_D_8006C640 & 1) {
+                Actor923_func_80055D24(ownerRecord21, 4);
+                Actor923_func_80055F14(ownerRecord21, 0, &originalFrame.sp88);
+                originalFrame.sp88 += Actor923_func_800363DC(0, 0x96);
+                originalFrame.sp8C += Actor923_func_800363DC(0, 0x96);
+                originalFrame.sp90 += Actor923_func_800363DC(0, 0x96);
+                originalFrame.sp98 = Actor923_func_800363DC(0, 0xA);
+                originalFrame.sp9C = Actor923_func_800363DC(0, 0xA);
+                originalFrame.spA0 = Actor923_func_8003636C(5, 8);
+                Actor923Field(Actor923SpawnParticle(1, 0x27, &originalFrame.sp88, &originalFrame.sp98), signed char *, 0xB) = 1;
+            }
+            if (Actor923Field(privateRecord20, int *, 0x14) == 0) {
+                temp_v1_14 = Actor923Field(privateRecord20, void **, 0);
+                if (Actor923Field(((Actor923Field(temp_v1_14, short *, 2) * 0x10) + Actor923Field(temp_v1_14, int *, 0xC)), int *, 0xC) & 2) {
+                    Actor923Field(ownerRecord21, unsigned char *, 0x48) = 0U;
+                }
+            }
+            goto runOriginalCommonTail;
+        case 1:
+            Actor923_func_80055D24(ownerRecord21, 4);
+            Actor923_func_80055F14(ownerRecord21, 1, &originalFrame.spB8);
+            Actor923_func_80055F14(ownerRecord21, 2, &originalFrame.spC8);
+            Actor923_func_8004F194(&originalFrame.sp98, &originalFrame.spB8, &originalFrame.spC8);
+            Actor923_func_8004F110(&originalFrame.sp98, 1);
+            originalFrame.spA8 = Actor923_func_800363DC(0, 0xA);
+            originalFrame.spAC = Actor923_func_800363DC(0, 0xA);
+            originalFrame.spB0 = Actor923_func_8003636C(5, 8);
+            Actor923SpawnParticle(1, 0x27, &originalFrame.sp98, &originalFrame.spA8);
+            if (Actor923Field(privateRecord20, short *, 0x22) < -0x96) {
+                Actor923Field(privateRecord20, short *, 0x22) = -0x96;
+            }
+            if (Actor923_func_80035194(ownerRecord21, privateRecord20 + 0x1C) == 0x100) {
+                Actor923_func_80055D24(ownerRecord21, 4);
+                Actor923_func_8003BA00(ownerRecord21);
+                Actor923_func_800369B8(ownerRecord21, 0x20);
+                goto returnFromOriginalController;
+            }
+            goto runOriginalCommonTail;
+        returnFromOriginalController:
+            Actor923_func_80055B18(ownerRecord21);
+            return;
+        case 3:
+            Actor923_func_80038BF8(ownerRecord21, privateRecord20 + 0x1C, 8, 1);
+            argumentWord4=9;
+            argumentWord5=142;
+            __asm__("":"=r"(argumentWord4),"=r"(argumentWord5):"0"(argumentWord4),"1"(argumentWord5));
+            rawWord2=6;
+            Actor923Keep(rawWord2);
+            Actor923Field(privateRecord20,unsigned char*,43)=rawWord2;
+            rawWord2=240;
+            Actor923Keep(rawWord2);
+            Actor923Field(privateRecord20,short*,32)=rawWord2;
+            rawWord2=70;
+            Actor923Keep(rawWord2);
+            Actor923Field(privateRecord20,short*,34)=rawWord2;
+            rawWord2=150;
+            Actor923Keep(rawWord2);
+            Actor923Field(privateRecord20,unsigned char*,50)=rawWord2;
+            Actor923Field(privateRecord20, signed char *, 0x2A) = 5;
+            Actor923Field(ownerRecord21, signed char *, 0x4F) = 0x1A;
+            Actor923Field(ownerRecord21, int *, 0x18) = 0;
+            Actor923Field(ownerRecord21, signed char *, 0x51) = 0;
+            Actor923SpawnFragments(argumentWord4,argumentWord5,ownerRecord21, Actor923Field(privateRecord20, int *, 0x64), 0, 0x100);
+            Actor923unk_ovlheader_80074410(ownerRecord21 + 0xC, 0x27, 0x30, 0x50, 0x78);
+            return;
+        }
+    }
+    else goto returnFromOriginalController;
+runOriginalCommonTail:
+    Actor923Field(privateRecord20,int*,68)=0;
+    Actor923Field(privateRecord20,int*,76)=0;
+    return;
+}
+#undef Actor923Field
+#undef Actor923Keep
+
 
 /* AI generated; not yet human reviewed. SCUS-94467 USA Rev 0.
  * Original 388 instructions per copy are the acceptance authority.
@@ -3310,7 +12472,574 @@ void func_level_32_80084024(Moby* moby) {
     func_80039714(moby);
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/moby", func_level_32_80084044);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated; not human reviewed. Original-instruction-derived C. Original source asm/nonmatchings/overlays/level_32/moby/func_level_32_80084044.s SHA256 f10db0ce70b2d1578267be3d29581f0083a8abc824c4321424616e56bb1683d0. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
+#define Level32_84044_Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+extern Moby* Level32_84044_D_8006C550 __asm__("D_8006C550");
+extern int Level32_84044_D_8006C5BC __asm__("D_8006C5BC");
+extern Spyro Level32_84044_D_80070328 __asm__("D_80070328");
+int Level32_84044_func_80013E38(Vector3D*, Vector3D*, int) __asm__("func_80013E38");
+void Level32_84044_func_80034F40(Moby* moby, int newId) __asm__("func_80034F40");
+void Level32_84044_func_80035734(Moby* moby) __asm__("func_80035734");
+int Level32_84044_func_8003573C(Moby* arg0, int arg1, int arg2, int arg3) __asm__("func_8003573C");
+int Level32_84044_func_800359A4(void*, int) __asm__("func_800359A4");
+int Level32_84044_func_80035DDC(Moby* arg0, int arg1, int arg2, int arg3, int arg4) __asm__("func_80035DDC");
+int Level32_84044_func_8003636C(int low, int high) __asm__("func_8003636C");
+void Level32_84044_func_80037014(Moby* moby) __asm__("func_80037014");
+void Level32_84044_func_8003BA00(Moby* moby) __asm__("func_8003BA00");
+int Level32_84044_func_8003BABC(Moby*, int, int) __asm__("func_8003BABC");
+extern int Level32_84044_func_8004E880(int, int, int) __asm__("func_8004E880");
+extern void Level32_84044_func_8004ED6C(SHORTMATRIX*, Vector3D*, Vector3D*) __asm__("func_8004ED6C");
+extern void Level32_84044_func_8004F178(Vector3D*, Vector3D*) __asm__("func_8004F178");
+extern void Level32_84044_func_8004F194(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004F194");
+extern int Level32_84044_func_8004F264(int, int) __asm__("func_8004F264");
+extern int Level32_84044_func_8004F334(Vector3D*, Vector3D*) __asm__("func_8004F334");
+extern void Level32_84044_func_80055B18(Moby*) __asm__("func_80055B18");
+extern void Level32_84044_func_80055D24(Moby*, int) __asm__("func_80055D24");
+unsigned char Level32_84044_func_80035A80(Moby *, int, unsigned int, unsigned int, int, int, int, int) __asm__("func_80035A80");
+/* extern */
+unsigned char Level32_84044_func_80036A68(Moby *, unsigned int, unsigned int, unsigned int) __asm__("func_80036A68");
+/* extern */
+unsigned char Level32_84044_func_80037168(Moby *, Vector3D *, unsigned int) __asm__("func_80037168");
+/* extern */
+extern unsigned char Level32_84044_D_80066EAE __asm__("D_80066EAE");
+extern int Level32_84044_D_8006C54C __asm__("D_8006C54C");
+extern int Level32_84044_D_8006C574 __asm__("D_8006C574");
+extern int Level32_84044_D_8006C578 __asm__("D_8006C578");
+extern enum MovementState Level32_84044_D_8006C5C8 __asm__("D_8006C5C8");
+extern int Level32_84044_D_8006C640 __asm__("D_8006C640");
+extern int Level32_84044_D_8006C770 __asm__("D_8006C770");
+extern int Level32_84044_D_8006C774 __asm__("D_8006C774");
+extern int Level32_84044_D_8006C7C4 __asm__("D_8006C7C4");
+extern int Level32_84044_D_8006E020 __asm__("D_8006E020");
+extern int Level32_84044_D_8006E024 __asm__("D_8006E024");
+extern unsigned short Level32_84044_D_8006E040 __asm__("D_8006E040");
+extern unsigned char Level32_84044_D_8006EE2C __asm__("D_8006EE2C");
+extern unsigned char Level32_84044_D_level_32_8009D030 __asm__("D_level_32_8009D030");
+void func_level_32_80084044(Moby *arg0) {
+    /* SCUS-94467 USA Rev0; original assembly identity and SHA256 above.
+    * Original 0x60-byte frame: vectors at SP20/SP30, saved16..21
+    * at SP40..54 and RA58. The class index is signed LH36, then
+    * SLL2 and an actual WORD pointer-table load, followed by descriptor
+    * pointer and BYTE header loads. Byte loads never replace the pointers.
+    * Every relative pointer expression adds BYTES before its final cast.
+    * Original owner18, private19, loop17, created16, literal-one20 and
+    * table21 roles are retained. The signed state switch preserves the
+    * original branch tree. Descriptor loads precede animation state stores;
+    * flag arithmetic is original SLTIU/XOR/negate/AND30. The signed modulo
+    * uses quotient2 and raw result4, without premature byte narrowing.
+    * Vector/yaw arguments retain their original producer order. Callback
+    * consumers rebuild the private address after the callback, as the
+    * original instructions do. Dead caller-register boundaries occur only
+    * before replacement producers. Empty constraints consume initialized
+    * original values and emit no CPU instructions. Compiler flags unchanged.
+    * Evidence proves byte/word widths, signed shifts, original constants
+    * and control flow. Physical units/fixed point, complete helper meanings,
+    * caller/frame cadence and runtime semantics remain unresolved.
+    * Falsification: every native/linked word, conditional/internal J target,
+    * preserved data and complete EXE/every-overlay retail hash. No runtime
+    * or subsystem completion claim. AI generated; not human reviewed. */
+    register Moby *moby __asm__("18");
+    register unsigned char *classPointerTable __asm__("21");
+    register int one __asm__("20");
+    struct {
+        Vector3D sp20;
+        unsigned char pad2C[4];
+        Vector3D sp30;
+        unsigned char pad3C[4];
+    }
+    scratch;
+    Moby *createdMoby;
+    Vector3D *positionPointer;
+    Vector3D *privateState;
+    Vector3D *var_a0;
+    register Vector3D *var_a0_2 __asm__("4");
+    short temp_v1_5;
+    int temp_a0;
+    int temp_s0_2;
+    int temp_v0;
+    int temp_v0_3;
+    int temp_v1;
+    int temp_v1_3;
+    int var_a1;
+    register int loopIndex __asm__("17");
+    int var_v0;
+    register int var_v0_2 __asm__("2");
+    unsigned short temp_v0_4;
+    register int animationIndex __asm__("4");
+    register unsigned int currentAnimationId __asm__("3");
+    unsigned char temp_a1;
+    unsigned char temp_v1_4;
+    unsigned char temp_v1_6;
+    void *temp_v1_2;
+    moby = arg0;
+    __asm__("" : "=r"(moby) : "0"(moby));
+    temp_a0 = moby->damageFlags;
+    privateState = moby->mobyTag;
+    if (temp_a0 & 0x830000) {
+        loopIndex = 0;
+        if (Level32_84044_D_8006C5C8 == MOVEMENT_STATE_JUMP_HOVER) {
+            moby->damageFlags = temp_a0 | 0x100000;
+            if (Level32_84044_Field(privateState, int *, 0x4C) == 0) {
+                temp_v1 = Level32_84044_Field(privateState, int *, 0x50);
+                if (temp_v1 != -1) {
+                    temp_v1_2 = Level32_84044_D_8006C550[temp_v1].mobyTag;
+                    temp_v0 = Level32_84044_Field(temp_v1_2, int *, 0xA4) + 0x3C;
+                    Level32_84044_Field(temp_v1_2, int *, 0xA4) = temp_v0;
+                    if (temp_v0 >= 0x385) {
+                        Level32_84044_Field(temp_v1_2, int *, 0xA4) = 0x384;
+                        __asm__ volatile("" : : : "17");
+                        loopIndex = 0;
+                    }
+                }
+            }
+        }
+        one = 1;
+        classPointerTable = &Level32_84044_D_8006EE2C;
+    loop_8:
+        {
+            register int factoryKind4 __asm__("4");
+            factoryKind4 = 0x147;
+            if ((Level32_84044_D_8006C578 - Level32_84044_D_8006C574) >= 0x15) {
+                createdMoby = SpawnMoby(factoryKind4, moby);
+                if (createdMoby != 0) {
+                    Level32_84044_Field(createdMoby->mobyTag, short *, 0x12) = one;
+                    if (loopIndex < 4) {
+                        {
+                            register int quotient2 __asm__("2");
+                            quotient2 = (unsigned int)loopIndex >> 31;
+                            currentAnimationId = createdMoby->animationState.id;
+                            __asm__("" : "=r"(quotient2) : "0"(quotient2), "r"(currentAnimationId));
+                            quotient2 = loopIndex + quotient2;
+                            quotient2 >>= 1;
+                            quotient2 <<= 1;
+                            animationIndex = loopIndex - quotient2;
+                        }
+                        __asm__("" : "=r"(animationIndex), "=r"(currentAnimationId) : "0"(animationIndex), "1"(currentAnimationId));
+                        if (currentAnimationId != animationIndex) {
+                            {
+                                register int class2 __asm__("2");
+                                register unsigned char *slot2 __asm__("2");
+                                register unsigned char *bank2 __asm__("2");
+                                register unsigned char *descriptor2 __asm__("2");
+                                register unsigned int header2 __asm__("2");
+                                class2 = createdMoby->mobyClass;
+                                createdMoby->unknown3[1] = 0;
+                                class2 <<= 2;
+                                slot2 = (unsigned char *)(class2 + (int)classPointerTable);
+                                {
+                                    register unsigned char *bank3 __asm__("3");
+                                    bank3 = Level32_84044_Field(slot2,unsigned char**,0);
+                                    class2 = animationIndex << 2;
+                                    slot2 = (unsigned char *)(class2 + (int)bank3);
+                                    descriptor2 = Level32_84044_Field(slot2,unsigned char**,0x3C);
+                                }
+                                header2 = *descriptor2;
+                                createdMoby->animationState.id = animationIndex;
+                                createdMoby->animationState.nextId = animationIndex;
+                                createdMoby->animationState.frame = 0;
+                                createdMoby->animationState.nextFrame = one;
+                                header2 = header2 < 2U;
+                                __asm__("" : "=r"(header2) : "0"(header2));
+                                header2 ^= 1;
+                                header2 = -header2;
+                                header2 &= 0x30;
+                                createdMoby->animationProgress = header2;
+                            }
+                        }
+                        goto block_27;
+                    }
+                    if (loopIndex < 8) {
+                        if (createdMoby->animationState.id != 2) {
+                            {
+                                register int selected3 __asm__("3");
+                                selected3 = 2;
+                                {
+                                    register int class2 __asm__("2");
+                                    register unsigned char *slot2 __asm__("2");
+                                    register unsigned char *bank2 __asm__("2");
+                                    register unsigned char *descriptor2 __asm__("2");
+                                    register unsigned int header2 __asm__("2");
+                                    class2 = createdMoby->mobyClass;
+                                    createdMoby->unknown3[1] = 0;
+                                    class2 <<= 2;
+                                    slot2 = (unsigned char *)(class2 + (int)classPointerTable);
+                                    bank2 = Level32_84044_Field(slot2,unsigned char**,0);
+                                    descriptor2 = Level32_84044_Field(bank2,unsigned char**,0x44);
+                                    header2 = *descriptor2;
+                                    createdMoby->animationState.id = selected3;
+                                    createdMoby->animationState.nextId = selected3;
+                                    createdMoby->animationState.frame = 0;
+                                    createdMoby->animationState.nextFrame = one;
+                                    header2 = header2 < 2U;
+                                    __asm__("" : "=r"(header2) : "0"(header2));
+                                    header2 ^= 1;
+                                    header2 = -header2;
+                                    header2 &= 0x30;
+                                    createdMoby->animationProgress = header2;
+                                }
+                            }
+                        }
+                        Level32_84044_func_8004F178(&scratch.sp20, Level32_84044_Field(privateState, int *, 0x44) + ((loopIndex % 2) * 0xC));
+                        Level32_84044_func_8004ED6C(&moby->rotationMatrix, &scratch.sp20, &scratch.sp20);
+                        {
+                            register Vector3D *position4 __asm__("4");
+                            register Vector3D *ownerPosition5 __asm__("5");
+                            register Vector3D *delta6 __asm__("6");
+                            register unsigned int yaw2 __asm__("2");
+                            position4 = &createdMoby->position;
+                            ownerPosition5 = &moby->position;
+                            __asm__("" : "=r"(position4), "=r"(ownerPosition5) : "0"(position4), "1"(ownerPosition5));
+                            yaw2 = moby->angle.yaw;
+                            delta6 = &scratch.sp20;
+                            createdMoby->angle.pitch = 0;
+                            createdMoby->angle.roll = 0;
+                            createdMoby->angle.yaw = yaw2;
+                            Level32_84044_func_8004F194(position4,ownerPosition5,delta6);
+                        }
+                        __asm__ volatile("" : : : "memory");
+                        loopIndex += 1;
+                    }
+                    else if (loopIndex < 0xA) {
+                        if (createdMoby->animationState.id != 3) {
+                            {
+                                register int selected3 __asm__("3");
+                                selected3 = 3;
+                                {
+                                    register int class2 __asm__("2");
+                                    register unsigned char *slot2 __asm__("2");
+                                    register unsigned char *bank2 __asm__("2");
+                                    register unsigned char *descriptor2 __asm__("2");
+                                    register unsigned int header2 __asm__("2");
+                                    class2 = createdMoby->mobyClass;
+                                    createdMoby->unknown3[1] = 0;
+                                    class2 <<= 2;
+                                    slot2 = (unsigned char *)(class2 + (int)classPointerTable);
+                                    bank2 = Level32_84044_Field(slot2,unsigned char**,0);
+                                    descriptor2 = Level32_84044_Field(bank2,unsigned char**,0x48);
+                                    header2 = *descriptor2;
+                                    createdMoby->animationState.id = selected3;
+                                    createdMoby->animationState.nextId = selected3;
+                                    createdMoby->animationState.frame = 0;
+                                    createdMoby->animationState.nextFrame = one;
+                                    header2 = header2 < 2U;
+                                    __asm__("" : "=r"(header2) : "0"(header2));
+                                    header2 ^= 1;
+                                    header2 = -header2;
+                                    header2 &= 0x30;
+                                    createdMoby->animationProgress = header2;
+                                }
+                            }
+                        }
+                        {
+                            register Vector3D *scratch4 __asm__("4");
+                            register int vectorOffset5 __asm__("5");
+                            register int vectorBase2 __asm__("2");
+                            scratch4 = &scratch.sp20;
+                            __asm__("" : "=r"(scratch4) : "0"(scratch4));
+                            vectorOffset5 = (loopIndex % 2) * 12;
+                            __asm__("" : "=r"(vectorOffset5) : "0"(vectorOffset5));
+                            vectorBase2 = Level32_84044_Field(privateState,int*,0x44);
+                            __asm__("" : "=r"(vectorBase2), "=r"(vectorOffset5) : "0"(vectorBase2), "1"(vectorOffset5));
+                            vectorOffset5 += 0x18;
+                            Level32_84044_func_8004F178(scratch4,(Vector3D *)(vectorBase2 + vectorOffset5));
+                        }
+                        Level32_84044_func_8004ED6C(&moby->rotationMatrix, &scratch.sp20, &scratch.sp20);
+                        {
+                            register unsigned int yaw2 __asm__("2");
+                            yaw2 = moby->angle.yaw;
+                            __asm__("" : "=r"(yaw2) : "0"(yaw2));
+                            createdMoby->angle.pitch = 0;
+                            createdMoby->angle.roll = 0;
+                            createdMoby->angle.yaw = yaw2;
+                        }
+                        __asm__ volatile("" : : : "memory");
+                        if (!(loopIndex & 1)) {
+                            createdMoby->angle.yaw += 0x80;
+                        }
+                        Level32_84044_func_8004F194(&createdMoby->position, &moby->position, &scratch.sp20);
+                        __asm__ volatile("" : : : "memory");
+                        loopIndex += 1;
+                    }
+                    else {
+                        if (createdMoby->animationState.id != 4) {
+                            {
+                                register int selected3 __asm__("3");
+                                selected3 = 4;
+                                {
+                                    register int class2 __asm__("2");
+                                    register unsigned char *slot2 __asm__("2");
+                                    register unsigned char *bank2 __asm__("2");
+                                    register unsigned char *descriptor2 __asm__("2");
+                                    register unsigned int header2 __asm__("2");
+                                    class2 = createdMoby->mobyClass;
+                                    createdMoby->unknown3[1] = 0;
+                                    class2 <<= 2;
+                                    slot2 = (unsigned char *)(class2 + (int)classPointerTable);
+                                    bank2 = Level32_84044_Field(slot2,unsigned char**,0);
+                                    descriptor2 = Level32_84044_Field(bank2,unsigned char**,0x4C);
+                                    header2 = *descriptor2;
+                                    createdMoby->animationState.id = selected3;
+                                    createdMoby->animationState.nextId = selected3;
+                                    createdMoby->animationState.frame = 0;
+                                    createdMoby->animationState.nextFrame = one;
+                                    header2 = header2 < 2U;
+                                    __asm__("" : "=r"(header2) : "0"(header2));
+                                    header2 ^= 1;
+                                    header2 = -header2;
+                                    header2 &= 0x30;
+                                    createdMoby->animationProgress = header2;
+                                }
+                            }
+                        }
+                        {
+                            register Vector3D *scratch4 __asm__("4");
+                            register int vectorOffset5 __asm__("5");
+                            register int vectorBase2 __asm__("2");
+                            scratch4 = &scratch.sp20;
+                            __asm__("" : "=r"(scratch4) : "0"(scratch4));
+                            vectorOffset5 = (loopIndex % 2) * 12;
+                            __asm__("" : "=r"(vectorOffset5) : "0"(vectorOffset5));
+                            vectorBase2 = Level32_84044_Field(privateState,int*,0x44);
+                            __asm__("" : "=r"(vectorBase2), "=r"(vectorOffset5) : "0"(vectorBase2), "1"(vectorOffset5));
+                            vectorOffset5 += 0x30;
+                            Level32_84044_func_8004F178(scratch4,(Vector3D *)(vectorBase2 + vectorOffset5));
+                        }
+                        Level32_84044_func_8004ED6C(&moby->rotationMatrix, &scratch.sp20, &scratch.sp20);
+                        {
+                            register Vector3D *position4 __asm__("4");
+                            register Vector3D *ownerPosition5 __asm__("5");
+                            register Vector3D *delta6 __asm__("6");
+                            register unsigned int yaw2 __asm__("2");
+                            position4 = &createdMoby->position;
+                            ownerPosition5 = &moby->position;
+                            __asm__("" : "=r"(position4), "=r"(ownerPosition5) : "0"(position4), "1"(ownerPosition5));
+                            yaw2 = moby->angle.yaw;
+                            delta6 = &scratch.sp20;
+                            createdMoby->angle.pitch = 0;
+                            createdMoby->angle.roll = 0;
+                            createdMoby->angle.yaw = yaw2;
+                            Level32_84044_func_8004F194(position4,ownerPosition5,delta6);
+                        }
+                        if (loopIndex == 0xB) {
+                            createdMoby->size = 0x14;
+                        }
+                        goto block_27;
+                    }
+                }
+                else {
+                block_27:
+                    __asm__ volatile("" : : : "memory");
+                    loopIndex += 1;
+                }
+                if (loopIndex < 0xC) {
+                    goto loop_8;
+                }
+            }
+        }
+        __asm__ volatile("" : : : "4");
+        moby->updateDistance = 8;
+        Level32_84044_func_80036A68(moby, 0, 0, 0);
+        Level32_84044_func_8003BABC(moby, 0, 0);
+        if (moby->unknown2 != 0x7E) {
+            Level32_84044_func_8003BA00(moby);
+        }
+        Level32_84044_func_80055B18(moby);
+        return;
+    }
+    moby->damageFlags = 0;
+    if (moby->drawn != 0) {
+        if (((unsigned char) moby->state < 2U) && (Level32_84044_func_800359A4(((unsigned char *)privateState + 0x2C), 2) != 0) && (Level32_84044_Field(privateState, int *, 0x48) == 0)) {
+            var_v0 = Level32_84044_D_8006C640;
+            if (Level32_84044_D_8006C640 < 0) {
+                var_v0 = Level32_84044_D_8006C640 + 3;
+            }
+            if (((Level32_84044_D_8006C640 - ((var_v0 >> 2) * 4)) == Level32_84044_Field(privateState, short *, 0x42)) && (Level32_84044_func_8004F334(&moby->position, &Level32_84044_D_80070328.position) < Level32_84044_Field(privateState, int *, 0x34)) && ((Level32_84044_Field(privateState, int *, 0x38) == 0) || ((Level32_84044_D_80070328.ticksSinceLastSurfaceTouch == 0) && (((moby->position.z - moby->distanceToGround) - Level32_84044_D_80070328.position.z) < 0xC8))) && ((Level32_84044_Field(privateState, int *, 0x54) == 0) || ((Level32_84044_D_80070328.ticksSinceLastSurfaceTouch == 0) && (((moby->position.z - moby->distanceToGround) - Level32_84044_D_80070328.position.z) >= -0x12B)))) {
+                temp_v1_3 = moby->position.z - moby->distanceToGround;
+                temp_v0_3 = temp_v1_3 - Level32_84044_D_80070328.position.z;
+                if (temp_v0_3 >= 0) {
+                    if (temp_v0_3 >= 0x3E8) {
+                    }
+                    else {
+                        goto block_50;
+                    }
+                }
+                else if ((Level32_84044_D_80070328.position.z - temp_v1_3) < 0x3E8) {
+                block_50:
+                    if (Level32_84044_func_8004F264((int) (Level32_84044_D_8006E040 << 0x10) >> 0x14, Level32_84044_func_8004E880(moby->position.x - Level32_84044_D_8006E020, moby->position.y - Level32_84044_D_8006E024, 0)) < 0x1C) {
+                        Level32_84044_func_8004F178(&scratch.sp30, &moby->position);
+                        scratch.sp30.z += 0x12C;
+                        if (Level32_84044_func_80013E38(&scratch.sp30, &Level32_84044_D_80070328.position, 0) != 0) {
+                            moby->state = 0xA;
+                        }
+                    }
+                }
+            }
+        }
+        temp_v1_4 = moby->state;
+        switch ((int)temp_v1_4) {
+        case 0: {
+                temp_v1_5 = Level32_84044_Field(privateState, short *, 0x28);
+                if (temp_v1_5 == 0) {
+                    Level32_84044_func_80037168(moby, privateState, 0x57);
+                    Level32_84044_func_80037014(moby);
+                    if (moby->substate != 0) {
+                        moby->substate = 0;
+                        Level32_84044_Field(privateState, unsigned short *, 0x18) = Level32_84044_func_8003636C(0x3C, 0x64);
+                        moby->state = 1;
+                        Level32_84044_func_80034F40(moby, 1);
+                    }
+                    if ((Level32_84044_func_800359A4(((unsigned char *)privateState + 0x18), 2) != 0) && (Level32_84044_D_8006C770 != 0)) {
+                        temp_v0_4 = Level32_84044_Field(privateState, unsigned short *, 0x18) - 1;
+                        Level32_84044_Field(privateState, unsigned short *, 0x18) = temp_v0_4;
+                        if ((temp_v0_4 << 0x10) <= 0) {
+                            Level32_84044_Field(privateState, unsigned short *, 0x18) = Level32_84044_func_8003636C(0x1E, 0x64);
+                            Level32_84044_Field(privateState, short *, 0x1A) = Level32_84044_func_8003636C(0, 3);
+                            moby->state = 1;
+                            Level32_84044_func_80034F40(moby, 1);
+                        }
+                    }
+                }
+                else if (temp_v1_5 == 1) {
+                    Level32_84044_func_80035A80(moby, Level32_84044_Field(privateState, int *, 0x30), 0x100, 0x50, 0, 3, 0xA, 5);
+                }
+                else if (temp_v1_5 == 2) {
+                    Level32_84044_func_8003573C(moby, 2, 0, 0);
+                }
+                if ((Level32_84044_D_8006C54C - 1) == &Level32_84044_D_level_32_8009D030) {
+                    if (({ register int enabled2 __asm__("2"); enabled2 = Level32_84044_D_8006C774; __asm__("" : "=r"(enabled2) : "0"(enabled2)); enabled2; }) != 0) {
+                        var_v0_2 = 0x2C;
+                    loop_72:
+                        Level32_84044_Field(&Level32_84044_D_80066EAE, unsigned short*, var_v0_2) = 0;
+                        var_v0_2 -= 4;
+                        if (var_v0_2 >= 0) {
+                            goto loop_72;
+                        }
+                    }
+                }
+                break;
+            }
+        case 1: {
+                var_a0_2 = ((unsigned char *)privateState + 0x18);
+                if (Level32_84044_Field(privateState, short *, 0x28) == 2) {
+                    moby->state = 0;
+                    Level32_84044_func_80034F40(moby, 0);
+                    __asm__("" : "=r"(privateState) : "0"(privateState));
+                    var_a0_2 = ((unsigned char *)privateState + 0x18);
+                }
+                if (Level32_84044_func_800359A4(var_a0_2, 2) != 0) {
+                    if (Level32_84044_D_8006C770 != 0) {
+                        Level32_84044_Field(privateState, unsigned short *, 0x18) = Level32_84044_func_8003636C(0x78, 0x1F4);
+                        moby->state = 0;
+                        Level32_84044_func_80034F40(moby, 0);
+                        goto block_79;
+                    }
+                }
+                else {
+                block_79:
+                    if (Level32_84044_D_8006C770 != 0) {
+                        if (Level32_84044_Field(privateState, short *, 0x1A) == 0) {
+                            Level32_84044_func_80034F40(moby, 4);
+                            Level32_84044_Field(privateState, short *, 0x1A) = Level32_84044_func_8003636C(7, 7);
+                        }
+                        else {
+                            Level32_84044_func_80034F40(moby, 1);
+                            Level32_84044_Field(privateState, short *, 0x1A) = (short) ((unsigned short) Level32_84044_Field(privateState, short *, 0x1A) - 1);
+                        }
+                    }
+                }
+                break;
+            }
+        case 10: {
+                positionPointer = &moby->position;
+                temp_s0_2 = Level32_84044_func_8004F334(positionPointer, &Level32_84044_D_80070328.position);
+                if (Level32_84044_func_8004F334(positionPointer, privateState) >= 0x2329) {
+                    Level32_84044_Field(privateState, short *, 0x2C) = 0xB4;
+                    Level32_84044_Field(privateState, unsigned short *, 0x18) = 0x78U;
+                    moby->state = 0;
+                    Level32_84044_func_80034F40(moby, 0);
+                }
+                if (Level32_84044_func_8003573C(moby, 6, 0x14, 1) != 0) {
+                    var_a1 = 0xE6;
+                    if (Level32_84044_D_8006C7C4 == 1) {
+                        var_a1 = 0xBE;
+                    }
+                    else if (Level32_84044_D_8006C7C4 == 0) {
+                        var_a1 = 0x8C;
+                    }
+                    if (Level32_84044_func_80035DDC(moby, var_a1, 0, 0x190, 0x255) != 0) {
+                        Level32_84044_Field(privateState, short *, 0x2C) = 0xB4;
+                        Level32_84044_Field(privateState, signed char *, 0x13) = Level32_84044_func_8004E880(privateState->x - moby->position.x, privateState->y - moby->position.y, 0);
+                        Level32_84044_Field(privateState, unsigned short *, 0x18) = 0x78U;
+                        moby->state = 0;
+                        Level32_84044_func_80034F40(moby, 0);
+                    }
+                }
+                if (moby->animationState.nextId != 5) {
+                    Level32_84044_D_8006C770 = 0;
+                    temp_v1_6 = moby->animationState.nextId;
+                    temp_a1 = moby->animationState.nextFrame;
+                    moby->animationProgress = 0x72;
+                    moby->animationState.nextId = 5;
+                    moby->animationState.nextFrame = 0;
+                    moby->animationState.id = temp_v1_6;
+                    moby->animationState.frame = temp_a1;
+                    Level32_84044_func_80035734(moby);
+                }
+                if ((temp_s0_2 < 0x708) || (var_a0 = ((unsigned char *)privateState + 0x3C), (Level32_84044_D_80070328.movementState == MOVEMENT_STATE_HURT))) {
+                    var_a0 = ((unsigned char *)privateState + 0x3C);
+                    if (Level32_84044_Field(privateState, int *, 0x3C) == 0) {
+                        Level32_84044_Field(privateState, int *, 0x3C) = 0xA;
+                        Level32_84044_D_80070328.unk22[5] = (int) moby->angle.yaw;
+                    }
+                }
+                if ((Level32_84044_func_800359A4(var_a0, 4) == 2) || (Level32_84044_func_8004F264((int) (Level32_84044_D_8006E040 << 0x10) >> 0x14, Level32_84044_func_8004E880(moby->position.x - Level32_84044_D_8006E020, moby->position.y - Level32_84044_D_8006E024, 0)) >= 0x29)) {
+                    Level32_84044_Field(privateState, short *, 0x2C) = 0xB4;
+                    Level32_84044_Field(privateState, unsigned short *, 0x18) = 0x78U;
+                    moby->state = 0;
+                    Level32_84044_func_80034F40(moby, 0);
+                }
+                if (Level32_84044_func_8004F264((int) (Level32_84044_D_8006E040 << 0x10) >> 0x14, Level32_84044_func_8004E880(moby->position.x - Level32_84044_D_8006E020, moby->position.y - Level32_84044_D_8006E024, 0)) >= 0x29) {
+                    Level32_84044_Field(privateState, short *, 0x2C) = 0x3C;
+                    Level32_84044_Field(privateState, unsigned short *, 0x18) = 0x78U;
+                    moby->state = 0;
+                    Level32_84044_func_80034F40(moby, 0);
+                }
+                break;
+            }
+        }
+        {
+            register int selector3 __asm__("3");
+            register int literal2 __asm__("2");
+            selector3 = Level32_84044_D_8006C5BC;
+            literal2 = 50;
+            __asm__("" : "=r"(selector3), "=r"(literal2) : "0"(selector3), "1"(literal2));
+            if (selector3 == literal2) {
+                literal2 = 2;
+                selector3 = Level32_84044_D_8006C5C8;
+                if (selector3 != literal2) goto finalHelper15283;
+                selector3 = moby->animationState.nextId;
+                if ((unsigned int)selector3 < 2U) goto finalHelper15283;
+                literal2 = 4;
+                if (selector3 == literal2) goto finalHelper15283;
+                literal2 = 19;
+                selector3 = Level32_84044_D_80070328.movementState;
+            }
+            else {
+                literal2 = 2;
+                selector3 = Level32_84044_D_8006C5C8;
+            }
+            if (selector3 != literal2) {
+            finalHelper15283:
+                Level32_84044_func_80055D24(moby,5);
+            }
+        }
+    }
+}
+#undef Level32_84044_Field
+
 
 typedef struct {
     unsigned char unk0, unk1;
@@ -3344,7 +13073,154 @@ void func_level_32_80084C0C(Moby* moby) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/moby", func_level_32_80084D60);
+/* AI-generated; not human reviewed. Verified sibling C adapted only
+ * to this function's original SCUS-94467 instructions. Raw field units,
+ * helper meanings and update cadence remain unresolved. */
+/* AI generated; not human reviewed. SCUS-94467 USA Rev0 original
+ * 80084D60,338 instructions, sibling4610. Raw units/helper meanings and
+ * cadence unresolved; uninstalled until exact native instructions match. */
+#define N32F(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+int N32H4F178() __asm__("func_8004F178");
+int N32H359A4() __asm__("func_800359A4");
+int N32H1BA30() __asm__("func_8001BA30");
+int N32H4E880() __asm__("func_8004E880");
+int N32H360F8() __asm__("func_800360F8");
+int N32H1830C() __asm__("func_8001830C");
+int N32H19138() __asm__("func_80019138");
+int N32H4F168() __asm__("func_8004F168");
+int N32H1A358() __asm__("func_8001A358");
+int N32H5629C() __asm__("func_8005629C");
+int N32H55D24() __asm__("func_80055D24");
+int N32H1C288() __asm__("func_8001C288");
+int N32H3BABC() __asm__("func_8003BABC");
+int N32H4EA90() __asm__("func_8004EA90");
+int N32H4ED6C() __asm__("func_8004ED6C");
+int N32H4F0E8() __asm__("func_8004F0E8");
+int N32H4F194() __asm__("func_8004F194");
+int N32H55B18() __asm__("func_80055B18");
+int N32Rand() __asm__("rand");
+extern int N32Tick __asm__("D_8006C640");
+extern int N32Gate __asm__("D_8006C54C");
+extern int N32Flag0 __asm__("D_8006580C");
+extern int N32Flag1 __asm__("D_80065834");
+extern void* (*N32Spawn)() __asm__("SpawnMoby");
+extern void* (*N32Particle)() __asm__("SpawnParticle");
+void func_level_32_80084D60(void* input){
+ struct {int old[4],zero[4],vector[4],position[4],matrix[6];signed char angles[8];} frame;
+ register unsigned char* owner __asm__("$17")=input;
+ register unsigned char* tag __asm__("$19");
+ register int x __asm__("$6");register int y __asm__("$5");register int z __asm__("$4");
+ register int maximum __asm__("$3");register int work2 __asm__("$2");register int work3 __asm__("$3");
+ register int heading16 __asm__("$16");register unsigned char* target18 __asm__("$18");
+ register unsigned char* child16 __asm__("$16");register void* position18 __asm__("$18");
+ register void* vector18 __asm__("$18");register void* point16 __asm__("$16");
+ register void* matrix21 __asm__("$21");register int index20 __asm__("$20");
+ register void* call4 __asm__("$4");register int call5 __asm__("$5");
+ register void* call6 __asm__("$6");register void* call7 __asm__("$7");
+ __asm__("" : "=r"(owner):"0"(owner));
+ x=N32F(owner,int*,12);tag=N32F(owner,unsigned char**,0);
+ if(x<1024)goto cleanup;
+ y=N32F(owner,int*,16);if(y<1024)goto cleanup;
+ z=N32F(owner,int*,20);if(z<1024)goto cleanup;
+ maximum=256000;__asm__("" : "=r"(maximum):"0"(maximum));
+ work2=x>maximum;__asm__("" : "=r"(work2):"0"(work2));if(work2)goto cleanup;
+ work2=y>maximum;__asm__("" : "=r"(work2):"0"(work2));if(work2)goto cleanup;
+ work2=z>maximum;__asm__("" : "=r"(work2):"0"(work2));if(work2)goto cleanup;
+ N32H4F178(frame.old,owner+12);
+ N32F(owner,int*,12)+=N32F(tag,int*,0);
+ N32F(owner,int*,16)+=N32F(tag,int*,4);
+ N32F(owner,int*,20)+=N32F(tag,int*,8);
+ work3=N32F(tag,short*,12);work2=N32F(tag,int*,8);call4=(void*)N32Tick;
+ work2+=work3;N32F(tag,int*,8)=work2;
+ if(call4 && !N32Gate){N32Flag0=1;N32Flag1=1;}
+ switch(owner[72]){
+ case 0:goto moving;
+ case 98:goto impact;
+ case 99:goto particles;
+ default:goto done;
+ }
+ moving:
+ owner[68]+=4;N32H359A4(tag+14,2);
+ if(!tag[18]){target18=0;goto timer;}
+ {
+  target18=N32H1BA30(owner+12,512,1,0,0x10170000,owner);
+  if(target18){
+   work2=N32H4E880(N32F(target18,int*,12)-N32F(owner,int*,12),N32F(target18,int*,16)-N32F(owner,int*,16),0);
+   {register int zero6 __asm__("$6")=0;
+    __asm__("" : "=r"(zero6):"0"(zero6),"r"(work2));heading16=work2;
+    work2=N32H4E880(N32F(tag,int*,0),N32F(tag,int*,4),zero6);}
+   target18[81]=N32H360F8(heading16,work2,32,64);
+  }
+ }
+ timer:
+ if(N32H359A4(tag+16,2))goto collision;
+ call4=frame.old;if(target18)goto collision;
+ __asm__("" : "=r"(call4):"0"(call4):"$18");position18=owner+12;
+ work2=N32H1830C(call4,position18,0,0,N32F(tag,int*,20));call4=position18;
+ if(work2)goto collision;
+ __asm__("" ::: "$2");
+ if(!N32H19138(call4,256,0,0,0,N32F(tag,int*,20)))goto no_collision;
+ collision:
+ work2=N32F(tag,short*,14);
+ __asm__("" : "=r"(work2):"0"(work2));call4=owner+12;
+ if(!work2){
+  __asm__("" ::: "$2");
+  N32F(tag,int*,0)=0;N32F(tag,int*,4)=0;N32F(tag,int*,8)=0;
+  N32H4F178(call4,frame.old);owner[72]=98;goto feedback;
+ }
+ goto feedback_prepared;
+ no_collision:
+ if(N32Tick&1){point16=frame.zero;N32H4F168(point16);N32Particle(1,49,position18,point16);}
+ feedback:
+ call4=owner+12;
+ feedback_prepared:
+ N32H1A358(call4,8192);N32H5629C(owner);N32H55D24(owner,2);goto done;
+ impact:
+ position18=owner+12;
+ if(tag[18]){
+  child16=N32H1BA30(position18,1024,1,0,0x10170000,owner);
+  if(child16)child16[81]=N32H4E880(N32F(child16,int*,12)-N32F(owner,int*,12),N32F(child16,int*,16)-N32F(owner,int*,16),0);
+  N32H19138(position18,1024,0,0,0x10040000,owner);
+ }
+ if(tag[19])N32H1C288(owner+12,1024,7);
+ N32H3BABC(owner,0,0);N32F(tag,short*,16)=0;owner[72]=99;
+ particles:
+ index20=0;matrix21=frame.matrix;vector18=frame.vector;point16=frame.position;
+ do{
+  frame.angles[0]=0;frame.angles[1]=N32Rand();frame.angles[2]=N32Rand();
+  N32H4EA90(frame.angles,matrix21,0);
+  index20++;work2=N32Rand();
+  __asm__ volatile("" : "=r"(work2):"0"(work2):"$4","$5","$6");
+  call4=matrix21;call5=(int)vector18;call6=vector18;
+  __asm__ volatile("" : "=r"(call4),"=r"(call5),"=r"(call6),"=r"(work2):"0"(call4),"1"(call5),"2"(call6),"3"(work2):"memory");
+  work2=(work2&31)+48;frame.vector[0]=work2;frame.vector[1]=0;frame.vector[2]=0;
+  N32H4ED6C(call4,(void*)call5,call6);
+  N32H4F178(point16,vector18);N32H4F0E8(point16,2);
+  __asm__("" : "=r"(owner):"0"(owner));N32H4F194(point16,point16,owner+12);
+  N32Particle(1,13,point16,vector18);
+  __asm__("" : "=r"(owner):"0"(owner));
+ }while(index20<4);
+ N32Particle(8,70,owner+12,(void*)16);
+ child16=N32Spawn(326,owner);
+ if(child16){
+  child16[71]=4;
+  if(N32F(tag,short*,16)){
+   frame.angles[0]=0;frame.angles[1]=N32Rand();frame.angles[2]=N32Rand();
+   N32H4EA90(frame.angles,matrix21,0);work2=N32Rand();
+   __asm__ volatile("" : "=r"(work2):"0"(work2):"$4","$5","$6");
+   call4=matrix21;call5=(int)vector18;call6=vector18;
+   __asm__ volatile("" : "=r"(call4),"=r"(call5),"=r"(call6),"=r"(work2):"0"(call4),"1"(call5),"2"(call6),"3"(work2):"memory");
+   work2&=255;__asm__("" : "=r"(work2):"0"(work2));work2+=256;frame.vector[0]=work2;frame.vector[1]=0;frame.vector[2]=0;
+   N32H4ED6C(call4,(void*)call5,call6);N32H4F194(child16+12,child16+12,vector18);
+  }
+ }
+ work2=N32F(tag,unsigned short*,16)+1;N32F(tag,short*,16)=work2;
+ if((short)work2<5)goto done;
+ cleanup:N32H55B18(owner);
+ done:__asm__ volatile("" ::: "memory");
+}
+#undef N32F
+
 
 extern unsigned char DecodedSpawnFlags __asm__("D_8006C7B4");
 extern unsigned char DecodedSpawnLevelFlags[] __asm__("D_80070300");
@@ -3393,7 +13269,312 @@ release:
     func_80055B18(moby);
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/moby", func_level_32_80085480);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* Original SCUS-94467 assembly SHA256 5de24f28b78484cea6b93c98e059c35ed3e3b25dbde237092eb60bcdc9e0b545. Rev1 raw270 provides a structural crosswalk only. */
+#define M2C_FIELD(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+
+
+int Fleet85480_func_800410F8() __asm__("func_800410F8");      
+int Fleet85480_func_8004F168() __asm__("func_8004F168");                      
+int Fleet85480_func_8004F334() __asm__("func_8004F334");              
+int Fleet85480_func_80055D24() __asm__("func_80055D24");             
+extern signed short Fleet85480_D_800658A0 __asm__("D_800658A0");
+extern signed short Fleet85480_D_80065920 __asm__("D_80065920");
+extern int Fleet85480_D_80069020 __asm__("D_80069020");
+extern int Fleet85480_D_80069024 __asm__("D_80069024");
+extern int Fleet85480_D_80069028 __asm__("D_80069028");
+extern int Fleet85480_D_8006C58C __asm__("D_8006C58C");
+extern int Fleet85480_D_8006E160 __asm__("D_8006E160");
+extern int Fleet85480_D_8006E53C __asm__("D_8006E53C");
+extern unsigned char Fleet85480_D_80070328 __asm__("D_80070328");
+extern signed char Fleet85480_D_80071573 __asm__("D_80071573");
+extern unsigned char Fleet85480_D_level_32_8009D030 __asm__("D_level_32_8009D030");
+extern unsigned char Fleet5946_StreamBegin __asm__("func_level_32_80075B98");
+extern unsigned char main_TEXT_END;
+extern unsigned char main_TEXT_START;
+
+void func_level_32_80085480(Moby *inputMoby) {
+    /* Member names retain original stack offsets and raw retail units. */
+    struct {int sp10;int sp14;} originalStack;
+
+register Moby *moby __asm__("$17")=inputMoby;
+
+    register int previousValue20 __asm__("$20");
+    register int tableIndex3 __asm__("$3");
+    register int firstAccumulator3 __asm__("$3");
+    register int currentValue3 __asm__("$3");
+    register int secondAccumulator3 __asm__("$3");
+    register int firstBitCount4 __asm__("$4");
+    register int secondBitCount4 __asm__("$4");
+    register int firstByteCount5 __asm__("$5");
+    register int secondByteCount5 __asm__("$5");
+    register int angle2 __asm__("$2");
+    register int firstWord2 __asm__("$2");
+    register int secondWord2 __asm__("$2");
+    register unsigned int initialStreamPointer3 __asm__("$3");
+    register unsigned int nextStreamPointer3 __asm__("$3");
+    register unsigned int secondStreamPointer3 __asm__("$3");
+    register int frameByte2 __asm__("$2");
+    register int phase3 __asm__("$3");
+    register int state3 __asm__("$3");
+    register void * privateData __asm__("$16");
+    register void * playerLink18 __asm__("$18");
+    register void *eventAddress4 __asm__("$4");
+    register unsigned int streamEnd4 __asm__("$4");
+    register unsigned int streamEnd7 __asm__("$7");
+    register unsigned int streamBegin6 __asm__("$6");
+    register unsigned int secondEnd6 __asm__("$6");
+    register int value2 __asm__("$2");
+    register int value3 __asm__("$3");
+    register unsigned char *playerLink19 __asm__("$19");
+    register int *event18 __asm__("$18");
+
+    __asm__("" : "=r"(moby):"0"(moby));
+    phase3 = moby->substate;
+    privateData = moby->mobyTag;
+    switch (phase3) {                              
+    case 0:                                         
+        Fleet85480_func_8004F168(privateData);
+        playerLink18 = &Fleet85480_D_80070328 + 0x13C;
+        __asm__("" : "=r"(playerLink18):"0"(playerLink18));
+        if (M2C_FIELD(playerLink18,Moby**,0) == moby) {
+            if (Fleet85480_func_8004F334(&moby->position, playerLink18 - 0x13C) < 0x300) {
+                moby->substate = 1;
+                if (M2C_FIELD(privateData, int *, 0x24) == 0) {
+                    Fleet85480_D_80069020 = 0x46;
+                    Fleet85480_D_80069024 = 0xB54;
+                    Fleet85480_D_80069028 = -0xC8;
+                } else {
+                    Fleet85480_D_80069020 = 0x136;
+                    Fleet85480_D_80069024 = 0x7D0;
+                    Fleet85480_D_80069028 = -0xC4;
+                }
+            } else {
+                if (func_8004F264((int) moby->angle.yaw, func_8004E880(M2C_FIELD(playerLink18, int *, -0x13C) - moby->position.x, M2C_FIELD(&Fleet85480_D_80070328, int *, 4) - moby->position.y, 0)) < 0x80) {
+                    angle2 = moby->angle.yaw + 0x40;
+                } else {
+                    angle2 = moby->angle.yaw + 0xC0;
+                }
+                tableIndex3=angle2&255;
+                __asm__("" : "=r"(tableIndex3):"0"(tableIndex3));
+                value2=0x10000480;
+                M2C_FIELD(&Fleet85480_D_80070328,int*,0x20C)=value2;
+                value2=7;
+                tableIndex3*=2;
+                M2C_FIELD(&Fleet85480_D_80070328,int*,0x23C)=value2;
+                value2=M2C_FIELD(&Fleet85480_D_80065920,signed short*,tableIndex3);
+                __asm__("" : "=r"(value2):"0"(value2));
+                M2C_FIELD(&Fleet85480_D_80070328,int*,0x21C)=value2>>6;
+                value2=M2C_FIELD(&Fleet85480_D_800658A0,signed short*,tableIndex3);
+                __asm__("" : "=r"(value2):"0"(value2));
+                value3=16;
+                M2C_FIELD(&Fleet85480_D_80070328,int*,0x224)=value3;
+                __asm__ volatile("" : "=r"(value2):"0"(value2):"memory");
+                M2C_FIELD(&Fleet85480_D_80070328,int*,0x220)=value2>>6;
+            }
+        }
+        if (moby->position.z >= 0x7531) {
+            initialStreamPointer3 = M2C_FIELD(privateData, unsigned int *, 0x28);
+            streamEnd4=(unsigned int)&main_TEXT_END;
+            if(initialStreamPointer3<streamEnd4) {
+                firstByteCount5 = 0;
+                if (initialStreamPointer3 <= 0x7FFFU) {
+                    M2C_FIELD(privateData, unsigned int *, 0x28) = (unsigned int) (Fleet85480_D_8006C58C + (&main_TEXT_START + 2));
+                }
+                streamEnd7=streamEnd4;
+                streamBegin6=(unsigned int)&Fleet5946_StreamBegin;
+firstStreamByte:
+                firstBitCount4 = 0;
+                M2C_FIELD(privateData, int *, 0x18) = (int) (M2C_FIELD(privateData, int *, 0x18) ^ (M2C_FIELD(M2C_FIELD(privateData, unsigned int *, 0x28),unsigned char*,0) << 8));
+                do {
+                    firstAccumulator3 = M2C_FIELD(privateData, int *, 0x18);
+                    firstWord2=firstAccumulator3&0x8000;
+                    if(firstWord2) {
+                        firstWord2=(firstAccumulator3*2)^0x8005;
+                    } else {
+                        firstWord2=firstAccumulator3*2;
+                    }
+                    M2C_FIELD(privateData,int*,0x18)=firstWord2;
+                    __asm__ volatile("" : : : "memory");
+                    firstBitCount4 += 1;
+                } while (firstBitCount4 < 8);
+                firstWord2=M2C_FIELD(privateData,int*,0x18);
+                nextStreamPointer3=M2C_FIELD(privateData,unsigned int*,0x28);
+                firstWord2&=3;
+                firstWord2+=1;
+                nextStreamPointer3+=firstWord2;
+                M2C_FIELD(privateData, unsigned int *, 0x28) = nextStreamPointer3;
+                firstByteCount5 += 1;
+                if (nextStreamPointer3 >= streamEnd7) {
+                    M2C_FIELD(privateData, unsigned int *, 0x28) =streamBegin6;
+                    firstByteCount5=0x40;
+                    __asm__("" : "=r"(firstByteCount5):"0"(firstByteCount5));
+                    firstByteCount5++;
+                }
+                if (firstByteCount5 < 0x40) {
+                    goto firstStreamByte;
+                }
+            }
+        }
+        break;
+    case 1:                                         
+        if(Fleet85480_D_8006E53C & 0x40) goto cancelPhase1;
+        playerLink19=&Fleet85480_D_80070328+0x13C;
+        if(M2C_FIELD(playerLink19,Moby**,0)!=moby) {
+cancelPhase1:
+            eventAddress4=&Fleet85480_D_8006E160;
+            __asm__("" : "=r"(eventAddress4):"0"(eventAddress4));
+            moby->substate=0;
+            value3=M2C_FIELD(eventAddress4,int*,0);
+            if(value3==14) M2C_FIELD(eventAddress4,int*,0)=0;
+        } else {
+            event18=&Fleet85480_D_8006E160;
+            if (*event18 == 0) {
+                func_80013ACC(moby, 0xE);
+            }
+            if (*event18 == 0xE) {
+                M2C_FIELD(&Fleet85480_D_80070328, int *, 0x20C) = 0x10000040;
+                M2C_FIELD(&Fleet85480_D_80070328, Moby **, 0x218) = moby;
+                func_8004F178(playerLink19+0xF0, &moby->position);
+                M2C_FIELD(&Fleet85480_D_80070328, int *, 0x238) = (int) moby->angle.yaw;
+                if (M2C_FIELD(&Fleet85480_D_80070328, int *, 0x214) == 2) {
+                    M2C_FIELD(privateData, int *, 0xC) = 0;
+                    moby->substate = 2;
+                }
+            }
+        }
+        break;
+    case 2:                                         
+        if(Fleet85480_D_8006E53C & 0x40) goto cancelPhase2;
+        playerLink19=&Fleet85480_D_80070328+0x13C;
+        if(M2C_FIELD(playerLink19,Moby**,0)!=moby) {
+cancelPhase2:
+            eventAddress4=&Fleet85480_D_8006E160;
+            __asm__("" : "=r"(eventAddress4):"0"(eventAddress4));
+            moby->substate=0;
+            value3=M2C_FIELD(eventAddress4,int*,0);
+            if(value3==14) M2C_FIELD(eventAddress4,int*,0)=0;
+        } else {
+            event18=&Fleet85480_D_8006E160;
+            previousValue20 = M2C_FIELD(privateData, int *, 0x14);
+            if (*event18 == 0) {
+                func_80013ACC(moby, 0xE);
+            }
+            if (*event18 == 0xE) {
+                Fleet85480_func_800410F8(&originalStack.sp10, privateData, 1);
+                moby->angle.yaw += (int) (originalStack.sp10 + 0xA) >> 5;
+                M2C_FIELD(&Fleet85480_D_80070328, int *, 0x20C) = 0x10018000;
+                func_8004F178(playerLink19+0xF0, &moby->position);
+                M2C_FIELD(&Fleet85480_D_80070328, int *, 0x234) = (int) (M2C_FIELD(&Fleet85480_D_80070328, int *, 0x234) + 0x283);
+                M2C_FIELD(&Fleet85480_D_80070328, unsigned char *, 0x228) = (unsigned char) moby->angle.roll;
+                M2C_FIELD(&Fleet85480_D_80070328, unsigned char *, 0x229) = (unsigned char) moby->angle.pitch;
+                __asm__ volatile("" : : : "memory");
+                value2=moby->angle.yaw;
+                M2C_FIELD(&Fleet85480_D_80070328, int *, 0x23C) = 0;
+                __asm__ volatile("" : "=r"(value2):"0"(value2):"memory");
+                M2C_FIELD(&Fleet85480_D_80070328, unsigned char *, 0x22A) = value2;
+                __asm__ volatile("" : : : "memory");
+                value2=originalStack.sp14;
+                currentValue3=M2C_FIELD(privateData,int*,20);
+                value2>>=5;
+                currentValue3-=value2;
+                M2C_FIELD(privateData, int *, 0x14) = currentValue3;
+                if (currentValue3 < 0) {
+                    M2C_FIELD(privateData, int *, 0x14) = 0;
+                }
+                if (M2C_FIELD(privateData, int *, 0x14) >= 0x79) {
+                    M2C_FIELD(privateData, int *, 0x14) = 0x78;
+                }
+            }
+            value2=-8;
+            currentValue3=M2C_FIELD(privateData,int*,20);
+            firstBitCount4=previousValue20&value2;
+            currentValue3&=value2;
+            if(firstBitCount4!=currentValue3) {
+                if (func_8003BFC0(moby, M2C_FIELD(privateData, int *, 0x1C)) != 0) {
+                    func_8003BE70(M2C_FIELD(privateData, int *, 0x1C));
+                }
+                M2C_FIELD(privateData, int *, 0x1C) = func_8003BABC(moby, 0, 0);
+                __asm__ volatile("" : "=r"(privateData):"0"(privateData));
+            }
+            if ((func_800359A4(privateData+12, 4) != 0) && (Fleet85480_D_8006E53C & 0x20)) {
+                moby->state = 1;
+            }
+        }
+        Fleet85480_func_80055D24(moby, 4);
+        break;
+    }
+    if ((unsigned int) M2C_FIELD(privateData, unsigned int *, 0x28) >= (unsigned int) &Fleet5946_StreamBegin) {
+        secondByteCount5 = 0;
+        secondEnd6=(unsigned int)&Fleet85480_D_level_32_8009D030;
+secondStreamByte:
+        secondStreamPointer3 = M2C_FIELD(privateData, unsigned int *, 0x28);
+        if (secondStreamPointer3 < secondEnd6) {
+            secondBitCount4 = 0;
+            M2C_FIELD(privateData, int *, 0x18) = (int) (M2C_FIELD(privateData, int *, 0x18) ^ (M2C_FIELD(secondStreamPointer3,unsigned char*,0) << 8));
+            do {
+                secondAccumulator3 = M2C_FIELD(privateData, int *, 0x18);
+                secondWord2=secondAccumulator3&0x8000;
+                if(secondWord2) secondWord2=(secondAccumulator3*2)^0x8005;
+                else secondWord2=secondAccumulator3*2;
+                M2C_FIELD(privateData,int*,0x18)=secondWord2;
+                __asm__ volatile("" : : : "memory");
+                secondBitCount4 += 1;
+            } while (secondBitCount4 < 8);
+            secondByteCount5 += 1;
+            M2C_FIELD(privateData, unsigned int *, 0x28) = (unsigned int) (M2C_FIELD(privateData, unsigned int *, 0x28) + 1);
+            if (secondByteCount5 < 0x40) {
+                goto secondStreamByte;
+            }
+        }
+    }
+    state3=moby->state;
+    switch(state3) {
+    case 0:
+        moby->animationState.id=0;
+        moby->animationState.nextId=2;
+        moby->animationState.frame=0;
+        moby->animationState.nextFrame=0;
+        goto loadProgress;
+    case 1:
+        __asm__("" : "=r"(state3):"0"(state3));
+        func_8003BABC(moby,1,0);
+        Fleet85480_func_80055D24(moby,4);
+        SpawnMoby(0xC2,moby);
+        M2C_FIELD(privateData,int*,12)=30;
+        moby->animationState.id=1;
+        moby->animationState.nextId=3;
+        moby->animationState.frame=0;
+        moby->animationState.nextFrame=0;
+        value2=M2C_FIELD(privateData,int*,20);
+        value3=2;
+        moby->state=value3;
+        goto shiftProgress;
+    case 2:
+        moby->animationState.id=1;
+        moby->animationState.nextId=3;
+        frameByte2=moby->animationState.frame+1;
+        moby->animationState.frame=frameByte2;
+        if((unsigned int)(frameByte2&255)>=14U) {
+            moby->animationState.frame=14;
+            moby->state=0;
+        }
+        moby->animationState.nextFrame=moby->animationState.frame;
+loadProgress:
+        value2=M2C_FIELD(privateData,int*,20);
+shiftProgress:
+        moby->animationProgress=value2>>3;
+        break;
+    }
+    if ((M2C_FIELD(privateData, unsigned int *, 0x28) == &Fleet85480_D_level_32_8009D030) && (M2C_FIELD(privateData, int *, 0x18) != 0)) {
+        Fleet85480_D_80071573 = 1;
+        M2C_FIELD(privateData, int *, 0x18) = 0;
+    }
+}
+#undef M2C_FIELD
+
 
 extern int D_8006C648,D_8006C640;
 extern Vector3D D_80071918;
@@ -4068,9 +14249,1800 @@ checkPlayerState:
     return;
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/moby", func_level_32_80086E34);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original80086E34.
+ * AI generated; not human reviewed. All1263 native words,45 selectors and
+ * one zero pad must match. Original tables contain23 and22 entries.
+ * Frame68 (104 bytes) saves S0..S7/RA at SP40..60. Explicit local storage
+ * spans SP10..3F;outgoing home area is SP00..0F. No FP/SP binding or live
+ * fixed-register alias overlap exists. Every local read has its original
+ * initialized producer;there are no incoming saved-register reads.
+ * Original switch default entries both continue at original block106;
+ * they never enter the final epilogue. State/substate switches preserve
+ * callbacks,path scans,timers,
+ * field resets,turn limits,sounds,created owners and particle calculations.
+ * Tag scans load signed termination from the CURRENT entry before the
+ * byte increment2 in the branch delay. Count*30 uses the old count before
+ * increment. The otherwise unused abs(private88/8C/90)+32 calculations are
+ * retained as actual original computations,without reading reserve bytes.
+ * All9 variable MULT sites form complete signed64 products from staged
+ * signed32 operands. Two high and seven low captures use initialized full
+ * values. Low32 narrowing precedes each original signed shift. Initial /80
+ * uses66666667 high>>5 and sign correction;/100 uses51EB851F high>>5 with
+ * sign correction. Signed16 narrowing occurs BEFORE factors108/104/98.
+ * Falsifiable arithmetic vectors:/80(-4500)=-56;/100(-4500)=-45;
+ * signed16(40000)=-25536;low32(32767*32767)>>12=262128.
+ * Original guarded variable DIV remains. Signed LB44/45/46 values retain
+ * their full signed representation before final byte stores.
+ * The target-point index is signed16 and shifted left4. Complete loaded
+ * pointer metadata plus a dead A2 clobber leaves the original first LW
+ * delay empty and allows A2=0 to fill the later LH delay. It emits no CPU
+ * instruction and never invents a read or supplies an uninitialized value.
+ * Complete A0/A1 identities precede retained callback-result copies into
+ * S0 in the1A358 delays. Helper views use known original argument widths;
+ * 369B8 forwards the original caller A0/A1 ABI to2E2D0,whose full semantic
+ * contract is unresolved. Header743E8 retains its original three-word ABI;
+ * its complete callback target/allocation chain remains an evidence need.
+ * Other empty metadata consumes complete initialized original values,
+ * addresses or freshly written fields;there is no opcode asm or partial
+ * HILO input. Compiler,filter,flags,actual transfer/data targets and every
+ * EXE/overlay retail hash remain unchanged and mandatory.
+ * Confidence after gates is binary identity. Complete allocation/caller/
+ * helper chains,units,fixed-point domains,cadence beyond invocation,Rev1
+ * mapping and synchronized retail runtime verification remain open.
+ * Next evidence:human review and original runtime/caller-chain captures.
+ */
+/* Original assembly SHA256 b8bccf9d15341cd51713f0804528ead39b6200353581b2b18a8430cb2d33d048 */
+#define Level32_86E34Keep(v) __asm__("":"=r"(v):"0"(v))
+#define Level32_86E34MultiplyComplete(a,b) do{completeSignedProduct=(long long)(int)(a)*(long long)(int)(b);__asm__ volatile(""::"x"(completeSignedProduct));}while(0)
+#define Level32_86E34CaptureHigh(dst) do{int wholeCapturedHigh;__asm__("":"=h"(wholeCapturedHigh):"x"(completeSignedProduct));(dst)=wholeCapturedHigh;Level32_86E34Keep(dst);}while(0)
+#define Level32_86E34CaptureLow(dst) do{int wholeCapturedLow;__asm__("":"=l"(wholeCapturedLow):"x"(completeSignedProduct));(dst)=wholeCapturedLow;Level32_86E34Keep(dst);}while(0)
+#define Level32_86E34Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+int Level32_86E34Call1A358View1(void*,int) __asm__("func_8001A358");
+void Level32_86E34Call34F40View1(void*,int) __asm__("func_80034F40");
+int Level32_86E34Call35194View1(void*,void*) __asm__("func_80035194");
+void Level32_86E34Call35734View1(void*) __asm__("func_80035734");
+int Level32_86E34Call359A4View1(void*,int) __asm__("func_800359A4");
+int Level32_86E34Call3613CView1(int,int) __asm__("func_8003613C");
+int Level32_86E34Call3636CView1(int,int) __asm__("func_8003636C");
+int Level32_86E34Call363DCView1(int,int) __asm__("func_800363DC");
+void Level32_86E34Call369B8View1(void*,int) __asm__("func_800369B8");
+void Level32_86E34Call37014View1(void*) __asm__("func_80037014");
+void Level32_86E34Call37168View1(void*,void*,int) __asm__("func_80037168");
+void Level32_86E34Call38BF8View1(void*,void*,int,int) __asm__("func_80038BF8");
+int Level32_86E34Call3BABCView1(void*,int,int) __asm__("func_8003BABC");
+void Level32_86E34Call3BE70View1(int) __asm__("func_8003BE70");
+int Level32_86E34Call3BFC0View1(void*,int) __asm__("func_8003BFC0");
+int Level32_86E34Call4E880View1(int,int,int) __asm__("func_8004E880");
+void Level32_86E34Call4F110View1(void*,int) __asm__("func_8004F110");
+void Level32_86E34Call4F178View1(void*,void*) __asm__("func_8004F178");
+void Level32_86E34Call4F194View1(void*,void*,void*) __asm__("func_8004F194");
+int Level32_86E34Call4F264View1(int,int) __asm__("func_8004F264");
+int Level32_86E34Call4F334View1(void*,void*) __asm__("func_8004F334");
+void Level32_86E34Call55D24View1(void*,int) __asm__("func_80055D24");
+void Level32_86E34Call55F14View1(void*,int,void*) __asm__("func_80055F14");
+void Level32_86E34Call5629CView1(void*) __asm__("func_8005629C");
+extern unsigned char Level32_86E34Data658A0View1 __asm__("D_800658A0");
+extern unsigned char Level32_86E34Data65920View1 __asm__("D_80065920");
+extern int Level32_86E34Data6C550View1 __asm__("D_8006C550");
+extern int Level32_86E34Data6C640View1 __asm__("D_8006C640");
+extern int Level32_86E34Data6C730View1 __asm__("D_8006C730");
+extern int Level32_86E34Data6C770View1 __asm__("D_8006C770");
+extern int Level32_86E34Data6C7C4View1 __asm__("D_8006C7C4");
+extern unsigned char Level32_86E34Data6EE2CView1 __asm__("D_8006EE2C");
+extern unsigned char Level32_86E34Data70328View1 __asm__("D_80070328");
+extern void*(*Level32_86E34DataSpawnMobyView1)(int,void*) __asm__("SpawnMoby");
+extern void*(*Level32_86E34DataSpawnParticleView1)(int,int,void*,void*) __asm__("SpawnParticle");
+extern int(*Level32_86E34Data743E8View1)(void*,void*,void*) __asm__("unk_ovlheader_800743E8");
+void func_level_32_80086E34(void* ownerParameter) {
+    register int pointerCountOrIndex16 __asm__("$16"),pathCountOrTagCursor17 __asm__("$17"),owner18 __asm__("$18"),privateRecord19 __asm__("$19"),relatedOwnerOrCosineBase20 __asm__("$20"),remainderOrSineBase21 __asm__("$21"),relatedRecordOrParticleLimit22 __asm__("$22"),retainedYaw23 __asm__("$23");
+    register int resultOrField2 __asm__("$2"),fieldOrIntermediate3 __asm__("$3"),argumentOrField4 __asm__("$4"),argumentOrField5 __asm__("$5"),argumentOrField6 __asm__("$6"),argumentOrField7 __asm__("$7"),capturedLowOrScratch8 __asm__("$8"),scratch9 __asm__("$9"),scratch10 __asm__("$10");
+    int retainedOriginalPitch;
+    long long completeSignedProduct;
+    struct {
+        int sp10,sp14,sp18,sp1C,sp20,sp24,sp28,sp2C,sp30,sp34,sp38,sp3C;
+    }
+    originalFrame;
+    int temp_a1_5;
+    int temp_v1_10;
+    int temp_v1_11;
+    int temp_v1_4;
+    int temp_a3;
+    int temp_a3_3;
+    int temp_v1;
+    int var_a0;
+    int temp_v0_12;
+    int temp_v0_13;
+    int var_v1;
+    int temp_v0_4;
+    int temp_a0;
+    int temp_a0_5;
+    int temp_v0_15;
+    int temp_a1_4;
+    int temp_a2;
+    int temp_v0_10;
+    int temp_v0_2;
+    int temp_v0_6;
+    int temp_v1_16;
+    int temp_v1_9;
+    owner18=(int)ownerParameter;
+    Level32_86E34Keep(owner18);
+    privateRecord19 = Level32_86E34Field(owner18, int*, 0);
+    resultOrField2=Level32_86E34Field(privateRecord19,int*,168);
+    retainedYaw23=Level32_86E34Field(owner18,unsigned char*,70);
+    fieldOrIntermediate3=resultOrField2*11;
+    resultOrField2=Level32_86E34Data6C550View1;
+    fieldOrIntermediate3*=8;
+    relatedOwnerOrCosineBase20=resultOrField2+fieldOrIntermediate3;
+    resultOrField2=Level32_86E34Field(privateRecord19,int*,64);
+    relatedRecordOrParticleLimit22=Level32_86E34Field(relatedOwnerOrCosineBase20,int*,0);
+    pointerCountOrIndex16=0;
+    if(resultOrField2)pointerCountOrIndex16=Level32_86E34Field(resultOrField2,int*,0);
+block_2:
+    temp_v1 = Level32_86E34Field(owner18, int *, 0x18);
+    if (!(temp_v1 & 0x8B0000)) {
+        goto block_14;
+    }
+    if (temp_v1 & 0x10000) {
+        goto block_5;
+    }
+    if (Level32_86E34Call4F264View1(Level32_86E34Field((int)&Level32_86E34Data70328View1, unsigned char *, 0xE), Level32_86E34Call4E880View1(Level32_86E34Field(owner18, int *, 0xC) - Level32_86E34Field((int)&Level32_86E34Data70328View1, int *, 0), Level32_86E34Field(owner18, int *, 0x10) - Level32_86E34Field((int)&Level32_86E34Data70328View1, int *, 4), 0)) >= 0x34) {
+        goto block_14;
+    }
+block_5:
+    if (Level32_86E34Field(owner18, unsigned char *, 0x48) == 2) {
+        goto block_15;
+    }
+    Level32_86E34Call38BF8View1(owner18, privateRecord19 + 0x18, 6, 2);
+    Level32_86E34Field(privateRecord19, signed char *, 0x2E) = 0x78;
+    if (Level32_86E34Call3BFC0View1(owner18, Level32_86E34Field(privateRecord19, int *, 0xB4)) == 0) {
+        goto block_8;
+    }
+    Level32_86E34Call3BE70View1(Level32_86E34Field(privateRecord19, int *, 0xB4));
+block_8:
+    Level32_86E34Field(privateRecord19, int *, 0xB4) = -1;
+    if (Level32_86E34Call3BFC0View1(owner18, Level32_86E34Field(privateRecord19, int *, 0xB0)) == 0) {
+        goto block_10;
+    }
+    Level32_86E34Call3BE70View1(Level32_86E34Field(privateRecord19, int *, 0xB0));
+block_10:
+    Level32_86E34Field(privateRecord19, int *, 0xB0) = -1;
+    resultOrField2=Level32_86E34Field((int)&Level32_86E34Data70328View1,int*,176);
+    fieldOrIntermediate3=0x66666667;
+    Level32_86E34MultiplyComplete(resultOrField2,fieldOrIntermediate3);
+    resultOrField2>>=31;
+    Level32_86E34CaptureHigh(capturedLowOrScratch8);
+    fieldOrIntermediate3=capturedLowOrScratch8>>5;
+    fieldOrIntermediate3-=resultOrField2;
+    resultOrField2=Level32_86E34Field(privateRecord19,unsigned short*,28);
+    argumentOrField4=Level32_86E34Field(privateRecord19,int*,64);
+    resultOrField2+=fieldOrIntermediate3;
+    Level32_86E34Field(privateRecord19,unsigned short*,28)=resultOrField2;
+    temp_a0=argumentOrField4;
+    if (temp_a0 == 0) {
+        goto block_14;
+    }
+    Level32_86E34Field(temp_a0, signed char *, 0x49) = 0;
+    Level32_86E34Field(pointerCountOrIndex16, short *, 0xE) = 0x1E;
+    Level32_86E34Field(pointerCountOrIndex16, short *, 0xC) = 0x78;
+    Level32_86E34Field(pointerCountOrIndex16, short *, 0x12) = 0;
+    Level32_86E34Field(pointerCountOrIndex16, short *, 0x10) = 0xC;
+    Level32_86E34Field(pointerCountOrIndex16, int *, 0) = (int) ((int) (Level32_86E34Field((int)&Level32_86E34Data65920View1,short*,(Level32_86E34Field(privateRecord19, unsigned char *, 0x29) * 2)) * 0x37) >> 0xA);
+    resultOrField2=Level32_86E34Field(privateRecord19,unsigned char*,41);
+    argumentOrField5=4;
+    resultOrField2*=2;
+    fieldOrIntermediate3=Level32_86E34Field((int)&Level32_86E34Data658A0View1,short*,resultOrField2);
+    resultOrField2=125;
+    Level32_86E34Field(pointerCountOrIndex16,int*,8)=resultOrField2;
+    resultOrField2=fieldOrIntermediate3*55;
+    resultOrField2>>=10;
+    Level32_86E34Field(pointerCountOrIndex16,int*,4)=resultOrField2;
+    Level32_86E34Call3BABCView1(Level32_86E34Field(privateRecord19,int*,64),argumentOrField5,0);
+    Level32_86E34Field(pointerCountOrIndex16, short *, 0x16) = -1;
+    Level32_86E34Field(Level32_86E34Field(privateRecord19, int*, 0x40), signed char *, 0x48) = 1;
+    if (Level32_86E34Call3BFC0View1(owner18, (int) Level32_86E34Field(pointerCountOrIndex16, short *, 0x14)) == 0) {
+        goto block_13;
+    }
+    Level32_86E34Call3BE70View1((int) Level32_86E34Field(pointerCountOrIndex16, short *, 0x14));
+block_13:
+    Level32_86E34Field(pointerCountOrIndex16, short *, 0x14) = -1;
+    Level32_86E34Field(privateRecord19, int*, 0x40) = 0;
+block_14:
+block_15:
+    Level32_86E34Field(owner18, int *, 0x18) = 0;
+    if (Level32_86E34Field(owner18, unsigned char *, 0x48) >= 0x17U) {
+        goto block_106;
+    }
+    switch (Level32_86E34Field(owner18, unsigned char *, 0x48)){
+    case 0:
+        if (Level32_86E34Call3BFC0View1(owner18, Level32_86E34Field(privateRecord19, int *, 0xB4)) != 0) {
+            goto block_19;
+        }
+        Level32_86E34Field(privateRecord19, int *, 0xB4) = Level32_86E34Call3BABCView1(owner18, 1, 4);
+    block_19:
+        if (Level32_86E34Data6C640View1 != 0) {
+            goto block_21;
+        }
+        Level32_86E34Field(owner18, signed char *, 0x57) = 0;
+        Level32_86E34Field(owner18, unsigned char *, 0x54) = (unsigned char) Level32_86E34Field((Level32_86E34Field(privateRecord19, int *, 0x7C) * 3) + Level32_86E34Field(privateRecord19, int *, 0xAC),unsigned char*,0);
+        Level32_86E34Field(owner18, unsigned char *, 0x55) = (unsigned char) Level32_86E34Field(((Level32_86E34Field(privateRecord19, int *, 0x7C) * 3) + Level32_86E34Field(privateRecord19, int *, 0xAC)), unsigned char *, 1);
+        Level32_86E34Field(owner18, unsigned char *, 0x56) = (unsigned char) Level32_86E34Field(((Level32_86E34Field(privateRecord19, int *, 0x7C) * 3) + Level32_86E34Field(privateRecord19, int *, 0xAC)), unsigned char *, 2);
+    block_21:
+        Level32_86E34Call37168View1(owner18, privateRecord19, 0x57);
+        goto block_106;
+    case 20:
+        Level32_86E34Call4F178View1(owner18 + 0xC, Level32_86E34Field(Level32_86E34Field(privateRecord19, int*, 0x44), int*, 0xC));
+        Level32_86E34Call37014View1(owner18);
+        Level32_86E34Field(owner18,unsigned char*,82)=254;
+        Level32_86E34Call55D24View1(owner18, 2);
+        temp_v0_2 = Level32_86E34Field(Level32_86E34Field(privateRecord19, int*, 0x44), int*, 0xC);
+        temp_a3 = Level32_86E34Field(temp_v0_2, int *, 0x10);
+        Level32_86E34Field(owner18, unsigned char *, 0x46) = Level32_86E34Call4E880View1(temp_a3 - Level32_86E34Field(temp_v0_2, int *, 0), Level32_86E34Field(temp_v0_2, int *, 0x14) - Level32_86E34Field(temp_v0_2, int *, 4), 0);
+        Level32_86E34Field(privateRecord19, short *, 0x30) = -1;
+        Level32_86E34Field(privateRecord19, short *, 0x32) = -1;
+        Level32_86E34Field(privateRecord19, short *, 0x36) = 0x28;
+        Level32_86E34Field(privateRecord19, short *, 0x3E) = 1;
+        Level32_86E34Field(privateRecord19, int *, 0x78) = 0;
+        Level32_86E34Field(privateRecord19, unsigned short *, 0xA4) = (unsigned short) (((5 - Level32_86E34Field(privateRecord19, int *, 0x7C)) * 5) + 0xFA);
+        Level32_86E34Field(privateRecord19, int *, 0x80) = (int) (((5 - Level32_86E34Field(privateRecord19, int *, 0x7C)) * 0x5A) + 0xB4);
+        Level32_86E34Field(owner18, unsigned char *, 0x49) = 0U;
+        Level32_86E34Field(Level32_86E34Field(privateRecord19, int*, 0x44), short *, 2) = 0;
+        resultOrField2=Level32_86E34Field(privateRecord19,int*,76);
+        Level32_86E34Keep(resultOrField2);
+        Level32_86E34Field(privateRecord19,int*,72)=resultOrField2;
+        Level32_86E34Field(resultOrField2,short*,2)=0;
+        resultOrField2=21;
+        goto block_105;
+    case 21:
+        resultOrField2=Level32_86E34Data743E8View1(owner18,Level32_86E34Field(privateRecord19,int*,68),privateRecord19+48);
+        argumentOrField4=owner18+12;
+        argumentOrField5=12000;
+        __asm__("":"=r"(argumentOrField4),"=r"(argumentOrField5):"0"(argumentOrField4),"1"(argumentOrField5));
+        pointerCountOrIndex16=resultOrField2;
+        Level32_86E34Call1A358View1(argumentOrField4,argumentOrField5);
+        Level32_86E34Call5629CView1(owner18);
+        pointerCountOrIndex16&=1;
+        if(!pointerCountOrIndex16)goto block_106;
+        fieldOrIntermediate3=Level32_86E34Field(privateRecord19,int*,68);
+        resultOrField2=Level32_86E34Field(fieldOrIntermediate3,short*,2);
+        if(resultOrField2)goto block_106;
+        resultOrField2=Level32_86E34Field(fieldOrIntermediate3,short*,0);
+        fieldOrIntermediate3=Level32_86E34Field(fieldOrIntermediate3,int*,12);
+        resultOrField2*=16;
+        resultOrField2+=fieldOrIntermediate3;
+        fieldOrIntermediate3=Level32_86E34Field(privateRecord19,int*,76);
+        resultOrField2=Level32_86E34Field(resultOrField2,unsigned char*,-4);
+        Level32_86E34Field(privateRecord19,int*,72)=fieldOrIntermediate3;
+        Level32_86E34Field(fieldOrIntermediate3,short*,2)=resultOrField2;
+        resultOrField2=22;
+        Level32_86E34Field(privateRecord19,unsigned short*,166)=0;
+        goto block_105;
+    case 22:
+        pathCountOrTagCursor17=Level32_86E34Field(privateRecord19,int*,72);
+        resultOrField2=Level32_86E34Data743E8View1(owner18,pathCountOrTagCursor17,privateRecord19+48);
+        argumentOrField4=owner18+12;
+        argumentOrField5=12000;
+        __asm__("":"=r"(argumentOrField4),"=r"(argumentOrField5):"0"(argumentOrField4),"1"(argumentOrField5));
+        pointerCountOrIndex16=resultOrField2;
+        Level32_86E34Call1A358View1(argumentOrField4,argumentOrField5);
+        Level32_86E34Call5629CView1(owner18);
+        pointerCountOrIndex16&=1;
+        if(!pointerCountOrIndex16)goto block_40;
+        temp_v1_4 = Level32_86E34Field(pathCountOrTagCursor17, short *, 0);
+        remainderOrSineBase21 = (int) ((Level32_86E34Field(pathCountOrTagCursor17, short *, 2) - Level32_86E34Field(pathCountOrTagCursor17, short *, 0xA)) + temp_v1_4) % temp_v1_4;
+        fieldOrIntermediate3=Level32_86E34Field(pathCountOrTagCursor17,int*,12);
+        resultOrField2=remainderOrSineBase21*16;
+        relatedOwnerOrCosineBase20=fieldOrIntermediate3+resultOrField2;
+        temp_v0_4 = Level32_86E34Field(relatedOwnerOrCosineBase20, unsigned char *, 0xF);
+        if (temp_v0_4 == 0) {
+            goto block_29;
+        }
+        Level32_86E34Field(privateRecord19, int *, 0x80) = (int) temp_v0_4;
+    block_29:
+        resultOrField2=Level32_86E34Field(relatedOwnerOrCosineBase20,unsigned char*,14);
+        fieldOrIntermediate3=Level32_86E34Field(relatedOwnerOrCosineBase20,unsigned char*,13);
+        pointerCountOrIndex16=(unsigned int)resultOrField2>>5;
+        Level32_86E34Keep(pointerCountOrIndex16);
+        resultOrField2&=31;
+        Level32_86E34Field(relatedOwnerOrCosineBase20,unsigned char*,14)=resultOrField2;
+        if(fieldOrIntermediate3)goto block_31;
+        resultOrField2=Level32_86E34Field(relatedOwnerOrCosineBase20,unsigned char*,12);
+        if(!resultOrField2)goto block_38;
+    block_31:
+        var_a0 = Level32_86E34Call3636CView1(0, 0x64);
+        if (remainderOrSineBase21 != (Level32_86E34Field(pathCountOrTagCursor17, short *, 0) - 1)) {
+            goto block_33;
+        }
+        var_a0 = 0x64;
+    block_33:
+        resultOrField2=pointerCountOrIndex16*30;
+        argumentOrField4=var_a0+resultOrField2;
+        resultOrField2=argumentOrField4<51;
+        pointerCountOrIndex16++;
+        if(resultOrField2)goto block_35;
+        pointerCountOrIndex16 = (Level32_86E34Field(relatedOwnerOrCosineBase20, unsigned char *, 0xD) * 4) + privateRecord19;
+        pathCountOrTagCursor17 = Level32_86E34Field(relatedOwnerOrCosineBase20, unsigned char *, 0xC);
+        resultOrField2=Level32_86E34Field(pointerCountOrIndex16,int*,76);
+        argumentOrField5=pathCountOrTagCursor17*16;
+        resultOrField2=Level32_86E34Field(resultOrField2,int*,12);
+        Level32_86E34Call4F178View1(&originalFrame.sp10,resultOrField2+argumentOrField5);
+        Level32_86E34Call4E880View1(originalFrame.sp10 - Level32_86E34Field(owner18, int *, 0xC), originalFrame.sp14 - Level32_86E34Field(owner18, int *, 0x10), 0);
+        temp_v0_6 = Level32_86E34Field(pointerCountOrIndex16, int*, 0x4C);
+        Level32_86E34Field(privateRecord19, int*, 0x48) = temp_v0_6;
+        Level32_86E34Field(temp_v0_6, short *, 2) = (short) pathCountOrTagCursor17;
+        goto block_38;
+    block_35:
+        if (pointerCountOrIndex16 < 8) {
+            goto block_37;
+        }
+        pointerCountOrIndex16 = 7;
+    block_37:
+        resultOrField2=Level32_86E34Field(relatedOwnerOrCosineBase20,unsigned char*,14);
+        fieldOrIntermediate3=pointerCountOrIndex16<<5;
+        resultOrField2|=fieldOrIntermediate3;
+        Level32_86E34Field(relatedOwnerOrCosineBase20,unsigned char*,14)=resultOrField2;
+    block_38:
+        resultOrField2=Level32_86E34Field(privateRecord19,int*,132);
+        pathCountOrTagCursor17=Level32_86E34Field(privateRecord19,int*,72);
+        fieldOrIntermediate3=resultOrField2-12;
+        if(resultOrField2)goto block_41;
+        resultOrField2=Level32_86E34Field(pathCountOrTagCursor17,short*,2);
+        fieldOrIntermediate3=Level32_86E34Field(pathCountOrTagCursor17,int*,12);
+        resultOrField2*=16;
+        fieldOrIntermediate3+=resultOrField2;
+        resultOrField2=Level32_86E34Field(fieldOrIntermediate3,unsigned char*,14);
+        Level32_86E34Field(privateRecord19,int*,136)=0;
+        Level32_86E34Field(privateRecord19,int*,140)=0;
+        Level32_86E34Field(privateRecord19,int*,144)=0;
+        resultOrField2&=31;
+        Level32_86E34Field(privateRecord19,int*,132)=resultOrField2;
+        __asm__ volatile(""::"m"(Level32_86E34Field(privateRecord19,int*,132)):"memory");
+        resultOrField2=Level32_86E34Field(privateRecord19,int*,132);
+        fieldOrIntermediate3=resultOrField2-12;
+        block_40:resultOrField2=Level32_86E34Field(privateRecord19,int*,132);
+        fieldOrIntermediate3=resultOrField2-12;
+        block_41:var_v1=fieldOrIntermediate3;
+        if((unsigned int)var_v1>=22U)goto block_106;
+        switch (var_v1){
+        case 4:
+        case 5:
+        case 16:
+        case 17:
+            resultOrField2=Level32_86E34Field(privateRecord19,int*,136);
+            fieldOrIntermediate3=Level32_86E34Field(privateRecord19,int*,132);
+            if(resultOrField2>=0)goto originalTurn0Abs;
+            resultOrField2=-resultOrField2;
+            originalTurn0Abs:__asm__ volatile("":"=r"(resultOrField2):"0"(resultOrField2));
+            relatedOwnerOrCosineBase20=resultOrField2+32;
+            __asm__ volatile(""::"r"(relatedOwnerOrCosineBase20));
+            resultOrField2=28;
+            pointerCountOrIndex16=256;
+            if(fieldOrIntermediate3==resultOrField2)goto originalTurn0Large;
+            resultOrField2=17;
+            if(fieldOrIntermediate3!=resultOrField2)goto limitFirstOriginalTurn;
+            originalTurn0Large:pointerCountOrIndex16=512;
+            limitFirstOriginalTurn:resultOrField2=Level32_86E34Field(privateRecord19,int*,132);
+            resultOrField2-=16;
+            if((unsigned int)resultOrField2<2U)pointerCountOrIndex16+=512;
+            resultOrField2=Level32_86E34Field(owner18,unsigned char*,61);
+            pathCountOrTagCursor17=1;
+            argumentOrField4=owner18;
+            if(resultOrField2==pathCountOrTagCursor17)goto applyFirstOriginalTurn;
+            resultOrField2=114;
+            Level32_86E34Data6C770View1=0;
+            Level32_86E34Field(owner18,unsigned char*,64)=resultOrField2;
+            resultOrField2=1;
+            Level32_86E34Field(owner18,unsigned char*,61)=resultOrField2;
+            Level32_86E34Field(owner18,unsigned char*,63)=0;
+            Level32_86E34Call35734View1(argumentOrField4);
+            applyFirstOriginalTurn:resultOrField2=Level32_86E34Field(owner18,unsigned char*,60);
+            if(resultOrField2!=pathCountOrTagCursor17)goto originalTurn0After;
+            argumentOrField5=Level32_86E34Field(privateRecord19,int*,136);
+            resultOrField2=argumentOrField5;
+            if(argumentOrField5>=0)goto originalTurn0Delta;
+            resultOrField2=-resultOrField2;
+            originalTurn0Delta:fieldOrIntermediate3=resultOrField2-12;
+            argumentOrField4=-12;
+            if(pointerCountOrIndex16<fieldOrIntermediate3)argumentOrField4=fieldOrIntermediate3-pointerCountOrIndex16;
+            if(!argumentOrField4)goto originalTurn0After;
+            resultOrField2=argumentOrField5-12;
+            Level32_86E34Field(privateRecord19,int*,136)=resultOrField2;
+            resultOrField2=Level32_86E34Field(owner18,unsigned char*,68);
+            resultOrField2-=12;
+            Level32_86E34Field(owner18,unsigned char*,68)=resultOrField2;
+            originalTurn0After:resultOrField2=Level32_86E34Field(privateRecord19,int*,136);
+            if(resultOrField2>=0)goto originalTurn0Check;
+            resultOrField2=-resultOrField2;
+            originalTurn0Check:resultOrField2=pointerCountOrIndex16<resultOrField2;
+            __asm__ volatile(""::"r"(pointerCountOrIndex16),"r"(resultOrField2));
+            if(!resultOrField2)goto block_106;
+            goto block_98;
+        case 0:
+        case 1:
+        case 12:
+        case 13:
+            resultOrField2=Level32_86E34Field(privateRecord19,int*,140);
+            fieldOrIntermediate3=Level32_86E34Field(privateRecord19,int*,132);
+            if(resultOrField2>=0)goto originalTurn1Abs;
+            resultOrField2=-resultOrField2;
+            originalTurn1Abs:__asm__ volatile("":"=r"(resultOrField2):"0"(resultOrField2));
+            relatedOwnerOrCosineBase20=resultOrField2+32;
+            __asm__ volatile(""::"r"(relatedOwnerOrCosineBase20));
+            resultOrField2=25;
+            pointerCountOrIndex16=256;
+            if(fieldOrIntermediate3==resultOrField2)goto originalTurn1Large;
+            resultOrField2=13;
+            if(fieldOrIntermediate3!=resultOrField2)goto limitSecondOriginalTurn;
+            originalTurn1Large:pointerCountOrIndex16=512;
+            limitSecondOriginalTurn:resultOrField2=Level32_86E34Field(owner18,unsigned char*,61);
+            pathCountOrTagCursor17=1;
+            argumentOrField4=owner18;
+            if(resultOrField2==pathCountOrTagCursor17)goto applySecondOriginalTurn;
+            resultOrField2=114;
+            Level32_86E34Data6C770View1=0;
+            Level32_86E34Field(owner18,unsigned char*,64)=resultOrField2;
+            resultOrField2=1;
+            Level32_86E34Field(owner18,unsigned char*,61)=resultOrField2;
+            Level32_86E34Field(owner18,unsigned char*,63)=0;
+            Level32_86E34Call35734View1(argumentOrField4);
+            applySecondOriginalTurn:resultOrField2=Level32_86E34Field(owner18,unsigned char*,60);
+            if(resultOrField2!=pathCountOrTagCursor17)goto originalTurn1After;
+            resultOrField2=Level32_86E34Field(privateRecord19,int*,140);
+            argumentOrField5=resultOrField2+12;
+            fieldOrIntermediate3=argumentOrField5;
+            if(argumentOrField5>=0)goto originalTurn1Delta;
+            fieldOrIntermediate3=-fieldOrIntermediate3;
+            originalTurn1Delta:argumentOrField4=12;
+            if(pointerCountOrIndex16<fieldOrIntermediate3)argumentOrField4=fieldOrIntermediate3-pointerCountOrIndex16;
+            if(!argumentOrField4)goto originalTurn1After;
+            Level32_86E34Field(privateRecord19,int*,140)=argumentOrField5;
+            originalTurn1After:argumentOrField4=Level32_86E34Field(privateRecord19,int*,140);
+            fieldOrIntermediate3=argumentOrField4;
+            if(argumentOrField4>=0)goto originalTurn1Check;
+            fieldOrIntermediate3=-fieldOrIntermediate3;
+            originalTurn1Check:resultOrField2=pointerCountOrIndex16<fieldOrIntermediate3;
+            if(resultOrField2)goto block_98;
+            resultOrField2=Level32_86E34Field(owner18,unsigned char*,69);
+            resultOrField2-=argumentOrField4;
+            Level32_86E34Field(owner18,unsigned char*,69)=resultOrField2;
+            goto block_106;
+        case 8:
+        case 9:
+        case 20:
+        case 21:
+            resultOrField2=Level32_86E34Field(privateRecord19,int*,144);
+            fieldOrIntermediate3=Level32_86E34Field(privateRecord19,int*,132);
+            if(resultOrField2>=0)goto originalTurn2Abs;
+            resultOrField2=-resultOrField2;
+            originalTurn2Abs:__asm__ volatile("":"=r"(resultOrField2):"0"(resultOrField2));
+            relatedOwnerOrCosineBase20=resultOrField2+32;
+            __asm__ volatile(""::"r"(relatedOwnerOrCosineBase20));
+            resultOrField2=21;
+            pointerCountOrIndex16=256;
+            if(fieldOrIntermediate3==resultOrField2)goto originalTurn2Large;
+            resultOrField2=33;
+            if(fieldOrIntermediate3!=resultOrField2)goto limitThirdOriginalTurn;
+            originalTurn2Large:pointerCountOrIndex16=512;
+            limitThirdOriginalTurn:resultOrField2=Level32_86E34Field(owner18,unsigned char*,61);
+            pathCountOrTagCursor17=1;
+            argumentOrField4=owner18;
+            if(resultOrField2==pathCountOrTagCursor17)goto applyThirdOriginalTurn;
+            resultOrField2=114;
+            Level32_86E34Data6C770View1=0;
+            Level32_86E34Field(owner18,unsigned char*,64)=resultOrField2;
+            resultOrField2=1;
+            Level32_86E34Field(owner18,unsigned char*,61)=resultOrField2;
+            Level32_86E34Field(owner18,unsigned char*,63)=0;
+            Level32_86E34Call35734View1(argumentOrField4);
+            applyThirdOriginalTurn:resultOrField2=Level32_86E34Field(owner18,unsigned char*,60);
+            if(resultOrField2!=pathCountOrTagCursor17)goto originalTurn2After;
+            resultOrField2=Level32_86E34Field(privateRecord19,int*,144);
+            argumentOrField5=resultOrField2+14;
+            fieldOrIntermediate3=argumentOrField5;
+            if(argumentOrField5>=0)goto originalTurn2Delta;
+            fieldOrIntermediate3=-fieldOrIntermediate3;
+            originalTurn2Delta:argumentOrField4=14;
+            if(pointerCountOrIndex16<fieldOrIntermediate3)argumentOrField4=fieldOrIntermediate3-pointerCountOrIndex16;
+            if(!argumentOrField4)goto originalTurn2After;
+            Level32_86E34Field(privateRecord19,int*,144)=argumentOrField5;
+            resultOrField2=Level32_86E34Field(owner18,unsigned char*,70);
+            resultOrField2+=14;
+            Level32_86E34Field(owner18,unsigned char*,70)=resultOrField2;
+            originalTurn2After:argumentOrField4=Level32_86E34Field(privateRecord19,int*,144);
+            resultOrField2=argumentOrField4;
+            if(argumentOrField4>=0)goto originalTurn2Check;
+            resultOrField2=-resultOrField2;
+            originalTurn2Check:resultOrField2=resultOrField2<pointerCountOrIndex16;
+            if(resultOrField2)goto block_101;
+            block_98:resultOrField2=Level32_86E34Field(owner18,unsigned char*,61);
+            argumentOrField4=owner18;
+            if(!resultOrField2)goto block_100;
+            resultOrField2=114;
+            Level32_86E34Data6C770View1=0;
+            Level32_86E34Field(owner18,unsigned char*,64)=resultOrField2;
+            Level32_86E34Field(owner18,unsigned char*,61)=0;
+            Level32_86E34Field(owner18,unsigned char*,63)=0;
+            Level32_86E34Call35734View1(argumentOrField4);
+            block_100:Level32_86E34Field(privateRecord19,int*,132)=0;
+            goto block_106;
+            block_101:resultOrField2=Level32_86E34Field(owner18,unsigned char*,70);
+            resultOrField2-=argumentOrField4;
+            Level32_86E34Field(owner18,unsigned char*,70)=resultOrField2;
+            goto block_106;
+            default:goto block_106;
+        }
+    case 2:
+        Level32_86E34Call55D24View1(owner18, 1);
+        if (Level32_86E34Call35194View1(owner18, privateRecord19 + 0x18) != 0x100) {
+            goto block_106;
+        }
+        Level32_86E34Call55D24View1(owner18, 4);
+        Level32_86E34Call369B8View1(owner18, 0x30);
+        Level32_86E34Field(owner18, unsigned char *, 0x49) = 0U;
+        fieldOrIntermediate3=Level32_86E34Field(relatedOwnerOrCosineBase20,unsigned char*,72);
+        resultOrField2=31;
+        if(fieldOrIntermediate3!=resultOrField2){
+            resultOrField2=99;
+            goto block_105;
+        }
+        resultOrField2=98;
+    block_105:
+        Level32_86E34Field(owner18, unsigned char *, 0x48) = resultOrField2;
+    block_106:
+        if (Level32_86E34Field(owner18, unsigned char *, 0x48) != 0x62) {
+            goto block_116;
+        }
+        if (Level32_86E34Field(owner18, unsigned char *, 0x49) != 0) {
+            goto block_116;
+        }
+        if (Level32_86E34Field(owner18, unsigned char *, 0x3C) == 0) {
+            goto block_110;
+        }
+        resultOrField2=Level32_86E34Field(owner18,short*,54);
+        resultOrField2*=4;
+        resultOrField2=Level32_86E34Field((int)&Level32_86E34Data6EE2CView1,int*,resultOrField2);
+        resultOrField2=Level32_86E34Field(resultOrField2,int*,60);
+        Level32_86E34Data6C770View1=0;
+        resultOrField2=Level32_86E34Field(resultOrField2,unsigned char*,0);
+        Level32_86E34Field(owner18,unsigned char*,60)=0;
+        Level32_86E34Field(owner18,unsigned char*,61)=0;
+        Level32_86E34Field(owner18,unsigned char*,62)=0;
+        fieldOrIntermediate3=1;
+        Level32_86E34Field(owner18,unsigned char*,63)=fieldOrIntermediate3;
+        resultOrField2=-((unsigned int)resultOrField2>=2U)&48;
+        Level32_86E34Field(owner18,unsigned char*,64)=resultOrField2;
+    block_110:
+        temp_v1_9 = Level32_86E34Field(privateRecord19, int*, 0x4C);
+        Level32_86E34Field(privateRecord19, int*, 0x48) = temp_v1_9;
+        Level32_86E34Field(temp_v1_9, short *, 2) = (short) Level32_86E34Field(relatedRecordOrParticleLimit22, int *, 0xDC);
+        temp_a1_4 = Level32_86E34Field(privateRecord19, int*, 0x48);
+        temp_v1_10 = Level32_86E34Field(temp_a1_4, short *, 0);
+        Level32_86E34Field(temp_a1_4, short *, 2) = (short) ((int) ((Level32_86E34Field(temp_a1_4, short *, 2) - (Level32_86E34Field(temp_a1_4, short *, 0xA) * 5)) + temp_v1_10) % temp_v1_10);
+        resultOrField2=Level32_86E34Field(privateRecord19,int*,72);
+        fieldOrIntermediate3=Level32_86E34Field(resultOrField2,short*,2);
+        resultOrField2=Level32_86E34Field(relatedRecordOrParticleLimit22,int*,200);
+        argumentOrField6=179;
+        if(resultOrField2==fieldOrIntermediate3)goto block_115;
+        argumentOrField5=relatedRecordOrParticleLimit22;
+        loop_112:resultOrField2=Level32_86E34Field(argumentOrField5,int*,200);
+        if(resultOrField2!=argumentOrField6)goto block_114;
+        resultOrField2=Level32_86E34Field(argumentOrField5,int*,244);
+        resultOrField2--;
+        Level32_86E34Field(argumentOrField5,int*,244)=resultOrField2;
+        block_114:resultOrField2=Level32_86E34Field(privateRecord19,int*,72);
+        argumentOrField4=Level32_86E34Field(resultOrField2,short*,0);
+        resultOrField2=Level32_86E34Field(argumentOrField5,int*,200);
+        fieldOrIntermediate3=argumentOrField4-1;
+        resultOrField2+=fieldOrIntermediate3;
+        fieldOrIntermediate3=resultOrField2%argumentOrField4;
+        Level32_86E34Field(argumentOrField5,int*,200)=fieldOrIntermediate3;
+        resultOrField2=Level32_86E34Field(privateRecord19,int*,72);
+        resultOrField2=Level32_86E34Field(resultOrField2,short*,2);
+        if(fieldOrIntermediate3!=resultOrField2)goto loop_112;
+    block_115:
+        temp_a2 = Level32_86E34Field(privateRecord19, int*, 0x48);
+        temp_a1_5 = Level32_86E34Field(temp_a2, short *, 2);
+        temp_v1_11 = Level32_86E34Field(temp_a2, short *, 0);
+        pointerCountOrIndex16 = (int) (temp_a1_5 + Level32_86E34Field(temp_a2, short *, 0xA) + temp_v1_11) % temp_v1_11;
+        Level32_86E34Call4F178View1(owner18 + 0xC, Level32_86E34Field(temp_a2, int *, 0xC) + (temp_a1_5 * 0x10));
+        Level32_86E34Call37014View1(owner18);
+        Level32_86E34Field(owner18,unsigned char*,82)=254;
+        Level32_86E34Call55D24View1(owner18, 2);
+        Level32_86E34Field(owner18, unsigned char *, 0x44) = 0U;
+        Level32_86E34Field(owner18, unsigned char *, 0x45) = 0U;
+        resultOrField2=Level32_86E34Field(privateRecord19,int*,72);
+        __asm__ volatile(""::"r"(resultOrField2):"$6");
+        fieldOrIntermediate3=Level32_86E34Field(resultOrField2,int*,12);
+        resultOrField2=(int)(short)Level32_86E34Field(resultOrField2,short*,2);
+        argumentOrField6=0;
+        resultOrField2<<=4;
+        resultOrField2+=fieldOrIntermediate3;
+        argumentOrField4=Level32_86E34Field(resultOrField2,int*,0);
+        argumentOrField5=Level32_86E34Field(resultOrField2,int*,4);
+        pointerCountOrIndex16*=16;
+        pointerCountOrIndex16+=fieldOrIntermediate3;
+        Level32_86E34Keep(pointerCountOrIndex16);
+        argumentOrField7=Level32_86E34Field(pointerCountOrIndex16,int*,0);
+        fieldOrIntermediate3=Level32_86E34Field(pointerCountOrIndex16,int*,4);
+        argumentOrField4=argumentOrField7-argumentOrField4;
+        argumentOrField5=fieldOrIntermediate3-argumentOrField5;
+        resultOrField2=Level32_86E34Call4E880View1(argumentOrField4,argumentOrField5,argumentOrField6);
+        Level32_86E34Field(owner18,unsigned char*,70)=resultOrField2;
+        Level32_86E34Field(privateRecord19, int *, 0x80) = 0;
+        Level32_86E34Field(privateRecord19, unsigned short *, 0xA6) = 0U;
+        Level32_86E34Field(privateRecord19, int *, 0x84) = 0;
+        Level32_86E34Field(owner18, unsigned char *, 0x48) = 0x16U;
+    block_116:
+        if (Level32_86E34Field(owner18, unsigned char *, 0x48) != 0x63) {
+            goto block_126;
+        }
+        pointerCountOrIndex16 = Level32_86E34Field(owner18, unsigned char *, 0x49);
+        if (pointerCountOrIndex16 == 0) {
+            goto block_120;
+        }
+        if (pointerCountOrIndex16 == 1) {
+            goto block_123;
+        }
+        goto block_126;
+    block_120:
+        if (Level32_86E34Field(owner18, unsigned char *, 0x3C) == 0) {
+            goto block_122;
+        }
+        Level32_86E34Keep(pointerCountOrIndex16);
+        resultOrField2=Level32_86E34Field(owner18,short*,54);
+        resultOrField2*=4;
+        resultOrField2=Level32_86E34Field((int)&Level32_86E34Data6EE2CView1,int*,resultOrField2);
+        resultOrField2=Level32_86E34Field(resultOrField2,int*,60);
+        Level32_86E34Data6C770View1=0;
+        resultOrField2=Level32_86E34Field(resultOrField2,unsigned char*,0);
+        Level32_86E34Field(owner18,unsigned char*,60)=0;
+        Level32_86E34Field(owner18,unsigned char*,61)=0;
+        Level32_86E34Field(owner18,unsigned char*,62)=0;
+        fieldOrIntermediate3=1;
+        Level32_86E34Field(owner18,unsigned char*,63)=fieldOrIntermediate3;
+        resultOrField2=-((unsigned int)resultOrField2>=2U)&48;
+        Level32_86E34Field(owner18,unsigned char*,64)=resultOrField2;
+    block_122:
+        Level32_86E34Call4F178View1(owner18 + 0xC, Level32_86E34Field(Level32_86E34Field(privateRecord19, int*, 0x74), int*, 0xC));
+        Level32_86E34Call37014View1(owner18);
+        Level32_86E34Field(owner18,unsigned char*,82)=254;
+        Level32_86E34Call55D24View1(owner18, 2);
+        Level32_86E34Field(owner18, unsigned char *, 0x44) = 0U;
+        Level32_86E34Field(owner18, unsigned char *, 0x45) = 0U;
+        temp_v0_10 = Level32_86E34Field(Level32_86E34Field(privateRecord19, int*, 0x74), int*, 0xC);
+        temp_a3_3 = Level32_86E34Field(temp_v0_10, int *, 0x10);
+        Level32_86E34Field(owner18, unsigned char *, 0x46) = Level32_86E34Call4E880View1(temp_a3_3 - Level32_86E34Field(temp_v0_10, int *, 0), Level32_86E34Field(temp_v0_10, int *, 0x14) - Level32_86E34Field(temp_v0_10, int *, 4), 0);
+        Level32_86E34Field(Level32_86E34Field(privateRecord19, int*, 0x74), short *, 2) = 1;
+        Level32_86E34Field(owner18, unsigned char *, 0x49) = (unsigned char) (Level32_86E34Field(owner18, unsigned char *, 0x49) + 1);
+        goto block_126;
+    block_123:
+        if (Level32_86E34Data743E8View1(owner18, Level32_86E34Field(privateRecord19, int*, 0x74), privateRecord19 + 0x30) != pointerCountOrIndex16) {
+            goto block_126;
+        }
+        if (Level32_86E34Field(Level32_86E34Field(privateRecord19, int*, 0x74), short *, 2) != 0) {
+            goto block_126;
+        }
+        Level32_86E34Field(owner18, unsigned char *, 0x48) = 0U;
+        Level32_86E34Call34F40View1(owner18, 0);
+        return;
+    block_126:
+        if ((unsigned int) (Level32_86E34Field(owner18, unsigned char *, 0x48) - 0x15) >= 2U) {
+            goto block_160;
+        }
+        resultOrField2=Level32_86E34Data6C730View1;
+        relatedOwnerOrCosineBase20=1;
+        pathCountOrTagCursor17=Level32_86E34Field(resultOrField2,int*,4);
+        loop_128:fieldOrIntermediate3=Level32_86E34Field(pathCountOrTagCursor17,unsigned short*,0);
+        fieldOrIntermediate3&=32767;
+        resultOrField2=fieldOrIntermediate3*11;
+        fieldOrIntermediate3=Level32_86E34Data6C550View1;
+        resultOrField2*=8;
+        pointerCountOrIndex16=fieldOrIntermediate3+resultOrField2;
+        Level32_86E34Keep(pointerCountOrIndex16);
+        resultOrField2=Level32_86E34Field(pointerCountOrIndex16,unsigned char*,72);
+        if((unsigned int)resultOrField2>=128U)goto block_133;
+        resultOrField2=Level32_86E34Call4F334View1(owner18+12,pointerCountOrIndex16+12);
+        if(resultOrField2>=1000)goto block_133;
+        resultOrField2=Level32_86E34Call4E880View1(Level32_86E34Field(pointerCountOrIndex16,int*,12)-Level32_86E34Field(owner18,int*,12),Level32_86E34Field(pointerCountOrIndex16,int*,16)-Level32_86E34Field(owner18,int*,16),0);
+        resultOrField2=Level32_86E34Call4F264View1(resultOrField2,Level32_86E34Field(owner18,unsigned char*,70));
+        if(resultOrField2>=48)goto block_133;
+        resultOrField2=Level32_86E34Field(pointerCountOrIndex16,int*,0);
+        fieldOrIntermediate3=0x20000;
+        Level32_86E34Field(resultOrField2,int*,76)=relatedOwnerOrCosineBase20;
+        resultOrField2=255;
+        Level32_86E34Field(pointerCountOrIndex16,unsigned char*,74)=resultOrField2;
+        resultOrField2=Level32_86E34Field(pointerCountOrIndex16,int*,24);
+        resultOrField2|=fieldOrIntermediate3;
+        Level32_86E34Field(pointerCountOrIndex16,int*,24)=resultOrField2;
+        resultOrField2=Level32_86E34Field(owner18,unsigned char*,70);
+        Level32_86E34Field(pointerCountOrIndex16,unsigned char*,81)=resultOrField2;
+        if(resultOrField2)goto block_133;
+        Level32_86E34Field(pointerCountOrIndex16,unsigned char*,81)=relatedOwnerOrCosineBase20;
+        block_133:resultOrField2=Level32_86E34Field(pathCountOrTagCursor17,short*,0);
+        pathCountOrTagCursor17+=2;
+        if(resultOrField2>=0)goto loop_128;
+        if (Level32_86E34Call359A4View1(privateRecord19 + 0x80, 4) != 0) {
+            goto block_143;
+        }
+        if (Level32_86E34Field(owner18, unsigned char *, 0x48) != 0x15) {
+            goto block_137;
+        }
+        if (Level32_86E34Field(privateRecord19, int *, 0x7C) >= 2) {
+            goto block_139;
+        }
+    block_137:
+        if (Level32_86E34Call3BFC0View1(owner18, Level32_86E34Field(privateRecord19, int *, 0xB0)) != 0) {
+            goto block_139;
+        }
+        Level32_86E34Field(privateRecord19, int *, 0xB0) = Level32_86E34Call3BABCView1(owner18, 0, 4);
+    block_139:
+        if (Level32_86E34Call3BFC0View1(owner18, Level32_86E34Field(privateRecord19, int *, 0xB4)) == 0) {
+            goto block_141;
+        }
+        Level32_86E34Call3BE70View1(Level32_86E34Field(privateRecord19, int *, 0xB4));
+    block_141:
+        Level32_86E34Field(privateRecord19, int *, 0xB4) = -1;
+        temp_v0_12 = Level32_86E34Field(privateRecord19, unsigned short *, 0xA6) + 0x14;
+        Level32_86E34Field(privateRecord19, unsigned short *, 0xA6) = temp_v0_12;
+        if ((short) temp_v0_12 < 0xC9) {
+            goto block_149;
+        }
+        Level32_86E34Field(privateRecord19, unsigned short *, 0xA6) = 0xC8U;
+        goto block_149;
+    block_143:
+        if (Level32_86E34Call3BFC0View1(owner18, Level32_86E34Field(privateRecord19, int *, 0xB4)) != 0) {
+            goto block_145;
+        }
+        Level32_86E34Field(privateRecord19, int *, 0xB4) = Level32_86E34Call3BABCView1(owner18, 1, 4);
+    block_145:
+        if (Level32_86E34Call3BFC0View1(owner18, Level32_86E34Field(privateRecord19, int *, 0xB0)) == 0) {
+            goto block_147;
+        }
+        Level32_86E34Call3BE70View1(Level32_86E34Field(privateRecord19, int *, 0xB0));
+    block_147:
+        Level32_86E34Field(privateRecord19, int *, 0xB0) = -1;
+        temp_v0_13 = Level32_86E34Field(privateRecord19, unsigned short *, 0xA6) - 0x14;
+        Level32_86E34Field(privateRecord19, unsigned short *, 0xA6) = temp_v0_13;
+        if ((int)(temp_v0_13<<16)>=0) {
+            goto block_149;
+        }
+        Level32_86E34Field(privateRecord19, unsigned short *, 0xA6) = 0U;
+        block_149:resultOrField2=Level32_86E34Field(privateRecord19,unsigned short*,164);
+        fieldOrIntermediate3=Level32_86E34Field(privateRecord19,unsigned short*,166);
+        argumentOrField4=Level32_86E34Data6C7C4View1;
+        fieldOrIntermediate3=resultOrField2+fieldOrIntermediate3;
+        resultOrField2=2;
+        Level32_86E34Field(privateRecord19,short*,52)=fieldOrIntermediate3;
+        if(argumentOrField4!=resultOrField2)goto block_151;
+        argumentOrField4=0x51EB851F;
+        fieldOrIntermediate3=(short)fieldOrIntermediate3;
+        Level32_86E34Keep(fieldOrIntermediate3);
+        resultOrField2=fieldOrIntermediate3*108;
+        goto block_155;
+        block_151:resultOrField2=1;
+        if(argumentOrField4!=resultOrField2)goto block_153;
+        argumentOrField4=0x51EB851F;
+        fieldOrIntermediate3=(short)fieldOrIntermediate3;
+        Level32_86E34Keep(fieldOrIntermediate3);
+        resultOrField2=fieldOrIntermediate3*104;
+        goto block_155;
+        block_153:if(argumentOrField4)goto block_156;
+        argumentOrField4=0x51EB851F;
+        fieldOrIntermediate3=(short)fieldOrIntermediate3;
+        Level32_86E34Keep(fieldOrIntermediate3);
+        resultOrField2=fieldOrIntermediate3*98;
+        block_155:Level32_86E34MultiplyComplete(resultOrField2,argumentOrField4);
+        resultOrField2>>=31;
+        Level32_86E34CaptureHigh(capturedLowOrScratch8);
+        fieldOrIntermediate3=capturedLowOrScratch8>>5;
+        fieldOrIntermediate3-=resultOrField2;
+        Level32_86E34Field(privateRecord19,short*,52)=fieldOrIntermediate3;
+    block_156:
+        if (Level32_86E34Field(privateRecord19, int *, 0x80) == 0) {
+            goto block_160;
+        }
+        temp_a0_5 = Level32_86E34Field(privateRecord19, int*, 0x40);
+        if (temp_a0_5 == 0) {
+            goto block_160;
+        }
+        Level32_86E34Call55D24View1(temp_a0_5, 4);
+        __asm__ volatile(""::"m"(Level32_86E34Field(privateRecord19,int*,64)));
+        relatedRecordOrParticleLimit22=4;
+        Level32_86E34Keep(relatedRecordOrParticleLimit22);
+        pathCountOrTagCursor17=0;
+        Level32_86E34Keep(pathCountOrTagCursor17);
+        relatedOwnerOrCosineBase20=(int)&Level32_86E34Data65920View1;
+        remainderOrSineBase21=(int)&Level32_86E34Data658A0View1;
+        Level32_86E34Keep(relatedOwnerOrCosineBase20);
+        Level32_86E34Keep(remainderOrSineBase21);
+        argumentOrField5=(unsigned int)pathCountOrTagCursor17>>31;
+        loop_159:argumentOrField5=pathCountOrTagCursor17-(((pathCountOrTagCursor17+argumentOrField5)>>1)*2);
+        argumentOrField4=Level32_86E34Field(privateRecord19,int*,64);
+        Level32_86E34Call55F14View1(argumentOrField4,argumentOrField5,&originalFrame.sp10);
+        resultOrField2=Level32_86E34Field(privateRecord19,unsigned short*,52);
+        fieldOrIntermediate3=(int)(resultOrField2<<16)>>16;
+        resultOrField2=(unsigned int)(resultOrField2<<16)>>31;
+        fieldOrIntermediate3+=resultOrField2;
+        pointerCountOrIndex16=fieldOrIntermediate3>>1;
+        resultOrField2=Level32_86E34Call363DCView1(0,140);
+        resultOrField2+=256;
+        Level32_86E34MultiplyComplete(pointerCountOrIndex16,resultOrField2);
+        fieldOrIntermediate3=Level32_86E34Field(privateRecord19,int*,64);
+        resultOrField2=Level32_86E34Field(fieldOrIntermediate3,unsigned char*,70);
+        resultOrField2*=2;
+        resultOrField2+=relatedOwnerOrCosineBase20;
+        Level32_86E34CaptureLow(capturedLowOrScratch8);
+        resultOrField2=Level32_86E34Field(resultOrField2,short*,0);
+        pointerCountOrIndex16=capturedLowOrScratch8>>8;
+        Level32_86E34MultiplyComplete(resultOrField2,pointerCountOrIndex16);
+        resultOrField2=Level32_86E34Field(fieldOrIntermediate3,unsigned char*,69);
+        resultOrField2*=2;
+        resultOrField2+=relatedOwnerOrCosineBase20;
+        Level32_86E34CaptureLow(capturedLowOrScratch8);
+        fieldOrIntermediate3=Level32_86E34Field(resultOrField2,short*,0);
+        resultOrField2=capturedLowOrScratch8>>12;
+        Level32_86E34MultiplyComplete(resultOrField2,fieldOrIntermediate3);
+        Level32_86E34CaptureLow(capturedLowOrScratch8);
+        resultOrField2=capturedLowOrScratch8>>12;
+        originalFrame.sp20=resultOrField2;
+        fieldOrIntermediate3=Level32_86E34Field(privateRecord19,int*,64);
+        resultOrField2=Level32_86E34Field(fieldOrIntermediate3,unsigned char*,70);
+        resultOrField2*=2;
+        resultOrField2+=remainderOrSineBase21;
+        resultOrField2=Level32_86E34Field(resultOrField2,short*,0);
+        Level32_86E34MultiplyComplete(resultOrField2,pointerCountOrIndex16);
+        resultOrField2=Level32_86E34Field(fieldOrIntermediate3,unsigned char*,69);
+        resultOrField2*=2;
+        resultOrField2+=relatedOwnerOrCosineBase20;
+        Level32_86E34CaptureLow(capturedLowOrScratch8);
+        fieldOrIntermediate3=Level32_86E34Field(resultOrField2,short*,0);
+        resultOrField2=capturedLowOrScratch8>>12;
+        Level32_86E34MultiplyComplete(resultOrField2,fieldOrIntermediate3);
+        Level32_86E34CaptureLow(capturedLowOrScratch8);
+        resultOrField2=capturedLowOrScratch8>>12;
+        originalFrame.sp24=resultOrField2;
+        resultOrField2=Level32_86E34Field(Level32_86E34Field(privateRecord19,int*,64),unsigned char*,69);
+        resultOrField2*=2;
+        resultOrField2+=remainderOrSineBase21;
+        resultOrField2=Level32_86E34Field(resultOrField2,short*,0);
+        Level32_86E34MultiplyComplete(resultOrField2,pointerCountOrIndex16);
+        pathCountOrTagCursor17++;
+        argumentOrField4=1;
+        argumentOrField5=13;
+        argumentOrField6=(int)&originalFrame.sp10;
+        argumentOrField7=(int)&originalFrame.sp20;
+        __asm__("":"=r"(argumentOrField4),"=r"(argumentOrField5),"=r"(argumentOrField6),"=r"(argumentOrField7):"0"(argumentOrField4),"1"(argumentOrField5),"2"(argumentOrField6),"3"(argumentOrField7));
+        fieldOrIntermediate3=(int)Level32_86E34DataSpawnParticleView1;
+        Level32_86E34Keep(fieldOrIntermediate3);
+        Level32_86E34CaptureLow(capturedLowOrScratch8);
+        resultOrField2=capturedLowOrScratch8>>12;
+        originalFrame.sp28=resultOrField2;
+        resultOrField2=((void*(*)(int,int,void*,void*))fieldOrIntermediate3)(argumentOrField4,argumentOrField5,argumentOrField6,argumentOrField7);
+        fieldOrIntermediate3=255;
+        Level32_86E34Field(resultOrField2,unsigned char*,11)=fieldOrIntermediate3;
+        argumentOrField5=(unsigned int)pathCountOrTagCursor17>>31;
+        if(pathCountOrTagCursor17<relatedRecordOrParticleLimit22)goto loop_159;
+    block_160:
+        if (Level32_86E34Field(privateRecord19, int *, 0x84) != 0) {
+            goto block_172;
+        }
+        resultOrField2=Level32_86E34Field(owner18,unsigned char*,70);
+        fieldOrIntermediate3=Level32_86E34Field(owner18,unsigned char*,72);
+        argumentOrField4=resultOrField2-retainedYaw23;
+        resultOrField2=22;
+        argumentOrField5=4;
+        if(fieldOrIntermediate3==resultOrField2)goto block_163;
+        argumentOrField5=3;
+        block_163:resultOrField2=argumentOrField4;
+        if(argumentOrField4>=0)goto block_165;
+        resultOrField2=-resultOrField2;
+        block_165:resultOrField2=resultOrField2<2;
+        if(!resultOrField2)goto block_167;
+        if(argumentOrField4)goto block_172;
+        block_167:resultOrField2=-argumentOrField4;
+        Level32_86E34MultiplyComplete(resultOrField2,argumentOrField5);
+        argumentOrField4=Level32_86E34Field(owner18,unsigned char*,68);
+        Level32_86E34CaptureLow(capturedLowOrScratch8);
+        argumentOrField5=capturedLowOrScratch8&255;
+        resultOrField2=Level32_86E34Call3613CView1(argumentOrField4,argumentOrField5);
+        fieldOrIntermediate3=resultOrField2;
+        resultOrField2=fieldOrIntermediate3<2;
+        if(resultOrField2)goto block_169;
+        fieldOrIntermediate3=1;
+        Level32_86E34Keep(fieldOrIntermediate3);
+        block_169:resultOrField2=fieldOrIntermediate3<-1;
+        if(!resultOrField2)goto block_171;
+        fieldOrIntermediate3=-1;
+        block_171:resultOrField2=Level32_86E34Field(owner18,unsigned char*,68);
+        resultOrField2+=fieldOrIntermediate3;
+        Level32_86E34Field(owner18,unsigned char*,68)=resultOrField2;
+    block_172:
+        if (Level32_86E34Field(privateRecord19, int*, 0x40) != 0) {
+            goto block_177;
+        }
+        if (Level32_86E34Field(owner18, unsigned char *, 0x48) == 2) {
+            goto block_176;
+        }
+        temp_v0_15 = Level32_86E34DataSpawnMobyView1(0x26F, owner18);
+        Level32_86E34Field(privateRecord19, int*, 0x40) = temp_v0_15;
+        if (temp_v0_15 == 0) {
+            goto block_178;
+        }
+        temp_v1_16 = Level32_86E34Field(temp_v0_15,int*,0);
+        Level32_86E34Field(temp_v1_16, short *, 0x16) = -1;
+        Level32_86E34Field(temp_v1_16, short *, 0x14) = -1;
+        Level32_86E34Field(Level32_86E34Field(privateRecord19, int*, 0x40), signed char *, 0x4C) = 0x3F;
+        Level32_86E34Field(Level32_86E34Field(privateRecord19, int*, 0x40), signed char *, 0x4E) = 0x3F;
+    block_176:
+        if (Level32_86E34Field(privateRecord19, int*, 0x40) == 0) {
+            goto block_178;
+        }
+    block_177:
+        Level32_86E34Call55D24View1(owner18, 4);
+        Level32_86E34Call55F14View1(owner18, 0, &originalFrame.sp10);
+        Level32_86E34Call55F14View1(owner18, 1, &originalFrame.sp30);
+        Level32_86E34Call4F194View1(Level32_86E34Field(privateRecord19, int*, 0x40) + 0xC, &originalFrame.sp10, &originalFrame.sp30);
+        Level32_86E34Call4F110View1(Level32_86E34Field(privateRecord19, int*, 0x40) + 0xC, 1);
+        resultOrField2=Level32_86E34Field(privateRecord19,int*,64);
+        fieldOrIntermediate3=Level32_86E34Field(owner18,signed char*,68);
+        argumentOrField4=Level32_86E34Field(owner18,signed char*,69);
+        argumentOrField5=Level32_86E34Field(owner18,signed char*,70);
+        __asm__ volatile(""::"r"(fieldOrIntermediate3),"r"(argumentOrField4),"r"(argumentOrField5));
+        Level32_86E34Field(resultOrField2,unsigned char*,68)=fieldOrIntermediate3;
+        __asm__ volatile(""::"m"(Level32_86E34Field(resultOrField2,unsigned char*,68)):"memory");
+        Level32_86E34Field(resultOrField2,unsigned char*,69)=argumentOrField4;
+        Level32_86E34Field(resultOrField2,unsigned char*,70)=argumentOrField5;
+    block_178:
+        return;
+        default:goto block_106;
+    }
+}
+#undef Level32_86E34Field
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/moby", func_level_32_800881F0);
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original800881F0.
+ * AI generated; not human reviewed. All1015 original native words and actual
+ * targets must match. This function owns no selectors,padding or data words.
+ * FrameF0 (240 bytes) saves S0..S7/FP/RA at SPC8..EC;locals span SP18..C7.
+ * Original three-word vectors begin18/28/38/48/58/68/78/88/98;SPC0 retains
+ * the initialized selected target. Unwritten frame reserves are never read.
+ * The odd trajectory divisor is ordinary C allocated naturally into FP.
+ * It starts at0 and a found trajectory writes2*count+1. Count is bounded30;
+ * original dynamic signed DIV checks and all three quotient sites remain.
+ * No fixed FP/SP or overlapping live fixed-register aliases are used.
+ * S2 holds the original private record;state4 replaces it with the created
+ * record's private pointer only after the original private record's last use.
+ * All seven variable MULT sites form complete signed64 products from staged
+ * signed32 operands. Distinct complete low captures narrow before SRA12.
+ * The three dot-product low words retain the original32-bit additions.
+ * Table samples are signed LH;165 and75/25 calculations keep their original
+ * signed shifts. Raw vectors:32767*165=5406555,SRA11=2639;
+ * 2639*32767=86472113,SRA12=21111;(31>>6)*4096=0;
+ * a found count29 gives divisor59;(-1000)/59 truncates toward0 to-16.
+ * Physical units,fixed-point domains and invocation cadence remain open.
+ * Original states0/1/2/3/4/5/6/99 retain the irregular decision tree,owner
+ * scan,trajectory bounds,three quotient corrections,particle loops,collider
+ * predicates,reflection/bounce paths,callbacks,field widths and call order.
+ * Every local read has a producer on its path. No incoming GP value is used.
+ * Typed4F194 takes its three actual arguments;the former unused fourth view
+ * is removed while its initialized A3 table sample remains an ordinary role.
+ * Complete owner/private pointer identities follow fresh helper returns or
+ * initialized fields written by the preceding vector helper. They prevent
+ * unrelated phases from sharing an address cache. Dead S3 is clobbered only
+ * before its fresh original producer;its consumed word/field is initialized.
+ * Empty metadata emits zero CPU instructions;no partial HILO input or opcode
+ * asm is used. Actual transfer/data targets and full EXE/every-overlay hashes
+ * are mandatory. Compiler,filter and production flags stay unchanged.
+ * Confidence is binary identity after all gates. Complete caller/allocation
+ * chains,helper semantics,units,Rev1 mapping and synchronized retail runtime
+ * verification remain open. Next:human review and synchronized captures.
+ */
+/* Original assembly SHA256 1022fbb3e9a5e667ce2d686cf1004961ee0a1d0fd5ec300569275dc16ed0db5d */
+#define Level32_881F0Keep(v) __asm__("":"=r"(v):"0"(v))
+#define Level32_881F0MultiplyComplete(a,b) do{completeSignedProduct=(long long)(int)(a)*(long long)(int)(b);__asm__ volatile(""::"x"(completeSignedProduct));}while(0)
+#define Level32_881F0CaptureHigh(dst) do{int wholeCapturedHigh;__asm__("":"=h"(wholeCapturedHigh):"x"(completeSignedProduct));(dst)=wholeCapturedHigh;Level32_881F0Keep(dst);}while(0)
+#define Level32_881F0CaptureLow(dst) do{int wholeCapturedLow;__asm__("":"=l"(wholeCapturedLow):"x"(completeSignedProduct));(dst)=wholeCapturedLow;Level32_881F0Keep(dst);}while(0)
+#define Level32_881F0Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+int Level32_881F0Call18368View1(void*,void*) __asm__("func_80018368");
+int Level32_881F0Call19194View1(void*,int) __asm__("func_80019194");
+void* Level32_881F0Call1BA30View1(void*,int,int,int,int,void*) __asm__("func_8001BA30");
+int Level32_881F0Call1C288View1(void*,int,int) __asm__("func_8001C288");
+int Level32_881F0Call359A4View1(void*,int) __asm__("func_800359A4");
+int Level32_881F0Call35D38View1(void*) __asm__("func_80035D38");
+int Level32_881F0Call3636CView1(int,int) __asm__("func_8003636C");
+int Level32_881F0Call363DCView1(int,int) __asm__("func_800363DC");
+int Level32_881F0Call3BABCView1(void*,int,int) __asm__("func_8003BABC");
+void Level32_881F0Call3C140View1(int,int) __asm__("func_8003C140");
+void Level32_881F0Call49484View1(void*) __asm__("func_80049484");
+int Level32_881F0Call4E880View1(int,int,int) __asm__("func_8004E880");
+int Level32_881F0Call4E9E4View1(int) __asm__("func_8004E9E4");
+int Level32_881F0Call4EA2CView1(int) __asm__("func_8004EA2C");
+int Level32_881F0Call4EDE8View1(void*,int) __asm__("func_8004EDE8");
+int Level32_881F0Call4EF74View1(void*,void*,void*) __asm__("func_8004EF74");
+void Level32_881F0Call4F178View1(void*,void*) __asm__("func_8004F178");
+void Level32_881F0Call4F194View1(void*,void*,void*) __asm__("func_8004F194");
+void Level32_881F0Call4F1C8View1(void*,void*,void*) __asm__("func_8004F1C8");
+int Level32_881F0Call4F264View1(int,int) __asm__("func_8004F264");
+int Level32_881F0Call4F334View1(void*,void*) __asm__("func_8004F334");
+void Level32_881F0Call55B18View1(void*) __asm__("func_80055B18");
+void Level32_881F0Call5629CView1(void*) __asm__("func_8005629C");
+int Level32_881F0DatarandView1(void) __asm__("rand");
+extern unsigned char Level32_881F0Data658A0View1[] __asm__("D_800658A0");
+extern unsigned char Level32_881F0Data65920View1[] __asm__("D_80065920");
+extern int Level32_881F0Data6C574View1 __asm__("D_8006C574");
+extern int Level32_881F0Data6C578View1 __asm__("D_8006C578");
+extern int Level32_881F0Data6C640View1 __asm__("D_8006C640");
+extern unsigned short Level32_881F0Data6E03EView1 __asm__("D_8006E03E");
+extern unsigned short Level32_881F0Data6E040View1 __asm__("D_8006E040");
+extern int Level32_881F0Data6E044View1 __asm__("D_8006E044");
+extern int Level32_881F0Data6E788View1 __asm__("D_8006E788");
+extern int Level32_881F0Data70328View1 __asm__("D_80070328");
+extern int Level32_881F0Data71918View1 __asm__("D_80071918");
+extern int Level32_881F0Data7191CView1 __asm__("D_8007191C");
+extern int Level32_881F0Data71920View1 __asm__("D_80071920");
+extern void*(*Level32_881F0DataSpawnMobyView1)(int,void*) __asm__("SpawnMoby");
+extern void*(*Level32_881F0DataSpawnParticleView1)(int,int,void*,void*) __asm__("SpawnParticle");
+void func_level_32_800881F0(unsigned char* ownerParameter) {
+    register int positionCandidateOrScalar16 __asm__("$16"),angleAddressOrDistanceOrVector17 __asm__("$17"),privateOrCreatedPrivate18 __asm__("$18"),scanAddressOrCountOrBound19 __asm__("$19"),selectedOrCreatedOrVector20 __asm__("$20"),owner21 __asm__("$21"),bestDistanceOrCount22 __asm__("$22"),bestAngleOrSize23 __asm__("$23");
+    register int resultOrField2 __asm__("$2"),fieldOrIntermediate3 __asm__("$3"),argumentOrField4 __asm__("$4"),argumentOrField5 __asm__("$5"),argumentOrField6 __asm__("$6"),argumentOrField7 __asm__("$7"),capturedLowOrTarget8 __asm__("$8");
+    int originalOddTrajectoryDivisor;
+    int originalDotLow;
+    long long completeSignedProduct;
+    struct {
+        int sp18,sp1C,sp20,sp24,sp28,sp2C,sp30,sp34,sp38,sp3C,sp40,sp44,sp48,sp4C,sp50,sp54,sp58,sp5C,sp60,sp64,sp68,sp6C,sp70,sp74,sp78,sp7C,sp80,sp84,sp88,sp8C,sp90,sp94,sp98,sp9C,spA0,spA4,spA8,spAC,spB0,spB4,spB8,spBC,spC0,spC4;
+    }
+    originalFrame;
+    int initialOwnerPositionAddress;
+    int temp_v0_3;
+    int temp_v0_2;
+    owner21=(int)ownerParameter;
+    Level32_881F0Keep(owner21);
+    resultOrField2=4;
+    fieldOrIntermediate3=Level32_881F0Field(owner21,unsigned char*,0x48);
+    privateOrCreatedPrivate18=Level32_881F0Field(owner21,int*,0);
+    if(fieldOrIntermediate3==resultOrField2)goto originalState4;
+    if(fieldOrIntermediate3<5){
+        resultOrField2=1;
+        if(fieldOrIntermediate3==resultOrField2)goto originalState1;
+        if(fieldOrIntermediate3<2){
+            argumentOrField6=0;
+            if(!fieldOrIntermediate3)goto originalState0;
+            goto originalDone;
+        }
+        resultOrField2=2;
+        if(fieldOrIntermediate3==resultOrField2)goto originalState2;
+        angleAddressOrDistanceOrVector17=(int)&originalFrame.sp68;
+        resultOrField2=3;
+        if(fieldOrIntermediate3==resultOrField2)goto originalState3;
+        goto originalDone;
+    }
+    resultOrField2=6;
+    if(fieldOrIntermediate3==resultOrField2)goto originalState6;
+    if(fieldOrIntermediate3<6)goto originalState5;
+    resultOrField2=99;
+    if(fieldOrIntermediate3==resultOrField2)goto originalState99;
+    goto originalDone;
+    originalState0:;
+    positionCandidateOrScalar16=(int)&Level32_881F0Data70328View1;
+    fieldOrIntermediate3=Level32_881F0Field(owner21,int*,12);
+    argumentOrField4=Level32_881F0Field(positionCandidateOrScalar16,int*,0);
+    resultOrField2=Level32_881F0Field(owner21,int*,16);
+    argumentOrField5=Level32_881F0Field(&Level32_881F0Data70328View1,int*,4);
+    argumentOrField4=fieldOrIntermediate3-argumentOrField4;
+    argumentOrField5=resultOrField2-argumentOrField5;
+    resultOrField2=Level32_881F0Call4E880View1(argumentOrField4,argumentOrField5,argumentOrField6);
+    argumentOrField4=Level32_881F0Field(&Level32_881F0Data70328View1,unsigned char*,14);
+    argumentOrField5=resultOrField2;
+    resultOrField2=Level32_881F0Call4F264View1(argumentOrField4,argumentOrField5);
+    argumentOrField4=owner21+12;
+    if(resultOrField2>=16)goto originalIdleDone;
+    argumentOrField5=positionCandidateOrScalar16;
+    resultOrField2=Level32_881F0Call4F334View1(argumentOrField4,argumentOrField5);
+    resultOrField2-=600;
+    resultOrField2=resultOrField2<250;
+    fieldOrIntermediate3=Level32_881F0Field(owner21,int*,20);
+    argumentOrField4=Level32_881F0Field(&Level32_881F0Data70328View1,int*,8);
+    fieldOrIntermediate3+=356;
+    Level32_881F0Keep(fieldOrIntermediate3);
+    argumentOrField4-=fieldOrIntermediate3;
+    if(!resultOrField2)goto originalIdleDone;
+    resultOrField2=argumentOrField4<256;
+    if(!resultOrField2)goto originalIdleDone;
+    resultOrField2=Level32_881F0Field(&Level32_881F0Data70328View1,int*,0x170);
+    if(resultOrField2)goto originalIdleDone;
+    resultOrField2=0x10000001;
+    Level32_881F0Field(&Level32_881F0Data70328View1,int*,0x20C)=resultOrField2;
+    resultOrField2=32;
+    Level32_881F0Field(&Level32_881F0Data70328View1,int*,0x218)=owner21;
+    Level32_881F0Field(owner21,unsigned char*,0x4F)=resultOrField2;
+    originalIdleDone:Level32_881F0Field(privateOrCreatedPrivate18,int*,12)=0;
+    return;
+    originalState1:;
+    Level32_881F0Field(owner21, int *, 8) = 0;
+    Level32_881F0Field(owner21, signed char *, 0x4C) = 0;
+    Level32_881F0Field(owner21, signed char *, 0x4D) = 0;
+    resultOrField2=255;
+    Level32_881F0Keep(resultOrField2);
+    Level32_881F0Field(owner21, unsigned char *, 0x4A) = resultOrField2;
+    return;
+    originalState2:;
+    Level32_881F0Field(owner21, signed char *, 0x4F) = 0x20;
+    Level32_881F0Field(owner21, signed char *, 0x4C) = 0x50;
+    Level32_881F0Field(owner21, unsigned char *, 0x45) = 0U;
+    Level32_881F0Field(owner21, signed char *, 0x4D) = 1;
+    initialOwnerPositionAddress = owner21 + 0xC;
+    if (Level32_881F0Data6E044View1 == 7) {
+        argumentOrField4=initialOwnerPositionAddress;
+        __asm__("":"=r"(owner21):"0"(owner21),"r"(argumentOrField4));
+        Level32_881F0Call49484View1(owner21 + 0xC);
+    }
+    else {
+        Level32_881F0Field(owner21, int *, 0xC) = (int) ((int) (Level32_881F0Field(&Level32_881F0Data65920View1,short*,(Level32_881F0Field(&Level32_881F0Data70328View1, unsigned char *, 0xE) * 2)) * 0x4B) >> 9);
+        argumentOrField7 = Level32_881F0Field(&Level32_881F0Data658A0View1,short*,(Level32_881F0Field(&Level32_881F0Data70328View1, unsigned char *, 0xE) * 2));
+        Level32_881F0Field(owner21, int *, 0x14) = 0xC8;
+        Level32_881F0Field(owner21, int *, 0x10) = (int) ((int) (argumentOrField7 * 0x4B) >> 9);
+        Level32_881F0Call4F194View1(initialOwnerPositionAddress, initialOwnerPositionAddress, (int)&Level32_881F0Data70328View1);
+    }
+    argumentOrField4=(int)&originalFrame.sp18;
+originalFirstVector:
+    angleAddressOrDistanceOrVector17=(int)&Level32_881F0Data70328View1+14;
+    argumentOrField7=Level32_881F0Field(angleAddressOrDistanceOrVector17,unsigned char*,0);
+    argumentOrField5=argumentOrField4;
+    argumentOrField7*=2;
+    fieldOrIntermediate3=Level32_881F0Field(&Level32_881F0Data65920View1,short*,argumentOrField7);
+    argumentOrField6=angleAddressOrDistanceOrVector17-14;
+    resultOrField2=fieldOrIntermediate3*25;
+    resultOrField2>>=9;
+    originalFrame.sp18=resultOrField2;
+    fieldOrIntermediate3=Level32_881F0Field(&Level32_881F0Data658A0View1,short*,argumentOrField7);
+    resultOrField2=200;
+    originalFrame.sp20=resultOrField2;
+    resultOrField2=fieldOrIntermediate3*25;
+    resultOrField2>>=9;
+    originalFrame.sp1C=resultOrField2;
+    Level32_881F0Call4F194View1(argumentOrField4,argumentOrField5,argumentOrField6);
+    argumentOrField4=(int)&originalFrame.sp18;
+    Level32_881F0Keep(argumentOrField4);
+    positionCandidateOrScalar16=owner21+12;
+    argumentOrField5=positionCandidateOrScalar16;
+    resultOrField2=Level32_881F0Call18368View1(argumentOrField4,argumentOrField5);
+    argumentOrField4=positionCandidateOrScalar16;
+    if(resultOrField2){
+        argumentOrField5=(int)&originalFrame.sp18;
+        Level32_881F0Call4F178View1(argumentOrField4,argumentOrField5);
+    }
+    resultOrField2=Level32_881F0Field(angleAddressOrDistanceOrVector17,unsigned char*,0);
+    fieldOrIntermediate3=Level32_881F0Field(&Level32_881F0Data70328View1,unsigned char*,0x12);
+    resultOrField2+=fieldOrIntermediate3;
+    Level32_881F0Field(owner21,unsigned char*,0x46)=resultOrField2;
+    fieldOrIntermediate3=Level32_881F0Data6E044View1;
+    resultOrField2=7;
+    if(fieldOrIntermediate3==resultOrField2){
+        resultOrField2=Level32_881F0Data6E03EView1;
+        fieldOrIntermediate3=14;
+        resultOrField2=(int)(resultOrField2<<16)>>20;
+        fieldOrIntermediate3-=resultOrField2;
+        Level32_881F0Field(owner21,unsigned char*,0x45)=fieldOrIntermediate3;
+        resultOrField2=Level32_881F0Data6E040View1;
+        resultOrField2=(unsigned int)resultOrField2>>4;
+        Level32_881F0Field(owner21,unsigned char*,0x46)=resultOrField2;
+    }
+    else{
+        resultOrField2=14;
+        Level32_881F0Field(owner21,unsigned char*,0x45)=resultOrField2;
+    }
+    resultOrField2=Level32_881F0Field(owner21,unsigned char*,0x46);
+    resultOrField2*=2;
+    fieldOrIntermediate3=Level32_881F0Field(&Level32_881F0Data65920View1,short*,resultOrField2);
+    Level32_881F0Keep(fieldOrIntermediate3);
+    resultOrField2=fieldOrIntermediate3*5;
+    Level32_881F0Keep(resultOrField2);
+    argumentOrField4=resultOrField2*32;
+    Level32_881F0Keep(argumentOrField4);
+    fieldOrIntermediate3=Level32_881F0Field(owner21,unsigned char*,0x45);
+    resultOrField2+=argumentOrField4;
+    fieldOrIntermediate3*=2;
+    fieldOrIntermediate3=Level32_881F0Field(&Level32_881F0Data65920View1,short*,fieldOrIntermediate3);
+    resultOrField2>>=11;
+    Level32_881F0MultiplyComplete(resultOrField2,fieldOrIntermediate3);
+    Level32_881F0CaptureLow(capturedLowOrTarget8);
+    resultOrField2=capturedLowOrTarget8>>12;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,0)=resultOrField2;
+    resultOrField2=Level32_881F0Field(owner21,unsigned char*,0x46);
+    resultOrField2*=2;
+    fieldOrIntermediate3=Level32_881F0Field(&Level32_881F0Data658A0View1,short*,resultOrField2);
+    Level32_881F0Keep(fieldOrIntermediate3);
+    resultOrField2=fieldOrIntermediate3*5;
+    Level32_881F0Keep(resultOrField2);
+    argumentOrField4=resultOrField2*32;
+    Level32_881F0Keep(argumentOrField4);
+    fieldOrIntermediate3=Level32_881F0Field(owner21,unsigned char*,0x45);
+    resultOrField2+=argumentOrField4;
+    fieldOrIntermediate3*=2;
+    fieldOrIntermediate3=Level32_881F0Field(&Level32_881F0Data65920View1,short*,fieldOrIntermediate3);
+    resultOrField2>>=11;
+    Level32_881F0MultiplyComplete(resultOrField2,fieldOrIntermediate3);
+    originalOddTrajectoryDivisor=0;
+    selectedOrCreatedOrVector20=0;
+    scanAddressOrCountOrBound19=(int)&Level32_881F0Data6E788View1;
+    originalFrame.spC0=0;
+    Level32_881F0CaptureLow(capturedLowOrTarget8);
+    resultOrField2=capturedLowOrTarget8>>12;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,4)=resultOrField2;
+    resultOrField2=Level32_881F0Field(owner21,unsigned char*,0x45);
+    bestAngleOrSize23=127;
+    resultOrField2*=2;
+    fieldOrIntermediate3=Level32_881F0Field(&Level32_881F0Data658A0View1,short*,resultOrField2);
+    bestDistanceOrCount22=0x7800;
+    resultOrField2=fieldOrIntermediate3*165;
+    resultOrField2>>=11;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,8)=resultOrField2;
+    goto scanOriginalOwner;
+originalOwnerCandidate:
+    if(positionCandidateOrScalar16==owner21)goto scanOriginalOwner;
+    resultOrField2=Level32_881F0Field(positionCandidateOrScalar16,int*,8);
+    argumentOrField4=owner21+12;
+    if(!resultOrField2)goto scanOriginalOwner;
+    argumentOrField5=positionCandidateOrScalar16+12;
+    resultOrField2=Level32_881F0Call4F334View1(argumentOrField4,argumentOrField5);
+    angleAddressOrDistanceOrVector17=resultOrField2;
+    argumentOrField6=0;
+    fieldOrIntermediate3=Level32_881F0Field(positionCandidateOrScalar16,int*,12);
+    argumentOrField4=Level32_881F0Field(owner21,int*,12);
+    resultOrField2=Level32_881F0Field(positionCandidateOrScalar16,int*,16);
+    argumentOrField5=Level32_881F0Field(owner21,int*,16);
+    argumentOrField4=fieldOrIntermediate3-argumentOrField4;
+    argumentOrField5=resultOrField2-argumentOrField5;
+    resultOrField2=Level32_881F0Call4E880View1(argumentOrField4,argumentOrField5,argumentOrField6);
+    argumentOrField5=Level32_881F0Field(owner21,unsigned char*,0x46);
+    argumentOrField4=resultOrField2;
+    resultOrField2=Level32_881F0Call4F264View1(argumentOrField4,argumentOrField5);
+    fieldOrIntermediate3=0x1800-angleAddressOrDistanceOrVector17;
+    argumentOrField4=resultOrField2;
+    if(fieldOrIntermediate3<0)fieldOrIntermediate3=angleAddressOrDistanceOrVector17-0x1800;
+    resultOrField2=argumentOrField4<4;
+    angleAddressOrDistanceOrVector17=fieldOrIntermediate3;
+    if(!resultOrField2)goto scanOriginalOwner;
+    Level32_881F0Keep(angleAddressOrDistanceOrVector17);
+    resultOrField2=angleAddressOrDistanceOrVector17<0x1400;
+    if(!resultOrField2)goto scanOriginalOwner;
+    resultOrField2=bestAngleOrSize23<argumentOrField4;
+    if(resultOrField2)goto scanOriginalOwner;
+    resultOrField2=angleAddressOrDistanceOrVector17<bestDistanceOrCount22;
+    if(!resultOrField2)goto scanOriginalOwner;
+    selectedOrCreatedOrVector20=positionCandidateOrScalar16;
+    bestDistanceOrCount22=angleAddressOrDistanceOrVector17;
+    bestAngleOrSize23=argumentOrField4;
+scanOriginalOwner:
+    positionCandidateOrScalar16=Level32_881F0Field(scanAddressOrCountOrBound19,int*,0);
+    scanAddressOrCountOrBound19+=4;
+    if(positionCandidateOrScalar16)goto originalOwnerCandidate;
+    if(!selectedOrCreatedOrVector20)goto originalTrajectoryDone;
+    angleAddressOrDistanceOrVector17=(int)&originalFrame.sp38;
+    argumentOrField4=angleAddressOrDistanceOrVector17;
+    Level32_881F0Keep(argumentOrField4);
+    argumentOrField5=privateOrCreatedPrivate18;
+    Level32_881F0Call4F178View1(argumentOrField4,argumentOrField5);
+    positionCandidateOrScalar16=(int)&originalFrame.sp48;
+    __asm__("":"=r"(positionCandidateOrScalar16):"0"(positionCandidateOrScalar16),"m"(originalFrame.sp38));
+    argumentOrField4=positionCandidateOrScalar16;
+    Level32_881F0Keep(argumentOrField4);
+    argumentOrField5=owner21+12;
+    Level32_881F0Call4F178View1(argumentOrField4,argumentOrField5);
+    __asm__ volatile(""::"m"(originalFrame.sp48):"$19");
+    scanAddressOrCountOrBound19=0;
+    argumentOrField4=(int)&originalFrame.sp28;
+originalTrajectoryLoop:
+    argumentOrField5=owner21+12;
+    Level32_881F0Call4F178View1(argumentOrField4,argumentOrField5);
+    argumentOrField4=positionCandidateOrScalar16;
+    argumentOrField5=positionCandidateOrScalar16;
+    argumentOrField6=angleAddressOrDistanceOrVector17;
+    Level32_881F0Call4F194View1(argumentOrField4,argumentOrField5,argumentOrField6);
+    argumentOrField4=positionCandidateOrScalar16;
+    argumentOrField5=positionCandidateOrScalar16;
+    resultOrField2=originalFrame.sp40;
+    argumentOrField6=angleAddressOrDistanceOrVector17;
+    resultOrField2-=10;
+    originalFrame.sp40=resultOrField2;
+    Level32_881F0Call4F194View1(argumentOrField4,argumentOrField5,argumentOrField6);
+    resultOrField2=originalFrame.sp40;
+    fieldOrIntermediate3=originalFrame.sp48;
+    resultOrField2-=10;
+    originalFrame.sp40=resultOrField2;
+    if(fieldOrIntermediate3<0)goto originalTrajectoryDone;
+    resultOrField2=originalFrame.sp4C;
+    if(resultOrField2<0)goto originalTrajectoryDone;
+    resultOrField2=originalFrame.sp50;
+    if(resultOrField2<0)goto originalTrajectoryDone;
+    argumentOrField4=selectedOrCreatedOrVector20+12;
+    if(!selectedOrCreatedOrVector20)goto originalTrajectoryNext;
+    argumentOrField5=positionCandidateOrScalar16;
+    resultOrField2=Level32_881F0Call4F334View1(argumentOrField4,argumentOrField5);
+    if(resultOrField2>=1200)goto originalTrajectoryNext;
+    resultOrField2=Level32_881F0Field(selectedOrCreatedOrVector20,int*,20);
+    argumentOrField4=originalFrame.sp50;
+    fieldOrIntermediate3=resultOrField2+400;
+    resultOrField2=fieldOrIntermediate3-argumentOrField4;
+    if(resultOrField2<0){
+        resultOrField2=argumentOrField4-fieldOrIntermediate3;
+        argumentOrField4=(int)&originalFrame.sp58;
+        if(resultOrField2>=1000)goto originalTrajectoryNext;
+    }
+    else{
+        argumentOrField4=(int)&originalFrame.sp58;
+        if(resultOrField2>=1000){
+            scanAddressOrCountOrBound19++;
+            goto originalTrajectoryLimit;
+        }
+    }
+    argumentOrField5=(int)&originalFrame.sp48;
+    Level32_881F0Call4F178View1(argumentOrField4,argumentOrField5);
+    resultOrField2=scanAddressOrCountOrBound19*2;
+    Level32_881F0Keep(resultOrField2);
+    originalOddTrajectoryDivisor=resultOrField2+1;
+    originalFrame.spC0=selectedOrCreatedOrVector20;
+    goto originalTrajectoryDone;
+    originalTrajectoryNext:scanAddressOrCountOrBound19++;
+    originalTrajectoryLimit:resultOrField2=scanAddressOrCountOrBound19<30;
+    argumentOrField4=(int)&originalFrame.sp28;
+    if(resultOrField2)goto originalTrajectoryLoop;
+originalTrajectoryDone:
+    capturedLowOrTarget8=originalFrame.spC0;
+    argumentOrField4=(int)&originalFrame.sp28;
+    if(capturedLowOrTarget8){
+        argumentOrField5=capturedLowOrTarget8+12;
+        argumentOrField6=(int)&originalFrame.sp58;
+        Level32_881F0Field(privateOrCreatedPrivate18,int*,12)=capturedLowOrTarget8;
+        Level32_881F0Call4F1C8View1(argumentOrField4,argumentOrField5,argumentOrField6);
+        fieldOrIntermediate3=originalFrame.sp28;
+        fieldOrIntermediate3/=originalOddTrajectoryDivisor;
+        resultOrField2=originalFrame.sp30;
+        resultOrField2+=400;
+        originalFrame.sp30=resultOrField2;
+        resultOrField2=Level32_881F0Field(privateOrCreatedPrivate18,int*,0);
+        resultOrField2+=fieldOrIntermediate3;
+        Level32_881F0Field(privateOrCreatedPrivate18,int*,0)=resultOrField2;
+        fieldOrIntermediate3=originalFrame.sp2C;
+        fieldOrIntermediate3/=originalOddTrajectoryDivisor;
+        resultOrField2=Level32_881F0Field(privateOrCreatedPrivate18,int*,4);
+        resultOrField2+=fieldOrIntermediate3;
+        Level32_881F0Field(privateOrCreatedPrivate18,int*,4)=resultOrField2;
+        fieldOrIntermediate3=originalFrame.sp30;
+        fieldOrIntermediate3/=originalOddTrajectoryDivisor;
+        resultOrField2=Level32_881F0Field(privateOrCreatedPrivate18,int*,8);
+        resultOrField2+=fieldOrIntermediate3;
+        Level32_881F0Field(privateOrCreatedPrivate18,int*,8)=resultOrField2;
+    }
+    resultOrField2=330;
+    Level32_881F0Field(privateOrCreatedPrivate18,short*,18)=resultOrField2;
+    resultOrField2=3;
+    Level32_881F0Field(owner21,unsigned char*,0x48)=resultOrField2;
+    return;
+    originalState3:;
+    argumentOrField4=angleAddressOrDistanceOrVector17;
+    Level32_881F0Keep(argumentOrField4);
+    positionCandidateOrScalar16=owner21+12;
+    argumentOrField5=positionCandidateOrScalar16;
+    Level32_881F0Call4F178View1(argumentOrField4,argumentOrField5);
+    Level32_881F0Call4F194View1(positionCandidateOrScalar16, positionCandidateOrScalar16, privateOrCreatedPrivate18);
+    Level32_881F0Field(privateOrCreatedPrivate18, int *, 8) = (int) (Level32_881F0Field(privateOrCreatedPrivate18, int *, 8) - 0xA);
+    Level32_881F0Call4EDE8View1(privateOrCreatedPrivate18, 1);
+    if ((Level32_881F0Field(owner21, int *, 0xC) >= 0x400) && (Level32_881F0Field(owner21, int *, 0x10) >= 0x400) && (Level32_881F0Field(owner21, int *, 0x14) >= 0x400)) {
+        if (Level32_881F0Call18368View1(&originalFrame.sp68, positionCandidateOrScalar16) != 0) {
+            Level32_881F0Call4F1C8View1(positionCandidateOrScalar16, positionCandidateOrScalar16, privateOrCreatedPrivate18);
+            Level32_881F0Field(owner21, unsigned char *, 0x48) = 4U;
+        }
+        temp_v0_2 = Level32_881F0Call1BA30View1(positionCandidateOrScalar16, 0x12C, 0, 0, 0x800000, owner21);
+        if (temp_v0_2 != 0) {
+            temp_v0_3 = Level32_881F0Call4E880View1(Level32_881F0Field(privateOrCreatedPrivate18, int *, 0), Level32_881F0Field(privateOrCreatedPrivate18, int *, 4), 0);
+            Level32_881F0Field(temp_v0_2, unsigned char *, 0x51) = temp_v0_3;
+            if (!(temp_v0_3 & 0xFF)) {
+                Level32_881F0Field(temp_v0_2, unsigned char *, 0x51) = 1U;
+            }
+            Level32_881F0Field(owner21, unsigned char *, 0x48) = 4U;
+        }
+        originalFrame.sp68 = Level32_881F0Call363DCView1(0, 7);
+        originalFrame.sp6C = Level32_881F0Call363DCView1(0, 7);
+        originalFrame.sp70 = 0xF;
+        if (Level32_881F0Data6C640View1 & 1) {
+            Level32_881F0DataSpawnParticleView1(1, 0x3A, owner21 + 0xC, &originalFrame.sp68);
+        }
+        if (Level32_881F0Call19194View1(owner21 + 0xC, 0x7D) != 0) {
+            Level32_881F0Field(owner21, unsigned char *, 0x48) = 4U;
+        }
+        goto block_139;
+    }
+    goto block_133;
+    originalState4:;
+    bestDistanceOrCount22=0;
+originalFirstParticleLoop:
+    resultOrField2=Level32_881F0Call363DCView1(0,40);
+    originalFrame.sp78=resultOrField2;
+    resultOrField2=Level32_881F0Call363DCView1(0,40);
+    originalFrame.sp7C=resultOrField2;
+    resultOrField2=Level32_881F0Call363DCView1(0,40);
+    argumentOrField4=1;
+    argumentOrField5=58;
+    argumentOrField6=owner21+12;
+    argumentOrField7=(int)&originalFrame.sp78;
+    __asm__ volatile(""::"r"(argumentOrField4),"r"(argumentOrField5),"r"(argumentOrField6),"r"(argumentOrField7):"memory");
+    fieldOrIntermediate3=(int)Level32_881F0DataSpawnParticleView1;
+    __asm__("":"=r"(bestDistanceOrCount22):"0"(bestDistanceOrCount22),"r"(fieldOrIntermediate3));
+    bestDistanceOrCount22++;
+    originalFrame.sp80=resultOrField2;
+    ((void*(*)(int,int,void*,void*))fieldOrIntermediate3)(argumentOrField4,argumentOrField5,argumentOrField6,argumentOrField7);
+    if(bestDistanceOrCount22<5)goto originalFirstParticleLoop;
+    bestDistanceOrCount22=0;
+    bestAngleOrSize23=80;
+originalCreatedParticleLoop:
+    resultOrField2=Level32_881F0Data6C578View1;
+    fieldOrIntermediate3=Level32_881F0Data6C574View1;
+    resultOrField2-=fieldOrIntermediate3;
+    argumentOrField4=owner21;
+    if(resultOrField2<21)goto originalCreatedParticleDone;
+    argumentOrField4=Level32_881F0Field(owner21,short*,0x36);
+    resultOrField2=Level32_881F0DataSpawnMobyView1(argumentOrField4,owner21);
+    selectedOrCreatedOrVector20=resultOrField2;
+    Level32_881F0Keep(selectedOrCreatedOrVector20);
+    if(!selectedOrCreatedOrVector20)goto originalCreatedParticleNext;
+    privateOrCreatedPrivate18=Level32_881F0Field(selectedOrCreatedOrVector20,int*,0);
+    resultOrField2=Level32_881F0DatarandView1();
+    scanAddressOrCountOrBound19=resultOrField2&4095;
+    resultOrField2=Level32_881F0DatarandView1();
+    argumentOrField4=selectedOrCreatedOrVector20+12;
+    argumentOrField5=owner21+12;
+    fieldOrIntermediate3=-1;
+    angleAddressOrDistanceOrVector17=resultOrField2&4095;
+    Level32_881F0Field(selectedOrCreatedOrVector20,int*,8)=0;
+    Level32_881F0Field(selectedOrCreatedOrVector20,int*,28)=fieldOrIntermediate3;
+    Level32_881F0Call4F178View1(argumentOrField4,argumentOrField5);
+    resultOrField2=Level32_881F0Call4EA2CView1(angleAddressOrDistanceOrVector17);
+    argumentOrField4=scanAddressOrCountOrBound19;
+    Level32_881F0Keep(argumentOrField4);
+    positionCandidateOrScalar16=resultOrField2;
+    resultOrField2=Level32_881F0Call4EA2CView1(argumentOrField4);
+    positionCandidateOrScalar16>>=6;
+    Level32_881F0MultiplyComplete(positionCandidateOrScalar16,resultOrField2);
+    argumentOrField4=angleAddressOrDistanceOrVector17;
+    Level32_881F0CaptureLow(capturedLowOrTarget8);
+    resultOrField2=capturedLowOrTarget8>>12;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,0)=resultOrField2;
+    resultOrField2=Level32_881F0Call4EA2CView1(argumentOrField4);
+    argumentOrField4=scanAddressOrCountOrBound19;
+    Level32_881F0Keep(argumentOrField4);
+    positionCandidateOrScalar16=resultOrField2;
+    resultOrField2=Level32_881F0Call4E9E4View1(argumentOrField4);
+    positionCandidateOrScalar16>>=6;
+    Level32_881F0MultiplyComplete(positionCandidateOrScalar16,resultOrField2);
+    argumentOrField4=angleAddressOrDistanceOrVector17;
+    Level32_881F0CaptureLow(capturedLowOrTarget8);
+    resultOrField2=capturedLowOrTarget8>>12;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,4)=resultOrField2;
+    resultOrField2=Level32_881F0Call4E9E4View1(argumentOrField4);
+    argumentOrField4=30;
+    argumentOrField5=50;
+    __asm__("":"=r"(resultOrField2):"0"(resultOrField2),"r"(argumentOrField4),"r"(argumentOrField5));
+    resultOrField2>>=6;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,8)=resultOrField2;
+    resultOrField2=Level32_881F0Call3636CView1(argumentOrField4,argumentOrField5);
+    Level32_881F0Field(privateOrCreatedPrivate18,short*,16)=resultOrField2;
+    resultOrField2=5;
+    Level32_881F0Field(privateOrCreatedPrivate18,unsigned char*,20)=0;
+    Level32_881F0Field(selectedOrCreatedOrVector20,unsigned char*,0x48)=resultOrField2;
+    Level32_881F0Field(selectedOrCreatedOrVector20,unsigned char*,0x4F)=bestAngleOrSize23;
+    Level32_881F0Field(selectedOrCreatedOrVector20,unsigned char*,0x4C)=bestAngleOrSize23;
+    Level32_881F0Field(selectedOrCreatedOrVector20,unsigned char*,0x4E)=bestAngleOrSize23;
+    originalCreatedParticleNext:bestDistanceOrCount22++;
+    if(bestDistanceOrCount22<8)goto originalCreatedParticleLoop;
+    originalCreatedParticleDone:Level32_881F0Call3BABCView1(owner21,2,0);
+    goto block_133;
+    originalState5:;
+    resultOrField2=Level32_881F0Field(owner21,int*,12);
+    if(resultOrField2<1024)goto block_133;
+    resultOrField2=Level32_881F0Field(owner21,int*,16);
+    if(resultOrField2<1024)goto block_133;
+    resultOrField2=Level32_881F0Field(owner21,int*,20);
+    argumentOrField4=owner21+12;
+    if(resultOrField2<1024)goto block_133;
+    resultOrField2=Level32_881F0Call19194View1(argumentOrField4,150);
+    __asm__("":"=r"(owner21):"0"(owner21),"r"(resultOrField2));
+    argumentOrField4=owner21+12;
+    if(!resultOrField2)goto originalState5Move;
+    argumentOrField5=(int)&Level32_881F0Data71918View1;
+    fieldOrIntermediate3=Level32_881F0Field(privateOrCreatedPrivate18,int*,0);
+    resultOrField2=Level32_881F0Field(argumentOrField5,int*,0);
+    Level32_881F0MultiplyComplete(fieldOrIntermediate3,resultOrField2);
+    fieldOrIntermediate3=Level32_881F0Field(privateOrCreatedPrivate18,int*,4);
+    Level32_881F0CaptureLow(argumentOrField6);
+    resultOrField2=Level32_881F0Data7191CView1;
+    Level32_881F0MultiplyComplete(fieldOrIntermediate3,resultOrField2);
+    fieldOrIntermediate3=Level32_881F0Field(privateOrCreatedPrivate18,int*,8);
+    Level32_881F0CaptureLow(argumentOrField4);
+    resultOrField2=Level32_881F0Data71920View1;
+    Level32_881F0MultiplyComplete(fieldOrIntermediate3,resultOrField2);
+    resultOrField2=argumentOrField6+argumentOrField4;
+    Level32_881F0CaptureLow(fieldOrIntermediate3);
+    resultOrField2+=fieldOrIntermediate3;
+    __asm__("":"=r"(owner21):"0"(owner21),"r"(resultOrField2));
+    argumentOrField4=owner21+12;
+    if(resultOrField2>=0)goto originalState5Move;
+    argumentOrField4=privateOrCreatedPrivate18;
+    argumentOrField6=privateOrCreatedPrivate18;
+    resultOrField2=Level32_881F0Call4EF74View1(argumentOrField4,argumentOrField5,argumentOrField6);
+    __asm__("":"=r"(owner21):"0"(owner21),"r"(resultOrField2));
+    argumentOrField4=owner21+12;
+    if(!resultOrField2)goto originalState5Move;
+    fieldOrIntermediate3=Level32_881F0Field(privateOrCreatedPrivate18,int*,0);
+    resultOrField2=fieldOrIntermediate3*6;
+    resultOrField2>>=3;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,0)=resultOrField2;
+    fieldOrIntermediate3=Level32_881F0Field(privateOrCreatedPrivate18,int*,4);
+    resultOrField2=fieldOrIntermediate3*6;
+    resultOrField2>>=3;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,4)=resultOrField2;
+    fieldOrIntermediate3=Level32_881F0Field(privateOrCreatedPrivate18,int*,8);
+    resultOrField2=fieldOrIntermediate3*6;
+    resultOrField2>>=3;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,8)=resultOrField2;
+    originalState5Move:argumentOrField5=argumentOrField4;
+    argumentOrField6=privateOrCreatedPrivate18;
+    Level32_881F0Call4F194View1(argumentOrField4,argumentOrField5,argumentOrField6);
+    resultOrField2=Level32_881F0Field(privateOrCreatedPrivate18,int*,8);
+    resultOrField2-=6;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,8)=resultOrField2;
+    if(resultOrField2< -128){
+        resultOrField2=-128;
+        Level32_881F0Field(privateOrCreatedPrivate18,int*,8)=resultOrField2;
+    }
+    resultOrField2=Level32_881F0Call359A4View1(privateOrCreatedPrivate18+16,2);
+    if(resultOrField2)goto block_133;
+    goto originalDone;
+    originalState6:;
+    resultOrField2=Level32_881F0Field(owner21,int*,12);
+    if(resultOrField2<1024)goto originalOutside6;
+    resultOrField2=Level32_881F0Field(owner21,int*,16);
+    if(resultOrField2<1024)goto originalOutside6;
+    resultOrField2=Level32_881F0Field(owner21,int*,20);
+    if(resultOrField2<1024){
+        originalOutside6:resultOrField2=4;
+        Level32_881F0Field(owner21,unsigned char*,0x48)=resultOrField2;
+    }
+    argumentOrField4=(int)&originalFrame.sp88;
+    Level32_881F0Keep(argumentOrField4);
+    positionCandidateOrScalar16=owner21+12;
+    argumentOrField5=positionCandidateOrScalar16;
+    Level32_881F0Call4F178View1(argumentOrField4,argumentOrField5);
+    argumentOrField4=positionCandidateOrScalar16;
+    argumentOrField5=positionCandidateOrScalar16;
+    argumentOrField6=privateOrCreatedPrivate18;
+    Level32_881F0Call4F194View1(argumentOrField4,argumentOrField5,argumentOrField6);
+    argumentOrField4=privateOrCreatedPrivate18;
+    argumentOrField5=1;
+    resultOrField2=Level32_881F0Field(privateOrCreatedPrivate18,int*,8);
+    __asm__ volatile(""::"r"(resultOrField2):"$19");
+    scanAddressOrCountOrBound19=125;
+    resultOrField2-=10;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,8)=resultOrField2;
+    resultOrField2=Level32_881F0Call4EDE8View1(argumentOrField4,argumentOrField5);
+    Level32_881F0Keep(scanAddressOrCountOrBound19);
+    fieldOrIntermediate3=resultOrField2+8;
+    resultOrField2=scanAddressOrCountOrBound19<fieldOrIntermediate3;
+    argumentOrField4=positionCandidateOrScalar16;
+    if(resultOrField2)scanAddressOrCountOrBound19=fieldOrIntermediate3;
+    argumentOrField5=scanAddressOrCountOrBound19;
+    resultOrField2=Level32_881F0Call19194View1(argumentOrField4,argumentOrField5);
+    if(!resultOrField2)goto originalState6Particles;
+    angleAddressOrDistanceOrVector17=(int)&Level32_881F0Data71920View1;
+    selectedOrCreatedOrVector20=angleAddressOrDistanceOrVector17-8;
+    argumentOrField4=selectedOrCreatedOrVector20;
+    Level32_881F0Keep(argumentOrField4);
+    Level32_881F0Field(privateOrCreatedPrivate18,unsigned char*,20)=0;
+    positionCandidateOrScalar16=Level32_881F0Field(angleAddressOrDistanceOrVector17,int*,0);
+    if(positionCandidateOrScalar16<0)positionCandidateOrScalar16=-positionCandidateOrScalar16;
+    resultOrField2=Level32_881F0Call4EDE8View1(argumentOrField4,0);
+    positionCandidateOrScalar16=positionCandidateOrScalar16<resultOrField2;
+    if(!positionCandidateOrScalar16)goto originalVerticalBounce;
+    positionCandidateOrScalar16=(int)&originalFrame.sp98;
+    argumentOrField4=positionCandidateOrScalar16;
+    argumentOrField5=selectedOrCreatedOrVector20;
+    Level32_881F0Call4F178View1(argumentOrField4,argumentOrField5);
+    argumentOrField4=privateOrCreatedPrivate18;
+    Level32_881F0Keep(argumentOrField4);
+    argumentOrField5=positionCandidateOrScalar16;
+    Level32_881F0Keep(argumentOrField5);
+    argumentOrField6=privateOrCreatedPrivate18;
+    resultOrField2=Level32_881F0Call4EF74View1(argumentOrField4,argumentOrField5,argumentOrField6);
+    argumentOrField4=owner21;
+    if(!resultOrField2)goto originalState6Particles;
+    argumentOrField5=0;
+    argumentOrField6=0;
+    fieldOrIntermediate3=Level32_881F0Field(privateOrCreatedPrivate18,int*,0);
+    resultOrField2=fieldOrIntermediate3*6;
+    resultOrField2>>=3;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,0)=resultOrField2;
+    fieldOrIntermediate3=Level32_881F0Field(privateOrCreatedPrivate18,int*,4);
+    resultOrField2=fieldOrIntermediate3*6;
+    resultOrField2>>=3;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,4)=resultOrField2;
+    fieldOrIntermediate3=Level32_881F0Field(privateOrCreatedPrivate18,int*,8);
+    resultOrField2=fieldOrIntermediate3*6;
+    resultOrField2>>=3;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,8)=resultOrField2;
+    resultOrField2=Level32_881F0Call3BABCView1(argumentOrField4,argumentOrField5,argumentOrField6);
+    argumentOrField4=resultOrField2;
+    if(argumentOrField4<0)goto originalState6Particles;
+    resultOrField2=Level32_881F0Field(privateOrCreatedPrivate18,int*,8);
+    if(resultOrField2<0)resultOrField2=-resultOrField2;
+    Level32_881F0Keep(resultOrField2);
+    argumentOrField5=resultOrField2*40;
+    Level32_881F0Call3C140View1(argumentOrField4,argumentOrField5);
+    goto originalState6Particles;
+originalVerticalBounce:
+    positionCandidateOrScalar16=Level32_881F0Field(angleAddressOrDistanceOrVector17,int*,0);
+    if(positionCandidateOrScalar16<0){
+        resultOrField2=Level32_881F0Field(privateOrCreatedPrivate18,int*,8);
+        argumentOrField4=owner21;
+        if(resultOrField2>0)goto originalReverseZ;
+    }
+    if(positionCandidateOrScalar16<=0)goto originalState6Particles;
+    resultOrField2=Level32_881F0Field(privateOrCreatedPrivate18,int*,8);
+    argumentOrField4=owner21;
+    if(resultOrField2>=0)goto originalState6Particles;
+originalReverseZ:
+    argumentOrField5=0;
+    resultOrField2=Level32_881F0Field(privateOrCreatedPrivate18,int*,8);
+    argumentOrField6=0;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,0)=0;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,4)=0;
+    resultOrField2=-resultOrField2;
+    resultOrField2>>=1;
+    Level32_881F0Field(privateOrCreatedPrivate18,int*,8)=resultOrField2;
+    resultOrField2=Level32_881F0Call3BABCView1(argumentOrField4,argumentOrField5,argumentOrField6);
+    argumentOrField4=resultOrField2;
+    if(argumentOrField4>=0){
+        resultOrField2=Level32_881F0Field(privateOrCreatedPrivate18,int*,8);
+        if(resultOrField2<0)resultOrField2=-resultOrField2;
+        argumentOrField5=resultOrField2*40;
+        Level32_881F0Call3C140View1(argumentOrField4,argumentOrField5);
+    }
+    resultOrField2=Level32_881F0Field(privateOrCreatedPrivate18,int*,8);
+    if(resultOrField2<14){
+        resultOrField2=Level32_881F0Call35D38View1(owner21);
+        resultOrField2+=scanAddressOrCountOrBound19;
+        Level32_881F0Field(owner21,int*,20)=resultOrField2;
+        Level32_881F0Field(owner21,unsigned char*,0x48)=0;
+    }
+originalState6Particles:
+    resultOrField2=Level32_881F0DatarandView1();
+    resultOrField2&=3;
+    originalFrame.sp88=resultOrField2;
+    resultOrField2=Level32_881F0DatarandView1();
+    resultOrField2&=3;
+    originalFrame.sp8C=resultOrField2;
+    resultOrField2=20;
+    originalFrame.sp90=resultOrField2;
+    resultOrField2=Level32_881F0Field(privateOrCreatedPrivate18,unsigned char*,20);
+    if(!resultOrField2)goto block_139;
+    resultOrField2=Level32_881F0Data6C640View1;
+    resultOrField2&=1;
+    argumentOrField4=1;
+    if(!resultOrField2)goto block_139;
+    argumentOrField5=58;
+    argumentOrField6=owner21+12;
+    resultOrField2=(int)Level32_881F0DataSpawnParticleView1;
+    argumentOrField7=(int)&originalFrame.sp88;
+    goto originalCommonParticle;
+    originalState99:;
+    resultOrField2=Level32_881F0Field(owner21,int*,12);
+    if(resultOrField2<1024)goto block_133;
+    resultOrField2=Level32_881F0Field(owner21,int*,16);
+    if(resultOrField2<1024)goto block_133;
+    resultOrField2=Level32_881F0Field(owner21,int*,20);
+    argumentOrField4=(int)&originalFrame.sp98;
+    if(resultOrField2<1024)goto block_133;
+    Level32_881F0Keep(argumentOrField4);
+    positionCandidateOrScalar16=owner21+12;
+    argumentOrField5=positionCandidateOrScalar16;
+    Level32_881F0Call4F178View1(argumentOrField4,argumentOrField5);
+    argumentOrField4=positionCandidateOrScalar16;
+    argumentOrField5=positionCandidateOrScalar16;
+    argumentOrField6=privateOrCreatedPrivate18;
+    Level32_881F0Call4F194View1(argumentOrField4,argumentOrField5,argumentOrField6);
+    __asm__("":"=r"(owner21):"0"(owner21),"m"(originalFrame.sp98));
+    argumentOrField5=Level32_881F0Field(privateOrCreatedPrivate18,int*,12);
+    argumentOrField4=positionCandidateOrScalar16;
+    if(!argumentOrField5)goto originalState99NearDone;
+    argumentOrField5+=12;
+    resultOrField2=Level32_881F0Call4F334View1(argumentOrField4,argumentOrField5);
+    if(resultOrField2>=500)goto originalState99NearDone;
+    resultOrField2=Level32_881F0Field(owner21,short*,56);
+    fieldOrIntermediate3=Level32_881F0Field(privateOrCreatedPrivate18,int*,12);
+    argumentOrField4=Level32_881F0Field(owner21,int*,20);
+    fieldOrIntermediate3=Level32_881F0Field(fieldOrIntermediate3,int*,20);
+    argumentOrField4-=resultOrField2;
+    resultOrField2=argumentOrField4-fieldOrIntermediate3;
+    if(resultOrField2<0){
+        resultOrField2=fieldOrIntermediate3-argumentOrField4;
+        if(resultOrField2>=600)goto originalState99NearDone;
+    }
+    else{
+        if(resultOrField2>=600){
+            positionCandidateOrScalar16=owner21+12;
+            goto originalState99NearContinue;
+        }
+    }
+    resultOrField2=4;
+    Level32_881F0Field(owner21,unsigned char*,0x48)=resultOrField2;
+    originalState99NearDone:positionCandidateOrScalar16=owner21+12;
+    originalState99NearContinue:argumentOrField4=positionCandidateOrScalar16;
+    argumentOrField5=100;
+    argumentOrField6=7;
+    resultOrField2=Level32_881F0Call1C288View1(argumentOrField4,argumentOrField5,argumentOrField6);
+    __asm__("":"=r"(privateOrCreatedPrivate18):"0"(privateOrCreatedPrivate18),"r"(resultOrField2));
+    argumentOrField4=privateOrCreatedPrivate18+21;
+    if(resultOrField2){
+        argumentOrField4=Level32_881F0Field(privateOrCreatedPrivate18,int*,0);
+        argumentOrField5=Level32_881F0Field(privateOrCreatedPrivate18,int*,4);
+        argumentOrField6=0;
+        resultOrField2=Level32_881F0Call4E880View1(argumentOrField4,argumentOrField5,argumentOrField6);
+        Level32_881F0Field(&Level32_881F0Data70328View1,int*,0x298)=resultOrField2;
+        resultOrField2=4;
+        Level32_881F0Field(owner21,unsigned char*,0x48)=resultOrField2;
+        __asm__("":"=r"(privateOrCreatedPrivate18):"0"(privateOrCreatedPrivate18),"m"(Level32_881F0Field(owner21,unsigned char*,0x48)));
+        argumentOrField4=privateOrCreatedPrivate18+21;
+    }
+    resultOrField2=Level32_881F0Call359A4View1(argumentOrField4,1);
+    argumentOrField4=positionCandidateOrScalar16;
+    if(resultOrField2){
+        resultOrField2=Level32_881F0Call1BA30View1(argumentOrField4,150,0,0,0x10000000,owner21);
+        if(resultOrField2){
+            resultOrField2=4;
+            Level32_881F0Field(owner21,unsigned char*,0x48)=resultOrField2;
+        }
+    }
+    resultOrField2=Level32_881F0Call359A4View1(privateOrCreatedPrivate18+16,2);
+    angleAddressOrDistanceOrVector17=(int)&originalFrame.sp98;
+    if(!resultOrField2)goto originalState99Probe;
+    block_133:Level32_881F0Call55B18View1(owner21);
+    return;
+originalState99Probe:
+    argumentOrField4=angleAddressOrDistanceOrVector17;
+    Level32_881F0Keep(argumentOrField4);
+    positionCandidateOrScalar16=owner21+12;
+    argumentOrField5=positionCandidateOrScalar16;
+    resultOrField2=Level32_881F0Call18368View1(argumentOrField4,argumentOrField5);
+    if(resultOrField2){
+        resultOrField2=4;
+        Level32_881F0Field(owner21,unsigned char*,0x48)=resultOrField2;
+    }
+    resultOrField2=Level32_881F0Call363DCView1(0,7);
+    originalFrame.sp98=resultOrField2;
+    resultOrField2=Level32_881F0Call363DCView1(0,7);
+    originalFrame.sp9C=resultOrField2;
+    resultOrField2=Level32_881F0Data6C640View1;
+    fieldOrIntermediate3=15;
+    resultOrField2&=1;
+    originalFrame.spA0=fieldOrIntermediate3;
+    if(!resultOrField2)goto block_139;
+    argumentOrField4=1;
+    argumentOrField5=58;
+    argumentOrField6=positionCandidateOrScalar16;
+    resultOrField2=(int)Level32_881F0DataSpawnParticleView1;
+    argumentOrField7=angleAddressOrDistanceOrVector17;
+    originalCommonParticle:((void*(*)(int,int,void*,void*))resultOrField2)(argumentOrField4,argumentOrField5,argumentOrField6,argumentOrField7);
+    block_139:Level32_881F0Call35D38View1(owner21);
+    Level32_881F0Call5629CView1(owner21);
+    return;
+    originalDone:return;
+}
+#undef Level32_881F0Field
+
 
 /* AI generated; not yet human reviewed. SCUS-94467 USA Rev 0.
  * Original 342 instructions per copy are the acceptance authority.
@@ -4366,7 +16338,153 @@ void func_level_32_80089724(Moby* moby) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/moby", func_level_32_800899A0);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated; not human reviewed. SCUS-94467 USA Rev0 level32
+ * 800899A0: all272 original instructions in sibling4450. Verified37 model
+ * count selector C reused; raw original trig products and signed division.
+ * Meanings, units, cadence unresolved. Native/linked/full hash gates required. */
+#define Actor32Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+extern unsigned char Actor32Player[] __asm__("D_80070328");
+extern unsigned char* Actor32Models[] __asm__("D_8006EE2C");
+extern short Actor32Cos[] __asm__("D_80065920"),Actor32Sin[] __asm__("D_800658A0");
+extern int Actor32Count0 __asm__("D_8006C578"),Actor32Count1 __asm__("D_8006C574");
+extern unsigned char Actor32Table0[] __asm__("D_8006D088"),Actor32Table1[] __asm__("D_8006C7F8");
+extern unsigned char* (*Actor32Spawn)(int,void*) __asm__("SpawnMoby");
+extern int (*Actor32Indirect)(void*,int,void*) __asm__("unk_ovlheader_800743E8");
+int Actor32H36220() __asm__("func_80036220");
+int Actor32H55D24() __asm__("func_80055D24");
+int Actor32H3B7B4() __asm__("func_8003B7B4");
+int Actor32H3BABC() __asm__("func_8003BABC");
+int Actor32H3636C() __asm__("func_8003636C");
+int Actor32H4F194() __asm__("func_8004F194");
+int Actor32H36A68() __asm__("func_80036A68");
+int Actor32H38BF8() __asm__("func_80038BF8");
+int Actor32H35194() __asm__("func_80035194");
+int Actor32H3BA00() __asm__("func_8003BA00");
+int Actor32H369B8() __asm__("func_800369B8");
+int Actor32H55B18() __asm__("func_80055B18");
+void func_level_32_800899A0(void* input) {
+ register unsigned char* owner __asm__("$20")=input;
+ register unsigned char* tag __asm__("$22");
+ register unsigned char* saved __asm__("$16");
+ register int angle1 __asm__("$17");
+ register unsigned char* childTag __asm__("$18");
+ register unsigned char* child __asm__("$19");
+ register int iteration __asm__("$21");
+
+
+ register int high8 __asm__("$8");register int sign3 __asm__("$3");
+ register int work2 __asm__("$2");
+ register int work3 __asm__("$3");
+ register void* call4 __asm__("$4");
+ register void* call5 __asm__("$5");
+ register void* call6 __asm__("$6");
+
+
+ work2=owner[0x48];tag=Actor32Field(owner,unsigned char**,0);
+ if(work2==10) {
+  saved=Actor32Player;
+  work2=Actor32H36220(saved,tag+0x40,0,0);call4=owner;
+  if(work2)goto react;
+  call4=saved;call5=tag+0x58;
+  __asm__("" : "=r"(call4),"=r"(call5):"0"(call4),"1"(call5):"$2","$6");
+  call6=0;__asm__("" : "=r"(call6):"0"(call6));
+  work2=Actor32H36220(call4,call5,call6,0);call4=owner;
+  if(!work2)return;
+  react:
+  call5=(void*)1;
+  __asm__("" : "=r"(call4),"=r"(call5):"0"(call4),"1"(call5));
+  work3=1;work2=80;owner[0x41]=work3;owner[0x4C]=work2;owner[0x4D]=work3;
+  Actor32H55D24(call4,call5);
+  saved=tag+0x3C;owner[0x4A]=70;Actor32Field(tag,int*,0x3C)=0;
+  Actor32H3B7B4(saved,4,Actor32Table0);Actor32H3B7B4(saved,4,Actor32Table1);
+  owner[0x48]=0;
+ }
+ if((Actor32Field(owner,int*,24)&0x30000) && !owner[0x48]) {
+  Actor32H3BABC(owner,0,1);Actor32H55D24(owner,4);
+  iteration=0;
+  do {
+   work2=Actor32Count0;work3=Actor32Count1;work2=work2-work3;
+   if(work2<21)goto afterLoop;
+   child=Actor32Spawn(730,owner);
+   __asm__("" : "=r"(child):"0"(child));
+   if(child) {
+    childTag=Actor32Field(child,unsigned char**,0);child[0x4C]=80;child[0x4E]=80;
+    work2=Actor32H3636C(0,255);
+    call4=0;call5=(void*)255;
+    __asm__("" : "=r"(call4),"=r"(call5):"0"(call4),"1"(call5));
+    saved=(void*)work2;work2=Actor32H3636C(call4,call5);
+    call4=0;call5=(void*)900;
+    __asm__("" : "=r"(call4),"=r"(call5):"0"(call4),"1"(call5));
+    angle1=work2;work2=Actor32H3636C(call4,call5);
+    {
+    register short* table;
+    saved=(unsigned char*)((int)saved<<1);table=Actor32Cos;
+    __asm__("" : "=r"(table):"0"(table):"$3","$4","$5","$6","$7");
+    work3=(int)saved+(int)table;
+    work3=Actor32Field((void*)work3,short*,0);
+    work3=work3*work2;
+    angle1<<=1;call5=(void*)(angle1+(int)table);
+    call4=(void*)(int)Actor32Field(call5,short*,0);work3>>=12;work3*=(int)call4;
+    table=Actor32Sin;
+    __asm__("" : "=r"(table):"0"(table):"$4","$6","$7");
+    saved=(void*)((int)saved+(int)table);
+    work3>>=12;Actor32Field(child,int*,12)=work3;
+    work3=Actor32Field(saved,short*,0);work3*=work2;
+    call4=(void*)(int)Actor32Field(call5,short*,0);work3>>=12;work3*=(int)call4;
+    angle1+=(int)table;
+    __asm__("" : "=r"(angle1):"0"(angle1));
+    work3>>=12;Actor32Field(child,int*,16)=work3;
+    work3=Actor32Field((void*)angle1,short*,0);work3*=work2;
+    }
+    work2=Actor32Field(child,int*,12)<<1;
+    work3>>=12;Actor32Field(child,int*,20)=work3;
+    /* Signed multiply-high form. Original instruction indices145/153/164
+     * sequencing is checked instruction by instruction; +sign then
+     * -sign expresses the exact GCC signed division lowering, with
+     * the original high word in T0 and corrected quotient in V0. */
+    high8=work2/3+(work2>>31);work2=high8-(work2>>31);Actor32Field(childTag,int*,4)=work2;
+    work2=Actor32Field(child,int*,16)<<1;
+    high8=work2/3+(work2>>31);work2=high8-(work2>>31);Actor32Field(childTag,int*,8)=work2;
+    work2=Actor32Field(child,int*,20)<<1;
+    call6=owner+12;call4=child+12;call5=call4;
+    high8=work2/3+(work2>>31);work2=high8-(work2>>31);Actor32Field(childTag,int*,12)=work2;
+    Actor32H4F194(call4,call5,call6);
+    if(iteration>=11 && child[0x3C]!=1) {
+     register unsigned int count __asm__("$2");
+     register int multiple __asm__("$2");
+     child[0x42]=0;
+     count=**(unsigned char**)(Actor32Models[Actor32Field(child,short*,0x36)]+0x40);
+     child[0x3C]=1;child[0x3D]=1;child[0x3E]=0;child[0x3F]=1;
+     multiple=count>=2;__asm__("" : "=r"(multiple):"0"(multiple));child[0x40]=-multiple&48;
+    }
+   }
+   iteration++;
+  }while(iteration<16);
+  afterLoop:
+  Actor32H36A68(owner,16,0,0);Actor32H38BF8(owner,tag+4,0,1);Actor32Field(tag,short*,10)+=50;
+ }
+ switch(owner[0x48]) {
+ case 0:
+  if(Actor32Field(tag,int*,0x3C)) {
+   owner[0x4A]=255;owner[0x41]=0;owner[0x4C]=0;owner[0x4D]=0;Actor32Field(owner,int*,8)=0;owner[0x48]=10;
+   return;
+  }
+  {
+   register int (*indirect)() __asm__("$3");
+   call4=owner;call6=tag+0x1C;call5=(void*)Actor32Field(tag,int*,0);
+   __asm__("" : "=r"(call4),"=r"(call6),"=r"(call5):"0"(call4),"1"(call6),"2"(call5));
+   indirect=Actor32Indirect;work2=160;Actor32Field(tag,short*,0x20)=work2;indirect(call4,call5,call6);
+  }Actor32H55D24(owner,6);return;
+ case 1:
+  if(Actor32H35194(owner,tag+4)==256) {
+   Actor32H55D24(owner,4);Actor32H3BA00(owner);Actor32H369B8(owner,48);Actor32H55B18(owner);
+  }
+ }
+}
+
 
 typedef struct { int timer; Vector3D velocity; } DecodedWobbleTag;
 extern unsigned short DecodedWobbleSin[] __asm__("D_800658A0");
@@ -5193,7 +17311,395 @@ void func_level_32_8008B06C(Moby* moby) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/moby", func_level_32_8008B27C);
+/* AI-generated; not human reviewed. Verified sibling C adapted only
+ * to this function's original SCUS-94467 instructions. Raw field units,
+ * helper meanings and update cadence remain unresolved. */
+/* AI generated; not human reviewed. SCUS-94467 USA Rev0 family:
+ * level25 8007ACBC, level35 80079A70, level45 80079BE0.692 original
+ * instructions and7 state targets plus padding per member. Evidence4863/64.
+ * Raw widths/units/helper meanings/cadence unresolved; original linked words
+ * and full retail hashes required before acceptance. Verified34 C reused. */
+extern int F4874Gate __asm__("D_8006FA3C"),F4874Position __asm__("D_8006FA80"),F4874Mode __asm__("D_8006E044");
+extern unsigned short F4874E040 __asm__("D_8006E040"),F4874E03E __asm__("D_8006E03E");
+extern unsigned char F4874PlayerE __asm__("D_80070328 + 0xE"),F4874Player12 __asm__("D_80070328 + 0x12"),F4874PlayerD __asm__("D_80070328 + 0xD");
+extern unsigned char F4874Player[] __asm__("D_80070328");
+extern unsigned char* F4874Array __asm__("D_8006C550"),*F4874ArrayEnd __asm__("D_8006C704");
+extern int F4874W20C __asm__("D_80070328 + 0x20C"),F4874W170 __asm__("D_80070328 + 0x170");
+extern void* F4874W218 __asm__("D_80070328 + 0x218");
+extern int (*F4874CallbackA0)() __asm__("unk_ovlheader_800743A0");
+extern int (*F4874Callback24)() __asm__("unk_ovlheader_80074324");
+int F4874func_80049484() __asm__("func_80049484");
+void* F4874func_8002F540() __asm__("func_8002F540");
+int F4874rand() __asm__("rand");
+#define F4874Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+int F4874func_80013E38() __asm__("func_80013E38");
+int F4874func_8001830C() __asm__("func_8001830C");
+int F4874func_80018368() __asm__("func_80018368");
+void *F4874func_8001BA30() __asm__("func_8001BA30");
+int F4874func_800359A4() __asm__("func_800359A4");
+int F4874func_8003BABC() __asm__("func_8003BABC");
+int F4874func_8003BE70() __asm__("func_8003BE70");
+int F4874func_8003BFC0() __asm__("func_8003BFC0");
+int F4874func_8003C0B0() __asm__("func_8003C0B0");
+int F4874func_80040954() __asm__("func_80040954");
+int F4874func_8004E880() __asm__("func_8004E880");
+int F4874func_8004ED6C() __asm__("func_8004ED6C");
+int F4874func_8004EDE8() __asm__("func_8004EDE8");
+int F4874func_8004F0E8() __asm__("func_8004F0E8");
+int F4874func_8004F110() __asm__("func_8004F110");
+int F4874func_8004F178() __asm__("func_8004F178");
+int F4874func_8004F194() __asm__("func_8004F194");
+int F4874func_8004F1C8() __asm__("func_8004F1C8");
+int F4874func_8004F334() __asm__("func_8004F334");
+int F4874func_80055B18() __asm__("func_80055B18");
+int F4874func_80055D24() __asm__("func_80055D24");
+extern unsigned char F4874D_800658A0[] __asm__("D_800658A0");
+extern unsigned char F4874D_80065920[] __asm__("D_80065920");
+extern int F4874D_8006C574 __asm__("D_8006C574");
+extern int F4874D_8006C578 __asm__("D_8006C578");
+extern unsigned char F4874D_8006D048[] __asm__("D_8006D048");
+extern void *F4874D_8006E788 __asm__("D_8006E788");
+extern int F4874D_80071924 __asm__("D_80071924");
+extern void *(*F4874SpawnMoby)() __asm__("SpawnMoby");
+extern int (*F4874SpawnParticle)() __asm__("SpawnParticle");
+void func_level_32_8008B27C(void *arg0) {
+    register void *owner __asm__("$19");
+    register short *signedTable65920 __asm__("$23");
+    register short *signedTable658A0 __asm__("$22");
+    register short *temp_a2 __asm__("$6");
+    register int tableIndex4 __asm__("$4");
+    register int tableIndex5 __asm__("$5");
+    register short *tablePointer2 __asm__("$2");
+    register short *tablePointer4 __asm__("$4");
+    register short *tablePointer5 __asm__("$5");
+    int tableProduct2;
+    int signedDivision180Magic;
+    register int tableHalfword3 __asm__("$3");
+    int temp_v0_4;
+    register int previousHalfword08 __asm__("$7");
+    register void *stackArg4 __asm__("$4");
+    register int phaseByte3 __asm__("$3");
+    register int initWord2 __asm__("$2");
+    register int halfword3 __asm__("$3");
+    register int result2 __asm__("$2");
+    register int work3 __asm__("$3");
+    register int *vector38 __asm__("$18");
+    register int *savedVector28 __asm__("$16");
+    register int *globalWordAddress16 __asm__("$16");
+    register int previousHalfword06 __asm__("$3");
+    register int updatedHalfword06 __asm__("$2");
+    register int *savedOwnerVector0C __asm__("$17");
+    register int *temp_s1_3 __asm__("$17");
+    register int *ownerVectorArgument __asm__("$18");
+    int ownerWord10;
+    int temp_a0_3;
+    int ownerWord0C;
+    int temp_a1_3;
+    register int combinedScore __asm__("$17");
+    int temp_v0_5;
+    int distanceScore;
+    int ownerWord14;
+    register int wrappedDifference08 __asm__("$6");
+    register int wrappedDifference06 __asm__("$6");
+    int bestScore;
+    struct { int sp18; int sp1C; int sp20; int sp24; int sp28; int sp2C; int sp30; int sp34; int sp38; int sp3C; int sp40; int sp44; int sp48; int sp4C; int sp50; int sp54; int sp58; int sp5C; int sp60; int sp64; int sp68; int sp6C; int sp70; int sp74; int sp78; int sp7C; int sp80; int sp84; } frame;
+    register int wrappedDifference45 __asm__("$16");
+    register int upperStep __asm__("$16");
+    register int scaledWord16 __asm__("$16");
+    register int absoluteDistanceScore __asm__("$17");
+    register int lowerStep __asm__("$17");
+    register int var_s1_3 __asm__("$17");
+    register int wrappedDifference46 __asm__("$18");
+    register int var_s2_2 __asm__("$18");
+    register int absoluteDifference08 __asm__("$2");
+    register int var_v0_2 __asm__("$2");
+    register int absoluteDifference06 __asm__("$2");
+    register int var_v0_4 __asm__("$2");
+    unsigned char ownerState48;
+    register unsigned char* scanPosition __asm__("$20");
+    void *temp_a0_2;
+    void *linkedObject00;
+    register void *privateState __asm__("$21");
+    register void *ownerVector0C __asm__("$23");
+    register void *queriedObject __asm__("$17");
+    register void *temp_v0_2 __asm__("$16");
+    register void *temp_v0_3 __asm__("$16");
+    void *temp_v1_6;
+    register void *scannedObject __asm__("$22");
+
+    owner = arg0;
+    ownerState48 = F4874Field(owner, unsigned char *, 0x48);
+    privateState = F4874Field(owner, void **, 0);
+    switch (ownerState48) {
+
+    case 0:
+        temp_v0_2=F4874Field(owner,void**,0);
+        result2=F4874Field(temp_v0_2,short*,0x14);
+        if(result2){
+            tableIndex4=F4874Field(temp_v0_2,short*,0x16);
+            if(tableIndex4){
+                work3=F4874Position;
+                if(result2>=work3)goto outside0;result2=work3<tableIndex4;work3=1;if(!result2)goto outside0;{F4874Field(owner,unsigned char*,0x41)=0;F4874Field(owner,unsigned char*,0x4C)=0;F4874Field(owner,unsigned char*,0x4D)=0;}
+                goto afterFlags0;outside0:work3=1;result2=63;{F4874Field(owner,unsigned char*,0x41)=work3;F4874Field(owner,unsigned char*,0x4C)=result2;F4874Field(owner,unsigned char*,0x4D)=work3;}afterFlags0:;
+            }
+        }
+        result2=F4874E040;result2=((int)((unsigned)result2<<16)>>20)-128;F4874Field(owner,unsigned char*,0x46)=result2;
+        result2=F4874E03E;F4874Field(owner,unsigned char*,0x45)=(unsigned)result2>>4;
+        {register unsigned char* child4 __asm__("$4");
+         child4=F4874Field(temp_v0_2,unsigned char**,0);
+         if(!child4){F4874Field(temp_v0_2,void**,0)=F4874SpawnMoby(364,owner);return;}
+         if(child4[72]!=4){F4874Field(temp_v0_2,int*,16)=30;F4874Field(temp_v0_2,void**,0)=0;F4874Field(owner,unsigned char*,72)=6;return;}
+         child4[70]=F4874Field(owner,unsigned char*,70)+128;
+         result2=F4874Field(owner,unsigned char*,69);work3=(int)F4874Field(temp_v0_2,void**,0);F4874Field((void*)work3,unsigned char*,69)=-result2;return;
+        }
+    case 1:
+        F4874Field(owner,unsigned char*,76)=0;F4874Field(owner,unsigned char*,77)=0;
+        F4874func_8004F178(owner+12,F4874Player);return;
+    case 2:
+        F4874Field(owner,unsigned char*,76)=63;F4874func_80049484(owner+12);
+        result2=F4874PlayerE;work3=F4874Player12;F4874Field(owner,unsigned char*,70)=result2+work3;
+        if(F4874Mode==7){result2=F4874E03E;result2=-((int)((unsigned)result2<<16)>>20);F4874Field(owner,unsigned char*,69)=result2;result2=F4874E040;F4874Field(owner,unsigned char*,70)=(unsigned)result2>>4;}
+        else F4874Field(owner,unsigned char*,69)=F4874PlayerD;
+        bestScore=0x10000;__asm__("" : "=r"(bestScore):"0"(bestScore));
+        scannedObject=F4874Array;result2=(unsigned)scannedObject<(unsigned)F4874ArrayEnd;__asm__("" ::: "memory");bestScore |= 0x869F;
+        F4874Field(privateState, void **, 0) = 0;
+        if (result2) {
+            ownerVector0C = owner + 0xC;
+            scanPosition=scannedObject+12;
+            do {
+                work3=F4874Field(scanPosition,short*,0x2A);
+                if(work3==0x75 || work3==0x9B || work3==0x48 || work3==0xC8)goto nextScanned;
+                if(work3==0x67 && F4874Field(scanPosition,unsigned char*,0x3C)!=0x15)goto nextScanned;
+                if (!(F4874Field(scanPosition, unsigned char *, 0x3C) & 0x80) && (F4874Field(scanPosition, int *, -4) != 0)) {
+                    F4874func_8004F178(&frame.sp18, scanPosition);
+                    frame.sp20 += 0x80;
+                    wrappedDifference46 = (F4874func_8004E880(frame.sp18 - F4874Field(owner, int *, 0xC), frame.sp1C - F4874Field(owner, int *, 0x10), 0) - F4874Field(owner, unsigned char *, 0x46)) & 0xFF;
+                    if (wrappedDifference46 >= 0x81) {
+                        wrappedDifference46 -= 0x100;
+                    }
+                    wrappedDifference45 = (F4874func_8004E880(F4874func_8004F334(ownerVector0C, &frame.sp18), frame.sp20 - F4874Field(owner, int *, 0x14), 0) - F4874Field(owner, unsigned char *, 0x45)) & 0xFF;
+                    if (wrappedDifference45 >= 0x81) {
+                        wrappedDifference45 -= 0x100;
+                    }
+                    if (wrappedDifference46 < 0) {
+                        wrappedDifference46 = -wrappedDifference46;
+                    }
+                    if (wrappedDifference45 < 0) {
+                        wrappedDifference45 = -wrappedDifference45;
+                    }
+                    __asm__("" : "=r"(wrappedDifference46) : "0"(wrappedDifference46));
+                    if ((wrappedDifference46 < 0x30) && (wrappedDifference45 < 0x30)) {
+                        distanceScore = 0x2800 - F4874func_8004F334(ownerVector0C, &frame.sp18);
+                        absoluteDistanceScore = distanceScore;
+                        if (distanceScore < 0) {
+                            absoluteDistanceScore = -absoluteDistanceScore;
+                        }
+                        result2 = (wrappedDifference46 + wrappedDifference45) << 10;
+                        __asm__("" : "=r"(result2) : "0"(result2));
+                        combinedScore = absoluteDistanceScore + result2;
+                        if ((combinedScore < bestScore) && (F4874func_80013E38(ownerVector0C, &frame.sp18, 4) != 0)) {
+                            F4874Field(privateState, void **, 0) = scannedObject;
+                            bestScore = combinedScore;
+                        }
+                    }
+                }
+                nextScanned:result2=(int)F4874ArrayEnd;scannedObject+=88;result2=(unsigned)scannedObject<(unsigned)result2;scanPosition+=88;
+            } while (result2);
+        }
+        if (bestScore == 0x1869F) {
+            F4874Field(privateState, void **, 0) = 0;
+        }
+        initWord2 = F4874Field(owner, unsigned char *, 0x44) << 4;
+        __asm__("" : "=r"(initWord2) : "0"(initWord2));
+        F4874Field(privateState, short *, 4) = initWord2;
+        initWord2 = F4874Field(owner, unsigned char *, 0x45) << 4;
+        __asm__("" : "=r"(initWord2) : "0"(initWord2));
+        F4874Field(privateState, short *, 6) = initWord2;
+        phaseByte3 = F4874Field(owner, unsigned char *, 0x46);
+        initWord2 = 0xB4;
+        F4874Field(privateState, short *, 0xE) = initWord2;
+        initWord2 = -1;
+        F4874Field(privateState, int *, 0x10) = initWord2;
+        __asm__("" : : : "memory");
+        initWord2 = 3;
+        F4874Field(privateState, short *, 0xA) = 0;
+        F4874Field(privateState, short *, 0xC) = 0;
+        F4874Field(privateState, short *, 8) = phaseByte3 << 4;
+        F4874Field(owner, unsigned char *, 0x48) = initWord2;
+    case 3:
+        if(F4874Field(owner,int*,12)<1024 || F4874Field(owner,int*,16)<1024 || F4874Field(owner,int*,20)<1024 || ((result2=F4874func_800359A4(privateState+14,2)),(stackArg4=&frame.sp28),result2)) {
+            if (F4874func_8003BFC0(owner, F4874Field(privateState, int *, 0x10)) != 0) {
+                F4874func_8003BE70(F4874Field(privateState, int *, 0x10));
+            }
+            goto block_93;
+        }
+        __asm__("" : "=r"(owner) : "0"(owner));
+        savedOwnerVector0C = owner + 0xC;
+        F4874func_8004F178(stackArg4, savedOwnerVector0C);
+        if (F4874Field(F4874Field(privateState, void **, 0), unsigned char *, 0x48) & 0x80) {
+            F4874Field(privateState, void **, 0) = 0;
+        }
+        linkedObject00 = F4874Field(privateState, void **, 0);
+        if (linkedObject00 != 0) {
+            F4874func_8004F178(&frame.sp48, linkedObject00 + 0xC);
+            frame.sp50 += 0x80;
+            vector38 = &frame.sp38;
+            F4874func_8004F1C8(vector38, &frame.sp48, savedOwnerVector0C);
+            frame.sp40 += 0x100;
+            F4874func_8004E880(frame.sp38, frame.sp3C, 1);
+            result2 = F4874func_8004E880(frame.sp38, frame.sp3C, 1);
+            halfword3 = F4874Field(privateState, short *, 8);
+            wrappedDifference08 = (result2 - halfword3) & 0xFFF;
+            previousHalfword08 = halfword3;
+            if (wrappedDifference08 >= 0x801) {
+                wrappedDifference08 -= 0x1000;
+            }
+            absoluteDifference08 = wrappedDifference08;
+            if (wrappedDifference08 < 0) {
+                absoluteDifference08 = -absoluteDifference08;
+            }
+            if (absoluteDifference08 < 0x400) {
+                work3 = 0xBE;
+                result2 = F4874Field(privateState, short *, 0xE);
+                upperStep = work3-result2;
+                lowerStep = -upperStep;
+                if (upperStep >= 65) {
+                    upperStep = 64;
+                    __asm__("" : "=r"(upperStep) : "0"(upperStep));
+                    lowerStep = -upperStep;
+                }
+                if (wrappedDifference08 < lowerStep) wrappedDifference08 = lowerStep;
+                if (upperStep < wrappedDifference08) wrappedDifference08 = upperStep;
+                F4874Field(privateState, short *, 8) = (short) (previousHalfword08 + wrappedDifference08);
+                result2 = F4874func_8004EDE8(vector38, 0, wrappedDifference08, previousHalfword08);
+                result2 = F4874func_8004E880(result2, frame.sp40, 1);
+                previousHalfword06 = F4874Field(privateState, short *, 6);
+                wrappedDifference06 = (result2 - previousHalfword06) & 0xFFF;
+                if (wrappedDifference06 >= 0x801) {
+                    wrappedDifference06 -= 0x1000;
+                }
+                absoluteDifference06 = wrappedDifference06;
+                if (wrappedDifference06 < 0) {
+                    absoluteDifference06 = -absoluteDifference06;
+                }
+                if (absoluteDifference06 < 0x400) {
+                    if (wrappedDifference06 < lowerStep) wrappedDifference06 = lowerStep;
+                    if (upperStep < wrappedDifference06) wrappedDifference06 = upperStep;
+                    updatedHalfword06 = previousHalfword06 + wrappedDifference06;
+                    F4874Field(privateState, short *, 6) = updatedHalfword06;
+                } else {
+                    goto block_63;
+                }
+            } else {
+block_63:
+                F4874Field(privateState, void **, 0) = 0;
+            }
+        }
+        F4874Field(owner, unsigned char *, 0x44) = (unsigned char) ((unsigned short) F4874Field(privateState, unsigned short *, 4) >> 4);
+        F4874Field(owner, unsigned char *, 0x45) = (unsigned char) ((unsigned short) F4874Field(privateState, short *, 6) >> 4);
+        F4874Field(owner, unsigned char *, 0x46) = (unsigned char) ((unsigned short) F4874Field(privateState, short *, 8) >> 4);
+        F4874func_80055D24(owner, 4);
+        frame.sp38 = 0x300;
+        frame.sp3C = 0;
+        frame.sp40 = 0;
+        F4874func_8004ED6C(owner + 0x20, &frame.sp38, &frame.sp38);
+        ownerVectorArgument = owner + 0xC;
+        F4874func_8004F194(ownerVectorArgument, ownerVectorArgument, &frame.sp38);
+        savedVector28 = &frame.sp28;
+        if (F4874func_8001830C(savedVector28, ownerVectorArgument, 0, 0x10000, owner) != 0) {
+            F4874func_8004F178(ownerVectorArgument, savedVector28);
+            goto block_71;
+        }
+        queriedObject = F4874func_8001BA30(ownerVectorArgument, 0x200, 1, 0, 0, owner);
+        if (queriedObject != 0) {
+            F4874func_8004F178(&frame.sp58, queriedObject + 0xC);
+            frame.sp60 += 0x80;
+            if (F4874func_80018368(ownerVectorArgument, &frame.sp58) == 0) {
+                result2=0x10000;work3=F4874Field(queriedObject,int*,0x18);stackArg4=(void*)(work3|result2);__asm__("" : "=r"(stackArg4):"0"(stackArg4));
+                work3=F4874Field(queriedObject,short*,0x36);
+                F4874Field(queriedObject,int*,0x18)=(int)stackArg4;
+                if(work3==0x67){result2=(int)stackArg4|0x100000;__asm__("" : "=r"(result2):"0"(result2));F4874Field(queriedObject,int*,0x18)=result2;}
+block_71:
+                F4874Field(owner, unsigned char *, 0x48) = 5U;
+            }
+        }
+        if (F4874func_8003BFC0(owner, F4874Field(privateState, int *, 0x10)) == 0) {
+            F4874Field(privateState, int *, 0x10) = F4874func_8003BABC(owner, 0, 4);
+        } else {
+            /* Keep the original division constant before the signed load. */
+            signedDivision180Magic = (int)0xB60B60B7;
+            __asm__("" : "=r"(privateState) : "0"(privateState), "r"(signedDivision180Magic));
+            halfword3 = F4874Field(privateState, short *, 0xE);
+            result2 = (int)((unsigned int)(0xB4 - halfword3) << 13);
+            work3 = result2 / 180;
+            __asm__("" : "=r"(work3) : "0"(work3));
+            result2 = 0x1000;
+            __asm__("" : "=r"(result2) : "0"(result2));
+            scaledWord16 = result2 - work3;
+            if (scaledWord16 < 0xA00) {
+                scaledWord16 = 0xA00;
+            }
+            F4874func_8003C0B0(F4874Field(privateState, int *, 0x10), scaledWord16);
+        }
+        F4874func_8004F110(&frame.sp38, 2);
+        F4874SpawnParticle(1, 0x37, owner + 0xC, &frame.sp38);
+        return;
+
+    case 4:
+        result2=F4874Field(owner,unsigned char*,58);
+        work3=result2*88;result2=(int)F4874Array;result2+=work3;__asm__("" : "=r"(result2):"0"(result2));result2=F4874Field((void*)result2,unsigned char*,76);
+        globalWordAddress16=&frame.sp68;
+        if(result2){
+            stackArg4=globalWordAddress16;__asm__("" : "=r"(stackArg4):"0"(stackArg4));temp_s1_3=(int*)F4874Player;
+            F4874Field(owner,unsigned char*,76)=result2;
+            F4874func_8004F1C8(stackArg4,temp_s1_3,owner+12);
+            F4874func_8004EDE8(globalWordAddress16,1);
+            if(F4874W20C&0x10000000)return;
+            if(F4874W170)return;
+            F4874Field(owner,unsigned char*,0x4F)=0x18;
+            if(!F4874CallbackA0(owner,temp_s1_3,0x672))return;
+            F4874func_8003BABC(owner,2,0);
+            result2=0x10001000;F4874W20C=result2;result2=1;F4874W218=owner;F4874Field(owner,unsigned char*,72)=result2;return;
+        }
+        idle6:__asm__ volatile("" ::: "memory");F4874Field(owner,unsigned char*,65)=0;F4874Field(owner,unsigned char*,76)=0;F4874Field(owner,unsigned char*,77)=0;return;
+    case 5:
+        temp_s1_3=owner+12;
+        temp_v0_2=F4874func_8001BA30(temp_s1_3,1024,1,0,0,owner);
+        if(temp_v0_2 && !F4874func_80018368(temp_s1_3,temp_v0_2+12))F4874Field(temp_v0_2,int*,24)|=0x10000;
+        if(F4874func_8003BFC0(owner,F4874Field(privateState,int*,16)))F4874func_8003BE70(F4874Field(privateState,int*,16));
+        F4874func_8003BABC(owner,1,0);F4874Callback24(owner,-1);removeOwner:F4874func_80055B18(owner);return;
+    case 6:
+        temp_v0_2=F4874Field(owner,void**,0);
+        result2=F4874E040;result2=((int)((unsigned)result2<<16)>>20)-128;F4874Field(owner,unsigned char*,70)=result2;
+        result2=F4874E03E;F4874Field(owner,unsigned char*,69)=(unsigned)result2>>4;
+        if(F4874func_800359A4(temp_v0_2+16,4)){
+            var_s1_3=0;stackArg4=temp_v0_2;__asm__("" : "=r"(stackArg4):"0"(stackArg4));do{F4874Field(F4874Field(stackArg4,void**,4),unsigned char*,28)=0;F4874Field(stackArg4,void**,4)=0;var_s1_3++;stackArg4+=4;}while(var_s1_3<3);
+            F4874Field(owner,unsigned char*,72)=0;return;
+        }
+        var_s2_2=F4874rand()&255;scanPosition=F4874D_80065920;var_s1_3=0;
+        do{
+            if(!F4874Field(temp_v0_2,void**,4)){
+                result2=(int)F4874func_8002F540(4,1,0x608080);__asm__("" : "=r"(result2):"0"(result2));F4874Field(temp_v0_2,void**,4)=(void*)result2;
+                if(!result2)goto angleIncrement;{
+                    F4874Field((void*)result2,int*,0)=0;
+                    tableIndex4=var_s2_2*2;tablePointer2=(short*)((long)tableIndex4+(long)scanPosition);tableHalfword3=*tablePointer2;__asm__("" : "=r"(tableHalfword3):"0"(tableHalfword3));result2=tableHalfword3*3;__asm__("" : "=r"(result2):"0"(result2));
+                    work3=(int)F4874Field(temp_v0_2,void**,4);result2>>=3;F4874Field((void*)work3,int*,4)=result2;
+                    tableHalfword3=F4874Field(F4874D_800658A0+tableIndex4,short*,0);__asm__("" : "=r"(tableHalfword3):"0"(tableHalfword3));result2=tableHalfword3*3;__asm__("" : "=r"(result2):"0"(result2));
+                    work3=(int)F4874Field(temp_v0_2,void**,4);result2>>=3;F4874Field((void*)work3,int*,8)=result2;
+                    linkedObject00=F4874Field(temp_v0_2,void**,4);F4874func_8004ED6C(owner+32,linkedObject00,linkedObject00);
+                    stackArg4=F4874Field(temp_v0_2,void**,4);F4874func_8004F194(stackArg4,stackArg4,owner+12);
+                }
+            }
+            if(F4874Field(temp_v0_2,void**,4))F4874func_8004F178(F4874Field(temp_v0_2,unsigned char**,4)+12,F4874Player);
+            angleIncrement:result2=var_s2_2+85;__asm__("" : "=r"(result2):"0"(result2));var_s2_2=result2&255;var_s1_3++;temp_v0_2+=4;
+        }while(var_s1_3<3);
+    }
+    return;
+block_93:
+    goto removeOwner;
+}
+#undef F4874Field
+
 
 typedef struct { int actorIndex; Vector3D position; int timer; int* counter; } DecodedLinkedActor;
 extern Moby* D_8006C550;
@@ -5485,7 +17991,565 @@ update:
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_32/moby", func_level_32_8008C7FC);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original8008C7FC.
+* Assembly SHA256 ace0e940778d978c3e6065df9a7b94af9f83606c9c92dc6db9b2120b9b2208b8.
+* AI generated; not human reviewed. All891 instructions,
+* six selector words and actual targets are required. Original frame0x80
+* retains all original saved words and full SP18..67 local extent.
+* The823 base has independently decoded891/922 deltas:the original68-word
+* insertion and2440 global literal in891;initialized S5,timer/two36220 calls,
+* original2000 global literal and hook arguments in922. No target identity
+* follows from similarity alone. Full target-native/control/data gates apply.
+* Sequential S0 angle roles copy the first value to A0 before overwriting S0.
+* Signed input/clamps,word handles at+15C,stored halfword handles followed by
+* original SLL/SRA into A0,and complete low products preserve their domains.
+* Stack source bases change from S0/SP38 to S0/SP58;the independent S3/SP48
+* source remains separate. The first collision has two physical entries:
+* one initializes A0 and the other retains its already prepared value.
+* Shared countdown/state3 exit and three hook joins preserve actual targets.
+* Empty initialized identities,late consumers,dead clobbers and compiler
+* memory barriers emit zero CPU instructions. No opcode assembly,partialHI,
+* FP shortcut or live-alias overlap. Confidence is binary identity after
+* all gates. Raw units/fixed point,complete helper contracts,caller cadence
+* and synchronized retail runtime remain open. Cadence is per invocation.
+* Falsification:every native/linked word,actual transfer/table target,owned
+* data byte,EXE and every overlay retail hash. */
+#define Actor32_8C7FCField(p, t, o) (*(t)((unsigned char*)(p)+(o)))
+int Actor32_8C7FCCall18368View1() __asm__("func_80018368");
+int Actor32_8C7FCCall19194View1() __asm__("func_80019194");
+int Actor32_8C7FCCall1BA30View1() __asm__("func_8001BA30");
+int Actor32_8C7FCCall1C288View1() __asm__("func_8001C288");
+int Actor32_8C7FCCall34F80View1() __asm__("func_80034F80");
+int Actor32_8C7FCCall359A4View1() __asm__("func_800359A4");
+int Actor32_8C7FCCall369B8View1() __asm__("func_800369B8");
+int Actor32_8C7FCCall3BABCView1() __asm__("func_8003BABC");
+int Actor32_8C7FCCall3BE70View1() __asm__("func_8003BE70");
+int Actor32_8C7FCCall3BFC0View1() __asm__("func_8003BFC0");
+int Actor32_8C7FCCall3C0B0View1() __asm__("func_8003C0B0");
+int Actor32_8C7FCCall3C140View1() __asm__("func_8003C140");
+int Actor32_8C7FCCall4E880View1() __asm__("func_8004E880");
+int Actor32_8C7FCCall4ED6CView1() __asm__("func_8004ED6C");
+int Actor32_8C7FCCall4EDE8View1() __asm__("func_8004EDE8");
+int Actor32_8C7FCCall4EF74View1() __asm__("func_8004EF74");
+int Actor32_8C7FCCall4F168View1() __asm__("func_8004F168");
+int Actor32_8C7FCCall4F178View1() __asm__("func_8004F178");
+int Actor32_8C7FCCall4F194View1() __asm__("func_8004F194");
+int Actor32_8C7FCCall4F1C8View1() __asm__("func_8004F1C8");
+int Actor32_8C7FCCall4F284View1() __asm__("func_8004F284");
+int Actor32_8C7FCCall4F334View1() __asm__("func_8004F334");
+int Actor32_8C7FCCall55D24View1() __asm__("func_80055D24");
+int Actor32_8C7FCCall55F14View1() __asm__("func_80055F14");
+extern int Actor32_8C7FCData658A0View1 __asm__("D_800658A0");
+extern int Actor32_8C7FCData65920View1 __asm__("D_80065920");
+extern int Actor32_8C7FCData6C550View1 __asm__("D_8006C550");
+extern int Actor32_8C7FCData6C700View1 __asm__("D_8006C700");
+extern short Actor32_8C7FCData6E03EView1 __asm__("D_8006E03E");
+extern short Actor32_8C7FCData6E040View1 __asm__("D_8006E040");
+extern int Actor32_8C7FCData70328View1 __asm__("D_80070328");
+extern int Actor32_8C7FCData71918View1 __asm__("D_80071918");
+extern int Actor32_8C7FCDatag_CheatFlagsView1 __asm__("g_CheatFlags");
+extern void*(*Actor32_8C7FCDataSpawnMobyView1)() __asm__("SpawnMoby");
+extern int(*Actor32_8C7FCData7443CView1)() __asm__("unk_ovlheader_8007443C");
+extern int(*Actor32_8C7FCData74444View1)() __asm__("unk_ovlheader_80074444");
+void func_level_32_8008C7FC(void *input) {
+    register void *ownerRecord18 __asm__("$18");
+    register int rawWord2 __asm__("$2"), rawWord3 __asm__("$3"), argumentWord4 __asm__("$4"), argumentWord5 __asm__("$5"), argumentWord6 __asm__("$6"), argumentWord7 __asm__("$7");
+    register int retainedAngleOrAddress16 __asm__("$16"), privateRecord17 __asm__("$17"), secondaryResult20 __asm__("$20"), retainedStackAddress19 __asm__("$19");
+    struct{
+        int sp18, sp1C, sp20, sp24, sp28, sp2C, sp30, sp34, sp38, sp3C, sp40, sp44, sp48, sp4C, sp50, sp54, sp58, sp5C, sp60, sp64;
+    }
+    originalFrame;
+    ownerRecord18 = input;
+    __asm__("":"=r"(ownerRecord18):"0"(ownerRecord18));
+    privateRecord17 = Actor32_8C7FCField(ownerRecord18, void **, 0);
+    if ((unsigned int) (Actor32_8C7FCField(privateRecord17, int *, 0) - 1) < 2U) {
+        if ((Actor32_8C7FCField(privateRecord17, void **, 0x2C) != 0) || ((rawWord3 = Actor32_8C7FCDataSpawnMobyView1(0x1CE, ownerRecord18), Actor32_8C7FCField(privateRecord17, void**, 0x2C) = rawWord3, (rawWord3 != 0)) && (Actor32_8C7FCField(rawWord3, int*, 20) = Actor32_8C7FCField(rawWord3, int*, 20)+512, Actor32_8C7FCField(Actor32_8C7FCField(privateRecord17, void **, 0x2C), signed char *, 0x45) = 0x30, (Actor32_8C7FCField(privateRecord17, void **, 0x2C) != 0)))) {
+            rawWord3 = Actor32_8C7FCField(privateRecord17, void **, 0x2C);
+            Actor32_8C7FCField(rawWord3, unsigned char *, 0x46) = (unsigned char) (Actor32_8C7FCField(rawWord3, unsigned char *, 0x46) + 8);
+        }
+        rawWord3 = Actor32_8C7FCField(privateRecord17, int*, 0);
+        rawWord2 = 2;
+        if (rawWord3 != rawWord2) goto continuePrivateModeEntry;
+        rawWord3 = Actor32_8C7FCField(ownerRecord18, unsigned char*, 0x48);
+        rawWord2 = 6;
+        if (rawWord3 == rawWord2){
+            rawWord2 = 5;
+            goto comparePreservedOrReloadedState5;
+        }
+        rawWord2 = Actor32_8C7FCField(ownerRecord18, unsigned char*, 0x49);
+        if (!rawWord2) goto initializeState5Comparison;
+        rawWord2 = 5;
+        Actor32_8C7FCField(ownerRecord18, unsigned char*, 0x48) = rawWord2;
+        rawWord3 = Actor32_8C7FCField(ownerRecord18, volatile unsigned char*, 0x48);
+        initializeState5Comparison:rawWord2 = 5;
+        comparePreservedOrReloadedState5:if (rawWord3 == rawWord2) goto runInsertedState5;
+        rawWord2 = 6;
+        if (rawWord3 == rawWord2) goto runInsertedState6;
+        goto continuePrivateModeEntry;
+    runInsertedState5:
+        if (Actor32_8C7FCCall3BFC0View1(ownerRecord18, Actor32_8C7FCField(privateRecord17, short*, 0x28)))Actor32_8C7FCCall3BE70View1(Actor32_8C7FCField(privateRecord17, short*, 0x28));
+        rawWord2 = -1;
+        Actor32_8C7FCField(privateRecord17, short*, 0x28) = rawWord2;
+        Actor32_8C7FCField(ownerRecord18, signed char*, 0x41) = 0;
+        Actor32_8C7FCField(ownerRecord18, signed char*, 0x4C) = 0;
+        Actor32_8C7FCField(ownerRecord18, signed char*, 0x4D) = 0;
+        rawWord2 = Actor32_8C7FCField(privateRecord17, void**, 0x2C);
+        if (rawWord2){
+            Actor32_8C7FCField(rawWord2, signed char*, 0x41) = 0;
+            rawWord2 = Actor32_8C7FCField(privateRecord17, void**, 0x2C);
+            Actor32_8C7FCField(rawWord2, signed char*, 0x4C) = 0;
+            rawWord2 = Actor32_8C7FCField(privateRecord17, void**, 0x2C);
+            Actor32_8C7FCField(rawWord2, signed char*, 0x4D) = 0;
+        }
+        rawWord2 = 6;
+        Actor32_8C7FCField(ownerRecord18, unsigned char*, 0x48) = rawWord2;
+        return;
+    runInsertedState6:
+        rawWord2 = Actor32_8C7FCField(ownerRecord18, unsigned char*, 0x49);
+        rawWord3 = 1;
+        if (rawWord2) return;
+        argumentWord4 = 50;
+        Actor32_8C7FCField(ownerRecord18, signed char*, 0x41) = rawWord3;
+        Actor32_8C7FCField(ownerRecord18, signed char*, 0x4C) = argumentWord4;
+        Actor32_8C7FCField(ownerRecord18, signed char*, 0x4D) = rawWord3;
+        rawWord2 = Actor32_8C7FCField(privateRecord17, void**, 0x2C);
+        if (rawWord2){
+            Actor32_8C7FCField(rawWord2, signed char*, 0x41) = rawWord3;
+            rawWord2 = Actor32_8C7FCField(privateRecord17, void**, 0x2C);
+            Actor32_8C7FCField(rawWord2, signed char*, 0x4C) = argumentWord4;
+            rawWord2 = Actor32_8C7FCField(privateRecord17, void**, 0x2C);
+            Actor32_8C7FCField(rawWord2, signed char*, 0x4D) = rawWord3;
+        }
+        Actor32_8C7FCField(ownerRecord18, unsigned char*, 0x48) = 0;
+    continuePrivateModeEntry:
+        if (Actor32_8C7FCField(ownerRecord18, unsigned char *, 0x48) != 6) {
+            if (Actor32_8C7FCCall3BFC0View1(ownerRecord18, Actor32_8C7FCField(privateRecord17, short *, 0x28)) == 0) {
+                Actor32_8C7FCField(privateRecord17, short *, 0x28) = Actor32_8C7FCCall3BABCView1(ownerRecord18, 3, 4);
+            }
+            if ((Actor32_8C7FCField(ownerRecord18, unsigned char *, 0x48) != 6) && (Actor32_8C7FCField(((Actor32_8C7FCField(privateRecord17, int *, 4) * 0x58) + Actor32_8C7FCData6C550View1), unsigned char *, 0x48) != 1) && (retainedAngleOrAddress16 = ownerRecord18 + 0xC, (((unsigned int) (Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 0x50) - 7) < 2U) == 0)) && (Actor32_8C7FCCall4F334View1(retainedAngleOrAddress16, (&Actor32_8C7FCData70328View1 + 0x50) - 0x50) < 0x400)) {
+                rawWord2 = (Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 8) - Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 0x44)) - Actor32_8C7FCField(ownerRecord18, int *, 0x14);
+                if (rawWord2 < 0) {
+                    rawWord2 = -rawWord2;
+                }
+                if (rawWord2 < 0x140) {
+                    Actor32_8C7FCCall4F178View1(Actor32_8C7FCData6C550View1 + (Actor32_8C7FCField(privateRecord17, int *, 4) * 0x58) + 0xC, retainedAngleOrAddress16);
+                    Actor32_8C7FCField(((Actor32_8C7FCField(privateRecord17, int *, 4) * 0x58) + Actor32_8C7FCData6C550View1), signed char *, 0x44) = 0;
+                    Actor32_8C7FCField(((Actor32_8C7FCField(privateRecord17, int *, 4) * 0x58) + Actor32_8C7FCData6C550View1), signed char *, 0x45) = 0;
+                    Actor32_8C7FCField(((Actor32_8C7FCField(privateRecord17, int *, 4) * 0x58) + Actor32_8C7FCData6C550View1), unsigned char *, 0x46) = (unsigned char) Actor32_8C7FCField(&Actor32_8C7FCData70328View1, unsigned char *, 0xE);
+                    Actor32_8C7FCField(((Actor32_8C7FCField(privateRecord17, int *, 4) * 0x58) + Actor32_8C7FCData6C550View1), signed char *, 0x4C) = 0x20;
+                    Actor32_8C7FCField(((Actor32_8C7FCField(privateRecord17, int *, 4) * 0x58) + Actor32_8C7FCData6C550View1), signed char *, 0x48) = 4;
+                    Actor32_8C7FCCall369B8View1(Actor32_8C7FCData6C550View1 + (Actor32_8C7FCField(privateRecord17, int *, 4) * 0x58), 0x18);
+                    Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 0x23C) = 0x24;
+                    Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 0x20C) = (int) (Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 0x20C) | 0x10000080);
+                    Actor32_8C7FCField(&Actor32_8C7FCData70328View1, void **, 0x250) = (void *) (Actor32_8C7FCData6C550View1 + (Actor32_8C7FCField(privateRecord17, int *, 4) * 0x58));
+                    Actor32_8C7FCField(((Actor32_8C7FCField(privateRecord17, int *, 4) * 0x58) + Actor32_8C7FCData6C550View1), signed char *, 0x48) = 4;
+                    Actor32_8C7FCData6C700View1 = 0x2440;
+                }
+            }
+        }
+    }
+    else {
+        if (Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 0x50) == 0x13) {
+            if (Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 0x4C) == 5) {
+                Actor32_8C7FCField(privateRecord17, short *, 0xF0) = 3;
+            }
+            else if (Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 0x4C) == 4) {
+                Actor32_8C7FCField(privateRecord17, short *, 0xF0) = 2;
+            }
+            else {
+                Actor32_8C7FCField(privateRecord17, short *, 0xF0) = 1;
+            }
+        }
+        else {
+            Actor32_8C7FCField(privateRecord17, short *, 0xF0) = 0;
+        }
+        rawWord3 = Actor32_8C7FCField(ownerRecord18, unsigned char *, 0x48);
+        switch (rawWord3) {
+        case 0:
+            rawWord3 = Actor32_8C7FCField(ownerRecord18, short *, 0x36);
+            if ((rawWord3 == 0x36) || (rawWord3 == 0x294) || (rawWord3 == 0xFB)) {
+                Actor32_8C7FCField(ownerRecord18, signed char *, 0x41) = 0;
+                Actor32_8C7FCField(ownerRecord18, signed char *, 0x4C) = 0;
+                Actor32_8C7FCField(ownerRecord18, signed char*, 0x4D) = 0;
+                goto prepareHookArgument4;
+            }
+            argumentWord4 = 0;
+            goto prepareHookArgument5;
+            default:argumentWord4 = 0;
+            goto prepareHookArgument5;
+        case 4:
+            if (Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 0x50) == 0x13) {
+                Actor32_8C7FCField(ownerRecord18, unsigned char *, 0x48) = 1U;
+            }
+            argumentWord4 = 0;
+            goto prepareHookArgument5;
+        case 1:
+            Actor32_8C7FCCall4F168View1(&originalFrame.sp18);
+            originalFrame.sp20 = -0x400;
+            Actor32_8C7FCCall55D24View1(ownerRecord18, 4);
+            Actor32_8C7FCCall4ED6CView1(ownerRecord18 + 0x20, &originalFrame.sp18, &originalFrame.sp18);
+            rawWord2 = Actor32_8C7FCCall4E880View1(Actor32_8C7FCCall4EDE8View1(&originalFrame.sp18, 0), originalFrame.sp20, 1);
+            argumentWord6 = 1;
+            __asm__(""::"r"(argumentWord6):"$16");
+            retainedAngleOrAddress16 = rawWord2;
+            rawWord2 = Actor32_8C7FCCall4E880View1(originalFrame.sp18, originalFrame.sp1C, argumentWord6);
+            argumentWord4 = retainedAngleOrAddress16;
+            rawWord3 = 4;
+            retainedAngleOrAddress16 = rawWord2+0x800;
+            Actor32_8C7FCField(ownerRecord18, signed char*, 0x47) = rawWord3;
+            argumentWord5 = Actor32_8C7FCData6E03EView1;
+            retainedAngleOrAddress16 &= 0xFFF;
+            rawWord2 = Actor32_8C7FCCall4F284View1(argumentWord4, argumentWord5);
+            argumentWord4 = retainedAngleOrAddress16;
+            argumentWord5 = Actor32_8C7FCData6E040View1;
+            retainedAngleOrAddress16 = rawWord2;
+            rawWord2 = Actor32_8C7FCCall4F284View1(argumentWord4, argumentWord5);
+            retainedAngleOrAddress16 = retainedAngleOrAddress16 < 600;
+            rawWord2 = rawWord2 < 600;
+            if (retainedAngleOrAddress16 && rawWord2) {
+                Actor32_8C7FCField(ownerRecord18, signed char *, 0x47) = 9;
+            }
+            rawWord2 = Actor32_8C7FCField(&Actor32_8C7FCDatag_CheatFlagsView1, unsigned char*, 1);
+            argumentWord4 = (int)ownerRecord18;
+            if (rawWord2){
+                __asm__ __volatile__(""::"r"(rawWord2):"$5");
+                argumentWord5 = 1;
+            }
+            else{
+                __asm__ __volatile__("":::"$2");
+                argumentWord5 = 0;
+                __asm__("":"=r"(argumentWord5):"0"(argumentWord5));
+            }
+            Actor32_8C7FCCall34F80View1(argumentWord4, argumentWord5);
+            if (Actor32_8C7FCField(ownerRecord18, unsigned char *, 0x3D) == 0) {
+                Actor32_8C7FCField(ownerRecord18, signed char *, 0x41) = 0;
+                Actor32_8C7FCField(ownerRecord18, signed char *, 0x3E) = 0;
+                argumentWord5 = 0;
+                if (Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 0xB8) == 0) {
+                    argumentWord5 = Actor32_8C7FCField(&Actor32_8C7FCData70328View1, unsigned char *, 0xC);
+                }
+                if ((int) argumentWord5 >= 0x81) {
+                    argumentWord5 -= 0x100;
+                }
+                if (argumentWord5 <= 0) goto clampNonPositiveInput;
+                rawWord2 = argumentWord5 < 16;
+                if (rawWord2){
+                    rawWord2 = 1;
+                    goto storeInputBytes;
+                }
+                rawWord2 = 1;
+                argumentWord5 = 15;
+                goto storeInputBytes;
+                clampNonPositiveInput:argumentWord5 = -argumentWord5;
+                rawWord2 = argumentWord5 < 16;
+                if (rawWord2){
+                    rawWord2 = 2;
+                    goto storeInputBytes;
+                }
+                rawWord2 = 2;
+                argumentWord5 = 15;
+            storeInputBytes:
+                Actor32_8C7FCField(ownerRecord18, signed char *, 0x3F) = rawWord2;
+                rawWord2 = argumentWord5&15;
+                Actor32_8C7FCField(ownerRecord18, signed char*, 0x40) = rawWord2;
+            }
+            else {
+                Actor32_8C7FCField(ownerRecord18, signed char *, 0x41) = 1;
+            }
+            if (Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 0xB8) != 0) {
+                if (Actor32_8C7FCCall3BFC0View1(ownerRecord18, Actor32_8C7FCField(privateRecord17, short *, 0x28)) != 0) {
+                    Actor32_8C7FCCall3BE70View1(Actor32_8C7FCField(privateRecord17, short *, 0x28));
+                }
+                Actor32_8C7FCField(privateRecord17, short *, 0x28) = -1;
+            }
+            else {
+                if (Actor32_8C7FCCall3BFC0View1(ownerRecord18, Actor32_8C7FCField(privateRecord17, short *, 0x28)) == 0) {
+                    Actor32_8C7FCField(privateRecord17, short *, 0x28) = Actor32_8C7FCCall3BABCView1(ownerRecord18, 0, 4);
+                }
+                argumentWord4 = Actor32_8C7FCField(privateRecord17, short *, 0x28);
+                if (argumentWord4 >= 0) {
+                    rawWord2 = Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int*, 0x5C);
+                    argumentWord5 = rawWord2&0xFFF;
+                    if (argumentWord5 >= 0x801) {
+                        argumentWord5 -= 0x1000;
+                    }
+                    argumentWord5 = argumentWord5 * 4;
+                    if (argumentWord5 < 0) {
+                        argumentWord5 = -argumentWord5;
+                    }
+                    Actor32_8C7FCCall3C0B0View1(argumentWord4, argumentWord5 + 0x1000);
+                }
+            }
+            if (Actor32_8C7FCField(privateRecord17, int *, 0xC) != 0) {
+                if ((unsigned int) (Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 0x4C) - 4) >= 2U) {
+                    Actor32_8C7FCField(privateRecord17, int *, 0xC) = 0;
+                }
+            }
+            else if ((unsigned int) (Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 0x4C) - 4) < 2U) {
+                argumentWord4 = privateRecord17+100;
+                rawWord3 = (int)Actor32_8C7FCData74444View1;
+                rawWord2 = 1;
+                Actor32_8C7FCField(privateRecord17, int*, 12) = rawWord2;
+                ((int(*)())rawWord3)(argumentWord4);
+            }
+            Actor32_8C7FCField(&Actor32_8C7FCData70328View1, void **, 0x250) = ownerRecord18;
+            if (Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 0x50) != 0x13) {
+                argumentWord5 = privateRecord17 + 0x64;
+                if (Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 0x240) == 0) {
+                    Actor32_8C7FCField(ownerRecord18, unsigned char *, 0x49) = 0U;
+                    Actor32_8C7FCField(privateRecord17, short *, 0x22) = 0x1E;
+                    Actor32_8C7FCField(privateRecord17, short *, 0x20) = 0x78;
+                    Actor32_8C7FCField(privateRecord17, unsigned short *, 0x26) = 0U;
+                    Actor32_8C7FCField(privateRecord17, short *, 0x24) = 0xC;
+                    rawWord2 = Actor32_8C7FCField(&Actor32_8C7FCData70328View1, unsigned char*, 14);
+                    argumentWord4 = (int)ownerRecord18;
+                    rawWord2 += 128;
+                    rawWord2 &= 255;
+                    rawWord2 <<= 1;
+                    rawWord3 = Actor32_8C7FCField(&Actor32_8C7FCData65920View1, short*, rawWord2);
+                    argumentWord5 = 4;
+                    rawWord2 = rawWord3*25;
+                    rawWord2 >>= 9;
+                    Actor32_8C7FCField(privateRecord17, int*, 20) = rawWord2;
+                    rawWord2 = Actor32_8C7FCField(&Actor32_8C7FCData70328View1, unsigned char*, 14);
+                    argumentWord6 = 0;
+                    rawWord2 += 128;
+                    rawWord2 &= 255;
+                    rawWord2 <<= 1;
+                    rawWord3 = Actor32_8C7FCField(&Actor32_8C7FCData658A0View1, short*, rawWord2);
+                    rawWord2 = 125;
+                    Actor32_8C7FCField(privateRecord17, int*, 28) = rawWord2;
+                    rawWord2 = rawWord3*25;
+                    rawWord2 >>= 9;
+                    Actor32_8C7FCField(privateRecord17, int*, 24) = rawWord2;
+                    Actor32_8C7FCCall3BABCView1(argumentWord4, argumentWord5, argumentWord6);
+                    Actor32_8C7FCField(privateRecord17, short *, 0x2A) = -1;
+                    Actor32_8C7FCField(ownerRecord18, unsigned char *, 0x48) = 2U;
+                    if (Actor32_8C7FCCall3BFC0View1(ownerRecord18, Actor32_8C7FCField(privateRecord17, int*, 0x15C)) != 0) {
+                        Actor32_8C7FCCall3BE70View1(Actor32_8C7FCField(privateRecord17, int*, 0x15C));
+                    }
+                    Actor32_8C7FCField(privateRecord17, int *, 0x15C) = -1;
+                    if (Actor32_8C7FCCall3BFC0View1(ownerRecord18, Actor32_8C7FCField(privateRecord17, short *, 0x28)) != 0) {
+                        Actor32_8C7FCCall3BE70View1(Actor32_8C7FCField(privateRecord17, short *, 0x28));
+                    }
+                    Actor32_8C7FCField(privateRecord17, short *, 0x28) = -1;
+                    goto prepareHookArgument4;
+                }
+            }
+            else {
+                argumentWord4 = 0;
+                goto prepareHookArgument5;
+            }
+            argumentWord4 = 0;
+            goto callSharedHook;
+        case 3:
+            Actor32_8C7FCCall369B8View1(ownerRecord18, 0x18);
+            Actor32_8C7FCField(ownerRecord18, signed char *, 0x4D) = 0;
+            Actor32_8C7FCField(ownerRecord18, signed char *, 0x4C) = 0;
+            Actor32_8C7FCField(ownerRecord18, unsigned char *, 0x48) = 0U;
+            goto prepareHookArgument4;
+        case 2:
+            argumentWord4 = (int)&originalFrame.sp28;
+            __asm__(""::"r"(argumentWord4):"$16");
+            retainedAngleOrAddress16 = (int)ownerRecord18+12;
+            Actor32_8C7FCCall4F178View1(argumentWord4, retainedAngleOrAddress16);
+            if (Actor32_8C7FCField(ownerRecord18, unsigned char *, 0x49) != 0) {
+                argumentWord6 = (unsigned char) Actor32_8C7FCField(privateRecord17, short *, 0x24);
+                Actor32_8C7FCField(privateRecord17, int *, 0x1C) = (int) (Actor32_8C7FCField(privateRecord17, int *, 0x1C) - 0xC);
+                Actor32_8C7FCField(ownerRecord18, unsigned char *, 0x45) = (unsigned char) (Actor32_8C7FCField(ownerRecord18, unsigned char *, 0x45) + argumentWord6);
+                Actor32_8C7FCField(ownerRecord18, unsigned char *, 0x44) = (unsigned char) (Actor32_8C7FCField(ownerRecord18, unsigned char *, 0x44) + 8);
+                Actor32_8C7FCCall55D24View1(ownerRecord18, 4, argumentWord6);
+                if ((Actor32_8C7FCField(ownerRecord18, int *, 0xC) >= 0x400) && (Actor32_8C7FCField(ownerRecord18, int *, 0x10) >= 0x400) && (Actor32_8C7FCField(ownerRecord18, int *, 0x14) >= 0x400)) {
+                    Actor32_8C7FCCall4F194View1(retainedAngleOrAddress16, retainedAngleOrAddress16, privateRecord17 + 0x14);
+                    goto prepareState2Sources;
+                }
+                goto storeState3AndReturn;
+            }
+        prepareState2Sources:
+            Actor32_8C7FCField(ownerRecord18, unsigned char*, 0x49) = 1;
+            __asm__ __volatile__("":"=r"(ownerRecord18):"0"(ownerRecord18):"$16");
+            argumentWord4 = (int)ownerRecord18;
+            argumentWord5 = 0;
+            __asm__(""::"r"(argumentWord4), "r"(argumentWord5):"$16");
+            retainedAngleOrAddress16 = (int)&originalFrame.sp38;
+            Actor32_8C7FCCall55F14View1(argumentWord4, argumentWord5, retainedAngleOrAddress16);
+            retainedStackAddress19 = (int)&originalFrame.sp48;
+            Actor32_8C7FCCall55F14View1(ownerRecord18, 1, retainedStackAddress19);
+            secondaryResult20 = 0;
+            if (Actor32_8C7FCCall359A4View1(privateRecord17 + 0x22, 2) != 0) {
+                if ((Actor32_8C7FCCall1C288View1(retainedAngleOrAddress16, 0x64, 0) != 0) || (rawWord2 = Actor32_8C7FCCall1C288View1(retainedStackAddress19, 0x64, 0), secondaryResult20 = rawWord2 != 0, (rawWord2 != 0))) {
+                    rawWord2 = Actor32_8C7FCField(privateRecord17, unsigned short*, 0x26);
+                    rawWord2 += 1;
+                    __asm__("":"=r"(rawWord2):"0"(rawWord2));
+                    Actor32_8C7FCField(privateRecord17, unsigned short*, 0x26) = rawWord2;
+                    if (secondaryResult20 != 0) {
+                        rawWord2 = -0xC;
+                    }
+                    else{
+                        __asm__ __volatile__("":::"$2");
+                        rawWord2 = 12;
+                    }
+                    Actor32_8C7FCField(privateRecord17, short*, 0x24) = rawWord2;
+                    __asm__ __volatile__("":::"memory");
+                    Actor32_8C7FCField(&Actor32_8C7FCData70328View1, int *, 0x298) = Actor32_8C7FCCall4E880View1(Actor32_8C7FCField(privateRecord17, int *, 0x14), Actor32_8C7FCField(privateRecord17, int *, 0x18), 0);
+                    (retainedAngleOrAddress16 = (int)&originalFrame.sp58, Actor32_8C7FCCall4F1C8View1(retainedAngleOrAddress16, ownerRecord18 + 0xC, (&Actor32_8C7FCData70328View1+0x298)-0x298));
+                    argumentWord4 = privateRecord17 + 0x14;
+                    rawWord2 = Actor32_8C7FCCall4EF74View1(argumentWord4, retainedAngleOrAddress16, argumentWord4);
+                    argumentWord4 = (int)ownerRecord18;
+                    if (rawWord2){
+                        Actor32_8C7FCField(privateRecord17, int *, 0x14) = (int) ((int) (Actor32_8C7FCField(privateRecord17, int *, 0x14) * 6) >> 3);
+                        Actor32_8C7FCField(privateRecord17, int *, 0x18) = (int) ((int) (Actor32_8C7FCField(privateRecord17, int *, 0x18) * 6) >> 3);
+                        Actor32_8C7FCField(privateRecord17, int *, 0x1C) = (int) ((int) (Actor32_8C7FCField(privateRecord17, int *, 0x1C) * 6) >> 3);
+                        rawWord2 = Actor32_8C7FCCall3BFC0View1(argumentWord4, Actor32_8C7FCField(privateRecord17, short*, 0x2A));
+                        argumentWord4 = (int)&originalFrame.sp38;
+                        if (rawWord2) goto callFirstCollisionWithPreparedA0;
+                        {
+                            __asm__ __volatile__("":::"$2");
+                            rawWord2 = Actor32_8C7FCCall3BABCView1(ownerRecord18, 4, 0);
+                            Actor32_8C7FCField(privateRecord17, short*, 0x2A) = rawWord2;
+                            rawWord2 = (unsigned int)rawWord2 << 16;
+                            argumentWord4 = rawWord2 >> 16;
+                            if (argumentWord4 >= 0) {
+                                rawWord2 = Actor32_8C7FCField(privateRecord17, int *, 0x1C);
+                                if (rawWord2 < 0) {
+                                    rawWord2 = -rawWord2;
+                                }
+                                Actor32_8C7FCCall3C140View1(argumentWord4, rawWord2*40);
+                            }
+                        }
+                    }
+                }
+                prepareFirstCollisionStack:__asm__ __volatile__("":::"$4");
+                argumentWord4 = (int)&originalFrame.sp38;
+                callFirstCollisionWithPreparedA0:argumentWord5 = 150;
+                argumentWord6 = Actor32_8C7FCCall1BA30View1(argumentWord4, argumentWord5, 1, 0, 0x10000000, ownerRecord18);
+                argumentWord4 = (int)&originalFrame.sp48;
+                if (argumentWord6 == 0){
+                    __asm__(""::"r"(argumentWord4):"$5");
+                    argumentWord5 = 150;
+                    argumentWord6 = Actor32_8C7FCCall1BA30View1(argumentWord4, argumentWord5, 1, 0, 0x10000000, ownerRecord18);
+                    argumentWord4 = privateRecord17 + 0x20;
+                    if (argumentWord6 != 0) {
+                        secondaryResult20 = 1;
+                        goto handleSecondCollisionResult;
+                    }
+                }
+                else {
+                handleSecondCollisionResult:
+                    rawWord2 = Actor32_8C7FCField(privateRecord17, unsigned short*, 0x26);
+                    rawWord2 += 1;
+                    __asm__("":"=r"(rawWord2):"0"(rawWord2));
+                    Actor32_8C7FCField(privateRecord17, unsigned short*, 0x26) = rawWord2;
+                    if (secondaryResult20 != 0) {
+                        rawWord2 = -0xC;
+                    }
+                    else{
+                        __asm__ __volatile__("":::"$2");
+                        rawWord2 = 12;
+                    }
+                    Actor32_8C7FCField(privateRecord17, short *, 0x24) = rawWord2;
+                    retainedAngleOrAddress16 = (int)&originalFrame.sp58;
+                    Actor32_8C7FCCall4F1C8View1(retainedAngleOrAddress16, ownerRecord18+12, argumentWord6+12);
+                    argumentWord4 = privateRecord17 + 0x14;
+                    if (Actor32_8C7FCCall4EF74View1(argumentWord4, retainedAngleOrAddress16, argumentWord4) != 0) {
+                        Actor32_8C7FCField(privateRecord17, int *, 0x14) = (int) ((int) (Actor32_8C7FCField(privateRecord17, int *, 0x14) * 6) >> 3);
+                        Actor32_8C7FCField(privateRecord17, int *, 0x18) = (int) ((int) (Actor32_8C7FCField(privateRecord17, int *, 0x18) * 6) >> 3);
+                        Actor32_8C7FCField(privateRecord17, int *, 0x1C) = (int) ((int) (Actor32_8C7FCField(privateRecord17, int *, 0x1C) * 6) >> 3);
+                        argumentWord4 = privateRecord17 + 0x20;
+                        rawWord2 = Actor32_8C7FCCall3BFC0View1(ownerRecord18, Actor32_8C7FCField(privateRecord17, short*, 0x2A));
+                        argumentWord4 = privateRecord17+32;
+                        if (rawWord2) goto callState2CountdownHelper;
+                        {
+                            __asm__ __volatile__("":::"$2");
+                            rawWord2 = Actor32_8C7FCCall3BABCView1(ownerRecord18, 4, 0);
+                            Actor32_8C7FCField(privateRecord17, short*, 0x2A) = rawWord2;
+                            rawWord2 = (unsigned int)rawWord2 << 16;
+                            argumentWord4 = rawWord2 >> 16;
+                            if (argumentWord4 >= 0) {
+                                rawWord2 = Actor32_8C7FCField(privateRecord17, int *, 0x1C);
+                                if (rawWord2 < 0) {
+                                    rawWord2 = -rawWord2;
+                                }
+                                Actor32_8C7FCCall3C140View1(argumentWord4, rawWord2*40);
+                            }
+                            goto prepareState2Countdown;
+                        }
+                    }
+                    else {
+                        goto prepareState2Countdown;
+                    }
+                }
+            }
+            else {
+            prepareState2Countdown:
+                argumentWord4 = privateRecord17 + 0x20;
+            }
+            callState2CountdownHelper:if (Actor32_8C7FCCall359A4View1(argumentWord4, 2)) goto storeState3AndReturn;
+            rawWord2 = Actor32_8C7FCField(privateRecord17, short*, 0x26);
+            rawWord2 = rawWord2 < 31;
+            if (rawWord2) goto probeState2SurfaceSources;
+            storeState3AndReturn:rawWord2 = 3;
+            Actor32_8C7FCField(ownerRecord18, unsigned char*, 0x48) = rawWord2;
+            return;
+            probeState2SurfaceSources:{
+                if (Actor32_8C7FCCall19194View1(&originalFrame.sp38, 0x96) == 0) {
+                    if (Actor32_8C7FCCall19194View1(&originalFrame.sp48, 0x96) != 0) {
+                        secondaryResult20 = 1;
+                        goto handleSurfaceResult;
+                    }
+                    if (Actor32_8C7FCCall18368View1(&originalFrame.sp28, ownerRecord18 + 0xC) != 0) {
+                        goto handleSurfaceResult;
+                    }
+                }
+                else {
+                handleSurfaceResult:
+                    rawWord2 = Actor32_8C7FCField(privateRecord17, unsigned short*, 0x26);
+                    rawWord2 += 1;
+                    __asm__("":"=r"(rawWord2):"0"(rawWord2));
+                    Actor32_8C7FCField(privateRecord17, unsigned short*, 0x26) = rawWord2;
+                    if (secondaryResult20 != 0) {
+                        rawWord2 = -0xC;
+                    }
+                    else{
+                        __asm__ __volatile__("":::"$2");
+                        rawWord2 = 12;
+                    }
+                    Actor32_8C7FCField(privateRecord17, short *, 0x24) = rawWord2;
+                    argumentWord4 = privateRecord17 + 0x14;
+                    if (Actor32_8C7FCCall4EF74View1(argumentWord4, &Actor32_8C7FCData71918View1, argumentWord4) != 0) {
+                        Actor32_8C7FCField(privateRecord17, int *, 0x14) = (int) ((int) (Actor32_8C7FCField(privateRecord17, int *, 0x14) * 6) >> 3);
+                        Actor32_8C7FCField(privateRecord17, int *, 0x18) = (int) ((int) (Actor32_8C7FCField(privateRecord17, int *, 0x18) * 6) >> 3);
+                        Actor32_8C7FCField(privateRecord17, int *, 0x1C) = (int) (((int) (Actor32_8C7FCField(privateRecord17, int *, 0x1C) * 6) >> 3) + 0x14);
+                        if (Actor32_8C7FCCall3BFC0View1(ownerRecord18, Actor32_8C7FCField(privateRecord17, short *, 0x2A)) == 0) {
+                            rawWord2 = Actor32_8C7FCCall3BABCView1(ownerRecord18, 4, 0);
+                            Actor32_8C7FCField(privateRecord17, short*, 0x2A) = rawWord2;
+                            rawWord2 = (unsigned int)rawWord2 << 16;
+                            argumentWord4 = rawWord2 >> 16;
+                            if (argumentWord4 >= 0) {
+                                rawWord2 = Actor32_8C7FCField(privateRecord17, int *, 0x1C);
+                                if (rawWord2 < 0) {
+                                    rawWord2 = -rawWord2;
+                                }
+                                Actor32_8C7FCCall3C140View1(argumentWord4, rawWord2*40);
+                            }
+                        }
+                    }
+                }
+                argumentWord4 = 0;
+                goto prepareHookArgument5;
+            }
+        }
+    }
+    return;
+    prepareHookArgument4:argumentWord4 = 0;
+    prepareHookArgument5:argumentWord5 = privateRecord17+0x64;
+    callSharedHook:Actor32_8C7FCData7443CView1(argumentWord4, argumentWord5, 0);
+}
+#undef Actor32_8C7FCField
+
 
 /* AI generated; not yet human reviewed. Derived from SCUS-94467 USA Rev 0
  * original controller instructions and its eleven-entry dispatch table.

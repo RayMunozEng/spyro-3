@@ -1,7 +1,7 @@
 .set noat      /* allow manual use of $at */
 .set noreorder /* don't insert nops after branches */
 
-.section .rodata.jtbl
+.section .rodata
 .align 3
 dlabel jtbl_options_800744C8
 /* 96541F8 800744C8 D0510780 */ .word .L800751D0_

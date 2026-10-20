@@ -6,14 +6,27 @@ causes its label-skip counter to consume metadata instead of the label.
 GNU as never receives these records: MASPSX already discards them. Remove
 them before lookahead so labels remain attached to load-delay NOPs.
 Instruction lines, labels, #nop scheduling hints and reorder directives
-are preserved. Retail executable and overlay hashes are the acceptance gate.
+are preserved. Non-emitting scope labels referenced only by removed
+COFF scope records are removed with those records. Retail executable and overlay hashes are the acceptance gate.
 """
 import sys
+import re
 
 
 def filter_coff_debug(lines):
+    lines = list(lines)
+    # These labels only delimit removed COFF scope records. A scope-end
+    # label followed by a loop label consumes MASPSX's single-label move,
+    # leaving the real loop label after the load-delay NOP.
+    scope_labels = set()
+    for line in lines:
+        match = re.match(r"\s*#\.(?:begin|bend)\s+(\$Le[0-9]+)\b", line)
+        if match:
+            scope_labels.add(match.group(1) + ":")
     for line in lines:
         stripped = line.strip()
+        if stripped in scope_labels:
+            continue
         if stripped.startswith(("#.def", "#.begin", "#.bend")):
             continue
         if stripped.split() in ([".set", "volatile"], [".set", "novolatile"]):

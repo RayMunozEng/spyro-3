@@ -1116,9 +1116,870 @@ void func_level_15_80080BD4(int transition) {
     if(transition)func_800498C0(transition);
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_15/level", func_level_15_80080DDC);
+/* AI-generated; not human reviewed. Verified sibling C adapted only
+ * to this function's original SCUS-94467 instructions. Raw field units,
+ * helper meanings and update cadence remain unresolved. */
+/* AI generated; not human reviewed. SCUS-94467 USA Rev0 original
+ * 842 instructions and19 dispatch words. Evidence4925. Raw fields,
+ * branch conditions, widths and helper addresses only; meanings, units,
+ * cadence and runtime parity unresolved. Native/internal-target/data
+ * identity and full EXE/every-overlay retail hashes required. */
+#define A4926F(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+extern int A4926FBD0 __asm__("D_8006FBD0");
+extern int A4926FBC8 __asm__("D_8006FBC8");
+extern int A4926FBC4 __asm__("D_8006FBC4");
+extern int A4926FBD4 __asm__("D_8006FBD4");
+extern int A4926FBCC __asm__("D_8006FBCC");
+extern int A4926FA40 __asm__("D_8006FA40");
+extern int A4926FA38 __asm__("D_8006FA38");
+extern int A4926FA78 __asm__("D_8006FA78");
+extern int A4926FA7C __asm__("D_8006FA7C");
+extern int A4926E53C __asm__("D_8006E53C");
+extern int A4926C648 __asm__("D_8006C648");
+extern int A4926C5BC __asm__("D_8006C5BC");
+extern unsigned char A4926FA90[] __asm__("D_8006FA90");
+extern unsigned char A4926FA58[] __asm__("D_8006FA58");
+extern unsigned char* A4926C738 __asm__("D_8006C738");
+extern unsigned char* A4926C788 __asm__("D_8006C788");
+extern unsigned char* A4926C654 __asm__("D_8006C654");
+extern unsigned char A4926Records[] __asm__("speedwayRecords");
+extern int (*A4926Callback)() __asm__("unk_ovlheader_80074378");
+int A4926H27934() __asm__("func_80027934");
+int A4926Sound0() __asm__("PlaySound");
+int A4926Sound1() __asm__("PlaySound");
+int A4926Sound2() __asm__("PlaySound");
+int A4926Sound3() __asm__("PlaySound");
+int A4926Sound4() __asm__("PlaySound");
+int A4926Sound5() __asm__("PlaySound");
+int A4926Sound6() __asm__("PlaySound");
+int A4926Sound7() __asm__("PlaySound");
+int A4926Sound8() __asm__("PlaySound");
+int A4926Sound9() __asm__("PlaySound");
+int A4926Sound10() __asm__("PlaySound");
+int A4926Sound11() __asm__("PlaySound");
+int A4926Sound12() __asm__("PlaySound");
+int A4926Sound13() __asm__("PlaySound");
+int A4926Sound14() __asm__("PlaySound");
+int A4926Sound15() __asm__("PlaySound");
+int A4926Sound16() __asm__("PlaySound");
+int A4926Sound17() __asm__("PlaySound");
+int A4926Sound18() __asm__("PlaySound");
+int A4926Sound19() __asm__("PlaySound");
+int A4926Sound20() __asm__("PlaySound");
+int A4926Sound21() __asm__("PlaySound");
+int A4926Sound22() __asm__("PlaySound");
+extern int A4927Choice0 __asm__("D_8006FBC8");
+extern int A4927ChoiceGlobal __asm__("D_8006FBC8");
+extern int A4927ChoiceTimer __asm__("D_8006FBC8");
+extern int A4927Choice2 __asm__("D_8006FBC8");
+extern int A4927ModeConfirm0 __asm__("D_8006FA40");
+extern int A4927ModeConfirm1 __asm__("D_8006FA40");
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_15/level", func_level_15_80081B04);
+void func_level_15_80080DDC(void){
+ register int test2 __asm__("$2");
+ register int work2 __asm__("$2");register int work3 __asm__("$3");
+ register int arg4 __asm__("$4");register int arg5 __asm__("$5");
+ register int arg6 __asm__("$6");register int arg7 __asm__("$7");
+ register int* timer16 __asm__("$16");register int* input17 __asm__("$17");
+ register unsigned char* data16 __asm__("$16");register int index17 __asm__("$17");
+ register int value18 __asm__("$18");register unsigned char* data18 __asm__("$18");
+ register int value19 __asm__("$19");register int value20 __asm__("$20");register int value21 __asm__("$21");
+ register unsigned char* data9 __asm__("$9");register int offset10 __asm__("$10");
+ register int pressed8 __asm__("$8");register int* count12 __asm__("$12");
+ register int* timer13 __asm__("$13");register int* row14 __asm__("$14");
+ register int speed15 __asm__("$15");register int three11 __asm__("$11");
+ work3=A4926FBD0;work2=1;if(work3==work2)goto mode1;
+ if(work3<2){if(!work3)goto mode0;return;}if(work3==2)goto mode2;return;
+ mode0:
+ switch(A4926FBC8){
+ case 0:
+  data16=A4926FA90;value18=80;index17=0;value19=640;
+  do{
+   work2=A4926C5BC;arg4=work2*10+index17;work2=A4926H27934(arg4);
+   arg5=0;arg7=work2;arg6=arg7<<3;arg4=(int)(data16+6);
+   __asm__ volatile("" : "=r"(arg4),"=r"(arg5),"=r"(arg6),"=r"(arg7):"0"(arg4),"1"(arg5),"2"(arg6),"3"(arg7));
+   do{
+    work2=(int)A4926C738;A4926F(data16,short*,0)=arg7;work2=arg6+work2;
+    work2=A4926F((void*)work2,unsigned char*,4);A4926F((void*)arg4,unsigned char*,-4)=work2;
+    work2=(int)A4926C738;work2=arg6+work2;work2=A4926F((void*)work2,unsigned char*,2);
+    data16+=8;A4926F((void*)arg4,short*,-2)=value19;A4926F((void*)arg4,unsigned char*,-3)=work2;
+    work3=(int)A4926C788;work2<<=3;work3+=work2;
+    work2=A4926F((void*)work3,unsigned char*,5);work3=A4926F((void*)work3,unsigned char*,1);
+    arg5++;work2-=work3;work2>>=1;work2=value18-work2;A4926F((void*)arg4,short*,0)=work2;
+    arg4+=8;work2=arg5<8;
+   }while(work2);
+   index17++;value18+=24;
+  }while(index17<4);
+  A4926Sound0(A4926C654[22],0,128);work2=1;goto clearGlobal;
+ case 1:
+  timer16=&A4926FBC4;work2=*timer16;work3=A4926C648;work2+=work3;*timer16=work2;
+  if(work2>=45)goto sound01;
+  if(!(A4926E53C&2112))return;
+ sound01:A4926Sound1(A4926C654[22],0,128);work2=2;goto clearTimer;
+ case 2:
+  data9=A4926FA90;arg7=0;work3=(int)&A4926FBD4;timer13=(int*)(work3-16);
+  __asm__("" : "=r"(timer13):"0"(timer13));
+  work2=A4926E53C;offset10=0;A4926F((void*)work3,int*,0)=0;
+  work3=A4926C648;work2&=2112;pressed8=work2!=0;work2=work3*3;speed15=work2<<2;
+  do{
+   arg5=128;arg4=0;work3=(int)A4926FA58;work2=arg7<<2;row14=(int*)(work2+work3);__asm__("" : "=r"(row14):"0"(row14));count12=&A4926FBD4;three11=3;
+   arg6=0;work3=(int)(data9+4);
+   do{
+    work2=*timer13-offset10-arg6;
+    if(work2<=0 && !pressed8)goto skipEntry;
+    if(pressed8)A4926F((void*)work3,unsigned short*,0)=arg5;
+    else A4926F((void*)work3,unsigned short*,0)-=speed15;
+    if(A4926F((void*)work3,short*,0)>arg5)goto skipEntry;
+    A4926F((void*)work3,short*,0)=arg5;
+    if(*row14<=arg4)goto countDone;
+    work2=*count12;work2++;*count12=work2;
+    countDone:__asm__ volatile("" ::: "memory");if(arg7!=three11)goto skipEntry;work2=7;
+    __asm__("" : "=r"(work2):"0"(work2));if(arg4!=work2)goto skipEntry;
+    __asm__ volatile("" : "=r"(pressed8):"0"(pressed8):"$2");
+    if(pressed8){work2=60;*timer13=work2;}else {__asm__("" : "=r"(pressed8):"0"(pressed8));*timer13=0;}A4926FBC8=three11;
+   skipEntry:
+    arg5+=32;work3+=8;data9+=8;arg4++;arg6+=6;
+   }while(arg4<8);
+   arg7++;offset10+=60;
+  }while(arg7<4);
+  {register int* p2 __asm__("$2");p2=&A4926FBC4;work3=*p2;arg4=A4926C648;work3+=arg4;*p2=work3;}
+  return;
+ case 3:
+  timer16=&A4926FBC4;work2=*timer16;work3=A4926C648;work2+=work3;*timer16=work2;
+  if(work2<60)return;
+  A4926Sound2(A4926C654[22],0,128);*timer16=0;
+  work3=A4926F(A4926FA58,int*,0);work2=8;if(work3!=work2){work2=4;goto resetChoice;}
+  work2=A4926F(A4926FA58,int*,4);if(work2!=work3){work2=4;goto resetChoice;}
+  work3=A4926F(A4926FA58,int*,8);if(work3!=work2){work2=4;goto resetChoice;}
+  work2=A4926F(A4926FA58,int*,12);if(work2==work3){work2=5;goto storeChoice0;}
+  work2=4;goto resetChoice;
+ case 4:
+  timer16=&A4926FBC4;input17=&A4926E53C;
+  work2=*timer16;arg4=A4926C648;work3=*input17;work2+=arg4;work3&=20480;*timer16=work2;
+  if(work3){A4926Sound3(A4926C654[24],0,128);*timer16=0;work3=A4926FBCC;work2=1;work2-=work3;A4926FBCC=work2;}
+  if(!(*input17&2112))return;
+  if(A4926FBCC)goto soundExit;
+  A4926Sound4(A4926C654[22],0,192);A4927ModeConfirm0=1;goto callback;
+ case 5:
+  timer16=&A4926FBC4;work2=*timer16;arg4=A4926C648;work3=A4926E53C;work2+=arg4;work3&=2112;*timer16=work2;
+  if(!work3)return;
+  A4926Sound5(A4926C654[22],0,192);work2=1;*timer16=0;A4926FBD4=0;A4926FBD0=work2;A4926FBC8=0;return;
+ }
+ return;
+ mode1:
+ switch(A4926FBC8){
+ case 0:
+  if(A4926E53C&2112)A4926FBD4=1;
+  timer16=&A4926FBC4;work2=*timer16;work3=A4926C648;work2+=work3;*timer16=work2;
+  if(work2<30 && !A4926FBD4)return;
+  A4926Sound6(A4926C654[22],0,128);work2=1;goto clearTimer;
+ case 1:
+  if(A4926E53C&2112)A4926FBD4=1;
+  timer16=&A4926FBC4;work2=*timer16;work3=A4926C648;work2+=work3;*timer16=work2;
+  if(work2<30 && !A4926FBD4)return;
+  A4926Sound7(A4926C654[22],0,128);work2=2;goto clearTimer;
+ case 2:
+  if(A4926E53C&2112)A4926FBD4=1;
+  timer16=&A4926FBC4;work2=*timer16;work3=A4926C648;work2+=work3;*timer16=work2;
+  if(work2<30 && !A4926FBD4)return;
+  A4926Sound8(A4926C654[22],0,128);work2=3;goto clearTimer;
+ case 3:
+  if(A4926E53C&2112)A4926FBD4=1;
+  timer16=&A4926FBC4;work2=*timer16;work3=A4926C648;work2+=work3;*timer16=work2;
+  if(work2<30 && !A4926FBD4)return;
+  A4926Sound9(A4926C654[22],0,128);work3=A4926FA38;*timer16=0;
+  work2=work3*44;test2=A4926F(A4926Records+work2,int*,16);
+  if(test2){work2=4;goto resetChoice;}
+  work2=5;
+ storeChoice0:A4927Choice0=5;return;
+ case 4:
+  timer16=&A4926FBC4;input17=&A4926E53C;
+  work2=*timer16;arg4=A4926C648;work3=*input17;work2+=arg4;work3&=20480;*timer16=work2;
+  if(work3){A4926Sound10(A4926C654[24],0,128);*timer16=0;work3=A4926FBCC;work2=1;work2-=work3;A4926FBCC=work2;}
+  if(!(*input17&2112))return;
+  if(A4926FBCC)goto soundExit;
+  A4926Sound11(A4926C654[22],0,192);A4927ModeConfirm1=1;goto callback;
+ case 5:goto soundExitUpdate;
+ }
+ return;
+ mode2:
+ switch(A4926FBC8){
+ case 0:
+  data18=A4926FA90;work2=A4926H27934(2001);work2<<=3;value19=0;
+  work3=(int)A4926C738;data16=data18+6;work2+=work3;work3=A4926F((void*)work2,unsigned char*,2);
+  work2=A4926FA7C;arg4=(int)A4926C788;value20=work3+work2;work2=value20<<3;arg4+=work2;__asm__("" : "=r"(arg4):"0"(arg4));
+  work3=A4926F((void*)arg4,unsigned char*,5);work2=A4926F((void*)arg4,unsigned char*,1);arg5=70;
+  work3-=work2;work3>>=1;value21=arg5-work3;
+  work2=A4926F((void*)arg4,unsigned char*,4);arg4=A4926F((void*)arg4,unsigned char*,0);work3=144;
+  work2-=arg4;work2>>=1;index17=work3-work2;
+  do{
+   work2=A4926H27934(2001);A4926F(data18,short*,0)=work2;data18+=8;
+   work3=(int)A4926C738;work2<<=3;work2+=work3;work2=A4926F((void*)work2,unsigned char*,4);
+   value19++;A4926F(data16,short*,-2)=index17;index17+=224;A4926F(data16,unsigned char*,-3)=value20;
+   A4926F(data16,short*,0)=value21;A4926F(data16,unsigned char*,-4)=work2;data16+=8;
+  }while(value19<2);
+  A4926Sound12(A4926C654[22],0,128);work2=2;
+ clearGlobal:A4926FBC4=0;A4927ChoiceGlobal=work2;return;
+ case 1:
+  if(A4926E53C&2112)A4926FBD4=1;
+  timer16=&A4926FBC4;work2=*timer16;work3=A4926C648;work2+=work3;*timer16=work2;
+  if(work2<45 && !A4926FBD4)return;
+  A4926Sound13(A4926C654[22],0,128);work2=2;goto clearTimer;
+ case 2:
+  if(A4926E53C&2112)A4926FBD4=1;
+  timer16=&A4926FBC4;work2=*timer16;work3=A4926C648;work2+=work3;*timer16=work2;
+  if(work2<30 && !A4926FBD4)return;
+  A4926Sound14(A4926C654[22],0,128);work2=3;goto clearTimer;
+ case 3:
+  if(A4926E53C&2112)A4926FBD4=1;
+  timer16=&A4926FBC4;work2=*timer16;work3=A4926C648;work2+=work3;*timer16=work2;
+  if(work2<30 && !A4926FBD4)return;
+  A4926Sound15(A4926C654[22],0,128);work2=4;
+ clearTimer:*timer16=0;A4927ChoiceTimer=work2;return;
+ case 4:
+  if(A4926E53C&2112)A4926FBD4=1;
+  timer16=&A4926FBC4;work2=*timer16;work3=A4926C648;work2+=work3;*timer16=work2;
+  if(work2<30 && !A4926FBD4)return;
+  A4926Sound16(A4926C654[22],0,128);*timer16=0;work3=A4926FA78;work2=4;
+  if(work3!=work2){work2=5;goto resetChoice;}
+  test2=A4926FA7C;if(test2){work2=5;goto resetChoice;}
+  work2=A4926FA38;work3=work2*44;work2=A4926F(A4926Records+work3,int*,36);
+  __asm__("" : "=r"(work2):"0"(work2));
+  if(!work2)goto storeSix;work2=5;
+ resetChoice:A4926FBCC=0;
+ storeChoice2:A4927Choice2=work2;return;
+ storeSix:work2=6;A4926FBC8=work2;return;
+ case 5:
+  timer16=&A4926FBC4;input17=&A4926E53C;
+  work2=*timer16;arg4=A4926C648;work3=*input17;work2+=arg4;work3&=20480;*timer16=work2;
+  if(work3){A4926Sound17(A4926C654[24],0,128);*timer16=0;work3=A4926FBCC;work2=1;work2-=work3;A4926FBCC=work2;}
+  if(!(*input17&2112))return;
+  if(A4926FBCC)goto soundExit;
+  A4926Sound18(A4926C654[22],0,192);A4926FA40=2;goto callback;
+ case 6:
+ soundExitUpdate:
+  {register int* timer5 __asm__("$5");timer5=&A4926FBC4;work2=*timer5;arg4=A4926C648;work3=A4926E53C;
+   work2+=arg4;work3&=2112;*timer5=work2;if(!work3)return;}
+ soundExit:A4926Sound20(A4926C654[23],0,192);
+ callback:A4926Callback(1);return;
+ }
+}
+#undef A4926F
+
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original 80081B04.
+* Assembly SHA256 13e8007955e1ddacf7e7d819995e4481be4439227022678abaab02553ed55c91.
+* AI generated; not human reviewed. All1086 original instructions and
+* actual branch/call/internal targets are required. Frame0x100 retains
+* S0..S6/RA and original SP0x18/0x20/0x30/0x40/0x50 buffer addresses. The five
+* original format strings occupy48 bytes including original padding.
+* Table entries are32-bit loads; record stride44 and offsets0x14/0x28
+* retain byte-addressed source arithmetic. Time arithmetic uses ordinary
+* signed C division/remainder3600/60 and hundredths multiplication100.
+* Raw tick rate and complete helper contracts are not established here.
+* Branch-local format buffer expressions preserve original redundant
+* address producers; no shared live backup address is introduced.
+* Initialized empty dependencies/dead-before-producer clobbers emit no
+* CPU instructions. Immediate metadata tags are unique scheduling IDs,
+* not retail addresses, data or semantic evidence. No partial HI, fixed
+* FP shortcut or opcode assembly is used. Units/fixed point, complete
+* helper contracts, caller cadence and synchronized retail runtime remain
+* open. Cadence here is per invocation; confidence is binary identity
+* only after every acceptance gate. Falsification: every native/linked
+* word and actual target, original format bytes/padding, complete EXE
+* and every overlay retail hash must remain identical. */
+#define Speedway15Field(p, t, o) (*(t)((unsigned char*)(p)+(o)))
+unsigned char Speedway15CallDrawStringCenteredView1() __asm__("DrawStringCentered");
+unsigned char Speedway15Call1FB74View1() __asm__("func_8001FB74");
+unsigned char Speedway15Call1FD00View1() __asm__("func_8001FD00");
+int Speedway15Call28378View1() __asm__("func_80028378");
+void * Speedway15Call289C8View1() __asm__("func_800289C8");
+unsigned char Speedway15Call2E748View1() __asm__("func_8002E748");
+int Speedway15Call2EBB0View1() __asm__("func_8002EBB0");
+int Speedway15CallsprintfView1() __asm__("sprintf");
+extern unsigned char Speedway15Data69D98View1 __asm__("D_80069D98");
+extern unsigned char Speedway15Data69DA8View1 __asm__("D_80069DA8");
+extern unsigned char Speedway15Data69DD8View1 __asm__("D_80069DD8");
+extern unsigned char Speedway15Data69DDCView1 __asm__("D_80069DDC");
+extern unsigned char Speedway15Data6C438View1 __asm__("D_8006C438");
+extern unsigned char Speedway15Data6C43CView1 __asm__("D_8006C43C");
+extern unsigned char Speedway15Data6C440View1 __asm__("D_8006C440");
+extern unsigned char Speedway15Data6C444View1 __asm__("D_8006C444");
+extern unsigned char Speedway15Data6C448View1 __asm__("D_8006C448");
+extern unsigned char Speedway15Data6C44CView1 __asm__("D_8006C44C");
+extern int Speedway15Data6C76CView1 __asm__("D_8006C76C");
+extern int Speedway15Data6C788View1 __asm__("D_8006C788");
+extern int Speedway15Data6FA38View1 __asm__("D_8006FA38");
+extern int Speedway15Data6FA44View1 __asm__("D_8006FA44");
+extern int Speedway15Data6FA74View1 __asm__("D_8006FA74");
+extern int Speedway15Data6FA7CView1 __asm__("D_8006FA7C");
+extern int Speedway15Data6FA90View1 __asm__("D_8006FA90");
+extern int Speedway15Data6FBC4View1 __asm__("D_8006FBC4");
+extern int Speedway15Data6FBC8View1 __asm__("D_8006FBC8");
+extern int Speedway15Data6FBCCView1 __asm__("D_8006FBCC");
+extern int Speedway15Data6FBD0View1 __asm__("D_8006FBD0");
+extern int Speedway15Data6FBD4View1 __asm__("D_8006FBD4");
+extern unsigned char Speedway15DataspeedwayRecordsView1 __asm__("speedwayRecords");
+const char Speedway15Format1[6] __asm__("D_level_15_800746B8") __attribute__((aligned(4))) = "32/32";
+extern unsigned char Speedway15Format1View __asm__("D_level_15_800746B8");
+const char Speedway15Format2[7] __asm__("D_level_15_800746C0") __attribute__((aligned(4))) = "%2d/32";
+extern unsigned char Speedway15Format2View __asm__("D_level_15_800746C0");
+const char Speedway15Format3[13] __asm__("D_level_15_800746C8") __attribute__((aligned(4))) = "%d:%02d.%02d";
+extern unsigned char Speedway15Format3View __asm__("D_level_15_800746C8");
+const char Speedway15Format4[8] __asm__("D_level_15_800746D8") __attribute__((aligned(4))) = "%d.%02d";
+extern unsigned char Speedway15Format4View __asm__("D_level_15_800746D8");
+const char Speedway15Format5[8] __asm__("D_level_15_800746E0") __attribute__((aligned(4))) = "-------";
+extern unsigned char Speedway15Format5View __asm__("D_level_15_800746E0");
+void func_level_15_80081B04(void) {
+    int rawWord3;
+    int temporaryWord1, temporaryWord2, temporaryWord3, temporaryWord4, temporaryWord5, temporaryWord6, temporaryWord7, temporaryWord8, temporaryWord14, temporaryWord16, temporaryWord17, temporaryWord18;
+    register int widthOrPrimitive16 __asm__("$16");
+    register int rowOrTable17 __asm__("$17");
+    register int entryOrTable18 __asm__("$18");
+    register int recordCursor19 __asm__("$19");
+    register int rowCountOrCenter20 __asm__("$20");
+    register int countTable21 __asm__("$21");
+    register int retainedCountTable22 __asm__("$22");
+    register int rawWord2 __asm__("$2"), argumentWord4 __asm__("$4"), argumentWord5 __asm__("$5"), argumentWord6 __asm__("$6"), argumentWord7 __asm__("$7");
+    struct {
+        char sp18[8], sp20[16], sp30[16], sp40[16], sp50[16];
+    }
+    originalFrame;
+    int *temporaryWord9;
+    int *temporaryWord10;
+    int temporaryWord11;
+    int temporaryWord13;
+    int temporaryWord12;
+    int temporaryWord15;
+    switch (Speedway15Data6FBD0View1) {
+    case 0:
+        Speedway15Call1FD00View1(0x70, 0x190, 0x1E, 0xD0);
+        Speedway15Call1FB74View1(0x90, 0x40, 0x170, 0x40);
+        Speedway15Call1FB74View1(0x90, 0xA8, 0x170, 0xA8);
+        temporaryWord11 = Speedway15Data6FBC8View1;
+        if (temporaryWord11 > 0) {
+            argumentWord5 = 256;
+            __asm__("":"=r"(argumentWord5):"0"(argumentWord5));
+            argumentWord6 = 36;
+            __asm__("":"=r"(argumentWord6):"0"(argumentWord6));
+            argumentWord4 = (int)&Speedway15Data69D98View1;
+            __asm__("":"=r"(argumentWord4):"0"(argumentWord4));
+            rawWord2 = Speedway15Data6C76CView1;
+            rawWord3 = Speedway15Data6FA44View1;
+            rawWord2 <<= 4;
+            rawWord2 += argumentWord4;
+            rawWord3 <<= 2;
+            rawWord3 += rawWord2;
+            __asm__("":"=r"(rawWord3):"0"(rawWord3));
+            argumentWord4 = Speedway15Field(rawWord3, int*, 0);
+            Speedway15CallDrawStringCenteredView1(argumentWord4, argumentWord5, argumentWord6, 2);
+        }
+        rowCountOrCenter20 = 0;
+        if (Speedway15Data6FBC8View1 >= 2) {
+            recordCursor19 = (int)&Speedway15Data6FA90View1;
+            countTable21 = recordCursor19-0x38;
+            do {
+                entryOrTable18 = 0;
+                retainedCountTable22 = countTable21;
+                __asm__("":"=r"(retainedCountTable22):"0"(retainedCountTable22));
+                rowOrTable17 = recordCursor19+6;
+            loop_11:
+                if (entryOrTable18 < Speedway15Field(retainedCountTable22, int*, 0)) {
+                    temporaryWord12 = Speedway15Call28378View1(recordCursor19, entryOrTable18);
+                    Speedway15Field(rowOrTable17, unsigned char *, -3) = temporaryWord12;
+                    Speedway15Call289C8View1(Speedway15Data6C788View1 + ((temporaryWord12 & 0xFF) * 8), Speedway15Field(rowOrTable17, short *, -2), Speedway15Field(rowOrTable17, short *, 0));
+                    rowOrTable17 += 8;
+                }
+                else {
+                    argumentWord5 = Speedway15Field(rowOrTable17, short*, -2);
+                    argumentWord6 = Speedway15Field(rowOrTable17, short*, 0);
+                    rawWord2 = Speedway15Field(rowOrTable17, unsigned char*, -3);
+                    rawWord3 = Speedway15Data6C788View1;
+                    rawWord2 <<= 3;
+                    widthOrPrimitive16 = rawWord3+rawWord2;
+                    rawWord2 = (int)Speedway15Call289C8View1(widthOrPrimitive16, argumentWord5, argumentWord6);
+                    argumentWord4 = rawWord2;
+                    rawWord3 = Speedway15Field(widthOrPrimitive16, unsigned short*, 6);
+                    rawWord2 = 96;
+                    rawWord3 &= 96;
+                    if (rawWord3 == rawWord2){
+                        rawWord2 = 64;
+                        __asm__("":"=r"(rawWord2):"0"(rawWord2));
+                        Speedway15Field(argumentWord4, unsigned char*, 4) = rawWord2;
+                        Speedway15Field(argumentWord4, unsigned char*, 5) = rawWord2;
+                        Speedway15Field(argumentWord4, unsigned char*, 6) = rawWord2;
+                        __asm__ __volatile__("":::"memory");
+                        rawWord2 = Speedway15Field(argumentWord4, unsigned char*, 7);
+                        rawWord3 = Speedway15Field(argumentWord4, unsigned short*, 0x16);
+                        rawWord2 |= 2;
+                        rawWord3 &= 0xFF9F;
+                        Speedway15Field(argumentWord4, unsigned char*, 7) = rawWord2;
+                        Speedway15Field(argumentWord4, unsigned short*, 0x16) = rawWord3;
+                    }
+                    else{
+                        rawWord2 = 32;
+                        Speedway15Field(argumentWord4, unsigned char*, 4) = rawWord2;
+                        Speedway15Field(argumentWord4, unsigned char*, 5) = rawWord2;
+                        Speedway15Field(argumentWord4, unsigned char*, 6) = rawWord2;
+                    }
+                    rowOrTable17 += 8;
+                }
+                entryOrTable18 += 1;
+                recordCursor19 += 8;
+                if (entryOrTable18 < 8) {
+                    goto loop_11;
+                }
+                rowCountOrCenter20 += 1;
+                countTable21 += 4;
+            }
+            while (rowCountOrCenter20 < 4);
+            Speedway15CallsprintfView1(&originalFrame.sp18, &Speedway15Format1View);
+            rowCountOrCenter20 = (Speedway15Call2EBB0View1(&originalFrame.sp18) >> 1) + 0x100;
+            Speedway15CallsprintfView1(&originalFrame.sp18, &Speedway15Format2View, Speedway15Data6FBD4View1);
+            Speedway15Call2E748View1(&originalFrame.sp18, rowCountOrCenter20 - Speedway15Call2EBB0View1(&originalFrame.sp18), 0x32, 2, 0);
+        }
+        if (Speedway15Data6FBC8View1 == 4) {
+            widthOrPrimitive16 = Speedway15Call2EBB0View1(*(int*)(&Speedway15Data69DD8View1 + (Speedway15Data6C76CView1 * 4)));
+            rawWord2 = Speedway15Call2EBB0View1(*(int*)(&Speedway15Data69DDCView1 + (Speedway15Data6C76CView1 * 4)));
+            rowOrTable17 = (int)&Speedway15Data69DD8View1;
+            __asm__("":"=r"(rowOrTable17):"0"(rowOrTable17));
+            entryOrTable18 = (int)&Speedway15Data69DDCView1;
+            __asm__("":"=r"(entryOrTable18):"0"(entryOrTable18));
+            rawWord3 = rawWord2;
+            __asm__("":"=r"(rawWord3):"0"(rawWord3));
+            if (widthOrPrimitive16 < rawWord3)widthOrPrimitive16 = rawWord3;
+            rawWord2 = Speedway15Call2EBB0View1(*(int*)(&Speedway15Data6C438View1 + (Speedway15Data6C76CView1 * 4)));
+            rawWord3 = widthOrPrimitive16+10;
+            widthOrPrimitive16 = rawWord3+rawWord2;
+            rawWord3 = widthOrPrimitive16 >> 1;
+            rawWord2 = 256;
+            widthOrPrimitive16 = rawWord2-rawWord3;
+            Speedway15Call2E748View1(*(int*)(&Speedway15Data6C438View1 + (Speedway15Data6C76CView1 * 4)), widthOrPrimitive16, 0xB2, 2, 0);
+            rawWord2 = Speedway15Call2EBB0View1(*(int*)(&Speedway15Data6C438View1 + (Speedway15Data6C76CView1 * 4)));
+            rawWord3 = widthOrPrimitive16+10;
+            widthOrPrimitive16 = rawWord3+rawWord2;
+            argumentWord7 = 0;
+            __asm__("":"=r"(argumentWord7):"0"(argumentWord7));
+            rawWord2 = Speedway15Data6C76CView1;
+            rawWord3 = Speedway15Data6FBCCView1;
+            rawWord2 <<= 2;
+            argumentWord4 = rawWord2+rowOrTable17;
+            if (!rawWord3){
+                rawWord2 = Speedway15Data6FBC4View1;
+                rawWord2 &= 31;
+                argumentWord7 = rawWord2 < 22;
+            }
+            argumentWord5 = widthOrPrimitive16;
+            argumentWord6 = 178;
+            Speedway15Call2E748View1(Speedway15Field(argumentWord4, int*, 0), argumentWord5, argumentWord6, argumentWord7|2, 0);
+            rawWord2 = Speedway15Data6C76CView1;
+            rawWord3 = Speedway15Data6FBCCView1;
+            rawWord2 <<= 2;
+            argumentWord4 = rawWord2+entryOrTable18;
+            __asm__ __volatile__(""::"r"(argumentWord4):"$2", "memory");
+            rawWord2 = 1;
+            __asm__ __volatile__(""::"r"(rawWord2):"$7", "memory");
+            argumentWord7 = 0;
+            if (rawWord3 == rawWord2){
+                rawWord2 = Speedway15Data6FBC4View1;
+                rawWord2 &= 31;
+                argumentWord7 = rawWord2 < 22;
+            }
+            argumentWord5 = widthOrPrimitive16;
+            __asm__ __volatile__(""::"r"(argumentWord5), "i"(0x10860001):"$6", "memory");
+            argumentWord6 = 192;
+            goto drawFinalSelectionRow;
+        }
+        argumentWord7 = 2;
+        if (Speedway15Data6FBC8View1 == 5) {
+            argumentWord4 = (int)&Speedway15Data6C43CView1;
+            __asm__("":"=r"(argumentWord4):"0"(argumentWord4));
+            rawWord2 = Speedway15Data6C76CView1;
+            rawWord3 = Speedway15Data6FBC4View1;
+            rawWord2 <<= 2;
+            rawWord3 &= 31;
+            rawWord3 = rawWord3 < 22;
+            rawWord2 += argumentWord4;
+            if (rawWord3)argumentWord7 = 3;
+            argumentWord4 = Speedway15Field(rawWord2, int*, 0);
+            argumentWord5 = 256;
+            argumentWord6 = 184;
+            goto drawFinalCenteredCaption;
+        }
+        return;
+    case 1:
+        Speedway15Call1FD00View1(0x70, 0x190, 0x40, 0xA8);
+        Speedway15Call1FB74View1(0x90, 0x56, 0x170, 0x56);
+        Speedway15Call1FB74View1(0x90, 0x84, 0x170, 0x84);
+        temporaryWord13 = Speedway15Data6FBC8View1;
+        if (temporaryWord13 > 0) {
+            Speedway15CallDrawStringCenteredView1(*(int*)(&Speedway15Data6C440View1 + (Speedway15Data6C76CView1 * 4)), 0xC0, 0x60, 2);
+            Speedway15Call2EBB0View1(*(int*)(&Speedway15Data6C440View1 + (Speedway15Data6C76CView1 * 4)));
+            temporaryWord1 = Speedway15Data6FA74View1 / 3600;
+            temporaryWord5 = Speedway15Data6FA74View1/60;
+            temporaryWord14 = ((Speedway15Data6FA74View1 % 60) * 0x64) / 60;
+            argumentWord5 = temporaryWord5;
+            __asm__("":"=r"(argumentWord5):"0"(argumentWord5));
+            rawWord2 = temporaryWord1*60;
+            __asm__("":"=r"(rawWord2):"0"(rawWord2));
+            argumentWord7 = argumentWord5-rawWord2;
+            rawWord2 = temporaryWord14;
+            if (temporaryWord1){
+                __asm__ __volatile__("":::"$4", "memory");
+                argumentWord4 = (int)&originalFrame.sp20;
+                Speedway15CallsprintfView1(argumentWord4, &Speedway15Format3View, temporaryWord1, argumentWord7, rawWord2);
+                __asm__ __volatile__(""::"i"(0x10860002):"memory");
+            }
+            else{
+                argumentWord4 = (int)&originalFrame.sp20;
+                argumentWord5 = (int)&Speedway15Format4View;
+                argumentWord6 = argumentWord7;
+                __asm__ __volatile__(""::"r"(argumentWord6):"$7", "memory");
+                argumentWord7 = rawWord2;
+                Speedway15CallsprintfView1(argumentWord4, argumentWord5, argumentWord6, argumentWord7);
+                __asm__ __volatile__(""::"i"(0x10860003):"memory");
+            }
+            Speedway15CallDrawStringCenteredView1(&originalFrame.sp20, 0xC0, 0x71, 2);
+        }
+        if (Speedway15Data6FBC8View1 >= 2) {
+            Speedway15CallDrawStringCenteredView1(*(int*)(&Speedway15Data6C444View1 + (Speedway15Data6C76CView1 * 4)), 0x140, 0x60, 2);
+            Speedway15Call2EBB0View1(*(int*)(&Speedway15Data6C444View1 + (Speedway15Data6C76CView1 * 4)));
+            temporaryWord9 = &Speedway15DataspeedwayRecordsView1 + 0x14 + (Speedway15Data6FA38View1 * 0x2C);
+            temporaryWord2 = *temporaryWord9 / 3600;
+            temporaryWord6 = (*temporaryWord9 / 60) - (temporaryWord2 * 0x3C);
+            temporaryWord16 = ((*temporaryWord9 % 60) * 0x64) / 60;
+            if (*temporaryWord9 == 0x8CA0){
+                Speedway15CallsprintfView1(&originalFrame.sp30, &Speedway15Format5View, temporaryWord2, temporaryWord6);
+                __asm__ __volatile__(""::"i"(0x10860004):"memory");
+            }
+            else{
+                if (temporaryWord2){
+                    Speedway15CallsprintfView1(&originalFrame.sp30, &Speedway15Format3View, temporaryWord2, temporaryWord6, temporaryWord16);
+                    __asm__ __volatile__(""::"i"(0x10860005):"memory");
+                }
+                else{
+                    argumentWord4 = (int)&originalFrame.sp30;
+                    argumentWord5 = (int)&Speedway15Format4View;
+                    argumentWord6 = temporaryWord6;
+                    __asm__ __volatile__(""::"r"(argumentWord6):"$7", "memory");
+                    argumentWord7 = temporaryWord16;
+                    Speedway15CallsprintfView1(argumentWord4, argumentWord5, argumentWord6, argumentWord7);
+                    __asm__ __volatile__(""::"i"(0x10860006):"memory");
+                }
+            }
+            Speedway15CallDrawStringCenteredView1(&originalFrame.sp30, 0x140, 0x71, 2);
+        }
+        if (Speedway15Data6FBC8View1 >= 3) {
+            argumentWord7 = 2;
+            if (Speedway15Data6FA74View1 < *(int*)(&Speedway15DataspeedwayRecordsView1 + 0x14 + (Speedway15Data6FA38View1 * 0x2C))) {
+                argumentWord4 = (int)&Speedway15Data6C448View1;
+                __asm__("":"=r"(argumentWord4):"0"(argumentWord4));
+                rawWord2 = Speedway15Data6C76CView1;
+                rawWord3 = Speedway15Data6FBC4View1;
+                rawWord2 <<= 2;
+                rawWord3 &= 31;
+                rawWord3 = rawWord3 < 22;
+                rawWord2 += argumentWord4;
+                if (rawWord3)argumentWord7 = 3;
+                argumentWord4 = Speedway15Field(rawWord2, int*, 0);
+                argumentWord5 = 256;
+                __asm__ __volatile__(""::"i"(0x10860007):"$6", "memory");
+                argumentWord6 = 72;
+                goto drawFirstComparisonCaption;
+            }
+            else{
+                argumentWord5 = 256;
+                rawWord2 = Speedway15Data6C76CView1;
+                __asm__ __volatile__("":::"$6", "memory");
+                argumentWord6 = 72;
+                rawWord2 <<= 2;
+                argumentWord4 = Speedway15Field(&Speedway15Data6C44CView1, int*, rawWord2);
+                drawFirstComparisonCaption:Speedway15CallDrawStringCenteredView1(argumentWord4, argumentWord5, argumentWord6, argumentWord7);
+            }
+        }
+        if (Speedway15Data6FBC8View1 == 4) {
+            widthOrPrimitive16 = Speedway15Call2EBB0View1(*(int*)(&Speedway15Data69DD8View1 + (Speedway15Data6C76CView1 * 4)));
+            rawWord2 = Speedway15Call2EBB0View1(*(int*)(&Speedway15Data69DDCView1 + (Speedway15Data6C76CView1 * 4)));
+            rowOrTable17 = (int)&Speedway15Data69DD8View1;
+            __asm__("":"=r"(rowOrTable17):"0"(rowOrTable17));
+            entryOrTable18 = (int)&Speedway15Data69DDCView1;
+            __asm__("":"=r"(entryOrTable18):"0"(entryOrTable18));
+            rawWord3 = rawWord2;
+            __asm__("":"=r"(rawWord3):"0"(rawWord3));
+            if (widthOrPrimitive16 < rawWord3)widthOrPrimitive16 = rawWord3;
+            rawWord2 = Speedway15Call2EBB0View1(*(int*)(&Speedway15Data6C438View1 + (Speedway15Data6C76CView1 * 4)));
+            rawWord3 = widthOrPrimitive16+10;
+            widthOrPrimitive16 = rawWord3+rawWord2;
+            rawWord3 = widthOrPrimitive16 >> 1;
+            rawWord2 = 256;
+            widthOrPrimitive16 = rawWord2-rawWord3;
+            Speedway15Call2E748View1(*(int*)(&Speedway15Data6C438View1 + (Speedway15Data6C76CView1 * 4)), widthOrPrimitive16, 0x8C, 2, 0);
+            rawWord2 = Speedway15Call2EBB0View1(*(int*)(&Speedway15Data6C438View1 + (Speedway15Data6C76CView1 * 4)));
+            rawWord3 = widthOrPrimitive16+10;
+            widthOrPrimitive16 = rawWord3+rawWord2;
+            argumentWord7 = 0;
+            __asm__("":"=r"(argumentWord7):"0"(argumentWord7));
+            rawWord2 = Speedway15Data6C76CView1;
+            rawWord3 = Speedway15Data6FBCCView1;
+            rawWord2 <<= 2;
+            argumentWord4 = rawWord2+rowOrTable17;
+            if (!rawWord3){
+                rawWord2 = Speedway15Data6FBC4View1;
+                rawWord2 &= 31;
+                argumentWord7 = rawWord2 < 22;
+            }
+            argumentWord5 = widthOrPrimitive16;
+            argumentWord6 = 140;
+            Speedway15Call2E748View1(Speedway15Field(argumentWord4, int*, 0), argumentWord5, argumentWord6, argumentWord7|2, 0);
+            rawWord2 = Speedway15Data6C76CView1;
+            rawWord3 = Speedway15Data6FBCCView1;
+            rawWord2 <<= 2;
+            argumentWord4 = rawWord2+entryOrTable18;
+            __asm__ __volatile__(""::"r"(argumentWord4):"$2", "memory");
+            rawWord2 = 1;
+            __asm__ __volatile__(""::"r"(rawWord2):"$7", "memory");
+            argumentWord7 = 0;
+            if (rawWord3 == rawWord2){
+                rawWord2 = Speedway15Data6FBC4View1;
+                rawWord2 &= 31;
+                argumentWord7 = rawWord2 < 22;
+            }
+            argumentWord5 = widthOrPrimitive16;
+            __asm__ __volatile__(""::"r"(argumentWord5), "i"(0x10860008):"$6", "memory");
+            argumentWord6 = 154;
+            goto drawFinalSelectionRow;
+        }
+        argumentWord7 = 2;
+        if (Speedway15Data6FBC8View1 == 5) {
+            argumentWord4 = (int)&Speedway15Data6C43CView1;
+            __asm__("":"=r"(argumentWord4):"0"(argumentWord4));
+            rawWord2 = Speedway15Data6C76CView1;
+            rawWord3 = Speedway15Data6FBC4View1;
+            rawWord2 <<= 2;
+            rawWord3 &= 31;
+            rawWord3 = rawWord3 < 22;
+            rawWord2 += argumentWord4;
+            if (rawWord3)argumentWord7 = 3;
+            argumentWord4 = Speedway15Field(rawWord2, int*, 0);
+            argumentWord5 = 256;
+            argumentWord6 = 146;
+            goto drawFinalCenteredCaption;
+        }
+        break;
+    case 2:
+        Speedway15Call1FD00View1(0x70, 0x190, 0x38, 0xB2);
+        Speedway15Call1FB74View1(0x90, 0x54, 0x170, 0x54);
+        Speedway15Call1FB74View1(0x90, 0x8E, 0x170, 0x8E);
+        rawWord2 = Speedway15Data6FBC8View1;
+        if (rawWord2 > 0){
+            rawWord3 = (int)&Speedway15Data6FA44View1;
+            __asm__("":"=r"(rawWord3):"0"(rawWord3));
+            rawWord2 = Speedway15Field(rawWord3, int*, 0);
+            if (rawWord2 != 1) goto prepareModeCaptionArguments;
+            argumentWord5 = 256;
+            __asm__ __volatile__(""::"r"(argumentWord5):"memory");
+            rawWord2 = Speedway15Data6FA7CView1;
+            if (rawWord2) goto prepareModeCaptionY;
+            argumentWord6 = 64;
+            __asm__ __volatile__(""::"r"(argumentWord6):"$2", "memory");
+            Speedway15Field(rawWord3, int*, 0) = 0;
+            prepareModeCaptionArguments:argumentWord5 = 256;
+            prepareModeCaptionY:argumentWord6 = 64;
+            __asm__ __volatile__(""::"r"(argumentWord5), "r"(argumentWord6):"memory");
+            rawWord3 = Speedway15Data6C76CView1;
+            __asm__ __volatile__("":::"$4", "memory");
+            argumentWord4 = (int)&Speedway15Data69DA8View1;
+            __asm__("":"=r"(argumentWord4):"0"(argumentWord4));
+            rawWord2 = rawWord3*20;
+            rawWord3 = Speedway15Data6FA44View1;
+            rawWord2 += argumentWord4;
+            rawWord3 <<= 2;
+            rawWord3 += rawWord2;
+            __asm__("":"=r"(rawWord3):"0"(rawWord3));
+            argumentWord4 = Speedway15Field(rawWord3, int*, 0);
+            Speedway15CallDrawStringCenteredView1(argumentWord4, argumentWord5, argumentWord6, 2);
+            rawWord3 = (int)&Speedway15Data6FA44View1;
+            __asm__("":"=r"(rawWord3):"0"(rawWord3));
+            rawWord2 = Speedway15Field(rawWord3, int*, 0);
+            if (rawWord2 < 2){
+                entryOrTable18 = rawWord3+76;
+                __asm__("":"=r"(entryOrTable18):"0"(entryOrTable18));
+                rowOrTable17 = 0;
+                widthOrPrimitive16 = rawWord3+82;
+                do {
+                    temporaryWord15 = Speedway15Call28378View1(entryOrTable18, 0);
+                    argumentWord5 = Speedway15Field(widthOrPrimitive16, short *, -2);
+                    argumentWord6 = Speedway15Field(widthOrPrimitive16, short *, 0);
+                    Speedway15Field(widthOrPrimitive16, unsigned char *, -3) = temporaryWord15;
+                    widthOrPrimitive16 += 8;
+                    entryOrTable18 += 8;
+                    rowOrTable17 += 1;
+                    Speedway15Call289C8View1(Speedway15Data6C788View1 + ((temporaryWord15 & 0xFF) * 8), argumentWord5, argumentWord6);
+                }
+                while (rowOrTable17 < 2);
+            }
+            rawWord2 = Speedway15Data6FBC8View1;
+        }
+        rawWord2 = rawWord2 < 2;
+        if (!rawWord2) {
+            Speedway15CallDrawStringCenteredView1(*(int*)(&Speedway15Data6C440View1 + (Speedway15Data6C76CView1 * 4)), 0xC0, 0x6A, 2);
+            Speedway15Call2EBB0View1(*(int*)(&Speedway15Data6C440View1 + (Speedway15Data6C76CView1 * 4)));
+            temporaryWord3 = Speedway15Data6FA74View1 / 3600;
+            temporaryWord7 = (Speedway15Data6FA74View1 / 60) - (temporaryWord3 * 0x3C);
+            temporaryWord17 = ((Speedway15Data6FA74View1 % 60) * 0x64) / 60;
+            if (Speedway15Data6FA44View1 >= 2){
+                Speedway15CallsprintfView1(&originalFrame.sp40, &Speedway15Format5View, temporaryWord3, temporaryWord7);
+                __asm__ __volatile__(""::"i"(0x10860009):"memory");
+            }
+            else{
+                if (temporaryWord3){
+                    Speedway15CallsprintfView1(&originalFrame.sp40, &Speedway15Format3View, temporaryWord3, temporaryWord7, temporaryWord17);
+                    __asm__ __volatile__(""::"i"(0x1086000a):"memory");
+                }
+                else{
+                    argumentWord4 = (int)&originalFrame.sp40;
+                    argumentWord5 = (int)&Speedway15Format4View;
+                    argumentWord6 = temporaryWord7;
+                    __asm__ __volatile__(""::"r"(argumentWord6):"$7", "memory");
+                    argumentWord7 = temporaryWord17;
+                    Speedway15CallsprintfView1(argumentWord4, argumentWord5, argumentWord6, argumentWord7);
+                    __asm__ __volatile__(""::"i"(0x1086000b):"memory");
+                }
+            }
+            Speedway15CallDrawStringCenteredView1(&originalFrame.sp40, 0xC0, 0x7B, 2);
+        }
+        if (Speedway15Data6FBC8View1 >= 3) {
+            Speedway15CallDrawStringCenteredView1(*(int*)(&Speedway15Data6C444View1 + (Speedway15Data6C76CView1 * 4)), 0x140, 0x6A, 2);
+            Speedway15Call2EBB0View1(*(int*)(&Speedway15Data6C444View1 + (Speedway15Data6C76CView1 * 4)));
+            temporaryWord10 = &Speedway15DataspeedwayRecordsView1 + 0x28 + (Speedway15Data6FA38View1 * 0x2C);
+            temporaryWord4 = *temporaryWord10 / 3600;
+            temporaryWord8 = (*temporaryWord10 / 60) - (temporaryWord4 * 0x3C);
+            temporaryWord18 = ((*temporaryWord10 % 60) * 0x64) / 60;
+            if (*temporaryWord10 == 0x8CA0){
+                Speedway15CallsprintfView1(&originalFrame.sp50, &Speedway15Format5View, temporaryWord4, temporaryWord8);
+                __asm__ __volatile__(""::"i"(0x1086000c):"memory");
+            }
+            else{
+                if (temporaryWord4){
+                    Speedway15CallsprintfView1(&originalFrame.sp50, &Speedway15Format3View, temporaryWord4, temporaryWord8, temporaryWord18);
+                    __asm__ __volatile__(""::"i"(0x1086000d):"memory");
+                }
+                else{
+                    argumentWord4 = (int)&originalFrame.sp50;
+                    argumentWord5 = (int)&Speedway15Format4View;
+                    argumentWord6 = temporaryWord8;
+                    __asm__ __volatile__(""::"r"(argumentWord6):"$7", "memory");
+                    argumentWord7 = temporaryWord18;
+                    Speedway15CallsprintfView1(argumentWord4, argumentWord5, argumentWord6, argumentWord7);
+                    __asm__ __volatile__(""::"i"(0x1086000e):"memory");
+                }
+            }
+            Speedway15CallDrawStringCenteredView1(&originalFrame.sp50, 0x140, 0x7B, 2);
+        }
+        if ((Speedway15Data6FBC8View1 >= 4) && (Speedway15Data6FA44View1 < 2)) {
+            argumentWord7 = 2;
+            if (Speedway15Data6FA74View1 < *(int*)(&Speedway15DataspeedwayRecordsView1 + 0x28 + (Speedway15Data6FA38View1 * 0x2C))) {
+                argumentWord4 = (int)&Speedway15Data6C448View1;
+                __asm__("":"=r"(argumentWord4):"0"(argumentWord4));
+                rawWord2 = Speedway15Data6C76CView1;
+                rawWord3 = Speedway15Data6FBC4View1;
+                rawWord2 <<= 2;
+                rawWord3 &= 31;
+                rawWord3 = rawWord3 < 22;
+                rawWord2 += argumentWord4;
+                if (rawWord3)argumentWord7 = 3;
+                argumentWord4 = Speedway15Field(rawWord2, int*, 0);
+                argumentWord5 = 256;
+                __asm__ __volatile__(""::"i"(0x1086000f):"$6", "memory");
+                argumentWord6 = 90;
+                goto drawSecondComparisonCaption;
+            }
+            else{
+                argumentWord5 = 256;
+                rawWord2 = Speedway15Data6C76CView1;
+                __asm__ __volatile__("":::"$6", "memory");
+                argumentWord6 = 90;
+                rawWord2 <<= 2;
+                argumentWord4 = Speedway15Field(&Speedway15Data6C44CView1, int*, rawWord2);
+                drawSecondComparisonCaption:Speedway15CallDrawStringCenteredView1(argumentWord4, argumentWord5, argumentWord6, argumentWord7);
+            }
+        }
+        if (Speedway15Data6FBC8View1 == 5) {
+            widthOrPrimitive16 = Speedway15Call2EBB0View1(*(int*)(&Speedway15Data69DD8View1 + (Speedway15Data6C76CView1 * 4)));
+            rawWord2 = Speedway15Call2EBB0View1(*(int*)(&Speedway15Data69DDCView1 + (Speedway15Data6C76CView1 * 4)));
+            rowOrTable17 = (int)&Speedway15Data69DD8View1;
+            __asm__("":"=r"(rowOrTable17):"0"(rowOrTable17));
+            entryOrTable18 = (int)&Speedway15Data69DDCView1;
+            __asm__("":"=r"(entryOrTable18):"0"(entryOrTable18));
+            rawWord3 = rawWord2;
+            __asm__("":"=r"(rawWord3):"0"(rawWord3));
+            if (widthOrPrimitive16 < rawWord3)widthOrPrimitive16 = rawWord3;
+            rawWord2 = Speedway15Call2EBB0View1(*(int*)(&Speedway15Data6C438View1 + (Speedway15Data6C76CView1 * 4)));
+            rawWord3 = widthOrPrimitive16+10;
+            widthOrPrimitive16 = rawWord3+rawWord2;
+            rawWord3 = widthOrPrimitive16 >> 1;
+            rawWord2 = 256;
+            widthOrPrimitive16 = rawWord2-rawWord3;
+            Speedway15Call2E748View1(*(int*)(&Speedway15Data6C438View1 + (Speedway15Data6C76CView1 * 4)), widthOrPrimitive16, 0x96, 2, 0);
+            rawWord2 = Speedway15Call2EBB0View1(*(int*)(&Speedway15Data6C438View1 + (Speedway15Data6C76CView1 * 4)));
+            rawWord3 = widthOrPrimitive16+10;
+            widthOrPrimitive16 = rawWord3+rawWord2;
+            argumentWord7 = 0;
+            __asm__("":"=r"(argumentWord7):"0"(argumentWord7));
+            rawWord2 = Speedway15Data6C76CView1;
+            rawWord3 = Speedway15Data6FBCCView1;
+            rawWord2 <<= 2;
+            argumentWord4 = rawWord2+rowOrTable17;
+            if (!rawWord3){
+                rawWord2 = Speedway15Data6FBC4View1;
+                rawWord2 &= 31;
+                argumentWord7 = rawWord2 < 22;
+            }
+            argumentWord5 = widthOrPrimitive16;
+            argumentWord6 = 150;
+            Speedway15Call2E748View1(Speedway15Field(argumentWord4, int*, 0), argumentWord5, argumentWord6, argumentWord7|2, 0);
+            rawWord2 = Speedway15Data6C76CView1;
+            rawWord3 = Speedway15Data6FBCCView1;
+            rawWord2 <<= 2;
+            argumentWord4 = rawWord2+entryOrTable18;
+            __asm__ __volatile__(""::"r"(argumentWord4):"$2", "memory");
+            rawWord2 = 1;
+            __asm__ __volatile__(""::"r"(rawWord2):"$7", "memory");
+            argumentWord7 = 0;
+            if (rawWord3 == rawWord2){
+                rawWord2 = Speedway15Data6FBC4View1;
+                rawWord2 &= 31;
+                argumentWord7 = rawWord2 < 22;
+            }
+            argumentWord5 = widthOrPrimitive16;
+            argumentWord6 = 164;
+            drawFinalSelectionRow:Speedway15Call2E748View1(Speedway15Field(argumentWord4, int*, 0), argumentWord5, argumentWord6, argumentWord7|2, 0);
+            return;
+        }
+        argumentWord7 = 2;
+        if (Speedway15Data6FBC8View1 == 6) {
+            argumentWord4 = (int)&Speedway15Data6C43CView1;
+            __asm__("":"=r"(argumentWord4):"0"(argumentWord4));
+            rawWord2 = Speedway15Data6C76CView1;
+            rawWord3 = Speedway15Data6FBC4View1;
+            rawWord2 <<= 2;
+            rawWord3 &= 31;
+            rawWord3 = rawWord3 < 22;
+            rawWord2 += argumentWord4;
+            if (rawWord3)argumentWord7 = 3;
+            argumentWord4 = Speedway15Field(rawWord2, int*, 0);
+            argumentWord5 = 256;
+            argumentWord6 = 156;
+            drawFinalCenteredCaption:Speedway15CallDrawStringCenteredView1(argumentWord4, argumentWord5, argumentWord6, argumentWord7);
+        }
+        break;
+    }
+}
+#undef Speedway15Field
+
 
 extern SpeedwayRecord speedwayRecords[];
 extern SpeedwayData D_8006FA38;

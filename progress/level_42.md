@@ -1,10 +1,10 @@
 <!-- animation.c -->
-- [ ] func_level_42_80089628
+- [x] func_level_42_80089628
 - [x] func_level_42_8008C0C4
 - [x] func_level_42_8008C968
 - [x] func_level_42_8008CB78
 - [x] func_level_42_8008CC20
-- [ ] func_level_42_8008DD24
+- [x] func_level_42_8008DD24
 
 <!-- camera.c -->
 - [x] func_level_42_8008F4FC
@@ -32,7 +32,7 @@
 - [x] func_level_42_800779A8
 - [x] func_level_42_80077A5C
 - [x] func_level_42_80077D1C
-- [ ] func_level_42_8007823C
+- [x] func_level_42_8007823C
 - [x] func_level_42_80078CAC
 - [x] func_level_42_8007902C
 - [x] func_level_42_80079330
@@ -40,31 +40,31 @@
 - [x] func_level_42_8007A1AC
 - [x] func_level_42_8007A5DC
 - [x] func_level_42_8007A944
-- [ ] func_level_42_8007AAD0
-- [ ] func_level_42_8007B1B4
+- [x] func_level_42_8007AAD0
+- [x] func_level_42_8007B1B4
 - [x] func_level_42_8007B864
 - [x] func_level_42_8007B884
 - [x] func_level_42_8007B9D8
-- [ ] func_level_42_8007BC30
+- [x] func_level_42_8007BC30
 - [x] func_level_42_8007C45C
 - [x] func_level_42_8007C778
 - [x] func_level_42_8007C8C8
-- [ ] func_level_42_8007CACC
+- [x] func_level_42_8007CACC
 - [x] func_level_42_8007CFC8
-- [ ] func_level_42_8007D0A8
+- [x] func_level_42_8007D0A8
 - [x] func_level_42_8007D724
 - [x] func_level_42_8007D9D0
 - [x] func_level_42_8007DE10
 - [x] func_level_42_8007DFCC
 - [x] func_level_42_8007E3D8
 - [x] func_level_42_8007E4B0
-- [ ] func_level_42_8007E784
-- [ ] func_level_42_8007EB5C
+- [x] func_level_42_8007E784
+- [x] func_level_42_8007EB5C
 - [x] func_level_42_8007F5F8
-- [ ] func_level_42_8007F740
+- [x] func_level_42_8007F740
 - [x] func_level_42_8007FDE0
-- [ ] func_level_42_8008017C
-- [ ] func_level_42_800807FC
+- [x] func_level_42_8008017C
+- [x] func_level_42_800807FC
 - [x] func_level_42_80081010
 - [x] func_level_42_80081240
 - [x] func_level_42_8008131C
@@ -74,13 +74,13 @@
 - [x] func_level_42_80083100
 - [x] func_level_42_80083120
 - [x] func_level_42_80083320
-- [ ] func_level_42_8008334C
+- [x] func_level_42_8008334C
 - [x] func_level_42_80083940
-- [ ] func_level_42_800839A8
+- [x] func_level_42_800839A8
 
 <!-- parts_spawn.c -->
-- [ ] func_level_42_80087D48
+- [x] func_level_42_80087D48
 
 <!-- parts_update.c -->
-- [ ] func_level_42_80086484
+- [x] func_level_42_80086484
 

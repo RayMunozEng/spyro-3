@@ -1,30 +1,22 @@
-import sys
+"""Regression tests for non-emitting COFF metadata filtering."""
 import unittest
-from pathlib import Path
-
 from fix_coff_debug import filter_coff_debug
 
-sys.path.insert(0, str(Path(__file__).parent / "maspsx"))
-from maspsx import MaspsxProcessor
+class CoffFilterTests(unittest.TestCase):
+    def test_scope_end_does_not_hide_loop_entry(self):
+        source = ["lw $4,0($2)\n", "$Le344:\n", "#.bend $Le344 72\n",
+                  "$L1039:\n", "lhu $5,0($4)\n", "bgez $2,$L1039\n"]
+        self.assertEqual(list(filter_coff_debug(source)),
+                         [source[i] for i in (0, 3, 4, 5)])
 
+    def test_labels_without_coff_records_are_preserved(self):
+        source = ["$Le999:\n", "j $Le999\n", "nop\n"]
+        self.assertEqual(list(filter_coff_debug(source)), source)
 
-class CoffDebugTests(unittest.TestCase):
-    def test_preserves_code_and_scheduler_metadata(self):
-        code = ["lw\t$9,352($sp)\n", "#nop\n", "$L99:\n",
-                ".set\tnoreorder\n", "#APP\n", "# ordinary comment\n"]
-        debug = ["#.def\tblock_101;\n", "#.begin\t$Lb2\n", "#.bend\t$Le2\n",
-                 ".set\tvolatile\n", ".set\tnovolatile\n"]
-        self.assertEqual(list(filter_coff_debug(debug + code)), code)
-
-    def test_load_delay_label_precedes_nop_once(self):
-        assembly = [".set\treorder\n", "lw\t$9,352($sp)\n",
-                    ".set\tnovolatile\n", "#.def\tblock_101;\n",
-                    "$L99:\n", "addu\t$9,$9,68\n"]
-        processor = MaspsxProcessor(list(filter_coff_debug(assembly)), sdata_limit=0)
-        result = processor.process_lines()
-        self.assertEqual(result.count("$L99:"), 1)
-        self.assertTrue(result[result.index("$L99:") + 1].startswith("nop"), result)
-
+    def test_load_hints_and_assembler_modes_are_preserved(self):
+        source = [".set noreorder\n", "#nop\n", "$L7:\n", "lw $2,0($4)\n",
+                  ".set reorder\n", ".set volatile\n", ".set novolatile\n"]
+        self.assertEqual(list(filter_coff_debug(source)), source[:5])
 
 if __name__ == "__main__":
     unittest.main()

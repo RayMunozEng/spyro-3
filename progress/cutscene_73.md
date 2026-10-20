@@ -31,7 +31,7 @@
 - [x] func_cutscene_73_80074808
 - [x] func_cutscene_73_80074A5C
 - [x] func_cutscene_73_80074D94
-- [ ] func_cutscene_73_80074D9C
+- [x] func_cutscene_73_80074D9C
 - [x] func_cutscene_73_80075210
 - [x] func_cutscene_73_80075220
 

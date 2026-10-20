@@ -1,9 +1,9 @@
 <!-- options1.c -->
-- [ ] func_options_80074C00
-- [ ] func_options_80075180
+- [x] func_options_80074C00
+- [x] func_options_80075180
 - [x] func_options_80075A38
-- [ ] func_options_80075B18
-- [ ] func_options_800761D4
+- [x] func_options_80075B18
+- [x] func_options_800761D4
 - [x] func_options_800777C8
 
 <!-- options2.c -->

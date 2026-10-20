@@ -1963,7 +1963,252 @@ particlesDone:
     moby->damageFlags = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/moby", func_level_23_80078590);
+/* AI-generated; not human reviewed. Verified sibling C adapted only
+ * to this function's original SCUS-94467 instructions. Raw field units,
+ * helper meanings and update cadence remain unresolved. */
+/* AI generated; not human reviewed. SCUS-94467 USA Rev0.
+ * Original func_level_13_800781D0 and siblings:668 instructions,5 dispatch
+ * targets and one alignment word; evidence4913. Raw field widths/offsets,
+ * helper addresses and integer expressions follow original instructions.
+ * Units, helper meanings, cadence and retail runtime parity unresolved.
+ * Uninstalled candidate: every native/internal-target/table word and all
+ * executable/overlay hashes required before acceptance. */
+#define A4914F(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+#define A4914W(p,o) A4914F(p,int*,o)
+#define A4914B(p,o) A4914F(p,unsigned char*,o)
+extern unsigned char A4914Player[] __asm__("D_80070328");
+extern int A4914PX __asm__("D_80070328"), A4914PY __asm__("D_80070328 + 4");
+extern int A4914PZ __asm__("D_80070328 + 8"),A4914P44 __asm__("D_80070328 + 0x44");
+extern int A4914PB8 __asm__("D_80070328 + 0xB8");
+extern int A4914P20C __asm__("D_80070328 + 0x20C");
+extern unsigned char* A4914Models __asm__("D_8006C550");
+extern int A4914Delta __asm__("D_8006C648"),A4914C590 __asm__("D_8006C590");
+extern int A4914C74C __asm__("D_8006C74C"),A4914C578 __asm__("D_8006C578"),A4914C574 __asm__("D_8006C574");
+extern int A4914NewButtons __asm__("D_8006E53C");
+extern short A4914Cos[] __asm__("D_80065920"),A4914Sin[] __asm__("D_800658A0");
+extern int (*A4914Callback)() __asm__("unk_ovlheader_80074330");
+extern unsigned char* (*A4914Spawn)() __asm__("SpawnMoby");
+extern int (*A4914Particle)() __asm__("SpawnParticle");
+int A4914H4F334() __asm__("func_8004F334");
+int A4914H37014() __asm__("func_80037014");
+int A4914H2803C() __asm__("func_8002803C");
+int A4914H27D60() __asm__("func_80027D60");
+int A4914H2982C() __asm__("func_8002982C");
+int A4914H4E880() __asm__("func_8004E880");
+int A4914H4F264() __asm__("func_8004F264");
+int A4914H4F178() __asm__("func_8004F178");
+int A4914H527C4() __asm__("func_800527C4");
+int A4914H3BABC() __asm__("func_8003BABC");
+int A4914H4F1C8() __asm__("func_8004F1C8");
+int A4914H4F110() __asm__("func_8004F110");
+int A4914H4F1FC() __asm__("func_8004F1FC");
+int A4914H4F228() __asm__("func_8004F228");
+int A4914H4F194() __asm__("func_8004F194");
+int A4914H3585C() __asm__("func_8003585C");
+int A4914H492DC() __asm__("func_800492DC");
+int A4914H55D24() __asm__("func_80055D24");
+int A4914H55B18() __asm__("func_80055B18");
+int A4914H28154() __asm__("func_80028154");
+int A4914H368A4() __asm__("func_800368A4");
+int A4914Rand() __asm__("rand");
+void func_level_23_80078590(unsigned char* input){
+ register int work2 __asm__("$2");
+ register int work3 __asm__("$3");
+ register int arg4 __asm__("$4");
+ register int arg5 __asm__("$5");
+ register int arg6 __asm__("$6");
+ register int counter16 __asm__("$16");
+ register int* vector17 __asm__("$17");
+ register unsigned char* private18 __asm__("$18");
+ register unsigned char* owner19 __asm__("$19");
+ register int saved20 __asm__("$20");
+ register int saved21 __asm__("$21");
+ register int saved22 __asm__("$22");
+ register int saved23 __asm__("$23");
+ struct {int first[4],second[4],third[4],fourth[4];} frame;
+ owner19=input;private18=A4914F(owner19,unsigned char**,0);
+ counter16=A4914H4F334(owner19+12,A4914Player);
+ if(A4914W(private18,16))A4914H37014(owner19);
+ work3=A4914W(private18,28);work2=work3*88;
+ work3=(int)A4914Models;work2+=work3;
+ if(A4914B((void*)work2,72)>=128 && A4914W(private18,32)==-1)
+  A4914W(private18,32)=(short)A4914H2803C(6,4000,A4914H27D60,0,A4914H2982C,0,0);
+ work3=A4914B(owner19,72);work2=1;
+ if(work3==work2)goto state1;
+ if(work3<2){if(!work3)goto state0;goto common;}
+ if(work3==2)goto state2;
+ goto common;
+ state0:
+ A4914B(owner19,87)=41;A4914B(owner19,84)=128;A4914B(owner19,85)=128;
+ A4914B(owner19,86)=144;A4914B(owner19,72)=1;goto update;
+ state1:
+ work3=A4914W(private18,0);
+ if(work3){
+  work3+=A4914Delta;A4914W(private18,0)=work3;
+  if(work3<64){
+   work2=work3>>1;work3=A4914W(private18,24);work2<<=1;work2+=work3;
+   work3=A4914W(private18,4);work2=A4914B((void*)work2,0)+work3;A4914B(owner19,68)=work2;
+   work2=A4914W(private18,0);work3=A4914W(private18,24);work2=((work2>>1)<<1)+work3;
+   work3=A4914W(private18,8);work2=A4914B((void*)work2,1)+work3;A4914B(owner19,69)=work2;
+   work2=A4914W(private18,0);work3=A4914W(private18,24);work2=((work2>>1)<<1)+work3;
+   work3=A4914F((void*)work2,signed char*,0);work2=A4914F((void*)work2,signed char*,1);
+   if(work3<0)work3=-work3;if(work2<0)work2=-work2;
+   __asm__("" : "=r"(work3):"0"(work3));work3+=work2;__asm__("" : "=r"(work3):"0"(work3));
+   work2=work3*6;work3=A4914W(private18,12);work3+=work2;A4914W(owner19,20)=work3;
+  }else{
+   work2=A4914W(private18,4);A4914W(private18,0)=0;A4914B(owner19,68)=work2;
+   work2=A4914W(private18,8);A4914B(owner19,69)=work2;work2=A4914W(private18,12);A4914W(owner19,20)=work2;
+  }
+ }
+ if(counter16>20480)goto done;
+ work3=A4914W(private18,28);work2=work3*88;work3=(int)A4914Models;work2+=work3;
+ if(A4914B((void*)work2,72)<128)goto common;
+ work2=A4914H4E880(A4914PX-A4914W(owner19,12),A4914PY-A4914W(owner19,16),0);
+ work2=A4914H4F264(A4914B(owner19,70),work2);
+ if(work2>=32)goto update;
+ work2=counter16<2700;if(!work2)goto common;if(A4914PB8)goto common;
+ work3=A4914F(owner19,short*,56);work2=A4914W(owner19,20)-work3;
+ work3=A4914PZ;arg4=A4914P44;work2-=work3;work2+=arg4;if(work2<0)work2=-work2;
+ if(work2>=900)goto update;
+ A4914B(owner19,73)=0;A4914B(owner19,72)=2;goto done;
+ state2:
+ switch(A4914B(owner19,73)){
+ case 0:
+  A4914H4F178(frame.first,owner19+12);
+  work2=A4914B(owner19,70);work3=A4914Cos[work2];work2=(work3*125)>>8;
+  work3=frame.first[0];work3+=work2;frame.first[0]=work3;
+  work2=A4914B(owner19,70);work3=A4914Sin[work2];work2=(work3*125)>>8;
+  work3=frame.first[1];work3+=work2;frame.first[1]=work3;
+  work2=A4914Callback(frame.first,(A4914B(owner19,70)+128)&255,owner19);
+  if(!work2)goto common;goto increment;
+ case 1:
+  A4914H527C4(owner19,-1);A4914C590=A4914W(private18,44);
+  work2=(int)A4914Spawn(212,owner19);A4914W(private18,36)=work2;
+  if(work2)A4914H3BABC((void*)work2,0,0);
+ case 2:
+  if(A4914NewButtons&2048)goto increment;
+  if(!A4914W(private18,36))goto increment;
+  vector17=frame.second;__asm__("" : "=r"(vector17):"0"(vector17));A4914H4F178(vector17,owner19+12);
+  arg4=0x10000002;work2=A4914B(owner19,70);work3=A4914Cos[work2];arg6=(int)&A4914P20C;work2=(work3*175)>>10;
+  work3=frame.second[0];work3+=work2;frame.second[0]=work3;
+  work3=A4914B(owner19,70);work2=frame.second[2];work3=A4914Sin[work3];
+  work2+=350;frame.second[2]=work2;A4914W((void*)arg6,0)=arg4;
+  work2=(work3*175)>>10;work3=frame.second[1];work3+=work2;frame.second[1]=work3;
+  work3=A4914W(private18,36);A4914B((void*)work3,76)=24;
+  work3=A4914W(private18,40);arg4=A4914Delta;work3+=arg4;A4914W(private18,40)=work3;
+  saved20=(int)A4914Sin;
+  __asm__ volatile("" ::: "memory");work3=A4914W(private18,40);work2=1;A4914C74C=work2;
+  if(work3<192){
+   counter16=(int)frame.third;arg4=counter16;arg5=(int)vector17;
+   __asm__("" : "=r"(arg4),"=r"(arg5):"0"(arg4),"1"(arg5));vector17=(int*)(arg6-524);
+   A4914H4F1C8((void*)arg4,(void*)arg5,vector17);
+   frame.third[2]-=256;A4914H4F110((void*)counter16,5);
+   A4914H4F1FC((void*)counter16,(void*)counter16,A4914W(private18,40));
+   A4914H4F228((void*)counter16,(void*)counter16,6);
+   A4914H4F194((void*)counter16,(void*)counter16,vector17);
+   arg4=frame.third[2]+256;frame.third[2]=arg4;
+   work3=A4914W(private18,40)<<7;work2=work3/192;
+   work2=A4914F((void*)(saved20+(work2<<1)),unsigned short*,0);work2=(short)work2;work2>>=3;
+   arg4+=work2;frame.third[2]=arg4;
+   A4914H4F178((void*)(A4914W(private18,36)+12),(void*)counter16);
+   arg4=A4914W(private18,40);
+   if(arg4<32){work2=-arg4;work3=A4914W(private18,36);A4914B((void*)work3,69)=work2;goto angle;}
+   work2=arg4<128;if(!work2)goto lateAngle;
+   work2=224;work3=A4914W(private18,36);A4914B((void*)work3,69)=work2;
+ angle:
+  work2=A4914W(private18,40);work3=A4914W(private18,36);A4914B((void*)work3,70)=(work2<<2)-128;
+   goto reloadSubtract64;
+ lateAngle:
+   work3=A4914W(private18,36);work2=arg4+96;A4914B((void*)work3,69)=work2;
+   work3=A4914W(private18,36);if(A4914B((void*)work3,69)>=127)goto subtract64;
+   A4914B((void*)work3,69)=0;goto call3585C;
+  }
+  work2=work3<208;if(!work2)goto launch;
+  work3=A4914W(private18,36);if(A4914B((void*)work3,79)<32)A4914B((void*)work3,79)=32;
+  work2=A4914W(private18,36);work3=A4914B((void*)work2,79);A4914B((void*)work2,79)=work3+8;
+ call3585C:
+  A4914H3585C((void*)A4914W(private18,36),A4914B(owner19,70),3,0,0,0);goto reloadSubtract64;
+  goto childStep;
+ launch:
+  work2=A4914B(owner19,73);A4914B(owner19,73)=work2+1;
+ reloadSubtract64:work3=A4914W(private18,36);
+ subtract64:work2=A4914B((void*)work3,69);work2-=64;A4914B((void*)work3,69)=work2;
+ childStep:
+  A4914H492DC((void*)(A4914W(private18,36)+12));
+  work3=A4914B(owner19,73);work2=1;
+  if(work3==work2){
+   work3=A4914W(private18,36);A4914B((void*)work3,72)=99;
+   work3=A4914W(private18,36);A4914B((void*)work3,87)=41;
+   work2=A4914W(private18,36);A4914B((void*)work2,84)=128;
+   work2=A4914W(private18,36);A4914B((void*)work2,85)=128;
+   work2=A4914W(private18,36);
+   __asm__ volatile("" : "=r"(work2):"0"(work2):"$16");counter16=0;
+   A4914B((void*)work2,86)=0;
+   __asm__ volatile("" : "=r"(work2):"0"(work2):"$5");arg5=4;
+   do{arg4=A4914W(private18,36);
+    __asm__("" : "=r"(arg4),"=r"(arg5):"0"(arg4),"1"(arg5));
+    counter16++;A4914H55D24((void*)arg4,arg5);
+    A4914Particle(4,12,(void*)A4914W(private18,36),3);
+    work2=counter16<2;arg5=4;
+   }while(work2);__asm__ volatile("" ::: "memory");
+   goto increment;
+  }
+  A4914H55D24((void*)A4914W(private18,36),4);A4914Particle(1,12,(void*)A4914W(private18,36),3);goto common;
+ dispose:
+  A4914C74C=0;counter16=0;arg5=4;
+   do{arg4=A4914W(private18,36);
+    __asm__("" : "=r"(arg4),"=r"(arg5):"0"(arg4),"1"(arg5));
+    counter16++;A4914H55D24((void*)arg4,arg5);
+    A4914Particle(4,12,(void*)A4914W(private18,36),3);
+    work2=counter16<3;arg5=4;
+   }while(work2);__asm__ volatile("" ::: "memory");
+  arg4=A4914W(private18,36);if(arg4)A4914H55B18((void*)arg4);goto increment;
+ case 3:
+  goto dispose;
+ increment:
+ work2=A4914B(owner19,73);A4914B(owner19,73)=work2+1;
+ goto update;
+ case 4:
+  A4914H3BABC(owner19,0,0);saved23=16;saved22=8;saved21=308;A4914B(owner19,73)=144;
+  counter16=0;saved20=5;vector17=(int*)1;
+  do{
+   work2=A4914C578;work3=A4914C574;work2-=work3;if(work2<21)goto dust;
+   arg4=(int)A4914Spawn(saved21,owner19);
+   if(counter16<saved22)A4914B((void*)arg4,73)=saved20;
+   else{A4914B((void*)arg4,60)=(int)vector17;work2=4;A4914B((void*)arg4,73)=work2;}
+   work3=A4914F(owner19,short*,54);work2=201;
+   __asm__("" : "=r"(work2),"=r"(work3):"0"(work2),"1"(work3));
+   if(work3!=work2)A4914B((void*)arg4,84)=(int)vector17;
+   counter16++;
+  }while(counter16<saved23);
+ dust:
+  counter16=0;vector17=frame.fourth;
+  do{
+   A4914H4F178(vector17,owner19+12);counter16++;
+   work2=A4914Rand();work3=frame.fourth[0];work3+=128;work3-=work2&255;frame.fourth[0]=work3;
+   work2=A4914Rand();work3=frame.fourth[1];work3+=128;work3-=work2&255;frame.fourth[1]=work3;
+   work2=A4914Rand();work3=frame.fourth[2];work3+=work2&511;frame.fourth[2]=work3;
+   A4914Particle(1,2,vector17,0);A4914Particle(4,70,vector17,24);
+  }while(counter16<8);
+  arg4=A4914W(private18,32);counter16=-1;if(arg4!=counter16)A4914H28154(arg4);
+  A4914W(private18,32)=counter16;A4914H55B18(owner19);goto done;
+ }
+ goto update;
+ update:
+ common:
+ A4914W(private18,20)=A4914H368A4(owner19,A4914W(private18,20),A4914F(owner19,short*,54)!=201);
+ if((A4914W(owner19,24)&0x30000) && !A4914W(private18,0)){
+  A4914W(private18,0)=1;work2=A4914B(owner19,68);A4914W(private18,4)=work2;
+  work2=A4914B(owner19,69);A4914W(private18,8)=work2;work2=A4914W(owner19,20);A4914W(private18,12)=work2;
+  A4914H3BABC(owner19,1,0);
+ }
+ A4914W(owner19,24)=0;
+ done:return;
+}
+#undef A4914F
+#undef A4914W
+#undef A4914B
+
 
 extern int D_8006E020, D_8006E024, D_8007191C, D_80071920;
 extern Vector3D D_8007190C;
@@ -4618,15 +4863,2937 @@ void func_level_23_8007D7D8(Moby* argument) {
         ((DecodedOrbitParentTag*)tag->parent->mobyTag)->count7--;
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/moby", func_level_23_8007D9D8);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated;
+ not human reviewed. Original-instruction-derived C. Original source asm/nonmatchings/overlays/level_23/moby/func_level_23_8007D9D8.s SHA256 7fad08a73d1c93e3827730082550db853798706715ea11b8d0f5680028a06d6f. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
+#define Level23_7D9D8Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+extern Moby* Level23_7D9D8_D_8006C550 __asm__("D_8006C550");
+extern Spyro Level23_7D9D8_D_80070328 __asm__("D_80070328");
+extern int Level23_7D9D8_func_8002EC50(char, char, int) __asm__("func_8002EC50");
+void Level23_7D9D8_func_80034F40(Moby* moby, int newId) __asm__("func_80034F40");
+int Level23_7D9D8_func_80035194(Moby*, void*) __asm__("func_80035194");
+int Level23_7D9D8_func_8003573C(Moby* ownerRecord18, int arg1, int arg2, int arg3) __asm__("func_8003573C");
+int Level23_7D9D8_func_8003585C(Moby*, int, int, int, int, int ) __asm__("func_8003585C");
+int Level23_7D9D8_func_800359A4(void*, int) __asm__("func_800359A4");
+int Level23_7D9D8_func_80035D38(Moby* moby) __asm__("func_80035D38");
+int Level23_7D9D8_func_80035DDC(Moby* ownerRecord18, int arg1, int arg2, int arg3, int arg4) __asm__("func_80035DDC");
+void Level23_7D9D8_func_800369B8() __asm__("func_800369B8");
+void Level23_7D9D8_func_80038F14(Moby*, void*, unsigned int, int) __asm__("func_80038F14");
+void Level23_7D9D8_func_8003BA00(Moby* moby) __asm__("func_8003BA00");
+extern int Level23_7D9D8_func_8004E880(int, int, int) __asm__("func_8004E880");
+extern void Level23_7D9D8_func_8004F110(Vector3D*, int) __asm__("func_8004F110");
+extern void Level23_7D9D8_func_8004F178(Vector3D*, Vector3D*) __asm__("func_8004F178");
+extern void Level23_7D9D8_func_8004F194(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004F194");
+extern int Level23_7D9D8_func_8004F264(int, int) __asm__("func_8004F264");
+extern int Level23_7D9D8_func_8004F334(Vector3D*, Vector3D*) __asm__("func_8004F334");
+extern void Level23_7D9D8_func_80055B18(Moby*) __asm__("func_80055B18");
+extern void Level23_7D9D8_func_80055D24(Moby*, int) __asm__("func_80055D24");
+extern int Level23_7D9D8_func_80055E84(Moby*) __asm__("func_80055E84");
+extern int Level23_7D9D8_rand() __asm__("rand");
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/moby", func_level_23_8007E570);
+int Level23_7D9D8_func_80035A80() __asm__("func_80035A80");
+ /* extern */
+unsigned int Level23_7D9D8_func_80036A68() __asm__("func_80036A68");
+ /* extern */
+unsigned int Level23_7D9D8_func_80055F14() __asm__("func_80055F14");
+     /* extern */
+extern int Level23_7D9D8_D_8006C770 __asm__("D_8006C770");
+extern int Level23_7D9D8_D_8006E020 __asm__("D_8006E020");
+extern int Level23_7D9D8_D_8006E024 __asm__("D_8006E024");
+extern unsigned short Level23_7D9D8_D_8006E040 __asm__("D_8006E040");
+extern int Level23_7D9D8_D_8006E344 __asm__("D_8006E344");
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/moby", func_level_23_8007EE44);
+void func_level_23_8007D9D8(Moby *ownerRecord18) {
+    /* Original0x58-byte frame;
+     scratch triples atSP+0x20 andSP+0x30.
+     * Raw field and vector pointer adjustments retain byte offsets.
+     * The timer helper receives private+0xC;
+      its following state helper
+     * receives the original owner. The rand call has no explicit argument.
+     * Shared copy/reset/state24/state2 tails retain original instruction
+     * joins and initialized caller4/5/state2 producers on every input path.
+     * Post-call halfword reads and known-zero caller arguments preserve
+     * the original order. Saved global/difference register roles emerge
+     * after the raw state word is produced at its original branch point.
+     * All empty register constraints have initialized inputs;
+      no opcode asm.
+     * Units, helper meanings and frame cadence remain unresolved. */
+    struct {Vector3D sp20;
+     unsigned char pad2C[4];
+     Vector3D sp30;
+     unsigned char pad3C[4];
+    } originalFrame;
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/moby", func_level_23_8007FAD4);
+    Moby *var_a0;
+    register Moby *sharedCaller4 __asm__("4");
+    Moby *selectedRecord17;
+    Vector3D *temp_s0_2;
+    Vector3D *privateVector19;
+    int temp_s0;
+    int differenceWord20;
+    int temp_v0_2;
+    int temp_v0_3;
+    register int sharedParameter5 __asm__("5");
+    register int resetParameter5 __asm__("5");
+    int var_v0;
+    int var_v0_4;
+    unsigned int rawState3;
+    register unsigned int nextRawState2 __asm__("2");
+    register unsigned int sharedRawState2 __asm__("2");
+    void *temp_a0;
+    void *temp_s0_3;
+    void *temp_v0;
+    void *temp_v0_4;
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/moby", func_level_23_80080758);
+    privateVector19 = ownerRecord18->mobyTag;
+    if (ownerRecord18->substate == 0) {
+        ownerRecord18->substate = 1;
+        temp_a0 = Level23_7D9D8Field(privateVector19, void **, 0x14);
+        Level23_7D9D8Field(privateVector19, short *, 0xC) = 0x64;
+        if (temp_a0 != 0) {
+            Level23_7D9D8Field(temp_a0, short *, 0xA) = 1;
+            Level23_7D9D8Field(Level23_7D9D8Field(privateVector19, void **, 0x14), short *, 2) = 1;
+        }
+    }
+    if ((ownerRecord18->state != 5) && (ownerRecord18->damageFlags & 0x10000)) {
+        Level23_7D9D8_func_80036A68(ownerRecord18, 1, 0, 0);
+        Level23_7D9D8_func_80038F14(ownerRecord18, ((void *)((unsigned char *)privateVector19 + 0x20)), 2U, 5);
+        Level23_7D9D8Field(privateVector19, short *, 0x24) = 0xC8;
+        Level23_7D9D8Field(privateVector19, short *, 0xE) = Level23_7D9D8_func_8004F334(&ownerRecord18->position, &Level23_7D9D8_D_80070328.position);
+        ownerRecord18->unknownCollision = 0;
+    }
+    if (ownerRecord18->drawn == 0) {
+        temp_v0 = Level23_7D9D8Field(privateVector19, void **, 0x1C);
+        if (temp_v0 != 0) {
+            Level23_7D9D8Field(temp_v0, signed char *, 0x10) = 0;
+            Level23_7D9D8Field(privateVector19, void **, 0x1C) = 0;
+            goto block_11;
+        }
+    } else if (Level23_7D9D8Field(privateVector19, void **, 0x1C) == 0) {
+        Level23_7D9D8Field(privateVector19, void **, 0x1C) = Level23_7D9D8_func_8002EC50(1, 0x80, 0x489090);
+block_11:
+        if (Level23_7D9D8Field(privateVector19, void **, 0x1C) != 0) {
+            goto block_12;
+        }
+    } else {
+block_12:
+        Level23_7D9D8_func_80055D24(ownerRecord18, 5);
+        Level23_7D9D8_func_80055F14(ownerRecord18, 0, Level23_7D9D8Field(privateVector19, void **, 0x1C));
+        Level23_7D9D8Field(Level23_7D9D8Field(privateVector19, void **, 0x1C), signed char *, 0x13) = 8;
+    }
+    rawState3 = ownerRecord18->state;
+    switch (rawState3) {
+    case 0:
+        if (Level23_7D9D8_func_8004F334(&ownerRecord18->position, &Level23_7D9D8_D_80070328.position) < Level23_7D9D8Field(privateVector19, short *, 0xE)) {
+            ownerRecord18->state = 7;
+            Level23_7D9D8_func_80034F40(ownerRecord18, 7);
+        }
+        var_a0 = ((void *)((unsigned char *)privateVector19 + 0xC));
+        if (ownerRecord18->substate != 2) {
+            if (Level23_7D9D8_func_800359A4(var_a0, 2) != 0) {
+                Level23_7D9D8_func_80034F40(ownerRecord18, 1);
+                Level23_7D9D8Field(privateVector19, short *, 0xC) = 0x1F4;
+                return;
+            }
+        }
+        if (Level23_7D9D8_D_8006C770 != 0) {
+            ownerRecord18->substate = 1;
+            Level23_7D9D8Field(privateVector19, short *, 0xC) = (short) (((Level23_7D9D8_rand() & 3) * 0x3C) + 0x64);
+            Level23_7D9D8_func_80034F40(ownerRecord18, 0);
+            return;
+        }
+    default:
+        return;
+    case 22:
+        if (Level23_7D9D8_func_8003573C(ownerRecord18, 6, 6, 0) == 0) {
+            Level23_7D9D8_func_80035DDC(ownerRecord18, 0x32, 0, 0, 4);
+            if (Level23_7D9D8_func_8004F334(&Level23_7D9D8_D_80070328.position, privateVector19) < ((Level23_7D9D8Field(privateVector19, short *, 0x12) + Level23_7D9D8Field(privateVector19, short *, 0x10)) - 0x400)) {
+                { register int word2 __asm__("2");
+                 register int word3 __asm__("3");
+                 word2 = Level23_7D9D8_D_80070328.position.z;
+                 word3 = ownerRecord18->position.z;
+                 __asm__("" : "=r"(word2), "=r"(word3) : "0"(word2), "1"(word3));
+                 var_v0 = word2 - word3;
+                 }
+                if (var_v0 < 0) {
+                    var_v0 = -var_v0;
+                }
+                if (var_v0 >= 0x400) { goto block_27;
+                 }
+                nextRawState2 = 2;
+                goto block_74;
+            }
+block_27:
+            if (Level23_7D9D8_func_800359A4(((void *)((unsigned char *)privateVector19 + 0xC)), 2) != 0) {
+                goto block_28;
+            }
+        } else {
+block_28:
+            ownerRecord18->state = 0;
+            Level23_7D9D8_func_80034F40(ownerRecord18, 0);
+            Level23_7D9D8Field(privateVector19, short *, 0xC) = 0x64;
+            return;
+        }
+        break;
+    case 2:
+        Level23_7D9D8_func_8004F178(&originalFrame.sp20, &Level23_7D9D8_D_80070328.unk7a[3]);
+        originalFrame.sp20.x = (int) originalFrame.sp20.x << 5;
+        originalFrame.sp20.y <<= 5;
+        originalFrame.sp20.z <<= 5;
+        Level23_7D9D8_func_8004F110(&originalFrame.sp20, 6);
+        Level23_7D9D8_func_8004F194(&originalFrame.sp20, &originalFrame.sp20, (Vector3D *)((unsigned char *)&Level23_7D9D8_D_80070328.unk7a[3] - 0x98));
+        if ((Level23_7D9D8_func_8004F334(&ownerRecord18->position, &originalFrame.sp20) < Level23_7D9D8Field(privateVector19, short *, 0x10)) && (Level23_7D9D8_func_8004F264((int) (Level23_7D9D8_D_8006E040 << 0x10) >> 0x14, Level23_7D9D8_func_8004E880(ownerRecord18->position.x - Level23_7D9D8_D_8006E020, ownerRecord18->position.y - Level23_7D9D8_D_8006E024, 0)) < 0x18) && (Level23_7D9D8_D_8006E344 != 1)) {
+            ownerRecord18->state = 3;
+            Level23_7D9D8_func_80034F40(ownerRecord18, 3);
+            return;
+        }
+        { register int returned2 __asm__("2");
+         register int field3 __asm__("3");
+         returned2 = Level23_7D9D8_func_8004F334(&ownerRecord18->position, privateVector19);
+         __asm__("" : "=r"(returned2) : "0"(returned2) : "memory");
+         field3 = Level23_7D9D8Field(privateVector19, short *, 0x12);
+         field3 = field3 < returned2;
+         if (field3) {
+            Level23_7D9D8Field(privateVector19, short *, 0xC) = 0x78;
+            ownerRecord18->state = 0x15;
+            return;
+        }
+        __asm__("" : "=r"(field3) : "0"(field3));
+        }
+        Level23_7D9D8_func_8003573C(ownerRecord18, 4, 2, 0);
+        Level23_7D9D8_func_80035DDC(ownerRecord18, 0x50, 0, 0, 0);
+        ownerRecord18->position.z = Level23_7D9D8_func_80035D38(ownerRecord18);
+        return;
+    case 21:
+        if (Level23_7D9D8Field(privateVector19, short *, 0xC) != 0) {
+            if (Level23_7D9D8_func_8004F334(&ownerRecord18->position, &Level23_7D9D8_D_80070328.position) < Level23_7D9D8Field(privateVector19, short *, 0x10)) {
+                ownerRecord18->state = 2;
+            }
+        } else {
+            Level23_7D9D8_func_800359A4(((void *)((unsigned char *)privateVector19 + 0xC)), 2);
+        }
+        Level23_7D9D8_func_8003585C(ownerRecord18, Level23_7D9D8_func_8004E880(privateVector19->x - ownerRecord18->position.x, privateVector19->y - ownerRecord18->position.y, 0), 5, 5, 0, 0);
+        Level23_7D9D8_func_80035DDC(ownerRecord18, 0x50, 0, 0, 0);
+        ownerRecord18->position.z = Level23_7D9D8_func_80035D38(ownerRecord18);
+        if (Level23_7D9D8_func_8004F334(&ownerRecord18->position, privateVector19) < 0x200) {
+            Level23_7D9D8Field(privateVector19, short *, 0xC) = 0x3C;
+            ownerRecord18->state = 0x16;
+            return;
+        }
+        break;
+    case 7:
+        Level23_7D9D8_func_8003573C(ownerRecord18, 6, 6, 0);
+        if (Level23_7D9D8_D_8006C770 != 0) {
+            ownerRecord18->state = 6;
+            Level23_7D9D8_func_80034F40(ownerRecord18, 6);
+            return;
+        }
+        break;
+    case 6:
+        Level23_7D9D8_func_8003573C(ownerRecord18, 6, 6, 0);
+        Level23_7D9D8_func_8004F178(&originalFrame.sp30, &Level23_7D9D8_D_80070328.unk7a[3]);
+        originalFrame.sp30.x = (int) originalFrame.sp30.x * 0xF;
+        originalFrame.sp30.y *= 0xF;
+        originalFrame.sp30.z *= 0xF;
+        Level23_7D9D8_func_8004F110(&originalFrame.sp30, 6);
+        Level23_7D9D8_func_8004F194(&originalFrame.sp30, &originalFrame.sp30, (Vector3D *)((unsigned char *)&Level23_7D9D8_D_80070328.unk7a[3] - 0x98));
+        temp_v0_2 = Level23_7D9D8_func_8004F334(&ownerRecord18->position, &originalFrame.sp30);
+        if ((temp_v0_2 < Level23_7D9D8Field(privateVector19, short *, 0x10)) && (Level23_7D9D8_func_8004F264((int) (Level23_7D9D8_D_8006E040 << 0x10) >> 0x14, Level23_7D9D8_func_8004E880(ownerRecord18->position.x - Level23_7D9D8_D_8006E020, ownerRecord18->position.y - Level23_7D9D8_D_8006E024, 0)) < 0x18) && (Level23_7D9D8_D_8006E344 != 1)) {
+            ownerRecord18->state = 3;
+            Level23_7D9D8_func_80034F40(ownerRecord18, 3);
+        }
+        if (Level23_7D9D8Field(privateVector19, short *, 0xE) < temp_v0_2) {
+            ownerRecord18->state = 0;
+            Level23_7D9D8_func_80034F40(ownerRecord18, 0);
+            ownerRecord18->animationProgress = 0xA0;
+            return;
+        }
+        break;
+    case 3:
+        temp_s0 = Level23_7D9D8_func_80055E84(ownerRecord18);
+        Level23_7D9D8_func_8003573C(ownerRecord18, 6, 2, 0);
+        differenceWord20 = (ownerRecord18->position.z - ownerRecord18->distanceToGround) - Level23_7D9D8_D_80070328.position.z;
+        if ((ownerRecord18->substate != 0x14) && (ownerRecord18->animationState.id == 3) && ((unsigned int) (temp_s0 - 0xF) < 3U) && (Level23_7D9D8_D_80070328.unk20[2] == 0) && (Level23_7D9D8_func_8004F264((int) ownerRecord18->angle.yaw, Level23_7D9D8_func_8004E880(Level23_7D9D8_D_80070328.position.x - ownerRecord18->position.x, Level23_7D9D8_D_80070328.position.y - ownerRecord18->position.y, 0)) < 8) && (Level23_7D9D8_func_8004F334(&ownerRecord18->position, (Vector3D *) ((unsigned char *)&Level23_7D9D8_D_80070328.position.z - 8)) < Level23_7D9D8Field(privateVector19, short *, 0x10)) && ((unsigned int) (differenceWord20 + 0xFFF) < 0x107FU)) {
+            Level23_7D9D8_D_80070328.unk22[5] = (int) ownerRecord18->angle.yaw;
+            Level23_7D9D8_D_80070328.damageFlags |= 7;
+            ownerRecord18->substate = 0x14;
+        }
+        if (Level23_7D9D8_D_8006C770 != 0) {
+            if (ownerRecord18->substate == 0x14) {
+                sharedCaller4 = ownerRecord18;
+                 __asm__("" : "=r"(sharedCaller4) : "0"(sharedCaller4));
+                sharedParameter5 = 4;
+                sharedCaller4->substate = 1;
+                sharedRawState2 = 4;
+                goto block_83;
+            }
+            sharedCaller4 = ownerRecord18;
+             __asm__("" : "=r"(sharedCaller4) : "0"(sharedCaller4));
+             resetParameter5 = 1;
+            sharedCaller4->substate = 2;
+            Level23_7D9D8Field(privateVector19, short *, 0xC) = 0x1F4;
+            goto block_72;
+        }
+        break;
+    case 4:
+        var_v0_4 = Level23_7D9D8_D_8006C770;
+        goto block_86;
+    case 23:
+        Level23_7D9D8_func_80034F40(ownerRecord18, 2);
+        Level23_7D9D8Field(Level23_7D9D8Field(privateVector19, void **, 0x14), short *, 0xA) = 1;
+        Level23_7D9D8Field(Level23_7D9D8Field(privateVector19, void **, 0x14), short *, 2) = 1;
+        goto block_81;
+    case 24:
+        selectedRecord17 = &Level23_7D9D8_D_8006C550[Level23_7D9D8Field(privateVector19, int *, 0x18)];
+        if (!(selectedRecord17->state & 0x80)) {
+            temp_s0_2 = &ownerRecord18->position;
+            if (Level23_7D9D8_func_8004F334(temp_s0_2, &Level23_7D9D8_D_80070328.position) >= Level23_7D9D8Field(privateVector19, short *, 0xE)) {
+                        if ((unsigned int) (selectedRecord17->state - 5) >= 3U) {
+                    Level23_7D9D8_func_80034F40(selectedRecord17, 1);
+                    if (Level23_7D9D8_func_8004F334(temp_s0_2, &selectedRecord17->position) < 0x6A4) {
+                        Level23_7D9D8_func_80034F40(ownerRecord18, 3);
+                        ownerRecord18->state = 0x19;
+                        ownerRecord18->substate = 1;
+                        return;
+                    }
+                    Level23_7D9D8_func_80035A80(ownerRecord18, Level23_7D9D8Field(privateVector19, void **, 0x14), 0x78, 0x5A, 0, 3, 0x80, 0x20000);
+                    return;
+                }
+                nextRawState2 = 0x1A;
+                 goto block_74;
+            }
+            goto block_71;
+        }
+        nextRawState2 = 0x1A;
+         goto block_74;
+    case 25:
+        selectedRecord17 = &Level23_7D9D8_D_8006C550[Level23_7D9D8Field(privateVector19, int *, 0x18)];
+        if (Level23_7D9D8_func_8004F334(&ownerRecord18->position, &Level23_7D9D8_D_80070328.position) < Level23_7D9D8Field(privateVector19, short *, 0xE)) {
+block_71:
+            temp_s0_3 = selectedRecord17->mobyTag;
+            ownerRecord18->state = 0x1A;
+            Level23_7D9D8_func_80034F40(ownerRecord18, 2);
+            Level23_7D9D8_func_8004F178((Vector3D *) temp_s0_3, ((void *)((unsigned char *)Level23_7D9D8Field(Level23_7D9D8Field(privateVector19, void **, 0x14), Vector3D **, 0xC) + 0x50)));
+            sharedCaller4 = selectedRecord17;
+            resetParameter5 = 0;
+block_72:
+            sharedCaller4->state = 0;
+            Level23_7D9D8_func_80034F40(sharedCaller4, resetParameter5);
+            return;
+
+        }
+        if ((unsigned int) (selectedRecord17->state - 5) < 3U) {
+                nextRawState2 = 0x1A;
+block_74:
+                ownerRecord18->state = nextRawState2;
+                Level23_7D9D8_func_80034F40(ownerRecord18, 2);
+                return;
+        }
+        Level23_7D9D8_func_8003585C(ownerRecord18, Level23_7D9D8_func_8004E880(selectedRecord17->position.x - ownerRecord18->position.x, selectedRecord17->position.y - ownerRecord18->position.y, 0), 0xA, 0, 0, 0);
+        if ((ownerRecord18->substate == 1) && (ownerRecord18->animationState.id == 3) && (Level23_7D9D8_func_80055E84(ownerRecord18) >= 0x12)) {
+            Level23_7D9D8_func_80034F40(selectedRecord17, 4);
+            selectedRecord17->state = 0x1A;
+            ownerRecord18->substate = 0x15;
+        }
+        if (Level23_7D9D8_D_8006C770 != 0) {
+            { register Moby *caller4 __asm__("4");
+             register int caller5 __asm__("5");
+             caller4 = ownerRecord18;
+             caller5 = 2;
+             __asm__("" : "=r"(caller4), "=r"(caller5) : "0"(caller4), "1"(caller5));
+             ownerRecord18->substate = 1;
+             Level23_7D9D8_func_80034F40(caller4, caller5);
+             }
+block_81:
+        ownerRecord18->state = 0x18;
+        return;
+        }
+        break;
+    case 26:
+        Level23_7D9D8_func_8004F178(privateVector19, Level23_7D9D8Field(Level23_7D9D8Field(privateVector19, void **, 0x14), Vector3D **, 0xC));
+        sharedCaller4 = ownerRecord18;
+         sharedParameter5 = 2;
+         __asm__("" : "=r"(sharedCaller4), "=r"(sharedParameter5) : "0"(sharedCaller4), "1"(sharedParameter5));
+        { register int tag2 __asm__("2");
+         tag2 = 0x3C;
+         __asm__("" : "=r"(tag2) : "0"(tag2));
+         Level23_7D9D8Field(privateVector19, short *, 0xC) = tag2;
+         __asm__ volatile("" : : "m"(Level23_7D9D8Field(privateVector19, short *, 0xC)) : "2");
+         }
+        sharedRawState2 = 0x15;
+block_83:
+                __asm__("" : "=r"(sharedCaller4), "=r"(sharedParameter5), "=r"(sharedRawState2) : "0"(sharedCaller4), "1"(sharedParameter5), "2"(sharedRawState2));
+                sharedCaller4->state = sharedRawState2;
+                Level23_7D9D8_func_80034F40(sharedCaller4, sharedParameter5);
+                return;
+    case 27:
+        Level23_7D9D8_func_80034F40(ownerRecord18, 2);
+        temp_v0_3 = Level23_7D9D8_func_8004F334(&ownerRecord18->position, &Level23_7D9D8_D_80070328.position);
+        if (temp_v0_3 < 0x4A38) {
+            if (!(Level23_7D9D8_func_80035A80(ownerRecord18, Level23_7D9D8Field(privateVector19, void **, 0x14), 0x8C, 0x78, 0, 6, 0x80, 4) & 2)) {
+                var_v0_4 = temp_v0_3 < 0x2000;
+                goto block_86;
+            }
+            goto block_87;
+        }
+        return;
+block_86:
+        if (var_v0_4 != 0) {
+block_87:
+            ownerRecord18->state = 0;
+            Level23_7D9D8_func_80034F40(ownerRecord18, 0);
+            return;
+        }
+        break;
+
+    case 5:
+        if (Level23_7D9D8_func_80035194(ownerRecord18, ((void *)((unsigned char *)privateVector19 + 0x20))) == 0x100) {
+            temp_v0_4 = Level23_7D9D8Field(privateVector19, void **, 0x1C);
+            if (temp_v0_4 != 0) {
+                Level23_7D9D8Field(temp_v0_4, signed char *, 0x10) = 0;
+                Level23_7D9D8Field(privateVector19, void **, 0x1C) = 0;
+            }
+            Level23_7D9D8_func_80055D24(ownerRecord18, 4);
+            Level23_7D9D8_func_8003BA00(ownerRecord18);
+            Level23_7D9D8_func_800369B8(ownerRecord18, 0x19);
+            Level23_7D9D8_func_80055B18(ownerRecord18);
+            return;
+        }
+        ownerRecord18->unknownCollision = 0;
+        break;
+    }
+}
+#undef Level23_7D9D8Field
+
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated; not human reviewed. Original-instruction-derived C candidate. Original source asm/nonmatchings/overlays/level_23/moby/func_level_23_8007E570.s SHA256 b1b6db02e35f309b46f81a03a9bd6b4e164c8a833e56ae17347135860caadbbc. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
+int Controller7E570_Call_func_8001A358() __asm__("func_8001A358");
+int Controller7E570_Call_func_80034F40() __asm__("func_80034F40");
+int Controller7E570_Call_func_80034F80() __asm__("func_80034F80");
+int Controller7E570_Call_func_80035194() __asm__("func_80035194");
+int Controller7E570_Call_func_8003573C() __asm__("func_8003573C");
+int Controller7E570_Call_func_8003585C() __asm__("func_8003585C");
+int Controller7E570_Call_func_800359A4() __asm__("func_800359A4");
+int Controller7E570_Call_func_800369B8() __asm__("func_800369B8");
+int Controller7E570_Call_func_80036A68() __asm__("func_80036A68");
+int Controller7E570_Call_func_80038BF8() __asm__("func_80038BF8");
+int Controller7E570_Call_func_8003BA00() __asm__("func_8003BA00");
+int Controller7E570_Call_func_8004E880() __asm__("func_8004E880");
+int Controller7E570_Call_func_8004F178() __asm__("func_8004F178");
+int Controller7E570_Call_func_8004F264() __asm__("func_8004F264");
+int Controller7E570_Call_func_8004F334() __asm__("func_8004F334");
+int Controller7E570_Call_func_80055B18() __asm__("func_80055B18");
+int Controller7E570_Call_func_80055D24() __asm__("func_80055D24");
+int Controller7E570_Call_func_80055E84() __asm__("func_80055E84");
+int Controller7E570_Call_func_80055F14() __asm__("func_80055F14");
+#define Controller7E570Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+
+int Controller7E570_func_8001A358() __asm__("func_8001A358");             /* extern */
+int Controller7E570_func_80034F80() __asm__("func_80034F80");             /* extern */
+int Controller7E570_func_80036A68() __asm__("func_80036A68"); /* extern */
+int Controller7E570_func_8004F334() __asm__("func_8004F334");          /* extern */
+int Controller7E570_func_80055B18() __asm__("func_80055B18");                      /* extern */
+int Controller7E570_func_80055D24() __asm__("func_80055D24");             /* extern */
+int Controller7E570_func_80055E84() __asm__("func_80055E84");                          /* extern */
+int Controller7E570_func_80055F14() __asm__("func_80055F14"); /* extern */
+int Controller7E570_rand() __asm__("rand");                          /* extern */
+extern int Controller7E570_D_8006C550 __asm__("D_8006C550");
+extern int Controller7E570_D_8006C770 __asm__("D_8006C770");
+extern int Controller7E570_D_8006E020 __asm__("D_8006E020");
+extern int Controller7E570_D_8006E024 __asm__("D_8006E024");
+extern unsigned short Controller7E570_D_8006E040 __asm__("D_8006E040");
+extern int Controller7E570_D_8006E344 __asm__("D_8006E344");
+extern Vector3D Controller7E570_D_80070328 __asm__("D_80070328");
+extern int Controller7E570_D_80071908 __asm__("D_80071908");
+extern int Controller7E570_D_80071934 __asm__("D_80071934");
+
+void func_level_23_8007E570(Moby *inputOwner) {
+    register Moby *owner __asm__("$16")=inputOwner;
+    /* Original scratch vector is SP+0x18..0x20; saves begin at SP+0x28.
+     * Private fields and helper arguments retain their disc widths/offsets.
+     * Empty constraints emit no instruction; they preserve proven producers.
+     * Helpers, physical units and cadence still require a complete source chain.
+     */
+    struct { Vector3D sp18; unsigned char pad24[4]; } originalFrame;
+
+    register int word2 __asm__("$2");
+    register int word3 __asm__("$3");
+    register int angle4 __asm__("$4");
+    register int angle5 __asm__("$5");
+    register int word7 __asm__("$7");
+    register void *call4 __asm__("$4");
+    register int call5 __asm__("$5");
+    register int call6 __asm__("$6");
+    register int damageArgument5 __asm__("$5");
+    Moby *spawnedChild;
+    register Vector3D *childPosition __asm__("$18");
+    register int distanceWordState01 __asm__("$17");
+    register int indexWordState6 __asm__("$17");
+    register int distanceWordState6 __asm__("$18");
+    register int angleWordState6 __asm__("$20");
+    register int returnWord2 __asm__("$2");
+    register int damageWord3 __asm__("$3");
+    int indexWordState2;
+    int indexWordChild;
+    int var_a0;
+    int var_a0_2;
+    int absoluteZWordState01;
+    int absoluteZWordState20;
+    int var_v0_3;
+    int var_v0_4;
+    register void *poolRecord __asm__("$18");
+    register void *privateData __asm__("$19");
+    void *poolRecordState24;
+    void *poolRecordState2;
+    register void *packedReference14 __asm__("$3");
+    register void *packedPosition __asm__("$3");
+
+    privateData = owner->mobyTag;
+    if (owner->substate == 0) {
+        owner->substate = 1;
+    }
+    if (owner->state != 4) {
+        damageWord3 = owner->damageFlags;
+        if (damageWord3 != 0) {
+            word2=damageWord3&0x10000;
+            __asm__("" : "=r"(word2):"0"(word2):"$4");
+            call4=owner;
+            if (word2) {
+                __asm__ volatile("" : : "r"(call4):"$2");
+                damageArgument5 = 1;
+            } else {
+                __asm__ volatile("" : : "r"(call4):"$2","memory");
+                damageArgument5 = 0;
+            }
+            Controller7E570_func_80036A68(call4, damageArgument5, 0, 0);
+            Controller7E570_Call_func_80038BF8(owner, privateData + 0xC, 5, 4);
+        }
+    }
+    switch (owner->state) {
+    case 0:
+    case 1:
+        word2=Controller7E570_D_80070328.z;
+        __asm__("" : "=r"(word2):"0"(word2));
+        word3=owner->position.z;
+        absoluteZWordState01=word2-word3;
+        if (absoluteZWordState01 < 0) {
+            absoluteZWordState01 = -absoluteZWordState01;
+        }
+        call4=&owner->position;
+        if (absoluteZWordState01 < 0x1000) {
+            returnWord2 = Controller7E570_func_8004F334(call4, (void*)((unsigned char*)&Controller7E570_D_80070328.z - 8));
+            call6=0; __asm__("" : "=r"(call6):"0"(call6),"r"(returnWord2));
+            distanceWordState01=returnWord2;
+            word7=owner->position.x;
+            angle4=Controller7E570_D_8006E020;
+            __asm__("" : "=r"(angle4):"0"(angle4),"r"(word7));
+            word3=owner->position.y;
+            angle5=Controller7E570_D_8006E024;
+            angle4=word7-angle4;
+            returnWord2 = Controller7E570_Call_func_8004F264((int) (Controller7E570_D_8006E040 << 0x10) >> 0x14, Controller7E570_Call_func_8004E880(angle4, word3-angle5, call6));
+            if ((distanceWordState01 < Controller7E570Field(privateData, short *, 6)) && (returnWord2 < 0x18) && (Controller7E570_D_8006E344 != 1)) {
+                owner->state = 5;
+                Controller7E570_Call_func_80034F40(owner, 5);
+                return;
+            }
+            if (distanceWordState01 < Controller7E570Field(privateData, short *, 4)) {
+                owner->state = 5;
+                Controller7E570_Call_func_80034F40(owner, 5);
+            }
+            __asm__("" : : "r"(distanceWordState01));
+            goto state01Selector;
+        }
+state01Selector:
+        returnWord2=Controller7E570_Call_func_800359A4(privateData, 4);
+        call4=owner;
+        if(returnWord2) {
+            call5=1;
+            goto sharedCallMode1;
+        }
+        call5=3;
+        if (Controller7E570Field(&Controller7E570_D_80070328, int *, 0x50) != 7) {
+            if (Controller7E570_D_8006C770 != 0) {
+                Controller7E570Field(privateData, int *, 0) = (int) (((Controller7E570_rand() & 3) * 0x3C) + 0x64);
+                goto sharedCallMode0;
+            }
+        default:
+            return;
+        }
+        goto sharedWriteState3;
+    case 21:
+        returnWord2=Controller7E570_func_8004F334(&owner->position, &Controller7E570_D_80070328);
+        call4=owner;
+        if(returnWord2<0x1000) {
+            call5=0;
+            __asm__("" : "=r"(call5):"0"(call5),"r"(call4):"$2");
+            Controller7E570Field(privateData, int *, 8) = -1;
+            goto sharedClearState;
+        }
+        break;
+    case 20:
+        word2=Controller7E570_D_80070328.z;
+        __asm__("" : "=r"(word2):"0"(word2));
+        word3=owner->position.z;
+        absoluteZWordState20=word2-word3;
+        if (absoluteZWordState20 < 0) {
+            absoluteZWordState20 = -absoluteZWordState20;
+        }
+        call4=owner;
+        if (absoluteZWordState20 < 0x1000) {
+            Controller7E570_Call_func_8003573C(call4, 6, 6, 0);
+        }
+        returnWord2=Controller7E570_Call_func_800359A4(privateData, 4);
+        call4=owner;
+        if (returnWord2) {
+            call5=1;
+            __asm__("" : "=r"(call5):"0"(call5),"r"(call4):"$2");
+            word2=1;
+            ((Moby*)call4)->state=word2;
+sharedCallMode1:
+            Controller7E570_Call_func_80034F40(call4, call5);
+            Controller7E570Field(privateData, int *, 0) = 0x1F4;
+            return;
+        }
+        call5=3;
+        if (Controller7E570Field(&Controller7E570_D_80070328, int *, 0x50) == 7) {
+sharedWriteState3:
+            ((Moby*)call4)->state = 3;
+            Controller7E570_Call_func_80034F40(call4, call5);
+            Controller7E570Field(privateData, int *, 0) = (int) (((Controller7E570_rand() & 3) * 0x3C) + 0x64);
+            return;
+        }
+        break;
+    case 24:
+        poolRecordState24 = Controller7E570_D_8006C550 + (Controller7E570Field(privateData, int *, 8) * 0x58);
+        Controller7E570_Call_func_8003585C(owner, Controller7E570_Call_func_8004E880(Controller7E570Field(poolRecordState24, int *, 0xC) - owner->position.x, Controller7E570Field(poolRecordState24, int *, 0x10) - owner->position.y, 0), 8, 0, 0, 0);
+        if (Controller7E570_D_8006C770 != 0) {
+            owner->state = 2;
+            Controller7E570_Call_func_80034F40(owner, 2);
+            return;
+        }
+        break;
+    case 2:
+        indexWordState2 = Controller7E570Field(privateData, int *, 8);
+        if (indexWordState2 == -1) {
+            Controller7E570_Call_func_8003573C(owner, 6, 6, 0);
+        } else {
+            poolRecordState2 = Controller7E570_D_8006C550 + (indexWordState2 * 0x58);
+            Controller7E570_Call_func_8003585C(owner, Controller7E570_Call_func_8004E880(Controller7E570Field(poolRecordState2, int *, 0xC) - owner->position.x, Controller7E570Field(poolRecordState2, int *, 0x10) - owner->position.y, 0), 8, 0, 0, 0);
+        }
+        if ((owner->animationState.id == 2) && (Controller7E570_func_80055E84(owner) >= 0x22) && (owner->substate == 1)) {
+            spawnedChild = SpawnMoby(0x17, owner);
+            if (spawnedChild != 0) {
+                owner->substate = 2;
+                spawnedChild->updateDistance = 0xFF;
+                spawnedChild->angle.roll = owner->angle.roll;
+                Controller7E570_func_80055D24(owner, 5);
+                call4=owner;call5=0;
+                __asm__("" : "=r"(call5):"0"(call5),"r"(call4));
+                childPosition = &spawnedChild->position;
+                Controller7E570_func_80055F14(call4, call5, childPosition);
+                indexWordChild = Controller7E570Field(privateData, int *, 8);
+                if (indexWordChild == -1) {
+                    Controller7E570_Call_func_8003573C(spawnedChild, 0x80, 0, 0);
+                    Controller7E570_Call_func_8004F178(&originalFrame.sp18, &Controller7E570_D_80070328);
+                    originalFrame.sp18.z += 0x400;
+                    if ((Controller7E570_func_8001A358(&originalFrame.sp18, 0x1000) != 0) && (Controller7E570_D_80071934 == 0)) {
+                        originalFrame.sp18.z = Controller7E570_D_80071908 + 0x80;
+                        angle4 = Controller7E570_func_8004F334(childPosition, &originalFrame.sp18);
+                        angle5 = spawnedChild->position.z;
+                        word2 = originalFrame.sp18.z;
+                        __asm__("" : "=r"(word2):"0"(word2),"r"(angle4),"r"(angle5));
+                        call6=0;
+                        goto sharedChildPitchWord;
+                    }
+                } else {
+                    word2=indexWordChild*11;
+                    word3=Controller7E570_D_8006C550;
+                    __asm__("" : "=r"(word3):"0"(word3),"r"(word2));
+                    word2 <<=3;
+                    poolRecord=(void*)(word3+word2);
+                    __asm__("" : "=r"(poolRecord):"0"(poolRecord),"r"(word2),"r"(word3));
+                    if (Controller7E570Field(poolRecord, short *, 0x36) == 0x1A) {
+                        call6=0;
+                        word2=Controller7E570Field(poolRecord,int*,0);
+                        angle4=spawnedChild->position.x;
+                        __asm__("" : "=r"(angle4):"0"(angle4),"r"(word2));
+                        packedReference14=Controller7E570Field((void*)word2,void**,0x14);
+                        __asm__("" : "=r"(packedReference14):"0"(packedReference14):"memory");
+                        angle5=spawnedChild->position.y;
+                        __asm__("" : "=r"(angle5):"0"(angle5),"r"(packedReference14));
+                        word2=Controller7E570Field(packedReference14,short*,2);
+                        packedPosition=(void*)Controller7E570Field(packedReference14,int*,0xC);
+                        word2 <<= 4;
+                        packedPosition=(unsigned char*)packedPosition+word2;
+                        __asm__("" : "=r"(packedPosition):"0"(packedPosition));
+                        word7=Controller7E570Field(packedPosition,int*,0);
+                        word2=Controller7E570Field(packedPosition,int*,4);
+                        angle4=word7-angle4;
+                    } else {
+                        call6=0;
+                        word3=Controller7E570Field(poolRecord,int*,0xC);
+                        angle4=spawnedChild->position.x;
+                        word2=Controller7E570Field(poolRecord,int*,0x10);
+                        angle5=spawnedChild->position.y;
+                        __asm__("" : "=r"(angle5):"0"(angle5),"r"(word2),"r"(word3),"r"(angle4));
+                        angle4=word3-angle4;
+                    }
+                    Controller7E570_Call_func_8003585C(spawnedChild, Controller7E570_Call_func_8004E880(angle4,word2-angle5,call6),0x80,0,0,0);
+                    angle4 = Controller7E570_func_8004F334(&spawnedChild->position, poolRecord + 0xC);
+                    call6=0;
+                    __asm__("" : "=r"(call6):"0"(call6),"r"(angle4));
+                    angle5 = spawnedChild->position.z;
+                    word2 = Controller7E570Field(poolRecord, int *, 0x14);
+sharedChildPitchWord:
+                    __asm__ volatile("" : : "r"(angle4),"r"(angle5),"r"(word2),"r"(call6));
+                    angle5 -= 0x180;
+                    __asm__("" : "=r"(angle5):"0"(angle5),"r"(word2));
+                    spawnedChild->angle.pitch = Controller7E570_Call_func_8004E880(angle4, word2-angle5, call6);
+                }
+                Controller7E570Field(spawnedChild->mobyTag,int*,0)=0x78;
+            }
+        }
+        if (Controller7E570_D_8006C770 != 0) {
+            owner->substate = 1;
+            if (Controller7E570Field(privateData, int *, 8) == -1) {
+                owner->state = 0x14;
+                Controller7E570_Call_func_80034F40(owner, 0);
+            } else {
+                owner->state = 3;
+                Controller7E570_func_80034F80(owner, 3);
+            }
+            Controller7E570Field(privateData, int *, 0) = 0x3C;
+            return;
+        }
+        break;
+    case 3:
+        if (Controller7E570Field(privateData,int*,8)!=-1) {
+            returnWord2=Controller7E570_func_8004F334(&owner->position,&Controller7E570_D_80070328);
+            call4=owner;
+            if(returnWord2>=0x1000) goto original_case3_not_near;
+            call5=0;
+            __asm__("" : "=r"(call5):"0"(call5),"r"(call4));
+            Controller7E570Field(privateData, int *, 8) = -1;
+sharedClearState:
+            ((Moby*)call4)->state = 0;
+            Controller7E570_Call_func_80034F40(call4, call5);
+            __asm__ volatile("" : : : "$3");
+            return;
+        }
+original_case3_not_near:
+        if (Controller7E570_D_8006C770 != 0) {
+            Controller7E570_Call_func_80034F40(owner, 0);
+            if (Controller7E570Field(privateData, int *, 8) == -1) {
+                owner->state = 0;
+                return;
+            }
+            owner->state = 0x15;
+            return;
+        }
+        break;
+    case 5:
+        Controller7E570_Call_func_8003573C(owner, 6, 6, 0);
+        if (Controller7E570_D_8006C770 != 0) {
+            owner->state = 6;
+            Controller7E570_Call_func_80034F40(owner, 6);
+            return;
+        }
+        break;
+    case 6:
+        Controller7E570_Call_func_8003573C(owner, 6, 6, 0);
+        returnWord2 = Controller7E570_func_8004F334(&owner->position, &Controller7E570_D_80070328);
+        call6=0; __asm__("" : "=r"(call6):"0"(call6),"r"(returnWord2));
+        distanceWordState6=returnWord2;
+        word7=owner->position.x;
+        angle4=Controller7E570_D_8006E020;
+        __asm__("" : "=r"(angle4):"0"(angle4),"r"(word7));
+        word3=owner->position.y;
+        angle5=Controller7E570_D_8006E024;
+        angle4=word7-angle4;
+        returnWord2 = Controller7E570_Call_func_8004F264((int) (Controller7E570_D_8006E040 << 0x10) >> 0x14, Controller7E570_Call_func_8004E880(angle4, word3-angle5, call6));
+        word3=Controller7E570Field(privateData,short*,6);
+        word3=distanceWordState6<word3;
+        __asm__("" : "=r"(word3),"=r"(returnWord2):"0"(word3),"1"(returnWord2));
+        angleWordState6=returnWord2;
+        if (word3 && (Controller7E570_D_8006E344 != 1) && ((indexWordState6 = Controller7E570Field(privateData, int *, 8), (indexWordState6 != -1)) || ((Controller7E570_Call_func_8004F264(Controller7E570_Call_func_8004E880(Controller7E570_D_80070328.x - owner->position.x, Controller7E570_D_80070328.y - owner->position.y, 0), (int) owner->angle.yaw) < 0xA) && ((Controller7E570Field(privateData, int *, 8) != indexWordState6) || (angleWordState6 < 0x14))))) {
+            owner->state = 2;
+            Controller7E570_func_80034F80(owner, 2);
+            return;
+        }
+        __asm__("" : : "r"(angleWordState6));
+        if (Controller7E570Field(privateData, short *, 4) < distanceWordState6) {
+            owner->state = 7;
+            Controller7E570_Call_func_80034F40(owner, 7);
+            return;
+        }
+        break;
+    case 7:
+        if (Controller7E570_D_8006C770 != 0) {
+            owner->state = 0;
+sharedCallMode0:
+            Controller7E570_Call_func_80034F40(owner, 0);
+            return;
+        }
+        break;
+    case 4:
+        if (Controller7E570_Call_func_80035194(owner, privateData + 0xC) == 0x100) {
+            Controller7E570_func_80055D24(owner, 4);
+            Controller7E570_Call_func_8003BA00(owner);
+            Controller7E570_Call_func_800369B8(owner, 0x1C);
+            Controller7E570_func_80055B18(owner);
+        }
+        break;
+    }
+}
+#undef Controller7E570Field
+
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original8007EE44.
+* AI generated; not human reviewed. All804 original instructions,35 selectors,
+* one zero pad and every actual destination must match:840 owned words.
+* Frame70 (112 bytes) saves S0..S4/RA and retains SP20..57 workspace. S1 private
+* and scan-cursor phases are disjoint:the scan path removes the owner and
+* returns before the private-field common chain. S0 record/path and S3/S4
+* class,scalar,vector and path-index phases retain complete original values.
+* Original private0 mask consumes a WORD,not a BYTE. Falsification:0x00010003
+* &0x00FF00FF differs from3;replacing the word with its low byte falsely makes
+* that test equal. The full original load and flag branch are preserved.
+* Original type branches212/216 enter state clear740 on their failure paths.
+* Calls234/570/572,selected-state writer499,state26 writer620,height store748
+* and common749 keep physical order. Branch632 enters epilogue795 directly:
+* nonzero private short36 must skip the entire common749 update chain.
+* List records retain original stride88 and complete index/base/target words.
+* Path short2 plus1 remains a full signed numerator/remainder with original
+* divide-zero/overflow guards and widths. Count5,index4 yields remainder0.
+* Full owner+12 arguments are produced after their helper or remainder phase;
+* no cached overlapping alias or extra S5/frame storage is introduced.
+* Fresh zero A1 in case28 and the original fallback238 entry are retained.
+* Empty metadata consumes complete initialized words/addresses or clobbers
+* dead values before fresh complete producers;zero CPU instructions. Known
+* void34F40, timer,angle and callback views reuse matched EXE/headers.
+* Compiler/filter/flags unchanged;no opcode asm,partialHI,fixedFP,undefined
+* saved inputs or overlapping live aliases. Raw units/fixed point,complete
+* helper/caller chains,cadence beyond invocation,Rev1 mapping and synchronized
+* retail runtime remain open. Confidence is binary identity after all gates.
+* Next:human review and retail captures. Every native/linked word,target,
+* selector/padding byte and full EXE/every-overlay hash must remain identical.
+*/
+/* Original assembly SHA256 ef5761306b46e45af9c39133abbe24aced80559909dcc45f4c3bc768e69f56d6 */
+#define Level23_7EE44Field(p, t, o) (*(t)((unsigned char*)(p)+(o)))
+int Level23_7EE44Call1A358View1() __asm__("func_8001A358");
+int Level23_7EE44Call21ED8View1() __asm__("func_80021ED8");
+int Level23_7EE44Call21F3CView1() __asm__("func_80021F3C");
+int Level23_7EE44Call21F8CView1() __asm__("func_80021F8C");
+int Level23_7EE44Call2EC50View1() __asm__("func_8002EC50");
+void Level23_7EE44Call34F40View1(void*, int) __asm__("func_80034F40");
+int Level23_7EE44Call34F80View1() __asm__("func_80034F80");
+int Level23_7EE44Call3585CView1() __asm__("func_8003585C");
+int Level23_7EE44Call359A4View1(void*, int) __asm__("func_800359A4");
+int Level23_7EE44Call35A80View1() __asm__("func_80035A80");
+int Level23_7EE44Call35DDCView1() __asm__("func_80035DDC");
+int Level23_7EE44Call36A68View1() __asm__("func_80036A68");
+int Level23_7EE44Call37BBCView1() __asm__("func_80037BBC");
+int Level23_7EE44Call3B7B4View1() __asm__("func_8003B7B4");
+int Level23_7EE44Call4E880View1(int, int, int) __asm__("func_8004E880");
+int Level23_7EE44Call4EDE8View1() __asm__("func_8004EDE8");
+int Level23_7EE44Call4F08CView1() __asm__("func_8004F08C");
+int Level23_7EE44Call4F110View1() __asm__("func_8004F110");
+int Level23_7EE44Call4F178View1() __asm__("func_8004F178");
+int Level23_7EE44Call4F194View1() __asm__("func_8004F194");
+int Level23_7EE44Call4F1C8View1() __asm__("func_8004F1C8");
+int Level23_7EE44Call4F264View1(int, int) __asm__("func_8004F264");
+int Level23_7EE44Call512E4View1() __asm__("func_800512E4");
+int Level23_7EE44Call55B18View1() __asm__("func_80055B18");
+int Level23_7EE44Call55D24View1() __asm__("func_80055D24");
+int Level23_7EE44Call55F14View1() __asm__("func_80055F14");
+extern int Level23_7EE44Data6C550View1 __asm__("D_8006C550");
+extern int Level23_7EE44Data6C58CView1 __asm__("D_8006C58C");
+extern int Level23_7EE44Data6C640View1 __asm__("D_8006C640");
+extern int Level23_7EE44Data6C648View1 __asm__("D_8006C648");
+extern int Level23_7EE44Data6C704View1 __asm__("D_8006C704");
+extern int Level23_7EE44Data6C770View1 __asm__("D_8006C770");
+extern unsigned char Level23_7EE44Data6C7B4View1 __asm__("D_8006C7B4");
+extern int Level23_7EE44Data6C7F8View1 __asm__("D_8006C7F8");
+extern int Level23_7EE44Data6D088View1 __asm__("D_8006D088");
+extern int Level23_7EE44Data6E344View1 __asm__("D_8006E344");
+extern int Level23_7EE44Data70300View1 __asm__("D_80070300");
+extern int Level23_7EE44Data71908View1 __asm__("D_80071908");
+void func_level_23_8007EE44(void *ownerParameter) {
+    register int rawWord2 __asm__("$2"), rawWord3 __asm__("$3"), argumentWord4 __asm__("$4"), argumentWord5 __asm__("$5"), argumentWord6 __asm__("$6"), argumentWord7 __asm__("$7");
+    register void *ownerRecord18 __asm__("$18");
+    register int privateRecordOrScanCursor17 __asm__("$17"), retainedScanRecordSpawnOrPath16 __asm__("$16"), retainedOriginalValueOrVector19 __asm__("$19"), retainedClassOrSignedPathIndex20 __asm__("$20");
+    struct{
+        int sp20, sp24, sp28, sp2C, sp30, sp34, sp38, sp3C, sp40, sp44, sp48, sp4C, sp50, sp54;
+    }
+    originalFrame;
+    int temporaryWord17;
+    int temporaryWord1;
+    int temporaryWord5;
+    int temporaryWord3;
+    int temporaryWord4;
+    int temporaryWord6;
+    int temporaryWord9;
+    int temporaryWord16;
+    int temporaryWord10;
+    int temporaryWord2;
+    int temporaryWord7;
+    int temporaryWord11;
+    int temporaryWord12;
+    int temporaryWord13;
+    int temporaryWord15;
+    int temporaryWord8;
+    int temporaryWord14;
+    ownerRecord18 = ownerParameter;
+    __asm__("":"=r"(ownerRecord18):"0"(ownerRecord18));
+    temporaryWord12 = Level23_7EE44Field(ownerRecord18, unsigned char *, 0x48);
+    privateRecordOrScanCursor17 = Level23_7EE44Field(ownerRecord18, void **, 0);
+    switch (temporaryWord12) {
+    case 34:
+        if (Level23_7EE44Field(ownerRecord18, int *, 0x18) != 0) {
+            Level23_7EE44Field(ownerRecord18, int *, 0x18) = 0;
+            Level23_7EE44Call34F40View1(ownerRecord18, 4);
+        }
+        if (!Level23_7EE44Data6C770View1) goto updateOriginalCommon749;
+        rawWord3 = Level23_7EE44Field(ownerRecord18, unsigned char*, 60);
+        rawWord2 = 4;
+        argumentWord4 = (int)ownerRecord18;
+        if (rawWord3 != rawWord2) goto updateOriginalCommon749;
+        __asm__ volatile(""::"r"(ownerRecord18));
+        goto notifyOriginalZeroMode234;
+        default:goto updateOriginalCommon749;
+    case 0:
+        if (Level23_7EE44Data6C640View1 == 0) {
+            if ((Level23_7EE44Field(privateRecordOrScanCursor17, unsigned char *, 0) == 5) && ((Level23_7EE44Data6C7B4View1 & 0x20) || (Level23_7EE44Field((int)&Level23_7EE44Data70300View1, unsigned char*, Level23_7EE44Data6C58CView1) & 0x20))) {
+                temporaryWord6 = Level23_7EE44Call21F3CView1(1);
+                if (!((temporaryWord6 >> 8) & 0xFF) && (temporaryWord6 & 0xF)) {
+                    Level23_7EE44Call21ED8View1(1, 0xFC, 0);
+                    Level23_7EE44Call21F8CView1(1, 0x3A, 0);
+                    privateRecordOrScanCursor17 = Level23_7EE44Data6C550View1;
+                    if (privateRecordOrScanCursor17 < (unsigned int) Level23_7EE44Data6C704View1) {
+                        retainedClassOrSignedPathIndex20 = 105;
+                        retainedOriginalValueOrVector19 = 2;
+                        __asm__("":"=r"(retainedOriginalValueOrVector19):"0"(retainedOriginalValueOrVector19), "r"(retainedClassOrSignedPathIndex20):"$16");
+                        retainedScanRecordSpawnOrPath16 = privateRecordOrScanCursor17+72;
+                        do {
+                            if (Level23_7EE44Field(retainedScanRecordSpawnOrPath16, short*, -18) == retainedClassOrSignedPathIndex20) {
+                                temporaryWord7 = Level23_7EE44Field(retainedScanRecordSpawnOrPath16, unsigned char *, 0);
+                                if (temporaryWord7 == 0) {
+                                    Level23_7EE44Field(retainedScanRecordSpawnOrPath16, unsigned char*, 0) = retainedOriginalValueOrVector19;
+                                    Level23_7EE44Field(retainedScanRecordSpawnOrPath16, unsigned char*, 1) = retainedOriginalValueOrVector19;
+                                    Level23_7EE44Field(retainedScanRecordSpawnOrPath16, unsigned char*, 2) = 255;
+                                    Level23_7EE44Call34F80View1((void *) privateRecordOrScanCursor17, Level23_7EE44Field(retainedScanRecordSpawnOrPath16, unsigned char *, 0));
+                                }
+                                else if (temporaryWord7 >= 0x1EU) {
+                                    Level23_7EE44Call55B18View1((void *) privateRecordOrScanCursor17);
+                                }
+                            }
+                            rawWord2 = Level23_7EE44Data6C704View1;
+                            __asm__("":"=r"(privateRecordOrScanCursor17):"0"(privateRecordOrScanCursor17):"memory");
+                            privateRecordOrScanCursor17 += 88;
+                            rawWord2 = (unsigned int)privateRecordOrScanCursor17 < (unsigned int)rawWord2;
+                            retainedScanRecordSpawnOrPath16 += 88;
+                        }
+                        while (rawWord2);
+                    }
+                }
+                goto removeOriginalOwner572;
+            }
+            if ((Level23_7EE44Data6C640View1 != 0) || (!(Level23_7EE44Data6C7B4View1 & 1) && !(Level23_7EE44Field((int)&Level23_7EE44Data70300View1, unsigned char*, Level23_7EE44Data6C58CView1) & 1)) || (Level23_7EE44Field(privateRecordOrScanCursor17, unsigned char *, 0) == 5)) {
+                goto checkOriginalOwnerFlags140;
+            }
+            goto removeOriginalOwner572;
+        }
+    checkOriginalOwnerFlags140:
+        if (Level23_7EE44Field(ownerRecord18, int *, 0x18) != 0) {
+            Level23_7EE44Field(ownerRecord18, int *, 0x18) = 0;
+            Level23_7EE44Call34F40View1(ownerRecord18, 4);
+        }
+        if ((Level23_7EE44Data6C770View1 != 0) && (Level23_7EE44Field(ownerRecord18, unsigned char *, 0x3C) == 4)) {
+            Level23_7EE44Call34F40View1(ownerRecord18, 0);
+        }
+        temporaryWord2 = Level23_7EE44Field(privateRecordOrScanCursor17, unsigned char *, 0);
+        if (((temporaryWord2 != 0) || (Level23_7EE44Field(privateRecordOrScanCursor17, unsigned char *, 4) != 3)) && ((temporaryWord2 != 3) || (Level23_7EE44Field(privateRecordOrScanCursor17, unsigned char *, 4) != 4)) && (Level23_7EE44Call37BBCView1(ownerRecord18, 0) != 0)) {
+            if (((int) Level23_7EE44Field(privateRecordOrScanCursor17, int*, 0) & 0xFF00FF) == 3) {
+                Level23_7EE44Data6C7B4View1 |= 1;
+            }
+            Level23_7EE44Call512E4View1(ownerRecord18, 0, 1);
+            Level23_7EE44Field(ownerRecord18, unsigned char *, 0x48) = 1U;
+            Level23_7EE44Call34F40View1(ownerRecord18, 1);
+        }
+        goto updateOriginalCommon749;
+    case 1:
+        rawWord3 = Level23_7EE44Data6E344View1;
+        rawWord2 = 1;
+        argumentWord4 = 3;
+        if (rawWord3 == rawWord2) goto updateOriginalCommon749;
+        rawWord3 = Level23_7EE44Field(privateRecordOrScanCursor17, unsigned char*, 0);
+        rawWord2 = 5;
+        if (rawWord3 != argumentWord4) goto checkOriginalTypeFive212;
+        rawWord2 = 60;
+        Level23_7EE44Field(privateRecordOrScanCursor17, short*, 50) = rawWord2;
+        rawWord2 = 29;
+        Level23_7EE44Field(ownerRecord18, unsigned char*, 72) = rawWord2;
+        goto updateOriginalCommon749;
+        checkOriginalTypeFive212:if (rawWord3 != rawWord2) goto enterOriginalTypeFallback238;
+        rawWord2 = Level23_7EE44Field(privateRecordOrScanCursor17, unsigned char*, 4);
+        if (rawWord2 != argumentWord4) goto enterOriginalTypeFallback238;
+        retainedScanRecordSpawnOrPath16 = privateRecordOrScanCursor17+2;
+        Level23_7EE44Field(ownerRecord18, unsigned char*, 72) = 34;
+        Level23_7EE44Field(privateRecordOrScanCursor17, unsigned char*, 2) = 1;
+        Level23_7EE44Call3B7B4View1(retainedScanRecordSpawnOrPath16, 1, (int)&Level23_7EE44Data6D088View1);
+        Level23_7EE44Call3B7B4View1(retainedScanRecordSpawnOrPath16, 1, (int)&Level23_7EE44Data6C7F8View1);
+        argumentWord4 = (int)ownerRecord18;
+        notifyOriginalZeroMode234:Level23_7EE44Call34F40View1(argumentWord4, 0);
+        goto updateOriginalCommon749;
+        enterOriginalTypeFallback238:argumentWord4 = (int)ownerRecord18;
+        __asm__ volatile(""::"r"(ownerRecord18));
+        argumentWord5 = 0;
+        goto clearOriginalState740;
+    case 29:
+        if (Level23_7EE44Call359A4View1(privateRecordOrScanCursor17 + 0x32, 2) != 0) {
+            Level23_7EE44Field(ownerRecord18, unsigned char *, 0x48) = 0x1EU;
+            Level23_7EE44Call34F40View1(ownerRecord18, 2);
+            Level23_7EE44Field(ownerRecord18, unsigned char*, 64) = 240;
+        }
+        goto updateOriginalCommon749;
+    case 30:
+        temporaryWord8 = (Level23_7EE44Field(privateRecordOrScanCursor17, int *, 0x40) * 0x58) + Level23_7EE44Data6C550View1;
+        temporaryWord9 = Level23_7EE44Call4E880View1(Level23_7EE44Field(temporaryWord8, int *, 0xC) - Level23_7EE44Field(ownerRecord18, int *, 0xC), Level23_7EE44Field(temporaryWord8, int *, 0x10) - Level23_7EE44Field(ownerRecord18, int *, 0x10), 0);
+        retainedOriginalValueOrVector19 = Level23_7EE44Call4F264View1(Level23_7EE44Field(ownerRecord18, unsigned char *, 0x46), temporaryWord9) >= 0x41;
+        if ((Level23_7EE44Field(ownerRecord18, unsigned char *, 0x49) != 1) || (retainedOriginalValueOrVector19 == 0)) {
+            if (Level23_7EE44Call3585CView1(ownerRecord18, temporaryWord9, 4, 2, 1, 1) != 0) {
+                Level23_7EE44Field(ownerRecord18, unsigned char *, 0x49) = 1U;
+            }
+        }
+        temporaryWord17 = 0x32;
+        if (Level23_7EE44Field(ownerRecord18, unsigned char *, 0x49) == 1) {
+            temporaryWord17 = 0x46;
+        }
+        Level23_7EE44Call35DDCView1(ownerRecord18, temporaryWord17, 0, 0, 4);
+        if ((Level23_7EE44Field(ownerRecord18, unsigned char *, 0x49) == 1) && (retainedOriginalValueOrVector19 != 0)) {
+            Level23_7EE44Field(privateRecordOrScanCursor17, short *, 0x30) = 6;
+            Level23_7EE44Field(ownerRecord18, unsigned char *, 0x48) = 0x1FU;
+        }
+        goto updateOriginalCommon749;
+    case 31:
+        Level23_7EE44Call35DDCView1(ownerRecord18, 0x46, 0, 0, 4);
+        if (Level23_7EE44Call359A4View1(privateRecordOrScanCursor17 + 0x30, 2) != 0) {
+            goto removeOriginalOwner572;
+        }
+        goto updateOriginalCommon749;
+    case 20:
+        if ((Level23_7EE44Data6C640View1 == 0) && ((Level23_7EE44Data6C7B4View1 & 1) || (Level23_7EE44Field((int)&Level23_7EE44Data70300View1, unsigned char*, Level23_7EE44Data6C58CView1) & 1))) {
+            rawWord3 = Level23_7EE44Field(privateRecordOrScanCursor17, int*, 44);
+            rawWord2 = rawWord3*88;
+            rawWord3 = Level23_7EE44Data6C550View1;
+            argumentWord4 = rawWord3+rawWord2;
+            if (Level23_7EE44Field(argumentWord4, unsigned char *, 0x48) & 0x80) {
+            }
+            else {
+                goto removeOriginalChild570;
+            }
+            goto removeOriginalOwner572;
+        }
+        Level23_7EE44Call34F40View1(ownerRecord18, 3);
+        Level23_7EE44Field(Level23_7EE44Field(privateRecordOrScanCursor17, void **, 0x28), short *, 0xA) = 1;
+        Level23_7EE44Field(Level23_7EE44Field(privateRecordOrScanCursor17, void **, 0x28), short *, 2) = 0;
+        Level23_7EE44Field(ownerRecord18, unsigned char *, 0x48) = 0x15U;
+        goto updateOriginalCommon749;
+    case 21:
+        Level23_7EE44Call35A80View1(ownerRecord18, Level23_7EE44Field(privateRecordOrScanCursor17, void **, 0x28), 0x78, 0x5A, 0, 4, 0x80, 4);
+        rawWord3 = Level23_7EE44Field(privateRecordOrScanCursor17, int*, 44);
+        rawWord2 = rawWord3*88;
+        rawWord3 = Level23_7EE44Data6C550View1;
+        rawWord3 += rawWord2;
+        rawWord3 = Level23_7EE44Field(rawWord3, unsigned char*, 72);
+        temporaryWord13 = rawWord3;
+        if (((unsigned int) (temporaryWord13 - 4) < 3U) || (temporaryWord13 & 0x80)) {
+            Level23_7EE44Field(ownerRecord18, unsigned char *, 0x48) = 0x16U;
+        }
+        goto updateOriginalCommon749;
+    case 22:
+        temporaryWord14 = Level23_7EE44Field(Level23_7EE44Field(privateRecordOrScanCursor17, void **, 0x28), void **, 0xC);
+        temporaryWord3 = Level23_7EE44Field(temporaryWord14, int *, 0x10) - Level23_7EE44Field(ownerRecord18, int *, 0xC);
+        originalFrame.sp20 = temporaryWord3;
+        temporaryWord4 = Level23_7EE44Field(temporaryWord14, int *, 0x14) - Level23_7EE44Field(ownerRecord18, int *, 0x10);
+        originalFrame.sp24 = temporaryWord4;
+        Level23_7EE44Call3585CView1(ownerRecord18, Level23_7EE44Call4E880View1(temporaryWord3, temporaryWord4, 0), 8, 4, 0, 0);
+        Level23_7EE44Call35DDCView1(ownerRecord18, 0x64, 0, 0, 0);
+        if (Level23_7EE44Call4EDE8View1(&originalFrame.sp20, 0) < 0x3D) {
+            rawWord3 = Level23_7EE44Field(privateRecordOrScanCursor17, int*, 44);
+            retainedScanRecordSpawnOrPath16 = Level23_7EE44Data6C550View1;
+            rawWord2 = rawWord3*88;
+            retainedScanRecordSpawnOrPath16 += rawWord2;
+            Level23_7EE44Call34F40View1(ownerRecord18, 2);
+            rawWord3 = Level23_7EE44Field(retainedScanRecordSpawnOrPath16, unsigned char*, 72);
+            rawWord2 = rawWord3-4;
+            rawWord2 = (unsigned int)rawWord2 < 3U;
+            if (rawWord2) goto selectOriginalState28;
+            rawWord2 = (unsigned int)rawWord3 < 251U;
+            if (rawWord2) goto selectOriginalState23;
+            selectOriginalState28:rawWord2 = 28;
+            goto writeOriginalSelectedState499;
+            selectOriginalState23:rawWord2 = 23;
+            goto writeOriginalSelectedState499;
+        }
+        goto updateOriginalCommon749;
+    case 28:
+        rawWord2 = Level23_7EE44Call3585CView1(ownerRecord18, 190, 4, 0, 0, 0);
+        argumentWord4 = (int)ownerRecord18;
+        if (!rawWord2) goto updateOriginalCommon749;
+        __asm__ volatile("":::"$5");
+        argumentWord5 = 0;
+        goto clearOriginalState740;
+    case 23:
+        rawWord3 = Level23_7EE44Field(privateRecordOrScanCursor17, short*, 48);
+        if (rawWord3 != 0){
+            rawWord2 = rawWord3;
+            __asm__("":"=r"(rawWord2):"0"(rawWord2));
+            rawWord2 -= 1;
+            Level23_7EE44Field(privateRecordOrScanCursor17, short*, 48) = rawWord2;
+            if (rawWord3 > 0) {
+                Level23_7EE44Field(ownerRecord18, int *, 0x14) = (int) (Level23_7EE44Field(ownerRecord18, int *, 0x14) + 0x32);
+            }
+        }
+        if (Level23_7EE44Call3585CView1(ownerRecord18, 0xBE, 4, 0, 0, 0) != 0) {
+            if (Level23_7EE44Field(privateRecordOrScanCursor17, short*, 48) > 0) goto updateOriginalCommon749;
+            rawWord2 = 27;
+            writeOriginalSelectedState499:Level23_7EE44Field(ownerRecord18, unsigned char*, 72) = rawWord2;
+            rawWord2 = 16;
+            Level23_7EE44Field(privateRecordOrScanCursor17, short*, 48) = rawWord2;
+        }
+        goto updateOriginalCommon749;
+    case 27:
+        rawWord3 = Level23_7EE44Field(privateRecordOrScanCursor17, int*, 44);
+        rawWord2 = rawWord3*88;
+        rawWord3 = Level23_7EE44Data6C550View1;
+        rawWord3 += rawWord2;
+        rawWord3 = Level23_7EE44Field(rawWord3, unsigned char*, 72);
+        temporaryWord15 = rawWord3;
+        if (((unsigned int) (temporaryWord15 - 4) < 3U) || (temporaryWord15 >= 0xFBU)) {
+            temporaryWord10 = (unsigned short) Level23_7EE44Field(privateRecordOrScanCursor17, short *, 0x30);
+            Level23_7EE44Field(privateRecordOrScanCursor17, short *, 0x30) = (short) (temporaryWord10 - 1);
+            if ((temporaryWord10 << 0x10) > 0) {
+                rawWord2 = Level23_7EE44Field(ownerRecord18, int *, 0x14) - 0x32;
+                goto storeOriginalHeight748;
+            }
+            else {
+                argumentWord4 = (int)ownerRecord18;
+                argumentWord5 = 0;
+                goto clearOriginalState740;
+            }
+        }
+        goto updateOriginalCommon749;
+    case 24:
+        if ((Level23_7EE44Data6C640View1 == 0) && ((Level23_7EE44Data6C7B4View1 & 1) || (Level23_7EE44Field((int)&Level23_7EE44Data70300View1, unsigned char*, Level23_7EE44Data6C58CView1) & 1))) {
+            rawWord3 = Level23_7EE44Field(privateRecordOrScanCursor17, int*, 44);
+            rawWord2 = rawWord3*88;
+            rawWord3 = Level23_7EE44Data6C550View1;
+            retainedScanRecordSpawnOrPath16 = rawWord3+rawWord2;
+            if (!(Level23_7EE44Field(retainedScanRecordSpawnOrPath16, unsigned char *, 0x48) & 0x80)) {
+                Level23_7EE44Call36A68View1(retainedScanRecordSpawnOrPath16, 1, 0, 0);
+                argumentWord4 = retainedScanRecordSpawnOrPath16;
+                removeOriginalChild570:Level23_7EE44Call55B18View1(argumentWord4);
+            }
+            removeOriginalOwner572:Level23_7EE44Call55B18View1(ownerRecord18);
+            return;
+        }
+        Level23_7EE44Call34F40View1(ownerRecord18, 2);
+        Level23_7EE44Field(ownerRecord18, unsigned char *, 0x48) = 0x19U;
+        Level23_7EE44Field(privateRecordOrScanCursor17, short *, 0x30) = 0x50;
+        Level23_7EE44Field(privateRecordOrScanCursor17, short *, 0x32) = 0xA;
+        Level23_7EE44Field(privateRecordOrScanCursor17, short *, 0x34) = 0;
+        Level23_7EE44Field(privateRecordOrScanCursor17, short *, 0x36) = 0;
+        Level23_7EE44Field(Level23_7EE44Field(privateRecordOrScanCursor17, void **, 0x28), short *, 2) = 1;
+        Level23_7EE44Call4F178View1(ownerRecord18 + 0xC, Level23_7EE44Field(Level23_7EE44Field(privateRecordOrScanCursor17, void **, 0x28), void **, 0xC));
+        goto updateOriginalCommon749;
+    case 25:
+        rawWord3 = Level23_7EE44Field(privateRecordOrScanCursor17, int*, 44);
+        rawWord2 = rawWord3*88;
+        rawWord3 = Level23_7EE44Data6C550View1;
+        retainedScanRecordSpawnOrPath16 = rawWord3+rawWord2;
+        temporaryWord11 = Level23_7EE44Field(retainedScanRecordSpawnOrPath16, unsigned char *, 0x48);
+        temporaryWord16 = temporaryWord11 & 0xFF;
+        if (temporaryWord11&128) goto writeOriginalState26At620;
+        rawWord2 = Level23_7EE44Field(retainedScanRecordSpawnOrPath16, int*, 24);
+        if (rawWord2) goto writeOriginalState26At620;
+        rawWord2 = 4;
+        if (temporaryWord16 != rawWord2) goto continueOriginalActiveRecord622;
+        writeOriginalState26At620:Level23_7EE44Field(ownerRecord18, unsigned char*, 72) = 26;
+        goto updateOriginalCommon749;
+    continueOriginalActiveRecord622:
+        if ((temporaryWord16 != 0x18) && ((unsigned int) (temporaryWord16 - 2) >= 2U) && (temporaryWord16 != 0x15)) {
+            Level23_7EE44Field(privateRecordOrScanCursor17, short *, 0x36) = 1;
+        }
+        if (Level23_7EE44Field(privateRecordOrScanCursor17, short*, 54) != 0) return;
+        {
+            if (Level23_7EE44Field(privateRecordOrScanCursor17, short *, 0x34) != 0) {
+                if ((Level23_7EE44Field(retainedScanRecordSpawnOrPath16, unsigned char *, 0x3C) == 2) || ((Level23_7EE44Field(retainedScanRecordSpawnOrPath16, unsigned char *, 0x3D) != 2) && (temporaryWord16 != 0x18))) {
+                    Level23_7EE44Field(privateRecordOrScanCursor17, short *, 0x34) = 0;
+                }
+            }
+            else if (Level23_7EE44Field(privateRecordOrScanCursor17, short *, 0x30) != 0) {
+                retainedOriginalValueOrVector19 = (int)&originalFrame.sp30;
+                argumentWord4 = retainedOriginalValueOrVector19;
+                __asm__("":"=r"(argumentWord4):"0"(argumentWord4):"$16", "memory");
+                retainedScanRecordSpawnOrPath16 = Level23_7EE44Field(privateRecordOrScanCursor17, int*, 40);
+                __asm__("":"=r"(argumentWord4):"0"(argumentWord4):"$6", "memory");
+                argumentWord6 = (int)ownerRecord18+12;
+                retainedClassOrSignedPathIndex20 = Level23_7EE44Field(retainedScanRecordSpawnOrPath16, short*, 2);
+                rawWord2 = Level23_7EE44Field(retainedScanRecordSpawnOrPath16, int*, 12);
+                argumentWord5 = retainedClassOrSignedPathIndex20*16;
+                argumentWord5 = rawWord2+argumentWord5;
+                Level23_7EE44Call4F1C8View1(argumentWord4, argumentWord5, argumentWord6);
+                argumentWord5 = Level23_7EE44Call4EDE8View1(retainedOriginalValueOrVector19, 1);
+                if (argumentWord5 >= 101){
+                    Level23_7EE44Call4F08CView1(retainedOriginalValueOrVector19, argumentWord5, 100);
+                    __asm__("":"=r"(ownerRecord18):"0"(ownerRecord18):"memory");
+                    argumentWord4 = (int)ownerRecord18+12;
+                }
+                else{
+                    rawWord2 = retainedClassOrSignedPathIndex20+1;
+                    Level23_7EE44Field(privateRecordOrScanCursor17, short*, 48) = 0;
+                    rawWord3 = Level23_7EE44Field(retainedScanRecordSpawnOrPath16, short*, 0);
+                    rawWord3 = rawWord2%rawWord3;
+                    Level23_7EE44Field(retainedScanRecordSpawnOrPath16, short*, 2) = rawWord3;
+                    __asm__("":"=r"(ownerRecord18):"0"(ownerRecord18):"memory");
+                    argumentWord4 = (int)ownerRecord18+12;
+                }
+                __asm__ volatile("":::"$19");
+                argumentWord5 = argumentWord4;
+                Level23_7EE44Call4F194View1(argumentWord4, argumentWord5, &originalFrame.sp30);
+            }
+            else if ((Level23_7EE44Field(retainedScanRecordSpawnOrPath16, unsigned char *, 0x3D) != 3) && (Level23_7EE44Call359A4View1(privateRecordOrScanCursor17 + 0x32, 2) != 0)) {
+                Level23_7EE44Field(retainedScanRecordSpawnOrPath16, unsigned char *, 0x48) = 0x18U;
+                Level23_7EE44Call34F40View1(retainedScanRecordSpawnOrPath16, 5);
+                Level23_7EE44Field(privateRecordOrScanCursor17, short *, 0x34) = 1;
+                Level23_7EE44Field(privateRecordOrScanCursor17, short *, 0x30) = 0x50;
+                Level23_7EE44Field(privateRecordOrScanCursor17, short *, 0x32) = 0xA;
+            }
+            goto updateOriginalCommon749;
+        }
+        goto updateOriginalCommon749;
+    case 26:
+        Level23_7EE44Field(ownerRecord18, int*, 20) = Level23_7EE44Field(ownerRecord18, int*, 20)-Level23_7EE44Data6C648View1*46+1024;
+        rawWord2 = Level23_7EE44Call1A358View1(ownerRecord18+12, 2048);
+        if (!rawWord2) goto subtractOriginalHeight745;
+        rawWord2 = Level23_7EE44Field(ownerRecord18, int*, 20);
+        rawWord3 = Level23_7EE44Data71908View1;
+        rawWord2 -= 1074;
+        rawWord2 = rawWord2 < rawWord3;
+        argumentWord4 = (int)ownerRecord18;
+        if (!rawWord2) goto subtractOriginalHeight745;
+        argumentWord5 = 0;
+        Level23_7EE44Field(ownerRecord18, int*, 20) = rawWord3;
+        clearOriginalState740:Level23_7EE44Field(ownerRecord18, int*, 24) = 0;
+        Level23_7EE44Field(ownerRecord18, unsigned char*, 72) = 0;
+        Level23_7EE44Call34F40View1(argumentWord4, argumentWord5);
+        goto updateOriginalCommon749;
+        subtractOriginalHeight745:rawWord2 = Level23_7EE44Field(ownerRecord18, int*, 20);
+        rawWord2 -= 1024;
+        storeOriginalHeight748:Level23_7EE44Field(ownerRecord18, int*, 20) = rawWord2;
+        goto updateOriginalCommon749;
+    }
+updateOriginalCommon749:
+    if (Level23_7EE44Field(ownerRecord18, unsigned char *, 0x4D) == 0) {
+        temporaryWord5 = Level23_7EE44Field(privateRecordOrScanCursor17, void **, 0x38);
+        if (temporaryWord5 != 0) {
+            Level23_7EE44Field(temporaryWord5, signed char *, 0x10) = 0;
+            Level23_7EE44Field(privateRecordOrScanCursor17, void **, 0x38) = 0;
+            goto checkOriginalPrivateObject;
+        }
+    }
+    else if (Level23_7EE44Field(privateRecordOrScanCursor17, void **, 0x38) == 0) {
+        Level23_7EE44Field(privateRecordOrScanCursor17, void **, 0x38) = Level23_7EE44Call2EC50View1(1, 0xFE, 0x489090);
+    checkOriginalPrivateObject:
+        if (Level23_7EE44Field(privateRecordOrScanCursor17, void **, 0x38) != 0) {
+            goto updateOriginalPrivateObject;
+        }
+    }
+    else {
+    updateOriginalPrivateObject:
+        Level23_7EE44Call55D24View1(ownerRecord18, 5);
+        Level23_7EE44Call55F14View1(ownerRecord18, 0, Level23_7EE44Field(privateRecordOrScanCursor17, void **, 0x38));
+        Level23_7EE44Call55F14View1(ownerRecord18, 1, &originalFrame.sp40);
+        temporaryWord1 = Level23_7EE44Field(privateRecordOrScanCursor17, void **, 0x38);
+        Level23_7EE44Call4F194View1(temporaryWord1, temporaryWord1, &originalFrame.sp40);
+        Level23_7EE44Call4F110View1(Level23_7EE44Field(privateRecordOrScanCursor17, void **, 0x38), 1);
+        Level23_7EE44Field(Level23_7EE44Field(privateRecordOrScanCursor17, void **, 0x38), signed char *, 0x13) = 8;
+    }
+    return;
+}
+#undef Level23_7EE44Field
+
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original8007FAD4.
+* AI generated; not human reviewed. All801 original instructions,26 selectors
+* and every actual destination must match:827 owned words,no selector pad.
+* Frame68 (104 bytes) saves S0..S4/RA and retains SP20..4F workspace. Saved
+* position,player-state base,path count and height-update roles are disjoint.
+* Common height chain759 follows all states and loads private8 after1A358.
+* With private8=1000,helper result1200,owner20=1150,the original +100 path
+* reaches1250 then clamps to1200. Units/fixed point remain unresolved.
+* Shared mode calls305/590/676 and early state2 call408 retain their original
+* physical entries. Literal state22/23 paths retain independent stores.
+* S0 player-state base remains complete across calls. Independently relocated
+* word80070330 preserves the original absolute height loads;the later player
+* X read still uses original S0-80. No coordinate conversion is inferred.
+* Dot-product terms are complete ordinary C products;A0/V1 retain full terms
+* before the original signed sum. No synthetic HI/LO fragments are used.
+* Random path advancement reloads descriptor14 after the helper,then reads
+* short2 and computes the complete signed sum/remainder against retained
+* count. Count5,post-call short2=3,RNG result2 yields remainder0. Original
+* divide-zero and signed-overflow guards and all consumer widths remain.
+* Fresh zero caller producers and owner addresses retain original branches.
+* Empty metadata consumes complete initialized scalars/addresses or clobbers
+* dead values before fresh complete producers;zero CPU instructions. Known
+* timer,angle,void3BE70 and three-pointer4F1C8 views reuse matched source.
+* Compiler/filter/flags unchanged;no opcode asm,fixedFP,undefined saved inputs
+* or overlapping live aliases. Complete helper/caller chains,cadence beyond
+* invocation,Rev1 correspondence and synchronized retail runtime remain open.
+* Confidence is binary identity after all gates. Next:human review and retail
+* captures. Every native/linked word,target,owned selector/data byte and full
+* EXE/every-overlay retail hash must remain identical.
+*/
+/* Original assembly SHA256 3712ce3ebd54c31fb7bf8f9103a4b3d2b26a2f6970253b7cdc619a75947341fe */
+#define Level23_7FAD4Field(p, t, o) (*(t)((unsigned char*)(p)+(o)))
+int Level23_7FAD4Call13ACCView1() __asm__("func_80013ACC");
+int Level23_7FAD4Call1A358View1() __asm__("func_8001A358");
+int Level23_7FAD4Call1BA30View1() __asm__("func_8001BA30");
+int Level23_7FAD4Call34F40View1() __asm__("func_80034F40");
+int Level23_7FAD4Call35030View1() __asm__("func_80035030");
+int Level23_7FAD4Call3573CView1() __asm__("func_8003573C");
+int Level23_7FAD4Call3585CView1() __asm__("func_8003585C");
+int Level23_7FAD4Call359A4View1(void*, int) __asm__("func_800359A4");
+int Level23_7FAD4Call35DDCView1() __asm__("func_80035DDC");
+int Level23_7FAD4Call35EE0View1() __asm__("func_80035EE0");
+int Level23_7FAD4Call360F8View1() __asm__("func_800360F8");
+int Level23_7FAD4Call36220View1() __asm__("func_80036220");
+int Level23_7FAD4Call3636CView1() __asm__("func_8003636C");
+int Level23_7FAD4Call369B8View1() __asm__("func_800369B8");
+int Level23_7FAD4Call36A68View1() __asm__("func_80036A68");
+int Level23_7FAD4Call3BA00View1() __asm__("func_8003BA00");
+int Level23_7FAD4Call3BABCView1() __asm__("func_8003BABC");
+void Level23_7FAD4Call3BE70View1(int) __asm__("func_8003BE70");
+int Level23_7FAD4Call3BFC0View1() __asm__("func_8003BFC0");
+int Level23_7FAD4Call4E880View1(int, int, int) __asm__("func_8004E880");
+int Level23_7FAD4Call4ED6CView1() __asm__("func_8004ED6C");
+int Level23_7FAD4Call4F178View1() __asm__("func_8004F178");
+void Level23_7FAD4Call4F1C8View1(void*, void*, void*) __asm__("func_8004F1C8");
+int Level23_7FAD4Call4F264View1(int, int) __asm__("func_8004F264");
+int Level23_7FAD4Call4F334View1() __asm__("func_8004F334");
+int Level23_7FAD4Call55B18View1() __asm__("func_80055B18");
+int Level23_7FAD4Call55D24View1() __asm__("func_80055D24");
+int Level23_7FAD4DatarandView1(void) __asm__("rand");
+extern int Level23_7FAD4Data6C770View1 __asm__("D_8006C770");
+extern int Level23_7FAD4Data6E020View1 __asm__("D_8006E020");
+extern int Level23_7FAD4Data6E024View1 __asm__("D_8006E024");
+extern unsigned short Level23_7FAD4Data6E040View1 __asm__("D_8006E040");
+extern int Level23_7FAD4Data6E160View1 __asm__("D_8006E160");
+extern int Level23_7FAD4Data6E164View1 __asm__("D_8006E164");
+extern int Level23_7FAD4Data70328View1 __asm__("D_80070328");
+extern int Level23_7FAD4Data71934View1 __asm__("D_80071934");
+extern int Level23_7FAD4OriginalPlayerHeight __asm__("D_80070328 + 8");
+void func_level_23_8007FAD4(void *ownerParameter) {
+    register int rawWord2 __asm__("$2"), rawWord3 __asm__("$3"), argumentWord4 __asm__("$4"), argumentWord5 __asm__("$5"), argumentWord6 __asm__("$6"), argumentWord7 __asm__("$7");
+    register void *ownerRecord17 __asm__("$17");
+    register int privateRecord19 __asm__("$19"), retainedPositionPlayerBaseOrPathCount16 __asm__("$16"), retainedOwnerPosition18 __asm__("$18"), retainedOriginalHeightUpdateFlag20 __asm__("$20");
+    struct{
+        int sp20, sp24, sp28, sp2C, sp30, sp34, sp38, sp3C, sp40, sp44, sp48, sp4C;
+    }
+    originalFrame;
+    int temporaryWord2;
+    int temporaryWord7;
+    int temporaryWord8;
+    int temporaryWord9;
+    int temporaryWord10;
+    int temporaryWord11;
+    int temporaryWord3;
+    int temporaryWord6;
+    int temporaryWord1;
+    int temporaryWord4;
+    int temporaryWord5;
+    ownerRecord17 = ownerParameter;
+    __asm__("":"=r"(ownerRecord17):"0"(ownerRecord17));
+    privateRecord19 = Level23_7FAD4Field(ownerRecord17, void **, 0);
+    retainedOriginalHeightUpdateFlag20 = 0;
+    if (Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x49) == 0) {
+        Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x49) = 1U;
+        temporaryWord1 = Level23_7FAD4Field(privateRecord19, void **, 0x14);
+        Level23_7FAD4Field(privateRecord19, short *, 0xC) = 0x64;
+        if (temporaryWord1 != 0) {
+            Level23_7FAD4Field(temporaryWord1, short *, 0xA) = 1;
+            Level23_7FAD4Field(Level23_7FAD4Field(privateRecord19, void **, 0x14), short *, 2) = 1;
+        }
+        temporaryWord2 = Level23_7FAD4Call1A358View1(ownerRecord17 + 0xC, 0x800);
+        if (temporaryWord2 != 0) {
+            Level23_7FAD4Field(privateRecord19, int *, 8) = temporaryWord2;
+            Level23_7FAD4Field(ownerRecord17, int *, 0x14) = temporaryWord2;
+        }
+    }
+    if (Level23_7FAD4Call3BFC0View1(ownerRecord17, Level23_7FAD4Field(privateRecord19, int *, 0x24)) == 0) {
+        Level23_7FAD4Field(privateRecord19, int *, 0x24) = Level23_7FAD4Call3BABCView1(ownerRecord17, 0, 4);
+    }
+    if (Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x48) != 7) {
+        if (Level23_7FAD4Field(ownerRecord17, int *, 0x18) != 0) {
+            Level23_7FAD4Data6E160View1 = 0;
+            Level23_7FAD4Data6E164View1 = 0;
+            rawWord2 = Level23_7FAD4Call1A358View1(ownerRecord17+12, 4096);
+            if (!rawWord2) goto readOriginalFlagMode62;
+            rawWord2 = Level23_7FAD4Data71934View1;
+            argumentWord4 = (int)ownerRecord17;
+            if (!rawWord2) goto readOriginalFlagMode62;
+            argumentWord5 = 16;
+            goto notifyOriginalMode70;
+            readOriginalFlagMode62:rawWord2 = Level23_7FAD4Field(ownerRecord17, int*, 24);
+            rawWord3 = 65536;
+            rawWord2 &= rawWord3;
+            __asm__ volatile("":"=r"(rawWord3):"0"(rawWord3), "r"(rawWord2):"$4");
+            argumentWord4 = (int)ownerRecord17;
+            if (!rawWord2) goto produceOriginalZeroMode69;
+            __asm__ volatile(""::"r"(ownerRecord17));
+            argumentWord5 = 1;
+            goto notifyOriginalMode70;
+            produceOriginalZeroMode69:__asm__ volatile("":::"$2", "$5");
+            argumentWord5 = 0;
+            notifyOriginalMode70:argumentWord6 = 0;
+            Level23_7FAD4Call36A68View1(argumentWord4, argumentWord5, argumentWord6, 0);
+            Level23_7FAD4Call3573CView1(ownerRecord17, 0x80, 0, 0);
+            Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x4A) = 0xFF;
+            Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x48) = 7U;
+            Level23_7FAD4Call34F40View1(ownerRecord17, 7);
+            Level23_7FAD4Field(privateRecord19, int *, 0x20) = 0xFA;
+            Level23_7FAD4Field(privateRecord19, int *, 0x1C) = 0xC8;
+            temporaryWord6 = Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x51);
+            if (temporaryWord6 == 0) {
+                temporaryWord6 = Level23_7FAD4Call360F8View1(Level23_7FAD4Call4E880View1(Level23_7FAD4Field(ownerRecord17, int *, 0xC) - Level23_7FAD4Field((int)&Level23_7FAD4Data70328View1, int *, 0), Level23_7FAD4Field(ownerRecord17, int *, 0x10) - Level23_7FAD4Field((int)&Level23_7FAD4Data70328View1, int *, 4), 0), Level23_7FAD4Field((int)&Level23_7FAD4Data70328View1, unsigned char *, 0xE), 0x20, 0x40);
+            }
+            Level23_7FAD4Field(privateRecord19, int *, 0x18) = (int) temporaryWord6;
+            return;
+        }
+        if ((Level23_7FAD4Call36220View1((int)&Level23_7FAD4Data70328View1, privateRecord19 + 0x28, 0, 0x2800) != 0) && (Level23_7FAD4Field(privateRecord19, int *, 0x30) < Level23_7FAD4Field((int)&Level23_7FAD4Data70328View1, int *, 8))) {
+            Level23_7FAD4Call13ACCView1(ownerRecord17, 0xD);
+        }
+        else {
+            Level23_7FAD4Data6E160View1 = 0;
+            Level23_7FAD4Data6E164View1 = 0;
+        }
+        goto continueOriginalStateDispatch;
+    }
+continueOriginalStateDispatch:
+    Level23_7FAD4Call55D24View1(ownerRecord17, 5);
+    temporaryWord3 = Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x48);
+    switch (temporaryWord3) {
+    case 0:
+    case 1:
+        if (Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x49) == 2) {
+            Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x48) = 0x19U;
+            Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x49) = 1U;
+        }
+        else if (Level23_7FAD4Call4F334View1(ownerRecord17 + 0xC, (int)&Level23_7FAD4Data70328View1) < Level23_7FAD4Field(privateRecord19, short *, 0xE)) {
+            rawWord2 = Level23_7FAD4OriginalPlayerHeight;
+            rawWord3 = Level23_7FAD4Field(ownerRecord17, int*, 20);
+            rawWord2 -= rawWord3;
+            temporaryWord7 = rawWord2;
+            if (temporaryWord7 < 0) {
+                temporaryWord7 = -temporaryWord7;
+            }
+            if (temporaryWord7 >= 0x1000) {
+                goto checkOriginalIdleCountdown175;
+            }
+            goto notifyOriginalCloseTarget305;
+        }
+        else {
+        checkOriginalIdleCountdown175:
+            if (Level23_7FAD4Call359A4View1(privateRecord19 + 0xC, 2) != 0) {
+                Level23_7FAD4Call34F40View1(ownerRecord17, 1);
+                Level23_7FAD4Field(privateRecord19, short *, 0xC) = 0x1F4;
+            }
+            else if (Level23_7FAD4Data6C770View1 != 0) {
+                Level23_7FAD4Field(privateRecord19, short *, 0xC) = (short) (((Level23_7FAD4DatarandView1() & 3) * 0x3C) + 0x64);
+                goto notifyOriginalZeroMode590;
+            }
+        }
+        goto updateOriginalCommonHeight759;
+        default:goto updateOriginalCommonHeight759;
+    case 20:
+        if (Level23_7FAD4Call3573CView1(ownerRecord17, 4, 8, 0) != 0) {
+            Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x48) = 3U;
+            Level23_7FAD4Call34F40View1(ownerRecord17, 3);
+        }
+        Level23_7FAD4Call35DDCView1(ownerRecord17, 0xA, 0, 0, 0);
+        retainedOriginalHeightUpdateFlag20 = 1;
+        goto updateOriginalCommonHeight759;
+    case 22:
+        Level23_7FAD4Call35EE0View1(ownerRecord17, (Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x46) + 0x80) & 0xFF, 0x32, 0, 0, 0x400);
+        if (Level23_7FAD4Data6C770View1 != 0) {
+            Level23_7FAD4Call34F40View1(ownerRecord17, 0);
+            Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x48) = 0x17U;
+        }
+        goto updateOriginalCommonHeight759;
+    case 23:
+        if (Level23_7FAD4Call3585CView1(ownerRecord17, Level23_7FAD4Call4E880View1(Level23_7FAD4Field(privateRecord19, int *, 0) - Level23_7FAD4Field(ownerRecord17, int *, 0xC), Level23_7FAD4Field(privateRecord19, int *, 4) - Level23_7FAD4Field(ownerRecord17, int *, 0x10), 0), 8, 0x14, 0, 0) != 0) {
+            Level23_7FAD4Call35DDCView1(ownerRecord17, 0x3C, 0, 0, 0);
+        }
+        retainedPositionPlayerBaseOrPathCount16 = ownerRecord17 + 0xC;
+        if (Level23_7FAD4Call4F334View1(retainedPositionPlayerBaseOrPathCount16, privateRecord19) < 0x200) {
+            Level23_7FAD4Field(privateRecord19, short *, 0xC) = (short) (((Level23_7FAD4DatarandView1() & 3) * 0x32) + 0x3C);
+            Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x48) = 0U;
+            Level23_7FAD4Call34F40View1(ownerRecord17, 0);
+        }
+        retainedOriginalHeightUpdateFlag20 = 1;
+        if (Level23_7FAD4Field(privateRecord19, short *, 0xC) == 0) {
+            if (Level23_7FAD4Call4F334View1(retainedPositionPlayerBaseOrPathCount16, (int)&Level23_7FAD4Data70328View1) < Level23_7FAD4Field(privateRecord19, short *, 0xE)) {
+                rawWord2 = Level23_7FAD4OriginalPlayerHeight;
+                rawWord3 = Level23_7FAD4Field(ownerRecord17, int*, 20);
+                rawWord2 -= rawWord3;
+                temporaryWord8 = rawWord2;
+                if (temporaryWord8 < 0) {
+                    temporaryWord8 = -temporaryWord8;
+                }
+                if (temporaryWord8 < 4096){
+                    notifyOriginalCloseTarget305:Level23_7FAD4Call34F40View1(ownerRecord17, 0);
+                    Level23_7FAD4Field(ownerRecord17, unsigned char*, 72) = 20;
+                }
+            }
+        }
+        else {
+            Level23_7FAD4Call359A4View1(privateRecord19 + 0xC, 2);
+        }
+        goto updateOriginalCommonHeight759;
+    case 3:
+        Level23_7FAD4Call3573CView1(ownerRecord17, 3, 3, 0);
+        if (Level23_7FAD4Data6C770View1 != 0) {
+            argumentWord4 = (int)ownerRecord17;
+            argumentWord5 = 5;
+            __asm__("":"=r"(argumentWord5):"0"(argumentWord5), "r"(argumentWord4):"$2");
+            rawWord2 = 5;
+            Level23_7FAD4Field(ownerRecord17, unsigned char*, 72) = rawWord2;
+            Level23_7FAD4Call34F40View1(argumentWord4, argumentWord5);
+            rawWord2 = 160;
+            Level23_7FAD4Field(ownerRecord17, unsigned char*, 64) = rawWord2;
+        }
+        goto updateOriginalCommonHeight759;
+    case 5:
+        Level23_7FAD4Call3573CView1(ownerRecord17, 6, 6, 0);
+        argumentWord4 = Level23_7FAD4Call4F334View1(ownerRecord17+12, (int)&Level23_7FAD4Data70328View1);
+        rawWord3 = Level23_7FAD4Field(privateRecord19, short*, 14);
+        rawWord3 = rawWord3 < argumentWord4;
+        if (rawWord3) goto enterOriginalModeFailure354;
+        rawWord2 = Level23_7FAD4OriginalPlayerHeight;
+        rawWord3 = Level23_7FAD4Field(ownerRecord17, int*, 20);
+        rawWord2 -= rawWord3;
+        if (rawWord2 < 0)rawWord2 = -rawWord2;
+        rawWord2 = rawWord2 < 3073;
+        if (rawWord2) goto checkOriginalCloseTarget362;
+        enterOriginalModeFailure354:argumentWord4 = (int)ownerRecord17;
+        argumentWord5 = 0;
+        Level23_7FAD4Field(ownerRecord17, unsigned char*, 72) = 0;
+        Level23_7FAD4Call34F40View1(argumentWord4, argumentWord5);
+        rawWord2 = 160;
+        Level23_7FAD4Field(ownerRecord17, unsigned char*, 64) = rawWord2;
+        goto updateOriginalCommonHeight759;
+        checkOriginalCloseTarget362:rawWord2 = Level23_7FAD4Field(privateRecord19, short*, 16);
+        rawWord2 = argumentWord4 < rawWord2;
+        if (!rawWord2) goto updateOriginalCommonHeight759;
+        rawWord2 = 4;
+        Level23_7FAD4Field(ownerRecord17, unsigned char*, 72) = rawWord2;
+        Level23_7FAD4Call34F40View1(ownerRecord17, 4);
+        goto updateOriginalCommonHeight759;
+    case 4:
+        if (Level23_7FAD4Data6C770View1 != 0) {
+            Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x48) = 2U;
+            Level23_7FAD4Call34F40View1(ownerRecord17, 2);
+        }
+        goto updateOriginalCommonHeight759;
+    case 2:
+        Level23_7FAD4Call3573CView1(ownerRecord17, 1, 2, 0);
+        Level23_7FAD4Field(ownerRecord17, int *, 0x14) = (int) (Level23_7FAD4Field(ownerRecord17, int *, 0x14) + 0x200);
+        rawWord2 = Level23_7FAD4Call35DDCView1(ownerRecord17, 300, 0, 0, 1024);
+        argumentWord4 = (int)ownerRecord17;
+        if (rawWord2) goto notifyOriginalModeSix408;
+        retainedPositionPlayerBaseOrPathCount16 = (int)&Level23_7FAD4Data70328View1+80;
+        rawWord3 = Level23_7FAD4Field(retainedPositionPlayerBaseOrPathCount16, int*, 0);
+        rawWord2 = 7;
+        argumentWord4 = (int)&originalFrame.sp30;
+        if (rawWord3 != rawWord2) goto continueOriginalStateTwo416;
+        argumentWord4 = (int)ownerRecord17;
+        notifyOriginalModeSix408:Level23_7FAD4Call34F40View1(argumentWord4, 6);
+        rawWord2 = Level23_7FAD4Field(ownerRecord17, int*, 20);
+        rawWord3 = 22;
+        Level23_7FAD4Field(ownerRecord17, unsigned char*, 72) = rawWord3;
+        rawWord2 -= 512;
+        Level23_7FAD4Field(ownerRecord17, int*, 20) = rawWord2;
+        goto updateOriginalCommonHeight759;
+    continueOriginalStateTwo416:
+        retainedOriginalHeightUpdateFlag20 = 1;
+        Level23_7FAD4Field(ownerRecord17, int *, 0x14) = (int) (Level23_7FAD4Field(ownerRecord17, int *, 0x14) - 0x200);
+        Level23_7FAD4Call1BA30View1(&originalFrame.sp30, 0x514, 1, 0, 0x10000, ownerRecord17);
+        if (Level23_7FAD4Field(retainedPositionPlayerBaseOrPathCount16, int*, 0) != 9) {
+            temporaryWord5 = ownerRecord17 + 0x20;
+            if (Level23_7FAD4Field(retainedPositionPlayerBaseOrPathCount16, int*, 0) != 4) {
+                rawWord2 = Level23_7FAD4OriginalPlayerHeight;
+                rawWord3 = Level23_7FAD4Field(ownerRecord17, int*, 20);
+                rawWord2 -= rawWord3;
+                temporaryWord9 = rawWord2;
+                if (temporaryWord9 < 0) {
+                    temporaryWord9 = -temporaryWord9;
+                }
+                if ((temporaryWord9 < 0x400) && (({rawWord2 = Level23_7FAD4Call4F334View1(retainedPositionPlayerBaseOrPathCount16-80, ownerRecord17+12);__asm__("":"=r"(retainedPositionPlayerBaseOrPathCount16):"0"(retainedPositionPlayerBaseOrPathCount16));rawWord2;}) < 1300) && (Level23_7FAD4Call4F264View1(Level23_7FAD4Call4E880View1(Level23_7FAD4Field(retainedPositionPlayerBaseOrPathCount16, int *, -0x50) - Level23_7FAD4Field(ownerRecord17, int *, 0xC), Level23_7FAD4Field((int)&Level23_7FAD4Data70328View1, int *, 4) - Level23_7FAD4Field(ownerRecord17, int *, 0x10), 0), Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x46)) < 8) && (Level23_7FAD4Call4F264View1((int) (Level23_7FAD4Data6E040View1 << 0x10) >> 0x14, Level23_7FAD4Call4E880View1(Level23_7FAD4Field(ownerRecord17, int *, 0xC) - Level23_7FAD4Data6E020View1, Level23_7FAD4Field(ownerRecord17, int *, 0x10) - Level23_7FAD4Data6E024View1, 0)) < 0x1C)) {
+                    Level23_7FAD4Field((int)&Level23_7FAD4Data70328View1, int *, 0x24) = 1;
+                    Level23_7FAD4Field((int)&Level23_7FAD4Data70328View1, int *, 0x298) = (int) Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x46);
+                    Level23_7FAD4Call34F40View1(ownerRecord17, 6);
+                    Level23_7FAD4Field(ownerRecord17, unsigned char*, 72) = 22;
+                    Level23_7FAD4Field(privateRecord19, short*, 12) = 200;
+                }
+                else {
+                    goto block_75;
+                }
+            }
+            else {
+                goto block_76;
+            }
+        }
+        else {
+        block_75:
+            temporaryWord5 = ownerRecord17 + 0x20;
+        block_76:
+            originalFrame.sp30 = 0x12C;
+            originalFrame.sp34 = 0;
+            originalFrame.sp38 = 0;
+            Level23_7FAD4Call4ED6CView1(temporaryWord5, &originalFrame.sp30, &originalFrame.sp40);
+            Level23_7FAD4Call4F1C8View1(&originalFrame.sp20, (int)&Level23_7FAD4Data70328View1, ownerRecord17 + 0xC);
+            if (({rawWord3 = originalFrame.sp20;rawWord2 = originalFrame.sp40;argumentWord4 = rawWord3*rawWord2;rawWord3 = originalFrame.sp24;__asm__("":"=r"(argumentWord4):"0"(argumentWord4), "r"(rawWord3):"memory");rawWord2 = originalFrame.sp44;rawWord3 = rawWord3*rawWord2;__asm__("":"=r"(rawWord3):"0"(rawWord3));rawWord2 = argumentWord4+rawWord3;rawWord2;}) < 0) {
+                Level23_7FAD4Field(privateRecord19, short *, 0xC) = 0x78;
+                Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x48) = 0x15U;
+            }
+        }
+        goto updateOriginalCommonHeight759;
+    case 21:
+        retainedOriginalHeightUpdateFlag20 = 1;
+        Level23_7FAD4Field(ownerRecord17, int *, 0x14) = (int) (Level23_7FAD4Field(ownerRecord17, int *, 0x14) + 0x64);
+        Level23_7FAD4Call3585CView1(ownerRecord17, Level23_7FAD4Call4E880View1(Level23_7FAD4Field(privateRecord19, int *, 0) - Level23_7FAD4Field(ownerRecord17, int *, 0xC), Level23_7FAD4Field(privateRecord19, int *, 4) - Level23_7FAD4Field(ownerRecord17, int *, 0x10), 0), 8, 8, 0, 0);
+        Level23_7FAD4Call35DDCView1(ownerRecord17, 0x12C, 0, 0, 0x400);
+        if ((Level23_7FAD4Call4F334View1(ownerRecord17 + 0xC, privateRecord19) < 0x800) || (Level23_7FAD4Call359A4View1(privateRecord19 + 0xC, 2) != 0)) {
+            Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x48) = 6U;
+            Level23_7FAD4Call34F40View1(ownerRecord17, 6);
+        }
+        else {
+            Level23_7FAD4Field(ownerRecord17, int *, 0x14) = (int) (Level23_7FAD4Field(ownerRecord17, int *, 0x14) - 0x64);
+        }
+        goto updateOriginalCommonHeight759;
+    case 6:
+        if (Level23_7FAD4Data6C770View1 != 0) {
+            rawWord2 = Level23_7FAD4Call4F334View1(ownerRecord17+12, privateRecord19);
+            rawWord3 = Level23_7FAD4Field(privateRecord19, short*, 18);
+            rawWord3 = rawWord3 < rawWord2;
+            __asm__("":"=r"(rawWord3):"0"(rawWord3));
+            if (rawWord3){
+                Level23_7FAD4Call34F40View1(ownerRecord17, 0);
+                Level23_7FAD4Field(ownerRecord17, unsigned char*, 72) = 23;
+                Level23_7FAD4Field(privateRecord19, short*, 12) = 200;
+                goto updateOriginalCommonHeight759;
+            }
+            Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x48) = 0U;
+            notifyOriginalZeroMode590:Level23_7FAD4Call34F40View1(ownerRecord17, 0);
+            goto updateOriginalCommonHeight759;
+        }
+        goto updateOriginalCommonHeight759;
+    case 24:
+        temporaryWord4 = Level23_7FAD4Field(privateRecord19, void **, 0x14);
+        retainedPositionPlayerBaseOrPathCount16 = Level23_7FAD4Field(temporaryWord4, int *, 0xC) + (Level23_7FAD4Field(temporaryWord4, short *, 2) * 0x10);
+        Level23_7FAD4Call3585CView1(ownerRecord17, Level23_7FAD4Call4E880View1(Level23_7FAD4Field(retainedPositionPlayerBaseOrPathCount16, int *, 0) - Level23_7FAD4Field(ownerRecord17, int *, 0xC), Level23_7FAD4Field(retainedPositionPlayerBaseOrPathCount16, int *, 4) - Level23_7FAD4Field(ownerRecord17, int *, 0x10), 0), 4, 4, 0, 0);
+        Level23_7FAD4Call35DDCView1(ownerRecord17, 0x3C, 0, 0, 0);
+        retainedOwnerPosition18 = ownerRecord17 + 0xC;
+        if (Level23_7FAD4Call4F334View1(retainedOwnerPosition18, retainedPositionPlayerBaseOrPathCount16) < 0x200) {
+            Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x48) = 0x19U;
+            Level23_7FAD4Call34F40View1(ownerRecord17, 1);
+        }
+        else if (Level23_7FAD4Call4F334View1(retainedOwnerPosition18, (int)&Level23_7FAD4Data70328View1) < Level23_7FAD4Field(privateRecord19, short *, 0xE)) {
+            rawWord2 = Level23_7FAD4OriginalPlayerHeight;
+            rawWord3 = Level23_7FAD4Field(ownerRecord17, int*, 20);
+            rawWord2 -= rawWord3;
+            temporaryWord10 = rawWord2;
+            if (temporaryWord10 < 0) {
+                temporaryWord10 = -temporaryWord10;
+            }
+            argumentWord4 = (int)ownerRecord17;
+            if (temporaryWord10 >= 4096) goto updateOriginalCommonHeight759;
+            __asm__ volatile(""::"r"(ownerRecord17));
+            goto notifyOriginalSharedCloseTarget676;
+        }
+        goto updateOriginalCommonHeight759;
+    case 25:
+        if (Level23_7FAD4Call4F334View1(ownerRecord17 + 0xC, (int)&Level23_7FAD4Data70328View1) < Level23_7FAD4Field(privateRecord19, short *, 0xE)) {
+            rawWord2 = Level23_7FAD4OriginalPlayerHeight;
+            rawWord3 = Level23_7FAD4Field(ownerRecord17, int*, 20);
+            rawWord2 -= rawWord3;
+            temporaryWord11 = rawWord2;
+            if (temporaryWord11 < 0) {
+                temporaryWord11 = -temporaryWord11;
+            }
+            argumentWord4 = (int)ownerRecord17;
+            if (temporaryWord11 < 4096){
+                notifyOriginalSharedCloseTarget676:Level23_7FAD4Call34F40View1(argumentWord4, 0);
+                Level23_7FAD4Field(ownerRecord17, unsigned char*, 72) = 20;
+                Level23_7FAD4Field(ownerRecord17, unsigned char*, 73) = 2;
+                goto updateOriginalCommonHeight759;
+            }
+            goto checkOriginalPathAdvance683;
+        }
+    checkOriginalPathAdvance683:
+        if (Level23_7FAD4Data6C770View1 != 0) {
+            rawWord2 = Level23_7FAD4Field(privateRecord19, int*, 20);
+            retainedPositionPlayerBaseOrPathCount16 = Level23_7FAD4Field(rawWord2, short*, 0);
+            rawWord2 = Level23_7FAD4Call3636CView1(1, retainedPositionPlayerBaseOrPathCount16-1);
+            argumentWord6 = Level23_7FAD4Field(privateRecord19, int*, 20);
+            rawWord3 = Level23_7FAD4Field(argumentWord6, short*, 2);
+            rawWord3 += rawWord2;
+            rawWord2 = rawWord3%retainedPositionPlayerBaseOrPathCount16;
+            Level23_7FAD4Field(argumentWord6, short*, 2) = rawWord2;
+            Level23_7FAD4Call34F40View1(ownerRecord17, 0);
+            Level23_7FAD4Field(ownerRecord17, unsigned char *, 0x48) = 0x18U;
+        }
+        goto updateOriginalCommonHeight759;
+    case 7:
+        if ((Level23_7FAD4Call35030View1(ownerRecord17, privateRecord19 + 0x20, Level23_7FAD4Field(privateRecord19, int *, 0x18), privateRecord19 + 0x1C, 8, 0x10, 0x200, 0x23) == 3) || (Level23_7FAD4Data6C770View1 != 0)) {
+            if (Level23_7FAD4Call3BFC0View1(ownerRecord17, Level23_7FAD4Field(privateRecord19, int *, 0x24)) != 0) {
+                Level23_7FAD4Call3BE70View1(Level23_7FAD4Field(privateRecord19, int *, 0x24));
+            }
+            Level23_7FAD4Field(privateRecord19, int *, 0x24) = -1;
+            Level23_7FAD4Call55D24View1(ownerRecord17, 4);
+            Level23_7FAD4Call3BA00View1(ownerRecord17);
+            Level23_7FAD4Call369B8View1(ownerRecord17, 0x28);
+            Level23_7FAD4Call55B18View1(ownerRecord17);
+            return;
+        }
+        goto updateOriginalCommonHeight759;
+    }
+    goto updateOriginalCommonHeight759;
+updateOriginalCommonHeight759:
+    retainedPositionPlayerBaseOrPathCount16 = (int)&originalFrame.sp40;
+    if (retainedOriginalHeightUpdateFlag20){
+        Level23_7FAD4Call4F178View1(retainedPositionPlayerBaseOrPathCount16, ownerRecord17+12);
+        argumentWord4 = retainedPositionPlayerBaseOrPathCount16;
+        rawWord2 = originalFrame.sp48;
+        argumentWord5 = 5000;
+        rawWord2 += 2048;
+        originalFrame.sp48 = rawWord2;
+        rawWord2 = Level23_7FAD4Call1A358View1(argumentWord4, argumentWord5);
+        argumentWord4 = Level23_7FAD4Field(privateRecord19, int*, 8);
+        rawWord3 = rawWord2;
+        rawWord2 = argumentWord4 < rawWord3;
+        if (rawWord2){
+            rawWord2 = Level23_7FAD4Field(ownerRecord17, int*, 20);
+            rawWord2 += 100;
+            Level23_7FAD4Field(ownerRecord17, int*, 20) = rawWord2;
+            rawWord2 = rawWord3 < rawWord2;
+            goto clampOriginalHeight789;
+        }
+        rawWord2 = Level23_7FAD4Field(ownerRecord17, int*, 20);
+        if (rawWord2 == argumentWord4) return;
+        rawWord2 -= 100;
+        Level23_7FAD4Field(ownerRecord17, int*, 20) = rawWord2;
+        rawWord3 = Level23_7FAD4Field(privateRecord19, int*, 8);
+        rawWord2 = rawWord2 < rawWord3;
+        clampOriginalHeight789:if (rawWord2)Level23_7FAD4Field(ownerRecord17, int*, 20) = rawWord3;
+    }
+    return;
+}
+#undef Level23_7FAD4Field
+
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+typedef union {
+    long long full;
+    struct {
+#if defined(__MIPSEB__)
+        int high;
+        unsigned low;
+#else
+        unsigned low;
+        int high;
+#endif
+    } words;
+} Level23_80758Product;
+/* SCUS-94467 USA Rev0. AI generated; not human reviewed. UNINSTALLED conditional original1395 C.
+ * Selector6<=8 and16<=7 lifecycle remains unproved. No acceptance. */
+#define Level23_80758Field(p, t, o) (*(t)((unsigned char *)(p) + (o)))
+#define Level23_80758Keep(v) __asm__("" : "=r"(v) : "0"(v))
+int Level23_80758_func_8001830C() __asm__("func_8001830C");
+int Level23_80758_func_8001A358() __asm__("func_8001A358");
+int Level23_80758_func_80034F80() __asm__("func_80034F80");
+int Level23_80758_func_8003573C() __asm__("func_8003573C");
+int Level23_80758_func_8003585C() __asm__("func_8003585C");
+int Level23_80758_func_800359A4() __asm__("func_800359A4");
+int Level23_80758_func_80035DDC() __asm__("func_80035DDC");
+int Level23_80758_func_8003BABC() __asm__("func_8003BABC");
+int Level23_80758_func_8004E880() __asm__("func_8004E880");
+int Level23_80758_func_8004ED6C() __asm__("func_8004ED6C");
+int Level23_80758_func_8004F110() __asm__("func_8004F110");
+int Level23_80758_func_8004F178() __asm__("func_8004F178");
+int Level23_80758_func_8004F194() __asm__("func_8004F194");
+int Level23_80758_func_8004F1C8() __asm__("func_8004F1C8");
+int Level23_80758_func_8004F334() __asm__("func_8004F334");
+int Level23_80758_func_80055B18() __asm__("func_80055B18");
+int Level23_80758_func_80055D24() __asm__("func_80055D24");
+int Level23_80758_func_80055E84() __asm__("func_80055E84");
+int Level23_80758_rand() __asm__("rand");
+extern int Level23_80758_D_8006C550 __asm__("D_8006C550");
+extern int Level23_80758_D_8006C574 __asm__("D_8006C574");
+extern int Level23_80758_D_8006C578 __asm__("D_8006C578");
+extern int Level23_80758_D_8006C58C __asm__("D_8006C58C");
+extern int Level23_80758_D_8006C76C __asm__("D_8006C76C");
+extern int Level23_80758_D_8006C770 __asm__("D_8006C770");
+extern int Level23_80758_D_8006EE2C __asm__("D_8006EE2C");
+extern int Level23_80758_D_80070328 __asm__("D_80070328");
+extern signed char Level23_80758_D_80071573 __asm__("D_80071573");
+extern int Level23_80758_D_80071908 __asm__("D_80071908");
+extern int Level23_80758_D_80071934 __asm__("D_80071934");
+extern int Level23_80758_D_level_23_800963E4 __asm__("D_level_23_800963E4");
+extern int (*Level23_80758SpawnMoby)() __asm__("SpawnMoby");
+extern int (*Level23_80758SpawnParticle)() __asm__("SpawnParticle");
+extern int Level23_80758_func_level_23_80075578 __asm__("func_level_23_80075578");
+extern int Level23_80758_main_TEXT_END __asm__("main_TEXT_END");
+extern int Level23_80758_main_TEXT_START __asm__("main_TEXT_START");
+void func_level_23_80080758(void *input) {
+    register int saved16 __asm__("$16"), saved17 __asm__("$17"), saved18 __asm__("$18"),
+        privateState __asm__("$19"), owner __asm__("$20"), saved21 __asm__("$21"),
+        saved22 __asm__("$22"), saved23 __asm__("$23");
+    register int temporary10 __asm__("$10"), temporary9 __asm__("$9"), temporary8 __asm__("$8"),
+        result __asm__("$2"), scratch __asm__("$3"), argument0 __asm__("$4"),
+        argument1 __asm__("$5"), argument2 __asm__("$6"), argument3 __asm__("$7");
+    Level23_80758Product quotientProduct;
+    struct {
+        int sp18, sp1C, sp20, sp24, sp28, sp2C, sp30, sp34, sp38, sp3C, sp40, sp44, sp48, sp4C,
+            sp50, sp54, sp58, sp5C, sp60, sp64, sp68, sp6C, sp70, sp74, sp78, sp7C, sp80, sp84,
+            sp88, sp8C, sp90, sp94, sp98, sp9C, spA0, spA4, spA8, spAC, spB0, spB4, spB8, spBC,
+            spC0, spC4, spC8, spCC, spD0, spD4, spD8, spDC, spE0, spE4;
+    } locals;
+
+    int temp_a1;
+
+    int temp_v1_2;
+
+    int temp_v1_4;
+
+    int temp_a2;
+
+    int temp_v0;
+
+    int temp_v0_7;
+
+    int temp_v1_13;
+
+    int var_v0;
+
+    int var_v0_3;
+
+    int var_v0_4;
+
+    int var_v0_9;
+
+    int temp_v0_2;
+
+    int temp_v0_8;
+
+    int temp_v1_3;
+
+    int temp_a0;
+
+    int temp_a0_2;
+
+    int temp_a0_3;
+
+    int temp_v1;
+
+    int temp_v1_11;
+
+    int temp_v1_12;
+
+    int temp_v1_14;
+
+    int temp_v1_5;
+
+    int var_a0;
+
+    int var_a0_2;
+
+    /* Explicit original inherited memory; not an ordinary C initializer. */
+    __asm__("" : "=m"(locals.sp98), "=m"(locals.sp9C), "=m"(locals.spA0));
+    owner = (int)input;
+    Level23_80758Keep(owner);
+    saved17 = 2;
+    Level23_80758Keep(saved17);
+    temp_v1 = Level23_80758Field(owner, unsigned char *, 0x48);
+    privateState = Level23_80758Field(owner, int *, 0);
+    if (temp_v1 == saved17) {
+        goto block_112;
+    }
+    if ((int)temp_v1 >= 3) {
+        goto block_4;
+    }
+    argument0 = (int)&locals.sp18;
+    if (temp_v1 == 1) {
+        goto block_7;
+    }
+    goto block_204;
+block_4:
+    if (temp_v1 == 0x14) {
+        goto block_118;
+    }
+    if (temp_v1 == 0x15) {
+        goto block_48;
+    }
+    goto block_204;
+block_7:
+    saved16 = (int)&Level23_80758_D_80070328 + 0x98;
+    Level23_80758Keep(saved16);
+    scratch = Level23_80758Field(privateState, int *, 0);
+    result = (unsigned int)scratch * 88U;
+    scratch = Level23_80758_D_8006C550;
+    scratch += result;
+    Level23_80758Keep(scratch);
+    saved21 = Level23_80758Field(scratch, int *, 0);
+    __asm__("" : "=r"(saved16) : "0"(saved16), "r"(saved21));
+    Level23_80758_func_8004F178(argument0, saved16);
+    temp_a2 = locals.sp1C;
+    locals.sp18 *= 0x23;
+    locals.sp1C = temp_a2 * 0x23;
+    locals.sp20 *= 0x23;
+    Level23_80758_func_8004F110(&locals.sp18, 6);
+    argument0 = (int)&locals.sp18;
+    argument1 = argument0;
+    __asm__("" : "=r"(saved16) : "0"(saved16), "r"(argument1));
+    saved16 -= 0x98;
+    Level23_80758_func_8004F194(argument0, argument1, saved16);
+    Level23_80758_func_8003585C(
+        owner,
+        Level23_80758_func_8004E880(locals.sp18 - Level23_80758Field(owner, int *, 0xC),
+                                    locals.sp1C - Level23_80758Field(owner, int *, 0x10), 0),
+        0xA, 2, 0, 0);
+    saved18 = owner + 0xC;
+    temp_v0 = Level23_80758_func_8004F334(saved18, saved16);
+    if (temp_v0 < 0x201) {
+        goto block_22;
+    }
+    if (Level23_80758Field(owner, unsigned char *, 0x49) != saved17) {
+        goto block_15;
+    }
+    Level23_80758_func_80055D24(owner, 4);
+    saved17 = owner + 0x20;
+    locals.sp28 = 0x200;
+    locals.sp2C = 0;
+    locals.sp30 = 0;
+    Level23_80758_func_8004ED6C(saved17, &locals.sp28, &locals.sp28);
+    Level23_80758_func_8004F194(&locals.sp28, saved18, &locals.sp28);
+    locals.sp38 = 0;
+    locals.sp3C = 0x100;
+    locals.sp40 = 0;
+    Level23_80758_func_8004ED6C(saved17, &locals.sp38, &locals.sp38);
+    Level23_80758_func_8004F194(&locals.sp48, saved18, &locals.sp38);
+    Level23_80758_func_8004F1C8(&locals.sp38, saved18, &locals.sp38);
+    if (Level23_80758_func_8001830C(saved18, &locals.sp28, 7, 0, 0) != 0) {
+        goto block_11;
+    }
+    if (Level23_80758_func_8001830C(&locals.sp38, &locals.sp48, 7, 0, 0) == 0) {
+        goto block_21;
+    }
+block_11:
+    if (Level23_80758Field(saved21, short *, 0xE) < 0) {
+        goto block_33;
+    }
+    if (temp_v0 < 0x1001) {
+        goto block_14;
+    }
+    Level23_80758Field(owner, int *, 0xC) =
+        (int)Level23_80758Field((int)&Level23_80758_D_80070328, int *, 0);
+    Level23_80758Field(owner, int *, 0x10) =
+        (int)Level23_80758Field((int)&Level23_80758_D_80070328, int *, 4);
+block_14:
+    Level23_80758Field(owner, int *, 0x14) =
+        (int)(Level23_80758Field(saved21, short *, 0xE) - 0x100);
+    goto block_30;
+block_15:
+    temp_v1_2 = Level23_80758Field(saved21, short *, 0xE);
+    if (temp_v1_2 <= 0) {
+        goto block_30;
+    }
+    var_v0 = Level23_80758Field((int)&Level23_80758_D_80070328, int *, 8) - temp_v1_2;
+    if (var_v0 >= 0) {
+        goto block_18;
+    }
+    var_v0 = -var_v0;
+block_18:
+    if (var_v0 >= 0x578) {
+        goto block_30;
+    }
+    Level23_80758_func_80055D24(owner, 4);
+    saved17 = owner + 0x20;
+    locals.sp58 = 0x200;
+    locals.sp5C = 0;
+    locals.sp60 = 0;
+    Level23_80758_func_8004ED6C(saved17, &locals.sp58, &locals.sp58);
+    Level23_80758_func_8004F194(&locals.sp58, saved18, &locals.sp58);
+    locals.sp68 = 0;
+    locals.sp6C = 0x100;
+    locals.sp70 = 0;
+    Level23_80758_func_8004ED6C(saved17, &locals.sp68, &locals.sp68);
+    Level23_80758_func_8004F194(&locals.sp78, saved18, &locals.sp68);
+    Level23_80758_func_8004F1C8(&locals.sp68, saved18, &locals.sp68);
+    if (Level23_80758_func_8001830C(saved18, &locals.sp58, 7, 0, 0) != 0) {
+        goto block_30;
+    }
+    if (Level23_80758_func_8001830C(&locals.sp68, &locals.sp78, 7, 0, 0) != 0) {
+        goto block_30;
+    }
+block_21:
+    Level23_80758_func_80035DDC(owner, 0xC8, 0, 0, 0x400);
+    goto block_30;
+block_22:
+    result = Level23_80758Field(owner, int *, 0x14);
+    scratch = Level23_80758Field((int)&Level23_80758_D_80070328, int *, 8);
+    result -= scratch;
+    if (result >= 0) {
+        goto block_24;
+    }
+    result = -result;
+block_24:
+    if (result >= 0x400) {
+        goto block_30;
+    }
+    if (Level23_80758Field(saved21, unsigned char *, 0x12) != 0) {
+        goto block_28;
+    }
+    if (Level23_80758Field((int)&Level23_80758_D_80070328, int *, 0x50) != 0xA) {
+        goto block_28;
+    }
+    Level23_80758Field((int)&Level23_80758_D_80070328, int *, 0x24) =
+        (int)(Level23_80758Field((int)&Level23_80758_D_80070328, int *, 0x24) | 0x200);
+    Level23_80758_func_8003BABC(owner, 0, 0);
+    Level23_80758Field(saved21, unsigned char *, 0x12) = 0x1EU;
+    goto block_29;
+block_28:
+    if (Level23_80758Field(owner, unsigned char *, 0x49) == 2) {
+        goto block_204;
+    }
+block_29:
+    Level23_80758_func_80034F80(owner, 2);
+    Level23_80758Field(owner, unsigned char *, 0x48) = 2U;
+    goto block_204;
+block_30:
+    if (Level23_80758Field(saved21, short *, 0xE) < 0) {
+        goto block_33;
+    }
+    Level23_80758Field(owner, signed char *, 0x57) = 0x30;
+    Level23_80758Field(privateState, short *, 0xA) = 0;
+    Level23_80758_func_80034F80(owner, 1);
+    if (Level23_80758Field(privateState, short *, 8) >= 0x1E) {
+        goto block_204;
+    }
+    Level23_80758Field(privateState, short *, 8) = 0x1E;
+    goto block_204;
+block_33:
+    temp_a0 = Level23_80758Field(owner, unsigned char *, 0x49);
+    if (temp_a0 != 2) {
+        goto block_38;
+    }
+    temp_v1_3 = Level23_80758Field(saved21, signed char *, 5);
+    if (temp_v1_3 < 2) {
+        goto block_38;
+    }
+    if (temp_v1_3 != temp_a0) {
+        goto block_37;
+    }
+    if (!(Level23_80758Field(saved21, unsigned short *, 0xC) & 0x200)) {
+        goto block_38;
+    }
+block_37:
+    Level23_80758Field(privateState, short *, 8) = 0x64;
+    goto block_204;
+block_38:
+    var_a0 = privateState + 8;
+    if (Level23_80758Field(privateState, short *, 0xA) != 0) {
+        goto block_41;
+    }
+    if ((unsigned int)((unsigned short)Level23_80758Field(privateState, short *, 8) - 5) >= 0x1BU) {
+        goto block_41;
+    }
+    Level23_80758Field(privateState, short *, 0xA) = 0x1E;
+    Level23_80758Field(privateState, unsigned char *, 0x11) = 2U;
+    var_a0 = privateState + 8;
+block_41:
+    if (Level23_80758_func_800359A4(({
+                                        argument0 = privateState + 8;
+                                        Level23_80758Keep(argument0);
+                                        argument0;
+                                    }),
+                                    2) == 0) {
+        goto block_204;
+    }
+    result = Level23_80758Field(saved21, unsigned char *, 5);
+    result--;
+    Level23_80758Field(saved21, unsigned char *, 5) = result;
+    __asm__ volatile("" ::"m"(Level23_80758Field(saved21, unsigned char *, 5)));
+    scratch = (signed char)result;
+    if (scratch <= 0) {
+        goto block_45;
+    }
+    if (scratch != 1) {
+        goto block_111;
+    }
+    if (Level23_80758Field(saved21, unsigned short *, 0xC) & 0x200) {
+        goto block_111;
+    }
+block_45:
+    if (scratch >= 0) {
+        goto block_47;
+    }
+    Level23_80758Field(saved21, signed char *, 5) = 0;
+block_47:
+    Level23_80758Field(saved21, signed char *, 6) = 0;
+    Level23_80758Field(saved21, unsigned short *, 0xC) =
+        (unsigned short)(Level23_80758Field(saved21, unsigned short *, 0xC) | 0x1FF);
+    goto block_111;
+block_48:
+    argument0 = 1;
+    scratch = Level23_80758Field(privateState, int *, 0);
+    result = (unsigned int)scratch * 88U;
+    scratch = Level23_80758_D_8006C550;
+    scratch += result;
+    Level23_80758Keep(scratch);
+    result = Level23_80758Field(privateState, unsigned char *, 4);
+    saved22 = Level23_80758Field(scratch, int *, 0);
+    __asm__("" : "=r"(argument0) : "0"(argument0), "r"(result));
+    if (result != argument0) {
+        goto block_52;
+    }
+    Level23_80758Field(privateState, unsigned char *, 4) = 2U;
+    Level23_80758_func_8004F178(&locals.sp78, owner + 0xC);
+    locals.sp80 += 0x400;
+    if (Level23_80758_func_8001A358(&locals.sp78, 0xC00) == 0) {
+        goto block_52;
+    }
+    if (Level23_80758_D_80071934 == 0) {
+        goto block_109;
+    }
+    Level23_80758Field(owner, int *, 0x14) = (int)(Level23_80758_D_80071908 - 0x100);
+block_52:
+    temp_v1_4 = Level23_80758Field(saved22, short *, 0xE);
+    if (temp_v1_4 <= 0) {
+        goto block_63;
+    }
+    var_v0_3 = Level23_80758Field((int)&Level23_80758_D_80070328, int *, 8) - temp_v1_4;
+    if (var_v0_3 >= 0) {
+        goto block_55;
+    }
+    var_v0_3 = -var_v0_3;
+block_55:
+    if (var_v0_3 >= 0x400) {
+        goto block_63;
+    }
+    if (Level23_80758Field(privateState, unsigned char *, 7) != 0) {
+        goto block_62;
+    }
+    if (Level23_80758Field(owner, unsigned char *, 0x3D) != 2) {
+        goto block_62;
+    }
+    if (Level23_80758_func_80055E84(owner) < 5) {
+        goto block_62;
+    }
+    if (Level23_80758_func_80055E84(owner) >= 0x17) {
+        goto block_61;
+    }
+    Level23_80758Field(privateState, unsigned char *, 7) = 1U;
+block_61:
+block_62:
+    Level23_80758_func_80034F80(owner, 1);
+    Level23_80758Field(saved22, unsigned short *, 0xC) =
+        (unsigned short)(Level23_80758Field(saved22, unsigned short *, 0xC) | 0x200);
+    Level23_80758Field(privateState, short *, 8) = 0xC8;
+    Level23_80758Field(privateState, short *, 0xA) = 0;
+    Level23_80758Field(owner, signed char *, 0x57) = 0x30;
+    Level23_80758Field(owner, unsigned char *, 0x48) = 1U;
+    result = Level23_80758Field(privateState, int *, 0x14);
+    Level23_80758Field(owner, unsigned char *, 0x49) = 0;
+    Level23_80758Field(owner, int *, 0x14) = result;
+    goto block_204;
+block_63:
+    if (Level23_80758Field(privateState, short *, 8) >= 0xC8) {
+        goto block_80;
+    }
+    if (Level23_80758Field(owner, unsigned char *, 0x3D) != 2) {
+        goto block_67;
+    }
+    if (Level23_80758_func_80055E84(owner) < 3) {
+        goto block_67;
+    }
+    if (Level23_80758_func_80055E84(owner) < 0x18) {
+        goto block_80;
+    }
+block_67:
+    if (Level23_80758Field(privateState, unsigned char *, 7) != 0) {
+        goto block_72;
+    }
+    if (Level23_80758Field(owner, unsigned char *, 0x3D) != 2) {
+        goto block_72;
+    }
+    if (Level23_80758_func_80055E84(owner) < 5) {
+        goto block_72;
+    }
+    if (Level23_80758_func_80055E84(owner) >= 0x17) {
+        goto block_72;
+    }
+    Level23_80758Field(privateState, unsigned char *, 7) = 1U;
+block_72:
+    if (Level23_80758Field(privateState, short *, 8) < 0x23) {
+        goto block_74;
+    }
+    Level23_80758_func_80034F80(owner, 1);
+block_74:
+    Level23_80758Field(owner, int *, 0x14) = (int)Level23_80758Field(privateState, int *, 0x14);
+    Level23_80758_func_8003585C(
+        owner,
+        (Level23_80758_func_8004E880(Level23_80758Field((int)&Level23_80758_D_80070328, int *, 0) -
+                                         Level23_80758Field(owner, int *, 0xC),
+                                     Level23_80758Field((int)&Level23_80758_D_80070328, int *, 4) -
+                                         Level23_80758Field(owner, int *, 0x10),
+                                     0) +
+         0x80) &
+            0xFF,
+        6, 6, 0, 0);
+    Level23_80758_func_80055D24(owner, 4);
+    saved18 = owner + 0x20;
+    locals.sp48 = 0x200;
+    locals.sp4C = 0;
+    locals.sp50 = 0;
+    Level23_80758_func_8004ED6C(saved18, &locals.sp48, &locals.sp48);
+    argument0 = (int)&locals.sp48;
+    Level23_80758Keep(argument0);
+    saved16 = owner + 12;
+    Level23_80758_func_8004F194(argument0, saved16, &locals.sp48);
+    locals.sp88 = 0;
+    locals.sp8C = 0x100;
+    locals.sp90 = 0;
+    Level23_80758_func_8004ED6C(saved18, &locals.sp88, &locals.sp88);
+    Level23_80758_func_8004F194(&locals.sp98, saved16, &locals.sp88);
+    Level23_80758_func_8004F1C8(&locals.sp88, saved16, &locals.sp88);
+    if (Level23_80758_func_8001830C(saved16, &locals.sp48, 7, 0, 0) != 0) {
+        goto block_77;
+    }
+    if (Level23_80758_func_8001830C(&locals.sp88, &locals.sp98, 7, 0, 0) != 0) {
+        goto block_77;
+    }
+    Level23_80758_func_80035DDC(owner, 0x3C, 0, 0, 0);
+block_77:
+    var_a0_2 = privateState + 8;
+    if ((unsigned int)((unsigned short)Level23_80758Field(privateState, short *, 8) - 5) >= 0x1BU) {
+        goto block_108;
+    }
+    if (Level23_80758Field(privateState, short *, 0xA) != 0) {
+        goto block_108;
+    }
+    Level23_80758Field(privateState, short *, 0xA) = 0x1E;
+    Level23_80758Field(privateState, unsigned char *, 0x11) = 2U;
+    goto block_108;
+block_80:
+    Level23_80758_func_8003573C(owner, 0xA, 2, 0);
+    Level23_80758Keep(owner);
+    saved18 = owner + 12;
+    if (Level23_80758Field(owner, unsigned char *, 0x3D) != 2) {
+        goto block_89;
+    }
+    if (Level23_80758Field(owner, unsigned char *, 0x49) != 0) {
+        goto block_85;
+    }
+    if (Level23_80758_func_80055E84(owner) < 3) {
+        goto block_85;
+    }
+    if (Level23_80758_func_80055E84(owner) >= 9) {
+        goto block_85;
+    }
+    scratch = 1;
+    result = Level23_80758Field(owner, int *, 0x14);
+    Level23_80758Field(owner, unsigned char *, 0x49) = scratch;
+    result += 200;
+    var_v0_4 = result;
+    goto block_88;
+block_85:
+    Level23_80758Keep(owner);
+    saved18 = owner + 12;
+    if (Level23_80758Field(owner, unsigned char *, 0x49) != 1) {
+        goto block_89;
+    }
+    result = Level23_80758_func_80055E84(owner);
+    Level23_80758Keep(owner);
+    saved18 = owner + 12;
+    if (result < 0x16) {
+        goto block_89;
+    }
+    Level23_80758Field(owner, unsigned char *, 0x49) = 0U;
+    var_v0_4 = Level23_80758Field(owner, int *, 0x14) - 0xC8;
+block_88:
+    Level23_80758Field(owner, int *, 0x14) = var_v0_4;
+    Level23_80758Keep(owner);
+    saved18 = owner + 12;
+block_89:
+    if (Level23_80758_func_8004F334(saved18, (int)&Level23_80758_D_80070328) < 0x5DD) {
+        goto block_101;
+    }
+    if (Level23_80758Field(privateState, unsigned char *, 0x13) == 0) {
+        goto block_92;
+    }
+    Level23_80758_func_800359A4(({
+                                    argument0 = privateState + 8;
+                                    Level23_80758Keep(argument0);
+                                    argument0;
+                                }),
+                                2);
+    goto block_204;
+block_92:
+    Level23_80758_func_80055D24(owner, 4);
+    saved17 = owner + 0x20;
+    locals.spA8 = 0x200;
+    locals.spAC = 0;
+    locals.spB0 = 0;
+    Level23_80758_func_8004ED6C(saved17, &locals.spA8, &locals.spA8);
+    Level23_80758_func_8004F194(&locals.spA8, saved18, &locals.spA8);
+    locals.spB8 = 0;
+    locals.spBC = 0x100;
+    locals.spC0 = 0;
+    Level23_80758_func_8004ED6C(saved17, &locals.spB8, &locals.spB8);
+    Level23_80758_func_8004F194(&locals.spC8, saved18, &locals.spB8);
+    Level23_80758_func_8004F1C8(&locals.spB8, saved18, &locals.spB8);
+    if (Level23_80758_func_8001830C(saved18, &locals.spA8, 7, 0, 0) != 0) {
+        goto block_95;
+    }
+    if (Level23_80758_func_8001830C(&locals.spB8, &locals.spC8, 7, 0, 0) != 0) {
+        goto block_95;
+    }
+    Level23_80758_func_80035DDC(owner, 0x3C, 0, 0, 0);
+    Level23_80758_func_80034F80(owner, 1);
+    var_a0_2 = privateState + 8;
+    goto block_108;
+block_95:
+    if (Level23_80758Field(privateState, unsigned char *, 4) != 0) {
+        goto block_97;
+    }
+    Level23_80758Field(privateState, unsigned char *, 4) = 1U;
+block_97:
+    Level23_80758Field(privateState, unsigned char *, 0x13) = 1U;
+    Level23_80758_func_80034F80(owner, 2);
+    var_a0_2 = privateState + 8;
+    if (Level23_80758Field(privateState, unsigned char *, 7) != 0) {
+        goto block_108;
+    }
+    var_a0_2 = privateState + 8;
+    if (Level23_80758_func_80055E84(owner) < 0x16) {
+        goto block_108;
+    }
+    var_a0_2 = privateState + 8;
+    if (Level23_80758_func_80055E84(owner) >= 0x1B) {
+        goto block_108;
+    }
+    Level23_80758Field(privateState, unsigned char *, 7) = 1U;
+    goto block_108;
+block_101:
+    if (Level23_80758Field(privateState, unsigned char *, 4) != 0) {
+        goto block_103;
+    }
+    Level23_80758Field(privateState, unsigned char *, 4) = 1U;
+block_103:
+    Level23_80758_func_80034F80(owner, 2);
+    var_a0_2 = privateState + 8;
+    if (Level23_80758Field(privateState, unsigned char *, 7) != 0) {
+        goto block_108;
+    }
+    var_a0_2 = privateState + 8;
+    if (Level23_80758_func_80055E84(owner) < 0x16) {
+        goto block_108;
+    }
+    if (Level23_80758_func_80055E84(owner) >= 0x1B) {
+        goto block_107;
+    }
+    Level23_80758Field(privateState, unsigned char *, 7) = 1U;
+block_107:
+    var_a0_2 = privateState + 8;
+block_108:
+    if (Level23_80758_func_800359A4(({
+                                        argument0 = privateState + 8;
+                                        Level23_80758Keep(argument0);
+                                        argument0;
+                                    }),
+                                    2) == 0) {
+        goto block_204;
+    }
+block_109:
+    result = Level23_80758Field(saved22, unsigned short *, 0xC);
+    scratch = Level23_80758Field(saved22, unsigned char *, 5);
+    result |= 512;
+    scratch--;
+    Level23_80758Field(saved22, unsigned char *, 5) = scratch;
+    scratch = (unsigned int)scratch << 24;
+    Level23_80758Field(saved22, unsigned short *, 0xC) = result;
+    if (scratch >= 0)
+        goto block_111;
+    Level23_80758Field(saved22, unsigned char *, 5) = 0;
+block_111:
+    Level23_80758_func_80055B18(owner);
+    return;
+block_112:
+    if (Level23_80758Field(privateState, unsigned char *, 7) != 0) {
+        goto block_116;
+    }
+    if (Level23_80758_func_80055E84(owner) < 0x15) {
+        goto block_116;
+    }
+    if (Level23_80758_func_80055E84(owner) >= 0x1B) {
+        goto block_116;
+    }
+    Level23_80758Field(privateState, unsigned char *, 7) = 1U;
+block_116:
+    if (Level23_80758_D_8006C770 == 0) {
+        goto block_204;
+    }
+    Level23_80758_func_80034F80(owner, 1);
+    Level23_80758Field(owner, unsigned char *, 0x48) = 1U;
+    Level23_80758Field(privateState, unsigned char *, 7) = 0U;
+    goto block_204;
+block_118:
+    argument0 = privateState + 24;
+    Level23_80758Keep(argument0);
+    saved16 = owner + 12;
+    Level23_80758Field(owner, signed char *, 0x41) = 0;
+    Level23_80758Field(owner, signed char *, 0x4C) = 0;
+    Level23_80758Field(owner, signed char *, 0x4D) = 0;
+    Level23_80758_func_8004F178(argument0, saved16);
+    Level23_80758_func_8004F178(saved16, (int)&Level23_80758_D_80070328);
+    if ((unsigned int)Level23_80758Field(privateState, volatile unsigned int *, 0x28) <
+        (unsigned int)(int)&Level23_80758_func_level_23_80075578) {
+        goto block_126;
+    }
+    argument1 = 0;
+    argument2 = (int)&Level23_80758_D_level_23_800963E4;
+    Level23_80758Keep(argument2);
+loop_120:
+    scratch = Level23_80758Field(privateState, volatile unsigned int *, 0x28);
+    if ((unsigned int)scratch >= (unsigned int)argument2) {
+        goto block_126;
+    }
+    argument0 = 0;
+    Level23_80758Field(privateState, volatile int *, 0x24) =
+        (int)(Level23_80758Field(privateState, volatile int *, 0x24) ^
+              (Level23_80758Field(scratch, unsigned char *, 0) << 8));
+loop_122:
+    scratch = Level23_80758Field(privateState, volatile int *, 0x24);
+    if (scratch & 0x8000)
+        result = ((unsigned int)scratch << 1) ^ 0x8005U;
+    else
+        result = (unsigned int)scratch << 1;
+block_124:
+    Level23_80758Field(privateState, volatile int *, 0x24) = result;
+    argument0 += 1;
+    if (argument0 < 8) {
+        goto loop_122;
+    }
+    argument1 += 1;
+    Level23_80758Field(privateState, volatile unsigned int *, 0x28) =
+        (unsigned int)(Level23_80758Field(privateState, volatile unsigned int *, 0x28) + 1);
+    if (argument1 < 0x40) {
+        goto loop_120;
+    }
+block_126:
+    if (Level23_80758Field(privateState, unsigned char *, 0x12) == 0) {
+        goto block_129;
+    }
+    if (Level23_80758_func_800359A4(privateState + 0x12, 1) == 0) {
+        goto block_129;
+    }
+    Level23_80758Field((int)&Level23_80758_D_80070328, int *, 0x284) = 0;
+block_129:
+    if (Level23_80758Field(privateState, signed char *, 5) <= 0) {
+        goto block_134;
+    }
+    if (Level23_80758_func_8001A358((int)&Level23_80758_D_80070328, 0x2800) == 0) {
+        goto block_133;
+    }
+    if (Level23_80758_D_80071934 == 0) {
+        goto block_133;
+    }
+    Level23_80758Field(privateState, short *, 0xE) = (short)Level23_80758_D_80071908;
+    goto block_134;
+block_133:
+    Level23_80758Field(privateState, short *, 0xE) = -1;
+block_134:
+    result = Level23_80758Field(privateState, volatile unsigned int *, 0x28);
+    if (result != 0) {
+        goto block_136;
+    }
+    Level23_80758Field(privateState, volatile unsigned int *, 0x28) =
+        (unsigned int)(Level23_80758_D_8006C58C + ((int)&Level23_80758_main_TEXT_START + 2));
+    result = Level23_80758Field(privateState, volatile unsigned int *, 0x28);
+block_136:
+    scratch = (int)&Level23_80758_main_TEXT_END;
+    Level23_80758Keep(scratch);
+    if ((unsigned int)result >= (unsigned int)scratch) {
+        goto block_146;
+    }
+    argument1 = 0;
+    argument2 = scratch;
+    Level23_80758Keep(argument2);
+loop_138:
+    scratch = Level23_80758Field(privateState, volatile unsigned int *, 0x28);
+    if ((unsigned int)scratch >= (unsigned int)argument2) {
+        goto block_145;
+    }
+    argument0 = 0;
+    Level23_80758Field(privateState, volatile int *, 0x24) =
+        (int)(Level23_80758Field(privateState, volatile int *, 0x24) ^
+              (Level23_80758Field(scratch, unsigned char *, 0) << 8));
+loop_140:
+    scratch = Level23_80758Field(privateState, volatile int *, 0x24);
+    if (scratch & 0x8000)
+        result = ((unsigned int)scratch << 1) ^ 0x8005U;
+    else
+        result = (unsigned int)scratch << 1;
+block_142:
+    Level23_80758Field(privateState, volatile int *, 0x24) = result;
+    argument0 += 1;
+    if (argument0 < 8) {
+        goto loop_140;
+    }
+    argument1 += 1;
+    result = Level23_80758Field(privateState, volatile int *, 0x24);
+    scratch = Level23_80758Field(privateState, volatile unsigned int *, 0x28);
+    result &= 3;
+    result++;
+    scratch = (unsigned int)scratch + (unsigned int)result;
+    Level23_80758Field(privateState, unsigned int *, 0x28) = scratch;
+    if (argument1 < 0x40) {
+        goto loop_138;
+    }
+    result = (int)&Level23_80758_main_TEXT_END;
+    result = (unsigned int)scratch < (unsigned int)result;
+    if (result) {
+        goto block_146;
+    }
+block_145:
+    Level23_80758Field(privateState, volatile unsigned int *, 0x28) =
+        (unsigned int)(int)&Level23_80758_func_level_23_80075578;
+block_146:
+    if (Level23_80758Field(privateState, signed char *, 5) >= 5) {
+        goto block_201;
+    }
+    if ((unsigned int)(Level23_80758Field((int)&Level23_80758_D_80070328, int *, 0x50) - 2) < 2U) {
+        goto block_149;
+    }
+    if (Level23_80758Field((int)&Level23_80758_D_80070328, int *, 0x50) != 5) {
+        goto block_180;
+    }
+block_149:
+    Level23_80758_func_8004F178(&locals.spC8, ((int)&Level23_80758_D_80070328 + 0x50) - 0x50);
+    locals.spD0 += 0x200;
+    saved16 = Level23_80758_func_8001A358(&locals.spC8, 0x2800);
+    if (saved16 <= 0) {
+        goto block_201;
+    }
+    saved21 = 1;
+    if (Level23_80758_D_80071934 == 0) {
+        goto block_201;
+    }
+    result = saved16 - 0x100;
+    __asm__("" : "=r"(result) : "0"(result), "r"(saved16));
+    locals.spD0 = result;
+    temp_v1_11 = Level23_80758Field(privateState, unsigned char *, 6);
+    saved22 = 0;
+    if (temp_v1_11 >= 9U) {
+        goto block_165;
+    }
+    switch (temp_v1_11) {
+    case 0:
+        saved21 = 0;
+        goto block_165;
+    case 1:
+        locals.sp98 = 0x1000;
+        __asm__ volatile("" ::"m"(locals.sp98));
+        locals.sp9C = 0;
+        goto block_164;
+    case 2:
+        result = 0x1000;
+        goto block_162;
+    case 3:
+        locals.sp98 = 0x1000;
+        result = -0x1000;
+        goto block_163;
+    case 4:
+        result = -0x1000;
+        locals.sp98 = 0;
+        goto block_163;
+    case 5:
+        result = 0x1000;
+        locals.sp98 = 0;
+        goto block_163;
+    case 6:
+        locals.sp98 = -0x1000;
+        result = 0x1000;
+        goto block_163;
+    case 7:
+        locals.sp98 = -0x1000;
+        locals.sp9C = 0;
+        goto block_164;
+    case 8:
+        result = -0x1000;
+    block_162:
+        locals.sp98 = result;
+    block_163:
+        locals.sp9C = result;
+    block_164:
+        locals.spA0 = 0;
+    }
+block_165:
+    if (saved21 == 0) {
+        goto block_169;
+    }
+    Level23_80758_func_8004ED6C((int)&Level23_80758_D_80070328 + 0x30, &locals.sp98, &locals.sp98);
+    locals.spA0 = 0;
+    Level23_80758_func_8004F194(&locals.spD8, &locals.spC8, &locals.sp98);
+    if (Level23_80758_func_8001830C(&locals.spC8, &locals.spD8, 7, 0, 0) == 0) {
+        goto block_168;
+    }
+    saved22 = 1;
+    goto block_169;
+block_168:
+    Level23_80758_func_8004F178(&locals.spC8, &locals.spD8);
+block_169:
+    argument2 = 0;
+    if (saved22 != 0) {
+        goto block_176;
+    }
+    result = Level23_80758SpawnMoby(0x16, owner, 0);
+    saved17 = result;
+    Level23_80758Keep(saved17);
+    saved18 = 1;
+    if (saved17 == 0) {
+        goto block_204;
+    }
+    Level23_80758Keep(saved18);
+    __asm__("" ::: "$22");
+    argument0 = Level23_80758_D_8006C550;
+    saved16 = Level23_80758Field(saved17, int *, 0);
+    argument0 = owner - argument0;
+    result = 0U - (unsigned int)argument0 * 0x45D1745DU;
+    result >>= 3;
+    Level23_80758Field(saved16, int *, 0) = result;
+    Level23_80758Field(saved16, short *, 8) = 0x64;
+    Level23_80758Field(saved16, signed char *, 4) = 0;
+    Level23_80758Field(saved16, short *, 0xA) = 0x1E;
+    Level23_80758Field(saved16, signed char *, 0x11) = saved18;
+    if (locals.spD0 < 0x1CE9) {
+        goto block_173;
+    }
+    Level23_80758Field(saved16, int *, 0x14) = locals.spD0;
+block_173:
+    Level23_80758_func_8004F178(saved17 + 0xC, &locals.spC8);
+    Level23_80758_func_8003573C(saved17, 0x80, 2, 0);
+    Level23_80758_func_80034F80(saved17, 1);
+    Level23_80758Field(saved17, signed char *, 0x48) = saved18;
+    Level23_80758Field(saved17, unsigned char *, 0x4A) = 255;
+    Level23_80758Field(saved17, signed char *, 0x47) = 0;
+    if (saved21 != 0) {
+        goto block_175;
+    }
+    Level23_80758Field(saved17, signed char *, 0x49) = 2;
+block_175:
+    result = 1;
+    scratch = Level23_80758Field(privateState, unsigned char *, 5);
+    argument0 = Level23_80758Field(privateState, unsigned char *, 6);
+    scratch++;
+    argument1 = (unsigned int)result << argument0;
+    Level23_80758Field(privateState, unsigned char *, 5) = scratch;
+    Level23_80758Field(saved16, unsigned short *, 0xC) = argument1;
+    result = Level23_80758Field(privateState, unsigned short *, 0xC);
+    scratch = ~argument1;
+    result &= scratch;
+    Level23_80758Field(privateState, unsigned short *, 0xC) = result;
+    __asm__ volatile("" ::"m"(Level23_80758Field(privateState, unsigned short *, 0xC)) : "$6");
+    argument2 = 0;
+block_176:
+    temporary8 = 0x38E38E39;
+    Level23_80758Keep(temporary8);
+    temporary9 = 1;
+    Level23_80758Keep(temporary9);
+    argument3 = Level23_80758Field(privateState, short *, 0xC);
+loop_177:
+    argument0 = Level23_80758Field(privateState, unsigned char *, 6);
+    argument0++;
+    Level23_80758Keep(argument0);
+    quotientProduct.full = (long long)(int)argument0 * (long long)(int)temporary8;
+    __asm__("" : "=x"(quotientProduct.full) : "0"(quotientProduct.full));
+    argument2++;
+    result = argument0 >> 31;
+    __asm__("" : "=x"(quotientProduct.full) : "0"(quotientProduct.full), "r"(result));
+    temporary10 = quotientProduct.words.high;
+    Level23_80758Keep(temporary10);
+    scratch = temporary10 >> 1;
+    scratch -= result;
+    result = (unsigned int)scratch << 3;
+    result += scratch;
+    argument0 -= result;
+    argument1 = (unsigned int)temporary9 << argument0;
+    result = argument3 & argument1;
+    Level23_80758Field(privateState, unsigned char *, 6) = argument0;
+    if (result)
+        goto block_201;
+    result = argument2 < 10;
+    Level23_80758Keep(result);
+    if (result == 0)
+        goto block_201;
+    goto loop_177;
+block_180:
+    if (!(Level23_80758Field(privateState, unsigned short *, 0xC) & 0x200)) {
+        goto block_201;
+    }
+    temp_v1_12 = Level23_80758Field(privateState, unsigned char *, 0x10);
+    if (temp_v1_12 >= 8U) {
+        goto block_194;
+    }
+    switch (temp_v1_12) {
+    case 0:
+        result = 0x1800;
+        locals.sp98 = result;
+        __asm__ volatile("" ::"m"(locals.sp98));
+        result = 512;
+        Level23_80758Keep(result);
+        locals.sp9C = 0;
+        goto actor1395FinalVector;
+    case 1:
+        result = 0x1800;
+        goto actor1395BothVector;
+    case 2:
+        result = 0x1800;
+        locals.sp98 = result;
+        __asm__ volatile("" ::"m"(locals.sp98));
+        result = -0x1800;
+        goto actor1395VectorY;
+    case 3:
+        result = -0x1800;
+        locals.sp9C = result;
+        __asm__ volatile("" ::"m"(locals.sp9C));
+        result = 512;
+        Level23_80758Keep(result);
+        locals.sp98 = 0;
+        goto actor1395FinalVector;
+    case 4:
+        result = 0x1800;
+        locals.sp9C = result;
+        __asm__ volatile("" ::"m"(locals.sp9C));
+        result = 512;
+        Level23_80758Keep(result);
+        locals.sp98 = 0;
+        goto actor1395FinalVector;
+    case 5:
+        result = -0x1800;
+        locals.sp98 = result;
+        __asm__ volatile("" ::"m"(locals.sp98));
+        result = 0x1800;
+        goto actor1395VectorY;
+    case 6:
+        result = -0x1800;
+        locals.sp98 = result;
+        __asm__ volatile("" ::"m"(locals.sp98));
+        result = 512;
+        Level23_80758Keep(result);
+        locals.sp9C = 0;
+        goto actor1395FinalVector;
+    case 7:
+        result = -0x1800;
+    actor1395BothVector:
+        locals.sp98 = result;
+    actor1395VectorY:
+        locals.sp9C = result;
+        __asm__ volatile("" ::"m"(locals.sp9C));
+        result = 512;
+        Level23_80758Keep(result);
+    actor1395FinalVector:
+        locals.spA0 = result;
+    }
+block_194:
+    saved17 = (int)&Level23_80758_D_80070328 + 0x30;
+    Level23_80758_func_8004ED6C(saved17, &locals.sp98, &locals.sp98);
+    saved18 = (int)&locals.spC8;
+    Level23_80758Keep(saved18);
+    Level23_80758_func_8004F194(saved18, saved17 - 0x30, &locals.sp98);
+    result = Level23_80758_func_8001A358(saved18, 0x2800);
+    saved16 = result;
+    Level23_80758Keep(saved16);
+    if (saved16 == 0) {
+        goto block_198;
+    }
+    if (Level23_80758_D_80071934 == 0) {
+        goto block_198;
+    }
+    result = Level23_80758SpawnMoby(0x16, owner);
+    saved17 = result;
+    Level23_80758Keep(saved17);
+    argument0 = saved17 + 12;
+    if (saved17 == 0) {
+        goto block_204;
+    }
+    argument1 = Level23_80758_D_8006C550;
+    __asm__("" : "=r"(saved16) : "0"(saved16), "r"(argument1));
+    result = saved16 - 0x100;
+    Level23_80758Keep(result);
+    locals.spD0 = result;
+    saved16 = Level23_80758Field(saved17, int *, 0);
+    argument1 = owner - argument1;
+    result = 0U - (unsigned int)argument1 * 0x45D1745DU;
+    result >>= 3;
+    Level23_80758Field(saved16, int *, 0) = result;
+    Level23_80758Field(saved16, short *, 8) = 0x258;
+    Level23_80758Field(saved16, short *, 0xA) = 0x1E;
+    Level23_80758Field(saved16, signed char *, 4) = 0;
+    Level23_80758Field(saved16, signed char *, 0x11) = 1;
+    result = locals.spD0;
+    argument1 = saved18;
+    Level23_80758Field(saved16, short *, 0xC) = 0;
+    Level23_80758Field(saved16, signed char *, 0x13) = 0;
+    Level23_80758Field(saved16, int *, 0x14) = result;
+    Level23_80758_func_8004F178(argument0, argument1);
+    Level23_80758_func_8003573C(saved17, 0x80, 2, 0);
+    Level23_80758Field(saved17, unsigned char *, 0x4A) = 255;
+    Level23_80758Field(saved17, signed char *, 0x47) = 0;
+    Level23_80758_func_80034F80(saved17, 1);
+    Level23_80758Field(saved17, signed char *, 0x48) = 0x15;
+    Level23_80758Field(privateState, signed char *, 5) =
+        (signed char)((unsigned char)Level23_80758Field(privateState, signed char *, 5) + 1);
+    Level23_80758Field(privateState, unsigned short *, 0xC) =
+        (unsigned short)(Level23_80758Field(privateState, unsigned short *, 0xC) & 0xFDFF);
+block_198:
+    temp_a0_3 = Level23_80758Field(privateState, unsigned char *, 0x10);
+    temp_v1_13 = temp_a0_3 + 1;
+    var_v0_9 = temp_v1_13;
+    if (temp_v1_13 >= 0) {
+        goto block_200;
+    }
+    var_v0_9 = temp_a0_3 + 8;
+block_200:
+    Level23_80758Field(privateState, unsigned char *, 0x10) =
+        (unsigned char)(temp_v1_13 - (var_v0_9 & 0x1F8));
+block_201:
+    if (Level23_80758Field(privateState, unsigned int *, 0x28) !=
+        (int)&Level23_80758_D_level_23_800963E4) {
+        goto block_204;
+    }
+    if (Level23_80758Field(privateState, int *, 0x24) == 0) {
+        goto block_204;
+    }
+    Level23_80758_rand();
+    Level23_80758_D_8006C76C = 0;
+    Level23_80758_D_80071573 = 1;
+    Level23_80758Field(privateState, int *, 0x24) = 0;
+block_204:
+    if (Level23_80758Field(privateState, short *, 0xA) == 0) {
+        goto block_214;
+    }
+    if (Level23_80758Field(privateState, unsigned char *, 0x11) != 1) {
+        goto block_208;
+    }
+    Level23_80758_func_80034F80(owner, 0);
+    Level23_80758Field(owner, signed char *, 0x57) =
+        (signed char)(((int)((unsigned short)Level23_80758Field(privateState, short *, 0xA)
+                             << 0x10) >>
+                       0x11) +
+                      0x30);
+    if (Level23_80758_func_800359A4(privateState + 0xA, 2) == 0) {
+        goto block_214;
+    }
+    Level23_80758Field(owner, signed char *, 0x57) = 0x30;
+    Level23_80758_func_80034F80(owner, 1);
+    goto block_214;
+block_208:
+    if (Level23_80758Field(owner, unsigned char *, 0x3C) == 0) {
+        goto block_210;
+    }
+    result = Level23_80758Field(owner, short *, 0x36);
+    Level23_80758Field(owner, signed char *, 0x42) = 0;
+    result = (unsigned int)result << 2;
+    result = Level23_80758Field((int)&Level23_80758_D_8006EE2C, int *, result);
+    result = Level23_80758Field(result, int *, 0x3C);
+    result = Level23_80758Field(result, unsigned char *, 0);
+    Level23_80758Field(owner, unsigned char *, 0x3C) = 0;
+    Level23_80758Field(owner, unsigned char *, 0x3D) = 0;
+    result = (unsigned int)result < 2;
+    result ^= 1;
+    result = -result;
+    result &= 48;
+    Level23_80758Field(owner, unsigned char *, 0x40) = result;
+block_210:
+    temp_v0_8 = ((int)(0x1E - Level23_80758Field(privateState, short *, 0xA)) >> 1) + 0x30;
+    Level23_80758Field(owner, signed char *, 0x57) = temp_v0_8;
+    if ((unsigned int)(temp_v0_8 & 0xFF) >= 0x38U) {
+        goto block_212;
+    }
+    Level23_80758Field(owner, signed char *, 0x57) = 0x38;
+block_212:
+    if (Level23_80758_func_800359A4(privateState + 0xA, 2) == 0) {
+        goto block_214;
+    }
+    Level23_80758Field(owner, signed char *, 0x57) = 0x3F;
+block_214:
+    temp_v1_14 = Level23_80758Field(privateState, unsigned char *, 7);
+    if (temp_v1_14 == 0) {
+        goto block_221;
+    }
+    if (temp_v1_14 != 1) {
+        goto block_219;
+    }
+    if ((Level23_80758_D_8006C578 - Level23_80758_D_8006C574) < 0x15) {
+        goto block_219;
+    }
+    result = Level23_80758SpawnMoby(0x19C, owner);
+    temporary8 = result;
+    Level23_80758Keep(temporary8);
+    argument0 = 1;
+    if (temporary8 == 0)
+        goto block_219;
+    argument1 = 43;
+    argument2 = temporary8 + 12;
+    argument3 = 1;
+    __asm__ volatile("" ::"r"(argument0), "r"(argument1), "r"(argument2), "r"(argument3));
+    scratch = Level23_80758Field(owner, int *, 0x14);
+    result = 1;
+    Level23_80758Field(temporary8, unsigned char *, 0x47) = result;
+    result = (int)Level23_80758SpawnParticle;
+    __asm__("" : "=r"(scratch) : "0"(scratch), "r"(result));
+    scratch += 256;
+    Level23_80758Field(temporary8, int *, 0x14) = scratch;
+    ((int (*)())result)(argument0, argument1, argument2, argument3);
+    Level23_80758Field(privateState, unsigned char *, 7) = 2U;
+block_219:
+    if (Level23_80758_D_8006C770 == 0) {
+        goto block_221;
+    }
+    Level23_80758Field(privateState, unsigned char *, 7) = 0U;
+block_221:
+    return;
+}
+
+#undef Level23_80758Field
+#undef Level23_80758Keep
+
 
 /* Reuses uninstalled probe660 and verified bounce-projectile interfaces.
  * Original Rev0 8007C8BC..8007CB70,173 words. Correct the earlier candidate:
@@ -4713,13 +7880,3061 @@ remove:
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/moby", func_level_23_80081FD8);
+/* AI-generated; not human reviewed. Verified sibling C adapted only
+ * to this function's original SCUS-94467 instructions. Raw field units,
+ * helper meanings and update cadence remain unresolved. */
+/* AI generated; not human reviewed. Original SCUS-94467 USA Rev0
+ * level23:80081FD8, complete original243 instructions in sibling4402.
+ * Raw offsets and helper argument shapes follow original callers. Units,
+ * meanings and update cadence remain unresolved. Native words, internal
+ * targets and all retail hashes are required before installation. */
+extern int Actor23D8PlayerX __asm__("D_80070328");
+extern int Actor23D8PlayerY __asm__("D_80070328 + 4");
+extern unsigned char Actor23D8PlayerAngle __asm__("D_80070328 + 0xE");
+extern int Actor23D8Mode __asm__("D_8006C54C");
+extern char Actor23D8Identity[] __asm__("D_level_23_800963E4");
+extern int Actor23D8Gate __asm__("D_8006C774");
+extern int Actor23D8Words[] __asm__("VSync");
+extern int Actor23D8Contact __asm__("D_8006C770");
+int Actor23D8Helper35DDC() __asm__("func_80035DDC");
+void func_level_23_80081FD8(Moby* argument) {
+ register Moby* owner __asm__("$16")=argument;
+ register int* state __asm__("$17");
+ register int* fresh __asm__("$18");
+ int value;
+ __asm__("" : "=r"(owner):"0"(owner));
+ state=owner->mobyTag;
+ if(!*((unsigned char*)owner+0x49)) *((unsigned char*)owner+0x49)=1;
+ if(owner->state!=2 && *(int*)((char*)owner+0x18)) {
+  fresh=owner->mobyTag;
+  SpawnMoby(16,owner);
+  fresh[5]=300;fresh[4]=200;
+  value=*((unsigned char*)owner+0x51);
+  if(!value) value=func_800360F8(func_8004E880(owner->position.x-Actor23D8PlayerX,owner->position.y-Actor23D8PlayerY,0),Actor23D8PlayerAngle,32,64);
+  fresh[3]=value;
+  *((unsigned char*)owner+0x4A)=255;
+  owner->state=2;func_80034F40(owner,2);
+ }
+ switch(owner->state) {
+ case 0:
+  if(func_800359A4(state+3,4)) {
+   state[3]=(rand()&3)*50+60;
+   state[4]=func_8003636C(0,2);
+   owner->state=1;func_80034F40(owner,1);
+  }
+  if(Actor23D8Mode-1==(int)Actor23D8Identity && Actor23D8Gate) {
+   register int index __asm__("$16")=0;
+   register int* words __asm__("$17")=Actor23D8Words;
+   do {int slot=rand()&63;index++;words[slot]=0;} while(index<6);
+  }
+  break;
+ case 1:
+  if(state[4]==0) *((unsigned char*)owner+0x46)+=1;
+  else if(state[4]==1) *((unsigned char*)owner+0x46)-=1;
+  {register int selector __asm__("$18")=3;
+   if(state[4]==selector) {
+    value=func_8004E880(state[0]-owner->position.x,state[1]-owner->position.y,0);
+    func_8003585C(owner,value,2,12,0,0);
+    if(func_8004F334(&owner->position,(Vector3D*)state)<512) {
+     state[3]=(rand()&3)*50+60;
+     owner->state=0;func_80034F40(owner,0);
+    }
+   } else if(func_8004F334(&owner->position,(Vector3D*)state)>state[5]) {
+    state[4]=selector;state[3]=5000;
+   }
+  }
+  Actor23D8Helper35DDC(owner,15,0,0,0x414);
+  if(func_800359A4(state+3,4)) {
+   state[3]=(rand()&3)*50+60;
+   owner->state=0;func_80034F40(owner,0);
+  }
+  break;
+ case 2:
+  {int* current=owner->mobyTag;
+   func_80035030(owner,current+5,current[3],current+4,8,16,512,35);}
+  if(Actor23D8Contact) {
+   func_80055D24(owner,4);func_800369B8(owner,20);
+   *((unsigned char*)owner+0x49)=0;func_80055B18(owner);
+  }
+  break;
+ }
+}
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/moby", func_level_23_800823A4);
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/moby", func_level_23_80083BFC);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0. AI generated; not human reviewed. */
+/* Uninstalled candidate: helper contracts, exact native/locals/alias
+ * checks and complete linked retail hashes remain mandatory. */
+#define Level23_823A4Keep(v) __asm__("" : "=r"(v) : "0"(v))
+#define Level23_823A4Field(p, t, o) (*(t)((unsigned char *)(p) + (o)))
+int Level23_823A4_func_80034F40() __asm__("func_80034F40");
+int Level23_823A4_func_80034F80() __asm__("func_80034F80");
+int Level23_823A4_func_80035030() __asm__("func_80035030");
+int Level23_823A4_func_8003573C() __asm__("func_8003573C");
+int Level23_823A4_func_8003585C() __asm__("func_8003585C");
+int Level23_823A4_func_800359A4() __asm__("func_800359A4");
+int Level23_823A4_func_80035A80() __asm__("func_80035A80");
+int Level23_823A4_func_80035DDC() __asm__("func_80035DDC");
+int Level23_823A4_func_800360F8() __asm__("func_800360F8");
+int Level23_823A4_func_800369B8() __asm__("func_800369B8");
+int Level23_823A4_func_80036A68() __asm__("func_80036A68");
+int Level23_823A4_func_8003BA00() __asm__("func_8003BA00");
+int Level23_823A4_func_8004E880() __asm__("func_8004E880");
+int Level23_823A4_func_8004EDE8() __asm__("func_8004EDE8");
+int Level23_823A4_func_8004F08C() __asm__("func_8004F08C");
+int Level23_823A4_func_8004F110() __asm__("func_8004F110");
+int Level23_823A4_func_8004F178() __asm__("func_8004F178");
+int Level23_823A4_func_8004F194() __asm__("func_8004F194");
+int Level23_823A4_func_8004F1C8() __asm__("func_8004F1C8");
+int Level23_823A4_func_8004F264() __asm__("func_8004F264");
+int Level23_823A4_func_8004F334() __asm__("func_8004F334");
+int Level23_823A4_func_80055B18() __asm__("func_80055B18");
+int Level23_823A4_func_80055D24() __asm__("func_80055D24");
+int Level23_823A4_func_80055E84() __asm__("func_80055E84");
+int Level23_823A4_func_80055F14() __asm__("func_80055F14");
+extern int Level23_823A4_D_8006C550 __asm__("D_8006C550");
+extern int Level23_823A4_D_8006C770 __asm__("D_8006C770");
+extern int Level23_823A4_D_8006E020 __asm__("D_8006E020");
+extern int Level23_823A4_D_8006E024 __asm__("D_8006E024");
+extern unsigned short Level23_823A4_D_8006E040 __asm__("D_8006E040");
+extern int Level23_823A4_D_8006E344 __asm__("D_8006E344");
+extern int Level23_823A4_D_80070328 __asm__("D_80070328");
+extern int (*Level23_823A4_SpawnMoby)() __asm__("SpawnMoby");
+extern int (*Level23_823A4_unk_ovlheader_80074414)() __asm__("unk_ovlheader_80074414");
+void func_level_23_800823A4(void *ownerInput) {
+    int selectedDecay;
+    register int saved16 __asm__("$16");
+    register int owner __asm__("$17");
+    register int privateState __asm__("$18");
+    register int saved19 __asm__("$19");
+    register int saved20 __asm__("$20");
+    register int saved21 __asm__("$21");
+    register int saved22 __asm__("$22");
+    register int retainedS7 __asm__("$23");
+    register int result2 __asm__("$2");
+    register int temporary3 __asm__("$3");
+    register int argument0 __asm__("$4");
+    register int argument1 __asm__("$5");
+    register int argument2 __asm__("$6");
+    register int argument3 __asm__("$7");
+    struct {
+        int sp20, sp24, sp28, sp2C, sp30, sp34, sp38, sp3C, sp40, sp44, sp48, sp4C, sp50, sp54,
+            sp58, sp5C, sp60, sp64, sp68, sp6C, sp70, sp74, sp78, sp7C, sp80, sp84, sp88, sp8C,
+            sp90, sp94, sp98, sp9C;
+    } locals;
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/moby", func_level_23_80085038);
+    int var_a1;
+
+    int temp_v1_7;
+
+    int temp_a1;
+
+    int temp_a1_2;
+
+    int temp_a1_3;
+
+    int temp_a1_4;
+
+    int temp_a1_5;
+
+    int var_a0;
+
+    int var_a0_3;
+
+    int var_a1_4;
+
+    int var_a1_5;
+
+    int var_a2;
+
+    int temp_a0;
+
+    int temp_a0_3;
+
+    int temp_a0_4;
+
+    int temp_a0_5;
+
+    int temp_a0_6;
+
+    int temp_a0_7;
+
+    int temp_v0;
+
+    int temp_v0_2;
+
+    int temp_v0_5;
+
+    int temp_v0_9;
+
+    int temp_v1;
+
+    int temp_v1_2;
+
+    int temp_v1_5;
+
+    int var_v0_10;
+
+    int var_v0_11;
+
+    int var_v0_12;
+
+    int var_v0_3;
+
+    int var_v0_4;
+
+    int var_v0_5;
+
+    int var_v0_6;
+
+    int var_v0_7;
+
+    int var_v0_9;
+
+    int temp_a0_2;
+
+    int temp_a0_8;
+
+    int temp_v1_12;
+
+    int temp_v1_13;
+
+    int temp_v1_3;
+
+    int temp_v1_4;
+
+    int var_v0_2;
+
+    int temp_a2;
+
+    int temp_v0_10;
+
+    int temp_v0_11;
+
+    int temp_v0_3;
+
+    int temp_v0_4;
+
+    int temp_v0_6;
+
+    int temp_v0_7;
+
+    int temp_v0_8;
+
+    int temp_v1_10;
+
+    int temp_v1_11;
+
+    int temp_v1_14;
+
+    int temp_v1_15;
+
+    int temp_v1_6;
+
+    int temp_v1_8;
+
+    int temp_v1_9;
+
+    /* Proposed full32 incoming S7 ownerInput. This same object is overwritten
+     * by the original state2 return from55E84. The original state1 predicate
+     * at80082B84 may read its entry bits before that local definition.
+     * Empty metadata is only a proposal until exact lowering is certified. */
+
+    owner = (int)ownerInput;
+    Level23_823A4Keep(owner);
+    __asm__ volatile("" : "=r"(retainedS7));
+    privateState = Level23_823A4Field(owner, int *, 0);
+    if (Level23_823A4Field(owner, unsigned char *, 0x49) != 0) {
+        goto block_2;
+    }
+    Level23_823A4Field(owner, unsigned char *, 0x49) = 1U;
+block_2:
+    if ((unsigned int)(Level23_823A4Field(owner, unsigned char *, 0x48) - 5) < 3U) {
+        goto block_17;
+    }
+    temporary3 = Level23_823A4Field(owner, int *, 0x18);
+    Level23_823A4Keep(temporary3);
+    if (temporary3 == 0)
+        goto block_17;
+    result2 = temporary3 & 0x10000;
+    Level23_823A4Keep(result2);
+    argument0 = owner;
+    if (result2 == 0)
+        goto block_6;
+    argument1 = 1;
+    goto block_7;
+block_6:
+    __asm__ volatile("" : "=r"(result2) : "0"(result2) : "$5");
+    argument1 = 0;
+block_7:
+    argument2 = 0;
+    argument3 = 0;
+    Level23_823A4_func_80036A68(argument0, argument1, argument2, argument3);
+    Level23_823A4Field(owner, unsigned char *, 0x4A) = 0xFF;
+    Level23_823A4Field(owner, unsigned char *, 0x48) = 5U;
+    Level23_823A4_func_80034F80(owner, 5);
+    temp_v1_2 = Level23_823A4Field(privateState, int *, 0x24);
+    if (temp_v1_2 < 0) {
+        goto block_12;
+    }
+    result2 = (unsigned int)temp_v1_2 * 11u;
+    temporary3 = Level23_823A4_D_8006C550;
+    __asm__("" : "=r"(result2), "=r"(temporary3) : "0"(result2), "1"(temporary3));
+    result2 = (unsigned int)result2 << 3;
+    saved16 = temporary3 + result2;
+    temp_a2 = Level23_823A4Field(saved16, int *, 0);
+    if (Level23_823A4Field(saved16, short *, 0x36) != 0x13) {
+        goto block_12;
+    }
+    temp_v1_3 = Level23_823A4Field(saved16, unsigned char *, 0x48);
+    Level23_823A4Keep(temp_v1_3);
+    if (temp_v1_3 & 0x80) {
+        goto block_12;
+    }
+    temporary3 = temp_v1_3 & 255;
+    Level23_823A4Keep(temporary3);
+    if (temporary3 == 4) {
+        goto block_12;
+    }
+    Level23_823A4Field(temp_a2, int *, 8) = -1;
+    Level23_823A4_func_80034F40(saved16, 0, temp_a2);
+    Level23_823A4Field(saved16, unsigned char *, 0x48) = 0U;
+block_12:
+    result2 = Level23_823A4Field(owner, int *, 0x18);
+    temporary3 = 0x10000;
+    result2 &= temporary3;
+    Level23_823A4Keep(result2);
+    if (result2) {        result2 = 180;        Level23_823A4Keep(result2);    } else {        result2 = 300;        Level23_823A4Keep(result2);    }
+    Level23_823A4Field(privateState, int *, 0x20) = result2;
+    Level23_823A4Field(privateState, int *, 0x1C) = 0x96;
+    var_v0_2 = Level23_823A4Field(owner, unsigned char *, 0x51);
+    if (var_v0_2 != 0) {
+        goto block_16;
+    }
+    var_v0_2 = Level23_823A4_func_800360F8(
+        Level23_823A4_func_8004E880(
+            Level23_823A4Field(owner, int *, 0xC) -
+                Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 0),
+            Level23_823A4Field(owner, int *, 0x10) -
+                Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 4),
+            0),
+        Level23_823A4Field((int)&Level23_823A4_D_80070328, unsigned char *, 0xE), 0x20, 0x40);
+block_16:
+    Level23_823A4Field(privateState, int *, 0x18) = (int)var_v0_2;
+    return;
+block_17:
+    temp_v1_4 = Level23_823A4Field(owner, unsigned char *, 0x48);
+    if (temp_v1_4 >= 0x2BU) {
+        goto block_228;
+    }
+    switch (temp_v1_4) {
+    case 0:
+        if (Level23_823A4_D_8006E344 == 1) {
+            goto block_29;
+        }
+        if (Level23_823A4_func_8004F264(
+                (int)(Level23_823A4_D_8006E040 << 0x10) >> 0x14,
+                Level23_823A4_func_8004E880(
+                    Level23_823A4Field(owner, int *, 0xC) - Level23_823A4_D_8006E020,
+                    Level23_823A4Field(owner, int *, 0x10) - Level23_823A4_D_8006E024, 0)) >=
+            0x18) {
+            goto block_29;
+        }
+        temp_a1 = (int)&Level23_823A4_D_80070328 + 8;
+        result2 = Level23_823A4Field(owner, int *, 0x14);
+        temporary3 = Level23_823A4Field(temp_a1, int *, 0);
+        __asm__("" : "=r"(result2), "=r"(temporary3) : "0"(result2), "1"(temporary3));
+        result2 -= temporary3;
+        var_v0_3 = result2;
+        if (var_v0_3 >= 0) {
+            goto block_23;
+        }
+        var_v0_3 = -var_v0_3;
+    block_23:
+        if (var_v0_3 >= 0x800) {
+            goto block_29;
+        }
+        temp_a0 = Level23_823A4Field(privateState, int *, 0x2C);
+        if (temp_a0 == 0) {
+            goto block_26;
+        }
+        var_v0_4 = Level23_823A4_unk_ovlheader_80074414(temp_a0, temp_a1 - 8);
+        goto block_27;
+    block_26:
+        var_v0_4 = Level23_823A4_func_8004F334(owner + 0xC, temp_a1 - 8) <
+                   Level23_823A4Field(privateState, short *, 0xC);
+    block_27:
+        if (var_v0_4 == 0) {
+            goto block_29;
+        }
+        Level23_823A4Field(owner, unsigned char *, 0x49) = 1U;
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 1U;
+        Level23_823A4_func_80034F40(owner, 1);
+    block_29:
+        if (Level23_823A4_D_8006C770 == 0) {
+            goto block_228;
+        }
+        temp_a0_2 = Level23_823A4Field(privateState, unsigned char *, 0x12);
+        if (temp_a0_2 == 0) {
+            goto block_228;
+        }
+        if (Level23_823A4_D_8006E344 == 1) {
+            goto block_228;
+        }
+        Level23_823A4Field(owner, unsigned char *, 0x48) = temp_a0_2;
+        Level23_823A4Field(privateState, unsigned char *, 0x12) = 0U;
+        return;
+    case 42:
+        if (Level23_823A4_func_800359A4(privateState + 0x28, 2) == 0) {
+            goto block_228;
+        }
+        if (Level23_823A4_D_8006E344 == 1) {
+            goto block_228;
+        }
+        if (Level23_823A4_func_8004F264(
+                (int)(Level23_823A4_D_8006E040 << 0x10) >> 0x14,
+                Level23_823A4_func_8004E880(
+                    Level23_823A4Field(owner, int *, 0xC) - Level23_823A4_D_8006E020,
+                    Level23_823A4Field(owner, int *, 0x10) - Level23_823A4_D_8006E024, 0)) >=
+            0x18) {
+            goto block_228;
+        }
+        temp_a1_2 = (int)&Level23_823A4_D_80070328 + 8;
+        result2 = Level23_823A4Field(owner, int *, 0x14);
+        temporary3 = Level23_823A4Field(temp_a1_2, int *, 0);
+        __asm__("" : "=r"(result2), "=r"(temporary3) : "0"(result2), "1"(temporary3));
+        result2 -= temporary3;
+        var_v0_5 = result2;
+        if (var_v0_5 >= 0) {
+            goto block_38;
+        }
+        var_v0_5 = -var_v0_5;
+    block_38:
+        if (var_v0_5 >= 0x800) {
+            goto block_228;
+        }
+        temp_a0_3 = Level23_823A4Field(privateState, int *, 0x2C);
+        if (temp_a0_3 == 0) {
+            goto block_41;
+        }
+        var_v0_6 = Level23_823A4_unk_ovlheader_80074414(temp_a0_3, temp_a1_2 - 8);
+        goto block_42;
+    block_41:
+        var_v0_6 = Level23_823A4_func_8004F334(owner + 0xC, temp_a1_2 - 8) <
+                   Level23_823A4Field(privateState, short *, 0xC);
+    block_42:
+        if (var_v0_6 == 0) {
+            goto block_228;
+        }
+        Level23_823A4Field(owner, unsigned char *, 0x49) = 1U;
+        Level23_823A4Field(privateState, signed char *, 0x13) = 0xF;
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 2U;
+        Level23_823A4_func_80034F40(owner, 2);
+        Level23_823A4Field(
+            Level23_823A4Field((Level23_823A4Field(privateState, int *, 0x24) * 0x58) +
+                                   Level23_823A4_D_8006C550,
+                               int *, 0),
+            short *, 0x28) = 0x3C;
+        return;
+    case 2:
+        saved20 = 0;
+        result2 = Level23_823A4_func_80055E84(owner);
+        argument0 = (int)&locals.sp30;
+        saved19 = owner + 12;
+        argument1 = saved19;
+        __asm__ volatile(""
+                         : "=r"(argument0), "=r"(argument1), "=r"(result2)
+                         : "0"(argument0), "1"(argument1), "2"(result2)
+                         : "$23");
+        retainedS7 = result2;
+        Level23_823A4_func_8004F178(argument0, argument1);
+        __asm__("" : "=r"(saved22) : "0"((int)&Level23_823A4_D_80070328));
+        temp_v0 = Level23_823A4_func_8004E880(
+            Level23_823A4Field(saved22, int *, 0) - Level23_823A4Field(owner, int *, 0xC),
+            Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 4) -
+                Level23_823A4Field(owner, int *, 0x10),
+            0);
+        Level23_823A4_func_8003585C(owner, temp_v0, 4, 2, 1, 0);
+        if (Level23_823A4_func_8004F264(
+                temp_v0, (int)Level23_823A4Field(owner, unsigned char *, 0x46)) >= 0x14) {
+            goto block_46;
+        }
+        Level23_823A4_func_80035DDC(owner, 0x5F, 0, 0, 4);
+    block_46:
+        temp_a0_4 = Level23_823A4Field(privateState, int *, 0x2C);
+        if (temp_a0_4 == 0) {
+            goto block_49;
+        }
+        result2 = Level23_823A4_unk_ovlheader_80074414(temp_a0_4, saved22);
+        argument0 = saved19;
+        if (result2 != 0) {
+            goto block_51;
+        }
+        Level23_823A4_func_8004F178(argument0, &locals.sp30);
+        saved20 = 1;
+        goto block_51;
+    block_49:
+        result2 = Level23_823A4_func_8004F334(saved19, privateState);
+        temporary3 = Level23_823A4Field(privateState, short *, 0x10);
+        temporary3 = temporary3 < result2;
+        Level23_823A4Keep(temporary3);
+        if (!temporary3) {
+            goto block_51;
+        }
+        saved20 = 1;
+    block_51:
+        argument0 = owner;
+        if (saved20 != 0) {
+            goto block_56;
+        }
+        saved16 = (int)&Level23_823A4_D_80070328 + 8;
+        Level23_823A4Keep(saved16);
+        result2 = Level23_823A4Field(owner, int *, 0x14);
+        temporary3 = Level23_823A4Field(saved16, int *, 0);
+        __asm__("" : "=r"(result2), "=r"(temporary3) : "0"(result2), "1"(temporary3));
+        result2 -= temporary3;
+        var_v0_7 = result2;
+        if (var_v0_7 >= 0) {
+            goto block_54;
+        }
+        var_v0_7 = -var_v0_7;
+    block_54:
+        if (var_v0_7 >= 0x801) {
+            goto block_56;
+        }
+        temporary3 = Level23_823A4_D_8006E344;
+        __asm__ volatile("" : "=r"(argument0) : "0"(argument0) : "$2", "memory");
+        result2 = 1;
+        if (temporary3 != result2) {
+            goto block_57;
+        }
+    block_56:
+        argument1 = 1;
+        Level23_823A4Keep(argument1);
+        result2 = 80;
+        Level23_823A4Keep(result2);
+        Level23_823A4Field(privateState, short *, 0x28) = result2;
+        result2 = 2;
+        Level23_823A4Keep(result2);
+        Level23_823A4Field(argument0, unsigned char *, 0x49) = result2;
+        __asm__("" : "=r"(argument1) : "0"(argument1), "r"(saved20) : "memory");
+        result2 = 1;
+        goto block_121;
+    block_57:
+        Level23_823A4Keep(saved20);
+        Level23_823A4_func_80055D24(argument0, 5);
+        Level23_823A4_func_80055F14(owner, 0, &locals.sp20);
+        if (Level23_823A4_func_800359A4(privateState + 0x13, 1) == 0) {
+            goto block_68;
+        }
+        if (Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 0x50) == 9) {
+            goto block_69;
+        }
+        if (Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 0x50) == 4) {
+            goto block_69;
+        }
+        saved19 = saved16 - 8;
+        if ((unsigned int)(retainedS7 - 5) < 4U) {
+            goto block_63;
+        }
+        result2 = retainedS7 < 0xD;
+        Level23_823A4Keep(result2);
+        if (result2) {
+            goto block_70;
+        }
+        Level23_823A4Keep(saved16);
+        saved19 = saved16 - 8;
+        Level23_823A4Keep(saved19);
+    block_63:
+        if (Level23_823A4_func_8004F334(saved19, &locals.sp20) >= 0x190) {
+            goto block_68;
+        }
+        result2 = Level23_823A4Field(saved16, int *, 0);
+        temporary3 = locals.sp28;
+        __asm__("" : "=r"(result2), "=r"(temporary3) : "0"(result2), "1"(temporary3));
+        result2 -= temporary3;
+        var_v0_9 = result2;
+        if (var_v0_9 >= 0) {
+            goto block_66;
+        }
+        var_v0_9 = -var_v0_9;
+    block_66:
+        if (var_v0_9 >= 0x400) {
+            goto block_68;
+        }
+        argument3 = 0x10000400;
+        Level23_823A4Keep(argument3);
+        saved16 += 0x214;
+        argument0 = saved16;
+        argument1 = saved19;
+        __asm__("" : "=r"(argument0), "=r"(argument1) : "0"(argument0), "1"(argument1));
+        result2 = Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 0x24);
+        result2 |= 1;
+        Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 0x24) = result2;
+        __asm__ volatile("" : "=r"(result2) : "0"(result2) : "memory");
+        result2 = Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 0x20C);
+        temporary3 = Level23_823A4Field(owner, unsigned char *, 0x46);
+        result2 |= argument3;
+        Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 0x20C) = result2;
+        Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 0x298) = temporary3;
+        argument2 = owner + 12;
+        Level23_823A4_func_8004F1C8(argument0, argument1, argument2, argument3);
+        Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 0x224) = 0;
+        Level23_823A4_func_8004F08C(saved16, Level23_823A4_func_8004EDE8(saved16, 0), 0x4B);
+        Level23_823A4Field(privateState, short *, 0x28) = 0x14;
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 0x28U;
+        return;
+    block_68:
+    block_69:
+    block_70:
+        if (Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 0x50) != 7) {
+            goto block_228;
+        }
+        goto block_73;
+    case 40:
+        if (Level23_823A4_func_800359A4(privateState + 0x28, 2) == 0) {
+            goto block_228;
+        }
+    block_73:
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 3U;
+        Level23_823A4_func_80034F40(owner, 3);
+        return;
+    case 1:
+        saved21 = 0x14;
+        if (Level23_823A4Field(owner, unsigned char *, 0x49) != 2) {
+            goto block_76;
+        }
+        Level23_823A4_func_8004F178(&locals.sp40, privateState);
+        saved21 = 8;
+        goto block_77;
+    block_76:
+        Level23_823A4_func_8004F178(&locals.sp40, (int)&Level23_823A4_D_80070328);
+    block_77:
+        temp_v0_2 =
+            Level23_823A4_func_8004E880(locals.sp40 - Level23_823A4Field(owner, int *, 0xC),
+                                        locals.sp44 - Level23_823A4Field(owner, int *, 0x10), 0);
+        Level23_823A4_func_8003585C(owner, temp_v0_2, 4, 1, 1, 0);
+        argument0 = (int)&locals.sp50;
+        __asm__ volatile("" : "=r"(argument0) : "0"(argument0) : "$19");
+        saved19 = owner + 12;
+        argument1 = saved19;
+        Level23_823A4_func_8004F178(argument0, argument1);
+        if (Level23_823A4_func_8004F264(
+                temp_v0_2, (int)Level23_823A4Field(owner, unsigned char *, 0x46)) >= saved21) {
+            goto block_79;
+        }
+        Level23_823A4_func_80035DDC(owner, 0x55, 0, 0, 4);
+    block_79:
+        if (Level23_823A4Field(owner, unsigned char *, 0x49) != 1) {
+            goto block_93;
+        }
+        argument0 = owner;
+        if (retainedS7 == 0) {
+            goto block_82;
+        }
+        argument1 = 2;
+        result2 = 15;
+        __asm__("" : "=r"(result2) : "0"(result2), "r"(retainedS7));
+        Level23_823A4Field(privateState, signed char *, 0x13) = result2;
+        __asm__("" : "=r"(argument1) : "0"(argument1), "r"(retainedS7));
+        result2 = 2;
+        goto block_121;
+    block_82:
+        Level23_823A4Keep(retainedS7);
+        temp_a0_5 = Level23_823A4Field(privateState, int *, 0x2C);
+        saved16 = 0;
+        if (temp_a0_5 == 0) {
+            goto block_85;
+        }
+        result2 = Level23_823A4_unk_ovlheader_80074414(temp_a0_5, (int)&Level23_823A4_D_80070328);
+        argument0 = saved19;
+        if (result2 != 0) {
+            goto block_87;
+        }
+        Level23_823A4_func_8004F178(argument0, &locals.sp50);
+        saved16 = 1;
+        goto block_87;
+    block_85:
+        result2 = Level23_823A4_func_8004F334(saved19, privateState);
+        temporary3 = Level23_823A4Field(privateState, short *, 0x10);
+        temporary3 = temporary3 < result2;
+        Level23_823A4Keep(temporary3);
+        if (!temporary3) {
+            goto block_87;
+        }
+        saved16 = 1;
+    block_87:
+        argument0 = (int)&locals.sp40;
+        if (saved16 != 0) {
+            goto block_91;
+        }
+        result2 = Level23_823A4Field(owner, int *, 0x14);
+        temporary3 = Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 8);
+        __asm__("" : "=r"(result2), "=r"(temporary3) : "0"(result2), "1"(temporary3));
+        result2 -= temporary3;
+        var_v0_10 = result2;
+        if (var_v0_10 >= 0) {
+            goto block_90;
+        }
+        var_v0_10 = -var_v0_10;
+    block_90:
+        if (var_v0_10 < 0x801) {
+            goto block_92;
+        }
+    block_91:
+        Level23_823A4Field(privateState, short *, 0x28) = 0x50;
+        Level23_823A4Field(owner, unsigned char *, 0x49) = 2U;
+        Level23_823A4_func_8004F178(argument0, privateState);
+        return;
+    block_92:
+        Level23_823A4_func_8004F178(argument0, ((int)&Level23_823A4_D_80070328 + 8) - 8);
+        return;
+    block_93:
+        if (Level23_823A4Field(privateState, short *, 0x28) != 0) {
+            goto block_99;
+        }
+        temp_a0_6 = Level23_823A4Field(privateState, int *, 0x2C);
+        if (temp_a0_6 == 0) {
+            goto block_97;
+        }
+        if (Level23_823A4_unk_ovlheader_80074414(temp_a0_6, (int)&Level23_823A4_D_80070328) == 0) {
+            goto block_100;
+        }
+        Level23_823A4Field(privateState, signed char *, 0x13) = 0xF;
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 2U;
+        Level23_823A4_func_80034F40(owner, 2);
+        __asm__ volatile("" : "=r"(owner) : "0"(owner) : "memory");
+        var_a0 = owner + 12;
+        goto block_101;
+    block_97:
+        if (Level23_823A4_func_8004F334(saved19, (int)&Level23_823A4_D_80070328) >=
+            Level23_823A4Field(privateState, short *, 0xE)) {
+            goto block_100;
+        }
+        argument0 = owner;
+        argument1 = 2;
+        Level23_823A4Field(privateState, signed char *, 0x13) = 0xF;
+        result2 = 2;
+        goto block_121;
+    block_99:
+        Level23_823A4_func_800359A4(privateState + 0x28, 2);
+    block_100:
+        var_a0 = owner + 0xC;
+    block_101:
+        if (Level23_823A4_func_8004F334(var_a0, &locals.sp40) >= 0x400) {
+            goto block_228;
+        }
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 0x20U;
+        return;
+    case 32:
+        if (Level23_823A4_func_8003573C(owner, 8, 4, 1) == 0) {
+            goto block_228;
+        }
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 0U;
+        Level23_823A4_func_80034F40(owner, 0);
+        return;
+    case 3:
+        if (Level23_823A4_D_8006C770 == 0) {
+            goto block_228;
+        }
+        argument0 = owner;
+        argument1 = 1;
+        Level23_823A4Keep(argument1);
+        result2 = 80;
+        Level23_823A4Keep(result2);
+        Level23_823A4Field(privateState, short *, 0x28) = result2;
+        result2 = 2;
+        Level23_823A4Keep(result2);
+        Level23_823A4Field(argument0, unsigned char *, 0x49) = result2;
+        result2 = 1;
+        goto block_121;
+    case 4:
+        if (Level23_823A4Field(owner, unsigned char *, 0x49) != 3) {
+            goto block_111;
+        }
+        Level23_823A4Field(owner, unsigned char *, 0x49) = 1U;
+        temp_v0_3 = Level23_823A4Field(privateState, int *, 0x14);
+        temp_v1_5 = Level23_823A4Field(temp_v0_3, short *, 2) * 0x10;
+        Level23_823A4Field(owner, int *, 0xC) = (int)Level23_823A4Field(
+            temp_v1_5 + Level23_823A4Field(temp_v0_3, int *, 0xC), int *, 0);
+        Level23_823A4Field(owner, int *, 0x10) = (int)Level23_823A4Field(
+            (temp_v1_5 +
+             Level23_823A4Field(Level23_823A4Field(privateState, int *, 0x14), int *, 0xC)),
+            int *, 4);
+        temporary3 = Level23_823A4Field(privateState, int *, 0x14);
+        __asm__ volatile("" : "=r"(owner) : "0"(owner) : "$4", "memory");
+        argument0 = (int)&locals.sp60;
+        __asm__("" : "=r"(argument0), "=r"(temporary3) : "0"(argument0), "1"(temporary3));
+        result2 = Level23_823A4Field(temporary3, int *, 12);
+        temporary3 = Level23_823A4Field(temporary3, short *, 2);
+        argument2 = result2;
+        result2 = (unsigned int)temporary3 << 4;
+        Level23_823A4Keep(result2);
+        argument1 = argument2 + result2;
+        if (temporary3 != 0)
+            goto block_110;
+        argument2 += 16;
+    block_110:
+        Level23_823A4_func_8004F1C8(argument0, argument1, argument2);
+        Level23_823A4Field(owner, unsigned char *, 0x46) =
+            Level23_823A4_func_8004E880(locals.sp60, locals.sp64, 0);
+    block_111:
+        result2 = Level23_823A4_D_8006C770;
+        __asm__ volatile("" : "=r"(result2) : "0"(result2) : "$4");
+        argument0 = owner;
+        if (result2 == 0) {
+            goto block_228;
+        }
+        temp_v1_8 = Level23_823A4Field(privateState, int *, 0x14);
+        Level23_823A4Field(temp_v1_8, unsigned short *, 0xA) =
+            (unsigned short)-(int)Level23_823A4Field(temp_v1_8, unsigned short *, 0xA);
+        temporary3 = Level23_823A4Field(privateState, int *, 0x14);
+        result2 = Level23_823A4Field(temporary3, short *, 2);
+        __asm__ volatile("" : "=r"(privateState) : "0"(privateState) : "$5", "memory");
+        argument1 = 1;
+        result2 = (result2 == 0);
+        Level23_823A4Field(temporary3, short *, 2) = result2;
+        temporary3 = Level23_823A4Field(privateState, unsigned char *, 0x12);
+        Level23_823A4Field(privateState, short *, 0x2A) = 0;
+        Level23_823A4Field(privateState, short *, 0x28) = 0xC8;
+        goto block_131;
+    case 5:
+        if (Level23_823A4_func_80035030(owner, privateState + 0x20,
+                                        Level23_823A4Field(privateState, int *, 0x18),
+                                        privateState + 0x1C, 8, 0x10, 0x200, 0x23) == 3) {
+            goto block_117;
+        }
+        if (Level23_823A4_D_8006C770 == 0) {
+            goto block_228;
+        }
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 6U;
+        Level23_823A4_func_80034F40(owner, 6);
+        return;
+    case 6:
+        if (Level23_823A4_func_80035030(owner, privateState + 0x20,
+                                        Level23_823A4Field(privateState, int *, 0x18),
+                                        privateState + 0x1C, 8, 0x16, 0x200, 0x23) != 3) {
+            goto block_228;
+        }
+    block_117:
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 7U;
+        Level23_823A4_func_80034F40(owner, 7);
+        return;
+    case 7:
+        if (Level23_823A4_D_8006C770 == 0) {
+            goto block_228;
+        }
+        Level23_823A4_func_80055D24(owner, 4);
+        Level23_823A4_func_8003BA00(owner);
+        Level23_823A4_func_800369B8(owner, 0x28);
+        Level23_823A4_func_80055B18(owner);
+        return;
+    case 20:
+        argument0 = owner;
+        result2 = Level23_823A4Field(privateState, int *, 0x14);
+        __asm__ volatile("" : "=r"(owner) : "0"(owner) : "$3", "memory");
+        temporary3 = 1;
+        __asm__(""
+                : "=r"(result2), "=r"(temporary3), "=r"(argument0)
+                : "0"(result2), "1"(temporary3), "2"(argument0));
+        Level23_823A4Field(result2, unsigned short *, 0xA) = temporary3;
+        result2 = Level23_823A4Field(privateState, int *, 0x14);
+        argument1 = 1;
+        Level23_823A4Field(result2, short *, 2) = temporary3;
+        result2 = 21;
+    block_121:
+        __asm__(""
+                : "=r"(argument0), "=r"(argument1), "=r"(result2)
+                : "0"(argument0), "1"(argument1), "2"(result2));
+        Level23_823A4Field(argument0, unsigned char *, 0x48) = result2;
+        Level23_823A4_func_80034F40(argument0, argument1);
+        return;
+    case 21:
+        Level23_823A4_func_80034F40(owner, 1);
+        if (!(Level23_823A4_func_80035A80(owner, Level23_823A4Field(privateState, int *, 0x14),
+                                          0x78, 0x32, 0, 6, 2, 4) &
+              2)) {
+            goto block_124;
+        }
+        temp_v0_4 = Level23_823A4Field(privateState, int *, 0x14);
+        Level23_823A4Field(temp_v0_4, unsigned short *, 0xA) =
+            (unsigned short)-(int)Level23_823A4Field(temp_v0_4, unsigned short *, 0xA);
+        Level23_823A4Field(privateState, unsigned char *, 0x12) = 0x15U;
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 0U;
+        Level23_823A4_func_80034F40(owner, 0);
+    block_124:
+        if (Level23_823A4_D_8006E344 == 1) {
+            goto block_228;
+        }
+        if (Level23_823A4_func_8004F264(
+                (int)(Level23_823A4_D_8006E040 << 0x10) >> 0x14,
+                Level23_823A4_func_8004E880(
+                    Level23_823A4Field(owner, int *, 0xC) - Level23_823A4_D_8006E020,
+                    Level23_823A4Field(owner, int *, 0x10) - Level23_823A4_D_8006E024, 0)) >=
+            0x18) {
+            goto block_228;
+        }
+        if (Level23_823A4_func_8004F334(owner + 0xC, (int)&Level23_823A4_D_80070328) >=
+            Level23_823A4Field(privateState, short *, 0xC)) {
+            goto block_228;
+        }
+        result2 = Level23_823A4Field(owner, int *, 0x14);
+        temporary3 = Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 8);
+        __asm__("" : "=r"(result2), "=r"(temporary3) : "0"(result2), "1"(temporary3));
+        result2 -= temporary3;
+        var_v0_11 = result2;
+        if (var_v0_11 >= 0) {
+            goto block_129;
+        }
+        var_v0_11 = -var_v0_11;
+    block_129:
+        if (var_v0_11 >= 0x400) {
+            goto block_228;
+        }
+        argument0 = owner;
+        argument1 = 1;
+        temporary3 = 1;
+        result2 = 21;
+        __asm__(""
+                : "=r"(temporary3), "=r"(result2)
+                : "0"(temporary3), "1"(result2), "r"(argument0), "r"(argument1));
+        Level23_823A4Field(argument0, unsigned char *, 0x49) = temporary3;
+        Level23_823A4Field(privateState, unsigned char *, 0x12) = result2;
+    block_131:
+        __asm__(""
+                : "=r"(argument0), "=r"(argument1), "=r"(temporary3)
+                : "0"(argument0), "1"(argument1), "2"(temporary3));
+        Level23_823A4Field(argument0, unsigned char *, 0x48) = temporary3;
+        Level23_823A4_func_80034F40(argument0, argument1);
+        return;
+    case 22:
+        Level23_823A4_func_80034F40(owner, 2);
+        temporary3 = Level23_823A4Field(privateState, int *, 0x14);
+        __asm__ volatile("" : "=r"(owner) : "0"(owner) : "$2", "memory");
+        result2 = 1;
+        __asm__("" : "=r"(temporary3), "=r"(result2) : "0"(temporary3), "1"(result2));
+        Level23_823A4Field(temporary3, unsigned short *, 0xA) = result2;
+        Level23_823A4Field(Level23_823A4Field(privateState, int *, 0x14), short *, 2) = 0;
+        goto block_160;
+    case 23:
+        result2 = Level23_823A4_func_80055E84(owner);
+        argument0 = Level23_823A4Field(privateState, int *, 0x24);
+        __asm__ volatile("" : "=r"(result2) : "0"(result2) : "$16", "memory");
+        saved16 = 90;
+        __asm__("" : "=r"(argument0), "=r"(saved16) : "0"(argument0), "1"(saved16));
+        temporary3 = (unsigned int)argument0 * 11u;
+        argument0 = Level23_823A4_D_8006C550;
+        __asm__(""
+                : "=r"(temporary3), "=r"(argument0), "=r"(result2)
+                : "0"(temporary3), "1"(argument0), "2"(result2));
+        temporary3 = (unsigned int)temporary3 << 3;
+        saved19 = argument0 + temporary3;
+        saved21 = result2;
+        if (!(Level23_823A4Field(saved19, unsigned char *, 0x48) & 0x80)) {
+            goto block_135;
+        }
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 1U;
+        Level23_823A4_func_80034F40(owner, 1);
+        Level23_823A4Field(owner, unsigned char *, 0x49) = 1U;
+        return;
+    block_135:
+        temp_a0_7 = Level23_823A4_func_8004F334(owner + 0xC, saved19 + 0xC);
+        if (Level23_823A4Field(saved19, short *, 0x36) != 0x14) {
+            goto block_140;
+        }
+        if (temp_a0_7 >= 0x4B0) {
+            goto block_138;
+        }
+        saved16 = 0x46;
+        goto block_144;
+    block_138:
+        if (temp_a0_7 < 0x709) {
+            goto block_145;
+        }
+        saved16 = 0x6E;
+        goto block_145;
+    block_140:
+        saved16 = 0x46;
+        if (temp_a0_7 >= 0x6A4) {
+            goto block_142;
+        }
+        saved16 = 0x5A;
+        goto block_144;
+    block_142:
+        if (temp_a0_7 < 0xC01) {
+            goto block_145;
+        }
+        saved16 = 0x32;
+    block_144:
+    block_145:
+        Level23_823A4_func_80035A80(owner, Level23_823A4Field(privateState, int *, 0x14), 0x78,
+                                    saved16, 0, 5, 0x80, 4);
+        Level23_823A4_func_80055D24(owner, 5);
+        Level23_823A4_func_80055F14(owner, 0, &locals.sp70);
+        if (Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 0x50) == 9) {
+            goto block_155;
+        }
+        if (Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 0x50) == 4) {
+            goto block_155;
+        }
+        if (Level23_823A4Field(owner, unsigned char *, 0x3C) != 2) {
+            goto block_155;
+        }
+        if ((unsigned int)(saved21 - 5) < 4U) {
+            goto block_150;
+        }
+        result2 = saved21 < 0xD;
+        Level23_823A4Keep(result2);
+        if (result2) {
+            goto block_155;
+        }
+    block_150:
+        if (Level23_823A4_func_8004F334(((int)&Level23_823A4_D_80070328 + 0x50) - 0x50,
+                                        &locals.sp70) >= 0x190) {
+            goto block_155;
+        }
+        result2 = Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 8);
+        temporary3 = locals.sp78;
+        __asm__("" : "=r"(result2), "=r"(temporary3) : "0"(result2), "1"(temporary3));
+        result2 -= temporary3;
+        var_v0_12 = result2;
+        if (var_v0_12 >= 0) {
+            goto block_153;
+        }
+        var_v0_12 = -var_v0_12;
+    block_153:
+        if (var_v0_12 >= 0x400) {
+            goto block_155;
+        }
+        Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 0x24) =
+            (int)(Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 0x24) | 1);
+        Level23_823A4Field((int)&Level23_823A4_D_80070328, int *, 0x298) =
+            (int)Level23_823A4Field(owner, unsigned char *, 0x46);
+    block_155:
+        if (Level23_823A4_func_8004F334(owner + 0xC, (int)&Level23_823A4_D_80070328) >=
+            Level23_823A4Field(privateState, short *, 0xC)) {
+            goto block_228;
+        }
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 1U;
+        Level23_823A4_func_80034F40(owner, 1);
+        Level23_823A4Field(owner, unsigned char *, 0x49) = 1U;
+        if (Level23_823A4Field(saved19, short *, 0x36) != 0x14) {
+            goto block_228;
+        }
+        Level23_823A4Field(saved19, unsigned char *, 0x48) = 0x16U;
+        return;
+    case 26:
+        Level23_823A4_func_80035A80(owner, Level23_823A4Field(privateState, int *, 0x14), 0x78,
+                                    0x32, 0, 4, 0x80, 4);
+        if (Level23_823A4_D_8006C770 == 0) {
+            goto block_228;
+        }
+        Level23_823A4_func_80034F40(owner, 1);
+    block_160:
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 0x17U;
+        return;
+    case 24:
+        Level23_823A4_func_80034F40(owner, 1);
+        Level23_823A4Field(owner, int *, 0xC) = (int)Level23_823A4Field(
+            Level23_823A4Field(Level23_823A4Field(privateState, int *, 0x14), int *, 0xC), int *,
+            0);
+        Level23_823A4Field(owner, int *, 0x10) = (int)Level23_823A4Field(
+            Level23_823A4Field(Level23_823A4Field(privateState, int *, 0x14), int *, 0xC), int *,
+            4);
+        temp_a1_4 = Level23_823A4Field(Level23_823A4Field(privateState, int *, 0x14), int *, 0xC);
+        Level23_823A4_func_8004F1C8(&locals.sp80, temp_a1_4, temp_a1_4 + 0x10);
+        Level23_823A4Field(owner, unsigned char *, 0x46) =
+            Level23_823A4_func_8004E880(locals.sp80, locals.sp84, 0);
+        Level23_823A4Field(privateState, short *, 0x28) = 0xC8;
+        Level23_823A4Field(Level23_823A4Field(privateState, int *, 0x14), unsigned short *, 0xA) =
+            1U;
+        Level23_823A4Field(Level23_823A4Field(privateState, int *, 0x14), short *, 2) = 1;
+        Level23_823A4Field(privateState, unsigned char *, 0x12) = 0x19U;
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 0x19U;
+        return;
+    case 25:
+        temporary3 = Level23_823A4Field(privateState, int *, 0x24);
+        Level23_823A4Keep(temporary3);
+        result2 = (unsigned int)temporary3 * 11u;
+        temporary3 = Level23_823A4_D_8006C550;
+        __asm__("" : "=r"(result2), "=r"(temporary3) : "0"(result2), "1"(temporary3));
+        result2 = (unsigned int)result2 << 3;
+        saved16 = temporary3 + result2;
+        argument0 = Level23_823A4Field(saved16, unsigned char *, 0x48);
+        __asm__ volatile("" : "=r"(owner) : "0"(owner) : "$2", "memory");
+        result2 = 4;
+        __asm__("" : "=r"(argument0), "=r"(result2) : "0"(argument0), "1"(result2));
+        temp_a0_8 = argument0;
+        temporary3 = argument0 & 255;
+        saved19 = 0;
+        if (temporary3 == result2) {
+            goto block_164;
+        }
+        if (!(temp_a0_8 & 0x80)) {
+            goto block_165;
+        }
+    block_164:
+        saved19 = 1;
+    block_165:
+        if (Level23_823A4Field(privateState, short *, 0x2A) == 0) {
+            goto block_168;
+        }
+        if (Level23_823A4_func_800359A4(privateState + 0x28, 2) == 0) {
+            goto block_228;
+        }
+        Level23_823A4Field(privateState, short *, 0x2A) = 0;
+        Level23_823A4Field(privateState, short *, 0x28) = 0xC8;
+        return;
+    block_168:
+        if (Level23_823A4_func_8004F334(owner + 0xC, (int)&Level23_823A4_D_80070328) >=
+            Level23_823A4Field(privateState, short *, 0xC)) {
+            goto block_171;
+        }
+        saved19 = 1;
+        if (Level23_823A4Field(saved16, unsigned char *, 0x48) & 0x80) {
+            goto block_171;
+        }
+        Level23_823A4Field(Level23_823A4Field(saved16, int *, 0), int *, 8) = -1;
+        Level23_823A4_func_80034F40(saved16, 0);
+        Level23_823A4Field(saved16, unsigned char *, 0x48) = 0U;
+        Level23_823A4Field(saved16, signed char *, 0x49) = 1;
+    block_171:
+        if (saved19 == 0) {
+            goto block_173;
+        }
+        temp_a1_5 = Level23_823A4Field(Level23_823A4Field(privateState, int *, 0x14), int *, 0xC);
+        Level23_823A4_func_8004F194(&locals.sp90, temp_a1_5, temp_a1_5 + 0x10);
+        Level23_823A4_func_8004F110(&locals.sp90, 1);
+        Level23_823A4_func_8004F178(privateState, &locals.sp90);
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 1U;
+        Level23_823A4_func_80034F40(owner, 1);
+        Level23_823A4Field(privateState, short *, 0x28) = 0x3C;
+        Level23_823A4Field(owner, unsigned char *, 0x49) = 2U;
+        Level23_823A4Field(privateState, unsigned char *, 0x12) = 0U;
+        return;
+    block_173:
+        Level23_823A4Keep(saved19);
+        result2 = Level23_823A4_func_80035A80(owner, Level23_823A4Field(privateState, int *, 0x14),
+                                              0x78, 0x32, 0, 6, 2, 4);
+        result2 &= 3;
+        argument0 = owner;
+        if (!result2) {
+            goto block_175;
+        }
+        temp_v1_10 = Level23_823A4Field(privateState, int *, 0x14);
+        Level23_823A4Field(temp_v1_10, short *, 2) =
+            (short)(Level23_823A4Field(temp_v1_10, short *, 2) == 0);
+        temporary3 = Level23_823A4Field(privateState, int *, 0x14);
+        result2 = Level23_823A4Field(temporary3, unsigned short *, 0xA);
+        __asm__ volatile("" : "=r"(argument0) : "0"(argument0) : "$5", "memory");
+        argument1 = 0;
+        result2 = -result2;
+        Level23_823A4Field(temporary3, unsigned short *, 0xA) = result2;
+        Level23_823A4Field(privateState, short *, 0x2A) = 1;
+        Level23_823A4Field(privateState, short *, 0x28) = 0x78;
+        goto block_176;
+    block_175:
+        argument1 = 1;
+    block_176:
+        Level23_823A4_func_80034F40(argument0, argument1);
+        temporary3 = Level23_823A4Field(owner, unsigned char *, 0x49);
+        result2 = 1;
+        __asm__ volatile(""
+                         : "=r"(temporary3), "=r"(result2)
+                         : "0"(temporary3), "1"(result2)
+                         : "$4");
+        argument0 = privateState + 0x28;
+        if (temporary3 != result2) {
+            goto block_180;
+        }
+        if (Level23_823A4Field(privateState, short *, 0x28) >= 0x41) {
+            goto block_179;
+        }
+        Level23_823A4Field(saved16, unsigned char *, 0x48) = 0x18U;
+        Level23_823A4_func_80034F40(saved16, 5);
+        Level23_823A4Field(owner, unsigned char *, 0x49) = 3U;
+    block_179:
+        Level23_823A4Keep(privateState);
+        argument0 = privateState + 0x28;
+        Level23_823A4Keep(argument0);
+    block_180:
+        if (Level23_823A4_func_800359A4(argument0, 2) == 0) {
+            goto block_228;
+        }
+        Level23_823A4Field(owner, unsigned char *, 0x49) = 1U;
+        Level23_823A4Field(privateState, short *, 0x28) = 0xC8;
+        return;
+    case 27:
+        Level23_823A4_func_80034F40(owner, 1);
+        Level23_823A4Field(privateState, short *, 0x28) = 0;
+        Level23_823A4Field(Level23_823A4Field(privateState, int *, 0x14), unsigned short *, 0xA) =
+            1U;
+        Level23_823A4Field(Level23_823A4Field(privateState, int *, 0x14), short *, 2) = 0;
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 0x1CU;
+        return;
+    case 30:
+        Level23_823A4_func_80034F40(owner, 2);
+        Level23_823A4Field(privateState, short *, 0x28) = 0;
+        Level23_823A4Field(Level23_823A4Field(privateState, int *, 0x14), unsigned short *, 0xA) =
+            1U;
+        Level23_823A4Field(Level23_823A4Field(privateState, int *, 0x14), short *, 2) = 0;
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 0x1FU;
+        return;
+    case 28:
+        argument2 = 255;
+        Level23_823A4Keep(argument2);
+        temporary3 = Level23_823A4Field(privateState, int *, 0x24);
+        argument0 = Level23_823A4_D_8006C550;
+        __asm__ volatile("" : "=r"(owner) : "0"(owner) : "$5", "memory");
+        argument1 = 32;
+        __asm__(""
+                : "=r"(temporary3), "=r"(argument0), "=r"(argument1)
+                : "0"(temporary3), "1"(argument0), "2"(argument1));
+        Level23_823A4Field(owner, unsigned char *, 0x4A) = argument2;
+        Level23_823A4Field(owner, unsigned char *, 0x4C) = argument1;
+        __asm__ volatile(""
+                         : "=r"(temporary3), "=r"(argument0), "=r"(argument1), "=r"(argument2)
+                         : "0"(temporary3), "1"(argument0), "2"(argument1), "3"(argument2)
+                         : "memory");
+        result2 = (unsigned int)temporary3 * 88u;
+        Level23_823A4Keep(result2);
+        saved19 = argument0 + result2;
+        argument0 = owner + 12;
+        if (Level23_823A4Field(saved19, unsigned char *, 0x48) & 128)
+            goto block_186;
+        Level23_823A4Field(saved19, unsigned char *, 0x4A) = argument2;
+        Level23_823A4Field(saved19, unsigned char *, 0x4C) = argument1;
+    block_186:
+        temp_v0_5 =
+            Level23_823A4_func_8004F334(argument0, (int)&Level23_823A4_D_80070328, argument2);
+        if (temp_v0_5 < 0x6979) {
+            goto block_188;
+        }
+        if (Level23_823A4_func_8004F334(saved19 + 0xC, (int)&Level23_823A4_D_80070328) >= 0x6979) {
+            goto block_201;
+        }
+    block_188:
+        saved16 = 0x4B;
+        if (Level23_823A4Field(privateState, short *, 0x28) == 0) {
+            goto block_190;
+        }
+        Level23_823A4_func_800359A4(privateState + 0x28, 2);
+        goto block_191;
+    block_190:
+        saved16 = 0x32;
+    block_191:
+        Level23_823A4_func_80035A80(owner, Level23_823A4Field(privateState, int *, 0x14), 0x78,
+                                    saved16, 0, 6, 2, 4);
+        temp_v1_12 = Level23_823A4Field(saved19, unsigned char *, 0x48);
+        if (temp_v1_12 & 0x80) {
+            goto block_196;
+        }
+        if (temp_v0_5 >= Level23_823A4Field(privateState, short *, 0xC)) {
+            goto block_195;
+        }
+        temp_v0_6 = Level23_823A4Field(privateState, int *, 0x14);
+        saved16 = Level23_823A4Field(saved19, int *, 0);
+        Level23_823A4_func_8004F178(privateState,
+                                    Level23_823A4Field(temp_v0_6, int *, 0xC) +
+                                        (Level23_823A4Field(temp_v0_6, short *, 2) * 0x10));
+        temp_v0_7 = Level23_823A4Field(privateState, int *, 0x14);
+        var_a1_4 = Level23_823A4Field(temp_v0_7, int *, 0xC);
+        var_a0_3 = saved16;
+        if (Level23_823A4Field(temp_v0_7, short *, 2) != 0) {
+            goto block_208;
+        }
+        var_a1_4 += 0x10;
+        goto block_208;
+    block_195:
+        if ((unsigned int)(temp_v1_12 - 5) >= 3U) {
+            goto block_228;
+        }
+    block_196:
+        temp_v0_8 = Level23_823A4Field(privateState, int *, 0x14);
+        Level23_823A4_func_8004F178(privateState,
+                                    Level23_823A4Field(temp_v0_8, int *, 0xC) +
+                                        (Level23_823A4Field(temp_v0_8, short *, 2) * 0x10));
+        goto block_227;
+    case 31:
+        argument2 = 255;
+        Level23_823A4Keep(argument2);
+        temporary3 = Level23_823A4Field(privateState, int *, 0x24);
+        argument0 = Level23_823A4_D_8006C550;
+        __asm__ volatile("" : "=r"(owner) : "0"(owner) : "$5", "memory");
+        argument1 = 32;
+        __asm__(""
+                : "=r"(temporary3), "=r"(argument0), "=r"(argument1)
+                : "0"(temporary3), "1"(argument0), "2"(argument1));
+        Level23_823A4Field(owner, unsigned char *, 0x4A) = argument2;
+        Level23_823A4Field(owner, unsigned char *, 0x4C) = argument1;
+        __asm__ volatile(""
+                         : "=r"(temporary3), "=r"(argument0), "=r"(argument1), "=r"(argument2)
+                         : "0"(temporary3), "1"(argument0), "2"(argument1), "3"(argument2)
+                         : "memory");
+        result2 = (unsigned int)temporary3 * 88u;
+        Level23_823A4Keep(result2);
+        saved19 = argument0 + result2;
+        argument0 = owner + 12;
+        if (Level23_823A4Field(saved19, unsigned char *, 0x48) & 128)
+            goto block_199;
+        Level23_823A4Field(saved19, unsigned char *, 0x4A) = argument2;
+        Level23_823A4Field(saved19, unsigned char *, 0x4C) = argument1;
+    block_199:
+        temp_v0_9 =
+            Level23_823A4_func_8004F334(argument0, (int)&Level23_823A4_D_80070328, argument2);
+        if (temp_v0_9 < 0x6979) {
+            goto block_203;
+        }
+        if (Level23_823A4_func_8004F334(saved19 + 0xC, (int)&Level23_823A4_D_80070328) < 0x6979) {
+            goto block_203;
+        }
+    block_201:
+        Level23_823A4Field(owner, signed char *, 0x4A) = 0x18;
+        Level23_823A4Field(owner, signed char *, 0x4C) = 0x18;
+        if (Level23_823A4Field(saved19, unsigned char *, 0x48) & 0x80) {
+            goto block_228;
+        }
+        Level23_823A4Field(saved19, signed char *, 0x4A) = 0x18;
+        Level23_823A4Field(saved19, signed char *, 0x4C) = 0x18;
+        return;
+    block_203:
+        temp_v1_13 = Level23_823A4Field(saved19, unsigned char *, 0x48);
+        if (temp_v1_13 & 0x80) {
+            goto block_196;
+        }
+        if (temp_v0_9 >= Level23_823A4Field(privateState, short *, 0xC)) {
+            goto block_211;
+        }
+        result2 = Level23_823A4Field(privateState, int *, 0x14);
+        argument1 = Level23_823A4Field(result2, int *, 12);
+        result2 = Level23_823A4Field(result2, short *, 2);
+        __asm__ volatile("" : "=r"(argument1) : "0"(argument1) : "memory");
+        saved16 = Level23_823A4Field(saved19, int *, 0);
+        Level23_823A4Keep(result2);
+        if (result2 != 0)
+            goto block_207;
+        argument1 += 16;
+    block_207:
+        Level23_823A4_func_8004F178(privateState, argument1);
+        result2 = Level23_823A4Field(privateState, int *, 0x14);
+        argument0 = saved16;
+        argument1 = Level23_823A4Field(result2, short *, 2);
+        Level23_823A4Keep(argument1);
+        result2 = Level23_823A4Field(result2, int *, 12);
+        argument1 = (unsigned int)argument1 << 4;
+        argument1 = (unsigned int)result2 + (unsigned int)argument1;
+        var_a0_3 = argument0;
+        var_a1_4 = argument1;
+    block_208:
+        Level23_823A4_func_8004F178(var_a0_3, var_a1_4);
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 1U;
+        Level23_823A4_func_80034F40(owner, 1);
+        Level23_823A4Field(privateState, short *, 0x28) = 0x3C;
+        Level23_823A4Field(owner, unsigned char *, 0x49) = 2U;
+        Level23_823A4Field(saved19, signed char *, 0x48) = 1;
+        Level23_823A4_func_80034F40(saved19, 1);
+        if (Level23_823A4Field(saved19, short *, 0x36) != 0x1A) {
+            goto block_210;
+        }
+        Level23_823A4Field(privateState, short *, 0x28) = 0x3C;
+    block_210:
+        Level23_823A4Field(saved19, signed char *, 0x49) = 2;
+        return;
+    block_211:
+        if ((unsigned int)(temp_v1_13 - 5) < 3U) {
+            goto block_196;
+        }
+        saved16 = 0x32;
+        if (Level23_823A4Field(privateState, short *, 0x28) == 0) {
+            goto block_214;
+        }
+        Level23_823A4_func_800359A4(privateState + 0x28, 2);
+        goto block_215;
+    block_214:
+        saved16 = 0x4B;
+    block_215:
+        Level23_823A4_func_80035A80(owner, Level23_823A4Field(privateState, int *, 0x14), 0x78,
+                                    saved16, 0, 6, 2, 4);
+        if (Level23_823A4Field(privateState, short *, 0x28) != 0) {
+            goto block_228;
+        }
+        if (Level23_823A4_func_8004F334(owner + 0xC, saved19 + 0xC) >= 0x564) {
+            goto block_228;
+        }
+        Level23_823A4Field(saved19, unsigned char *, 0x48) = 0x1DU;
+        Level23_823A4_func_80034F40(saved19, 4);
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 0x1CU;
+        Level23_823A4_func_80034F40(owner, 1);
+        temp_v1_14 = Level23_823A4Field(privateState, int *, 0x14);
+        Level23_823A4Field(privateState, short *, 0x28) = 0x50;
+        Level23_823A4Field(temp_v1_14, short *, 2) =
+            (short)(Level23_823A4Field(temp_v1_14, short *, 2) == 0);
+        return;
+    case 29:
+        if (Level23_823A4_D_8006C770 == 0) {
+            goto block_228;
+        }
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 0x1FU;
+        Level23_823A4_func_80034F40(owner, 2);
+        temp_v1_15 = Level23_823A4Field(privateState, int *, 0x14);
+        Level23_823A4Field(temp_v1_15, short *, 2) =
+            (short)(Level23_823A4Field(temp_v1_15, short *, 2) == 0);
+        Level23_823A4Field(privateState, short *, 0x28) = 0x50;
+        return;
+    case 33:
+        Level23_823A4_func_80034F40(owner, 0);
+        if (Level23_823A4_func_8004F334(owner + 0xC, (int)&Level23_823A4_D_80070328) >= 0x2800) {
+            goto block_228;
+        }
+        Level23_823A4_func_80034F40(owner, 2);
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 0x22U;
+        return;
+    case 34:
+        argument2 = 0;
+        temporary3 = Level23_823A4Field(privateState, int *, 0x24);
+        argument0 = Level23_823A4Field(owner, int *, 12);
+        argument1 = Level23_823A4Field(owner, int *, 16);
+        __asm__ volatile(""
+                         : "=r"(argument2), "=r"(temporary3), "=r"(argument0), "=r"(argument1)
+                         : "0"(argument2), "1"(temporary3), "2"(argument0), "3"(argument1));
+        result2 = (unsigned int)temporary3 * 11u;
+        temporary3 = Level23_823A4_D_8006C550;
+        __asm__("" : "=r"(result2), "=r"(temporary3) : "0"(result2), "1"(temporary3));
+        result2 = (unsigned int)result2 << 3;
+        saved16 = temporary3 + result2;
+        temporary3 = Level23_823A4Field(saved16, int *, 12);
+        result2 = Level23_823A4Field(saved16, int *, 16);
+        argument0 = temporary3 - argument0;
+        argument1 = result2 - argument1;
+        result2 = Level23_823A4_func_8004E880(argument0, argument1, argument2);
+        Level23_823A4_func_8003585C(owner, result2, 8, 0, 0, 0);
+        Level23_823A4_func_80035DDC(owner, 0x32, 0, 0, 0x604);
+        if (Level23_823A4_func_8004F334(owner + 0xC, saved16 + 0xC) < 0x400) {
+            goto block_224;
+        }
+        if (Level23_823A4Field(saved16, int *, 0x18) == 0) {
+            goto block_228;
+        }
+    block_224:
+        if (Level23_823A4Field(saved16, int *, 0x18) != 0) {
+            goto block_226;
+        }
+        Level23_823A4_SpawnMoby(0x10, saved16);
+        Level23_823A4_func_800369B8(saved16, 0x18);
+        Level23_823A4_func_80055B18(saved16);
+    block_226:
+    block_227:
+        Level23_823A4Field(owner, unsigned char *, 0x48) = 1U;
+        Level23_823A4_func_80034F40(owner, 1);
+        Level23_823A4Field(privateState, short *, 0x28) = 0x3C;
+        Level23_823A4Field(owner, unsigned char *, 0x49) = 2U;
+    block_228:
+        return;
+    default:
+        goto block_228;
+    }
+}
+
+#undef Level23_823A4Field
+
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original80083BFC.
+ * AI generated; not human reviewed. Acceptance requires1295 native
+ * instructions,all32 selectors,every actual target and full retail hashes.
+ * Original frameC0 (192 bytes),saves S0..S6/RA at SPA0..BC;
+ * home/outgoing SP00..1B;explicit vector homes SP20..8B. Remaining
+ * local reserve bytes are never read. All vector reads have original
+ * copy,subtract,explicit component or55F14 output producers.
+ * Owner S2/private S5 start from the parameter/owner0 producers.
+ * Saved roles change only after their previous values die. The original
+ * angular return in S1 lives only on its own branch;the other branch
+ * uses S1 as SP60. S0's player base survives both original byte/word
+ * consumers and the distance helper before its next address producer.
+ * No fixed FP/SP,undefined incoming saved role,overlapping live fixed
+ * alias,manual outgoing stack write or reserve-content read is used.
+ * All10 native MULT sites use DISTINCT fully initialized signed64
+ * product unions with compiler-correct local MIPSEB/MIPSEL word order.
+ * No union address escapes. Six vector products and the later scalar
+ * product narrow complete low words;three ordinary C high projections
+ * retain two /58 corrections and one /6 correction. There is no partial
+ * HI/LO input. The C90E strength chain explicitly wraps each original
+ * 32-bit shift/add/subtract before the original signed shift13.
+ * The signed dynamic divisions retain original zero/overflow traps.
+ * Complete initialized value/address identities preserve original
+ * scalar captures,argument edges,byte reloads,redundant literals and
+ * distinct store paths. Metadata observes only initialized whole values
+ * or original written fields;dead GP clobbers precede fresh producers.
+ * Metadata emits zero CPU instructions. There is no opcode asm.
+ * Known helper views retain the original physical caller words.
+ * 4F110 has two formal arguments;its original A2/A3 complete low values
+ * remain explicitly observed before the final delay store.55D24 also
+ * has two formal arguments;the original complete A2 counter remains.
+ * 2803C's caller narrows its result to signed16 after original A0/A1
+ * staging.369B8's two physical input words are a forwarding ABI view;
+ * its complete2E2D0 formal/semantic contract remains unresolved.
+ * Compiler/filter/flags,native and linked targets,all selector bytes
+ * and full EXE/every-overlay hashes remain frozen and mandatory.
+ * Confidence after gates is binary identity. Allocation/caller/writer
+ * closure,helper semantic contracts,units/fixed-point domains,cadence
+ * beyond invocation,Rev1 mapping and synchronized captures remain open.
+ * Next:human review and those exact evidence chains,without guesses.
+ */
+/* Original assembly SHA256 607172a3482e0d315cc573d73deac5eefea2d544308e828474138243011673b8 */
+typedef union {
+    long long full;
+    struct {
+#if defined(__MIPSEB__)
+        int high;
+        unsigned low;
+#else
+        unsigned low;
+        int high;
+#endif
+    }
+    words;
+}
+Level23_83BFCCompleteProduct;
+#define Level23_83BFCField(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+#define Level23_83BFCKeep(x) __asm__ volatile(""::"r"(x))
+void Level23_83BFCCall13ACCView1(void*,int) __asm__("func_80013ACC");
+void Level23_83BFCCall13D44View1(void*,int,void*,int) __asm__("func_80013D44");
+void Level23_83BFCCall1BA30View1(void*,int,int,int,int,void*) __asm__("func_8001BA30");
+int Level23_83BFCCall2803CView1(int,int,void*,void*,void*,int*,int) __asm__("func_8002803C");
+int Level23_83BFCCall28154View1(int) __asm__("func_80028154");
+void Level23_83BFCCall34F40View1(void*,int) __asm__("func_80034F40");
+void Level23_83BFCCall34F80View1(void*,int) __asm__("func_80034F80");
+int Level23_83BFCCall3573CView1(void*,int,int,int) __asm__("func_8003573C");
+int Level23_83BFCCall359A4View1(void*,int) __asm__("func_800359A4");
+int Level23_83BFCCall35EE0View1(void*,int,int,int,int,int) __asm__("func_80035EE0");
+int Level23_83BFCCall3636CView1(int,int) __asm__("func_8003636C");
+void Level23_83BFCCall369B8View1(int,int) __asm__("func_800369B8");
+void Level23_83BFCCall3B7B4View1(void*,int,void*) __asm__("func_8003B7B4");
+int Level23_83BFCCall4E880View1(int,int,int) __asm__("func_8004E880");
+int Level23_83BFCCall4EDE8View1(void*,int) __asm__("func_8004EDE8");
+void Level23_83BFCCall4F08CView1(void*,int,int) __asm__("func_8004F08C");
+void Level23_83BFCCall4F110View1(void*,int) __asm__("func_8004F110");
+void Level23_83BFCCall4F178View1(void*,void*) __asm__("func_8004F178");
+void Level23_83BFCCall4F194View1(void*,void*,void*) __asm__("func_8004F194");
+void Level23_83BFCCall4F1C8View1(void*,void*,void*) __asm__("func_8004F1C8");
+int Level23_83BFCCall4F264View1(int,int) __asm__("func_8004F264");
+int Level23_83BFCCall4F334View1(void*,void*) __asm__("func_8004F334");
+void Level23_83BFCCall55B18View1(void*) __asm__("func_80055B18");
+void Level23_83BFCCall55D24View1(void*,int) __asm__("func_80055D24");
+int Level23_83BFCCall55E84View1(void*) __asm__("func_80055E84");
+void Level23_83BFCCall55F14View1(void*,int,void*) __asm__("func_80055F14");
+extern unsigned char Level23_83BFCData658A0View1 __asm__("D_800658A0");
+extern unsigned char Level23_83BFCData65920View1 __asm__("D_80065920");
+extern int Level23_83BFCData6C550View1 __asm__("D_8006C550");
+extern int Level23_83BFCData6C58CView1 __asm__("D_8006C58C");
+extern int Level23_83BFCData6C770View1 __asm__("D_8006C770");
+extern unsigned char Level23_83BFCData6C7B4View1 __asm__("D_8006C7B4");
+extern unsigned char Level23_83BFCData6C7F8View1 __asm__("D_8006C7F8");
+extern unsigned char Level23_83BFCData6D088View1 __asm__("D_8006D088");
+extern int Level23_83BFCData6E044View1 __asm__("D_8006E044");
+extern unsigned char Level23_83BFCData70300View1 __asm__("D_80070300");
+extern int Level23_83BFCData70328View1 __asm__("D_80070328");
+extern void*(*Level23_83BFCDataSpawnMobyView1)(int,void*) __asm__("SpawnMoby");
+extern void*(*Level23_83BFCDataSpawnParticleView1)(int,int,void*,void*) __asm__("SpawnParticle");
+extern int Level23_83BFCData74364View1 __asm__("unk_ovlheader_80074364");
+extern int Level23_83BFCData74368View1 __asm__("unk_ovlheader_80074368");
+extern int Level23_83BFCData7436CView1 __asm__("unk_ovlheader_8007436C");
+void func_level_23_80083BFC(void* ownerParameter) {
+    register int framePrivateOrPlayerBase16 __asm__("$16"),actorHeadingConstantOrFrame17 __asm__("$17"),owner18 __asm__("$18"),spawnOrScalar19 __asm__("$19"),linkedActor20 __asm__("$20"),privateRecord21 __asm__("$21"),spawnPrivate22 __asm__("$22");
+    register int resultOrIntermediate2 __asm__("$2"),fieldOrIntermediate3 __asm__("$3"),argumentOrIntermediate4 __asm__("$4"),argumentOrIntermediate5 __asm__("$5"),argumentOrCapture6 __asm__("$6"),argumentOrCapture7 __asm__("$7"),constantOrLowCapture8 __asm__("$8"),classConstant9 __asm__("$9"),classConstant10 __asm__("$10"),highCapture11 __asm__("$11");
+    Level23_83BFCCompleteProduct predictX,predictY,predictZ,aimX,aimY,aimZ,aimDistance,retailDistance,retailSix,retailLow;
+    struct {
+        int sp20,sp24,sp28,sp2C,sp30,sp34,sp38,sp3C,sp40,sp44,sp48,sp4C,sp50,sp54,sp58,sp5C,sp60,sp64,sp68,sp6C,sp70,sp74,sp78,sp7C,sp80,sp84,sp88,sp8C,sp90,sp94,sp98,sp9C;
+    }
+    originalFrame;
+    int var_a1;
+    int temp_a0_2;
+    int temp_a2;
+    int temp_v1_12;
+    int temp_v1_13;
+    int var_v0;
+    int var_v1;
+    int var_v0_6;
+    int temp_a0;
+    int temp_v0_10;
+    int temp_v0_6;
+    int temp_v1;
+    int temp_v1_2;
+    int temp_v1_3;
+    int temp_v1_5;
+    int var_v0_2;
+    int var_v0_8;
+    int temp_v0_2;
+    int var_a0_2;
+    owner18=(int)ownerParameter;
+    fieldOrIntermediate3=32;
+    __asm__ volatile(""::"r"(owner18),"r"(fieldOrIntermediate3));
+    privateRecord21 = Level23_83BFCField(owner18, int*, 0);
+    if (Level23_83BFCField(owner18,unsigned char*,72)!=fieldOrIntermediate3) {
+        goto block_3;
+    }
+    Level23_83BFCField(owner18, signed char *, 0x41) = 0;
+    Level23_83BFCField(owner18, signed char *, 0x4C) = 0;
+    Level23_83BFCField(owner18, signed char *, 0x4D) = 0;
+    Level23_83BFCField(owner18, int *, 8) = 0;
+    if (Level23_83BFCCall4F334View1(owner18 + 0xC, (int)&Level23_83BFCData70328View1) >= 0x800) {
+        goto block_177;
+    }
+    var_v1 = Level23_83BFCField(privateRecord21, int *, 0x10);
+    var_v0 = var_v1 * 2;
+    goto block_166;
+block_3:
+    if (!(Level23_83BFCField(owner18, int *, 0x18) & 0x40000)) {
+        goto block_12;
+    }
+    Level23_83BFCField(owner18, int *, 0x18) = 0;
+    Level23_83BFCField(owner18, unsigned char *, 0x49) = 0U;
+    Level23_83BFCField(privateRecord21, int*, 4) = 0;
+    if (Level23_83BFCField(privateRecord21, int *, 0xC) >= 2) {
+        goto block_10;
+    }
+    spawnOrScalar19 = 0;
+    fieldOrIntermediate3=Level23_83BFCField(privateRecord21,int*,40);
+    argumentOrIntermediate4=Level23_83BFCField((int)&Level23_83BFCData70328View1,int*,640);
+    resultOrIntermediate2=fieldOrIntermediate3*88;
+    fieldOrIntermediate3=Level23_83BFCData6C550View1;
+    linkedActor20=fieldOrIntermediate3+resultOrIntermediate2;
+    if(argumentOrIntermediate4<0) {
+        goto block_7;
+    }
+    spawnOrScalar19 = Level23_83BFCDataSpawnMobyView1(0x1E, owner18);
+block_7:
+    argumentOrCapture6=0;
+    if (spawnOrScalar19 == 0) {
+        goto block_9;
+    }
+    __asm__ volatile(""::"r"(argumentOrCapture6):"$17");
+    actorHeadingConstantOrFrame17=180;
+    Level23_83BFCKeep(actorHeadingConstantOrFrame17);
+    framePrivateOrPlayerBase16=Level23_83BFCField(spawnOrScalar19,int*,0);
+    Level23_83BFCField((int)&Level23_83BFCData70328View1,int*,644)=actorHeadingConstantOrFrame17;
+    Level23_83BFCField(spawnOrScalar19, signed char *, 0x48) = 0x1E;
+    Level23_83BFCField(spawnOrScalar19, int *, 8) = 0;
+    Level23_83BFCField(spawnOrScalar19, unsigned char *, 0x46) = Level23_83BFCCall4E880View1(Level23_83BFCField((int)&Level23_83BFCData70328View1, int *, 0) - Level23_83BFCField(owner18, int *, 0xC), Level23_83BFCField((int)&Level23_83BFCData70328View1,int*,4)-Level23_83BFCField(owner18,int*,16),argumentOrCapture6);
+    Level23_83BFCField(spawnOrScalar19, signed char *, 0x41) = 0;
+    Level23_83BFCField(spawnOrScalar19, signed char *, 0x4C) = 0;
+    Level23_83BFCField(spawnOrScalar19, signed char *, 0x4D) = 0;
+    Level23_83BFCCall35EE0View1(spawnOrScalar19, (Level23_83BFCField(spawnOrScalar19, unsigned char *, 0x46) + 0x80) & 0xFF, 0x2BC, 0, 0, 0);
+    Level23_83BFCField(framePrivateOrPlayerBase16,int*,0)=actorHeadingConstantOrFrame17;
+    resultOrIntermediate2=300;
+    Level23_83BFCField(framePrivateOrPlayerBase16,int*,4)=resultOrIntermediate2;
+    fieldOrIntermediate3=Level23_83BFCField(owner18,int*,20);
+    resultOrIntermediate2=3;
+    Level23_83BFCField(framePrivateOrPlayerBase16,int*,8)=resultOrIntermediate2;
+    Level23_83BFCField(framePrivateOrPlayerBase16,int*,16)=linkedActor20;
+    Level23_83BFCField(framePrivateOrPlayerBase16,int*,12)=fieldOrIntermediate3;
+    Level23_83BFCField(framePrivateOrPlayerBase16, int *, 0x14) = (int) Level23_83BFCField(privateRecord21, int *, 0x10);
+block_9:
+    Level23_83BFCCall1BA30View1(owner18 + 0xC, 0x4000, 1, 0, 0x10000, owner18);
+    Level23_83BFCCall28154View1(Level23_83BFCField(privateRecord21, int *, 0x24));
+    argumentOrIntermediate4=owner18;
+    argumentOrIntermediate5=7;
+    __asm__ volatile(""::"r"(argumentOrIntermediate4),"r"(argumentOrIntermediate5));
+    var_a1=argumentOrIntermediate5;
+    var_v0_2 = 7;
+    goto block_11;
+block_10:
+    __asm__ volatile("":::"$4");
+    argumentOrIntermediate4=owner18;
+    argumentOrIntermediate5=3;
+    __asm__ volatile(""::"r"(argumentOrIntermediate4),"r"(argumentOrIntermediate5));
+    var_a1=argumentOrIntermediate5;
+    Level23_83BFCField(privateRecord21, unsigned char *, 8) = 1U;
+    var_v0_2 = 3;
+block_11:
+    Level23_83BFCField(owner18, unsigned char *, 0x48) = var_v0_2;
+    Level23_83BFCCall34F40View1(argumentOrIntermediate4,argumentOrIntermediate5);
+block_12:
+    temp_v1 = Level23_83BFCField(owner18, unsigned char *, 0x48);
+    if (temp_v1 >= 0x1EU) {
+        goto block_31;
+    }
+    if (temp_v1 == 7) {
+        goto block_16;
+    }
+    if (Level23_83BFCField((int)&Level23_83BFCData70328View1, int *, 0x50) != 7) {
+        goto block_16;
+    }
+    Level23_83BFCField(privateRecord21, short *, 0xA) = 2;
+block_16:
+    __asm__ volatile("":::"memory");
+    fieldOrIntermediate3=Level23_83BFCField(owner18,unsigned char*,72);
+    __asm__("":"=r"(fieldOrIntermediate3):"0"(fieldOrIntermediate3));
+    temp_v1_2=fieldOrIntermediate3;
+    temp_a0 = temp_v1_2 & 0xFF;
+    if (temp_a0 >= 0x1EU) {
+        goto block_30;
+    }
+    if ((unsigned int) (temp_v1_2 - 6) < 2U) {
+        goto block_30;
+    }
+    if (temp_a0 == 3) {
+        goto block_30;
+    }
+    framePrivateOrPlayerBase16 = (int)&Level23_83BFCData70328View1 + 0x98;
+    Level23_83BFCCall4F178View1(&originalFrame.sp20, framePrivateOrPlayerBase16);
+    resultOrIntermediate2=originalFrame.sp20;
+    Level23_83BFCKeep(resultOrIntermediate2);
+    fieldOrIntermediate3=26;
+    Level23_83BFCKeep(fieldOrIntermediate3);
+    predictX.full=(long long)resultOrIntermediate2*(long long)fieldOrIntermediate3;
+    __asm__("":"=x"(predictX.full):"0"(predictX.full));
+    argumentOrCapture7=(int)predictX.words.low;
+    resultOrIntermediate2=originalFrame.sp24;
+    __asm__("":"=r"(resultOrIntermediate2):"0"(resultOrIntermediate2),"r"(argumentOrCapture7));
+    predictY.full=(long long)resultOrIntermediate2*(long long)fieldOrIntermediate3;
+    __asm__("":"=x"(predictY.full):"0"(predictY.full));
+    argumentOrCapture6=(int)predictY.words.low;
+    resultOrIntermediate2=originalFrame.sp28;
+    __asm__("":"=r"(resultOrIntermediate2):"0"(resultOrIntermediate2),"r"(argumentOrCapture6));
+    predictZ.full=(long long)resultOrIntermediate2*(long long)fieldOrIntermediate3;
+    __asm__("":"=x"(predictZ.full):"0"(predictZ.full));
+    argumentOrIntermediate4=(int)&originalFrame.sp20;
+    argumentOrIntermediate5=6;
+    originalFrame.sp20=argumentOrCapture7;
+    originalFrame.sp24=argumentOrCapture6;
+    __asm__("":"=x"(predictZ.full):"0"(predictZ.full),"r"(argumentOrIntermediate4),"r"(argumentOrIntermediate5),"m"(originalFrame.sp20),"m"(originalFrame.sp24));
+    fieldOrIntermediate3=(int)predictZ.words.low;
+    Level23_83BFCKeep(fieldOrIntermediate3);
+    Level23_83BFCKeep(argumentOrCapture6);
+    Level23_83BFCKeep(argumentOrCapture7);
+    originalFrame.sp28=fieldOrIntermediate3;
+    Level23_83BFCCall4F110View1(argumentOrIntermediate4,argumentOrIntermediate5);
+    Level23_83BFCCall4F194View1(&originalFrame.sp20, &originalFrame.sp20, framePrivateOrPlayerBase16 - 0x98);
+    if (Level23_83BFCCall4F334View1(owner18 + 0xC, &originalFrame.sp20) >= 0x672) {
+        goto block_30;
+    }
+    fieldOrIntermediate3=Level23_83BFCField(owner18,int*,20);
+    Level23_83BFCKeep(fieldOrIntermediate3);
+    if(Level23_83BFCField((int)&Level23_83BFCData70328View1,int*,8)<fieldOrIntermediate3) {
+        goto block_30;
+    }
+    if (Level23_83BFCField(owner18, unsigned char *, 0x49) != 1) {
+        goto block_24;
+    }
+    actorHeadingConstantOrFrame17 = Level23_83BFCField(privateRecord21, int*, 4);
+    if (actorHeadingConstantOrFrame17 == 0) {
+        goto block_24;
+    }
+    framePrivateOrPlayerBase16 = Level23_83BFCField(actorHeadingConstantOrFrame17, int*, 0);
+    Level23_83BFCCall55D24View1(owner18, 5);
+    Level23_83BFCCall55F14View1(owner18, 0, Level23_83BFCField(privateRecord21, int*, 4) + 0xC);
+    Level23_83BFCField(actorHeadingConstantOrFrame17, signed char *, 0x48) = 1;
+    Level23_83BFCField(actorHeadingConstantOrFrame17, unsigned char *, 0x44) = (unsigned char) Level23_83BFCField(owner18, unsigned char *, 0x44);
+    resultOrIntermediate2=Level23_83BFCCall3636CView1(0,155);
+    argumentOrIntermediate4=actorHeadingConstantOrFrame17;
+    argumentOrIntermediate5=128;
+    fieldOrIntermediate3=Level23_83BFCField(owner18,unsigned char*,69);
+    argumentOrCapture6=0;
+    fieldOrIntermediate3-=35;
+    Level23_83BFCKeep(fieldOrIntermediate3);
+    fieldOrIntermediate3+=resultOrIntermediate2;
+    Level23_83BFCField(actorHeadingConstantOrFrame17,unsigned char*,69)=fieldOrIntermediate3;
+    Level23_83BFCField(actorHeadingConstantOrFrame17, unsigned char *, 0x46) = (unsigned char) Level23_83BFCField(owner18, unsigned char *, 0x46);
+    Level23_83BFCCall3573CView1(argumentOrIntermediate4,argumentOrIntermediate5,argumentOrCapture6,0);
+    Level23_83BFCField(framePrivateOrPlayerBase16, int *, 8) = 0xFA;
+    Level23_83BFCField(framePrivateOrPlayerBase16, int *, 4) = 0xC8;
+    Level23_83BFCField(framePrivateOrPlayerBase16, short *, 2) = (short) Level23_83BFCField(actorHeadingConstantOrFrame17, unsigned char *, 0x46);
+    Level23_83BFCField(owner18, unsigned char *, 0x49) = 2U;
+block_24:
+    temp_v1_3 = Level23_83BFCField(owner18, unsigned char *, 0x48);
+    if (temp_v1_3 != 4) {
+        goto block_26;
+    }
+    Level23_83BFCField(privateRecord21, unsigned char *, 8) = 0U;
+    goto block_28;
+block_26:
+    if (temp_v1_3 != 5) {
+        goto block_29;
+    }
+    Level23_83BFCField(privateRecord21, unsigned char *, 8) = 1U;
+block_28:
+block_29:
+    Level23_83BFCField(owner18, unsigned char *, 0x48) = 6U;
+    argumentOrIntermediate4=owner18;
+    __asm__ volatile(""::"r"(argumentOrIntermediate4):"$5");
+    argumentOrIntermediate5=6;
+    goto block_176;
+block_30:
+block_31:
+    if (Level23_83BFCField(owner18, unsigned char *, 0x48) >= 0x20U) {
+        goto block_177;
+    }
+    switch (Level23_83BFCField(owner18, unsigned char *, 0x48)){
+    case 0:resultOrIntermediate2=Level23_83BFCCall55E84View1(owner18);
+        fieldOrIntermediate3=Level23_83BFCField(privateRecord21,short*,10);
+        framePrivateOrPlayerBase16=resultOrIntermediate2;
+        Level23_83BFCKeep(framePrivateOrPlayerBase16);
+        if(fieldOrIntermediate3<=0)goto block_35;
+        resultOrIntermediate2=fieldOrIntermediate3;
+        Level23_83BFCKeep(resultOrIntermediate2);
+        Level23_83BFCField(owner18,unsigned char*,72)=resultOrIntermediate2;
+        __asm__("":"=r"(owner18):"0"(owner18),"m"(Level23_83BFCField(owner18,unsigned char*,72)):"memory");
+        argumentOrIntermediate5=Level23_83BFCField(privateRecord21,short*,10);
+        __asm__ volatile(""::"r"(framePrivateOrPlayerBase16));
+        argumentOrIntermediate4=owner18;
+        goto block_176;
+    block_35:
+        Level23_83BFCCall3573CView1(owner18, 4, 4, 1);
+        if (Level23_83BFCCall359A4View1(privateRecord21, 4) != 0) {
+            goto block_40;
+        }
+        if (Level23_83BFCField(privateRecord21, unsigned char *, 8) != 0) {
+            goto block_38;
+        }
+        if (Level23_83BFCData6C770View1 != 0) {
+            goto block_40;
+        }
+    block_38:
+        if (Level23_83BFCField(owner18, unsigned char *, 0x49) != 0xA) {
+            goto block_44;
+        }
+        if ((unsigned int) (framePrivateOrPlayerBase16 - 0x45) >= 5U) {
+            goto block_44;
+        }
+        block_40:resultOrIntermediate2=Level23_83BFCField(privateRecord21,unsigned char*,8);
+        argumentOrIntermediate4=owner18;
+        if(resultOrIntermediate2)goto block_42;
+        resultOrIntermediate2=8;
+        Level23_83BFCField(owner18,unsigned char*,72)=resultOrIntermediate2;
+        argumentOrIntermediate5=8;
+        goto block_43;
+        block_42:argumentOrIntermediate5=4;
+        resultOrIntermediate2=4;
+        Level23_83BFCField(owner18,unsigned char*,73)=0;
+        Level23_83BFCField(owner18,unsigned char*,72)=resultOrIntermediate2;
+        block_43:__asm__ volatile(""::"r"(argumentOrIntermediate4),"r"(argumentOrIntermediate5));
+        Level23_83BFCCall34F40View1(argumentOrIntermediate4,argumentOrIntermediate5);
+    block_44:
+        if (Level23_83BFCField(owner18, unsigned char *, 0x49) != 0) {
+            goto block_177;
+        }
+        if (Level23_83BFCField(privateRecord21, int *, 0) < 0x65) {
+            goto block_177;
+        }
+        resultOrIntermediate2=framePrivateOrPlayerBase16<73;
+        Level23_83BFCKeep(resultOrIntermediate2);
+        if(!resultOrIntermediate2) {
+            goto block_177;
+        }
+        if (Level23_83BFCCall3636CView1(0, 0x96) != 0) {
+            goto block_177;
+        }
+        Level23_83BFCField(owner18, unsigned char *, 0x48) = 1U;
+        argumentOrIntermediate4=owner18;
+        __asm__ volatile(""::"r"(argumentOrIntermediate4):"$5");
+        argumentOrIntermediate5=1;
+        goto block_176;
+    case 1:resultOrIntermediate2=Level23_83BFCField(privateRecord21,short*,10);
+        if(resultOrIntermediate2<=0)goto block_51;
+        fieldOrIntermediate3=resultOrIntermediate2;
+        Level23_83BFCKeep(fieldOrIntermediate3);
+        Level23_83BFCField(owner18,unsigned char*,72)=fieldOrIntermediate3;
+        __asm__("":"=r"(owner18):"0"(owner18),"m"(Level23_83BFCField(owner18,unsigned char*,72)):"memory");
+        argumentOrIntermediate5=Level23_83BFCField(privateRecord21,short*,10);
+        __asm__ volatile(""::"r"(privateRecord21));
+        argumentOrIntermediate4=owner18;
+        goto block_176;
+        block_51:if(!Level23_83BFCData6C770View1)goto block_177;
+        resultOrIntermediate2=8;
+        fieldOrIntermediate3=Level23_83BFCField(owner18,unsigned char*,73);
+        argumentOrIntermediate4=owner18;
+        if(fieldOrIntermediate3!=resultOrIntermediate2)goto block_54;
+        __asm__ volatile("":"=r"(resultOrIntermediate2),"=r"(fieldOrIntermediate3):"0"(resultOrIntermediate2),"1"(fieldOrIntermediate3):"$5");
+        argumentOrIntermediate5=8;
+        __asm__ volatile("":"=r"(argumentOrIntermediate5):"0"(argumentOrIntermediate5));
+        resultOrIntermediate2=9;
+        Level23_83BFCField(argumentOrIntermediate4,unsigned char*,73)=resultOrIntermediate2;
+        resultOrIntermediate2=8;
+        Level23_83BFCField(argumentOrIntermediate4,unsigned char*,72)=resultOrIntermediate2;
+        goto block_176;
+        block_54:__asm__ volatile("":::"$5");
+        argumentOrIntermediate5=0;
+        resultOrIntermediate2=10;
+        Level23_83BFCField(argumentOrIntermediate4,unsigned char*,73)=resultOrIntermediate2;
+        Level23_83BFCField(argumentOrIntermediate4,unsigned char*,72)=0;
+        goto block_176;
+    case 2:if(!Level23_83BFCData6C770View1)goto block_177;
+        argumentOrIntermediate4=owner18;
+        argumentOrIntermediate5=0;
+        Level23_83BFCField(privateRecord21,short*,10)=0;
+        resultOrIntermediate2=150;
+        Level23_83BFCField(privateRecord21,int*,0)=resultOrIntermediate2;
+        __asm__ volatile("":"=r"(argumentOrIntermediate4):"0"(argumentOrIntermediate4),"r"(privateRecord21));
+        Level23_83BFCField(argumentOrIntermediate4,unsigned char*,72)=0;
+        goto block_176;
+    case 3:if(!Level23_83BFCData6C770View1)goto block_177;
+        argumentOrIntermediate4=owner18;
+        argumentOrIntermediate5=0;
+        Level23_83BFCField(privateRecord21,short*,10)=0;
+        resultOrIntermediate2=Level23_83BFCField(privateRecord21,int*,12);
+        fieldOrIntermediate3=150;
+        Level23_83BFCField(privateRecord21,int*,0)=fieldOrIntermediate3;
+        resultOrIntermediate2--;
+        Level23_83BFCField(privateRecord21,int*,12)=resultOrIntermediate2;
+        Level23_83BFCField(argumentOrIntermediate4,unsigned char*,72)=0;
+        goto block_176;
+        block_59:__asm__ volatile("":"=r"(argumentOrIntermediate5):"0"(argumentOrIntermediate5));
+        argumentOrIntermediate5++;
+        goto block_66;
+    case 4:
+        resultOrIntermediate2=Level23_83BFCCall55E84View1(owner18);
+        argumentOrIntermediate4=owner18;
+        argumentOrIntermediate5=4;
+        argumentOrCapture6=4;
+        argumentOrCapture7=1;
+        __asm__ volatile(""::"r"(argumentOrIntermediate4),"r"(argumentOrIntermediate5),"r"(argumentOrCapture6),"r"(argumentOrCapture7));
+        spawnOrScalar19=resultOrIntermediate2;
+        Level23_83BFCCall3573CView1(argumentOrIntermediate4,argumentOrIntermediate5,argumentOrCapture6,argumentOrCapture7);
+        resultOrIntermediate2=Level23_83BFCField(owner18,unsigned char*,73);
+        if(resultOrIntermediate2)goto actor1295PriorPredicate;
+        resultOrIntermediate2=spawnOrScalar19<10;
+        goto actor1295ScanBegin;
+        actor1295PriorPredicate:resultOrIntermediate2=spawnOrScalar19<10;
+        goto block_69;
+    actor1295ScanBegin:
+        argumentOrCapture6=Level23_83BFCData6C550View1;
+        argumentOrIntermediate4=Level23_83BFCField(argumentOrCapture6,unsigned char*,72);
+        __asm__("":"=r"(argumentOrIntermediate4):"0"(argumentOrIntermediate4):"$2","$5");
+        resultOrIntermediate2=255;
+        fieldOrIntermediate3=argumentOrIntermediate4&255;
+        argumentOrIntermediate5=0;
+        if(fieldOrIntermediate3==resultOrIntermediate2)goto block_66;
+        constantOrLowCapture8=404;
+        argumentOrCapture7=255;
+        fieldOrIntermediate3=argumentOrCapture6+72;
+        loop_63:resultOrIntermediate2=Level23_83BFCField(fieldOrIntermediate3,short*,-18);
+        if(resultOrIntermediate2!=constantOrLowCapture8)goto block_65;
+        resultOrIntermediate2=argumentOrIntermediate4&128;
+        if(!resultOrIntermediate2)goto block_59;
+        block_65:fieldOrIntermediate3+=88;
+        argumentOrIntermediate4=Level23_83BFCField(fieldOrIntermediate3,unsigned char*,0);
+        if(argumentOrIntermediate4!=argumentOrCapture7)goto loop_63;
+        block_66:resultOrIntermediate2=2;
+        if(argumentOrIntermediate5)goto block_68;
+        resultOrIntermediate2=1;
+        block_68:Level23_83BFCField(privateRecord21,unsigned char*,9)=resultOrIntermediate2;
+        resultOrIntermediate2=3;
+        Level23_83BFCField(owner18,unsigned char*,73)=resultOrIntermediate2;
+        resultOrIntermediate2=spawnOrScalar19<10;
+        block_69:if(!resultOrIntermediate2)goto block_73;
+        resultOrIntermediate2=4;
+        Level23_83BFCKeep(resultOrIntermediate2);
+        fieldOrIntermediate3=Level23_83BFCField(owner18,unsigned char*,60);
+        if(fieldOrIntermediate3!=resultOrIntermediate2){
+            resultOrIntermediate2=spawnOrScalar19<43;
+            goto block_74;
+        }
+        Level23_83BFCCall55D24View1(owner18, 5);
+        Level23_83BFCCall55F14View1(owner18, 0, &originalFrame.sp30);
+        Level23_83BFCCall55F14View1(owner18, 1, &originalFrame.sp40);
+        Level23_83BFCCall4F194View1(&originalFrame.sp30, &originalFrame.sp30, &originalFrame.sp40);
+        Level23_83BFCCall4F110View1(&originalFrame.sp30, 1);
+        originalFrame.sp50 = 0;
+        originalFrame.sp54 = 0;
+        originalFrame.sp58 = (int) Level23_83BFCField(privateRecord21, unsigned char *, 9);
+        var_a0_2 = Level23_83BFCDataSpawnParticleView1(1, 0x3C, &originalFrame.sp30, &originalFrame.sp50);
+        if (var_a0_2 == 0) {
+            goto block_80;
+        }
+        var_v0_6 = (Level23_83BFCField(owner18, unsigned char *, 0x3E) * 0x1F) + 0x1E;
+        goto block_79;
+        block_73:resultOrIntermediate2=spawnOrScalar19<43;
+        block_74:if(!resultOrIntermediate2)goto block_80;
+        resultOrIntermediate2=4;
+        Level23_83BFCKeep(resultOrIntermediate2);
+        fieldOrIntermediate3=Level23_83BFCField(owner18,unsigned char*,60);
+        if(fieldOrIntermediate3!=resultOrIntermediate2)goto block_80;
+        Level23_83BFCCall55D24View1(owner18, 5);
+        Level23_83BFCCall55F14View1(owner18, 0, &originalFrame.sp30);
+        Level23_83BFCCall55F14View1(owner18, 1, &originalFrame.sp40);
+        originalFrame.sp50 = 0;
+        originalFrame.sp54 = 0;
+        originalFrame.sp58 = (int) Level23_83BFCField(privateRecord21, unsigned char *, 9);
+        resultOrIntermediate2=Level23_83BFCDataSpawnParticleView1(1,60,&originalFrame.sp30,&originalFrame.sp50);
+        argumentOrIntermediate4=resultOrIntermediate2;
+        __asm__("":"=r"(argumentOrIntermediate4):"0"(argumentOrIntermediate4));
+        temp_v0_2=argumentOrIntermediate4;
+        resultOrIntermediate2=70;
+        if(argumentOrIntermediate4==0)goto block_78;
+        Level23_83BFCField(argumentOrIntermediate4,signed char*,10)=resultOrIntermediate2;
+    block_78:
+        argumentOrIntermediate4=Level23_83BFCDataSpawnParticleView1(1,0x3C,&originalFrame.sp40,&originalFrame.sp50);
+        Level23_83BFCKeep(argumentOrIntermediate4);
+        var_a0_2=argumentOrIntermediate4;
+        var_v0_6 = 0x46;
+        if (var_a0_2 == 0) {
+            goto block_80;
+        }
+    block_79:
+        Level23_83BFCField(var_a0_2, signed char *, 0xA) = var_v0_6;
+    block_80:
+        temp_v1_5 = Level23_83BFCField(owner18, unsigned char *, 0x49);
+        if (temp_v1_5 != 3) {
+            goto block_82;
+        }
+        if ((unsigned int) (spawnOrScalar19 - 0x1A) < 0xAU) {
+            goto block_87;
+        }
+    block_82:
+        if (temp_v1_5 != 4) {
+            goto block_84;
+        }
+        if ((unsigned int) (spawnOrScalar19 - 0x27) < 6U) {
+            goto block_87;
+        }
+    block_84:
+        if (temp_v1_5 != 5) {
+            goto block_130;
+        }
+        resultOrIntermediate2=spawnOrScalar19<49;
+        Level23_83BFCKeep(resultOrIntermediate2);
+        if(resultOrIntermediate2) {
+            goto block_130;
+        }
+        if ((unsigned char) Level23_83BFCField(owner18, unsigned char *, 0x3E) >= 0x3BU) {
+            goto block_130;
+        }
+    block_87:
+        if (Level23_83BFCField(owner18, unsigned char *, 0x3C) != 4) {
+            goto block_130;
+        }
+        resultOrIntermediate2=Level23_83BFCDataSpawnMobyView1(0x53,owner18);
+        linkedActor20=resultOrIntermediate2;
+        __asm__("":"=r"(linkedActor20):"0"(linkedActor20));
+        if (linkedActor20 == 0) {
+            goto block_130;
+        }
+        fieldOrIntermediate3=Level23_83BFCField(privateRecord21,unsigned char*,9);
+        spawnPrivate22=Level23_83BFCField(linkedActor20,int*,0);
+        argumentOrCapture6=0;
+        if(!fieldOrIntermediate3)goto block_92;
+        resultOrIntermediate2=1;
+        argumentOrIntermediate4=owner18;
+        if(fieldOrIntermediate3!=resultOrIntermediate2)goto block_103;
+        __asm__ volatile("":"=r"(resultOrIntermediate2):"0"(resultOrIntermediate2));
+        resultOrIntermediate2=1;
+        goto block_101;
+        block_92:argumentOrIntermediate4=Level23_83BFCData6C550View1;
+        argumentOrIntermediate5=Level23_83BFCField(argumentOrIntermediate4,unsigned char*,72);
+        __asm__("":"=r"(argumentOrIntermediate5):"0"(argumentOrIntermediate5):"$2");
+        resultOrIntermediate2=255;
+        Level23_83BFCKeep(resultOrIntermediate2);
+        __asm__("":"=r"(argumentOrCapture6):"0"(argumentOrCapture6));
+        fieldOrIntermediate3=argumentOrIntermediate5&255;
+        if(fieldOrIntermediate3==resultOrIntermediate2){
+            resultOrIntermediate2=argumentOrCapture6<3;
+            goto block_100;
+        }
+        resultOrIntermediate2=argumentOrCapture6<3;
+        __asm__ volatile("":::"$7");
+        classConstant10=404;
+        classConstant9=83;
+        constantOrLowCapture8=1;
+        argumentOrCapture7=255;
+        argumentOrIntermediate4+=72;
+        loop_94:fieldOrIntermediate3=Level23_83BFCField(argumentOrIntermediate4,short*,-18);
+        if(fieldOrIntermediate3!=classConstant10)goto block_96;
+        resultOrIntermediate2=argumentOrIntermediate5&128;
+        if(!resultOrIntermediate2)goto block_98;
+        block_96:if(fieldOrIntermediate3!=classConstant9)goto block_99;
+        resultOrIntermediate2=Level23_83BFCField(argumentOrIntermediate4,unsigned char*,0);
+        if(resultOrIntermediate2!=constantOrLowCapture8)goto block_99;
+        block_98:argumentOrCapture6++;
+        resultOrIntermediate2=argumentOrCapture6<3;
+        if(!resultOrIntermediate2)goto block_102;
+        block_99:argumentOrIntermediate4+=88;
+        argumentOrIntermediate5=Level23_83BFCField(argumentOrIntermediate4,unsigned char*,0);
+        resultOrIntermediate2=argumentOrCapture6<3;
+        if(argumentOrIntermediate5!=argumentOrCapture7)goto loop_94;
+        block_100:if(!resultOrIntermediate2)goto block_102;
+        resultOrIntermediate2=1;
+        block_101:Level23_83BFCField(linkedActor20,unsigned char*,72)=resultOrIntermediate2;
+        block_102:argumentOrIntermediate4=owner18;
+    block_103:
+        Level23_83BFCField(spawnPrivate22, int*, 0x14) = owner18;
+        Level23_83BFCKeep(argumentOrCapture6);
+        Level23_83BFCField(spawnPrivate22,int*,16)=Level23_83BFCField(privateRecord21,int*,24);
+        Level23_83BFCCall55D24View1(argumentOrIntermediate4,5);
+        fieldOrIntermediate3=Level23_83BFCField(owner18,unsigned char*,73);
+        resultOrIntermediate2=4;
+        if(fieldOrIntermediate3!=resultOrIntermediate2)goto block_105;
+        argumentOrIntermediate4=owner18;
+        __asm__("":"=r"(argumentOrIntermediate4):"0"(argumentOrIntermediate4));
+        argumentOrIntermediate5=1;
+        goto block_106;
+        block_105:argumentOrIntermediate4=owner18;
+        argumentOrIntermediate5=0;
+        block_106:Level23_83BFCCall55F14View1(argumentOrIntermediate4,argumentOrIntermediate5,linkedActor20+12);
+        argumentOrCapture6=0;
+        resultOrIntermediate2=255;
+        framePrivateOrPlayerBase16=(int)&Level23_83BFCData70328View1;
+        Level23_83BFCKeep(framePrivateOrPlayerBase16);
+        Level23_83BFCField(linkedActor20,unsigned char*,74)=resultOrIntermediate2;
+        fieldOrIntermediate3=Level23_83BFCField(owner18,int*,12);
+        argumentOrIntermediate4=Level23_83BFCField(framePrivateOrPlayerBase16,int*,0);
+        resultOrIntermediate2=Level23_83BFCField(owner18,int*,16);
+        argumentOrIntermediate5=Level23_83BFCField((int)&Level23_83BFCData70328View1,int*,4);
+        argumentOrIntermediate4=fieldOrIntermediate3-argumentOrIntermediate4;
+        argumentOrIntermediate5=resultOrIntermediate2-argumentOrIntermediate5;
+        resultOrIntermediate2=Level23_83BFCCall4E880View1(argumentOrIntermediate4,argumentOrIntermediate5,argumentOrCapture6);
+        actorHeadingConstantOrFrame17=resultOrIntermediate2;
+        __asm__("":"=r"(framePrivateOrPlayerBase16):"0"(framePrivateOrPlayerBase16));
+        argumentOrIntermediate5=Level23_83BFCField(framePrivateOrPlayerBase16,unsigned char*,14);
+        temp_a0_2=Level23_83BFCCall4F264View1(actorHeadingConstantOrFrame17,argumentOrIntermediate5);
+        argumentOrIntermediate4=temp_a0_2;
+        fieldOrIntermediate3=Level23_83BFCField(linkedActor20,unsigned char*,72);
+        if(fieldOrIntermediate3!=1){
+            resultOrIntermediate2=argumentOrIntermediate4-32;
+            goto block_111;
+        }
+        resultOrIntermediate2=50;
+        Level23_83BFCField(spawnPrivate22,int*,8)=resultOrIntermediate2;
+        fieldOrIntermediate3=Level23_83BFCField(owner18,unsigned char*,73);
+        resultOrIntermediate2=3;
+        if(fieldOrIntermediate3==resultOrIntermediate2)goto block_116;
+        resultOrIntermediate2=4;
+        Level23_83BFCKeep(resultOrIntermediate2);
+        if(fieldOrIntermediate3!=resultOrIntermediate2)goto block_110;
+        var_v0_8=Level23_83BFCField(owner18,unsigned char*,70)+224;
+        goto block_124;
+        block_110:var_v0_8=Level23_83BFCField(owner18,unsigned char*,70)+32;
+        goto block_124;
+        block_111:if((unsigned int)resultOrIntermediate2<65)goto block_117;
+        resultOrIntermediate2=argumentOrIntermediate4<16;
+        if(resultOrIntermediate2)goto block_114;
+        resultOrIntermediate2=argumentOrIntermediate4<32;
+        Level23_83BFCKeep(resultOrIntermediate2);
+        spawnOrScalar19=90;
+        if(!resultOrIntermediate2)goto block_115;
+    block_114:
+        spawnOrScalar19 = 0x50;
+    block_115:
+        actorHeadingConstantOrFrame17=(int)&originalFrame.sp60;
+        argumentOrIntermediate4=actorHeadingConstantOrFrame17;
+        Level23_83BFCKeep(argumentOrIntermediate4);
+        framePrivateOrPlayerBase16=(int)&Level23_83BFCData70328View1+152;
+        Level23_83BFCCall4F178View1(argumentOrIntermediate4,framePrivateOrPlayerBase16);
+        resultOrIntermediate2=originalFrame.sp60;
+        Level23_83BFCKeep(resultOrIntermediate2);
+        aimX.full=(long long)resultOrIntermediate2*(long long)spawnOrScalar19;
+        __asm__("":"=x"(aimX.full):"0"(aimX.full));
+        argumentOrCapture6=(int)aimX.words.low;
+        resultOrIntermediate2=originalFrame.sp64;
+        __asm__("":"=r"(resultOrIntermediate2):"0"(resultOrIntermediate2),"r"(argumentOrCapture6));
+        aimY.full=(long long)resultOrIntermediate2*(long long)spawnOrScalar19;
+        __asm__("":"=x"(aimY.full):"0"(aimY.full));
+        fieldOrIntermediate3=(int)aimY.words.low;
+        resultOrIntermediate2=originalFrame.sp68;
+        __asm__("":"=r"(resultOrIntermediate2):"0"(resultOrIntermediate2),"r"(fieldOrIntermediate3));
+        aimZ.full=(long long)resultOrIntermediate2*(long long)spawnOrScalar19;
+        __asm__("":"=x"(aimZ.full):"0"(aimZ.full));
+        argumentOrIntermediate4=actorHeadingConstantOrFrame17;
+        argumentOrIntermediate5=6;
+        originalFrame.sp60=argumentOrCapture6;
+        originalFrame.sp64=fieldOrIntermediate3;
+        __asm__("":"=x"(aimZ.full):"0"(aimZ.full),"r"(argumentOrIntermediate4),"r"(argumentOrIntermediate5),"m"(originalFrame.sp60),"m"(originalFrame.sp64));
+        constantOrLowCapture8=(int)aimZ.words.low;
+        Level23_83BFCKeep(constantOrLowCapture8);
+        Level23_83BFCKeep(argumentOrCapture6);
+        originalFrame.sp68=constantOrLowCapture8;
+        Level23_83BFCCall4F110View1(argumentOrIntermediate4,argumentOrIntermediate5);
+        Level23_83BFCCall4F194View1(actorHeadingConstantOrFrame17,actorHeadingConstantOrFrame17,framePrivateOrPlayerBase16-152);
+        resultOrIntermediate2=Level23_83BFCCall4F334View1(owner18+12,actorHeadingConstantOrFrame17);
+        fieldOrIntermediate3=(int)0x8D3DCB09;
+        Level23_83BFCKeep(fieldOrIntermediate3);
+        resultOrIntermediate2-=3660;
+        aimDistance.full=(long long)resultOrIntermediate2*(long long)fieldOrIntermediate3;
+        __asm__("":"=x"(aimDistance.full):"0"(aimDistance.full));
+        framePrivateOrPlayerBase16=(int)&originalFrame.sp70;
+        argumentOrIntermediate4=framePrivateOrPlayerBase16;
+        argumentOrIntermediate5=actorHeadingConstantOrFrame17;
+        argumentOrCapture6=linkedActor20+12;
+        __asm__("":"=x"(aimDistance.full):"0"(aimDistance.full),"r"(argumentOrIntermediate4),"r"(argumentOrIntermediate5),"r"(argumentOrCapture6));
+        highCapture11=aimDistance.words.high;
+        Level23_83BFCKeep(highCapture11);
+        fieldOrIntermediate3=highCapture11+resultOrIntermediate2;
+        fieldOrIntermediate3>>=5;
+        resultOrIntermediate2>>=31;
+        fieldOrIntermediate3-=resultOrIntermediate2;
+        fieldOrIntermediate3+=50;
+        Level23_83BFCField(spawnPrivate22,int*,8)=fieldOrIntermediate3;
+        Level23_83BFCCall4F1C8View1(argumentOrIntermediate4,argumentOrIntermediate5,argumentOrCapture6);
+        Level23_83BFCCall4F08CView1(framePrivateOrPlayerBase16,Level23_83BFCCall4EDE8View1(framePrivateOrPlayerBase16,1),300);
+        resultOrIntermediate2=Level23_83BFCCall4E880View1(originalFrame.sp70,originalFrame.sp74,0);
+        temp_v0_6=resultOrIntermediate2;
+        Level23_83BFCField(linkedActor20, unsigned char *, 0x46) = temp_v0_6;
+        if (Level23_83BFCCall4F264View1(temp_v0_6 & 0xFF, Level23_83BFCField(owner18, unsigned char *, 0x46)) < 0x41) {
+            goto block_126;
+        }
+    block_116:
+        Level23_83BFCField(linkedActor20, unsigned char *, 0x46) = (unsigned char) Level23_83BFCField(owner18, unsigned char *, 0x46);
+        goto block_125;
+    block_117:
+        resultOrIntermediate2=Level23_83BFCCall4F334View1(owner18+12,framePrivateOrPlayerBase16);
+        fieldOrIntermediate3=(int)0x8D3DCB09;
+        Level23_83BFCKeep(fieldOrIntermediate3);
+        argumentOrIntermediate4=resultOrIntermediate2-3660;
+        retailDistance.full=(long long)argumentOrIntermediate4*(long long)fieldOrIntermediate3;
+        __asm__("":"=x"(retailDistance.full):"0"(retailDistance.full));
+        argumentOrIntermediate5=0x2AAAAAAB;
+        __asm__("":"=x"(retailDistance.full):"0"(retailDistance.full),"r"(argumentOrIntermediate5));
+        highCapture11=retailDistance.words.high;
+        Level23_83BFCKeep(highCapture11);
+        fieldOrIntermediate3=highCapture11+argumentOrIntermediate4;
+        fieldOrIntermediate3>>=5;
+        argumentOrIntermediate4>>=31;
+        fieldOrIntermediate3-=argumentOrIntermediate4;
+        fieldOrIntermediate3+=50;
+        retailSix.full=(long long)fieldOrIntermediate3*(long long)argumentOrIntermediate5;
+        __asm__("":"=x"(retailSix.full):"0"(retailSix.full));
+        argumentOrIntermediate4=Level23_83BFCField((int)&Level23_83BFCData70328View1,int*,180);
+        Level23_83BFCField(spawnPrivate22,int*,8)=fieldOrIntermediate3;
+        fieldOrIntermediate3>>=31;
+        argumentOrCapture6=argumentOrIntermediate4>>5;
+        __asm__("":"=x"(retailSix.full):"0"(retailSix.full),"r"(argumentOrCapture6),"m"(Level23_83BFCField(spawnPrivate22,int*,8)));
+        highCapture11=retailSix.words.high;
+        Level23_83BFCKeep(highCapture11);
+        argumentOrIntermediate4=argumentOrCapture6<<1;
+        fieldOrIntermediate3=highCapture11-fieldOrIntermediate3;
+        retailLow.full=(long long)argumentOrIntermediate4*(long long)fieldOrIntermediate3;
+        __asm__("":"=x"(retailLow.full):"0"(retailLow.full));
+        __asm__("":"=r"(resultOrIntermediate2):"0"(resultOrIntermediate2),"x"(retailLow.full));
+        fieldOrIntermediate3=(int)((unsigned int)resultOrIntermediate2<<1);
+        Level23_83BFCKeep(fieldOrIntermediate3);
+        fieldOrIntermediate3=(int)((unsigned int)fieldOrIntermediate3+(unsigned int)resultOrIntermediate2);
+        fieldOrIntermediate3=(int)((unsigned int)fieldOrIntermediate3<<3);
+        fieldOrIntermediate3=(int)((unsigned int)fieldOrIntermediate3+(unsigned int)resultOrIntermediate2);
+        fieldOrIntermediate3=(int)((unsigned int)fieldOrIntermediate3<<3);
+        fieldOrIntermediate3=(int)((unsigned int)fieldOrIntermediate3+(unsigned int)resultOrIntermediate2);
+        fieldOrIntermediate3=(int)((unsigned int)fieldOrIntermediate3<<4);
+        fieldOrIntermediate3=(int)((unsigned int)fieldOrIntermediate3+(unsigned int)resultOrIntermediate2);
+        fieldOrIntermediate3=(int)((unsigned int)fieldOrIntermediate3<<3);
+        fieldOrIntermediate3=(int)((unsigned int)fieldOrIntermediate3-(unsigned int)resultOrIntermediate2);
+        fieldOrIntermediate3=(int)((unsigned int)fieldOrIntermediate3<<1);
+        Level23_83BFCKeep(fieldOrIntermediate3);
+        argumentOrIntermediate5=fieldOrIntermediate3>>13;
+        __asm__("":"=x"(retailLow.full):"0"(retailLow.full),"r"(argumentOrIntermediate5));
+        argumentOrCapture6=(int)retailLow.words.low;
+        if (argumentOrIntermediate5 == 0) {
+            goto block_123;
+        }
+        resultOrIntermediate2=Level23_83BFCField((int)&Level23_83BFCData70328View1,unsigned char*,14);
+        Level23_83BFCKeep(resultOrIntermediate2);
+        argumentOrIntermediate4=actorHeadingConstantOrFrame17-resultOrIntermediate2;
+        if (argumentOrIntermediate4 < 0x81) {
+            goto block_120;
+        }
+        argumentOrIntermediate4 -= 0x100;
+    block_120:
+        fieldOrIntermediate3=argumentOrCapture6<<8;
+        if (argumentOrIntermediate4 <= 0) {
+            goto block_122;
+        }
+        var_v0_8 = (Level23_83BFCField(owner18, unsigned char *, 0x46) + (fieldOrIntermediate3 / argumentOrIntermediate5)) & 0xFF;
+        goto block_124;
+    block_122:
+        var_v0_8 = (Level23_83BFCField(owner18, unsigned char *, 0x46) - (fieldOrIntermediate3 / argumentOrIntermediate5)) & 0xFF;
+        goto block_124;
+    block_123:
+        var_v0_8 = Level23_83BFCField(owner18, unsigned char *, 0x46);
+    block_124:
+        Level23_83BFCField(linkedActor20, unsigned char *, 0x46) = var_v0_8;
+    block_125:
+    block_126:
+        Level23_83BFCField(spawnPrivate22, int *, 0) = 0xC8;
+        if (Level23_83BFCField(linkedActor20, unsigned char *, 0x48) != 1) {
+            goto block_128;
+        }
+        Level23_83BFCField(linkedActor20, signed char *, 0x54) = 0;
+        Level23_83BFCField(linkedActor20, unsigned char *, 0x55) = 0xFF;
+        goto block_129;
+    block_128:
+        Level23_83BFCField(linkedActor20, unsigned char *, 0x54) = 0xFF;
+        Level23_83BFCField(linkedActor20, signed char *, 0x55) = 0;
+    block_129:
+        Level23_83BFCField(linkedActor20,signed char*,86)=0;
+        __asm__ volatile(""::"m"(Level23_83BFCField(linkedActor20,signed char*,86)):"$2");
+        resultOrIntermediate2=58;
+        Level23_83BFCKeep(resultOrIntermediate2);
+        Level23_83BFCField(linkedActor20,signed char*,87)=resultOrIntermediate2;
+        Level23_83BFCField(owner18, unsigned char *, 0x49) = (unsigned char) (Level23_83BFCField(owner18, unsigned char *, 0x49) + 1);
+    block_130:
+        if (Level23_83BFCData6C770View1 == 0) {
+            goto block_177;
+        }
+        Level23_83BFCField(owner18, unsigned char *, 0x49) = 0U;
+        Level23_83BFCField(privateRecord21, unsigned char *, 8) = 0U;
+        Level23_83BFCField(privateRecord21, int *, 0) = 0x96;
+        Level23_83BFCField(owner18, unsigned char *, 0x48) = 0U;
+        Level23_83BFCCall34F80View1(owner18, 0);
+        Level23_83BFCField(owner18, unsigned char *, 0x3E) = 0x25U;
+        Level23_83BFCField(owner18, signed char *, 0x3F) = 0x26;
+        Level23_83BFCField(owner18, signed char *, 0x40) = 0x30;
+        return;
+    case 5:
+        resultOrIntermediate2=Level23_83BFCCall55E84View1(owner18);
+        argumentOrIntermediate4=owner18;
+        argumentOrIntermediate5=4;
+        argumentOrCapture6=4;
+        argumentOrCapture7=1;
+        __asm__ volatile(""::"r"(argumentOrIntermediate4),"r"(argumentOrIntermediate5),"r"(argumentOrCapture6),"r"(argumentOrCapture7));
+        framePrivateOrPlayerBase16=resultOrIntermediate2;
+        Level23_83BFCCall3573CView1(argumentOrIntermediate4,argumentOrIntermediate5,argumentOrCapture6,argumentOrCapture7);
+        if (Level23_83BFCField(owner18, unsigned char *, 0x49) != 0) {
+            goto block_136;
+        }
+        if ((unsigned int) (framePrivateOrPlayerBase16 - 6) >= 9U) {
+            goto block_136;
+        }
+        resultOrIntermediate2=Level23_83BFCDataSpawnMobyView1(0x50,owner18);
+        actorHeadingConstantOrFrame17=resultOrIntermediate2;
+        __asm__("":"=r"(actorHeadingConstantOrFrame17):"0"(actorHeadingConstantOrFrame17));
+        if (actorHeadingConstantOrFrame17 == 0) {
+            goto block_136;
+        }
+        Level23_83BFCField(Level23_83BFCField(actorHeadingConstantOrFrame17, int*, 0), int *, 0x14) = (int) Level23_83BFCField(privateRecord21, int *, 0x14);
+        Level23_83BFCField(owner18, unsigned char *, 0x49) = 1U;
+        Level23_83BFCField(actorHeadingConstantOrFrame17, unsigned char *, 0x4A) = 0xFF;
+        Level23_83BFCField(actorHeadingConstantOrFrame17, unsigned char *, 0x46) = (unsigned char) Level23_83BFCField(owner18, unsigned char *, 0x46);
+        Level23_83BFCField(privateRecord21, int*, 4) = actorHeadingConstantOrFrame17;
+        return;
+    block_136:
+        if (Level23_83BFCField(owner18, unsigned char *, 0x49) != 1) {
+            goto block_141;
+        }
+        if (Level23_83BFCField(privateRecord21, int*, 4) == 0) {
+            goto block_140;
+        }
+        Level23_83BFCCall55D24View1(owner18, 5);
+        Level23_83BFCCall55F14View1(owner18, 0, Level23_83BFCField(privateRecord21, int*, 4) + 0xC);
+        resultOrIntermediate2=framePrivateOrPlayerBase16-12;
+        Level23_83BFCKeep(resultOrIntermediate2);
+        if((unsigned int)resultOrIntermediate2>=5U) {
+            goto block_141;
+        }
+        resultOrIntermediate2=Level23_83BFCField(privateRecord21,int*,4);
+        argumentOrIntermediate4=0;
+        Level23_83BFCKeep(argumentOrIntermediate4);
+        actorHeadingConstantOrFrame17=resultOrIntermediate2;
+        __asm__("":"=r"(actorHeadingConstantOrFrame17):"0"(actorHeadingConstantOrFrame17));
+        framePrivateOrPlayerBase16=Level23_83BFCField(actorHeadingConstantOrFrame17,int*,0);
+        Level23_83BFCField(actorHeadingConstantOrFrame17, signed char *, 0x48) = 1;
+        Level23_83BFCField(actorHeadingConstantOrFrame17, unsigned char *, 0x44) = (unsigned char) Level23_83BFCField(owner18, unsigned char *, 0x44);
+        resultOrIntermediate2=Level23_83BFCCall3636CView1(0,155);
+        argumentOrIntermediate4=actorHeadingConstantOrFrame17;
+        argumentOrIntermediate5=128;
+        fieldOrIntermediate3=Level23_83BFCField(owner18,unsigned char*,69);
+        argumentOrCapture6=0;
+        fieldOrIntermediate3-=35;
+        Level23_83BFCKeep(fieldOrIntermediate3);
+        fieldOrIntermediate3+=resultOrIntermediate2;
+        Level23_83BFCField(actorHeadingConstantOrFrame17,unsigned char*,69)=fieldOrIntermediate3;
+        Level23_83BFCField(actorHeadingConstantOrFrame17, unsigned char *, 0x46) = (unsigned char) Level23_83BFCField(owner18, unsigned char *, 0x46);
+        Level23_83BFCCall3573CView1(argumentOrIntermediate4,argumentOrIntermediate5,argumentOrCapture6,0);
+        Level23_83BFCField(framePrivateOrPlayerBase16, int *, 8) = 0xFA;
+        Level23_83BFCField(framePrivateOrPlayerBase16, int *, 4) = 0xC8;
+        Level23_83BFCField(framePrivateOrPlayerBase16, short *, 2) = (short) Level23_83BFCField(actorHeadingConstantOrFrame17, unsigned char *, 0x46);
+        Level23_83BFCField(owner18, unsigned char *, 0x49) = 2U;
+        goto block_141;
+    block_140:
+        Level23_83BFCField(owner18, unsigned char *, 0x49) = 0U;
+        block_141:if(!Level23_83BFCData6C770View1)goto block_177;
+        argumentOrIntermediate4=owner18;
+        __asm__ volatile(""::"r"(argumentOrIntermediate4):"$5");
+        argumentOrIntermediate5=0;
+        resultOrIntermediate2=1;
+        Level23_83BFCField(argumentOrIntermediate4,unsigned char*,73)=0;
+        Level23_83BFCField(privateRecord21,unsigned char*,8)=resultOrIntermediate2;
+        resultOrIntermediate2=350;
+        Level23_83BFCField(privateRecord21,int*,4)=0;
+        Level23_83BFCField(privateRecord21,int*,0)=resultOrIntermediate2;
+        __asm__ volatile("":"=r"(argumentOrIntermediate4):"0"(argumentOrIntermediate4),"r"(privateRecord21));
+        Level23_83BFCField(argumentOrIntermediate4,unsigned char*,72)=0;
+        goto block_176;
+    case 6:
+        resultOrIntermediate2=Level23_83BFCCall55E84View1(owner18);
+        argumentOrIntermediate4=owner18;
+        argumentOrIntermediate5=4;
+        argumentOrCapture6=4;
+        argumentOrCapture7=1;
+        __asm__ volatile(""::"r"(argumentOrIntermediate4),"r"(argumentOrIntermediate5),"r"(argumentOrCapture6),"r"(argumentOrCapture7));
+        framePrivateOrPlayerBase16=resultOrIntermediate2;
+        Level23_83BFCCall3573CView1(argumentOrIntermediate4,argumentOrIntermediate5,argumentOrCapture6,argumentOrCapture7);
+        if (Level23_83BFCCall4F334View1(owner18 + 0xC, (int)&Level23_83BFCData70328View1) >= 0x6A4) {
+            goto block_149;
+        }
+        resultOrIntermediate2=framePrivateOrPlayerBase16-11;
+        Level23_83BFCKeep(resultOrIntermediate2);
+        if((unsigned int)resultOrIntermediate2>=12U) {
+            goto block_149;
+        }
+        if ((unsigned int) (Level23_83BFCField((int)&Level23_83BFCData70328View1, int *, 0x50) - 2) < 2U) {
+            goto block_148;
+        }
+        if (Level23_83BFCField((int)&Level23_83BFCData70328View1, int *, 0x50) == 5) {
+            goto block_148;
+        }
+        Level23_83BFCField((int)&Level23_83BFCData70328View1, int *, 8) = (int) (Level23_83BFCField((int)&Level23_83BFCData70328View1, int *, 8) + 0x100);
+    block_148:
+        resultOrIntermediate2=0x10000400;
+        fieldOrIntermediate3=(int)&Level23_83BFCData70328View1+524;
+        framePrivateOrPlayerBase16=fieldOrIntermediate3+16;
+        Level23_83BFCKeep(fieldOrIntermediate3);
+        Level23_83BFCField(fieldOrIntermediate3,int*,0)=resultOrIntermediate2;
+        Level23_83BFCCall4F1C8View1(framePrivateOrPlayerBase16,fieldOrIntermediate3-524,owner18+12);
+        Level23_83BFCField((int)&Level23_83BFCData70328View1,int*,548)=0;
+        Level23_83BFCCall4F08CView1(framePrivateOrPlayerBase16,Level23_83BFCCall4EDE8View1(framePrivateOrPlayerBase16,0),200);
+    block_149:
+        if (Level23_83BFCData6C770View1 == 0) {
+            goto block_177;
+        }
+        argumentOrIntermediate4=owner18;
+        __asm__ volatile(""::"r"(argumentOrIntermediate4):"$5");
+        argumentOrIntermediate5=0;
+        Level23_83BFCField(owner18, unsigned char *, 0x49) = 0U;
+        Level23_83BFCField(privateRecord21, int*, 4) = 0;
+        Level23_83BFCField(privateRecord21, int *, 0) = 0x96;
+        Level23_83BFCField(owner18, unsigned char *, 0x48) = 0U;
+        argumentOrIntermediate4=owner18;
+        goto block_176;
+    case 7:
+        Level23_83BFCField((int)&Level23_83BFCData70328View1, int *, 0x20C) = 0x10000002;
+        if (Level23_83BFCData6C770View1 == 0) {
+            goto block_177;
+        }
+        Level23_83BFCCall55D24View1(owner18, 4);
+        Level23_83BFCCall369B8View1(owner18, 0x32);
+        Level23_83BFCField(owner18, signed char *, 0x41) = 0;
+        Level23_83BFCField(owner18, signed char *, 0x4C) = 0;
+        Level23_83BFCField(owner18, signed char *, 0x4D) = 0;
+        Level23_83BFCField(owner18, int *, 8) = 0;
+        framePrivateOrPlayerBase16 = owner18 + 0x48;
+        if (Level23_83BFCField((int)&Level23_83BFCData70328View1, int *, 0x280) < 0) {
+            goto block_156;
+        }
+        Level23_83BFCField(owner18, unsigned char *, 0x48) = 0x20U;
+        Level23_83BFCCall3B7B4View1(framePrivateOrPlayerBase16, 1, (int)&Level23_83BFCData6D088View1);
+        Level23_83BFCCall3B7B4View1(framePrivateOrPlayerBase16, 1, (int)&Level23_83BFCData6C7F8View1);
+        if (Level23_83BFCData6C7B4View1 & 0x20) {
+            goto block_155;
+        }
+        if (!(Level23_83BFCField((int)&Level23_83BFCData70300View1,unsigned char*,Level23_83BFCData6C58CView1) & 0x20)) {
+            goto block_156;
+        }
+    block_155:
+        Level23_83BFCField(((Level23_83BFCField(privateRecord21, int *, 0x10) * 0x58) + Level23_83BFCData6C550View1), signed char *, 0x48) = 3;
+    block_156:
+        Level23_83BFCCall55B18View1(owner18);
+        return;
+    case 30:
+        framePrivateOrPlayerBase16 = Level23_83BFCField(owner18, int*, 0);
+        Level23_83BFCField((int)&Level23_83BFCData70328View1, int *, 0x20C) = 0x10000002;
+        spawnOrScalar19 = owner18 + 0xC;
+        Level23_83BFCField(owner18, int *, 0x14) = (int) (Level23_83BFCField(owner18, int *, 0x14) + Level23_83BFCField(framePrivateOrPlayerBase16, int *, 4));
+        Level23_83BFCCall4F178View1(Level23_83BFCField(framePrivateOrPlayerBase16, int*, 0x10) + 0xC, spawnOrScalar19);
+        Level23_83BFCField(Level23_83BFCField(framePrivateOrPlayerBase16, int*, 0x10), unsigned char *, 0x46) = (unsigned char) Level23_83BFCField(owner18, unsigned char *, 0x46);
+        Level23_83BFCDataSpawnParticleView1(1, 0xC, Level23_83BFCField(framePrivateOrPlayerBase16, int*, 0x10), (int *)5);
+        temp_v1_12 = Level23_83BFCField(framePrivateOrPlayerBase16, int *, 0xC);
+        Level23_83BFCField(framePrivateOrPlayerBase16, int *, 4) = (int) (Level23_83BFCField(framePrivateOrPlayerBase16, int *, 4) - 0x10);
+        if (Level23_83BFCField(owner18, int *, 0x14) >= temp_v1_12) {
+            goto block_177;
+        }
+        Level23_83BFCField(owner18, int *, 0x14) = temp_v1_12;
+        temp_v1_13 = Level23_83BFCField(framePrivateOrPlayerBase16, int *, 8) - 1;
+        Level23_83BFCField(framePrivateOrPlayerBase16, int *, 8) = temp_v1_13;
+        if (temp_v1_13 <= 0) {
+            goto block_160;
+        }
+        Level23_83BFCField(framePrivateOrPlayerBase16, int *, 4) = (int) (temp_v1_13 * 0x32);
+        return;
+    block_160:
+        temp_v0_10 = Level23_83BFCCall4E880View1(Level23_83BFCField((int)&Level23_83BFCData70328View1, int *, 0) - Level23_83BFCField(owner18, int *, 0xC), Level23_83BFCField((int)&Level23_83BFCData70328View1, int *, 4) - Level23_83BFCField(owner18, int *, 0x10), 0);
+        temp_a2 = temp_v0_10 * 2;
+        originalFrame.sp80 = (int) (Level23_83BFCField((int)&Level23_83BFCData65920View1,short*,temp_a2) * 0x177) >> 0xA;
+        originalFrame.sp84 = (int) (Level23_83BFCField((int)&Level23_83BFCData658A0View1,short*,temp_a2) * 0x177) >> 0xA;
+        originalFrame.sp88=0;
+        Level23_83BFCCall4F194View1(&originalFrame.sp80, spawnOrScalar19, &originalFrame.sp80);
+        Level23_83BFCCall13D44View1(&originalFrame.sp80, (temp_v0_10 + 0x80) & 0xFF, 0, 0);
+        Level23_83BFCField(owner18, unsigned char *, 0x48) = 0x1FU;
+        return;
+    case 31:
+        framePrivateOrPlayerBase16 = Level23_83BFCField(owner18, int*, 0);
+        Level23_83BFCField((int)&Level23_83BFCData70328View1, int *, 0x20C) = 0x10000002;
+        if (Level23_83BFCData6E044View1 == 0xB) {
+            goto block_177;
+        }
+        if (!(Level23_83BFCField(Level23_83BFCField(framePrivateOrPlayerBase16, int*, 0x10), unsigned char *, 0x48) & 0x80)) {
+            goto block_177;
+        }
+        if (Level23_83BFCField(framePrivateOrPlayerBase16, int *, 0x14) < 0) {
+            goto block_177;
+        }
+        if (Level23_83BFCCall359A4View1(framePrivateOrPlayerBase16, 4) == 0) {
+            goto block_177;
+        }
+        var_v1 = Level23_83BFCField(framePrivateOrPlayerBase16, int *, 0x14);
+        var_v0 = var_v1 * 2;
+    block_166:
+        Level23_83BFCField((((((var_v0 + var_v1) * 4) - var_v1) * 8) + Level23_83BFCData6C550View1), signed char *, 0x48) = 3;
+        return;
+    case 8:
+        Level23_83BFCCall3573CView1(owner18, 4, 4, 1);
+        if (Level23_83BFCData6C770View1 == 0) {
+            goto block_177;
+        }
+        if (Level23_83BFCField(owner18, unsigned char *, 0x49) != 9) {
+            goto block_170;
+        }
+        Level23_83BFCField(privateRecord21, int*, 4) = 0;
+    block_170:
+        argumentOrIntermediate4=owner18;
+        __asm__ volatile(""::"r"(argumentOrIntermediate4):"$5");
+        argumentOrIntermediate5=5;
+        Level23_83BFCField(owner18, unsigned char *, 0x49) = 0U;
+        Level23_83BFCField(owner18, unsigned char *, 0x48) = 5U;
+        argumentOrIntermediate4=owner18;
+        goto block_176;
+    case 9:
+        if (Level23_83BFCField(owner18, unsigned char *, 0x49) == 7) {
+            goto block_174;
+        }
+        Level23_83BFCField(owner18, signed char *, 0x40) = 0x72;
+        Level23_83BFCField(owner18, unsigned char *, 0x3C) = 9U;
+        Level23_83BFCField(owner18, signed char *, 0x3D) = 9;
+        Level23_83BFCField(owner18, unsigned char *, 0x3E) = 0U;
+        Level23_83BFCField(owner18, signed char *, 0x3F) = 0;
+        if (Level23_83BFCCall359A4View1(privateRecord21, 4) == 0) {
+            goto block_174;
+        }
+        Level23_83BFCField(owner18, unsigned char *, 0x49) = 7U;
+    block_174:
+        if (Level23_83BFCData6C770View1 == 0) {
+            goto block_177;
+        }
+        Level23_83BFCCall13ACCView1(owner18, 0xD);
+        resultOrIntermediate2=Level23_83BFCCall2803CView1(0x17,0xE7,Level23_83BFCData74368View1,Level23_83BFCData7436CView1,Level23_83BFCData74364View1,privateRecord21+12,Level23_83BFCField(privateRecord21,int*,12));
+        argumentOrIntermediate4=owner18;
+        __asm__ volatile(""::"r"(argumentOrIntermediate4):"$5");
+        argumentOrIntermediate5=1;
+        resultOrIntermediate2=(short)resultOrIntermediate2;
+        Level23_83BFCField(privateRecord21,int*,36)=resultOrIntermediate2;
+        argumentOrIntermediate5=1;
+        Level23_83BFCField(owner18, unsigned char *, 0x49) = 8U;
+        Level23_83BFCField(privateRecord21, int*, 4) = 0;
+        Level23_83BFCField(privateRecord21, unsigned char *, 8) = 1U;
+        Level23_83BFCField(privateRecord21, int *, 0) = 0x12C;
+        Level23_83BFCField(owner18, unsigned char *, 0x48) = 1U;
+        argumentOrIntermediate4=owner18;
+    block_176:
+        Level23_83BFCCall34F40View1(argumentOrIntermediate4,argumentOrIntermediate5);
+    block_177:
+        return;
+        default:goto block_177;
+    }
+}
+#undef Level23_83BFCField
+
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original80085038.
+* AI generated; not human reviewed. All773 original instructions,81 selectors,
+* one pad and3 table words require exact native/linked words and targets:858
+* recorded words. Original16-byte selection object at80074920 is separately
+* audited:0a000000060000000200000000000000. Its first4 asciz/alignment bytes
+* are additional;the other12 bytes overlap the3 recorded table words.
+* Frame80 (128 bytes) retains S0..S6/RA and SP20..5F storage. Saved S0/S2 scan,position,
+* target and particle roles occupy disjoint phases. Initial S4 player and S5
+* complete frame-selection pointer are initialized only on their own paths.
+* Both heading3585C calls pass all6 original words,including stack1 and0;
+* branch-local literal calls retain original outgoing stores before indexing.
+* Signed complete /30 and /3 use ordinary C operations and only whole magic
+* scalar inputs. No synthetic partialHI/LO. Signed halfword vector samples,
+* byte predicates,helper reloads and random-coordinate additions remain exact.
+* State2 preserves the shared byte reload287 and full zero predicate289.
+* Original branch446 must enter401,not the equivalent later flag writer462.
+* Its empty full-owner input retains the original shared entry without CPU
+* words. Shared removal704 and vector614/624/633/634 entries retain order.
+* Falsification:timer30 division uses the full signed old short;short60 yields
+* target3. The record+12 A0 address and complete target remain distinct.
+* Empty metadata consumes complete initialized words/addresses or clobbers
+* dead words before fresh complete producers;zero CPU instructions. Known
+* six-word3585C and void3BE70 views reuse matched EXE/header contracts.
+* Compiler/filter/flags unchanged;no opcode asm,fixedFP,undefined saved inputs
+* or overlapping live aliases. Physical units/fixed point,complete helper and
+* caller chains,cadence beyond invocation,Rev1 mapping and synchronized runtime
+* remain open. Confidence is binary identity after all gates. Next:human review
+* and retail captures. Every native/linked word,target,data byte and full EXE/
+* every-overlay retail hash must remain identical.
+*/
+/* Original assembly SHA256 16f642272a99e7e690ecd450dd5be52dc9045e3d3c89d52c56b46890158c8668 */
+#define Level23_85038Field(p, t, o) (*(t)((unsigned char*)(p)+(o)))
+int Level23_85038Call1BA30View1() __asm__("func_8001BA30");
+int Level23_85038Call35030View1() __asm__("func_80035030");
+int Level23_85038Call3585CView1(void*, int, int, int, int, int) __asm__("func_8003585C");
+int Level23_85038Call359A4View1(void*, int) __asm__("func_800359A4");
+int Level23_85038Call35DDCView1() __asm__("func_80035DDC");
+int Level23_85038Call35EE0View1() __asm__("func_80035EE0");
+int Level23_85038Call3636CView1() __asm__("func_8003636C");
+int Level23_85038Call3BABCView1() __asm__("func_8003BABC");
+void Level23_85038Call3BE70View1(int) __asm__("func_8003BE70");
+int Level23_85038Call3BFC0View1() __asm__("func_8003BFC0");
+int Level23_85038Call4E880View1(int, int, int) __asm__("func_8004E880");
+int Level23_85038Call4F178View1() __asm__("func_8004F178");
+int Level23_85038Call4F194View1() __asm__("func_8004F194");
+int Level23_85038Call4F264View1(int, int) __asm__("func_8004F264");
+int Level23_85038Call55B18View1() __asm__("func_80055B18");
+int Level23_85038Call55D24View1() __asm__("func_80055D24");
+int Level23_85038Call55F14View1() __asm__("func_80055F14");
+extern int Level23_85038Data658A0View1 __asm__("D_800658A0");
+extern int Level23_85038Data65920View1 __asm__("D_80065920");
+extern int Level23_85038Data6C550View1 __asm__("D_8006C550");
+extern int Level23_85038Data6C574View1 __asm__("D_8006C574");
+extern int Level23_85038Data6C578View1 __asm__("D_8006C578");
+extern int Level23_85038Data6C5C8View1 __asm__("D_8006C5C8");
+extern int Level23_85038Data6C704View1 __asm__("D_8006C704");
+extern int Level23_85038Data6C7C4View1 __asm__("D_8006C7C4");
+extern int Level23_85038Data6E020View1 __asm__("D_8006E020");
+extern unsigned short Level23_85038Data6E040View1 __asm__("D_8006E040");
+extern int Level23_85038Data6E1D4View1 __asm__("D_8006E1D4");
+extern int Level23_85038Data6E1D8View1 __asm__("D_8006E1D8");
+extern int Level23_85038Data70328View1 __asm__("D_80070328");
+extern void*(*Level23_85038DataSpawnMobyView1)(int, void*) __asm__("SpawnMoby");
+extern void*(*Level23_85038DataSpawnParticleView1)(int, int, void*, void*) __asm__("SpawnParticle");
+const int Level23_85038OriginalSelection[4] __asm__("D_level_23_80074920") = {
+    10, 6, 2, 0
+}
+;
+void func_level_23_80085038(void *ownerParameter) {
+    register int rawWord2 __asm__("$2"), rawWord3 __asm__("$3"), argumentWord4 __asm__("$4"), argumentWord5 __asm__("$5"), argumentWord6 __asm__("$6"), argumentWord7 __asm__("$7"), retainedInitialPlayerBase20 __asm__("$20");
+    register int *retainedOriginalSelectionBase21 __asm__("$21");
+    int temporaryWord14;
+    register void *ownerRecord17 __asm__("$17");
+    register int privateRecord19 __asm__("$19"), retainedHeadingScanPositionOrTarget16 __asm__("$16"), retainedScanRecordOrParticleIndex18 __asm__("$18"), retainedOriginalRemovalFlag22 __asm__("$22");
+    struct{
+        int words[16];
+    }
+    originalFrame;
+    int temporaryWord11;
+    int temporaryWord12;
+    int temporaryWord13;
+    int temporaryWord15;
+    register int temporaryWord7 __asm__("$2");
+    int temporaryWord9;
+    int temporaryWord1;
+    int temporaryWord3;
+    int temporaryWord4;
+    int temporaryWord8;
+    int temporaryWord10;
+    int temp_s3_2;
+    int temporaryWord2;
+    int temporaryWord5;
+    int temporaryWord6;
+    ownerRecord17 = ownerParameter;
+    __asm__("":"=r"(ownerRecord17):"0"(ownerRecord17));
+    temporaryWord1 = Level23_85038Field(ownerRecord17, unsigned char *, 0x48);
+    privateRecord19 = Level23_85038Field(ownerRecord17, void **, 0);
+    retainedOriginalRemovalFlag22 = 0;
+    if ((temporaryWord1 != 0) && ((unsigned int) (temporaryWord1 - 4) >= 2U) && (Level23_85038Field(ownerRecord17, int *, 0x18) & 0x20000)) {
+        Level23_85038Field(ownerRecord17, int *, 0x18) = 0;
+        Level23_85038Field(privateRecord19, int *, 8) = 0x15E;
+        rawWord3 = Level23_85038Field(ownerRecord17, unsigned char*, 72);
+        __asm__("":"=r"(rawWord3):"0"(rawWord3));
+        rawWord2 = rawWord3-2;
+        rawWord2 = (unsigned int)rawWord2 < 2U;
+        if (rawWord2) goto selectOriginalTimer200;
+        rawWord3 &= 255;
+        rawWord2 = 1;
+        if (rawWord3 != rawWord2) goto selectOriginalTimer150;
+        rawWord2 = Level23_85038Field(privateRecord19, unsigned char*, 13);
+        rawWord2 = (unsigned int)rawWord2 < 3U;
+        if (rawWord2) goto selectOriginalTimer150;
+        selectOriginalTimer200:rawWord2 = 200;
+        goto storeOriginalTimer41;
+        selectOriginalTimer150:rawWord2 = 150;
+    storeOriginalTimer41:
+        Level23_85038Field(privateRecord19, int*, 4) = rawWord2;
+        __asm__ volatile("":::"$6", "memory");
+        argumentWord6 = 0;
+        Level23_85038Field(ownerRecord17, unsigned char *, 0x48) = 4U;
+        retainedInitialPlayerBase20 = (int)&Level23_85038Data70328View1;
+        temporaryWord3 = Level23_85038Call4E880View1(Level23_85038Field(ownerRecord17, int *, 0xC) - Level23_85038Field(retainedInitialPlayerBase20, int *, 0), Level23_85038Field(ownerRecord17, int *, 0x10) - Level23_85038Field(retainedInitialPlayerBase20, int *, 4), argumentWord6);
+        if (({rawWord2 = Level23_85038Call4F264View1(temporaryWord3, Level23_85038Field(retainedInitialPlayerBase20, unsigned char*, 14));argumentWord6 = 6;rawWord2;}) < 24) {
+            Level23_85038Field(ownerRecord17, unsigned char *, 0x46) = (unsigned char) Level23_85038Field(retainedInitialPlayerBase20, unsigned char *, 0xE);
+            if (Level23_85038Data6C5C8View1 == 1) {
+                retainedScanRecordOrParticleIndex18 = Level23_85038Data6C550View1;
+                rawWord2 = Level23_85038Data6C704View1;
+                __asm__ volatile("":::"$6", "memory");
+                argumentWord6 = (int)&Level23_85038OriginalSelection[0];
+                __asm__("":"=r"(argumentWord6):"0"(argumentWord6):"memory");
+                rawWord3 = Level23_85038Field(argumentWord6, int*, 0);
+                argumentWord4 = Level23_85038Field(argumentWord6, int*, 4);
+                argumentWord5 = Level23_85038Field(argumentWord6, int*, 8);
+                originalFrame.words[0] = rawWord3;
+                __asm__("":"=r"(argumentWord5):"0"(argumentWord5), "r"(rawWord3), "r"(argumentWord4):"memory");
+                originalFrame.words[1] = argumentWord4;
+                originalFrame.words[2] = argumentWord5;
+                __asm__ volatile("":::"$21", "memory");
+                retainedOriginalSelectionBase21 = &originalFrame.words[0];
+                if ((unsigned int)retainedScanRecordOrParticleIndex18 < (unsigned int)rawWord2) {
+                    retainedHeadingScanPositionOrTarget16 = retainedScanRecordOrParticleIndex18 + 0x10;
+                loop_11:
+                    if ((Level23_85038Field(retainedHeadingScanPositionOrTarget16, short *, 0x26) != 0x1E) || (Level23_85038Field(retainedHeadingScanPositionOrTarget16, unsigned char *, 0x3C) == 0) || (Level23_85038Field(retainedHeadingScanPositionOrTarget16, unsigned char *, 0x38) & 0x80) || (Level23_85038Call4F264View1(Level23_85038Call4E880View1(Level23_85038Field(retainedHeadingScanPositionOrTarget16, int *, -4) - Level23_85038Field(retainedInitialPlayerBase20, int *, 0), Level23_85038Field(retainedHeadingScanPositionOrTarget16, int *, 0) - Level23_85038Field(retainedInitialPlayerBase20, int *, 4), 0), Level23_85038Field(retainedInitialPlayerBase20, unsigned char *, 0xE)) >= retainedOriginalSelectionBase21[Level23_85038Data6C7C4View1])) {
+                        rawWord2 = Level23_85038Data6C704View1;
+                        __asm__("":"=r"(retainedScanRecordOrParticleIndex18):"0"(retainedScanRecordOrParticleIndex18):"memory");
+                        retainedScanRecordOrParticleIndex18 += 88;
+                        rawWord2 = (unsigned int)retainedScanRecordOrParticleIndex18 < (unsigned int)rawWord2;
+                        retainedHeadingScanPositionOrTarget16 += 88;
+                        if (!rawWord2) {
+                        }
+                        else {
+                            goto loop_11;
+                        }
+                    }
+                    else {
+                        rawWord2 = Level23_85038Call4E880View1(Level23_85038Field(retainedScanRecordOrParticleIndex18, int*, 12)-Level23_85038Field(ownerRecord17, int*, 12), Level23_85038Field(retainedScanRecordOrParticleIndex18, int*, 16)-Level23_85038Field(ownerRecord17, int*, 16), 0);
+                        Level23_85038Call3585CView1((int)ownerRecord17, rawWord2, retainedOriginalSelectionBase21[Level23_85038Data6C7C4View1], 0, 1, 0);
+                        goto continueOriginalHeading158;
+                    }
+                }
+            }
+        }
+        else {
+            argumentWord4 = (int)ownerRecord17;
+            argumentWord7 = 0;
+            __asm__("":"=r"(argumentWord7):"0"(argumentWord7), "r"(argumentWord4):"memory");
+            Level23_85038Field(ownerRecord17, unsigned char*, 70) = temporaryWord3;
+            argumentWord5 = Level23_85038Field(retainedInitialPlayerBase20, unsigned char*, 14);
+            Level23_85038Call3585CView1(argumentWord4, argumentWord5, argumentWord6, argumentWord7, 1, 0);
+        }
+    continueOriginalHeading158:
+        argumentWord4 = (int)ownerRecord17;
+        argumentWord5 = 3;
+        argumentWord6 = 0;
+        rawWord3 = Level23_85038Field(ownerRecord17, unsigned char*, 70);
+        __asm__("":"=r"(argumentWord6):"0"(argumentWord6), "r"(argumentWord4), "r"(argumentWord5):"memory");
+        rawWord2 = 300;
+        Level23_85038Field(privateRecord19, short*, 0) = rawWord2;
+        Level23_85038Field(privateRecord19, short*, 2) = rawWord3;
+        Level23_85038Call3BABCView1(argumentWord4, argumentWord5, argumentWord6);
+    }
+    temporaryWord8 = Level23_85038Field(ownerRecord17, unsigned char *, 0x48);
+    switch (temporaryWord8) {
+    case 0x1:
+        Level23_85038Field(ownerRecord17, unsigned char *, 0x45) = (unsigned char) (Level23_85038Field(ownerRecord17, unsigned char *, 0x45) - ((4 - Level23_85038Field(privateRecord19, unsigned char *, 0xD)) * 2));
+        Level23_85038Field(ownerRecord17, int *, 0x14) = (int) (Level23_85038Field(ownerRecord17, int *, 0x14) - 0xE1);
+        temporaryWord15 = 1;
+        if (Level23_85038Field(privateRecord19, unsigned char *, 0xD) == 0) {
+            temporaryWord15 = 4;
+        }
+        if (Level23_85038Call35030View1(ownerRecord17, privateRecord19 + 8, Level23_85038Field(privateRecord19, short *, 2), privateRecord19 + 4, temporaryWord15, 0xC, 0x200, 0x23) == 3) {
+            Level23_85038Call3BABCView1(ownerRecord17, 3, 0);
+            temporaryWord4 = Level23_85038Field(privateRecord19, unsigned char *, 0xD) + 1;
+            temporaryWord9 = temporaryWord4 & 0xFF;
+            Level23_85038Field(privateRecord19, unsigned char *, 0xD) = temporaryWord4;
+            if (temporaryWord9 >= 4U) {
+                Level23_85038Field(ownerRecord17, unsigned char *, 0x48) = 2U;
+                Level23_85038Field(ownerRecord17, int *, 0x14) = (int) (Level23_85038Field(ownerRecord17, int *, 0x14) + 0xE1);
+                Level23_85038Field(privateRecord19, short *, 0) = 0x4B;
+                Level23_85038Field(privateRecord19, unsigned char *, 0xE) = 0U;
+            }
+            else {
+                if (temporaryWord9 == 1) {
+                    Level23_85038Field(privateRecord19, int *, 8) = (int) (Level23_85038Field(privateRecord19, int *, 8) - 0xA);
+                }
+                Level23_85038Field(privateRecord19, int *, 4) = (int) ((4 - Level23_85038Field(privateRecord19, unsigned char *, 0xD)) * 0x32);
+                goto block_32;
+            }
+        }
+        else {
+        block_32:
+            Level23_85038Field(ownerRecord17, int *, 0x14) = (int) (Level23_85038Field(ownerRecord17, int *, 0x14) + 0xE1);
+        }
+        goto checkOriginalCommonRemoval527;
+    case 0x2:
+        temporaryWord11 = Level23_85038Field(privateRecord19, short*, 0);
+        if (temporaryWord11 < 30){
+            temporaryWord14 = Level23_85038Field(privateRecord19, unsigned char*, 14);
+            if (temporaryWord14 == 0){
+                Level23_85038Field(ownerRecord17, unsigned char*, 69) += 1;
+                Level23_85038Call35EE0View1(ownerRecord17, (Level23_85038Field(ownerRecord17, unsigned char*, 70)+128)&255, 10, 0, 0, 1024);
+                goto reloadOriginalStateByte287;
+            }
+            goto convertOriginalStateByte289;
+        }
+        if (temporaryWord11 < 45){
+            temporaryWord14 = Level23_85038Field(privateRecord19, unsigned char*, 14);
+            if (temporaryWord14 == 0){
+                Level23_85038Field(ownerRecord17, unsigned char*, 69) -= 1;
+                Level23_85038Call35DDCView1(ownerRecord17, 10, 0, 0, 1024);
+                reloadOriginalStateByte287:temporaryWord14 = Level23_85038Field(privateRecord19, unsigned char*, 14);
+            }
+            convertOriginalStateByte289:temporaryWord14 = temporaryWord14 == 0;
+            Level23_85038Field(privateRecord19, unsigned char*, 14) = temporaryWord14;
+        }
+        else {
+            argumentWord4 = (int)ownerRecord17;
+            if (temporaryWord11 < 60){
+                argumentWord5 = 10;
+                argumentWord6 = 0;
+                rawWord2 = Level23_85038Field(ownerRecord17, unsigned char*, 69);
+                argumentWord7 = 0;
+                rawWord2 -= 1;
+            }
+            else{
+                argumentWord5 = 20;
+                argumentWord6 = 0;
+                rawWord2 = Level23_85038Field(ownerRecord17, unsigned char*, 69);
+                argumentWord7 = 0;
+                rawWord2 -= 2;
+            }
+            Level23_85038Field(ownerRecord17, unsigned char*, 69) = rawWord2;
+            Level23_85038Call35DDCView1(argumentWord4, argumentWord5, argumentWord6, argumentWord7, 1024);
+        }
+        if ((Level23_85038Call359A4View1(privateRecord19, 2) != 0) || ((unsigned char) Level23_85038Field(ownerRecord17, unsigned char *, 0x45) < 4U)) {
+            Level23_85038Field(ownerRecord17, unsigned char *, 0x48) = 3U;
+            Level23_85038Field(privateRecord19, short *, 0) = 0x96;
+        }
+        goto checkOriginalCommonRemoval527;
+    case 0x3:
+        {
+            int signedDivision30Magic = (int)0x88888889;
+            rawWord3 = Level23_85038Field(privateRecord19, unsigned short*, 0);
+            __asm__("":"=r"(privateRecord19):"0"(privateRecord19), "r"(signedDivision30Magic));
+            rawWord3 = (unsigned int)rawWord3 << 16;
+            rawWord2 = rawWord3 >> 16;
+            rawWord2 = rawWord2/30;
+            __asm__("":"=r"(rawWord2):"0"(rawWord2));
+            retainedHeadingScanPositionOrTarget16 = (short)rawWord2+1;
+        }
+        if (retainedHeadingScanPositionOrTarget16 != Level23_85038Field(privateRecord19, unsigned char *, 0xC)) {
+            Level23_85038Call3BABCView1(ownerRecord17, 2, 0);
+            Level23_85038Field(privateRecord19, unsigned char *, 0xC) = retainedHeadingScanPositionOrTarget16;
+        }
+        argumentWord5 = Level23_85038DataSpawnMobyView1(0x104, ownerRecord17);
+        if (argumentWord5 != 0) {
+            Level23_85038Field(argumentWord5, signed char *, 0x49) = 1;
+            Level23_85038Field(argumentWord5, signed char *, 0x4F) = 0x1A;
+            Level23_85038Field(argumentWord5, unsigned char *, 0x4A) = 0xFF;
+            Level23_85038Field(argumentWord5, unsigned char *, 0x3C) = retainedHeadingScanPositionOrTarget16;
+            Level23_85038Field(argumentWord5, signed char *, 0x4C) = 0x3F;
+            Level23_85038Field(argumentWord5, int *, 0x14) = (int) (Level23_85038Field(argumentWord5, int *, 0x14) + 0x64);
+            temporaryWord7 = (unsigned short) Level23_85038Data6E040View1 >> 4;
+            Level23_85038Field(argumentWord5, unsigned char *, 0x46) = (unsigned char) temporaryWord7;
+            rawWord2 = (temporaryWord7&255)*2;
+            rawWord2 = Level23_85038Field((int)&Level23_85038Data65920View1, short*, rawWord2);
+            __asm__ volatile("":::"$4", "memory");
+            argumentWord4 = argumentWord5+12;
+            originalFrame.words[0] = (rawWord2*75) >> 10;
+            rawWord2 = Level23_85038Field(argumentWord5, unsigned char*, 70);
+            __asm__("":"=r"(argumentWord4):"0"(argumentWord4):"$6");
+            argumentWord6 = argumentWord4;
+            rawWord2 *= 2;
+            rawWord2 = Level23_85038Field((int)&Level23_85038Data658A0View1, short*, rawWord2);
+            __asm__("":"=r"(argumentWord6):"0"(argumentWord6), "r"(argumentWord4):"$5", "memory");
+            argumentWord5 = (int)&originalFrame.words[0];
+            originalFrame.words[2] = 0;
+            originalFrame.words[1] = (rawWord2*75) >> 10;
+            Level23_85038Call4F194View1(argumentWord4, argumentWord5, argumentWord6);
+        }
+        if (Level23_85038Call359A4View1(privateRecord19, 2) != 0) {
+        case 0x6:
+        enterOriginalRemovalFlag401:
+            __asm__ volatile(""::"r"(ownerRecord17));
+            retainedOriginalRemovalFlag22 = 1;
+        }
+        goto checkOriginalCommonRemoval527;
+    case 0x4:
+        retainedHeadingScanPositionOrTarget16 = 0;
+        Level23_85038Field(ownerRecord17, unsigned char *, 0x45) = (unsigned char) (Level23_85038Field(ownerRecord17, unsigned char *, 0x45) - 8);
+        if ((Level23_85038Call359A4View1(privateRecord19, 2) != 0) || (Level23_85038Call35030View1(ownerRecord17, privateRecord19 + 8, Level23_85038Field(privateRecord19, short *, 2), privateRecord19 + 4, 0, 0xA, 0x200, 0x23) == 3) || (retainedHeadingScanPositionOrTarget16 = Level23_85038Call1BA30View1(ownerRecord17 + 0xC, 0x100, 1, 0, 0x40000, ownerRecord17), (retainedHeadingScanPositionOrTarget16 != 0))) {
+            retainedOriginalRemovalFlag22 = 1;
+            if (retainedHeadingScanPositionOrTarget16 != 0) {
+                retainedOriginalRemovalFlag22 = 2;
+            }
+        }
+        goto checkOriginalCommonRemoval527;
+    case 0x7:
+        Level23_85038Field(ownerRecord17, unsigned char *, 0x45) = (unsigned char) (Level23_85038Field(ownerRecord17, unsigned char *, 0x45) - 8);
+        if (Level23_85038Call359A4View1(privateRecord19, 2) == 0) {
+            if (Level23_85038Call35030View1(ownerRecord17, privateRecord19 + 8, Level23_85038Field(privateRecord19, short *, 2), privateRecord19 + 4, 0, 0xA, 0x200, 0x23) == 3) {
+                retainedOriginalRemovalFlag22 = 1;
+            }
+        }
+        else {
+            goto enterOriginalRemovalFlag401;
+        }
+        goto checkOriginalCommonRemoval527;
+    case 0x5:
+        retainedScanRecordOrParticleIndex18 = Level23_85038Field(ownerRecord17, void **, 0);
+        Level23_85038Field(ownerRecord17, signed char *, 0x41) = 0;
+        Level23_85038Field(ownerRecord17, signed char *, 0x4C) = 0;
+        Level23_85038Field(ownerRecord17, signed char *, 0x4D) = 0;
+        rawWord2 = Level23_85038Call3636CView1(0, 3072);
+        argumentWord4 = 0;
+        rawWord3 = Level23_85038Field(ownerRecord17, int*, 12);
+        __asm__("":"=r"(argumentWord4):"0"(argumentWord4):"$5", "memory");
+        argumentWord5 = 3072;
+        rawWord3 -= 1536;
+        rawWord3 += rawWord2;
+        originalFrame.words[0] = rawWord3;
+        rawWord2 = Level23_85038Call3636CView1(argumentWord4, argumentWord5);
+        argumentWord4 = 100;
+        rawWord3 = Level23_85038Field(ownerRecord17, int*, 16);
+        __asm__("":"=r"(argumentWord4):"0"(argumentWord4):"$5", "memory");
+        argumentWord5 = 1024;
+        rawWord3 -= 1536;
+        rawWord3 += rawWord2;
+        originalFrame.words[1] = rawWord3;
+        originalFrame.words[2] = Level23_85038Field(ownerRecord17, int *, 0x14) + Level23_85038Call3636CView1(argumentWord4, argumentWord5);
+        Level23_85038DataSpawnParticleView1(2, 0x42, &originalFrame.words[0], (int *)1);
+        argumentWord4 = 1;
+        argumentWord5 = 13;
+        __asm__("":"=r"(argumentWord5):"0"(argumentWord5), "r"(argumentWord4):"$16");
+        retainedHeadingScanPositionOrTarget16 = (int)ownerRecord17+12;
+        originalFrame.words[0] = 0;
+        originalFrame.words[1] = 0;
+        originalFrame.words[2] = 0;
+        temporaryWord2 = Level23_85038DataSpawnParticleView1(argumentWord4, argumentWord5, retainedHeadingScanPositionOrTarget16, &originalFrame.words[0]);
+        if (temporaryWord2 != 0) {
+            Level23_85038Field(temporaryWord2, signed char *, 0xA) = 0x32;
+        }
+        Level23_85038Call4F194View1(retainedHeadingScanPositionOrTarget16, retainedHeadingScanPositionOrTarget16, retainedScanRecordOrParticleIndex18 + 4);
+        temporaryWord12 = Level23_85038Field(retainedScanRecordOrParticleIndex18, int *, 0x10) + 0x14;
+        Level23_85038Field(retainedScanRecordOrParticleIndex18, int *, 0x10) = temporaryWord12;
+        Level23_85038Field(ownerRecord17, int *, 0x14) = (int) (Level23_85038Field(ownerRecord17, int *, 0x14) - temporaryWord12);
+        if (Level23_85038Call359A4View1(retainedScanRecordOrParticleIndex18, 4) != 0) {
+            goto removeOriginalOwner704;
+        }
+        return;
+    case 0:default:goto checkOriginalCommonRemoval527;
+    case 0x50:goto removeOriginalOwner704;
+    }
+checkOriginalCommonRemoval527:
+    if (retainedOriginalRemovalFlag22 != 0) {
+        if (Level23_85038Call3BFC0View1(ownerRecord17, Level23_85038Field(privateRecord19, int *, 0x10)) != 0) {
+            Level23_85038Call3BE70View1(Level23_85038Field(privateRecord19, int *, 0x10));
+        }
+        Level23_85038Field(privateRecord19, int *, 0x10) = -1;
+        Level23_85038Call3BABCView1(ownerRecord17, 1, 0);
+        if (Level23_85038Call4F264View1((int)(Level23_85038Data6E040View1 << 16) >> 20, Level23_85038Call4E880View1(Level23_85038Field(ownerRecord17, int *, 0xC) - Level23_85038Field((int)&Level23_85038Data6E020View1, int *, 0), Level23_85038Field(ownerRecord17, int *, 0x10) - Level23_85038Field((int)&Level23_85038Data6E020View1, int *, 4), 0)) < 0xA) {
+            Level23_85038Data6E1D8View1 = 0x14;
+            Level23_85038Data6E1D4View1 = 0x1000;
+        }
+        argumentWord6 = 0;
+        __asm__("":"=r"(argumentWord6):"0"(argumentWord6):"$18");
+        retainedScanRecordOrParticleIndex18 = 0;
+        __asm__("":"=r"(retainedScanRecordOrParticleIndex18):"0"(retainedScanRecordOrParticleIndex18), "r"(argumentWord6));
+        Level23_85038Field(ownerRecord17, unsigned char *, 0x46) = Level23_85038Call4E880View1(Level23_85038Field((int)&Level23_85038Data6E020View1, int *, 0) - Level23_85038Field(ownerRecord17, int *, 0xC), Level23_85038Field((int)&Level23_85038Data6E020View1, int *, 4) - Level23_85038Field(ownerRecord17, int *, 0x10), argumentWord6);
+        Level23_85038Field(ownerRecord17, signed char *, 0x49) = 2;
+        Level23_85038DataSpawnMobyView1(0x3F7, ownerRecord17);
+    loop_72:
+        if ((Level23_85038Data6C578View1 - Level23_85038Data6C574View1) >= 0x15) {
+            temporaryWord5 = Level23_85038DataSpawnMobyView1(0x50, ownerRecord17);
+            if (temporaryWord5 != 0) {
+                temp_s3_2 = Level23_85038Field(temporaryWord5, void **, 0);
+                Level23_85038Field(temporaryWord5, signed char *, 0x48) = 5;
+                Level23_85038Field(temporaryWord5, signed char *, 0x41) = 0;
+                Level23_85038Field(temporaryWord5, signed char *, 0x4C) = 0;
+                Level23_85038Field(temporaryWord5, signed char *, 0x4D) = 0;
+                Level23_85038Field(temporaryWord5, int *, 8) = 0;
+                if (!retainedScanRecordOrParticleIndex18) goto produceOriginalFirstVector614;
+                argumentWord4 = 0;
+                if (retainedScanRecordOrParticleIndex18 == 1) goto produceOriginalSecondVector624;
+                temporaryWord13 = temp_s3_2+4;
+                goto updateOriginalSpawnedPosition634;
+            produceOriginalFirstVector614:
+                __asm__("":"=r"(retainedScanRecordOrParticleIndex18):"0"(retainedScanRecordOrParticleIndex18):"$4");
+                originalFrame.words[4] = Level23_85038Call3636CView1(0, 100)-50;
+                originalFrame.words[5] = Level23_85038Call3636CView1(90, 150);
+                goto produceOriginalVectorAddress633;
+            produceOriginalSecondVector624:
+                originalFrame.words[4] = Level23_85038Call3636CView1(argumentWord4, 100)-50;
+                originalFrame.words[5] = -Level23_85038Call3636CView1(90, 150);
+                produceOriginalVectorAddress633:temporaryWord13 = temp_s3_2+4;
+            updateOriginalSpawnedPosition634:
+                originalFrame.words[6] = 0x190;
+                Level23_85038Field(temporaryWord5, int *, 0xC) = (int) (Level23_85038Field(temporaryWord5, int *, 0xC) + (originalFrame.words[4] * 3));
+                Level23_85038Field(temporaryWord5, int *, 0x10) = (int) (Level23_85038Field(temporaryWord5, int *, 0x10) + (originalFrame.words[5] * 3));
+                Level23_85038Call4F178View1(temporaryWord13, &originalFrame.words[4]);
+                Level23_85038Field(temp_s3_2, int *, 0x10) = 0;
+                Level23_85038Field(temp_s3_2, int *, 0) = 0xC8;
+            }
+            retainedScanRecordOrParticleIndex18 += 1;
+            if (retainedScanRecordOrParticleIndex18 < 2) {
+                goto loop_72;
+            }
+        }
+        retainedHeadingScanPositionOrTarget16 = Level23_85038Field(ownerRecord17, unsigned char *, 0x46);
+        retainedScanRecordOrParticleIndex18 = 0;
+        Level23_85038Field(ownerRecord17, unsigned char *, 0x46) = 0U;
+    loop_83:
+        if ((Level23_85038Data6C578View1 - Level23_85038Data6C574View1) >= 0x15) {
+            temporaryWord6 = Level23_85038DataSpawnMobyView1(0x54, ownerRecord17);
+            if (temporaryWord6 != 0) {
+                Level23_85038Field(temporaryWord6, signed char *, 0x4F) = 0x20;
+                Level23_85038Field(temporaryWord6, signed char *, 0x4C) = 0x3F;
+                Level23_85038Field(temporaryWord6, unsigned char *, 0x4A) = 0xFF;
+                Level23_85038Field(temporaryWord6, signed char *, 0x3C) = (signed char) (retainedScanRecordOrParticleIndex18 % 3);
+                Level23_85038Field(Level23_85038Field(temporaryWord6, void **, 0), short *, 0xC) = 0xC8;
+            }
+            retainedScanRecordOrParticleIndex18 += 1;
+            Level23_85038Field(ownerRecord17, unsigned char *, 0x46) = (unsigned char) (Level23_85038Field(ownerRecord17, unsigned char *, 0x46) + 0x40);
+            if (retainedScanRecordOrParticleIndex18 < 4) {
+                goto loop_83;
+            }
+        }
+        Level23_85038Field(ownerRecord17, unsigned char *, 0x46) = retainedHeadingScanPositionOrTarget16;
+    removeOriginalOwner704:
+        Level23_85038Call55B18View1(ownerRecord17);
+        return;
+    }
+    __asm__ volatile("":::"$22");
+    if (Level23_85038Call3BFC0View1(ownerRecord17, Level23_85038Field(privateRecord19, int *, 0x10)) == 0) {
+        argumentWord4 = (int)ownerRecord17;
+        __asm__("":"=r"(argumentWord4):"0"(argumentWord4):"$2", "$5");
+        Level23_85038Field(privateRecord19, int *, 0x10) = Level23_85038Call3BABCView1(argumentWord4, 0, 4);
+    }
+    if (Level23_85038Field(privateRecord19, unsigned char *, 0xF) == 0) {
+        temporaryWord10 = Level23_85038Field(ownerRecord17, unsigned char *, 0x48);
+        retainedScanRecordOrParticleIndex18 = 0;
+        if ((temporaryWord10 == 4) || (temporaryWord10 == 1)) {
+            retainedScanRecordOrParticleIndex18 = 1;
+        }
+        if ((retainedScanRecordOrParticleIndex18 == 0) || ((unsigned int) (Level23_85038Field(ownerRecord17, unsigned char *, 0x45) - 0x65) >= 0x4FU)) {
+            Level23_85038Call55D24View1(ownerRecord17, 5);
+            Level23_85038Call55F14View1(ownerRecord17, 0, &originalFrame.words[8]);
+            originalFrame.words[12] = 0;
+            originalFrame.words[13] = 0;
+            originalFrame.words[14] = 0x32;
+            Level23_85038DataSpawnParticleView1(1, 0xD, &originalFrame.words[8], &originalFrame.words[12]);
+            if (retainedScanRecordOrParticleIndex18 != 0) {
+                Level23_85038Field(privateRecord19, unsigned char *, 0xF) = 0U;
+                return;
+            }
+            Level23_85038Field(privateRecord19, unsigned char *, 0xF) = 3U;
+            return;
+        }
+    }
+    else {
+        Level23_85038Call359A4View1(privateRecord19 + 0xF, 1);
+        return;
+    }
+    return;
+}
+#undef Level23_85038Field
+
 
 /* AI-generated; not human reviewed. Original SCUS-94467 USA Rev0
  * 80085C4C..80085EEC,169 words. Rev1 raw83 provides source-local routes;
@@ -5004,9 +11219,3480 @@ void func_level_23_8008628C(Moby *moby) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/moby", func_level_23_80086338);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated;
+ not human reviewed. Matched C. Original source asm/nonmatchings/overlays/level_23/moby/func_level_23_80086338.s SHA256 daa7bb8cca440ad24f1ab681bd044142181ac9f8f6927c8f510352ec4ac92d9f. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
+#define Level23_86338Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+extern Moby* Level23_86338_D_8006C550 __asm__("D_8006C550");
+extern unsigned char Level23_86338_D_80070300[40] __asm__("D_80070300");
+extern Spyro Level23_86338_D_80070328 __asm__("D_80070328");
+void Level23_86338_func_80013AE4(Vector3D*, Vector3D*) __asm__("func_80013AE4");
+void Level23_86338_func_80013B7C(int) __asm__("func_80013B7C");
+extern void Level23_86338_func_80021ED8(int, int, int) __asm__("func_80021ED8");
+extern int Level23_86338_func_80021F3C(int) __asm__("func_80021F3C");
+extern void Level23_86338_func_80021F8C(int, char, int) __asm__("func_80021F8C");
+void Level23_86338_func_80027A60(HudEntry*) __asm__("func_80027A60");
+void Level23_86338_func_80027EE4(HudEntry*) __asm__("func_80027EE4");
+int Level23_86338_func_8002803C(int, int, void*, void*, void*, int*, int) __asm__("func_8002803C");
+int Level23_86338_func_80029AA0(HudEntry*) __asm__("func_80029AA0");
+void Level23_86338_func_80034F40(Moby* moby, int newId) __asm__("func_80034F40");
+int Level23_86338_func_800359A4(void*, int) __asm__("func_800359A4");
+void Level23_86338_func_8003B7B4(void* addr, int len, Savepoint *save) __asm__("func_8003B7B4");
+int Level23_86338_func_8003BB10(Moby*, int, int) __asm__("func_8003BB10");
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/moby", func_level_23_800868A0);
+unsigned char Level23_86338_func_80034F80(Moby *, unsigned char) __asm__("func_80034F80");
+             /* extern */
+extern int Level23_86338_D_8006C58C __asm__("D_8006C58C");
+extern int Level23_86338_D_8006C770 __asm__("D_8006C770");
+extern unsigned char Level23_86338_D_8006C7B4 __asm__("D_8006C7B4");
+extern Savepoint Level23_86338_D_8006C7F8 __asm__("D_8006C7F8");
+extern int Level23_86338_D_8006E048 __asm__("D_8006E048");
+
+void func_level_23_80086338(Moby *inputOwner) {
+    /* Original 0x30 frame, 37-entry selector bounds and shared state-36
+     * destination are retained. The constructor uses all seven original
+     * arguments, including callbackC, private+4 BYTES and maximum 4;
+      its
+     * returned handle is narrowed by the original SLL/SRA16 sequence.
+     * The four state comparisons share the original cached Moby pool;
+     * state35 retains its separate helper result and pool reloads.
+     * The second 13AE4 vector argument is +16 BYTES, not vector stride16.
+     * Empty constraints retain raw register producers without instructions.
+     * Helper meanings, field units/fixed point, cadence and synchronized
+     * runtime validation remain unresolved. AI generated;
+      not human reviewed. */
+    register Moby* owner18 __asm__("$18")=inputOwner;
+    Moby *spawned;
+    register void* callback7 __asm__("$7");
+    register int raw2 __asm__("$2");
+    register int raw3 __asm__("$3");
+    register int count4 __asm__("$4");
+    register int count5 __asm__("$5");
+    register int count6 __asm__("$6");
+    register Moby* pool7 __asm__("$7");
+    Vector3D *helperVector;
+    register int completedCount4 __asm__("$4");
+    register int helperFlags7 __asm__("$7");
+    register int helperFlags3 __asm__("$3");
+    register int state3 __asm__("$3");
+    unsigned char temp_v1_4;
+    register void* anchorPrivate5 __asm__("$5");
+    register void* private16 __asm__("$16");
+    void *parentPrivate;
+
+    __asm__("":"=r"(owner18):"0"(owner18));
+    private16=owner18->mobyTag;
+    if ((owner18->state == 0) && (owner18->damageFlags & 0x10000)) {
+        owner18->state = 1;
+        Level23_86338_func_80034F80(inputOwner,1);
+        owner18->animationProgress = 0xA0;
+        Level23_86338_func_80021ED8((int) Level23_86338Field(private16, short *, 0xC), 252, 0);
+        return;
+    }
+    state3 = owner18->state;
+    switch (state3) {                              /* switch 1 */
+    case 30:                                        /* switch 1 */
+        if (!(Level23_86338_D_8006C7B4 & 0x20) && !(Level23_86338_D_80070300[Level23_86338_D_8006C58C] & 0x20)) {
+            count4=7;
+            count5=230;
+            count6=(int)Level23_86338_func_80027EE4;
+            __asm__("":"=r"(count4),"=r"(count5),"=r"(count6):"0"(count4),"1"(count5),"2"(count6));
+            raw2=255;
+            __asm__("":"=r"(raw2):"0"(raw2));
+            owner18->updateDistance=raw2;
+            raw2=31;
+            __asm__("":"=r"(raw2):"0"(raw2));
+            owner18->state=raw2;
+            raw2=(int)Level23_86338_func_80029AA0;
+            __asm__("":"=r"(raw2):"0"(raw2));
+            owner18->unknown3[0] = 0;
+            owner18->lowDrawDistance = 0;
+            owner18->drawn = 0;
+            owner18->unknownCollision = 0;
+            Level23_86338Field(private16, int *, 8) = (short) Level23_86338_func_8002803C(count4,count5,(void*)count6,Level23_86338_func_80027A60,(void*)raw2,({register void* display2 __asm__("$2")=private16+4;__asm__("":"=r"(display2):"0"(display2));display2;}),({register int finalCount2 __asm__("$2")=4;__asm__("":"=r"(finalCount2):"0"(finalCount2));finalCount2;}));
+            return;
+        }
+    default:                                        /* switch 1 */
+        return;
+    case 31:                                        /* switch 1 */
+        raw3=Level23_86338Field(private16,int*,16);
+        pool7=Level23_86338_D_8006C550;
+        raw2=raw3*88;
+        raw2+=(int)pool7;
+        count4=Level23_86338Field((void*)raw2,unsigned char*,72);
+        __asm__ volatile("":::"memory");
+        raw3=Level23_86338Field(private16,int*,20);
+        count4^=2;
+        __asm__("":"=r"(count4):"0"(count4));
+        raw2=raw3*88;
+        raw2+=(int)pool7;
+        count4=(unsigned int)count4<1;
+        count5=Level23_86338Field((void*)raw2,unsigned char*,72);
+        raw3=Level23_86338Field(private16,int*,24);
+        count5^=2;
+        count5=(unsigned int)count5<1;
+        raw2=raw3*88;
+        raw2+=(int)pool7;
+        count4+=count5;
+        count6=Level23_86338Field((void*)raw2,unsigned char*,72);
+        raw3=Level23_86338Field(private16,int*,28);
+        count6^=2;
+        count6=(unsigned int)count6<1;
+        raw2=raw3*88;
+        raw2+=(int)pool7;
+        raw2=Level23_86338Field((void*)raw2,unsigned char*,72);
+        count4+=count6;
+        raw2^=2;
+        raw2=(unsigned int)raw2<1;
+        count4+=raw2;
+        completedCount4=count4;
+        Level23_86338Field(private16, int *, 4) = completedCount4;
+        if (completedCount4 == 4) {
+            parentPrivate=pool7[Level23_86338Field(private16,int*,32)].mobyTag;
+            if (Level23_86338Field(parentPrivate, unsigned char *, 2) == 0) {
+                Level23_86338Field(parentPrivate, unsigned char *, 2) = 1U;
+                Level23_86338Field(Level23_86338_D_8006C550[Level23_86338Field(private16, int *, 0x20)].mobyTag, signed char *, 5) = 1;
+            }
+            helperFlags3=Level23_86338_func_80021F3C(Level23_86338Field(private16,short*,14));
+            raw2=(helperFlags3>>8)&255;
+            if(raw2)goto returnWithoutUpdate;
+            raw2=helperFlags3&15;
+            if(raw2) {
+                Level23_86338_D_80070328.unk17a = 0x10000002;
+                Level23_86338_func_80021ED8((int) Level23_86338Field(private16, short *, 0xE), 252, 0);
+                helperVector = Level23_86338Field(Level23_86338Field(private16, void **, 0x24), Vector3D **, 0xC);
+                Level23_86338_func_80013AE4(helperVector, (Vector3D*)((unsigned char*)helperVector+16));
+                owner18->state = 0x20;
+                Level23_86338Field(private16, int *, 0) = 0xC8;
+                return;
+            }
+        }
+        break;
+    case 32:                                        /* switch 1 */
+        if (Level23_86338_D_8006E048 == 2) {
+            Level23_86338_D_80070328.unk17a = 0x10000002;
+            owner18->state = 0x21;
+            Level23_86338_func_8003BB10(owner18, 3, 0);
+            return;
+        }
+        break;
+    case 33:                                        /* switch 1 */
+        if (Level23_86338_func_800359A4(private16, 4) != 0) {
+            Level23_86338_D_80070328.unk17a = 0x10000002;
+            Level23_86338_func_80013B7C(1);
+            owner18->state = 0x22;
+            Level23_86338Field(private16, int *, 0) = 0x1E;
+            return;
+        }
+        break;
+    case 34:                                        /* switch 1 */
+        if (Level23_86338_func_800359A4(private16, 4) != 0) {
+            owner18->state = 0x23;
+            Level23_86338_func_8003B7B4(&owner18->state, 1, &Level23_86338_D_8006C7F8);
+            spawned = SpawnMoby(0x110, owner18);
+            if (spawned != 0) {
+                Level23_86338Field(spawned->mobyTag, signed char *, 2) = 2;
+            }
+            goto resetState36;
+        }
+        break;
+    case 35:                                        /* switch 1 */
+        owner18->unknown3[0] = 0;
+        owner18->lowDrawDistance = 0;
+        owner18->drawn = 0;
+        owner18->unknownCollision = 0;
+        owner18->updateDistance = 0xFF;
+        helperFlags7=Level23_86338_func_80021F3C(Level23_86338Field(private16,short*,14));
+        raw3=Level23_86338Field(private16,int*,32);
+        raw2=raw3*88;
+        raw3=(int)Level23_86338_D_8006C550;
+        raw2+=raw3;
+        anchorPrivate5=Level23_86338Field((void*)raw2,void**,0);
+        raw2=helperFlags7>>8;
+        count6=raw2&255;
+        if (Level23_86338Field(anchorPrivate5, unsigned char *, 2) == 0) {
+            count4=1;
+            __asm__("":"=r"(count4):"0"(count4));
+            Level23_86338Field(anchorPrivate5,unsigned char*,2)=count4;
+            Level23_86338Field(Level23_86338_D_8006C550[Level23_86338Field(private16,int*,32)].mobyTag,signed char*,5)=count4;
+        }
+        if(!count6) {
+            raw2=helperFlags7&15;
+            count5=252;
+            if(raw2) {
+                __asm__ volatile("":"=r"(count6));
+                Level23_86338_func_80021ED8(Level23_86338Field(private16,short*,14),count5,0);
+                Level23_86338_func_80021F8C((int) Level23_86338Field(private16, short *, 0xE), 0x3B, 0);
+            }
+        }
+resetState36:
+        owner18->state=36;
+        goto returnWithoutUpdate;
+    case 2:
+        raw3=owner18->substate;
+        count5=252;
+        if(raw3==2){
+            Level23_86338_func_80021ED8(Level23_86338Field(private16,short*,12),count5,0);
+            Level23_86338_func_80034F80(owner18,2);
+            owner18->substate=0;
+            owner18->updateDistance=255;
+            goto returnWithoutUpdate;
+        }
+        if(raw3)goto returnWithoutUpdate;
+        raw2=Level23_86338_func_80021F3C(Level23_86338Field(private16,short*,12));
+        raw2&=15;
+        if(!raw2)goto returnWithoutUpdate;
+        Level23_86338_func_80021ED8(Level23_86338Field(private16,short*,12),252,0);
+        owner18->updateDistance=32;
+        goto returnWithoutUpdate;
+    case 1:                                         /* switch 1 */
+        if (Level23_86338_D_8006C770 != 0) {
+            owner18->substate = 2;
+            Level23_86338_func_8003B7B4(&owner18->substate, 1, &Level23_86338_D_8006C7F8);
+            owner18->state = 2;
+            Level23_86338_func_8003B7B4(&owner18->state, 1, &Level23_86338_D_8006C7F8);
+            owner18->substate = 0;
+            owner18->state = 2;
+            Level23_86338_func_80034F40(owner18, 2);
+        }
+    case 0:
+    case 36:
+        __asm__ volatile("# original-zero-and-terminal-selector");
+    }
+returnWithoutUpdate:;
+}
+#undef Level23_86338Field
+
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* Native modulo32 word arithmetic; signed conversions/right shifts use the frozen MIPS ABI. */
+#define Actor1937Add(a,b) ((int)((unsigned int)(a)+(unsigned int)(b)))
+#define Actor1937Sub(a,b) ((int)((unsigned int)(a)-(unsigned int)(b)))
+/* AI generated, not human reviewed. Uninstalled original C with approved original LW boundaries. All gates pending. */
+#define Actor1937Keep(v) __asm__("":"=r"(v):"0"(v))
+#define Actor1937Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+int Actor1937_func_80013AE4() __asm__("func_80013AE4");
+int Actor1937_func_80013D44() __asm__("func_80013D44");
+int Actor1937_func_8001830C() __asm__("func_8001830C");
+int Actor1937_func_8001A358() __asm__("func_8001A358");
+int Actor1937_func_8001BA30() __asm__("func_8001BA30");
+int Actor1937_func_8002EC50() __asm__("func_8002EC50");
+int Actor1937_func_80034F40() __asm__("func_80034F40");
+int Actor1937_func_80034F80() __asm__("func_80034F80");
+int Actor1937_func_8003585C() __asm__("func_8003585C");
+int Actor1937_func_800359A4() __asm__("func_800359A4");
+int Actor1937_func_80035A80() __asm__("func_80035A80");
+int Actor1937_func_800365E4() __asm__("func_800365E4");
+int Actor1937_func_80037BBC() __asm__("func_80037BBC");
+int Actor1937_func_8003B7B4() __asm__("func_8003B7B4");
+int Actor1937_func_8004E880() __asm__("func_8004E880");
+int Actor1937_func_8004ED6C() __asm__("func_8004ED6C");
+int Actor1937_func_8004EDE8() __asm__("func_8004EDE8");
+int Actor1937_func_8004F08C() __asm__("func_8004F08C");
+int Actor1937_func_8004F110() __asm__("func_8004F110");
+int Actor1937_func_8004F178() __asm__("func_8004F178");
+int Actor1937_func_8004F194() __asm__("func_8004F194");
+int Actor1937_func_8004F1C8() __asm__("func_8004F1C8");
+int Actor1937_func_8004F334() __asm__("func_8004F334");
+int Actor1937_func_800512E4() __asm__("func_800512E4");
+int Actor1937_func_80055B18() __asm__("func_80055B18");
+int Actor1937_func_80055D24() __asm__("func_80055D24");
+int Actor1937_func_80055E84() __asm__("func_80055E84");
+int Actor1937_func_80055F14() __asm__("func_80055F14");
+extern int Actor1937_D_800658A0 __asm__("D_800658A0");
+extern int Actor1937_D_80065920 __asm__("D_80065920");
+extern int Actor1937_D_8006C550 __asm__("D_8006C550");
+extern int Actor1937_D_8006C58C __asm__("D_8006C58C");
+extern int Actor1937_D_8006C770 __asm__("D_8006C770");
+extern int Actor1937_D_8006C7B4 __asm__("D_8006C7B4");
+extern int Actor1937_D_8006C7C4 __asm__("D_8006C7C4");
+extern int Actor1937_D_8006C7F8 __asm__("D_8006C7F8");
+extern int Actor1937_D_8006D088 __asm__("D_8006D088");
+extern int Actor1937_D_8006E048 __asm__("D_8006E048");
+extern int Actor1937_D_8006E160 __asm__("D_8006E160");
+extern int Actor1937_D_8006E168 __asm__("D_8006E168");
+extern int Actor1937_D_8006E344 __asm__("D_8006E344");
+extern int Actor1937_D_8006EE2C __asm__("D_8006EE2C");
+extern int Actor1937_D_80070300 __asm__("D_80070300");
+extern int Actor1937_D_80070328 __asm__("D_80070328");
+extern int Actor1937_D_800716AC __asm__("D_800716AC");
+extern int Actor1937_D_800716B0 __asm__("D_800716B0");
+extern int Actor1937_D_80071908 __asm__("D_80071908");
+const unsigned int Actor1937_D_level_23_80074B0C[3] __asm__("D_level_23_80074B0C") = {
+    90,100,110
+}
+;
+const unsigned int Actor1937_D_level_23_80074B18[4] __asm__("D_level_23_80074B18") = {
+    120,130,140,0
+}
+;
+extern int Actor1937_SpawnMoby __asm__("SpawnMoby");
+typedef union{
+    long long full;
+    struct{
+        unsigned int low;
+        int high;
+    }
+    words;
+}
+Actor1937Product;
+static __inline__ int Actor1937ForwardFields(int half,int base,int out,int a,int c,int d){
+    return Actor1937_func_800365E4(a,(int)((unsigned int)base+((unsigned int)half<<4)),c,d,out);
+}
+void func_level_23_800868A0(void*input){
+    register int valueV0 __asm__("$2");
+    register int valueV1 __asm__("$3");
+    register int argument0 __asm__("$4");
+    register int argument1 __asm__("$5");
+    register int argument2 __asm__("$6");
+    register int argument3 __asm__("$7");
+    register int valueT0 __asm__("$8");
+    register int valueT1 __asm__("$9");
+    register int valueT2 __asm__("$10");
+    register int valueT3 __asm__("$11");
+    register int valueT4 __asm__("$12");
+    register int valueT5 __asm__("$13");
+    register int valueT6 __asm__("$14");
+    register int valueT7 __asm__("$15");
+    register int valueS0 __asm__("$16");
+    register int valueS1 __asm__("$17");
+    register int valueS2 __asm__("$18");
+    register int valueS3 __asm__("$19");
+    register int valueS4 __asm__("$20");
+    register int valueS5 __asm__("$21");
+    register int privateData __asm__("$22");
+    register int actor __asm__("$23");
+    register int word24 __asm__("$24");
+    register int word25 __asm__("$25");
+    register int savedWord30;
+    int stackArgument4,stackArgument5,stackArgument6,stackArgument7;
+    union{
+        struct{
+            int sp20;
+            int sp24;
+            int sp28;
+            int sp2C;
+            int sp30;
+            int sp34;
+            int sp38;
+            int sp3C;
+            int sp40;
+            int sp44;
+            int sp48;
+            int sp4C;
+            int sp50;
+            int sp54;
+            int sp58;
+            int sp5C;
+            int sp60;
+            int sp64;
+            int sp68;
+            int sp6C;
+            int sp70;
+            int sp74;
+            int sp78;
+            int sp7C;
+            int sp80;
+            int sp84;
+            int sp88;
+            int sp8C;
+            int sp90;
+            int sp94;
+            int sp98;
+            int sp9C;
+            int spA0;
+            int spA4;
+            int spA8;
+            int spAC;
+            int spB0;
+            int spB4;
+            int spB8;
+            int spBC;
+            int spC0;
+            int spC4;
+            int spC8;
+            int spCC;
+            int spD0;
+            int spD4;
+            int spD8;
+            int spDC;
+            int spE0;
+            int spE4;
+            int spE8;
+            int spEC;
+            int spF0;
+            int spF4;
+            int spF8;
+            int spFC;
+            int sp100;
+            int sp104;
+            int sp108;
+            int sp10C;
+            int sp110;
+            int sp114;
+            int sp118;
+            int sp11C;
+            int sp120;
+            int sp124;
+            int sp128;
+            int sp12C;
+            int sp130;
+            int sp134;
+            int sp138;
+            int sp13C;
+        }
+        fields;
+    }
+    frame;
+    long long completeSignedProduct;
+    actor=(int)input;
+    Actor1937Keep(actor);
+    argument0=(int)input;
+    privateData=Actor1937Field(actor,int*,0);
+    Actor1937Keep(privateData);
+    argument1=(int)&Actor1937_D_level_23_80074B0C;
+    Actor1937Keep(argument1);
+    valueV0=Actor1937Field(argument1,int*,0);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field(argument1,int*,4);
+    Actor1937Keep(valueV1);
+    argument0=Actor1937Field(argument1,int*,8);
+    Actor1937Keep(argument0);
+    Actor1937Field((int)&frame,int*,0)=valueV0;
+    Actor1937Field((int)&frame,int*,4)=valueV1;
+    Actor1937Field((int)&frame,int*,8)=argument0;
+    __asm__ volatile(""::"r"(argument1),"m"(frame.fields.sp20),"m"(frame.fields.sp24),"m"(frame.fields.sp28));
+    argument1=(int)&Actor1937_D_level_23_80074B18;
+    Actor1937Keep(argument1);
+    valueV0=Actor1937Field(argument1,int*,0);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field(argument1,int*,4);
+    Actor1937Keep(valueV1);
+    argument0=Actor1937Field(argument1,int*,8);
+    Actor1937Keep(argument0);
+    Actor1937Field((int)&frame,int*,16)=valueV0;
+    Actor1937Field((int)&frame,int*,20)=valueV1;
+    Actor1937Field((int)&frame,int*,24)=argument0;
+    valueV0=Actor1937Field(actor,unsigned char*,77);
+    Actor1937Keep(valueV0);
+    if(valueV0!=0)goto original1937_40;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV0=Actor1937Field(privateData,int*,92);
+    Actor1937Keep(valueV0);
+    if(valueV0==0)goto original1937_75;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    Actor1937Field(valueV0,unsigned char*,16)=0;
+    Actor1937Field(privateData,int*,92)=0;
+    goto original1937_50;
+    original1937_40:
+    valueV0=Actor1937Field(privateData,int*,92);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,0);
+    if(valueV0!=0)goto original1937_54;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument0=Actor1937Add(0,1);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,254);
+    Actor1937Keep(argument1);
+    argument2=(int)0x00480000U;
+    Actor1937Keep(argument2);
+    argument2=argument2|37008;
+    valueV0=Actor1937_func_8002EC50(argument0,argument1,argument2);
+    Actor1937Field(privateData,int*,92)=valueV0;
+    original1937_50:
+    valueV0=Actor1937Field(privateData,int*,92);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,0);
+    if(valueV0==0)goto original1937_75;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    original1937_54:
+    argument1=Actor1937Add(0,7);
+    Actor1937_func_80055D24(argument0,argument1);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument2=Actor1937Field(privateData,int*,92);
+    Actor1937Keep(argument2);
+    argument1=Actor1937Add(0,2);
+    Actor1937_func_80055F14(argument0,argument1,argument2);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,3);
+    Actor1937Keep(argument1);
+    valueS0=(int)&frame.fields.sp40;
+    Actor1937Keep(valueS0);
+    argument2=Actor1937Add(valueS0,0);
+    Actor1937_func_80055F14(argument0,argument1,argument2);
+    argument0=Actor1937Field(privateData,int*,92);
+    Actor1937Keep(argument0);
+    argument2=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument2);
+    argument1=Actor1937Add(argument0,0);
+    Actor1937_func_8004F194(argument0,argument1,argument2);
+    argument0=Actor1937Field(privateData,int*,92);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,1);
+    Actor1937_func_8004F110(argument0,argument1);
+    valueV1=Actor1937Field(privateData,int*,92);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,8);
+    Actor1937Keep(valueV0);
+    Actor1937Field(valueV1,unsigned char*,19)=valueV0;
+    original1937_75:
+    valueV1=Actor1937Field(actor,unsigned char*,72);
+    Actor1937Keep(valueV1);
+    switch((unsigned int)valueV1){
+        case 0:goto original1937_148;
+        case 1:goto original1937_194;
+        case 2:goto original1937_343;
+        case 3:goto original1937_486;
+        case 4:goto original1937_1261;
+        case 5:goto original1937_1817;
+        case 6:goto original1937Return;
+        case 7:goto original1937Return;
+        case 8:goto original1937Return;
+        case 9:goto original1937Return;
+        case 10:goto original1937Return;
+        case 11:goto original1937Return;
+        case 12:goto original1937Return;
+        case 13:goto original1937Return;
+        case 14:goto original1937Return;
+        case 15:goto original1937Return;
+        case 16:goto original1937Return;
+        case 17:goto original1937Return;
+        case 18:goto original1937Return;
+        case 19:goto original1937Return;
+        case 20:__asm__ volatile(""::"r"(valueV1));
+        goto original1937_86;
+        case 21:goto original1937_1320;
+        case 22:goto original1937_1403;
+        case 23:goto original1937_1410;
+        case 24:goto original1937_423;
+        case 25:goto original1937_1693;
+        case 26:goto original1937_486;
+        case 27:goto original1937_486;
+        case 28:goto original1937_1536;
+        case 29:goto original1937_1675;
+        case 30:goto original1937_1428;
+        case 31:goto original1937_1461;
+        case 32:goto original1937Return;
+        case 33:goto original1937_1768;
+        case 34:goto original1937_1775;
+        case 35:goto original1937_1785;
+        case 36:goto original1937_993;
+        case 37:goto original1937_851;
+        case 38:goto original1937_1632;
+        case 39:goto original1937Return;
+        case 40:goto original1937Return;
+        case 41:goto original1937Return;
+        case 42:goto original1937Return;
+        case 43:goto original1937Return;
+        case 44:goto original1937Return;
+        case 45:goto original1937Return;
+        case 46:goto original1937Return;
+        case 47:goto original1937Return;
+        case 48:goto original1937Return;
+        case 49:goto original1937Return;
+        case 50:goto original1937_1869;
+        case 51:goto original1937Return;
+        case 52:goto original1937_1100;
+        case 53:goto original1937Return;
+        case 54:goto original1937_1807;
+        default:goto original1937Return;
+    }
+    original1937_86:
+    valueV0=Actor1937Field(privateData,int*,60);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Add(0,1);
+    Actor1937Keep(valueV1);
+    Actor1937Field(privateData,int*,48)=0;
+    Actor1937Field(valueV0,short*,10)=valueV1;
+    valueV0=Actor1937Field(privateData,int*,60);
+    Actor1937Keep(valueV0);
+    Actor1937Field(valueV0,short*,2)=valueV1;
+    valueV0=Actor1937Field(privateData,int*,120);
+    Actor1937Keep(valueV0);
+    argument1=(int)0x80070000U;
+    Actor1937Keep(argument1);
+    argument1=Actor1937Field(argument1,int*,-15024);
+    Actor1937Keep(argument1);
+    argument0=(int)((unsigned int)valueV0<<1);
+    Actor1937Keep(argument0);
+    argument0=Actor1937Add(argument0,valueV0);
+    Actor1937Keep(argument0);
+    argument0=(int)((unsigned int)argument0<<2);
+    Actor1937Keep(argument0);
+    argument0=Actor1937Sub(argument0,valueV0);
+    Actor1937Keep(argument0);
+    argument0=(int)((unsigned int)argument0<<3);
+    Actor1937Keep(argument0);
+    argument0=Actor1937Add(argument0,argument1);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Sub(actor,argument1);
+    Actor1937Keep(argument1);
+    valueV0=(int)((unsigned int)argument1<<5);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,argument1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<5);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,argument1);
+    Actor1937Keep(valueV0);
+    valueV1=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV1=(int)((unsigned int)valueV0<<15);
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Sub(valueV1,valueV0);
+    Actor1937Keep(valueV1);
+    valueV1=(int)((unsigned int)valueV1<<2);
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Add(valueV1,argument1);
+    Actor1937Keep(valueV1);
+    argument0=Actor1937Field(argument0,int*,0);
+    Actor1937Keep(argument0);
+    valueV1=Actor1937Sub(0,valueV1);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(argument0,int*,4);
+    Actor1937Keep(valueV0);
+    valueV1=(valueV1>>3);
+    Actor1937Keep(valueV1);
+    if(valueV0!=valueV1)goto original1937_122;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV0=Actor1937Field(argument0,int*,12);
+    Actor1937Keep(valueV0);
+    Actor1937Field(privateData,unsigned char*,2)=valueV0;
+    goto original1937_125;
+    original1937_122:
+    valueV0=Actor1937Field(argument0,int*,16);
+    Actor1937Keep(valueV0);
+    Actor1937Field(privateData,unsigned char*,2)=valueV0;
+    original1937_125:
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    Actor1937Field(actor,unsigned char*,72)=0;
+    Actor1937_func_80034F40(argument0,argument1);
+    valueV0=Actor1937Field(privateData,unsigned char*,56);
+    Actor1937Keep(valueV0);
+    if(valueV0==0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV0=Actor1937Field(actor,short*,54);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(((int)((unsigned int)&Actor1937_D_8006EE2C+(unsigned int)valueV0)),int*,0);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,60);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,unsigned char*,0);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0>>1);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,62)=valueV0;
+    valueV0=Actor1937Add(valueV0,1);
+    goto original1937_1923;
+    original1937_148:
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,6);
+    Actor1937_func_80055D24(argument0,argument1);
+    valueV1=Actor1937Field(privateData,int*,52);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-15024);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueS0=Actor1937Add(valueV1,valueV0);
+    Actor1937Keep(valueS0);
+    valueV1=Actor1937Field(actor,unsigned char*,61);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,6);
+    Actor1937Keep(valueV0);
+    if(valueV1==valueV0)goto original1937_1789;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV0=Actor1937Field(actor,int*,24);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,0);
+    if(valueV0==0)goto original1937_171;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument1=Actor1937Add(0,6);
+    Actor1937_func_80034F80(argument0,argument1);
+    original1937_171:
+    if(valueS0==0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueS0):"0"(valueS0));
+    valueV1=Actor1937Field(valueS0,unsigned char*,72);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,38);
+    if(valueV1==0)goto original1937_179;
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    if(valueV1!=valueV0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    original1937_179:
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,0);
+    valueV0=Actor1937_func_80037BBC(argument0,argument1);
+    argument0=Actor1937Add(actor,0);
+    if(valueV0==0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(0,1);
+    Actor1937_func_800512E4(argument0,argument1,argument2);
+    valueV0=Actor1937Add(0,1);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,1);
+    Actor1937_func_80034F40(argument0,argument1);
+    goto original1937Return;
+    original1937_194:
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-7356);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,1);
+    Actor1937Keep(valueV0);
+    if(valueV1==valueV0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    Actor1937Field(actor,int*,24)=0;
+    valueV1=Actor1937Field(privateData,int*,52);
+    Actor1937Keep(valueV1);
+    argument0=Actor1937Field(privateData,unsigned char*,2);
+    Actor1937Keep(argument0);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-15024);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Add(valueV1,valueV0);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,2);
+    Actor1937Keep(valueV0);
+    argument1=Actor1937Field(valueV1,int*,0);
+    Actor1937Keep(argument1);
+    if(argument0==valueV0?(valueV0=Actor1937Add(0,4),1):(valueV0=Actor1937Add(0,4),0))goto original1937_216;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(argument0):"0"(argument0));
+    if(argument0!=valueV0)goto original1937_226;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(argument0):"0"(argument0));
+    original1937_216:
+    valueV0=Actor1937Add(0,4);
+    Actor1937Keep(valueV0);
+    if(argument0!=valueV0)goto original1937_224;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(argument0):"0"(argument0));
+    valueV0=Actor1937Field(argument1,unsigned char*,2);
+    Actor1937Keep(valueV0);
+    valueV0=(unsigned int)valueV0<2;
+    Actor1937Keep(valueV0);
+    valueV0=valueV0^1;
+    Actor1937Keep(valueV0);
+    Actor1937Field(privateData,unsigned char*,2)=valueV0;
+    original1937_224:
+    Actor1937Field(actor,unsigned char*,72)=0;
+    goto original1937_1794;
+    original1937_226:
+    /* Original CLOSED226..286 (61 words),80086C28..80086D18.
+    * Actual initialized A1/GP5 supplies the first LBU address. GP2 is fully
+    * defined on every exit by that load and subsequent original operations.
+    * GP3/GP4 are dead scratch until original287 LW /299 LH; neither is an
+    * invented incoming value or output. All targets are internal. Original
+    * actual indexed LBU/SB byte widths, modulo32 address arithmetic and load/
+    * branch delays remain; no table/range/default assumption is introduced. */
+    __asm__ volatile(
+    ".set\tnoreorder\n\t"
+    "lbu        $v0, 2($a1)\n\t"
+    "nop\n\t"
+    "sltiu      $v0, $v0, 2\n\t"
+    "beqz       $v0, 2f\n\t"
+    "nop\n\t"
+    "lui        $v0, %%hi(D_8006C7B4)\n\t"
+    "lbu        $v0, %%lo(D_8006C7B4)($v0)\n\t"
+    "nop\n\t"
+    "andi       $v0, $v0, 8\n\t"
+    "bnez       $v0, 9f\n\t"
+    "nop\n\t"
+    "lui        $v1, %%hi(D_8006C58C)\n\t"
+    "lw         $v1, %%lo(D_8006C58C)($v1)\n\t"
+    "lui        $at, %%hi(D_80070300)\n\t"
+    "addu       $at, $at, $v1\n\t"
+    "lbu        $v0, %%lo(D_80070300)($at)\n\t"
+    "nop\n\t"
+    "andi       $v0, $v0, 8\n\t"
+    "bnez       $v0, 9f\n\t"
+    "sll       $v0, $v1, 1\n\t"
+    "addu       $v0, $v0, $v1\n\t"
+    "sll        $a0, $v0, 1\n\t"
+    "lui        $at, %%hi(D_800716AC + 3)\n\t"
+    "addu       $at, $at, $a0\n\t"
+    "lbu        $v1, %%lo(D_800716AC + 3)($at)\n\t"
+    "nop\n\t"
+    "sltiu      $v0, $v1, 255\n\t"
+    "beqz       $v0, 9f\n\t"
+    "addiu     $v0, $v1, 1\n\t"
+    "lui        $at, %%hi(D_800716AC + 3)\n\t"
+    "addu       $at, $at, $a0\n\t"
+    "sb         $v0, %%lo(D_800716AC + 3)($at)\n\t"
+    "j          9f\n\t"
+    "nop\n\t"
+    "2:\n\t"
+    "lui        $v0, %%hi(D_8006C7B4)\n\t"
+    "lbu        $v0, %%lo(D_8006C7B4)($v0)\n\t"
+    "nop\n\t"
+    "andi       $v0, $v0, 16\n\t"
+    "bnez       $v0, 9f\n\t"
+    "nop\n\t"
+    "lui        $v1, %%hi(D_8006C58C)\n\t"
+    "lw         $v1, %%lo(D_8006C58C)($v1)\n\t"
+    "lui        $at, %%hi(D_80070300)\n\t"
+    "addu       $at, $at, $v1\n\t"
+    "lbu        $v0, %%lo(D_80070300)($at)\n\t"
+    "nop\n\t"
+    "andi       $v0, $v0, 16\n\t"
+    "bnez       $v0, 9f\n\t"
+    "sll       $v0, $v1, 1\n\t"
+    "addu       $v0, $v0, $v1\n\t"
+    "sll        $a0, $v0, 1\n\t"
+    "lui        $at, %%hi(D_800716B0)\n\t"
+    "addu       $at, $at, $a0\n\t"
+    "lbu        $v1, %%lo(D_800716B0)($at)\n\t"
+    "nop\n\t"
+    "sltiu      $v0, $v1, 255\n\t"
+    "beqz       $v0, 9f\n\t"
+    "addiu     $v0, $v1, 1\n\t"
+    "lui        $at, %%hi(D_800716B0)\n\t"
+    "addu       $at, $at, $a0\n\t"
+    "sb         $v0, %%lo(D_800716B0)($at)\n\t"
+    "9:\n\t"
+    ".set\treorder"
+    : "=r"(valueV0)
+    : "r"(argument1)
+    : "$1","$3","$4","memory");
+    Actor1937FirstThreeEntry:
+    __asm__ volatile(""::"r"(valueV0));
+    Actor1937LastIncrementEntry:
+    __asm__ volatile(""::"r"(valueV0),"i"(0x80086D08U));
+    original1937_287:
+    valueV1=Actor1937Field(privateData,int*,120);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-15024);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Add(valueV1,valueV0);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(valueV1,int*,0);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Field(valueV0,short*,0);
+    Actor1937Keep(argument0);
+    valueV0=Actor1937Add(0,1);
+    if(argument0!=0)goto original1937_307;
+    __asm__ volatile("":"=r"(argument0):"0"(argument0));
+    valueV1=Actor1937Field(privateData,unsigned char*,56);
+    Actor1937Keep(valueV1);
+    if(valueV1==valueV0)goto original1937_313;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    original1937_307:
+    if(argument0!=valueV0)goto original1937_317;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(argument0):"0"(argument0));
+    valueV0=Actor1937Field(privateData,unsigned char*,56);
+    Actor1937Keep(valueV0);
+    if(valueV0!=0)goto original1937_317;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    original1937_313:
+    __asm__ volatile("":::"$2");
+    valueV0=Actor1937Add(0,1);
+    Actor1937Keep(valueV0);
+    Actor1937Field(privateData,unsigned char*,57)=valueV0;
+    Actor1937Field(argument1,unsigned char*,57)=valueV0;
+    goto original1937_319;
+    original1937_317:
+    Actor1937Field(privateData,unsigned char*,57)=0;
+    Actor1937Field(argument1,unsigned char*,57)=0;
+    original1937_319:
+    valueV0=Actor1937Add(0,33);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&Actor1937_D_8006E160,int*,0)=valueV0;
+    valueV0=Actor1937Field(privateData,int*,68);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,12);
+    Actor1937Keep(valueV0);
+    argument2=Actor1937Add(0,1);
+    Actor1937Keep(argument2);
+    argument3=Actor1937Field(valueV0,int*,16);
+    Actor1937Keep(argument3);
+    argument0=Actor1937Field(valueV0,int*,0);
+    Actor1937Keep(argument0);
+    valueV1=Actor1937Field(valueV0,int*,20);
+    Actor1937Keep(valueV1);
+    argument1=Actor1937Field(valueV0,int*,4);
+    Actor1937Keep(argument1);
+    argument0=Actor1937Sub(argument3,argument0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Sub(valueV1,argument1);
+    valueV0=Actor1937_func_8004E880(argument0,argument1,argument2);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,2);
+    Actor1937Keep(argument1);
+    Actor1937Field((int)&Actor1937_D_8006E168,int*,0)=valueV0;
+    valueV0=Actor1937Add(0,2);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    Actor1937_func_80034F40(argument0,argument1);
+    valueV0=Actor1937Add(0,255);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,74)=valueV0;
+    goto original1937Return;
+    original1937_343:
+    valueV0=Actor1937Field(actor,unsigned char*,73);
+    Actor1937Keep(valueV0);
+    if(valueV0!=0?(valueV0=Actor1937Add(0,2),1):(valueV0=Actor1937Add(0,2),0))goto original1937_379;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV1=Actor1937Field(actor,unsigned char*,60);
+    Actor1937Keep(valueV1);
+    if(valueV1!=valueV0)goto original1937_379;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    argument0=Actor1937Add(actor,0);
+    valueV0=Actor1937_func_80055E84(argument0);
+    valueV0=valueV0<21;
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(0,80);
+    if(valueV0!=0)goto original1937_379;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV0=(int)0x80070000U;
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,17120);
+    Actor1937Keep(valueV0);
+    argument1=Actor1937Add(actor,0);
+    valueV0=((int(*)())valueV0)(argument0,argument1);
+    argument0=Actor1937Add(valueV0,0);
+    Actor1937Keep(argument0);
+    if(argument0==0)goto original1937_379;
+    __asm__ volatile("":"=r"(argument0):"0"(argument0));
+    valueV1=Actor1937Field(argument0,int*,0);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(privateData,int*,72);
+    Actor1937Keep(valueV0);
+    Actor1937Field(valueV1,int*,20)=valueV0;
+    valueV0=Actor1937Add(0,1);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,73)=valueV0;
+    valueV0=Actor1937Add(0,255);
+    Actor1937Keep(valueV0);
+    Actor1937Field(argument0,unsigned char*,74)=valueV0;
+    valueV0=Actor1937Field(actor,unsigned char*,76);
+    Actor1937Keep(valueV0);
+    Actor1937Field(argument0,unsigned char*,76)=valueV0;
+    valueV0=Actor1937Field(actor,unsigned char*,70);
+    Actor1937Keep(valueV0);
+    Actor1937Field(argument0,unsigned char*,70)=valueV0;
+    Actor1937Field(privateData,int*,48)=argument0;
+    original1937_379:
+    valueV0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV0);
+    if(valueV0==0)goto original1937_407;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument0=Actor1937Add(actor,0);
+    valueV0=Actor1937_func_80055E84(argument0);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,5);
+    Actor1937Keep(argument1);
+    valueS0=Actor1937Add(valueV0,0);
+    Actor1937_func_80055D24(argument0,argument1);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument2=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(argument2);
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(argument2,12);
+    Actor1937_func_80055F14(argument0,argument1,argument2);
+    valueV0=valueS0<30;
+    Actor1937Keep(valueV0);
+    if(valueV0==0?(valueV0=Actor1937Add(0,127),1):(valueV0=Actor1937Add(0,127),0))goto original1937_400;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV1=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV1);
+    Actor1937Field(valueV1,unsigned char*,79)=valueV0;
+    goto original1937_407;
+    original1937_400:
+    valueV0=Actor1937Add(0,41);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueS0);
+    Actor1937Keep(valueV0);
+    valueV1=(int)((unsigned int)valueV0<<4);
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Add(valueV1,valueV0);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Add(valueV1,40);
+    Actor1937Keep(valueV1);
+    Actor1937Field(valueV0,unsigned char*,79)=valueV1;
+    original1937_407:
+    valueV0=(int)0x80070000U;
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,-14480);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,0);
+    if(valueV0==0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument1=Actor1937Add(0,3);
+    Actor1937Keep(argument1);
+    valueV1=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,40);
+    Actor1937Keep(valueV0);
+    Actor1937Field(valueV1,unsigned char*,79)=valueV0;
+    Actor1937Field(actor,unsigned char*,73)=0;
+    Actor1937_func_80034F40(argument0,argument1);
+    valueV0=Actor1937Add(0,24);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    valueV0=Actor1937Field(privateData,int*,60);
+    Actor1937Keep(valueV0);
+    Actor1937Field(valueV0,short*,2)=0;
+    goto original1937Return;
+    original1937_423:
+    valueV0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,0);
+    if(valueV0==0)goto original1937_434;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument1=Actor1937Add(0,5);
+    Actor1937_func_80055D24(argument0,argument1);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument2=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(argument2);
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(argument2,12);
+    Actor1937_func_80055F14(argument0,argument1,argument2);
+    original1937_434:
+    valueV0=Actor1937Field(privateData,unsigned char*,57);
+    Actor1937Keep(valueV0);
+    if(valueV0==0)goto original1937_453;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV1=Actor1937Field(privateData,int*,52);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-15024);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Add(valueV1,valueV0);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(valueV1,int*,0);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Field(valueV0,int*,60);
+    Actor1937Keep(argument0);
+    goto original1937_454;
+    original1937_453:
+    argument0=Actor1937Field(privateData,int*,60);
+    Actor1937Keep(argument0);
+    original1937_454:
+    valueV1=Actor1937Field(argument0,int*,12);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(actor,int*,12);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Field(valueV1,int*,0);
+    Actor1937Keep(argument0);
+    argument0=Actor1937Sub(argument0,valueV0);
+    Actor1937Keep(argument0);
+    Actor1937Field((int)&frame,int*,48)=argument0;
+    argument1=Actor1937Field(valueV1,int*,4);
+    Actor1937Keep(argument1);
+    valueV0=Actor1937Field(actor,int*,16);
+    Actor1937Keep(valueV0);
+    argument2=Actor1937Add(0,0);
+    Actor1937Keep(argument2);
+    argument1=Actor1937Sub(argument1,valueV0);
+    Actor1937Keep(argument1);
+    Actor1937Field((int)&frame,int*,52)=argument1;
+    valueV0=Actor1937_func_8004E880(argument0,argument1,argument2);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(valueV0,0);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(0,8);
+    Actor1937Keep(argument2);
+    argument3=Actor1937Add(0,1);
+    Actor1937Keep(argument3);
+    valueV0=Actor1937Add(0,1);
+    Actor1937Keep(valueV0);
+    stackArgument4=valueV0;
+    stackArgument5=0;
+    Actor1937_func_8003585C(argument0,argument1,argument2,argument3,stackArgument4,stackArgument5);
+    valueV0=(int)0x80070000U;
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,-14480);
+    Actor1937Keep(valueV0);
+    if(valueV0==0?(valueV0=Actor1937Add(0,3),1):(valueV0=Actor1937Add(0,3),0))goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,3);
+    Actor1937_func_80034F40(argument0,argument1);
+    goto original1937Return;
+    original1937_486:
+    argument0=Actor1937Add(actor,0);
+    valueV0=Actor1937_func_80055E84(argument0);
+    valueS1=(int)0x00010000U;
+    Actor1937Keep(valueS1);
+    valueS1=valueS1|34464;
+    Actor1937Keep(valueS1);
+    valueS2=Actor1937Add(0,0);
+    Actor1937Keep(valueS2);
+    argument1=Actor1937Field(privateData,int*,68);
+    Actor1937Keep(argument1);
+    valueS0=Actor1937Add(0,0);
+    Actor1937Keep(valueS0);
+    valueV1=Actor1937Field(argument1,short*,0);
+    Actor1937Keep(valueV1);
+    valueS3=Actor1937Add(valueV0,0);
+    if(valueV1<=0)goto original1937_516;
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    original1937_497:
+    argument0=(int)&Actor1937_D_80070328;
+    Actor1937Keep(argument0);
+    valueV0=Actor1937Field(argument1,int*,12);
+    Actor1937Keep(valueV0);
+    argument1=(int)((unsigned int)valueS0<<4);
+    Actor1937Keep(argument1);
+    argument1=Actor1937Add(valueV0,argument1);
+    valueV0=Actor1937_func_8004F334(argument0,argument1);
+    valueV1=Actor1937Add(valueV0,0);
+    Actor1937Keep(valueV1);
+    valueV0=valueV1<valueS1;
+    Actor1937Keep(valueV0);
+    if(valueV0==0)goto original1937_509;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueS1=Actor1937Add(valueV1,0);
+    Actor1937Keep(valueS1);
+    valueS2=Actor1937Add(valueS0,0);
+    Actor1937Keep(valueS2);
+    original1937_509:
+    argument1=Actor1937Field(privateData,int*,68);
+    Actor1937Keep(argument1);
+    valueV0=Actor1937Field(argument1,short*,0);
+    Actor1937Keep(valueV0);
+    valueS0=Actor1937Add(valueS0,2);
+    Actor1937Keep(valueS0);
+    valueV0=valueS0<valueV0;
+    Actor1937Keep(valueV0);
+    if(valueV0!=0)goto original1937_497;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    original1937_516:
+    valueV0=Actor1937Field(privateData,int*,68);
+    Actor1937Keep(valueV0);
+    argument2=Actor1937Add(0,1);
+    Actor1937Keep(argument2);
+    valueV1=Actor1937Field(valueV0,int*,12);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueS2<<4);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    argument3=Actor1937Field(valueV0,int*,16);
+    Actor1937Keep(argument3);
+    argument0=Actor1937Field(valueV0,int*,0);
+    Actor1937Keep(argument0);
+    valueV1=Actor1937Field(valueV0,int*,20);
+    Actor1937Keep(valueV1);
+    argument1=Actor1937Field(valueV0,int*,4);
+    Actor1937Keep(argument1);
+    argument0=Actor1937Sub(argument3,argument0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Sub(valueV1,argument1);
+    valueV0=Actor1937_func_8004E880(argument0,argument1,argument2);
+    valueV1=Actor1937Add(0,33);
+    Actor1937Keep(valueV1);
+    Actor1937Field((int)&Actor1937_D_8006E160,int*,0)=valueV1;
+    Actor1937Field((int)&Actor1937_D_8006E168,int*,0)=valueV0;
+    valueV0=Actor1937Field(privateData,unsigned char*,57);
+    Actor1937Keep(valueV0);
+    if(valueV0==0)goto original1937_552;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV0=Actor1937Field(privateData,int*,52);
+    Actor1937Keep(valueV0);
+    valueV1=(int)((unsigned int)valueV0<<1);
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Add(valueV1,valueV0);
+    Actor1937Keep(valueV1);
+    valueV1=(int)((unsigned int)valueV1<<2);
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Sub(valueV1,valueV0);
+    Actor1937Keep(valueV1);
+    valueV0=(int)0x80070000U;
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,-15024);
+    Actor1937Keep(valueV0);
+    valueV1=(int)((unsigned int)valueV1<<3);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueS0=Actor1937Field(valueV0,int*,0);
+    Actor1937Keep(valueS0);
+    valueS4=Actor1937Field(valueS0,int*,60);
+    Actor1937Keep(valueS4);
+    goto original1937_553;
+    original1937_552:
+    valueS4=Actor1937Field(privateData,int*,60);
+    Actor1937Keep(valueS4);
+    original1937_553:
+    valueV1=Actor1937Field(actor,unsigned char*,60);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,3);
+    Actor1937Keep(valueV0);
+    if(valueV1!=valueV0?(valueV0=Actor1937Add(valueS3,-11),1):(valueV0=Actor1937Add(valueS3,-11),0))goto original1937_560;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV0=(unsigned int)valueV0<5;
+    Actor1937Keep(valueV0);
+    valueS1=Actor1937Add(0,30);
+    if(valueV0!=0)goto original1937_590;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    original1937_560:
+    valueV1=Actor1937Field(privateData,int*,120);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-15024);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,0);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field(valueV0,short*,0);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,1);
+    Actor1937Keep(valueV0);
+    if(valueV1!=valueV0)goto original1937_584;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV0=(int)0x80070000U;
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,-14396);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)&frame+(unsigned int)valueV0-32U);
+    Actor1937Keep(valueV0);
+    __asm__ volatile("lw %0,48(%1)":"=r"(valueS1):"r"(valueV0):"memory");
+    goto original1937_590;
+    original1937_584:
+    valueV0=(int)0x80070000U;
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,-14396);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)&frame+(unsigned int)valueV0-32U);
+    Actor1937Keep(valueV0);
+    __asm__ volatile("lw %0,32(%1)":"=r"(valueS1):"r"(valueV0):"memory");
+    original1937_590:
+    valueV1=Actor1937Field(actor,unsigned char*,72);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,26);
+    Actor1937Keep(valueV0);
+    if(valueV1!=valueV0?(valueV0=Actor1937Add(0,27),1):(valueV0=Actor1937Add(0,27),0))goto original1937_634;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV0=Actor1937Add(valueS3,-10);
+    Actor1937Keep(valueV0);
+    valueV0=(unsigned int)valueV0<10;
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,12);
+    if(valueV0==0)goto original1937_633;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument2=Actor1937Add(0,60);
+    Actor1937Keep(argument2);
+    argument3=Actor1937Add(0,-10);
+    Actor1937Keep(argument3);
+    valueV0=Actor1937Add(0,60);
+    Actor1937Keep(valueV0);
+    Actor1937Field(privateData,short*,66)=valueV0;
+    valueV0=Actor1937ForwardFields(Actor1937Field(valueS4,short*,2),(valueV1=Actor1937Field(valueS4,int*,12)),(stackArgument4=(int)&frame.fields.sp70),argument0,argument2,argument3);
+    argument0=Actor1937Add(valueV0,0);
+    Actor1937Keep(argument0);
+    Actor1937Field(privateData,short*,64)=argument0;
+    valueV0=Actor1937Field(valueS4,short*,2);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field(valueS4,int*,12);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV0<<4);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field(actor,int*,20);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(valueV0,int*,8);
+    Actor1937Keep(valueV0);
+    valueV0=valueV0<valueV1;
+    Actor1937Keep(valueV0);
+    if(valueV0!=0?(valueV0=Actor1937Add(0,90),1):(valueV0=Actor1937Add(0,90),0))goto original1937_629;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV1=(int)0x55550000U;
+    Actor1937Keep(valueV1);
+    valueV1=valueV1|21846;
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)argument0<<16);
+    Actor1937Keep(valueV0);
+    valueV0=(valueV0>>15);
+    Actor1937Keep(valueV0);
+    Actor1937Keep(valueV0);
+    Actor1937Keep(valueV1);
+    completeSignedProduct=(long long)valueV0*(long long)valueV1;
+    __asm__ volatile(""::"x"(completeSignedProduct));
+    valueV0=(valueV0>>31);
+    Actor1937Keep(valueV0);
+    {
+        int capturedWholeProjection;
+        __asm__("":"=h"(capturedWholeProjection):"x"(completeSignedProduct));
+        valueT0=capturedWholeProjection;
+        Actor1937Keep(valueT0);
+    }
+    valueV0=Actor1937Sub(valueT0,valueV0);
+    Actor1937Keep(valueV0);
+    original1937_629:
+    Actor1937Field(privateData,short*,64)=valueV0;
+    valueV0=Actor1937Add(0,27);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    __asm__ volatile("":::"memory");
+    valueV1=Actor1937Field(actor,unsigned char*,72);
+    Actor1937Keep(valueV1);
+    original1937_633:
+    valueV0=Actor1937Add(0,27);
+    Actor1937Keep(valueV0);
+    original1937_634:
+    argument0=Actor1937Add(actor,0);
+    if(valueV1!=valueV0)goto original1937_680;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV1=Actor1937Field(privateData,short*,64);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(actor,int*,20);
+    Actor1937Keep(valueV0);
+    valueS1=Actor1937Field(privateData,short*,66);
+    Actor1937Keep(valueS1);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,int*,20)=valueV0;
+    valueV0=Actor1937Field(privateData,unsigned short*,64);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,-10);
+    Actor1937Keep(valueV0);
+    Actor1937Field(privateData,short*,64)=valueV0;
+    valueV0=Actor1937Field(actor,unsigned char*,62);
+    Actor1937Keep(valueV0);
+    valueS3=Actor1937Add(0,0);
+    if(valueV0!=0)goto original1937_653;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV0=Actor1937Add(0,1);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,63)=valueV0;
+    valueV0=Actor1937Add(0,32);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,64)=valueV0;
+    original1937_653:
+    valueV0=Actor1937Field(privateData,short*,64);
+    Actor1937Keep(valueV0);
+    __asm__ volatile("":::"$4","memory");
+    if(valueV0>=0?(argument0=Actor1937Add(actor,0),1):(argument0=Actor1937Add(actor,0),0))goto original1937_682;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile(""::"r"(argument0));
+    valueS0=(int)&frame.fields.sp78;
+    Actor1937Keep(valueS0);
+    argument0=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(actor,12);
+    Actor1937_func_8004F178(argument0,argument1);
+    argument0=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument0);
+    valueV0=Actor1937Field((int)&frame,volatile int*,96);
+    Actor1937Keep(valueV0);
+    argument1=Actor1937Add(0,2048);
+    Actor1937Keep(argument1);
+    valueV0=Actor1937Add(valueV0,1024);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&frame,int*,96)=valueV0;
+    valueV0=Actor1937_func_8001A358(argument0,argument1);
+    argument0=Actor1937Add(actor,0);
+    if(valueV0==0)goto original1937_682;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,6408);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(actor,int*,20);
+    Actor1937Keep(valueV0);
+    valueV0=valueV1<valueV0;
+    Actor1937Keep(valueV0);
+    argument1=Actor1937Add(valueS4,0);
+    if(valueV0!=0)goto original1937_683;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV0=Actor1937Add(0,3);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,int*,20)=valueV1;
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    goto original1937_683;
+    original1937_680:
+    valueS3=(int)0x00020000U;
+    Actor1937Keep(valueS3);
+    valueS3=valueS3|4;
+    Actor1937Keep(valueS3);
+    original1937_682:
+    __asm__ volatile("":::"$5");
+    argument1=Actor1937Add(valueS4,0);
+    Actor1937Keep(argument1);
+    original1937_683:
+    argument2=Actor1937Add(0,120);
+    Actor1937Keep(argument2);
+    argument3=Actor1937Add(valueS1,0);
+    Actor1937Keep(argument3);
+    valueS0=Actor1937Add(0,3);
+    Actor1937Keep(valueS0);
+    valueS2=Actor1937Field(valueS4,short*,2);
+    Actor1937Keep(valueS2);
+    valueV0=Actor1937Add(0,128);
+    Actor1937Keep(valueV0);
+    stackArgument4=0;
+    stackArgument5=valueS0;
+    stackArgument6=valueV0;
+    stackArgument7=valueS3;
+    valueV0=Actor1937_func_80035A80(argument0,argument1,argument2,argument3,stackArgument4,stackArgument5,stackArgument6,stackArgument7);
+    valueV1=Actor1937Add(valueV0,0);
+    Actor1937Keep(valueV1);
+    valueV0=valueV1&2;
+    Actor1937Keep(valueV0);
+    argument1=Actor1937Add(0,0);
+    if(valueV0==0)goto original1937_710;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV0=Actor1937Field(privateData,int*,68);
+    Actor1937Keep(valueV0);
+    argument2=Actor1937Add(0,0);
+    Actor1937Keep(argument2);
+    argument0=Actor1937Field(valueV0,int*,12);
+    Actor1937Keep(argument0);
+    argument3=Actor1937Add(0,65);
+    Actor1937_func_80013D44(argument0,argument1,argument2,argument3);
+    valueV0=(int)0x10000000U;
+    Actor1937Keep(valueV0);
+    valueV0=valueV0|2;
+    Actor1937Keep(valueV0);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    Actor1937Field((int)&Actor1937_D_80070328+524,int*,0)=valueV0;
+    valueV0=Actor1937Add(0,52);
+    goto original1937_1257;
+    original1937_710:
+    valueV0=Actor1937Field(actor,unsigned char*,72);
+    Actor1937Keep(valueV0);
+    if(valueV0!=valueS0?(valueV0=valueV1&1,1):(valueV0=valueV1&1,0))goto original1937_732;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueS0):"0"(valueS0));
+    valueV1=(int)((unsigned int)valueS2<<4);
+    if(valueV0==0)goto original1937_732;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV0=Actor1937Field(valueS4,short*,2);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Field(valueS4,int*,12);
+    Actor1937Keep(argument0);
+    valueV0=(int)((unsigned int)valueV0<<4);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,argument0);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Add(valueV1,argument0);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(valueV0,int*,8);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field(valueV1,int*,8);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    if(valueV0>=0)goto original1937_728;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV0=Actor1937Sub(0,valueV0);
+    Actor1937Keep(valueV0);
+    original1937_728:
+    valueV0=valueV0<129;
+    Actor1937Keep(valueV0);
+    if(valueV0!=0?(valueV0=Actor1937Add(0,26),1):(valueV0=Actor1937Add(0,26),0))goto original1937_732;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    original1937_732:
+    valueV0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,0);
+    if(valueV0==0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument1=Actor1937Add(0,5);
+    Actor1937_func_80055D24(argument0,argument1);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    valueS0=(int)&frame.fields.sp60;
+    Actor1937Keep(valueS0);
+    argument2=Actor1937Add(valueS0,0);
+    Actor1937_func_80055F14(argument0,argument1,argument2);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument2=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(argument2);
+    argument1=Actor1937Add(0,1);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(argument2,12);
+    Actor1937_func_80055F14(argument0,argument1,argument2);
+    argument0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument1);
+    argument0=Actor1937Add(argument0,12);
+    Actor1937Keep(argument0);
+    argument2=Actor1937Add(argument0,0);
+    Actor1937_func_8004F194(argument0,argument1,argument2);
+    argument0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,1);
+    Actor1937Keep(argument1);
+    argument0=Actor1937Add(argument0,12);
+    Actor1937_func_8004F110(argument0,argument1);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,12);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,512);
+    Actor1937Keep(argument1);
+    valueV0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV0);
+    argument2=Actor1937Add(0,3);
+    Actor1937Keep(argument2);
+    valueS5=Actor1937Field(valueV0,int*,8);
+    Actor1937Keep(valueS5);
+    argument3=Actor1937Add(0,0);
+    Actor1937Keep(argument3);
+    Actor1937Field(valueV0,int*,8)=0;
+    stackArgument4=0;
+    stackArgument5=actor;
+    valueV0=Actor1937_func_8001BA30(argument0,argument1,argument2,argument3,stackArgument4,stackArgument5);
+    argument2=Actor1937Add(valueV0,0);
+    Actor1937Keep(argument2);
+    valueV0=Actor1937Add(0,2);
+    if(argument2==0)goto original1937_848;
+    __asm__ volatile("":"=r"(argument2):"0"(argument2));
+    valueV1=Actor1937Field(argument2,unsigned char*,73);
+    Actor1937Keep(valueV1);
+    valueS2=Actor1937Add(0,10);
+    if(valueV1!=valueV0)goto original1937_848;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueS3=(int)0x00010000U;
+    Actor1937Keep(valueS3);
+    valueS3=valueS3|34464;
+    Actor1937Keep(valueS3);
+    valueS0=Actor1937Add(0,0);
+    Actor1937Keep(valueS0);
+    valueV0=Actor1937Add(0,10);
+    Actor1937Keep(valueV0);
+    Actor1937Field(argument2,unsigned char*,73)=valueV0;
+    __asm__ volatile(""::"m"(Actor1937Field(argument2,unsigned char*,73)));
+    argument0=(int)0x80070000U;
+    Actor1937Keep(argument0);
+    argument0=Actor1937Field(argument0,int*,-15024);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Field(privateData,int*,68);
+    Actor1937Keep(argument1);
+    argument0=Actor1937Sub(argument2,argument0);
+    Actor1937Keep(argument0);
+    valueV1=(int)((unsigned int)argument0<<5);
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Sub(valueV1,argument0);
+    Actor1937Keep(valueV1);
+    valueV1=(int)((unsigned int)valueV1<<5);
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Add(valueV1,argument0);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<3);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Add(valueV1,valueV0);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<15);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,argument0);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(0,valueV0);
+    Actor1937Keep(valueV0);
+    valueV0=(valueV0>>3);
+    Actor1937Keep(valueV0);
+    Actor1937Field(privateData,int*,88)=valueV0;
+    valueV0=Actor1937Field(argument1,short*,0);
+    Actor1937Keep(valueV0);
+    valueS1=Actor1937Add(0,0);
+    if(valueV0<=0)goto original1937_818;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,12);
+    Actor1937Keep(argument0);
+    original1937_801:
+    valueV0=Actor1937Field(argument1,int*,12);
+    Actor1937Keep(valueV0);
+    argument1=(int)((unsigned int)valueS0<<4);
+    Actor1937Keep(argument1);
+    argument1=Actor1937Add(valueV0,argument1);
+    valueV0=Actor1937_func_8004F334(argument0,argument1);
+    valueV1=Actor1937Add(valueV0,0);
+    Actor1937Keep(valueV1);
+    valueV0=valueV1<valueS3;
+    Actor1937Keep(valueV0);
+    if(valueV0==0)goto original1937_811;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueS3=Actor1937Add(valueV1,0);
+    Actor1937Keep(valueS3);
+    valueS1=Actor1937Add(valueS0,0);
+    Actor1937Keep(valueS1);
+    original1937_811:
+    argument1=Actor1937Field(privateData,int*,68);
+    Actor1937Keep(argument1);
+    valueV0=Actor1937Field(argument1,short*,0);
+    Actor1937Keep(valueV0);
+    valueS0=Actor1937Add(valueS0,2);
+    Actor1937Keep(valueS0);
+    valueV0=valueS0<valueV0;
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,12);
+    if(valueV0!=0)goto original1937_801;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    original1937_818:
+    Actor1937Field(privateData,short*,78)=valueS1;
+    valueV0=Actor1937Field(valueS4,short*,2);
+    Actor1937Keep(valueV0);
+    valueS0=Actor1937Add(valueV0,-1);
+    if(valueS2==0)goto original1937_835;
+    __asm__ volatile("":"=r"(valueS2):"0"(valueS2));
+    argument0=Actor1937Add(actor,12);
+    if(valueS0<0)goto original1937_835;
+    __asm__ volatile("":"=r"(valueS0):"0"(valueS0));
+    original1937_824:
+    argument1=Actor1937Field(valueS4,int*,12);
+    Actor1937Keep(argument1);
+    valueV0=(int)((unsigned int)valueS0<<4);
+    Actor1937Keep(valueV0);
+    argument1=Actor1937Add(argument1,valueV0);
+    valueV0=Actor1937_func_8004F334(argument0,argument1);
+    valueV0=valueV0<3072;
+    Actor1937Keep(valueV0);
+    valueS2=Actor1937Add(valueS2,-1);
+    if(valueV0==0)goto original1937_835;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueS0=Actor1937Add(valueS0,-1);
+    if(valueS2==0)goto original1937_835;
+    __asm__ volatile("":"=r"(valueS2):"0"(valueS2));
+    argument0=Actor1937Add(actor,12);
+    if(valueS0>=0)goto original1937_824;
+    __asm__ volatile("":"=r"(valueS0):"0"(valueS0));
+    original1937_835:
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    Actor1937Field(valueS4,short*,2)=valueS0;
+    valueV0=Actor1937Field(privateData,int*,68);
+    Actor1937Keep(valueV0);
+    argument2=Actor1937Add(0,0);
+    Actor1937Keep(argument2);
+    argument0=Actor1937Field(valueV0,int*,12);
+    Actor1937Keep(argument0);
+    argument3=Actor1937Add(0,65);
+    Actor1937_func_80013D44(argument0,argument1,argument2,argument3);
+    valueV0=(int)0x10000000U;
+    Actor1937Keep(valueV0);
+    valueV0=valueV0|2;
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&Actor1937_D_80070328+524,int*,0)=valueV0;
+    valueV0=Actor1937Add(0,37);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    original1937_848:
+    valueV0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV0);
+    Actor1937Field(valueV0,int*,8)=valueS5;
+    goto original1937Return;
+    original1937_851:
+    valueV0=(int)0x10000000U;
+    Actor1937Keep(valueV0);
+    valueV0=valueV0|2;
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&Actor1937_D_80070328+524,int*,0)=valueV0;
+    valueV1=Actor1937Field(actor,unsigned char*,73);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,3);
+    Actor1937Keep(valueV0);
+    if(valueV1==valueV0?(valueV0=Actor1937Add(0,1),1):(valueV0=Actor1937Add(0,1),0))goto original1937_986;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-8120);
+    Actor1937Keep(valueV1);
+    if(valueV1!=valueV0?(valueV0=Actor1937Add(0,2),1):(valueV0=Actor1937Add(0,2),0))goto original1937_989;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV0=Actor1937Add(0,3);
+    Actor1937Keep(valueV0);
+    valueS3=(int)&frame.fields.sp88;
+    Actor1937Keep(valueS3);
+    argument0=Actor1937Add(valueS3,0);
+    Actor1937Keep(argument0);
+    Actor1937Field(actor,unsigned char*,73)=valueV0;
+    valueV1=Actor1937Field(privateData,int*,88);
+    Actor1937Keep(valueV1);
+    valueS2=(int)0x80070000U;
+    Actor1937Keep(valueS2);
+    valueS2=Actor1937Field(valueS2,int*,-15024);
+    Actor1937Keep(valueS2);
+    valueS0=Actor1937Field(privateData,short*,78);
+    Actor1937Keep(valueS0);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueS2=Actor1937Add(valueS2,valueV0);
+    Actor1937Keep(valueS2);
+    valueS2=Actor1937Add(valueS2,12);
+    Actor1937Keep(valueS2);
+    argument1=Actor1937Add(valueS2,0);
+    Actor1937_func_8004F178(argument0,argument1);
+    valueV0=Actor1937Field((int)&frame,volatile int*,112);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,500);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&frame,int*,112)=valueV0;
+    valueV0=Actor1937Field(privateData,int*,68);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field(valueV0,int*,12);
+    Actor1937Keep(valueV1);
+    valueS0=(int)((unsigned int)valueS0<<4);
+    Actor1937Keep(valueS0);
+    valueV1=Actor1937Add(valueS0,valueV1);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(valueV1,int*,16);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field(valueV1,int*,0);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&frame,int*,120)=valueV0;
+    valueV0=Actor1937Field(privateData,int*,68);
+    Actor1937Keep(valueV0);
+    valueS1=(int)&frame.fields.sp98;
+    Actor1937Keep(valueS1);
+    valueV0=Actor1937Field(valueV0,int*,12);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(valueS1,0);
+    Actor1937Keep(argument0);
+    valueS0=Actor1937Add(valueS0,valueV0);
+    Actor1937Keep(valueS0);
+    valueV0=Actor1937Field(valueS0,int*,20);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field(valueS0,int*,4);
+    Actor1937Keep(valueV1);
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    Actor1937Field((int)&frame,int*,128)=0;
+    __asm__ volatile(""::"m"(Actor1937Field((int)&frame,int*,128)));
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&frame,int*,124)=valueV0;
+    valueV0=Actor1937_func_8004EDE8(argument0,argument1);
+    argument0=Actor1937Add(valueS1,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(valueV0,0);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(0,6144);
+    Actor1937_func_8004F08C(argument0,argument1,argument2);
+    argument0=Actor1937Add(valueS1,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(valueS2,0);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(valueS1,0);
+    Actor1937_func_8004F1C8(argument0,argument1,argument2);
+    argument0=Actor1937Add(valueS1,0);
+    Actor1937Keep(argument0);
+    valueV0=Actor1937Field((int)&frame,volatile int*,128);
+    Actor1937Keep(valueV0);
+    argument1=Actor1937Add(valueS3,0);
+    Actor1937Keep(argument1);
+    valueV0=Actor1937Add(valueV0,4096);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&frame,int*,128)=valueV0;
+    Actor1937_func_80013AE4(argument0,argument1);
+    argument0=Actor1937Field(privateData,int*,52);
+    Actor1937Keep(argument0);
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-15024);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)argument0<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,argument0);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,argument0);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Add(valueV1,valueV0);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(privateData,unsigned char*,57);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field(valueV1,int*,0);
+    Actor1937Keep(valueV1);
+    if(valueV0==0)goto original1937_939;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    if(argument0<0?(argument0=Actor1937Add(actor,12),1):(argument0=Actor1937Add(actor,12),0))goto original1937_939;
+    __asm__ volatile("":"=r"(argument0):"0"(argument0));
+    valueS1=Actor1937Field(valueV1,int*,60);
+    Actor1937Keep(valueS1);
+    goto original1937_941;
+    original1937_939:
+    valueS1=Actor1937Field(privateData,int*,60);
+    Actor1937Keep(valueS1);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,12);
+    Actor1937Keep(argument0);
+    original1937_941:
+    valueS0=Actor1937Field(valueS1,short*,2);
+    Actor1937Keep(valueS0);
+    argument1=Actor1937Field(valueS1,int*,12);
+    Actor1937Keep(argument1);
+    valueS0=(int)((unsigned int)valueS0<<4);
+    Actor1937Keep(valueS0);
+    argument1=Actor1937Add(argument1,valueS0);
+    Actor1937_func_8004F178(argument0,argument1);
+    valueV0=Actor1937Field(valueS1,int*,12);
+    Actor1937Keep(valueV0);
+    argument2=Actor1937Add(0,0);
+    Actor1937Keep(argument2);
+    valueS0=Actor1937Add(valueS0,valueV0);
+    Actor1937Keep(valueS0);
+    valueV1=Actor1937Field(valueS0,int*,16);
+    Actor1937Keep(valueV1);
+    argument0=Actor1937Field(valueS0,int*,0);
+    Actor1937Keep(argument0);
+    valueV0=Actor1937Field(valueS0,int*,20);
+    Actor1937Keep(valueV0);
+    argument1=Actor1937Field(valueS0,int*,4);
+    Actor1937Keep(argument1);
+    argument0=Actor1937Sub(valueV1,argument0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Sub(valueV0,argument1);
+    valueV0=Actor1937_func_8004E880(argument0,argument1,argument2);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,3);
+    Actor1937Keep(argument1);
+    Actor1937Field(actor,unsigned char*,70)=valueV0;
+    Actor1937_func_80034F80(argument0,argument1);
+    valueV0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV0);
+    if(valueV0==0)goto original1937_986;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,5);
+    Actor1937_func_80055D24(argument0,argument1);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    valueS0=(int)&frame.fields.spA8;
+    Actor1937Keep(valueS0);
+    argument2=Actor1937Add(valueS0,0);
+    Actor1937_func_80055F14(argument0,argument1,argument2);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument2=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(argument2);
+    argument1=Actor1937Add(0,1);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(argument2,12);
+    Actor1937_func_80055F14(argument0,argument1,argument2);
+    argument0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument1);
+    argument0=Actor1937Add(argument0,12);
+    Actor1937Keep(argument0);
+    argument2=Actor1937Add(argument0,0);
+    Actor1937_func_8004F194(argument0,argument1,argument2);
+    argument0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,1);
+    Actor1937Keep(argument1);
+    argument0=Actor1937Add(argument0,12);
+    Actor1937_func_8004F110(argument0,argument1);
+    original1937_986:
+    __asm__ volatile("":::"$3");
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-8120);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,2);
+    Actor1937Keep(valueV0);
+    original1937_989:
+    if(valueV1!=valueV0?(valueV0=Actor1937Add(0,36),1):(valueV0=Actor1937Add(0,36),0))goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    goto original1937Return;
+    original1937_993:
+    argument0=Actor1937Add(actor,0);
+    valueV0=Actor1937_func_80055E84(argument0);
+    argument0=Actor1937Field(privateData,int*,52);
+    Actor1937Keep(argument0);
+    argument1=(int)0x10000000U;
+    Actor1937Keep(argument1);
+    valueV1=(int)((unsigned int)argument0<<1);
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Add(valueV1,argument0);
+    Actor1937Keep(valueV1);
+    valueV1=(int)((unsigned int)valueV1<<2);
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Sub(valueV1,argument0);
+    Actor1937Keep(valueV1);
+    argument0=(int)0x80070000U;
+    Actor1937Keep(argument0);
+    argument0=Actor1937Field(argument0,int*,-15024);
+    Actor1937Keep(argument0);
+    valueV1=(int)((unsigned int)valueV1<<3);
+    Actor1937Keep(valueV1);
+    argument0=Actor1937Add(argument0,valueV1);
+    Actor1937Keep(argument0);
+    argument3=Actor1937Field(argument0,int*,0);
+    Actor1937Keep(argument3);
+    argument1=argument1|2;
+    Actor1937Keep(argument1);
+    Actor1937Field((int)&Actor1937_D_80070328+524,int*,0)=argument1;
+    valueV1=Actor1937Field(privateData,unsigned char*,57);
+    Actor1937Keep(valueV1);
+    argument2=Actor1937Add(valueV0,0);
+    if(valueV1==0)goto original1937_1020;
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV0=Actor1937Field(privateData,int*,52);
+    Actor1937Keep(valueV0);
+    if(valueV0<0)goto original1937_1020;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument1=Actor1937Field(argument3,int*,60);
+    Actor1937Keep(argument1);
+    goto original1937_1021;
+    original1937_1020:
+    argument1=Actor1937Field(privateData,int*,60);
+    Actor1937Keep(argument1);
+    original1937_1021:
+    valueV1=Actor1937Field(actor,unsigned char*,60);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,3);
+    Actor1937Keep(valueV0);
+    if(valueV1!=valueV0?(valueV0=Actor1937Add(argument2,-11),1):(valueV0=Actor1937Add(argument2,-11),0))goto original1937_1030;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV0=(unsigned int)valueV0<5;
+    Actor1937Keep(valueV0);
+    if(valueV0==0)goto original1937_1030;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument3=Actor1937Add(0,30);
+    goto original1937_1041;
+    original1937_1030:
+    __asm__ volatile(""::"r"(valueV0));
+    valueV0=Actor1937Add(0,3);
+    if(argument0==0)goto original1937_1040;
+    __asm__ volatile("":"=r"(argument0):"0"(argument0));
+    valueV1=Actor1937Field(argument3,unsigned char*,2);
+    Actor1937Keep(valueV1);
+    if(valueV1==valueV0?(valueV0=Actor1937Add(0,5),1):(valueV0=Actor1937Add(0,5),0))goto original1937_1038;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    argument3=Actor1937Add(0,100);
+    if(valueV1!=valueV0)goto original1937_1041;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    original1937_1038:
+    argument3=Actor1937Add(0,130);
+    goto original1937_1041;
+    original1937_1040:
+    argument3=Actor1937Add(0,100);
+    Actor1937Keep(argument3);
+    original1937_1041:
+    valueV0=Actor1937_func_80035A80((argument0=actor),argument1,(argument2=120),argument3,(stackArgument4=0),(stackArgument5=6),(stackArgument6=128),(stackArgument7=4));
+    valueV0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,0);
+    if(valueV0==0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument1=Actor1937Add(0,5);
+    Actor1937_func_80055D24(argument0,argument1);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    valueS0=(int)&frame.fields.spA8;
+    Actor1937Keep(valueS0);
+    argument2=Actor1937Add(valueS0,0);
+    Actor1937_func_80055F14(argument0,argument1,argument2);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument2=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(argument2);
+    argument1=Actor1937Add(0,1);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(argument2,12);
+    Actor1937_func_80055F14(argument0,argument1,argument2);
+    argument0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument1);
+    argument0=Actor1937Add(argument0,12);
+    Actor1937Keep(argument0);
+    argument2=Actor1937Add(argument0,0);
+    Actor1937_func_8004F194(argument0,argument1,argument2);
+    argument0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,1);
+    Actor1937Keep(argument1);
+    argument0=Actor1937Add(argument0,12);
+    Actor1937_func_8004F110(argument0,argument1);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,12);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,900);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(0,3);
+    Actor1937Keep(argument2);
+    valueV0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV0);
+    argument3=Actor1937Add(0,0);
+    Actor1937Keep(argument3);
+    Actor1937Field(valueV0,int*,8)=0;
+    stackArgument4=0;
+    stackArgument5=actor;
+    valueV0=Actor1937_func_8001BA30(argument0,argument1,argument2,argument3,stackArgument4,stackArgument5);
+    argument2=Actor1937Add(valueV0,0);
+    Actor1937Keep(argument2);
+    valueV0=Actor1937Add(0,10);
+    if(argument2==0)goto original1937Return;
+    __asm__ volatile("":"=r"(argument2):"0"(argument2));
+    valueV1=Actor1937Field(argument2,unsigned char*,73);
+    Actor1937Keep(valueV1);
+    argument0=Actor1937Add(actor,0);
+    if(valueV1!=valueV0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    argument1=Actor1937Add(0,5);
+    Actor1937Keep(argument1);
+    valueV0=Actor1937Add(0,2);
+    Actor1937Keep(valueV0);
+    Actor1937Field(argument2,unsigned char*,73)=valueV0;
+    valueV1=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,6);
+    Actor1937Keep(valueV0);
+    Actor1937Field(valueV1,unsigned char*,72)=valueV0;
+    valueV0=Actor1937Add(0,5);
+    goto original1937_1257;
+    original1937_1100:
+    valueV0=(int)0x10000000U;
+    Actor1937Keep(valueV0);
+    valueV0=valueV0|2;
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&Actor1937_D_80070328+524,int*,0)=valueV0;
+    valueV0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV0);
+    if(valueV0==0)goto original1937_1130;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,5);
+    Actor1937_func_80055D24(argument0,argument1);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    valueS0=(int)&frame.fields.spB8;
+    Actor1937Keep(valueS0);
+    argument2=Actor1937Add(valueS0,0);
+    Actor1937_func_80055F14(argument0,argument1,argument2);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument2=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(argument2);
+    argument1=Actor1937Add(0,1);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(argument2,12);
+    Actor1937_func_80055F14(argument0,argument1,argument2);
+    argument0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument1);
+    argument0=Actor1937Add(argument0,12);
+    Actor1937Keep(argument0);
+    argument2=Actor1937Add(argument0,0);
+    Actor1937_func_8004F194(argument0,argument1,argument2);
+    argument0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,1);
+    Actor1937Keep(argument1);
+    argument0=Actor1937Add(argument0,12);
+    Actor1937_func_8004F110(argument0,argument1);
+    original1937_1130:
+    valueV1=Actor1937Field(actor,unsigned char*,73);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,3);
+    Actor1937Keep(valueV0);
+    if(valueV1==valueV0?(valueV0=Actor1937Add(0,1),1):(valueV0=Actor1937Add(0,1),0))goto original1937_1249;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-8120);
+    Actor1937Keep(valueV1);
+    if(valueV1!=valueV0?(valueV0=Actor1937Add(0,2),1):(valueV0=Actor1937Add(0,2),0))goto original1937_1252;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV0=Actor1937Add(0,3);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,73)=valueV0;
+    valueV0=Actor1937Field(privateData,unsigned char*,57);
+    Actor1937Keep(valueV0);
+    if(valueV0==0)goto original1937_1161;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV1=Actor1937Field(privateData,int*,52);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    if(valueV1<0)goto original1937_1161;
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-15024);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Add(valueV1,valueV0);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(valueV1,int*,0);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field(valueV0,int*,60);
+    Actor1937Keep(valueV1);
+    argument2=Actor1937Add(0,0);
+    goto original1937_1163;
+    original1937_1161:
+    valueV1=Actor1937Field(privateData,int*,60);
+    Actor1937Keep(valueV1);
+    argument2=Actor1937Add(0,0);
+    Actor1937Keep(argument2);
+    original1937_1163:
+    valueV0=Actor1937Field(valueV1,short*,0);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field(valueV1,int*,12);
+    Actor1937Keep(valueV1);
+    valueS0=Actor1937Add(valueV0,-2);
+    Actor1937Keep(valueS0);
+    valueV0=(int)((unsigned int)valueS0<<4);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    argument3=Actor1937Field(valueV0,int*,16);
+    Actor1937Keep(argument3);
+    argument0=Actor1937Field(valueV0,int*,0);
+    Actor1937Keep(argument0);
+    valueV1=Actor1937Field(valueV0,int*,20);
+    Actor1937Keep(valueV1);
+    argument1=Actor1937Field(valueV0,int*,4);
+    Actor1937Keep(argument1);
+    argument0=Actor1937Sub(argument3,argument0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Sub(valueV1,argument1);
+    valueV0=Actor1937_func_8004E880(argument0,argument1,argument2);
+    Actor1937Field(actor,unsigned char*,70)=valueV0;
+    valueV1=Actor1937Field(privateData,int*,120);
+    Actor1937Keep(valueV1);
+    argument1=(int)0x80070000U;
+    Actor1937Keep(argument1);
+    argument1=Actor1937Field(argument1,int*,-15024);
+    Actor1937Keep(argument1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,argument1);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field(privateData,int*,68);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(valueV0,int*,0);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field(valueV1,short*,0);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(valueV0,short*,0);
+    Actor1937Keep(valueV0);
+    valueS0=Actor1937Add(valueV1,-1);
+    if(valueV0!=0)goto original1937_1195;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV1=Actor1937Field(privateData,int*,80);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    goto original1937_1198;
+    original1937_1195:
+    valueV1=Actor1937Field(privateData,int*,84);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    original1937_1198:
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    argument1=Actor1937Add(argument1,valueV0);
+    Actor1937Keep(argument1);
+    valueS1=(int)&frame.fields.spC8;
+    Actor1937Keep(valueS1);
+    argument0=Actor1937Add(valueS1,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(argument1,12);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(actor,12);
+    Actor1937_func_8004F194(argument0,argument1,argument2);
+    argument0=Actor1937Add(valueS1,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,1);
+    Actor1937_func_8004F110(argument0,argument1);
+    valueV0=Actor1937Field((int)&frame,volatile int*,176);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,500);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&frame,int*,176)=valueV0;
+    valueV0=Actor1937Field(privateData,int*,68);
+    Actor1937Keep(valueV0);
+    argument1=(int)((unsigned int)valueS0<<4);
+    Actor1937Keep(argument1);
+    valueV0=Actor1937Field(valueV0,int*,12);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field((int)&frame,volatile int*,168);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(argument1,valueV0);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,0);
+    Actor1937Keep(valueV0);
+    valueS0=(int)&frame.fields.spD8;
+    Actor1937Keep(valueS0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&frame,int*,184)=valueV0;
+    valueV0=Actor1937Field(privateData,int*,68);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument0);
+    valueV0=Actor1937Field(valueV0,int*,12);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field((int)&frame,volatile int*,172);
+    Actor1937Keep(valueV1);
+    argument1=Actor1937Add(argument1,valueV0);
+    Actor1937Keep(argument1);
+    valueV0=Actor1937Field(argument1,int*,4);
+    Actor1937Keep(valueV0);
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    Actor1937Field((int)&frame,int*,192)=0;
+    __asm__ volatile(""::"m"(Actor1937Field((int)&frame,int*,192)));
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&frame,int*,188)=valueV0;
+    valueV0=Actor1937_func_8004EDE8(argument0,argument1);
+    argument0=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(valueV0,0);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(0,6144);
+    Actor1937_func_8004F08C(argument0,argument1,argument2);
+    argument0=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(valueS1,0);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(valueS0,0);
+    Actor1937_func_8004F194(argument0,argument1,argument2);
+    argument0=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument0);
+    valueV0=Actor1937Field((int)&frame,volatile int*,192);
+    Actor1937Keep(valueV0);
+    argument1=Actor1937Add(valueS1,0);
+    Actor1937Keep(argument1);
+    valueV0=Actor1937Add(valueV0,4096);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&frame,int*,192)=valueV0;
+    Actor1937_func_80013AE4(argument0,argument1);
+    original1937_1249:
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-8120);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,2);
+    Actor1937Keep(valueV0);
+    original1937_1252:
+    argument0=Actor1937Add(actor,0);
+    if(valueV1!=valueV0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    argument1=Actor1937Add(0,4);
+    Actor1937Keep(argument1);
+    valueV0=Actor1937Add(0,4);
+    Actor1937Keep(valueV0);
+    Actor1937Field(argument0,unsigned char*,73)=0;
+    original1937_1257:
+    Actor1937Field(argument0,unsigned char*,72)=valueV0;
+    Actor1937_func_80034F40(argument0,argument1);
+    goto original1937Return;
+    original1937_1261:
+    valueV0=(int)0x10000000U;
+    Actor1937Keep(valueV0);
+    valueV0=valueV0|2;
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&Actor1937_D_80070328+524,int*,0)=valueV0;
+    valueV0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV0);
+    if(valueV0==0)goto original1937_1309;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV0=Actor1937Field(actor,unsigned char*,73);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,0);
+    if(valueV0!=0)goto original1937_1309;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument1=Actor1937Add(0,5);
+    Actor1937_func_80055D24(argument0,argument1);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument2=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(argument2);
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(argument2,12);
+    Actor1937_func_80055F14(argument0,argument1,argument2);
+    valueV1=Actor1937Field(actor,unsigned char*,60);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,4);
+    Actor1937Keep(valueV0);
+    if(valueV1!=valueV0)goto original1937_1309;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    argument0=Actor1937Add(actor,0);
+    valueV0=Actor1937_func_80055E84(argument0);
+    valueV0=valueV0<24;
+    Actor1937Keep(valueV0);
+    if(valueV0!=0)goto original1937_1309;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Field(valueV0,int*,0);
+    Actor1937Keep(argument0);
+    valueV0=Actor1937Add(0,2);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,73)=valueV0;
+    valueV1=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(actor,unsigned char*,70);
+    Actor1937Keep(valueV0);
+    Actor1937Field(valueV1,unsigned char*,70)=valueV0;
+    valueV1=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,7);
+    Actor1937Keep(valueV0);
+    Actor1937Field(valueV1,unsigned char*,72)=valueV0;
+    valueV0=Actor1937Add(0,200);
+    Actor1937Keep(valueV0);
+    Actor1937Field(argument0,short*,0)=valueV0;
+    valueV0=Actor1937Add(0,150);
+    Actor1937Keep(valueV0);
+    Actor1937Field(argument0,int*,8)=valueV0;
+    Actor1937Field(argument0,int*,4)=valueV0;
+    valueV0=Actor1937Field(actor,unsigned char*,70);
+    Actor1937Keep(valueV0);
+    Actor1937Field(argument0,short*,2)=valueV0;
+    original1937_1309:
+    valueV0=(int)0x80070000U;
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,-14480);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,0);
+    if(valueV0==0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    Actor1937Field(actor,unsigned char*,73)=0;
+    Actor1937_func_80034F40(argument0,argument1);
+    valueV0=Actor1937Add(0,21);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    goto original1937Return;
+    original1937_1320:
+    valueV0=(int)0x10000000U;
+    Actor1937Keep(valueV0);
+    valueV0=valueV0|2;
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&Actor1937_D_80070328+524,int*,0)=valueV0;
+    valueV0=Actor1937Field(privateData,int*,48);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,0);
+    if(valueV0!=0)goto original1937_1335;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument1=Actor1937Add(0,3);
+    Actor1937Keep(argument1);
+    valueV0=Actor1937Add(0,2);
+    Actor1937Keep(valueV0);
+    Actor1937Field(privateData,unsigned char*,2)=valueV0;
+    Actor1937_func_80034F40(argument0,argument1);
+    valueV0=Actor1937Field(privateData,unsigned char*,56);
+    Actor1937Keep(valueV0);
+    goto original1937_1395;
+    original1937_1335:
+    valueV0=Actor1937Field(valueV0,unsigned char*,72);
+    Actor1937Keep(valueV0);
+    valueV0=(unsigned int)valueV0<251;
+    Actor1937Keep(valueV0);
+    argument1=Actor1937Add(0,3);
+    if(valueV0!=0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    Actor1937Field(privateData,int*,48)=0;
+    Actor1937_func_80034F40(argument0,argument1);
+    valueV1=Actor1937Field(privateData,int*,120);
+    Actor1937Keep(valueV1);
+    valueS0=(int)0x80070000U;
+    Actor1937Keep(valueS0);
+    valueS0=Actor1937Field(valueS0,int*,-15024);
+    Actor1937Keep(valueS0);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueS0);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,0);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,short*,0);
+    Actor1937Keep(valueV0);
+    if(valueV0!=0)goto original1937_1360;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV1=Actor1937Field(privateData,int*,80);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    goto original1937_1363;
+    original1937_1360:
+    valueV1=Actor1937Field(privateData,int*,84);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    original1937_1363:
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueS0=Actor1937Add(valueS0,valueV0);
+    Actor1937Keep(valueS0);
+    valueS1=(int)&frame.fields.spE8;
+    Actor1937Keep(valueS1);
+    argument0=Actor1937Add(valueS1,0);
+    Actor1937Keep(argument0);
+    valueS0=Actor1937Add(valueS0,12);
+    Actor1937Keep(valueS0);
+    argument1=Actor1937Add(valueS0,0);
+    Actor1937_func_8004F178(argument0,argument1);
+    argument0=Actor1937Add(valueS1,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(0,0);
+    Actor1937Keep(argument2);
+    valueV0=Actor1937Field((int)&frame,volatile int*,208);
+    Actor1937Keep(valueV0);
+    argument3=(int)0x00040000U;
+    Actor1937Keep(argument3);
+    valueV0=Actor1937Add(valueV0,2048);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&frame,int*,208)=valueV0;
+    stackArgument4=0;
+    Actor1937_func_8001830C(argument0,argument1,argument2,argument3,stackArgument4);
+    valueV1=Actor1937Field(privateData,int*,120);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-15024);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,0);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,short*,0);
+    Actor1937Keep(valueV0);
+    original1937_1395:
+    if(valueV0!=0?(valueV0=Actor1937Add(0,23),1):(valueV0=Actor1937Add(0,23),0))goto original1937_1401;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV0=Actor1937Add(0,22);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    goto original1937Return;
+    original1937_1401:
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    goto original1937Return;
+    original1937_1403:
+    valueV0=(int)0x10000000U;
+    Actor1937Keep(valueV0);
+    valueV0=valueV0|2;
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&Actor1937_D_80070328+524,int*,0)=valueV0;
+    valueV0=Actor1937Field(actor,unsigned char*,70);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,-3);
+    goto original1937_1417;
+    original1937_1410:
+    valueV0=(int)0x10000000U;
+    Actor1937Keep(valueV0);
+    valueV0=valueV0|2;
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&Actor1937_D_80070328+524,int*,0)=valueV0;
+    valueV0=Actor1937Field(actor,unsigned char*,70);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,3);
+    Actor1937Keep(valueV0);
+    original1937_1417:
+    Actor1937Field(actor,unsigned char*,70)=valueV0;
+    valueV0=(int)0x80070000U;
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,-14480);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,0);
+    if(valueV0==0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument1=Actor1937Add(0,0);
+    Actor1937_func_80034F40(argument0,argument1);
+    valueV0=Actor1937Add(0,30);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    goto original1937Return;
+    original1937_1428:
+    valueV0=(int)0x10000000U;
+    Actor1937Keep(valueV0);
+    valueV0=valueV0|2;
+    Actor1937Keep(valueV0);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,4);
+    Actor1937Keep(argument1);
+    Actor1937Field((int)&Actor1937_D_80070328+524,int*,0)=valueV0;
+    valueV0=Actor1937Add(0,3328);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&frame,int*,216)=valueV0;
+    Actor1937Field((int)&frame,int*,220)=0;
+    Actor1937Field((int)&frame,int*,224)=0;
+    Actor1937_func_80055D24(argument0,argument1);
+    argument0=Actor1937Add(actor,32);
+    Actor1937Keep(argument0);
+    valueS0=(int)&frame.fields.spF8;
+    Actor1937Keep(valueS0);
+    argument1=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(valueS0,0);
+    Actor1937_func_8004ED6C(argument0,argument1,argument2);
+    argument0=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(actor,12);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(valueS0,0);
+    Actor1937_func_8004F194(argument0,argument1,argument2);
+    argument0=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument0);
+    argument2=Actor1937Add(0,0);
+    Actor1937Keep(argument2);
+    Actor1937Field((int)&Actor1937_D_8006E160,int*,0)=0;
+    argument1=Actor1937Field(actor,unsigned char*,70);
+    Actor1937Keep(argument1);
+    argument3=Actor1937Add(0,65);
+    Actor1937Keep(argument3);
+    argument1=Actor1937Add(argument1,128);
+    Actor1937Keep(argument1);
+    argument1=argument1&255;
+    Actor1937_func_80013D44(argument0,argument1,argument2,argument3);
+    valueV0=Actor1937Add(0,31);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    Actor1937Field(actor,int*,24)=0;
+    goto original1937Return;
+    original1937_1461:
+    valueV0=(int)0x10000000U;
+    Actor1937Keep(valueV0);
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-8120);
+    Actor1937Keep(valueV1);
+    valueV0=valueV0|2;
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&Actor1937_D_80070328+524,int*,0)=valueV0;
+    valueV0=Actor1937Add(0,1);
+    Actor1937Keep(valueV0);
+    if(valueV1!=valueV0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV1=Actor1937Field(privateData,int*,120);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-15024);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,0);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,short*,0);
+    Actor1937Keep(valueV0);
+    if(valueV0!=0)goto original1937_1489;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV1=Actor1937Field(privateData,int*,80);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    goto original1937_1492;
+    original1937_1489:
+    valueV1=Actor1937Field(privateData,int*,84);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    original1937_1492:
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-15024);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueS1=Actor1937Add(valueV1,valueV0);
+    Actor1937Keep(valueS1);
+    valueV0=Actor1937Field(valueS1,unsigned char*,72);
+    Actor1937Keep(valueV0);
+    valueV0=valueV0&128;
+    Actor1937Keep(valueV0);
+    if(valueV0==0?(valueV0=Actor1937Add(0,28),1):(valueV0=Actor1937Add(0,28),0))goto original1937_1511;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    valueV0=Actor1937Add(0,1);
+    Actor1937Keep(valueV0);
+    Actor1937Field(privateData,unsigned char*,5)=valueV0;
+    valueV0=Actor1937Add(0,5);
+    Actor1937Keep(valueV0);
+    Actor1937Field(privateData,unsigned char*,2)=valueV0;
+    Actor1937Field(privateData,short*,76)=0;
+    goto original1937Return;
+    original1937_1511:
+    argument0=Actor1937Add(actor,32);
+    Actor1937Keep(argument0);
+    valueS0=(int)&frame.fields.sp108;
+    Actor1937Keep(valueS0);
+    argument1=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument1);
+    valueV0=Actor1937Field(actor,unsigned char*,70);
+    Actor1937Keep(valueV0);
+    argument2=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument2);
+    Actor1937Field(valueS1,unsigned char*,70)=valueV0;
+    valueV0=Actor1937Add(0,1664);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&frame,int*,232)=valueV0;
+    Actor1937Field((int)&frame,int*,236)=0;
+    Actor1937Field((int)&frame,int*,240)=0;
+    Actor1937_func_8004ED6C(argument0,argument1,argument2);
+    argument0=Actor1937Add(valueS1,12);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(actor,12);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(valueS0,0);
+    Actor1937_func_8004F194(argument0,argument1,argument2);
+    valueV1=Actor1937Add(0,1);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,28);
+    Actor1937Keep(valueV0);
+    Actor1937Field(valueS1,unsigned char*,72)=valueV1;
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    valueV0=Actor1937Add(0,5);
+    Actor1937Keep(valueV0);
+    Actor1937Field(privateData,unsigned char*,2)=valueV0;
+    valueV0=Actor1937Add(0,60);
+    Actor1937Keep(valueV0);
+    Actor1937Field(privateData,unsigned char*,5)=valueV1;
+    Actor1937Field(privateData,short*,76)=valueV0;
+    goto original1937Return;
+    original1937_1536:
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-7356);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,15);
+    Actor1937Keep(valueV0);
+    valueS0=(int)0x10000000U;
+    if(valueV1==valueV0)goto original1937Return;
+    __asm__ volatile(""::"r"(valueS0));
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueS1=(int)&Actor1937_D_80070328+524;
+    Actor1937Keep(valueS1);
+    valueV0=Actor1937Field(valueS1,int*,0);
+    Actor1937Keep(valueV0);
+    valueS0=valueS0|2;
+    Actor1937Keep(valueS0);
+    valueV0=valueV0&valueS0;
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(privateData,76);
+    if(valueV0==valueS0)goto original1937_1552;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueS0):"0"(valueS0));
+    argument1=Actor1937Add(0,2);
+    valueV0=Actor1937_func_800359A4(argument0,argument1);
+    if(valueV0!=0)goto original1937_1554;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    original1937_1552:
+    Actor1937Field(valueS1,int*,0)=valueS0;
+    goto original1937Return;
+    original1937_1554:
+    valueV1=Actor1937Field(privateData,int*,52);
+    Actor1937Keep(valueV1);
+    argument1=(int)0x80070000U;
+    Actor1937Keep(argument1);
+    argument1=Actor1937Field(argument1,int*,-15024);
+    Actor1937Keep(argument1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    savedWord30=Actor1937Add(argument1,valueV0);
+    Actor1937Keep(savedWord30);
+    valueV1=Actor1937Field(privateData,int*,120);
+    Actor1937Keep(valueV1);
+    valueS5=Actor1937Field(savedWord30,int*,0);
+    Actor1937Keep(valueS5);
+    argument0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(argument0);
+    argument0=Actor1937Add(argument0,valueV1);
+    Actor1937Keep(argument0);
+    argument0=(int)((unsigned int)argument0<<2);
+    Actor1937Keep(argument0);
+    argument0=Actor1937Sub(argument0,valueV1);
+    Actor1937Keep(argument0);
+    argument0=(int)((unsigned int)argument0<<3);
+    Actor1937Keep(argument0);
+    argument0=Actor1937Add(argument0,argument1);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Sub(actor,argument1);
+    Actor1937Keep(argument1);
+    valueV0=(int)((unsigned int)argument1<<5);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,argument1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<5);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,argument1);
+    Actor1937Keep(valueV0);
+    valueV1=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV1=(int)((unsigned int)valueV0<<15);
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Sub(valueV1,valueV0);
+    Actor1937Keep(valueV1);
+    valueV1=(int)((unsigned int)valueV1<<2);
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Add(valueV1,argument1);
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Sub(0,valueV1);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(argument0,int*,0);
+    Actor1937Keep(valueV0);
+    valueV1=(valueV1>>3);
+    Actor1937Keep(valueV1);
+    Actor1937Field(valueV0,unsigned char*,3)=valueV1;
+    valueV1=Actor1937Field(valueV0,short*,0);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,1);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,0);
+    if(valueV1!=valueV0)goto original1937_1627;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueS0=Actor1937Add(actor,72);
+    Actor1937Keep(valueS0);
+    argument0=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,1);
+    Actor1937Keep(argument1);
+    valueS3=(int)&Actor1937_D_8006D088;
+    Actor1937Keep(valueS3);
+    argument2=Actor1937Add(valueS3,0);
+    Actor1937Keep(argument2);
+    valueT0=Actor1937Add(0,1);
+    Actor1937Keep(valueT0);
+    valueS4=Actor1937Add(0,2);
+    Actor1937Keep(valueS4);
+    valueS2=Actor1937Add(0,54);
+    Actor1937Keep(valueS2);
+    Actor1937Field(privateData,unsigned char*,5)=valueT0;
+    Actor1937Field(privateData,unsigned char*,2)=valueS4;
+    Actor1937Field(actor,unsigned char*,72)=valueS2;
+    Actor1937_func_8003B7B4(argument0,argument1,argument2);
+    argument0=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,1);
+    Actor1937Keep(argument1);
+    valueS1=(int)&Actor1937_D_8006C7F8;
+    Actor1937Keep(valueS1);
+    argument2=Actor1937Add(valueS1,0);
+    Actor1937_func_8003B7B4(argument0,argument1,argument2);
+    valueS0=Actor1937Add(savedWord30,72);
+    Actor1937Keep(valueS0);
+    argument0=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,1);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(valueS3,0);
+    Actor1937Keep(argument2);
+    valueV0=Actor1937Add(0,33);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    __asm__ volatile(""::"m"(Actor1937Field(actor,unsigned char*,72)));
+    valueT0=Actor1937Add(0,1);
+    Actor1937Keep(valueT0);
+    Actor1937Field(valueS5,unsigned char*,5)=valueT0;
+    Actor1937Field(valueS5,unsigned char*,2)=valueS4;
+    Actor1937Field(savedWord30,unsigned char*,72)=valueS2;
+    Actor1937_func_8003B7B4(argument0,argument1,argument2);
+    argument0=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,1);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(valueS1,0);
+    Actor1937_func_8003B7B4(argument0,argument1,argument2);
+    valueV0=Actor1937Add(0,35);
+    Actor1937Keep(valueV0);
+    Actor1937Field(savedWord30,unsigned char*,72)=valueV0;
+    goto original1937Return;
+    original1937_1627:
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(0,1);
+    Actor1937Keep(argument2);
+    valueV0=Actor1937Add(0,38);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    goto original1937_1670;
+    original1937_1632:
+    valueV1=Actor1937Field(actor,unsigned char*,61);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,6);
+    Actor1937Keep(valueV0);
+    valueS0=Actor1937Add(0,0);
+    if(valueV1==valueV0)goto original1937_1789;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV0=Actor1937Field(actor,int*,24);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,0);
+    if(valueV0==0)goto original1937_1642;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument1=Actor1937Add(0,6);
+    Actor1937_func_80034F80(argument0,argument1);
+    original1937_1642:
+    valueV1=Actor1937Field(privateData,int*,52);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    if(valueV1<0)goto original1937_1654;
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-15024);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Add(valueV1,valueV0);
+    Actor1937Keep(valueV1);
+    valueS0=Actor1937Field(valueV1,int*,0);
+    Actor1937Keep(valueS0);
+    original1937_1654:
+    valueV0=Actor1937Add(0,5);
+    if(valueS0==0)goto original1937_1662;
+    __asm__ volatile("":"=r"(valueS0):"0"(valueS0));
+    valueV0=Actor1937Field(valueS0,unsigned char*,2);
+    Actor1937Keep(valueV0);
+    valueV0=(unsigned int)valueV0<2;
+    Actor1937Keep(valueV0);
+    if(valueV0==0?(valueV0=Actor1937Add(0,5),1):(valueV0=Actor1937Add(0,5),0))goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    original1937_1662:
+    Actor1937Field(privateData,unsigned char*,2)=valueV0;
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,0);
+    valueV0=Actor1937_func_80037BBC(argument0,argument1);
+    argument0=Actor1937Add(actor,0);
+    if(valueV0==0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(0,1);
+    Actor1937Keep(argument2);
+    original1937_1670:
+    Actor1937_func_800512E4(argument0,argument1,argument2);
+    valueV0=Actor1937Add(0,29);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    goto original1937Return;
+    original1937_1675:
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-7356);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,1);
+    Actor1937Keep(valueV0);
+    if(valueV1==valueV0?(valueV0=Actor1937Add(0,3),1):(valueV0=Actor1937Add(0,3),0))goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    Actor1937Field(actor,int*,24)=0;
+    valueV1=Actor1937Field(privateData,unsigned char*,2);
+    Actor1937Keep(valueV1);
+    if(valueV1!=valueV0?(valueV0=Actor1937Add(0,38),1):(valueV0=Actor1937Add(0,38),0))goto original1937_1688;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV0=Actor1937Add(0,25);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    goto original1937Return;
+    original1937_1688:
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    valueV0=Actor1937Add(0,5);
+    Actor1937Keep(valueV0);
+    Actor1937Field(privateData,unsigned char*,2)=valueV0;
+    Actor1937Field(privateData,unsigned char*,5)=0;
+    goto original1937Return;
+    original1937_1693:
+    valueV1=Actor1937Field(privateData,int*,52);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-15024);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueS1=Actor1937Add(valueV1,valueV0);
+    Actor1937Keep(valueS1);
+    valueV1=Actor1937Field(valueS1,int*,0);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Field(valueV1,unsigned char*,2);
+    Actor1937Keep(valueV0);
+    valueV0=(unsigned int)valueV0<2;
+    Actor1937Keep(valueV0);
+    if(valueV0==0?(valueV0=Actor1937Add(0,1),1):(valueV0=Actor1937Add(0,1),0))goto original1937_1762;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    Actor1937Field(valueV1,unsigned char*,2)=valueV0;
+    Actor1937Field(valueV1,unsigned char*,5)=valueV0;
+    Actor1937Field((int)&Actor1937_D_8006E160,int*,0)=0;
+    valueV1=Actor1937Field(valueS1,int*,0);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,2);
+    Actor1937Keep(valueV0);
+    Actor1937Field(valueV1,unsigned char*,5)=valueV0;
+    valueV0=Actor1937Field(valueS1,unsigned char*,70);
+    Actor1937Keep(valueV0);
+    valueS0=(int)&frame.fields.sp118;
+    Actor1937Keep(valueS0);
+    valueV0=(int)((unsigned int)valueV0<<1);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field(((int)((unsigned int)&Actor1937_D_80065920+(unsigned int)valueV0)),short*,0);
+    Actor1937Keep(valueV1);
+    argument0=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument0);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(valueV0>>5);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&frame,int*,248)=valueV0;
+    valueV0=Actor1937Field(valueS1,unsigned char*,70);
+    Actor1937Keep(valueV0);
+    argument1=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument1);
+    valueV0=(int)((unsigned int)valueV0<<1);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Field(((int)((unsigned int)&Actor1937_D_800658A0+(unsigned int)valueV0)),short*,0);
+    Actor1937Keep(valueV1);
+    valueV0=(int)0x80070000U;
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,876);
+    Actor1937Keep(valueV0);
+    argument2=Actor1937Add(valueS1,12);
+    Actor1937Keep(argument2);
+    Actor1937Field((int)&frame,int*,256)=0;
+    __asm__ volatile(""::"m"(Actor1937Field((int)&frame,int*,256)));
+    Actor1937Field((int)&frame,int*,256)=valueV0;
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(valueV0>>5);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&frame,int*,252)=valueV0;
+    Actor1937_func_8004F194(argument0,argument1,argument2);
+    argument0=Actor1937Add(valueS0,0);
+    Actor1937Keep(argument0);
+    argument2=Actor1937Add(0,0);
+    Actor1937Keep(argument2);
+    argument1=Actor1937Field(valueS1,unsigned char*,70);
+    Actor1937Keep(argument1);
+    argument3=Actor1937Add(0,65);
+    Actor1937Keep(argument3);
+    argument1=Actor1937Add(argument1,128);
+    Actor1937Keep(argument1);
+    argument1=argument1&255;
+    Actor1937_func_80013D44(argument0,argument1,argument2,argument3);
+    valueV0=(int)0x80070000U;
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,1448);
+    Actor1937Keep(valueV0);
+    if(valueV0>=0?(valueV0=Actor1937Add(0,38),1):(valueV0=Actor1937Add(0,38),0))goto original1937_1763;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    Actor1937Field((int)&Actor1937_D_80070328+640,int*,0)=0;
+    original1937_1762:
+    valueV0=Actor1937Add(0,38);
+    Actor1937Keep(valueV0);
+    original1937_1763:
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    valueV0=Actor1937Add(0,5);
+    Actor1937Keep(valueV0);
+    Actor1937Field(privateData,unsigned char*,5)=0;
+    Actor1937Field(privateData,unsigned char*,2)=valueV0;
+    goto original1937Return;
+    original1937_1768:
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    argument2=Actor1937Add(0,1);
+    Actor1937_func_800512E4(argument0,argument1,argument2);
+    valueV0=Actor1937Add(0,34);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    goto original1937Return;
+    original1937_1775:
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-7356);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,1);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,0);
+    if(valueV1==valueV0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    argument1=Actor1937Add(0,0);
+    Actor1937_func_80034F40(argument0,argument1);
+    valueV0=Actor1937Add(0,35);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,72)=valueV0;
+    goto original1937Return;
+    original1937_1785:
+    valueV1=Actor1937Field(actor,unsigned char*,61);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,6);
+    Actor1937Keep(valueV0);
+    if(valueV1!=valueV0)goto original1937_1799;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    original1937_1789:
+    valueV0=(int)0x80070000U;
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,-14480);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,int*,24)=0;
+    if(valueV0==0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    original1937_1794:
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    argument1=Actor1937Add(0,0);
+    Actor1937_func_80034F40(argument0,argument1);
+    goto original1937Return;
+    original1937_1799:
+    valueV0=Actor1937Field(actor,int*,24);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,0);
+    if(valueV0==0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    argument1=Actor1937Add(0,6);
+    Actor1937_func_80034F80(argument0,argument1);
+    goto original1937Return;
+    original1937_1807:
+    valueV0=Actor1937Field(privateData,int*,92);
+    Actor1937Keep(valueV0);
+    if(valueV0==0)goto original1937_1813;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    Actor1937Field(valueV0,unsigned char*,16)=0;
+    Actor1937Field(privateData,int*,92)=0;
+    original1937_1813:
+    argument0=Actor1937Add(actor,0);
+    Actor1937_func_80055B18(argument0);
+    goto original1937Return;
+    original1937_1817:
+    valueV0=(int)0x80070000U;
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,-14480);
+    Actor1937Keep(valueV0);
+    argument2=Actor1937Add(0,0);
+    if(valueV0==0)goto original1937Return;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    valueV0=Actor1937Field(privateData,int*,116);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(((int)((unsigned int)&Actor1937_D_80065920+(unsigned int)valueV0)),short*,0);
+    Actor1937Keep(valueV0);
+    valueV1=(int)((unsigned int)valueV0<<1);
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Add(valueV1,valueV0);
+    Actor1937Keep(valueV1);
+    valueV1=(int)((unsigned int)valueV1<<2);
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Add(valueV1,valueV0);
+    Actor1937Keep(valueV1);
+    valueV1=(valueV1>>5);
+    Actor1937Keep(valueV1);
+    Actor1937Field((int)&frame,int*,264)=valueV1;
+    valueV0=Actor1937Field(privateData,int*,116);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<1);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Field(((int)((unsigned int)&Actor1937_D_800658A0+(unsigned int)valueV0)),short*,0);
+    Actor1937Keep(argument0);
+    valueV0=(int)((unsigned int)argument0<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,argument0);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,argument0);
+    Actor1937Keep(valueV0);
+    valueV0=(valueV0>>5);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&frame,int*,268)=valueV0;
+    argument1=Actor1937Field(privateData,int*,96);
+    Actor1937Keep(argument1);
+    valueV1=Actor1937Add(valueV1,argument1);
+    Actor1937Keep(valueV1);
+    Actor1937Field((int)&frame,int*,264)=valueV1;
+    valueV1=Actor1937Field(privateData,int*,100);
+    Actor1937Keep(valueV1);
+    argument3=Actor1937Add(0,65);
+    Actor1937Keep(argument3);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    Actor1937Field((int)&frame,int*,268)=valueV0;
+    valueV0=Actor1937Field(privateData,int*,104);
+    Actor1937Keep(valueV0);
+    argument0=(int)&frame.fields.sp128;
+    Actor1937Keep(argument0);
+    Actor1937Field((int)&frame,int*,272)=valueV0;
+    argument1=Actor1937Field(privateData,int*,116);
+    Actor1937Keep(argument1);
+    valueV0=Actor1937Add(0,2);
+    Actor1937Keep(valueV0);
+    Actor1937Field(privateData,unsigned char*,5)=valueV0;
+    __asm__ volatile(""::"m"(Actor1937Field(privateData,unsigned char*,5)));
+    argument1=Actor1937Add(argument1,128);
+    Actor1937Keep(argument1);
+    argument1=argument1&255;
+    Actor1937_func_80013D44(argument0,argument1,argument2,argument3);
+    valueV0=Actor1937Field(actor,short*,54);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Add(0,50);
+    Actor1937Keep(valueV1);
+    Actor1937Field(actor,unsigned char*,72)=valueV1;
+    goto original1937_1911;
+    original1937_1869:
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-8120);
+    Actor1937Keep(valueV1);
+    valueV0=Actor1937Add(0,1);
+    Actor1937Keep(valueV0);
+    argument0=Actor1937Add(actor,12);
+    if(valueV1!=valueV0)goto original1937_1910;
+    __asm__ volatile("":"=r"(valueV0):"0"(valueV0));
+    __asm__ volatile("":"=r"(valueV1):"0"(valueV1));
+    valueV1=Actor1937Field(privateData,int*,52);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV1<<1);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Sub(valueV0,valueV1);
+    Actor1937Keep(valueV0);
+    valueV1=(int)0x80070000U;
+    Actor1937Keep(valueV1);
+    valueV1=Actor1937Field(valueV1,int*,-15024);
+    Actor1937Keep(valueV1);
+    valueV0=(int)((unsigned int)valueV0<<3);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Add(valueV1,valueV0);
+    Actor1937Keep(valueV1);
+    valueS0=Actor1937Field(valueV1,int*,0);
+    Actor1937Keep(valueS0);
+    argument1=Actor1937Add(privateData,96);
+    Actor1937_func_8004F178(argument0,argument1);
+    Actor1937Keep(actor);
+    argument0=Actor1937Add(actor,0);
+    Actor1937Keep(argument0);
+    valueV0=Actor1937Field(privateData,int*,116);
+    Actor1937Keep(valueV0);
+    argument1=Actor1937Add(0,0);
+    Actor1937Keep(argument1);
+    Actor1937Field(actor,unsigned char*,70)=valueV0;
+    valueV0=Actor1937Add(0,6);
+    Actor1937Keep(valueV0);
+    Actor1937Field(privateData,unsigned char*,2)=valueV0;
+    Actor1937_func_80034F80(argument0,argument1);
+    Actor1937Field(actor,unsigned char*,72)=0;
+    Actor1937Field(actor,unsigned char*,73)=0;
+    Actor1937Field(actor,int*,24)=0;
+    valueV0=Actor1937Field(privateData,int*,60);
+    Actor1937Keep(valueV0);
+    valueV1=Actor1937Add(0,1);
+    Actor1937Keep(valueV1);
+    Actor1937Field(privateData,int*,48)=0;
+    Actor1937Field(valueV0,short*,10)=valueV1;
+    valueV0=Actor1937Field(privateData,int*,60);
+    Actor1937Keep(valueV0);
+    Actor1937Field(valueV0,short*,2)=valueV1;
+    valueV0=Actor1937Field(valueS0,int*,60);
+    Actor1937Keep(valueV0);
+    Actor1937Field(valueS0,int*,48)=0;
+    Actor1937Field(valueV0,short*,10)=valueV1;
+    valueV0=Actor1937Field(valueS0,int*,60);
+    Actor1937Keep(valueV0);
+    Actor1937Field(valueV0,short*,2)=valueV1;
+    goto original1937Return;
+    original1937_1910:
+    valueV0=Actor1937Field(actor,short*,54);
+    Actor1937Keep(valueV0);
+    original1937_1911:
+    valueV0=(int)((unsigned int)valueV0<<2);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(((int)((unsigned int)&Actor1937_D_8006EE2C+(unsigned int)valueV0)),int*,0);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,int*,80);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Field(valueV0,unsigned char*,0);
+    Actor1937Keep(valueV0);
+    valueV0=Actor1937Add(valueV0,-1);
+    Actor1937Keep(valueV0);
+    Actor1937Field(actor,unsigned char*,62)=valueV0;
+    original1937_1923:
+    Actor1937Field(actor,unsigned char*,63)=valueV0;
+    original1937Return:return;
+}
+#undef Actor1937Field
+#undef Actor1937Keep
+#undef Actor1937Add
+#undef Actor1937Sub
+
 
 /* AI generated; not human reviewed. SCUS-94467 USA Rev0
  * 800886E4..80088A34. Original damage word is owner+24; no new
@@ -5355,7 +15041,496 @@ void func_level_23_80088ED4(Moby* moby) {
 
 INCLUDE_RODATA("asm/nonmatchings/overlays/level_23/moby", D_level_23_80074C24);
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/moby", func_level_23_80089178);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original80089178.
+* Assembly SHA256 aec3cabf6913d26f4661c1163a608b98e07011989b8188c808b7b18f336eae59.
+* AI generated;not human reviewed. All746 instructions,23 selectors,one
+* zero padding word and every actual native/linked target must match.
+* FrameC8 preserves S0..S4/RA and the full SP20..AF local extent. Original
+* unowned table4C24 remains unchanged:12000/11000/10000. Its SP20/24/28
+* copy and owned table4C30's SP30/34/38 copy retain all original producers.
+* Owned4C30 is exactly16 bytes:500000005F0000007800000000000000,including
+* the original fourth zero word. Both indexed consumers add original byte
+* offsets. The decoder omitted these initial copies;C restores them.
+* All three full signed low-product paths retain original MULT/MFLO words,
+* vector stores,raw sums,conditional targets and64/192 masked consumers.
+* No partial product or HI/LO constraint is used. Independent state22
+* metadata prevents the compiler merging its original product branch.
+* State1's V0=2/A1=2 J enters state2's shared state2/3 store. Callback-zero
+* path produces V0=1 in its branch delay and skips the later producer;
+* the original store remains after its J with an original NOP delay.
+* Returned S0 values,A0 preparations,post-E84 pointer read and state4's
+* single byte32/A1-zero producer order remain exact. Empty initialized
+* identities,late inputs and dead clobbers emit zero instructions. No
+* opcode assembly,fixedFP or overlapping live fixed aliases. Confidence
+* is binary identity after all gates. Raw units/fixed point,full helper
+* contracts,caller cadence and synchronized runtime remain open. Cadence
+* recorded here is per invocation. Falsification:every native/linked word,
+* actual transfer/table target,both original data sources,full EXE and
+* every overlay retail hash. */
+#define Actor23_89178Field(p, t, o) (*(t)((unsigned char*)(p)+(o)))
+extern int Actor23_89178ExistingTableWords __asm__("D_level_23_80074C24");
+const int Actor23_89178OriginalTableWords[4] __asm__("D_level_23_80074C30") = {
+    80, 95, 120, 0
+}
+;
+int Actor23_89178Call1BA30View1() __asm__("func_8001BA30");
+int Actor23_89178Call34F40View1() __asm__("func_80034F40");
+int Actor23_89178Call34F80View1() __asm__("func_80034F80");
+int Actor23_89178Call35030View1() __asm__("func_80035030");
+int Actor23_89178Call3573CView1() __asm__("func_8003573C");
+int Actor23_89178Call3585CView1() __asm__("func_8003585C");
+int Actor23_89178Call359A4View1() __asm__("func_800359A4");
+int Actor23_89178Call35DDCView1() __asm__("func_80035DDC");
+int Actor23_89178Call360F8View1() __asm__("func_800360F8");
+int Actor23_89178Call3636CView1() __asm__("func_8003636C");
+int Actor23_89178Call369B8View1() __asm__("func_800369B8");
+int Actor23_89178Call4E880View1() __asm__("func_8004E880");
+int Actor23_89178Call4ED6CView1() __asm__("func_8004ED6C");
+int Actor23_89178Call4EDE8View1() __asm__("func_8004EDE8");
+int Actor23_89178Call4F08CView1() __asm__("func_8004F08C");
+int Actor23_89178Call4F178View1() __asm__("func_8004F178");
+int Actor23_89178Call4F194View1() __asm__("func_8004F194");
+int Actor23_89178Call4F264View1() __asm__("func_8004F264");
+int Actor23_89178Call4F334View1() __asm__("func_8004F334");
+int Actor23_89178Call55B18View1() __asm__("func_80055B18");
+int Actor23_89178Call55D24View1() __asm__("func_80055D24");
+int Actor23_89178Call55E84View1() __asm__("func_80055E84");
+int Actor23_89178Call55F14View1() __asm__("func_80055F14");
+extern int Actor23_89178Data6C770View1 __asm__("D_8006C770");
+extern int Actor23_89178Data6C7C4View1 __asm__("D_8006C7C4");
+extern int Actor23_89178Data70328View1 __asm__("D_80070328");
+extern int Actor23_89178Data7190CView1 __asm__("D_8007190C");
+extern int Actor23_89178Data71910View1 __asm__("D_80071910");
+extern int(*Actor23_89178Data74414View1)() __asm__("unk_ovlheader_80074414");
+void func_level_23_80089178(void *input) {
+    register void *ownerRecord17 __asm__("$17");
+    register int addressOrResult16 __asm__("$16"), privateRecord18 __asm__("$18"), retainedAddressOrBase19 __asm__("$19"), retainedResult20 __asm__("$20");
+    register int argumentWord6 __asm__("$6"), firstLowProduct7 __asm__("$7"), secondLowProduct9 __asm__("$9");
+    register int rawWord2 __asm__("$2"), rawWord3 __asm__("$3"), argumentWord4 __asm__("$4"), argumentWord5 __asm__("$5");
+    struct{
+        int sp20, sp24, sp28, sp2C, sp30, sp34, sp38, sp3C, sp40, sp44, sp48, sp4C, sp50, sp54, sp58, sp5C, sp60, sp64, sp68, sp6C, sp70, sp74, sp78, sp7C, sp80, sp84, sp88, sp8C, sp90, sp94, sp98, sp9C, spA0, spA4, spA8, spAC;
+    }
+    originalFrame;
+    int temporaryWord5;
+    int temporaryWord1;
+    int temporaryWord2;
+    int temporaryWord3;
+    int temporaryWord4;
+    int temporaryWord6;
+    ownerRecord17 = input;
+    __asm__("":"=r"(ownerRecord17):"0"(ownerRecord17));
+    privateRecord18 = Actor23_89178Field(ownerRecord17, int*, 0);
+    __asm__("":"=r"(privateRecord18):"0"(privateRecord18):"$5");
+    argumentWord5 = (int)&Actor23_89178ExistingTableWords;
+    __asm__("":"=r"(argumentWord5):"0"(argumentWord5));
+    rawWord2 = Actor23_89178Field(argumentWord5, volatile int*, 0);
+    rawWord3 = Actor23_89178Field(argumentWord5, volatile int*, 4);
+    argumentWord4 = Actor23_89178Field(argumentWord5, volatile int*, 8);
+    originalFrame.sp20 = rawWord2;
+    originalFrame.sp24 = rawWord3;
+    originalFrame.sp28 = argumentWord4;
+    __asm__ __volatile__("":::"$5", "memory");
+    argumentWord5 = (int)Actor23_89178OriginalTableWords;
+    __asm__("":"=r"(argumentWord5):"0"(argumentWord5));
+    rawWord2 = Actor23_89178Field(argumentWord5, volatile int*, 0);
+    rawWord3 = Actor23_89178Field(argumentWord5, volatile int*, 4);
+    argumentWord4 = Actor23_89178Field(argumentWord5, volatile int*, 8);
+    originalFrame.sp30 = rawWord2;
+    originalFrame.sp34 = rawWord3;
+    originalFrame.sp38 = argumentWord4;
+    temporaryWord6 = ownerRecord17 + 0xC;
+    if ((unsigned int) (Actor23_89178Field(ownerRecord17, unsigned char *, 0x48) - 5) >= 3U) {
+        if (Actor23_89178Field(ownerRecord17, int *, 0x18) != 0) {
+            addressOrResult16 = Actor23_89178Field(ownerRecord17, void **, 0);
+            Actor23_89178Field(ownerRecord17, unsigned char*, 0x4A) = 255;
+            Actor23_89178Field(ownerRecord17, unsigned char *, 0x48) = 5U;
+            Actor23_89178Call34F80View1(ownerRecord17, 5);
+            rawWord2 = Actor23_89178Field(ownerRecord17, int*, 0x18);
+            rawWord3 = 0x10000;
+            rawWord2 &= rawWord3;
+            if (!rawWord2){
+                rawWord2 = 300;
+            }
+            else{
+                rawWord2 = 180;
+            }
+            Actor23_89178Field(addressOrResult16, int *, 8) = rawWord2;
+            Actor23_89178Field(addressOrResult16, int *, 0) = 0x96;
+            rawWord2 = Actor23_89178Field(ownerRecord17, unsigned char *, 0x51);
+            argumentWord6 = 0;
+            if (rawWord2 == 0) {
+                __asm__ __volatile__("":::"$2");
+                rawWord2 = Actor23_89178Call360F8View1(Actor23_89178Call4E880View1(Actor23_89178Field(ownerRecord17, int *, 0xC) - Actor23_89178Field(&Actor23_89178Data70328View1, int *, 0), Actor23_89178Field(ownerRecord17, int *, 0x10) - Actor23_89178Field(&Actor23_89178Data70328View1, int *, 4), argumentWord6), Actor23_89178Field(&Actor23_89178Data70328View1, unsigned char *, 0xE), 0x20, 0x40);
+            }
+            Actor23_89178Field(addressOrResult16, int *, 4) = (int) rawWord2;
+            return;
+        }
+        __asm__("":"=r"(ownerRecord17):"0"(ownerRecord17));
+        temporaryWord6 = ownerRecord17+12;
+        goto checkOwnerPosition;
+    }
+checkOwnerPosition:
+    if (Actor23_89178Call1BA30View1(temporaryWord6, 0x1F4, 0, 0, 0, ownerRecord17) != 0) {
+        Actor23_89178Field(ownerRecord17, int *, 0xC) = (int) Actor23_89178Data7190CView1;
+        Actor23_89178Field(ownerRecord17, int *, 0x10) = (int) Actor23_89178Data71910View1;
+    }
+    temporaryWord5 = Actor23_89178Field(ownerRecord17, unsigned char *, 0x48);
+    switch (temporaryWord5) {
+    case 0:
+        rawWord2 = Actor23_89178Call3573CView1(ownerRecord17, 4, 1, 0);
+        argumentWord4 = (int)ownerRecord17;
+        if (rawWord2) goto prepareOriginalZeroArgument;
+        __asm__ __volatile__(""::"r"(rawWord2):"$5");
+        argumentWord5 = 1;
+        goto callOriginalState0Helper;
+        prepareOriginalZeroArgument:argumentWord5 = 0;
+        callOriginalState0Helper:Actor23_89178Call34F40View1(argumentWord4, argumentWord5);
+        if (Actor23_89178Call359A4View1(privateRecord18, 2) != 0) {
+            temporaryWord1 = Actor23_89178Field(privateRecord18, void **, 8);
+            if ((temporaryWord1 == 0) || (Actor23_89178Data74414View1(temporaryWord1, &Actor23_89178Data70328View1) != 0)) {
+                argumentWord4 = Actor23_89178Field(privateRecord18, int*, 12);
+                if (!argumentWord4) return;
+                rawWord2 = Actor23_89178Data74414View1(argumentWord4, &Actor23_89178Data70328View1);
+                if (rawWord2) return;
+                rawWord2 = 1;
+                __asm__ __volatile__(""::"r"(ownerRecord17));
+                goto storeOriginalState1AndCall;
+            }
+            else {
+                goto produceState22Distance;
+            }
+        }
+        else {
+        default:
+            return;
+        }
+        break;
+    case 20:
+        Actor23_89178Call34F40View1(ownerRecord17, 1);
+        if (Actor23_89178Call3585CView1(ownerRecord17, Actor23_89178Field(privateRecord18, short *, 4), 4, 1, 0, 0) != 0) {
+            Actor23_89178Call35DDCView1(ownerRecord17, 0x50, 0, 0, 4);
+        }
+        if (Actor23_89178Call359A4View1(privateRecord18, 2) != 0) {
+            Actor23_89178Field(ownerRecord17, unsigned char *, 0x48) = 1U;
+            return;
+        }
+        break;
+    case 22:
+        if (Actor23_89178Field(privateRecord18, void **, 0xC) != 0) {
+            Actor23_89178Call55D24View1(ownerRecord17, 4);
+            retainedAddressOrBase19 = ownerRecord17 + 0x20;
+            originalFrame.sp50 = 0x5DC;
+            originalFrame.sp54 = 0;
+            originalFrame.sp58 = 0;
+            Actor23_89178Call4ED6CView1(retainedAddressOrBase19, &originalFrame.sp50, &originalFrame.sp50);
+            Actor23_89178Call4F194View1(&originalFrame.sp50, ownerRecord17 + 0xC, &originalFrame.sp50);
+            if (Actor23_89178Data74414View1(Actor23_89178Field(privateRecord18, void **, 0xC), &originalFrame.sp50) != 0) {
+                originalFrame.sp50 = 0;
+                originalFrame.sp54 = 0x100;
+                originalFrame.sp58 = 0;
+                Actor23_89178Call4ED6CView1(retainedAddressOrBase19, &originalFrame.sp50, &originalFrame.sp50);
+                rawWord2 = Actor23_89178Field(privateRecord18, int*, 12);
+                rawWord3 = Actor23_89178Field(ownerRecord17, int*, 12);
+                rawWord2 = Actor23_89178Field(rawWord2, int*, 4);
+                argumentWord4 = originalFrame.sp50;
+                rawWord2 -= rawWord3;
+                argumentWord5 = argumentWord4*rawWord2;
+                originalFrame.sp60 = rawWord2;
+                rawWord2 = Actor23_89178Field(privateRecord18, int*, 12);
+                rawWord3 = Actor23_89178Field(ownerRecord17, int*, 16);
+                rawWord2 = Actor23_89178Field(rawWord2, int*, 8);
+                argumentWord4 = originalFrame.sp54;
+                rawWord2 -= rawWord3;
+                rawWord3 = argumentWord4*rawWord2;
+                originalFrame.sp64 = rawWord2;
+                rawWord2 = argumentWord5+rawWord3;
+                if (rawWord2 >= 0) goto loadOriginalOwnerByte;
+                __asm__ __volatile__(""::"r"(rawWord2));
+                rawWord2 = Actor23_89178Field(ownerRecord17, unsigned char*, 0x46);
+                __asm__("":"=r"(rawWord2):"0"(rawWord2));
+                rawWord2 += 64;
+                goto storeOriginalTurnAndState20;
+            }
+        }
+        addressOrResult16 = (int)&originalFrame.sp40;
+        rawWord3 = Actor23_89178Field(privateRecord18, int*, 8);
+        rawWord2 = Actor23_89178Field(&Actor23_89178Data70328View1, int*, 0);
+        rawWord3 = Actor23_89178Field(rawWord3, int*, 4);
+        argumentWord4 = addressOrResult16;
+        rawWord2 -= rawWord3;
+        originalFrame.sp40 = rawWord2;
+        rawWord3 = Actor23_89178Field(privateRecord18, int*, 8);
+        rawWord2 = Actor23_89178Field(&Actor23_89178Data70328View1, int*, 4);
+        rawWord3 = Actor23_89178Field(rawWord3, int*, 8);
+        argumentWord5 = 0;
+        originalFrame.sp48 = 0;
+        rawWord2 -= rawWord3;
+        originalFrame.sp44 = rawWord2;
+        rawWord2 = Actor23_89178Call4EDE8View1(argumentWord4, argumentWord5);
+        argumentWord4 = addressOrResult16;
+        argumentWord6 = Actor23_89178Field(privateRecord18, short*, 6);
+        Actor23_89178Call4F08CView1(argumentWord4, rawWord2, argumentWord6);
+        rawWord2 = Actor23_89178Field(privateRecord18, int*, 8);
+        rawWord3 = originalFrame.sp40;
+        rawWord2 = Actor23_89178Field(rawWord2, int*, 4);
+        rawWord2 += rawWord3;
+        originalFrame.sp40 = rawWord2;
+        rawWord2 = Actor23_89178Field(privateRecord18, int*, 8);
+        rawWord3 = originalFrame.sp44;
+        rawWord2 = Actor23_89178Field(rawWord2, int*, 8);
+        argumentWord4 = (int)ownerRecord17+12;
+        rawWord2 += rawWord3;
+        originalFrame.sp44 = rawWord2;
+        originalFrame.sp48 = Actor23_89178Field(ownerRecord17, int*, 20);
+        if (Actor23_89178Call4F334View1(ownerRecord17 + 0xC, &originalFrame.sp40) >= 0x1401) {
+            rawWord2 = Actor23_89178Call4E880View1(originalFrame.sp40-Actor23_89178Field(ownerRecord17, int*, 12), originalFrame.sp44-Actor23_89178Field(ownerRecord17, int*, 16), 0);
+            argumentWord4 = (int)ownerRecord17;
+            argumentWord5 = 1;
+            __asm__(""::"r"(argumentWord4), "r"(argumentWord5):"$16");
+            addressOrResult16 = rawWord2;
+            Actor23_89178Call34F40View1(argumentWord4, argumentWord5);
+            if (Actor23_89178Call3585CView1(ownerRecord17, addressOrResult16, 4, 1, 0, 0) != 0) {
+                Actor23_89178Call35DDCView1(ownerRecord17, 0x50, 0, 0, 4);
+            }
+        }
+        else {
+            Actor23_89178Call34F40View1(ownerRecord17, 0);
+        }
+        if (Actor23_89178Data74414View1(Actor23_89178Field(privateRecord18, void **, 8), &Actor23_89178Data70328View1) != 0) {
+            Actor23_89178Field(privateRecord18, short *, 0) = 0x1E;
+            Actor23_89178Field(ownerRecord17, signed char *, 0x48) = 0;
+            Actor23_89178Call34F40View1(ownerRecord17, 0);
+            return;
+        }
+        break;
+    case 1:
+        rawWord2 = Actor23_89178Call4F334View1(ownerRecord17+12, &Actor23_89178Data70328View1);
+        rawWord2 = rawWord2 < 5120;
+        argumentWord4 = (int)ownerRecord17;
+        if (rawWord2){
+            argumentWord5 = 2;
+            rawWord2 = 15;
+            Actor23_89178Field(privateRecord18, short*, 2) = rawWord2;
+            rawWord2 = 2;
+            goto storeState2Or3AndCall;
+        }
+        temporaryWord2 = Actor23_89178Field(privateRecord18, void **, 8);
+        if ((temporaryWord2 != 0) && (Actor23_89178Data74414View1(temporaryWord2, &Actor23_89178Data70328View1) == 0)) {
+        produceState22Distance:
+            Actor23_89178Field(ownerRecord17, unsigned char *, 0x48) = 0x16U;
+            Actor23_89178Field(privateRecord18, short *, 6) = (short) Actor23_89178Field(&originalFrame.sp20, int*, Actor23_89178Call3636CView1(0, 2) * 4);
+            return;
+        }
+        if (Actor23_89178Field(privateRecord18, void **, 0xC) != 0) {
+            Actor23_89178Call55D24View1(ownerRecord17, 4);
+            retainedAddressOrBase19 = ownerRecord17 + 0x20;
+            originalFrame.sp70 = 0x5DC;
+            originalFrame.sp74 = 0;
+            originalFrame.sp78 = 0;
+            Actor23_89178Call4ED6CView1(retainedAddressOrBase19, &originalFrame.sp70, &originalFrame.sp70);
+            Actor23_89178Call4F194View1(&originalFrame.sp70, ownerRecord17 + 0xC, &originalFrame.sp70);
+            if (Actor23_89178Data74414View1(Actor23_89178Field(privateRecord18, void **, 0xC), &originalFrame.sp70) != 0) {
+                originalFrame.sp70 = 0;
+                originalFrame.sp74 = 0x100;
+                originalFrame.sp78 = 0;
+                Actor23_89178Call4ED6CView1(retainedAddressOrBase19, &originalFrame.sp70, &originalFrame.sp70);
+                rawWord2 = Actor23_89178Field(privateRecord18, int*, 12);
+                rawWord3 = Actor23_89178Field(ownerRecord17, int*, 12);
+                rawWord2 = Actor23_89178Field(rawWord2, int*, 4);
+                argumentWord4 = originalFrame.sp70;
+                rawWord2 -= rawWord3;
+                firstLowProduct7 = argumentWord4*rawWord2;
+                originalFrame.sp80 = rawWord2;
+                rawWord2 = Actor23_89178Field(privateRecord18, int*, 12);
+                rawWord3 = Actor23_89178Field(ownerRecord17, int*, 16);
+                rawWord2 = Actor23_89178Field(rawWord2, int*, 8);
+                argumentWord4 = originalFrame.sp74;
+                rawWord2 -= rawWord3;
+                secondLowProduct9 = argumentWord4*rawWord2;
+                originalFrame.sp84 = rawWord2;
+                argumentWord6 = 0;
+                argumentWord5 = Actor23_89178Field(ownerRecord17, int*, 16);
+                rawWord2 = Actor23_89178Field(privateRecord18, int*, 12);
+                argumentWord4 = Actor23_89178Field(ownerRecord17, int*, 12);
+                rawWord3 = Actor23_89178Field(rawWord2, int*, 4);
+                rawWord2 = Actor23_89178Field(rawWord2, int*, 8);
+                argumentWord4 = rawWord3-argumentWord4;
+                argumentWord5 = rawWord2-argumentWord5;
+                addressOrResult16 = firstLowProduct7+secondLowProduct9;
+                rawWord2 = Actor23_89178Call4E880View1(argumentWord4, argumentWord5, argumentWord6, firstLowProduct7);
+                if (addressOrResult16 >= 0) goto addOriginal192;
+                rawWord2 += 64;
+                goto storeOriginalTurnAndState20;
+            }
+        }
+        Actor23_89178Call4F178View1(&originalFrame.sp60, &Actor23_89178Data70328View1);
+        rawWord2 = Actor23_89178Call4E880View1(originalFrame.sp60 - Actor23_89178Field(ownerRecord17, int *, 0xC), originalFrame.sp64 - Actor23_89178Field(ownerRecord17, int *, 0x10), 0);
+        argumentWord4 = (int)ownerRecord17;
+        __asm__("":"=r"(argumentWord4):"0"(argumentWord4), "r"(rawWord2):"$16");
+        addressOrResult16 = rawWord2;
+        Actor23_89178Call3585CView1(argumentWord4, addressOrResult16, 4, 12, 0, 0);
+        if (Actor23_89178Call4F264View1(addressOrResult16, Actor23_89178Field(ownerRecord17, unsigned char *, 0x46)) < 0x14) {
+            Actor23_89178Call35DDCView1(ownerRecord17, Actor23_89178Field(&originalFrame.sp30, int*, Actor23_89178Data6C7C4View1 * 4), 0, 0, 4);
+            return;
+        }
+        break;
+    case 2:
+        rawWord2 = Actor23_89178Call55E84View1(ownerRecord17);
+        argumentWord4 = Actor23_89178Field(privateRecord18, int*, 8);
+        retainedResult20 = rawWord2;
+        if ((argumentWord4 != 0) && (Actor23_89178Data74414View1(argumentWord4, &Actor23_89178Data70328View1) == 0)) {
+            Actor23_89178Field(ownerRecord17, unsigned char *, 0x48) = 0x16U;
+            Actor23_89178Field(privateRecord18, short *, 6) = (short) Actor23_89178Field(&originalFrame.sp20, int*, Actor23_89178Call3636CView1(0, 2) * 4);
+            goto continueOriginalState2;
+        }
+        if (Actor23_89178Field(privateRecord18, void **, 0xC) != 0) {
+            Actor23_89178Call55D24View1(ownerRecord17, 4);
+            retainedAddressOrBase19 = ownerRecord17 + 0x20;
+            originalFrame.sp90 = 0x5DC;
+            originalFrame.sp94 = 0;
+            originalFrame.sp98 = 0;
+            Actor23_89178Call4ED6CView1(retainedAddressOrBase19, &originalFrame.sp90, &originalFrame.sp90);
+            Actor23_89178Call4F194View1(&originalFrame.sp90, ownerRecord17 + 0xC, &originalFrame.sp90);
+            if (Actor23_89178Data74414View1(Actor23_89178Field(privateRecord18, void **, 0xC), &originalFrame.sp90) != 0) {
+                originalFrame.sp90 = 0;
+                originalFrame.sp94 = 0x100;
+                originalFrame.sp98 = 0;
+                Actor23_89178Call4ED6CView1(retainedAddressOrBase19, &originalFrame.sp90, &originalFrame.sp90);
+                rawWord2 = Actor23_89178Field(privateRecord18, int*, 12);
+                rawWord3 = Actor23_89178Field(ownerRecord17, int*, 12);
+                rawWord2 = Actor23_89178Field(rawWord2, int*, 4);
+                argumentWord4 = originalFrame.sp90;
+                rawWord2 -= rawWord3;
+                argumentWord5 = argumentWord4*rawWord2;
+                originalFrame.spA0 = rawWord2;
+                rawWord2 = Actor23_89178Field(privateRecord18, int*, 12);
+                rawWord3 = Actor23_89178Field(ownerRecord17, int*, 16);
+                rawWord2 = Actor23_89178Field(rawWord2, int*, 8);
+                argumentWord4 = originalFrame.sp94;
+                rawWord2 -= rawWord3;
+                rawWord3 = argumentWord4*rawWord2;
+                originalFrame.spA4 = rawWord2;
+                rawWord2 = argumentWord5+rawWord3;
+                if (rawWord2 >= 0) goto loadOriginalOwnerByte;
+                rawWord2 = Actor23_89178Field(ownerRecord17, unsigned char*, 0x46);
+                rawWord2 += 64;
+                goto storeOriginalTurnAndState20;
+                loadOriginalOwnerByte:rawWord2 = Actor23_89178Field(ownerRecord17, unsigned char*, 0x46);
+                addOriginal192:rawWord2 += 192;
+                storeOriginalTurnAndState20:rawWord2 &= 255;
+                Actor23_89178Field(privateRecord18, short*, 4) = rawWord2;
+                rawWord2 = 20;
+                Actor23_89178Field(ownerRecord17, unsigned char*, 0x48) = rawWord2;
+                rawWord2 = 120;
+                Actor23_89178Field(privateRecord18, short*, 0) = rawWord2;
+                return;
+            }
+        }
+    continueOriginalState2:
+        rawWord2 = Actor23_89178Call4E880View1(Actor23_89178Field(&Actor23_89178Data70328View1, int *, 0) - Actor23_89178Field(ownerRecord17, int *, 0xC), Actor23_89178Field(&Actor23_89178Data70328View1, int *, 4) - Actor23_89178Field(ownerRecord17, int *, 0x10), 0);
+        argumentWord4 = (int)ownerRecord17;
+        __asm__("":"=r"(argumentWord4):"0"(argumentWord4), "r"(rawWord2):"$16");
+        addressOrResult16 = rawWord2;
+        Actor23_89178Call3585CView1(argumentWord4, addressOrResult16, 4, 12, 0, 0);
+        if (Actor23_89178Call4F264View1(addressOrResult16, Actor23_89178Field(ownerRecord17, unsigned char *, 0x46)) < 0x14) {
+            Actor23_89178Call35DDCView1(ownerRecord17, Actor23_89178Field(&originalFrame.sp30, int*, Actor23_89178Data6C7C4View1 * 4), 0, 0, 4);
+        }
+        Actor23_89178Call55D24View1(ownerRecord17, 5);
+        Actor23_89178Call55F14View1(ownerRecord17, 0, &originalFrame.sp80);
+        if ((Actor23_89178Call359A4View1(privateRecord18 + 2, 2) != 0) && (Actor23_89178Field(&Actor23_89178Data70328View1, int *, 0x50) != 9) && (Actor23_89178Field(&Actor23_89178Data70328View1, int *, 0x50) != 4) && (((unsigned int) (retainedResult20 - 5) < 4U) || (rawWord2 = retainedResult20 < 13, !rawWord2)) && (Actor23_89178Call4F334View1(&Actor23_89178Data70328View1, &originalFrame.sp80) < 0x190)) {
+            rawWord2 = Actor23_89178Field(&Actor23_89178Data70328View1, int*, 8);
+            rawWord3 = originalFrame.sp88;
+            rawWord2 -= rawWord3;
+            if (rawWord2 < 0) {
+                rawWord2 = -rawWord2;
+            }
+            if (rawWord2 < 0x400) {
+                argumentWord4 = (int)ownerRecord17;
+                rawWord2 = Actor23_89178Field(&Actor23_89178Data70328View1, int*, 0x24);
+                rawWord2 |= 1;
+                Actor23_89178Field(&Actor23_89178Data70328View1, int*, 0x24) = rawWord2;
+                argumentWord5 = 3;
+                rawWord2 = Actor23_89178Field(argumentWord4, unsigned char*, 0x46);
+                Actor23_89178Field(&Actor23_89178Data70328View1, int*, 0x298) = rawWord2;
+                rawWord2 = 3;
+                storeState2Or3AndCall:Actor23_89178Field(argumentWord4, unsigned char*, 0x48) = rawWord2;
+                Actor23_89178Call34F40View1(argumentWord4, argumentWord5);
+                return;
+            }
+            goto checkOriginalState1Range;
+        }
+    checkOriginalState1Range:
+        if (Actor23_89178Call4F334View1(ownerRecord17 + 0xC, &Actor23_89178Data70328View1) >= 0x1401) {
+            rawWord2 = 1;
+            storeOriginalState1AndCall:__asm__ __volatile__("":::"memory");
+            Actor23_89178Field(ownerRecord17, unsigned char*, 0x48) = rawWord2;
+            Actor23_89178Call34F40View1(ownerRecord17, 1);
+            return;
+        }
+        break;
+    case 3:
+        if (Actor23_89178Data6C770View1 != 0) {
+            Actor23_89178Field(ownerRecord17, unsigned char *, 0x48) = 0U;
+            Actor23_89178Call34F40View1(ownerRecord17, 0);
+            return;
+        }
+        break;
+    case 4:
+        rawWord3 = Actor23_89178Field(ownerRecord17, unsigned char *, 0x4F);
+        if (rawWord3 >= 0x21U) {
+            rawWord2 = rawWord3-12;
+            Actor23_89178Field(ownerRecord17, unsigned char*, 0x4F) = rawWord2;
+        }
+        if ((unsigned char) Actor23_89178Field(ownerRecord17, unsigned char *, 0x4F) < 0x20U) {
+            Actor23_89178Field(ownerRecord17, unsigned char *, 0x4F) = 0x20U;
+        }
+        if (Actor23_89178Data6C770View1 != 0) {
+            argumentWord4 = (int)ownerRecord17;
+            argumentWord5 = 0;
+            __asm__("":"=r"(argumentWord5):"0"(argumentWord5):"$2");
+            rawWord2 = 32;
+            Actor23_89178Field(argumentWord4, unsigned char*, 0x4F) = rawWord2;
+            Actor23_89178Field(argumentWord4, unsigned char*, 0x48) = 0;
+            Actor23_89178Call34F40View1(argumentWord4, argumentWord5);
+            return;
+        }
+        break;
+    case 5:
+        temporaryWord3 = Actor23_89178Field(ownerRecord17, void **, 0);
+        if (Actor23_89178Call35030View1(ownerRecord17, temporaryWord3 + 8, Actor23_89178Field(temporaryWord3, int *, 4), temporaryWord3, 8, 0x10, 0x200, 0x23) != 3) {
+            if (Actor23_89178Data6C770View1 != 0) {
+                Actor23_89178Field(ownerRecord17, unsigned char *, 0x48) = 6U;
+                Actor23_89178Call34F40View1(ownerRecord17, 6);
+                return;
+            }
+        }
+        else {
+            goto storeOriginalState7AndCall;
+        }
+        break;
+    case 6:
+        temporaryWord4 = Actor23_89178Field(ownerRecord17, void **, 0);
+        if (Actor23_89178Call35030View1(ownerRecord17, temporaryWord4 + 8, Actor23_89178Field(temporaryWord4, int *, 4), temporaryWord4, 8, 0x16, 0x200, 0x23) == 3) {
+        storeOriginalState7AndCall:
+            Actor23_89178Field(ownerRecord17, unsigned char *, 0x48) = 7U;
+            Actor23_89178Call34F40View1(ownerRecord17, 7);
+            return;
+        }
+        break;
+    case 7:
+        if (Actor23_89178Data6C770View1 != 0) {
+            Actor23_89178Call55D24View1(ownerRecord17, 4);
+            Actor23_89178Call369B8View1(ownerRecord17, 0x28);
+            Actor23_89178Call55B18View1(ownerRecord17);
+        }
+        break;
+    }
+}
+#undef Actor23_89178Field
+
 
 extern int D_8006C770;
 void func_80055B18(Moby*);
@@ -5523,7 +15698,665 @@ block_13:
 }
 
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/moby", func_level_23_8008A228);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0; original 8008A228.
+* Original assembly SHA256 c7cbafad67cfd03c1fb7776f675ccca0d78aa7574a1872885b086dbebd86b716.
+* AI generated; not human reviewed. Exactly 609 original instructions,
+* all actual branch/J/call targets and data symbols must match; no selectors.
+* The original D0hex frame saves S0..S7/FP/RA, with local SP18..A7 storage.
+* Original loops produce two 16*6 twelve-byte record sets and two 15*6
+* eight-byte index/byte sets. Physical units and consumer meanings remain open.
+* All 20 MULT sites initialize full signed64 C products before 13 LO and
+* seven HI captures. Producer/capture lifetimes are disjoint and retain the
+* original signed shifts, low32 truncation, /3,/6,/90 correction sequences,
+* byte widths, halfwords, loads, stores and ten explicit caller saves.
+* Whole metadata consumes initialized complete values or already-written
+* fields, or clobbers dead registers before fresh complete producers.
+* It emits no CPU instructions; no opcode asm, partial HI/LO, fixed FP,
+* undefined saved input or overlapping live fixed aliases is used.
+* Ordinary fifth literal one and inline fourth parent+12 retain the original
+* SW fifth word before JAL and fourth-argument ADDIU in its delay slot.
+* Original skip edges retain the initialized private pointer, reloading only
+* after the exact original state write or callback. Actual destinations count.
+* Existing stdutil.h/moby260.h/tracers.h contracts provide helper ABI views;
+* address-only field names do not claim semantic meanings. Rev1 raw1000 is
+* a structural search lead, not evidence that these Rev0 branches are Rev1.
+* Confidence requires native/linked words, actual transfers and full retail
+* EXE/every-overlay hashes. Helper/caller chains, physical units/fixed point,
+* cadence beyond this invocation, human review and synchronized retail
+* runtime verification remain open. Compiler/filter/flags are unchanged.
+*/
+#define Level23_8A228CompleteSignedProductLow(a,b) ({long long completeSignedProduct=(long long)(int)(a)*(long long)(int)(b);int productLowWord;__asm__("":"=l"(productLowWord):"x"(completeSignedProduct));productLowWord;})
+/* AI generated; not human reviewed. SCUS-94467 USA Rev0 original609
+* words: sibling4945. Rev1 raw1000 source-lock F6D91C229C57786B2D7125DB
+* 0625A6B406DC9C5BCE6D9267EB3FC72B89E28971 is a structural search lead.
+* Raw fields only; units, helper meanings, fixed point domains and cadence
+* unresolved. Uninstalled until strict native/linked words and hashes pass. */
+#define Level23_8A228Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+#define Level23_8A228Word(p,o) Level23_8A228Field(p,int*,o)
+#define Level23_8A228Pointer(p,o) Level23_8A228Field(p,unsigned char**,o)
+#define Level23_8A228Byte(p,o) Level23_8A228Field(p,unsigned char*,o)
+#define Level23_8A228SignedHalfword(p,o) Level23_8A228Field(p,short*,o)
+#define Level23_8A228UnsignedHalfword(p,o) Level23_8A228Field(p,unsigned short*,o)
+#define Level23_8A228KeepCompleteWord(v) __asm__("" : "=r"(v):"0"(v))
+extern short Level23_8A228Table65920[] __asm__("D_80065920"),Level23_8A228Table658A0[] __asm__("D_800658A0");
+extern unsigned char Level23_8A228Data70328View1[] __asm__("D_80070328");
+extern int Level23_8A228Data6C640View1 __asm__("D_8006C640");
+extern int (*Level23_8A228DataSpawnParticleView1)() __asm__("SpawnParticle");
+int Level23_8A228Call1C288View1() __asm__("func_8001C288");
+int Level23_8A228Call4F1C8View1() __asm__("func_8004F1C8");
+int Level23_8A228Call4E880View1(int,int,int) __asm__("func_8004E880");
+int Level23_8A228Call1BA30View1() __asm__("func_8001BA30");
+void Level23_8A228Call4F194View1(void*,void*,void*) __asm__("func_8004F194");
+void *Level23_8A228Call50B00View1(int,int,int,int,int) __asm__("func_80050B00");
+void Level23_8A228Call4F194View2(void*,void*,void*) __asm__("func_8004F194");
+void *Level23_8A228Call50B00View2(int,int,int,int,int) __asm__("func_80050B00");
+void Level23_8A228Call50B88View1(void*) __asm__("func_80050B88");
+void Level23_8A228Call50B88View2(void*) __asm__("func_80050B88");
+void Level23_8A228Call55B18View1(void*) __asm__("func_80055B18");
+void func_level_23_8008A228(unsigned char* ownerParameter){
+    struct {
+        volatile int vectorWork18[4];
+        int particleWords28[4];
+        unsigned char*volatile privateRecord38;
+        int pad3C;
+        unsigned char*volatile linkedOwner40;
+        int pad44;
+        volatile int signedHalfword48;
+        int pad4C;
+        unsigned char*volatile pointArray50;
+        int pad54;
+        unsigned char*volatile header58;
+        int pad5C;
+        unsigned char*volatile indexArray60;
+        int pad64;
+        short*volatile table658A0_68;
+        int pad6C;
+        short*volatile table65920_70;
+        int pad74;
+        int phaseWord78,pad7C;
+        int savedCallerWords80[10];
+    }
+    originalFrame;
+    register unsigned char* owner23 __asm__("$23")=ownerParameter;
+    register unsigned char* rawAddressOrWord25 __asm__("$25");
+    register unsigned char* twelveByteRecord16 __asm__("$16");
+    register int innerIndex17 __asm__("$17");
+    register int angleOrTableAddress18 __asm__("$18");
+    register int halfwordOrTableAddress19 __asm__("$19");
+    register int baseIndexOrHalfword20 __asm__("$20");
+    register int outerIndex21 __asm__("$21");
+    register int retainedOffset22 __asm__("$22");
+    int retainedOffset;
+    register int rawWord2 __asm__("$2"),rawWord3 __asm__("$3");
+    register int argumentWord4 __asm__("$4"),argumentWord5 __asm__("$5"),argumentWord6 __asm__("$6"),argumentWord7 __asm__("$7");
+    register int rawWord8 __asm__("$8"),rawWord9 __asm__("$9"),rawWord10 __asm__("$10"),rawWord11 __asm__("$11");
+    register unsigned char* headerAddress12 __asm__("$12");
+    register short* table658A0OrMagic13 __asm__("$13"),*table65920Address14 __asm__("$14");
+    register unsigned char* recordArrayAddress15 __asm__("$15");
+    register unsigned char* indexArrayAddress24 __asm__("$24");
+    long long completeSignedProduct;
+    int completeProductHigh,completeProductLow;
+    Level23_8A228KeepCompleteWord(owner23);
+    rawAddressOrWord25=Level23_8A228Pointer(owner23,0);
+    originalFrame.privateRecord38=rawAddressOrWord25;
+    originalFrame.linkedOwner40=Level23_8A228Pointer(Level23_8A228Pointer(rawAddressOrWord25,16),0);
+    rawWord3=Level23_8A228Byte(owner23,0x48);
+    Level23_8A228Byte(owner23,0x41)=0;
+    Level23_8A228Byte(owner23,0x4C)=0;
+    Level23_8A228Byte(owner23,0x4D)=0;
+    if(rawWord3==1){
+        twelveByteRecord16=owner23+12;
+        rawWord2=Level23_8A228UnsignedHalfword(rawAddressOrWord25,0)+200;
+        Level23_8A228UnsignedHalfword(rawAddressOrWord25,0)=rawWord2;
+        rawWord2=Level23_8A228Call1C288View1(twelveByteRecord16,(short)rawWord2,0);
+        if(rawWord2){
+            rawWord2=Level23_8A228Word(owner23,20);
+            Level23_8A228KeepCompleteWord(rawWord2);
+            rawWord3=Level23_8A228Word(Level23_8A228Data70328View1,8);
+            rawWord2-=rawWord3;
+            if(rawWord2<0)rawWord2=-rawWord2;
+            if(rawWord2<512){
+                Level23_8A228Word(Level23_8A228Data70328View1,0x24)|=7;
+                Level23_8A228Call4F1C8View1(originalFrame.vectorWork18,Level23_8A228Data70328View1,twelveByteRecord16);
+                Level23_8A228Word(Level23_8A228Data70328View1,0x298)=Level23_8A228Call4E880View1(originalFrame.vectorWork18[0],originalFrame.vectorWork18[1],0);
+            }
+        }
+        rawAddressOrWord25=originalFrame.privateRecord38;
+        Level23_8A228Call1BA30View1(owner23+12,Level23_8A228SignedHalfword(rawAddressOrWord25,0)+200,1,0,0x10000,owner23);
+        rawAddressOrWord25=originalFrame.privateRecord38;
+        if(Level23_8A228SignedHalfword(rawAddressOrWord25,0)<=3072)goto Level23_8A228UseHeldPrivateRecord;
+        Level23_8A228SignedHalfword(rawAddressOrWord25,0)=3072;
+        Level23_8A228Byte(owner23,0x48)=2;
+    }
+    rawAddressOrWord25=originalFrame.privateRecord38;
+    Level23_8A228UseHeldPrivateRecord:originalFrame.phaseWord78=0;
+    originalFrame.pointArray50=({ rawAddressOrWord25=Level23_8A228Pointer(rawAddressOrWord25,4); Level23_8A228KeepCompleteWord(rawAddressOrWord25); rawAddressOrWord25; });
+    rawAddressOrWord25=originalFrame.privateRecord38;
+    originalFrame.signedHalfword48=({ rawAddressOrWord25=(unsigned char *)(int)Level23_8A228SignedHalfword(rawAddressOrWord25,0); Level23_8A228KeepCompleteWord(rawAddressOrWord25); (int)rawAddressOrWord25; });
+    rawAddressOrWord25=originalFrame.pointArray50;
+    outerIndex21=0;
+    originalFrame.header58=rawAddressOrWord25+0x43C;
+    rawAddressOrWord25=originalFrame.pointArray50;
+    baseIndexOrHalfword20=0;
+    originalFrame.indexArray60=rawAddressOrWord25+0x47C;
+    do{
+        argumentWord4=Level23_8A228Byte(owner23,0x46);
+        Level23_8A228KeepCompleteWord(argumentWord4);
+        rawAddressOrWord25=(unsigned char*)Level23_8A228Field(&originalFrame.phaseWord78,volatile int*,0);
+        argumentWord4+=(int)rawAddressOrWord25;
+        rawWord3=(argumentWord4&255)<<1;
+        __asm__ volatile(""::"r"(rawWord3):"$25");
+        rawAddressOrWord25=(unsigned char*)Level23_8A228Table65920;
+        Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+        rawWord2=rawWord3+(int)rawAddressOrWord25;
+        Level23_8A228KeepCompleteWord(rawWord2);
+        rawWord2=*(short*)rawWord2;
+        rawAddressOrWord25=(unsigned char*)originalFrame.signedHalfword48;
+        Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+        completeSignedProduct=(long long)rawWord2*(long long)(int)rawAddressOrWord25;
+        __asm__ volatile(""::"x"(completeSignedProduct));
+        innerIndex17=0;
+        angleOrTableAddress18=0;
+        rawAddressOrWord25=(unsigned char*)Level23_8A228Table658A0;
+        Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+        rawWord3=rawWord3+(int)rawAddressOrWord25;
+        Level23_8A228KeepCompleteWord(rawWord3);
+        rawWord2=*(short*)rawWord3;
+        __asm__("":"=l"(completeProductLow):"x"(completeSignedProduct),"r"(rawWord2));
+        argumentWord5=completeProductLow;
+        Level23_8A228KeepCompleteWord(argumentWord5);
+        rawAddressOrWord25=(unsigned char*)originalFrame.signedHalfword48;
+        Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+        __asm__("":"=r"(rawWord2):"0"(rawWord2),"r"(argumentWord5));
+        argumentWord4+=64;
+        completeSignedProduct=(long long)rawWord2*(long long)(int)rawAddressOrWord25;
+        __asm__ volatile(""::"x"(completeSignedProduct));
+        argumentWord4&=255;
+        argumentWord4<<=1;
+        retainedOffset=argumentWord5>>12;
+        rawAddressOrWord25=originalFrame.privateRecord38;
+        halfwordOrTableAddress19=Level23_8A228SignedHalfword(rawAddressOrWord25,2);
+        rawAddressOrWord25=(unsigned char*)Level23_8A228Table658A0;
+        Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+        rawAddressOrWord25=(unsigned char*)(argumentWord4+(int)rawAddressOrWord25);
+        originalFrame.table658A0_68=(short*)rawAddressOrWord25;
+        rawAddressOrWord25=(unsigned char*)Level23_8A228Table65920;
+        Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+        rawAddressOrWord25=(unsigned char*)(argumentWord4+(int)rawAddressOrWord25);
+        originalFrame.table65920_70=(short*)rawAddressOrWord25;
+        __asm__("":"=l"(completeProductLow):"x"(completeSignedProduct),"m"(originalFrame.table65920_70));
+        rawWord3=completeProductLow;
+        Level23_8A228KeepCompleteWord(rawWord3);
+        retainedOffset22=rawWord3>>12;
+        do{
+            rawWord3=(angleOrTableAddress18&255)<<1;
+            rawAddressOrWord25=(unsigned char*)Level23_8A228Table65920;
+            Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+            rawWord2=rawWord3+(int)rawAddressOrWord25;
+            originalFrame.vectorWork18[0]=0;
+            __asm__("":"=r"(rawWord2):"0"(rawWord2),"m"(originalFrame.vectorWork18[0]));
+            rawWord2=*(short*)rawWord2;
+            rawAddressOrWord25=(unsigned char*)Level23_8A228CompleteSignedProductLow(rawWord2,halfwordOrTableAddress19);
+            Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+            argumentWord4=(int)rawAddressOrWord25>>12;
+            originalFrame.vectorWork18[1]=argumentWord4;
+            rawAddressOrWord25=(unsigned char*)Level23_8A228Table658A0;
+            Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+            rawWord3=rawWord3+(int)rawAddressOrWord25;
+            Level23_8A228KeepCompleteWord(rawWord3);
+            rawWord2=*(short*)rawWord3;
+            rawAddressOrWord25=(unsigned char*)Level23_8A228CompleteSignedProductLow(rawWord2,halfwordOrTableAddress19);
+            Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+            rawWord2=(int)rawAddressOrWord25>>12;
+            rawAddressOrWord25=(unsigned char*)originalFrame.table658A0_68;
+            originalFrame.vectorWork18[2]=rawWord2;
+            rawWord2=*(short*)rawAddressOrWord25;
+            completeSignedProduct=(long long)argumentWord4*(long long)rawWord2;
+            __asm__ volatile(""::"x"(completeSignedProduct));
+            rawWord3=baseIndexOrHalfword20+innerIndex17;
+            rawAddressOrWord25=originalFrame.pointArray50;
+            __asm__ volatile("":"=r"(rawWord3):"0"(rawWord3),"m"(originalFrame.pointArray50));
+            rawWord2=rawWord3*12;
+            Level23_8A228KeepCompleteWord(rawWord2);
+            twelveByteRecord16=rawAddressOrWord25+rawWord2;
+            Level23_8A228KeepCompleteWord(twelveByteRecord16);
+            __asm__("":"=l"(completeProductLow):"x"(completeSignedProduct),"r"(twelveByteRecord16));
+            rawAddressOrWord25=(unsigned char*)completeProductLow;
+            Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+            rawWord2=-(int)rawAddressOrWord25;
+            rawWord2>>=12;
+            Level23_8A228Word(twelveByteRecord16,0)=rawWord2;
+            rawAddressOrWord25=(unsigned char*)originalFrame.table65920_70;
+            rawWord2=originalFrame.vectorWork18[1];
+            rawWord3=*(short*)rawAddressOrWord25;
+            completeSignedProduct=(long long)rawWord2*(long long)rawWord3;
+            __asm__ volatile(""::"x"(completeSignedProduct));
+            argumentWord5=(int)owner23+12;
+            argumentWord4=(int)twelveByteRecord16;
+            __asm__("":"=l"(completeProductLow):"x"(completeSignedProduct),"r"(argumentWord4),"r"(argumentWord5));
+            rawAddressOrWord25=(unsigned char*)completeProductLow;
+            Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+            rawWord2=(int)rawAddressOrWord25>>12;
+            Level23_8A228Word(twelveByteRecord16,4)=rawWord2;
+            rawWord2=originalFrame.vectorWork18[2];
+            argumentWord6=(int)twelveByteRecord16;
+            Level23_8A228Word(twelveByteRecord16,8)=rawWord2;
+            Level23_8A228Call4F194View1((void*)argumentWord4,(void*)argumentWord5,(void*)argumentWord6);
+            rawWord2=Level23_8A228Word(twelveByteRecord16,0);
+            rawWord3=Level23_8A228Word(twelveByteRecord16,4);
+            rawWord2+=retainedOffset;
+            rawWord3+=retainedOffset22;
+            Level23_8A228Word(twelveByteRecord16,0)=rawWord2;
+            Level23_8A228Word(twelveByteRecord16,4)=rawWord3;
+            if(Level23_8A228Byte(owner23,0x48)==1&&!innerIndex17){
+                argumentWord4=1;
+                Level23_8A228KeepCompleteWord(argumentWord4);
+                Level23_8A228KeepCompleteWord(innerIndex17);
+                argumentWord5=60;
+                __asm__ volatile(""::"r"(argumentWord5):"$6");
+                argumentWord6=(int)twelveByteRecord16;
+                argumentWord7=(int)originalFrame.particleWords28;
+                __asm__ volatile(""::"r"(argumentWord6),"r"(argumentWord7):"$3");
+                rawWord3=(int)Level23_8A228DataSpawnParticleView1;
+                __asm__ volatile(""::"r"(rawWord3):"$2");
+                rawWord2=2;
+                originalFrame.particleWords28[0]=0;
+                originalFrame.particleWords28[1]=0;
+                originalFrame.particleWords28[2]=rawWord2;
+                rawWord3=((int(*)())rawWord3)(argumentWord4,argumentWord5,argumentWord6,argumentWord7);
+                Level23_8A228KeepCompleteWord(rawWord3);
+                if(rawWord3){
+                    rawWord2=40;
+                    Level23_8A228Byte(rawWord3,10)=rawWord2;
+                }
+            }
+            innerIndex17++;
+            angleOrTableAddress18+=42;
+        }
+        while(innerIndex17<6);
+        baseIndexOrHalfword20+=6;
+        outerIndex21++;
+        rawAddressOrWord25=(unsigned char*)Level23_8A228Field(&originalFrame.phaseWord78,volatile int*,0);
+        rawAddressOrWord25+=17;
+        originalFrame.phaseWord78=(int)rawAddressOrWord25;
+    }
+    while(outerIndex21<16);
+    outerIndex21=0;
+    rawWord9=0x2AAAAAAB;
+    Level23_8A228KeepCompleteWord(rawWord9);
+    rawWord8=(int)0xB60B60B7;
+    Level23_8A228KeepCompleteWord(rawWord8);
+    argumentWord7=0;
+    rawAddressOrWord25=originalFrame.pointArray50;
+    Level23_8A228Word(rawAddressOrWord25,0x438)=-1;
+    rawAddressOrWord25=originalFrame.header58;
+    Level23_8A228Byte(rawAddressOrWord25,0)=25;
+    Level23_8A228Byte(rawAddressOrWord25,1)=25;
+    Level23_8A228Byte(rawAddressOrWord25,2)=50;
+    do{
+        innerIndex17=0;
+        do{
+            rawWord2=innerIndex17+1;
+            completeSignedProduct=(long long)rawWord2*(long long)rawWord9;
+            __asm__ volatile(""::"x"(completeSignedProduct));
+            rawWord3=argumentWord7+innerIndex17;
+            argumentWord6=innerIndex17+6;
+            innerIndex17=rawWord2;
+            argumentWord5=rawWord3*8;
+            argumentWord6=argumentWord7+argumentWord6;
+            rawAddressOrWord25=originalFrame.indexArray60;
+            rawWord2=innerIndex17>>31;
+            argumentWord5=(int)rawAddressOrWord25+argumentWord5;
+            __asm__("":"=h"(completeProductHigh):"x"(completeSignedProduct),"r"(argumentWord5));
+            rawWord10=completeProductHigh;
+            Level23_8A228KeepCompleteWord(rawWord10);
+            Level23_8A228Byte(argumentWord5,0)=rawWord3;
+            Level23_8A228Byte(argumentWord5,4)=0;
+            __asm__("":"=r"(argumentWord6):"0"(argumentWord6),"r"(rawWord10),"m"(Level23_8A228Byte(argumentWord5,4)));
+            completeSignedProduct=(long long)argumentWord6*(long long)rawWord8;
+            __asm__ volatile(""::"x"(completeSignedProduct));
+            Level23_8A228Byte(argumentWord5,5)=0;
+            Level23_8A228Byte(argumentWord5,6)=0;
+            Level23_8A228Byte(argumentWord5,7)=0;
+            __asm__ volatile("":"=r"(rawWord2):"0"(rawWord2),"m"(Level23_8A228Byte(argumentWord5,5)),"m"(Level23_8A228Byte(argumentWord5,6)),"m"(Level23_8A228Byte(argumentWord5,7)));
+            rawWord2=rawWord10-rawWord2;
+            argumentWord4=rawWord2*6;
+            argumentWord4=innerIndex17-argumentWord4;
+            rawWord2=argumentWord7+argumentWord4;
+            argumentWord4+=6;
+            argumentWord4=argumentWord7+argumentWord4;
+            __asm__("":"=h"(completeProductHigh):"x"(completeSignedProduct),"r"(argumentWord4));
+            rawWord3=completeProductHigh;
+            Level23_8A228KeepCompleteWord(rawWord3);
+            Level23_8A228Byte(argumentWord5,1)=rawWord2;
+            rawWord2=rawWord3+argumentWord6;
+            __asm__("":"=r"(argumentWord4):"0"(argumentWord4),"r"(rawWord3));
+            completeSignedProduct=(long long)argumentWord4*(long long)rawWord8;
+            __asm__ volatile(""::"x"(completeSignedProduct));
+            rawWord2>>=6;
+            rawWord3=argumentWord6>>31;
+            rawWord2-=rawWord3;
+            rawWord2*=90;
+            argumentWord6-=rawWord2;
+            rawWord3=argumentWord4>>31;
+            Level23_8A228Byte(argumentWord5,2)=argumentWord6;
+            __asm__("":"=h"(completeProductHigh):"x"(completeSignedProduct),"m"(Level23_8A228Byte(argumentWord5,2)));
+            rawWord10=completeProductHigh;
+            Level23_8A228KeepCompleteWord(rawWord10);
+            rawWord2=rawWord10+argumentWord4;
+            rawWord2>>=6;
+            rawWord2-=rawWord3;
+            rawWord2*=90;
+            argumentWord4-=rawWord2;
+            Level23_8A228Byte(argumentWord5,3)=argumentWord4;
+        }
+        while(innerIndex17<6);
+        outerIndex21++;
+        argumentWord7+=6;
+    }
+    while(outerIndex21<15);
+    Level23_8A228Word(rawAddressOrWord25,0x2D0)=-1;
+    rawAddressOrWord25=originalFrame.privateRecord38;
+    if(!Level23_8A228Word(rawAddressOrWord25,8)){
+        argumentWord4=(int)originalFrame.pointArray50;
+        argumentWord5=(int)originalFrame.header58;
+        argumentWord6=(int)originalFrame.indexArray60;
+        rawAddressOrWord25=originalFrame.linkedOwner40;
+        rawWord2=(int)Level23_8A228Call50B00View1(argumentWord4,argumentWord5,argumentWord6,(int)rawAddressOrWord25+12,1);
+        rawAddressOrWord25=originalFrame.privateRecord38;
+        Level23_8A228Word(rawAddressOrWord25,8)=rawWord2;
+    }
+    outerIndex21=0;
+    table658A0OrMagic13=Level23_8A228Table658A0;
+    table65920Address14=Level23_8A228Table65920;
+    rawAddressOrWord25=originalFrame.privateRecord38;
+    retainedOffset22=0;
+    rawWord2=Level23_8A228Word(rawAddressOrWord25,4);
+    rawWord11=0;
+    recordArrayAddress15=(unsigned char*)rawWord2+0x758;
+    headerAddress12=(unsigned char*)rawWord2+0xB94;
+    indexArrayAddress24=(unsigned char*)rawWord2+0xBD4;
+    Level23_8A228KeepCompleteWord(indexArrayAddress24);
+    do{
+        rawWord3=Level23_8A228Data6C640View1;
+        rawAddressOrWord25=originalFrame.privateRecord38;
+        rawWord2=rawWord3*20;
+        rawWord2=rawWord11+rawWord2;
+        rawWord2=(rawWord2&255)<<1;
+        rawWord2+=(int)table658A0OrMagic13;
+        rawWord3=*(short*)rawWord2;
+        rawWord2=Level23_8A228SignedHalfword(rawAddressOrWord25,0x16);
+        completeSignedProduct=(long long)rawWord3*(long long)rawWord2;
+        __asm__ volatile(""::"x"(completeSignedProduct));
+        argumentWord4=Level23_8A228Byte(owner23,0x46);
+        Level23_8A228KeepCompleteWord(argumentWord4);
+        rawAddressOrWord25=(unsigned char*)originalFrame.signedHalfword48;
+        Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+        rawWord2=outerIndex21*17;
+        Level23_8A228KeepCompleteWord(rawWord2);
+        argumentWord4+=rawWord2;
+        rawWord3=(argumentWord4&255)<<1;
+        rawWord2=rawWord3+(int)table658A0OrMagic13;
+        Level23_8A228KeepCompleteWord(rawWord2);
+        __asm__("":"=l"(completeProductLow):"x"(completeSignedProduct),"r"(rawWord2));
+        argumentWord6=completeProductLow;
+        Level23_8A228KeepCompleteWord(argumentWord6);
+        rawWord2=*(short*)rawWord2;
+        __asm__("":"=r"(rawWord2):"0"(rawWord2),"r"(argumentWord6));
+        completeSignedProduct=(long long)rawWord2*(long long)(int)rawAddressOrWord25;
+        rawWord3=rawWord3+(int)table65920Address14;
+        Level23_8A228KeepCompleteWord(rawWord3);
+        __asm__("":"=l"(completeProductLow):"x"(completeSignedProduct),"r"(rawWord3));
+        argumentWord5=completeProductLow;
+        Level23_8A228KeepCompleteWord(argumentWord5);
+        rawWord2=*(short*)rawWord3;
+        __asm__ volatile("":::"$17","memory");
+        innerIndex17=0;
+        __asm__("":"=r"(rawWord2):"0"(rawWord2),"r"(argumentWord5));
+        completeSignedProduct=(long long)rawWord2*(long long)(int)rawAddressOrWord25;
+        __asm__ volatile(""::"x"(completeSignedProduct));
+        halfwordOrTableAddress19=(int)table658A0OrMagic13;
+        angleOrTableAddress18=(int)table65920Address14;
+        argumentWord4=((argumentWord4+64)&255)<<1;
+        rawWord10=argumentWord4+(int)table658A0OrMagic13;
+        rawWord9=argumentWord4+(int)table65920Address14;
+        rawWord8=argumentWord6>>12;
+        rawAddressOrWord25=originalFrame.privateRecord38;
+        argumentWord7=argumentWord5>>12;
+        baseIndexOrHalfword20=Level23_8A228SignedHalfword(rawAddressOrWord25,0x14);
+        __asm__("":"=l"(completeProductLow):"x"(completeSignedProduct),"r"(baseIndexOrHalfword20));
+        rawWord3=completeProductLow;
+        Level23_8A228KeepCompleteWord(rawWord3);
+        retainedOffset=rawWord3>>12;
+        do{
+            originalFrame.vectorWork18[0]=0;
+            rawWord2=*(short*)angleOrTableAddress18;
+            rawAddressOrWord25=(unsigned char*)Level23_8A228CompleteSignedProductLow(rawWord2,baseIndexOrHalfword20);
+            Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+            rawWord3=(int)rawAddressOrWord25>>12;
+            originalFrame.vectorWork18[1]=rawWord3;
+            rawWord2=*(short*)halfwordOrTableAddress19;
+            rawAddressOrWord25=(unsigned char*)Level23_8A228CompleteSignedProductLow(rawWord2,baseIndexOrHalfword20);
+            Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+            rawWord2=(int)rawAddressOrWord25>>12;
+            originalFrame.vectorWork18[2]=rawWord2;
+            rawWord2=*(short*)rawWord10;
+            completeSignedProduct=(long long)rawWord3*(long long)rawWord2;
+            __asm__ volatile(""::"x"(completeSignedProduct));
+            rawWord2=retainedOffset22+innerIndex17;
+            Level23_8A228KeepCompleteWord(rawWord2);
+            twelveByteRecord16=recordArrayAddress15+rawWord2*12;
+            Level23_8A228KeepCompleteWord(twelveByteRecord16);
+            __asm__("":"=l"(completeProductLow):"x"(completeSignedProduct),"r"(twelveByteRecord16));
+            rawAddressOrWord25=(unsigned char*)completeProductLow;
+            Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+            rawWord2=-(int)rawAddressOrWord25;
+            rawWord2>>=12;
+            Level23_8A228Word(twelveByteRecord16,0)=rawWord2;
+            rawWord3=*(short*)rawWord9;
+            rawWord2=originalFrame.vectorWork18[1];
+            completeSignedProduct=(long long)rawWord2*(long long)rawWord3;
+            __asm__ volatile(""::"x"(completeSignedProduct));
+            __asm__ volatile(""::"x"(completeSignedProduct):"$5");
+            argumentWord5=(int)owner23+12;
+            __asm__ volatile(""::"r"(argumentWord5));
+            angleOrTableAddress18+=84;
+            argumentWord4=(int)twelveByteRecord16;
+            argumentWord6=(int)twelveByteRecord16;
+            __asm__("":"=l"(completeProductLow):"x"(completeSignedProduct),"r"(argumentWord4),"r"(argumentWord6),"r"(angleOrTableAddress18));
+            rawAddressOrWord25=(unsigned char*)completeProductLow;
+            Level23_8A228KeepCompleteWord(rawAddressOrWord25);
+            rawWord2=(int)rawAddressOrWord25>>12;
+            Level23_8A228Word(twelveByteRecord16,4)=rawWord2;
+            rawWord2=originalFrame.vectorWork18[2];
+            __asm__ volatile("":"=r"(innerIndex17):"0"(innerIndex17),"m"(originalFrame.vectorWork18[2]));
+            innerIndex17++;
+            __asm__ volatile(""::"r"(innerIndex17));
+            Level23_8A228Word(twelveByteRecord16,8)=rawWord2;
+            originalFrame.savedCallerWords80[0]=argumentWord7;
+            originalFrame.savedCallerWords80[1]=rawWord8;
+            originalFrame.savedCallerWords80[2]=rawWord9;
+            originalFrame.savedCallerWords80[3]=rawWord10;
+            originalFrame.savedCallerWords80[4]=rawWord11;
+            originalFrame.savedCallerWords80[5]=(int)headerAddress12;
+            originalFrame.savedCallerWords80[6]=(int)table658A0OrMagic13;
+            originalFrame.savedCallerWords80[7]=(int)table65920Address14;
+            originalFrame.savedCallerWords80[8]=(int)recordArrayAddress15;
+            originalFrame.savedCallerWords80[9]=(int)indexArrayAddress24;
+            Level23_8A228Call4F194View2((void*)argumentWord4,(void*)argumentWord5,(void*)argumentWord6);
+            rawWord2=Level23_8A228Word(twelveByteRecord16,0);
+            rawWord2+=retainedOffset;
+            Level23_8A228Word(twelveByteRecord16,0)=rawWord2;
+            rawWord2=Level23_8A228Word(twelveByteRecord16,4);
+            argumentWord7=Level23_8A228Field(&originalFrame.savedCallerWords80[0],volatile int*,0);
+            rawWord3=Level23_8A228Word(twelveByteRecord16,8);
+            rawWord2+=argumentWord7;
+            Level23_8A228Word(twelveByteRecord16,4)=rawWord2;
+            rawWord8=Level23_8A228Field(&originalFrame.savedCallerWords80[1],volatile int*,0);
+            __asm__ volatile(""::"m"(originalFrame.savedCallerWords80[1]):"$2");
+            rawWord2=innerIndex17<6;
+            Level23_8A228KeepCompleteWord(rawWord2);
+            rawWord3+=rawWord8;
+            Level23_8A228Word(twelveByteRecord16,8)=rawWord3;
+            rawWord9=Level23_8A228Field(&originalFrame.savedCallerWords80[2],volatile int*,0);
+            rawWord10=Level23_8A228Field(&originalFrame.savedCallerWords80[3],volatile int*,0);
+            rawWord11=Level23_8A228Field(&originalFrame.savedCallerWords80[4],volatile int*,0);
+            headerAddress12=(unsigned char*)Level23_8A228Field(&originalFrame.savedCallerWords80[5],volatile int*,0);
+            table658A0OrMagic13=(short*)Level23_8A228Field(&originalFrame.savedCallerWords80[6],volatile int*,0);
+            table65920Address14=(short*)Level23_8A228Field(&originalFrame.savedCallerWords80[7],volatile int*,0);
+            recordArrayAddress15=(unsigned char*)Level23_8A228Field(&originalFrame.savedCallerWords80[8],volatile int*,0);
+            indexArrayAddress24=(unsigned char*)Level23_8A228Field(&originalFrame.savedCallerWords80[9],volatile int*,0);
+            __asm__("":"=r"(halfwordOrTableAddress19):"0"(halfwordOrTableAddress19),"r"(indexArrayAddress24));
+            halfwordOrTableAddress19+=84;
+        }
+        while(rawWord2);
+        __asm__ volatile("":::"$2");
+        retainedOffset22+=6;
+        outerIndex21++;
+        rawWord2=outerIndex21<16;
+        Level23_8A228KeepCompleteWord(rawWord2);
+        rawWord11+=80;
+    }
+    while(rawWord2);
+    __asm__ volatile("":::"$2");
+    outerIndex21=0;
+    table658A0OrMagic13=(short*)(int)0xB60B60B7;
+    Level23_8A228KeepCompleteWord(table658A0OrMagic13);
+    rawWord11=2;
+    rawWord10=0;
+    Level23_8A228Word(recordArrayAddress15,0x438)=-1;
+    Level23_8A228Byte(headerAddress12,0)=150;
+    Level23_8A228Byte(headerAddress12,1)=150;
+    Level23_8A228Byte(headerAddress12,2)=150;
+    Level23_8A228Byte(headerAddress12,4)=70;
+    Level23_8A228Byte(headerAddress12,5)=70;
+    Level23_8A228Byte(headerAddress12,6)=70;
+    Level23_8A228Byte(headerAddress12,8)=20;
+    Level23_8A228Byte(headerAddress12,9)=20;
+    Level23_8A228Byte(headerAddress12,10)=20;
+    do{
+        innerIndex17=0;
+        do{
+            rawWord2=0x55555556;
+            completeSignedProduct=(long long)innerIndex17*(long long)rawWord2;
+            __asm__ volatile(""::"x"(completeSignedProduct));
+            rawWord2=0x2AAA0000;
+            __asm__("":"=h"(completeProductHigh):"x"(completeSignedProduct));
+            rawWord8=completeProductHigh;
+            Level23_8A228KeepCompleteWord(rawWord8);
+            Level23_8A228KeepCompleteWord(rawWord2);
+            rawWord2|=0xAAAB;
+            argumentWord4=innerIndex17+1;
+            __asm__("":"=r"(argumentWord4):"0"(argumentWord4),"r"(rawWord8));
+            completeSignedProduct=(long long)argumentWord4*(long long)rawWord2;
+            __asm__ volatile(""::"x"(completeSignedProduct));
+            rawWord3=rawWord10+innerIndex17;
+            argumentWord5=innerIndex17+6;
+            argumentWord5=rawWord10+argumentWord5;
+            rawWord2=rawWord3*8;
+            argumentWord6=(int)indexArrayAddress24+rawWord2;
+            rawWord2=innerIndex17>>31;
+            argumentWord7=rawWord8-rawWord2;
+            __asm__("":"=h"(completeProductHigh):"x"(completeSignedProduct),"r"(argumentWord7));
+            rawWord9=completeProductHigh;
+            Level23_8A228KeepCompleteWord(rawWord9);
+            rawWord2=argumentWord7*3;
+            __asm__("":"=r"(argumentWord5):"0"(argumentWord5),"r"(rawWord9));
+            completeSignedProduct=(long long)argumentWord5*(long long)(int)table658A0OrMagic13;
+            __asm__ volatile(""::"x"(completeSignedProduct));
+            argumentWord7=innerIndex17-rawWord2;
+            Level23_8A228Byte(argumentWord6,0)=rawWord3;
+            rawWord3=argumentWord4>>31;
+            rawWord3=rawWord9-rawWord3;
+            rawWord2=rawWord3*6;
+            argumentWord4-=rawWord2;
+            rawWord2=rawWord10+argumentWord4;
+            argumentWord4+=6;
+            argumentWord4=rawWord10+argumentWord4;
+            __asm__("":"=h"(completeProductHigh):"x"(completeSignedProduct),"r"(argumentWord4));
+            rawWord8=completeProductHigh;
+            Level23_8A228KeepCompleteWord(rawWord8);
+            rawWord3=argumentWord5>>31;
+            Level23_8A228Byte(argumentWord6,1)=rawWord2;
+            __asm__("":"=r"(argumentWord4):"0"(argumentWord4),"r"(rawWord8));
+            completeSignedProduct=(long long)argumentWord4*(long long)(int)table658A0OrMagic13;
+            __asm__ volatile(""::"x"(completeSignedProduct));
+            rawWord2=rawWord8+argumentWord5;
+            rawWord2>>=6;
+            rawWord2-=rawWord3;
+            rawWord2*=90;
+            argumentWord5-=rawWord2;
+            rawWord3=argumentWord4>>31;
+            Level23_8A228Byte(argumentWord6,2)=argumentWord5;
+            __asm__("":"=h"(completeProductHigh):"x"(completeSignedProduct),"m"(Level23_8A228Byte(argumentWord6,2)));
+            rawWord9=completeProductHigh;
+            Level23_8A228KeepCompleteWord(rawWord9);
+            rawWord2=rawWord9+argumentWord4;
+            rawWord2>>=6;
+            rawWord2-=rawWord3;
+            rawWord2*=90;
+            argumentWord4-=rawWord2;
+            Level23_8A228Byte(argumentWord6,3)=argumentWord4;
+            if(!argumentWord7){
+                Level23_8A228Byte(argumentWord6,4)=0;
+                Level23_8A228Byte(argumentWord6,5)=rawWord11;
+                Level23_8A228Byte(argumentWord6,6)=0;
+                Level23_8A228Byte(argumentWord6,7)=rawWord11;
+            }
+            else if(argumentWord7==1){
+                Level23_8A228Byte(argumentWord6,4)=rawWord11;
+                Level23_8A228Byte(argumentWord6,5)=rawWord11;
+                Level23_8A228Byte(argumentWord6,6)=rawWord11;
+                Level23_8A228Byte(argumentWord6,7)=rawWord11;
+            }
+            else if(argumentWord7==rawWord11){
+                Level23_8A228Byte(argumentWord6,4)=rawWord11;
+                Level23_8A228Byte(argumentWord6,5)=0;
+                Level23_8A228Byte(argumentWord6,6)=rawWord11;
+                Level23_8A228Byte(argumentWord6,7)=0;
+            }
+            innerIndex17++;
+        }
+        while(innerIndex17<6);
+        outerIndex21++;
+        rawWord10+=6;
+    }
+    while(outerIndex21<15);
+    Level23_8A228Word(indexArrayAddress24,0x2D0)=-1;
+    rawAddressOrWord25=originalFrame.privateRecord38;
+    if(!Level23_8A228Word(rawAddressOrWord25,12)){
+        argumentWord4=(int)recordArrayAddress15;
+        argumentWord5=(int)headerAddress12;
+        argumentWord6=(int)indexArrayAddress24;
+        rawAddressOrWord25=originalFrame.linkedOwner40;
+        rawWord2=(int)Level23_8A228Call50B00View2(argumentWord4,argumentWord5,argumentWord6,(int)rawAddressOrWord25+12,1);
+        rawAddressOrWord25=originalFrame.privateRecord38;
+        Level23_8A228Word(rawAddressOrWord25,12)=rawWord2;
+    }
+    if(Level23_8A228Byte(owner23,0x48)==2){
+        rawAddressOrWord25=originalFrame.privateRecord38;
+        argumentWord4=Level23_8A228Word(rawAddressOrWord25,8);
+        if(argumentWord4){
+            Level23_8A228Call50B88View1((void*)argumentWord4);
+            rawAddressOrWord25=originalFrame.privateRecord38;
+        }
+        argumentWord4=Level23_8A228Word(rawAddressOrWord25,12);
+        if(argumentWord4)Level23_8A228Call50B88View2((void*)argumentWord4);
+        Level23_8A228Call55B18View1(owner23);
+    }
+}
+#undef Level23_8A228Field
+#undef Level23_8A228Word
+#undef Level23_8A228Pointer
+#undef Level23_8A228Byte
+#undef Level23_8A228SignedHalfword
+#undef Level23_8A228UnsignedHalfword
+#undef Level23_8A228KeepCompleteWord
+#undef Level23_8A228CompleteSignedProductLow
+
 
 typedef struct { int linkIndex, selector, spacingY, spacingZ; } DecodedSixSpawnTag;
 extern int D_8006C578, D_8006C574;
@@ -5604,4 +16437,593 @@ void func_level_23_8008AD4C(Moby* moby) {
     if(tag->timer)func_800359A4(&tag->timer, 4);
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/moby", func_level_23_8008AE94);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated;
+ not human reviewed. Original-instruction-derived C. Original source asm/nonmatchings/overlays/level_23/moby/func_level_23_8008AE94.s SHA256 bf58ffac00493b7b1e9f1829ee14b7a4149e0e4ddefd40bbbbcefc2043523140. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
+#define M2C_FIELD(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+
+
+int SharedRecord583_func_8001BA30() __asm__("func_8001BA30");
+ /* extern */
+int SharedRecord583_func_8001C288() __asm__("func_8001C288");
+    /* extern */
+int SharedRecord583_func_8004ED6C() __asm__("func_8004ED6C");
+ /* extern */
+signed char *SharedRecord583_func_80050B00() __asm__("func_80050B00");
+ /* extern */
+int SharedRecord583_func_80050B88() __asm__("func_80050B88");
+                        /* extern */
+int SharedRecord583_func_80055B18() __asm__("func_80055B18");
+                      /* extern */
+int SharedRecord583_func_80055D24() __asm__("func_80055D24");
+        /* extern */
+extern unsigned char SharedRecord583_D_800658A0 __asm__("D_800658A0");
+extern unsigned char SharedRecord583_D_80065920 __asm__("D_80065920");
+extern int SharedRecord583_D_8006C550 __asm__("D_8006C550");
+extern int SharedRecord583_D_8006C5BC __asm__("D_8006C5BC");
+extern int SharedRecord583_D_8006C5C8 __asm__("D_8006C5C8");
+extern unsigned char SharedRecord583_D_80070328 __asm__("D_80070328");
+
+extern volatile int FamilyWord21C __asm__("D_80070328+0x21C");
+extern volatile int FamilyWord220 __asm__("D_80070328+0x220");
+extern volatile int FamilyWord20C __asm__("D_80070328+0x20C");
+extern volatile int FamilyWord298 __asm__("D_80070328+0x298");
+extern volatile int FamilyWord224 __asm__("D_80070328+0x224");
+extern volatile int FamilyWord008 __asm__("D_80070328+8");
+/* Existing verified level11 parts-update high-word capture pattern. */
+#define SharedRecord583High(a,b) ({int high;int low=(int)(a)*(int)(b);__asm__ __volatile__("" : "=h"(high),"=l"(low) : "1"(low) : "memory");high;})
+#define SharedRecord583Low(a,b) ({register int low __asm__("lo");low=(int)(a)*(int)(b);__asm__("" : "=l"(low) : "0"(low));low;})
+/* Original frame is 0xB8 bytes. Scratch offsets are named by their
+ * original SP-relative addresses. Raw multiply results use the original
+ * HI/LO words;
+  shifts and table byte addressing retain original widths.
+ * Empty constraints preserve producer registers and load-delay ordering.
+ * Physical units, helper contracts, and caller cadence are unresolved. */
+void func_level_23_8008AE94(Moby *inputOwner) {
+    Moby *owner=inputOwner;
+    struct {volatile int sp18;
+    volatile int sp1C;
+    volatile int sp20;
+    char pad_24[4];
+    int sp28;
+    int sp2C;
+    int sp30;
+    int pad34;
+    void *volatile sp38;
+    int pad3C;
+    int sp40;
+    int pad44;
+    void *volatile sp48;
+    int pad4C;
+    int sp50;
+    char pad_54[4];
+    int sp58;
+    char pad_5c[4];
+    int pad60[6];
+    short *volatile sp78;
+    short *volatile sp7C;
+    unsigned char *volatile sp80;
+    unsigned char *volatile sp84;
+    void *sp88;
+    int pad8C;
+    } scratch;
+
+
+
+
+    register short *tableBase12 __asm__("$12");
+    register short *tableBase13 __asm__("$13");
+    register Vector3D * vertex17 __asm__("$17");
+    register short *sampleAddress10 __asm__("$10");
+    register short *sampleAddress11 __asm__("$11");
+    register int sample4 __asm__("$4");
+    int temp_a0_7;
+    int temp_v0_3;
+    int temp_v0_8;
+    int temp_v0_9;
+    int temp_v1_3;
+    int temp_v1_4;
+    int temp_a0;
+    int temp_a0_2;
+    int temp_a0_5;
+    int temp_hi;
+    register int high9 __asm__("$9");
+    register void *caller4 __asm__("$4");
+    register void *caller5 __asm__("$5");
+    register void *caller6 __asm__("$6");
+    register int low8 __asm__("$8");
+    register int low24 __asm__("$24");
+    register int next7 __asm__("$7");
+    int temp_lo;
+    int temp_t2;
+    register int temp_v0 __asm__("$5");
+    register int word2 __asm__("$2");
+    register int word3 __asm__("$3");
+    register int argument4 __asm__("$4");
+    register int initialWord15 __asm__("$15");
+    int temp_v0_2;
+    int temp_v0_4;
+    int temp_v0_5;
+    int temp_v0_7;
+    int temp_v1;
+    register int product3 __asm__("$3");
+    register int var_a0 __asm__("$4");
+    register int vertexIndex16 __asm__("$16");
+    register int cycle10Index18 __asm__("$18");
+    int cycle3Index19;
+    register int tableByteOffset20 __asm__("$20");
+    register int vertexCount21 __asm__("$21");
+    register int packetGroup21 __asm__("$21");
+    register int rowIndex22 __asm__("$22");
+    register int packetCount22 __asm__("$22");
+    int var_v0;
+    int var_v0_5;
+    signed char *temp_a0_6;
+    signed char *temp_a0_8;
+    signed char *temp_a0_9;
+    int temp_a0_4;
+    int temp_a2;
+    int temp_v0_6;
+    register int packetIndex16 __asm__("$16");
+    int var_v0_2;
+    int var_v0_4;
+    unsigned int var_v0_3;
+    register void * colorRecord23 __asm__("$23");
+    register void *loadedAddress15 __asm__("$15");
+    void *var_a3;
+    register void *vertexTable14 __asm__("$14");
+
+    __asm__("" : "=r"(owner):"0"(owner));
+    loadedAddress15 = owner->mobyTag;
+    scratch.sp38 = loadedAddress15;
+    scratch.sp40 = *M2C_FIELD(loadedAddress15, int **, 0x10);
+    owner->unknown3[0] = 0;
+    owner->lowDrawDistance = 0;
+    owner->drawn = 0;
+    vertexCount21 = 0;
+    if (M2C_FIELD(loadedAddress15, short *, 0x14) == 0) {
+        if (SharedRecord583_func_8001C288(&owner->position, 0x400, 7) != 0) {
+            temp_v0 = func_8004E880(M2C_FIELD(&SharedRecord583_D_80070328, int *, 0) - owner->position.x, M2C_FIELD(&SharedRecord583_D_80070328, int *, 4) - owner->position.y, 0);
+            M2C_FIELD(&SharedRecord583_D_80070328, int *, 0x298) = temp_v0;
+            if (owner->state == 0x14) {
+                if ((SharedRecord583_D_8006C5BC == 0x2C) && (SharedRecord583_D_8006C5C8 == 2)) {
+                    argument4=0x10000480;
+                    word2=M2C_FIELD(&SharedRecord583_D_80070328,int*,0x20C);
+                    word3=57;
+                    M2C_FIELD(&SharedRecord583_D_80070328,int*,0x23C)=word3;
+                    word2|=argument4;
+                    argument4=temp_v0*2;
+                    M2C_FIELD(&SharedRecord583_D_80070328,int*,0x20C)=word2;
+                    word3=M2C_FIELD(&SharedRecord583_D_80065920,short*,argument4);
+                    word3=word3*75>>12;
+                    scratch.sp18=word3;
+                    argument4=M2C_FIELD(&SharedRecord583_D_800658A0,short*,argument4);
+                    word2=50;
+                    scratch.sp20=0;
+                    M2C_FIELD(&SharedRecord583_D_80070328,int*,0x21C)=word3;
+                    M2C_FIELD(&SharedRecord583_D_80070328,int*,0x224)=word2;
+                    word2=argument4*75>>12;
+                    scratch.sp1C=word2;
+                    M2C_FIELD(&SharedRecord583_D_80070328,int*,0x220)=word2;
+                } else {
+                    argument4=FamilyWord298;
+                    word2=0x10000000;
+                    __asm__("":"=r"(argument4),"=r"(word2):"0"(argument4),"1"(word2));
+                    word2|=1024;
+                    FamilyWord20C=word2;
+                    __asm__("":"=r"(argument4):"0"(argument4):"memory");
+                    argument4*=2;
+                    word2=M2C_FIELD(&SharedRecord583_D_80065920,short*,argument4);
+                    __asm__("":"=r"(word2):"0"(word2));
+                    word3=word2*5;
+                    __asm__("":"=r"(word3):"0"(word3));
+                    word2=(word3<<4)-word3;
+                    word2>>=12;
+                    FamilyWord21C=word2;
+                    word2=M2C_FIELD(&SharedRecord583_D_800658A0,short*,argument4);
+                    __asm__("":"=r"(word2):"0"(word2));
+                    FamilyWord224=0;
+                    __asm__("":"=r"(word2):"0"(word2):"memory");
+                    word3=word2*5;
+                    __asm__("":"=r"(word3):"0"(word3));
+                    word2=(word3<<4)-word3;
+                    word3=FamilyWord008;
+                    word2>>=12;
+                    FamilyWord220=word2;
+                    word2=owner->position.z;
+                    word2=word2<word3;
+                    if(word2)word2=-50;
+                    else word2=50;
+                    FamilyWord224=word2;
+                }
+            }
+        }
+        if (SharedRecord583_func_8001BA30(&owner->position, 0x5DC, 1, 0, 0x40000, owner) != 0) {
+            owner->unkb = func_8004E880(0, 0, 0);
+        }
+        vertexCount21 = 0;
+    }
+    cycle3Index19=0;
+    cycle10Index18=1;
+    __asm__("":"=r"(cycle3Index19),"=r"(cycle10Index18):"0"(cycle3Index19),"1"(cycle10Index18):"memory");
+    loadedAddress15=scratch.sp38;
+    __asm__("":"=r"(loadedAddress15):"0"(loadedAddress15):"$4");
+    argument4=20;
+    __asm__("":"=r"(argument4):"0"(argument4):"memory");
+    vertexTable14=M2C_FIELD(loadedAddress15,void**,4);
+    initialWord15=M2C_FIELD(loadedAddress15,short*,2);
+    colorRecord23=vertexTable14+0x604;
+    __asm__("":"=r"(colorRecord23),"=r"(initialWord15):"0"(colorRecord23),"1"(initialWord15):"memory");
+    scratch.sp58=initialWord15;
+    word3=M2C_FIELD(&scratch.sp58,unsigned short*,0);
+    loadedAddress15=vertexTable14+0x644;
+    scratch.sp48=loadedAddress15;
+    loadedAddress15=scratch.sp38;
+    word2=owner->state;
+    initialWord15=M2C_FIELD(loadedAddress15,short*,0);
+    scratch.sp50=initialWord15;
+    if(word2==argument4)goto resetOuter;
+    loadedAddress15=scratch.sp38;
+    word2=word3+350;
+    M2C_FIELD(loadedAddress15,short*,2)=word2;
+    word2=owner->state;
+    rowIndex22=0;
+    if(word2==argument4)goto trigBases;
+    word2=M2C_FIELD(loadedAddress15,short*,0x16);
+    word3=word2;
+    __asm__("":"=r"(word2):"0"(word2));
+    if(word2>=1850)goto trigBases;
+    word2=word3+250;
+    M2C_FIELD(loadedAddress15,short*,0x16)=word2;
+resetOuter:
+    rowIndex22=0;
+trigBases:
+    tableBase13 = (short*)&SharedRecord583_D_80065920;
+    tableBase12 = (short*)&SharedRecord583_D_800658A0;
+    do {
+        vertexIndex16 = 0;
+        tableByteOffset20 = 0x80;
+        word2=vertexCount21*12;
+        vertex17=(Vector3D*)(word2+(int)vertexTable14);
+        word2=owner->angle.yaw;
+        word3=rowIndex22*8;
+        word2=(word2+word3)&255;
+        word2*=2;
+        temp_v0_4=word2;
+        sampleAddress11=(short*)(word2+(int)tableBase13);
+        sampleAddress10=(short*)(word2+(int)tableBase12);
+loop_20:
+        var_a0 = scratch.sp50;
+        if (cycle3Index19 == 0) {
+            var_a0 = scratch.sp58;
+        }
+        word2=0x55555556;
+        word3=cycle3Index19+1;
+        loadedAddress15=(void*)SharedRecord583High(word3,word2);
+        word2=word3>>31;
+        cycle3Index19=(int)loadedAddress15-word2;
+        word2=cycle3Index19*3;
+        cycle3Index19=word3-word2;
+        if (cycle10Index18 == 0) {
+            loadedAddress15=scratch.sp38;
+            var_a0=M2C_FIELD(loadedAddress15,short*,0x16);
+        }
+        word2=tableByteOffset20+(int)tableBase13;
+        scratch.sp18=0;
+        word2=M2C_FIELD(word2,short*,0);
+        product3=SharedRecord583Low(word2,var_a0);
+        word2=tableByteOffset20+(int)tableBase12;
+        __asm__("":"=r"(product3),"=r"(word2):"0"(product3),"1"(word2));
+        product3>>=12;
+        scratch.sp1C=product3;
+        word2=M2C_FIELD(word2,short*,0);
+        low8=SharedRecord583Low(word2,var_a0);
+        __asm__("":"=r"(low8):"0"(low8));
+        word2=low8>>12;
+        scratch.sp20=word2;
+        sample4=*sampleAddress10;
+        product3=SharedRecord583Low(product3,sample4);
+        next7=cycle10Index18+1;
+        __asm__("":"=r"(product3),"=r"(next7):"0"(product3),"1"(next7):"$2");
+        word2=0x66666667;
+        high9=SharedRecord583High(next7,word2);
+        low8=product3>>12;
+        word3=*sampleAddress11;
+        word2=-low8;
+        vertex17->x=word2;
+        __asm__("":"=r"(high9):"0"(high9));
+        word2=scratch.sp1C;
+        low8=SharedRecord583Low(word2,word3);
+        __asm__("":"=r"(low8),"=r"(vertexCount21),"=r"(vertexIndex16):"0"(low8),"1"(vertexCount21),"2"(vertexIndex16));
+        word2=scratch.sp18;
+        __asm__("":"=r"(word2):"0"(word2):"$5","$6");
+        {register int heldLow __asm__("lo");
+        heldLow=word2*sample4;
+        __asm__("":"=l"(heldLow):"0"(heldLow):"$5","$6");
+        caller5=&owner->position;
+        caller6=vertex17;
+        __asm__ volatile("":"=l"(heldLow),"=r"(vertexCount21),"=r"(vertexIndex16),"=r"(tableByteOffset20):"0"(heldLow),"1"(vertexCount21),"2"(vertexIndex16),"3"(tableByteOffset20),"r"(caller5),"r"(caller6));
+        low24=heldLow;
+        }
+        vertexCount21+=1;
+        vertexIndex16+=1;
+        tableByteOffset20+=32;
+        word3=high9>>2;
+        caller4=vertex17;
+        word2=next7>>31;
+        cycle10Index18=word3-word2;
+        __asm__("":"=r"(cycle10Index18),"=r"(low8):"0"(cycle10Index18),"1"(low8),"r"(caller4));
+        low8>>=12;
+        __asm__("":"=r"(low24):"0"(low24),"r"(caller4),"r"(caller5),"r"(caller6));
+        word2=low24>>12;
+        word2+=low8;
+        vertex17->y=word2;
+        word2=cycle10Index18*10;
+        word3=scratch.sp20;
+        __asm__ volatile("":"=r"(cycle10Index18):"0"(cycle10Index18):"memory");
+        cycle10Index18=next7-word2;
+        __asm__ volatile("":"=r"(cycle10Index18):"0"(cycle10Index18));
+        vertex17->z=word3;
+        scratch.sp78 = sampleAddress10;
+        scratch.sp7C = sampleAddress11;
+        scratch.sp80 = tableBase12;
+        scratch.sp84 = tableBase13;
+        scratch.sp88 = vertexTable14;
+        func_8004F194(caller4,caller5,caller6);
+        __asm__ volatile("":::"memory");
+        word2=vertexIndex16<8;
+        __asm__("":"=r"(word2):"0"(word2));
+        sampleAddress10=scratch.sp78;
+        sampleAddress11=scratch.sp7C;
+        tableBase12=(short*)scratch.sp80;
+        tableBase13=(short*)scratch.sp84;
+        __asm__ volatile("":::"memory");
+        vertexTable14=scratch.sp88;
+        __asm__("":"=r"(vertex17):"0"(vertex17),"r"(vertexTable14));
+        vertex17 = (Vector3D*)((char*)vertex17+12);
+        if (word2) {
+            goto loop_20;
+        }
+        rowIndex22 += 1;
+        word2=rowIndex22<16;
+        __asm__("":"=r"(word2):"0"(word2));
+    } while (word2);
+    word2=-1;
+    M2C_FIELD(vertexTable14,int*,0x600)=word2;
+    loadedAddress15=scratch.sp38;
+    word3=M2C_FIELD(loadedAddress15,short*,0x14);
+    if(word3>=7){
+        word2=word3-6;
+        __asm__("":"=r"(word2):"0"(word2));
+        word3=word2*10;
+        word2=64-word3;
+        if(word2<0)word2=0;
+        M2C_FIELD(colorRecord23,signed char*,0)=word2;
+        word2>>=1;
+        M2C_FIELD(colorRecord23,signed char*,1)=word2;
+        word2=(unsigned)(word2&255)>>1;
+        goto colorThird;
+    }
+    if(word3>=4){
+        word2=word3-3;
+        word2<<=4;
+        word3=128;
+        word2=word3-word2;
+        M2C_FIELD(colorRecord23,signed char*,0)=word2;
+        M2C_FIELD(colorRecord23,signed char*,1)=word2;
+        M2C_FIELD(colorRecord23,signed char*,2)=0;
+    }else{
+        word2=128;
+        M2C_FIELD(colorRecord23,signed char*,0)=word2;
+        M2C_FIELD(colorRecord23,signed char*,1)=word2;
+        loadedAddress15=scratch.sp38;
+        word2=M2C_FIELD(loadedAddress15,short*,0x14);
+        word3=128;
+        word2<<=5;
+        word2=word3-word2;
+        if(word2<0)word2=0;
+colorThird:
+        M2C_FIELD(colorRecord23,signed char*,2)=word2;
+    }
+    loadedAddress15=scratch.sp38;
+    word3=M2C_FIELD(loadedAddress15,short*,0x14);
+    __asm__ volatile("":::"$4");
+    {int alpha;
+    if(word3<6)alpha=255;
+    else alpha=(16-word3)<<3;
+    M2C_FIELD(colorRecord23,signed char*,4)=alpha;
+    M2C_FIELD(colorRecord23,signed char*,5)=alpha;
+    M2C_FIELD(colorRecord23,signed char*,6)=0;
+    }__asm__ volatile("":::"$16","$21","$22","$8","memory");
+    {register int magic8 __asm__("$8");
+    register int high11 __asm__("$11");
+    register int high10 __asm__("$10");
+    register int packet9 __asm__("$9");
+    register int next6 __asm__("$6");
+    register int raw4 __asm__("$4");
+    register int raw5 __asm__("$5");
+    register unsigned char* packet7 __asm__("$7");
+    packetIndex16=0;
+    packetGroup21=0;
+    packetCount22=0;
+    magic8=0x55555556;
+    packet7=scratch.sp48;
+    do{
+        high11=SharedRecord583High(packetIndex16,magic8);
+        next6=packetIndex16+1;
+        high10=SharedRecord583High(next6,magic8);
+        packetGroup21++;
+        raw4=packetIndex16+9;
+        raw5=packetIndex16+8;
+        word3=packetIndex16>>31;
+        packet7[0]=packetIndex16;
+        packet7[1]=next6;
+        packet9=SharedRecord583High(raw4,magic8);
+        packet7[2]=raw4;
+        packet7[3]=raw5;
+        __asm__("":"=r"(word3):"0"(word3):"memory");
+        word3=high11-word3;
+        word2=word3*3;
+        word2=packetIndex16-word2;
+        packetIndex16=next6;
+        word2=(unsigned)word2<1;
+        word3=packetIndex16>>31;
+        packet7[4]=word2;
+        __asm__("":"=r"(word3):"0"(word3):"memory");
+        word3=high10-word3;
+        __asm__("":"=r"(packet9):"0"(packet9),"r"(word3));
+        word2=word3*3;
+        high10=SharedRecord583High(raw5,magic8);
+        word2=packetIndex16-word2;
+        word2=(unsigned)word2<1;
+        word3=raw4>>31;
+        packet7[5]=word2;
+        __asm__("":"=r"(word3):"0"(word3):"memory");
+        word3=packet9-word3;
+        word2=word3*3;
+        raw4=raw4-word2;
+        __asm__("":"=r"(raw4):"0"(raw4));
+        raw4=(unsigned)raw4<1;
+        word3=raw5>>31;
+        packet7[6]=raw4;
+        __asm__("":"=r"(word3):"0"(word3):"memory");
+        word3=high10-word3;
+        word2=word3*3;
+        raw5=raw5-word2;
+        __asm__("":"=r"(raw5):"0"(raw5));
+        raw5=(unsigned)raw5<1;
+        packet7[7]=raw5;
+        if(packetGroup21>=7){packetIndex16++;
+        packetGroup21=0;
+        }
+        packetCount22++;
+        packet7+=8;
+    }while(packetCount22<105);
+    }
+    loadedAddress15=scratch.sp48;
+    word2=-1;
+    M2C_FIELD(loadedAddress15,int*,0x348)=word2;
+    loadedAddress15=scratch.sp38;
+    word2=M2C_FIELD(loadedAddress15,int*,8);
+    if(!word2){
+        caller4=vertexTable14;
+        caller5=colorRecord23;
+        caller6=scratch.sp48;
+        loadedAddress15=(void*)scratch.sp40;
+        word2=(int)SharedRecord583_func_80050B00(caller4,caller5,caller6,(unsigned char*)loadedAddress15+12,1);
+        loadedAddress15=scratch.sp38;
+        M2C_FIELD(loadedAddress15,int*,8)=word2;
+    }
+    word3=owner->state;
+    word2=20;
+    if(word3==word2)goto advanceRaw;
+    loadedAddress15=scratch.sp38;
+    word2=M2C_FIELD(loadedAddress15,short*,0x14);
+    word3=word2*4;
+    argument4=word3+word2;
+    word2=word2<7;
+    word3=80;
+    if(!word2){__asm__("":::"$2");
+    M2C_FIELD(loadedAddress15,int*,12)=0;
+    goto advanceRaw;
+    }
+    argument4<<=3;
+    scratch.sp18=0;
+    scratch.sp1C=0;
+    scratch.sp20=word3;
+    word2=M2C_FIELD(&SharedRecord583_D_800658A0,short*,argument4);
+    low8=SharedRecord583Low(word2,word3);
+    word2=M2C_FIELD(&SharedRecord583_D_80065920,short*,argument4);
+    {register int cosLow __asm__("lo");
+    cosLow=word2*word3;
+    __asm__("":"=l"(cosLow):"0"(cosLow));
+    caller5=(void*)4;
+    caller4=owner;
+    scratch.sp2C=0;
+    word3=low8>>12;
+    word2=-word3;
+    scratch.sp28=word2;
+    __asm__ volatile("":"=l"(cosLow):"0"(cosLow):"memory");
+    caller6=(void*)cosLow;
+    }
+    word3=(int)caller6>>12;
+    scratch.sp30=word3;
+    SharedRecord583_func_80055D24(caller4,caller5,caller6);
+    SharedRecord583_func_8004ED6C(&owner->rotationMatrix,&scratch.sp28,&scratch.sp28);
+    word2=(int)SpawnParticle(1,13,&owner->position,(Vector3D*)&scratch.sp28);
+    loadedAddress15=scratch.sp38;
+    word3=M2C_FIELD(loadedAddress15,int*,12);
+    caller4=(void*)word2;
+    if(word3){word2=255;
+    __asm__("":"=r"(word2):"0"(word2));
+    M2C_FIELD(caller4,unsigned char*,12)=word2;
+    M2C_FIELD(caller4,unsigned char*,13)=word2;
+    M2C_FIELD(caller4,unsigned char*,14)=word2;
+    }
+    word2=190;
+    if(caller4){loadedAddress15=scratch.sp38;
+    M2C_FIELD(loadedAddress15,void**,12)=caller4;
+    M2C_FIELD(caller4,unsigned char*,10)=word2;
+    word2=255;
+    __asm__("":"=r"(word2):"0"(word2));
+    M2C_FIELD(caller4,unsigned char*,14)=word2;
+    }
+advanceRaw:
+    loadedAddress15=scratch.sp38;
+    word2=M2C_FIELD(loadedAddress15,unsigned short*,20);
+    word2++;
+    M2C_FIELD(loadedAddress15,short*,20)=word2;
+    word3=owner->state;
+    word2=20;
+    if(word3!=word2){word2=M2C_FIELD(loadedAddress15,short*,0);
+    word3=word2;
+    word2=word2<600;
+    if(word2){word2=word3+100;
+    M2C_FIELD(loadedAddress15,short*,0)=word2;
+    }}
+    loadedAddress15=scratch.sp38;
+    argument4=M2C_FIELD(loadedAddress15,short*,20);
+    word2=argument4<11;
+    if(word2)goto test16Raw;
+    word3=owner->state;
+    word2=20;
+    if(word3==word2)goto linkedRaw;
+test16Raw:
+    word2=argument4<16;
+    if(word2)goto zeroRaw;
+    word3=owner->state;
+    word2=20;
+    __asm__("":::"$15");
+    if(word3!=word2)goto cleanupRaw;
+zeroRaw:
+    __asm__ volatile("":::"$15");
+    loadedAddress15=0;
+    __asm__("":"=r"(loadedAddress15):"0"(loadedAddress15));
+    if(!loadedAddress15)goto doneRaw;
+    word3=owner->state;
+    word2=20;
+    if(word3!=word2)goto cleanupRaw;
+linkedRaw:
+    word3=owner->linkedMoby;
+    word2=word3*11;
+    word3=SharedRecord583_D_8006C550;
+    word2*=8;
+    word2+=word3;
+    word3=10;
+    M2C_FIELD(word2,unsigned char*,73)=word3;
+cleanupRaw:
+    loadedAddress15=scratch.sp38;
+    caller4=M2C_FIELD(loadedAddress15,void**,8);
+    if(caller4){SharedRecord583_func_80050B88(caller4);
+    loadedAddress15=scratch.sp38;
+    }
+    caller4=M2C_FIELD(loadedAddress15,void**,12);
+    if(caller4)SharedRecord583_func_80050B88(caller4);
+    SharedRecord583_func_80055B18(owner);
+doneRaw:;
+}
+#undef SharedRecord583Low
+#undef SharedRecord583High
+#undef M2C_FIELD

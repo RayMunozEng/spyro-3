@@ -343,7 +343,239 @@ dispatch:
 #undef Controller582CField
 
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_16/level", func_level_16_800800C4);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated;
+ not human reviewed. UNINSTALLED inferred C. Original source asm/nonmatchings/overlays/level_16/level/func_level_16_800800C4.s SHA256 931f50252d4152dcd4ece528bdb7466993a54f9b83b7cbf38acca74367122852. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
+#define Level16_800C4Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+extern short Level16_800C4_D_800658A0[0x100] __asm__("D_800658A0");
+extern short Level16_800C4_D_80065920[0x100] __asm__("D_80065920");
+extern Spyro Level16_800C4_D_80070328 __asm__("D_80070328");
+extern int Level16_800C4_func_8001A358(Vector3D*, int) __asm__("func_8001A358");
+int Level16_800C4_func_8003585C(Moby*, int, int, int, int, int ) __asm__("func_8003585C");
+int Level16_800C4_func_800359A4(void*, int) __asm__("func_800359A4");
+int Level16_800C4_func_80035DDC(Moby* owner19, int private17, int mode18, int arg3, int arg4) __asm__("func_80035DDC");
+int Level16_800C4_func_8003636C(int low, int high) __asm__("func_8003636C");
+extern int Level16_800C4_func_8004E880(int, int, int) __asm__("func_8004E880");
+extern void Level16_800C4_func_8004F194(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004F194");
+extern int Level16_800C4_func_8004F334(Vector3D*, Vector3D*) __asm__("func_8004F334");
+
+extern void *Level16_800C4_D_80071930 __asm__("D_80071930");
+
+void func_level_16_800800C4(Moby *inputOwner, Vector3D *inputPrivate, int inputMode) {
+    /* Original 0x50 frame, scratch vector SP18/1C/20 and distinct byte
+     * producers are retained. The private helper pointer advances 15 bytes,
+     * and the successful probe still performs the original byte stores
+     * before entering the shared fallback. The raw modes 0x77 and 0x22,
+     * callback flags and final integer blend follow the disc instructions.
+     * Empty constraints and comment markers emit no instructions. Memory
+     * constraints retain the original LH3/LBU2/LBU4 load order.
+     * Helper contracts, physical units/fixed point, frame cadence and runtime
+     * capture validation remain unresolved. AI generated;
+      not human reviewed. */
+    register Moby *owner19 __asm__("$19")=inputOwner;
+    register Vector3D *private17 __asm__("$17")=inputPrivate;
+    register int mode18 __asm__("$18");
+
+    struct {int sp18;
+     int sp1C;
+     int sp20;
+     unsigned char pad24[12];
+    } scratch;
+
+    register Vector3D *ownerPosition16 __asm__("$16");
+    register int rawRange18 __asm__("$18");
+    register int resultFlags16 __asm__("$16");
+    register int distance18 __asm__("$18");
+    register Vector3D* player16 __asm__("$16");
+    register int randArgument4 __asm__("$4");
+    register int argument6 __asm__("$6");
+    register int one8 __asm__("$8");
+    register int value2 __asm__("$2");
+    register int value3 __asm__("$3");
+    register Vector3D* call4 __asm__("$4");
+    register Vector3D* call5 __asm__("$5");
+    register short* cosine20 __asm__("$20");
+    register int cosine21 __asm__("$21");
+    register int step16 __asm__("$16");
+    int callbackMode;
+    int nextByte13;
+    register int byte20 __asm__("$20");
+    register int state3 __asm__("$3");
+    register int initialByte16 __asm__("$16");
+
+    __asm__("":"=r"(owner19),"=r"(private17),"=r"(mode18):"0"(owner19),"1"(private17));
+one8=1;
+__asm__("":"=r"(one8):"0"(one8));
+    state3 = Level16_800C4Field(private17, unsigned char *, 0xE);
+    initialByte16 = Level16_800C4Field(private17, unsigned char *, 0x10);
+    __asm__("":"=r"(mode18):"0"(mode18),"r"(state3),"r"(initialByte16));
+    __asm__("":"=r"(state3):"0"(state3),"r"(initialByte16),"r"(inputMode));
+    mode18=inputMode;
+    if(state3==one8)goto state1;
+    if(state3<2){randArgument4=-32;
+    if(!state3)goto state0;
+    goto afterDispatch;
+    }
+    value2=2;
+    if(state3==value2)goto state2;
+    value2=3;
+    if(state3==value2)goto state3;
+    goto afterDispatch;
+state0:
+        Level16_800C4Field(private17, unsigned char *, 0x13) = (unsigned char) (Level16_800C4Field(private17, unsigned char *, 0x13) + Level16_800C4_func_8003636C(randArgument4,0x20));
+        Level16_800C4Field(private17, signed char *, 0xF) = Level16_800C4_func_8003636C(0x1E, 0x5A);
+        Level16_800C4Field(private17, unsigned char *, 0xE) = 1U;
+        goto afterDispatch;
+state1:
+        __asm__("":"=r"(state3):"0"(state3));
+        Level16_800C4_func_8003585C(owner19, (int) Level16_800C4Field(private17, unsigned char *, 0x13), (int) Level16_800C4Field(private17, unsigned char *, 0x11), 0, one8, 0);
+        if (Level16_800C4_func_800359A4((unsigned char*)private17 + 0xF, 1) != 0) {
+            Level16_800C4Field(private17, unsigned char *, 0xE) = 0U;
+        }
+        goto afterDispatch;
+state2:
+        if (Level16_800C4_func_8003585C(owner19, (int) Level16_800C4Field(private17, unsigned char *, 0x13), (int) Level16_800C4Field(private17, unsigned char *, 0x11), 8, one8, 0) != 0) {
+            call4=(Vector3D*)30;
+            call5=(Vector3D*)90;
+            goto resetPrivateTimer;
+        }
+        goto functionReturn;
+state3:
+        value2=Level16_800C4_func_8003585C(owner19,(int)Level16_800C4Field(private17,unsigned char*,19),(int)Level16_800C4Field(private17,unsigned char*,17),8,one8,0);
+        randArgument4=30;
+        if(value2){
+            Level16_800C4Field(private17,signed char*,15)=Level16_800C4_func_8003636C(randArgument4,90);
+            Level16_800C4Field(private17, unsigned char *, 0xE) = 1U;
+        }
+        initialByte16 = (int) initialByte16 >> 1;
+        goto afterDispatch;
+afterDispatch:
+        call4=(Vector3D*)owner19;
+        if(mode18){
+            __asm__ volatile("# post-dispatch-nonzero");
+            call5=(Vector3D*)initialByte16;
+            argument6=Level16_800C4Field(private17,short*,12);
+            value2=119;
+        }else{
+            __asm__ volatile("# post-dispatch-zero");
+            call5=(Vector3D*)initialByte16;
+            argument6=Level16_800C4Field(private17,short*,12);
+            value2=34;
+        }
+        resultFlags16=Level16_800C4_func_80035DDC((Moby*)call4,(int)call5,argument6,argument6,value2);
+        __asm__("":"=r"(resultFlags16):"0"(resultFlags16));
+        argument6=0;
+        if (resultFlags16 & 1) {
+            Level16_800C4Field(private17, unsigned char *, 0x13) = Level16_800C4_func_8004E880(owner19->position.x - Level16_800C4Field(Level16_800C4_D_80071930, int *, 0xC), owner19->position.y - Level16_800C4Field(Level16_800C4_D_80071930, int *, 0x10), argument6);
+            Level16_800C4Field(private17, unsigned char *, 0xE) = 3U;
+            return;
+        }
+        goto checkProbeMode;
+probeAccepted:
+        value2=2;
+        Level16_800C4Field(private17,volatile unsigned char*,0x13)=byte20;
+        Level16_800C4Field(private17,unsigned char*,0xE)=value2;
+        goto fallbackByte13;
+checkProbeMode:
+        __asm__ volatile("":"=r"(argument6));
+        argument6=(int)&owner19->position;
+        if(!mode18)goto checkPrivateRange;
+        __asm__("":"=r"(argument6):"0"(argument6));
+        value3=Level16_800C4Field(private17,short*,12);
+        value2=owner19->angle.yaw;
+        __asm__ volatile("":::"memory");
+        call4=(Vector3D*)Level16_800C4Field(private17,unsigned char*,16);
+        value3*=2;
+        value2*=2;
+        value2=*(short*)((unsigned char*)Level16_800C4_D_80065920+value2);
+        rawRange18=(int)call4+value3;
+        scratch.sp18=(value2*rawRange18)>>12;
+        value2=Level16_800C4_D_800658A0[owner19->angle.yaw];
+        call4=(Vector3D*)&scratch.sp18;
+        call5=call4;
+        scratch.sp20=0;
+        scratch.sp1C=(value2*rawRange18)>>12;
+        scratch.sp20=128-owner19->distanceToGround;
+        Level16_800C4_func_8004F194(call4,call5,(Vector3D*)argument6);
+        call4=(Vector3D*)&scratch.sp18;
+        __asm__("":"=r"(call4):"0"(call4));
+        cosine20=Level16_800C4_D_80065920;
+        __asm__("":"=r"(cosine20):"0"(cosine20));
+        value2=Level16_800C4_func_8001A358(call4,256);
+        if(!value2)goto startHeadingSearch;
+        value2=resultFlags16&2;
+        if(!value2)goto checkPrivateRange;
+startHeadingSearch:
+        step16=32;
+        cosine21=(int)cosine20;
+        __asm__("":"=r"(cosine21):"0"(cosine21));
+probeNextAngle:
+        value2=owner19->angle.yaw;
+        value2+=step16;
+        byte20=value2&255;
+        value3=byte20*2;
+        value2=*(short*)(value3+cosine21);
+        scratch.sp18=(value2*rawRange18)>>12;
+        value2=*(short*)((unsigned char*)Level16_800C4_D_800658A0+value3);
+        call4=(Vector3D*)&scratch.sp18;
+        call5=call4;
+        scratch.sp20=0;
+        scratch.sp1C=(value2*rawRange18)>>12;
+        scratch.sp20=128-owner19->distanceToGround;
+        Level16_800C4_func_8004F194(call4,call5,&owner19->position);
+        value2=Level16_800C4_func_8001A358((Vector3D*)&scratch.sp18,256);
+        step16+=64;
+        if(value2)goto probeAccepted;
+        if(step16<256)goto probeNextAngle;
+fallbackByte13:
+        value2=owner19->angle.yaw;
+        value3=2;
+        Level16_800C4Field(private17,unsigned char*,14)=value3;
+        nextByte13=value2+128;
+        goto storePrivateByte13;
+checkPrivateRange:
+        ownerPosition16 = &owner19->position;
+        if (Level16_800C4Field(private17, unsigned char *, 0xE) != 3) {
+            value2=Level16_800C4_func_8004F334(ownerPosition16,private17);
+            value3=Level16_800C4Field(private17,unsigned char*,18);
+            value3<<=4;
+            value3=value3<value2;
+            if(value3) {
+                Level16_800C4Field(private17, unsigned char *, 0x13) = Level16_800C4_func_8004E880(private17->x - owner19->position.x, private17->y - owner19->position.y, 0);
+                call4=(Vector3D*)30;
+                call5=(Vector3D*)90;
+resetPrivateTimer:
+                Level16_800C4Field(private17,signed char*,15)=Level16_800C4_func_8003636C((int)call4,(int)call5);
+                Level16_800C4Field(private17, unsigned char *, 0xE) = 1U;
+                return;
+            }
+            call4=ownerPosition16;
+            player16=&Level16_800C4_D_80070328.position;
+            __asm__("":"=r"(player16):"0"(player16));
+            distance18=Level16_800C4_func_8004F334(call4,player16);
+            __asm__("":"=r"(distance18):"0"(distance18));
+            if (distance18 < 0x1000) {
+                value2=Level16_800C4_func_8004E880(owner19->position.x-player16->x,owner19->position.y-Level16_800C4_D_80070328.position.y,0);
+                value3=Level16_800C4Field(private17,unsigned char*,19);
+                call4=(Vector3D*)(value3*distance18);
+                value3=4096;
+                value3-=distance18;
+                value3=value2*value3;
+                __asm__("":"=r"(value3):"0"(value3));
+                value2=(int)call4+value3;
+                nextByte13=value2>>12;
+storePrivateByte13:
+                Level16_800C4Field(private17, unsigned char *, 0x13) = (unsigned char) nextByte13;
+            }
+        } else {
+            return;
+        }
+functionReturn:;
+}
+#undef Level16_800C4Field
+
 
 extern int D_8006C578, D_8006C574;
 extern short D_80065920[], D_800658A0[];

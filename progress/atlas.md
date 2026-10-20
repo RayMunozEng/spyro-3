@@ -14,8 +14,8 @@
 - [x] func_atlas_80076228
 - [x] func_atlas_80076430
 - [x] func_atlas_800764DC
-- [ ] func_atlas_800765F8
-- [ ] func_atlas_80076B64
+- [x] func_atlas_800765F8
+- [x] func_atlas_80076B64
 - [x] func_atlas_800775D8
 - [x] func_atlas_80077830
 - [x] func_atlas_80077A60
@@ -26,11 +26,11 @@
 
 <!-- atlas2.c -->
 - [x] func_atlas_800781FC
-- [ ] func_atlas_8007839C
+- [x] func_atlas_8007839C
 - [x] func_atlas_80078AFC
-- [ ] func_atlas_80078D0C
+- [x] func_atlas_80078D0C
 - [x] func_atlas_800799B0
 - [x] func_atlas_80079D18
 - [x] func_atlas_80079F1C
-- [ ] func_atlas_8007A1A8
+- [x] func_atlas_8007A1A8
 

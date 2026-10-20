@@ -1,13 +1,13 @@
 <!-- animation.c -->
-- [ ] func_level_43_80091058
+- [x] func_level_43_80091058
 - [x] func_level_43_80092B50
 - [x] func_level_43_800930D4
 - [x] func_level_43_80093310
 - [x] func_level_43_800933D4
-- [ ] func_level_43_80093DF4
+- [x] func_level_43_80093DF4
 
 <!-- camera.c -->
-- [ ] func_level_43_80095668
+- [x] func_level_43_80095668
 - [x] func_level_43_80095E78
 - [x] func_level_43_80095ECC
 - [x] func_level_43_80096108
@@ -54,38 +54,38 @@
 - [x] func_level_43_8007C4E0
 - [x] func_level_43_8007C6E0
 - [x] func_level_43_8007CA7C
-- [ ] func_level_43_8007CEF0
+- [x] func_level_43_8007CEF0
 - [x] func_level_43_8007DF90
 - [x] func_level_43_8007E370
 - [x] func_level_43_8007E3EC
-- [ ] func_level_43_8007E46C
-- [ ] func_level_43_8007EB88
+- [x] func_level_43_8007E46C
+- [x] func_level_43_8007EB88
 - [x] func_level_43_8007F098
-- [ ] func_level_43_8007F378
-- [ ] func_level_43_80080CE0
-- [ ] func_level_43_800814FC
-- [ ] func_level_43_80081A5C
+- [x] func_level_43_8007F378
+- [x] func_level_43_80080CE0
+- [x] func_level_43_800814FC
+- [x] func_level_43_80081A5C
 - [x] func_level_43_800822D0
 - [x] func_level_43_80082594
-- [ ] func_level_43_800827C4
-- [ ] func_level_43_8008342C
-- [ ] func_level_43_8008464C
-- [ ] func_level_43_80084E4C
-- [ ] func_level_43_80085FC4
-- [ ] func_level_43_80086A04
-- [ ] func_level_43_800876CC
-- [ ] func_level_43_80088000
+- [x] func_level_43_800827C4
+- [x] func_level_43_8008342C
+- [x] func_level_43_8008464C
+- [x] func_level_43_80084E4C
+- [x] func_level_43_80085FC4
+- [x] func_level_43_80086A04
+- [x] func_level_43_800876CC
+- [x] func_level_43_80088000
 - [x] func_level_43_80088418
 - [x] func_level_43_8008862C
 - [x] func_level_43_800886F4
 - [x] func_level_43_800887D4
-- [ ] func_level_43_80088980
-- [ ] func_level_43_80089640
-- [ ] func_level_43_80089F38
+- [x] func_level_43_80088980
+- [x] func_level_43_80089640
+- [x] func_level_43_80089F38
 
 <!-- parts_spawn.c -->
-- [ ] func_level_43_8008F96C
+- [x] func_level_43_8008F96C
 
 <!-- parts_update.c -->
-- [ ] func_level_43_8008DE8C
+- [x] func_level_43_8008DE8C
 

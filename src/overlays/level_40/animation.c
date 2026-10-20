@@ -2,7 +2,202 @@
 #include "stdutil.h"
 #include "spyro.h"
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_40/animation", func_level_40_80085FA8);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated; not human reviewed.
+ * SCUS-94467 USA Rev0, original260 instructions, SHA256
+ * 0c7766c0a07e3b36290fb61e67830b682f2b71e206474f4ba529a3f7da13e92e.
+ * Original signed halfword tables, frame offsets, shifts/divide guards and
+ * helper argument/result registers are preserved. Volatile raw global reads
+ * retain the original producer/consumer order, not a new runtime behavior.
+ * Physical units/fixed-point interpretations, helper contracts and semantic
+ * meanings of player fields remain unresolved. Invocation cadence only;
+ * synchronized retail runtime/browser parity and a target-specific Rev1
+ * crosswalk are not claimed. Falsification: exact native/linked instructions,
+ * internal/conditional targets, original data and all disc hashes.
+ */
+#define AnimationField(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+int Animation5FA8_func_80040D10() __asm__("func_80040D10");                     
+int Animation5FA8_func_80041580() __asm__("func_80041580");            
+int Animation5FA8_func_800416F4() __asm__("func_800416F4");                            
+int Animation5FA8_func_8004EDE8() __asm__("func_8004EDE8");                  
+int Animation5FA8_func_8004F08C() __asm__("func_8004F08C");         
+int Animation5FA8_func_8004F168() __asm__("func_8004F168");                      
+int Animation5FA8_func_8004F178() __asm__("func_8004F178");          
+int Animation5FA8_func_8004F194() __asm__("func_8004F194");   
+int Animation5FA8_func_8004F1C8() __asm__("func_8004F1C8");        
+int Animation5FA8FirstF1C8() __asm__("func_8004F1C8");
+extern unsigned char Animation5FA8_D_800658A0 __asm__("D_800658A0");
+extern unsigned char Animation5FA8_D_80065920 __asm__("D_80065920");
+extern int Animation5FA8_D_8006C514 __asm__("D_8006C514");
+extern void *Animation5FA8_D_8006C570 __asm__("D_8006C570");
+extern int Animation5FA8_D_8006E044 __asm__("D_8006E044");
+extern int Animation5FA8_D_8006E344 __asm__("D_8006E344");
+extern unsigned char Animation5FA8_D_8006E548 __asm__("D_8006E548");
+extern unsigned char Animation5FA8_D_80070328 __asm__("D_80070328");
+
+void func_level_40_80085FA8(int inputIndex) {
+
+    struct {int sp10;int sp14;int sp18;int pad;} frame;
+    register int field64Value16 __asm__("$16");
+    register int argument6 __asm__("$6");
+    register int delta4 __asm__("$4");
+    register int tableOffset4 __asm__("$4");
+    register int remaining6 __asm__("$6");
+    register int offset6 __asm__("$6");
+    register int phase7 __asm__("$7");
+    register int value2 __asm__("$2");
+    register int word2 __asm__("$2");
+    register int word3 __asm__("$3");
+    register int helperResult6 __asm__("$6");
+    register int argument5 __asm__("$5");
+    register void *call4 __asm__("$4");
+
+    int updated94;
+
+
+    int scaledValue3;
+
+    register void * playerBlock17 __asm__("$17");
+
+    playerBlock17 = &Animation5FA8_D_80070328 + 0x54;
+    Animation5FA8_D_8006C570 = (inputIndex * 0x10) + &Animation5FA8_D_8006E548;
+    switch (AnimationField(&Animation5FA8_D_80070328, int *, 0x48)) {  
+    case 20:
+        Animation5FA8_func_8004F168(playerBlock17 + 0x2C);
+        Animation5FA8_func_8004F168(playerBlock17 + 0x38);
+        if (Animation5FA8_D_8006E044 != 7) {
+            Animation5FA8_func_80040D10(0x1200);
+            Animation5FA8_func_800416F4();
+            Animation5FA8_func_80041580(0x5A, 0x10);
+            return;
+        }
+        return;
+    case 19:
+        if ((Animation5FA8_D_8006E344 != 0xD) || (Animation5FA8_D_8006C514 == 0)) {
+            word3=AnimationField(&Animation5FA8_D_80070328,int*,8);
+            word2=AnimationField(&Animation5FA8_D_80070328,int*,0x144);
+            delta4=word3-word2;
+            if (delta4 < 0x400) {
+                value2 = AnimationField(&Animation5FA8_D_80070328, int *, 0x94) + 0x80;
+                AnimationField(&Animation5FA8_D_80070328, int *, 0x94) = value2;
+                if (value2 >= 0x12C1) {
+                    AnimationField(&Animation5FA8_D_80070328, int *, 0x94) = 0x12C0;
+                }
+                word3=AnimationField(&Animation5FA8_D_80070328,int*,0x148);
+                word2=(delta4*delta4)>>11;
+                field64Value16=word2+word3;
+                AnimationField(&Animation5FA8_D_80070328,int*,0x64)=field64Value16;
+                Animation5FA8_func_8004F178(&frame.sp10, playerBlock17 + 0x108);
+                Animation5FA8FirstF1C8(&frame.sp10, &frame.sp10, playerBlock17 - 0x54);
+                frame.sp18 = 0;
+                helperResult6 = Animation5FA8_func_8004EDE8(&frame.sp10, 0);
+                    __asm__("" : "=r"(helperResult6):"0"(helperResult6));
+                call4=&frame.sp10;
+                    if (helperResult6 >= 0x401) {
+                    argument5 = helperResult6;
+                        __asm__("" : "=r"(argument5):"0"(argument5):"$6");
+                    argument6 = 0x400;
+                    goto block_24;
+                }
+            } else {
+                argument5=AnimationField(&Animation5FA8_D_80070328,int*,0x14C);
+                if ((word3-argument5) < -0x400) {
+                    remaining6=argument5-word3;
+                    __asm__("" : "=r"(remaining6):"0"(remaining6));
+                    if (AnimationField(&Animation5FA8_D_80070328, int *, 0x4C) == 0) {
+                        AnimationField(&Animation5FA8_D_80070328, int *, 0x4C) = 1;
+                        AnimationField(&Animation5FA8_D_80070328, int *, 0x148) = (int) (AnimationField(&Animation5FA8_D_80070328, int *, 0x148) + 0x200);
+                    }
+                    updated94 = AnimationField(&Animation5FA8_D_80070328, int *, 0x94) + 0x80;
+                    AnimationField(&Animation5FA8_D_80070328, int *, 0x94) = updated94;
+                    if (updated94 >= 0x12C1) {
+                        AnimationField(&Animation5FA8_D_80070328, int *, 0x94) = 0x12C0;
+                    }
+                    offset6 = delta4 - 0x400;
+                    word2=(AnimationField(&Animation5FA8_D_80070328,int*,0x150)*offset6)/AnimationField(&Animation5FA8_D_80070328,int*,0x154);
+                    word3=AnimationField(&Animation5FA8_D_80070328,int*,0x148);
+                    field64Value16=word3+word2;
+                    word2=(offset6<<10)>>10;
+                    word2=field64Value16+word2;
+                    field64Value16=word2&4095;
+                    AnimationField(&Animation5FA8_D_80070328,int*,0x64)=field64Value16;
+                    Animation5FA8_func_8004F178(&frame.sp10, playerBlock17 + 0x108, offset6);
+                    Animation5FA8_func_8004F1C8(&frame.sp10, &frame.sp10, playerBlock17 - 0x54);
+                    frame.sp18 = 0;
+                    helperResult6 = Animation5FA8_func_8004EDE8(&frame.sp10, 0);
+                    __asm__("" : "=r"(helperResult6):"0"(helperResult6));
+                    call4=&frame.sp10;
+                    if (helperResult6 >= 0x401) {
+                        argument5 = helperResult6;
+                        __asm__("" : "=r"(argument5):"0"(argument5):"$6");
+                        argument6 = 0x400;
+                        goto block_24;
+                    }
+                } else {
+                    remaining6=argument5-word3;
+                    __asm__("" : "=r"(remaining6):"0"(remaining6));
+                    word3=remaining6*5;
+                    word2=(word3*16-word3)*64;
+                    word2>>=10;
+                    AnimationField(&Animation5FA8_D_80070328,int*,0x94)=word2;
+                    __asm__ volatile("" : : : "memory");
+                    {
+                        int cosProduct;
+                        int squareProduct;
+                        word2=AnimationField(&Animation5FA8_D_80070328,volatile int*,0x16C);
+                        phase7=AnimationField(&Animation5FA8_D_80070328,volatile int*,0x168);
+                        word3=AnimationField(&Animation5FA8_D_80070328,volatile int*,0x158);
+                        word2&=127;
+                        tableOffset4=phase7*2;
+                        AnimationField(&Animation5FA8_D_80070328,volatile int*,0x16C)=word2;
+                        word2=AnimationField(&Animation5FA8_D_80065920,short*,tableOffset4);
+                        word3+=1024;
+                        cosProduct=word3*word2;
+                        squareProduct=remaining6*remaining6;
+                        frame.sp10=cosProduct>>12;
+                        word2=AnimationField(&Animation5FA8_D_800658A0,short*,tableOffset4);
+                        word3=word3*word2;
+                        phase7*=16;
+                        word2=squareProduct>>11;
+                        field64Value16=phase7-word2;
+                        word2=word3>>12;
+                        frame.sp14=word2;
+                        call4=&frame.sp10;
+                        argument5=(int)call4;
+                        __asm__("" : "=r"(argument5):"0"(argument5):"$6");
+                        Animation5FA8_func_8004F194(call4,argument5,playerBlock17+0x108);
+                        AnimationField(&Animation5FA8_D_80070328,int*,0x64)=field64Value16;
+                    }
+                    Animation5FA8_func_8004F1C8(&frame.sp10, &frame.sp10, playerBlock17 - 0x54);
+                    frame.sp18 = 0;
+                    helperResult6 = Animation5FA8_func_8004EDE8(&frame.sp10, 0);
+                    __asm__("" : "=r"(helperResult6):"0"(helperResult6));
+                    call4=&frame.sp10;
+                    if (helperResult6 >= 0x801) {
+                        argument5 = helperResult6;
+                        __asm__("" : "=r"(argument5):"0"(argument5):"$6");
+                        argument6 = 0x800;
+block_24:
+                        __asm__("" : "=r"(argument6):"0"(argument6));
+                        Animation5FA8_func_8004F08C(call4, argument5, argument6);
+                    }
+                }
+            }
+            AnimationField(&Animation5FA8_D_80070328, int *, 0x8C) = frame.sp10;
+            AnimationField(&Animation5FA8_D_80070328, int *, 0x90) = frame.sp14;
+            return;
+        }
+        break;
+    case 30:
+        Animation5FA8_func_8004F168(playerBlock17 + 0x2C);
+        Animation5FA8_func_8004F168(playerBlock17 + 0x38);
+        break;
+    }
+}
+#undef AnimationField
+
 
 extern unsigned char DecodedAnimationPlayer[] __asm__("D_80070328");
 extern int D_8006C648, D_8006FA38;

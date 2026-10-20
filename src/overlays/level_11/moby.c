@@ -3848,7 +3848,510 @@ update:
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_11/moby", func_level_11_8007B8B0);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original8007B8B0.
+* Assembly SHA256 eb5d9241a81c2d807b35077895ce3e027135de04ed570f4d6df02aae7d0f1aa3.
+* AI generated; not human reviewed. All823 instructions,
+* six selector words and actual targets are required. Original frame0x80
+* retains all original saved words and full SP18..67 local extent.
+* The823 base has independently decoded891/922 deltas:the original68-word
+* insertion and2440 global literal in891;initialized S5,timer/two36220 calls,
+* original2000 global literal and hook arguments in922. No target identity
+* follows from similarity alone. Full target-native/control/data gates apply.
+* Sequential S0 angle roles copy the first value to A0 before overwriting S0.
+* Signed input/clamps,word handles at+15C,stored halfword handles followed by
+* original SLL/SRA into A0,and complete low products preserve their domains.
+* Stack source bases change from S0/SP38 to S0/SP58;the independent S3/SP48
+* source remains separate. The first collision has two physical entries:
+* one initializes A0 and the other retains its already prepared value.
+* Shared countdown/state3 exit and three hook joins preserve actual targets.
+* Empty initialized identities,late consumers,dead clobbers and compiler
+* memory barriers emit zero CPU instructions. No opcode assembly,partialHI,
+* FP shortcut or live-alias overlap. Confidence is binary identity after
+* all gates. Raw units/fixed point,complete helper contracts,caller cadence
+* and synchronized retail runtime remain open. Cadence is per invocation.
+* Falsification:every native/linked word,actual transfer/table target,owned
+* data byte,EXE and every overlay retail hash. */
+#define Actor11_7B8B0Field(p, t, o) (*(t)((unsigned char*)(p)+(o)))
+int Actor11_7B8B0Call18368View1() __asm__("func_80018368");
+int Actor11_7B8B0Call19194View1() __asm__("func_80019194");
+int Actor11_7B8B0Call1BA30View1() __asm__("func_8001BA30");
+int Actor11_7B8B0Call1C288View1() __asm__("func_8001C288");
+int Actor11_7B8B0Call34F80View1() __asm__("func_80034F80");
+int Actor11_7B8B0Call359A4View1() __asm__("func_800359A4");
+int Actor11_7B8B0Call369B8View1() __asm__("func_800369B8");
+int Actor11_7B8B0Call3BABCView1() __asm__("func_8003BABC");
+int Actor11_7B8B0Call3BE70View1() __asm__("func_8003BE70");
+int Actor11_7B8B0Call3BFC0View1() __asm__("func_8003BFC0");
+int Actor11_7B8B0Call3C0B0View1() __asm__("func_8003C0B0");
+int Actor11_7B8B0Call3C140View1() __asm__("func_8003C140");
+int Actor11_7B8B0Call4E880View1() __asm__("func_8004E880");
+int Actor11_7B8B0Call4ED6CView1() __asm__("func_8004ED6C");
+int Actor11_7B8B0Call4EDE8View1() __asm__("func_8004EDE8");
+int Actor11_7B8B0Call4EF74View1() __asm__("func_8004EF74");
+int Actor11_7B8B0Call4F168View1() __asm__("func_8004F168");
+int Actor11_7B8B0Call4F178View1() __asm__("func_8004F178");
+int Actor11_7B8B0Call4F194View1() __asm__("func_8004F194");
+int Actor11_7B8B0Call4F1C8View1() __asm__("func_8004F1C8");
+int Actor11_7B8B0Call4F284View1() __asm__("func_8004F284");
+int Actor11_7B8B0Call4F334View1() __asm__("func_8004F334");
+int Actor11_7B8B0Call55D24View1() __asm__("func_80055D24");
+int Actor11_7B8B0Call55F14View1() __asm__("func_80055F14");
+extern int Actor11_7B8B0Data658A0View1 __asm__("D_800658A0");
+extern int Actor11_7B8B0Data65920View1 __asm__("D_80065920");
+extern int Actor11_7B8B0Data6C550View1 __asm__("D_8006C550");
+extern int Actor11_7B8B0Data6C700View1 __asm__("D_8006C700");
+extern short Actor11_7B8B0Data6E03EView1 __asm__("D_8006E03E");
+extern short Actor11_7B8B0Data6E040View1 __asm__("D_8006E040");
+extern int Actor11_7B8B0Data70328View1 __asm__("D_80070328");
+extern int Actor11_7B8B0Data71918View1 __asm__("D_80071918");
+extern int Actor11_7B8B0Datag_CheatFlagsView1 __asm__("g_CheatFlags");
+extern void*(*Actor11_7B8B0DataSpawnMobyView1)() __asm__("SpawnMoby");
+extern int(*Actor11_7B8B0Data7443CView1)() __asm__("unk_ovlheader_8007443C");
+extern int(*Actor11_7B8B0Data74444View1)() __asm__("unk_ovlheader_80074444");
+void func_level_11_8007B8B0(void *input) {
+    register void *ownerRecord18 __asm__("$18");
+    register int rawWord2 __asm__("$2"), rawWord3 __asm__("$3"), argumentWord4 __asm__("$4"), argumentWord5 __asm__("$5"), argumentWord6 __asm__("$6"), argumentWord7 __asm__("$7");
+    register int retainedAngleOrAddress16 __asm__("$16"), privateRecord17 __asm__("$17"), secondaryResult20 __asm__("$20"), retainedStackAddress19 __asm__("$19");
+    struct{
+        int sp18, sp1C, sp20, sp24, sp28, sp2C, sp30, sp34, sp38, sp3C, sp40, sp44, sp48, sp4C, sp50, sp54, sp58, sp5C, sp60, sp64;
+    }
+    originalFrame;
+    ownerRecord18 = input;
+    __asm__("":"=r"(ownerRecord18):"0"(ownerRecord18));
+    privateRecord17 = Actor11_7B8B0Field(ownerRecord18, void **, 0);
+    if ((unsigned int) (Actor11_7B8B0Field(privateRecord17, int *, 0) - 1) < 2U) {
+        if ((Actor11_7B8B0Field(privateRecord17, void **, 0x2C) != 0) || ((rawWord3 = Actor11_7B8B0DataSpawnMobyView1(0x1CE, ownerRecord18), Actor11_7B8B0Field(privateRecord17, void**, 0x2C) = rawWord3, (rawWord3 != 0)) && (Actor11_7B8B0Field(rawWord3, int*, 20) = Actor11_7B8B0Field(rawWord3, int*, 20)+512, Actor11_7B8B0Field(Actor11_7B8B0Field(privateRecord17, void **, 0x2C), signed char *, 0x45) = 0x30, (Actor11_7B8B0Field(privateRecord17, void **, 0x2C) != 0)))) {
+            rawWord3 = Actor11_7B8B0Field(privateRecord17, void **, 0x2C);
+            Actor11_7B8B0Field(rawWord3, unsigned char *, 0x46) = (unsigned char) (Actor11_7B8B0Field(rawWord3, unsigned char *, 0x46) + 8);
+        }
+        if (Actor11_7B8B0Field(ownerRecord18, unsigned char *, 0x48) != 6) {
+            if (Actor11_7B8B0Call3BFC0View1(ownerRecord18, Actor11_7B8B0Field(privateRecord17, short *, 0x28)) == 0) {
+                Actor11_7B8B0Field(privateRecord17, short *, 0x28) = Actor11_7B8B0Call3BABCView1(ownerRecord18, 3, 4);
+            }
+            if ((Actor11_7B8B0Field(ownerRecord18, unsigned char *, 0x48) != 6) && (Actor11_7B8B0Field(((Actor11_7B8B0Field(privateRecord17, int *, 4) * 0x58) + Actor11_7B8B0Data6C550View1), unsigned char *, 0x48) != 1) && (retainedAngleOrAddress16 = ownerRecord18 + 0xC, (((unsigned int) (Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 0x50) - 7) < 2U) == 0)) && (Actor11_7B8B0Call4F334View1(retainedAngleOrAddress16, (&Actor11_7B8B0Data70328View1 + 0x50) - 0x50) < 0x400)) {
+                rawWord2 = (Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 8) - Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 0x44)) - Actor11_7B8B0Field(ownerRecord18, int *, 0x14);
+                if (rawWord2 < 0) {
+                    rawWord2 = -rawWord2;
+                }
+                if (rawWord2 < 0x140) {
+                    Actor11_7B8B0Call4F178View1(Actor11_7B8B0Data6C550View1 + (Actor11_7B8B0Field(privateRecord17, int *, 4) * 0x58) + 0xC, retainedAngleOrAddress16);
+                    Actor11_7B8B0Field(((Actor11_7B8B0Field(privateRecord17, int *, 4) * 0x58) + Actor11_7B8B0Data6C550View1), signed char *, 0x44) = 0;
+                    Actor11_7B8B0Field(((Actor11_7B8B0Field(privateRecord17, int *, 4) * 0x58) + Actor11_7B8B0Data6C550View1), signed char *, 0x45) = 0;
+                    Actor11_7B8B0Field(((Actor11_7B8B0Field(privateRecord17, int *, 4) * 0x58) + Actor11_7B8B0Data6C550View1), unsigned char *, 0x46) = (unsigned char) Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, unsigned char *, 0xE);
+                    Actor11_7B8B0Field(((Actor11_7B8B0Field(privateRecord17, int *, 4) * 0x58) + Actor11_7B8B0Data6C550View1), signed char *, 0x4C) = 0x20;
+                    Actor11_7B8B0Field(((Actor11_7B8B0Field(privateRecord17, int *, 4) * 0x58) + Actor11_7B8B0Data6C550View1), signed char *, 0x48) = 4;
+                    Actor11_7B8B0Call369B8View1(Actor11_7B8B0Data6C550View1 + (Actor11_7B8B0Field(privateRecord17, int *, 4) * 0x58), 0x18);
+                    Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 0x23C) = 0x24;
+                    Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 0x20C) = (int) (Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 0x20C) | 0x10000080);
+                    Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, void **, 0x250) = (void *) (Actor11_7B8B0Data6C550View1 + (Actor11_7B8B0Field(privateRecord17, int *, 4) * 0x58));
+                    Actor11_7B8B0Field(((Actor11_7B8B0Field(privateRecord17, int *, 4) * 0x58) + Actor11_7B8B0Data6C550View1), signed char *, 0x48) = 4;
+                    Actor11_7B8B0Data6C700View1 = 0x2000;
+                }
+            }
+        }
+    }
+    else {
+        if (Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 0x50) == 0x13) {
+            if (Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 0x4C) == 5) {
+                Actor11_7B8B0Field(privateRecord17, short *, 0xF0) = 3;
+            }
+            else if (Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 0x4C) == 4) {
+                Actor11_7B8B0Field(privateRecord17, short *, 0xF0) = 2;
+            }
+            else {
+                Actor11_7B8B0Field(privateRecord17, short *, 0xF0) = 1;
+            }
+        }
+        else {
+            Actor11_7B8B0Field(privateRecord17, short *, 0xF0) = 0;
+        }
+        rawWord3 = Actor11_7B8B0Field(ownerRecord18, unsigned char *, 0x48);
+        switch (rawWord3) {
+        case 0:
+            rawWord3 = Actor11_7B8B0Field(ownerRecord18, short *, 0x36);
+            if ((rawWord3 == 0x36) || (rawWord3 == 0x294) || (rawWord3 == 0xFB)) {
+                Actor11_7B8B0Field(ownerRecord18, signed char *, 0x41) = 0;
+                Actor11_7B8B0Field(ownerRecord18, signed char *, 0x4C) = 0;
+                Actor11_7B8B0Field(ownerRecord18, signed char*, 0x4D) = 0;
+                goto prepareHookArgument4;
+            }
+            argumentWord4 = 0;
+            goto prepareHookArgument5;
+            default:argumentWord4 = 0;
+            goto prepareHookArgument5;
+        case 4:
+            if (Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 0x50) == 0x13) {
+                Actor11_7B8B0Field(ownerRecord18, unsigned char *, 0x48) = 1U;
+            }
+            argumentWord4 = 0;
+            goto prepareHookArgument5;
+        case 1:
+            Actor11_7B8B0Call4F168View1(&originalFrame.sp18);
+            originalFrame.sp20 = -0x400;
+            Actor11_7B8B0Call55D24View1(ownerRecord18, 4);
+            Actor11_7B8B0Call4ED6CView1(ownerRecord18 + 0x20, &originalFrame.sp18, &originalFrame.sp18);
+            rawWord2 = Actor11_7B8B0Call4E880View1(Actor11_7B8B0Call4EDE8View1(&originalFrame.sp18, 0), originalFrame.sp20, 1);
+            argumentWord6 = 1;
+            __asm__(""::"r"(argumentWord6):"$16");
+            retainedAngleOrAddress16 = rawWord2;
+            rawWord2 = Actor11_7B8B0Call4E880View1(originalFrame.sp18, originalFrame.sp1C, argumentWord6);
+            argumentWord4 = retainedAngleOrAddress16;
+            rawWord3 = 4;
+            retainedAngleOrAddress16 = rawWord2+0x800;
+            Actor11_7B8B0Field(ownerRecord18, signed char*, 0x47) = rawWord3;
+            argumentWord5 = Actor11_7B8B0Data6E03EView1;
+            retainedAngleOrAddress16 &= 0xFFF;
+            rawWord2 = Actor11_7B8B0Call4F284View1(argumentWord4, argumentWord5);
+            argumentWord4 = retainedAngleOrAddress16;
+            argumentWord5 = Actor11_7B8B0Data6E040View1;
+            retainedAngleOrAddress16 = rawWord2;
+            rawWord2 = Actor11_7B8B0Call4F284View1(argumentWord4, argumentWord5);
+            retainedAngleOrAddress16 = retainedAngleOrAddress16 < 600;
+            rawWord2 = rawWord2 < 600;
+            if (retainedAngleOrAddress16 && rawWord2) {
+                Actor11_7B8B0Field(ownerRecord18, signed char *, 0x47) = 9;
+            }
+            rawWord2 = Actor11_7B8B0Field(&Actor11_7B8B0Datag_CheatFlagsView1, unsigned char*, 1);
+            argumentWord4 = (int)ownerRecord18;
+            if (rawWord2){
+                __asm__ __volatile__(""::"r"(rawWord2):"$5");
+                argumentWord5 = 1;
+            }
+            else{
+                __asm__ __volatile__("":::"$2");
+                argumentWord5 = 0;
+                __asm__("":"=r"(argumentWord5):"0"(argumentWord5));
+            }
+            Actor11_7B8B0Call34F80View1(argumentWord4, argumentWord5);
+            if (Actor11_7B8B0Field(ownerRecord18, unsigned char *, 0x3D) == 0) {
+                Actor11_7B8B0Field(ownerRecord18, signed char *, 0x41) = 0;
+                Actor11_7B8B0Field(ownerRecord18, signed char *, 0x3E) = 0;
+                argumentWord5 = 0;
+                if (Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 0xB8) == 0) {
+                    argumentWord5 = Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, unsigned char *, 0xC);
+                }
+                if ((int) argumentWord5 >= 0x81) {
+                    argumentWord5 -= 0x100;
+                }
+                if (argumentWord5 <= 0) goto clampNonPositiveInput;
+                rawWord2 = argumentWord5 < 16;
+                if (rawWord2){
+                    rawWord2 = 1;
+                    goto storeInputBytes;
+                }
+                rawWord2 = 1;
+                argumentWord5 = 15;
+                goto storeInputBytes;
+                clampNonPositiveInput:argumentWord5 = -argumentWord5;
+                rawWord2 = argumentWord5 < 16;
+                if (rawWord2){
+                    rawWord2 = 2;
+                    goto storeInputBytes;
+                }
+                rawWord2 = 2;
+                argumentWord5 = 15;
+            storeInputBytes:
+                Actor11_7B8B0Field(ownerRecord18, signed char *, 0x3F) = rawWord2;
+                rawWord2 = argumentWord5&15;
+                Actor11_7B8B0Field(ownerRecord18, signed char*, 0x40) = rawWord2;
+            }
+            else {
+                Actor11_7B8B0Field(ownerRecord18, signed char *, 0x41) = 1;
+            }
+            if (Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 0xB8) != 0) {
+                if (Actor11_7B8B0Call3BFC0View1(ownerRecord18, Actor11_7B8B0Field(privateRecord17, short *, 0x28)) != 0) {
+                    Actor11_7B8B0Call3BE70View1(Actor11_7B8B0Field(privateRecord17, short *, 0x28));
+                }
+                Actor11_7B8B0Field(privateRecord17, short *, 0x28) = -1;
+            }
+            else {
+                if (Actor11_7B8B0Call3BFC0View1(ownerRecord18, Actor11_7B8B0Field(privateRecord17, short *, 0x28)) == 0) {
+                    Actor11_7B8B0Field(privateRecord17, short *, 0x28) = Actor11_7B8B0Call3BABCView1(ownerRecord18, 0, 4);
+                }
+                argumentWord4 = Actor11_7B8B0Field(privateRecord17, short *, 0x28);
+                if (argumentWord4 >= 0) {
+                    rawWord2 = Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int*, 0x5C);
+                    argumentWord5 = rawWord2&0xFFF;
+                    if (argumentWord5 >= 0x801) {
+                        argumentWord5 -= 0x1000;
+                    }
+                    argumentWord5 = argumentWord5 * 4;
+                    if (argumentWord5 < 0) {
+                        argumentWord5 = -argumentWord5;
+                    }
+                    Actor11_7B8B0Call3C0B0View1(argumentWord4, argumentWord5 + 0x1000);
+                }
+            }
+            if (Actor11_7B8B0Field(privateRecord17, int *, 0xC) != 0) {
+                if ((unsigned int) (Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 0x4C) - 4) >= 2U) {
+                    Actor11_7B8B0Field(privateRecord17, int *, 0xC) = 0;
+                }
+            }
+            else if ((unsigned int) (Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 0x4C) - 4) < 2U) {
+                argumentWord4 = privateRecord17+100;
+                rawWord3 = (int)Actor11_7B8B0Data74444View1;
+                rawWord2 = 1;
+                Actor11_7B8B0Field(privateRecord17, int*, 12) = rawWord2;
+                ((int(*)())rawWord3)(argumentWord4);
+            }
+            Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, void **, 0x250) = ownerRecord18;
+            if (Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 0x50) != 0x13) {
+                argumentWord5 = privateRecord17 + 0x64;
+                if (Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 0x240) == 0) {
+                    Actor11_7B8B0Field(ownerRecord18, unsigned char *, 0x49) = 0U;
+                    Actor11_7B8B0Field(privateRecord17, short *, 0x22) = 0x1E;
+                    Actor11_7B8B0Field(privateRecord17, short *, 0x20) = 0x78;
+                    Actor11_7B8B0Field(privateRecord17, unsigned short *, 0x26) = 0U;
+                    Actor11_7B8B0Field(privateRecord17, short *, 0x24) = 0xC;
+                    rawWord2 = Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, unsigned char*, 14);
+                    argumentWord4 = (int)ownerRecord18;
+                    rawWord2 += 128;
+                    rawWord2 &= 255;
+                    rawWord2 <<= 1;
+                    rawWord3 = Actor11_7B8B0Field(&Actor11_7B8B0Data65920View1, short*, rawWord2);
+                    argumentWord5 = 4;
+                    rawWord2 = rawWord3*25;
+                    rawWord2 >>= 9;
+                    Actor11_7B8B0Field(privateRecord17, int*, 20) = rawWord2;
+                    rawWord2 = Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, unsigned char*, 14);
+                    argumentWord6 = 0;
+                    rawWord2 += 128;
+                    rawWord2 &= 255;
+                    rawWord2 <<= 1;
+                    rawWord3 = Actor11_7B8B0Field(&Actor11_7B8B0Data658A0View1, short*, rawWord2);
+                    rawWord2 = 125;
+                    Actor11_7B8B0Field(privateRecord17, int*, 28) = rawWord2;
+                    rawWord2 = rawWord3*25;
+                    rawWord2 >>= 9;
+                    Actor11_7B8B0Field(privateRecord17, int*, 24) = rawWord2;
+                    Actor11_7B8B0Call3BABCView1(argumentWord4, argumentWord5, argumentWord6);
+                    Actor11_7B8B0Field(privateRecord17, short *, 0x2A) = -1;
+                    Actor11_7B8B0Field(ownerRecord18, unsigned char *, 0x48) = 2U;
+                    if (Actor11_7B8B0Call3BFC0View1(ownerRecord18, Actor11_7B8B0Field(privateRecord17, int*, 0x15C)) != 0) {
+                        Actor11_7B8B0Call3BE70View1(Actor11_7B8B0Field(privateRecord17, int*, 0x15C));
+                    }
+                    Actor11_7B8B0Field(privateRecord17, int *, 0x15C) = -1;
+                    if (Actor11_7B8B0Call3BFC0View1(ownerRecord18, Actor11_7B8B0Field(privateRecord17, short *, 0x28)) != 0) {
+                        Actor11_7B8B0Call3BE70View1(Actor11_7B8B0Field(privateRecord17, short *, 0x28));
+                    }
+                    Actor11_7B8B0Field(privateRecord17, short *, 0x28) = -1;
+                    goto prepareHookArgument4;
+                }
+            }
+            else {
+                argumentWord4 = 0;
+                goto prepareHookArgument5;
+            }
+            argumentWord4 = 0;
+            goto callSharedHook;
+        case 3:
+            Actor11_7B8B0Call369B8View1(ownerRecord18, 0x18);
+            Actor11_7B8B0Field(ownerRecord18, signed char *, 0x4D) = 0;
+            Actor11_7B8B0Field(ownerRecord18, signed char *, 0x4C) = 0;
+            Actor11_7B8B0Field(ownerRecord18, unsigned char *, 0x48) = 0U;
+            goto prepareHookArgument4;
+        case 2:
+            argumentWord4 = (int)&originalFrame.sp28;
+            __asm__(""::"r"(argumentWord4):"$16");
+            retainedAngleOrAddress16 = (int)ownerRecord18+12;
+            Actor11_7B8B0Call4F178View1(argumentWord4, retainedAngleOrAddress16);
+            if (Actor11_7B8B0Field(ownerRecord18, unsigned char *, 0x49) != 0) {
+                argumentWord6 = (unsigned char) Actor11_7B8B0Field(privateRecord17, short *, 0x24);
+                Actor11_7B8B0Field(privateRecord17, int *, 0x1C) = (int) (Actor11_7B8B0Field(privateRecord17, int *, 0x1C) - 0xC);
+                Actor11_7B8B0Field(ownerRecord18, unsigned char *, 0x45) = (unsigned char) (Actor11_7B8B0Field(ownerRecord18, unsigned char *, 0x45) + argumentWord6);
+                Actor11_7B8B0Field(ownerRecord18, unsigned char *, 0x44) = (unsigned char) (Actor11_7B8B0Field(ownerRecord18, unsigned char *, 0x44) + 8);
+                Actor11_7B8B0Call55D24View1(ownerRecord18, 4, argumentWord6);
+                if ((Actor11_7B8B0Field(ownerRecord18, int *, 0xC) >= 0x400) && (Actor11_7B8B0Field(ownerRecord18, int *, 0x10) >= 0x400) && (Actor11_7B8B0Field(ownerRecord18, int *, 0x14) >= 0x400)) {
+                    Actor11_7B8B0Call4F194View1(retainedAngleOrAddress16, retainedAngleOrAddress16, privateRecord17 + 0x14);
+                    goto prepareState2Sources;
+                }
+                goto storeState3AndReturn;
+            }
+        prepareState2Sources:
+            Actor11_7B8B0Field(ownerRecord18, unsigned char*, 0x49) = 1;
+            __asm__ __volatile__("":"=r"(ownerRecord18):"0"(ownerRecord18):"$16");
+            argumentWord4 = (int)ownerRecord18;
+            argumentWord5 = 0;
+            __asm__(""::"r"(argumentWord4), "r"(argumentWord5):"$16");
+            retainedAngleOrAddress16 = (int)&originalFrame.sp38;
+            Actor11_7B8B0Call55F14View1(argumentWord4, argumentWord5, retainedAngleOrAddress16);
+            retainedStackAddress19 = (int)&originalFrame.sp48;
+            Actor11_7B8B0Call55F14View1(ownerRecord18, 1, retainedStackAddress19);
+            secondaryResult20 = 0;
+            if (Actor11_7B8B0Call359A4View1(privateRecord17 + 0x22, 2) != 0) {
+                if ((Actor11_7B8B0Call1C288View1(retainedAngleOrAddress16, 0x64, 0) != 0) || (rawWord2 = Actor11_7B8B0Call1C288View1(retainedStackAddress19, 0x64, 0), secondaryResult20 = rawWord2 != 0, (rawWord2 != 0))) {
+                    rawWord2 = Actor11_7B8B0Field(privateRecord17, unsigned short*, 0x26);
+                    rawWord2 += 1;
+                    __asm__("":"=r"(rawWord2):"0"(rawWord2));
+                    Actor11_7B8B0Field(privateRecord17, unsigned short*, 0x26) = rawWord2;
+                    if (secondaryResult20 != 0) {
+                        rawWord2 = -0xC;
+                    }
+                    else{
+                        __asm__ __volatile__("":::"$2");
+                        rawWord2 = 12;
+                    }
+                    Actor11_7B8B0Field(privateRecord17, short*, 0x24) = rawWord2;
+                    __asm__ __volatile__("":::"memory");
+                    Actor11_7B8B0Field(&Actor11_7B8B0Data70328View1, int *, 0x298) = Actor11_7B8B0Call4E880View1(Actor11_7B8B0Field(privateRecord17, int *, 0x14), Actor11_7B8B0Field(privateRecord17, int *, 0x18), 0);
+                    (retainedAngleOrAddress16 = (int)&originalFrame.sp58, Actor11_7B8B0Call4F1C8View1(retainedAngleOrAddress16, ownerRecord18 + 0xC, (&Actor11_7B8B0Data70328View1+0x298)-0x298));
+                    argumentWord4 = privateRecord17 + 0x14;
+                    rawWord2 = Actor11_7B8B0Call4EF74View1(argumentWord4, retainedAngleOrAddress16, argumentWord4);
+                    argumentWord4 = (int)ownerRecord18;
+                    if (rawWord2){
+                        Actor11_7B8B0Field(privateRecord17, int *, 0x14) = (int) ((int) (Actor11_7B8B0Field(privateRecord17, int *, 0x14) * 6) >> 3);
+                        Actor11_7B8B0Field(privateRecord17, int *, 0x18) = (int) ((int) (Actor11_7B8B0Field(privateRecord17, int *, 0x18) * 6) >> 3);
+                        Actor11_7B8B0Field(privateRecord17, int *, 0x1C) = (int) ((int) (Actor11_7B8B0Field(privateRecord17, int *, 0x1C) * 6) >> 3);
+                        rawWord2 = Actor11_7B8B0Call3BFC0View1(argumentWord4, Actor11_7B8B0Field(privateRecord17, short*, 0x2A));
+                        argumentWord4 = (int)&originalFrame.sp38;
+                        if (rawWord2) goto callFirstCollisionWithPreparedA0;
+                        {
+                            __asm__ __volatile__("":::"$2");
+                            rawWord2 = Actor11_7B8B0Call3BABCView1(ownerRecord18, 4, 0);
+                            Actor11_7B8B0Field(privateRecord17, short*, 0x2A) = rawWord2;
+                            rawWord2 = (unsigned int)rawWord2 << 16;
+                            argumentWord4 = rawWord2 >> 16;
+                            if (argumentWord4 >= 0) {
+                                rawWord2 = Actor11_7B8B0Field(privateRecord17, int *, 0x1C);
+                                if (rawWord2 < 0) {
+                                    rawWord2 = -rawWord2;
+                                }
+                                Actor11_7B8B0Call3C140View1(argumentWord4, rawWord2*40);
+                            }
+                        }
+                    }
+                }
+                prepareFirstCollisionStack:__asm__ __volatile__("":::"$4");
+                argumentWord4 = (int)&originalFrame.sp38;
+                callFirstCollisionWithPreparedA0:argumentWord5 = 150;
+                argumentWord6 = Actor11_7B8B0Call1BA30View1(argumentWord4, argumentWord5, 1, 0, 0x10000000, ownerRecord18);
+                argumentWord4 = (int)&originalFrame.sp48;
+                if (argumentWord6 == 0){
+                    __asm__(""::"r"(argumentWord4):"$5");
+                    argumentWord5 = 150;
+                    argumentWord6 = Actor11_7B8B0Call1BA30View1(argumentWord4, argumentWord5, 1, 0, 0x10000000, ownerRecord18);
+                    argumentWord4 = privateRecord17 + 0x20;
+                    if (argumentWord6 != 0) {
+                        secondaryResult20 = 1;
+                        goto handleSecondCollisionResult;
+                    }
+                }
+                else {
+                handleSecondCollisionResult:
+                    rawWord2 = Actor11_7B8B0Field(privateRecord17, unsigned short*, 0x26);
+                    rawWord2 += 1;
+                    __asm__("":"=r"(rawWord2):"0"(rawWord2));
+                    Actor11_7B8B0Field(privateRecord17, unsigned short*, 0x26) = rawWord2;
+                    if (secondaryResult20 != 0) {
+                        rawWord2 = -0xC;
+                    }
+                    else{
+                        __asm__ __volatile__("":::"$2");
+                        rawWord2 = 12;
+                    }
+                    Actor11_7B8B0Field(privateRecord17, short *, 0x24) = rawWord2;
+                    retainedAngleOrAddress16 = (int)&originalFrame.sp58;
+                    Actor11_7B8B0Call4F1C8View1(retainedAngleOrAddress16, ownerRecord18+12, argumentWord6+12);
+                    argumentWord4 = privateRecord17 + 0x14;
+                    if (Actor11_7B8B0Call4EF74View1(argumentWord4, retainedAngleOrAddress16, argumentWord4) != 0) {
+                        Actor11_7B8B0Field(privateRecord17, int *, 0x14) = (int) ((int) (Actor11_7B8B0Field(privateRecord17, int *, 0x14) * 6) >> 3);
+                        Actor11_7B8B0Field(privateRecord17, int *, 0x18) = (int) ((int) (Actor11_7B8B0Field(privateRecord17, int *, 0x18) * 6) >> 3);
+                        Actor11_7B8B0Field(privateRecord17, int *, 0x1C) = (int) ((int) (Actor11_7B8B0Field(privateRecord17, int *, 0x1C) * 6) >> 3);
+                        argumentWord4 = privateRecord17 + 0x20;
+                        rawWord2 = Actor11_7B8B0Call3BFC0View1(ownerRecord18, Actor11_7B8B0Field(privateRecord17, short*, 0x2A));
+                        argumentWord4 = privateRecord17+32;
+                        if (rawWord2) goto callState2CountdownHelper;
+                        {
+                            __asm__ __volatile__("":::"$2");
+                            rawWord2 = Actor11_7B8B0Call3BABCView1(ownerRecord18, 4, 0);
+                            Actor11_7B8B0Field(privateRecord17, short*, 0x2A) = rawWord2;
+                            rawWord2 = (unsigned int)rawWord2 << 16;
+                            argumentWord4 = rawWord2 >> 16;
+                            if (argumentWord4 >= 0) {
+                                rawWord2 = Actor11_7B8B0Field(privateRecord17, int *, 0x1C);
+                                if (rawWord2 < 0) {
+                                    rawWord2 = -rawWord2;
+                                }
+                                Actor11_7B8B0Call3C140View1(argumentWord4, rawWord2*40);
+                            }
+                            goto prepareState2Countdown;
+                        }
+                    }
+                    else {
+                        goto prepareState2Countdown;
+                    }
+                }
+            }
+            else {
+            prepareState2Countdown:
+                argumentWord4 = privateRecord17 + 0x20;
+            }
+            callState2CountdownHelper:if (Actor11_7B8B0Call359A4View1(argumentWord4, 2)) goto storeState3AndReturn;
+            rawWord2 = Actor11_7B8B0Field(privateRecord17, short*, 0x26);
+            rawWord2 = rawWord2 < 31;
+            if (rawWord2) goto probeState2SurfaceSources;
+            storeState3AndReturn:rawWord2 = 3;
+            Actor11_7B8B0Field(ownerRecord18, unsigned char*, 0x48) = rawWord2;
+            return;
+            probeState2SurfaceSources:{
+                if (Actor11_7B8B0Call19194View1(&originalFrame.sp38, 0x96) == 0) {
+                    if (Actor11_7B8B0Call19194View1(&originalFrame.sp48, 0x96) != 0) {
+                        secondaryResult20 = 1;
+                        goto handleSurfaceResult;
+                    }
+                    if (Actor11_7B8B0Call18368View1(&originalFrame.sp28, ownerRecord18 + 0xC) != 0) {
+                        goto handleSurfaceResult;
+                    }
+                }
+                else {
+                handleSurfaceResult:
+                    rawWord2 = Actor11_7B8B0Field(privateRecord17, unsigned short*, 0x26);
+                    rawWord2 += 1;
+                    __asm__("":"=r"(rawWord2):"0"(rawWord2));
+                    Actor11_7B8B0Field(privateRecord17, unsigned short*, 0x26) = rawWord2;
+                    if (secondaryResult20 != 0) {
+                        rawWord2 = -0xC;
+                    }
+                    else{
+                        __asm__ __volatile__("":::"$2");
+                        rawWord2 = 12;
+                    }
+                    Actor11_7B8B0Field(privateRecord17, short *, 0x24) = rawWord2;
+                    argumentWord4 = privateRecord17 + 0x14;
+                    if (Actor11_7B8B0Call4EF74View1(argumentWord4, &Actor11_7B8B0Data71918View1, argumentWord4) != 0) {
+                        Actor11_7B8B0Field(privateRecord17, int *, 0x14) = (int) ((int) (Actor11_7B8B0Field(privateRecord17, int *, 0x14) * 6) >> 3);
+                        Actor11_7B8B0Field(privateRecord17, int *, 0x18) = (int) ((int) (Actor11_7B8B0Field(privateRecord17, int *, 0x18) * 6) >> 3);
+                        Actor11_7B8B0Field(privateRecord17, int *, 0x1C) = (int) (((int) (Actor11_7B8B0Field(privateRecord17, int *, 0x1C) * 6) >> 3) + 0x14);
+                        if (Actor11_7B8B0Call3BFC0View1(ownerRecord18, Actor11_7B8B0Field(privateRecord17, short *, 0x2A)) == 0) {
+                            rawWord2 = Actor11_7B8B0Call3BABCView1(ownerRecord18, 4, 0);
+                            Actor11_7B8B0Field(privateRecord17, short*, 0x2A) = rawWord2;
+                            rawWord2 = (unsigned int)rawWord2 << 16;
+                            argumentWord4 = rawWord2 >> 16;
+                            if (argumentWord4 >= 0) {
+                                rawWord2 = Actor11_7B8B0Field(privateRecord17, int *, 0x1C);
+                                if (rawWord2 < 0) {
+                                    rawWord2 = -rawWord2;
+                                }
+                                Actor11_7B8B0Call3C140View1(argumentWord4, rawWord2*40);
+                            }
+                        }
+                    }
+                }
+                argumentWord4 = 0;
+                goto prepareHookArgument5;
+            }
+        }
+    }
+    return;
+    prepareHookArgument4:argumentWord4 = 0;
+    prepareHookArgument5:argumentWord5 = privateRecord17+0x64;
+    callSharedHook:Actor11_7B8B0Data7443CView1(argumentWord4, argumentWord5, 0);
+}
+#undef Actor11_7B8B0Field
+
 
 /* AI-generated; not human reviewed. Reuses verified func_level_10_800821F8
  * with this overlay's original fragment selector. Raw field units, helper
@@ -4561,7 +5064,118 @@ void func_level_11_8007D748(Moby* moby) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_11/moby", func_level_11_8007D8B8);
+/* AI-generated; not human reviewed. Verified sibling C adapted only
+ * to this function's original SCUS-94467 instructions. Raw field units,
+ * helper meanings and update cadence remain unresolved. */
+/* AI generated; not human reviewed. Original SCUS-94467 USA Rev0
+ * 8007D8B8:300 instructions, nine dispatch words and padding, original4657.
+ * Verified13/36 helper forms reused only where original agrees. Raw fields;
+ * units, helper contracts, cadence and runtime parity unresolved. */
+#define A11Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+extern void* A11Active __asm__("D_8006E164");
+extern int A11Type __asm__("D_8006E160");
+extern unsigned char* A11Pool __asm__("D_8006C550");
+extern unsigned char A11Player[] __asm__("D_80070328");
+extern int A11Contact __asm__("D_8006C770");
+int A11Helper36A68() __asm__("func_80036A68");
+int A11Helper38F14() __asm__("func_80038F14");
+int A11Helper36220() __asm__("func_80036220");
+int A11Helper359A4() __asm__("func_800359A4");
+int A11Helper34F40() __asm__("func_80034F40");
+int A11Helper55E84() __asm__("func_80055E84");
+int A11Helper3585C() __asm__("func_8003585C");
+int A11Helper35A80() __asm__("func_80035A80");
+int A11Helper35194() __asm__("func_80035194");
+int A11Helper55D24() __asm__("func_80055D24");
+int A11Helper3BA00() __asm__("func_8003BA00");
+int A11Helper369B8() __asm__("func_800369B8");
+int A11Helper55B18() __asm__("func_80055B18");
+extern void* (*A11SpawnMoby)(int,void*) __asm__("SpawnMoby");
+int A11H3573C() __asm__("func_8003573C");
+int A11H4F334() __asm__("func_8004F334");
+int A11H38BF8() __asm__("func_80038BF8");
+int A11H368A4() __asm__("func_800368A4");
+int A11H3636C() __asm__("func_8003636C");
+int A11H4E880() __asm__("func_8004E880");
+int A11H4F264() __asm__("func_8004F264");
+void func_level_11_8007D8B8(void* input){
+ register unsigned char* owner __asm__("$16")=input;
+ register unsigned char* tag __asm__("$17");
+ register unsigned char* player19 __asm__("$19");
+ register unsigned char* player17 __asm__("$17");
+ register int distance18 __asm__("$18");
+ register int value __asm__("$2");register int other __asm__("$3");
+ register void* call4 __asm__("$4");register int arg5 __asm__("$5");
+ register int arg6 __asm__("$6");
+ __asm__("" : "=r"(owner):"0"(owner));
+ value=owner[72];tag=A11Field(owner,unsigned char**,0);
+ if((unsigned int)value<8 && (A11Field(owner,int*,24)&0x90000)){
+  A11Helper36A68(input,1,0,0);A11Helper38F14(owner,tag+12,1,8);A11Helper55D24(owner,5);
+ }
+ if((unsigned int)(A11Field(A11Player,int*,80)-7)<2){
+  other=owner[72];if(other!=5){owner[72]=7;A11Helper34F40(owner,7);}else owner[73]=2;
+ }
+ switch(owner[72]){
+ case 0:
+  call4=owner;if(A11Contact){
+   if(!owner[73]){A11Helper34F40(call4,1);owner[73]=A11H3636C(2,4);}
+   else{A11Helper34F40(call4,0);owner[73]--;}
+   call4=owner;
+  }
+  A11H3573C(call4,6,0,1);
+  if(A11H4F334(owner+12,A11Player)<A11Field(tag,int*,0)){owner[72]=3;A11Helper34F40(owner,3);}break;
+ case 3:
+  A11H3573C(owner,6,0,1);if(A11Contact){owner[72]=4;A11Helper34F40(owner,4);}break;
+ case 4:
+  player19=A11Player;distance18=A11H4F334(owner+12,player19);A11H3573C(owner,6,0,1);
+  if((unsigned int)(A11Field(A11Player,int*,80)-7)<2)goto retreat;
+  if(A11Field(A11Player,int*,576))goto retreat;
+  other=A11Field(owner,int*,20);call4=(void*)A11Field(A11Player,int*,8);
+  value=other-2048;
+  if(value>=(int)call4)goto retreat;
+  other+=2048;
+  value=(int)call4-A11Field(A11Player,int*,68);
+  if(value>=other)goto retreat;
+  value=A11H4E880(A11Field(player19,int*,0)-A11Field(owner,int*,12),A11Field(A11Player,int*,4)-A11Field(owner,int*,16),0);
+  if(A11H4F264(owner[70],value)>=24)goto retreat;
+  value=distance18<A11Field(tag,int*,4);call4=owner;
+  if(value){arg5=5;value=5;goto enter_with_value;}
+ retreat:
+  if(distance18>A11Field(tag,int*,0)+1024){owner[72]=6;A11Helper34F40(owner,6);}break;
+ case 5:
+  call4=owner;if(owner[73])goto animate5;
+  __asm__("" ::: "$4");value=A11Helper55E84(owner);call4=owner;if(value<37)goto animate5;
+  arg6=0;value=1;__asm__("" : "=r"(arg6),"=r"(value):"0"(arg6),"1"(value));player17=A11Player;owner[73]=value;
+  value=A11H4E880(A11Field(player17,int*,0)-A11Field(owner,int*,12),A11Field(A11Player,int*,4)-A11Field(owner,int*,16),arg6);
+  value=A11H4F264(owner[70],value);call4=owner;if(value>=16)goto animate5;
+  other=A11Field(owner,int*,20);call4=(void*)A11Field(A11Player,int*,8);
+  if(other>=(int)call4)goto prepare_animate5;
+  other+=1024;value=(int)call4-A11Field(A11Player,int*,68);call4=owner+12;
+  if(value>=other)goto prepare_animate5;
+  value=A11H4F334(call4,player17);call4=owner;if(value>=3072)goto animate5;
+  A11Field(A11Player,int*,36)|=22;
+ prepare_animate5:
+  call4=owner;
+ animate5:
+  A11H3573C(call4,6,0,1);if(!A11Contact)goto done;
+  other=owner[73];call4=owner;
+  if(other==2){arg5=7;value=7;
+ enter_with_value:
+   ((unsigned char*)call4)[73]=0;((unsigned char*)call4)[72]=value;A11Helper34F40(call4,arg5);goto done;
+  }
+  goto enter0;
+ case 6:case 7:
+  A11H3573C(owner,6,0,1);if(!A11Contact)goto done;
+ enter0:
+  owner[72]=0;A11Helper34F40(owner,0);break;
+ case 8:
+  value=A11Helper35194(owner,tag+12);call4=owner;if(value!=256)goto done;
+  A11Helper55D24(call4,4);A11Helper3BA00(owner);A11Helper369B8(owner,48);A11Helper55B18(owner);break;
+ }
+ done:;
+}
+#undef A11Field
+
 
 /* AI generated; not human reviewed. SCUS-94467 USA Rev0
  * 8007DD68..8007E0BC. Original instructions define numeric branches.
@@ -4615,7 +5229,375 @@ void func_level_11_8007DD68(Moby* argument) {
  }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_11/moby", func_level_11_8007E0C0);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+extern int State464Flags __asm__("D_80070328 + 0x24");
+extern unsigned char State464Global8 __asm__("D_80070328+8");
+extern unsigned char State464Global68 __asm__("D_80070328+0x44");
+extern unsigned char State464Global0 __asm__("D_80070328+0");
+extern unsigned char State464Global4 __asm__("D_80070328+4");
+extern unsigned char State464Global524 __asm__("D_80070328+0x20C");
+extern unsigned char State464Global36 __asm__("D_80070328+0x24");
+extern unsigned char State464Global540 __asm__("D_80070328+0x21C");
+extern unsigned char State464Global548 __asm__("D_80070328+0x224");
+extern unsigned char State464Global544 __asm__("D_80070328+0x220");
+/* AI generated;
+ not human reviewed. Original-instruction-derived C. Original source asm/nonmatchings/overlays/level_11/moby/func_level_11_8007E0C0.s SHA256 31706881a404aa4928fc8f3b2f27e888a51a4df304e2b50a51d55facd1861657. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
+#define State464Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+
+unsigned char State464_func_80034F40() __asm__("func_80034F40");
+             /* extern */
+int State464_func_80035194() __asm__("func_80035194");
+                     /* extern */
+unsigned char State464_func_8003573C() __asm__("func_8003573C");
+ /* extern */
+int State464_func_800359A4() __asm__("func_800359A4");
+                 /* extern */
+unsigned char State464_func_800369B8() __asm__("func_800369B8");
+             /* extern */
+unsigned char State464_func_80036A68() __asm__("func_80036A68");
+   /* extern */
+unsigned char State464_func_80038BF8() __asm__("func_80038BF8");
+ /* extern */
+unsigned char State464_func_8003BA00() __asm__("func_8003BA00");
+                      /* extern */
+int State464_func_8004E880() __asm__("func_8004E880");
+               /* extern */
+unsigned char State464_func_8004ECF4() __asm__("func_8004ECF4");
+           /* extern */
+unsigned char State464_func_8004ED6C() __asm__("func_8004ED6C");
+     /* extern */
+unsigned char State464_func_8004F1C8() __asm__("func_8004F1C8");
+    /* extern */
+int State464_func_8004F264() __asm__("func_8004F264");
+                        /* extern */
+int State464_func_8004F334() __asm__("func_8004F334");
+               /* extern */
+unsigned char State464_func_80055B18() __asm__("func_80055B18");
+                      /* extern */
+unsigned char State464_func_80055D24() __asm__("func_80055D24");
+             /* extern */
+int State464_func_80055E84() __asm__("func_80055E84");
+                          /* extern */
+extern unsigned char State464_D_800658A0 __asm__("D_800658A0");
+extern unsigned char State464_D_80065920 __asm__("D_80065920");
+extern int State464_D_8006C770 __asm__("D_8006C770");
+extern int State464_D_8006E020 __asm__("D_8006E020");
+extern int State464_D_8006E024 __asm__("D_8006E024");
+extern unsigned short State464_D_8006E040 __asm__("D_8006E040");
+extern unsigned char State464_D_80070328 __asm__("D_80070328");
+extern unsigned char (*State464_unk_ovlheader_800743F0)() __asm__("unk_ovlheader_800743F0");
+extern int (*State464_unk_ovlheader_80074414)() __asm__("unk_ovlheader_80074414");
+
+void func_level_11_8007E0C0(void *input) {register void *owner17 __asm__("$17")=input;
+    /* Original 0x68-byte frame: scratch SP+0x28..0x4F,
+     * saved registers SP+0x50..0x60, final alignment through 0x67.
+     * Traced fields and table elements retain their original byte offsets.
+     * Table samples use signed LH and a signed product shifted right by 11.
+     * Units/fixed-point domains, helper meanings and frame cadence are unknown.
+     * Initialized empty constraints preserve raw producers and store order;
+     * no instruction assembly or compiler-pipeline changes are used. */
+    struct {
+        int sp28;
+        int sp2C;
+        int sp30;
+        unsigned char pad34[4];
+        unsigned char sp38;
+        unsigned char pad39[23];
+    } originalFrame;
+
+    register int argument5 __asm__("$5");
+    int temp_a0;
+    int temp_a1;
+    register int case0Word16 __asm__("$16");
+    register int case2Word16 __asm__("$16");
+    register int case6Word16 __asm__("$16");
+    register int result18 __asm__("$18");
+    int var_v0;
+    int var_v0_2;
+    register int case2Word3 __asm__("$3");
+    register int state3 __asm__("$3");
+    register void *pointer16 __asm__("$16");
+    register void *storage19 __asm__("$19");
+    register void *call4 __asm__("$4");
+    register void *player18 __asm__("$18");
+    register int result2 __asm__("$2");
+    register int argument6 __asm__("$6");
+    register int word2 __asm__("$2");
+    register int word3 __asm__("$3");
+    register int argument7 __asm__("$7");
+    void *var_a0;
+
+    __asm__("":"=r"(owner17):"0"(owner17));
+    storage19 = State464Field(owner17, void **, 0);
+    if (((unsigned char) State464Field(owner17, unsigned char *, 0x48) < 8U) && (State464Field(owner17, int *, 0x18) != 0)) {
+        State464_func_80036A68(input, 0, 0, 0);
+        State464_func_80038BF8(owner17, storage19 + 0x10, 1, 8);
+        State464_func_80055D24(owner17, 5);
+    }
+    state3 = State464Field(owner17, unsigned char *, 0x48);
+    State464Field(owner17, int *, 0x18) = 0;
+    switch (state3) {
+    case 8:
+        if (State464_func_80035194(owner17, storage19 + 0x10) == 0x100) {
+            State464_func_80055D24(owner17, 4);
+            State464_func_8003BA00(owner17);
+            State464_func_800369B8(owner17, 0x30);
+            State464_func_80055B18(owner17);
+            return;
+        }
+    default:
+        return;
+    case 0:
+        pointer16 = owner17 + 0xC;
+        result2=State464_func_8004F334(pointer16,storage19+0x28);
+        call4=owner17;
+        if(result2>=0x801){
+            {register int state2 __asm__("$2")=1;
+            __asm__ volatile("":"=r"(state2):"0"(state2));
+            State464Field(owner17,unsigned char*,0x48)=state2;
+            }
+            argument5 = 1;
+            goto callStateHelper;
+        }
+        State464_func_8003573C(owner17, 6, 0, 1);
+        case0Word16 = State464_func_8004F334(pointer16, &State464_D_80070328);
+        temp_a1 = State464Field(storage19, int *, 0x34);
+        if (temp_a1 != 0) {
+            var_v0 = ((State464Field(owner17, int *, 0x14) - State464Field(owner17, short *, 0x38)) - State464Field(&State464Global8,int*,0)) + State464Field(&State464Global68,int*,0);
+            if (var_v0 < 0) {
+                var_v0 = -var_v0;
+            }
+            if ((var_v0 < 0x600) && (State464_unk_ovlheader_80074414(temp_a1, &State464_D_80070328) != 0)) {
+                {register int state2 __asm__("$2")=2;
+                __asm__ volatile("":"=r"(state2):"0"(state2));
+                State464Field(owner17,unsigned char*,0x48)=state2;
+                }
+                call4=owner17;
+                __asm__("":"=r"(call4):"0"(call4));
+                argument5 = 2;
+                goto callStateHelper;
+            }
+            goto block_15;
+        }
+block_15:
+        {register int comparison2 __asm__("$2")=case0Word16 < State464Field(storage19,int*,4);
+        __asm__("":"=r"(comparison2):"0"(comparison2));
+        if(comparison2){
+            {register int state2 __asm__("$2")=3;
+            __asm__ volatile("":"=r"(state2):"0"(state2));
+            State464Field(owner17,unsigned char*,0x48)=state2;
+            }
+            call4=owner17;
+            __asm__("":"=r"(call4):"0"(call4));
+            argument5 = 3;
+            goto callStateHelper;
+        }}
+        break;
+    case 1:
+        State464_unk_ovlheader_800743F0(owner17, State464_func_8004E880(State464Field(storage19, int *, 0x28) - State464Field(owner17, int *, 0xC), State464Field(storage19, int *, 0x2C) - State464Field(owner17, int *, 0x10), 0), 0x64, 0x200, 0x200, 0x27, storage19 + 0x34, 1, 0);
+        if (State464_func_8004F334(owner17 + 0xC, storage19 + 0x28) < 0x200) {
+            State464Field(owner17,unsigned char*,0x48)=0;
+            call4=owner17;
+            __asm__("":"=r"(call4):"0"(call4));
+            argument5 = 0;
+            goto callStateHelper;
+        }
+        break;
+    case 2:
+        argument6=0;
+        __asm__("":"=r"(argument6):"0"(argument6):"$18");
+        player18=&State464_D_80070328;
+        __asm__("":"=r"(player18):"0"(player18));
+        State464_unk_ovlheader_800743F0(owner17, State464_func_8004E880(State464Field(player18,int*,0) - State464Field(owner17, int *, 0xC), State464Field(&State464Global4,int*,0) - State464Field(owner17, int *, 0x10), argument6), 0x96, 0x200, 0x200, 0x27, storage19 + 0x34, 1, 0);
+        case2Word16 = State464_func_8004F334(owner17 + 0xC, player18);
+        case2Word3 = ((State464Field(owner17, int *, 0x14) - State464Field(owner17, short *, 0x38)) - State464Field(&State464Global8,int*,0)) + State464Field(&State464Global68,int*,0);
+        if (case2Word3 < 0) {
+            case2Word3 = -case2Word3;
+        }
+        __asm__("":"=r"(case2Word3):"0"(case2Word3));
+        if ((case2Word3 >= 0x701) || ((State464_unk_ovlheader_80074414(State464Field(storage19, int *, 0x34), player18) == 0) && ((State464Field(storage19, int *, 0) + 0x200) < case2Word16))) {
+            {register int state2 __asm__("$2")=1;
+            __asm__ volatile("":"=r"(state2):"0"(state2));
+            State464Field(owner17,unsigned char*,0x48)=state2;
+            }
+            call4=owner17;
+            __asm__("":"=r"(call4):"0"(call4));
+            argument5 = 1;
+            goto callStateHelper;
+        }
+        {register int comparison2 __asm__("$2")=case2Word16 < State464Field(storage19,int*,4);
+        __asm__("":"=r"(comparison2):"0"(comparison2));
+        if(comparison2){
+            {register int state2 __asm__("$2")=3;
+            __asm__ volatile("":"=r"(state2):"0"(state2));
+            State464Field(owner17,unsigned char*,0x48)=state2;
+            }
+            call4=owner17;
+            __asm__("":"=r"(call4):"0"(call4));
+            argument5 = 3;
+            goto callStateHelper;
+        }}
+        break;
+    case 3:
+        State464_func_8003573C(owner17, 6, 0, 1);
+    case 7:
+        goto checkSharedFlag;
+    case 6:
+        result2=State464_func_8004F334(owner17+0xC,&State464_D_80070328);
+        call4=owner17;
+        __asm__("":"=r"(call4):"0"(call4):"$5");
+        argument5=6;
+        __asm__("":"=r"(argument5):"0"(argument5):"$6");
+        argument6=0;
+        __asm__("":"=r"(argument6):"0"(argument6):"$7");
+        argument7=1;
+        __asm__("":"=r"(argument7):"0"(argument7):"$16");
+        case6Word16=result2;
+        State464_func_8003573C(call4,argument5,argument6,argument7);
+
+        if (((unsigned int) ((State464Field(&State464Global8,int*,0) - State464Field(owner17, int *, 0x14)) + 0x1FF) < 0x9FFU) && (case6Word16 < State464Field(storage19, int *, 8))) {
+            if (State464_func_8004F264((int) (State464_D_8006E040 << 0x10) >> 0x14, State464_func_8004E880(State464Field(owner17, int *, 0xC) - State464_D_8006E020, State464Field(owner17, int *, 0x10) - State464_D_8006E024, 0)) < 0x18) {
+                {register int state2 __asm__("$2")=4;
+                __asm__ volatile("":"=r"(state2):"0"(state2));
+                State464Field(owner17,unsigned char*,0x48)=state2;
+                }
+                call4=owner17;
+                __asm__("":"=r"(call4):"0"(call4));
+                argument5 = 4;
+                goto callStateHelper;
+            }
+            goto checkStorageHalf;
+        }
+checkStorageHalf:
+        if ((State464_func_800359A4(storage19+0xE, 2) != 0) && ((State464Field(storage19, int *, 4) + 0x200) < case6Word16)) {
+            {register int state2 __asm__("$2")=5;
+            __asm__ volatile("":"=r"(state2):"0"(state2));
+            State464Field(owner17,unsigned char*,0x48)=state2;
+            }
+            call4=owner17;
+            __asm__("":"=r"(call4):"0"(call4));
+            argument5 = 5;
+            goto callStateHelper;
+        }
+        break;
+    case 4:
+        State464_func_8003573C(owner17, 4, 0, 1);
+        if (State464Field(owner17, unsigned char *, 0x3C) == 4) {
+            result18 = State464_func_80055E84(owner17);
+            __asm__("":"=r"(result18):"0"(result18));
+            if (result18 < 0x10) {
+                State464_func_80055D24(owner17, 4);
+                pointer16=&originalFrame.sp38;
+                __asm__("":"=r"(pointer16):"0"(pointer16));
+                State464_func_8004ECF4(pointer16, owner17 + 0x20);
+                State464_func_8004F1C8(&originalFrame.sp28, &State464_D_80070328, owner17 + 0xC);
+                State464_func_8004ED6C(pointer16, &originalFrame.sp28, &originalFrame.sp28);
+                if ((originalFrame.sp28 > 0) && (originalFrame.sp28 < (result18 * 0x60))) {
+                    var_v0_2 = originalFrame.sp2C;
+                    if (var_v0_2 < 0) {
+                        var_v0_2 = -var_v0_2;
+                    }
+                    if ((var_v0_2 < 0x200) && ((unsigned int) (originalFrame.sp30 + 0x1FF) < 0x9FFU)) {
+                        word3=0x10000000;
+                        __asm__("":"=r"(word3):"0"(word3));
+                        word2=State464Flags;
+                        __asm__("":"=r"(word2):"0"(word2),"r"(word3));
+                        word3|=0x400;
+                        State464Field(&State464Global524,int*,0)=word3;
+                        __asm__ volatile("":"=r"(word2):"0"(word2):"memory");
+                        word2|=1;
+                        State464Flags=word2;
+                        State464Field(&State464Global540,int*,0) = (int) ((int) (State464Field(&State464_D_80065920,short*,State464Field(owner17,unsigned char*,0x46)*2) * 0x55) >> 0xB);
+                        word3=State464Field(&State464_D_800658A0,short*,State464Field(owner17,unsigned char*,0x46)*2);
+                        __asm__ volatile("":"=r"(word3):"0"(word3):"memory");
+                        word2=0x32;
+                        State464Field(&State464Global548,int*,0)=word2;
+                        __asm__ volatile("":"=r"(word3):"0"(word3):"memory");
+                        State464Field(&State464Global544,int*,0)=(word3*0x55)>>11;
+                        State464Field(owner17, unsigned char *, 0x49) = 1U;
+                    }
+                }
+            }
+        }
+        if (State464_D_8006C770 != 0) {
+            if (State464Field(owner17, unsigned char *, 0x49) != 0) {
+                {register int state2 __asm__("$2")=7;
+                __asm__ volatile("":"=r"(state2):"0"(state2));
+                State464Field(owner17,unsigned char*,0x48)=state2;
+                }
+                call4=owner17;
+                __asm__("":"=r"(call4):"0"(call4));
+                argument5 = 7;
+            } else {
+                call4=owner17;
+                __asm__("":"=r"(call4):"0"(call4):"$2");
+                word2=State464Field(storage19,unsigned short*,0xC);
+                __asm__("":"=r"(word2):"0"(word2):"$5");
+                argument5=6;
+                State464Field(storage19,unsigned short*,0xE)=word2;
+                __asm__ volatile("":::"memory");
+                word2=6;
+                State464Field(call4,unsigned char*,0x48)=word2;
+            }
+            goto callStateHelper;
+        }
+        break;
+    case 5:
+        State464_func_8003573C(owner17, 6, 0, 1);
+        if (State464_D_8006C770 != 0) {
+            temp_a0 = State464Field(storage19, int *, 0x34);
+            if (temp_a0 != 0) {
+                if (State464_unk_ovlheader_80074414(temp_a0, &State464_D_80070328) != 0) {
+                    {register int state2 __asm__("$2")=2;
+                    __asm__ volatile("":"=r"(state2):"0"(state2));
+                    State464Field(owner17,unsigned char*,0x48)=state2;
+                    }
+                    call4=owner17;
+                    __asm__("":"=r"(call4):"0"(call4));
+                    argument5 = 2;
+                } else if ((State464Field(storage19, int *, 0x34) != 0) && (State464_func_8004F334(owner17 + 0xC, storage19 + 0x28) >= 0x401)) {
+                    {register int state2 __asm__("$2")=1;
+                    __asm__ volatile("":"=r"(state2):"0"(state2));
+                    State464Field(owner17,unsigned char*,0x48)=state2;
+                    }
+                    call4=owner17;
+                    __asm__("":"=r"(call4):"0"(call4));
+                    argument5 = 1;
+                } else {
+                    goto block_56;
+                }
+            } else {
+block_56:
+                State464Field(owner17,unsigned char*,0x48)=0;
+                call4=owner17;
+                __asm__("":"=r"(call4):"0"(call4));
+                argument5 = 0;
+            }
+            goto callStateHelper;
+        }
+        break;
+    }
+    goto finished;
+checkSharedFlag:
+        if (State464_D_8006C770 != 0) {
+            {register int state2 __asm__("$2")=6;
+            __asm__ volatile("":"=r"(state2):"0"(state2));
+            State464Field(owner17,unsigned char*,0x48)=state2;
+            }
+            call4=owner17;
+            __asm__("":"=r"(call4):"0"(call4));
+            argument5 = 6;
+            goto callStateHelper;
+        }
+        goto finished;
+callStateHelper:
+    State464_func_80034F40(call4,argument5);
+finished:;
+}
+#undef State464Field
+
 
 /**
  * MobyUpdate_249() - func_level_11_8007E800()
@@ -4623,11 +5605,1243 @@ INCLUDE_ASM("asm/nonmatchings/overlays/level_11/moby", func_level_11_8007E0C0);
  * WIP
  * https://decomp.me/scratch/IZwRP
  */
-INCLUDE_ASM("asm/nonmatchings/overlays/level_11/moby", func_level_11_8007E800);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original11 8007E800.
+* Assembly SHA256 1e80a6bf527c52a4d23912319343010983d741ba857544bff5bc26388976f2e9.
+* AI generated; not human reviewed. Exactly908 native instructions and22
+* original selector words=930 owned words; no selector padding belongs here.
+* Accepted674 supplies both full-word CRC and late-return source patterns.
+* Frame60hex retains SP20..47 local homes and S0..S4/RA saves at SP48..5C.
+* Original damage/status snapshots,linked88-byte record checks,kind/substate
+* paths,private offsets,global bytes and callback/store order remain exact.
+* CRC streams retain original function/end symbols,main_TEXT_START+2 and
+* caller cursor fields. Every byte feeds eight rounds of WHOLE32-bit shift/
+* XOR with8000/8005; no16-bit accumulator truncation is introduced. Starting
+* at0,byte1 yields00018005. Main cursor step is the complete final word&3,+1.
+* Original state2 initializes S3=6 at517 before every path; original arms
+*554/558/591 change it to10. Every35A80 call supplies all eight physical
+* words:owner,path,256,speed20/200,300,initialized6/10,40,flags5/20005.
+* No outgoing parameter is guessed or read from an unwritten slot. The raw
+* decoder's five-argument rendering was incomplete and is not used here.
+* Handwritten55E84 consumes only A0; at55EA0 it overwrites A1 before use.
+* Other extra physical register words retain their original ABI observations
+* without invented helper meanings. Saved result16 captures the whole V0
+* only after the original vector/address/private48 producers,then tests bit1.
+* Separate frame vectors,late SP40+512 store,descriptor signed16 indices,
+* acceleration-12,and shared delete/reset/final entries retain original order.
+* Empty metadata consumes complete initialized values/addresses or original
+* written fields,or clobbers dead GP before a fresh value;zero CPU words.
+* No opcode asm,partial HI/LO,fixed FP/SP,unwritten local read,incoming saved
+* value or overlapping live fixed aliases. Compiler/filter/flags stay frozen.
+* Every native/linked word,actual conditional/internal-J/call/JALR/table
+* destination,original data symbol/addend and full EXE/every-overlay retail
+* hash must pass. Confidence is native identity after these gates; physical
+* units,full field/helper/caller producer chains,cadence,Rev1 mapping,human
+* review and synchronized retail captures remain open.
+*/
+#define Level11_7E800Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+int Level11_7E800Call34F40View() __asm__("func_80034F40");
+int Level11_7E800Call359A4View(void*,int) __asm__("func_800359A4");
+int Level11_7E800Call35A80View() __asm__("func_80035A80");
+int Level11_7E800Call3636CView(int,int) __asm__("func_8003636C");
+int Level11_7E800Call3645CView() __asm__("func_8003645C");
+int Level11_7E800Call365E4View() __asm__("func_800365E4");
+int Level11_7E800Call37BBCView() __asm__("func_80037BBC");
+int Level11_7E800Call492DCView() __asm__("func_800492DC");
+int Level11_7E800Call4E880View() __asm__("func_8004E880");
+int Level11_7E800Call4F178View() __asm__("func_8004F178");
+int Level11_7E800Call4F334View() __asm__("func_8004F334");
+int Level11_7E800Call512E4View() __asm__("func_800512E4");
+int Level11_7E800Call55B18View() __asm__("func_80055B18");
+int Level11_7E800Call55E84View(void*) __asm__("func_80055E84");
+int Level11_7E800DatarandView() __asm__("rand");
+extern int Level11_7E800Data6C550View __asm__("D_8006C550");
+extern int Level11_7E800Data6C58CView __asm__("D_8006C58C");
+extern int Level11_7E800Data6C640View __asm__("D_8006C640");
+extern int Level11_7E800Data6C770View __asm__("D_8006C770");
+extern unsigned char Level11_7E800Data6C7B4View __asm__("D_8006C7B4");
+extern int Level11_7E800Data6E344View __asm__("D_8006E344");
+extern unsigned char Level11_7E800Data70300View __asm__("D_80070300");
+extern unsigned char Level11_7E800Data70328View __asm__("D_80070328");
+extern unsigned char Level11_7E800Data91ED4View __asm__("D_level_11_80091ED4");
+extern void*(*Level11_7E800DataSpawnMobyView)() __asm__("SpawnMoby");
+extern void*(*Level11_7E800DataSpawnParticleView)() __asm__("SpawnParticle");
+extern unsigned char Level11_7E800Call751C0View __asm__("func_level_11_800751C0");
+extern unsigned char Level11_7E800Datamain_TEXT_ENDView __asm__("main_TEXT_END");
+extern unsigned char Level11_7E800Datamain_TEXT_STARTView __asm__("main_TEXT_START");
+void func_level_11_8007E800(void* ownerParameter) {
+    register void* ownerRecord18 __asm__("$18");
+    register int privateRecord17 __asm__("$17"),createdRecordOrRetainedResult16 __asm__("$16"),initializedSpeedOrOwnerPosition19 __asm__("$19"),originalFlagOrSignedIndex20 __asm__("$20");
+    register int rawWord2 __asm__("$2"),rawWord3 __asm__("$3"),argumentWord4 __asm__("$4"),argumentWord5 __asm__("$5"),argumentWord6 __asm__("$6"),argumentWord7 __asm__("$7");
+    struct {
+        int sp20,sp24,sp28,sp2C,sp30,sp34,sp38,sp3C,sp40,sp44;
+    }
+    originalFrame;
+    short temporaryValue15;
+    short temporaryValue16;
+    int temporaryValue3;
+    int temporaryValue17;
+    int temporaryValue21;
+    int temporaryValue22;
+    int temporaryValue26;
+    int temporaryValue27;
+    int temporaryValue28;
+    int temporaryValue30;
+    unsigned char temporaryValue1;
+    unsigned char temporaryValue4;
+    unsigned char temporaryValue6;
+    unsigned char temporaryValue7;
+    unsigned char temporaryValue10;
+    unsigned char temporaryValue23;
+    unsigned char temporaryValue29;
+    unsigned char temporaryValue31;
+    void *temporaryValue2;
+    void *temporaryValue5;
+    void *temporaryValue8;
+    void *temporaryValue9;
+    void *temporaryValue11;
+    void *temporaryValue12;
+    void *temporaryValue13;
+    void *temporaryValue14;
+    void *temporaryValue18;
+    void *temporaryValue19;
+    void *temporaryValue20;
+    void *temporaryValue24;
+    void *temporaryValue25;
+    unsigned int temporaryWord11;
+    unsigned int temporaryWord12;
+    unsigned int temporaryWord13;
+    ownerRecord18=ownerParameter;
+    __asm__("":"=r"(ownerRecord18):"0"(ownerRecord18));
+    temporaryValue21 = Level11_7E800Field(ownerRecord18, int *, 0x18);
+    privateRecord17 = Level11_7E800Field(ownerRecord18, void **, 0);
+    if (temporaryValue21 != 0) {
+        if (temporaryValue21 & 0x10000) {
+            Level11_7E800Field(privateRecord17, unsigned char *, 0x32) = 1U;
+        }
+        temporaryValue1 = Level11_7E800Field(ownerRecord18, unsigned char *, 0x48);
+        if ((temporaryValue1 & 0xFF) != 4) {
+            Level11_7E800Field(privateRecord17, unsigned char *, 0x30) = temporaryValue1;
+            Level11_7E800Field(privateRecord17, unsigned char *, 0x31) = (unsigned char) Level11_7E800Field(ownerRecord18, unsigned char *, 0x3D);
+        }
+        Level11_7E800Field(ownerRecord18, unsigned char *, 0x48) = 4U;
+        Level11_7E800Call34F40View(ownerRecord18, 4U);
+    }
+    Level11_7E800Field(ownerRecord18, int *, 0x18) = 0;
+    if (Level11_7E800Field(privateRecord17, unsigned char *, 0x33) == 3) {
+        if ((Level11_7E800Data6C7B4View & 1) || (*(&Level11_7E800Data70300View + Level11_7E800Data6C58CView) & 1)) {
+            if (Level11_7E800Data6C640View < 3) {
+                temporaryValue26 = Level11_7E800Field(privateRecord17, int *, 0x38);
+                if (temporaryValue26 >= 0) {
+                    Level11_7E800Field(((temporaryValue26 * 0x58) + Level11_7E800Data6C550View), signed char *, 0x49) = 1;
+                }
+                argumentWord4 = Level11_7E800Field(privateRecord17, int *, 0x3C);
+                if (argumentWord4 >= 0) {
+                    Level11_7E800Field(((argumentWord4 * 0x58) + Level11_7E800Data6C550View), signed char *, 0x49) = 1;
+                }
+                goto deleteOriginalOwner874;
+            }
+            goto reloadOriginalKind83;
+        }
+    reloadOriginalKind83:
+        if (Level11_7E800Field(privateRecord17, unsigned char *, 0x33) == 3) {
+            temporaryValue27 = Level11_7E800Field(privateRecord17, int *, 0x28);
+            if ((temporaryValue27 >= 0) && (Level11_7E800Field(((temporaryValue27 * 0x58) + Level11_7E800Data6C550View), unsigned char *, 0x48) & 0x80)) {
+                temporaryValue28 = Level11_7E800Field(privateRecord17, int *, 0x3C);
+                if (temporaryValue28 >= 0) {
+                    Level11_7E800Field(((temporaryValue28 * 0x58) + Level11_7E800Data6C550View), signed char *, 0x49) = 1;
+                }
+            }
+            temporaryValue4 = Level11_7E800Field(privateRecord17, unsigned char *, 0x33);
+            if ((temporaryValue4 == 3) && (Level11_7E800Data6C7B4View & 1)) {
+                temporaryValue29 = Level11_7E800Field(ownerRecord18, unsigned char *, 0x48);
+                if ((temporaryValue29 != temporaryValue4) && (temporaryValue29 != 0x15)) {
+                    temporaryValue30 = Level11_7E800Field(privateRecord17, int *, 0x38);
+                    if (temporaryValue30 >= 0) {
+                        Level11_7E800Field(((temporaryValue30 * 0x58) + Level11_7E800Data6C550View), signed char *, 0x49) = 1;
+                    }
+                }
+            }
+        }
+        goto checkOriginalInvocation143;
+    }
+checkOriginalInvocation143:
+    if (Level11_7E800Data6C640View == 0) {
+        if ((Level11_7E800Field(privateRecord17, unsigned char *, 0) == 5) && (Level11_7E800Field(((Level11_7E800Field(privateRecord17, int *, 0x28) * 0x58) + Level11_7E800Data6C550View), unsigned char *, 0x48) & 0x80) && ((Level11_7E800Data6C7B4View & 1) || (*(&Level11_7E800Data70300View + Level11_7E800Data6C58CView) & 1))) {
+            temporaryValue18 = Level11_7E800DataSpawnMobyView(0x1A3, ownerRecord18);
+            if (temporaryValue18 != 0) {
+                Level11_7E800Call4F178View(temporaryValue18 + 0xC, Level11_7E800Field(Level11_7E800Field(privateRecord17, void **, 0x20), void **, 0xC) + 0x70);
+                temporaryValue19 = Level11_7E800Field(Level11_7E800Field(privateRecord17, void **, 0x20), void **, 0xC);
+                temporaryValue17 = Level11_7E800Field(temporaryValue19, int *, 0x80);
+                Level11_7E800Field(temporaryValue18, signed char *, 0x46) = Level11_7E800Call4E880View(temporaryValue17 - Level11_7E800Field(temporaryValue19, int *, 0x70), Level11_7E800Field(temporaryValue19, int *, 0x84) - Level11_7E800Field(temporaryValue19, int *, 0x74), 0, temporaryValue17);
+                rawWord2 = 3;
+                Level11_7E800Field(temporaryValue18,signed char*,0x48)=rawWord2;
+            }
+            else {
+                rawWord2 = 2;
+            }
+            Level11_7E800Field(privateRecord17, unsigned char *, 2) = rawWord2;
+        }
+        if (Level11_7E800Field(privateRecord17, unsigned char *, 0) == 0) {
+            if(Level11_7E800Data6C7B4View&1){
+                rawWord2=2;
+                Level11_7E800Field(privateRecord17,unsigned char*,2)=rawWord2;
+            }
+            else if(*(&Level11_7E800Data70300View+Level11_7E800Data6C58CView)&1){
+                rawWord2=3;
+                Level11_7E800Field(privateRecord17,unsigned char*,2)=rawWord2;
+            }
+            goto checkOriginalOverlayStream232;
+        }
+    }
+    else {
+    checkOriginalOverlayStream232:
+        if ((Level11_7E800Field(privateRecord17,unsigned char*,0)==0) && (unsigned int) Level11_7E800Field(privateRecord17,unsigned int *,0x24) >= (unsigned int) &Level11_7E800Call751C0View) {
+            argumentWord5 = 0;
+            argumentWord6 = (int)&Level11_7E800Data91ED4View;
+        readOriginalOverlayByte:
+            temporaryWord11 = Level11_7E800Field(privateRecord17,unsigned int *,0x24);
+            if (temporaryWord11 < (unsigned int)argumentWord6) {
+                argumentWord4 = 0;
+                Level11_7E800Field(privateRecord17,int *,0x34) = (int) (Level11_7E800Field(privateRecord17,int *,0x34) ^ (Level11_7E800Field(temporaryWord11, unsigned char*, 0) << 8));
+                do {
+                    rawWord3 = Level11_7E800Field(privateRecord17,int*,0x34);
+                    if (rawWord3&0x8000){
+                        rawWord2 = ((unsigned int)rawWord3 << 1)^0x8005;
+                    }
+                    else{
+                        rawWord2 = (unsigned int)rawWord3 << 1;
+                    }
+                    Level11_7E800Field(privateRecord17,int*,0x34) = rawWord2;
+                    __asm__ __volatile__(""::"m"(Level11_7E800Field(privateRecord17,int*,0x34)):"memory");
+                    argumentWord4 += 1;
+                }
+                while (argumentWord4 < 8);
+                argumentWord5 += 1;
+                Level11_7E800Field(privateRecord17,unsigned int *,0x24) = (unsigned int) (Level11_7E800Field(privateRecord17,unsigned int *,0x24) + 1);
+                if (argumentWord5 < 0x40) {
+                    goto readOriginalOverlayByte;
+                }
+            }
+        }
+    }
+    temporaryValue31 = Level11_7E800Field(ownerRecord18, unsigned char *, 0x48);
+    switch (temporaryValue31) {
+    case 0:
+        if (Level11_7E800Data6C770View != 0) {
+            if (Level11_7E800Field(ownerRecord18, unsigned char *, 0x49) == 0) {
+                Level11_7E800Call34F40View(ownerRecord18, 1U);
+                Level11_7E800Field(ownerRecord18, unsigned char *, 0x49) = Level11_7E800Call3636CView(2, 4);
+            }
+            else {
+                Level11_7E800Call34F40View(ownerRecord18, 0U);
+                Level11_7E800Field(ownerRecord18, unsigned char *, 0x49) = (unsigned char) (Level11_7E800Field(ownerRecord18, unsigned char *, 0x49) - 1);
+            }
+        }
+        if ((Level11_7E800Field(privateRecord17, void **, 0x20) != 0) && (temporaryValue22 = Level11_7E800Field(privateRecord17, int *, 0x28), (temporaryValue22 >= 0)) && (temporaryValue5 = (temporaryValue22 * 0x58) + Level11_7E800Data6C550View, (Level11_7E800Field(temporaryValue5, short *, 0x36) == 0xFD))) {
+            if (Level11_7E800Field(privateRecord17, unsigned char *, 0x33) == 2) {
+                temporaryValue6 = Level11_7E800Field(temporaryValue5, unsigned char *, 0x48);
+                if (temporaryValue6 == 5) {
+                    if (Level11_7E800Field(((Level11_7E800Field(privateRecord17, int *, 0x2C) * 0x58) + Level11_7E800Data6C550View), unsigned char *, 0x48) != temporaryValue6) {
+                        goto checkOriginalLinkedKind333;
+                    }
+                    goto selectOriginalDescriptor352;
+                }
+            }
+        checkOriginalLinkedKind333:
+            if (Level11_7E800Field(privateRecord17, unsigned char *, 0x33) == 1) {
+                temporaryValue7 = Level11_7E800Field(((Level11_7E800Field(privateRecord17, int *, 0x28) * 0x58) + Level11_7E800Data6C550View), unsigned char *, 0x48);
+                if ((temporaryValue7 & 0xFF) == 2) {
+                selectOriginalDescriptor352:
+                    Level11_7E800Call3645CView(ownerRecord18 + 0xC, Level11_7E800Field(privateRecord17, void **, 0x20), &originalFrame.sp20);
+                    temporaryValue14 = Level11_7E800Field(privateRecord17, void **, 0x20);
+                    Level11_7E800Field(temporaryValue14, short *, 2) = (short) ((int) (originalFrame.sp20 + 1) % (short) Level11_7E800Field(temporaryValue14, short *, 0));
+                    Level11_7E800Field(ownerRecord18, unsigned char *, 0x48) = 2U;
+                    Level11_7E800Call34F40View(ownerRecord18, 2U, temporaryValue14);
+                }
+                else {
+                    rawWord2=Level11_7E800Field(privateRecord17,unsigned char*,2);
+                    if(rawWord2)goto callOriginalCommonHelper492;
+                    rawWord2=temporaryValue7&128;
+                    goto testOriginalLinkedBit429;
+                }
+            }
+            else if ((Level11_7E800Field(privateRecord17, unsigned char *, 0x33) == 2) && (Level11_7E800Field(privateRecord17, unsigned char *, 2) == 0)) {
+                if (Level11_7E800Field(((Level11_7E800Field(privateRecord17, int *, 0x28) * 0x58) + Level11_7E800Data6C550View), unsigned char *, 0x48) & 0x80) {
+                    rawWord2 = Level11_7E800Field(((Level11_7E800Field(privateRecord17, int *, 0x2C) * 0x58) + Level11_7E800Data6C550View), unsigned char *, 0x48) & 0x80;
+                testOriginalLinkedBit429:
+                    if (rawWord2 != 0) {
+                        Level11_7E800Field(privateRecord17, unsigned char *, 2) = 1U;
+                    }
+                }
+            }
+        }
+        else if (Level11_7E800Field(privateRecord17, unsigned char *, 0) == 0) {
+            if (Level11_7E800Field(privateRecord17,unsigned int *,0x24) == 0) {
+                Level11_7E800Field(privateRecord17,unsigned int *,0x24) = (unsigned int) (Level11_7E800Data6C58CView + (&Level11_7E800Datamain_TEXT_STARTView + 2));
+            }
+            rawWord2 = Level11_7E800Field(privateRecord17,unsigned int*,0x24);
+            rawWord3 = (int)&Level11_7E800Datamain_TEXT_ENDView;
+            __asm__("":"=r"(rawWord3):"0"(rawWord3), "r"(rawWord2));
+            argumentWord5 = 0;
+            if ((unsigned int)rawWord2 < (unsigned int)rawWord3) {
+                argumentWord6 = rawWord3;
+            readOriginalMainByte:
+                temporaryWord12 = Level11_7E800Field(privateRecord17,unsigned int *,0x24);
+                argumentWord4 = 0;
+                if (temporaryWord12 < (unsigned int)argumentWord6) {
+                    Level11_7E800Field(privateRecord17,int *,0x34) = (int) (Level11_7E800Field(privateRecord17,int *,0x34) ^ (Level11_7E800Field(temporaryWord12, unsigned char*, 0) << 8));
+                    do {
+                        rawWord3 = Level11_7E800Field(privateRecord17,int*,0x34);
+                        if (rawWord3&0x8000){
+                            rawWord2 = ((unsigned int)rawWord3 << 1)^0x8005;
+                        }
+                        else{
+                            rawWord2 = (unsigned int)rawWord3 << 1;
+                        }
+                        Level11_7E800Field(privateRecord17,int*,0x34) = rawWord2;
+                        __asm__ __volatile__(""::"m"(Level11_7E800Field(privateRecord17,int*,0x34)):"memory");
+                        argumentWord4 += 1;
+                    }
+                    while (argumentWord4 < 8);
+                    argumentWord5 += 1;
+                    rawWord2 = Level11_7E800Field(privateRecord17,int*,0x34);
+                    rawWord3 = Level11_7E800Field(privateRecord17,int*,0x24);
+                    rawWord2 = (rawWord2&3)+1;
+                    rawWord3 += rawWord2;
+                    temporaryWord13 = rawWord3;
+                    Level11_7E800Field(privateRecord17,unsigned int *,0x24) = temporaryWord13;
+                    if (argumentWord5 >= 0x40) {
+                        if (temporaryWord13 >= (unsigned int) &Level11_7E800Datamain_TEXT_ENDView) {
+                            goto resetOriginalCursor;
+                        }
+                    }
+                    else {
+                        goto readOriginalMainByte;
+                    }
+                }
+                else {
+                resetOriginalCursor:
+                    Level11_7E800Field(privateRecord17,unsigned int *,0x24) = (unsigned int) &Level11_7E800Call751C0View;
+                }
+            }
+        }
+    callOriginalCommonHelper492:
+        if (Level11_7E800Call37BBCView(ownerRecord18, 0) != 0) {
+            if (Level11_7E800Field(privateRecord17, unsigned char *, 0) == 3) {
+                if (!(Level11_7E800Data6C7B4View & 1)) {
+                    Level11_7E800Data6C7B4View |= 1;
+                }
+            }
+            Level11_7E800Call512E4View(ownerRecord18, 0, 3);
+            Level11_7E800Field(ownerRecord18, unsigned char *, 0x48) = 3U;
+            return;
+        }
+    default:
+        return;
+    case 2:
+        initializedSpeedOrOwnerPosition19=6;
+        __asm__("":"=r"(initializedSpeedOrOwnerPosition19):"0"(initializedSpeedOrOwnerPosition19));
+        originalFlagOrSignedIndex20 = 0;
+        if (Level11_7E800Data6C770View != 0) {
+            Level11_7E800Call34F40View(ownerRecord18, 2U);
+        }
+        if (Level11_7E800Field(privateRecord17, unsigned char *, 0x33) == 2) {
+            temporaryValue8 = (Level11_7E800Field(privateRecord17, int *, 0x28) * 0x58) + Level11_7E800Data6C550View;
+            if ((Level11_7E800Field(temporaryValue8, unsigned char *, 0x3C) == 5) && (Level11_7E800Call55E84View(temporaryValue8) >= 8)) {
+                if (Level11_7E800Field(Level11_7E800Field(privateRecord17, void **, 0x20), short *, 2) == 0) {
+                    Level11_7E800Call34F40View(ownerRecord18, 4U);
+                }
+                initializedSpeedOrOwnerPosition19=10;
+                Level11_7E800Field(Level11_7E800Field(privateRecord17, void **, 0x20), short *, 2) = 1;
+            }
+            else {
+                temporaryValue9 = (Level11_7E800Field(privateRecord17, int *, 0x2C) * 0x58) + Level11_7E800Data6C550View;
+                if ((Level11_7E800Field(temporaryValue9, unsigned char *, 0x3C) == 5) && (Level11_7E800Call55E84View(temporaryValue9) >= 8)) {
+                    if (Level11_7E800Field(Level11_7E800Field(privateRecord17, void **, 0x20), short *, 2) == 1) {
+                        Level11_7E800Call34F40View(ownerRecord18, 4U);
+                    }
+                    initializedSpeedOrOwnerPosition19=10;
+                    Level11_7E800Field(Level11_7E800Field(privateRecord17, void **, 0x20), short *, 2) = 0;
+                }
+            }
+            temporaryValue11 = (Level11_7E800Field(privateRecord17, int *, 0x28) * 0x58) + Level11_7E800Data6C550View;
+            temporaryValue10 = Level11_7E800Field(temporaryValue11, unsigned char *, 0x48);
+            createdRecordOrRetainedResult16 = ownerRecord18 + 0xC;
+            if (((temporaryValue10 != 5) || (Level11_7E800Field(((Level11_7E800Field(privateRecord17, int *, 0x2C) * 0x58) + Level11_7E800Data6C550View), unsigned char *, 0x48) != temporaryValue10)) && (Level11_7E800Call4F334View(createdRecordOrRetainedResult16, temporaryValue11 + 0xC, Level11_7E800Data6C550View) >= 0x1801) && (Level11_7E800Call4F334View(createdRecordOrRetainedResult16, Level11_7E800Data6C550View + (Level11_7E800Field(privateRecord17, int *, 0x2C) * 0x58) + 0xC) >= 0x1801)) {
+                originalFlagOrSignedIndex20 = 1;
+            }
+        }
+        else {
+            temporaryValue2 = (Level11_7E800Field(privateRecord17, int *, 0x28) * 0x58) + Level11_7E800Data6C550View;
+            if ((Level11_7E800Field(temporaryValue2, short *, 0x36) == 0xFD) && (Level11_7E800Field(temporaryValue2, unsigned char *, 0x48) != 2)) {
+                originalFlagOrSignedIndex20 = 1;
+            }
+        }
+        rawWord2=Level11_7E800Field(ownerRecord18,unsigned char*,0x3C);
+        rawWord3=2;
+        __asm__("":"=r"(rawWord3):"0"(rawWord3));
+        argumentWord7=20;
+        if(rawWord2==rawWord3)argumentWord7=200;
+        rawWord2=Level11_7E800Field(privateRecord17,unsigned char*,0x33);
+        if(rawWord2==rawWord3)Level11_7E800Call35A80View(ownerRecord18,Level11_7E800Field(privateRecord17,void**,0x20),256,argumentWord7,300,initializedSpeedOrOwnerPosition19,40,5);
+        else Level11_7E800Call35A80View(ownerRecord18,Level11_7E800Field(privateRecord17,void**,0x20),256,argumentWord7,300,initializedSpeedOrOwnerPosition19,40,0x20005);
+        temporaryValue3 = Level11_7E800Field(privateRecord17, int *, 0x28);
+        if (temporaryValue3 >= 0) {
+            if ((Level11_7E800Field(privateRecord17, unsigned char *, 0x33) != 1) || !(Level11_7E800Field(((temporaryValue3 * 0x58) + Level11_7E800Data6C550View), unsigned char *, 0x48) & 0x80)) {
+                if (originalFlagOrSignedIndex20 != 0) {
+                    Level11_7E800Field(ownerRecord18, unsigned char *, 0x48) = 0U;
+                    goto callOriginalStateZero733;
+                }
+            }
+            else {
+                goto storeOriginalStateZero732;
+            }
+        }
+        break;
+    case 3:
+        if (Level11_7E800Data6E344View != 1) {
+            if ((Level11_7E800Field(privateRecord17, unsigned char *, 0x33) == 3) && (Level11_7E800Field(privateRecord17, unsigned char *, 4) == 1)) {
+                Level11_7E800Field(ownerRecord18, unsigned char *, 0x49) = 0U;
+                Level11_7E800Field(privateRecord17, int *, 0x48) = 0x3C;
+                Level11_7E800Call34F40View(ownerRecord18, 0U);
+                Level11_7E800Field(ownerRecord18, unsigned char *, 0x48) = 0x15U;
+                return;
+            }
+        storeOriginalStateZero732:
+            Level11_7E800Field(ownerRecord18, unsigned char *, 0x48) = 0U;
+        callOriginalStateZero733:
+            Level11_7E800Call34F40View(ownerRecord18, 0U);
+            return;
+        }
+        break;
+    case 4:
+        if (Level11_7E800Field(privateRecord17, unsigned char *, 0x32) != 0) {
+            originalFrame.sp28 = (Level11_7E800DatarandView() & 0xF) - 8;
+            originalFrame.sp2C = (Level11_7E800DatarandView() & 0xF) - 8;
+            originalFrame.sp30 = (Level11_7E800DatarandView() & 0xF) + 8;
+            temporaryValue20 = Level11_7E800DataSpawnParticleView(1, 0x37, ownerRecord18 + 0xC, &originalFrame.sp28);
+            if (temporaryValue20 != 0) {
+                Level11_7E800Field(temporaryValue20, unsigned short *, 8) = (unsigned short) (Level11_7E800Field(temporaryValue20, unsigned short *, 8) + (Level11_7E800DatarandView() & 0xFF));
+            }
+        }
+        if (Level11_7E800Data6C770View != 0) {
+            Level11_7E800Field(privateRecord17, unsigned char *, 0x32) = 0U;
+            Level11_7E800Call34F40View(ownerRecord18, Level11_7E800Field(privateRecord17, unsigned char *, 0x31));
+            Level11_7E800Field(ownerRecord18, unsigned char *, 0x48) = (unsigned char) Level11_7E800Field(privateRecord17, unsigned char *, 0x30);
+            return;
+        }
+        break;
+    case 21:
+        if (Level11_7E800Call359A4View(privateRecord17 + 0x48, 4) != 0) {
+            Level11_7E800Call34F40View(ownerRecord18, 2U);
+            Level11_7E800Field(ownerRecord18, unsigned char *, 0x48) = 0x14U;
+        }
+        goto updateOriginalSharedWord893;
+    case 20:
+        temporaryValue23 = Level11_7E800Field(ownerRecord18, unsigned char *, 0x49);
+        originalFlagOrSignedIndex20 = Level11_7E800Field(Level11_7E800Field(privateRecord17, void **, 0x20), short *, 2);
+        switch (temporaryValue23) {
+        case 0:
+            if (Level11_7E800Call35A80View(ownerRecord18, Level11_7E800Field(privateRecord17, void **, 0x20), 0x200, 0x80, 0, 8, 0xC, 5) & 1) {
+                temporaryValue12 = Level11_7E800Field(privateRecord17, void **, 0x20);
+                temporaryValue15 = Level11_7E800Field(temporaryValue12, short *, 2);
+                if (temporaryValue15 != 0) {
+                    temporaryValue24 = Level11_7E800Field(temporaryValue12, void **, 0xC);
+                    if (Level11_7E800Field(((originalFlagOrSignedIndex20 * 0x10) + temporaryValue24), int *, 0xC) & 1) {
+                        Level11_7E800Field(privateRecord17, int *, 0x48) = Level11_7E800Call365E4View(ownerRecord18 + 0xC, temporaryValue24 + (temporaryValue15 * 0x10), 0x80, -0xC, 0);
+                        Level11_7E800Field(ownerRecord18, unsigned char *, 0x49) = 1U;
+                    }
+                    goto updateOriginalSharedWord893;
+                }
+                goto deleteOriginalOwner874;
+            }
+            goto updateOriginalSharedWord893;
+        case 1:
+            rawWord2=Level11_7E800Call35A80View(ownerRecord18,Level11_7E800Field(privateRecord17,void**,0x20),512,128,0,8,12,0);
+            argumentWord4=(int)&originalFrame.sp38;
+            __asm__("":"=r"(argumentWord4):"0"(argumentWord4));
+            initializedSpeedOrOwnerPosition19=(int)ownerRecord18+12;
+            __asm__("":"=r"(initializedSpeedOrOwnerPosition19):"0"(initializedSpeedOrOwnerPosition19));
+            argumentWord6=Level11_7E800Field(privateRecord17,int*,0x48);
+            argumentWord5=initializedSpeedOrOwnerPosition19;
+            argumentWord6-=12;
+            Level11_7E800Field(privateRecord17,int*,0x48)=argumentWord6;
+            rawWord3=Level11_7E800Field(ownerRecord18,int*,20);
+            createdRecordOrRetainedResult16=rawWord2;
+            rawWord3+=argumentWord6;
+            Level11_7E800Field(ownerRecord18,int*,20)=rawWord3;
+            Level11_7E800Call4F178View(argumentWord4,argumentWord5,argumentWord6);
+            rawWord2=originalFrame.sp40;
+            rawWord2+=512;
+            originalFrame.sp40=rawWord2;
+            rawWord2=createdRecordOrRetainedResult16&1;
+            if(rawWord2) {
+                temporaryValue13 = Level11_7E800Field(privateRecord17, void **, 0x20);
+                temporaryValue16 = Level11_7E800Field(temporaryValue13, short *, 2);
+                if(temporaryValue16==0){
+                    deleteOriginalOwner874:Level11_7E800Call55B18View(ownerRecord18);
+                    return;
+                }
+                temporaryValue25 = Level11_7E800Field(temporaryValue13, void **, 0xC);
+                if (Level11_7E800Field(((originalFlagOrSignedIndex20 * 0x10) + temporaryValue25), int *, 0xC) & 1) {
+                    Level11_7E800Field(privateRecord17, int *, 0x48) = Level11_7E800Call365E4View(initializedSpeedOrOwnerPosition19, temporaryValue25 + (temporaryValue16 * 0x10), 0x80, -0xC, 0);
+                }
+                goto updateOriginalSharedWord893;
+            }
+            goto updateOriginalSharedWord893;
+            default:goto updateOriginalSharedWord893;
+        }
+    updateOriginalSharedWord893:
+        Level11_7E800Field(&Level11_7E800Data70328View, int *, 0x20C) = 0x10000002;
+        Level11_7E800Call492DCView(ownerRecord18 + 0xC);
+        break;
+    }
+}
+#undef Level11_7E800Field
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_11/moby", func_level_11_8007F630);
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_11/moby", func_level_11_8007FC04);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated;
+ not human reviewed. UNINSTALLED inferred C. Original source asm/nonmatchings/overlays/level_11/moby/func_level_11_8007F630.s SHA256 d92400bdcbb3eef51882710da8fc23bef45530fed9b6d3daf54f52acc9570846. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
+#define Level11_F630Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+extern short Level11_F630_D_800658A0[0x100] __asm__("D_800658A0");
+extern short Level11_F630_D_80065920[0x100] __asm__("D_80065920");
+extern unsigned char Level11_F630_D_80066BC8[20] __asm__("D_80066BC8");
+extern Moby* Level11_F630_D_8006C550 __asm__("D_8006C550");
+extern int Level11_F630_D_8006C648 __asm__("D_8006C648");
+extern SoundTable* Level11_F630_D_8006C654 __asm__("D_8006C654");
+extern Spyro Level11_F630_D_80070328 __asm__("D_80070328");
+int Level11_F630_func_800359A4(void*, int) __asm__("func_800359A4");
+int Level11_F630_func_8003BABC(Moby*, int, int) __asm__("func_8003BABC");
+extern void Level11_F630_func_8004F178(Vector3D*, Vector3D*) __asm__("func_8004F178");
+extern int Level11_F630_rand() __asm__("rand");
+
+extern unsigned short** Level11_F630_D_8006C730 __asm__("D_8006C730");
+extern unsigned char* Level11_F630_D_8006EE2C[] __asm__("D_8006EE2C");
+extern signed char Level11_F630_D_800715B3 __asm__("D_800715B3");
+extern short Level11_F630_D_800719DC __asm__("D_800719DC");
+extern unsigned char Level11_F630_D_level_11_80091ED4 __asm__("D_level_11_80091ED4");
+
+void func_level_11_8007F630(Moby *inputOwner) {
+    /* Original 0x40 frame with scratch vectors at SP10 and SP20. Pointer
+     * table 6C730 is loaded before the halfword list;
+      its cursor advances
+     * two bytes, and each masked index addresses the 88-byte Moby pool.
+     * The signed byte sum, distinct table reads, model-header pointer chain
+     * and repeated field stores follow the original instructions. Empty
+     * constraints retain raw register producers and emit no instructions.
+     * Helper/SFX meanings, physical units/fixed point, cadence and runtime
+     * capture validation remain unresolved. AI generated;
+      not human reviewed. */
+    register Moby *owner17 __asm__("$17")=inputOwner;
+    struct {int first[4];
+    int second[4];
+    } scratch;
+    register Moby *spawned16 __asm__("$16");
+    register int anchorIndex4 __asm__("$4");
+    register int sineSample4 __asm__("$4");
+    register unsigned char* model2 __asm__("$2");
+    int counter;
+    int updatedCounter;
+    register int inactiveCount6 __asm__("$6");
+    register signed char *particle16 __asm__("$16");
+    register signed char *alternateParticle16 __asm__("$16");
+    register int raw2 __asm__("$2");
+    register int raw3 __asm__("$3");
+    register unsigned short *list4 __asm__("$4");
+    register int listWord5 __asm__("$5");
+    register int selector4 __asm__("$4");
+    unsigned char reloadedColourByte;
+    register int state3 __asm__("$3");
+    unsigned char colourByte;
+    register void *anchorPrivate4 __asm__("$4");
+    register Moby* pool7 __asm__("$7");
+    register void *private18 __asm__("$18");
+    void *temp_v0;
+
+    __asm__("":"=r"(owner17):"0"(owner17));
+    private18 = owner17->mobyTag;
+    __asm__("":"=r"(private18):"0"(private18));
+    counter = Level11_F630Field(private18, int *, 0);
+    if (counter != 0) {
+        updatedCounter = counter + Level11_F630_D_8006C648;
+        Level11_F630Field(private18, int *, 0) = updatedCounter;
+        if (updatedCounter < 0x40) {
+            owner17->angle.roll = *(unsigned char*)(((updatedCounter >> 1) * 2) + Level11_F630Field(private18, int *, 0x1C)) + Level11_F630Field(private18, int *, 8);
+            owner17->angle.pitch = Level11_F630Field(((((int) Level11_F630Field(private18, int *, 0) >> 1) * 2) + Level11_F630Field(private18, int *, 0x1C)), unsigned char *, 1) + Level11_F630Field(private18, int *, 0xC);
+            temp_v0 = (((int) Level11_F630Field(private18, int *, 0) >> 1) * 2) + Level11_F630Field(private18, int *, 0x1C);
+            raw3 = Level11_F630Field(temp_v0, signed char *, 0);
+            raw2 = Level11_F630Field(temp_v0, signed char *, 1);
+            if (raw3 < 0) {
+                raw3 = -raw3;
+            }
+            if (raw2 < 0) {
+                raw2 = -raw2;
+            }
+            raw3+=raw2;
+            __asm__("":"=r"(raw3):"0"(raw3));
+            raw2=raw3*3;
+            raw3=Level11_F630Field(private18,int*,16);
+            raw2*=2;
+            raw3+=raw2;
+            __asm__("":"=r"(raw3):"0"(raw3));
+            owner17->position.z=raw3;
+        } else {
+            Level11_F630Field(private18, int *, 0) = 0;
+            owner17->angle.roll = (unsigned char) Level11_F630Field(private18, int *, 8);
+            owner17->angle.pitch = (unsigned char) Level11_F630Field(private18, int *, 0xC);
+            owner17->position.z = Level11_F630Field(private18, int *, 0x10);
+        }
+    }
+    if ((owner17->damageFlags & 0x10000) && (Level11_F630Field(private18, int *, 0x18) == 0)) {
+        if (owner17->state == 0) {
+            Level11_F630_func_8003BABC(owner17, 0, 0);
+            Level11_F630Field(private18, int *, 0x18) = 0x78;
+            selector4 = owner17->animationRun;
+            owner17->state = 2;
+            owner17->colour.r = 0x7F;
+            owner17->colour.g = 0x7F;
+            owner17->colour.b = 0x7F;
+            owner17->colour.a = 0;
+            if (selector4 != 0xFF) {
+                inactiveCount6 = 0;
+                list4=Level11_F630_D_8006C730[selector4];
+                pool7=Level11_F630_D_8006C550;
+                do {
+                    listWord5 = *list4;
+                    raw2=listWord5&0x7FFF;
+                    __asm__("":"=r"(raw2):"0"(raw2));
+                    raw3=raw2*88;
+                    raw3+=(int)pool7;
+                    raw2=Level11_F630Field((void*)raw3,unsigned char*,72);
+                    if (!raw2) {
+                        inactiveCount6 += 1;
+                    }
+                    raw2=listWord5<<16;
+                    list4 += 1;
+                } while (raw2>=0);
+                if (inactiveCount6 == 0) {
+                    *Level11_F630_D_80066BC8 = 3;
+                    Level11_F630_D_800719DC = 1;
+                    PlaySound((int) Level11_F630_D_8006C654->skillPoint, owner17, 0xA1);
+                    spawned16=SpawnMoby(0xD3,owner17);
+                    __asm__("":"=r"(spawned16):"0"(spawned16));
+                    if (spawned16 != 0) {
+                        Level11_F630_func_8004F178(&spawned16->position, &Level11_F630_D_80070328.position);
+                        raw2=Level11_F630_D_80070328.bodyRotation.yaw;
+                        raw2*=2;
+                        raw3=*(short*)((unsigned char*)Level11_F630_D_80065920+raw2);
+                        raw2=raw3*25;
+                        __asm__("":"=r"(raw2):"0"(raw2));
+                        raw3=spawned16->position.x;
+                        raw2>>=7;
+                        raw3+=raw2;
+                        spawned16->position.x=raw3;
+                        __asm__ volatile("":::"memory");
+                        raw2=Level11_F630_D_80070328.bodyRotation.yaw;
+                        raw3=spawned16->position.z;
+                        raw2*=2;
+                        sineSample4=*(short*)((unsigned char*)Level11_F630_D_800658A0+raw2);
+                        raw3+=500;
+                        spawned16->position.z=raw3;
+                        raw3=spawned16->position.y;
+                        raw2=sineSample4*25;
+                        raw2>>=7;
+                        raw3+=raw2;
+                        spawned16->position.y=raw3;
+                    }
+                }
+            }
+        } else {
+            Level11_F630Field(private18, int *, 0x18) = 0x3C;
+            owner17->state = 3;
+        }
+    }
+    if ((owner17->damageFlags & 0x20000) && (Level11_F630Field(private18, int *, 0) == 0)) {
+        Level11_F630Field(private18, int *, 0) = 1;
+        Level11_F630Field(private18, int *, 8) = (int) owner17->angle.roll;
+        Level11_F630Field(private18, int *, 0xC) = (int) owner17->angle.pitch;
+        Level11_F630Field(private18, int *, 0x10) = (int) owner17->position.z;
+        Level11_F630_func_8003BABC(owner17, 1, 0);
+    }
+    state3 = owner17->state;
+    owner17->damageFlags = 0;
+    switch (state3) {                            /* irregular */
+    case 0:
+        owner17->colour.r = 0x80;
+        owner17->colour.g = 0x80;
+        anchorIndex4=Level11_F630Field(private18,int*,4);
+        __asm__("":"=r"(anchorIndex4):"0"(anchorIndex4));
+        if (anchorIndex4 >= 0) {
+            raw2=anchorIndex4*88;
+            raw3=(int)Level11_F630_D_8006C550;
+            raw2+=raw3;
+            anchorPrivate4=Level11_F630Field((void*)raw2,void**,0);
+            raw3=Level11_F630Field(anchorPrivate4,int*,36);
+            raw2=(int)&Level11_F630_D_level_11_80091ED4;
+            if(raw3==raw2) {
+                if (Level11_F630Field(anchorPrivate4, int *, 0x34) != 0) {
+                    Level11_F630_D_800715B3 = 1;
+                    Level11_F630Field(anchorPrivate4, int *, 0x34) = 0;
+                }
+            }
+        }
+        owner17->colour.b = 0x80;
+        owner17->colour.a = 0;
+        return;
+    case 2:
+        if (Level11_F630_func_800359A4(private18 + 0x18, 4) != 0) {
+            owner17->colour.r = 0;
+            owner17->colour.g = 0;
+            owner17->colour.b = 0;
+            owner17->colour.a = 0;
+            raw3=1;
+            __asm__("":"=r"(raw3):"0"(raw3));
+            raw2=owner17->mobyClass;
+            owner17->state=raw3;
+            model2=Level11_F630_D_8006EE2C[raw2];
+            model2=Level11_F630Field(model2,unsigned char**,64);
+            raw2=model2[0];
+            __asm__ volatile("":::"memory");
+            owner17->animationState.id=raw3;
+            owner17->animationState.nextId=raw3;
+            owner17->animationState.frame=0;
+            owner17->animationState.nextFrame=raw3;
+            raw2=(unsigned int)raw2<2;
+            __asm__("":"=r"(raw2):"0"(raw2));
+            raw2^=1;
+            raw2=-raw2;
+            raw2&=48;
+            owner17->animationProgress=raw2;
+            return;
+        }
+        scratch.first[0] = (Level11_F630_rand() & 0xF) - 8;
+        scratch.first[1] = (Level11_F630_rand() & 0xF) - 8;
+        scratch.first[2] = (Level11_F630_rand() & 0xF) + 8;
+        particle16 = SpawnParticle(1, 0x37, &owner17->position, (Vector3D *) &scratch.first[0]);
+        if (particle16 != 0) {
+            Level11_F630Field(particle16, signed char *, 0x11) = 7;
+            raw2=Level11_F630_rand();
+            raw3=Level11_F630Field(particle16,unsigned short*,8);
+            raw2&=511;
+            raw3+=128;
+            __asm__("":"=r"(raw3):"0"(raw3));
+            raw3+=raw2;
+            Level11_F630Field(particle16,unsigned short*,8)=raw3;
+        }
+        colourByte = owner17->colour.r;
+        if (colourByte >= 5U) {
+            owner17->colour.r = colourByte - 4;
+        } else {
+            owner17->colour.r = 0;
+        }
+        reloadedColourByte = owner17->colour.r;
+        owner17->colour.b = reloadedColourByte;
+        owner17->colour.g = reloadedColourByte;
+        owner17->colour.a = (unsigned char) ((int) (0x7F - owner17->colour.r) >> 3);
+        return;
+    case 3:
+        if (Level11_F630_func_800359A4(private18 + 0x18, 4) != 0) {
+            owner17->state = 1;
+            return;
+        }
+        scratch.second[0] = (Level11_F630_rand() & 0xF) - 8;
+        scratch.second[1] = (Level11_F630_rand() & 0xF) - 8;
+        scratch.second[2] = (Level11_F630_rand() & 0xF) + 8;
+        alternateParticle16 = SpawnParticle(1, 1, &owner17->position, (Vector3D *) &scratch.second[0]);
+        if (alternateParticle16 != 0) {
+            Level11_F630Field(alternateParticle16, signed char *, 0x11) = 6;
+            raw2=Level11_F630_rand();
+            raw3=Level11_F630Field(alternateParticle16,unsigned short*,8);
+            raw2&=511;
+            raw3+=128;
+            __asm__("":"=r"(raw3):"0"(raw3));
+            raw3+=raw2;
+            Level11_F630Field(alternateParticle16,unsigned short*,8)=raw3;
+        }
+    case 1:
+        return;
+    }
+}
+#undef Level11_F630Field
+
+
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated;
+ not human reviewed. Original-instruction-derived C. Original source asm/nonmatchings/overlays/level_11/moby/func_level_11_8007FC04.s SHA256 4d771289b47f7b779837e0536464e7b38b43f702e1b1974d2395a21b890bc735. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
+#define Level11_7FC04Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+extern short Level11_7FC04_D_800658A0[0x100] __asm__("D_800658A0");
+extern short Level11_7FC04_D_80065920[0x100] __asm__("D_80065920");
+extern Moby* Level11_7FC04_D_8006C550 __asm__("D_8006C550");
+extern Spyro Level11_7FC04_D_80070328 __asm__("D_80070328");
+void Level11_7FC04_func_80034F40(Moby* moby, int newId) __asm__("func_80034F40");
+int Level11_7FC04_func_80035194(Moby*, void*) __asm__("func_80035194");
+int Level11_7FC04_func_8003573C(Moby* ownerRecord16, int arg1, int arg2, int arg3) __asm__("func_8003573C");
+int Level11_7FC04_func_8003585C(Moby*, int, int, int, int, int ) __asm__("func_8003585C");
+int Level11_7FC04_func_80035D38(Moby* moby) __asm__("func_80035D38");
+int Level11_7FC04_func_80035EE0(Moby*, int, int, int, int, int) __asm__("func_80035EE0");
+void Level11_7FC04_func_800369B8() __asm__("func_800369B8");
+void Level11_7FC04_func_80038BF8(Moby*, EnemyTag*, int, int) __asm__("func_80038BF8");
+void Level11_7FC04_func_8003BA00(Moby* moby) __asm__("func_8003BA00");
+int Level11_7FC04_func_8003BABC(Moby*, int, int) __asm__("func_8003BABC");
+void Level11_7FC04_func_8003BE70(int) __asm__("func_8003BE70");
+int Level11_7FC04_func_8003BFC0(Moby*, int) __asm__("func_8003BFC0");
+extern int Level11_7FC04_func_8004E880(int, int, int) __asm__("func_8004E880");
+extern void Level11_7FC04_func_8004F194(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004F194");
+extern int Level11_7FC04_func_8004F264(int, int) __asm__("func_8004F264");
+extern int Level11_7FC04_func_8004F334(Vector3D*, Vector3D*) __asm__("func_8004F334");
+extern void Level11_7FC04_func_80055B18(Moby*) __asm__("func_80055B18");
+extern void Level11_7FC04_func_80055D24(Moby*, int) __asm__("func_80055D24");
+extern int Level11_7FC04_func_80055E84(Moby*) __asm__("func_80055E84");
+
+int Level11_7FC04_func_80018368() __asm__("func_80018368");
+               /* extern */
+int Level11_7FC04_func_80035A80() __asm__("func_80035A80");
+ /* extern */
+int Level11_7FC04_func_80036220() __asm__("func_80036220");
+ /* extern */
+int Level11_7FC04_func_800365E4() __asm__("func_800365E4");
+ /* extern */
+unsigned int Level11_7FC04_func_80036A68() __asm__("func_80036A68");
+ /* extern */
+extern int Level11_7FC04_D_8006C770 __asm__("D_8006C770");
+extern int Level11_7FC04_D_8006E020 __asm__("D_8006E020");
+extern int Level11_7FC04_D_8006E024 __asm__("D_8006E024");
+extern unsigned short Level11_7FC04_D_8006E040 __asm__("D_8006E040");
+extern int Level11_7FC04_D_8006E344 __asm__("D_8006E344");
+
+void func_level_11_8007FC04(Moby *ownerRecord16) {
+    /* Original0x50-byte frame;
+     scratch atSP+0x20, savedS0 atSP+0x38.
+     * Raw pointer and field literals preserve original byte offsets.
+     * Cached state3 feeds the compiler's original51-entry switch range.
+     * Native446..469 passes8 arguments to35A80;
+      original branch selects
+     * stack argument5 as0/300, followed by6/40/selected saved18 word.
+     * Signed table LH2 and adjacent caller/512-word producers are explicit.
+     * All empty constraints have initialized inputs;
+      no instruction asm.
+     * Literal4 is produced before the second private+8 pointer load.
+     * Shared state/reset tails retain original calls and branch joins.
+     * Units/helper semantics/frame cadence unresolved;
+      per invocation only. */
+    struct {int sp20;
+     int sp24;
+     int sp28;
+     unsigned char pad2C[4];
+     unsigned char sp30;
+     unsigned char pad31[7];
+    } originalFrame;
+
+    Moby *temp_a0;
+    Moby *temp_a0_4;
+    Moby *temp_a1_2;
+    Moby *temp_v0_5;
+    Vector3D *temp_s2;
+    Vector3D *temp_s2_2;
+    int temp_v0_4;
+    int temp_v1_10;
+    int temp_v1_3;
+    int temp_v1_5;
+    int temp_v1_9;
+    register int var_a1 __asm__("5");
+    register Moby *stateOwner4 __asm__("4");
+    register int selectedWord18 __asm__("18");
+    int var_s2_2;
+    int var_v0;
+    int var_v0_2;
+    int var_v0_3;
+    int helperResult3;
+    register int selectedBit2 __asm__("2");
+    unsigned int modeWord4;
+    register unsigned int temp_v0_6 __asm__("4");
+    unsigned int temp_v1_2;
+    register unsigned int temp_v1 __asm__("3");
+    register unsigned int nextRawState19 __asm__("19");
+    void *temp_a0_2;
+    void *temp_a1;
+    void *privateRecord17;
+    void *temp_v0;
+    void *temp_v0_2;
+    void *temp_v0_3;
+    void *temp_v1_4;
+    void *temp_v1_6;
+    void *selectedData3;
+    void *temp_v1_8;
+
+    privateRecord17 = ownerRecord16->mobyTag;
+    if (ownerRecord16->damageFlags != 0) {
+        temp_v1 = ownerRecord16->state;
+        if (temp_v1 != 8) {
+            if (Level11_7FC04_func_8003BFC0(ownerRecord16, Level11_7FC04Field(privateRecord17, int *, 0x60)) != 0) {
+                Level11_7FC04_func_8003BE70(Level11_7FC04Field(privateRecord17, int *, 0x60));
+            }
+            Level11_7FC04Field(privateRecord17, int *, 0x60) = -1;
+            Level11_7FC04_func_80038BF8(ownerRecord16, privateRecord17 + 0xC, 6, 8);
+            ownerRecord16->state = 8;
+            Level11_7FC04_func_80036A68(ownerRecord16, 0, 0, 0);
+            goto block_5;
+        }
+    } else {
+block_5:
+        temp_v1 = ownerRecord16->state;
+    }
+
+        switch (temp_v1) {                      /* switch 1 */
+        case 0:
+            __asm__("" : : "r"(temp_v1));
+                                                 /* switch 1 */
+            selectedWord18 = 0;
+            temp_v1_2 = Level11_7FC04Field(privateRecord17, unsigned int *, 0);
+            nextRawState19 = -1U;
+            switch (temp_v1_2) {                    /* switch 2 */
+            case 0:                                 /* switch 2 */
+                if ((Level11_7FC04_D_8006E344 != 0xE) && (Level11_7FC04Field(privateRecord17, void **, 4) != 0) && (Level11_7FC04_func_80036220(&Level11_7FC04_D_80070328, privateRecord17 + 0x28, 0, 0) != 0)) {
+                    __asm__ __volatile__("" : : "r"(privateRecord17), "r"(nextRawState19) : "memory");
+                    nextRawState19 = 4;
+                    goto block_44;
+                }
+                break;
+            case 1:                                 /* switch 2 */
+                temp_v1_3 = Level11_7FC04Field(privateRecord17, int *, 0x5C);
+                if ((temp_v1_3 < 0) || (Level11_7FC04_D_8006C550[temp_v1_3].state == 0)) {
+                    nextRawState19 = 2;
+                    goto block_44;
+                }
+                break;
+            case 2:                                 /* switch 2 */
+                if (Level11_7FC04_func_8004F334(&ownerRecord16->position, &Level11_7FC04_D_80070328.position) < Level11_7FC04Field(privateRecord17, int *, 0x58)) {
+                    var_v0_2 = ((ownerRecord16->position.z - ownerRecord16->distanceToGround) - Level11_7FC04_D_80070328.position.z) + Level11_7FC04_D_80070328.unk4a;
+                    if (var_v0_2 < 0) {
+                        var_v0_2 = -var_v0_2;
+                    }
+                    if ((var_v0_2 < 0x200) && (Level11_7FC04_func_8004F264((int) (Level11_7FC04_D_8006E040 << 0x10) >> 0x14, Level11_7FC04_func_8004E880(ownerRecord16->position.x - Level11_7FC04_D_8006E020, ownerRecord16->position.y - Level11_7FC04_D_8006E024, 0)) < 0x1C)) {
+                        Level11_7FC04Field(privateRecord17, void **, 4) = 0;
+                    } else {
+                        goto block_23;
+                    }
+                } else {
+block_23:
+                    if ((Level11_7FC04Field(privateRecord17, void **, 4) != 0) && (Level11_7FC04_func_80036220(&Level11_7FC04_D_80070328, privateRecord17 + 0x28, 0, 0) != 0)) {
+                        nextRawState19 = 4;
+                        goto block_44;
+                    }
+                }
+                break;
+            case 3:                                 /* switch 2 */
+                if ((Level11_7FC04_D_8006E344 != 0xE) && (Level11_7FC04Field(privateRecord17, void **, 4) != 0) && (Level11_7FC04_func_80036220(&Level11_7FC04_D_80070328, privateRecord17 + 0x28, 0, 0) != 0)) {
+                    __asm__ __volatile__("" : : : "19");
+                    nextRawState19 = 4;
+                    goto block_44;
+                }
+                if ((Level11_7FC04Field(privateRecord17, void **, 8) != 0) && (Level11_7FC04_func_80036220(&Level11_7FC04_D_80070328, privateRecord17 + 0x40, 0, 0) != 0)) {
+                    nextRawState19 = 4;
+                    temp_v0 = Level11_7FC04Field(privateRecord17, void **, 8);
+                    selectedWord18 = 1;
+                    Level11_7FC04Field(privateRecord17, void **, 8) = 0;
+                    Level11_7FC04Field(privateRecord17, void **, 4) = temp_v0;
+                }
+                break;
+            case 4:                                 /* switch 2 */
+            case 5:                                 /* switch 2 */
+                if ((Level11_7FC04Field(privateRecord17, void **, 4) != 0) && (Level11_7FC04_func_8004F334(&ownerRecord16->position, &Level11_7FC04_D_80070328.position) < Level11_7FC04Field(privateRecord17, int *, 0x58))) {
+                    if (Level11_7FC04Field(privateRecord17, unsigned int *, 0) == 5) {
+                        temp_v1_4 = Level11_7FC04Field(privateRecord17, void **, 4);
+                        Level11_7FC04Field(temp_v1_4, short *, 2) = (short) (Level11_7FC04Field(temp_v1_4, unsigned short *, 0) - 1);
+                        Level11_7FC04Field(Level11_7FC04Field(privateRecord17, void **, 4), short *, 0xA) = -1;
+                    }
+                    temp_v1_5 = Level11_7FC04Field(privateRecord17, int *, 0x5C);
+                    nextRawState19 = 4;
+                    if (temp_v1_5 >= 0) {
+                        temp_a0 = (Moby *)(((temp_v1_5) * 0x58) + (int)Level11_7FC04_D_8006C550);
+                        if (!(temp_a0->state & 0x80) && (temp_a0->mobyClass == ownerRecord16->mobyClass)) {
+                            temp_a0_2 = temp_a0->mobyTag;
+                            if (Level11_7FC04Field(temp_a0_2, int *, 0) == 5) {
+                                temp_v1_6 = Level11_7FC04Field(temp_a0_2, void **, 4);
+                                Level11_7FC04Field(temp_v1_6, short *, 2) = (short) (Level11_7FC04Field(temp_v1_6, unsigned short *, 0) - 1);
+                                Level11_7FC04Field(Level11_7FC04Field(temp_a0_2, void **, 4), short *, 0xA) = -1;
+                            }
+                            Level11_7FC04_func_80034F40((Moby *)((int)Level11_7FC04_D_8006C550 + ((Level11_7FC04Field(privateRecord17, int *, 0x5C)) * 0x58)), 4);
+                            Level11_7FC04_D_8006C550[Level11_7FC04Field(privateRecord17, int *, 0x5C)].state = nextRawState19;
+                        }
+                    }
+                    goto block_44;
+                }
+                break;
+            case 6:                                 /* switch 2 */
+                nextRawState19 = 5;
+block_44:
+                selectedWord18 = 1;
+            }
+            __asm__("" : "=r"(selectedWord18), "=r"(nextRawState19) : "0"(selectedWord18), "1"(nextRawState19));
+            if (selectedWord18 != 0) {
+                ownerRecord16->state = nextRawState19;
+                Level11_7FC04_func_80034F40(ownerRecord16, (int) nextRawState19);
+                return;
+            }
+            __asm__("" : "=r"(selectedWord18) : "0"(selectedWord18));
+            if ((Level11_7FC04Field(privateRecord17, void **, 4) == 0) & (Level11_7FC04Field(privateRecord17, void **, 8) == 0)) {
+                Level11_7FC04_func_8003573C(ownerRecord16, 4, 0, 1);
+                if (Level11_7FC04_func_8004F334(&ownerRecord16->position, &Level11_7FC04_D_80070328.position) >= 0x1800) {
+                    return;
+                }
+                goto block_101;
+            }
+            break;
+        case 4:                                     /* switch 1 */
+            Level11_7FC04_func_80035A80(ownerRecord16, Level11_7FC04Field(privateRecord17, void **, 4), 0x100, 0x14, 0x12C, 6, 4, 6);
+            if (Level11_7FC04_D_8006C770 != 0) {
+                ownerRecord16->state = 2;
+                Level11_7FC04_func_80034F40(ownerRecord16, 2);
+                return;
+            }
+            break;
+        case 2:                                     /* switch 1 */
+            if (Level11_7FC04Field(privateRecord17, unsigned int *, 0) == 2) {
+                temp_v0_2 = Level11_7FC04Field(privateRecord17, void **, 4);
+                if ((Level11_7FC04Field(temp_v0_2, short *, 2) < ((int) (Level11_7FC04Field(temp_v0_2, unsigned short *, 0) << 0x10) >> 0x11)) && (Level11_7FC04_func_8004F334(&ownerRecord16->position, &Level11_7FC04_D_80070328.position) < Level11_7FC04Field(privateRecord17, int *, 0x58))) {
+                    var_v0_3 = ((ownerRecord16->position.z - ownerRecord16->distanceToGround) - Level11_7FC04_D_80070328.position.z) + Level11_7FC04_D_80070328.unk4a;
+                    if (var_v0_3 < 0) {
+                        var_v0_3 = -var_v0_3;
+                    }
+                    if (var_v0_3 < 0x200) {
+                        temp_v0_3 = Level11_7FC04Field(privateRecord17, void **, 4);
+                        Level11_7FC04Field(temp_v0_3, short *, 2) = (short) (Level11_7FC04Field(temp_v0_3, unsigned short *, 0) - (unsigned short) Level11_7FC04Field(temp_v0_3, short *, 2));
+                        goto block_64;
+                    }
+                    goto block_59;
+                }
+block_59:
+                goto block_60;
+            }
+block_60:
+            if ((Level11_7FC04Field(privateRecord17, unsigned int *, 0) == 1) && (ownerRecord16->animationState.id == 2) && (Level11_7FC04_func_8004F334(&ownerRecord16->position, &Level11_7FC04_D_80070328.position) < 0x1800)) {
+                Level11_7FC04_func_80034F40(ownerRecord16, 0xA);
+                ownerRecord16->state = 0x32;
+                return;
+            }
+block_64:
+            if (ownerRecord16->substate != 0) {
+                ownerRecord16->position.z += Level11_7FC04Field(privateRecord17, int *, 0x24);
+                Level11_7FC04Field(privateRecord17, int *, 0x24) = (int) (Level11_7FC04Field(privateRecord17, int *, 0x24) - 0xE);
+                temp_v0_4 = Level11_7FC04_func_80035D38(ownerRecord16);
+                var_s2_2 = 3;
+                if (temp_v0_4 >= ownerRecord16->position.z) {
+                    ownerRecord16->position.z = temp_v0_4;
+                    Level11_7FC04Field(privateRecord17, int *, 0x24) = 0;
+                    ownerRecord16->substate = 0;
+                    Level11_7FC04_func_80034F40(ownerRecord16, 2);
+                } else if (Level11_7FC04_D_8006C770 != 0) {
+                    Level11_7FC04_func_80034F40(ownerRecord16, 0xC);
+                }
+            } else {
+                if (Level11_7FC04_D_8006C770 != 0) {
+                    Level11_7FC04_func_80034F40(ownerRecord16, 2);
+                }
+                var_s2_2 = 7;
+                if ((unsigned int) (Level11_7FC04Field(privateRecord17, unsigned int *, 0) - 4) < 2U) {
+                    var_s2_2 = 5;
+                }
+            }
+            if (ownerRecord16->animationState.id != 0xD) {
+                { register int default3 __asm__("3");
+                 default3 = 0;
+                 __asm__ __volatile__("" : : "r"(default3) : "memory");
+                 }
+                if ((unsigned int) (Level11_7FC04Field(privateRecord17, unsigned int *, 0) - 4) < 2U) {
+                    helperResult3 = Level11_7FC04_func_80035A80(ownerRecord16, Level11_7FC04Field(privateRecord17, void **, 4), 0x100, 0xC8, 0, 6, 0x28, var_s2_2);
+                } else {
+                    helperResult3 = Level11_7FC04_func_80035A80(ownerRecord16, Level11_7FC04Field(privateRecord17, void **, 4), 0x100, 0xC8, 0x12C, 6, 0x28, var_s2_2);
+                }
+            } else {
+                helperResult3 = 0;
+            }
+            { register int flags3 __asm__("3");
+             flags3 = helperResult3;
+             __asm__("" : "=r"(flags3) : "0"(flags3));
+             helperResult3 = flags3;
+             }
+            modeWord4 = Level11_7FC04Field(privateRecord17, unsigned int *, 0);
+            if ((modeWord4 != 1) && (helperResult3 & 2)) {
+                if ((modeWord4 == 2) && (Level11_7FC04Field(privateRecord17, void **, 8) != 0) && (Level11_7FC04Field(privateRecord17, int *, 0x5C) >= 0)) {
+                    { register unsigned int type2 __asm__("2");
+                     type2 = 4;
+                     __asm__("" : "=r"(type2) : "0"(type2));
+                     selectedData3 = Level11_7FC04Field(privateRecord17, void *volatile *, 8);
+                     Level11_7FC04Field(privateRecord17, unsigned int *, 0) = type2;
+                     }
+                    Level11_7FC04Field(privateRecord17, void **, 8) = 0;
+                    Level11_7FC04Field(privateRecord17, void **, 4) = selectedData3;
+                } else {
+                    stateOwner4 = ownerRecord16;
+                    var_a1 = 0;
+                    __asm__("" : "=r"(stateOwner4), "=r"(var_a1) : "0"(stateOwner4), "1"(var_a1));
+                    Level11_7FC04Field(privateRecord17, void **, 4) = 0;
+                    Level11_7FC04Field(privateRecord17, void **, 8) = 0;
+                    ownerRecord16->state = 0;
+                    goto block_88;
+                }
+            } else if ((({ selectedBit2 = helperResult3 & 1; __asm__("" : "=r"(selectedBit2) : "0"(selectedBit2), "r"(helperResult3)); selectedBit2; }))) {
+                temp_v1_8 = Level11_7FC04Field(privateRecord17, void **, 4);
+                temp_a1 = (Level11_7FC04Field(temp_v1_8, short *, 2) * 0x10) + Level11_7FC04Field(temp_v1_8, int *, 0xC);
+                if (Level11_7FC04Field(temp_a1, int *, 0xC) != 0) {
+                    { int helperWord = Level11_7FC04_func_800365E4(&ownerRecord16->position, temp_a1, 0xC8, -0xE, &originalFrame.sp30);
+                     stateOwner4 = ownerRecord16;
+                     var_a1 = 0xB;
+                     __asm__("" : "=r"(stateOwner4), "=r"(var_a1) : "0"(stateOwner4), "1"(var_a1));
+                     Level11_7FC04Field(privateRecord17, int *, 0x24) = helperWord;
+                     }
+                    ownerRecord16->substate = 1;
+block_88:
+                    Level11_7FC04_func_80034F40(stateOwner4, var_a1);
+                }
+            }
+            { register Vector3D *frame4 __asm__("4");
+             register Vector3D *frame5 __asm__("5");
+             register Vector3D *position18 __asm__("18");
+             register Vector3D *position6 __asm__("6");
+             register int word2 __asm__("2");
+             register int literal3 __asm__("3");
+             frame4 = (Vector3D *)&originalFrame.sp20;
+             word2 = ownerRecord16->angle.yaw;
+             __asm__("" : "=r"(word2) : "0"(word2) : "5");
+             frame5 = frame4;
+             __asm__("" : "=r"(word2), "=r"(frame5) : "0"(word2), "1"(frame5));
+             word2 = Level11_7FC04_D_80065920[word2];
+             __asm__("" : "=r"(word2) : "0"(word2) : "18");
+             position18 = &ownerRecord16->position;
+             __asm__("" : "=r"(position18) : "0"(position18), "r"(word2));
+             originalFrame.sp20 = word2 >> 3;
+             word2 = ownerRecord16->angle.yaw;
+             __asm__("" : "=r"(word2) : "0"(word2) : "6");
+             position6 = position18;
+             __asm__("" : "=r"(word2), "=r"(position6) : "0"(word2), "1"(position6));
+             word2 = Level11_7FC04_D_800658A0[word2];
+             __asm__("" : "=r"(word2) : "0"(word2) : "3");
+             literal3 = 0x200;
+             __asm__("" : "=r"(word2), "=r"(literal3) : "0"(word2), "1"(literal3));
+             originalFrame.sp28 = literal3;
+             __asm__("" : "=r"(word2) : "0"(word2), "m"(originalFrame.sp28));
+             originalFrame.sp24 = word2 >> 3;
+             Level11_7FC04_func_8004F194(frame4, frame5, position6);
+             temp_s2 = position18;
+             }
+            if (ownerRecord16->substate == 0) {
+                ownerRecord16->position.z += 0x200;
+                if (Level11_7FC04_func_80018368(temp_s2, &originalFrame.sp20) != 0) {
+                    ownerRecord16->state = 6;
+                    Level11_7FC04_func_80034F40(ownerRecord16, 6);
+                } else if ((unsigned int) (Level11_7FC04Field(privateRecord17, unsigned int *, 0) - 4) < 2U) {
+                    temp_v1_9 = Level11_7FC04Field(privateRecord17, int *, 0x5C);
+                    if (temp_v1_9 >= 0) {
+                        temp_a1_2 = (Moby *)(((temp_v1_9) * 0x58) + (int)Level11_7FC04_D_8006C550);
+                        if (!(temp_a1_2->state & 0x80) && (Level11_7FC04_func_8004F334(temp_s2, &temp_a1_2->position) < 0x258)) {
+                            ownerRecord16->state = 6;
+                            Level11_7FC04_func_80034F40(ownerRecord16, 6);
+                            temp_a0_4 = (Moby *)(((Level11_7FC04Field(privateRecord17, int *, 0x5C)) * 0x58) + (int)Level11_7FC04_D_8006C550);
+                            if (temp_a0_4->mobyClass == ownerRecord16->mobyClass) {
+                                Level11_7FC04_func_80034F40(temp_a0_4, 6);
+                                Level11_7FC04_D_8006C550[Level11_7FC04Field(privateRecord17, int *, 0x5C)].state = 6;
+                            }
+                        }
+                    }
+                }
+                ownerRecord16->position.z -= 0x200;
+                return;
+            }
+            break;
+        case 5:                                     /* switch 1 */
+            temp_v0_5 = (Moby *)(((Level11_7FC04Field(privateRecord17, int *, 0x5C)) * 0x58) + (int)Level11_7FC04_D_8006C550);
+            Level11_7FC04_func_8003585C(ownerRecord16, Level11_7FC04_func_8004E880(temp_v0_5->position.x - ownerRecord16->position.x, temp_v0_5->position.y - ownerRecord16->position.y, 0), 4, 0, 1, 0);
+            temp_s2_2 = &ownerRecord16->position;
+            if (Level11_7FC04_func_8004F334(temp_s2_2, &Level11_7FC04_D_80070328.position) < 0x1800) {
+block_101:
+                    ownerRecord16->state = 0xA;
+                    Level11_7FC04_func_80034F40(ownerRecord16, 0xA);
+                    return;
+            }
+            if (Level11_7FC04_func_8004F334(temp_s2_2, &Level11_7FC04_D_8006C550[Level11_7FC04Field(privateRecord17, int *, 0x5C)].position) < 0x1000) {
+                Level11_7FC04_func_80034F40(ownerRecord16, 5);
+                return;
+            }
+            if (Level11_7FC04_D_8006C770 != 0) {
+                Level11_7FC04_func_80034F40(ownerRecord16, 0);
+                __asm__ __volatile__("" : : "r"(privateRecord17) : "memory");
+                return;
+            }
+            break;
+        case 50:                                    /* switch 1 */
+            if (Level11_7FC04_func_8003BFC0(ownerRecord16, Level11_7FC04Field(privateRecord17, int *, 0x60)) == 0) {
+                Level11_7FC04Field(privateRecord17, int *, 0x60) = Level11_7FC04_func_8003BABC(ownerRecord16, 0, 4);
+            }
+            temp_v1_10 = Level11_7FC04Field(privateRecord17, int *, 0x5C);
+            if ((temp_v1_10 < 0) || (Level11_7FC04_D_8006C550[temp_v1_10].state == 0)) {
+                Level11_7FC04_func_8003573C(ownerRecord16, 4, 0, 1);
+                if (Level11_7FC04_func_8004F334(&ownerRecord16->position, &Level11_7FC04_D_80070328.position) >= 0x1A01) {
+                    if (Level11_7FC04_func_8003BFC0(ownerRecord16, Level11_7FC04Field(privateRecord17, int *, 0x60)) != 0) {
+                        Level11_7FC04_func_8003BE70(Level11_7FC04Field(privateRecord17, int *, 0x60));
+                    }
+                    Level11_7FC04Field(privateRecord17, int *, 0x60) = -1;
+                    ownerRecord16->state = 4;
+                    Level11_7FC04_func_80034F40(ownerRecord16, 4);
+                    return;
+                }
+            }
+            break;
+        case 7:                                     /* switch 1 */
+        case 10:                                    /* switch 1 */
+            if (Level11_7FC04_func_8003BFC0(ownerRecord16, Level11_7FC04Field(privateRecord17, int *, 0x60)) == 0) {
+                Level11_7FC04Field(privateRecord17, int *, 0x60) = Level11_7FC04_func_8003BABC(ownerRecord16, 0, 4);
+            }
+            Level11_7FC04_func_8003573C(ownerRecord16, 4, 0, 1);
+            if (Level11_7FC04_func_8004F334(&ownerRecord16->position, &Level11_7FC04_D_80070328.position) >= 0x1A01) {
+                if (Level11_7FC04_func_8003BFC0(ownerRecord16, Level11_7FC04Field(privateRecord17, int *, 0x60)) != 0) {
+                    Level11_7FC04_func_8003BE70(Level11_7FC04Field(privateRecord17, int *, 0x60));
+                }
+                stateOwner4 = ownerRecord16;
+                 var_a1 = 0;
+                 __asm__("" : "=r"(stateOwner4), "=r"(var_a1) : "0"(stateOwner4), "1"(var_a1));
+                Level11_7FC04Field(privateRecord17, int *, 0x60) = -1;
+                goto block_125;
+            }
+            break;
+        case 6:                                     /* switch 1 */
+            temp_v0_6 = Level11_7FC04_func_80055E84(ownerRecord16);
+            __asm__("" : "=r"(temp_v0_6) : "0"(temp_v0_6));
+            if ((ownerRecord16->animationState.id == 6) && (({ register unsigned int difference2 __asm__("2"); difference2 = temp_v0_6 - 0x1F; __asm__("" : "=r"(difference2) : "0"(difference2), "r"(temp_v0_6)); difference2; }) < 0x18U)) {
+                Level11_7FC04_func_80035EE0(ownerRecord16, (ownerRecord16->angle.yaw + 0x80) & 0xFF, 0x14, 0, 0, 0);
+            }
+            if (Level11_7FC04_D_8006C770 != 0) {
+                stateOwner4 = ownerRecord16;
+                 var_a1 = 0;
+                 __asm__("" : "=r"(stateOwner4), "=r"(var_a1) : "0"(stateOwner4), "1"(var_a1));
+                Level11_7FC04Field(privateRecord17, void **, 4) = 0;
+                Level11_7FC04Field(privateRecord17, void **, 8) = 0;
+block_125:
+                stateOwner4->state = 0;
+                Level11_7FC04_func_80034F40(stateOwner4, var_a1);
+                return;
+            }
+            break;
+        case 8:                                     /* switch 1 */
+            if (Level11_7FC04_func_80035194(ownerRecord16, privateRecord17 + 0xC) == 0x100) {
+                Level11_7FC04_func_80055D24(ownerRecord16, 4);
+                Level11_7FC04_func_8003BA00(ownerRecord16);
+                Level11_7FC04_func_800369B8(ownerRecord16, 0x24);
+                Level11_7FC04_func_80055B18(ownerRecord16);
+            }
+            break;
+        }
+}
+#undef Level11_7FC04Field
+
 
 typedef struct { int reserved[6]; unsigned char savedState, savedAnimation, emitParticle; } DecodedDamageDialogueTag;
 extern unsigned char DecodedDamageDialogueFlags __asm__("D_8006C7B4");
@@ -4758,7 +6972,616 @@ void func_level_11_80080AE0(Moby* argument) {
         ((DecodedOrbitParentTag*)tag->parent->mobyTag)->count7--;
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_11/moby", func_level_11_80080CE0);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original80080CE0.
+* AI generated; not human reviewed. All1043 instructions,51 selectors and
+* one zero padding word,1095 owned words, require every native/linked word
+* and actual transfer/table destination. Frame70 saves S0..S6/RA,SP20..4F.
+* Two original lists process their current masked15-bit record index,
+* then test that same entry's signed high bit and advance by2. Example
+* [0x0002,0x800B] processes records2 and11,stops before a third read.
+* Original429/445/447/448 and the second list preserve this ordering.
+* Both checksum producers read unsigned bytes and fold8 times with8005.
+* The second code-byte stride is (checksum&3)+1; its complete pointer,
+* original end-symbol comparison and counter delay retain exact order.
+* main_TEXT_START+2 is a byte address. Constructor results sign-extend
+* their low16 bits before storage. Timer10800/7200,callback arguments,
+* result stores and linked position/one producers preserve originals.
+* Full39/shift6 and25/shift7 samples reuse already matched producer paths.
+* Saved pointer/temporary phases are disjoint and fully initialized.
+* Empty metadata consumes complete values/addresses or has dead outputs
+* before full producers;zero CPU instructions. No partialHI,fixedFP,
+* undefined saved inputs,live alias overlap or pipeline/flag changes.
+* Units/fixed point,complete helper/caller chains,cadence beyond invocation
+* and synchronized runtime remain open. Confidence: binary identity only
+* after every gate. Next: human review and synchronized retail captures.
+* Falsification: native/linked words,actual targets,owned data/padding and
+* full EXE/every-overlay retail hashes must remain identical.
+*/
+/* Original assembly SHA256 cb2ce04d98c6ce6a14ec26e10f27986b2964602aa876ceb765a6448d30aa9001 */
+extern unsigned char Level11_80CE0Datamain_TEXT_STARTView1 __asm__("main_TEXT_START");
+extern unsigned char Level11_80CE0Datamain_TEXT_ENDView1 __asm__("main_TEXT_END");
+extern unsigned char Level11_80CE0Call751C0View1 __asm__("func_level_11_800751C0");
+extern unsigned char Level11_80CE0Call29AA0View1 __asm__("func_80029AA0");
+extern unsigned char Level11_80CE0Call27EE4View1 __asm__("func_80027EE4");
+extern unsigned char Level11_80CE0Call27A60View1 __asm__("func_80027A60");
+#define Level11_80CE0Field(p, t, o) (*(t)((unsigned char*)(p)+(o)))
+int Level11_80CE0DataPlaySoundView1() __asm__("PlaySound");
+int Level11_80CE0Call13D44View1() __asm__("func_80013D44");
+int Level11_80CE0Call2803CView1() __asm__("func_8002803C");
+int Level11_80CE0Call28154View1() __asm__("func_80028154");
+void Level11_80CE0Call34F40View1(void*, int) __asm__("func_80034F40");
+int Level11_80CE0Call359A4View1(void*, int) __asm__("func_800359A4");
+int Level11_80CE0Call37BBCView1() __asm__("func_80037BBC");
+int Level11_80CE0Call3B74CView1() __asm__("func_8003B74C");
+int Level11_80CE0Call3B7B4View1() __asm__("func_8003B7B4");
+int Level11_80CE0Call4F178View1() __asm__("func_8004F178");
+int Level11_80CE0Call4F194View1() __asm__("func_8004F194");
+int Level11_80CE0Call4F334View1() __asm__("func_8004F334");
+int Level11_80CE0Call512E4View1() __asm__("func_800512E4");
+int Level11_80CE0Call55B18View1() __asm__("func_80055B18");
+extern int Level11_80CE0Data658A0View1 __asm__("D_800658A0");
+extern int Level11_80CE0Data65920View1 __asm__("D_80065920");
+extern int Level11_80CE0Data66BC8View1 __asm__("D_80066BC8");
+extern int Level11_80CE0Data6C550View1 __asm__("D_8006C550");
+extern int Level11_80CE0Data6C58CView1 __asm__("D_8006C58C");
+extern int Level11_80CE0Data6C640View1 __asm__("D_8006C640");
+extern int Level11_80CE0Data6C650View1 __asm__("D_8006C650");
+extern int Level11_80CE0Data6C654View1 __asm__("D_8006C654");
+extern int Level11_80CE0Data6C704View1 __asm__("D_8006C704");
+extern unsigned short** Level11_80CE0Data6C730View1 __asm__("D_8006C730");
+extern unsigned char Level11_80CE0Data6C7B4View1 __asm__("D_8006C7B4");
+extern int Level11_80CE0Data6C7F8View1 __asm__("D_8006C7F8");
+extern int Level11_80CE0Data6D088View1 __asm__("D_8006D088");
+extern int Level11_80CE0Data6E160View1 __asm__("D_8006E160");
+extern int Level11_80CE0Data6E344View1 __asm__("D_8006E344");
+extern int Level11_80CE0Data70300View1 __asm__("D_80070300");
+extern int Level11_80CE0Data70328View1 __asm__("D_80070328");
+extern unsigned char Level11_80CE0Data7159AView1 __asm__("D_8007159A");
+extern int Level11_80CE0Data716ACView1 __asm__("D_800716AC");
+extern int Level11_80CE0Data718CCView1 __asm__("D_800718CC");
+extern short Level11_80CE0Data719DCView1 __asm__("D_800719DC");
+extern int Level11_80CE0Data91ED4View1 __asm__("D_level_11_80091ED4");
+extern int(*Level11_80CE0DataSpawnMobyView1)() __asm__("SpawnMoby");
+extern int(*Level11_80CE0Data74330View1)() __asm__("unk_ovlheader_80074330");
+extern int(*Level11_80CE0Data74334View1)() __asm__("unk_ovlheader_80074334");
+extern int Level11_80CE0Data74370View1 __asm__("unk_ovlheader_80074370");
+extern int(*Level11_80CE0Data74440View1)() __asm__("unk_ovlheader_80074440");
+extern int Level11_80CE0Data74448View1 __asm__("unk_ovlheader_80074448");
+extern int Level11_80CE0Data7444CView1 __asm__("unk_ovlheader_8007444C");
+extern int Level11_80CE0Data74450View1 __asm__("unk_ovlheader_80074450");
+extern int(*Level11_80CE0Data7447CView1)() __asm__("unk_ovlheader_8007447C");
+void func_level_11_80080CE0(void *ownerParameter) {
+    register int rawWord2 __asm__("$2"), rawWord3 __asm__("$3"), argumentWord4 __asm__("$4"), argumentWord5 __asm__("$5"), argumentWord6 __asm__("$6"), argumentWord7 __asm__("$7"), retainedOneOrFrameAddress17 __asm__("$17");
+    register void *ownerRecord20 __asm__("$20");
+    register int privateRecord19 __asm__("$19"), retainedAddressOrRecord16 __asm__("$16"), linkedPrivateRecord21 __asm__("$21"), linkedRecord22 __asm__("$22");
+    struct{
+        int sp20, sp24, sp28, sp2C, sp30, sp34, sp38, sp3C, sp40, sp44, sp48, sp4C;
+    }
+    originalFrame;
+    int temporaryWord4;
+    int temporaryWord5;
+    int temporaryWord6;
+    int temporaryWord7;
+    int temporaryWord13;
+    int temporaryWord19;
+    int temporaryWord9;
+    int temporaryWord14;
+    int temporaryWord15;
+    int temporaryWord1;
+    int temporaryWord11;
+    int temporaryWord12;
+    int temporaryWord16;
+    int temporaryWord18;
+    int temporaryWord2;
+    int temporaryWord3;
+    int temporaryWord8;
+    int temporaryWord10;
+    int temporaryWord17;
+    ownerRecord20 = ownerParameter;
+    __asm__("":"=r"(ownerRecord20):"0"(ownerRecord20));
+    privateRecord19 = Level11_80CE0Field(ownerRecord20, void **, 0);
+    rawWord3 = Level11_80CE0Field(privateRecord19, int*, 160);
+    rawWord2 = rawWord3*88;
+    rawWord3 = Level11_80CE0Data6C550View1;
+    linkedRecord22 = rawWord3+rawWord2;
+    linkedPrivateRecord21 = Level11_80CE0Field(linkedRecord22, void **, 0);
+    if (Level11_80CE0Data6C640View1 == 0) {
+        if (Level11_80CE0Data7159AView1 != 0) {
+            if ((Level11_80CE0Data6C7B4View1 & 8) || (Level11_80CE0Field((int)&Level11_80CE0Data70300View1, unsigned char*, Level11_80CE0Data6C58CView1) & 8)) {
+                Level11_80CE0Field(ownerRecord20, signed char *, 0x41) = 0;
+                Level11_80CE0Field(ownerRecord20, unsigned char *, 0x4C) = 0U;
+                Level11_80CE0Field(ownerRecord20, signed char *, 0x4D) = 0;
+                Level11_80CE0Field(ownerRecord20, int *, 8) = 0;
+                Level11_80CE0Field(ownerRecord20, unsigned char *, 0x48) = 0x32U;
+                goto block_11;
+            }
+            Level11_80CE0Call55B18View1(ownerRecord20);
+            return;
+        }
+        rawWord3 = Level11_80CE0Data6C7B4View1;
+        rawWord2 = rawWord3&4;
+        if (rawWord2 || (Level11_80CE0Field((int)&Level11_80CE0Data70300View1, unsigned char*, Level11_80CE0Data6C58CView1)&4)){
+            rawWord2 = rawWord3&8;
+            if (rawWord2 || (Level11_80CE0Field((int)&Level11_80CE0Data70300View1, unsigned char*, Level11_80CE0Data6C58CView1)&8))Level11_80CE0Field(privateRecord19, unsigned char*, 2) = 15;
+        }
+        goto block_12;
+    }
+block_11:
+block_12:
+    rawWord3 = Level11_80CE0Data6C7B4View1;
+    rawWord2 = rawWord3&4;
+    if (rawWord2) goto finishOriginalFlagChecks;
+    rawWord2 = rawWord3&8;
+    if (rawWord2) goto finishOriginalFlagChecks;
+    __asm__ volatile(""::"r"(rawWord3));
+    rawWord2 = Level11_80CE0Data6C58CView1;
+    rawWord2 = Level11_80CE0Field((int)&Level11_80CE0Data70300View1, unsigned char*, rawWord2);
+    rawWord2 &= 8;
+    if (rawWord2) goto finishOriginalFlagChecks;
+    {
+        if ((Level11_80CE0Data6C640View1 == 0) && (Level11_80CE0Field(privateRecord19, unsigned char *, 2) != 0)) {
+            Level11_80CE0Field(privateRecord19, unsigned char *, 2) = 1U;
+            Level11_80CE0Field(privateRecord19, signed char *, 5) = 1;
+        }
+        if ((Level11_80CE0Field(privateRecord19, int *, 0x5C) < 0) && (Level11_80CE0Field(Level11_80CE0Field(privateRecord19, int*, 88), int*, 0) > 0)) {
+            Level11_80CE0Field(privateRecord19, int *, 0x5C) = (short) Level11_80CE0Call2803CView1(0x17, 0x6E, &Level11_80CE0Call27EE4View1, &Level11_80CE0Call27A60View1, &Level11_80CE0Call29AA0View1, Level11_80CE0Field(privateRecord19, void **, 0x58), 0xF);
+            Level11_80CE0Field(privateRecord19, signed char *, 5) = 0;
+            Level11_80CE0Field(privateRecord19, unsigned char *, 2) = 4U;
+        }
+        else if (Level11_80CE0Field(Level11_80CE0Field(privateRecord19, int*, 88), int*, 0) == 0xF) {
+            Level11_80CE0Call28154View1(Level11_80CE0Field(privateRecord19, int *, 0x5C));
+            Level11_80CE0Field(privateRecord19, int *, 0x5C) = -1;
+            Level11_80CE0Call28154View1(Level11_80CE0Field(privateRecord19, int *, 0x64));
+            Level11_80CE0Field(privateRecord19, int *, 0x64) = -1;
+            Level11_80CE0Field(Level11_80CE0Field(privateRecord19, int*, 88), int*, 0) = 0;
+            Level11_80CE0Field(privateRecord19, int *, 0x68) = 0x3C;
+            Level11_80CE0Field(ownerRecord20, unsigned char *, 0x48) = 2U;
+        }
+    }
+finishOriginalFlagChecks:
+    retainedAddressOrRecord16 = privateRecord19 + 0x6C;
+    if ((unsigned int) Level11_80CE0Field(privateRecord19, unsigned int *, 0x6C) >= (unsigned int) &Level11_80CE0Call751C0View1) {
+        argumentWord5 = 0;
+        argumentWord6 = (int)&Level11_80CE0Data91ED4View1;
+    checkFirstOriginalByteBound:
+        temporaryWord9 = Level11_80CE0Field(privateRecord19, unsigned int *, 0x6C);
+        argumentWord4 = 0;
+        if (temporaryWord9 < (unsigned int)argumentWord6) {
+            Level11_80CE0Field(privateRecord19, int *, 0x60) = (int) (Level11_80CE0Field(privateRecord19, int *, 0x60) ^ (Level11_80CE0Field(temporaryWord9, unsigned char*, 0) << 8));
+            do {
+                rawWord3 = Level11_80CE0Field(privateRecord19, int*, 96);
+                rawWord2 = rawWord3&0x8000;
+                if (rawWord2)rawWord2 = (rawWord3 << 1)^0x8005;
+                else rawWord2 = rawWord3 << 1;
+                Level11_80CE0Field(privateRecord19, int *, 0x60) = rawWord2;
+                argumentWord4 += 1;
+            }
+            while (argumentWord4 < 8);
+            argumentWord5 += 1;
+            Level11_80CE0Field(privateRecord19, unsigned int *, 0x6C) = (unsigned int) (Level11_80CE0Field(privateRecord19, unsigned int *, 0x6C) + 1);
+            if (argumentWord5 < 0x40) {
+                goto checkFirstOriginalByteBound;
+            }
+        }
+        retainedAddressOrRecord16 = privateRecord19 + 0x6C;
+    }
+    Level11_80CE0Call3B7B4View1(retainedAddressOrRecord16, 4, (int)&Level11_80CE0Data6D088View1);
+    Level11_80CE0Call3B7B4View1(retainedAddressOrRecord16, 4, (int)&Level11_80CE0Data6C7F8View1);
+    retainedAddressOrRecord16 = privateRecord19 + 0x60;
+    Level11_80CE0Call3B7B4View1(retainedAddressOrRecord16, 4, (int)&Level11_80CE0Data6D088View1);
+    Level11_80CE0Call3B7B4View1(retainedAddressOrRecord16, 4, (int)&Level11_80CE0Data6C7F8View1);
+    temporaryWord12 = Level11_80CE0Field(ownerRecord20, unsigned char *, 0x48);
+    switch (temporaryWord12) {
+    case 41:
+        if (Level11_80CE0Field((int)&Level11_80CE0Data70328View1, int *, 0x50) == 0x13) {
+            temporaryWord13 = Level11_80CE0Data6C58CView1 * 6;
+            temporaryWord1 = Level11_80CE0Field((int)&Level11_80CE0Data716ACView1, unsigned char*, 3 + temporaryWord13);
+            if (temporaryWord1 < 0xFFU) {
+                Level11_80CE0Field((int)&Level11_80CE0Data716ACView1, unsigned char*, 3 + temporaryWord13) = temporaryWord1 + 1;
+            }
+            {
+                int callbackWord8;
+                argumentWord4 = 18;
+                argumentWord5 = 3;
+                argumentWord6 = 0;
+                argumentWord7 = 0;
+                __asm__("":"=r"(argumentWord7):"0"(argumentWord7), "r"(argumentWord4), "r"(argumentWord5), "r"(argumentWord6):"$2", "$3", "memory");
+                rawWord3 = 10800;
+                callbackWord8 = Level11_80CE0Data74370View1;
+                rawWord2 = privateRecord19+112;
+                Level11_80CE0Field(privateRecord19, int*, 112) = rawWord3;
+                Level11_80CE0Field(privateRecord19, int*, 100) = (short)Level11_80CE0Call2803CView1(argumentWord4, argumentWord5, argumentWord6, argumentWord7, callbackWord8, rawWord2, rawWord3);
+            }
+            Level11_80CE0Field(ownerRecord20, unsigned char *, 0x48) = 0x2AU;
+            return;
+        }
+    default:
+        return;
+    case 42:
+        if (Level11_80CE0Field(Level11_80CE0Field(privateRecord19, int*, 88), int*, 0) == 0xF) {
+            Level11_80CE0Call28154View1(Level11_80CE0Field(privateRecord19, int *, 0x5C));
+            Level11_80CE0Field(privateRecord19, int *, 0x5C) = -1;
+            Level11_80CE0Call28154View1(Level11_80CE0Field(privateRecord19, int *, 0x64));
+            Level11_80CE0Field(privateRecord19, int *, 0x64) = -1;
+            Level11_80CE0Field(Level11_80CE0Field(privateRecord19, int*, 88), int*, 0) = 0;
+            Level11_80CE0Field(privateRecord19, int *, 0x68) = 0x3C;
+            Level11_80CE0Field(ownerRecord20, unsigned char *, 0x48) = 2U;
+            return;
+        }
+        if (Level11_80CE0Call359A4View1(privateRecord19 + 0x70, 4) == 0) {
+            if (Level11_80CE0Field((int)&Level11_80CE0Data70328View1, int *, 0x50) != 0x13) {
+                Level11_80CE0Field(privateRecord19, int *, 0x68) = 0x3C;
+                Level11_80CE0Field(ownerRecord20, unsigned char *, 0x48) = 0x2BU;
+                return;
+            }
+        }
+        else {
+            goto callSharedOriginalStatusHelper;
+        }
+        break;
+    case 43:
+        Level11_80CE0Call359A4View1(privateRecord19 + 0x70, 4);
+        if (Level11_80CE0Call359A4View1(privateRecord19 + 0x68, 4) != 0) {
+        callSharedOriginalStatusHelper:
+            Level11_80CE0Field(privateRecord19, signed char *, 5) = 1;
+            retainedAddressOrRecord16 = privateRecord19 + 5;
+            Level11_80CE0Call3B7B4View1(retainedAddressOrRecord16, 1, (int)&Level11_80CE0Data6D088View1);
+            Level11_80CE0Call3B7B4View1(retainedAddressOrRecord16, 1, (int)&Level11_80CE0Data6C7F8View1);
+            Level11_80CE0Call3B74CView1((int)&Level11_80CE0Data6D088View1);
+            return;
+        }
+        break;
+    case 0:
+        if ((Level11_80CE0Field((int)&Level11_80CE0Data70328View1, int *, 0x50) != 0x13) && (Level11_80CE0Field((int)&Level11_80CE0Data70328View1, int *, 0x50) != 7)) {
+            temporaryWord14 = Level11_80CE0Field(privateRecord19, unsigned int *, 0x6C);
+            if (temporaryWord14 < (unsigned int) &Level11_80CE0Datamain_TEXT_ENDView1) {
+                argumentWord5 = 0;
+                if (temporaryWord14 <= 0x7FFFU) {
+                    Level11_80CE0Field(privateRecord19, unsigned int *, 0x6C) = (unsigned int) (Level11_80CE0Data6C58CView1 + (&Level11_80CE0Datamain_TEXT_STARTView1 + 2));
+                }
+                do {
+                    argumentWord4 = 0;
+                    Level11_80CE0Field(privateRecord19, int *, 0x60) = (int) (Level11_80CE0Field(privateRecord19, int *, 0x60) ^ (Level11_80CE0Field(Level11_80CE0Field(privateRecord19, unsigned int*, 108), unsigned char*, 0) << 8));
+                foldSecondOriginalByte:
+                    rawWord3 = Level11_80CE0Field(privateRecord19, int*, 96);
+                    rawWord2 = rawWord3&0x8000;
+                    if (rawWord2)rawWord2 = (rawWord3 << 1)^0x8005;
+                    else rawWord2 = rawWord3 << 1;
+                    Level11_80CE0Field(privateRecord19, int *, 0x60) = rawWord2;
+                    argumentWord4 += 1;
+                    if (argumentWord4 < 8) {
+                        goto foldSecondOriginalByte;
+                    }
+                    __asm__("":::"memory");
+                    rawWord2 = Level11_80CE0Field(privateRecord19, int*, 96);
+                    rawWord3 = Level11_80CE0Field(privateRecord19, int*, 108);
+                    rawWord2 = (rawWord2&3)+1;
+                    rawWord3 += rawWord2;
+                    __asm__("":"=r"(rawWord3):"0"(rawWord3));
+                    Level11_80CE0Field(privateRecord19, int*, 108) = rawWord3;
+                    temporaryWord15 = rawWord3;
+                    rawWord3 = (unsigned int)rawWord3 < (unsigned int)&Level11_80CE0Datamain_TEXT_ENDView1;
+                    __asm__("":"=r"(rawWord3):"0"(rawWord3));
+                    __asm__("":"=r"(argumentWord5):"0"(argumentWord5), "r"(rawWord3));
+                    argumentWord5 += 1;
+                    if (!rawWord3){
+                        Level11_80CE0Field(privateRecord19, unsigned int *, 0x6C) = (unsigned int) &Level11_80CE0Call751C0View1;
+                        argumentWord5 = 64;
+                        __asm__("":"=r"(argumentWord5):"0"(argumentWord5));
+                        argumentWord5 += 1;
+                    }
+                }
+                while (argumentWord5 < 0x40);
+            }
+            if (Level11_80CE0Call37BBCView1(ownerRecord20, 0) != 0) {
+                Level11_80CE0Call512E4View1(ownerRecord20, 0, 1);
+                Level11_80CE0Field(ownerRecord20, unsigned char *, 0x48) = 1U;
+            }
+            rawWord2 = Level11_80CE0Data6C7B4View1;
+            rawWord2 &= 8;
+            if (rawWord2){
+                rawWord2 = 50;
+                goto clearSharedOriginalStateByte;
+            }
+            rawWord2 = Level11_80CE0Data6C58CView1;
+            rawWord2 = Level11_80CE0Field((int)&Level11_80CE0Data70300View1, unsigned char*, rawWord2);
+            rawWord2 &= 8;
+            if (rawWord2){
+                rawWord2 = 50;
+                __asm__ volatile(""::"r"(rawWord2):"memory");
+                Level11_80CE0Field(ownerRecord20, unsigned char*, 73) = 0;
+                goto writeSharedOriginalState;
+            }
+            rawWord2 = 50;
+        }
+        break;
+    case 1:
+        if (Level11_80CE0Data6E344View1 != 1) {
+            temporaryWord16 = Level11_80CE0Field(privateRecord19, unsigned char *, 4);
+            if (temporaryWord16 == 2) {
+                argumentWord4 = *Level11_80CE0Data6C730View1;
+                do {
+                    temporaryWord17 = ((Level11_80CE0Field(argumentWord4, unsigned short*, 0) & 0x7FFF) * 0x58) + Level11_80CE0Data6C550View1;
+                    if (Level11_80CE0Field(temporaryWord17, unsigned char *, 0x49) == 0xFF) {
+                        Level11_80CE0Field(temporaryWord17, unsigned char *, 0x49) = 1U;
+                    }
+                    rawWord2 = Level11_80CE0Field(argumentWord4, short*, 0);
+                    argumentWord4 += 2;
+                }
+                while (rawWord2 >= 0);
+                Level11_80CE0Field(Level11_80CE0Field(privateRecord19, int*, 88), int*, 0) = 0;
+                Level11_80CE0Field(privateRecord19, int *, 0x5C) = (short) Level11_80CE0Call2803CView1(0x17, 0x6E, &Level11_80CE0Call27EE4View1, &Level11_80CE0Call27A60View1, &Level11_80CE0Call29AA0View1, Level11_80CE0Field(privateRecord19, void **, 0x58), 0xF);
+                Level11_80CE0Field(ownerRecord20, unsigned char *, 0x48) = 0x28U;
+                Level11_80CE0Field(ownerRecord20, unsigned char *, 0x49) = 0U;
+            }
+            else if (temporaryWord16 == 0xB) {
+                argumentWord4 = *Level11_80CE0Data6C730View1;
+                do {
+                    temporaryWord10 = ((Level11_80CE0Field(argumentWord4, unsigned short*, 0) & 0x7FFF) * 0x58) + Level11_80CE0Data6C550View1;
+                    if (Level11_80CE0Field(temporaryWord10, unsigned char *, 0x49) == 0xFF) {
+                        Level11_80CE0Field(temporaryWord10, unsigned char *, 0x49) = 1U;
+                    }
+                    rawWord2 = Level11_80CE0Field(argumentWord4, short*, 0);
+                    argumentWord4 += 2;
+                }
+                while (rawWord2 >= 0);
+                Level11_80CE0Field(Level11_80CE0Field(privateRecord19, int*, 88), int*, 0) = 0;
+                if ((Level11_80CE0Field(privateRecord19, unsigned int *, 0x6C) == (int)&Level11_80CE0Data91ED4View1) && (Level11_80CE0Field(privateRecord19, int *, 0x60) != 0)) {
+                    argumentWord5 = Level11_80CE0Data6C550View1;
+                    rawWord2 = Level11_80CE0Data6C704View1;
+                    rawWord2 = (unsigned int)argumentWord5 < (unsigned int)rawWord2;
+                    argumentWord6 = 6;
+                    if (rawWord2){
+                        argumentWord4 = argumentWord5+72;
+                        do{
+                            rawWord3 = Level11_80CE0Field(privateRecord19, int*, 84);
+                            rawWord2 = rawWord3*88;
+                            rawWord3 = Level11_80CE0Data6C550View1;
+                            rawWord2 += rawWord3;
+                            rawWord3 = Level11_80CE0Field(argumentWord4, short*, -18);
+                            rawWord2 = Level11_80CE0Field(rawWord2, short*, 54);
+                            if (rawWord3 == rawWord2){
+                                rawWord2 = Level11_80CE0Field(argumentWord4, unsigned char*, 5);
+                                if (!rawWord2)Level11_80CE0Field(argumentWord4, unsigned char*, 0) = argumentWord6;
+                            }
+                            rawWord2 = Level11_80CE0Data6C704View1;
+                            argumentWord5 += 88;
+                            argumentWord4 += 88;
+                        }
+                        while ((unsigned int)argumentWord5 < (unsigned int)rawWord2);
+                    }
+                    __asm__ volatile(""::"r"(argumentWord6));
+                    Level11_80CE0Field(privateRecord19, int *, 0x60) = 0;
+                }
+                Level11_80CE0Field(ownerRecord20, unsigned char *, 0x48) = 0x28U;
+                Level11_80CE0Field(ownerRecord20, unsigned char *, 0x49) = 0x29U;
+            }
+            else {
+                Level11_80CE0Field(ownerRecord20, unsigned char *, 0x48) = 0U;
+            }
+            rawWord2 = Level11_80CE0Data6C7B4View1;
+            rawWord2 &= 8;
+            if (!rawWord2){
+                rawWord2 = 50;
+                __asm__ volatile(""::"r"(rawWord2));
+                Level11_80CE0Call34F40View1(ownerRecord20, 0);
+                return;
+            }
+            rawWord2 = 50;
+        clearSharedOriginalStateByte:
+            Level11_80CE0Field(ownerRecord20, unsigned char*, 73) = 0;
+        writeSharedOriginalState:
+            Level11_80CE0Field(ownerRecord20, unsigned char*, 72) = rawWord2;
+            return;
+        }
+        break;
+    case 2:
+        if (Level11_80CE0Call359A4View1(privateRecord19 + 0x68, 4) != 0) {
+            if (Level11_80CE0Field(privateRecord19, unsigned char *, 4) == 0xB) {
+                temporaryWord18 = Level11_80CE0Data6C7B4View1 | 8;
+            }
+            else {
+                temporaryWord18 = Level11_80CE0Data6C7B4View1 | 4;
+            }
+            Level11_80CE0Data6C7B4View1 = temporaryWord18;
+            Level11_80CE0Field(Level11_80CE0Field(ownerRecord20, void **, 0), signed char *, 5) = 2;
+            rawWord2 = Level11_80CE0Field(ownerRecord20, unsigned char*, 70);
+            rawWord2 *= 2;
+            rawWord3 = Level11_80CE0Field((int)&Level11_80CE0Data65920View1, short*, rawWord2);
+            argumentWord4 = (int)&originalFrame.sp20;
+            rawWord2 = (rawWord3*39) >> 6;
+            originalFrame.sp20 = rawWord2;
+            rawWord2 = Level11_80CE0Field(ownerRecord20, unsigned char*, 70);
+            argumentWord5 = argumentWord4;
+            rawWord2 *= 2;
+            rawWord3 = Level11_80CE0Field((int)&Level11_80CE0Data658A0View1, short*, rawWord2);
+            __asm__("":"=r"(rawWord3):"0"(rawWord3):"memory");
+            rawWord2 = Level11_80CE0Field((int)&Level11_80CE0Data70328View1, int*, 68);
+            argumentWord6 = (int)ownerRecord20+12;
+            originalFrame.sp28 = 0;
+            __asm__ volatile("":::"memory");
+            originalFrame.sp28 = rawWord2;
+            rawWord2 = (rawWord3*39) >> 6;
+            originalFrame.sp24 = rawWord2;
+            Level11_80CE0Call4F194View1(argumentWord4, argumentWord5, argumentWord6);
+            Level11_80CE0Call13D44View1(&originalFrame.sp20, (Level11_80CE0Field(ownerRecord20, unsigned char *, 0x46) + 0x80) & 0xFF, 0, 0);
+            if (Level11_80CE0Field((int)&Level11_80CE0Data70328View1, int *, 0x280) < 0) {
+                Level11_80CE0Field((int)&Level11_80CE0Data70328View1, int *, 0x280) = 0;
+            }
+            Level11_80CE0Field(ownerRecord20, unsigned char *, 0x48) = 0U;
+            return;
+        }
+        break;
+    case 40:
+        temporaryWord2 = (Level11_80CE0Field(privateRecord19, int *, 0x54) * 0x58) + Level11_80CE0Data6C550View1;
+        if (Level11_80CE0Field(temporaryWord2, unsigned char *, 0x48) == 0) {
+            if (Level11_80CE0Call4F334View1(temporaryWord2 + 0xC, (int)&Level11_80CE0Data70328View1) < 0xC00) {
+                temporaryWord19 = Level11_80CE0Data74334View1(Level11_80CE0Data6C550View1 + (Level11_80CE0Field(privateRecord19, int *, 0x54) * 0x58) + 0xC);
+            }
+            else {
+                temporaryWord3 = Level11_80CE0Data6C550View1 + (Level11_80CE0Field(privateRecord19, int *, 0x54) * 0x58);
+                temporaryWord19 = Level11_80CE0Data74330View1(temporaryWord3 + 0xC, Level11_80CE0Field(temporaryWord3, unsigned char *, 0x46), 0);
+            }
+            if (temporaryWord19 != 0) {
+                goto createOriginalHandle;
+            }
+        }
+        else {
+        createOriginalHandle:
+            Level11_80CE0Field(privateRecord19, int *, 0x5C) = (short) Level11_80CE0Call2803CView1(0x17, 0x6E, &Level11_80CE0Call27EE4View1, &Level11_80CE0Call27A60View1, &Level11_80CE0Call29AA0View1, Level11_80CE0Field(privateRecord19, void **, 0x58), 0xF);
+            rawWord2 = Level11_80CE0Field(ownerRecord20, unsigned char*, 73);
+            Level11_80CE0Field(ownerRecord20, unsigned char*, 73) = 0;
+            Level11_80CE0Field(ownerRecord20, unsigned char*, 72) = rawWord2;
+            return;
+        }
+        break;
+    case 50:
+        temporaryWord11 = Level11_80CE0Field(ownerRecord20, unsigned char *, 0x49);
+        switch (temporaryWord11) {
+        case 0:
+            rawWord3 = (int)&Level11_80CE0Data718CCView1;
+            rawWord2 = Level11_80CE0Field(rawWord3, int*, 0);
+            if (rawWord2 < 3200){
+                rawWord2 = 3200;
+                Level11_80CE0Field(rawWord3, int*, 0) = rawWord2;
+            }
+            Level11_80CE0Field(ownerRecord20, unsigned char *, 0x4A) = 0xFF;
+            if ((Level11_80CE0Field(ownerRecord20, unsigned char *, 0x4C) != 0) && (Level11_80CE0Call37BBCView1(ownerRecord20, 0) != 0)) {
+                Level11_80CE0Call512E4View1(ownerRecord20, 0, 1);
+                Level11_80CE0Field(ownerRecord20, unsigned char *, 0x49) = 1U;
+            }
+            if ((Level11_80CE0Data6E160View1 == 0) && (Level11_80CE0Field((int)&Level11_80CE0Data70328View1, int *, 0x50) == 0x13)) {
+                {
+                    int callbackWord8;
+                    argumentWord4 = 50;
+                    argumentWord5 = 3;
+                    argumentWord6 = 0;
+                    argumentWord7 = 0;
+                    __asm__("":"=r"(argumentWord7):"0"(argumentWord7), "r"(argumentWord4), "r"(argumentWord5), "r"(argumentWord6):"$2", "$3", "memory");
+                    rawWord3 = 7200;
+                    callbackWord8 = Level11_80CE0Data74370View1;
+                    rawWord2 = privateRecord19+144;
+                    Level11_80CE0Field(privateRecord19, int*, 144) = rawWord3;
+                    rawWord2 = Level11_80CE0Call2803CView1(argumentWord4, argumentWord5, argumentWord6, argumentWord7, callbackWord8, rawWord2, rawWord3);
+                }
+                retainedAddressOrRecord16 = linkedPrivateRecord21+100;
+                argumentWord4 = retainedAddressOrRecord16;
+                rawWord2 = (short)rawWord2;
+                Level11_80CE0Field(privateRecord19, int*, 152) = rawWord2;
+                rawWord2 = (int)Level11_80CE0Data74440View1;
+                __asm__("":"=r"(retainedOneOrFrameAddress17)::"memory");
+                retainedOneOrFrameAddress17 = 1;
+                Level11_80CE0Field(linkedPrivateRecord21, int*, 140) = retainedOneOrFrameAddress17;
+                ((int(*)())rawWord2)(argumentWord4);
+                Level11_80CE0Field(privateRecord19, int *, 0x94) = (short) Level11_80CE0Call2803CView1(0x15, 0xDD, Level11_80CE0Data74448View1, Level11_80CE0Data74450View1, Level11_80CE0Data7444CView1, retainedAddressOrRecord16, 0xEA60);
+                Level11_80CE0Data6C650View1 = retainedOneOrFrameAddress17;
+                Level11_80CE0Field(ownerRecord20, unsigned char *, 0x49) = 2U;
+                return;
+            }
+            break;
+        case 1:
+            if (Level11_80CE0Data6E344View1 != temporaryWord11) {
+                Level11_80CE0Field(ownerRecord20, unsigned char *, 0x49) = 0U;
+                return;
+            }
+            break;
+        case 2:
+            if (Level11_80CE0Call359A4View1(privateRecord19 + 0x90, 4) != 0) {
+                temporaryWord4 = Level11_80CE0Field(privateRecord19, int *, 0x98);
+                if (temporaryWord4 != -1) {
+                    Level11_80CE0Call28154View1(temporaryWord4);
+                }
+                temporaryWord5 = Level11_80CE0Field(privateRecord19, int *, 0x94);
+                Level11_80CE0Field(privateRecord19, int *, 0x98) = -1;
+                if (temporaryWord5 != -1) {
+                    Level11_80CE0Call28154View1(temporaryWord5);
+                }
+                Level11_80CE0Field(privateRecord19, int *, 0x94) = -1;
+                if (!(Level11_80CE0Field((int)&Level11_80CE0Data66BC8View1, unsigned char *, 1) & 1)) {
+                    retainedOneOrFrameAddress17 = (int)&originalFrame.sp30;
+                    __asm__("":"=r"(retainedOneOrFrameAddress17):"0"(retainedOneOrFrameAddress17));
+                    if (Level11_80CE0Field(linkedPrivateRecord21, int *, 0xE4) >= 0xC80) {
+                        Level11_80CE0Field((int)&Level11_80CE0Data66BC8View1, unsigned char *, 1) = 3U;
+                        Level11_80CE0Data719DCView1 = 1;
+                        Level11_80CE0DataPlaySoundView1(Level11_80CE0Field(Level11_80CE0Data6C654View1, unsigned char *, 0x23), ownerRecord20, 0xA1);
+                        temporaryWord8 = Level11_80CE0DataSpawnMobyView1(0xD3, ownerRecord20);
+                        if (temporaryWord8 != 0) {
+                            Level11_80CE0Call4F178View1(temporaryWord8 + 0xC, (int)&Level11_80CE0Data70328View1);
+                            rawWord2 = Level11_80CE0Field((int)&Level11_80CE0Data70328View1, unsigned char*, 14);
+                            rawWord2 *= 2;
+                            rawWord3 = Level11_80CE0Field((int)&Level11_80CE0Data65920View1, short*, rawWord2);
+                            rawWord2 = rawWord3*25;
+                            rawWord3 = Level11_80CE0Field(temporaryWord8, int*, 12);
+                            rawWord2 >>= 7;
+                            rawWord3 += rawWord2;
+                            Level11_80CE0Field(temporaryWord8, int*, 12) = rawWord3;
+                            rawWord2 = Level11_80CE0Field((int)&Level11_80CE0Data70328View1, unsigned char*, 14);
+                            rawWord3 = Level11_80CE0Field(temporaryWord8, int*, 20);
+                            rawWord2 *= 2;
+                            argumentWord4 = Level11_80CE0Field((int)&Level11_80CE0Data658A0View1, short*, rawWord2);
+                            rawWord3 += 500;
+                            Level11_80CE0Field(temporaryWord8, int*, 20) = rawWord3;
+                            rawWord3 = Level11_80CE0Field(temporaryWord8, int*, 16);
+                            rawWord2 = (argumentWord4*25) >> 7;
+                            rawWord3 += rawWord2;
+                            Level11_80CE0Field(temporaryWord8, int*, 16) = rawWord3;
+                        }
+                        goto block_128;
+                    }
+                }
+                else {
+                block_128:
+                    retainedOneOrFrameAddress17 = (int)&originalFrame.sp30;
+                    __asm__("":"=r"(retainedOneOrFrameAddress17):"0"(retainedOneOrFrameAddress17));
+                }
+                rawWord3 = Level11_80CE0Field(privateRecord19, int*, 156);
+                rawWord2 = rawWord3*88;
+                retainedAddressOrRecord16 = Level11_80CE0Data6C550View1;
+                retainedAddressOrRecord16 += rawWord2;
+                Level11_80CE0Field(retainedAddressOrRecord16, signed char *, 0x49) = 0;
+                Level11_80CE0Call4F178View1(retainedOneOrFrameAddress17, retainedAddressOrRecord16 + 0xC);
+                originalFrame.sp30 += (int) -(Level11_80CE0Field((int)&Level11_80CE0Data65920View1, short*, (Level11_80CE0Field(retainedAddressOrRecord16, unsigned char *, 0x46) * 2)) * 0x5DC) >> 0xC;
+                originalFrame.sp34 += (int) -(Level11_80CE0Field((int)&Level11_80CE0Data658A0View1, short*, (Level11_80CE0Field(retainedAddressOrRecord16, unsigned char *, 0x46) * 2)) * 0x5DC) >> 0xC;
+                Level11_80CE0Call13D44View1(retainedOneOrFrameAddress17, Level11_80CE0Field(retainedAddressOrRecord16, unsigned char *, 0x46), 0, 0);
+                Level11_80CE0Field(linkedRecord22, signed char *, 0x48) = 0;
+                Level11_80CE0Field(ownerRecord20, unsigned char *, 0x49) = 0U;
+                Level11_80CE0Data7447CView1(Level11_80CE0Field(linkedPrivateRecord21, int *, 0xE4));
+                Level11_80CE0Data6C650View1 = 0;
+            }
+            if (Level11_80CE0Data6C650View1 == 2) {
+                temporaryWord6 = Level11_80CE0Field(privateRecord19, int *, 0x98);
+                Level11_80CE0Data6C650View1 = 0;
+                if (temporaryWord6 != -1) {
+                    Level11_80CE0Call28154View1(temporaryWord6);
+                }
+                temporaryWord7 = Level11_80CE0Field(privateRecord19, int *, 0x94);
+                Level11_80CE0Field(privateRecord19, int *, 0x98) = -1;
+                if (temporaryWord7 != -1) {
+                    Level11_80CE0Call28154View1(temporaryWord7);
+                }
+                Level11_80CE0Field(privateRecord19, int *, 0x94) = -1;
+                rawWord3 = Level11_80CE0Field(privateRecord19, int*, 156);
+                rawWord2 = rawWord3*88;
+                retainedAddressOrRecord16 = Level11_80CE0Data6C550View1;
+                retainedAddressOrRecord16 += rawWord2;
+                Level11_80CE0Field(retainedAddressOrRecord16, signed char *, 0x49) = 0;
+                Level11_80CE0Call4F178View1(&originalFrame.sp40, retainedAddressOrRecord16 + 0xC);
+                originalFrame.sp40 += (int) -(Level11_80CE0Field((int)&Level11_80CE0Data65920View1, short*, (Level11_80CE0Field(retainedAddressOrRecord16, unsigned char *, 0x46) * 2)) * 0x5DC) >> 0xC;
+                originalFrame.sp44 += (int) -(Level11_80CE0Field((int)&Level11_80CE0Data658A0View1, short*, (Level11_80CE0Field(retainedAddressOrRecord16, unsigned char *, 0x46) * 2)) * 0x5DC) >> 0xC;
+                Level11_80CE0Call13D44View1(&originalFrame.sp40, Level11_80CE0Field(retainedAddressOrRecord16, unsigned char *, 0x46), 0, 0);
+                Level11_80CE0Field(linkedRecord22, signed char *, 0x48) = 0;
+                Level11_80CE0Field(ownerRecord20, unsigned char *, 0x49) = 0U;
+            }
+            break;
+        }
+        break;
+    }
+}
+#undef Level11_80CE0Field
+
 
 typedef struct { unsigned char reserved00[0x44]; unsigned char* firstAnimation; } DecodedAnimationHeader;
 
@@ -4796,7 +7619,1828 @@ void func_level_11_80081D2C(Moby* moby) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_11/moby", func_level_11_80081E44);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0: func_level_11_80081E44, original 176-byte frame.
+ * AI generated reconstruction; not human reviewed. Unknown retail meanings
+ *remain numeric. Word suffixes identify original MIPS register phases.
+ * Every empty template observes a complete initialized original value or an
+ *exact original dominating selector/threshold; it emits no CPU instruction.
+ * A named clobber retires only an old dead register phase before its next
+ *original definition. No outgoing stack home or incoming saved value is read.
+ * SP20/24/28/30/6C/70 are closest-point scalar outputs, including the original
+ * zero-count index producer. Local vectors occupy SP38..40,48..50,58..60 and
+ * 78..80; SP88/8C are scalar outputs. No count minimum or fallback is invented.
+ * Raw decoder aliases were split at original540 after35A80 and original1817
+ * after1A358; those height reads remain after the actual calls. Original byte,
+ * signed/unsigned halfword and full word fields retain their own widths.
+ * The three unsigned-count shifts preserve low32 before signed16 projection.
+ * Descriptor masks retain LBU,SLTIU2,XOR1,negation andAND30. Trig products use
+ * signed16 samples and the original factor5/shift1 or signed-high shift25.
+ * Three dynamic signed DIV/MFHI sequences retain the original zero/overflow
+ *traps. Every native word, actual transfer, table destination and numeric
+ *projection is independently gated in actor2128_25308.provenance.json.
+ * Units,cadence,full external helper/caller/asset/heap ownership,portable C
+ * arithmetic domains,Rev1 mapping,retail captures and human review remain open.
+ */
+#define Level11_81E44Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+#define Level11_81E44Test2(v) ({retailWord2=(v);Level11_81E44Keep(retailWord2);retailWord2;})
+#define Level11_81E44Keep(v) __asm__("":"=r"(v):"0"(v))
+int Level11_81E44_func_80013E38(void*,void*,int) __asm__("func_80013E38");
+int Level11_81E44_func_8001A358(void*,int) __asm__("func_8001A358");
+void Level11_81E44_func_80034F40(void*,int) __asm__("func_80034F40");
+int Level11_81E44_func_80035194(void*,void*) __asm__("func_80035194");
+int Level11_81E44_func_8003573C(void*,int,int,int) __asm__("func_8003573C");
+void Level11_81E44_func_8003585C(void*,int,int,int,int,int) __asm__("func_8003585C");
+int Level11_81E44_func_800359A4(void*,int) __asm__("func_800359A4");
+int Level11_81E44_func_80035A80(void*,void*,int,int,int,int,int,int) __asm__("func_80035A80");
+int Level11_81E44_func_80035D38(void*) __asm__("func_80035D38");
+void Level11_81E44_func_80035DDC(void*,int,int,int,int) __asm__("func_80035DDC");
+int Level11_81E44_func_8003613C(int,int) __asm__("func_8003613C");
+void Level11_81E44_func_8003645C(void*,void*,int*) __asm__("func_8003645C");
+void Level11_81E44_func_800369B8(void*,int) __asm__("func_800369B8");
+void Level11_81E44_func_80038BF8(void*,void*,int,int) __asm__("func_80038BF8");
+void Level11_81E44_func_800391E8(int,int,void*,int,int,int,int) __asm__("func_800391E8");
+void Level11_81E44_func_8003B7B4(void*,int,void*) __asm__("func_8003B7B4");
+void Level11_81E44_func_8003BABC(void*,int,int) __asm__("func_8003BABC");
+int Level11_81E44_func_8004E880(int,int,int) __asm__("func_8004E880");
+int Level11_81E44_func_8004EDE8(void*,int) __asm__("func_8004EDE8");
+void Level11_81E44_func_8004F178(void*,void*) __asm__("func_8004F178");
+void Level11_81E44_func_8004F194(void*,void*,void*) __asm__("func_8004F194");
+int Level11_81E44_func_8004F264(int,int) __asm__("func_8004F264");
+int Level11_81E44_func_8004F334(void*,void*) __asm__("func_8004F334");
+void Level11_81E44_func_80055B18(void*) __asm__("func_80055B18");
+void Level11_81E44_func_80055D24(void*,int) __asm__("func_80055D24");
+extern short Level11_81E44_D_800658A0[] __asm__("D_800658A0");
+extern short Level11_81E44_D_80065920[] __asm__("D_80065920");
+extern int Level11_81E44_D_8006C640 __asm__("D_8006C640");
+extern int Level11_81E44_D_8006C648 __asm__("D_8006C648");
+extern int Level11_81E44_D_8006C770 __asm__("D_8006C770");
+extern int Level11_81E44_D_8006C7F8 __asm__("D_8006C7F8");
+extern int Level11_81E44_D_8006D088 __asm__("D_8006D088");
+extern int Level11_81E44_D_8006EE2C[] __asm__("D_8006EE2C");
+extern unsigned char Level11_81E44_D_80070328[] __asm__("D_80070328");
+extern int Level11_81E44_D_80071918 __asm__("D_80071918");
+extern int Level11_81E44_D_8007191C __asm__("D_8007191C");
+extern int Level11_81E44_D_80071920 __asm__("D_80071920");
+extern int(*Level11_81E44_SpawnMoby)(int,void*) __asm__("SpawnMoby");
+void func_level_11_80081E44(void* input) {
+    register int retailWord3 __asm__("$3"),argumentWord4 __asm__("$4"),argumentWord5 __asm__("$5"),argumentWord6 __asm__("$6");
+    register int ownerRecord18 __asm__("$18"),privateRecord19 __asm__("$19"),retainedValueOrVector16 __asm__("$16"),headingCountOrVector17 __asm__("$17"),distance20 __asm__("$20"),constantOne21 __asm__("$21");
+    struct {
+        int sp20;
+        int sp24;
+        int sp28;
+        int sp2C;
+        int sp30;
+        int sp34;
+        int sp38;
+        int sp3C;
+        int sp40;
+        int sp44;
+        int sp48;
+        int sp4C;
+        int sp50;
+        int sp54;
+        int sp58;
+        int sp5C;
+        int sp60;
+        int sp64;
+        int sp68;
+        int sp6C;
+        int sp70;
+        int sp74;
+        int sp78;
+        int sp7C;
+        int sp80;
+        int sp84;
+        int sp88;
+        int sp8C;
+    }
+    originalFrame;
+    int originalTimerResult;
+    int temporaryValue6;
+    int temporaryValue43;
+    int temporaryValue4;
+    int temporaryValue5;
+    int temporaryValue14;
+    int temporaryValue15;
+    int temporaryValue16;
+    int temporaryValue22;
+    int temporaryValue23;
+    int temporaryValue24;
+    int temporaryValue47;
+    int temporaryValue48;
+    int temporaryValue58;
+    int temporaryValue60;
+    int temporaryValue61;
+    int temporaryValue62;
+    int temporaryValue63;
+    int temporaryValue18;
+    int temporaryValue28;
+    int temporaryValue30;
+    int temporaryValue33;
+    int temporaryValue44;
+    int temporaryValue49;
+    int temporaryValue53;
+    int temporaryValue65;
+    register int retailWord2 __asm__("$2");
+    int temporaryValue1;
+    int temporaryValue2;
+    int temporaryValue3;
+    int temporaryValue7;
+    int temporaryValue8;
+    int temporaryValue9;
+    int temporaryValue11;
+    int temporaryValue12;
+    int temporaryValue19;
+    int temporaryValue20;
+    int temporaryValue26;
+    int temporaryValue27;
+    int temporaryValue31;
+    int temporaryValue34;
+    int temporaryValue35;
+    int temporaryValue36;
+    int temporaryValue37;
+    int temporaryValue38;
+    int temporaryValue41;
+    int temporaryValue42;
+    int temporaryValue45;
+    int temporaryValue50;
+    int temporaryValue52;
+    int temporaryValue55;
+    int temporaryValue56;
+    int temporaryValue59;
+    int temporaryValue64;
+    ownerRecord18=(int)input;
+    Level11_81E44Keep(ownerRecord18);
+    privateRecord19 = Level11_81E44Field(ownerRecord18, int *, 0);
+    distance20 = Level11_81E44_func_8004F334((void*)(ownerRecord18 + 0xC),(void*)((int)&Level11_81E44_D_80070328));
+    if (Level11_81E44Field(ownerRecord18, int *, 0x18) == 0) {
+        goto originalBlock8;
+    }
+    temporaryValue33 = Level11_81E44Field(ownerRecord18, unsigned char *, 0x48);
+    if (temporaryValue33 >= 0x5AU) {
+        goto originalBlock8;
+    }
+    if ((unsigned int) (temporaryValue33 - 5) < 2U) {
+        goto originalBlock8;
+    }
+    temporaryValue43 = Level11_81E44Field(privateRecord19, int *, 0x24);
+    Level11_81E44Field(temporaryValue43,int*,0) += 1;
+    temporaryValue1 = Level11_81E44Field(privateRecord19, int *, 0x40);
+    if (temporaryValue1 == 0) {
+        goto originalBlock6;
+    }
+    if (Level11_81E44Field(temporaryValue1, short *, 0x36) != 0x167) {
+        goto originalBlock6;
+    }
+    Level11_81E44Field(temporaryValue1, int *, 0x14) = (int) (Level11_81E44Field(temporaryValue1, int *, 0x14) + 0x500);
+    Level11_81E44_func_8003BABC((void*)(Level11_81E44Field(privateRecord19, int *, 0x40)),0,0);
+    Level11_81E44_func_800391E8(0xC,0x167,(void*)(Level11_81E44Field(privateRecord19, int *, 0x40)),1,3,0x40,0x100);
+    Level11_81E44_func_80055B18((void*)(Level11_81E44Field(privateRecord19, int *, 0x40)));
+    Level11_81E44_func_80038BF8((void*)(ownerRecord18),(void*)(privateRecord19 + 0x28),2,7);
+    temporaryValue65 = 0x5C;
+    goto originalBlock7;
+originalBlock6:
+    Level11_81E44_func_80038BF8((void*)(ownerRecord18),(void*)(privateRecord19 + 0x28),2,7);
+    temporaryValue65 = 0x5A;
+originalBlock7:
+    Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = temporaryValue65;
+originalBlock8:
+    __asm__ volatile("":::"memory");
+    temporaryValue53 = Level11_81E44Field(ownerRecord18, unsigned char *, 0x48);
+    Level11_81E44Field(ownerRecord18, int *, 0x18) = 0;
+    if (temporaryValue53 >= 0x62U) {
+        goto originalBlock303;
+    }
+    switch (temporaryValue53) {
+    case 0x15:
+        Level11_81E44_func_8003645C((void*)(ownerRecord18 + 0xC),(void*)(Level11_81E44Field(privateRecord19, int *, 0x1C)),(int*)(&originalFrame.sp20));
+        retainedValueOrVector16 = privateRecord19 + 0xE;
+        argumentWord4=retainedValueOrVector16;
+        argumentWord5=2;
+        Level11_81E44Keep(argumentWord4);
+        Level11_81E44Keep(argumentWord5);
+        __asm__ volatile("":::"memory");
+        retailWord3=Level11_81E44Field(privateRecord19,int*,0x1C);
+        retailWord2=originalFrame.sp20;
+        argumentWord6=(int)&Level11_81E44_D_8006D088;
+        Level11_81E44Keep(retailWord3);
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(retailWord3,short*,2)=(short)retailWord2;
+        Level11_81E44Field(privateRecord19,short*,0xE)=(short)retailWord2;
+        Level11_81E44_func_8003B7B4((void*)(argumentWord4),argumentWord5,(void*)(argumentWord6));
+        Level11_81E44_func_8003B7B4((void*)(retainedValueOrVector16),2,(void*)((int)&Level11_81E44_D_8006C7F8));
+        retailWord2 = 0x5D;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x41) = 0;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x4C) = 0;
+        __asm__ volatile(""::"i"(0x5D):"memory");
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x4D) = 0U;
+        goto originalBlock302;
+    case 0x14:
+        argumentWord4=ownerRecord18;
+        Level11_81E44Keep(argumentWord4);
+        retailWord3=1;
+        retailWord2=0x40;
+        Level11_81E44Keep(retailWord3);
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(ownerRecord18,signed char*,0x41)=retailWord3;
+        Level11_81E44Field(ownerRecord18,signed char*,0x4C)=retailWord2;
+        Level11_81E44Field(ownerRecord18,unsigned char*,0x4D)=retailWord3;
+        retailWord2 = Level11_81E44_func_80035D38((void*)(argumentWord4)) + Level11_81E44Field(privateRecord19, int *, 0x44);
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(ownerRecord18, int *, 0x14) = retailWord2;
+        Level11_81E44Field(privateRecord19, int *, 0x44) = retailWord2;
+        retailWord2 = 0x5F;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x41) = 0;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x4C) = 0;
+        __asm__ volatile(""::"i"(0x5F):"memory");
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x4D) = 0U;
+        goto originalBlock302;
+    case 0xC:
+        retailWord2 = Level11_81E44_func_8004F264(Level11_81E44Field(ownerRecord18, unsigned char *, 0x46),Level11_81E44_func_8004E880(Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 0) - Level11_81E44Field(ownerRecord18, int *, 0xC),Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 4) - Level11_81E44Field(ownerRecord18, int *, 0x10),0));
+        Level11_81E44Field(ownerRecord18, int *, 0x18) = (int) (Level11_81E44Field(ownerRecord18, int *, 0x18) | Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x40), int *, 0x18));
+        retailWord3=Level11_81E44Field((int)&Level11_81E44_D_800658A0 + (Level11_81E44Field(privateRecord19, unsigned char *, 0x10) * 2),unsigned short*,0);
+        __asm__ volatile("":::"memory");
+        argumentWord4=Level11_81E44Field(ownerRecord18,int*,0x14);
+        __asm__ volatile("":"=r"(retailWord3):"0"(retailWord3):"memory");
+        argumentWord4+=((int)((unsigned int)retailWord3<<16)>>25);
+        Level11_81E44Field(ownerRecord18,int*,0x14)=argumentWord4;
+        argumentWord4=Level11_81E44_D_8006C648;
+        retailWord3=Level11_81E44Field(privateRecord19,unsigned short*,0x10);
+        __asm__ volatile(""::"r"(retailWord2):"$16","memory");
+        retainedValueOrVector16=retailWord2;
+        Level11_81E44Keep(retainedValueOrVector16);
+        retailWord3+=argumentWord4;
+        Level11_81E44Field(privateRecord19,unsigned short*,0x10)=(unsigned short)retailWord3;
+        temporaryValue60 = Level11_81E44Field(privateRecord19, int *, 0x44) - 0x200;
+        if (Level11_81E44Field(ownerRecord18, int *, 0x14) >= temporaryValue60) {
+            goto originalBlock14;
+        }
+        Level11_81E44Field(ownerRecord18, int *, 0x14) = temporaryValue60;
+    originalBlock14:
+        temporaryValue61 = Level11_81E44Field(privateRecord19, int *, 0x44) + 0x200;
+        if (temporaryValue61 >= Level11_81E44Field(ownerRecord18, int *, 0x14)) {
+            goto originalBlock16;
+        }
+        Level11_81E44Field(ownerRecord18, int *, 0x14) = temporaryValue61;
+    originalBlock16:
+        Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x40), int *, 0x14) = (int) (Level11_81E44Field(ownerRecord18, int *, 0x14) + 0x300);
+        if (Level11_81E44_func_800359A4((void*)(privateRecord19 + 0x10),2) == 0) {
+            goto originalBlock20;
+        }
+        if (retainedValueOrVector16<0x61 ? (retailWord2=distance20<0x1800,1) : (retailWord2=distance20<0x1800,0)) {
+            goto originalBlock21;
+        }
+        if (Level11_81E44_D_8006C770 == 0) {
+            goto originalBlock20;
+        }
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 0xDU;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),0xD);
+        return;
+    originalBlock20:
+        retailWord2 = distance20 < 0x1800;
+    originalBlock21:
+        if (retailWord2 != 0) {
+            goto originalBlock23;
+        }
+        retailWord2=retainedValueOrVector16<0x30;
+        Level11_81E44Keep(retailWord2);
+        if (retailWord2==0) {
+            goto originalBlock303;
+        }
+    originalBlock23:
+        Level11_81E44_func_8003585C((void*)(ownerRecord18),Level11_81E44_func_8004E880(Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 0) - Level11_81E44Field(ownerRecord18, int *, 0xC),Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 4) - Level11_81E44Field(ownerRecord18, int *, 0x10),0),3,0,1,0);
+        return;
+    case 0xD:
+        Level11_81E44Field(ownerRecord18, int *, 0x18) = (int) (Level11_81E44Field(ownerRecord18, int *, 0x18) | Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x40), int *, 0x18));
+        retailWord2=Level11_81E44Field((int)&Level11_81E44_D_800658A0 + (Level11_81E44Field(privateRecord19, unsigned char *, 0x10) * 2),unsigned short*,0);
+        __asm__ volatile("":::"memory");
+        retailWord3=Level11_81E44Field(ownerRecord18,int*,0x14);
+        __asm__ volatile("":"=r"(retailWord2):"0"(retailWord2):"memory");
+        retailWord3+=((int)((unsigned int)retailWord2<<16)>>25);
+        Level11_81E44Field(ownerRecord18,int*,0x14)=retailWord3;
+        retailWord3=Level11_81E44_D_8006C648;
+        retailWord2=Level11_81E44Field(privateRecord19,unsigned short*,0x10);
+        Level11_81E44Keep(retailWord3);
+        retailWord2+=retailWord3;
+        Level11_81E44Field(privateRecord19,unsigned short*,0x10)=(unsigned short)retailWord2;
+        temporaryValue62 = Level11_81E44Field(privateRecord19, int *, 0x44) - 0x100;
+        if (Level11_81E44Field(ownerRecord18, int *, 0x14) >= temporaryValue62) {
+            goto originalBlock26;
+        }
+        Level11_81E44Field(ownerRecord18, int *, 0x14) = temporaryValue62;
+    originalBlock26:
+        temporaryValue63 = Level11_81E44Field(privateRecord19, int *, 0x44) + 0x100;
+        if (temporaryValue63 >= Level11_81E44Field(ownerRecord18, int *, 0x14)) {
+            goto originalBlock28;
+        }
+        Level11_81E44Field(ownerRecord18, int *, 0x14) = temporaryValue63;
+    originalBlock28:
+        Level11_81E44_func_8003585C((void*)(ownerRecord18),Level11_81E44_func_8004E880(Level11_81E44Field(ownerRecord18, int *, 0xC) - Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 0),Level11_81E44Field(ownerRecord18, int *, 0x10) - Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 4),0),3,0,1,0);
+        argumentWord4=Level11_81E44Field(privateRecord19,int*,0x40);
+        retailWord2=Level11_81E44Field(ownerRecord18,int*,0x14);
+        retailWord3=Level11_81E44_D_8006C770;
+        retailWord2+=0x300;
+        Level11_81E44Keep(argumentWord4);
+        Level11_81E44Keep(retailWord3);
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(argumentWord4,int*,0x14)=retailWord2;
+        if (retailWord3 == 0) {
+            goto originalBlock303;
+        }
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 0xCU;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),0xC);
+        return;
+    case 0x0:
+        retailWord2=Level11_81E44_D_8006C640;
+        if (retailWord2!=0 ? (retailWord2=0x5D,1) : (retailWord2=0x5D,0)) {
+            goto originalBlock32;
+        }
+        Level11_81E44Field(ownerRecord18, signed char *, 0x41) = 0;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x4C) = 0;
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x4D) = 0U;
+        goto originalBlock302;
+    originalBlock32:
+        Level11_81E44Keep(retailWord2);
+        if (Level11_81E44Field(ownerRecord18, int *, 0x14) >= 0x2800) {
+            goto originalBlock36;
+        }
+        temporaryValue64 = Level11_81E44Field(privateRecord19, int *, 0x40);
+        if (temporaryValue64 == 0) {
+            goto originalBlock35;
+        }
+        Level11_81E44Field(temporaryValue64, signed char *, 0x49) = 1;
+    originalBlock35:
+        Level11_81E44Field(privateRecord19, int *, 0x40) = 0;
+        Level11_81E44Field(privateRecord19, unsigned char *, 0x13) = 0U;
+        Level11_81E44_func_8004F178((void*)(ownerRecord18 + 0xC),(void*)(privateRecord19));
+        retailWord2=0x3C;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(privateRecord19,unsigned short*,0x10)=retailWord2;
+        retailWord2 = 0xE;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x41) = 0;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x4C) = 0;
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x4D) = 0U;
+        __asm__ volatile(""::"i"(0xE):"memory");
+        Level11_81E44Field(ownerRecord18, int *, 8) = 0;
+        goto originalBlock302;
+    originalBlock36:
+        Level11_81E44_func_8003573C((void*)(ownerRecord18),4,0,1);
+        retailWord3=Level11_81E44Field((int)&Level11_81E44_D_80070328,int*,0x50);
+        if ((unsigned int)(retailWord3-7)<2U ? (retailWord2=distance20<0x2C01,1) : (retailWord2=distance20<0x2C01,0)) {
+            goto originalBlock40;
+        }
+        if (retailWord3==0x13 ? (retailWord2=distance20<0x2C00,1) : (retailWord2=distance20<0x2C00,0)) {
+            goto originalBlock39;
+        }
+        if (retailWord2 != 0) {
+            goto originalBlock233;
+        }
+    originalBlock39:
+        retailWord2=distance20<0x2C01;
+    originalBlock40:
+        if (retailWord2!=0 ? (retailWord2=distance20<0x2000,1) : (retailWord2=distance20<0x2000,0)) {
+            goto originalBlock42;
+        }
+        Level11_81E44Field(ownerRecord18,unsigned char*,0x48)=1;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),1);
+        return;
+    originalBlock42:
+        if (retailWord2==0) {
+            goto originalBlock303;
+        }
+        temporaryValue7 = Level11_81E44Field(privateRecord19, int *, 0x18);
+        if (temporaryValue7 == 0) {
+            goto originalBlock48;
+        }
+        retailWord3=Level11_81E44Field((int)&Level11_81E44_D_80070328,int*,8);
+        __asm__ volatile("":::"memory");
+        retailWord2=Level11_81E44Field(ownerRecord18,int*,0x14);
+        Level11_81E44Keep(retailWord3);
+        retailWord2=retailWord2<retailWord3;
+        Level11_81E44Keep(retailWord2);
+        if (retailWord2==0) {
+            goto originalBlock303;
+        }
+        Level11_81E44_func_8003645C((void*)(ownerRecord18 + 0xC),(void*)(temporaryValue7),(int*)(&originalFrame.sp24));
+        if (originalFrame.sp24 >= (Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x18), short *, 0) - 1)) {
+            goto originalBlock47;
+        }
+        originalFrame.sp24 += 1;
+    originalBlock47:
+        Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x18), unsigned short *, 2) = (unsigned short) originalFrame.sp24;
+        Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x18), short *, 0xA) = 1;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),4);
+        __asm__ volatile(""::"i"(0xF):"memory");
+        retailWord2=0xF;
+        goto originalBlock302;
+    originalBlock48:
+        temporaryValue8 = Level11_81E44Field(privateRecord19, int *, 0x1C);
+        argumentWord4=ownerRecord18;
+        if (temporaryValue8 == 0) {
+            goto originalBlock58;
+        }
+        if (Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 8) >= (Level11_81E44Field(ownerRecord18, int *, 0x14) + 0x800)) {
+            goto originalBlock303;
+        }
+        retainedValueOrVector16 = (int)((unsigned int)Level11_81E44Field(temporaryValue8, unsigned short *, 0) << 16);
+        Level11_81E44_func_8003645C((void*)(((int)&Level11_81E44_D_80070328 + 8) - 8),(void*)(temporaryValue8),(int*)(&originalFrame.sp28));
+        retailWord2=Level11_81E44Field(privateRecord19,int*,0x1C);
+        headingCountOrVector17=retainedValueOrVector16>>16;
+        retailWord3=Level11_81E44Field(retailWord2,short*,2);
+        retailWord2=originalFrame.sp28;
+        retainedValueOrVector16=retainedValueOrVector16>>17;
+        retailWord3=retailWord2-retailWord3;
+        retainedValueOrVector16=retainedValueOrVector16<retailWord3;
+        Level11_81E44Keep(retainedValueOrVector16);
+        originalFrame.sp28=retailWord3;
+        if (retainedValueOrVector16==0) {
+            goto originalBlock52;
+        }
+        retailWord2=retailWord3-headingCountOrVector17;
+        goto originalBlock53;
+    originalBlock52:
+        retailWord2=-headingCountOrVector17;
+        Level11_81E44Keep(retailWord2);
+        retailWord2=retailWord2>>1;
+        Level11_81E44Keep(retailWord2);
+        retailWord2=retailWord3<retailWord2;
+        if (retailWord2==0 ? (retailWord2=retailWord3+headingCountOrVector17,1) : (retailWord2=retailWord3+headingCountOrVector17,0)) {
+            goto originalBlock54;
+        }
+    originalBlock53:
+        Level11_81E44Keep(retailWord2);
+        originalFrame.sp28=retailWord2;
+    originalBlock54:
+        if (originalFrame.sp28<=0) {
+            goto originalBlock56;
+        }
+        retailWord3=Level11_81E44Field(privateRecord19,int*,0x1C);
+        __asm__ volatile(""::"i"(-1):"memory");
+        retailWord2=-1;
+        goto originalBlock57;
+    originalBlock56:
+        retailWord3=Level11_81E44Field(privateRecord19,int*,0x1C);
+        __asm__ volatile(""::"i"(1):"memory");
+        retailWord2=1;
+    originalBlock57:
+        Level11_81E44Keep(retailWord3);
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(retailWord3,short*,0xA)=(short)retailWord2;
+        temporaryValue34 = Level11_81E44Field(privateRecord19, int *, 0x1C);
+        temporaryValue14 = (int) (Level11_81E44Field(temporaryValue34, short *, 2) + headingCountOrVector17 + Level11_81E44Field(temporaryValue34, short *, 0xA)) % headingCountOrVector17;
+        Level11_81E44Field(temporaryValue34, short *, 2) = (short) temporaryValue14;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),4);
+        __asm__ volatile(""::"i"(0x10):"memory");
+        retailWord2=0x10;
+        goto originalBlock302;
+    originalBlock58:
+        argumentWord5 = 4;
+        retailWord2 = 4;
+        Level11_81E44Field(argumentWord4, unsigned char *, 0x49) = 0U;
+        goto originalBlock280;
+    case 0x10:
+        retainedValueOrVector16 = Level11_81E44_func_80035A80((void*)(ownerRecord18),(void*)(Level11_81E44Field(privateRecord19, int *, 0x1C)),0x100,0x96,0xFA,6,0x30,0x26);
+        if (Level11_81E44Field(ownerRecord18, int *, 0x14) >= 0x2800) {
+            goto originalBlock63;
+        }
+        temporaryValue35 = Level11_81E44Field(privateRecord19, int *, 0x40);
+        if (temporaryValue35 == 0) {
+            goto originalBlock62;
+        }
+        Level11_81E44Field(temporaryValue35, signed char *, 0x49) = 1;
+    originalBlock62:
+        Level11_81E44Field(privateRecord19, int *, 0x40) = 0;
+        Level11_81E44Field(privateRecord19, unsigned char *, 0x13) = 0U;
+        Level11_81E44_func_8004F178((void*)(ownerRecord18 + 0xC),(void*)(privateRecord19));
+        retailWord2=0x3C;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(privateRecord19,unsigned short*,0x10)=retailWord2;
+        retailWord2 = 0xE;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x41) = 0;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x4C) = 0;
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x4D) = 0U;
+        __asm__ volatile(""::"i"(0xE):"memory");
+        Level11_81E44Field(ownerRecord18, int *, 8) = 0;
+        goto originalBlock302;
+    originalBlock63:
+        retailWord3=Level11_81E44Field((int)&Level11_81E44_D_80070328,int*,0x50);
+        if ((unsigned int)(retailWord3-7)<2U ? (retailWord2=retainedValueOrVector16&1,1) : (retailWord2=retainedValueOrVector16&1,0)) {
+            goto originalBlock69;
+        }
+        if (retailWord3==0x13 ? (retailWord2=distance20<0x2C00,1) : (retailWord2=distance20<0x2C00,0)) {
+            goto originalBlock68;
+        }
+        if (retailWord2==0) {
+            goto originalBlock68;
+        }
+        temporaryValue26 = Level11_81E44_SpawnMoby(0x164,(void*)( ownerRecord18));
+        Level11_81E44Field(privateRecord19, int *, 0x40) = temporaryValue26;
+        if (temporaryValue26 == 0) {
+            goto originalBlock68;
+        }
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 5U;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),5);
+    originalBlock68:
+        retailWord2 = retainedValueOrVector16 & 1;
+    originalBlock69:
+        Level11_81E44Keep(retailWord2);
+        if (retailWord2 == 0) {
+            goto originalBlock303;
+        }
+        if (Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x1C), short *, 2) != Level11_81E44Field(privateRecord19, short *, 0xE)) {
+            goto originalBlock303;
+        }
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 0U;
+        return;
+    case 0xF:
+        retailWord2=Level11_81E44_func_80035A80((void*)(ownerRecord18),(void*)(Level11_81E44Field(privateRecord19,int*,0x18)),0x100,0x96,0xFA,6,0x30,0x22);
+        argumentWord4=Level11_81E44Field(ownerRecord18,int*,0x14);
+        __asm__ volatile(""::"r"(retailWord2):"$3","memory");
+        retailWord3=retailWord2;
+        Level11_81E44Keep(retailWord3);
+        if (argumentWord4 >= 0x2800) {
+            goto originalBlock76;
+        }
+        temporaryValue36 = Level11_81E44Field(privateRecord19, int *, 0x40);
+        if (temporaryValue36 == 0) {
+            goto originalBlock75;
+        }
+        Level11_81E44Field(temporaryValue36, signed char *, 0x49) = 1;
+    originalBlock75:
+        Level11_81E44Field(privateRecord19, int *, 0x40) = 0;
+        Level11_81E44Field(privateRecord19, unsigned char *, 0x13) = 0U;
+        Level11_81E44_func_8004F178((void*)(ownerRecord18 + 0xC),(void*)(privateRecord19));
+        retailWord2=0x3C;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(privateRecord19,unsigned short*,0x10)=retailWord2;
+        retailWord2 = 0xE;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x41) = 0;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x4C) = 0;
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x4D) = 0U;
+        __asm__ volatile(""::"i"(0xE):"memory");
+        Level11_81E44Field(ownerRecord18, int *, 8) = 0;
+        goto originalBlock302;
+    originalBlock76:
+        if (Level11_81E44Test2(retailWord3 & 2)) {
+            goto originalBlock79;
+        }
+        if (Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x18), short *, 0xA) != 1) {
+            goto originalBlock81;
+        }
+        if ((Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 8) + 0x800) >= argumentWord4) {
+            goto originalBlock81;
+        }
+    originalBlock79:
+        temporaryValue2 = Level11_81E44Field(privateRecord19, int *, 0x18);
+        if (Level11_81E44Field(temporaryValue2, short *, 0xA) == -1) {
+            goto originalBlock284;
+        }
+        Level11_81E44Field(temporaryValue2, short *, 0xA) = -1;
+        temporaryValue37 = Level11_81E44Field(privateRecord19, int *, 0x18);
+        Level11_81E44Field(temporaryValue37, unsigned short *, 2) = (unsigned short) ((unsigned short) Level11_81E44Field(temporaryValue37, short *, 0) - 2);
+        return;
+    originalBlock81:
+        temporaryValue3 = Level11_81E44Field(privateRecord19, int *, 0x18);
+        if (Level11_81E44Field(temporaryValue3, short *, 0xA) != -1) {
+            goto originalBlock85;
+        }
+        if (!Level11_81E44Test2(distance20 < 0x2000)) {
+            goto originalBlock85;
+        }
+        retailWord3=Level11_81E44Field((int)&Level11_81E44_D_80070328,int*,8);
+        __asm__ volatile("":::"memory");
+        retailWord2=Level11_81E44Field(ownerRecord18,int*,0x14);
+        Level11_81E44Keep(retailWord3);
+        retailWord2=retailWord2<retailWord3;
+        Level11_81E44Keep(retailWord2);
+        if (retailWord2==0) {
+            goto originalBlock85;
+        }
+        Level11_81E44Field(temporaryValue3, short *, 0xA) = 1;
+        temporaryValue38 = Level11_81E44Field(privateRecord19, int *, 0x18);
+        Level11_81E44Field(temporaryValue38, unsigned short *, 2) = (unsigned short) (Level11_81E44Field(temporaryValue38, unsigned short *, 2) + 1);
+        return;
+    originalBlock85:
+        retailWord3=Level11_81E44Field(privateRecord19,int*,0x18);
+        argumentWord4=Level11_81E44Field(ownerRecord18,short*,0x38);
+        retailWord2=Level11_81E44Field(retailWord3,short*,2);
+        retailWord3=Level11_81E44Field(retailWord3,int*,0xC);
+        retailWord2=retailWord2*16;
+        retailWord2+=retailWord3;
+        retailWord3=Level11_81E44Field(retailWord2,int*,8);
+        __asm__ volatile("":::"memory");
+        retailWord2=Level11_81E44Field(ownerRecord18,int*,0x14);
+        Level11_81E44Keep(retailWord3);
+        retailWord3+=argumentWord4;
+        retailWord2-=retailWord3;
+        Level11_81E44Keep(retailWord2);
+        if (retailWord2 >= 0) {
+            goto originalBlock87;
+        }
+        retailWord2 = -retailWord2;
+    originalBlock87:
+        if (retailWord2 < 0x101) {
+            goto originalBlock89;
+        }
+        argumentWord4=ownerRecord18;
+        argumentWord5 = 8;
+        Level11_81E44Field(privateRecord19, short *, 0xC) = 0xAF;
+        retailWord2 = 8;
+        goto originalBlock280;
+    originalBlock89:
+        if ((unsigned int) (Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 0x50) - 7) < 2U) {
+            goto originalBlock303;
+        }
+        if (Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 0x50) == 0x13) {
+            goto originalBlock303;
+        }
+        if (!Level11_81E44Test2(distance20 < 0x2C00)) {
+            goto originalBlock303;
+        }
+        goto originalBlock233;
+    case 0x1:
+        Level11_81E44_func_8003573C((void*)(ownerRecord18),4,0,1);
+        if (Level11_81E44_D_8006C770 == 0) {
+            goto originalBlock303;
+        }
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 2U;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),2);
+        return;
+    case 0x2:
+        Level11_81E44_func_8003573C((void*)(ownerRecord18),4,0,1);
+        if (!Level11_81E44Test2(distance20 < 0x2800)) {
+            goto originalBlock303;
+        }
+        if (Level11_81E44_func_8004F264(Level11_81E44Field((int)&Level11_81E44_D_80070328, unsigned char *, 0xE),Level11_81E44_func_8004E880(Level11_81E44Field(ownerRecord18, int *, 0xC) - Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 0),Level11_81E44Field(ownerRecord18, int *, 0x10) - Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 4),0)) >= 0x18) {
+            goto originalBlock113;
+        }
+        if (Level11_81E44Field(privateRecord19, int *, 0x18) == 0) {
+            goto originalBlock102;
+        }
+        retailWord3=Level11_81E44Field((int)&Level11_81E44_D_80070328,int*,8);
+        __asm__ volatile("":::"memory");
+        retailWord2=Level11_81E44Field(ownerRecord18,int*,0x14);
+        Level11_81E44Keep(retailWord3);
+        retailWord2=retailWord2<retailWord3;
+        Level11_81E44Keep(retailWord2);
+        if (retailWord2==0) {
+            goto originalBlock303;
+        }
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x46) = (unsigned char) (Level11_81E44Field(ownerRecord18, unsigned char *, 0x46) + 0x80);
+        Level11_81E44_func_8003645C((void*)(ownerRecord18 + 0xC),(void*)(Level11_81E44Field(privateRecord19, int *, 0x18)),(int*)(&originalFrame.sp2C));
+        if (originalFrame.sp2C >= (Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x18), short *, 0) - 1)) {
+            goto originalBlock101;
+        }
+        originalFrame.sp2C += 1;
+    originalBlock101:
+        Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x18), unsigned short *, 2) = (unsigned short) originalFrame.sp2C;
+        Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x18), short *, 0xA) = 1;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),4);
+        __asm__ volatile(""::"i"(0xF):"memory");
+        retailWord2=0xF;
+        goto originalBlock302;
+    originalBlock102:
+        retainedValueOrVector16 = Level11_81E44Field(privateRecord19, int *, 0x1C);
+        if (retainedValueOrVector16 == 0) {
+            goto originalBlock112;
+        }
+        if (Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 8) >= (Level11_81E44Field(ownerRecord18, int *, 0x14) + 0x800)) {
+            goto originalBlock303;
+        }
+        retailWord2=Level11_81E44Field(ownerRecord18,unsigned char*,0x46);
+        retainedValueOrVector16=Level11_81E44Field(retainedValueOrVector16,unsigned short*,0);
+        retailWord2+=0x80;
+        Level11_81E44Field(ownerRecord18,unsigned char*,0x46)=retailWord2;
+        retainedValueOrVector16=(int)((unsigned int)retainedValueOrVector16<<16);
+        Level11_81E44_func_8003645C((void*)((int)&Level11_81E44_D_80070328),(void*)(Level11_81E44Field(privateRecord19, int *, 0x1C)),(int*)(&originalFrame.sp30));
+        retailWord2=Level11_81E44Field(privateRecord19,int*,0x1C);
+        headingCountOrVector17=retainedValueOrVector16>>16;
+        retailWord3=Level11_81E44Field(retailWord2,short*,2);
+        retailWord2=originalFrame.sp30;
+        retainedValueOrVector16=retainedValueOrVector16>>17;
+        retailWord3=retailWord2-retailWord3;
+        retainedValueOrVector16=retainedValueOrVector16<retailWord3;
+        Level11_81E44Keep(retainedValueOrVector16);
+        originalFrame.sp30=retailWord3;
+        if (retainedValueOrVector16==0) {
+            goto originalBlock106;
+        }
+        retailWord2=retailWord3-headingCountOrVector17;
+        goto originalBlock107;
+    originalBlock106:
+        retailWord2=-headingCountOrVector17;
+        Level11_81E44Keep(retailWord2);
+        retailWord2=retailWord2>>1;
+        Level11_81E44Keep(retailWord2);
+        retailWord2=retailWord3<retailWord2;
+        if (retailWord2==0 ? (retailWord2=retailWord3+headingCountOrVector17,1) : (retailWord2=retailWord3+headingCountOrVector17,0)) {
+            goto originalBlock108;
+        }
+    originalBlock107:
+        Level11_81E44Keep(retailWord2);
+        originalFrame.sp30=retailWord2;
+    originalBlock108:
+        if (originalFrame.sp30<=0) {
+            goto originalBlock110;
+        }
+        retailWord3=Level11_81E44Field(privateRecord19,int*,0x1C);
+        __asm__ volatile(""::"i"(-1):"memory");
+        retailWord2=-1;
+        goto originalBlock111;
+    originalBlock110:
+        retailWord3=Level11_81E44Field(privateRecord19,int*,0x1C);
+        __asm__ volatile(""::"i"(1):"memory");
+        retailWord2=1;
+    originalBlock111:
+        Level11_81E44Keep(retailWord3);
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(retailWord3,short*,0xA)=(short)retailWord2;
+        temporaryValue41 = Level11_81E44Field(privateRecord19, int *, 0x1C);
+        temporaryValue15 = (int) (Level11_81E44Field(temporaryValue41, short *, 2) + headingCountOrVector17 + Level11_81E44Field(temporaryValue41, short *, 0xA)) % headingCountOrVector17;
+        Level11_81E44Field(temporaryValue41, short *, 2) = (short) temporaryValue15;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),4);
+        __asm__ volatile(""::"i"(0x10):"memory");
+        retailWord2=0x10;
+        goto originalBlock302;
+    originalBlock112:
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x49) = 0U;
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 4U;
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x46) = (unsigned char) (Level11_81E44Field(ownerRecord18, unsigned char *, 0x46) + 0x80);
+        retailWord2 = Level11_81E44Field(Level11_81E44Field(Level11_81E44Field((int)&Level11_81E44_D_8006EE2C + (Level11_81E44Field(ownerRecord18, short *, 0x36) * 4),int*,0), int *, 0x4C),unsigned char*,0);
+        Level11_81E44Field(ownerRecord18, signed char *, 0x3C) = 4;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x3D) = 4;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x3E) = 0;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x3F) = 1;
+        goto originalBlock294;
+    originalBlock113:
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 3U;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),3);
+        return;
+    case 0x4:
+        if (Level11_81E44Field(ownerRecord18, int *, 0x14) >= 0x2800) {
+            goto originalBlock118;
+        }
+        temporaryValue42 = Level11_81E44Field(privateRecord19, int *, 0x40);
+        if (temporaryValue42 == 0) {
+            goto originalBlock117;
+        }
+        Level11_81E44Field(temporaryValue42, signed char *, 0x49) = 1;
+    originalBlock117:
+        Level11_81E44Field(privateRecord19, int *, 0x40) = 0;
+        Level11_81E44Field(privateRecord19, unsigned char *, 0x13) = 0U;
+        Level11_81E44_func_8004F178((void*)(ownerRecord18 + 0xC),(void*)(privateRecord19));
+        retailWord2=0x3C;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(privateRecord19,unsigned short*,0x10)=retailWord2;
+        retailWord2 = 0xE;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x41) = 0;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x4C) = 0;
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x4D) = 0U;
+        __asm__ volatile(""::"i"(0xE):"memory");
+        Level11_81E44Field(ownerRecord18, int *, 8) = 0;
+        goto originalBlock302;
+    originalBlock118:
+        if ((unsigned int) (Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 0x50) - 7) < 2U) {
+            goto originalBlock122;
+        }
+        if (Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 0x50) == 0x13) {
+            goto originalBlock122;
+        }
+        if (Level11_81E44Test2(distance20<0x2C00) ? (argumentWord4=0x164,1) : (argumentWord4=0x164,0)) {
+            goto originalBlock233;
+        }
+        __asm__ volatile(""::"r"(argumentWord4):"memory");
+    originalBlock122:
+        argumentWord4=privateRecord19+0x10;
+        originalTimerResult=Level11_81E44_func_800359A4((void*)(argumentWord4),2);
+        constantOne21=1;
+        if (originalTimerResult != 0) {
+            goto originalBlock124;
+        }
+        Level11_81E44Keep(constantOne21);
+        Level11_81E44_func_8003585C((void*)(ownerRecord18),Level11_81E44Field(privateRecord19, unsigned char *, 0x12),6,0,1,0);
+        headingCountOrVector17 = Level11_81E44Field(privateRecord19, unsigned char *, 0x12);
+        goto originalBlock155;
+    originalBlock124:
+        Level11_81E44Keep(constantOne21);
+        temporaryValue44 = Level11_81E44Field(ownerRecord18, unsigned char *, 0x49);
+        if (temporaryValue44 != constantOne21) {
+            goto originalBlock132;
+        }
+        if (distance20 >= 0x1E00) {
+            goto originalBlock129;
+        }
+        if (Level11_81E44Field(privateRecord19, int *, 0x14) == 0) {
+            goto originalBlock128;
+        }
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x49) = 0U;
+        retailWord2=Level11_81E44_func_8004E880(Level11_81E44Field(ownerRecord18, int *, 0xC) - Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 0),Level11_81E44Field(ownerRecord18, int *, 0x10) - Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 4),0);
+        __asm__ volatile(""::"i"(1):"memory");
+        argumentWord4=ownerRecord18;
+        Level11_81E44Keep(argumentWord4);
+        argumentWord5=retailWord2;
+        goto originalBlock150;
+    originalBlock128:
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),0);
+        __asm__ volatile(""::"i"(0xB):"memory");
+        retailWord2=0xB;
+        goto originalBlock302;
+    originalBlock129:
+        Level11_81E44_func_8003585C((void*)(ownerRecord18),Level11_81E44_func_8004E880(Level11_81E44Field(privateRecord19, int *, 0) - Level11_81E44Field(ownerRecord18, int *, 0xC),Level11_81E44Field(privateRecord19, int *, 4) - Level11_81E44Field(ownerRecord18, int *, 0x10),0),6,0,constantOne21,0);
+        if (Level11_81E44_func_8004F334((void*)(ownerRecord18 + 0xC),(void*)(privateRecord19)) < 0x100) {
+            goto originalBlock284;
+        }
+        headingCountOrVector17 = Level11_81E44_func_8004E880(Level11_81E44Field(privateRecord19, int *, 0) - Level11_81E44Field(ownerRecord18, int *, 0xC),Level11_81E44Field(privateRecord19, int *, 4) - Level11_81E44Field(ownerRecord18, int *, 0x10),0);
+        if (Level11_81E44_func_8004F264(headingCountOrVector17,Level11_81E44Field(ownerRecord18, unsigned char *, 0x46)) >= 0x19) {
+            goto originalBlock303;
+        }
+        goto originalBlock155;
+    originalBlock132:
+        if (temporaryValue44 != 0) {
+            goto originalBlock139;
+        }
+        headingCountOrVector17=(int)&originalFrame.sp58;
+        Level11_81E44_func_8004F178((void*)(headingCountOrVector17),(void*)(ownerRecord18+0xC));
+        originalFrame.sp60+=0x280;
+        retailWord2=Level11_81E44Field(ownerRecord18,unsigned char*,0x46);
+        __asm__ volatile("":::"$16","memory");
+        retainedValueOrVector16=(int)&originalFrame.sp38;
+        retailWord2*=2;
+        retailWord3=Level11_81E44Field((int)&Level11_81E44_D_80065920+retailWord2,short*,0);
+        __asm__ volatile("":::"$4","memory");
+        argumentWord4=retainedValueOrVector16;
+        Level11_81E44Keep(retailWord3);
+        retailWord2=(retailWord3*5)>>1;
+        originalFrame.sp38=retailWord2;
+        retailWord2=Level11_81E44Field(ownerRecord18,unsigned char*,0x46);
+        __asm__ volatile("":::"$5","memory");
+        argumentWord5=headingCountOrVector17;
+        retailWord2*=2;
+        retailWord3=Level11_81E44Field((int)&Level11_81E44_D_800658A0+retailWord2,short*,0);
+        __asm__ volatile("":::"$6","memory");
+        argumentWord6=retainedValueOrVector16;
+        originalFrame.sp40=0;
+        __asm__ volatile("":"=r"(retailWord3):"0"(retailWord3):"memory");
+        retailWord2=(retailWord3*5)>>1;
+        originalFrame.sp3C=retailWord2;
+        Level11_81E44_func_8004F194((void*)(argumentWord4),(void*)(argumentWord5),(void*)(argumentWord6));
+        if (Level11_81E44_func_80013E38((void*)(&originalFrame.sp58),(void*)(&originalFrame.sp38),0) != 0) {
+            goto originalBlock138;
+        }
+        retainedValueOrVector16=(int)&Level11_81E44_D_80071918;
+        Level11_81E44Keep(retainedValueOrVector16);
+        if (Level11_81E44_func_8004E880(Level11_81E44_func_8004EDE8((void*)(retainedValueOrVector16),0),Level11_81E44_D_80071920,0) >= 0x10) {
+            goto originalBlock138;
+        }
+        retailWord2=Level11_81E44_func_8003613C(Level11_81E44_func_8004E880(Level11_81E44Field(retainedValueOrVector16,int*,0),Level11_81E44_D_8007191C,0),Level11_81E44Field(ownerRecord18,unsigned char*,0x46));
+        if (retailWord2>=0 ? (retailWord2=4,1) : (retailWord2=4,0)) {
+            goto originalBlock137;
+        }
+        retailWord2=3;
+    originalBlock137:
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(ownerRecord18,unsigned char*,0x49)=retailWord2;
+    originalBlock138:
+        retailWord2=Level11_81E44_func_8004E880(Level11_81E44Field(ownerRecord18, int *, 0xC) - Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 0),Level11_81E44Field(ownerRecord18, int *, 0x10) - Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 4),0);
+        argumentWord4=ownerRecord18;
+        Level11_81E44Keep(argumentWord4);
+        argumentWord5=retailWord2;
+    originalBlock151:
+        Level11_81E44_func_8003585C((void*)(argumentWord4),argumentWord5,4,0,1,0);
+        headingCountOrVector17=Level11_81E44Field(ownerRecord18,unsigned char*,0x46);
+        goto originalBlock155;
+    originalBlock139:
+        if (temporaryValue44 != 3) {
+            goto originalBlock144;
+        }
+        headingCountOrVector17=(int)&originalFrame.sp58;
+        Level11_81E44_func_8004F178((void*)(headingCountOrVector17),(void*)(ownerRecord18+0xC));
+        originalFrame.sp60+=0x280;
+        retailWord2=Level11_81E44Field(ownerRecord18,unsigned char*,0x46);
+        __asm__ volatile("":::"$16","memory");
+        retainedValueOrVector16=(int)&originalFrame.sp38;
+        retailWord2*=2;
+        retailWord3=Level11_81E44Field((int)&Level11_81E44_D_80065920+retailWord2,short*,0);
+        __asm__ volatile("":::"$4","memory");
+        argumentWord4=retainedValueOrVector16;
+        Level11_81E44Keep(retailWord3);
+        retailWord2=(retailWord3*5)>>1;
+        originalFrame.sp38=retailWord2;
+        retailWord2=Level11_81E44Field(ownerRecord18,unsigned char*,0x46);
+        __asm__ volatile("":::"$5","memory");
+        argumentWord5=headingCountOrVector17;
+        retailWord2*=2;
+        retailWord3=Level11_81E44Field((int)&Level11_81E44_D_800658A0+retailWord2,short*,0);
+        __asm__ volatile("":::"$6","memory");
+        argumentWord6=retainedValueOrVector16;
+        originalFrame.sp40=0;
+        __asm__ volatile("":"=r"(retailWord3):"0"(retailWord3):"memory");
+        retailWord2=(retailWord3*5)>>1;
+        originalFrame.sp3C=retailWord2;
+        Level11_81E44_func_8004F194((void*)(argumentWord4),(void*)(argumentWord5),(void*)(argumentWord6));
+        if (Level11_81E44_func_80013E38((void*)(&originalFrame.sp58),(void*)(&originalFrame.sp38),0) != 0) {
+            goto originalBlock142;
+        }
+        retainedValueOrVector16=(int)&Level11_81E44_D_80071918;
+        Level11_81E44Keep(retainedValueOrVector16);
+        if (Level11_81E44_func_8004E880(Level11_81E44_func_8004EDE8((void*)(retainedValueOrVector16),0),Level11_81E44_D_80071920,0) < 0x15) {
+            goto originalBlock143;
+        }
+    originalBlock142:
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x49) = 0U;
+        retailWord2=Level11_81E44_func_8004E880(Level11_81E44Field(ownerRecord18, int *, 0xC) - Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 0),Level11_81E44Field(ownerRecord18, int *, 0x10) - Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 4),0);
+        __asm__ volatile(""::"i"(3):"memory");
+        argumentWord4=ownerRecord18;
+        Level11_81E44Keep(argumentWord4);
+        argumentWord5=retailWord2;
+        goto originalBlock150;
+    originalBlock143:
+        retailWord2=Level11_81E44_func_8004E880(Level11_81E44Field(retainedValueOrVector16,int*,0),Level11_81E44_D_8007191C,0);
+        argumentWord4=ownerRecord18;
+        Level11_81E44Keep(argumentWord4);
+        retailWord2+=0xB8;
+        goto originalBlock149;
+    originalBlock144:
+        if (temporaryValue44 != 4) {
+            goto originalBlock152;
+        }
+        headingCountOrVector17=(int)&originalFrame.sp58;
+        Level11_81E44_func_8004F178((void*)(headingCountOrVector17),(void*)(ownerRecord18+0xC));
+        originalFrame.sp60+=0x280;
+        retailWord2=Level11_81E44Field(ownerRecord18,unsigned char*,0x46);
+        __asm__ volatile("":::"$16","memory");
+        retainedValueOrVector16=(int)&originalFrame.sp38;
+        retailWord2*=2;
+        retailWord3=Level11_81E44Field((int)&Level11_81E44_D_80065920+retailWord2,short*,0);
+        __asm__ volatile("":::"$4","memory");
+        argumentWord4=retainedValueOrVector16;
+        Level11_81E44Keep(retailWord3);
+        retailWord2=(retailWord3*5)>>1;
+        originalFrame.sp38=retailWord2;
+        retailWord2=Level11_81E44Field(ownerRecord18,unsigned char*,0x46);
+        __asm__ volatile("":::"$5","memory");
+        argumentWord5=headingCountOrVector17;
+        retailWord2*=2;
+        retailWord3=Level11_81E44Field((int)&Level11_81E44_D_800658A0+retailWord2,short*,0);
+        __asm__ volatile("":::"$6","memory");
+        argumentWord6=retainedValueOrVector16;
+        originalFrame.sp40=0;
+        __asm__ volatile("":"=r"(retailWord3):"0"(retailWord3):"memory");
+        retailWord2=(retailWord3*5)>>1;
+        originalFrame.sp3C=retailWord2;
+        Level11_81E44_func_8004F194((void*)(argumentWord4),(void*)(argumentWord5),(void*)(argumentWord6));
+        if (Level11_81E44_func_80013E38((void*)(&originalFrame.sp58),(void*)(&originalFrame.sp38),0) != 0) {
+            goto originalBlock147;
+        }
+        retainedValueOrVector16=(int)&Level11_81E44_D_80071918;
+        Level11_81E44Keep(retainedValueOrVector16);
+        if (Level11_81E44_func_8004E880(Level11_81E44_func_8004EDE8((void*)(retainedValueOrVector16),0),Level11_81E44_D_80071920,0) < 0x15) {
+            goto originalBlock148;
+        }
+    originalBlock147:
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x49) = 0U;
+        retailWord2=Level11_81E44_func_8004E880(Level11_81E44Field(ownerRecord18, int *, 0xC) - Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 0),Level11_81E44Field(ownerRecord18, int *, 0x10) - Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 4),0);
+        __asm__ volatile(""::"i"(4):"memory");
+        argumentWord4=ownerRecord18;
+        Level11_81E44Keep(argumentWord4);
+        argumentWord5=retailWord2;
+        goto originalBlock150;
+    originalBlock148:
+        retailWord2=Level11_81E44_func_8004E880(Level11_81E44Field(retainedValueOrVector16,int*,0),Level11_81E44_D_8007191C,0);
+        argumentWord4=ownerRecord18;
+        Level11_81E44Keep(argumentWord4);
+        retailWord2+=0x52;
+    originalBlock149:
+        argumentWord5 = retailWord2 & 0xFF;
+    originalBlock150:
+        Level11_81E44_func_8003585C((void*)(argumentWord4),argumentWord5,4,0,constantOne21,0);
+        headingCountOrVector17 = Level11_81E44Field(ownerRecord18, unsigned char *, 0x46);
+        goto originalBlock155;
+    originalBlock152:
+        if (distance20 >= 0x1E00) {
+            goto originalBlock154;
+        }
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),0);
+        __asm__ volatile(""::"i"(0xB):"memory");
+        retailWord2=0xB;
+        goto originalBlock302;
+    originalBlock154:
+        temporaryValue45 = Level11_81E44Field(privateRecord19, int *, 0x14);
+        temporaryValue27 = (Level11_81E44Field(temporaryValue45, short *, 2) * 0x10) + Level11_81E44Field(temporaryValue45, int *, 0xC);
+        headingCountOrVector17 = Level11_81E44_func_8004E880(Level11_81E44Field(temporaryValue27, int *, 0) - Level11_81E44Field(ownerRecord18, int *, 0xC),Level11_81E44Field(temporaryValue27, int *, 4) - Level11_81E44Field(ownerRecord18, int *, 0x10),0);
+    originalBlock155:
+        retainedValueOrVector16=(int)&originalFrame.sp38;
+        argumentWord4=retainedValueOrVector16;
+        argumentWord5=ownerRecord18+0xC;
+        Level11_81E44Keep(argumentWord4);
+        Level11_81E44Keep(argumentWord5);
+        retailWord3=headingCountOrVector17*2;
+        Level11_81E44Keep(retailWord3);
+        retailWord2=Level11_81E44Field((int)&Level11_81E44_D_80065920+retailWord3,short*,0);
+        __asm__ volatile("":::"$6","memory");
+        argumentWord6=retainedValueOrVector16;
+        __asm__ volatile("":"=r"(retailWord2):"0"(retailWord2):"memory");
+        originalFrame.sp38=retailWord2>>1;
+        retailWord2=Level11_81E44Field((int)&Level11_81E44_D_800658A0+retailWord3,short*,0);
+        retailWord3=0x800;
+        Level11_81E44Keep(retailWord3);
+        originalFrame.sp40=retailWord3;
+        __asm__ volatile("":"=r"(retailWord2):"0"(retailWord2):"memory");
+        originalFrame.sp3C=retailWord2>>1;
+        Level11_81E44_func_8004F194((void*)(argumentWord4),(void*)(argumentWord5),(void*)(argumentWord6));
+        temporaryValue4 = Level11_81E44_func_8001A358((void*)(&originalFrame.sp38),0x3000) + Level11_81E44Field(ownerRecord18, short *, 0x38);
+        originalFrame.sp40 = temporaryValue4;
+        if (temporaryValue4 < 0x400) {
+            goto originalBlock160;
+        }
+        if (Level11_81E44Field(privateRecord19, int *, 0x14) != 0) {
+            goto originalBlock162;
+        }
+        if (Level11_81E44Field(ownerRecord18, unsigned char *, 0x49) == 1) {
+            goto originalBlock162;
+        }
+        temporaryValue47 = Level11_81E44Field(privateRecord19, int *, 8);
+        if ((temporaryValue47 + 0x600) < temporaryValue4) {
+            goto originalBlock160;
+        }
+        if (temporaryValue4 >= (temporaryValue47 - Level11_81E44Field(ownerRecord18, short *, 0x38))) {
+            goto originalBlock162;
+        }
+    originalBlock160:
+        temporaryValue28 = Level11_81E44Field(privateRecord19, unsigned char *, 0x13) + 1;
+        Level11_81E44Field(privateRecord19, unsigned char *, 0x13) = temporaryValue28;
+        if ((unsigned int) (temporaryValue28 & 0xFF) >= 0x78U) {
+            goto originalBlock232;
+        }
+        retailWord2=headingCountOrVector17+0x10;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(privateRecord19,unsigned char*,0x12)=retailWord2;
+        retailWord2=0xA;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(privateRecord19,unsigned short*,0x10)=retailWord2;
+        return;
+    originalBlock162:
+        retailWord2=Level11_81E44Field(ownerRecord18,int*,0x14);
+        __asm__ volatile("":::"memory");
+        retailWord3=originalFrame.sp40;
+        Level11_81E44Keep(retailWord3);
+        Level11_81E44Keep(retailWord2);
+        retailWord2-=retailWord3;
+        if (retailWord2>=0 ? (retailWord3=retailWord2,1) : (retailWord3=retailWord2,0)) {
+            goto originalBlock164;
+        }
+        Level11_81E44Keep(retailWord3);
+        retailWord3=-retailWord3;
+    originalBlock164:
+        if (retailWord3 < 0x101) {
+            goto originalBlock172;
+        }
+        if (!(Level11_81E44Field(privateRecord19, int *, 0x48) & 1)) {
+            goto originalBlock169;
+        }
+        if ((unsigned int) (Level11_81E44Field(ownerRecord18, unsigned char *, 0x49) - 1) < 2U) {
+            goto originalBlock169;
+        }
+        if (Level11_81E44Test2(retailWord3 < 0x141)) {
+            goto originalBlock172;
+        }
+        goto originalBlock225;
+    originalBlock169:
+        retailWord2=(Level11_81E44Field(ownerRecord18,int*,0x14)+0x800)<originalFrame.sp40;
+        if (retailWord2!=0 ? (retailWord2=0x64,1) : (retailWord2=0x64,0)) {
+            goto originalBlock171;
+        }
+        retailWord2=0x96;
+    originalBlock171:
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(privateRecord19,short*,0xC)=retailWord2;
+        retailWord2=8;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(ownerRecord18,unsigned char*,0x48)=retailWord2;
+        __asm__ volatile(""::"r"(retailWord2):"memory");
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),8);
+    originalBlock172:
+        Level11_81E44_func_8004F178((void*)(&originalFrame.sp48),(void*)(ownerRecord18 + 0xC));
+        if (Level11_81E44Field(ownerRecord18, unsigned char *, 0x49) != 2) {
+            goto originalBlock175;
+        }
+        if (!(Level11_81E44_func_80035A80((void*)(ownerRecord18),(void*)(Level11_81E44Field(privateRecord19, int *, 0x14)),0x100,0x96,0xFA,6,0x30,0x22) & 2)) {
+            goto originalBlock176;
+        }
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 0U;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),0);
+        goto originalBlock176;
+    originalBlock175:
+        Level11_81E44_func_80035DDC((void*)(ownerRecord18),0x96,0xFA,0xFA,0x22);
+    originalBlock176:
+        temporaryValue5 = Level11_81E44_func_80035D38((void*)(ownerRecord18)) + Level11_81E44Field(ownerRecord18, short *, 0x38);
+        originalFrame.sp40 = temporaryValue5;
+        if (temporaryValue5 < 0x400) {
+            goto originalBlock181;
+        }
+        if (Level11_81E44Field(privateRecord19, int *, 0x14) != 0) {
+            goto originalBlock185;
+        }
+        if (Level11_81E44Field(ownerRecord18, unsigned char *, 0x49) == 1) {
+            goto originalBlock185;
+        }
+        temporaryValue48 = Level11_81E44Field(privateRecord19, int *, 8);
+        if ((temporaryValue48 + 0x600) < temporaryValue5) {
+            goto originalBlock181;
+        }
+        if (temporaryValue5 >= (temporaryValue48 - Level11_81E44Field(ownerRecord18, short *, 0x38))) {
+            goto originalBlock185;
+        }
+    originalBlock181:
+        Level11_81E44_func_8004F178((void*)(ownerRecord18 + 0xC),(void*)(&originalFrame.sp48));
+        temporaryValue30 = Level11_81E44Field(privateRecord19, unsigned char *, 0x13) + 1;
+        Level11_81E44Field(privateRecord19, unsigned char *, 0x13) = temporaryValue30;
+        if ((unsigned int) (temporaryValue30 & 0xFF) < 0x78U) {
+            goto originalBlock184;
+        }
+        temporaryValue31 = Level11_81E44_SpawnMoby(0x164,(void*)( ownerRecord18));
+        Level11_81E44Field(privateRecord19, int *, 0x40) = temporaryValue31;
+        if (temporaryValue31 == 0) {
+            goto originalBlock197;
+        }
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 5U;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),5);
+        goto originalBlock197;
+    originalBlock184:
+        retailWord2=headingCountOrVector17+0x10;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(privateRecord19,unsigned char*,0x12)=retailWord2;
+        retailWord2=0xA;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(privateRecord19,unsigned short*,0x10)=retailWord2;
+        goto originalBlock197;
+    originalBlock185:
+        temporaryValue49 = Level11_81E44Field(privateRecord19, unsigned char *, 0x13);
+        if (temporaryValue49 < 7U) {
+            goto originalBlock187;
+        }
+        Level11_81E44Field(privateRecord19, unsigned char *, 0x13) = (unsigned char) (temporaryValue49 - 6);
+        goto originalBlock188;
+    originalBlock187:
+        Level11_81E44Field(privateRecord19, unsigned char *, 0x13) = 0U;
+    originalBlock188:
+        retailWord2=Level11_81E44Field(ownerRecord18,int*,0x14);
+        __asm__ volatile("":::"memory");
+        retailWord3=originalFrame.sp40;
+        Level11_81E44Keep(retailWord3);
+        Level11_81E44Keep(retailWord2);
+        retailWord2-=retailWord3;
+        if (retailWord2>=0 ? (argumentWord4=retailWord2,1) : (argumentWord4=retailWord2,0)) {
+            goto originalBlock190;
+        }
+        Level11_81E44Keep(argumentWord4);
+        argumentWord4=-argumentWord4;
+    originalBlock190:
+        if (argumentWord4 < 0x101) {
+            goto originalBlock196;
+        }
+        if (!(Level11_81E44Field(privateRecord19, int *, 0x48) & 1)) {
+            goto originalBlock195;
+        }
+        if ((unsigned int) (Level11_81E44Field(ownerRecord18, unsigned char *, 0x49) - 1) < 2U) {
+            goto originalBlock195;
+        }
+        if (!Level11_81E44Test2(argumentWord4 < 0x141)) {
+            goto originalBlock225;
+        }
+        Level11_81E44Field(ownerRecord18, int *, 0x14) = retailWord3;
+        goto originalBlock197;
+    originalBlock195:
+        Level11_81E44Field(privateRecord19, short *, 0xC) = 0x96;
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 8U;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),8);
+        goto originalBlock197;
+    originalBlock196:
+        Level11_81E44Field(ownerRecord18, int *, 0x14) = retailWord3;
+    originalBlock197:
+        if (Level11_81E44Field(ownerRecord18, unsigned char *, 0x49) != 0) {
+            goto originalBlock303;
+        }
+        if (Level11_81E44Test2(distance20 < 0x2801)) {
+            goto originalBlock303;
+        }
+        goto originalBlock225;
+    case 0x5:
+        if (Level11_81E44Field(ownerRecord18, unsigned char *, 0x4D) != 0) {
+            goto originalBlock206;
+        }
+        if (Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 0x50) == 0x13) {
+            goto originalBlock204;
+        }
+        if (Level11_81E44Test2(distance20 < 0x3001)) {
+            goto originalBlock303;
+        }
+        Level11_81E44_func_80055D24((void*)(ownerRecord18),1);
+        argumentWord4=1;
+        retailWord2=0x40;
+        Level11_81E44Keep(argumentWord4);
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(ownerRecord18,signed char*,0x4C)=retailWord2;
+        retailWord2=Level11_81E44Field(ownerRecord18,short*,0x36);
+        __asm__ volatile("":::"$3","memory");
+        retailWord3=6;
+        Level11_81E44Keep(retailWord3);
+        Level11_81E44Field(ownerRecord18,signed char*,0x41)=argumentWord4;
+        Level11_81E44Field(ownerRecord18,unsigned char*,0x4D)=argumentWord4;
+        Level11_81E44Field(ownerRecord18,unsigned char*,0x48)=retailWord3;
+        __asm__ volatile("":"=r"(retailWord2):"0"(retailWord2):"memory");
+        retailWord2=Level11_81E44Field((int)&Level11_81E44_D_8006EE2C+retailWord2*4,int*,0);
+        retailWord2=Level11_81E44Field(retailWord2,int*,0x54);
+        retailWord2=Level11_81E44Field(retailWord2,unsigned char*,0);
+        Level11_81E44Field(ownerRecord18,signed char*,0x3C)=retailWord3;
+        Level11_81E44Field(ownerRecord18,signed char*,0x3D)=retailWord3;
+        Level11_81E44Field(ownerRecord18,signed char*,0x3E)=0;
+        __asm__ volatile(""::"i"(0x3001):"memory");
+        Level11_81E44Field(ownerRecord18,signed char*,0x3F)=argumentWord4;
+        goto originalBlock294;
+    originalBlock204:
+        if (Level11_81E44Test2(distance20 < 0x1801)) {
+            goto originalBlock303;
+        }
+        Level11_81E44_func_80055D24((void*)(ownerRecord18),1);
+        argumentWord4=1;
+        retailWord2=0x40;
+        Level11_81E44Keep(argumentWord4);
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(ownerRecord18,signed char*,0x4C)=retailWord2;
+        retailWord2=Level11_81E44Field(ownerRecord18,short*,0x36);
+        __asm__ volatile("":::"$3","memory");
+        retailWord3=6;
+        Level11_81E44Keep(retailWord3);
+        Level11_81E44Field(ownerRecord18,signed char*,0x41)=argumentWord4;
+        Level11_81E44Field(ownerRecord18,unsigned char*,0x4D)=argumentWord4;
+        Level11_81E44Field(ownerRecord18,unsigned char*,0x48)=retailWord3;
+        __asm__ volatile("":"=r"(retailWord2):"0"(retailWord2):"memory");
+        retailWord2=Level11_81E44Field((int)&Level11_81E44_D_8006EE2C+retailWord2*4,int*,0);
+        retailWord2=Level11_81E44Field(retailWord2,int*,0x54);
+        retailWord2=Level11_81E44Field(retailWord2,unsigned char*,0);
+        Level11_81E44Field(ownerRecord18,signed char*,0x3C)=retailWord3;
+        Level11_81E44Field(ownerRecord18,signed char*,0x3D)=retailWord3;
+        Level11_81E44Field(ownerRecord18,signed char*,0x3E)=0;
+        __asm__ volatile(""::"i"(0x1801):"memory");
+        Level11_81E44Field(ownerRecord18,signed char*,0x3F)=argumentWord4;
+        goto originalBlock294;
+    originalBlock206:
+        if (Level11_81E44_D_8006C770 == 0) {
+            goto originalBlock303;
+        }
+        Level11_81E44Field(ownerRecord18, signed char *, 0x41) = 0;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x4C) = 0;
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x4D) = 0U;
+        Level11_81E44Field(ownerRecord18, int *, 8) = 0;
+        if ((unsigned char) Level11_81E44Field(privateRecord19, unsigned char *, 0x13) < 0x78U) {
+            goto originalBlock211;
+        }
+        argumentWord4=ownerRecord18+0xC;
+        argumentWord5=privateRecord19;
+        Level11_81E44Keep(argumentWord4);
+        Level11_81E44Keep(argumentWord5);
+        retailWord2=Level11_81E44Field(privateRecord19,int*,0x40);
+        __asm__ volatile("":::"$3","memory");
+        retailWord3=1;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Keep(retailWord3);
+        Level11_81E44Field(retailWord2,signed char*,0x49)=retailWord3;
+        Level11_81E44Field(privateRecord19, int *, 0x40) = 0;
+        Level11_81E44_func_8004F178((void*)(argumentWord4),(void*)(argumentWord5));
+        retailWord3 = Level11_81E44Field(privateRecord19, int *, 0x1C);
+        __asm__ volatile("":::"$2","memory");
+        retailWord2=0x3C;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(privateRecord19,unsigned short*,0x10)=retailWord2;
+        if (retailWord3 == 0) {
+            goto originalBlock210;
+        }
+        Level11_81E44Field(retailWord3, short *, 2) = (short) (unsigned short) Level11_81E44Field(privateRecord19, short *, 0xE);
+    originalBlock210:
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 0xEU;
+    originalBlock211:
+        Level11_81E44Field(privateRecord19, unsigned char *, 0x13) = 0U;
+        return;
+    case 0xE:
+        temporaryValue6 = privateRecord19 + 0x10;
+        if (Level11_81E44Field(privateRecord19, int *, 0x40) == 0) {
+            goto originalBlock217;
+        }
+        temporaryValue50 = Level11_81E44Field(privateRecord19, int *, 0x1C);
+        if (temporaryValue50 == 0) {
+            goto originalBlock215;
+        }
+        Level11_81E44Field(temporaryValue50, short *, 2) = (short) (unsigned short) Level11_81E44Field(privateRecord19, short *, 0xE);
+    originalBlock215:
+        if (Level11_81E44_func_800359A4((void*)(temporaryValue6),2) == 0) {
+            goto originalBlock303;
+        }
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 5U;
+        return;
+    originalBlock217:
+        if (Level11_81E44_func_800359A4((void*)(temporaryValue6),2) == 0) {
+            goto originalBlock303;
+        }
+        retailWord3=Level11_81E44Field(privateRecord19,int*,0x1C);
+        Level11_81E44Keep(retailWord3);
+        argumentWord4=0x164;
+        if (retailWord3==0) {
+            goto originalBlock220;
+        }
+        Level11_81E44Field(retailWord3,short*,2)=(short)(unsigned short)Level11_81E44Field(privateRecord19,short*,0xE);
+    originalBlock220:
+        Level11_81E44Keep(argumentWord4);
+        argumentWord5=ownerRecord18;
+        retailWord3=(int)Level11_81E44_SpawnMoby;
+        __asm__ volatile("":::"$2","memory");
+        retailWord2=0x3C;
+        Level11_81E44Keep(retailWord3);
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(privateRecord19,unsigned short*,0x10)=retailWord2;
+        retailWord2=((int(*)(int,void*))retailWord3)(argumentWord4,(void*)argumentWord5);
+        Level11_81E44Field(privateRecord19,int*,0x40)=retailWord2;
+        return;
+    case 0x6:
+        if (Level11_81E44_D_8006C770 == 0) {
+            goto originalBlock303;
+        }
+        temporaryValue52 = Level11_81E44Field(privateRecord19, int *, 0x40);
+        if (temporaryValue52 == 0) {
+            goto originalBlock224;
+        }
+        Level11_81E44Field(temporaryValue52, signed char *, 0x49) = 1;
+        Level11_81E44Field(privateRecord19, int *, 0x40) = 0;
+    originalBlock224:
+    originalBlock225:
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 0xBU;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),0xB);
+        return;
+    case 0xB:
+        retailWord2=distance20<0x1000;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(privateRecord19,unsigned short*,0x10)=0;
+        if (retailWord2==0) {
+            goto originalBlock230;
+        }
+        if ((unsigned int) (Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 0x50) - 7) < 2U) {
+            goto originalBlock303;
+        }
+        if (Level11_81E44Field((int)&Level11_81E44_D_80070328, int *, 0x50) == 0x13) {
+            goto originalBlock303;
+        }
+        goto originalBlock233;
+    originalBlock230:
+        __asm__ volatile(""::"r"(distance20):"$2","memory");
+        if (Level11_81E44Test2(distance20 < 0x2001)) {
+            goto originalBlock303;
+        }
+        temporaryValue18 = Level11_81E44Field(privateRecord19, unsigned char *, 0x13) + 6;
+        Level11_81E44Field(privateRecord19, unsigned char *, 0x13) = temporaryValue18;
+        if ((unsigned int) (temporaryValue18 & 0xFF) < 0x78U) {
+            goto originalBlock235;
+        }
+    originalBlock232:
+    originalBlock233:
+        temporaryValue19 = Level11_81E44_SpawnMoby(0x164,(void*)( ownerRecord18));
+        Level11_81E44Field(privateRecord19, int *, 0x40) = temporaryValue19;
+        if (temporaryValue19 == 0) {
+            goto originalBlock303;
+        }
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 5U;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),5);
+        return;
+    originalBlock235:
+        temporaryValue9 = Level11_81E44Field(privateRecord19, int *, 0x18);
+        if (temporaryValue9 == 0) {
+            goto originalBlock240;
+        }
+        retailWord3=Level11_81E44Field((int)&Level11_81E44_D_80070328,int*,8);
+        __asm__ volatile("":::"memory");
+        retailWord2=Level11_81E44Field(ownerRecord18,int*,0x14);
+        Level11_81E44Keep(retailWord3);
+        retailWord2=retailWord2<retailWord3;
+        Level11_81E44Keep(retailWord2);
+        if (retailWord2==0) {
+            goto originalBlock284;
+        }
+        Level11_81E44_func_8003645C((void*)(ownerRecord18 + 0xC),(void*)(temporaryValue9),(int*)(&originalFrame.sp68));
+        if (originalFrame.sp68 >= (Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x18), short *, 0) - 1)) {
+            goto originalBlock239;
+        }
+        originalFrame.sp68 += 1;
+    originalBlock239:
+        Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x18), unsigned short *, 2) = (unsigned short) originalFrame.sp68;
+        Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x18), short *, 0xA) = 1;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),4);
+        __asm__ volatile(""::"i"(0xF):"memory");
+        retailWord2=0xF;
+        goto originalBlock302;
+    originalBlock240:
+        retainedValueOrVector16 = Level11_81E44Field(privateRecord19, int *, 0x1C);
+        if (retainedValueOrVector16 == 0) {
+            goto originalBlock249;
+        }
+        retailWord2=Level11_81E44Field(ownerRecord18,unsigned char*,0x46);
+        retainedValueOrVector16=Level11_81E44Field(retainedValueOrVector16,unsigned short*,0);
+        retailWord2+=0x80;
+        Level11_81E44Field(ownerRecord18,unsigned char*,0x46)=retailWord2;
+        retainedValueOrVector16=(int)((unsigned int)retainedValueOrVector16<<16);
+        Level11_81E44_func_8003645C((void*)((int)&Level11_81E44_D_80070328),(void*)(Level11_81E44Field(privateRecord19, int *, 0x1C)),(int*)(&originalFrame.sp6C));
+        retailWord2=Level11_81E44Field(privateRecord19,int*,0x1C);
+        headingCountOrVector17=retainedValueOrVector16>>16;
+        retailWord3=Level11_81E44Field(retailWord2,short*,2);
+        retailWord2=originalFrame.sp6C;
+        retainedValueOrVector16=retainedValueOrVector16>>17;
+        retailWord3=retailWord2-retailWord3;
+        retainedValueOrVector16=retainedValueOrVector16<retailWord3;
+        Level11_81E44Keep(retainedValueOrVector16);
+        originalFrame.sp6C=retailWord3;
+        if (retainedValueOrVector16==0) {
+            goto originalBlock243;
+        }
+        retailWord2=retailWord3-headingCountOrVector17;
+        goto originalBlock244;
+    originalBlock243:
+        retailWord2=-headingCountOrVector17;
+        Level11_81E44Keep(retailWord2);
+        retailWord2=retailWord2>>1;
+        Level11_81E44Keep(retailWord2);
+        retailWord2=retailWord3<retailWord2;
+        if (retailWord2==0 ? (retailWord2=retailWord3+headingCountOrVector17,1) : (retailWord2=retailWord3+headingCountOrVector17,0)) {
+            goto originalBlock245;
+        }
+    originalBlock244:
+        Level11_81E44Keep(retailWord2);
+        originalFrame.sp6C=retailWord2;
+    originalBlock245:
+        if (originalFrame.sp6C<=0) {
+            goto originalBlock247;
+        }
+        retailWord3=Level11_81E44Field(privateRecord19,int*,0x1C);
+        __asm__ volatile(""::"i"(-1):"memory");
+        retailWord2=-1;
+        goto originalBlock248;
+    originalBlock247:
+        retailWord3=Level11_81E44Field(privateRecord19,int*,0x1C);
+        __asm__ volatile(""::"i"(1):"memory");
+        retailWord2=1;
+    originalBlock248:
+        Level11_81E44Keep(retailWord3);
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(retailWord3,short*,0xA)=(short)retailWord2;
+        temporaryValue55 = Level11_81E44Field(privateRecord19, int *, 0x1C);
+        temporaryValue16 = (int) (Level11_81E44Field(temporaryValue55, short *, 2) + headingCountOrVector17 + Level11_81E44Field(temporaryValue55, short *, 0xA)) % headingCountOrVector17;
+        Level11_81E44Field(temporaryValue55, short *, 2) = (short) temporaryValue16;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),4);
+        __asm__ volatile(""::"i"(0x10):"memory");
+        retailWord2=0x10;
+        goto originalBlock302;
+    originalBlock249:
+        argumentWord5=Level11_81E44Field(privateRecord19,int*,0x14);
+        retailWord2=1;
+        if (argumentWord5==0) {
+            goto originalBlock255;
+        }
+        retailWord2=Level11_81E44Field(ownerRecord18,int*,0x14);
+        __asm__ volatile("":::"memory");
+        retailWord3=Level11_81E44Field(privateRecord19,int*,8);
+        Level11_81E44Keep(retailWord3);
+        retailWord2=(int)((unsigned int)retailWord2-(unsigned int)retailWord3);
+        retailWord2=retailWord2<-0x100;
+        Level11_81E44Keep(retailWord2);
+        __asm__ volatile(""::"r"(retailWord2):"$4","memory");
+        argumentWord4=ownerRecord18+0xC;
+        if (retailWord2==0) {
+            goto originalBlock254;
+        }
+        Level11_81E44_func_8003645C((void*)(argumentWord4),(void*)(argumentWord5),(int*)(&originalFrame.sp70));
+        retailWord2=Level11_81E44Field(privateRecord19,int*,0x14);
+        retailWord2=Level11_81E44Field(retailWord2,short*,0);
+        __asm__ volatile("":::"memory");
+        retailWord3=originalFrame.sp70;
+        Level11_81E44Keep(retailWord3);
+        retailWord2-=1;
+        retailWord2=retailWord3<retailWord2;
+        Level11_81E44Keep(retailWord2);
+        if (retailWord2==0) {
+            goto originalBlock253;
+        }
+        __asm__ volatile(""::"r"(retailWord3):"memory");
+        retailWord2=retailWord3+1;
+        originalFrame.sp70=retailWord2;
+    originalBlock253:
+        retailWord3=Level11_81E44Field(privateRecord19,int*,0x14);
+        retailWord2=originalFrame.sp70;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(retailWord3,short*,2)=retailWord2;
+        retailWord3=Level11_81E44Field(privateRecord19,int*,0x14);
+        __asm__ volatile("":::"$2","memory");
+        retailWord2=1;
+        Level11_81E44Keep(retailWord3);
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(retailWord3,short*,0xA)=retailWord2;
+        retailWord2=2;
+        goto originalBlock255;
+    originalBlock254:
+        __asm__ volatile(""::"r"(argumentWord4):"memory");
+        retailWord2=1;
+    originalBlock255:
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(ownerRecord18,unsigned char*,0x49)=retailWord2;
+        goto originalBlock281;
+    case 0x8:
+        temporaryValue56 = Level11_81E44Field(privateRecord19, int *, 0x18);
+        if (temporaryValue56 == 0) {
+            goto originalBlock258;
+        }
+        temporaryValue20 = ((short) Level11_81E44Field(temporaryValue56, unsigned short *, 2) * 0x10) + Level11_81E44Field(temporaryValue56, int *, 0xC);
+        Level11_81E44_func_8003585C((void*)(ownerRecord18),Level11_81E44_func_8004E880(Level11_81E44Field(temporaryValue20, int *, 0) - Level11_81E44Field(ownerRecord18, int *, 0xC),Level11_81E44Field(temporaryValue20, int *, 4) - Level11_81E44Field(ownerRecord18, int *, 0x10),0),6,0,1,0);
+    originalBlock258:
+        if (Level11_81E44_D_8006C770 == 0) {
+            goto originalBlock260;
+        }
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),9);
+    originalBlock260:
+        headingCountOrVector17=(int)&originalFrame.sp78;
+        argumentWord4=headingCountOrVector17;
+        __asm__ volatile("":"=r"(argumentWord4):"0"(argumentWord4):"$16","memory");
+        retainedValueOrVector16=ownerRecord18+0xC;
+        Level11_81E44_func_8004F178((void*)(argumentWord4),(void*)(retainedValueOrVector16));
+        retailWord3=Level11_81E44Field(privateRecord19,short*,0xC);
+        retailWord2=Level11_81E44Field(ownerRecord18,int*,0x14);
+        Level11_81E44Keep(retailWord3);
+        retailWord2+=retailWord3;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(ownerRecord18,int*,0x14)=retailWord2;
+        retailWord2=Level11_81E44Field(privateRecord19,unsigned short*,0xC);
+        retailWord2-=0xA;
+        Level11_81E44Field(privateRecord19,short*,0xC)=retailWord2;
+        __asm__ volatile("":"=r"(retailWord2):"0"(retailWord2):"memory");
+        retailWord2=(int)((unsigned int)retailWord2<<16)>>16;
+        retailWord2=retailWord2<-0x12C;
+        if (retailWord2==0 ? (retailWord2=-0x12C,1) : (retailWord2=-0x12C,0)) {
+            goto originalBlock262;
+        }
+        Level11_81E44Field(privateRecord19,short*,0xC)=retailWord2;
+    originalBlock262:
+        Level11_81E44_func_80035DDC((void*)(ownerRecord18),0x64,0xFA,0x96,0x22);
+        argumentWord4=retainedValueOrVector16;
+        argumentWord5=0x2800;
+        retailWord2=Level11_81E44Field(ownerRecord18,int*,0x14);
+        retailWord2+=0x200;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(ownerRecord18,int*,0x14)=retailWord2;
+        retailWord2=Level11_81E44_func_8001A358((void*)(argumentWord4),argumentWord5);
+        retailWord3=Level11_81E44Field(ownerRecord18,int*,0x14);
+        argumentWord4=Level11_81E44Field(ownerRecord18,short*,0x38);
+        retailWord3-=0x200;
+        argumentWord6=retailWord2+argumentWord4;
+        Level11_81E44Keep(argumentWord6);
+        Level11_81E44Keep(retailWord3);
+        retailWord2=argumentWord6<0x400;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(ownerRecord18,int*,0x14)=retailWord3;
+        if (retailWord2==0) {
+            goto originalBlock264;
+        }
+        Level11_81E44_func_8004F178((void*)(retainedValueOrVector16),(void*)(headingCountOrVector17));
+        temporaryValue22 = Level11_81E44_func_80035D38((void*)(ownerRecord18));
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 0xAU;
+        Level11_81E44Field(ownerRecord18, int *, 0x14) = (int) (temporaryValue22 + Level11_81E44Field(ownerRecord18, short *, 0x38));
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),0xA);
+        return;
+    originalBlock264:
+        if (Level11_81E44Test2(argumentWord6 < retailWord3)) {
+            goto originalBlock303;
+        }
+        argumentWord4=ownerRecord18;
+        argumentWord5 = 0xA;
+        retailWord2 = 0xA;
+        Level11_81E44Field(ownerRecord18, int *, 0x14) = argumentWord6;
+        goto originalBlock280;
+    case 0xA:
+        if (Level11_81E44_D_8006C770 == 0) {
+            goto originalBlock303;
+        }
+        temporaryValue11 = Level11_81E44Field(privateRecord19, int *, 0x18);
+        if (temporaryValue11 == 0) {
+            goto originalBlock273;
+        }
+        Level11_81E44_func_8003645C((void*)(ownerRecord18 + 0xC),(void*)(temporaryValue11),(int*)(&originalFrame.sp88));
+        temporaryValue23 = originalFrame.sp88 + Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x18), short *, 0xA);
+        originalFrame.sp88 = temporaryValue23;
+        if (temporaryValue23 >= 0) {
+            goto originalBlock270;
+        }
+        originalFrame.sp88 = 0;
+    originalBlock270:
+        temporaryValue58 = Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x18), short *, 0) - 1;
+        if (temporaryValue58 >= originalFrame.sp88) {
+            goto originalBlock272;
+        }
+        originalFrame.sp88 = temporaryValue58;
+    originalBlock272:
+        Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x18), unsigned short *, 2) = (unsigned short) originalFrame.sp88;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),4);
+        __asm__ volatile(""::"i"(0xF):"memory");
+        retailWord2=0xF;
+        goto originalBlock302;
+    originalBlock273:
+        temporaryValue12 = Level11_81E44Field(privateRecord19, int *, 0x14);
+        if (temporaryValue12 == 0) {
+            goto originalBlock281;
+        }
+        if (Level11_81E44Field(ownerRecord18, unsigned char *, 0x49) == 2) {
+            goto originalBlock276;
+        }
+        if ((Level11_81E44Field(ownerRecord18, int *, 0x14) - Level11_81E44Field(privateRecord19, int *, 8)) >= -0x100) {
+            goto originalBlock282;
+        }
+    originalBlock276:
+        Level11_81E44_func_8003645C((void*)(ownerRecord18 + 0xC),(void*)(temporaryValue12),(int*)(&originalFrame.sp8C));
+        if (originalFrame.sp8C >= (Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x14), short *, 0) - 1)) {
+            goto originalBlock278;
+        }
+        originalFrame.sp8C += 1;
+    originalBlock278:
+        Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x14), short *, 2) = (short) originalFrame.sp8C;
+        if (Level11_81E44_func_80035A80((void*)(ownerRecord18),(void*)(Level11_81E44Field(privateRecord19, int *, 0x14)),0x100,0x64,0xFA,6,0x30,0x26) & 2) {
+            goto originalBlock284;
+        }
+        argumentWord4=ownerRecord18;
+        argumentWord5 = 4;
+        retailWord2=2;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(argumentWord4,unsigned char*,0x49)=retailWord2;
+        retailWord2=4;
+    originalBlock280:
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(argumentWord4,signed char*,0x48)=retailWord2;
+        Level11_81E44_func_80034F40((void*)(argumentWord4),argumentWord5);
+        return;
+    originalBlock281:
+    originalBlock282:
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 4U;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),4);
+        return;
+    case 0x3:
+        Level11_81E44_func_8003573C((void*)(ownerRecord18),4,0,1);
+        if (Level11_81E44_D_8006C770 == 0) {
+            goto originalBlock303;
+        }
+    originalBlock284:
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 0U;
+        Level11_81E44_func_80034F40((void*)(ownerRecord18),0);
+        return;
+    case 0x5C:
+        if (Level11_81E44_func_80035194((void*)(ownerRecord18),(void*)(privateRecord19 + 0x28)) != 0x100) {
+            goto originalBlock303;
+        }
+        Level11_81E44_func_80055D24((void*)(ownerRecord18),4);
+        Level11_81E44_func_800369B8((void*)(ownerRecord18),0x18);
+        retailWord2=0xFF;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(ownerRecord18,unsigned char*,0x49)=retailWord2;
+        retailWord2 = 0x61;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x41) = 0;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x4C) = 0;
+        __asm__ volatile(""::"i"(0x61):"memory");
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x4D) = 0U;
+        goto originalBlock302;
+    case 0x5F:
+        argumentWord4=ownerRecord18;
+        __asm__ volatile("":"=r"(argumentWord4):"0"(argumentWord4):"$2","memory");
+        retailWord2=0xFF;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(ownerRecord18, signed char *, 0x41) = 0;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x4C) = 0;
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x4D) = 0U;
+        Level11_81E44Field(ownerRecord18, int *, 8) = 0;
+        Level11_81E44Field(ownerRecord18,unsigned char*,0x49)=retailWord2;
+        temporaryValue24 = Level11_81E44_func_80035D38((void*)(argumentWord4)) + Level11_81E44Field(privateRecord19, int *, 0x44);
+        Level11_81E44Field(ownerRecord18, int *, 0x14) = temporaryValue24;
+        Level11_81E44Field(privateRecord19, int *, 0x44) = temporaryValue24;
+        __asm__ volatile(""::"i"(0x5E):"memory");
+        retailWord2=0x5E;
+        goto originalBlock302;
+    case 0x61:
+        retainedValueOrVector16 = ownerRecord18 + 0x48;
+        if (Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x24),int*,0) != 0) {
+            goto originalBlock290;
+        }
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 0x5FU;
+        Level11_81E44_func_8003B7B4((void*)(retainedValueOrVector16),1,(void*)((int)&Level11_81E44_D_8006D088));
+        Level11_81E44_func_8003B7B4((void*)(retainedValueOrVector16),1,(void*)((int)&Level11_81E44_D_8006C7F8));
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 0x5EU;
+    case 0x5E:
+    originalBlock290:
+        if (Level11_81E44Field(ownerRecord18, unsigned char *, 0x49) != 1) {
+            goto originalBlock303;
+        }
+        Level11_81E44_func_8004F178((void*)(ownerRecord18 + 0xC),(void*)(privateRecord19));
+        argumentWord4=0x167;
+        Level11_81E44Keep(argumentWord4);
+        retainedValueOrVector16=1;
+        headingCountOrVector17=0x40;
+        Level11_81E44Keep(retainedValueOrVector16);
+        Level11_81E44Keep(headingCountOrVector17);
+        Level11_81E44Field(ownerRecord18,signed char*,0x41)=retainedValueOrVector16;
+        Level11_81E44Field(ownerRecord18,signed char*,0x4C)=headingCountOrVector17;
+        Level11_81E44Field(ownerRecord18,unsigned char*,0x4D)=retainedValueOrVector16;
+        retailWord2=Level11_81E44Field(privateRecord19,int*,0x44);
+        retailWord3=(int)Level11_81E44_SpawnMoby;
+        __asm__ volatile("":::"$5","memory");
+        argumentWord5=ownerRecord18;
+        Level11_81E44Keep(retailWord3);
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(ownerRecord18,int*,0x14)=retailWord2;
+        retailWord2=((int(*)(int,void*))retailWord3)(argumentWord4,(void*)argumentWord5);
+        Level11_81E44Field(privateRecord19,int*,0x40)=retailWord2;
+        if (retailWord2==0) {
+            goto originalBlock293;
+        }
+        Level11_81E44Field(retailWord2,signed char*,0x4C)=headingCountOrVector17;
+        temporaryValue59 = Level11_81E44Field(privateRecord19, int *, 0x40);
+        Level11_81E44Field(temporaryValue59, int *, 0x14) = (int) (Level11_81E44Field(temporaryValue59, int *, 0x14) + 0x300);
+    originalBlock293:
+        Level11_81E44_func_80055D24((void*)(ownerRecord18),3);
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 0xCU;
+        retailWord2 = Level11_81E44Field(Level11_81E44Field(Level11_81E44Field((int)&Level11_81E44_D_8006EE2C + (Level11_81E44Field(ownerRecord18, short *, 0x36) * 4),int*,0), int *, 0x6C),unsigned char*,0);
+        Level11_81E44Field(ownerRecord18, signed char *, 0x3C) = 0xC;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x3D) = 0xC;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x3E) = 0;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x3F) = retainedValueOrVector16;
+    originalBlock294:
+        __asm__ volatile("":"=r"(retailWord2):"0"(retailWord2):"memory");
+        retailWord2=(unsigned int)retailWord2<2U;
+        Level11_81E44Keep(retailWord2);
+        retailWord2^=1;
+        Level11_81E44Keep(retailWord2);
+        retailWord2=-retailWord2;
+        Level11_81E44Keep(retailWord2);
+        retailWord2&=0x30;
+        Level11_81E44Field(ownerRecord18,signed char*,0x40)=retailWord2;
+        return;
+    case 0x5A:
+        if (Level11_81E44_func_80035194((void*)(ownerRecord18),(void*)(privateRecord19 + 0x28)) != 0x100) {
+            goto originalBlock303;
+        }
+        Level11_81E44_func_80055D24((void*)(ownerRecord18),4);
+        Level11_81E44_func_800369B8((void*)(ownerRecord18),0x18);
+        retailWord2=0xFF;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(ownerRecord18,unsigned char*,0x49)=retailWord2;
+        retailWord2 = 0x60;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x41) = 0;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x4C) = 0;
+        __asm__ volatile(""::"i"(0x60):"memory");
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x4D) = 0U;
+        goto originalBlock302;
+    case 0x5D:
+        retailWord2=0xFF;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(ownerRecord18,unsigned char*,0x49)=retailWord2;
+        retailWord2 = 0x5B;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x41) = 0;
+        Level11_81E44Field(ownerRecord18, signed char *, 0x4C) = 0;
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x4D) = 0U;
+        __asm__ volatile(""::"i"(0x5B):"memory");
+        Level11_81E44Field(ownerRecord18, int *, 8) = 0;
+        goto originalBlock302;
+    case 0x60:
+        retainedValueOrVector16 = ownerRecord18 + 0x48;
+        if (Level11_81E44Field(Level11_81E44Field(privateRecord19, int *, 0x24),int*,0) != 0) {
+            goto originalBlock300;
+        }
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 0x5DU;
+        Level11_81E44_func_8003B7B4((void*)(retainedValueOrVector16),1,(void*)((int)&Level11_81E44_D_8006D088));
+        Level11_81E44_func_8003B7B4((void*)(retainedValueOrVector16),1,(void*)((int)&Level11_81E44_D_8006C7F8));
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = 0x5BU;
+    case 0x5B:
+    originalBlock300:
+        if (Level11_81E44Field(ownerRecord18, unsigned char *, 0x49) != 1) {
+            goto originalBlock303;
+        }
+        Level11_81E44_func_8004F178((void*)(ownerRecord18 + 0xC),(void*)(privateRecord19));
+        retailWord2=0x3C;
+        Level11_81E44Keep(retailWord2);
+        Level11_81E44Field(privateRecord19,unsigned short*,0x10)=retailWord2;
+        retailWord2 = 0xE;
+    originalBlock302:
+        __asm__ volatile(""::"r"(retailWord2):"memory");
+        Level11_81E44Field(ownerRecord18, unsigned char *, 0x48) = retailWord2;
+    originalBlock303:
+        return;
+    }
+}
+#undef Level11_81E44Field
+#undef Level11_81E44Keep
+
 
 void func_80055B18(Moby*);
 void func_level_11_80083F84(Moby* moby) {

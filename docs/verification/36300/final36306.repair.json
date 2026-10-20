@@ -1,0 +1,17 @@
+{
+  "AI_generated": true,
+  "human_reviewed": false,
+  "installed_repair_only": true,
+  "accepted": false,
+  "function": "func_level_50_8008B434",
+  "old_source_sha256": "2ba550aab4170ba76742a5547aa807d718fb41ae85b6d03c54a372c5717f653f",
+  "new_source_sha256": "37eee1125eac9d6b6cd3f5a8020554b5eb1534ae0debd2854e992853cd5090f2",
+  "old_body_sha256": "5d24494cf4a505771ca8fe670f151e9139f2c12770676ffad59bd9f5af63c9f8",
+  "new_body_sha256": "c9a84816298fda216bc49043f19729a254b69266507c0776ed1b0aa8cebf0eb4",
+  "only_source_change": "literal section alignment3\u21922, as specified by original assembly",
+  "original_installer_not_replayed": true,
+  "surrounding_bytes_unchanged": true,
+  "failed_full_receipt_sha256": "d81de6aa64776a3d0a54a290d78dff93a811df05e690ecf5ea7540a729b5b6db",
+  "new_ready_sha256": "232977a9e7e06799f431e682f6215fe36ed3377d973c1c5c49de8a03130d78de",
+  "restored_input_receipt_sha256": "b3fadfaf30233835410700d3fb988df392398c1704f0959aa75d159b1512fbdd"
+}

@@ -15,7 +15,523 @@
     #define IS_ZOOM_OUT_CAMERA_LEVEL
 #endif
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_33/camera", func_level_33_8009DE6C);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0; originalfunc_level_33_8009DE6C.
+* Assembly SHA256 5ccccf359bcf3e1f18fba891b40682c4967803cac8f578fccfb38bae49bd7731.
+* AI-generated; not human reviewed. Original numeric and address roles only:
+* raw32 input masks, signed integer sums/shifts, literal clamps and byte-domain
+* table addressing are preserved. Physical units/fixed point, complete helper
+* meanings and per-frame caller cadence remain unresolved.
+* Original branch306 skips the input-word reload after the first
+* override store. The no-override route retains the already loaded word; the
+* override route stores first and then reloads, with a zero-instruction memory
+* boundary preserving that observed order. Both paths retain original targets.
+* Original branch387 uses LI4096 in its delay slot. Paired .set modes
+* are zero-CPU assembler metadata; C generates the predicate, constant/store.
+* The same original frame, scratch fields, signed table loads, low-product
+* producers, wrap/clamp arithmetic and per-level joins remain unchanged.
+* No incoming HI/LO state is invented. Empty constraints consume initialized
+* original values or mark dead replacements. Do not remove producer captures,
+* pad fields or unused original frame storage as cosmetic cleanup.
+* Falsification: every native/linked instruction and owned table word, all
+* conditional/internal targets, preserved data and EXE/every-overlay hashes.
+* Compiler/assembler pipeline, flags and acceptance requirements are unchanged.
+* Binary identity does not establish synchronized runtime/system completion. */
+#define Camera33_9DE6C_Zero() ({register int z0 __asm__("$0");__asm__ volatile("":"=r"(z0):"i"(0));z0;})
+#include "spyro.h"
+/* AI generated; not human reviewed. Original-instruction-derived C. Original source asm/nonmatchings/overlays/level_33/camera/func_level_33_8009DE6C.s SHA256 5ccccf359bcf3e1f18fba891b40682c4967803cac8f578fccfb38bae49bd7731. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
+#define Camera33_9DE6C_Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+extern CameraPosition Camera33_9DE6C_D_80069260 __asm__("D_80069260");
+extern CameraPosition Camera33_9DE6C_D_8006929C[5] __asm__("D_8006929C");
+extern CameraPosition Camera33_9DE6C_D_80069328[5] __asm__("D_80069328");
+extern CameraPosition Camera33_9DE6C_D_800693B4 __asm__("D_800693B4");
+extern CameraPosition Camera33_9DE6C_D_800693C8 __asm__("D_800693C8");
+extern int Camera33_9DE6C_D_8006C5BC __asm__("D_8006C5BC");
+extern Spyro Camera33_9DE6C_D_80070328 __asm__("D_80070328");
+void Camera33_9DE6C_func_800135A4(CameraPosition*, CameraPosition*, int) __asm__("func_800135A4");
+int Camera33_9DE6C_func_800136F0(CameraPosition*, Vector3D*, Vector3D*) __asm__("func_800136F0");
+void Camera33_9DE6C_func_80013918(int) __asm__("func_80013918");
+void Camera33_9DE6C_func_800139A4() __asm__("func_800139A4");
+void Camera33_9DE6C_func_800142E0() __asm__("func_800142E0");
+void Camera33_9DE6C_func_80014354() __asm__("func_80014354");
+int Camera33_9DE6C_func_8003615C(int arg0, int arg1) __asm__("func_8003615C");
+extern void Camera33_9DE6C_func_8004F178(Vector3D*, Vector3D*) __asm__("func_8004F178");
+unsigned char Camera33_9DE6C_func_800410F8() __asm__("func_800410F8");
+/* extern */
+extern CameraPosition Camera33_9DE6C_D_80069314 __asm__("D_80069314");
+extern CameraPosition Camera33_9DE6C_D_800693A0 __asm__("D_800693A0");
+extern short Camera33_9DE6C_D_8006E040 __asm__("D_8006E040");
+extern int Camera33_9DE6C_D_8006E044 __asm__("D_8006E044");
+extern int Camera33_9DE6C_D_8006E050 __asm__("D_8006E050");
+extern unsigned char Camera33_9DE6C_D_8006E064 __asm__("D_8006E064");
+extern int Camera33_9DE6C_D_8006E078 __asm__("D_8006E078");
+extern int Camera33_9DE6C_D_8006E08C __asm__("D_8006E08C");
+extern int Camera33_9DE6C_D_8006E094 __asm__("D_8006E094");
+extern int Camera33_9DE6C_D_8006E098 __asm__("D_8006E098");
+extern int Camera33_9DE6C_D_8006E09C __asm__("D_8006E09C");
+extern CameraPosition Camera33_9DE6C_D_8006E0D8 __asm__("D_8006E0D8");
+extern int Camera33_9DE6C_D_8006E0DC __asm__("D_8006E0DC");
+extern int Camera33_9DE6C_D_8006E0E8 __asm__("D_8006E0E8");
+extern int Camera33_9DE6C_D_8006E114 __asm__("D_8006E114");
+extern int Camera33_9DE6C_D_8006E118 __asm__("D_8006E118");
+extern int Camera33_9DE6C_D_8006E11C __asm__("D_8006E11C");
+extern int Camera33_9DE6C_D_8006E120 __asm__("D_8006E120");
+extern int Camera33_9DE6C_D_8006E124 __asm__("D_8006E124");
+extern CameraPosition Camera33_9DE6C_D_8006E12C __asm__("D_8006E12C");
+extern int Camera33_9DE6C_D_8006E130 __asm__("D_8006E130");
+extern int Camera33_9DE6C_D_8006E140 __asm__("D_8006E140");
+extern int Camera33_9DE6C_D_8006E144 __asm__("D_8006E144");
+extern unsigned char Camera33_9DE6C_D_8006E154 __asm__("D_8006E154");
+extern unsigned char Camera33_9DE6C_D_8006E160 __asm__("D_8006E160");
+extern int Camera33_9DE6C_D_8006E1D0 __asm__("D_8006E1D0");
+extern Vector3D Camera33_9DE6C_D_8006E1E0 __asm__("D_8006E1E0");
+extern int Camera33_9DE6C_D_8006E1E8 __asm__("D_8006E1E8");
+extern short Camera33_9DE6C_D_8006E1EC __asm__("D_8006E1EC");
+extern short Camera33_9DE6C_D_8006E1EE __asm__("D_8006E1EE");
+extern short Camera33_9DE6C_D_8006E1F0 __asm__("D_8006E1F0");
+extern unsigned char Camera33_9DE6C_D_8006E536 __asm__("D_8006E536");
+extern int Camera33_9DE6C_D_8006E538 __asm__("D_8006E538");
+extern unsigned char Camera33_9DE6C_D_8006E546 __asm__("D_8006E546");
+extern unsigned char Camera33_9DE6C_D_8006E547 __asm__("D_8006E547");
+extern unsigned char Camera33_9DE6C_D_80071A04 __asm__("D_80071A04");
+void func_level_33_8009DE6C(void) {
+    struct {
+        int sp10;
+        int sp14;
+    }
+    originalFrame;
+    register unsigned char *base17 __asm__("$17");
+    register int word2 __asm__("$2");
+    register int word3 __asm__("$3");
+    register int *address4 __asm__("$4");
+    register int product7 __asm__("$7");
+    int rawLow;
+    CameraPosition *temp_a0_4;
+    Vector3D *var_s3;
+    int temp_a0;
+    int temp_a0_2;
+    int temp_a0_3;
+    int temp_a0_5;
+    int temp_a1;
+    register int temp_v0 __asm__("$2");
+    int temp_v0_2;
+    int temp_v0_3;
+    int temp_v0_4;
+    int temp_v1;
+    int temp_v1_2;
+    int temp_v1_3;
+    int temp_v1_4;
+    register int temp_v1_5 __asm__("$3");
+    int temp_v1_6;
+    int temp_v1_7;
+    register int var_a1 __asm__("$5");
+    int var_s2;
+    register int var_v0 __asm__("$2");
+    register int var_v0_2 __asm__("$2");
+    register int var_v0_3 __asm__("$2");
+    register int var_v0_4 __asm__("$2");
+    register int var_v0_5 __asm__("$2");
+    int var_v0_6;
+    register int var_v0_7 __asm__("$2");
+    register int var_v1 __asm__("$3");
+    int var_v1_2;
+    register int var_v1_3 __asm__("$3");
+    void *temp_s0;
+    var_s2 = (int) (Camera33_9DE6C_D_8006E130 + 2) >> 2;
+    if (var_s2 >= 5) {
+        var_s2 = 4;
+    }
+    switch (Camera33_9DE6C_D_8006E044) {
+    case 3:
+        if (Camera33_9DE6C_D_8006E12C.pos.azimuth == 0) {
+            Camera33_9DE6C_func_80014354();
+            temp_v0 = -Camera33_9DE6C_D_80070328.rotation.pitch;
+            var_v1 = (int) (temp_v0 - Camera33_9DE6C_D_8006E078) >> 2;
+            Camera33_9DE6C_D_8006E08C = temp_v0;
+            if (var_v1 >= 0xC1) {
+                var_v1=Camera33_9DE6C_Zero()+0xC0;
+            }
+            var_v0=var_v1<-0xC0;
+            __asm__("":"=r"(var_v0):"0"(var_v0));
+            if (var_v0 != 0) {
+                var_v1 = -0xC0;
+            }
+            var_v0_2=var_v1+Camera33_9DE6C_Zero();
+            if (var_v1 < 0) {
+                var_v0_2 = -var_v0_2;
+            }
+            if (var_v0_2 >= 9) {
+                Camera33_9DE6C_D_8006E094 = var_v1;
+            }
+            else {
+                Camera33_9DE6C_D_8006E094 = 0;
+            }
+            if ((Camera33_9DE6C_D_80070328.movementState != MOVEMENT_STATE_SUPERFLY) || (Camera33_9DE6C_D_80070328.union144.b.unk148 <= 0)) {
+                Camera33_9DE6C_D_8006E098 = (int) -Camera33_9DE6C_D_80070328.rotation.roll >> 2;
+            }
+            Camera33_9DE6C_func_80013918(0xC0);
+            Camera33_9DE6C_func_800139A4();
+        }
+        Camera33_9DE6C_func_800142E0();
+        Camera33_9DE6C_func_800135A4(&Camera33_9DE6C_D_8006E0D8, &Camera33_9DE6C_D_8006929C[var_s2], 0);
+        if (Camera33_9DE6C_D_8006E0D8.pos.azimuth < 0x100) {
+            Camera33_9DE6C_D_8006E0D8.pos.azimuth = 0x100;
+        }
+        if (Camera33_9DE6C_D_8006E0DC < 0x60) {
+            Camera33_9DE6C_D_8006E0DC = 0x60;
+        }
+        if (Camera33_9DE6C_D_8006E0E8 < 0x40) {
+            Camera33_9DE6C_D_8006E0E8 = 0x40;
+        }
+        Camera33_9DE6C_func_800135A4((CameraPosition*)((unsigned char*)&Camera33_9DE6C_D_8006E0D8 + 0x14), &Camera33_9DE6C_D_80069328[var_s2], 0);
+        Camera33_9DE6C_func_800135A4((CameraPosition*)((unsigned char*)&Camera33_9DE6C_D_8006E0D8 + 0x28), &Camera33_9DE6C_D_800693C8, 0);
+        Camera33_9DE6C_func_800135A4((CameraPosition*)((unsigned char*)&Camera33_9DE6C_D_8006E0D8 + 0x3C), &Camera33_9DE6C_D_800693B4, 0);
+        if (Camera33_9DE6C_D_80070328.movementState == MOVEMENT_STATE_SUPERFLY) {
+            Camera33_9DE6C_D_8006E1D0 = -Camera33_9DE6C_D_80070328.union144.a.unk13ce.x;
+            return;
+        }
+    default:
+        return;
+    case 17:
+        base17=&Camera33_9DE6C_D_8006E160;
+        if (Camera33_9DE6C_Field(base17, int *, 0) == Camera33_9DE6C_D_8006E044) {
+            var_s3 = base17 - 0x108;
+            if (Camera33_9DE6C_D_8006E12C.pos.azimuth == 0) {
+                Camera33_9DE6C_func_800135A4(base17 - 0xD8, base17 + 8, Camera33_9DE6C_Field(&Camera33_9DE6C_D_8006E064, int *, 0));
+                __asm__ volatile("":"=r"(base17):"0"(base17) : "$16","$19");
+                var_s3 = base17 - 0x108;
+            }
+            Camera33_9DE6C_func_8004F178(var_s3, base17 + 0x1C);
+            Camera33_9DE6C_Field(&Camera33_9DE6C_D_8006E064, int *, 0) = 0;
+            Camera33_9DE6C_func_800135A4(base17 - 0x88, &Camera33_9DE6C_D_8006929C[var_s2], 0);
+            Camera33_9DE6C_func_800135A4(base17 - 0x74, &Camera33_9DE6C_D_80069328[var_s2], 0);
+            Camera33_9DE6C_func_800135A4(base17 - 0x4C, &Camera33_9DE6C_D_800693B4, 0);
+            Camera33_9DE6C_func_800135A4(base17 - 0x60, &Camera33_9DE6C_D_800693C8, 0);
+            if (!(Camera33_9DE6C_D_8006E050 & 2)) {
+                Camera33_9DE6C_func_800136F0(base17 - 0xEC, base17 - 0x140, var_s3);
+                Camera33_9DE6C_D_8006E09C = Camera33_9DE6C_Field(base17, int *, -0xEC);
+                return;
+            }
+        }
+        break;
+    case 23:
+        if (Camera33_9DE6C_D_8006E12C.pos.azimuth == 0) {
+            if (Camera33_9DE6C_D_80070328.unk13e[1] & 0x80) {
+                Camera33_9DE6C_func_800135A4((CameraPosition*)((unsigned char*)&Camera33_9DE6C_D_8006E12C - 0xA4), &Camera33_9DE6C_D_80069260, Camera33_9DE6C_Field(&Camera33_9DE6C_D_8006E064, int *, 0));
+            }
+            else {
+                Camera33_9DE6C_func_80014354(&Camera33_9DE6C_D_8006E12C);
+                Camera33_9DE6C_func_80013918(0x400);
+            }
+        }
+        Camera33_9DE6C_func_800142E0();
+        Camera33_9DE6C_Field(&Camera33_9DE6C_D_8006E064, int *, 0) = (int) (Camera33_9DE6C_D_80070328.m_WhirlwindPointer->angle.yaw * 0x10);
+        Camera33_9DE6C_func_800135A4(&Camera33_9DE6C_D_8006E064 + 0x74, &Camera33_9DE6C_D_8006929C[var_s2], 0);
+        Camera33_9DE6C_func_800135A4(&Camera33_9DE6C_D_8006E064 + 0x88, &Camera33_9DE6C_D_80069328[var_s2], 0);
+        Camera33_9DE6C_func_800135A4(&Camera33_9DE6C_D_8006E064 + 0x9C, &Camera33_9DE6C_D_800693C8, 0);
+        Camera33_9DE6C_func_800135A4(&Camera33_9DE6C_D_8006E064 + 0xB0, &Camera33_9DE6C_D_800693B4, 0);
+        if (!(Camera33_9DE6C_D_8006E050 & 2)) {
+            Camera33_9DE6C_func_800136F0(&Camera33_9DE6C_D_8006E064 + 0x10, &Camera33_9DE6C_D_8006E064 - 0x44, &Camera33_9DE6C_D_8006E064 - 0xC);
+            Camera33_9DE6C_D_8006E09C = Camera33_9DE6C_Field(&Camera33_9DE6C_D_8006E064, int *, 0x10);
+            return;
+        }
+        break;
+    case 31:
+        temp_s0 = Camera33_9DE6C_D_80070328.critterMobyPtr->mobyTag;
+        originalFrame.sp10 = 0;
+        originalFrame.sp14 = 0;
+        if (Camera33_9DE6C_D_8006E536 != 0) {
+            originalFrame.sp10 = Camera33_9DE6C_D_8006E546 - 0x7F;
+            originalFrame.sp14 = 0x7F - Camera33_9DE6C_D_8006E547;
+        }
+        word3=Camera33_9DE6C_D_8006E538;
+        __asm__("":"=r"(word3):"0"(word3));
+        word2=word3&8192;
+        __asm__("":"=r"(word2):"0"(word2));
+        if(word2)goto positive_sp10;
+        word2=word3&32768;
+        __asm__("":"=r"(word2):"0"(word2));
+        if(!word2)goto after_sp10;
+        word2=-0x7F;
+        goto store_sp10;
+    positive_sp10:
+        word2=0x7F;
+    store_sp10:
+        originalFrame.sp10=word2;
+        __asm__ volatile("" : : : "memory");
+        word3=Camera33_9DE6C_D_8006E538;
+        __asm__("":"=r"(word3):"0"(word3));
+        after_sp10:;
+        word2=word3&4096;
+        __asm__("":"=r"(word2):"0"(word2));
+        if(word2)goto positive_sp14;
+        word2=word3&16384;
+        __asm__("":"=r"(word2):"0"(word2));
+        if(!word2)goto after_sp14;
+        word2=-0x7F;
+        goto store_sp14;
+    positive_sp14:
+        word2=0x7F;
+    store_sp14:
+        originalFrame.sp14=word2;
+        after_sp14:;
+        temp_v1 = Camera33_9DE6C_Field(temp_s0, int *, 0x50) + originalFrame.sp10;
+        Camera33_9DE6C_Field(temp_s0, int *, 0x50) = temp_v1;
+        if (originalFrame.sp10 > 0) {
+            if (temp_v1 < 0) {
+                Camera33_9DE6C_Field(temp_s0, int *, 0x50) = 0;
+            }
+            if (originalFrame.sp10 >= 0x7F) {
+                if (Camera33_9DE6C_Field(temp_s0, int *, 0x50) >= 0x1001) {
+                    Camera33_9DE6C_Field(temp_s0, int *, 0x50) = 0x1000;
+                }
+            }
+            else {
+                temp_v1_2 = originalFrame.sp10 * 0x10;
+                if (temp_v1_2 < Camera33_9DE6C_Field(temp_s0, int *, 0x50)) {
+                    Camera33_9DE6C_Field(temp_s0, int *, 0x50) = temp_v1_2;
+                }
+            }
+        }
+        else {
+            if (originalFrame.sp10 < -0x7E) {
+                if (temp_v1 < -0x1000) {
+                    Camera33_9DE6C_Field(temp_s0, int *, 0x50) = -0x1000;
+                }
+            }
+            else {
+                temp_a0 = originalFrame.sp10 * 0x10;
+                if (temp_v1 < temp_a0) {
+                    Camera33_9DE6C_Field(temp_s0, int *, 0x50) = temp_a0;
+                }
+            }
+            if (Camera33_9DE6C_Field(temp_s0, int *, 0x50) > 0) {
+                Camera33_9DE6C_Field(temp_s0, int *, 0x50) = 0;
+            }
+        }
+        temp_v1_3 = Camera33_9DE6C_Field(temp_s0, int *, 0x54) + originalFrame.sp14;
+        Camera33_9DE6C_Field(temp_s0, int *, 0x54) = temp_v1_3;
+        if (originalFrame.sp14 > 0) {
+            if (temp_v1_3 < 0) {
+                Camera33_9DE6C_Field(temp_s0, int *, 0x54) = 0;
+            }
+            if (originalFrame.sp14 >= 0x7F) {
+                /* Original branch387/delay388 is BNE/LI4096.
+                * Mode directives emit zero CPU instructions; C emits the
+                * predicate, constant and store. Original targets/hashes required. */
+                word2=Camera33_9DE6C_Field(temp_s0,int*,0x54)<0x1001;
+                __asm__ volatile(".set\tnoreorder" : : "r"(word2));
+                if(!word2) {
+                    word2=0x1000;
+                    __asm__ volatile(".set\treorder" : "=r"(word2) : "0"(word2));
+                    Camera33_9DE6C_Field(temp_s0,int*,0x54)=word2;
+                }
+            }
+            else {
+                temp_v1_4 = originalFrame.sp14 * 0x10;
+                if (temp_v1_4 < Camera33_9DE6C_Field(temp_s0, int *, 0x54)) {
+                    Camera33_9DE6C_Field(temp_s0, int *, 0x54) = temp_v1_4;
+                }
+            }
+        }
+        else {
+            if (originalFrame.sp14 < -0x7E) {
+                if (temp_v1_3 < -0x1000) {
+                    Camera33_9DE6C_Field(temp_s0, int *, 0x54) = -0x1000;
+                }
+            }
+            else {
+                temp_a0_2 = originalFrame.sp14 * 0x10;
+                if (temp_v1_3 < temp_a0_2) {
+                    Camera33_9DE6C_Field(temp_s0, int *, 0x54) = temp_a0_2;
+                }
+            }
+            if (Camera33_9DE6C_Field(temp_s0, int *, 0x54) > 0) {
+                Camera33_9DE6C_Field(temp_s0, int *, 0x54) = 0;
+            }
+        }
+        word3=Camera33_9DE6C_Field(temp_s0,int*,0x58);
+        __asm__("":"=r"(word3):"0"(word3));
+        word2=0x555;
+        word2-=word3;
+        word2>>=8;
+        __asm__("":"=r"(word2):"0"(word2));
+        var_a1=word2+1;
+        var_v0_5 = var_a1 < 6;
+        if (var_a1 <= 0) {
+            var_a1=Camera33_9DE6C_Zero()+1;
+            var_v0_5=var_a1<6;
+        }
+        if (var_v0_5 == 0) {
+            var_a1 = 5;
+        }
+        if (((unsigned int) (Camera33_9DE6C_D_80070328.animationState - 0x7A) < 2U) || (Camera33_9DE6C_D_80070328.animationState == 0x7C)) {
+            word2=Camera33_9DE6C_Field(temp_s0,int*,0x50);
+            __asm__ volatile("":"=l"(rawLow):"l"(var_a1*word2):"memory");
+            address4=&Camera33_9DE6C_D_8006E140;
+            __asm__("":"=r"(address4):"0"(address4));
+            word2=*address4;
+            product7=rawLow;
+            __asm__("":"=r"(product7):"0"(product7),"r"(word2));
+            word3=product7>>9;
+            word2-=word3;
+            *address4=word2;
+            word2=Camera33_9DE6C_Field(temp_s0,int*,0x54);
+            __asm__ volatile("":"=l"(rawLow):"l"(var_a1*word2):"memory");
+            word2=Camera33_9DE6C_D_8006E144;
+            product7=rawLow;
+            __asm__("":"=r"(product7):"0"(product7),"r"(word2));
+            word3=product7>>9;
+            word2+=word3;
+            Camera33_9DE6C_D_8006E144=word2;
+        }
+        else {
+            word2=Camera33_9DE6C_Field(temp_s0,int*,0x50);
+            __asm__ volatile("":"=l"(rawLow):"l"(var_a1*word2):"memory");
+            address4=&Camera33_9DE6C_D_8006E140;
+            __asm__("":"=r"(address4):"0"(address4));
+            word2=*address4;
+            product7=rawLow;
+            __asm__("":"=r"(product7):"0"(product7),"r"(word2));
+            word3=product7>>8;
+            word2-=word3;
+            *address4=word2;
+            word2=Camera33_9DE6C_Field(temp_s0,int*,0x54);
+            __asm__ volatile("":"=l"(rawLow):"l"(var_a1*word2):"memory");
+            word2=Camera33_9DE6C_D_8006E144;
+            product7=rawLow;
+            __asm__("":"=r"(product7):"0"(product7),"r"(word2));
+            word3=product7>>8;
+            word2+=word3;
+            Camera33_9DE6C_D_8006E144=word2;
+        }
+        address4=&Camera33_9DE6C_D_8006E144;
+        __asm__("":"=r"(address4):"0"(address4));
+        word2=*address4;
+        __asm__("":"=r"(word2):"0"(word2));
+        temp_v1_5=word2&0xFFF;
+        *address4=temp_v1_5;
+        if(temp_v1_5>=0x801){
+            word2=temp_v1_5-0x1000;
+            __asm__("":"=r"(word2):"0"(word2));
+            *address4=word2;
+        }
+        if (*address4 < -0x200) {
+            *address4 = -0x200;
+        }
+        if (*address4 >= 0x201) {
+            *address4 = 0x200;
+        }
+        temp_v1_6 = Camera33_9DE6C_D_8006E140 & 0xFFF;
+        Camera33_9DE6C_D_8006E140 = temp_v1_6;
+        if (temp_v1_6 >= 0x801) {
+            Camera33_9DE6C_D_8006E140 = temp_v1_6 - 0x1000;
+        }
+        if ((Camera33_9DE6C_D_8006C5BC != 0x2C) || (Camera33_9DE6C_D_80071A04 == 0)) {
+            var_v0_6 = Camera33_9DE6C_D_8006E140;
+            Camera33_9DE6C_D_80070328.rotation.yaw = var_v0_6;
+        }
+        else {
+            var_v1_3 = Camera33_9DE6C_func_8003615C(Camera33_9DE6C_D_80070328.rotation.yaw, (int) Camera33_9DE6C_D_8006E040) >> 2;
+            if (var_v1_3 == 0) {
+                var_v0_6 = Camera33_9DE6C_D_80070328.rotation.yaw;
+            }
+            else {
+                if (var_v1_3 >= 0x81) {
+                    var_v1_3=Camera33_9DE6C_Zero()+0x80;
+                }
+                var_v0_7=var_v1_3<-0x80;
+                __asm__("":"=r"(var_v0_7):"0"(var_v0_7));
+                if (var_v0_7 != 0) {
+                    var_v1_3 = -0x80;
+                }
+                var_v0_6 = (unsigned short) Camera33_9DE6C_D_8006E040 - var_v1_3;
+            }
+        }
+        Camera33_9DE6C_D_8006E1F0 = var_v0_6;
+        __asm__ volatile("":::"$4","$5","memory");
+        Camera33_9DE6C_func_8004F178(&Camera33_9DE6C_D_8006E1E0, &Camera33_9DE6C_D_80070328.position);
+        Camera33_9DE6C_D_8006E1EC = 0;
+        Camera33_9DE6C_D_8006E1E8 += 0xE0;
+        Camera33_9DE6C_D_8006E1EE = Camera33_9DE6C_D_8006E144;
+        temp_a0_3 = Camera33_9DE6C_Field(temp_s0, int *, 0x58);
+        temp_a1 = ((int) (temp_a0_3 - 0x155) >> 4) + 0x10;
+        if (Camera33_9DE6C_D_8006E538 & 9) {
+            temp_v0_2 = temp_a0_3 + temp_a1;
+            Camera33_9DE6C_Field(temp_s0, int *, 0x58) = temp_v0_2;
+            if (temp_v0_2 >= 0x801) {
+                Camera33_9DE6C_Field(temp_s0, int *, 0x58) = 0x800;
+            }
+        }
+        if (Camera33_9DE6C_D_8006E538 & 6) {
+            temp_v0_3 = Camera33_9DE6C_Field(temp_s0, int *, 0x58) - temp_a1;
+            Camera33_9DE6C_Field(temp_s0, int *, 0x58) = temp_v0_3;
+            if (temp_v0_3 < 0x155) {
+                Camera33_9DE6C_Field(temp_s0, int *, 0x58) = 0x155;
+            }
+        }
+        Camera33_9DE6C_D_8006E1D0 = Camera33_9DE6C_Field(temp_s0, int *, 0x58) - 0x155;
+        return;
+    case 39:
+        base17=(unsigned char*)&Camera33_9DE6C_D_8006E12C;
+        __asm__("":"=r"(base17):"0"(base17));
+        temp_a0_4 = (CameraPosition*)(base17 - 0x54);
+        if (Camera33_9DE6C_Field(base17,int*,0) == 0) {
+            Camera33_9DE6C_func_80014354(temp_a0_4);
+            __asm__ volatile("":"=r"(base17):"0"(base17):"$4");
+            Camera33_9DE6C_func_800135A4((CameraPosition*)(base17 - 0x54), &Camera33_9DE6C_D_80069314, 0);
+            Camera33_9DE6C_func_800135A4((CameraPosition*)(base17 - 0x40), &Camera33_9DE6C_D_800693A0, 0);
+            Camera33_9DE6C_func_800135A4((CameraPosition*)(base17 - 0x2C), &Camera33_9DE6C_D_800693C8, 0);
+            Camera33_9DE6C_D_8006E114 = -1;
+            Camera33_9DE6C_D_8006E118 = -1;
+            Camera33_9DE6C_D_8006E11C = -1;
+            Camera33_9DE6C_D_8006E120 = -1;
+            Camera33_9DE6C_D_8006E124 = -1;
+        }
+        else {
+            Camera33_9DE6C_func_800135A4(temp_a0_4, &Camera33_9DE6C_D_8006929C[var_s2], 0);
+            Camera33_9DE6C_func_800135A4((CameraPosition*)(base17 - 0x40), &Camera33_9DE6C_D_80069328[var_s2], 0);
+            Camera33_9DE6C_func_800135A4((CameraPosition*)(base17 - 0x18), &Camera33_9DE6C_D_800693B4, 0);
+            Camera33_9DE6C_func_800135A4((CameraPosition*)(base17 - 0x2C), &Camera33_9DE6C_D_800693C8, 0);
+        }
+        Camera33_9DE6C_func_800142E0();
+        return;
+    case 40:
+        Camera33_9DE6C_func_8004F178(&Camera33_9DE6C_D_8006E1E0, &Camera33_9DE6C_D_80070328.position);
+        Camera33_9DE6C_D_8006E1E8 += 0xE0;
+        Camera33_9DE6C_D_8006E1EC = (short) Camera33_9DE6C_D_80070328.rotation.roll;
+        Camera33_9DE6C_D_8006E1EE = (short) Camera33_9DE6C_D_80070328.rotation.pitch;
+        Camera33_9DE6C_D_8006E1F0 = (short) Camera33_9DE6C_D_80070328.rotation.yaw;
+        return;
+    case 41:
+        Camera33_9DE6C_func_800410F8(&originalFrame.sp10, &Camera33_9DE6C_D_8006E154, 1);
+        temp_a0_5 = Camera33_9DE6C_D_8006E140 + (originalFrame.sp10 >> 2);
+        Camera33_9DE6C_D_8006E140 = temp_a0_5;
+        temp_v0_4 = Camera33_9DE6C_D_8006E144 + (originalFrame.sp14 >> 2);
+        Camera33_9DE6C_D_8006E144 = temp_v0_4;
+        if (temp_v0_4 < -0x200) {
+            Camera33_9DE6C_D_8006E144 = -0x200;
+        }
+        temp_v1_7 = temp_a0_5 & 0xFFF;
+        if (Camera33_9DE6C_D_8006E144 >= 0x201) {
+            Camera33_9DE6C_D_8006E144 = 0x200;
+        }
+        Camera33_9DE6C_D_8006E140 = temp_v1_7;
+        if (temp_v1_7 >= 0x801) {
+            Camera33_9DE6C_D_8006E140 = temp_v1_7 - 0x1000;
+        }
+        Camera33_9DE6C_D_80070328.rotation.yaw = Camera33_9DE6C_D_8006E140;
+        Camera33_9DE6C_func_8004F178(&Camera33_9DE6C_D_8006E154 + 0x8C, (Vector3D *) ((unsigned char*)&Camera33_9DE6C_D_80070328.rotation.yaw - 0x64));
+        Camera33_9DE6C_D_8006E1EC = 0;
+        Camera33_9DE6C_D_8006E1EE = Camera33_9DE6C_D_8006E144;
+        Camera33_9DE6C_D_8006E1F0 = (short) Camera33_9DE6C_D_80070328.rotation.yaw;
+        break;
+    }
+}
+#undef Camera33_9DE6C_Field
+
 
 /**
  * ???() - func_level_33_8009EA3C() - MATCHING

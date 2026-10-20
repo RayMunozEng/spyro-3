@@ -4,7 +4,1309 @@
 #include "ovl_header.h"
 #include "spyro.h"
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/animation", func_level_23_8009153C);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original8009153C.
+ * Assembly SHA256 4cdcd5f48f682b78ab85584a187c9c471206279d226dfb807fb72c74dbba5ede.
+ * AI-generated; not human reviewed. All1785 original instructions,
+ * 59 selectors (bias19) and one owned padding word are required.
+ * Frame0x140 retains scratch10..124, savedS0..S4, slotS2 and combinedS3.
+ * Fourteen exact groups reuse verified11/34/42 with original frame/address
+ * mappings. Near43 retains the original S0-relative +52/+64 clear arguments.
+ * Near47's former clear sequence belongs to original30 at80091FC8.
+ * Complete65..77 retains all original Sheila scalar/vector/input/particle
+ * and child-pointer paths;66/71 preserve their shared A2-relative vector tail.
+ * Typed aliases remain distinct. Initialized empty constraints and original
+ * address metadata emit zero CPU instructions; frozen C tools emit every word.
+ * Identified Rev1 Sheila source tables support interpretation; all original
+ * Rev0 native/linked instructions and full retail hashes remain required.
+ * Raw units/fixed point, complete helper contracts and caller cadence remain
+ * unresolved; cadence is per invocation, rate unknown.
+ * Falsification: every native/linked instruction, conditional/internal target,
+ * selector/data word and full EXE/every-overlay retail hash.
+ * Binary identity does not establish synchronized runtime/system completion. */
+#define Physics23Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+int Physics23Call363DCView1() __asm__("func_800363DC");
+unsigned char Physics23Call40D10View1() __asm__("func_80040D10");
+unsigned char Physics23Call41580View1() __asm__("func_80041580");
+unsigned char Physics23Call417FCView1() __asm__("func_800417FC");
+unsigned char Physics23Call41B64View1() __asm__("func_80041B64");
+int Physics23Call4E9E4View1() __asm__("func_8004E9E4");
+int Physics23Call4EA2CView1() __asm__("func_8004EA2C");
+unsigned char Physics23Call4ED6CView1() __asm__("func_8004ED6C");
+int Physics23Call4EDE8View1() __asm__("func_8004EDE8");
+unsigned char Physics23Call4F08CView1() __asm__("func_8004F08C");
+unsigned char Physics23Call4F194View1() __asm__("func_8004F194");
+unsigned char Physics23Call4F1C8View1() __asm__("func_8004F1C8");
+int Physics23CallRandView1() __asm__("rand");
+extern unsigned char Physics23Data658A0View1 __asm__("D_800658A0");
+extern unsigned char Physics23Data65920View1 __asm__("D_80065920");
+extern void *Physics23Data6C570View1 __asm__("D_8006C570");
+extern unsigned char Physics23Data6E548View1 __asm__("D_8006E548");
+extern unsigned char Physics23Player0View1 __asm__("D_80070328");
+extern int Physics23Player94View1 __asm__("D_80070328+0x94");
+extern void *(*Controller88028_SpawnParticle)() __asm__("SpawnParticle");
+int Physics23Call40D10View2() __asm__("func_80040D10");
+int Physics23Call41580View2() __asm__("func_80041580");
+int Physics23Call416F4View1() __asm__("func_800416F4");
+int Physics23Call417FCView2() __asm__("func_800417FC");
+int Physics23Call41848View1() __asm__("func_80041848");
+int Physics23Call41B64View2() __asm__("func_80041B64");
+int Physics23Call4EDE8View2() __asm__("func_8004EDE8");
+int Physics23Call4F08CView2() __asm__("func_8004F08C");
+int Physics23Call4F168View1() __asm__("func_8004F168");
+int Physics23Call4F178View1() __asm__("func_8004F178");
+int Physics23Call4F194View2() __asm__("func_8004F194");
+int Physics23Call4F1C8View2() __asm__("func_8004F1C8");
+extern int Physics23Data6E044View1 __asm__("D_8006E044");
+extern int Physics23Data6E538View1 __asm__("D_8006E538");
+extern unsigned char Physics23Player0View2 __asm__("D_80070328");
+extern void *(*Physics13_SpawnParticle)() __asm__("SpawnParticle");
+extern int Physics23PlayerB8View1 __asm__("D_80070328+0xB8");
+extern int Physics23Player94View2 __asm__("D_80070328+0x94");
+extern int Physics23PlayerA8View1 __asm__("D_80070328+0xA8");
+extern int Physics23PlayerB0View1 __asm__("D_80070328+0xB0");
+extern int Physics23Player64View1 __asm__("D_80070328+0x64");
+extern int Physics23Player88View1 __asm__("D_80070328+0x88");
+extern int Physics23Player84View1 __asm__("D_80070328+0x84");
+extern int Physics23Player144View1 __asm__("D_80070328+0x144");
+extern int Physics23PlayerACView1 __asm__("D_80070328+0xAC");
+extern int Physics23Player4CView1 __asm__("D_80070328+0x4C");
+extern unsigned char Physics23PlayerFCView1 __asm__("D_80070328+0xFC");
+extern int Physics23PlayerA0View1 __asm__("D_80070328+0xA0");
+extern unsigned char Physics23Player1BAView1 __asm__("D_80070328+0x1BA");
+extern signed char Physics23Player1B9View1 __asm__("D_80070328+0x1B9");
+extern int Physics23Player20CView1 __asm__("D_80070328+0x20C");
+extern unsigned char Physics23Player101View1 __asm__("D_80070328+0x101");
+extern int Physics23PlayerA4View1 __asm__("D_80070328+0xA4");
+int Physics23Call40F48View1() __asm__("func_80040F48");
+int Physics23Call43194View1() __asm__("func_80043194");
+int Physics23Call4E880View1() __asm__("func_8004E880");
+int Physics23Call4ED6CView2() __asm__("func_8004ED6C");
+int Physics23Call4EDE8View3() __asm__("func_8004EDE8");
+int Physics23Call4F08CView3() __asm__("func_8004F08C");
+int Physics23Call4F168View2() __asm__("func_8004F168");
+int Physics23Call4F178View2() __asm__("func_8004F178");
+int Physics23Call4F194View3() __asm__("func_8004F194");
+int Physics23Call4F1C8View3() __asm__("func_8004F1C8");
+extern unsigned char Physics23Data658A0View2 __asm__("D_800658A0");
+extern unsigned char Physics23Data65920View2 __asm__("D_80065920");
+extern int Physics23Data6C514View1 __asm__("D_8006C514");
+extern int Physics23Data6E044View2 __asm__("D_8006E044");
+extern int Physics23Data6E344View1 __asm__("D_8006E344");
+extern unsigned char Physics23Player0View3 __asm__("D_80070328");
+extern void *(*Physics34_SpawnParticle)() __asm__("SpawnParticle");
+extern int Physics23Player16CView1 __asm__("D_80070328+0x16C");
+extern void *(*Physics12_SpawnParticle)() __asm__("SpawnParticle");
+extern int Physics23PlayerE4View1 __asm__("D_80070328+0xE4");
+int Physics23Call40D10View3() __asm__("func_80040D10");
+int Physics23Call41580View3() __asm__("func_80041580");
+int Physics23Call417FCView3() __asm__("func_800417FC");
+int Physics23Call41848View2() __asm__("func_80041848");
+int Physics23Call41B64View3() __asm__("func_80041B64");
+int Physics23Call4ED6CView3() __asm__("func_8004ED6C");
+int Physics23Call4F110View1() __asm__("func_8004F110");
+int Physics23Call4F168View3() __asm__("func_8004F168");
+int Physics23Call4F178View3() __asm__("func_8004F178");
+int Physics23Call4F194View4() __asm__("func_8004F194");
+int Physics23CallRandView2() __asm__("rand");
+extern int Physics23Data6C640View1 __asm__("D_8006C640");
+extern int Physics23Data6E044View3 __asm__("D_8006E044");
+extern unsigned char Physics23Player0View4 __asm__("D_80070328");
+extern void *(*Physics21_SpawnParticle)() __asm__("SpawnParticle");
+extern void *(*Physics32_SpawnParticle)() __asm__("SpawnParticle");
+extern void *(*Physics50_SpawnParticle)() __asm__("SpawnParticle");
+int Physics23Call4F110View2() __asm__("func_8004F110");
+int Physics23Call4F178View4() __asm__("func_8004F178");
+int Physics23Call4F194View5() __asm__("func_8004F194");
+extern int Physics23Data6E1D4View1 __asm__("D_8006E1D4");
+extern int Physics23Data6E1D8View1 __asm__("D_8006E1D8");
+extern int Physics23Data6E52CView1 __asm__("D_8006E52C");
+extern int Physics23Data6E530View1 __asm__("D_8006E530");
+extern void *(*Physics42_SpawnParticle)() __asm__("SpawnParticle");
+extern int Physics23Player250View1 __asm__("D_80070328+0x250");
+extern int Physics23Player54View1 __asm__("D_80070328+0x54");
+extern int Physics23PlayerD4View1 __asm__("D_80070328+0xD4");
+extern void *Physics23Data6C654View1 __asm__("D_8006C654");
+int Physics23DataPlaySoundView1() __asm__("PlaySound");
+extern int Physics23Player8CView1 __asm__("D_80070328+0x8C");
+extern int Physics23Player90View1 __asm__("D_80070328+0x90");
+extern void *(*Physics23_SpawnParticle)() __asm__("SpawnParticle");
+void func_level_23_8009153C(int slotIndex) {
+    register void *fieldA4State28 __asm__("$16");
+    register void *vector8CState28 __asm__("$17");
+    register int signedWord19 __asm__("$20");
+    register int signedWord20 __asm__("$21");
+    register int signedWord21 __asm__("$22");
+    register void *savedPointer22 __asm__("$19");
+    register void *savedPointer17 __asm__("$17");
+    register void *(*particleCall3)() __asm__("$3");
+    register int particleArg7 __asm__("$7");
+    register int workWord2 __asm__("$2");
+    register int stateWord3 __asm__("$3");
+    register int particleThreshold __asm__("$19");
+    register void *vectorAt40 __asm__("$16");
+    register void *vectorAt30 __asm__("$17");
+    register void *call4 __asm__("$4");
+    register void *call5 __asm__("$5");
+    register void *call6 __asm__("$6");
+    int lowProduct0,lowProduct1,lowProduct2,lowProduct3,lowProduct4,lowProduct5;
+    register void *globalPointer __asm__("$3");
+    struct {
+        int sp10,sp14,sp18,sp1C,sp20,sp24,sp28,sp2C,sp30,sp34,sp38,sp3C,sp40,sp44,sp48,sp4C,sp50,sp54,sp58,sp5C,sp60,sp64,sp68,sp6C,sp70,sp74,sp78,sp7C,sp80,sp84,sp88,sp8C,sp90,sp94,sp98,sp9C,spA0,spA4,spA8,spAC,spB0,spB4,spB8,spBC,spC0,spC4,spC8,spCC,spD0,spD4,spD8,spDC,spE0,spE4,spE8,spEC,spF0,spF4,spF8,spFC,sp100,sp104,sp108,sp10C,sp110,sp114,sp118,sp11C,sp120,sp124;
+    }
+    originalFrame;
+    register int signedTableWord __asm__("$7");
+    register void *globalVector80 __asm__("$16");
+    register void *globalVector8CState20 __asm__("$18");
+    register void *globalVector8C __asm__("$18");
+    register void *var_a0_3 __asm__("$4");
+    register int combinedIndex __asm__("$19");
+    int temp_v0_4;
+    register int workWord3 __asm__("$3");
+    register int particleIndex __asm__("$17");
+    register int nextField94 __asm__("$2");
+    register unsigned char *globalByteE __asm__("$18");
+    register void *globalField4CPointer __asm__("$16");
+    register void *globalFieldA4Pointer __asm__("$17");
+    void *temp_v0_5;
+    register int savedSlotIndex __asm__("$18");
+    int lowProduct6;
+    int raw21_var_a0_2;
+    int raw21_var_a1_4;
+    int raw21_temp_a0_7;
+    int raw21_temp_a1_4;
+    int raw21_var_v0_2;
+    void *raw21_temp_s0_11;
+    void *raw21_temp_s1_7;
+    void *raw21_temp_s2_3;
+    void *raw21_temp_s4;
+    savedSlotIndex=slotIndex;
+    workWord2=savedSlotIndex*16;
+    globalPointer=&Physics23Data6E548View1;
+    workWord2+=(int)globalPointer;
+    __asm__("":"=r"(workWord2):"0"(workWord2));
+    Physics23Data6C570View1=(void*)workWord2;
+    workWord2=Physics23Field(&Physics23Player0View1,int*,0x54);
+    stateWord3=Physics23Field(&Physics23Player0View1,int*,0x48);
+    combinedIndex=workWord2+savedSlotIndex;
+    switch (stateWord3) {
+    case 19:{
+            int product19;
+            register int numeric4 __asm__("$4");
+            register int numeric5 __asm__("$5");
+            register int numeric6 __asm__("$6");
+            register int numeric7 __asm__("$7");
+            register int angle16 __asm__("$16");
+            register int square8 __asm__("$8");
+            register int product10 __asm__("$10");
+            workWord3=Physics23Data6E344View1;
+            workWord2=13;
+            if(workWord3==workWord2){
+                workWord2=Physics23Data6C514View1;
+                if(workWord2)return;
+            }
+            vectorAt30=&Physics23Player0View3+8;
+            workWord3=Physics23Field(vectorAt30,int*,0);
+            workWord2=Physics23Field(&Physics23Player0View3,int*,0x144);
+            numeric4=workWord3-workWord2;
+            workWord2=numeric4<1024;
+            if(!workWord2)goto beyond19;
+            workWord2=Physics23Player94View2;
+            workWord2+=128;
+            Physics23Player94View2=workWord2;
+            workWord2=workWord2<4801;
+            __asm__("":"=r"(numeric4):"0"(numeric4),"r"(workWord2));
+            if(!workWord2){
+                workWord2=4800;
+                Physics23Player94View2=workWord2;
+            }
+            product19=numeric4*numeric4;
+            call4=&originalFrame.sp10;
+            workWord3=Physics23Field(&Physics23Player0View3,int*,0x148);
+            __asm__ volatile(""::"r"(workWord2),"r"(workWord3),"r"(call4):"memory");
+            workWord2=product19>>11;
+            angle16=workWord2+workWord3;
+            Physics23Player64View1=angle16;
+            __asm__ volatile("":"=r"(vectorAt30):"0"(vectorAt30),"r"(call4):"memory");
+            Physics23Call4F178View2(call4,vectorAt30+340);
+            call4=&originalFrame.sp10;
+            call5=call4;
+            Physics23Call4F1C8View3(call4,call5,vectorAt30-8);
+            call4=&originalFrame.sp10;
+            call5=0;
+            originalFrame.sp18=0;
+            workWord2=Physics23Call4EDE8View3(call4,call5);
+            numeric6=workWord2;
+            workWord2=numeric6<1025;
+            call4=&originalFrame.sp10;
+            if(workWord2)goto commit19;
+            call5=(void*)numeric6;
+            __asm__ volatile(""::"i"(0x8009168C):"memory");
+            numeric6=1024;
+            goto limit19;
+            beyond19:numeric5=Physics23Field(&Physics23Player0View3,int*,0x14C);
+            workWord2=workWord3-numeric5;
+            workWord2=workWord2<-1024;
+            numeric6=numeric5-workWord3;
+            if(!workWord2)goto curve19;
+            __asm__ volatile("":"=r"(numeric6):"0"(numeric6),"i"(0x800916B0));
+            workWord2=Physics23Player4CView1;
+            workWord3=1;
+            if(!workWord2){
+                workWord2=Physics23Field(&Physics23Player0View3,int*,0x148);
+                Physics23Player4CView1=workWord3;
+                workWord2+=512;
+                Physics23Field(&Physics23Player0View3,int*,0x148)=workWord2;
+            }
+            workWord2=Physics23Player94View2;
+            workWord2+=128;
+            Physics23Player94View2=workWord2;
+            workWord2=workWord2<4801;
+            if(!workWord2)Physics23Player94View2=4800;
+            workWord2=Physics23Field(&Physics23Player0View3,int*,0x150);
+            numeric6=numeric4-1024;
+            workWord3=workWord2*numeric6;
+            workWord2=Physics23Field(&Physics23Player0View3,int*,0x154);
+            workWord2=workWord3/workWord2;
+            call4=&originalFrame.sp10;
+            workWord3=Physics23Field(&Physics23Player0View3,int*,0x148);
+            angle16=workWord3+workWord2;
+            workWord2=(numeric6<<10)>>10;
+            workWord2=angle16+workWord2;
+            angle16=workWord2&4095;
+            Physics23Player64View1=angle16;
+            Physics23Call4F178View2(call4,vectorAt30+340);
+            call4=&originalFrame.sp10;
+            call5=call4;
+            Physics23Call4F1C8View3(call4,call5,vectorAt30-8);
+            call4=&originalFrame.sp10;
+            call5=0;
+            originalFrame.sp18=0;
+            workWord2=Physics23Call4EDE8View3(call4,call5);
+            numeric6=workWord2;
+            workWord2=numeric6<1025;
+            call4=&originalFrame.sp10;
+            if(workWord2)goto commit19;
+            call5=(void*)numeric6;
+            __asm__ volatile(""::"i"(0x800917C0):"memory");
+            numeric6=1024;
+            goto limit19;
+            curve19:__asm__ volatile("":"=r"(numeric6):"0"(numeric6),"i"(0x800917C8));
+            workWord2=(numeric6*4800)>>10;
+            Physics23Player94View2=workWord2;
+            workWord2=Physics23Player16CView1;
+            numeric7=Physics23Field(&Physics23Player0View3,int*,0x168);
+            workWord3=Physics23Field(&Physics23Player0View3,int*,0x158);
+            workWord2&=127;
+            numeric4=numeric7<<1;
+            Physics23Player16CView1=workWord2;
+            workWord2=*(short*)(&Physics23Data65920View2+numeric4);
+            workWord3+=1024;
+            product10=workWord3*workWord2;
+            square8=numeric6*numeric6;
+            workWord2=product10>>12;
+            originalFrame.sp10=workWord2;
+            workWord2=*(short*)(&Physics23Data658A0View2+numeric4);
+            workWord3=workWord3*workWord2;
+            numeric7<<=4;
+            call4=&originalFrame.sp10;
+            call5=call4;
+            __asm__("":"=r"(vectorAt30):"0"(vectorAt30),"r"(call4),"r"(call5));
+            numeric6=(int)vectorAt30+340;
+            workWord2=square8>>11;
+            angle16=numeric7-workWord2;
+            workWord2=workWord3>>12;
+            originalFrame.sp14=workWord2;
+            Physics23Call4F194View3(call4,call5,numeric6,numeric7);
+            call4=&originalFrame.sp10;
+            call5=call4;
+            Physics23Player64View1=angle16;
+            Physics23Call4F1C8View3(call4,call5,vectorAt30-8);
+            call4=&originalFrame.sp10;
+            call5=0;
+            originalFrame.sp18=0;
+            workWord2=Physics23Call4EDE8View3(call4,call5);
+            numeric6=workWord2;
+            workWord2=numeric6<2049;
+            call4=&originalFrame.sp10;
+            if(workWord2)goto commit19;
+            call5=(void*)numeric6;
+            numeric6=2048;
+            limit19:Physics23Call4F08CView3(call4,call5,numeric6);
+            commit19:workWord2=originalFrame.sp10;
+            workWord3=originalFrame.sp14;
+            Physics23Field(&Physics23Player0View3,int*,0x8C)=workWord2;
+            Physics23Field(&Physics23Player0View3,int*,0x90)=workWord3;
+            return;
+        }
+    default:
+        return;
+    case 28:{
+            int lowProduct3Case28,lowProduct4Case28;
+            Physics23Call40D10View1(0xC80);
+            Physics23Call41580View1(0x28, 8);
+            Physics23Call417FCView1(0x140, 0xC0);
+            globalFieldA4Pointer = &Physics23Player0View1 + 0xA4;
+            globalVector8C = globalFieldA4Pointer - 0x18;
+            workWord2=Physics23Call4EA2CView1(Physics23Field(globalFieldA4Pointer,int*,0));
+            workWord3=Physics23Field(&Physics23Player0View1,int*,0xB0);
+            lowProduct3Case28=workWord3*workWord2;
+            call4=(void*)Physics23Field(globalFieldA4Pointer,int*,0);
+            workWord2=lowProduct3Case28>>12;
+            __asm__("" : "=r"(workWord2):"0"(workWord2));
+            originalFrame.sp20=workWord2;
+            workWord2=Physics23Call4E9E4View1(call4);
+            workWord3=Physics23Field(&Physics23Player0View1,int*,0xB0);
+            lowProduct4Case28=workWord3*workWord2;
+            workWord2=lowProduct4Case28>>12;
+            __asm__("" : "=r"(workWord2):"0"(workWord2));
+            originalFrame.sp24=workWord2;
+            Physics23Call4F1C8View1(&originalFrame.sp20, &originalFrame.sp20, globalVector8C);
+            originalFrame.sp28 = 0;
+            temp_v0_4 = Physics23Call4EDE8View1(&originalFrame.sp20, 0);
+            __asm__("" : "=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+            var_a0_3 = globalFieldA4Pointer - 0x24;
+            if (temp_v0_4 >= 0x281) {
+                Physics23Call4F08CView1(&originalFrame.sp20, temp_v0_4, 0x280);
+                __asm__("" : "=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+                var_a0_3 = globalFieldA4Pointer - 0x24;
+            }
+            Physics23Call4F194View1(var_a0_3, globalVector8C, &originalFrame.sp20);
+            Physics23Call41B64View1();
+            if (combinedIndex < 0xD) {
+                __asm__("" :: "r"(combinedIndex));
+                nextField94 = Physics23Field(&Physics23Player0View1, int *, 0x94) + 0x17;
+            }
+            else {
+                nextField94 = Physics23Field(&Physics23Player0View1, int *, 0x94) - 0xC0;
+            }
+            Physics23Player94View1=nextField94;
+            __asm__ volatile("" ::: "memory");
+            if (Controller88028_SpawnParticle != 0) {
+                globalPointer=&Physics23Player0View1+0x148;
+                __asm__("" : "=r"(globalPointer):"0"(globalPointer));
+                particleIndex=0;
+                if (Physics23Field(globalPointer,int*,0) != 0) {
+                    workWord2=combinedIndex*4;
+                    __asm__("" : "=r"(workWord2):"0"(workWord2));
+                    particleThreshold=workWord2+combinedIndex;
+                    globalByteE=globalPointer-0x13A;
+                    vectorAt40=&originalFrame.sp40;
+                    __asm__("" : "=r"(vectorAt40):"0"(vectorAt40));
+                spawnParticleLoop:
+                    if (particleThreshold < (Physics23CallRandView1() & 0xFF)) {
+                        workWord2=Physics23Call363DCView1(0,0xC);
+                        call4=globalByteE+0x22;
+                        workWord3=*globalByteE;
+                        __asm__("" : "=r"(workWord3):"0"(workWord3));
+                        call5=vectorAt40;
+                        __asm__("" : "=r"(call4),"=r"(call5):"0"(call4),"1"(call5));
+                        workWord3+=0x80;
+                        __asm__("" : "=r"(workWord3):"0"(workWord3));
+                        workWord3+=workWord2;
+                        __asm__("" : "=r"(workWord3):"0"(workWord3));
+                        workWord3=(workWord3&0xFF)*2;
+                        signedTableWord = *(short*)(&Physics23Data65920View1 + workWord3);
+                        call6=vectorAt40;
+                        originalFrame.sp30 = (int) (signedTableWord * 5) >> 0xA;
+                        workWord3=*(short*)(&Physics23Data658A0View1 + workWord3);
+                        __asm__ volatile("" : "=r"(workWord3):"0"(workWord3):"memory");
+                        originalFrame.sp38 = 0xE;
+                        originalFrame.sp40 = -0x12C;
+                        originalFrame.sp44 = 0;
+                        originalFrame.sp48 = -0xC8;
+                        __asm__ volatile("" ::: "memory");
+                        originalFrame.sp34 = (workWord3 * 5) >> 0xA;
+                        Physics23Call4ED6CView1(call4, call5, call6, signedTableWord);
+                        originalFrame.sp40 += Physics23Call363DCView1(0, 0x50);
+                        originalFrame.sp44 += Physics23Call363DCView1(0, 0x50);
+                        originalFrame.sp48 += Physics23Call363DCView1(0, 0x50);
+                        Physics23Call4F194View1(vectorAt40, vectorAt40, globalByteE - 0xE);
+                        temp_v0_5 = Controller88028_SpawnParticle(1, 0xD, vectorAt40, &originalFrame.sp30);
+                        workWord2=(int)temp_v0_5;
+                        workWord3=8;
+                        Physics23Field((void*)workWord2,signed char*,2)=workWord3;
+                        workWord3=32;
+                        Physics23Field((void*)workWord2,signed char*,10)=workWord3;
+                    }
+                    particleIndex += 1;
+                    if (particleIndex < 2) {
+                        goto spawnParticleLoop;
+                    }
+                }
+            }
+            break;
+        }
+    case 43:case 44:
+        globalField4CPointer=&Physics23Player4CView1;
+        __asm__("":"=r"(globalField4CPointer):"0"(globalField4CPointer));
+        workWord3=Physics23Field(globalField4CPointer,int*,0);
+        workWord2=1;
+        if(workWord3!=workWord2)goto continue43;
+        block_154:Physics23Call4F168View3(globalField4CPointer+52);
+        Physics23Call4F168View3(globalField4CPointer+64);
+        return;
+        continue43:workWord2=7;
+        workWord3=Physics23Data6E044View3;
+        if (workWord3 == workWord2) {
+            Physics23Field(&Physics23Player0View4, int *, 0xB0) = 0;
+        }
+        else {
+            Physics23Call40D10View3(0x980);
+            raw21_var_v0_2 = Physics23Call41580View3(0x5A, 0x10);
+            if (raw21_var_v0_2 < 0) {
+                raw21_var_v0_2 = -raw21_var_v0_2;
+            }
+            if (raw21_var_v0_2 >= 0x201) {
+                Physics23Field(&Physics23Player0View4, int *, 0xAC) = 0;
+            }
+            raw21_var_a0_2 = 0xC0;
+            if (Physics23Field(&Physics23Player0View4, int *, 0xB0) >= 0xC81) {
+                raw21_var_a0_2 = 0;
+                raw21_var_a1_4 = 0xC0;
+            }
+            else {
+                raw21_var_a1_4 = 0x40;
+            }
+            Physics23Call417FCView3(raw21_var_a0_2, raw21_var_a1_4);
+        }
+        raw21_temp_s0_11 = &Physics23Player0View4 + 0xB0;
+        if (Physics23Field(&Physics23Player0View4, int *, 0xB0) != 0) {
+            Physics23Call41848View2();
+            Physics23Call41B64View3();
+            Physics23Field(&Physics23Player0View4, int *, 0x94) = 0;
+        }
+        else {
+            Physics23Call4F168View3(raw21_temp_s0_11 - 0x30);
+            Physics23Call4F168View3(raw21_temp_s0_11 - 0x24);
+        }
+        if (Physics21_SpawnParticle != 0) {
+            raw21_temp_s4 = &Physics23Player0View4 + 0x28;
+            if (Physics23Field(&Physics23Player0View4, int *, 0x28) < 0) {
+                if ((Physics23Field(&Physics23Player0View4, int *, 0xB0) >= 0x401) && (savedSlotIndex < 2) && (Physics23Data6C640View1 & 1)) {
+                    Physics23Call4F178View3(&originalFrame.sp30, raw21_temp_s4 - 0x28);
+                    originalFrame.sp54 = 0x40;
+                    originalFrame.sp58 = 0;
+                    originalFrame.sp50 = (int) Physics23Field(&Physics23Player0View4, int *, 0xB0) >> 5;
+                    if (savedSlotIndex != 0) {
+                        originalFrame.sp54 = -0x40;
+                    }
+                    raw21_temp_s2_3 = raw21_temp_s4 + 8;
+                    Physics23Call4ED6CView3(raw21_temp_s2_3, &originalFrame.sp50, &originalFrame.sp60);
+                    Physics23Call4F194View4(&originalFrame.sp30, &originalFrame.sp30, &originalFrame.sp60);
+                    originalFrame.sp50 = 0;
+                    originalFrame.sp38 = -Physics23Field(&Physics23Player0View4, int *, 0x28);
+                    Physics23Call4ED6CView3(raw21_temp_s2_3, &originalFrame.sp50, &originalFrame.sp50);
+                    Physics23Call4F110View1(&originalFrame.sp50, 3);
+                    Physics21_SpawnParticle(1, 0x2A, &originalFrame.sp30, &originalFrame.sp50);
+                    if (!(Physics23CallRandView2() & 0x1F)) {
+                        Physics21_SpawnParticle(1, 0x29, &originalFrame.sp30, 0);
+                    }
+                }
+                else {
+                    raw21_temp_s1_7 = &Physics23Player0View4 + 0xB0;
+                    if ((Physics23Field(&Physics23Player0View4, int *, 0xB0) < 0x201) && (savedSlotIndex == 0) && !(Physics23Data6C640View1 & 7) && !(Physics23CallRandView2() & 3)) {
+                        originalFrame.sp70 = 0x80;
+                        __asm__("":"=r"(savedSlotIndex):"0"(savedSlotIndex));
+                        originalFrame.sp74 = 0;
+                        originalFrame.sp78 = 0;
+                        Physics23Call4ED6CView3(raw21_temp_s1_7 - 0x80, &originalFrame.sp70, &originalFrame.sp70);
+                        Physics23Call4F194View4(&originalFrame.sp70, &originalFrame.sp70, raw21_temp_s1_7 - 0xB0);
+                        originalFrame.sp78 = -Physics23Field(&Physics23Player0View4, int *, 0x28);
+                        Physics21_SpawnParticle(1, 0x2B, &originalFrame.sp70, (int *)1);
+                    }
+                }
+            }
+        }
+        raw21_temp_a1_4 = Physics23Field(&Physics23Player0View4, int *, 0x144) - ((int) ((Physics23Field(&Physics23Player0View4, int *, 0x148) * 2) + (Physics23Field(&Physics23Player0View4, int *, 0x144) * 0x14)) >> 8);
+        raw21_temp_a0_7 = Physics23Field(&Physics23Player0View4, int *, 0x148) + raw21_temp_a1_4;
+        Physics23Field(&Physics23Player0View4, int *, 0x144) = raw21_temp_a1_4;
+        Physics23Field(&Physics23Player0View4, int *, 0x148) = raw21_temp_a0_7;
+        if (raw21_temp_a0_7 >= 0x5901) {
+            Physics23Field(&Physics23Player0View4, int *, 0x148) = 0x5900;
+        }
+        if (Physics23Field(&Physics23Player0View4, int *, 0x148) < -0x5900) {
+            Physics23Field(&Physics23Player0View4, int *, 0x148) = -0x5900;
+            return;
+        }
+        break;
+    case 47:{
+            register int numeric4 __asm__("$4");
+            register int numeric5 __asm__("$5");
+            register int numeric6 __asm__("$6");
+            workWord3=Physics23Data6E044View2;
+            workWord2=7;
+            if(workWord3==workWord2)goto zero47;
+            Physics23Call40F48View1(&originalFrame.sp60,0);
+            workWord2=originalFrame.sp60;
+            numeric6=originalFrame.sp64;
+            originalFrame.sp80=0;
+            workWord3=(workWord2*9<<7)>>7;
+            workWord2=(numeric6*3<<9)>>7;
+            originalFrame.sp60=workWord3;
+            workWord3=-workWord3;
+            originalFrame.sp64=workWord2;
+            originalFrame.sp84=workWord3;
+            originalFrame.sp88=workWord2;
+            workWord2=Physics23Call4EDE8View3(&originalFrame.sp80,0,numeric6);
+            numeric4=originalFrame.sp88;
+            workWord3=numeric4;
+            if(numeric4<0){
+                __asm__("":"=r"(workWord3):"0"(workWord3));
+                workWord3=-workWord3;
+            }
+            workWord3=workWord3<workWord2;
+            if(workWord3){
+                workWord2=originalFrame.sp84;
+                originalFrame.sp88=0;
+                __asm__ volatile("":::"$4");
+                numeric4=0;
+                if(workWord2>0){
+                    __asm__ volatile(""::"i"(0x80091F60):"memory");
+                    numeric4=1;
+                }
+                if(!Physics23Call43194View1(numeric4)){
+                    originalFrame.sp84=0;
+                }
+            }
+            else{
+                __asm__ volatile("":::"$3");
+                originalFrame.sp84=0;
+                originalFrame.sp80=0;
+                if(numeric4>0){
+                    __asm__ volatile(""::"i"(0x80091F88):"memory");
+                    numeric4=2;
+                }
+                else numeric4=3;
+                if(!Physics23Call43194View1(numeric4)){
+                    originalFrame.sp88=0;
+                }
+            }
+            call4=&originalFrame.sp80;
+            workWord2=Physics23Call4EDE8View3(call4,1);
+            Physics23PlayerACView1=workWord2;
+            __asm__ volatile(""::"i"(0x80091FB8):"memory");
+            goto clear30;
+            zero47:Physics23PlayerACView1=0;
+            goto clear30;
+        }
+    case 30:clear30:globalVector80 = &Physics23Player0View3 + 0x80;
+        Physics23Call4F168View2(globalVector80);
+        Physics23Call4F168View2(globalVector80 + 0xC);
+        return;
+    case 50:case 51:case 52:{
+            register int numeric4 __asm__("$4");
+            register int numeric5 __asm__("$5");
+            register int numeric6 __asm__("$6");
+            Physics23Call40F48View1(&originalFrame.sp90,0);
+            workWord2=originalFrame.sp90;
+            numeric6=originalFrame.sp94;
+            originalFrame.sp98=0;
+            workWord3=(workWord2*9<<7)>>7;
+            workWord2=(numeric6*3<<9)>>7;
+            originalFrame.sp90=workWord3;
+            workWord3=-workWord3;
+            originalFrame.sp94=workWord2;
+            originalFrame.sp9C=workWord3;
+            originalFrame.spA0=workWord2;
+            workWord2=Physics23Call4EDE8View3(&originalFrame.sp98,0,numeric6);
+            numeric4=originalFrame.spA0;
+            workWord3=numeric4;
+            if(numeric4<0){
+                __asm__("":"=r"(workWord3):"0"(workWord3));
+                workWord3=-workWord3;
+            }
+            workWord3=workWord3<workWord2;
+            if(workWord3){
+                workWord2=originalFrame.sp9C;
+                originalFrame.spA0=0;
+                __asm__ volatile("":::"$4");
+                numeric4=0;
+                if(workWord2>0){
+                    __asm__ volatile(""::"i"(0x80092070):"memory");
+                    numeric4=1;
+                }
+                if(!Physics23Call43194View1(numeric4)){
+                    originalFrame.sp9C=0;
+                }
+            }
+            else{
+                __asm__ volatile("":::"$3");
+                originalFrame.sp9C=0;
+                originalFrame.sp98=0;
+                if(numeric4>0){
+                    __asm__ volatile(""::"i"(0x80092098):"memory");
+                    numeric4=2;
+                }
+                else numeric4=3;
+                if(!Physics23Call43194View1(numeric4)){
+                    originalFrame.spA0=0;
+                }
+            }
+            vectorAt30=&originalFrame.sp98;
+            workWord2=Physics23Call4EDE8View3(vectorAt30,1);
+            numeric6=1;
+            __asm__("":"=r"(numeric6):"0"(numeric6));
+            numeric4=originalFrame.sp90;
+            numeric5=originalFrame.sp94;
+            globalVector80=&Physics23PlayerACView1;
+            Physics23Field(globalVector80,int*,0)=workWord2;
+            workWord2=Physics23Call4E880View1(numeric4,numeric5,numeric6);
+            workWord3=workWord2;
+            workWord2=workWord3<2049;
+            Physics23PlayerA4View1=workWord3;
+            call4=globalVector80-124;
+            if(!workWord2){
+                workWord2=workWord3-4096;
+                Physics23PlayerA4View1=workWord2;
+            }
+            call5=vectorAt30;
+            workWord2=originalFrame.sp98;
+            call6=vectorAt30;
+            workWord2+=1024;
+            originalFrame.sp98=workWord2;
+            Physics23Call4ED6CView2(call4,call5,call6);
+            call4=vectorAt30;
+            call5=vectorAt30;
+            __asm__("":"=r"(globalVector80):"0"(globalVector80),"r"(call4),"r"(call5));
+            globalVector8CState20=globalVector80-32;
+            Physics23Call4F1C8View3(call4,call5,globalVector8CState20);
+            call5=(void*)Physics23Call4EDE8View3(vectorAt30,0);
+            workWord2=(int)call5<385;
+            if(!workWord2)Physics23Call4F08CView3(vectorAt30,call5,384);
+            globalVector80-=44;
+            Physics23Call4F194View3(globalVector80,globalVector8CState20,vectorAt30);
+            Physics23Call4F178View2(globalVector8CState20,globalVector80);
+            return;
+        }
+    case 65:globalVector80=&Physics23Player0View2+0x80;
+        Physics23Call4F168View1(globalVector80);
+        Physics23Call4F168View1(globalVector80+12);
+        if(Physics23Data6E044View1!=7){
+            Physics23Call40D10View2(6016);
+            Physics23Call416F4View1();
+            Physics23Call41580View2(90,16);
+        }
+        workWord2=Physics23Player1BAView1;
+        if(!workWord2)goto byteOne65;
+        workWord2=Physics23Data6E538View1&16;
+        if(workWord2)return;
+        workWord2=1;
+        Physics23Player1BAView1=0;
+        Physics23Player1B9View1=workWord2;
+        return;
+        byteOne65:workWord2=1;
+        __asm__("":"=r"(workWord2):"0"(workWord2));
+        Physics23Player1B9View1=workWord2;
+        return;
+    case 66:case 69:workWord3=Physics23Data6E044View1;
+        workWord2=8;
+        if(workWord3!=workWord2)Physics23Call40D10View2(6016);
+        globalVector80=&Physics23Data6E538View1;
+        workWord2=Physics23Field(globalVector80,int*,0)&12;
+        if(workWord2)Physics23PlayerACView1=0;
+        workWord2=Physics23Call416F4View1();
+        call4=(void*)90;
+        call5=(void*)16;
+        __asm__("":"=r"(call4),"=r"(call5):"0"(call4),"1"(call5));
+        globalFieldA4Pointer=(void*)workWord2;
+        workWord2=Physics23Call41580View2(call4,call5);
+        workWord3=Physics23PlayerA8View1;
+        if(workWord3<0)workWord3=-workWord3;
+        workWord3=workWord3<8;
+        __asm__("":"=r"(workWord3):"0"(workWord3),"r"(workWord2));
+        call5=(void*)workWord2;
+        if(!workWord3)goto reset101;
+        workWord2=Physics23Field(globalVector80,int*,0)&12;
+        if(!workWord2)goto reset101;
+        workWord2=Physics23Player144View1;
+        workWord2++;
+        Physics23Player144View1=workWord2;
+        goto saved101;
+        reset101:Physics23Player144View1=0;
+        saved101:call4=&Physics23PlayerACView1;
+        globalVector80=(void*)Physics23Field(call4,int*,0);
+        if(globalFieldA4Pointer)goto collision101;
+        workWord2=(int)call5;
+        if((int)call5<0)workWord2=-workWord2;
+        workWord2=workWord2<513;
+        if(workWord2)goto pass101;
+        collision101:workWord2=Physics23Player20CView1&64;
+        if(workWord2)Physics23Field(call4,int*,0)=0;
+        else{
+            workWord3=Physics23PlayerB0View1;
+            workWord2=workWord3<(int)globalVector80;
+            if(workWord2)Physics23Field(call4,int*,0)=workWord3;
+        }
+        pass101:Physics23Call417FCView2(320,192);
+        workWord2=Physics23Player101View1;
+        call4=&Physics23PlayerACView1;
+        Physics23Field(call4,int*,0)=(int)globalVector80;
+        if(workWord2){
+            Physics23Call4F168View1(call4-32);
+            goto fields101;
+        }
+        Physics23Call41848View1(call4);
+        Physics23Call41B64View2();
+        fields101:call6=&Physics23PlayerFCView1;
+        workWord2=Physics23Field(call6,unsigned char*,0);
+        if(workWord2)goto block_303;
+        workWord2=Physics23PlayerB8View1;
+        call4=call6-112;
+        if(workWord2)goto block_303;
+        commit101:goto vectorInput71;
+    case 67:{
+            int lowProduct3Case67,lowProduct4Case67;
+            Physics23Call40D10View1(0xC80);
+            Physics23Call41580View1(0x28, 8);
+            Physics23Call417FCView1(0x140, 0xC0);
+            globalFieldA4Pointer = &Physics23Player0View1 + 0xA4;
+            globalVector8C = globalFieldA4Pointer - 0x18;
+            workWord2=Physics23Call4EA2CView1(Physics23Field(globalFieldA4Pointer,int*,0));
+            workWord3=Physics23Field(&Physics23Player0View1,int*,0xB0);
+            lowProduct3Case67=workWord3*workWord2;
+            call4=(void*)Physics23Field(globalFieldA4Pointer,int*,0);
+            workWord2=lowProduct3Case67>>12;
+            __asm__("" : "=r"(workWord2):"0"(workWord2));
+            originalFrame.spA8=workWord2;
+            workWord2=Physics23Call4E9E4View1(call4);
+            workWord3=Physics23Field(&Physics23Player0View1,int*,0xB0);
+            lowProduct4Case67=workWord3*workWord2;
+            workWord2=lowProduct4Case67>>12;
+            __asm__("" : "=r"(workWord2):"0"(workWord2));
+            originalFrame.spAC=workWord2;
+            Physics23Call4F1C8View1(&originalFrame.spA8, &originalFrame.spA8, globalVector8C);
+            originalFrame.spB0 = 0;
+            temp_v0_4 = Physics23Call4EDE8View1(&originalFrame.spA8, 0);
+            __asm__("" : "=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+            var_a0_3 = globalFieldA4Pointer - 0x24;
+            if (temp_v0_4 >= 0x281) {
+                Physics23Call4F08CView1(&originalFrame.spA8, temp_v0_4, 0x280);
+                __asm__("" : "=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+                var_a0_3 = globalFieldA4Pointer - 0x24;
+            }
+            Physics23Call4F194View1(var_a0_3, globalVector8C, &originalFrame.spA8);
+            Physics23Call41B64View1();
+            workWord2=combinedIndex<13;
+            if(!workWord2)goto subtract320_73;
+            workWord2=Physics23Player4CView1;
+            if(workWord2)goto subtract320_73;
+            workWord2=(int)Physics23Data6C570View1;
+            workWord2=Physics23Field((void*)workWord2,int*,0)&64;
+            if(workWord2)goto add30_70;
+            workWord2=Physics23Player144View1;
+            if(workWord2)goto add30_70;
+            goto subtract320_73;
+        }
+    case 68:{
+            register void *child19 __asm__("$19");
+            register int numeric5 __asm__("$5");
+            int lowProduct3Case68,lowProduct4Case68;
+            globalFieldA4Pointer=&Physics23Player4CView1;
+            workWord2=2;
+            globalPointer=(void*)Physics23Player250View1;
+            call4=(void*)Physics23Field(globalFieldA4Pointer,int*,0);
+            child19=Physics23Field(globalPointer,void**,0);
+            numeric5=1600;
+            if((int)call4==workWord2)numeric5=3200;
+            Physics23Call40D10View1(numeric5,numeric5);
+            Physics23Call41580View1(22,4);
+            Physics23Call417FCView1(320,192);
+            __asm__("":"=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+            globalVector8C=globalFieldA4Pointer+64;
+            workWord2=Physics23Call4EA2CView1(Physics23Field(globalFieldA4Pointer,int*,88));
+            workWord3=Physics23PlayerB0View1;
+            lowProduct3Case68=workWord3*workWord2;
+            call4=(void*)Physics23Field(globalFieldA4Pointer,int*,88);
+            workWord2=lowProduct3Case68>>12;
+            __asm__("" : "=r"(workWord2):"0"(workWord2));
+            originalFrame.spB8=workWord2;
+            workWord2=Physics23Call4E9E4View1(call4);
+            workWord3=Physics23PlayerB0View1;
+            lowProduct4Case68=workWord3*workWord2;
+            workWord2=lowProduct4Case68>>12;
+            __asm__("" : "=r"(workWord2):"0"(workWord2));
+            originalFrame.spBC=workWord2;
+            Physics23Call4F1C8View1(&originalFrame.spB8, &originalFrame.spB8, globalVector8C);
+            originalFrame.spC0 = 0;
+            temp_v0_4 = Physics23Call4EDE8View1(&originalFrame.spB8, 0);
+            __asm__("" : "=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+            var_a0_3 = globalFieldA4Pointer+52;
+            if (temp_v0_4 >= 0x141) {
+                Physics23Call4F08CView1(&originalFrame.spB8, temp_v0_4, 0x140);
+                __asm__("" : "=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+                var_a0_3 = globalFieldA4Pointer+52;
+            }
+            Physics23Call4F194View1(var_a0_3, globalVector8C, &originalFrame.spB8);
+            Physics23Call41B64View1();
+            workWord2=Physics23Player94View2;
+            workWord2-=320;
+            Physics23Player94View2=workWord2;
+            workWord2=workWord2<-12800;
+            if(workWord2){
+                workWord2=-12800;
+                Physics23Field(globalFieldA4Pointer,int*,72)=workWord2;
+            }
+            workWord2=Physics23Field(globalFieldA4Pointer,unsigned char*,362);
+            if(!workWord2)return;
+            workWord2=Physics23Field(child19,int*,72);
+            workWord2++;
+            Physics23Field(child19,int*,72)=workWord2;
+            return;
+        }
+    case 70:{
+            int lowProduct3Case70,lowProduct4Case70;
+            Physics23Call40D10View1(0xC80);
+            Physics23Call41580View1(0x28, 8);
+            Physics23Call417FCView1(0x140, 0xC0);
+            globalFieldA4Pointer = &Physics23Player0View1 + 0xA4;
+            globalVector8C = globalFieldA4Pointer - 0x18;
+            workWord2=Physics23Call4EA2CView1(Physics23Field(globalFieldA4Pointer,int*,0));
+            workWord3=Physics23Field(&Physics23Player0View1,int*,0xB0);
+            lowProduct3Case70=workWord3*workWord2;
+            call4=(void*)Physics23Field(globalFieldA4Pointer,int*,0);
+            workWord2=lowProduct3Case70>>12;
+            __asm__("" : "=r"(workWord2):"0"(workWord2));
+            originalFrame.spC8=workWord2;
+            workWord2=Physics23Call4E9E4View1(call4);
+            workWord3=Physics23Field(&Physics23Player0View1,int*,0xB0);
+            lowProduct4Case70=workWord3*workWord2;
+            workWord2=lowProduct4Case70>>12;
+            __asm__("" : "=r"(workWord2):"0"(workWord2));
+            originalFrame.spCC=workWord2;
+            Physics23Call4F1C8View1(&originalFrame.spC8, &originalFrame.spC8, globalVector8C);
+            originalFrame.spD0 = 0;
+            temp_v0_4 = Physics23Call4EDE8View1(&originalFrame.spC8, 0);
+            __asm__("" : "=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+            var_a0_3 = globalFieldA4Pointer - 0x24;
+            if (temp_v0_4 >= 0x281) {
+                Physics23Call4F08CView1(&originalFrame.spC8, temp_v0_4, 0x280);
+                __asm__("" : "=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+                var_a0_3 = globalFieldA4Pointer - 0x24;
+            }
+            Physics23Call4F194View1(var_a0_3, globalVector8C, &originalFrame.spC8);
+            Physics23Call41B64View1();
+            workWord2=combinedIndex<7;
+            if(!workWord2)goto subtract320_73;
+            workWord3=Physics23Player4CView1;
+            workWord2=1;
+            if(workWord3==workWord2)goto subtract320_73;
+            add30_70:workWord2=Physics23Player94View2;
+            workWord2+=30;
+            Physics23Player94View2=workWord2;
+            return;
+        }
+    case 71:{
+            register int numeric5 __asm__("$5");
+            int lowProduct3Case71,lowProduct4Case71;
+            globalFieldA4Pointer=&Physics23PlayerB8View1;
+            workWord2=Physics23Field(globalFieldA4Pointer,int*,0);
+            if(!workWord2)goto grounded71;
+            workWord2=2;
+            workWord3=Physics23Player4CView1;
+            numeric5=1600;
+            if(workWord3==workWord2)numeric5=3200;
+            Physics23Call40D10View1(numeric5,numeric5);
+            Physics23Call41580View1(22,4);
+            Physics23Call417FCView1(320,192);
+            __asm__("":"=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+            globalVector8C=globalFieldA4Pointer-44;
+            workWord2=Physics23Call4EA2CView1(Physics23PlayerA4View1);
+            __asm__ volatile(""::"r"(globalVector8C):"memory");
+            workWord3=Physics23PlayerB0View1;
+            lowProduct3Case71=workWord3*workWord2;
+            call4=(void*)Physics23PlayerA4View1;
+            workWord2=lowProduct3Case71>>12;
+            __asm__("" : "=r"(workWord2):"0"(workWord2));
+            originalFrame.spD8=workWord2;
+            workWord2=Physics23Call4E9E4View1(call4);
+            workWord3=Physics23PlayerB0View1;
+            lowProduct4Case71=workWord3*workWord2;
+            workWord2=lowProduct4Case71>>12;
+            __asm__("" : "=r"(workWord2):"0"(workWord2));
+            originalFrame.spDC=workWord2;
+            Physics23Call4F1C8View1(&originalFrame.spD8, &originalFrame.spD8, globalVector8C);
+            originalFrame.spE0 = 0;
+            temp_v0_4 = Physics23Call4EDE8View1(&originalFrame.spD8, 0);
+            __asm__("" : "=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+            var_a0_3 = globalFieldA4Pointer-56;
+            if (temp_v0_4 >= 0x141) {
+                Physics23Call4F08CView1(&originalFrame.spD8, temp_v0_4, 0x140);
+                __asm__("" : "=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+                var_a0_3 = globalFieldA4Pointer-56;
+            }
+            Physics23Call4F194View1(var_a0_3, globalVector8C, &originalFrame.spD8);
+            Physics23Call41B64View1();
+            workWord2=Physics23Player94View2;
+            workWord2-=320;
+            Physics23Player94View2=workWord2;
+            workWord2=workWord2<-12800;
+            if(workWord2){
+                workWord2=-12800;
+                Physics23Player94View2=workWord2;
+            }
+            return;
+        grounded71:
+            workWord3=Physics23Data6E044View1;
+            workWord2=8;
+            if(workWord3!=workWord2)Physics23Call40D10View2(6016);
+            globalVector80=&Physics23Data6E538View1;
+            workWord2=Physics23Field(globalVector80,int*,0)&12;
+            if(workWord2)Physics23PlayerACView1=0;
+            workWord2=Physics23Call416F4View1();
+            call4=(void*)90;
+            call5=(void*)16;
+            __asm__("":"=r"(call4),"=r"(call5):"0"(call4),"1"(call5));
+            globalFieldA4Pointer=(void*)workWord2;
+            workWord2=Physics23Call41580View2(call4,call5);
+            workWord3=Physics23PlayerA8View1;
+            if(workWord3<0)workWord3=-workWord3;
+            workWord3=workWord3<8;
+            __asm__("":"=r"(workWord3):"0"(workWord3),"r"(workWord2));
+            call5=(void*)workWord2;
+            if(!workWord3)goto reset71;
+            workWord2=Physics23Field(globalVector80,int*,0)&12;
+            if(!workWord2)goto reset71;
+            workWord2=Physics23Player144View1;
+            workWord2++;
+            Physics23Player144View1=workWord2;
+            goto saved71;
+            reset71:Physics23Player144View1=0;
+            saved71:call4=&Physics23PlayerACView1;
+            globalVector80=(void*)Physics23Field(call4,int*,0);
+            if(globalFieldA4Pointer)goto collision71;
+            workWord2=(int)call5;
+            if((int)call5<0)workWord2=-workWord2;
+            workWord2=workWord2<513;
+            if(workWord2)goto pass71;
+            collision71:workWord2=Physics23Player20CView1&64;
+            if(workWord2)Physics23Field(call4,int*,0)=0;
+            else{
+                workWord3=Physics23PlayerB0View1;
+                workWord2=workWord3<(int)globalVector80;
+                if(workWord2)Physics23Field(call4,int*,0)=workWord3;
+            }
+            pass71:Physics23Call417FCView2(320,192);
+            workWord2=Physics23Player101View1;
+            call4=&Physics23PlayerACView1;
+            Physics23Field(call4,int*,0)=(int)globalVector80;
+            if(workWord2){
+                Physics23Call4F168View1(call4-32);
+                goto fields71;
+            }
+            Physics23Call41848View1(call4);
+            Physics23Call41B64View2();
+            fields71:call6=&Physics23PlayerFCView1;
+            workWord2=Physics23Field(call6,unsigned char*,0);
+            if(workWord2)goto block_303;
+            workWord2=Physics23PlayerB8View1;
+            call4=call6-112;
+            if(!workWord2)goto vectorInput71;
+            block_303:workWord2=Physics23PlayerA0View1;
+            workWord2-=320;
+            Physics23Player94View2=workWord2;
+            return;
+            vectorInput71:__asm__ volatile(""::"i"(0x800929FC):"memory");
+            call5=call4;
+            vectorCommit49:Physics23Call4F194View5(call4,call5,call6-20);
+            return;
+        }
+    case 72:{
+            int lowProduct3Case72,lowProduct4Case72;
+            globalFieldA4Pointer=&Physics23Player4CView1;
+            workWord2=Physics23Field(globalFieldA4Pointer,int*,0);
+            if(workWord2)goto vector72;
+            workWord2=combinedIndex<19;
+            call4=globalFieldA4Pointer+64;
+            if(workWord2)goto neutralVector72;
+            call4=globalFieldA4Pointer+52;
+            workWord3=Physics23Player8CView1;
+            workWord2=workWord3*7;
+            workWord3=Physics23Player90View1;
+            workWord2<<=5;
+            Physics23Field(globalFieldA4Pointer,int*,52)=workWord2;
+            workWord2=workWord3*7;
+            workWord3=Physics23Player94View2;
+            workWord2<<=5;
+            Physics23Player84View1=workWord2;
+            workWord2=workWord3*7;
+            workWord2<<=5;
+            Physics23Player88View1=workWord2;
+            Physics23Call4F110View2(call4,8);
+            __asm__("":"=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+            call4=globalFieldA4Pointer+64;
+            neutralVector72:Physics23Call4F178View4(call4,globalFieldA4Pointer+52);
+            workWord2=Physics23Player94View2;
+            workWord2-=192;
+            Physics23Player94View2=workWord2;
+            workWord2=workWord2<-8960;
+            clamp19:if(workWord2){
+                workWord2=-8960;
+                Physics23Player94View2=workWord2;
+            }
+            return;
+            vector72:Physics23Call40D10View1(3200);
+            Physics23Call41580View1(40,8);
+            Physics23Call417FCView1(320,192);
+            __asm__("":"=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+            globalVector8C=globalFieldA4Pointer+64;
+            workWord2=Physics23Call4EA2CView1(Physics23PlayerA4View1);
+            __asm__ volatile(""::"r"(globalVector8C):"memory");
+            workWord3=Physics23PlayerB0View1;
+            lowProduct3Case72=workWord3*workWord2;
+            call4=(void*)Physics23PlayerA4View1;
+            workWord2=lowProduct3Case72>>12;
+            __asm__("" : "=r"(workWord2):"0"(workWord2));
+            originalFrame.spE8=workWord2;
+            workWord2=Physics23Call4E9E4View1(call4);
+            workWord3=Physics23PlayerB0View1;
+            lowProduct4Case72=workWord3*workWord2;
+            workWord2=lowProduct4Case72>>12;
+            __asm__("" : "=r"(workWord2):"0"(workWord2));
+            originalFrame.spEC=workWord2;
+            Physics23Call4F1C8View1(&originalFrame.spE8, &originalFrame.spE8, globalVector8C);
+            originalFrame.spF0 = 0;
+            temp_v0_4 = Physics23Call4EDE8View1(&originalFrame.spE8, 0);
+            __asm__("" : "=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+            var_a0_3 = globalFieldA4Pointer+52;
+            if (temp_v0_4 >= 0x281) {
+                Physics23Call4F08CView1(&originalFrame.spE8, temp_v0_4, 0x280);
+                __asm__("" : "=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+                var_a0_3 = globalFieldA4Pointer+52;
+            }
+            Physics23Call4F194View1(var_a0_3, globalVector8C, &originalFrame.spE8);
+            Physics23Call41B64View1();
+            if(combinedIndex<13){
+                __asm__(""::"r"(combinedIndex));
+                workWord2=Physics23Player94View2;
+                workWord2+=30;
+            }
+            else{
+                workWord2=Physics23Player94View2;
+                workWord2-=320;
+            }
+            Physics23Player94View2=workWord2;
+            __asm__ volatile("" ::: "memory");
+            if (Controller88028_SpawnParticle != 0) {
+                globalPointer=&Physics23Player0View1+0x148;
+                __asm__("" : "=r"(globalPointer):"0"(globalPointer));
+                particleIndex=0;
+                if (Physics23Field(globalPointer,int*,0) != 0) {
+                    workWord2=combinedIndex*4;
+                    __asm__("" : "=r"(workWord2):"0"(workWord2));
+                    particleThreshold=workWord2+combinedIndex;
+                    globalByteE=globalPointer-0x13A;
+                    vectorAt40=&originalFrame.sp108;
+                    __asm__("" : "=r"(vectorAt40):"0"(vectorAt40));
+                spawnParticleLoop72:
+                    if (particleThreshold < (Physics23CallRandView1() & 0xFF)) {
+                        workWord2=Physics23Call363DCView1(0,0xC);
+                        call4=globalByteE+0x22;
+                        workWord3=*globalByteE;
+                        __asm__("" : "=r"(workWord3):"0"(workWord3));
+                        call5=vectorAt40;
+                        __asm__("" : "=r"(call4),"=r"(call5):"0"(call4),"1"(call5));
+                        workWord3+=0x80;
+                        __asm__("" : "=r"(workWord3):"0"(workWord3));
+                        workWord3+=workWord2;
+                        __asm__("" : "=r"(workWord3):"0"(workWord3));
+                        workWord3=(workWord3&0xFF)*2;
+                        signedTableWord = *(short*)(&Physics23Data65920View1 + workWord3);
+                        call6=vectorAt40;
+                        originalFrame.spF8 = (int) (signedTableWord * 5) >> 0xA;
+                        workWord3=*(short*)(&Physics23Data658A0View1 + workWord3);
+                        __asm__ volatile("" : "=r"(workWord3):"0"(workWord3):"memory");
+                        originalFrame.sp100 = 0xE;
+                        originalFrame.sp108 = -0x12C;
+                        originalFrame.sp10C = 0;
+                        originalFrame.sp110 = -0xC8;
+                        __asm__ volatile("" ::: "memory");
+                        originalFrame.spFC = (workWord3 * 5) >> 0xA;
+                        Physics23Call4ED6CView1(call4, call5, call6, signedTableWord);
+                        originalFrame.sp108 += Physics23Call363DCView1(0, 0x50);
+                        originalFrame.sp10C += Physics23Call363DCView1(0, 0x50);
+                        originalFrame.sp110 += Physics23Call363DCView1(0, 0x50);
+                        Physics23Call4F194View1(vectorAt40, vectorAt40, globalByteE - 0xE);
+                        temp_v0_5 = Controller88028_SpawnParticle(1, 0xD, vectorAt40, &originalFrame.spF8);
+                        workWord2=(int)temp_v0_5;
+                        workWord3=8;
+                        Physics23Field((void*)workWord2,signed char*,2)=workWord3;
+                        workWord3=32;
+                        Physics23Field((void*)workWord2,signed char*,10)=workWord3;
+                    }
+                    particleIndex += 1;
+                    if (particleIndex < 2) {
+                        goto spawnParticleLoop72;
+                    }
+                }
+            }
+            break;
+        }
+    case 73:{
+            int lowProduct3Case73,lowProduct4Case73;
+            Physics23Call40D10View1(0x640);
+            Physics23Call41580View1(0x28, 8);
+            Physics23Call417FCView1(0x140, 0xC0);
+            globalFieldA4Pointer = &Physics23Player0View1 + 0xA4;
+            globalVector8C = globalFieldA4Pointer - 0x18;
+            workWord2=Physics23Call4EA2CView1(Physics23Field(globalFieldA4Pointer,int*,0));
+            workWord3=Physics23Field(&Physics23Player0View1,int*,0xB0);
+            lowProduct3Case73=workWord3*workWord2;
+            call4=(void*)Physics23Field(globalFieldA4Pointer,int*,0);
+            workWord2=lowProduct3Case73>>12;
+            __asm__("" : "=r"(workWord2):"0"(workWord2));
+            originalFrame.spF8=workWord2;
+            workWord2=Physics23Call4E9E4View1(call4);
+            workWord3=Physics23Field(&Physics23Player0View1,int*,0xB0);
+            lowProduct4Case73=workWord3*workWord2;
+            workWord2=lowProduct4Case73>>12;
+            __asm__("" : "=r"(workWord2):"0"(workWord2));
+            originalFrame.spFC=workWord2;
+            Physics23Call4F1C8View1(&originalFrame.spF8, &originalFrame.spF8, globalVector8C);
+            originalFrame.sp100 = 0;
+            temp_v0_4 = Physics23Call4EDE8View1(&originalFrame.spF8, 0);
+            __asm__("" : "=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+            var_a0_3 = globalFieldA4Pointer - 0x24;
+            if (temp_v0_4 >= 0x281) {
+                Physics23Call4F08CView1(&originalFrame.spF8, temp_v0_4, 0x280);
+                __asm__("" : "=r"(globalFieldA4Pointer):"0"(globalFieldA4Pointer));
+                var_a0_3 = globalFieldA4Pointer - 0x24;
+            }
+            Physics23Call4F194View1(var_a0_3, globalVector8C, &originalFrame.spF8);
+            Physics23Call41B64View1();
+            workWord2=combinedIndex<19;
+            if(!workWord2)goto subtract320_73;
+            workWord3=Physics23Player4CView1;
+            workWord2=1;
+            if(workWord3==workWord2)goto subtract320_73;
+            workWord2=Physics23Player94View2;
+            workWord2+=100;
+            Physics23Player94View2=workWord2;
+            return;
+            subtract320_73:globalPointer=&Physics23Player94View2;
+            workWord2=Physics23Field(globalPointer,int*,0);
+            workWord2-=320;
+            Physics23Field(globalPointer,int*,0)=workWord2;
+            return;
+        }
+    case 74:globalVector80=&Physics23Player0View2+0xB8;
+        workWord2=Physics23Field(globalVector80,int*,0);
+        if(!workWord2)goto zero105;
+        vectorAt30=&originalFrame.sp118;
+        Physics23Call4F168View1(vectorAt30);
+        call4=vectorAt30;
+        call5=vectorAt30;
+        __asm__("":"=r"(call4),"=r"(call5):"0"(call4),"1"(call5));
+        globalVector8CState20=globalVector80-44;
+        Physics23Call4F1C8View2(call4,call5,globalVector8CState20);
+        originalFrame.sp120=0;
+        call5=(void*)Physics23Call4EDE8View2(vectorAt30,0);
+        workWord2=(int)call5<65;
+        if(!workWord2)Physics23Call4F08CView2(vectorAt30,call5,64);
+        originalFrame.sp120=-320;
+        globalVector80-=56;
+        Physics23Call4F194View2(globalVector80,globalVector8CState20,vectorAt30);
+        Physics23Call4F178View1(globalVector8CState20,globalVector80);
+        goto clamp74;
+        zero105:Physics23Call4F168View1(globalVector80-56);
+        Physics23Call4F168View1(globalVector80-44);
+        goto clamp74;
+        clamp74:globalPointer=&Physics23Player94View2;
+        workWord2=Physics23Field(globalPointer,int*,0);
+        workWord2=workWord2<-12800;
+        if(workWord2){
+            workWord2=-12800;
+            Physics23Field(globalPointer,int*,0)=workWord2;
+        }
+        return;
+    case 75:case 76:case 77:{
+            register int numeric5 __asm__("$5");
+            int product75;
+            call4=&Physics23Player8CView1;
+            __asm__("":"=r"(call4):"0"(call4));
+            workWord3=Physics23Field(call4,int*,-64);
+            __asm__ volatile(""::"r"(workWord3):"memory");
+            numeric5=1;
+            __asm__("":"=r"(numeric5):"0"(numeric5));
+            Physics23Field(call4,int*,0)=0;
+            Physics23Field(call4,int*,4)=0;
+            if(workWord3==numeric5)goto descend75;
+            workWord2=workWord3<2;
+            if(!workWord2)goto larger75;
+            if(!workWord3)goto zero75;
+            return;
+            larger75:workWord2=2;
+            if(workWord3==workWord2)goto zeroVelocity75;
+            return;
+        zero75:
+            workWord2=Physics23Player144View1;
+            workWord2++;
+            Physics23Player144View1=workWord2;
+            workWord2=workWord2<42;
+            if(workWord2){
+                workWord2=Physics23Player94View2;
+                workWord2-=32;
+                Physics23Player94View2=workWord2;
+                return;
+            }
+            Physics23Field(call4,int*,-64)=numeric5;
+            __asm__ volatile("":::"$2","memory");
+            Physics23Player54View1=0;
+            return;
+            descend75:workWord2=Physics23Field(call4,int*,8);
+            workWord2-=2048;
+            Physics23Field(call4,int*,8)=workWord2;
+            workWord2=workWord2<-12800;
+            if(workWord2)Physics23Field(call4,int*,8)=-12800;
+            workWord2=Physics23PlayerB8View1;
+            if(workWord2)return;
+            workWord2=Physics23Player54View1;
+            workWord2=workWord2<9;
+            if(workWord2)return;
+            workWord2=Physics23PlayerE4View1;
+            workWord2=workWord2<23;
+            if(!workWord2)return;
+            workWord3=Physics23PlayerD4View1;
+            workWord2=Physics23Field(call4,int*,8);
+            product75=workWord3*workWord2;
+            if(product75>=0)return;
+            workWord2=4096;
+            particleCall3=Physics42_SpawnParticle;
+            __asm__ volatile(""::"r"(particleCall3):"memory");
+            Physics23Data6E1D4View1=workWord2;
+            workWord2=30;
+            Physics23Data6E1D8View1=workWord2;
+            workWord2=2;
+            Physics23Field(call4,int*,-64)=workWord2;
+            Physics23Player54View1=0;
+            call4=(void*)8;
+            if(particleCall3){
+                call5=(void*)33;
+                call6=0;
+                particleArg7=2;
+                particleCall3(call4,call5,call6,particleArg7);
+                Physics42_SpawnParticle(8,33,0,3);
+            }
+            call5=0;
+            __asm__ volatile(""::"r"(call5):"memory");
+            globalPointer=Physics23Data6C654View1;
+            __asm__ volatile(""::"r"(globalPointer):"memory");
+            workWord2=120;
+            Physics23Data6E530View1=workWord2;
+            workWord2=15;
+            Physics23Data6E52CView1=workWord2;
+            call4=(void*)Physics23Field(globalPointer,unsigned char*,20);
+            Physics23DataPlaySoundView1(call4,call5,0);
+            return;
+            zeroVelocity75:Physics23Player94View2=0;
+            return;
+        }
+    }
+}
+#undef Physics23Field
+
 
 /* AI generated; not human reviewed. SCUS-94467 80093120..800937D0.
  * Verified43 scalar/clamp and original23 case47 numeric pointer chain.
@@ -736,4 +2038,853 @@ setHeadbashSubstate:
 }
 
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_23/animation", func_level_23_8009459C);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* SCUS-94467 USA Rev0, original8009459C.
+ * Assembly SHA256 1b7abf67037af309989f1de9dbe7de07346953de1ac9bfeff9af7ebaf5c99718.
+ * AI-generated; not human reviewed. Verified donor state C is adapted to
+ * all1346 original instructions and59 state-table entries (bias19).
+ * Original65..77 chains retain callback9, masks, nested object/model fields,
+ * signed products, query gates, the shared effect call inside71, its original
+ * particle callback, descriptor-byte sound call and counter stores. Rev1
+ * transition-table evidence is a decoding cross-reference; no browser-derived
+ * behavior or values are used. Original18-byte S0/RA frame and actual helper
+ * arguments, complete shared entries and all target selectors remain exact.
+ * View names retain distinct original typed aliases; their exact assembly
+ * symbol identities and donor sources are recorded in the provenance file.
+ * Empty metadata consumes initialized values and original source addresses,
+ * emits no CPU instructions and retains the original distinct branch joins.
+ * C emits every CPU word through the unchanged compiler/assembler/pipeline
+ * and flags. Original padding and every acceptance gate remain unchanged.
+ * Raw physical units/fixed point, helper/callback contracts and invocation
+ * cadence remain unresolved. Cadence per invocation; rate unknown.
+ * Falsification: every original native/linked word, conditional/internal
+ * target, selector/data record and full EXE/every-overlay retail hash.
+ * Binary identity does not establish synchronized runtime/system completion. */
+extern int Anim23Player48View1 __asm__("D_80070328 + 0x48");
+extern int Anim23Player4CView1 __asm__("D_80070328 + 0x4C");
+extern int Anim23Player54View1 __asm__("D_80070328 + 0x54");
+extern int Anim23PlayerA0View1 __asm__("D_80070328 + 0xA0");
+extern int Anim23PlayerACView1 __asm__("D_80070328 + 0xAC");
+extern int Anim23PlayerB0View1 __asm__("D_80070328 + 0xB0");
+extern int Anim23PlayerB8View1 __asm__("D_80070328 + 0xB8");
+extern int Anim23PlayerCCView1 __asm__("D_80070328 + 0xCC");
+extern int Anim23PlayerD0View1 __asm__("D_80070328 + 0xD0");
+extern int Anim23PlayerD4View1 __asm__("D_80070328 + 0xD4");
+extern int Anim23Player8CView1 __asm__("D_80070328 + 0x8C");
+extern int Anim23Player90View1 __asm__("D_80070328 + 0x90");
+extern int Anim23Player94View1 __asm__("D_80070328 + 0x94");
+extern int Anim23PlayerE4View1 __asm__("D_80070328 + 0xE4");
+extern int Anim23Player144View1 __asm__("D_80070328 + 0x144");
+extern int Anim23Player280View1 __asm__("D_80070328 + 0x280");
+extern unsigned char Anim23Player1B5View1 __asm__("D_80070328 + 0x1B5");
+extern unsigned char Anim23Player1B6View1 __asm__("D_80070328 + 0x1B6");
+extern int Anim23Data6E538View1 __asm__("D_8006E538"),Anim23Data6E53CView1 __asm__("D_8006E53C");
+extern int (*Anim23Data74374View1)() __asm__("unk_ovlheader_80074374");
+extern int Anim23Player28CView1 __asm__("D_80070328 + 0x28C");
+extern int Anim23Player290View1 __asm__("D_80070328 + 0x290");
+extern int Anim23Data6FA38View1 __asm__("D_8006FA38");
+int Anim23Call3BF6CView1() __asm__("func_8003BF6C");
+int Anim23Call3BE70View1() __asm__("func_8003BE70");
+int Anim23Call40994View1() __asm__("func_80040994");
+int Anim23Call4BEF8View1() __asm__("func_8004BEF8");
+int Anim23Call498C0View1() __asm__("func_800498C0");
+extern int Anim23PlayerB4View1 __asm__("D_80070328 + 0xB4");
+extern int Anim23PlayerA4View1 __asm__("D_80070328 + 0xA4");
+extern int Anim23Player44View1 __asm__("D_80070328 + 0x44");
+extern int Anim23Player48View2 __asm__("D_80070328 + 0x48");
+extern int Anim23Player4CView2 __asm__("D_80070328 + 0x4C");
+extern int Anim23Player50View1 __asm__("D_80070328 + 0x50");
+extern int Anim23Player54View2 __asm__("D_80070328 + 0x54");
+extern int Anim23Player58View1 __asm__("D_80070328 + 0x58");
+extern int Anim23Player8CView2 __asm__("D_80070328 + 0x8C");
+extern int Anim23Player90View2 __asm__("D_80070328 + 0x90");
+extern int Anim23Player94View2 __asm__("D_80070328 + 0x94");
+extern int Anim23PlayerA8View1 __asm__("D_80070328 + 0xA8");
+extern int Anim23PlayerACView2 __asm__("D_80070328 + 0xAC");
+extern int Anim23PlayerB0View2 __asm__("D_80070328 + 0xB0");
+extern int Anim23PlayerB8View2 __asm__("D_80070328 + 0xB8");
+extern int Anim23PlayerCCView2 __asm__("D_80070328 + 0xCC");
+extern int Anim23PlayerD0View2 __asm__("D_80070328 + 0xD0");
+extern int Anim23PlayerD4View2 __asm__("D_80070328 + 0xD4");
+extern int Anim23PlayerE4View2 __asm__("D_80070328 + 0xE4");
+extern int Anim23Player144View2 __asm__("D_80070328 + 0x144");
+extern int Anim23Player280View2 __asm__("D_80070328 + 0x280");
+extern unsigned char Anim23Player0View1[] __asm__("D_80070328");
+extern unsigned char *Anim23Player250View1 __asm__("D_80070328 + 0x250");
+extern unsigned char Anim23Player1B6View2 __asm__("D_80070328 + 0x1B6");
+extern unsigned char Anim23Data6E535View1 __asm__("D_8006E535");
+extern int Anim23Data6E538View2 __asm__("D_8006E538");
+extern int Anim23Data6E53CView2 __asm__("D_8006E53C");
+extern int Anim23Data6E530View1 __asm__("D_8006E530");
+extern int Anim23Data6E52CView1 __asm__("D_8006E52C");
+extern unsigned char *Anim23Data6C654View1 __asm__("D_8006C654");
+extern int (*Anim23Data7431CView1)(int) __asm__("unk_ovlheader_8007431C");
+extern int (*Anim23DataSpawnParticleView1)(int,int,void*,int) __asm__("SpawnParticle");
+int Anim23Call55E84View1(void*) __asm__("func_80055E84");
+int Anim23Call1A358View1(void*,int) __asm__("func_8001A358");
+int Anim23Call4BEF8View2(int) __asm__("func_8004BEF8");
+int Anim23CallPlaySoundView1(unsigned char,int,int) __asm__("PlaySound");
+extern int Anim23Player4CView3 __asm__("D_80070328 + 0x4C");
+extern int Anim23Player54View3 __asm__("D_80070328 + 0x54");
+extern int Anim23Player158View1 __asm__("D_80070328 + 0x158");
+extern unsigned char Anim23Player0View2[] __asm__("D_80070328");
+extern int A21Buttons __asm__("D_8006E538"),Anim23Data6E53CView3 __asm__("D_8006E53C");
+extern int Anim23Data6E044View1 __asm__("D_8006E044"),Anim23Data6E344View1 __asm__("D_8006E344"),Anim23Data6C514View1 __asm__("D_8006C514");
+extern int (*Anim23Data74374View2)() __asm__("unk_ovlheader_80074374");
+int Anim23Call40994View2() __asm__("func_80040994");
+int Anim23Call4BEF8View3() __asm__("func_8004BEF8");
+int Anim23Call4F334View1() __asm__("func_8004F334");
+extern unsigned char Anim23Player100View1 __asm__("D_80070328 + 0x100");
+extern unsigned char Anim23Data6E535View2 __asm__("D_8006E535");
+extern unsigned char* Anim23Data6EE2CView1 __asm__("D_8006EE2C");
+int Anim23Call1A310View1() __asm__("func_8001A310");
+#define Anim23Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+void func_level_23_8009459C(void){
+    register int rawValue2 __asm__("$2");
+    register int rawValue3 __asm__("$3");
+    register int nextSelector4 __asm__("$4");
+    register int product5 __asm__("$5");
+    register unsigned char* record16 __asm__("$16");
+    register int (*callback3)(int) __asm__("$3");
+    rawValue2=Anim23Player48View1;
+    switch(rawValue2){
+    case 19:
+        if(Anim23Call40994View2())return;
+        rawValue2=13;
+        rawValue3=Anim23Data6E344View1;
+        if(rawValue3==rawValue2){
+            rawValue2=Anim23Data6C514View1;
+            nextSelector4=17;
+            if(rawValue2)goto select;
+        }
+        nextSelector4=(int)Anim23Player0View2;
+        rawValue2=Anim23Call4F334View1((void*)nextSelector4,(void*)(nextSelector4+348));
+        rawValue3=Anim23Player158View1;
+        rawValue3=rawValue3<rawValue2;
+        nextSelector4=17;
+        if(!rawValue3)return;
+        goto select;
+    case 28:
+        if(Anim23Player1B5View1 && (Anim23Data6E53CView1&64))Anim23Player1B6View1=1;
+        if(!Anim23PlayerB8View1 && Anim23Player54View1>=16 && Anim23PlayerE4View1<23) {
+            rawValue3=Anim23PlayerCCView1;
+            rawValue2=Anim23Player8CView1;
+            product5=rawValue3*rawValue2;
+            rawValue3=Anim23PlayerD0View1;
+            rawValue2=Anim23Player90View1;
+            nextSelector4=rawValue3*rawValue2;
+            rawValue3=Anim23PlayerD4View1;
+            rawValue2=Anim23Player94View1;
+            rawValue3*=rawValue2;
+            rawValue2=product5+nextSelector4;
+            rawValue2+=rawValue3;
+            if(rawValue2<0) {
+                if(Anim23PlayerACView1) {
+                    rawValue3=Anim23PlayerB0View1;
+                    if(rawValue3>=3841){
+                        nextSelector4=3;
+                        goto select;
+                    }
+                    rawValue2=rawValue3<1921;
+                    nextSelector4=1;
+                    if(rawValue2)goto select;
+                    nextSelector4=2;
+                    goto select;
+                }
+                rawValue2=Anim23PlayerB0View1<1920;
+                nextSelector4=0;
+                if(rawValue2)goto select;
+                __asm__ volatile("" ::: "memory");
+                nextSelector4=4;
+                goto select;
+            }
+        }
+        rawValue2=Anim23Data6E538View1&128;
+        if(rawValue2 && Anim23Player4CView1==1){
+            nextSelector4=22;
+            goto select;
+        }
+        if(Anim23Player1B5View1 && Anim23Player1B6View1) {
+            rawValue3=Anim23Player4CView1;
+            rawValue2=1;
+            nextSelector4=17;
+            if(rawValue3!=rawValue2)return;
+            goto select;
+        }
+        rawValue3=Anim23Player4CView1;
+        rawValue2=1;
+        if(rawValue3!=rawValue2)return;
+        rawValue2=Anim23PlayerA0View1<-6400;
+        nextSelector4=7;
+        if(rawValue2)goto select;
+        if(Anim23Player54View1>=91)goto select;
+        return;
+    case 30: {
+            register int* timer4 __asm__("$4");
+            register int (*callback3)() __asm__("$3");
+            if(Anim23Data6E53CView1&64)Anim23Player1B6View1=1;
+            if(Anim23Data6FA38View1>=0){
+                if(Anim23Player144View1<=0x8FFF)return;
+                callback3=Anim23Data74374View1;
+                Anim23Player28CView1=-1;
+                if(callback3){
+                    callback3();
+                    return;
+                }
+                goto call498C0;
+            }
+            timer4=&Anim23Player280View1;
+            __asm__("" : "=r"(timer4):"0"(timer4));
+            if(*timer4<0){
+                if(Anim23Player144View1<=0x8FFF)return;
+                Anim23Player28CView1=-1;
+                call498C0:Anim23Call498C0View1();
+                __asm__ volatile("" ::: "memory");
+                return;
+            }
+            rawValue3=Anim23Player54View1;
+            if(rawValue3>=61){
+                *timer4=-1;
+                return;
+            }
+            rawValue2=rawValue3<16;
+            __asm__("" : "=r"(rawValue2):"0"(rawValue2));
+            if(rawValue2)return;
+            if(!Anim23Player1B6View1)return;
+            if(Anim23Player28CView1>=0){
+                if(Anim23Call3BF6CView1(Anim23Player290View1,Anim23Player28CView1))Anim23Call3BE70View1(Anim23Player28CView1);
+                Anim23Player28CView1=-1;
+            }
+            nextSelector4=6;
+            goto select;
+        }
+    case 43: {
+            register unsigned char* byte4 __asm__("$4");
+            if(Anim23Call40994View2())return;
+            if((Anim23Data6E53CView3&64) && Anim23Player54View3>=9){
+                nextSelector4=6;
+                goto partialCall;
+            }
+            byte4=&Anim23Player100View1;
+            __asm__("" : "=r"(byte4):"0"(byte4));
+            if(!*byte4){
+                nextSelector4=7;
+                goto partialCall;
+            }
+            if(!(Anim23Data6E53CView3&128))goto check44;
+            if(Anim23Player54View3<9)goto check44;
+            rawValue2=*(int*)(Anim23Data6EE2CView1+220);
+            byte4-=256;
+            if(!rawValue2)goto check44;
+            rawValue2=Anim23Call1A310View1(byte4,1024,1,0);
+            nextSelector4=40;
+            if(rawValue2)goto check44;
+            goto select;
+            partialCall:Anim23Call4BEF8View3(nextSelector4);
+            check44:rawValue2=Anim23Data6E535View2;
+            nextSelector4=44;
+            if(!rawValue2)return;
+            goto select;
+        }
+    case 44: {
+            register unsigned char* byte4 __asm__("$4");
+            register int (*callback2)() __asm__("$2");
+            rawValue3=Anim23Player4CView3;
+            rawValue2=1;
+            if(rawValue3!=rawValue2)goto other44;
+            if(Anim23Data6E53CView3&0x850)goto callback44;
+            if(Anim23Player54View3<61)return;
+            callback44:callback2=Anim23Data74374View2;
+            __asm__("" : "=r"(callback2):"0"(callback2));
+            if(!callback2)goto missingCallback;
+            callback2();
+            return;
+            missingCallback:goto call498C0;
+            other44:if(Anim23Call40994View2())return;
+            if((Anim23Data6E53CView3&64) && Anim23Player54View3>=9){
+                nextSelector4=6;
+                goto select;
+            }
+            byte4=&Anim23Player100View1;
+            __asm__("" : "=r"(byte4):"0"(byte4));
+            if(!*byte4){
+                nextSelector4=7;
+                goto select;
+            }
+            if(!(Anim23Data6E53CView3&128))goto mode44;
+            if(Anim23Player54View3<9)goto mode44;
+            rawValue2=*(int*)(Anim23Data6EE2CView1+220);
+            byte4-=256;
+            if(!rawValue2)goto mode44;
+            rawValue2=Anim23Call1A310View1(byte4,1024,1,0);
+            nextSelector4=40;
+            if(!rawValue2)goto select;
+            mode44:rawValue3=Anim23Data6E044View1;
+            rawValue2=7;
+            if(rawValue3==rawValue2)return;
+            rawValue2=Anim23Data6E535View2;
+            nextSelector4=43;
+            if(rawValue2)return;
+            goto select;
+        }
+    case 47:
+        if(Anim23Call40994View1())return;
+        if(Anim23Data6E53CView1&64){
+            rawValue2=Anim23Data6E538View1&16384;
+            nextSelector4=6;
+            if(rawValue2)goto specialJump;
+            __asm__ volatile("" ::: "memory");
+            goto select;
+        }
+        rawValue2=Anim23PlayerACView1;
+        nextSelector4=50;
+        if(!rawValue2)return;
+        goto select;
+    case 50:
+        if(Anim23Call40994View1())return;
+        if(Anim23Data6E53CView1&64){
+            rawValue2=Anim23Data6E538View1&16384;
+            nextSelector4=6;
+            if(rawValue2)goto specialJump;
+            goto select;
+        }
+        rawValue2=Anim23PlayerACView1;
+        nextSelector4=47;
+        if(!rawValue2)goto select;
+        rawValue2=Anim23PlayerA0View1;
+        rawValue3=Anim23PlayerB4View1;
+        if(rawValue2<0)rawValue2=-rawValue2;
+        rawValue2=rawValue2<rawValue3;
+        if(!rawValue2)return;
+        rawValue2=Anim23PlayerA4View1;
+        if(rawValue2<0)rawValue2=-rawValue2;
+        rawValue2=rawValue2<1024;
+        nextSelector4=52;
+        if(!rawValue2)goto select;
+        nextSelector4=51;
+        goto select;
+    case 51: case 52:
+        if(Anim23Call40994View1())return;
+        if(Anim23Data6E53CView1&64){
+            rawValue2=Anim23Data6E538View1&16384;
+            nextSelector4=6;
+            if(!rawValue2)goto select;
+            specialJump:Anim23Call4BEF8View1(7);
+            rawValue2=3;
+            Anim23Player4CView1=rawValue2;
+            return;
+        }
+        rawValue2=Anim23PlayerACView1;
+        nextSelector4=47;
+        if(!rawValue2)goto select;
+        rawValue2=Anim23PlayerA0View1;
+        rawValue3=Anim23PlayerB4View1;
+        if(rawValue2<0)rawValue2=-rawValue2;
+        rawValue2=rawValue2<rawValue3;
+        nextSelector4=50;
+        if(rawValue2)return;
+        __asm__ volatile("" ::: "memory");
+        goto select;
+    case 65:
+        rawValue2=Anim23Data7431CView1(9);
+        if(rawValue2)return;
+        rawValue3=Anim23Data6E53CView2;
+        rawValue2=rawValue3&64;
+        if(rawValue2){
+            rawValue2=(int)Anim23Player250View1;
+            rawValue2=(int)Anim23Field((void*)rawValue2,void**,0);
+            rawValue2=Anim23Field((void*)rawValue2,int*,0x48);
+            rawValue2=rawValue2<8;
+            nextSelector4=67;
+            if(!rawValue2)goto select;
+            __asm__ volatile(""::"i"(0x80094DE0):"memory");
+            nextSelector4=73;
+            goto select;
+        }
+        rawValue2=rawValue3&160;
+        nextSelector4=71;
+        if(rawValue2)goto select;
+        rawValue2=Anim23PlayerB8View2<4;
+        nextSelector4=68;
+        if(!rawValue2)goto select;
+        rawValue2=Anim23PlayerE4View2<23;
+        if(!rawValue2)goto select;
+        rawValue2=Anim23PlayerA8View1;
+        if(rawValue2<0)rawValue2=-rawValue2;
+        rawValue2=rawValue2<17;
+        nextSelector4=66;
+        if(!rawValue2)goto select;
+        rawValue2=Anim23Data6E538View2&12;
+        if(rawValue2)return;
+        rawValue2=Anim23PlayerACView2;
+        if(!rawValue2)return;
+        goto select;
+    case 66:
+        rawValue2=Anim23Data7431CView1(9);
+        if(rawValue2)return;
+        rawValue3=Anim23Data6E53CView2;
+        rawValue2=rawValue3&64;
+        if(rawValue2){
+            rawValue2=(int)Anim23Player250View1;
+            rawValue2=(int)Anim23Field((void*)rawValue2,void**,0);
+            rawValue2=Anim23Field((void*)rawValue2,int*,0x48);
+            rawValue2=rawValue2<8;
+            nextSelector4=67;
+            if(!rawValue2)goto select;
+            __asm__ volatile(""::"i"(0x80094ED4):"memory");
+            nextSelector4=73;
+            goto select;
+        }
+        rawValue2=rawValue3&160;
+        nextSelector4=71;
+        if(rawValue2)goto select;
+        rawValue2=Anim23PlayerB8View2<4;
+        nextSelector4=68;
+        if(!rawValue2)goto select;
+        rawValue2=Anim23PlayerE4View2<23;
+        if(!rawValue2)goto select;
+        nextSelector4=(int)Anim23Player250View1;
+        rawValue2=Anim23Player48View2;
+        rawValue3=Anim23Field((void*)nextSelector4,unsigned char*,0x3C);
+        rawValue2-=65;
+        if(rawValue3!=rawValue2)goto query66;
+        rawValue2=Anim23Field((void*)nextSelector4,unsigned char*,0x42)&2;
+        if(rawValue2)goto input66;
+    query66:
+        rawValue2=Anim23Call55E84View1((void*)nextSelector4);
+        rawValue2=rawValue2<4;
+        if(!rawValue2)return;
+    input66:
+        rawValue2=Anim23Data6E535View1;
+        if(!rawValue2)goto held66;
+        rawValue2=Anim23PlayerB0View2;
+        nextSelector4=65;
+        if(!rawValue2)goto select;
+    held66:
+        rawValue2=Anim23Data6E538View2&12;
+        if(!rawValue2)return;
+        rawValue2=Anim23Player144View2<16;
+        nextSelector4=65;
+        if(rawValue2)return;
+        goto select;
+    case 67:
+        rawValue2=Anim23Data7431CView1(9);
+        if(rawValue2)return;
+        rawValue2=Anim23Player54View2<16;
+        if(!rawValue2){
+            rawValue2=Anim23Data6E53CView2&64;
+            nextSelector4=70;
+            if(rawValue2)goto select;
+        }
+        rawValue3=Anim23Data6E53CView2;
+        rawValue2=rawValue3&160;
+        nextSelector4=71;
+        if(rawValue2)goto select;
+        rawValue2=rawValue3&16;
+        if(rawValue2){
+            product5=Anim23Player44View1;
+            nextSelector4=(int)Anim23Player0View1;
+            rawValue2=Anim23Call1A358View1((void*)nextSelector4,product5+512);
+            nextSelector4=75;
+            if(!rawValue2)goto select;
+        }
+        rawValue2=Anim23PlayerB8View2;
+        if(rawValue2)goto finish67;
+        rawValue2=Anim23Player54View2<16;
+        if(rawValue2)goto finish67;
+        rawValue2=Anim23PlayerE4View2<23;
+        if(!rawValue2)return;
+        rawValue3=Anim23PlayerCCView2;
+        rawValue2=Anim23Player8CView2;
+        product5=rawValue3*rawValue2;
+        rawValue3=Anim23PlayerD0View2;
+        rawValue2=Anim23Player90View2;
+        nextSelector4=rawValue3*rawValue2;
+        rawValue3=Anim23PlayerD4View2;
+        rawValue2=Anim23Player94View2;
+        rawValue3*=rawValue2;
+        rawValue2=product5+nextSelector4;
+        rawValue2+=rawValue3;
+        if(rawValue2>=0)return;
+        rawValue2=Anim23PlayerACView2;
+        nextSelector4=66;
+        if(!rawValue2)goto select65;
+        __asm__ volatile(""::"i"(0x80095108):"memory");
+        goto select;
+    finish67:
+        nextSelector4=(int)Anim23Player250View1;
+        rawValue2=Anim23Player48View2;
+        rawValue3=Anim23Field((void*)nextSelector4,unsigned char*,0x3C);
+        rawValue2-=65;
+        if(rawValue3!=rawValue2)return;
+        rawValue2=Anim23Field((void*)nextSelector4,unsigned char*,0x42)&2;
+        __asm__ volatile("":"=r"(rawValue2):"0"(rawValue2):"$4","memory");
+        nextSelector4=68;
+        if(!rawValue2)return;
+        __asm__ volatile(""::"i"(0x80095144):"memory");
+        goto select;
+    case 68:
+        rawValue2=(int)Anim23Player250View1;
+        callback3=Anim23Data7431CView1;
+        record16=Anim23Field((void*)rawValue2,unsigned char**,0);
+        rawValue2=callback3(9);
+        if(rawValue2)return;
+        rawValue2=Anim23Data6E53CView2&64;
+        if(rawValue2){
+            rawValue2=1;
+            nextSelector4=(int)&Anim23Player4CView2;
+            rawValue3=*(int*)nextSelector4;
+            __asm__("":"=r"(rawValue2):"0"(rawValue2));
+            if(rawValue3==rawValue2){
+                rawValue2=Anim23Player54View2<31;
+                nextSelector4-=76;
+                if(rawValue2){
+                    rawValue2=Anim23Call1A358View1((void*)nextSelector4,1024);
+                    if(!rawValue2){
+                        nextSelector4=70;
+                        goto select;
+                    }
+                }
+            }
+            rawValue2=1;
+            Anim23Player1B6View2=rawValue2;
+            Anim23Field(record16,int*,0x48)=0;
+        }
+        rawValue3=Anim23Data6E53CView2;
+        rawValue2=rawValue3&160;
+        nextSelector4=71;
+        if(rawValue2)goto select;
+        rawValue2=rawValue3&16;
+        if(rawValue2){
+            nextSelector4=(int)&Anim23Player4CView2;
+            rawValue2=*(int*)nextSelector4;
+            nextSelector4-=76;
+            if(rawValue2){
+                product5=Anim23Player44View1;
+                rawValue2=Anim23Call1A358View1((void*)nextSelector4,product5+512);
+                nextSelector4=75;
+                if(!rawValue2)goto select;
+            }
+        }
+        rawValue2=Anim23PlayerB8View2;
+        if(rawValue2)return;
+        rawValue2=Anim23PlayerE4View2<23;
+        if(!rawValue2)return;
+        rawValue2=Anim23Player1B6View2;
+        if(rawValue2){
+            rawValue2=Anim23Field(record16,int*,0x48)<7;
+            if(rawValue2){
+                rawValue2=2;
+                rawValue3=Anim23Player50View1;
+                nextSelector4=67;
+                if(rawValue3!=rawValue2)goto effectSelect;
+                nextSelector4=73;
+                goto effectSelect;
+            }
+        }
+        rawValue3=Anim23Player50View1;
+        rawValue2=2;
+        if(rawValue3==rawValue2){
+            Anim23Field(record16,int*,0x48)=0;
+        }
+        else{
+            rawValue2=255;
+            Anim23Field(record16,int*,0x48)=rawValue2;
+        }
+        rawValue2=Anim23PlayerACView2;
+        nextSelector4=66;
+        if(rawValue2)goto effectSelect;
+        nextSelector4=69;
+        goto effectSelect;
+    case 69:
+        rawValue2=Anim23Data7431CView1(9);
+        if(rawValue2)return;
+        rawValue3=Anim23Data6E53CView2;
+        rawValue2=rawValue3&64;
+        if(rawValue2){
+            rawValue2=(int)Anim23Player250View1;
+            rawValue2=(int)Anim23Field((void*)rawValue2,void**,0);
+            rawValue2=Anim23Field((void*)rawValue2,int*,0x48);
+            rawValue2=rawValue2<8;
+            nextSelector4=67;
+            if(!rawValue2)goto select;
+            __asm__ volatile(""::"i"(0x8009533C):"memory");
+            nextSelector4=73;
+            goto select;
+        }
+        rawValue2=rawValue3&160;
+        nextSelector4=71;
+        if(rawValue2)goto select;
+        rawValue2=Anim23PlayerB8View2<4;
+        nextSelector4=68;
+        if(!rawValue2)goto select;
+        rawValue2=Anim23PlayerE4View2<23;
+        if(!rawValue2)goto select;
+        nextSelector4=(int)Anim23Player250View1;
+        rawValue2=Anim23Player48View2;
+        rawValue3=Anim23Field((void*)nextSelector4,unsigned char*,0x3C);
+        rawValue2-=65;
+        if(rawValue3!=rawValue2)goto query69;
+        rawValue2=Anim23Field((void*)nextSelector4,unsigned char*,0x42)&2;
+        if(rawValue2)goto input69;
+    query69:
+        rawValue2=Anim23Call55E84View1((void*)nextSelector4);
+        rawValue2=rawValue2<4;
+        if(!rawValue2)return;
+    input69:
+        rawValue2=Anim23Data6E535View1;
+        if(!rawValue2)goto held69;
+        rawValue2=Anim23PlayerB0View2;
+        nextSelector4=65;
+        if(!rawValue2)goto select;
+    held69:
+        rawValue2=Anim23Data6E538View2&12;
+        nextSelector4=66;
+        if(!rawValue2)goto select;
+        rawValue2=Anim23Player144View2<16;
+        if(!rawValue2)goto select65;
+        goto select;
+    case 70: case 73:
+        rawValue2=Anim23Data7431CView1(9);
+        if(rawValue2)return;
+        rawValue3=Anim23Data6E53CView2;
+        rawValue2=rawValue3&160;
+        nextSelector4=71;
+        if(rawValue2)goto select;
+        rawValue2=rawValue3&16;
+        if(rawValue2){
+            product5=Anim23Player44View1;
+            nextSelector4=(int)Anim23Player0View1;
+            rawValue2=Anim23Call1A358View1((void*)nextSelector4,product5+512);
+            nextSelector4=75;
+            if(!rawValue2)goto select;
+        }
+        rawValue2=Anim23PlayerB8View2;
+        if(rawValue2)goto finish70;
+        rawValue2=Anim23Player54View2<16;
+        if(rawValue2)goto finish70;
+        rawValue2=Anim23PlayerE4View2<23;
+        if(!rawValue2)return;
+        rawValue3=Anim23PlayerCCView2;
+        rawValue2=Anim23Player8CView2;
+        product5=rawValue3*rawValue2;
+        rawValue3=Anim23PlayerD0View2;
+        rawValue2=Anim23Player90View2;
+        nextSelector4=rawValue3*rawValue2;
+        rawValue3=Anim23PlayerD4View2;
+        rawValue2=Anim23Player94View2;
+        rawValue3*=rawValue2;
+        rawValue2=product5+nextSelector4;
+        rawValue2+=rawValue3;
+        if(rawValue2>=0)return;
+        rawValue2=Anim23PlayerACView2;
+        nextSelector4=66;
+        if(!rawValue2)goto select65;
+        __asm__ volatile(""::"i"(0x80095540):"memory");
+        goto select;
+    finish70:
+        nextSelector4=(int)Anim23Player250View1;
+        rawValue2=Anim23Player48View2;
+        rawValue3=Anim23Field((void*)nextSelector4,unsigned char*,0x3C);
+        rawValue2-=65;
+        if(rawValue3!=rawValue2)return;
+        rawValue2=Anim23Field((void*)nextSelector4,unsigned char*,0x42)&2;
+        __asm__ volatile("":"=r"(rawValue2):"0"(rawValue2):"$4","memory");
+        nextSelector4=68;
+        if(!rawValue2)return;
+        __asm__ volatile(""::"i"(0x8009557C):"memory");
+        goto select;
+    case 71:
+        rawValue2=Anim23Data7431CView1(9);
+        if(rawValue2)return;
+        rawValue2=3;
+        rawValue3=Anim23Player50View1;
+        if(rawValue3!=rawValue2)goto other71;
+        rawValue2=Anim23PlayerB8View2;
+        if(rawValue2)goto finish71;
+        rawValue2=Anim23PlayerE4View2<23;
+        nextSelector4=71;
+        if(!rawValue2)return;
+    effectSelect:
+        Anim23Call4BEF8View2(nextSelector4);
+        {
+            register int (*spawn2)(int,int,void*,int) __asm__("$2")=Anim23DataSpawnParticleView1;
+            if(spawn2)spawn2(8,33,0,2);
+        }
+        rawValue2=(int)Anim23Data6C654View1;
+        product5=0;
+        nextSelector4=Anim23Field((void*)rawValue2,unsigned char*,0x12);
+        Anim23CallPlaySoundView1((unsigned char)nextSelector4,product5,0);
+        rawValue2=Anim23Player58View1<24;
+        if(rawValue2)return;
+        rawValue2=120;
+        Anim23Data6E530View1=rawValue2;
+        rawValue2=15;
+        Anim23Data6E52CView1=rawValue2;
+        return;
+    finish71:
+        nextSelector4=(int)Anim23Player250View1;
+        rawValue2=Anim23Player48View2;
+        rawValue3=Anim23Field((void*)nextSelector4,unsigned char*,0x3C);
+        rawValue2-=65;
+        if(rawValue3!=rawValue2)return;
+        rawValue2=Anim23Field((void*)nextSelector4,unsigned char*,0x42)&2;
+        __asm__ volatile("":"=r"(rawValue2):"0"(rawValue2):"$4","memory");
+        nextSelector4=68;
+        if(!rawValue2)return;
+        __asm__ volatile(""::"i"(0x8009568C):"memory");
+        goto select;
+    other71:
+        rawValue2=Anim23PlayerB8View2<4;
+        nextSelector4=71;
+        if(!rawValue2)goto select;
+        rawValue2=Anim23PlayerE4View2<23;
+        if(!rawValue2)goto select;
+        nextSelector4=(int)Anim23Player250View1;
+        rawValue2=Anim23Player48View2;
+        rawValue3=Anim23Field((void*)nextSelector4,unsigned char*,0x3C);
+        rawValue2-=65;
+        if(rawValue3!=rawValue2)goto query71;
+        rawValue2=Anim23Field((void*)nextSelector4,unsigned char*,0x42)&2;
+        if(!rawValue2)goto query71;
+        rawValue2=Anim23Data6E535View1;
+        nextSelector4=65;
+        if(rawValue2)goto select;
+        nextSelector4=66;
+        goto select;
+    query71:
+        rawValue2=Anim23Call55E84View1((void*)nextSelector4);
+        rawValue2=rawValue2<16;
+        if(rawValue2)return;
+        rawValue2=Anim23Data6E535View1;
+        nextSelector4=66;
+        if(rawValue2)return;
+        goto select;
+    case 72:
+        rawValue2=Anim23Player4CView2;
+        if(!rawValue2)goto finish72;
+        rawValue2=Anim23Player280View2;
+        if(rawValue2<0)goto finish72;
+        rawValue2=Anim23Player54View2<16;
+        if(!rawValue2){
+            rawValue2=Anim23Data6E53CView2&64;
+            nextSelector4=70;
+            if(rawValue2)goto select;
+        }
+        rawValue3=Anim23Data6E53CView2;
+        rawValue2=rawValue3&160;
+        nextSelector4=71;
+        if(rawValue2)goto select;
+        rawValue2=rawValue3&16;
+        if(rawValue2){
+            product5=Anim23Player44View1;
+            nextSelector4=(int)Anim23Player0View1;
+            rawValue2=Anim23Call1A358View1((void*)nextSelector4,product5+512);
+            nextSelector4=75;
+            if(!rawValue2)goto select;
+        }
+        rawValue2=Anim23PlayerB8View2;
+        if(rawValue2)goto finish72;
+        rawValue2=Anim23Player54View2<16;
+        if(rawValue2)goto finish72;
+        rawValue2=Anim23PlayerE4View2<23;
+        if(!rawValue2)goto finish72;
+        rawValue3=Anim23PlayerCCView2;
+        rawValue2=Anim23Player8CView2;
+        product5=rawValue3*rawValue2;
+        rawValue3=Anim23PlayerD0View2;
+        rawValue2=Anim23Player90View2;
+        nextSelector4=rawValue3*rawValue2;
+        rawValue3=Anim23PlayerD4View2;
+        rawValue2=Anim23Player94View2;
+        rawValue3*=rawValue2;
+        rawValue2=product5+nextSelector4;
+        rawValue2+=rawValue3;
+        if(rawValue2>=0)goto finish72;
+        rawValue2=Anim23PlayerACView2;
+        nextSelector4=66;
+        if(!rawValue2)goto select65;
+        goto select;
+    finish72:
+        nextSelector4=(int)Anim23Player250View1;
+        rawValue2=Anim23Player48View2;
+        rawValue3=Anim23Field((void*)nextSelector4,unsigned char*,0x3C);
+        rawValue2-=65;
+        if(rawValue3!=rawValue2)return;
+        rawValue2=Anim23Field((void*)nextSelector4,unsigned char*,0x42)&2;
+        if(!rawValue2)return;
+        rawValue2=Anim23Player280View2;
+        if(rawValue2<0){
+            nextSelector4=74;
+            goto select;
+        }
+        rawValue2=10;
+        rawValue3=Anim23Player144View2;
+        nextSelector4=79;
+        if(rawValue3==rawValue2)goto select;
+        rawValue2=Anim23PlayerB8View2;
+        nextSelector4=68;
+        if(!rawValue2)goto select65;
+        goto select;
+    case 74:
+        nextSelector4=(int)Anim23Player250View1;
+        rawValue2=Anim23Player48View2;
+        rawValue3=Anim23Field((void*)nextSelector4,unsigned char*,0x3C);
+        rawValue2-=65;
+        if(rawValue3!=rawValue2)return;
+        rawValue2=Anim23Field((void*)nextSelector4,unsigned char*,0x42)&2;
+        if(!rawValue2)return;
+        goto call498C0;
+    case 75:
+        rawValue2=Anim23Data7431CView1(9);
+        if(rawValue2)return;
+        rawValue2=2;
+        rawValue3=Anim23Player4CView2;
+        nextSelector4=77;
+        if(rawValue3==rawValue2)goto select;
+        rawValue2=Anim23Player54View2<61;
+        nextSelector4=68;
+        if(!rawValue2)goto select;
+        nextSelector4=(int)Anim23Player250View1;
+        rawValue2=Anim23Player48View2;
+        rawValue3=Anim23Field((void*)nextSelector4,unsigned char*,0x3C);
+        rawValue2-=65;
+        if(rawValue3!=rawValue2)return;
+        rawValue2=Anim23Field((void*)nextSelector4,unsigned char*,0x42)&2;
+        __asm__ volatile("":"=r"(rawValue2):"0"(rawValue2):"$4","memory");
+        nextSelector4=76;
+        if(!rawValue2)return;
+        __asm__ volatile(""::"i"(0x800959DC):"memory");
+        goto select;
+    case 76:
+        rawValue2=Anim23Data7431CView1(9);
+        if(rawValue2)return;
+        rawValue2=2;
+        rawValue3=Anim23Player4CView2;
+        nextSelector4=77;
+        if(rawValue3==rawValue2)goto select;
+        rawValue2=Anim23Player54View2<61;
+        nextSelector4=68;
+        if(rawValue2)return;
+        goto select;
+    case 77:
+        rawValue2=Anim23Data7431CView1(9);
+        if(rawValue2)return;
+        nextSelector4=(int)Anim23Player250View1;
+        rawValue2=Anim23Player48View2;
+        rawValue3=Anim23Field((void*)nextSelector4,unsigned char*,0x3C);
+        rawValue2-=65;
+        if(rawValue3!=rawValue2)return;
+        rawValue2=Anim23Field((void*)nextSelector4,unsigned char*,0x42)&2;
+        if(!rawValue2)return;
+    select65:
+        nextSelector4=65;
+        goto select;
+        default:return;
+    }
+    select:Anim23Call4BEF8View1(nextSelector4);
+    return;
+}
+#undef Anim23Field

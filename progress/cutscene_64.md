@@ -30,7 +30,7 @@
 - [x] func_cutscene_64_80074780
 - [x] func_cutscene_64_80074788
 - [x] func_cutscene_64_800749DC
-- [ ] func_cutscene_64_800749E4
+- [x] func_cutscene_64_800749E4
 - [x] func_cutscene_64_80075008
 
 <!-- parts_spawn.c -->

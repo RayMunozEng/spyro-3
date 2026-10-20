@@ -1,0 +1,28 @@
+{
+  "AI_generated": true,
+  "human_reviewed": false,
+  "source_identity": "SCUS-94467 USA Rev0",
+  "functions": {
+    "func_level_50_8008B434": {
+      "native_words": 2134,
+      "selectors": 31,
+      "padding_words": 1,
+      "frame_bytes": 328,
+      "complete_owned_prefix_bytes": 16,
+      "complete_owned_data_bytes": 144,
+      "data_start": "0x80074998",
+      "table": "0x800749a8",
+      "assembly_sha256": "6f38442912c83f50e2e423c78cc332fb9c1d8b1eb21276edc3f1a239332ec3a3",
+      "original_overlay_sha256": "aec3ecaad625833414f9185465866a322250d79b5aef3f90cf7e16eb8503bfe3",
+      "native_sha256": "9f8d484579182138ebc08e6276fdac1baa0e8f71548231916738e930ee6cabeb",
+      "owned_sha256": "841a86f0635d2273b2bdbd666f94a50ba4bc5f49268b771e7557dd4d3e0cdb14",
+      "installed_C_verified": true,
+      "all_linked_native_words_passed": true,
+      "all_absolute_selectors_and_original_padding_passed": true,
+      "all_original_prefix_bytes_passed": true
+    }
+  },
+  "source_sha256": "eccd88905714bd14e9c2eb3a923e346b9f1018e5e0b51593ceae1495d6125b6b",
+  "all_linked_functions_passed": true,
+  "linked_elf_sha256": "2d31c38c36ef65865a1785bf50e9fdc647fac7378711b7d0e6189aeee3a56e6f"
+}

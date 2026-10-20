@@ -31,7 +31,7 @@
 - [x] func_cutscene_71_800747B4
 
 <!-- parts_spawn.c -->
-- [ ] func_cutscene_71_80075854
+- [x] func_cutscene_71_80075854
 
 <!-- parts_update.c -->
 - [x] func_cutscene_71_8007498C

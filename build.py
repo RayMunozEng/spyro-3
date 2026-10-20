@@ -1,3 +1,5 @@
+from pathlib import Path
+from multiprocessing import Pool
 import os
 import subprocess
 import hashlib
@@ -501,7 +503,7 @@ def assemble_file(file):
 
     system(AS + " " + AS_FLAGS + " -o build/" + out + " " + file)
 
-    object_files.append("build/" + out)
+    return "build/" + out
 
 def build_file(file):
     # Remove .c from the file name
@@ -516,11 +518,10 @@ def build_file(file):
 
     debug_build = os.environ.get("DEBUG")
 
-    system(GCC + ("" if not debug_build else " -DDEBUG") + " " + GCC_FLAGS + " build/" + file + ".o.d " + file + ".c | " + CC + " " + C_FLAGS + " " + fileFlags + " | python3 ./tools/fix_coff_debug.py | python3 " + MASPSX + " " + MASPSX_FLAGS + " | python3 ./tools/fix_str_align.py | python3 ./tools/fix_jtbl_align.py > build/" + out_s)
+    system(GCC + ("" if not debug_build else " -DDEBUG") + " " + GCC_FLAGS + " build/" + file + ".o.d " + file + ".c | " + CC + " " + C_FLAGS + " " + fileFlags + " | python3 ./tools/fix_coff_debug.py | python3 " + MASPSX + " " + MASPSX_FLAGS + " | python3 ./tools/fix_str_align.py | python3 ./tools/fix_jtbl_align.py " + ("--overlay-source " + file if file.startswith("src/overlays/") else "") + " > build/" + out_s)
     system(AS + " " + AS_FLAGS + " -o build/" + out + " build/" + out_s)
 
-    object_files.append("build/" + out)
-
+    return"build/" + out
 
 def collect_c_files():
     files = []
@@ -532,7 +533,8 @@ def collect_c_files():
 
 def collect_asm_files():
     files = []
-    for root, _, filenames in os.walk("asm"):
+    for root, directories, filenames in os.walk("asm"):
+        directories[:] = [d for d in directories if "nonmatchings" not in str(Path(root) / d)]
         if "nonmatchings" in root:
             continue
         for filename in filenames:
@@ -548,17 +550,19 @@ if not os.environ.get("LINK_ONLY"):
     asm_files = collect_asm_files()
     c_files = collect_c_files()
 
-    idx = 0
-    for file in c_files:
-        idx += 1
-        print_info(f"Compiling {idx}/{len(c_files)}: {file}")
-        build_file(file)
+    c_objects = []
+    asm_objects = []
 
-    idx = 0
-    for file in asm_files:
-        idx += 1
-        print_info(f"Assembling {idx}/{len(asm_files)}: {file}")
-        assemble_file(file)
+    with Pool() as pool:
+        for i, result in enumerate(pool.imap_unordered(build_file, c_files), 1):
+            print_info(f"Compiled {i}/{len(c_files)}: {result}")
+            c_objects.append(result)
+
+        for i, result in enumerate(pool.imap_unordered(assemble_file, asm_files), 1):
+            print_info(f"Assembled {i}/{len(asm_files)}: {result}")
+            asm_objects.append(result)
+
+
+    object_files = c_objects + asm_objects
 
 link_files()
-

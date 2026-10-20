@@ -1684,7 +1684,352 @@ void func_level_33_80095D10(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/overlays/level_33/level", func_level_33_80095FF0);
+/* AI-generated; not human reviewed. Verified sibling C adapted only
+ * to this function's original SCUS-94467 instructions. Raw field units,
+ * helper meanings and update cadence remain unresolved. */
+typedef struct {
+    unsigned int tag;
+    unsigned char red, green, blue, code;
+    short x0, y0, x1, y1;
+} Hud33Line;
+typedef struct {
+    unsigned int tag;
+    unsigned char red0, green0, blue0, code;
+    short x0, y0;
+    unsigned char red1, green1, blue1, reserved0F;
+    short x1, y1;
+    unsigned char red2, green2, blue2, reserved17;
+    short x2, y2;
+    unsigned char red3, green3, blue3, reserved1F;
+    short x3, y3;
+} Hud33Quad;
+extern unsigned char* Hud33PacketCursor __asm__("D_8006C664");
+int Hud33Sprite(SpriteData*, int, int) __asm__("func_800289C8");
+
+int Hud33Draw(void*) __asm__("func_80029904");
+int func_level_33_80095FF0(HudEntry* argument) {
+    int x,y,verticalOffset;
+    register HudEntry* hud __asm__("$23")=argument;
+    register SpriteData* sprite __asm__("$21");
+    int colour;
+    register int centredY __asm__("$16");
+    register int barY __asm__("$22");
+    register int top __asm__("$19");
+    register int bottom __asm__("$16");
+    register int lineCode __asm__("$17");
+    register int greenByte __asm__("$8");
+    register unsigned int lineTag __asm__("$18");
+    register Hud33Line* line __asm__("$20");
+    register Hud33Line* lineArgument __asm__("$4");
+    register Hud33Quad* quad __asm__("$17");
+    register Hud33Quad* quadArgument __asm__("$4");
+    register int width __asm__("$21");
+    register int* xArg __asm__("$5");
+    register int* yArg __asm__("$6");
+    __asm__("" : : "r"(hud):"$5","$6");
+    xArg=&x;yArg=&y;
+    __asm__("" : : "r"(xArg),"r"(yArg));
+    {register int index __asm__("$7")=(unsigned char)hud->unk1C.frame;
+     register int initialY __asm__("$2")=hud->unk2;
+     register int initialX __asm__("$3");
+     register SpriteData* table __asm__("$2");
+     __asm__("" : "=r"(index),"=r"(initialY):"0"(index),"1"(initialY):"$3");
+     initialX=2;x=initialX;
+     __asm__ volatile("" ::: "memory");
+     initialY+=6;
+     __asm__("" : "=r"(initialY):"0"(initialY));y=initialY;
+     __asm__ volatile("" ::: "memory");
+     table=D_8006C788;
+     __asm__("" : "=r"(table):"0"(table),"r"(index));index*=8;
+     sprite=(SpriteData*)((int)table+index);
+    }
+    func_80029674(hud,xArg,yArg);
+    colour=91;
+    if((unsigned char)hud->movementFrame) {
+        __asm__("" : "=r"(colour):"0"(colour));
+        verticalOffset=((unsigned char)hud->movementFrame+10)>>1;
+    } else {
+        __asm__("" : "=r"(colour):"0"(colour));
+        verticalOffset=0;
+    }
+    func_80029708(hud,&verticalOffset,&x,&y);
+    {register int height __asm__("$2")=sprite->unk5;
+     register int low __asm__("$3")=sprite->unk1;
+     register int storedY __asm__("$3");
+     __asm__("" : : "r"(height),"r"(low));
+     height-=low;
+     __asm__("" : "=r"(height):"0"(height));
+     storedY=y;centredY=storedY-(height>>1);y=centredY;
+    }
+    barY=centredY+1;
+    if(!(*(volatile unsigned char*)((unsigned char*)hud+24)&1)) {
+        register int edge __asm__("$2")=centredY+sprite->unk5;
+        edge-=sprite->unk1;barY=edge-29;
+    }
+    top=barY-1;
+    if(*(volatile unsigned char*)((unsigned char*)hud+24)&8) {
+        lineCode = 64;
+        line=(Hud33Line*)Hud33PacketCursor;
+        __asm__ volatile("" : "=r"(line):"0"(line):"memory");
+        lineTag = 0x03000000;
+        __asm__("" : "=r"(lineTag):"0"(lineTag));
+        greenByte=46;
+        __asm__("" : "=r"(greenByte):"0"(greenByte));
+        line->code = lineCode;
+        line->red = colour;
+        line->green = greenByte;
+        line->blue = 0;
+        line->tag = lineTag;
+        line->y1 = top;
+        line->y0 = top;
+        line->x0 = x - 1;
+        line->x1 = x + 510;
+        func_8004E758(line);
+        line++;
+        lineArgument = line;
+        __asm__("" : "=r"(lineArgument) : "0"(lineArgument));
+        greenByte=46;
+        __asm__("" : "=r"(greenByte):"0"(greenByte));
+        line->tag = lineTag;
+        __asm__ volatile("" : : "m"(line->tag));
+        line->code = lineCode;
+        line->red = colour;
+        line->green = greenByte;
+        line->blue = 0;
+        line->y0 = top;
+        __asm__ volatile("" : : : "memory");
+        {register int rawX __asm__("$2")=x;
+         __asm__("" : "=r"(rawX):"0"(rawX));
+         bottom=barY+28;
+         __asm__("" : "=r"(bottom):"0"(bottom),"r"(rawX));
+         line->y1=bottom;
+         __asm__ volatile("" : "=r"(rawX):"0"(rawX):"memory");
+         rawX+=510;line->x1=rawX;line->x0=rawX;}
+
+
+        func_8004E758(lineArgument);
+        line++;
+        lineArgument = line;
+        __asm__("" : "=r"(lineArgument) : "0"(lineArgument));
+        greenByte=46;
+        __asm__("" : "=r"(greenByte):"0"(greenByte));
+        line->tag = lineTag;
+        __asm__ volatile("" : : "m"(line->tag));
+        line->code = lineCode;
+        line->red = colour;
+        line->green = greenByte;
+        line->blue = 0;
+        line->y1 = bottom;
+        line->y0 = bottom;
+        line->x0 = x - 1;
+        line->x1 = x + 510;
+        func_8004E758(lineArgument);
+        line++;
+        __asm__("" : "=r"(line) : "0"(line));
+        {
+            register Hud33Line* lastLine __asm__("$4") = line;
+            register int xValue __asm__("$2");
+            __asm__("" : "=r"(lastLine) : "0"(lastLine));
+            greenByte=46;
+            __asm__("" : "=r"(greenByte):"0"(greenByte));
+            lastLine->code = lineCode;
+
+            lastLine->red = colour;
+            lastLine->green = greenByte;
+            lastLine->blue = 0;
+            __asm__ volatile("" : : : "memory");
+            xValue = x;
+            __asm__("" : "=r"(lastLine) : "0"(lastLine), "r"(xValue));
+            quad = (Hud33Quad*)(lastLine + 1);
+            __asm__("" : "=r"(quad) : "0"(quad));
+            lastLine->tag = lineTag;
+            lastLine->y0 = top;
+            lastLine->y1 = bottom;
+            lastLine->x1 = xValue - 1;
+            lastLine->x0 = xValue - 1;
+            func_8004E758(lastLine);
+        }
+        quadArgument=quad;
+        __asm__("" : "=r"(quadArgument):"0"(quadArgument));
+        {register unsigned int rawTag __asm__("$2")=0x08000000;
+         __asm__("" : "=r"(rawTag):"0"(rawTag));quad->tag=rawTag;__asm__ volatile("" ::: "memory");}
+        {register int code __asm__("$2")=56;
+         register int red __asm__("$5")=179;
+         register int green __asm__("$3")=142;
+         register int blue __asm__("$2");
+         __asm__("" : "=r"(code),"=r"(red),"=r"(green):"0"(code),"1"(red),"2"(green));
+         quad->code=code;blue=77;
+         __asm__("" : "=r"(blue):"0"(blue));
+         quad->red2=red;quad->red0=red;
+         __asm__ volatile("" ::: "memory");
+         quad->green2=green;quad->green0=green;
+         __asm__ volatile("" ::: "memory");
+         quad->blue2=blue;quad->blue0=blue;
+         __asm__ volatile("" ::: "memory");
+         quad->red3=red;quad->red1=red;
+         __asm__ volatile("" ::: "memory");
+         quad->green3=green;quad->green1=green;
+         __asm__ volatile("" ::: "memory");
+         quad->blue3=blue;quad->blue1=blue;
+         __asm__ volatile("" ::: "memory");
+        }
+        {register int coordinate __asm__("$3")=x;
+         register int rawY __asm__("$2");
+         __asm__("" : "=r"(coordinate):"0"(coordinate):"$2");
+         rawY=barY;
+         __asm__("" : "=r"(coordinate),"=r"(rawY):"0"(coordinate),"1"(rawY));
+         quad->y1=rawY;quad->y0=rawY;
+         quad->y3=bottom;quad->y2=bottom;
+         __asm__ volatile("" ::: "memory");
+         coordinate+=510;
+         quad->x2=coordinate;quad->x0=coordinate;
+         quad->x3=coordinate;quad->x1=coordinate;
+         func_8004E758(quadArgument);
+        }
+        quad++;
+        Hud33PacketCursor=(unsigned char*)quad;
+        x+=520;
+        Hud33Draw(hud);
+        {register int spriteWidth __asm__("$2")=sprite->unk4;
+         register int left __asm__("$3")=sprite->unk0;
+         __asm__("" : : "r"(spriteWidth),"r"(left));
+         spriteWidth-=left;
+         __asm__("" : "=r"(spriteWidth):"0"(spriteWidth));
+         width=spriteWidth+520;
+        }
+    } else {
+        {register int initialX __asm__("$2")=2;
+         register int right __asm__("$3");register int left __asm__("$5");
+         __asm__("" : "=r"(initialX):"0"(initialX):"$17","$20");
+         lineCode=64;line=(Hud33Line*)Hud33PacketCursor;
+         __asm__("" : "=r"(line):"0"(line):"$3","$5");
+         right=sprite->unk4;left=sprite->unk0;
+         __asm__("" : "=r"(right),"=r"(left):"0"(right),"1"(left));
+         lineTag=0x03000000;
+         __asm__("" : "=r"(lineTag):"0"(lineTag));
+         x=initialX;
+         __asm__ volatile("" ::: "memory");right-=left;width=right+520;
+        }
+        greenByte=46;
+        __asm__("" : "=r"(greenByte):"0"(greenByte));
+        line->code = lineCode;
+        line->red = colour;
+        line->green = greenByte;
+        line->blue = 0;
+        line->tag = lineTag;
+        line->y1 = top;
+        line->y0 = top;
+        line->x0 = x - 1;
+        line->x1 = x + 510;
+        func_8004E758(line);
+        line++;
+        lineArgument = line;
+        __asm__("" : "=r"(lineArgument) : "0"(lineArgument));
+        greenByte=46;
+        __asm__("" : "=r"(greenByte):"0"(greenByte));
+        line->tag = lineTag;
+        __asm__ volatile("" : : "m"(line->tag));
+        line->code = lineCode;
+        line->red = colour;
+        line->green = greenByte;
+        line->blue = 0;
+        line->y0 = top;
+        __asm__ volatile("" : : : "memory");
+        {register int rawX __asm__("$2")=x;
+         __asm__("" : "=r"(rawX):"0"(rawX));
+         bottom=barY+28;
+         __asm__("" : "=r"(bottom):"0"(bottom),"r"(rawX));
+         line->y1=bottom;
+         __asm__ volatile("" : "=r"(rawX):"0"(rawX):"memory");
+         rawX+=510;line->x1=rawX;line->x0=rawX;}
+
+
+        func_8004E758(lineArgument);
+        line++;
+        lineArgument = line;
+        __asm__("" : "=r"(lineArgument) : "0"(lineArgument));
+        greenByte=46;
+        __asm__("" : "=r"(greenByte):"0"(greenByte));
+        line->tag = lineTag;
+        __asm__ volatile("" : : "m"(line->tag));
+        line->code = lineCode;
+        line->red = colour;
+        line->green = greenByte;
+        line->blue = 0;
+        line->y1 = bottom;
+        line->y0 = bottom;
+        line->x0 = x - 1;
+        line->x1 = x + 510;
+        func_8004E758(lineArgument);
+        line++;
+        __asm__("" : "=r"(line) : "0"(line));
+        {
+            register Hud33Line* lastLine __asm__("$4") = line;
+            register int xValue __asm__("$2");
+            __asm__("" : "=r"(lastLine) : "0"(lastLine));
+            greenByte=46;
+            __asm__("" : "=r"(greenByte):"0"(greenByte));
+            lastLine->code = lineCode;
+
+            lastLine->red = colour;
+            lastLine->green = greenByte;
+            lastLine->blue = 0;
+            __asm__ volatile("" : : : "memory");
+            xValue = x;
+            __asm__("" : "=r"(lastLine) : "0"(lastLine), "r"(xValue));
+            quad = (Hud33Quad*)(lastLine + 1);
+            __asm__("" : "=r"(quad) : "0"(quad));
+            lastLine->tag = lineTag;
+            lastLine->y0 = top;
+            lastLine->y1 = bottom;
+            lastLine->x1 = xValue - 1;
+            lastLine->x0 = xValue - 1;
+            func_8004E758(lastLine);
+        }
+        quadArgument=quad;
+        __asm__("" : "=r"(quadArgument):"0"(quadArgument));
+        {register unsigned int rawTag __asm__("$2")=0x08000000;
+         __asm__("" : "=r"(rawTag):"0"(rawTag));quad->tag=rawTag;__asm__ volatile("" ::: "memory");}
+        {register int code __asm__("$2")=56;
+         register int red __asm__("$5")=179;
+         register int green __asm__("$3")=142;
+         register int blue __asm__("$2");
+         __asm__("" : "=r"(code),"=r"(red),"=r"(green):"0"(code),"1"(red),"2"(green));
+         quad->code=code;blue=77;
+         __asm__("" : "=r"(blue):"0"(blue));
+         quad->red2=red;quad->red0=red;
+         __asm__ volatile("" ::: "memory");
+         quad->green2=green;quad->green0=green;
+         __asm__ volatile("" ::: "memory");
+         quad->blue2=blue;quad->blue0=blue;
+         __asm__ volatile("" ::: "memory");
+         quad->red3=red;quad->red1=red;
+         __asm__ volatile("" ::: "memory");
+         quad->green3=green;quad->green1=green;
+         __asm__ volatile("" ::: "memory");
+         quad->blue3=blue;quad->blue1=blue;
+         __asm__ volatile("" ::: "memory");
+        }
+        {register int coordinate __asm__("$3")=x;
+         register int rawY __asm__("$2");
+         __asm__("" : "=r"(coordinate):"0"(coordinate):"$2");
+         rawY=barY;
+         __asm__("" : "=r"(coordinate),"=r"(rawY):"0"(coordinate),"1"(rawY));
+         quad->y1=rawY;quad->y0=rawY;
+         quad->y3=bottom;quad->y2=bottom;
+         __asm__ volatile("" ::: "memory");
+         {register int end __asm__("$2")=coordinate+510;
+          quad->x2=coordinate;quad->x0=coordinate;
+          quad->x3=end;quad->x1=end;}
+         func_8004E758(quadArgument);
+        }
+        quad++;
+        Hud33PacketCursor=(unsigned char*)quad;
+        Hud33Draw(hud);
+    }
+    return width;
+}
+
 
 extern short D_800719CC;
 void func_level_33_8009649C(HudEntry *hud) {

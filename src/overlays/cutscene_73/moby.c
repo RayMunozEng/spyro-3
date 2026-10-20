@@ -192,7 +192,152 @@ INCLUDE_RODATA("asm/nonmatchings/overlays/cutscene_73/moby", D_cutscene_73_80074
 
 INCLUDE_RODATA("asm/nonmatchings/overlays/cutscene_73/moby", D_cutscene_73_800744C0);
 
-INCLUDE_ASM("asm/nonmatchings/overlays/cutscene_73/moby", func_cutscene_73_80074D9C);
+/* AI-generated; not human reviewed. Derived from this function's
+ * original SCUS-94467 instructions; native words and targets matched.
+ * Raw field units, helper meanings and update cadence remain unresolved. */
+/* AI generated; not human reviewed. Original parser recovery and native C; original SHA256 84b12cf1aaba1af1ee55d424d5a0f45a17415ffc6913367ce36ad5086207721a. Raw helper/units/cadence/runtime unproven. */
+#define ParserField(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+int Parser6245_0_func_800359A4() __asm__("func_800359A4");                   /* extern */
+unsigned char Parser6245_0_func_8004EF04() __asm__("func_8004EF04");              /* extern */
+int Parser6245_0_rand() __asm__("rand");                                    /* extern */
+extern int Parser6245_0_D_8006EDDC __asm__("D_8006EDDC");
+extern unsigned char Parser6245_0_D_cutscene_73_80074490 __asm__("D_cutscene_73_80074490");
+extern unsigned char Parser6245_0_D_cutscene_73_800744C0 __asm__("D_cutscene_73_800744C0");
+
+typedef struct {int words[4];} CutsceneCopy16;
+void func_cutscene_73_80074D9C(Moby *input) {
+ register Moby *arg0 __asm__("$16")=input;
+    struct {Vector3D sp10;char pad1C[4];unsigned char sp20[48];unsigned char sp50[48];Vector3D sp80;char pad8C[4];Vector3D sp90;char pad9C[4];} frame;
+    register unsigned char * var_a2 __asm__("$6");
+    register unsigned char * var_a2_2 __asm__("$6");
+    register unsigned char * var_a3 __asm__("$7");
+    register unsigned char * var_a3_2 __asm__("$7");
+    register int temp_s4 __asm__("$20");
+    register int var_s0 __asm__("$16");
+    register int var_s1 __asm__("$17");
+    register int var_s1_2 __asm__("$17");
+    register int var_s1_3 __asm__("$17");
+    register int var_s1_4 __asm__("$17");
+    register int var_v0 __asm__("$2");register int value2 __asm__("$2");register int value3 __asm__("$3");
+    register Vector3D *vector19 __asm__("$19");
+    register unsigned char *base2 __asm__("$2"),*base3 __asm__("$3");
+    register int arg4 __asm__("$4"),arg5 __asm__("$5"),arg7 __asm__("$7");register Vector3D *arg6 __asm__("$6");
+    register int (*particle2)() __asm__("$2");
+    register int var_v1 __asm__("$3");
+    register signed char * temp_v0 __asm__("$16");
+    register signed char * temp_v0_2 __asm__("$16");
+    register unsigned int temp_s2 __asm__("$18");
+    register void * temp_s2_2 __asm__("$18");
+
+    if (Parser6245_0_func_800359A4(&arg0->substate, 1) != 0) {
+        arg0->substate = 0x2D;
+        temp_s4=Parser6245_0_rand() & 3;
+        var_s0=-1;
+        temp_s2 = Parser6245_0_rand() & 7;
+        var_a3 = frame.sp20;
+        var_a2 = &Parser6245_0_D_cutscene_73_80074490;
+        do {
+            *(CutsceneCopy16*)var_a3=*(CutsceneCopy16*)var_a2;
+            var_a2 += 0x10;
+            var_a3 += 0x10;
+        } while (var_a2 != (&Parser6245_0_D_cutscene_73_80074490 + 0x30));
+        var_a3_2 = frame.sp50;
+        var_a2_2 = &Parser6245_0_D_cutscene_73_800744C0;
+        do {
+            *(CutsceneCopy16*)var_a3_2=*(CutsceneCopy16*)var_a2_2;
+            var_a2_2 += 0x10;
+            var_a3_2 += 0x10;
+        } while (var_a2_2 != (&Parser6245_0_D_cutscene_73_800744C0 + 0x30));
+        if ((unsigned int) (Parser6245_0_D_8006EDDC - 0x14) < 0x10DU) {
+            var_s0 = 0;
+        } else if ((unsigned int) (Parser6245_0_D_8006EDDC - 0x121) < 0x78U) {
+            var_s0 = 1;
+        } else if (((unsigned int) (Parser6245_0_D_8006EDDC - 0x210) < 0x81U) || (Parser6245_0_D_8006EDDC >= 0x72C)) {
+            var_s0 = 2;
+        } else if ((unsigned int) (Parser6245_0_D_8006EDDC - 0x454) < 0x131U) {
+            var_s0 = 3;
+        }
+        if (var_s0 != -1) {
+            arg4=(int)&frame.sp10;__asm__("" : "=r"(arg4):"0"(arg4));base2=frame.sp20;__asm__("" : "=r"(base2):"0"(base2));func_8004F178(arg4, base2+(var_s0*12));
+            value2=Parser6245_0_rand();value3=frame.sp10.x;value2&=0xFFF;value3-=0x800;value3+=value2;frame.sp10.x=value3;
+            value2=Parser6245_0_rand();value3=frame.sp10.y;value2&=0xFFF;value3-=0x800;value3+=value2;frame.sp10.y=value3;
+            if (var_s0 != 3) {
+                var_v0 = Parser6245_0_rand() & 0x1FFF;
+                var_v1 = frame.sp10.z - 0x1000;
+            } else {
+                var_v0 = Parser6245_0_rand() & 0xFFF;
+                var_v1 = frame.sp10.z - 0x800;
+            }
+            var_v1+=var_v0;frame.sp10.z=var_v1;
+            var_s1 = 0;
+            do {
+                arg4=1;arg5=70;arg6=&frame.sp10;arg7=35;__asm__("" : "=r"(arg4),"=r"(arg5),"=r"(arg6),"=r"(arg7):"0"(arg4),"1"(arg5),"2"(arg6),"3"(arg7));particle2=SpawnParticle;__asm__("" : "=r"(particle2):"0"(particle2));var_s1++;particle2(arg4,arg5,arg6,arg7);
+            } while (var_s1 < 0x14);
+            switch (temp_s2) {
+            case 0:
+            case 1:
+            case 2:
+                var_s1_2 = 0;
+                __asm__("" : : "r"(temp_s2));vector19=&frame.sp80;value2=temp_s4*12;__asm__("" : "=r"(vector19),"=r"(value2):"0"(vector19),"1"(value2));base3=frame.sp50;temp_s2_2=base3+value2;
+loop_24:
+                frame.sp80.x = (Parser6245_0_rand() & 0x3FF) - 0x200;
+                frame.sp80.y = (Parser6245_0_rand() & 0x3FF) - 0x200;
+                frame.sp80.z = (Parser6245_0_rand() & 0x3FF) - 0x200;
+                Parser6245_0_func_8004EF04(vector19, 0xC8);
+                temp_v0 = SpawnParticle(1, 0, &frame.sp10, (Vector3D *) vector19);
+                if (temp_v0 != 0) {
+                    ParserField(temp_v0, signed char *, 0xC) = (signed char) ParserField(temp_s2_2, int *, 0);
+                    ParserField(temp_v0, signed char *, 0xD) = (signed char) ParserField(temp_s2_2, int *, 4);
+                    ParserField(temp_v0, signed char *, 0xE) = (signed char) ParserField(temp_s2_2, int *, 8);
+                    ParserField(temp_v0, unsigned char *, 2) = (unsigned char) (ParserField(temp_v0, unsigned char *, 2) + (Parser6245_0_rand(vector19) & 8));__asm__ volatile("" ::: "memory");
+                    arg4=(int)vector19;__asm__ volatile("" : : "r"(arg4));
+                }
+                /* Original A0 producer: word166 supplies vector19 on the zero
+                 * particle path; word180 restores it after rand on the
+                 * nonzero path. Capture the proven common raw ABI value. */
+                __asm__("" : "=r"(arg4));Parser6245_0_func_8004EF04(arg4,0x64);
+                temp_v0_2 = SpawnParticle(1, 0, &frame.sp10, (Vector3D *) vector19);
+                if (temp_v0_2 != 0) {
+                    ParserField(temp_v0_2, signed char *, 0xC) = (signed char) ParserField(temp_s2_2, int *, 0);
+                    ParserField(temp_v0_2, signed char *, 0xD) = (signed char) ParserField(temp_s2_2, int *, 4);
+                    ParserField(temp_v0_2, signed char *, 0xE) = (signed char) ParserField(temp_s2_2, int *, 8);
+                    ParserField(temp_v0_2, unsigned char *, 2) = (unsigned char) (ParserField(temp_v0_2, unsigned char *, 2) + (Parser6245_0_rand() & 8));
+                }
+                var_s1_2 += 1;
+                if (var_s1_2 < 0x28) {
+                    goto loop_24;
+                }
+                break;
+            case 3:
+            case 4:
+                var_s1_3 = 0;
+                do {
+                    arg4=1;arg5=70;arg6=&frame.sp10;arg7=45;__asm__("" : "=r"(arg4),"=r"(arg5),"=r"(arg6),"=r"(arg7):"0"(arg4),"1"(arg5),"2"(arg6),"3"(arg7));particle2=SpawnParticle;__asm__("" : "=r"(particle2):"0"(particle2));var_s1_3++;particle2(arg4,arg5,arg6,arg7);
+                    SpawnParticle(1, 0x46, &frame.sp10, (Vector3D *)0x3C);
+                } while (var_s1_3 < 0x14);
+                return;
+            case 5:
+            case 6:
+            case 7:
+                var_s1_4 = 0;
+                do {
+                    var_s1_4 += 1;
+                    frame.sp90.x = (Parser6245_0_rand() & 0x3FF) - 0x200;
+                    frame.sp90.y = (Parser6245_0_rand() & 0x3FF) - 0x200;
+                    frame.sp90.z = (Parser6245_0_rand() & 0x3FF) - 0x200;
+                    Parser6245_0_func_8004EF04(&frame.sp90, 0xC8);
+                    SpawnParticle(1, 0x37, &frame.sp10, (Vector3D *) &frame.sp90);
+                    Parser6245_0_func_8004EF04(&frame.sp90, 0x64);
+                    SpawnParticle(1, 0x37, &frame.sp10, (Vector3D *) &frame.sp90);
+                } while (var_s1_4 < 0x28);
+                break;
+            }
+        }
+    } else {
+    }
+}
+#undef ParserField
+
 
 void func_cutscene_73_80075210(void) {
     int frame[8];

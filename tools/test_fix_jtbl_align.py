@@ -35,5 +35,24 @@ class OverlayTableLayoutTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("AssertionError", result.stderr)
 
+    def test_atlas_original_jtbl_section_is_preserved(self):
+        fixture = self.fixture("func_atlas_8007A1A8")
+        result = self.run_filter(fixture, "--overlay-source", "src/overlays/atlas/atlas2")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, fixture.replace(".section .rodata", ".section .rodata.jtbl"))
+
+    def test_atlas_jtbl_section_keeps_original_padding(self):
+        fixture = self.fixture("func_atlas_8007839C")
+        result = self.run_filter(fixture, "--overlay-source", "src/overlays/atlas/atlas2")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        expected = fixture.replace(".section .rodata", ".section .rodata.jtbl")
+        expected = expected.replace(".text\n", ".word 0x00000000\n.text\n")
+        self.assertEqual(result.stdout, expected)
+
+    def test_atlas_jtbl_wrong_entry_count_is_rejected(self):
+        result = self.run_filter(self.fixture("func_atlas_8007A1A8", 8), "--overlay-source", "src/overlays/atlas/atlas2")
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("AssertionError", result.stderr)
+
 if __name__ == "__main__":
     unittest.main()

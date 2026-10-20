@@ -1,10 +1,10 @@
 <!-- animation.c -->
-- [ ] func_level_50_8009A6B4
+- [x] func_level_50_8009A6B4
 - [x] func_level_50_8009CF04
 - [x] func_level_50_8009D568
 - [x] func_level_50_8009D6E0
 - [x] func_level_50_8009D770
-- [ ] func_level_50_8009E40C
+- [x] func_level_50_8009E40C
 
 <!-- camera.c -->
 - [x] func_level_50_8009F9D8
@@ -55,56 +55,56 @@
 - [x] func_level_50_80078434
 - [x] func_level_50_80078738
 - [x] func_level_50_800792AC
-- [ ] func_level_50_800796DC
+- [x] func_level_50_800796DC
 - [x] func_level_50_8007A6DC
 - [x] func_level_50_8007A758
-- [ ] func_level_50_8007AA74
+- [x] func_level_50_8007AA74
 - [x] func_level_50_8007BAF4
-- [ ] func_level_50_8007BD70
-- [ ] func_level_50_8007D7E0
-- [ ] func_level_50_8007EE20
+- [x] func_level_50_8007BD70
+- [x] func_level_50_8007D7E0
+- [x] func_level_50_8007EE20
 - [x] func_level_50_8007FE94
 - [x] func_level_50_800804A4
-- [ ] func_level_50_800804C4
+- [x] func_level_50_800804C4
 - [x] func_level_50_8008102C
-- [ ] func_level_50_80081180
+- [x] func_level_50_80081180
 - [x] func_level_50_80081C90
-- [ ] func_level_50_80081FAC
+- [x] func_level_50_80081FAC
 - [x] func_level_50_800833B4
 - [x] func_level_50_80083430
 - [x] func_level_50_80083508
-- [ ] func_level_50_80083CD0
+- [x] func_level_50_80083CD0
 - [x] func_level_50_800846F0
 - [x] func_level_50_800849DC
 - [x] func_level_50_80084F34
-- [ ] func_level_50_800851B0
+- [x] func_level_50_800851B0
 - [x] func_level_50_800857B4
 - [x] func_level_50_80085A60
 - [x] func_level_50_80085EF0
 - [x] func_level_50_80085FA0
-- [ ] func_level_50_800861B0
+- [x] func_level_50_800861B0
 - [x] func_level_50_80086CCC
 - [x] func_level_50_80086E08
 - [x] func_level_50_80086F98
 - [x] func_level_50_800872C8
-- [ ] func_level_50_800874D4
+- [x] func_level_50_800874D4
 - [x] func_level_50_80088570
 - [x] func_level_50_800896C4
 - [x] func_level_50_800896E4
-- [ ] func_level_50_800898E4
+- [x] func_level_50_800898E4
 - [x] func_level_50_8008A900
-- [ ] func_level_50_8008AA24
-- [ ] func_level_50_8008B434
+- [x] func_level_50_8008AA24
+- [x] func_level_50_8008B434
 - [x] func_level_50_8008D58C
-- [ ] func_level_50_8008DBFC
-- [ ] func_level_50_8008E924
-- [ ] func_level_50_8008F0C8
-- [ ] func_level_50_8008FA4C
-- [ ] func_level_50_8009012C
+- [x] func_level_50_8008DBFC
+- [x] func_level_50_8008E924
+- [x] func_level_50_8008F0C8
+- [x] func_level_50_8008FA4C
+- [x] func_level_50_8009012C
 
 <!-- parts_spawn.c -->
-- [ ] func_level_50_800989E8
+- [x] func_level_50_800989E8
 
 <!-- parts_update.c -->
-- [ ] func_level_50_80096A58
+- [x] func_level_50_80096A58
 

@@ -1,10 +1,10 @@
 <!-- animation.c -->
-- [ ] func_level_17_80082528
+- [x] func_level_17_80082528
 - [x] func_level_17_80082B84
 - [x] func_level_17_80082DC4
 - [x] func_level_17_80082ECC
 - [x] func_level_17_80082F48
-- [ ] func_level_17_8008332C
+- [x] func_level_17_8008332C
 
 <!-- camera.c -->
 - [x] func_level_17_80083A08
@@ -26,9 +26,9 @@
 - [x] func_level_17_80075384
 - [x] func_level_17_800768D4
 - [x] func_level_17_80076BD8
-- [ ] func_level_17_8007774C
-- [ ] func_level_17_8007A770
-- [ ] func_level_17_8007B304
+- [x] func_level_17_8007774C
+- [x] func_level_17_8007A770
+- [x] func_level_17_8007B304
 - [x] func_level_17_8007BA60
 - [x] func_level_17_8007C3D0
 - [x] func_level_17_8007D19C
