@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "stdutil.h"
 #include "spyro.h"
@@ -35,74 +36,74 @@ void func_level_25_800892FC(void) {
     MAX(tableIndex, 4);
 
     switch (camera.cameraState) {
-    case 3:
-        if (camera.unk134 == 0) {
-            func_80014354();
-            camera.unk7c.pos[1].pos.elevation = -spyro.rotation.pitch;
+        case 3:
+            if (camera.unk134 == 0) {
+                func_80014354();
+                camera.unk7c.pos[1].pos.elevation = -spyro.rotation.pitch;
 
-            turnDelta = (-spyro.rotation.pitch - camera.unk7c.pos[0].pos.elevation) >> 2;
-            MAX(turnDelta, 0xC0);
-            MIN(turnDelta, -0xC0);
+                turnDelta = (-spyro.rotation.pitch - camera.unk7c.pos[0].pos.elevation) >> 2;
+                MAX(turnDelta, 0xC0);
+                MIN(turnDelta, -0xC0);
 
-            camera.unk7c.pos[1].yaw = (ABS(turnDelta) >= 9) ? turnDelta : 0;
-            if ((spyro.movementState != 6) || (spyro.union144.b.unk148 <= 0)) {
-                camera.unk7c.pos[1].pitch = -spyro.rotation.roll >> 2;
+                camera.unk7c.pos[1].yaw = (ABS(turnDelta) >= 9) ? turnDelta : 0;
+                if ((spyro.movementState != 6) || (spyro.union144.b.unk148 <= 0)) {
+                    camera.unk7c.pos[1].pitch = -spyro.rotation.roll >> 2;
+                }
+
+                func_80013918(0xC0);
+                func_800139A4();
             }
-
-            func_80013918(0xC0);
-            func_800139A4();
-        }
-        func_800142E0();
-        func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
-        MIN(camera.unk7c.pos[5].pos.azimuth, 0x100);
-        MIN(camera.unk7c.pos[5].pos.elevation, 0x60);
-        MIN(camera.unk7c.pos[5].pitch, 0x40);
-        func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
-        func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
-        func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
-        if (spyro.movementState == 6) {
-            camera.unk1c4[5] = -spyro.union144.b.unk14C;
-        }
-        return;
-
-    case 29:
-        targetData = (int*)camera.unk16c->mobyTag;
-        if (camera.unk134 == 0) {
-            func_800135A4(&camera.unk7c.pos[1], &D_800691D4, camera.unk6c);
-            angle = camera.unk7c.pos[1].pos.elevation;
-            reference = spyro.rotation.pitch;
-            __asm__("" : "=r"(angle), "=r"(reference) : "0"(angle), "1"(reference));
-            angle = angle - reference;
-            reference = camera.unk7c.pos[0].pos.elevation;
-            angle &= 0xFFF;
-            camera.unk7c.pos[1].pos.elevation = angle;
-            angle = angle - reference;
-            reference = targetData[15];
-            targetTurn = angle >> 2;
-            reference >>= 1;
-            __asm__("" : "=r"(targetTurn), "=r"(reference) : "0"(targetTurn), "1"(reference));
-            targetTurn += reference;
-            MAX(targetTurn, 0xC0);
-            MIN(targetTurn, -0xC0);
-            if (ABS(targetTurn) >= 9) {
-                camera.unk7c.pos[1].yaw = (camera.unk7c.pos[1].yaw + targetTurn) & 0xFFF;
-            }
-            camera.unk7c.pos[1].pitch = targetData[16] >> 1;
-            func_80013918(0xC0);
-            func_800139A4();
-        }
-        func_800142E0();
-        if (camera.unk16c != 0) {
+            func_800142E0();
             func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
             MIN(camera.unk7c.pos[5].pos.azimuth, 0x100);
             MIN(camera.unk7c.pos[5].pos.elevation, 0x60);
-            MIN(camera.unk7c.pos[5].yaw, 0x80);
-            MIN(camera.unk7c.pos[5].pitch, 0x80);
+            MIN(camera.unk7c.pos[5].pitch, 0x40);
             func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
             func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
             func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
-        }
-        break;
+            if (spyro.movementState == 6) {
+                camera.unk1c4[5] = -spyro.union144.b.unk14C;
+            }
+            return;
+
+        case 29:
+            targetData = (int*)camera.unk16c->mobyTag;
+            if (camera.unk134 == 0) {
+                func_800135A4(&camera.unk7c.pos[1], &D_800691D4, camera.unk6c);
+                angle = camera.unk7c.pos[1].pos.elevation;
+                reference = spyro.rotation.pitch;
+                MATCHING_KEEP2(angle, reference);
+                angle = angle - reference;
+                reference = camera.unk7c.pos[0].pos.elevation;
+                angle &= 0xFFF;
+                camera.unk7c.pos[1].pos.elevation = angle;
+                angle = angle - reference;
+                reference = targetData[15];
+                targetTurn = angle >> 2;
+                reference >>= 1;
+                MATCHING_KEEP2(targetTurn, reference);
+                targetTurn += reference;
+                MAX(targetTurn, 0xC0);
+                MIN(targetTurn, -0xC0);
+                if (ABS(targetTurn) >= 9) {
+                    camera.unk7c.pos[1].yaw = (camera.unk7c.pos[1].yaw + targetTurn) & 0xFFF;
+                }
+                camera.unk7c.pos[1].pitch = targetData[16] >> 1;
+                func_80013918(0xC0);
+                func_800139A4();
+            }
+            func_800142E0();
+            if (camera.unk16c != 0) {
+                func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
+                MIN(camera.unk7c.pos[5].pos.azimuth, 0x100);
+                MIN(camera.unk7c.pos[5].pos.elevation, 0x60);
+                MIN(camera.unk7c.pos[5].yaw, 0x80);
+                MIN(camera.unk7c.pos[5].pitch, 0x80);
+                func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
+                func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
+                func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
+            }
+            break;
     }
 }
 
@@ -145,7 +146,7 @@ void func_level_25_80089760(int mode) {
         register int* state __asm__("$16") = &camera.unk50;
         CameraPosition* position;
         /* Keep the original shared address base; this constraint emits no code. */
-        __asm__("" : "=r"(state) : "0"(state));
+        MATCHING_KEEP(state);
         *state = 0;
         camera.unk140[0] = 0;
         camera.unk140[1] = 0;
@@ -164,20 +165,25 @@ extern int D_8006E044, D_8006E538, D_8006E53C, D_8006E160;
 extern int D_80068CAC[];
 void func_level_25_80089808(void) {
     int next;
-    if (D_8006E044 != 3 && D_8006E044 != 0x1D) return;
+    if (D_8006E044 != 3 && D_8006E044 != 0x1D)
+        return;
     next = D_8006E160;
     if (!next) {
-        if ((D_8006E538 & 0x10) && *((unsigned char*)&spyro + 0x1B9)) next = 7;
-        else if (D_8006E53C & 0xC) next = 8;
+        if ((D_8006E538 & 0x10) && *((unsigned char*)&spyro + 0x1B9))
+            next = 7;
+        else if (D_8006E53C & 0xC)
+            next = 8;
         else {
             register int animation __asm__("$2") = spyro.animationState;
             register int current __asm__("$3") = D_8006E044;
             __asm__("" : "=r"(current) : "0"(current), "r"(animation));
             animation *= 4;
-            __asm__("" : "=r"(animation) : "0"(animation));
+            MATCHING_KEEP(animation);
             next = *(int*)((unsigned char*)D_80068CAC + animation);
-            if (current == next) return;
-            if (!next) next = 6;
+            if (current == next)
+                return;
+            if (!next)
+                next = 6;
         }
     }
     func_80016764(next);

@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "camera.h"
 #include "stdutil.h"
@@ -105,8 +106,8 @@ void func_80012168(void) {
         func_80012AC8();
         func_80012B34();
     }
-    var_v1 = ABS(camera.unk7c.pos[4].pos.azimuth)
-        + ABS(camera.unk7c.pos[4].pos.elevation) + ABS(D_8006E0CC);
+    var_v1 = ABS(camera.unk7c.pos[4].pos.azimuth) + ABS(camera.unk7c.pos[4].pos.elevation) +
+             ABS(D_8006E0CC);
     camera.unk130 = var_v1 + ABS(D_8006E0D0) + ABS(D_8006E0D4);
     if (D_8006E1D8 != 0) {
         if (D_8006E1DC < D_8006E1D8) {
@@ -177,11 +178,12 @@ extern int D_8006E114, D_8006E118, D_8006E11C, D_8006E120, D_8006E124;
  * velocities to +/-0x100. It runs once per normal camera update and is also
  * called explicitly by retail overlay camera paths. Confidence: exact;
  * falsifiable by 478 instruction/relocation records and the complete
- * executable and overlay SHA-256 checks. */void func_80012530(void) {
-    register int factor asm ("$2") = D_8006E0D8;
-    register int input asm ("$6");
-    register int *velocity asm ("$5");
-    register int product asm ("$4");
+ * executable and overlay SHA-256 checks. */
+void func_80012530(void) {
+    register int factor asm("$2") = D_8006E0D8;
+    register int input asm("$6");
+    register int* velocity asm("$5");
+    register int product asm("$4");
     int value;
 
     input = D_8006E0B0;
@@ -194,42 +196,48 @@ extern int D_8006E114, D_8006E118, D_8006E11C, D_8006E120, D_8006E124;
     *velocity = value;
     {
         int threshold = D_8006E100;
-        __asm__ volatile ("" : "=r"(threshold) : "0"(threshold));
-        if (value < 0) value = -value;
+        MATCHING_KEEP_VOLATILE(threshold);
+        if (value < 0)
+            value = -value;
         value = value < threshold;
     }
     if (value != 0) {
         int scaled = input << 7;
-        __asm__ volatile ("" : "=r"(input) : "0"(input));
+        MATCHING_KEEP_VOLATILE(input);
         *velocity = scaled;
-        if (scaled >= 0x101) *velocity = 0x100;
-        if (*velocity < -0x100) *velocity = -0x100;
+        if (scaled >= 0x101)
+            *velocity = 0x100;
+        if (*velocity < -0x100)
+            *velocity = -0x100;
     }
     {
-        register int *controlPtr asm ("$5") = &D_8006E114;
-        register int control asm ("$4");
-        register int bound asm ("$3");
-        __asm__ volatile ("" : "=r"(controlPtr) : "0"(controlPtr));
+        register int* controlPtr asm("$5") = &D_8006E114;
+        register int control asm("$4");
+        register int bound asm("$3");
+        MATCHING_KEEP_VOLATILE(controlPtr);
         control = *controlPtr;
         bound = -control;
         if (control >= 0) {
             bound <<= 8;
-            if (controlPtr[-20] < bound) controlPtr[-20] = bound;
+            if (controlPtr[-20] < bound)
+                controlPtr[-20] = bound;
             bound = control << 8;
-            if (bound < controlPtr[-20]) controlPtr[-20] = bound;
+            if (bound < controlPtr[-20])
+                controlPtr[-20] = bound;
         }
     }
     {
-        register int *angle asm ("$4") = &D_8006E09C;
+        register int* angle asm("$4") = &D_8006E09C;
         int next = (*angle + (D_8006E0C4 >> 8)) & 0xFFF;
         *angle = next;
-        if (next >= 0x801) *angle = next - 0x1000;
+        if (next >= 0x801)
+            *angle = next - 0x1000;
     }
     {
-        register int factor2 asm ("$2") = D_8006E0DC;
-        register int input2 asm ("$5") = D_8006E0B4;
-        register int product2 asm ("$4");
-        register int value2 asm ("$3");
+        register int factor2 asm("$2") = D_8006E0DC;
+        register int input2 asm("$5") = D_8006E0B4;
+        register int product2 asm("$4");
+        register int value2 asm("$3");
         product2 = factor2 * input2;
         value2 = D_8006E0C8;
         factor2 = D_8006E0F0 * value2;
@@ -237,40 +245,46 @@ extern int D_8006E114, D_8006E118, D_8006E11C, D_8006E120, D_8006E124;
         value2 += factor2;
         factor2 = D_8006E104;
         D_8006E0C8 = value2;
-        if (value2 < 0) value2 = -value2;
+        if (value2 < 0)
+            value2 = -value2;
         value2 = value2 < factor2;
         if (value2 != 0) {
             factor2 = input2 << 7;
             D_8006E0C8 = factor2;
-            if (factor2 >= 0x101) D_8006E0C8 = 0x100;
-            if (D_8006E0C8 < -0x100) D_8006E0C8 = -0x100;
+            if (factor2 >= 0x101)
+                D_8006E0C8 = 0x100;
+            if (D_8006E0C8 < -0x100)
+                D_8006E0C8 = -0x100;
         }
     }
     {
-        register int *controlPtr2 asm ("$5") = &D_8006E118;
-        register int control2 asm ("$4");
-        register int bound2 asm ("$3");
-        __asm__ volatile ("" : "=r"(controlPtr2) : "0"(controlPtr2));
+        register int* controlPtr2 asm("$5") = &D_8006E118;
+        register int control2 asm("$4");
+        register int bound2 asm("$3");
+        MATCHING_KEEP_VOLATILE(controlPtr2);
         control2 = *controlPtr2;
         bound2 = -control2;
         if (control2 >= 0) {
             bound2 <<= 8;
-            if (controlPtr2[-20] < bound2) controlPtr2[-20] = bound2;
+            if (controlPtr2[-20] < bound2)
+                controlPtr2[-20] = bound2;
             bound2 = control2 << 8;
-            if (bound2 < controlPtr2[-20]) controlPtr2[-20] = bound2;
+            if (bound2 < controlPtr2[-20])
+                controlPtr2[-20] = bound2;
         }
     }
     {
-        register int *angle2 asm ("$4") = &D_8006E0A0;
+        register int* angle2 asm("$4") = &D_8006E0A0;
         int next2 = (*angle2 + (D_8006E0C8 >> 8)) & 0xFFF;
         *angle2 = next2;
-        if (next2 >= 0x801) *angle2 = next2 - 0x1000;
+        if (next2 >= 0x801)
+            *angle2 = next2 - 0x1000;
     }
     {
-        register int factor3 asm ("$2") = D_8006E0E0;
-        register int input3 asm ("$5") = D_8006E0B8;
-        register int product3 asm ("$4");
-        register int value3 asm ("$3");
+        register int factor3 asm("$2") = D_8006E0E0;
+        register int input3 asm("$5") = D_8006E0B8;
+        register int product3 asm("$4");
+        register int value3 asm("$3");
         product3 = factor3 * input3;
         value3 = D_8006E0CC;
         factor3 = D_8006E0F4 * value3;
@@ -278,41 +292,46 @@ extern int D_8006E114, D_8006E118, D_8006E11C, D_8006E120, D_8006E124;
         value3 += factor3;
         factor3 = D_8006E108;
         D_8006E0CC = value3;
-        if (value3 < 0) value3 = -value3;
+        if (value3 < 0)
+            value3 = -value3;
         value3 = value3 < factor3;
         if (value3 != 0) {
             factor3 = input3 << 7;
             D_8006E0CC = factor3;
-            if (factor3 >= 0x101) D_8006E0CC = 0x100;
-            if (D_8006E0CC < -0x100) D_8006E0CC = -0x100;
+            if (factor3 >= 0x101)
+                D_8006E0CC = 0x100;
+            if (D_8006E0CC < -0x100)
+                D_8006E0CC = -0x100;
         }
     }
     {
-        register int *controlPtr3 asm ("$5") = &D_8006E11C;
-        register int control3 asm ("$4");
-        register int bound3 asm ("$3");
-        __asm__ volatile ("" : "=r"(controlPtr3) : "0"(controlPtr3));
+        register int* controlPtr3 asm("$5") = &D_8006E11C;
+        register int control3 asm("$4");
+        register int bound3 asm("$3");
+        MATCHING_KEEP_VOLATILE(controlPtr3);
         control3 = *controlPtr3;
         bound3 = -control3;
         if (control3 >= 0) {
             bound3 <<= 8;
-            if (controlPtr3[-20] < bound3) controlPtr3[-20] = bound3;
+            if (controlPtr3[-20] < bound3)
+                controlPtr3[-20] = bound3;
             bound3 = control3 << 8;
-            if (bound3 < controlPtr3[-20]) controlPtr3[-20] = bound3;
+            if (bound3 < controlPtr3[-20])
+                controlPtr3[-20] = bound3;
         }
     }
     {
-        register int factor4 asm ("$2") = D_8006E0E4;
-        register int input4 asm ("$7") = D_8006E0BC;
-        register int product4 asm ("$6");
-        register int value4 asm ("$4");
+        register int factor4 asm("$2") = D_8006E0E4;
+        register int input4 asm("$7") = D_8006E0BC;
+        register int product4 asm("$6");
+        register int value4 asm("$4");
         int damping4;
         product4 = factor4 * input4;
         value4 = D_8006E0D0;
         damping4 = D_8006E0F8 * value4;
         {
-            register int *angle3 asm ("$5") = &D_8006E0A4;
-            register int angleValue3 asm ("$3");
+            register int* angle3 asm("$5") = &D_8006E0A4;
+            register int angleValue3 asm("$3");
             factor4 = D_8006E0CC;
             angleValue3 = *angle3;
             factor4 >>= 8;
@@ -323,40 +342,46 @@ extern int D_8006E114, D_8006E118, D_8006E11C, D_8006E120, D_8006E124;
         value4 += factor4;
         factor4 = D_8006E10C;
         D_8006E0D0 = value4;
-        if (value4 < 0) value4 = -value4;
+        if (value4 < 0)
+            value4 = -value4;
         value4 = value4 < factor4;
         if (value4 != 0) {
             factor4 = input4 << 7;
             D_8006E0D0 = factor4;
-            if (factor4 >= 0x101) D_8006E0D0 = 0x100;
-            if (D_8006E0D0 < -0x100) D_8006E0D0 = -0x100;
+            if (factor4 >= 0x101)
+                D_8006E0D0 = 0x100;
+            if (D_8006E0D0 < -0x100)
+                D_8006E0D0 = -0x100;
         }
     }
     {
-        register int *controlPtr4 asm ("$5") = &D_8006E120;
-        register int control4 asm ("$4");
-        register int bound4 asm ("$3");
-        __asm__ volatile ("" : "=r"(controlPtr4) : "0"(controlPtr4));
+        register int* controlPtr4 asm("$5") = &D_8006E120;
+        register int control4 asm("$4");
+        register int bound4 asm("$3");
+        MATCHING_KEEP_VOLATILE(controlPtr4);
         control4 = *controlPtr4;
         bound4 = -control4;
         if (control4 >= 0) {
             bound4 <<= 8;
-            if (controlPtr4[-20] < bound4) controlPtr4[-20] = bound4;
+            if (controlPtr4[-20] < bound4)
+                controlPtr4[-20] = bound4;
             bound4 = control4 << 8;
-            if (bound4 < controlPtr4[-20]) controlPtr4[-20] = bound4;
+            if (bound4 < controlPtr4[-20])
+                controlPtr4[-20] = bound4;
         }
     }
     {
-        register int *angle4 asm ("$4") = &D_8006E0A8;
+        register int* angle4 asm("$4") = &D_8006E0A8;
         int next4 = (*angle4 + (D_8006E0D0 >> 8)) & 0xFFF;
         *angle4 = next4;
-        if (next4 >= 0x801) *angle4 = next4 - 0x1000;
+        if (next4 >= 0x801)
+            *angle4 = next4 - 0x1000;
     }
     {
-        register int factor5 asm ("$2") = D_8006E0E8;
-        register int input5 asm ("$5") = D_8006E0C0;
-        register int product5 asm ("$4");
-        register int value5 asm ("$3");
+        register int factor5 asm("$2") = D_8006E0E8;
+        register int input5 asm("$5") = D_8006E0C0;
+        register int product5 asm("$4");
+        register int value5 asm("$3");
         product5 = factor5 * input5;
         value5 = D_8006E0D4;
         factor5 = D_8006E0FC * value5;
@@ -364,34 +389,40 @@ extern int D_8006E114, D_8006E118, D_8006E11C, D_8006E120, D_8006E124;
         value5 += factor5;
         factor5 = D_8006E110;
         D_8006E0D4 = value5;
-        if (value5 < 0) value5 = -value5;
+        if (value5 < 0)
+            value5 = -value5;
         value5 = value5 < factor5;
         if (value5 != 0) {
             factor5 = input5 << 7;
             D_8006E0D4 = factor5;
-            if (factor5 >= 0x101) D_8006E0D4 = 0x100;
-            if (D_8006E0D4 < -0x100) D_8006E0D4 = -0x100;
+            if (factor5 >= 0x101)
+                D_8006E0D4 = 0x100;
+            if (D_8006E0D4 < -0x100)
+                D_8006E0D4 = -0x100;
         }
     }
     {
-        register int *controlPtr5 asm ("$5") = &D_8006E124;
-        register int control5 asm ("$4");
-        register int bound5 asm ("$3");
-        __asm__ volatile ("" : "=r"(controlPtr5) : "0"(controlPtr5));
+        register int* controlPtr5 asm("$5") = &D_8006E124;
+        register int control5 asm("$4");
+        register int bound5 asm("$3");
+        MATCHING_KEEP_VOLATILE(controlPtr5);
         control5 = *controlPtr5;
         bound5 = -control5;
         if (control5 >= 0) {
             bound5 <<= 8;
-            if (controlPtr5[-20] < bound5) controlPtr5[-20] = bound5;
+            if (controlPtr5[-20] < bound5)
+                controlPtr5[-20] = bound5;
             bound5 = control5 << 8;
-            if (bound5 < controlPtr5[-20]) controlPtr5[-20] = bound5;
+            if (bound5 < controlPtr5[-20])
+                controlPtr5[-20] = bound5;
         }
     }
     {
-        register int *angle5 asm ("$4") = &D_8006E0AC;
+        register int* angle5 asm("$4") = &D_8006E0AC;
         int next5 = (*angle5 + (D_8006E0D4 >> 8)) & 0xFFF;
         *angle5 = next5;
-        if (next5 >= 0x801) *angle5 = next5 - 0x1000;
+        if (next5 >= 0x801)
+            *angle5 = next5 - 0x1000;
     }
 }
 
@@ -445,8 +476,7 @@ void func_80012BA8(CameraPosition* origin) {
     func_800135A4(next, current, 0);
     func_800135A4((CameraPosition*)(state + 0x1C), current, 0);
     func_80013900((CameraPosition*)(state + 0x6C));
-    func_800135F8((Vector3D*)(state + 0x10), (SphericalPosition*)next,
-                   (Vector3D*)state);
+    func_800135F8((Vector3D*)(state + 0x10), (SphericalPosition*)next, (Vector3D*)state);
     func_8004F178((Vector3D*)(state - 0x38), (Vector3D*)(state + 0x10));
     func_80012B34();
     D_8006E12C = 0;
@@ -461,15 +491,16 @@ void func_80012BA8(CameraPosition* origin) {
             register Vector3D* a1 __asm__("$5") = &temp;
             register int* hit __asm__("$16");
             int z;
-            __asm__ volatile ("" : "=r"(a0), "=r"(a1) : "0"(a0), "1"(a1) : "memory");
+            MATCHING_KEEP2_VOLATILE_CLOBBER(a0, a1, "memory");
             z = temp.z;
-            __asm__ volatile ("" : "=r"(z) : "0"(z));
+            MATCHING_KEEP_VOLATILE(z);
             hit = &D_80071934;
             *hit = 0;
-            __asm__ volatile ("" : "=r"(z) : "0"(z) : "memory");
+            MATCHING_KEEP_VOLATILE_CLOBBER(z, "memory");
             temp.z = z - 0x1000;
             func_80018368(a0, a1);
-            if (*hit != 0) D_8006E038 = 0;
+            if (*hit != 0)
+                D_8006E038 = 0;
         }
     } else {
         D_8006E038 = 0;
@@ -520,7 +551,7 @@ void func_80012D18(void) {
         Vector3D* start = (Vector3D*)(stateFlag - 0x11C);
         func_8004F1C8(&delta, (Vector3D*)(stateFlag - 0xD4), start);
         stepCount = func_8004EDE8(&delta, 1);
-        __asm__ volatile ("" : "=r"(stepCount) : "0"(stepCount));
+        MATCHING_KEEP_VOLATILE(stepCount);
         stepCount = (stepCount / 240) + 1;
         if (stepCount >= 2) {
             delta.x /= stepCount;
@@ -615,27 +646,34 @@ void func_80012D18(void) {
 extern char D_800693DC, D_800693E0, D_800693E4, D_8006942C;
 extern unsigned char D_8006E13A;
 extern int D_8006C648, D_8006E074, D_8006E344;
-#define CAMERA_FIELD(p, t, o) (*(t)((char *)(p) + (o)))
+#define CAMERA_FIELD(p, t, o) (*(t)((char*)(p) + (o)))
 void func_800130DC(void) {
-    struct { Vector3D sp10; char pad1C[4]; Vector3D sp20; char pad2C[4]; int sp30, sp34, sp38; char pad3C[8]; } frame;
-    register unsigned char *var_s1 asm ("$17");
+    struct {
+        Vector3D sp10;
+        char pad1C[4];
+        Vector3D sp20;
+        char pad2C[4];
+        int sp30, sp34, sp38;
+        char pad3C[8];
+    } frame;
+    register unsigned char* var_s1 asm("$17");
     int temp_v0;
     int temp_v1;
     int temp_v1_2;
     int temp_v1_3;
     int collisionResult;
-    register int var_s0 asm ("$16");
-    register int var_s3 asm ("$19");
-    register unsigned char *temp_s2 asm ("$18");
-    register unsigned char *var_s4 asm ("$20");
-    register unsigned char *var_s5 asm ("$21");
+    register int var_s0 asm("$16");
+    register int var_s3 asm("$19");
+    register unsigned char* temp_s2 asm("$18");
+    register unsigned char* var_s4 asm("$20");
+    register unsigned char* var_s5 asm("$21");
 
     var_s1 = &D_8006E139;
     if ((*var_s1 == 0) && (D_8006E344 != 7)) {
-        func_8004F178(&frame.sp10, (Vector3D *)&D_80070328);
+        func_8004F178(&frame.sp10, (Vector3D*)&D_80070328);
         temp_s2 = var_s1 - 0x119;
         frame.sp10.z -= 0x124;
-        if (func_80013E38((Vector3D *) temp_s2, &frame.sp10, 1) == 0) {
+        if (func_80013E38((Vector3D*)temp_s2, &frame.sp10, 1) == 0) {
             D_8006E13C = 1;
             temp_v0 = D_8006E130 + D_8006C648;
             D_8006E130 = temp_v0;
@@ -643,9 +681,10 @@ void func_800130DC(void) {
             if (temp_v0 >= 0x3D) {
                 var_s0 = 0;
                 var_s1 = &D_8006942C;
-loop_5:
+            loop_5:
                 func_80012BA8(var_s1);
-                if ((func_80019194((Vector3D *) temp_s2, 0x100) != 0) || (func_80013E38((Vector3D *) temp_s2, &frame.sp10, 1) == 0)) {
+                if ((func_80019194((Vector3D*)temp_s2, 0x100) != 0) ||
+                    (func_80013E38((Vector3D*)temp_s2, &frame.sp10, 1) == 0)) {
                     var_s0 += 1;
                     var_s1 += 0x14;
                     if (var_s0 < 5) {
@@ -656,12 +695,16 @@ loop_5:
             } else {
                 var_s0 = 0;
                 var_s4 = var_s1 - 0xC5;
-                temp_s2 = (unsigned char *)&frame.sp20;
+                temp_s2 = (unsigned char*)&frame.sp20;
                 var_s5 = var_s1 - 0xE1;
-                var_s1 = (unsigned char *)0;
-loop_10:
-                frame.sp30 = (CAMERA_FIELD(var_s4, int *, 0) + CAMERA_FIELD(&D_800693DC, int *, (int)var_s1)) & 0xFFF;
-                temp_v1 = (CAMERA_FIELD(var_s4, int *, 4) + CAMERA_FIELD(&D_800693E0, int *, (int)var_s1)) & 0xFFF;
+                var_s1 = (unsigned char*)0;
+            loop_10:
+                frame.sp30 =
+                    (CAMERA_FIELD(var_s4, int*, 0) + CAMERA_FIELD(&D_800693DC, int*, (int)var_s1)) &
+                    0xFFF;
+                temp_v1 =
+                    (CAMERA_FIELD(var_s4, int*, 4) + CAMERA_FIELD(&D_800693E0, int*, (int)var_s1)) &
+                    0xFFF;
                 frame.sp34 = temp_v1;
                 if (temp_v1 >= 0x801) {
                     frame.sp34 = temp_v1 - 0x1000;
@@ -669,22 +712,31 @@ loop_10:
                 if (frame.sp34 >= 0x401) {
                     frame.sp34 = 0x400;
                 }
-                frame.sp38 = CAMERA_FIELD(var_s4, int *, 8) + CAMERA_FIELD(&D_800693E4, int *, (int)var_s1);
-                func_800135F8((Vector3D *) temp_s2, (SphericalPosition *) &frame.sp30, (Vector3D *) var_s5);
-                if ((func_80019194((Vector3D *) temp_s2, 0x100) != 0) || (func_80013E38((Vector3D *) (var_s4 - 0x54), (Vector3D *) temp_s2, 1) == 0) || (var_s3 |= 1 << var_s0, (func_80013E38((Vector3D *) temp_s2, &frame.sp10, 1) == 0))) {
+                frame.sp38 =
+                    CAMERA_FIELD(var_s4, int*, 8) + CAMERA_FIELD(&D_800693E4, int*, (int)var_s1);
+                func_800135F8((Vector3D*)temp_s2, (SphericalPosition*)&frame.sp30,
+                              (Vector3D*)var_s5);
+                if ((func_80019194((Vector3D*)temp_s2, 0x100) != 0) ||
+                    (func_80013E38((Vector3D*)(var_s4 - 0x54), (Vector3D*)temp_s2, 1) == 0) ||
+                    (var_s3 |= 1 << var_s0,
+                     (func_80013E38((Vector3D*)temp_s2, &frame.sp10, 1) == 0))) {
                     var_s0 += 1;
                     var_s1 += 0x14;
                     if (var_s0 >= 4) {
                         var_s0 = 0;
                         if (var_s3 != 0) {
-                            temp_s2 = (unsigned char *)&frame.sp20;
-                                    var_s4 = (unsigned char *)&D_8006E074;
-                            var_s5 = (unsigned char *)&D_8006E074 - 0x1C;
-                            var_s1 = (unsigned char *)0;
-loop_20:
+                            temp_s2 = (unsigned char*)&frame.sp20;
+                            var_s4 = (unsigned char*)&D_8006E074;
+                            var_s5 = (unsigned char*)&D_8006E074 - 0x1C;
+                            var_s1 = (unsigned char*)0;
+                        loop_20:
                             if ((var_s3 >> var_s0) & 1) {
-                                frame.sp30 = (CAMERA_FIELD(var_s4, int *, 0) + (CAMERA_FIELD(&D_800693DC, int *, (int)var_s1) * 2)) & 0xFFF;
-                                temp_v1_2 = (CAMERA_FIELD(var_s4, int *, 4) + (CAMERA_FIELD(&D_800693E0, int *, (int)var_s1) * 2)) & 0xFFF;
+                                frame.sp30 = (CAMERA_FIELD(var_s4, int*, 0) +
+                                              (CAMERA_FIELD(&D_800693DC, int*, (int)var_s1) * 2)) &
+                                             0xFFF;
+                                temp_v1_2 = (CAMERA_FIELD(var_s4, int*, 4) +
+                                             (CAMERA_FIELD(&D_800693E0, int*, (int)var_s1) * 2)) &
+                                            0xFFF;
                                 frame.sp34 = temp_v1_2;
                                 if (temp_v1_2 >= 0x801) {
                                     frame.sp34 = temp_v1_2 - 0x1000;
@@ -692,11 +744,15 @@ loop_20:
                                 if (frame.sp34 >= 0x401) {
                                     frame.sp34 = 0x400;
                                 }
-                                frame.sp38 = CAMERA_FIELD(var_s4, int *, 8) + (CAMERA_FIELD(&D_800693E4, int *, (int)var_s1) * 2);
-                                func_800135F8((Vector3D *) temp_s2, (SphericalPosition *) &frame.sp30, (Vector3D *) var_s5);
-                                if (func_80019194((Vector3D *) temp_s2, 0x100) == 0) {
-                                    if (func_80013E38((Vector3D *) (var_s4 - 0x54), (Vector3D *) temp_s2, 1) != 0) {
-                                        collisionResult = func_80013E38((Vector3D *) temp_s2, &frame.sp10, 1);
+                                frame.sp38 = CAMERA_FIELD(var_s4, int*, 8) +
+                                             (CAMERA_FIELD(&D_800693E4, int*, (int)var_s1) * 2);
+                                func_800135F8((Vector3D*)temp_s2, (SphericalPosition*)&frame.sp30,
+                                              (Vector3D*)var_s5);
+                                if (func_80019194((Vector3D*)temp_s2, 0x100) == 0) {
+                                    if (func_80013E38((Vector3D*)(var_s4 - 0x54),
+                                                      (Vector3D*)temp_s2, 1) != 0) {
+                                        collisionResult =
+                                            func_80013E38((Vector3D*)temp_s2, &frame.sp10, 1);
                                         var_s0 += 1;
                                         if (collisionResult == 0) {
                                             goto block_32;
@@ -705,25 +761,31 @@ loop_20:
                                     }
                                     goto block_30;
                                 }
-block_30:
+                            block_30:
                                 var_s3 &= ~(1 << var_s0);
                                 goto block_31;
                             }
-block_31:
+                        block_31:
                             var_s0 += 1;
-block_32:
+                        block_32:
                             var_s1 += 0x14;
                             if (var_s0 >= 4) {
                                 var_s0 = 0;
                                 if (var_s3 != 0) {
-                                    temp_s2 = (unsigned char *)&frame.sp20;
-                                    var_s4 = (unsigned char *)&D_8006E074;
-                                    var_s5 = (unsigned char *)&D_8006E074 - 0x1C;
-                                    var_s1 = (unsigned char *)0;
-loop_35:
+                                    temp_s2 = (unsigned char*)&frame.sp20;
+                                    var_s4 = (unsigned char*)&D_8006E074;
+                                    var_s5 = (unsigned char*)&D_8006E074 - 0x1C;
+                                    var_s1 = (unsigned char*)0;
+                                loop_35:
                                     if ((var_s3 >> var_s0) & 1) {
-                                        frame.sp30 = (CAMERA_FIELD(var_s4, int *, 0) + (CAMERA_FIELD(&D_800693DC, int *, (int)var_s1) * 4)) & 0xFFF;
-                                        temp_v1_3 = (CAMERA_FIELD(var_s4, int *, 4) + (CAMERA_FIELD(&D_800693E0, int *, (int)var_s1) * 4)) & 0xFFF;
+                                        frame.sp30 =
+                                            (CAMERA_FIELD(var_s4, int*, 0) +
+                                             (CAMERA_FIELD(&D_800693DC, int*, (int)var_s1) * 4)) &
+                                            0xFFF;
+                                        temp_v1_3 =
+                                            (CAMERA_FIELD(var_s4, int*, 4) +
+                                             (CAMERA_FIELD(&D_800693E0, int*, (int)var_s1) * 4)) &
+                                            0xFFF;
                                         frame.sp34 = temp_v1_3;
                                         if (temp_v1_3 >= 0x801) {
                                             frame.sp34 = temp_v1_3 - 0x1000;
@@ -731,11 +793,17 @@ loop_35:
                                         if (frame.sp34 >= 0x401) {
                                             frame.sp34 = 0x400;
                                         }
-                                        frame.sp38 = CAMERA_FIELD(var_s4, int *, 8) + (CAMERA_FIELD(&D_800693E4, int *, (int)var_s1) * 4);
-                                        func_800135F8((Vector3D *) temp_s2, (SphericalPosition *) &frame.sp30, (Vector3D *) var_s5);
-                                        if (func_80019194((Vector3D *) temp_s2, 0x100) == 0) {
-                                            if (func_80013E38((Vector3D *) (var_s4 - 0x54), (Vector3D *) temp_s2, 1) != 0) {
-                                                collisionResult = func_80013E38((Vector3D *) temp_s2, &frame.sp10, 1);
+                                        frame.sp38 =
+                                            CAMERA_FIELD(var_s4, int*, 8) +
+                                            (CAMERA_FIELD(&D_800693E4, int*, (int)var_s1) * 4);
+                                        func_800135F8((Vector3D*)temp_s2,
+                                                      (SphericalPosition*)&frame.sp30,
+                                                      (Vector3D*)var_s5);
+                                        if (func_80019194((Vector3D*)temp_s2, 0x100) == 0) {
+                                            if (func_80013E38((Vector3D*)(var_s4 - 0x54),
+                                                              (Vector3D*)temp_s2, 1) != 0) {
+                                                collisionResult = func_80013E38((Vector3D*)temp_s2,
+                                                                                &frame.sp10, 1);
                                                 var_s0 += 1;
                                                 if (collisionResult == 0) {
                                                     goto block_47;
@@ -744,13 +812,13 @@ loop_35:
                                             }
                                             goto block_45;
                                         }
-block_45:
+                                    block_45:
                                         var_s3 &= ~(1 << var_s0);
                                         goto block_46;
                                     }
-block_46:
+                                block_46:
                                     var_s0 += 1;
-block_47:
+                                block_47:
                                     var_s1 += 0x14;
                                     if (var_s0 < 4) {
                                         goto loop_35;
@@ -780,8 +848,8 @@ block_47:
     }
 
 block_51:
-    func_800136F0((CameraPosition *) (var_s4 + 0x14), (Vector3D *) temp_s2, (Vector3D *) var_s5);
-    CAMERA_FIELD(var_s4, int *, 0xB8) = 0x10;
+    func_800136F0((CameraPosition*)(var_s4 + 0x14), (Vector3D*)temp_s2, (Vector3D*)var_s5);
+    CAMERA_FIELD(var_s4, int*, 0xB8) = 0x10;
     return;
 block_52:
     D_8006E12C = 0;
@@ -811,8 +879,12 @@ void func_800135A4(CameraPosition* arg0, CameraPosition* arg1, int arg2) {
 extern int func_8004EA2C(int);
 extern int func_8004E9E4(int);
 void func_800135F8(Vector3D* arg0, SphericalPosition* arg1, Vector3D* arg2) {
-    arg0->x = (((int)(arg1->radius * func_8004EA2C(arg1->elevation)) >> 0xC) * func_8004EA2C(arg1->azimuth)) >> 0xC;
-    arg0->y = (((int)(arg1->radius * func_8004EA2C(arg1->elevation)) >> 0xC) * func_8004E9E4(arg1->azimuth)) >> 0xC;
+    arg0->x = (((int)(arg1->radius * func_8004EA2C(arg1->elevation)) >> 0xC) *
+               func_8004EA2C(arg1->azimuth)) >>
+              0xC;
+    arg0->y = (((int)(arg1->radius * func_8004EA2C(arg1->elevation)) >> 0xC) *
+               func_8004E9E4(arg1->azimuth)) >>
+              0xC;
     arg0->z = (int)(arg1->radius * func_8004E9E4(arg1->elevation)) >> 0xC;
     if (arg2 != 0) {
         func_8004F194(arg0, arg0, arg2);
@@ -840,12 +912,13 @@ int func_800136F0(CameraPosition* output, Vector3D* first, Vector3D* second) {
     output->pos.elevation = func_8004E880(func_8004EDE8(&difference, 0), difference.z, 1);
     azimuth = func_8004E880(difference.x, difference.y, 1);
     delta = (azimuth - output->pos.azimuth) & 0xFFF;
-    if (delta >= 0x801) delta -= 0x1000;
+    if (delta >= 0x801)
+        delta -= 0x1000;
     magnitude = delta;
-    if (delta < 0) magnitude = -magnitude;
+    if (delta < 0)
+        magnitude = -magnitude;
     if (magnitude > 0x400) {
-        if (D_8006E13B != 0 ||
-            (D_8006E044 == 7 && D_8006E144 >= 0x401) ||
+        if (D_8006E13B != 0 || (D_8006E044 == 7 && D_8006E144 >= 0x401) ||
             *(int*)(&D_80070328 + 0x48) == 0x26) {
             azimuth = (azimuth + 0x800) & 0xFFF;
             flipped = 1;
@@ -854,10 +927,12 @@ int func_800136F0(CameraPosition* output, Vector3D* first, Vector3D* second) {
     }
     {
         int x = difference.x;
-        if (x < 0) x = -x;
+        if (x < 0)
+            x = -x;
         if (x < 0x80) {
             int y = difference.y;
-            if (y < 0) y = -y;
+            if (y < 0)
+                y = -y;
             if (y < 0x80) {
                 azimuth = D_8006E09C;
                 /* Retail load-delay word at 0x80013844. */
@@ -865,9 +940,11 @@ int func_800136F0(CameraPosition* output, Vector3D* first, Vector3D* second) {
             }
         }
     }
-    if (azimuth >= 0x801) azimuth -= 0x1000;
+    if (azimuth >= 0x801)
+        azimuth -= 0x1000;
     output->pos.azimuth = azimuth;
-    if (output->pos.elevation >= 0x801) output->pos.elevation -= 0x1000;
+    if (output->pos.elevation >= 0x801)
+        output->pos.elevation -= 0x1000;
     output->pos.radius = func_8004EDE8(&difference, 1);
     return flipped;
 }
@@ -904,21 +981,25 @@ void func_80013918(int arg0) {
     register int* pair __asm__("$5") = &D_8006E148;
     int flags;
     register int one __asm__("$6");
-    __asm__ volatile ("" : "=r"(pair) : "0"(pair));
+    MATCHING_KEEP_VOLATILE(pair);
     *pair = 0;
-    if (D_8006E344 == 7) return;
+    if (D_8006E344 == 7)
+        return;
     flags = D_8006E538;
-    if (flags & 12) return;
+    if (flags & 12)
+        return;
     one = 1;
-    if (pair[1] == one) pair[1] = 3;
-    if (*(int*)(&D_80070328 + 0x240)) return;
+    if (pair[1] == one)
+        pair[1] = 3;
+    if (*(int*)(&D_80070328 + 0x240))
+        return;
     if ((flags & 3) == 2) {
         *pair = arg0;
         pair[1] = one;
     }
     if ((flags & 3) == one) {
         *pair = -arg0;
-        __asm__ volatile ("" : "=r"(one) : "0"(one));
+        MATCHING_KEEP_VOLATILE(one);
         pair[1] = one;
     }
 }
@@ -932,7 +1013,8 @@ void func_800139A4(void) {
     }
     if (D_8006E14C == 1) {
         D_8006E150 = (D_8006E074 - D_8006E088) & 0xFFF;
-        if (D_8006E150 >= 0x801) D_8006E150 -= 0x1000;
+        if (D_8006E150 >= 0x801)
+            D_8006E150 -= 0x1000;
         D_8006E088 = D_8006E074;
         D_8006E14C = 2;
         return;
@@ -953,9 +1035,10 @@ void func_800139A4(void) {
         }
         {
             register int* angle __asm__("$4") = &D_8006E088;
-            __asm__ volatile ("" : "=r"(angle) : "0"(angle));
+            MATCHING_KEEP_VOLATILE(angle);
             *angle = (*angle + D_8006E150) & 0xFFF;
-            if (*angle >= 0x801) *angle -= 0x1000;
+            if (*angle >= 0x801)
+                *angle -= 0x1000;
         }
     }
 }
@@ -996,30 +1079,34 @@ void func_80013B7C(int enabled) {
     int choice;
     if (*(int*)state == 9) {
         shifted = state + 0x14;
-        if (!enabled) goto disabled;
+        if (!enabled)
+            goto disabled;
         func_8004F178((Vector3D*)(state + 0x138), (Vector3D*)&D_80070328);
-        func_800135A4((CameraPosition*)(state + 0x124),
-                        (CameraPosition*)(state + 0x144), 0);
+        func_800135A4((CameraPosition*)(state + 0x124), (CameraPosition*)(state + 0x144), 0);
         goto set_flag;
     }
-    if (*(int*)state != 10) return;
+    if (*(int*)state != 10)
+        return;
     shifted = state + 0x14;
-    if (enabled) goto enabled_ten;
+    if (enabled)
+        goto enabled_ten;
 disabled:
     D_8006E160 = 0;
     func_8004F178((Vector3D*)shifted, (Vector3D*)&D_80070328);
     work = state + 0x30;
-    D_8006E13B = func_800136F0((CameraPosition*)work,
-                                (Vector3D*)(state - 0x24), (Vector3D*)shifted);
+    D_8006E13B =
+        func_800136F0((CameraPosition*)work, (Vector3D*)(state - 0x24), (Vector3D*)shifted);
     func_800138A0((CameraPosition*)work, (CameraPosition*)work);
     func_800135A4((CameraPosition*)(state + 0x58), (CameraPosition*)work, 0);
     choice = D_80068CAC[*(int*)(&D_80070328 + 0x48)];
-    if (choice == 0) choice = 6;
+    if (choice == 0)
+        choice = 6;
     func_80016764(choice);
     D_8006C74C = 0;
     return;
 enabled_ten:
-    if (*(int*)(state + 4) & 0x80) return;
+    if (*(int*)(state + 4) & 0x80)
+        return;
 set_flag:
     D_8006E048 = 0x80;
     D_8006E04C = 0;
@@ -1050,9 +1137,9 @@ void func_80013D44(Vector3D* source, int shift, Vector3D* optional, int mode) {
         int shifted;
         func_8004F178((Vector3D*)(&D_80070328 + 0x22C), source);
         shifted = shift << 4;
-        __asm__ volatile ("" : "=r"(shifted) : "0"(shifted));
+        MATCHING_KEEP_VOLATILE(shifted);
         state = &D_8006E160;
-        __asm__ volatile ("" : "=r"(state) : "0"(state));
+        MATCHING_KEEP_VOLATILE(state);
         *(int*)(&D_80070328 + 0x238) = shifted;
         *state = 11;
         *(int*)(&D_80070328 + 0x23C) = mode;
@@ -1102,8 +1189,7 @@ int func_80013E38(Vector3D* start, Vector3D* end, int flags) {
     while (i < count) {
         Moby* hit;
         func_8004F194(&next, &current, &step);
-        if (func_8001830C(&current, &next, 2, 0,
-                          *(int*)(&D_80070328 + 0x250)) != 0) {
+        if (func_8001830C(&current, &next, 2, 0, *(int*)(&D_80070328 + 0x250)) != 0) {
             if (D_80071934 == 0) {
                 return 0;
             }
@@ -1112,8 +1198,7 @@ int func_80013E38(Vector3D* start, Vector3D* end, int flags) {
             return 0;
         }
         if (flagBits & 1) {
-            hit = func_8001AD60(&current, &next, 1, 0,
-                                *(int*)(&D_80070328 + 0x250));
+            hit = func_8001AD60(&current, &next, 1, 0, *(int*)(&D_80070328 + 0x250));
             if (hit != 0 && !(hit->difficultyFlags & 0x80)) {
                 return 0;
             }
@@ -1142,62 +1227,62 @@ void func_8001405C(void) {
     CameraPosition* target;
 
     switch (D_8006E044) {
-    case 1:
-        target = &D_80068F7C;
-        if (func_8004F284(*(int*)(&D_80070328 + 0x64), D_8006E074) < 0x280)
-            target = &D_80068F90;
-        goto update;
-    case 2:
-        target = &D_80068FB8;
-        goto update_input;
-    case 3:
-        target = &D_80068FF4;
-        goto update_input;
-    case 0:
-    case 4:
-    case 8:
-    case 12:
-    case 23:
-        target = &D_80068F7C;
-        goto update_input;
-    case 5:
-        target = &D_80068FCC;
-        goto update_input;
-    case 6:
-        func_80016764(0);
-        return;
-    case 14:
-        target = &D_8006901C;
-        if (D_8006C5BC == 0x2F)
-            target = &D_80069030;
-        goto update_input;
-    case 16:
-        target = &D_80069044;
-        goto update_input;
-    case 17:
-    case 18:
-        target = &D_8006E168;
-        goto update_input;
-    case 13:
-        target = &D_80069058;
-        goto update_input;
-    case 21:
-        target = &D_80069184;
-        goto update_input;
-    case 22:
-        target = &D_80069198;
-        goto update_input;
-    case 24:
-        target = &D_800691AC;
-        goto update_input;
-    case 25:
-        target = &D_80069288;
-        goto update_input;
-    case 26:
-        target = &D_800691C0;
-        goto update;
-    default:
-        return;
+        case 1:
+            target = &D_80068F7C;
+            if (func_8004F284(*(int*)(&D_80070328 + 0x64), D_8006E074) < 0x280)
+                target = &D_80068F90;
+            goto update;
+        case 2:
+            target = &D_80068FB8;
+            goto update_input;
+        case 3:
+            target = &D_80068FF4;
+            goto update_input;
+        case 0:
+        case 4:
+        case 8:
+        case 12:
+        case 23:
+            target = &D_80068F7C;
+            goto update_input;
+        case 5:
+            target = &D_80068FCC;
+            goto update_input;
+        case 6:
+            func_80016764(0);
+            return;
+        case 14:
+            target = &D_8006901C;
+            if (D_8006C5BC == 0x2F)
+                target = &D_80069030;
+            goto update_input;
+        case 16:
+            target = &D_80069044;
+            goto update_input;
+        case 17:
+        case 18:
+            target = &D_8006E168;
+            goto update_input;
+        case 13:
+            target = &D_80069058;
+            goto update_input;
+        case 21:
+            target = &D_80069184;
+            goto update_input;
+        case 22:
+            target = &D_80069198;
+            goto update_input;
+        case 24:
+            target = &D_800691AC;
+            goto update_input;
+        case 25:
+            target = &D_80069288;
+            goto update_input;
+        case 26:
+            target = &D_800691C0;
+            goto update;
+        default:
+            return;
     }
 
 update_input:
@@ -1213,8 +1298,7 @@ update:
         target->pos.elevation += input[1] >> 3;
     }
     func_800135A4((CameraPosition*)&D_8006E088, target, D_8006E064);
-    func_800135A4((CameraPosition*)((char*)&D_8006E088 + 0x14),
-                  (CameraPosition*)&D_8006E088, 0);
+    func_800135A4((CameraPosition*)((char*)&D_8006E088 + 0x14), (CameraPosition*)&D_8006E088, 0);
 }
 
 void func_800142AC(void) {
@@ -1282,12 +1366,15 @@ void func_80016568(void) {
 
     var_a0 = &D_8006E044;
     temp_v1 = *var_a0;
-    if (temp_v1 == 8) goto block_16;
+    if (temp_v1 == 8)
+        goto block_16;
     if (temp_v1 < 9) {
-        if (temp_v1 == 6) goto block_5;
+        if (temp_v1 == 6)
+            goto block_5;
         goto block_22;
     }
-    if (temp_v1 < 0xC) goto block_17;
+    if (temp_v1 < 0xC)
+        goto block_17;
     goto block_22;
 
 block_5:
@@ -1325,10 +1412,9 @@ block_17:
         func_80013900((CameraPosition*)(var_a0 + 0x1A));
         goto block_25;
     }
-    if ((*(int*)(&D_80070328 + 0x48) != 7) ||
-        (*(int*)(&D_80070328 + 0x4C) != 0x7F)) {
-        func_800135A4((CameraPosition*)&D_8006E09C,
-                      (CameraPosition*)((char*)&D_8006E09C - 0x14), 0);
+    if ((*(int*)(&D_80070328 + 0x48) != 7) || (*(int*)(&D_80070328 + 0x4C) != 0x7F)) {
+        func_800135A4((CameraPosition*)&D_8006E09C, (CameraPosition*)((char*)&D_8006E09C - 0x14),
+                      0);
         return;
     }
     goto block_24;
@@ -1355,12 +1441,12 @@ block_25:
  * Confidence: complete retail executable and overlay hash match.
  * Empty register constraints emit no instructions; symbol aliases prevent
  * compiler address reuse while all resolving to the same retail address. */
-#define M2C_FIELD(p,t,o) (*(t)((char *)(p)+(o)))
+#define M2C_FIELD(p, t, o) (*(t)((char*)(p) + (o)))
 extern short D_800658A0[];
 extern short D_80065920[];
 extern CameraPosition D_80068FE0;
 extern int D_8006C590;
-extern void *D_8006C5A8;
+extern void* D_8006C5A8;
 extern int D_8006C768;
 extern short D_8006E03C;
 extern short D_8006E03E;
@@ -1381,25 +1467,31 @@ extern char cameraCopyArg asm("D_8006E074+0x0");
 extern char cameraCurrentSecond asm("D_8006E074+00");
 extern char cameraCurrentTail asm("D_8006E074+0x00");
 void func_80016764(int arg0) {
-    struct { Vector3D first; int gap; Vector3D second; int gap2; Vector3D third; } frame;
-    register CameraPosition *var_v0 asm("$2");
-    register CameraPosition *var_v0_2 asm("$2");
-    register char *temp_s0 asm("$16");
-    register char *temp_s0_2 asm("$16");
-    register char *temp_s1 asm("$17");
-    register char *temp_s1_2 asm("$17");
-    register char *temp_s5 asm("$21");
-    register char *var_a0 asm("$4");
-    register char *var_a0_2 asm("$4");
-    register char *var_a1 asm("$5");
+    struct {
+        Vector3D first;
+        int gap;
+        Vector3D second;
+        int gap2;
+        Vector3D third;
+    } frame;
+    register CameraPosition* var_v0 asm("$2");
+    register CameraPosition* var_v0_2 asm("$2");
+    register char* temp_s0 asm("$16");
+    register char* temp_s0_2 asm("$16");
+    register char* temp_s1 asm("$17");
+    register char* temp_s1_2 asm("$17");
+    register char* temp_s5 asm("$21");
+    register char* var_a0 asm("$4");
+    register char* var_a0_2 asm("$4");
+    register char* var_a1 asm("$5");
     register int temp_s4 asm("$20");
     int temp_v0;
-    register char *root0 asm("$16");
-    register char *root1 asm("$17");
-    register Vector3D *vector0 asm("$16");
-    register Vector3D *vector1 asm("$17");
-    register Vector3D *vector3 asm("$19");
-    register char *cameraRoot asm("$4");
+    register char* root0 asm("$16");
+    register char* root1 asm("$17");
+    register Vector3D* vector0 asm("$16");
+    register Vector3D* vector1 asm("$17");
+    register Vector3D* vector3 asm("$19");
+    register char* cameraRoot asm("$4");
     register int var_a1_2 asm("$5");
     register int var_a1_3 asm("$5");
     register int var_s0 asm("$16");
@@ -1409,12 +1501,14 @@ void func_80016764(int arg0) {
 
     var_s6 = arg0;
     if (var_s6 == 6) {
-        if ((!(D_8006E050 & 1) && (D_8006E044 != 8) && (D_8006E14C != 3)) || (M2C_FIELD(&D_80070328, int *, 0x50) == 0xD) || (D_8006E054 != 0) || (D_8006E538 & 0xC)) {
+        if ((!(D_8006E050 & 1) && (D_8006E044 != 8) && (D_8006E14C != 3)) ||
+            (M2C_FIELD(&D_80070328, int*, 0x50) == 0xD) || (D_8006E054 != 0) ||
+            (D_8006E538 & 0xC)) {
             var_s6 = 0;
         }
     }
     if (var_s6 == 7) {
-        if (M2C_FIELD(&D_80070328, int *, 0x210) & 0x20000) {
+        if (M2C_FIELD(&D_80070328, int*, 0x210) & 0x20000) {
             if (D_8006C5BC == 0x21) {
                 var_s6 = 0x29;
             }
@@ -1423,305 +1517,324 @@ void func_80016764(int arg0) {
     if ((var_s6 != 0x1F) || (D_8006E344 != 1)) {
         D_8006E13F = 0;
         D_8006C768 = 0;
-        if (!(M2C_FIELD(&D_80070328, int *, 0x210) & 0x2000) && (M2C_FIELD(&D_80070328, int *, 0x244) == 0)) {
-            M2C_FIELD(&D_80070328, int *, 0x288) = 0;
+        if (!(M2C_FIELD(&D_80070328, int*, 0x210) & 0x2000) &&
+            (M2C_FIELD(&D_80070328, int*, 0x244) == 0)) {
+            M2C_FIELD(&D_80070328, int*, 0x288) = 0;
         }
         D_8006E1D0 = 0;
         switch (var_s6) {
-        case 0:
-        case 6:
-            root1 = (char *)&D_8006E048;
-            *(int *)root1 = 0;
-            D_8006E138 = 0;
-            D_8006E139 = 0;
-            D_8006E13A = 0;
-            D_8006E13D = 0;
-            func_800142E0();
-            root0 = root1 + 0x2C;
-            __asm__("" : : "r"(root0));
-            goto block_64;
-        case 1:
-            root0 = (char *)&D_8006E048;
-            *(int *)root0 = 0;
-            D_8006E138 = 0;
-            D_8006E139 = 0;
-            D_8006E13A = 1;
-            D_8006E13D = 0;
-            temp_s1 = (root0 + 0x2C);
-            func_800142E0();
-            func_800136F0((CameraPosition *) temp_s1, (Vector3D *) ((root0 - 0x28)), (Vector3D *) ((root0 + 0x10)));
-            func_800138A0((CameraPosition *) temp_s1, (CameraPosition *) temp_s1);
-            __asm__ volatile("" : : : "memory");
-            var_a0 = (root0 + 0x54);
-            __asm__("" : "=r"(var_a0) : "0"(var_a0) : "$5");
-            var_a1 = temp_s1;
-            goto block_65;
-        case 2:
-        case 8:
-            root0 = (char *)&D_8006E048;
-            *(int *)root0 = 0;
-            D_8006E138 = 0;
-            D_8006E139 = 0;
-            D_8006E13A = 1;
-            D_8006E13D = 0;
-            D_8006E054 = 0;
-            temp_s1_2 = (root0 + 0x2C);
-            func_800142E0();
-            func_800136F0((CameraPosition *) temp_s1_2, (Vector3D *) ((root0 - 0x28)), (Vector3D *) ((root0 + 0x10)));
-            func_800138A0((CameraPosition *) temp_s1_2, (CameraPosition *) temp_s1_2);
-            var_a0 = (root0 + 0x54);
-            var_a1 = temp_s1_2;
-            goto block_65;
-        case 7:
-            root1 = (char *)&D_8006E140;
-            *(int *)root1 = 0;
-            D_8006E144 = 0;
-            D_8006E158 = 0;
-            D_8006E15C = 0;
-            D_8006E138 = 0;
-            D_8006E139 = 0;
-            D_8006E13A = 1;
-            D_8006E13D = 0;
-            D_8006E054 = 0;
-            temp_s0 = (root1 - 0xCC);
-            func_800142E0();
-            func_800136F0((CameraPosition *) temp_s0, (Vector3D *) ((root1 - 0x120)), (Vector3D *) ((root1 - 0xE8)));
-            func_800138A0((CameraPosition *) temp_s0, (CameraPosition *) temp_s0);
-            if (M2C_FIELD(&D_80070328, int *, 0x210) & 0x20000) {
-                temp_s0_2 = (root1 - 0xB8);
-                D_8006E048 = 3;
-                func_800135A4((CameraPosition *) temp_s0_2, &D_80068FE0, D_8006E064);
-                var_a0 = (root1 - 0xA4);
-                __asm__("" : "=r"(var_a0) : "0"(var_a0) : "$5");
-                var_a1 = temp_s0_2;
-            } else {
-                D_8006E048 = 0;
-                var_a0 = (root1 - 0xA4);
-                __asm__("" : "=r"(var_a0) : "0"(var_a0) : "$5");
-                var_a1 = temp_s0;
-            }
-            goto block_65;
-        case 9:
-        case 11:
-            if (D_8006C640 < 3) {
-                if (var_s6 == 9) {
-                    D_8006E048 = 1;
+            case 0:
+            case 6:
+                root1 = (char*)&D_8006E048;
+                *(int*)root1 = 0;
+                D_8006E138 = 0;
+                D_8006E139 = 0;
+                D_8006E13A = 0;
+                D_8006E13D = 0;
+                func_800142E0();
+                root0 = root1 + 0x2C;
+                MATCHING_OBSERVE(root0);
+                goto block_64;
+            case 1:
+                root0 = (char*)&D_8006E048;
+                *(int*)root0 = 0;
+                D_8006E138 = 0;
+                D_8006E139 = 0;
+                D_8006E13A = 1;
+                D_8006E13D = 0;
+                temp_s1 = (root0 + 0x2C);
+                func_800142E0();
+                func_800136F0((CameraPosition*)temp_s1, (Vector3D*)((root0 - 0x28)),
+                              (Vector3D*)((root0 + 0x10)));
+                func_800138A0((CameraPosition*)temp_s1, (CameraPosition*)temp_s1);
+                MATCHING_BARRIER_VOLATILE("memory");
+                var_a0 = (root0 + 0x54);
+                MATCHING_KEEP_CLOBBER(var_a0, "$5");
+                var_a1 = temp_s1;
+                goto block_65;
+            case 2:
+            case 8:
+                root0 = (char*)&D_8006E048;
+                *(int*)root0 = 0;
+                D_8006E138 = 0;
+                D_8006E139 = 0;
+                D_8006E13A = 1;
+                D_8006E13D = 0;
+                D_8006E054 = 0;
+                temp_s1_2 = (root0 + 0x2C);
+                func_800142E0();
+                func_800136F0((CameraPosition*)temp_s1_2, (Vector3D*)((root0 - 0x28)),
+                              (Vector3D*)((root0 + 0x10)));
+                func_800138A0((CameraPosition*)temp_s1_2, (CameraPosition*)temp_s1_2);
+                var_a0 = (root0 + 0x54);
+                var_a1 = temp_s1_2;
+                goto block_65;
+            case 7:
+                root1 = (char*)&D_8006E140;
+                *(int*)root1 = 0;
+                D_8006E144 = 0;
+                D_8006E158 = 0;
+                D_8006E15C = 0;
+                D_8006E138 = 0;
+                D_8006E139 = 0;
+                D_8006E13A = 1;
+                D_8006E13D = 0;
+                D_8006E054 = 0;
+                temp_s0 = (root1 - 0xCC);
+                func_800142E0();
+                func_800136F0((CameraPosition*)temp_s0, (Vector3D*)((root1 - 0x120)),
+                              (Vector3D*)((root1 - 0xE8)));
+                func_800138A0((CameraPosition*)temp_s0, (CameraPosition*)temp_s0);
+                if (M2C_FIELD(&D_80070328, int*, 0x210) & 0x20000) {
+                    temp_s0_2 = (root1 - 0xB8);
+                    D_8006E048 = 3;
+                    func_800135A4((CameraPosition*)temp_s0_2, &D_80068FE0, D_8006E064);
+                    var_a0 = (root1 - 0xA4);
+                    MATCHING_KEEP_CLOBBER(var_a0, "$5");
+                    var_a1 = temp_s0_2;
                 } else {
-                    goto block_32;
+                    D_8006E048 = 0;
+                    var_a0 = (root1 - 0xA4);
+                    MATCHING_KEEP_CLOBBER(var_a0, "$5");
+                    var_a1 = temp_s0;
                 }
-            } else if ((var_s6 != 9) || (D_8006E044 != 0xB)) {
-block_32:
-                D_8006E048 = 0;
-            }
-            goto block_38;
-        case 10:
-            { register char *state asm("$5") = (char *)&D_8006E1AC;
-            if (!(*(int *)state & 2)) {
-                if (((unsigned int) (D_8006E044 - 9) >= 2U) && (D_8006E048 = 0, (D_8006C598 == 0xFF))) {
-                    D_8006E044 = var_s6;
-                    D_8006E04C = 0x10;
-                    goto end_update;
+                goto block_65;
+            case 9:
+            case 11:
+                if (D_8006C640 < 3) {
+                    if (var_s6 == 9) {
+                        D_8006E048 = 1;
+                    } else {
+                        goto block_32;
+                    }
+                } else if ((var_s6 != 9) || (D_8006E044 != 0xB)) {
+                block_32:
+                    D_8006E048 = 0;
+                }
+                goto block_38;
+            case 10: {
+                register char* state asm("$5") = (char*)&D_8006E1AC;
+                if (!(*(int*)state & 2)) {
+                    if (((unsigned int)(D_8006E044 - 9) >= 2U) &&
+                        (D_8006E048 = 0, (D_8006C598 == 0xFF))) {
+                        D_8006E044 = var_s6;
+                        D_8006E04C = 0x10;
+                        goto end_update;
+                    } else {
+                        goto block_38;
+                    }
                 } else {
+                    D_8006E048 = 3;
+                    func_8004F178((Vector3D*)(state + 4), (Vector3D*)(state - 0x18C));
+                    D_8006E13D = 1;
+                    D_8006E1BC = (int)D_8006E03C;
+                    D_8006E1C0 = (int)D_8006E03E;
+                    D_8006E1C4 = (int)D_8006E040;
                     goto block_38;
                 }
-            } else {
-                D_8006E048 = 3;
-                func_8004F178((Vector3D *)(state + 4), (Vector3D *)(state - 0x18C));
-                D_8006E13D = 1;
-                D_8006E1BC = (int) D_8006E03C;
-                D_8006E1C0 = (int) D_8006E03E;
-                D_8006E1C4 = (int) D_8006E040;
-                goto block_38;
             }
-            }
-block_38:
-            D_8006E12C = 0;
-            D_8006E130 = 0;
-            D_8006E138 = 1;
-            D_8006E139 = 1;
-            D_8006E054 = 0;
-            goto block_68;
-        case 18:
-            { register int one asm("$2") = 1;
-              register char *actor asm("$6");
-              register int angle asm("$2");
-              register int trig asm("$3");
-              __asm__("" : : "r"(one));
-              actor = D_8006C5A8;
-              __asm__("" : "=r"(actor) : "0"(actor));
-              vector0 = &frame.third;
-            D_8006E048 = 0;
-            D_8006E138 = 0;
-            D_8006E139 = one;
-            D_8006E13A = one;
-            D_8006E13D = 0;
-            D_8006E054 = 0;
-              angle = M2C_FIELD(actor, unsigned char *, 0x46);
-              __asm__ volatile("" : : : "$4", "$5", "memory");
-              var_a0 = (char *)vector0;
-              __asm__("" : "=r"(var_a0) : "0"(var_a0), "r"(angle));
-              angle <<= 1;
-              __asm__("" : "=r"(angle) : "0"(angle));
-              trig = *(short *)((char *)D_80065920 + angle);
-              __asm__ volatile("" : : : "$5", "memory");
-              var_a1 = (char *)vector0;
-              __asm__("" : "=r"(var_a1) : "0"(var_a1));
-              frame.third.x = (trig * 13) >> 5;
-              angle = M2C_FIELD(actor, unsigned char *, 0x46);
-              __asm__ volatile("" : : : "$17", "memory");
-              root1 = &D_80070328 + 0x44;
-              __asm__("" : "=r"(root1) : "0"(root1));
-              angle <<= 1;
-              __asm__("" : "=r"(angle) : "0"(angle));
-              trig = *(short *)((char *)D_800658A0 + angle);
-              { register int height asm("$2");
-                __asm__ volatile("" : : : "memory");
-                height = *(int *)root1;
-                __asm__("" : "=r"(height) : "0"(height));
-                temp_v0 = height; }
-              actor += 12;
-              *(volatile int *)&frame.third.z = 0;
-              frame.third.z = temp_v0;
-              frame.third.y = (trig * 13) >> 5;
-              func_8004F194((Vector3D *)var_a0, (Vector3D *)var_a1, (Vector3D *)actor);
-            }
-            { register int result asm("$3");
-            result = func_8001A358(vector0, 0x800);
-            frame.third.z = result;
-            if (result != 0) {
-                { register int sum asm("$2") = result + *(int *)root1;
-                  __asm__("" : "=r"(sum) : "0"(sum)); frame.third.z = sum; }
-            } else {
-                func_8004F178(vector0, (Vector3D *) (root1 - 0x44));
-            }
-            }
-            func_8004F178(&frame.first, (Vector3D *) &D_80070328);
-            {
-                register int height asm("$2") = frame.first.z;
-                register int z asm("$3") = M2C_FIELD(&D_80070328, int *, 0x44);
-                register char *actor asm("$4") = D_8006C5A8;
-                height += 64;
-                frame.first.z = height - z;
-                z = M2C_FIELD(actor, unsigned char *, 0x46);
-                __asm__ volatile("" : : : "$4", "memory");
-                cameraRoot = (char *)&D_8006E074;
-                height = *(int *)cameraRoot;
-                z <<= 4;
-                __asm__("" : "=r"(z) : "0"(z));
-                temp_s4 = z + 0x800;
-                height -= temp_s4;
-                __asm__("" : "=r"(height) : "0"(height));
-                var_s0 = height & 0xFFF;
-            }
-            if (var_s0 >= 0x801) {
-                var_s0 -= 0x1000;
-            }
-            var_s0_2 = (unsigned int) var_s0 >> 0x1F;
-            if (M2C_FIELD(&D_80070328, int *, 0x24C) != 5) {
-                var_s2 = 0;
-                vector1 = &frame.second;
-                temp_s5 = cameraRoot + 0x14;
-                vector3 = &frame.third;
-                __asm__("" : : "r"(vector1), "r"(temp_s5), "r"(vector3));
-loop_46:
-                if (M2C_FIELD(&D_80070328, int *, 0x24C) == 2) {
-                    var_a0 = (char *)&D_8006E088;
-                    __asm__("" : "=r"(var_a0) : "0"(var_a0));
-                    var_a1_2 = var_s0_2 * 0x14;
-                    var_v0 = D_800690F8;
-                } else {
-                    var_a0 = (char *)&D_8006E088;
-                    __asm__("" : "=r"(var_a0) : "0"(var_a0));
-                    var_a1_2 = var_s0_2 * 0x14;
-                    var_v0 = D_80069094;
+            block_38:
+                D_8006E12C = 0;
+                D_8006E130 = 0;
+                D_8006E138 = 1;
+                D_8006E139 = 1;
+                D_8006E054 = 0;
+                goto block_68;
+            case 18: {
+                register int one asm("$2") = 1;
+                register char* actor asm("$6");
+                register int angle asm("$2");
+                register int trig asm("$3");
+                MATCHING_OBSERVE(one);
+                actor = D_8006C5A8;
+                MATCHING_KEEP(actor);
+                vector0 = &frame.third;
+                D_8006E048 = 0;
+                D_8006E138 = 0;
+                D_8006E139 = one;
+                D_8006E13A = one;
+                D_8006E13D = 0;
+                D_8006E054 = 0;
+                angle = M2C_FIELD(actor, unsigned char*, 0x46);
+                __asm__ volatile("" : : : "$4", "$5", "memory");
+                var_a0 = (char*)vector0;
+                __asm__("" : "=r"(var_a0) : "0"(var_a0), "r"(angle));
+                angle <<= 1;
+                MATCHING_KEEP(angle);
+                trig = *(short*)((char*)D_80065920 + angle);
+                __asm__ volatile("" : : : "$5", "memory");
+                var_a1 = (char*)vector0;
+                MATCHING_KEEP(var_a1);
+                frame.third.x = (trig * 13) >> 5;
+                angle = M2C_FIELD(actor, unsigned char*, 0x46);
+                __asm__ volatile("" : : : "$17", "memory");
+                root1 = &D_80070328 + 0x44;
+                MATCHING_KEEP(root1);
+                angle <<= 1;
+                MATCHING_KEEP(angle);
+                trig = *(short*)((char*)D_800658A0 + angle);
+                {
+                    register int height asm("$2");
+                    MATCHING_BARRIER_VOLATILE("memory");
+                    height = *(int*)root1;
+                    MATCHING_KEEP(height);
+                    temp_v0 = height;
                 }
-                func_800135A4((CameraPosition *)var_a0, (CameraPosition *)(var_a1_2 + (int)var_v0), temp_s4);
-                func_800135F8(vector1, (SphericalPosition *) temp_s5, vector3);
-                if (func_80019194(vector1, 0x100) == 0) {
-                    if ((func_80013E38((Vector3D *) (temp_s5 - 0x68), vector1, 0) == 0) || (func_80013E38(vector1, vector3, 0) == 0)) {
-                        goto block_53;
-                    }
-                } else {
-block_53:
-                    var_s0_2 = 1 - var_s0_2;
-                    var_s2 += 1;
-                    if (var_s2 < 2) {
-                        goto loop_46;
+                actor += 12;
+                *(volatile int*)&frame.third.z = 0;
+                frame.third.z = temp_v0;
+                frame.third.y = (trig * 13) >> 5;
+                func_8004F194((Vector3D*)var_a0, (Vector3D*)var_a1, (Vector3D*)actor);
+            }
+                {
+                    register int result asm("$3");
+                    result = func_8001A358(vector0, 0x800);
+                    frame.third.z = result;
+                    if (result != 0) {
+                        {
+                            register int sum asm("$2") = result + *(int*)root1;
+                            MATCHING_KEEP(sum);
+                            frame.third.z = sum;
+                        }
+                    } else {
+                        func_8004F178(vector0, (Vector3D*)(root1 - 0x44));
                     }
                 }
-                if (var_s2 == 2) {
-                    __asm__("" : "=r"(var_s2) : "0"(var_s2));
-                    var_s0_2 = 2;
-                    __asm__("" : "=r"(var_s0_2) : "0"(var_s0_2));
+                func_8004F178(&frame.first, (Vector3D*)&D_80070328);
+                {
+                    register int height asm("$2") = frame.first.z;
+                    register int z asm("$3") = M2C_FIELD(&D_80070328, int*, 0x44);
+                    register char* actor asm("$4") = D_8006C5A8;
+                    height += 64;
+                    frame.first.z = height - z;
+                    z = M2C_FIELD(actor, unsigned char*, 0x46);
+                    __asm__ volatile("" : : : "$4", "memory");
+                    cameraRoot = (char*)&D_8006E074;
+                    height = *(int*)cameraRoot;
+                    z <<= 4;
+                    MATCHING_KEEP(z);
+                    temp_s4 = z + 0x800;
+                    height -= temp_s4;
+                    MATCHING_KEEP(height);
+                    var_s0 = height & 0xFFF;
                 }
-            }
-            if (D_8006C590 >= 0) {
-                var_s0_2 = (unsigned int) D_8006C590;
-            }
-            D_8006C590 = (int) var_s0_2;
-            func_800142E0();
-            {
-                register char *actor asm("$2") = D_8006C5A8;
-                register int angle asm("$2") = M2C_FIELD(actor, unsigned char *, 0x46);
-                register int index asm("$2");
-                register int zero asm("$6");
-                __asm__ volatile("" : "=r"(angle) : "0"(angle) : "$4", "memory");
-                cameraRoot = (char *)&D_8006E064;
-                __asm__("" : "=r"(cameraRoot) : "0"(cameraRoot));
-                angle <<= 4;
-                *(int *)cameraRoot = angle + 0x800;
-                if ((M2C_FIELD(&D_80070328, int *, 0x24C) == 2) || (M2C_FIELD(&D_80070328, int *, 0x24C) == 5)) {
-                    var_a0_2 = cameraRoot + 0x104;
-                    __asm__("" : "=r"(var_a0_2) : "0"(var_a0_2));
-                    index = D_8006C590;
-                    zero = 0;
-                    __asm__("" : : "r"(zero), "r"(index));
-                    var_a1_3 = index * 20;
-                    var_v0_2 = D_800690F8;
-                } else {
-                    var_a0_2 = cameraRoot + 0x104;
-                    __asm__("" : "=r"(var_a0_2) : "0"(var_a0_2));
-                    index = D_8006C590;
-                    zero = 0;
-                    __asm__("" : : "r"(zero), "r"(index));
-                    var_a1_3 = index * 20;
-                    var_v0_2 = D_80069094;
+                if (var_s0 >= 0x801) {
+                    var_s0 -= 0x1000;
                 }
-                func_800135A4((CameraPosition *)var_a0_2, (CameraPosition *)(var_a1_3 + (int)var_v0_2), zero);
-            }
-            func_800136F0((CameraPosition *) &D_8006E074, (Vector3D *) (((char *)&D_8006E074 - 0x54)), (Vector3D *) (((char *)&D_8006E074 - 0x1C)));
-            func_800138A0((CameraPosition *) &D_8006E074, (CameraPosition *) &D_8006E074);
-            var_a0 = ((char *)&D_8006E074 + 0x28);
-            var_a1 = &D_8006E074;
-            goto block_65;
-        case 35:
-            root0 = (char *)&D_8006E048;
-            *(int *)root0 = 0;
-            D_8006E138 = 1;
-            D_8006E139 = 1;
-            D_8006E13A = 0;
-            D_8006E13D = 0;
-            root1 = root0 + 0x2C;
-            func_800142E0();
-            __asm__("" : : "r"(root1));
-block_64:
-            func_800136F0((CameraPosition *) &cameraCurrentArg, &D_8006E020, (Vector3D *) &D_8006E058);
-            func_800138A0((CameraPosition *)&cameraCurrentSecond, (CameraPosition *)&cameraCopyArg);
-            var_a0 = &D_8006E09C;
-            var_a1 = &cameraCurrentTail;
-block_65:
-            func_800135A4((CameraPosition *) var_a0, (CameraPosition *) var_a1, 0);
-            goto block_68;
-        default:
-            if (unk_ovlheader_8007430C != 0) {
-                unk_ovlheader_8007430C((unsigned int) var_s6);
-            }
-            goto block_68;
+                var_s0_2 = (unsigned int)var_s0 >> 0x1F;
+                if (M2C_FIELD(&D_80070328, int*, 0x24C) != 5) {
+                    var_s2 = 0;
+                    vector1 = &frame.second;
+                    temp_s5 = cameraRoot + 0x14;
+                    vector3 = &frame.third;
+                    MATCHING_OBSERVE3(vector1, temp_s5, vector3);
+                loop_46:
+                    if (M2C_FIELD(&D_80070328, int*, 0x24C) == 2) {
+                        var_a0 = (char*)&D_8006E088;
+                        MATCHING_KEEP(var_a0);
+                        var_a1_2 = var_s0_2 * 0x14;
+                        var_v0 = D_800690F8;
+                    } else {
+                        var_a0 = (char*)&D_8006E088;
+                        MATCHING_KEEP(var_a0);
+                        var_a1_2 = var_s0_2 * 0x14;
+                        var_v0 = D_80069094;
+                    }
+                    func_800135A4((CameraPosition*)var_a0,
+                                  (CameraPosition*)(var_a1_2 + (int)var_v0), temp_s4);
+                    func_800135F8(vector1, (SphericalPosition*)temp_s5, vector3);
+                    if (func_80019194(vector1, 0x100) == 0) {
+                        if ((func_80013E38((Vector3D*)(temp_s5 - 0x68), vector1, 0) == 0) ||
+                            (func_80013E38(vector1, vector3, 0) == 0)) {
+                            goto block_53;
+                        }
+                    } else {
+                    block_53:
+                        var_s0_2 = 1 - var_s0_2;
+                        var_s2 += 1;
+                        if (var_s2 < 2) {
+                            goto loop_46;
+                        }
+                    }
+                    if (var_s2 == 2) {
+                        MATCHING_KEEP(var_s2);
+                        var_s0_2 = 2;
+                        MATCHING_KEEP(var_s0_2);
+                    }
+                }
+                if (D_8006C590 >= 0) {
+                    var_s0_2 = (unsigned int)D_8006C590;
+                }
+                D_8006C590 = (int)var_s0_2;
+                func_800142E0();
+                {
+                    register char* actor asm("$2") = D_8006C5A8;
+                    register int angle asm("$2") = M2C_FIELD(actor, unsigned char*, 0x46);
+                    register int index asm("$2");
+                    register int zero asm("$6");
+                    __asm__ volatile("" : "=r"(angle) : "0"(angle) : "$4", "memory");
+                    cameraRoot = (char*)&D_8006E064;
+                    MATCHING_KEEP(cameraRoot);
+                    angle <<= 4;
+                    *(int*)cameraRoot = angle + 0x800;
+                    if ((M2C_FIELD(&D_80070328, int*, 0x24C) == 2) ||
+                        (M2C_FIELD(&D_80070328, int*, 0x24C) == 5)) {
+                        var_a0_2 = cameraRoot + 0x104;
+                        MATCHING_KEEP(var_a0_2);
+                        index = D_8006C590;
+                        zero = 0;
+                        MATCHING_OBSERVE2(zero, index);
+                        var_a1_3 = index * 20;
+                        var_v0_2 = D_800690F8;
+                    } else {
+                        var_a0_2 = cameraRoot + 0x104;
+                        MATCHING_KEEP(var_a0_2);
+                        index = D_8006C590;
+                        zero = 0;
+                        MATCHING_OBSERVE2(zero, index);
+                        var_a1_3 = index * 20;
+                        var_v0_2 = D_80069094;
+                    }
+                    func_800135A4((CameraPosition*)var_a0_2,
+                                  (CameraPosition*)(var_a1_3 + (int)var_v0_2), zero);
+                }
+                func_800136F0((CameraPosition*)&D_8006E074,
+                              (Vector3D*)(((char*)&D_8006E074 - 0x54)),
+                              (Vector3D*)(((char*)&D_8006E074 - 0x1C)));
+                func_800138A0((CameraPosition*)&D_8006E074, (CameraPosition*)&D_8006E074);
+                var_a0 = ((char*)&D_8006E074 + 0x28);
+                var_a1 = &D_8006E074;
+                goto block_65;
+            case 35:
+                root0 = (char*)&D_8006E048;
+                *(int*)root0 = 0;
+                D_8006E138 = 1;
+                D_8006E139 = 1;
+                D_8006E13A = 0;
+                D_8006E13D = 0;
+                root1 = root0 + 0x2C;
+                func_800142E0();
+                MATCHING_OBSERVE(root1);
+            block_64:
+                func_800136F0((CameraPosition*)&cameraCurrentArg, &D_8006E020,
+                              (Vector3D*)&D_8006E058);
+                func_800138A0((CameraPosition*)&cameraCurrentSecond,
+                              (CameraPosition*)&cameraCopyArg);
+                var_a0 = &D_8006E09C;
+                var_a1 = &cameraCurrentTail;
+            block_65:
+                func_800135A4((CameraPosition*)var_a0, (CameraPosition*)var_a1, 0);
+                goto block_68;
+            default:
+                if (unk_ovlheader_8007430C != 0) {
+                    unk_ovlheader_8007430C((unsigned int)var_s6);
+                }
+                goto block_68;
         }
-block_68:
+    block_68:
         D_8006E044 = var_s6;
         D_8006E04C = 0;
-end_update:
+    end_update:
         D_8006E14C = 0;
     }
 }
@@ -1736,9 +1849,9 @@ end_update:
  * 0/9/other, timer thresholds 14/16/30/60 and transition marker 0x82.
  * Confidence: complete retail executable and overlay hash match.
  * Empty register constraints preserve retail instruction ordering. */
-#define M2C_FIELD(p,t,o) (*(t)((char *)(p)+(o)))
+#define M2C_FIELD(p, t, o) (*(t)((char*)(p) + (o)))
 extern int D_8006E128;
-extern int *D_8006E19C;
+extern int* D_8006E19C;
 extern int D_8006E1A0;
 extern unsigned char D_8006E535;
 extern int D_8006E53C;
@@ -1747,294 +1860,314 @@ extern void (*unk_ovlheader_80074310)();
 void func_80017028(void) {
     int temp_s0;
     register int four asm("$2");
-    register int *state asm("$16");
-    register int *stateArg asm("$4");
+    register int* state asm("$16");
+    register int* stateArg asm("$4");
     register int var_a0 asm("$4");
     register int var_a0_2 asm("$4");
     register int var_v0 asm("$2");
     register int mode asm("$3");
     register int index asm("$2");
 
-    switch (D_8006E044) {                           /* switch 1 */
-    case 0:                                         /* switch 1 */
-        var_a0 = D_8006E160;
-        if (var_a0 == 0) {
-            if (!(D_8006E538 & 0x10) || (M2C_FIELD(&D_80070328, unsigned char *, 0x1B9) == 0) || (M2C_FIELD(&D_80070328, int *, 0x24C) == 4)) {
-                if (!(D_8006E53C & 0x10) || (M2C_FIELD(&D_80070328, unsigned char *, 0x1B9) == 0) || (M2C_FIELD(&D_80070328, int *, 0x24C) != 4)) {
-                    var_a0 = 8;
-                    if (!(D_8006E53C & 0xC)) {
-                        index = M2C_FIELD(&D_80070328, int *, 0x48);
-                        mode = D_8006E044;
-                        __asm__("" : "=r"(mode) : "0"(mode), "r"(index));
-                        index <<= 2;
-                        __asm__("" : "=r"(index) : "0"(index));
-                        var_a0 = *(int *)((char *)D_80068CAC + index);
-                        if (mode == var_a0) {
-                            if (D_8006E14C == 3) {
-                                func_80016764(6);
-                                goto block_94;
+    switch (D_8006E044) { /* switch 1 */
+        case 0:           /* switch 1 */
+            var_a0 = D_8006E160;
+            if (var_a0 == 0) {
+                if (!(D_8006E538 & 0x10) || (M2C_FIELD(&D_80070328, unsigned char*, 0x1B9) == 0) ||
+                    (M2C_FIELD(&D_80070328, int*, 0x24C) == 4)) {
+                    if (!(D_8006E53C & 0x10) ||
+                        (M2C_FIELD(&D_80070328, unsigned char*, 0x1B9) == 0) ||
+                        (M2C_FIELD(&D_80070328, int*, 0x24C) != 4)) {
+                        var_a0 = 8;
+                        if (!(D_8006E53C & 0xC)) {
+                            index = M2C_FIELD(&D_80070328, int*, 0x48);
+                            mode = D_8006E044;
+                            __asm__("" : "=r"(mode) : "0"(mode), "r"(index));
+                            index <<= 2;
+                            MATCHING_KEEP(index);
+                            var_a0 = *(int*)((char*)D_80068CAC + index);
+                            if (mode == var_a0) {
+                                if (D_8006E14C == 3) {
+                                    func_80016764(6);
+                                    goto block_94;
+                                }
+                                if ((D_8006E050 & 1) && (D_8006E128 < 0x400) && (D_8006E12C == 0) &&
+                                    (D_8006E054 == 0) && ((unsigned int)(D_8006E048 - 1) >= 2U)) {
+                                    var_a0 = 6;
+                                    if (D_8006E538 & 0xC)
+                                        return;
+                                    MATCHING_BARRIER_VOLATILE("memory");
+                                    goto block_37;
+                                }
+                                return;
                             }
-                            if ((D_8006E050 & 1) && (D_8006E128 < 0x400) && (D_8006E12C == 0) && (D_8006E054 == 0) && ((unsigned int) (D_8006E048 - 1) >= 2U)) {
-                                var_a0 = 6;
-                                if (D_8006E538 & 0xC) return;
-                                __asm__ volatile("" : : : "memory");
+                        }
+                        goto block_37;
+                    }
+                    goto block_81;
+                }
+                goto block_77;
+            }
+            goto block_37;
+        case 1: /* switch 1 */
+            var_a0 = D_8006E160;
+            if (var_a0 == 0) {
+                if (!(D_8006E538 & 0x10) || (M2C_FIELD(&D_80070328, unsigned char*, 0x1B9) == 0) ||
+                    (M2C_FIELD(&D_80070328, int*, 0x24C) == 4)) {
+                    if (!(D_8006E53C & 0x10) ||
+                        (M2C_FIELD(&D_80070328, unsigned char*, 0x1B9) == 0) ||
+                        (M2C_FIELD(&D_80070328, int*, 0x24C) != 4)) {
+                        if (!(D_8006E53C & 0xC) || (var_a0 = 8, (D_8006E344 == 7))) {
+                            index = M2C_FIELD(&D_80070328, int*, 0x48);
+                            mode = D_8006E044;
+                            __asm__("" : "=r"(mode) : "0"(mode), "r"(index));
+                            index <<= 2;
+                            MATCHING_KEEP(index);
+                            var_a0 = *(int*)((char*)D_80068CAC + index);
+                            if (mode != var_a0) {
+                                if (var_a0 != 0) {
+
+                                } else {
+                                    goto block_36;
+                                }
                                 goto block_37;
                             }
-                            return;
-                        }
-                    }
-                    goto block_37;
-                }
-                goto block_81;
-            }
-            goto block_77;
-        }
-        goto block_37;
-    case 1:                                         /* switch 1 */
-        var_a0 = D_8006E160;
-        if (var_a0 == 0) {
-            if (!(D_8006E538 & 0x10) || (M2C_FIELD(&D_80070328, unsigned char *, 0x1B9) == 0) || (M2C_FIELD(&D_80070328, int *, 0x24C) == 4)) {
-                if (!(D_8006E53C & 0x10) || (M2C_FIELD(&D_80070328, unsigned char *, 0x1B9) == 0) || (M2C_FIELD(&D_80070328, int *, 0x24C) != 4)) {
-                    if (!(D_8006E53C & 0xC) || (var_a0 = 8, (D_8006E344 == 7))) {
-                        index = M2C_FIELD(&D_80070328, int *, 0x48);
-                        mode = D_8006E044;
-                        __asm__("" : "=r"(mode) : "0"(mode), "r"(index));
-                        index <<= 2;
-                        __asm__("" : "=r"(index) : "0"(index));
-                        var_a0 = *(int *)((char *)D_80068CAC + index);
-                        if (mode != var_a0) {
-                            if (var_a0 != 0) {
-
-                            } else {
-                                goto block_36;
-                            }
+                        } else {
                             goto block_37;
                         }
                     } else {
-                        goto block_37;
+                        goto block_81;
                     }
                 } else {
-                    goto block_81;
+                    goto block_77;
                 }
             } else {
-                goto block_77;
-            }
-        } else {
-            goto block_37;
-        }
-        break;
-    case 2:                                         /* switch 1 */
-        var_a0 = D_8006E160;
-        if ((var_a0 == 0) || (var_a0 == 0xC)) {
-            index = M2C_FIELD(&D_80070328, int *, 0x48);
-            mode = D_8006E044;
-            __asm__("" : "=r"(mode) : "0"(mode), "r"(index));
-            index <<= 2;
-                        __asm__("" : "=r"(index) : "0"(index));
-                        var_a0 = *(int *)((char *)D_80068CAC + index);
-            if (mode != var_a0) {
-                if (var_a0 == 0) {
-                    goto block_36;
-                }
                 goto block_37;
             }
-        } else {
-            goto block_37;
-        }
-        break;
-block_36:
-        var_a0 = 6;
-block_37:
-        __asm__("" : "=r"(var_a0) : "0"(var_a0));
-        func_80016764(var_a0);
-        return;
-    case 7:                                         /* switch 1 */
-        if ((D_8006E160 != 0) && ((unsigned int) (D_8006E160 - 0xC) >= 2U) && (D_8006E160 != 0xE) && ((unsigned int) (D_8006E160 - 0x10) >= 2U) && ((unsigned int) (D_8006E160 - 0x12) >= 2U) && (D_8006E160 != 0x14) && (D_8006E160 != 0x16) && (D_8006E160 != 0x1A) && (D_8006E160 != 0x18)) {
-            func_80016764(D_8006E160);
-        }
-        if (M2C_FIELD(&D_80070328, unsigned char *, 0x1B9) == 0) {
-            D_8006C768 = 0;
-            if (M2C_FIELD(&D_80070328, int *, 0x244) == 0) {
-                M2C_FIELD(&D_80070328, int *, 0x288) = 0;
+            break;
+        case 2: /* switch 1 */
+            var_a0 = D_8006E160;
+            if ((var_a0 == 0) || (var_a0 == 0xC)) {
+                index = M2C_FIELD(&D_80070328, int*, 0x48);
+                mode = D_8006E044;
+                __asm__("" : "=r"(mode) : "0"(mode), "r"(index));
+                index <<= 2;
+                MATCHING_KEEP(index);
+                var_a0 = *(int*)((char*)D_80068CAC + index);
+                if (mode != var_a0) {
+                    if (var_a0 == 0) {
+                        goto block_36;
+                    }
+                    goto block_37;
+                }
+            } else {
+                goto block_37;
             }
+            break;
+        block_36:
+            var_a0 = 6;
+        block_37:
+            MATCHING_KEEP(var_a0);
+            func_80016764(var_a0);
+            return;
+        case 7: /* switch 1 */
+            if ((D_8006E160 != 0) && ((unsigned int)(D_8006E160 - 0xC) >= 2U) &&
+                (D_8006E160 != 0xE) && ((unsigned int)(D_8006E160 - 0x10) >= 2U) &&
+                ((unsigned int)(D_8006E160 - 0x12) >= 2U) && (D_8006E160 != 0x14) &&
+                (D_8006E160 != 0x16) && (D_8006E160 != 0x1A) && (D_8006E160 != 0x18)) {
+                func_80016764(D_8006E160);
+            }
+            if (M2C_FIELD(&D_80070328, unsigned char*, 0x1B9) == 0) {
+                D_8006C768 = 0;
+                if (M2C_FIELD(&D_80070328, int*, 0x244) == 0) {
+                    M2C_FIELD(&D_80070328, int*, 0x288) = 0;
+                }
                 goto block_122;
-        }
-        if (!(D_8006E538 & 0x10)) {
-            state = &D_8006E048;
-            __asm__("" : "=r"(state) : "0"(state));
-            if (*state == 3) {
-                *state = 4;
-                D_8006E04C = 0;
-                return;
             }
-            if (*state == 4) {
-                if (M2C_FIELD(&D_80070328, int *, 0x170) == *state) {
-                    if (D_8006E04C >= 0xE) {
-                        D_8006E04C = 0xD;
-                        return;
+            if (!(D_8006E538 & 0x10)) {
+                state = &D_8006E048;
+                MATCHING_KEEP(state);
+                if (*state == 3) {
+                    *state = 4;
+                    D_8006E04C = 0;
+                    return;
+                }
+                if (*state == 4) {
+                    if (M2C_FIELD(&D_80070328, int*, 0x170) == *state) {
+                        if (D_8006E04C >= 0xE) {
+                            D_8006E04C = 0xD;
+                            return;
+                        }
+                    } else if (D_8006E04C >= 0x10) {
+                        goto block_59;
                     }
-                } else if (D_8006E04C >= 0x10) {
-                    goto block_59;
+                } else {
+                block_59:
+                    D_8006C768 = 0;
+                    if (M2C_FIELD(&D_80070328, int*, 0x244) == 0) {
+                        M2C_FIELD(&D_80070328, int*, 0x288) = 0;
+                    }
+                    func_80016764(0);
+                    *state = 2;
+                    return;
                 }
             } else {
-block_59:
-                D_8006C768 = 0;
-                if (M2C_FIELD(&D_80070328, int *, 0x244) == 0) {
-                    M2C_FIELD(&D_80070328, int *, 0x288) = 0;
+                four = 4;
+                MATCHING_KEEP(four);
+                stateArg = &D_8006E048;
+                MATCHING_KEEP(stateArg);
+                if (*stateArg == four) {
+                    *stateArg = 3;
+                    return;
                 }
-                func_80016764(0);
-                *state = 2;
-                return;
-            }
-        } else {
-            four = 4;
-            __asm__("" : "=r"(four) : "0"(four));
-            stateArg = &D_8006E048;
-            __asm__("" : "=r"(stateArg) : "0"(stateArg));
-            if (*stateArg == four) {
-                *stateArg = 3;
-                return;
-            }
-            if ((D_8006E13F != 0) && (M2C_FIELD(&D_80070328, int *, 0x1D0) == 0) && !(M2C_FIELD(&D_80070328, int *, 0x210) & 0x20000) && (M2C_FIELD(&g_CheatFlags, unsigned char *, 3) == 0) && (M2C_FIELD(&D_80070328, int *, 0x48) != 0x64)) {
-                D_8006C768 = 0;
-                if (M2C_FIELD(&D_80070328, int *, 0x244) == 0) {
-                    M2C_FIELD(&D_80070328, int *, 0x288) = 0;
-                }
-                D_8006E13F = 0;
-                return;
-            }
-        }
-        break;
-    case 6:                                         /* switch 1 */
-        var_a0 = D_8006E160;
-        if ((var_a0 == 0) || (var_a0 == 0x11)) {
-            if ((D_8006E538 & 0x10) && (M2C_FIELD(&D_80070328, unsigned char *, 0x1B9) != 0) && (M2C_FIELD(&D_80070328, int *, 0x24C) != 4)) {
-block_77:
-                var_a0 = 7;
-                goto block_37;
-            }
-            if ((D_8006E53C & 0x10) && (M2C_FIELD(&D_80070328, unsigned char *, 0x1B9) != 0) && (M2C_FIELD(&D_80070328, int *, 0x24C) == 4)) {
-block_81:
-                var_a0 = 0x1F;
-                goto block_37;
-            }
-            var_a0 = 8;
-            if (!(D_8006E53C & 0xC) && (var_a0 = D_80068CAC[M2C_FIELD(&D_80070328, int *, 0x48)], (var_a0 == 0))) {
-                if (D_8006E12C == 0) {
-                    if ((D_8006E048 != 1) && (D_8006E04C >= 0x3C)) {
-                        mode = D_8006E160;
-                        var_a0_2 = 0;
-                        if (mode == 0x11) {
-                            __asm__("" : "=r"(mode) : "0"(mode));
-                            var_a0_2 = 0x11;
-                            __asm__("" : "=r"(var_a0_2) : "0"(var_a0_2));
-                        }
-                        func_80016764(var_a0_2);
-                        __asm__ volatile("" : : : "memory");
-                        goto block_94;
+                if ((D_8006E13F != 0) && (M2C_FIELD(&D_80070328, int*, 0x1D0) == 0) &&
+                    !(M2C_FIELD(&D_80070328, int*, 0x210) & 0x20000) &&
+                    (M2C_FIELD(&g_CheatFlags, unsigned char*, 3) == 0) &&
+                    (M2C_FIELD(&D_80070328, int*, 0x48) != 0x64)) {
+                    D_8006C768 = 0;
+                    if (M2C_FIELD(&D_80070328, int*, 0x244) == 0) {
+                        M2C_FIELD(&D_80070328, int*, 0x288) = 0;
                     }
-                    if (((D_8006E050 & 1) || (var_a0 = 0, (D_8006E048 == 1))) && (var_a0 = 0, (D_8006E054 == 0))) {
-                        if (D_8006E14C == 3) {
+                    D_8006E13F = 0;
+                    return;
+                }
+            }
+            break;
+        case 6: /* switch 1 */
+            var_a0 = D_8006E160;
+            if ((var_a0 == 0) || (var_a0 == 0x11)) {
+                if ((D_8006E538 & 0x10) && (M2C_FIELD(&D_80070328, unsigned char*, 0x1B9) != 0) &&
+                    (M2C_FIELD(&D_80070328, int*, 0x24C) != 4)) {
+                block_77:
+                    var_a0 = 7;
+                    goto block_37;
+                }
+                if ((D_8006E53C & 0x10) && (M2C_FIELD(&D_80070328, unsigned char*, 0x1B9) != 0) &&
+                    (M2C_FIELD(&D_80070328, int*, 0x24C) == 4)) {
+                block_81:
+                    var_a0 = 0x1F;
+                    goto block_37;
+                }
+                var_a0 = 8;
+                if (!(D_8006E53C & 0xC) &&
+                    (var_a0 = D_80068CAC[M2C_FIELD(&D_80070328, int*, 0x48)], (var_a0 == 0))) {
+                    if (D_8006E12C == 0) {
+                        if ((D_8006E048 != 1) && (D_8006E04C >= 0x3C)) {
+                            mode = D_8006E160;
+                            var_a0_2 = 0;
+                            if (mode == 0x11) {
+                                MATCHING_KEEP(mode);
+                                var_a0_2 = 0x11;
+                                MATCHING_KEEP(var_a0_2);
+                            }
+                            func_80016764(var_a0_2);
+                            MATCHING_BARRIER_VOLATILE("memory");
                             goto block_94;
                         }
+                        if (((D_8006E050 & 1) || (var_a0 = 0, (D_8006E048 == 1))) &&
+                            (var_a0 = 0, (D_8006E054 == 0))) {
+                            if (D_8006E14C == 3) {
+                                goto block_94;
+                            }
+                        } else {
+                            goto block_37;
+                        }
                     } else {
-                        goto block_37;
+                        goto block_101;
                     }
                 } else {
-                    goto block_101;
+                    goto block_37;
                 }
             } else {
                 goto block_37;
             }
-        } else {
-            goto block_37;
-        }
-        break;
-block_94:
-        D_8006E048 = 1;
-        return;
-    case 8:                                         /* switch 1 */
-        var_a0 = D_8006E160;
-        if ((var_a0 == 0) || (var_a0 == 0x11)) {
-            if (((D_8006E04C >= 0x1E) || (D_8006E128 < 0x1000)) && ((D_8006E535 == 0) || (D_8006E538 & 0xD3))) {
-block_101:
-                var_a0 = 0;
+            break;
+        block_94:
+            D_8006E048 = 1;
+            return;
+        case 8: /* switch 1 */
+            var_a0 = D_8006E160;
+            if ((var_a0 == 0) || (var_a0 == 0x11)) {
+                if (((D_8006E04C >= 0x1E) || (D_8006E128 < 0x1000)) &&
+                    ((D_8006E535 == 0) || (D_8006E538 & 0xD3))) {
+                block_101:
+                    var_a0 = 0;
+                    goto block_37;
+                }
+            } else {
                 goto block_37;
             }
-        } else {
-            goto block_37;
-        }
-        break;
-    case 9:                                         /* switch 1 */
-        if (D_8006E048 == 0x82) {
-            D_8006E160 = 0;
-            var_v0 = M2C_FIELD(&D_80070328, int *, 0x48) * 4;
-            goto block_123;
-        }
-        break;
-    case 10:                                        /* switch 1 */
-        if (D_8006E048 == 0x82) {
-            D_8006E160 = 0;
-            var_v0 = M2C_FIELD(&D_80070328, int *, 0x48) * 4;
-            goto block_123;
-        }
-        if ((D_8006E1AC & 8) && (D_8006E1A0 >= (*D_8006E19C - 1))) {
-            index = M2C_FIELD(&D_80070328, int *, 0x48);
-            __asm__("" : "=r"(index) : "0"(index));
-            D_8006E160 = 0;
-            __asm__ volatile("" : : : "memory");
-            func_80016764(D_80068CAC[index]);
-            D_8006C74C = 0;
-            return;
-        }
-        if ((D_8006E160 == 0) && !(D_8006E048 & 0x80)) {
-            D_8006E048 = 0x80;
-            D_8006E04C = 0;
-            D_8006E1AC &= ~8;
-            return;
-        }
-        break;
-    case 11:                                        /* switch 1 */
-        if (D_8006E160 == 0) goto block_122;
-        switch (D_8006E160) {                       /* switch 2; irregular */
-        case 9:                                     /* switch 2 */
-            temp_s0 = (D_8006C598 >= 0x80) * 0x10;
-            func_80016764(9);
-            D_8006E04C = temp_s0;
-            return;
-        }
-        break;
-    case 18:                                        /* switch 1 */
-        var_a0 = D_8006E160;
-        if ((var_a0 == 0) || (var_a0 == D_8006E044)) {
-            if ((D_8006E344 != 1) && (D_8006E344 != 0xF)) {
+            break;
+        case 9: /* switch 1 */
+            if (D_8006E048 == 0x82) {
                 D_8006E160 = 0;
-                var_v0 = M2C_FIELD(&D_80070328, int *, 0x48) * 4;
+                var_v0 = M2C_FIELD(&D_80070328, int*, 0x48) * 4;
                 goto block_123;
             }
-        } else {
-            goto block_37;
-        }
-        break;
-    case 35:                                        /* switch 1 */
-        if (D_8006E344 != 0xD) {
-            var_a0 = D_8006E160;
-            if (var_a0 == 0) {
-                goto block_122;
+            break;
+        case 10: /* switch 1 */
+            if (D_8006E048 == 0x82) {
+                D_8006E160 = 0;
+                var_v0 = M2C_FIELD(&D_80070328, int*, 0x48) * 4;
+                goto block_123;
             }
+            if ((D_8006E1AC & 8) && (D_8006E1A0 >= (*D_8006E19C - 1))) {
+                index = M2C_FIELD(&D_80070328, int*, 0x48);
+                MATCHING_KEEP(index);
+                D_8006E160 = 0;
+                MATCHING_BARRIER_VOLATILE("memory");
+                func_80016764(D_80068CAC[index]);
+                D_8006C74C = 0;
+                return;
+            }
+            if ((D_8006E160 == 0) && !(D_8006E048 & 0x80)) {
+                D_8006E048 = 0x80;
+                D_8006E04C = 0;
+                D_8006E1AC &= ~8;
+                return;
+            }
+            break;
+        case 11: /* switch 1 */
+            if (D_8006E160 == 0)
+                goto block_122;
+            switch (D_8006E160) { /* switch 2; irregular */
+                case 9:           /* switch 2 */
+                    temp_s0 = (D_8006C598 >= 0x80) * 0x10;
+                    func_80016764(9);
+                    D_8006E04C = temp_s0;
+                    return;
+            }
+            break;
+        case 18: /* switch 1 */
+            var_a0 = D_8006E160;
+            if ((var_a0 == 0) || (var_a0 == D_8006E044)) {
+                if ((D_8006E344 != 1) && (D_8006E344 != 0xF)) {
+                    D_8006E160 = 0;
+                    var_v0 = M2C_FIELD(&D_80070328, int*, 0x48) * 4;
+                    goto block_123;
+                }
+            } else {
+                goto block_37;
+            }
+            break;
+        case 35: /* switch 1 */
+            if (D_8006E344 != 0xD) {
+                var_a0 = D_8006E160;
+                if (var_a0 == 0) {
+                    goto block_122;
+                }
+                goto block_37;
+            }
+            break;
+        block_122:
+            var_v0 = M2C_FIELD(&D_80070328, int*, 0x48) * 4;
+        block_123:
+            var_a0 = *(int*)((char*)D_80068CAC + var_v0);
             goto block_37;
-        }
-        break;
-block_122:
-        var_v0 = M2C_FIELD(&D_80070328, int *, 0x48) * 4;
-block_123:
-        var_a0 = *(int *)((char *)D_80068CAC + var_v0);
-        goto block_37;
-    default:                                        /* switch 1 */
-        if (unk_ovlheader_80074310 != 0) {
-            unk_ovlheader_80074310();
-        }
-        break;
+        default: /* switch 1 */
+            if (unk_ovlheader_80074310 != 0) {
+                unk_ovlheader_80074310();
+            }
+            break;
     }
 }
 

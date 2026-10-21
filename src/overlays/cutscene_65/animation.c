@@ -8,14 +8,18 @@ void func_cutscene_65_80076528(int index) {
     D_8006C570 = &pad.store[index];
 }
 
-void func_cutscene_65_80076548(void) {}
+void func_cutscene_65_80076548(void) {
+}
 
-void func_cutscene_65_80076550(void) {}
+void func_cutscene_65_80076550(void) {
+}
 
 void func_cutscene_65_80076558(int index) {
     D_8006C570 = &pad.store[index];
 }
 
-void func_cutscene_65_80076578(void) {}
+void func_cutscene_65_80076578(void) {
+}
 
-void func_cutscene_65_80076580(void) {}
+void func_cutscene_65_80076580(void) {
+}

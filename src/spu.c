@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "spu.h"
 
@@ -8,7 +9,8 @@ int func_8003BABC(Moby* owner, int index, int selector) {
     short type = *(short*)((char*)owner + 0x36);
     unsigned char* table = D_8006EE2C[type];
     unsigned char id = *(table + index + 4);
-    if (id == 0xFF) return -1;
+    if (id == 0xFF)
+        return -1;
     return ((int (*)(int, Moby*, int))PlaySound)(id, owner, selector);
 }
 
@@ -17,7 +19,8 @@ int func_8003BABC(Moby* owner, int index, int selector) {
 extern unsigned char* D_8006C708;
 int func_8003BB10(Moby* owner, int index, int selector) {
     unsigned char id = D_8006C708[index];
-    if (id == 0xFF) return -1;
+    if (id == 0xFF)
+        return -1;
     return ((int (*)(int, Moby*, int))PlaySound)(id, owner, selector);
 }
 
@@ -59,7 +62,7 @@ int PlaySound(int localSoundId, Moby* moby, int param_3) {
     if (soundId == 0xFF) {
         return -1;
     }
-    __asm__ volatile("" : "=r"(soundId) : "0"(soundId));
+    MATCHING_KEEP_VOLATILE(soundId);
     if (g_SpuDefinitionsPtr[soundId].unk10 != 0 && !(flags & 4)) {
         return -1;
     }
@@ -115,10 +118,10 @@ found_free_slot:
     }
 
     activeOffset = index * sizeof(ActiveSound);
-    __asm__ volatile("" : "=r"(activeOffset) : "0"(activeOffset));
+    MATCHING_KEEP_VOLATILE(activeOffset);
     activeState = 1;
     definitionOffset = soundId * sizeof(SoundDefinition);
-    __asm__ volatile("" : "=r"(definitionOffset) : "0"(definitionOffset));
+    MATCHING_KEEP_VOLATILE(definitionOffset);
     *(unsigned char*)((char*)&D_8006FCE4 + activeOffset) = activeState;
     *(unsigned char*)((char*)&D_8006FCE5 + activeOffset) = soundId;
     *(unsigned char*)((char*)&D_8006FCE6 + activeOffset) = flags;
@@ -134,17 +137,13 @@ found_free_slot:
     *(unsigned char*)((char*)&D_8006FCE7 + activeOffset) =
         *(unsigned char*)((char*)definition + 16);
     definitionOffset += (int)g_SpuDefinitionsPtr;
-    __asm__ volatile("" : "=r"(definitionOffset) : "0"(definitionOffset));
-    *(int*)((char*)&D_8006FCE8 + activeOffset) =
-        *(unsigned char*)(definitionOffset + 17);
-    if (*(unsigned short*)(definitionOffset + 12) ==
-        *(unsigned short*)(definitionOffset + 14)) {
-        *(int*)((char*)&D_8006FCFC + activeOffset) =
-            *(unsigned short*)(definitionOffset + 14);
+    MATCHING_KEEP_VOLATILE(definitionOffset);
+    *(int*)((char*)&D_8006FCE8 + activeOffset) = *(unsigned char*)(definitionOffset + 17);
+    if (*(unsigned short*)(definitionOffset + 12) == *(unsigned short*)(definitionOffset + 14)) {
+        *(int*)((char*)&D_8006FCFC + activeOffset) = *(unsigned short*)(definitionOffset + 14);
     } else {
         *(int*)((char*)&D_8006FCFC + activeOffset) = func_8003636C(
-            *(unsigned short*)(definitionOffset + 12),
-            *(unsigned short*)(definitionOffset + 14));
+            *(unsigned short*)(definitionOffset + 12), *(unsigned short*)(definitionOffset + 14));
     }
     return index;
 }
@@ -168,8 +167,7 @@ void func_8003BEDC(void) {
     int i;
     D_8006C630 = 1;
     for (i = 0; i < 24; i++) {
-        if ((unsigned int)(g_ActiveSounds[i].unk0 - 1) < 2 &&
-            !(g_ActiveSounds[i].unk2 & 0x40)) {
+        if ((unsigned int)(g_ActiveSounds[i].unk0 - 1) < 2 && !(g_ActiveSounds[i].unk2 & 0x40)) {
             func_8003BE70(i);
         }
     }
@@ -205,8 +203,7 @@ int func_8003BFC0(Moby* soundPtr, int index) {
  * 0x8003C014..0x8003C0B0; active sound entry stride is 44 bytes. */
 void func_8004F178(Vector3D*, Vector3D*);
 void func_8003C014(int index, Vector3D* source) {
-    if (g_ActiveSounds[index].unk28 != 0 &&
-        (unsigned int)(g_ActiveSounds[index].unk0 - 1) < 2) {
+    if (g_ActiveSounds[index].unk28 != 0 && (unsigned int)(g_ActiveSounds[index].unk0 - 1) < 2) {
         func_8004F178((Vector3D*)&g_ActiveSounds[index].unk1C, source);
         g_ActiveSounds[index].unk2 |= 2;
     }
@@ -259,8 +256,8 @@ void func_8003C184(void) {
     register int one __asm__("$21");
     register int five __asm__("$22");
     register int tempMask __asm__("$16");
-    register unsigned char *active __asm__("$20");
-    register unsigned char *stack __asm__("$29");
+    register unsigned char* active __asm__("$20");
+    register unsigned char* stack __asm__("$29");
     int value;
     int bit;
 
@@ -274,82 +271,82 @@ void func_8003C184(void) {
     offset = 0;
     do {
         switch (*active) {
-        case 0: {
-            unsigned char voiceStatus = *(index + stack + 0x10);
-            if (voiceStatus != one) {
-                register int three __asm__("$2") = 3;
-                if (voiceStatus != three) {
-                    break;
+            case 0: {
+                unsigned char voiceStatus = *(index + stack + 0x10);
+                if (voiceStatus != one) {
+                    register int three __asm__("$2") = 3;
+                    if (voiceStatus != three) {
+                        break;
+                    }
                 }
-            }
-            finishMask |= one << index;
-            *active = five;
-            break;
-        }
-        case 1:
-            func_8003C428(index);
-            if (*active == one) {
-                *(unsigned char *)((char *)&D_8006FCE4 + offset) = 2;
-                startMask |= one << index;
-            } else {
-                finishMask |= one << index;
-            }
-            break;
-        case 2: {
-            unsigned char voiceStatus = *(index + stack + 0x10);
-            register int three __asm__("$2") = 3;
-            if (voiceStatus == three) {
                 finishMask |= one << index;
                 *active = five;
-            } else {
+                break;
+            }
+            case 1:
                 func_8003C428(index);
-                active += sizeof(ActiveSound);
-                goto next;
+                if (*active == one) {
+                    *(unsigned char*)((char*)&D_8006FCE4 + offset) = 2;
+                    startMask |= one << index;
+                } else {
+                    finishMask |= one << index;
+                }
+                break;
+            case 2: {
+                unsigned char voiceStatus = *(index + stack + 0x10);
+                register int three __asm__("$2") = 3;
+                if (voiceStatus == three) {
+                    finishMask |= one << index;
+                    *active = five;
+                } else {
+                    func_8003C428(index);
+                    active += sizeof(ActiveSound);
+                    goto next;
+                }
+                break;
             }
-            break;
-        }
-        case 3:
-            bit = one << index;
-            *(int *)(locals.fadeCommand + 0) = bit;
-            *(int *)(locals.fadeCommand + 4) = 0x13;
-            *(short *)(locals.fadeCommand + 0x14) = 0;
-            value = *(int *)((char *)&D_8006FCF4 + offset) - 0x400;
-            *(int *)((char *)&D_8006FCF4 + offset) = value;
-            if (value < 0) {
-                *(int *)((char *)&D_8006FCF4 + offset) = 0;
-            }
-            value = *(int *)((char *)&D_8006FCF8 + offset) - 0x400;
-            *(int *)((char *)&D_8006FCF8 + offset) = value;
-            if (value < 0) {
-                *(int *)((char *)&D_8006FCF8 + offset) = 0;
-            }
-            if (*(int *)((char *)&D_8006FCF4 + offset) != 0 ||
-                *(int *)((char *)&D_8006FCF8 + offset) != 0) {
-                *(short *)(locals.fadeCommand + 8) = *(int *)((char *)&D_8006FCF8 + offset);
-                *(short *)(locals.fadeCommand + 10) = *(int *)((char *)&D_8006FCF4 + offset);
-                func_8005EC1C(locals.fadeCommand);
-                active += sizeof(ActiveSound);
-                goto next;
-            }
-            *(unsigned char *)((char *)&D_8006FCE4 + offset) = five;
-            finishMask |= bit;
-            break;
-        case 4:
-            tempMask = one << index;
-            *(int *)(locals.stopCommand + 0) = tempMask;
-            *(int *)(locals.stopCommand + 4) = 0x10;
-            *(short *)(locals.stopCommand + 0x14) = 0;
-            func_8005EC1C(locals.stopCommand);
-            finishMask |= tempMask;
-            *active = five;
-            break;
-        case 5:
-            finishMask |= one << index;
-            *active = 0;
-            break;
+            case 3:
+                bit = one << index;
+                *(int*)(locals.fadeCommand + 0) = bit;
+                *(int*)(locals.fadeCommand + 4) = 0x13;
+                *(short*)(locals.fadeCommand + 0x14) = 0;
+                value = *(int*)((char*)&D_8006FCF4 + offset) - 0x400;
+                *(int*)((char*)&D_8006FCF4 + offset) = value;
+                if (value < 0) {
+                    *(int*)((char*)&D_8006FCF4 + offset) = 0;
+                }
+                value = *(int*)((char*)&D_8006FCF8 + offset) - 0x400;
+                *(int*)((char*)&D_8006FCF8 + offset) = value;
+                if (value < 0) {
+                    *(int*)((char*)&D_8006FCF8 + offset) = 0;
+                }
+                if (*(int*)((char*)&D_8006FCF4 + offset) != 0 ||
+                    *(int*)((char*)&D_8006FCF8 + offset) != 0) {
+                    *(short*)(locals.fadeCommand + 8) = *(int*)((char*)&D_8006FCF8 + offset);
+                    *(short*)(locals.fadeCommand + 10) = *(int*)((char*)&D_8006FCF4 + offset);
+                    func_8005EC1C(locals.fadeCommand);
+                    active += sizeof(ActiveSound);
+                    goto next;
+                }
+                *(unsigned char*)((char*)&D_8006FCE4 + offset) = five;
+                finishMask |= bit;
+                break;
+            case 4:
+                tempMask = one << index;
+                *(int*)(locals.stopCommand + 0) = tempMask;
+                *(int*)(locals.stopCommand + 4) = 0x10;
+                *(short*)(locals.stopCommand + 0x14) = 0;
+                func_8005EC1C(locals.stopCommand);
+                finishMask |= tempMask;
+                *active = five;
+                break;
+            case 5:
+                finishMask |= one << index;
+                *active = 0;
+                break;
         }
         active += sizeof(ActiveSound);
-next:
+    next:
         index += 1;
         offset += sizeof(ActiveSound);
     } while (index < 24);
@@ -390,29 +387,29 @@ void func_8003C428(int arg0) {
     int scaled;
     int inRange;
     unsigned char flags;
-    void *owner;
+    void* owner;
 
     {
         workA0 = 1;
         workV0 = workA0 << index;
-        *(volatile int *)(command + 0) = workV0;
+        *(volatile int*)(command + 0) = workV0;
         workV0 = index << 1;
         workV0 = workV0 + index;
         workV0 = workV0 << 2;
         workV0 = workV0 - index;
         workA1 = workV0 << 2;
-        *(int *)(command + 4) = 0;
-        workA2 = *(volatile int *)((char *)&activeBaseVolume + workA1);
+        *(int*)(command + 4) = 0;
+        workA2 = *(volatile int*)((char*)&activeBaseVolume + workA1);
         workV1 = soundGameState;
-        *(int *)(command + 4) = 3;
+        *(int*)(command + 4) = 3;
         workV0 = workA2;
-        *(short *)(command + 10) = workV0;
-        *(short *)(command + 8) = workV0;
+        *(short*)(command + 10) = workV0;
+        *(short*)(command + 8) = workV0;
         if (workV1 == workA0) {
-            if (!(*(unsigned char *)((char *)&D_8006FCE6 + workA1) & 0x80)) {
+            if (!(*(unsigned char*)((char*)&D_8006FCE6 + workA1) & 0x80)) {
                 workV0 = (workA2 << 16) >> 18;
-                *(short *)(command + 8) = workV0;
-                *(short *)(command + 10) = workV0;
+                *(short*)(command + 8) = workV0;
+                *(short*)(command + 10) = workV0;
             }
         }
     }
@@ -422,18 +419,18 @@ void func_8003C428(int arg0) {
     workV0 = workV0 << 2;
     workV0 = workV0 - index;
     workV1 = workV0 << 2;
-    flags = *(unsigned char *)((char *)&D_8006FCE6 + workV1);
+    flags = *(unsigned char*)((char*)&D_8006FCE6 + workV1);
     if (!(flags & 1)) {
-        owner = *(void **)((char *)&D_8006FD0C + workV1);
+        owner = *(void**)((char*)&D_8006FD0C + workV1);
         if (owner != 0) {
-            if (*((unsigned char *)owner + 0x48) & 0x80) {
-                if (*(unsigned char *)((char *)&D_8006FCE7 + workV1) != 0) {
+            if (*((unsigned char*)owner + 0x48) & 0x80) {
+                if (*(unsigned char*)((char*)&D_8006FCE7 + workV1) != 0) {
                     func_8003BE70(index);
                     return;
                 }
-                *(unsigned char *)((char *)&D_8006FCE6 + workV1) = flags | 1;
+                *(unsigned char*)((char*)&D_8006FCE6 + workV1) = flags | 1;
             } else {
-                func_8003C79C((char *)&D_8006FCE4 + workV1, command);
+                func_8003C79C((char*)&D_8006FCE4 + workV1, command);
             }
         }
     }
@@ -443,17 +440,16 @@ void func_8003C428(int arg0) {
     workV0 = workV0 << 2;
     workV0 = workV0 - index;
     workV1 = workV0 << 2;
-    if (*(unsigned char *)((char *)&D_8006FCE6 + workV1) & 8) {
-        *(int *)(command + 4) |= 0x10;
-        *(short *)(command + 0x14) = *(int *)((char *)&D_8006FCFC + workV1);
-        *(unsigned char *)((char *)&D_8006FCE6 + workV1) =
-            *(unsigned char *)((char *)&D_8006FCE6 + workV1) & 0xF7;
+    if (*(unsigned char*)((char*)&D_8006FCE6 + workV1) & 8) {
+        *(int*)(command + 4) |= 0x10;
+        *(short*)(command + 0x14) = *(int*)((char*)&D_8006FCFC + workV1);
+        *(unsigned char*)((char*)&D_8006FCE6 + workV1) =
+            *(unsigned char*)((char*)&D_8006FCE6 + workV1) & 0xF7;
     }
-    workA0 = *(int *)((char *)&D_8006FD0C + workV1);
-    if (workA0 != 0 &&
-        !(*(unsigned char *)((char *)&D_8006FCE6 + workV1) & 0x21) &&
-        !(*(unsigned char *)(workA0 + 0x48) & 0x80)) {
-        func_8003CB00((char *)&D_8006FCE4 + workV1, command);
+    workA0 = *(int*)((char*)&D_8006FD0C + workV1);
+    if (workA0 != 0 && !(*(unsigned char*)((char*)&D_8006FCE6 + workV1) & 0x21) &&
+        !(*(unsigned char*)(workA0 + 0x48) & 0x80)) {
+        func_8003CB00((char*)&D_8006FCE4 + workV1, command);
     }
 
     workV0 = index << 1;
@@ -461,21 +457,19 @@ void func_8003C428(int arg0) {
     workV0 = workV0 << 2;
     workV0 = workV0 - index;
     workA0 = workV0 << 2;
-    if (*(unsigned char *)((char *)&D_8006FCE4 + workA0) == 1) {
-        *(int *)(command + 4) |= 0x93;
-        *(int *)(command + 0x1C) =
-            *(int *)(D_8006C6A0 +
-                     (*(unsigned char *)((char *)&D_8006FCE5 + workA0) * 0x14));
-        *(short *)(command + 0x14) = *(int *)((char *)&D_8006FCFC + workA0);
+    if (*(unsigned char*)((char*)&D_8006FCE4 + workA0) == 1) {
+        *(int*)(command + 4) |= 0x93;
+        *(int*)(command + 0x1C) =
+            *(int*)(D_8006C6A0 + (*(unsigned char*)((char*)&D_8006FCE5 + workA0) * 0x14));
+        *(short*)(command + 0x14) = *(int*)((char*)&D_8006FCFC + workA0);
     }
-    if (*(unsigned char *)((char *)&D_8006FCE6 + workA0) & 0x10) {
-        *(int *)(command + 4) |= 3;
-        scaled = (*(short *)(command + 8) *
-                  *(int *)((char *)&D_8006FCF0 + workA0)) >> 12;
+    if (*(unsigned char*)((char*)&D_8006FCE6 + workA0) & 0x10) {
+        *(int*)(command + 4) |= 3;
+        scaled = (*(short*)(command + 8) * *(int*)((char*)&D_8006FCF0 + workA0)) >> 12;
         inRange = scaled < 0x4000;
         if (scaled < 0) {
             scaled = 0;
-            __asm__ volatile ("" : "=r"(scaled) : "0"(scaled));
+            MATCHING_KEEP_VOLATILE(scaled);
             inRange = scaled < 0x4000;
         }
         if (!inRange) {
@@ -483,24 +477,23 @@ void func_8003C428(int arg0) {
         }
         workV0 = (int)&D_8006FCE4;
         workA1 = workA0 + workV0;
-        *(int *)(workA1 + 0x14) = scaled;
-        *(short *)(command + 8) = scaled;
+        *(int*)(workA1 + 0x14) = scaled;
+        *(short*)(command + 8) = scaled;
 
-        scaled = (*(short *)(command + 10) *
-                  *(int *)((char *)&D_8006FCF0 + workA0)) >> 12;
+        scaled = (*(short*)(command + 10) * *(int*)((char*)&D_8006FCF0 + workA0)) >> 12;
         inRange = scaled < 0x4000;
         if (scaled < 0) {
             scaled = 0;
-            __asm__ volatile ("" : "=r"(scaled) : "0"(scaled));
+            MATCHING_KEEP_VOLATILE(scaled);
             inRange = scaled < 0x4000;
         }
         if (!inRange) {
             scaled = 0x3FFF;
         }
-        *(int *)(workA1 + 0x10) = scaled;
-        *(short *)(command + 10) = scaled;
+        *(int*)(workA1 + 0x10) = scaled;
+        *(short*)(command + 10) = scaled;
     }
-    if (*(int *)(command + 4) != 0) {
+    if (*(int*)(command + 4) != 0) {
         func_8005EC1C(command);
     }
 }
@@ -528,15 +521,15 @@ void func_8003C79C(void* arg0, void* arg1) {
     register int absolute __asm__("$2");
     register int coefficient __asm__("$2");
     register ActiveSound* base __asm__("$5");
-    __asm__ volatile ("" : "=r"(active) : "0"(active));
-    __asm__ volatile ("" : "=r"(output) : "0"(output));
+    MATCHING_KEEP_VOLATILE(active);
+    MATCHING_KEEP_VOLATILE(output);
 
     gain = func_8003C994(active[1], *(char**)(active + 0x28) + 12);
-    __asm__ volatile ("" : "=r"(gain) : "0"(gain));
+    MATCHING_KEEP_VOLATILE(gain);
     *(int*)(active + 8) = gain;
     if (gain <= 0) {
         base = (ActiveSound*)&D_8006FCE4;
-        __asm__ volatile ("" : "=r"(base) : "0"(base));
+        MATCHING_KEEP_VOLATILE(base);
         func_8003BE70((ActiveSound*)active - base);
         return;
     }
@@ -544,24 +537,27 @@ void func_8003C79C(void* arg0, void* arg1) {
         func_8004F1C8(delta, *(char**)(active + 0x28) + 12, &D_8006E020);
         angle = func_8004E880(delta[0], delta[1], 1);
         angle = ((angle - D_8006E040) >> 4) & 0xFF;
-        if (angle > 0x80) angle -= 0x100;
+        if (angle > 0x80)
+            angle -= 0x100;
         left = *(int*)(active + 8);
         right = left;
         if (angle > 0) {
             coefficient = D_80065920[angle];
-            __asm__ volatile ("" : "=r"(coefficient) : "0"(coefficient));
+            MATCHING_KEEP_VOLATILE(coefficient);
             product = coefficient * left;
-            __asm__ volatile ("" : "=r"(product) : "0"(product));
+            MATCHING_KEEP_VOLATILE(product);
             absolute = product;
-            if (product < 0) absolute = -absolute;
+            if (product < 0)
+                absolute = -absolute;
             left = absolute >> 12;
         } else if (angle < 0) {
             coefficient = D_80065920[angle & 0xFF];
-            __asm__ volatile ("" : "=r"(coefficient) : "0"(coefficient));
+            MATCHING_KEEP_VOLATILE(coefficient);
             product = coefficient * left;
-            __asm__ volatile ("" : "=r"(product) : "0"(product));
+            MATCHING_KEEP_VOLATILE(product);
             absolute = product;
-            if (product < 0) absolute = -absolute;
+            if (product < 0)
+                absolute = -absolute;
             right = absolute >> 12;
         }
     } else {
@@ -572,10 +568,14 @@ void func_8003C79C(void* arg0, void* arg1) {
         right >>= 2;
         left >>= 2;
     }
-    if (right < 0) right = 0;
-    if (right >= 0x3000) right = 0x2FFF;
-    if (left < 0) left = 0;
-    if (left >= 0x3000) left = 0x2FFF;
+    if (right < 0)
+        right = 0;
+    if (right >= 0x3000)
+        right = 0x2FFF;
+    if (left < 0)
+        left = 0;
+    if (left >= 0x3000)
+        left = 0x2FFF;
     *(int*)(output + 4) |= 3;
     *(int*)(active + 0x14) = right;
     *(short*)(output + 8) = right;
@@ -602,7 +602,7 @@ int func_8003C994(int arg0, void* source) {
     register int stride __asm__("$3");
     register unsigned char* base __asm__("$4");
     char* basis = (char*)&D_8006E044;
-    __asm__ volatile ("" : "=r"(index) : "0"(index));
+    MATCHING_KEEP_VOLATILE(index);
     if ((unsigned int)(*(int*)basis - 9) < 2) {
         gain = 0;
         func_8004F1C8(delta, source, basis - 0x24);
@@ -624,8 +624,10 @@ int func_8003C994(int arg0, void* source) {
         } else {
             maxGain = *(unsigned short*)(descriptor + 6);
             gain = ((farDist - distance) * maxGain) / (farDist - nearDist);
-            if (gain < *(unsigned short*)(descriptor + 4)) gain = *(unsigned short*)(descriptor + 4);
-            if (maxGain < gain) gain = maxGain;
+            if (gain < *(unsigned short*)(descriptor + 4))
+                gain = *(unsigned short*)(descriptor + 4);
+            if (maxGain < gain)
+                gain = maxGain;
         }
     }
     return (gain * D_8006C3F8) / 10;
@@ -645,8 +647,8 @@ void func_8003CB00(void* arg0, void* arg1) {
     int magnitude;
     int value;
     int volume;
-    __asm__ volatile ("" : "=r"(owner) : "0"(owner));
-    __asm__ volatile ("" : "=r"(sound) : "0"(sound));
+    MATCHING_KEEP_VOLATILE(owner);
+    MATCHING_KEEP_VOLATILE(sound);
 
     *(int*)(sound + 4) |= 0x10;
     func_8004F1C8(delta, &D_80070328, *(char**)(owner + 0x28) + 12);

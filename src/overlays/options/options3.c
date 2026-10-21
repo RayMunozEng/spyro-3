@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "str.h"
 #include "drawutil.h"
@@ -14,7 +15,7 @@ void func_options_80078010(int y) {
     register int height __asm__("$18");
     /* Empty constraints preserve retail register allocation and scheduling. */
     index *= sizeof(SpriteDefinition);
-    __asm__("" : "=r"(index) : "0"(index) : "$4");
+    MATCHING_KEEP_CLOBBER(index, "$4");
     drawMode = 0x18;
     definitions = D_8006C738;
     __asm__("" : "=r"(definitions) : "0"(definitions), "r"(drawMode) : "$16");
@@ -24,7 +25,7 @@ void func_options_80078010(int y) {
     sprite = (SpriteData*)(frame + (unsigned int)D_8006C788);
     width = sprite->unk4 - sprite->unk0 + 1;
     height = sprite->unk5 - sprite->unk1 + 1;
-    __asm__("" : "=r"(width), "=r"(height) : "0"(width), "1"(height));
+    MATCHING_KEEP2(width, height);
     __asm__("" : "=r"(x) : "0"(x), "r"(drawMode), "r"(sprite));
     x -= width >> 1;
     func_8001FABC(drawMode);
@@ -52,111 +53,112 @@ extern int RawTitleTick __asm__("D_options_8007AFBC");
 extern char* RawTitleNames[] __asm__("D_options_8007AE14");
 extern int D_8006C76C;
 int RawTitleSaveValue(unsigned char*) __asm__("func_options_80077B58");
-void func_options_800780E0(int selected,int inputY) {
- char buffer[32];
- register int selection __asm__("$22")=selected;
- register int row __asm__("$18");
- register int x __asm__("$17");
- register int y __asm__("$16");
- register int width __asm__("$19");
- register int slotOffset __asm__("$20");
- register int saveOffset __asm__("$21");
- register int textY __asm__("$23");
- unsigned char* slots;
- int index, frame, value;
- register int flag __asm__("$7");
- register int textX __asm__("$5");
- register char** nameEntry __asm__("$4");
- register char** namesBase __asm__("$3");
- register int temporaryV0 __asm__("$2");
- register int temporaryV3 __asm__("$3");
- register int temporaryA0 __asm__("$4");
- register SpriteData* sprite __asm__("$4");
- unsigned char* draw;
- char* text;
- __asm__("" : "=r"(selection) : "0"(selection));
- y=inputY;
- __asm__("" : "=r"(y) : "0"(y));
- index=func_80027934(1000);
- row=0;
- slots=RawTitleSlots;
- textY=y+20;
- saveOffset=0;
- __asm__("" : "=r"(textY) : "0"(textY));
- temporaryA0=(unsigned char)D_8006C738[index].frame;
- __asm__("" : "=r"(temporaryA0) : "0"(temporaryA0));
- sprite=(SpriteData*)((temporaryA0<<3)+(unsigned int)D_8006C788);
- temporaryV3=sprite->unk4;
- temporaryV0=sprite->unk0;
- __asm__("" : "=r"(temporaryV3),"=r"(temporaryV0) : "0"(temporaryV3),"1"(temporaryV0) : "$20");
- slotOffset=0;
- width=temporaryV3-temporaryV0;
- __asm__("" : "=r"(width) : "0"(width) : "memory");
- temporaryV3=width>>1;
- temporaryV0=256-temporaryV3;
- temporaryV0-=width;
- __asm__("" : "=r"(temporaryV0) : "0"(temporaryV0));
- temporaryV3=sprite->unk5;
- temporaryA0=sprite->unk1;
- __asm__("" : "=r"(temporaryV3),"=r"(temporaryA0) : "0"(temporaryV3),"1"(temporaryA0));
- x=temporaryV0-32;
- temporaryV3=(temporaryV3-temporaryA0)>>1;
- y-=temporaryV3;
- do {
-  frame=func_80028378((SpriteDefinition*)(slotOffset+(unsigned int)slots),0);
-  RawTitleFrames[slotOffset]=frame;
-  draw=(unsigned char*)func_800289C8(&D_8006C788[(unsigned char)frame],x,y);
-  if(row==selection) {
-   if((*(int*)(slots-8)&31)>=22) {
-    draw[4]=64;
-    draw[5]=64;
-    draw[6]=64;
-   }
-   else func_80027934(1000);
-   if(RawTitleFlags[saveOffset]) {
-    __asm__("" : "=r"(selection) : "0"(selection));
- index=func_80027934(1000);
-    func_800289C8(&D_8006C788[(unsigned char)D_8006C738[index].frame],x,y);
-   }
-  }
-  value=RawTitleSaveValue(RawTitleSaves+saveOffset);
-  if(value>=0) {
-   sprintf(buffer,RawTitlePercentFormat,value);
-   flag=0;
-   temporaryV0=width>>1;
-   __asm__("" : "=r"(temporaryV0) : "0"(temporaryV0));
-   textX=x+temporaryV0;
-   if(selection==row) {
-    temporaryV0=RawTitleTick&31;
-    __asm__("" : "=r"(temporaryV0) : "0"(temporaryV0));
-    flag=temporaryV0<22;
-   }
-   text=buffer;
-  } else {
-   flag=0;
-   temporaryV0=D_8006C76C;
-   __asm__("" : "=r"(temporaryV0) : "0"(temporaryV0) : "memory");
-   namesBase=RawTitleNames;
-   __asm__("" : "=r"(namesBase),"=r"(temporaryV0) : "0"(namesBase),"1"(temporaryV0));
-   nameEntry=(char**)((temporaryV0<<2)+(unsigned int)namesBase);
-   __asm__("" : "=r"(nameEntry) : "0"(nameEntry) : "memory");
-   temporaryV0=width>>1;
-   __asm__("" : "=r"(temporaryV0) : "0"(temporaryV0));
-   textX=x+temporaryV0;
-   if(selection==row) {
-    temporaryV0=RawTitleTick&31;
-    __asm__("" : "=r"(temporaryV0) : "0"(temporaryV0));
-    flag=temporaryV0<22;
-   }
-   text=*nameEntry;
-  }
-  DrawStringCentered(text,textX,textY,flag|2);
-  temporaryV0=x+32;
-  __asm__("" : "=r"(temporaryV0) : "0"(temporaryV0));
-  x=temporaryV0+width; saveOffset+=2304;
-  row++;
-  slotOffset+=8;
- }while(row<3);
+void func_options_800780E0(int selected, int inputY) {
+    char buffer[32];
+    register int selection __asm__("$22") = selected;
+    register int row __asm__("$18");
+    register int x __asm__("$17");
+    register int y __asm__("$16");
+    register int width __asm__("$19");
+    register int slotOffset __asm__("$20");
+    register int saveOffset __asm__("$21");
+    register int textY __asm__("$23");
+    unsigned char* slots;
+    int index, frame, value;
+    register int flag __asm__("$7");
+    register int textX __asm__("$5");
+    register char** nameEntry __asm__("$4");
+    register char** namesBase __asm__("$3");
+    register int temporaryV0 __asm__("$2");
+    register int temporaryV3 __asm__("$3");
+    register int temporaryA0 __asm__("$4");
+    register SpriteData* sprite __asm__("$4");
+    unsigned char* draw;
+    char* text;
+    MATCHING_KEEP(selection);
+    y = inputY;
+    MATCHING_KEEP(y);
+    index = func_80027934(1000);
+    row = 0;
+    slots = RawTitleSlots;
+    textY = y + 20;
+    saveOffset = 0;
+    MATCHING_KEEP(textY);
+    temporaryA0 = (unsigned char)D_8006C738[index].frame;
+    MATCHING_KEEP(temporaryA0);
+    sprite = (SpriteData*)((temporaryA0 << 3) + (unsigned int)D_8006C788);
+    temporaryV3 = sprite->unk4;
+    temporaryV0 = sprite->unk0;
+    MATCHING_KEEP2_CLOBBER(temporaryV3, temporaryV0, "$20");
+    slotOffset = 0;
+    width = temporaryV3 - temporaryV0;
+    MATCHING_KEEP_CLOBBER(width, "memory");
+    temporaryV3 = width >> 1;
+    temporaryV0 = 256 - temporaryV3;
+    temporaryV0 -= width;
+    MATCHING_KEEP(temporaryV0);
+    temporaryV3 = sprite->unk5;
+    temporaryA0 = sprite->unk1;
+    MATCHING_KEEP2(temporaryV3, temporaryA0);
+    x = temporaryV0 - 32;
+    temporaryV3 = (temporaryV3 - temporaryA0) >> 1;
+    y -= temporaryV3;
+    do {
+        frame = func_80028378((SpriteDefinition*)(slotOffset + (unsigned int)slots), 0);
+        RawTitleFrames[slotOffset] = frame;
+        draw = (unsigned char*)func_800289C8(&D_8006C788[(unsigned char)frame], x, y);
+        if (row == selection) {
+            if ((*(int*)(slots - 8) & 31) >= 22) {
+                draw[4] = 64;
+                draw[5] = 64;
+                draw[6] = 64;
+            } else
+                func_80027934(1000);
+            if (RawTitleFlags[saveOffset]) {
+                MATCHING_KEEP(selection);
+                index = func_80027934(1000);
+                func_800289C8(&D_8006C788[(unsigned char)D_8006C738[index].frame], x, y);
+            }
+        }
+        value = RawTitleSaveValue(RawTitleSaves + saveOffset);
+        if (value >= 0) {
+            sprintf(buffer, RawTitlePercentFormat, value);
+            flag = 0;
+            temporaryV0 = width >> 1;
+            MATCHING_KEEP(temporaryV0);
+            textX = x + temporaryV0;
+            if (selection == row) {
+                temporaryV0 = RawTitleTick & 31;
+                MATCHING_KEEP(temporaryV0);
+                flag = temporaryV0 < 22;
+            }
+            text = buffer;
+        } else {
+            flag = 0;
+            temporaryV0 = D_8006C76C;
+            MATCHING_KEEP_CLOBBER(temporaryV0, "memory");
+            namesBase = RawTitleNames;
+            MATCHING_KEEP2(namesBase, temporaryV0);
+            nameEntry = (char**)((temporaryV0 << 2) + (unsigned int)namesBase);
+            MATCHING_KEEP_CLOBBER(nameEntry, "memory");
+            temporaryV0 = width >> 1;
+            MATCHING_KEEP(temporaryV0);
+            textX = x + temporaryV0;
+            if (selection == row) {
+                temporaryV0 = RawTitleTick & 31;
+                MATCHING_KEEP(temporaryV0);
+                flag = temporaryV0 < 22;
+            }
+            text = *nameEntry;
+        }
+        DrawStringCentered(text, textX, textY, flag | 2);
+        temporaryV0 = x + 32;
+        MATCHING_KEEP(temporaryV0);
+        x = temporaryV0 + width;
+        saveOffset += 2304;
+        row++;
+        slotOffset += 8;
+    } while (row < 3);
 }
 
 extern int D_8006E53C;
@@ -170,25 +172,29 @@ int func_options_8007833C(void) {
     register int* fields __asm__("$16");
     int result;
     register int argument __asm__("$4");
-    if (D_8006E53C & 0x10) return 2;
+    if (D_8006E53C & 0x10)
+        return 2;
     changed = 0;
     argument = 1;
-    __asm__("" : "=r"(argument) : "0"(argument) : "$16");
+    MATCHING_KEEP_CLOBBER(argument, "$16");
     fields = DecodedMenuFields;
-    __asm__("" : "=r"(fields) : "0"(fields));
+    MATCHING_KEEP(fields);
     result = func_options_800794B4(argument, fields, fields + 1);
     if (result) {
         if (result == 1 && fields[0] == 1) {
-            if (fields[1] == 2) fields[1] = 1;
+            if (fields[1] == 2)
+                fields[1] = 1;
             if (D_800725E0 < 0 || D_800725E0 == D_800725DC) {
                 offset = D_800725DC << 2;
                 __asm__("" : "=r"(fields) : "0"(fields), "r"(offset));
                 if (((int*)((unsigned int)fields + offset))[7] == 1) {
-                    if (fields[1] != 1) changed = 1;
-                } else if (fields[1] != 0) changed = 1;
+                    if (fields[1] != 1)
+                        changed = 1;
+                } else if (fields[1] != 0)
+                    changed = 1;
             }
             D_800725CC[D_800725DC] = D_800725B4;
-            __asm__("" : : : "memory");
+            MATCHING_BARRIER("memory");
             D_800725DC = 1 - D_800725DC;
         }
         func_options_80078544(D_800725DC << 4);

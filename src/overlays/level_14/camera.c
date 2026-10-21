@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "stdutil.h"
 #include "spyro.h"
@@ -28,70 +29,69 @@ void func_level_14_800990A4() {
 
     tableIndex = (camera.unk138 + 2) >> 2;
     MAX(tableIndex, 4);
-    
+
     switch (camera.cameraState) {
-        
-    case 4:
-        if ((camera.unk134 == 0) && (game.state != 7)) {
-            func_800135A4(&camera.unk7c.pos[1], &D_80069008, camera.unk6c);
-            camera.unk7c.pos[1].pos.elevation = -spyro.rotation.pitch;
-            
-            turnDelta = (-spyro.rotation.pitch - camera.unk7c.pos[0].pos.elevation) >> 2;
-            MAX(turnDelta, 0xC0);
-            MIN(turnDelta, -0xC0);
-            
-            camera.unk7c.pos[1].yaw = (ABS(turnDelta) >= 9) ? turnDelta : 0;
-            camera.unk7c.pos[1].pitch = -spyro.rotation.roll >> 2;
-            
-            func_80013918(0x180);
-            func_800139A4();
-        }
-        func_800142E0();
-        func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
-        MIN(camera.unk7c.pos[5].pos.azimuth, 0x80);
-        MIN(camera.unk7c.pos[5].pos.elevation, 0x60);
-        MIN(camera.unk7c.pos[5].pitch, 0x40);
-        func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
-        func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
-        func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
-        break;
-        
-    case 13: {
-        Vector3D delta;
-        func_800142E0();
-        if (camera.unk16c != 0) {
-            func_8004F1C8(&delta, &camera.unk16c->position, (Vector3D*)&spyro);
-            camera.unk6c = func_8004E880(delta.x, delta.y, 1);
-            if (camera.unk134 == 0) {
-                func_80014354();
-                func_80013918(0x400);
+
+        case 4:
+            if ((camera.unk134 == 0) && (game.state != 7)) {
+                func_800135A4(&camera.unk7c.pos[1], &D_80069008, camera.unk6c);
+                camera.unk7c.pos[1].pos.elevation = -spyro.rotation.pitch;
+
+                turnDelta = (-spyro.rotation.pitch - camera.unk7c.pos[0].pos.elevation) >> 2;
+                MAX(turnDelta, 0xC0);
+                MIN(turnDelta, -0xC0);
+
+                camera.unk7c.pos[1].yaw = (ABS(turnDelta) >= 9) ? turnDelta : 0;
+                camera.unk7c.pos[1].pitch = -spyro.rotation.roll >> 2;
+
+                func_80013918(0x180);
+                func_800139A4();
             }
+            func_800142E0();
             func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
+            MIN(camera.unk7c.pos[5].pos.azimuth, 0x80);
+            MIN(camera.unk7c.pos[5].pos.elevation, 0x60);
+            MIN(camera.unk7c.pos[5].pitch, 0x40);
             func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
             func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
             func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
-        }
-        break;
-    }
+            break;
 
-    case 19: {
-        Vector3D delta;
-        func_800142E0();
-        if (camera.unk16c != 0) {
-            func_8004F1C8(&delta, &camera.unk16c->position, (Vector3D*)&spyro);
-            camera.unk6c = func_8004E880(delta.x, delta.y, 1);
-            if (camera.unk134 == 0) {
-                func_800135A4(&camera.unk7c.pos[1], &D_80069080, camera.unk6c);
-                func_80013918(0x400);
+        case 13: {
+            Vector3D delta;
+            func_800142E0();
+            if (camera.unk16c != 0) {
+                func_8004F1C8(&delta, &camera.unk16c->position, (Vector3D*)&spyro);
+                camera.unk6c = func_8004E880(delta.x, delta.y, 1);
+                if (camera.unk134 == 0) {
+                    func_80014354();
+                    func_80013918(0x400);
+                }
+                func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
+                func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
+                func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
+                func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
             }
-            func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
-            func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
-            func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
-            func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
+            break;
         }
-        break;
-    }
 
+        case 19: {
+            Vector3D delta;
+            func_800142E0();
+            if (camera.unk16c != 0) {
+                func_8004F1C8(&delta, &camera.unk16c->position, (Vector3D*)&spyro);
+                camera.unk6c = func_8004E880(delta.x, delta.y, 1);
+                if (camera.unk134 == 0) {
+                    func_800135A4(&camera.unk7c.pos[1], &D_80069080, camera.unk6c);
+                    func_80013918(0x400);
+                }
+                func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
+                func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
+                func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
+                func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
+            }
+            break;
+        }
     }
 }
 
@@ -133,23 +133,25 @@ void func_level_14_80099478(int mode) {
     CameraPosition* position;
     register int one __asm__("$2");
     switch (mode) {
-    case 4:
-        state = &camera.unk50;
-        __asm__("" : "=r"(state) : "0"(state));
-        *state = 0;
-        camera.unk140[0] = 0;
-        camera.unk140[1] = 0;
-        one = 1;
-        goto shared;
-    case 0xD: case 0x13:
-        state = &camera.unk50;
-        __asm__("" : "=r"(state) : "0"(state));
-        one = 1;
-        *state = 0;
-        camera.unk140[0] = 0;
-        camera.unk140[1] = one;
-        break;
-    default: return;
+        case 4:
+            state = &camera.unk50;
+            MATCHING_KEEP(state);
+            *state = 0;
+            camera.unk140[0] = 0;
+            camera.unk140[1] = 0;
+            one = 1;
+            goto shared;
+        case 0xD:
+        case 0x13:
+            state = &camera.unk50;
+            MATCHING_KEEP(state);
+            one = 1;
+            *state = 0;
+            camera.unk140[0] = 0;
+            camera.unk140[1] = one;
+            break;
+        default:
+            return;
     }
 shared:
     camera.unk140[2] = one;
@@ -181,45 +183,52 @@ void func_level_14_80099568(void) {
     register int next __asm__("$4");
     register int index __asm__("$2");
     switch (mode) {
-    case 4:
-        next = DecodedCameraOverride;
-        if (next) goto change;
-        if (DecodedCameraHeld & 16) {
-            register int enabled __asm__("$2") = DecodedCameraPlayer[0x1B9];
-            next = 7;
-            if (enabled) goto change;
-        }
-        if (DecodedCameraPressed & 12) {
-            next = 8;
+        case 4:
+            next = DecodedCameraOverride;
+            if (next)
+                goto change;
+            if (DecodedCameraHeld & 16) {
+                register int enabled __asm__("$2") = DecodedCameraPlayer[0x1B9];
+                next = 7;
+                if (enabled)
+                    goto change;
+            }
+            if (DecodedCameraPressed & 12) {
+                next = 8;
+                goto change;
+            }
+            index = *(int*)(DecodedCameraPlayer + 0x48);
+            MATCHING_BARRIER("memory");
+            mode = DecodedCameraMode;
+            next = DecodedCameraModeTable[index];
+            if (mode == next)
+                return;
+            if (next)
+                goto change;
+            next = 6;
             goto change;
-        }
-        index = *(int*)(DecodedCameraPlayer + 0x48);
-        __asm__("" : : : "memory");
-        mode = DecodedCameraMode;
-        next = DecodedCameraModeTable[index];
-        if (mode == next) return;
-        if (next) goto change;
-        next = 6;
-        goto change;
-    case 13: case 19:
-        if (DecodedCameraHeld & 16) {
-            register int enabled __asm__("$2") = DecodedCameraPlayer[0x1B9];
-            next = 7;
-            if (enabled) goto change;
-        }
-        if (DecodedCameraPressed & 12) {
-            next = 8;
-            goto change;
-        }
-        next = DecodedCameraOverride;
-        if (!next) {
-            next = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
-            goto change;
-        }
-        if (next == DecodedCameraMode) return;
-        break;
-    default:
-        return;
+        case 13:
+        case 19:
+            if (DecodedCameraHeld & 16) {
+                register int enabled __asm__("$2") = DecodedCameraPlayer[0x1B9];
+                next = 7;
+                if (enabled)
+                    goto change;
+            }
+            if (DecodedCameraPressed & 12) {
+                next = 8;
+                goto change;
+            }
+            next = DecodedCameraOverride;
+            if (!next) {
+                next = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
+                goto change;
+            }
+            if (next == DecodedCameraMode)
+                return;
+            break;
+        default:
+            return;
     }
 change:
     func_80016764(next);

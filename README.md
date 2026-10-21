@@ -15,6 +15,10 @@ Some source baselines also come from public decomp.me scratches linked by the or
 
 The fork owner directs the work. Codex generated the added decompilations, tooling changes, documentation, and subsequent edits. Code and material from the original repository remain attributable to their original contributors; this fork does not claim authorship of that work.
 
+## Source readability
+
+The fork's additions use the original repository's formatting and proved helper names. Repeated compiler annotations are documented in `include/matching.h`; typed shared callbacks reuse original C implementations. See [the source readability notes](docs/source-readability.md) for provenance, compiler-sensitive formatting and remaining semantic gaps. These changes are AI-generated and have not been human-reviewed.
+
 ## Version Info
 The earliest release build of the game is used in this project:
 * Region: NTSC-U

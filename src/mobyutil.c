@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "mobyfunc.h"
 #include "mobyutil.h"
@@ -151,14 +152,14 @@ void func_80034F80(Moby* moby, int animation) {
         table = D_8006EE2C[klass];
         descriptor = *(unsigned char**)(table + animation * 4 + 0x3C);
         first = descriptor[0];
-        __asm__ volatile ("" : "=r"(first) : "0"(first));
+        MATCHING_KEEP_VOLATILE(first);
         bytes[0x3C] = animation;
         bytes[0x3D] = animation;
         bytes[0x3E] = 0;
         bytes[0x3F] = 1;
-        __asm__ volatile ("" : "=r"(first) : "0"(first), "m"(bytes[0x3F]));
+        __asm__ volatile("" : "=r"(first) : "0"(first), "m"(bytes[0x3F]));
         flag = first < 2;
-        __asm__ volatile ("" : "=r"(flag) : "0"(flag));
+        MATCHING_KEEP_VOLATILE(flag);
         flag ^= 1;
         flag = -flag;
         bytes[0x40] = flag & 0x30;
@@ -188,7 +189,8 @@ void func_80034FEC(Moby* arg0) {
  * Maybe consider making a txt file with my common functions and externed variables when this is in too
  * https://decomp.me/scratch/KUovp
  */
-int func_80035030(Moby* arg0, int* arg1, int arg2, int* arg3, int arg4, int arg5, int arg6, int arg7) {
+int func_80035030(Moby* arg0, int* arg1, int arg2, int* arg3, int arg4, int arg5, int arg6,
+                  int arg7) {
     int temp_v0;
     int temp_v1_2;
     int temp_v1_3;
@@ -199,12 +201,15 @@ int func_80035030(Moby* arg0, int* arg1, int arg2, int* arg3, int arg4, int arg5
     var_v1 = arg7;
     var_s3 = 0;
     var_a3 = arg6;
-    if (arg3 == 0) var_v1 |= 4;
-    if (var_v1 & 0x4000) var_a3 = 0;
+    if (arg3 == 0)
+        var_v1 |= 4;
+    if (var_v1 & 0x4000)
+        var_a3 = 0;
     if (*arg1 != 0) {
         var_s3 = func_80035EE0(arg0, arg2, *arg1, var_a3, arg6, var_v1 | 0x2000);
         *arg1 -= arg4;
-        if (*arg1 < 0) *arg1 = 0;
+        if (*arg1 < 0)
+            *arg1 = 0;
     }
     if (arg3 != 0) {
         var_v0 = var_s3;
@@ -213,7 +218,8 @@ int func_80035030(Moby* arg0, int* arg1, int arg2, int* arg3, int arg4, int arg5
             arg0->position.z += *arg3;
             temp_v1_2 = *arg3 - arg5;
             *arg3 = temp_v1_2;
-            if (temp_v1_2 < -0x104) *arg3 = -0x104;
+            if (temp_v1_2 < -0x104)
+                *arg3 = -0x104;
             if (*arg3 <= 0) {
                 temp_v1_3 = temp_v0 + arg0->distanceToGround;
                 if (arg0->position.z < temp_v1_3) {
@@ -238,60 +244,61 @@ int func_80035030(Moby* arg0, int* arg1, int arg2, int* arg3, int arg4, int arg5
  * Confidence: exact. Falsifiable test: compare all 400 instruction/relocation
  * records, the full PSX.EXE SHA-256, and every corrected/encrypted overlay
  * hash through build_multiproc.py. */
-#define M2C_FIELD_35194(expr, type_ptr, offset) \
-    (*(type_ptr)((signed char *)(expr) + (offset)))
-int func_80035194(Moby *input0, void *arg1) {
-    register void *arg0 asm ("$18") = input0;
+#define M2C_FIELD_35194(expr, type_ptr, offset) (*(type_ptr)((signed char*)(expr) + (offset)))
+int func_80035194(Moby* input0, void* arg1) {
+    register void* arg0 asm("$18") = input0;
     int temp_a0;
     int temp_a1;
     int temp_v0_2;
     int temp_v0_5;
     int temp_v1;
-    register int var_a3 asm ("$7");
-    register int var_t0 asm ("$8");
-    register int var_v1 asm ("$3");
-    register int temp_a0_2 asm ("$4");
+    register int var_a3 asm("$7");
+    register int var_t0 asm("$8");
+    register int var_v1 asm("$3");
+    register int temp_a0_2 asm("$4");
     int temp_v0;
-    register int temp_v1_4 asm ("$3");
-    register int var_a0 asm ("$4");
+    register int temp_v1_4 asm("$3");
+    register int var_a0 asm("$4");
     int var_a0_2;
-    register int var_a1 asm ("$5");
+    register int var_a1 asm("$5");
     int var_a1_2;
-    register int var_a2 asm ("$6");
-    register int var_s1 asm ("$17");
-    register int var_s1_2 asm ("$17");
-    register int var_s4 asm ("$20");
+    register int var_a2 asm("$6");
+    register int var_s1 asm("$17");
+    register int var_s1_2 asm("$17");
+    register int var_s4 asm("$20");
     int var_v0;
     unsigned short temp_v1_2;
     unsigned int temp_v0_3;
     int temp_a0_3;
-    register int temp_v0_6 asm ("$2");
+    register int temp_v0_6 asm("$2");
     int temp_v0_7;
     int temp_v1_3;
-    void *temp_v0_4;
-    register void *var_a0_3 asm ("$4");
+    void* temp_v0_4;
+    register void* var_a0_3 asm("$4");
     int tail_diff;
     int moby_type;
     int anim_frame;
     extern int D_8007191C;
     extern volatile int D_80071930;
 
-    var_a3 = M2C_FIELD_35194(arg1, short *, 0xA);
+    var_a3 = M2C_FIELD_35194(arg1, short*, 0xA);
     var_t0 = var_a3;
     if (var_a3 != 0) {
-        temp_v1 = M2C_FIELD_35194(arg1, short *, 4);
+        temp_v1 = M2C_FIELD_35194(arg1, short*, 4);
         if (var_a3 < temp_v1) {
             var_a3 = temp_v1 + 8;
             var_t0 = var_a3;
         }
     }
-    if (M2C_FIELD_35194(arg1, unsigned short *, 0xC) & 0x4000) {
+    if (M2C_FIELD_35194(arg1, unsigned short*, 0xC) & 0x4000) {
         var_a3 = 0;
     }
-    if (M2C_FIELD_35194(arg1, int *, 0) == 0) {
-        M2C_FIELD_35194(arg1, int *, 0) = (int) M2C_FIELD_35194(arg0, int *, 0x14);
+    if (M2C_FIELD_35194(arg1, int*, 0) == 0) {
+        M2C_FIELD_35194(arg1, int*, 0) = (int)M2C_FIELD_35194(arg0, int*, 0x14);
     }
-    var_s4 = func_80035EE0(arg0, M2C_FIELD_35194(arg1, unsigned char *, 0x11), M2C_FIELD_35194(arg1, short *, 4), var_a3, (int) var_t0, M2C_FIELD_35194(arg1, unsigned short *, 0xC) | 0x2000);
+    var_s4 = func_80035EE0(arg0, M2C_FIELD_35194(arg1, unsigned char*, 0x11),
+                           M2C_FIELD_35194(arg1, short*, 4), var_a3, (int)var_t0,
+                           M2C_FIELD_35194(arg1, unsigned short*, 0xC) | 0x2000);
     var_a2 = 0;
     if (var_s4 & 0x10) {
         var_a0 = ((int*)&D_80071918)[0];
@@ -300,39 +307,49 @@ int func_80035194(Moby *input0, void *arg1) {
     }
     if (var_s4 & 0x20) {
         if (D_80071930 != 0) {
-            var_a1 = (int) D_80071930;
-            temp_v1_2 = M2C_FIELD_35194((void *)var_a1, unsigned short *, 0x36);
-            if ((unsigned int) (temp_v1_2 - 0xC8) < 2U) {
+            var_a1 = (int)D_80071930;
+            temp_v1_2 = M2C_FIELD_35194((void*)var_a1, unsigned short*, 0x36);
+            if ((unsigned int)(temp_v1_2 - 0xC8) < 2U) {
                 goto special_surface;
             }
             var_a2 = 0;
-            if ((short) temp_v1_2 == 0xCF) {
-special_surface:
-                M2C_FIELD_35194((void *)var_a1, int *, 0x18) = (int) (M2C_FIELD_35194((void *)var_a1, int *, 0x18) | 0x20000);
+            if ((short)temp_v1_2 == 0xCF) {
+            special_surface:
+                M2C_FIELD_35194((void*)var_a1, int*, 0x18) =
+                    (int)(M2C_FIELD_35194((void*)var_a1, int*, 0x18) | 0x20000);
             } else {
-                var_a0 = M2C_FIELD_35194(arg0, int *, 0xC) - M2C_FIELD_35194((void *)var_a1, int *, 0xC);
-                var_a1 = M2C_FIELD_35194(arg0, int *, 0x10) - M2C_FIELD_35194((void *)var_a1, int *, 0x10);
-block_15:
+                var_a0 =
+                    M2C_FIELD_35194(arg0, int*, 0xC) - M2C_FIELD_35194((void*)var_a1, int*, 0xC);
+                var_a1 =
+                    M2C_FIELD_35194(arg0, int*, 0x10) - M2C_FIELD_35194((void*)var_a1, int*, 0x10);
+            block_15:
                 temp_v0 = func_8004E880(var_a0, var_a1, var_a2);
                 var_s1 = temp_v0 + 0x40;
-                if (func_8004F264(var_s1 & 0xFF, M2C_FIELD_35194(arg1, unsigned char *, 0x11)) >= 0x41) {
+                if (func_8004F264(var_s1 & 0xFF, M2C_FIELD_35194(arg1, unsigned char*, 0x11)) >=
+                    0x41) {
                     var_s1 = temp_v0 - 0x40;
                 }
-                M2C_FIELD_35194(arg1, unsigned char *, 0x11) = (unsigned char) (M2C_FIELD_35194(arg1, unsigned char *, 0x11) + (func_8003613C(M2C_FIELD_35194(arg1, unsigned char *, 0x11), var_s1 & 0xFF) * 2));
-                M2C_FIELD_35194(arg1, short *, 4) = (short) ((int) ((unsigned short) M2C_FIELD_35194(arg1, short *, 4) << 0x10) >> 0x11);
+                M2C_FIELD_35194(arg1, unsigned char*, 0x11) =
+                    (unsigned char)(M2C_FIELD_35194(arg1, unsigned char*, 0x11) +
+                                    (func_8003613C(M2C_FIELD_35194(arg1, unsigned char*, 0x11),
+                                                   var_s1 & 0xFF) *
+                                     2));
+                M2C_FIELD_35194(arg1, short*, 4) =
+                    (short)((int)((unsigned short)M2C_FIELD_35194(arg1, short*, 4) << 0x10) >>
+                            0x11);
             }
         }
     } else {
-        temp_v1 = M2C_FIELD_35194(arg1, unsigned char *, 0xE);
-        temp_v0_2 = M2C_FIELD_35194(arg1, unsigned short *, 4);
+        temp_v1 = M2C_FIELD_35194(arg1, unsigned char*, 0xE);
+        temp_v0_2 = M2C_FIELD_35194(arg1, unsigned short*, 4);
         temp_v0_2 -= temp_v1;
-        M2C_FIELD_35194(arg1, short *, 4) = temp_v0_2;
+        M2C_FIELD_35194(arg1, short*, 4) = temp_v0_2;
         temp_v0_2 <<= 16;
         if (temp_v0_2 < 0) {
-            M2C_FIELD_35194(arg1, short *, 4) = 0;
+            M2C_FIELD_35194(arg1, short*, 4) = 0;
         }
     }
-    temp_v1_3 = M2C_FIELD_35194(arg1, unsigned char *, 0x17);
+    temp_v1_3 = M2C_FIELD_35194(arg1, unsigned char*, 0x17);
     temp_v0_3 = temp_v1_3 & 0xFF;
     if (temp_v0_3 != 0) {
         var_a1_2 = (temp_v0_3 >> 5) * 2;
@@ -343,75 +360,81 @@ block_15:
         if (temp_v1_3 & 8) {
             var_a0_2 = -var_a0_2;
         }
-        M2C_FIELD_35194(arg0, unsigned char *, 0x45) = (unsigned char) (M2C_FIELD_35194(arg0, unsigned char *, 0x45) + var_a1_2);
-        M2C_FIELD_35194(arg0, unsigned char *, 0x46) = (unsigned char) (M2C_FIELD_35194(arg0, unsigned char *, 0x46) + var_a0_2);
+        M2C_FIELD_35194(arg0, unsigned char*, 0x45) =
+            (unsigned char)(M2C_FIELD_35194(arg0, unsigned char*, 0x45) + var_a1_2);
+        M2C_FIELD_35194(arg0, unsigned char*, 0x46) =
+            (unsigned char)(M2C_FIELD_35194(arg0, unsigned char*, 0x46) + var_a0_2);
     }
-    if (M2C_FIELD_35194(arg1, unsigned char *, 0x10) == 0) {
-        int *surfaceHit = &D_80071934;
+    if (M2C_FIELD_35194(arg1, unsigned char*, 0x10) == 0) {
+        int* surfaceHit = &D_80071934;
         *surfaceHit = 0;
         var_s1_2 = func_80035D84(arg0, 0x258);
-        if (((M2C_FIELD_35194(arg0, int *, 0x14) + M2C_FIELD_35194(arg1, short *, 6)) < var_s1_2) && (*surfaceHit != 0)) {
-            temp_a0 = M2C_FIELD_35194(arg1, short *, 8);
-            M2C_FIELD_35194(arg1, unsigned char *, 0x10) = 1U;
+        if (((M2C_FIELD_35194(arg0, int*, 0x14) + M2C_FIELD_35194(arg1, short*, 6)) < var_s1_2) &&
+            (*surfaceHit != 0)) {
+            temp_a0 = M2C_FIELD_35194(arg1, short*, 8);
+            M2C_FIELD_35194(arg1, unsigned char*, 0x10) = 1U;
             if (temp_a0 != -1) {
                 temp_v0_4 = SpawnMoby(temp_a0, arg0);
-                temp_v1_3 = M2C_FIELD_35194(arg1, unsigned char *, 0x12);
-                M2C_FIELD_35194(temp_v0_4, signed char *, 0x47) = 0;
-                M2C_FIELD_35194(temp_v0_4, unsigned char *, 0x4F) = (unsigned char) temp_v1_3;
+                temp_v1_3 = M2C_FIELD_35194(arg1, unsigned char*, 0x12);
+                M2C_FIELD_35194(temp_v0_4, signed char*, 0x47) = 0;
+                M2C_FIELD_35194(temp_v0_4, unsigned char*, 0x4F) = (unsigned char)temp_v1_3;
             }
-            if (M2C_FIELD_35194(arg1, short *, 6) < -0x5A) {
-                M2C_FIELD_35194(arg1, short *, 6) = -0x5A;
+            if (M2C_FIELD_35194(arg1, short*, 6) < -0x5A) {
+                M2C_FIELD_35194(arg1, short*, 6) = -0x5A;
             }
-            M2C_FIELD_35194(arg1, unsigned char *, 0xF) = (unsigned char) ((unsigned char) M2C_FIELD_35194(arg1, unsigned char *, 0xF) >> 2);
+            M2C_FIELD_35194(arg1, unsigned char*, 0xF) =
+                (unsigned char)((unsigned char)M2C_FIELD_35194(arg1, unsigned char*, 0xF) >> 2);
         }
     } else {
-        M2C_FIELD_35194(arg0, int *, 0x14) = (int) (M2C_FIELD_35194(arg0, int *, 0x14) + 0x258);
+        M2C_FIELD_35194(arg0, int*, 0x14) = (int)(M2C_FIELD_35194(arg0, int*, 0x14) + 0x258);
         var_s1_2 = func_8001A310(arg0 + 0xC, 0x1000, 1, 0);
-        M2C_FIELD_35194(arg0, int *, 0x14) = (int) (M2C_FIELD_35194(arg0, int *, 0x14) - 0x258);
+        M2C_FIELD_35194(arg0, int*, 0x14) = (int)(M2C_FIELD_35194(arg0, int*, 0x14) - 0x258);
     }
-    M2C_FIELD_35194(arg0, int *, 0x14) = (int) (M2C_FIELD_35194(arg0, int *, 0x14) + M2C_FIELD_35194(arg1, short *, 6));
-    temp_v1 = M2C_FIELD_35194(arg1, unsigned char *, 0xF);
-    temp_v0_5 = M2C_FIELD_35194(arg1, unsigned short *, 6);
+    M2C_FIELD_35194(arg0, int*, 0x14) =
+        (int)(M2C_FIELD_35194(arg0, int*, 0x14) + M2C_FIELD_35194(arg1, short*, 6));
+    temp_v1 = M2C_FIELD_35194(arg1, unsigned char*, 0xF);
+    temp_v0_5 = M2C_FIELD_35194(arg1, unsigned short*, 6);
     temp_v0_5 -= temp_v1;
-    M2C_FIELD_35194(arg1, short *, 6) = temp_v0_5;
-    if ((short) temp_v0_5 < -0x104) {
-        M2C_FIELD_35194(arg1, short *, 6) = -0x104;
+    M2C_FIELD_35194(arg1, short*, 6) = temp_v0_5;
+    if ((short)temp_v0_5 < -0x104) {
+        M2C_FIELD_35194(arg1, short*, 6) = -0x104;
     }
-    temp_a1 = M2C_FIELD_35194(arg1, short *, 6);
+    temp_a1 = M2C_FIELD_35194(arg1, short*, 6);
     if (temp_a1 <= 0) {
-        temp_v1_4 = M2C_FIELD_35194(arg0, short *, 0x38);
+        temp_v1_4 = M2C_FIELD_35194(arg0, short*, 0x38);
         temp_a0_2 = var_s1_2 + temp_v1_4;
-        if (M2C_FIELD_35194(arg0, int *, 0x14) < temp_a0_2) {
-            if (M2C_FIELD_35194(arg1, unsigned short *, 0xC) & 0x8000) {
-                temp_v0_6 = M2C_FIELD_35194(arg1, unsigned char *, 0xF);
+        if (M2C_FIELD_35194(arg0, int*, 0x14) < temp_a0_2) {
+            if (M2C_FIELD_35194(arg1, unsigned short*, 0xC) & 0x8000) {
+                temp_v0_6 = M2C_FIELD_35194(arg1, unsigned char*, 0xF);
                 var_v1 = temp_a1;
                 if (temp_a1 < 0) {
                     var_v1 = -var_v1;
                 }
                 if (var_v1 >= (temp_v0_6 * 2)) {
-                    M2C_FIELD_35194(arg0, int *, 0x14) = temp_a0_2;
-                    M2C_FIELD_35194(arg1, short *, 6) = (short) -((M2C_FIELD_35194(arg1, short *, 6) * 4) / 6);
+                    M2C_FIELD_35194(arg0, int*, 0x14) = temp_a0_2;
+                    M2C_FIELD_35194(arg1, short*, 6) =
+                        (short)-((M2C_FIELD_35194(arg1, short*, 6) * 4) / 6);
                 } else {
                     goto block_44;
                 }
             } else {
-block_44:
-                M2C_FIELD_35194(arg0, int *, 0x14) = temp_a0_2;
+            block_44:
+                M2C_FIELD_35194(arg0, int*, 0x14) = temp_a0_2;
                 var_s4 = 3;
             }
         }
     }
     func_80056270(arg0);
     func_8005629C(arg0);
-    if (M2C_FIELD_35194(arg0, int *, 0x14) < (M2C_FIELD_35194(arg1, int *, 0) - 0xC8)) {
-        M2C_FIELD_35194(arg0, unsigned char *, 0x47) = 0xFF;
+    if (M2C_FIELD_35194(arg0, int*, 0x14) < (M2C_FIELD_35194(arg1, int*, 0) - 0xC8)) {
+        M2C_FIELD_35194(arg0, unsigned char*, 0x47) = 0xFF;
     }
-    if (M2C_FIELD_35194(arg1, unsigned char *, 0x13) == 0) {
+    if (M2C_FIELD_35194(arg1, unsigned char*, 0x13) == 0) {
         goto check_global;
     }
-    __asm__ volatile ("" ::: "memory");
-    temp_a0_3 = M2C_FIELD_35194(arg1, unsigned char *, 0x15);
-    tail_diff = temp_a0_3 - M2C_FIELD_35194(arg1, unsigned char *, 0x14);
+    MATCHING_BARRIER_VOLATILE("memory");
+    temp_a0_3 = M2C_FIELD_35194(arg1, unsigned char*, 0x15);
+    tail_diff = temp_a0_3 - M2C_FIELD_35194(arg1, unsigned char*, 0x14);
     if (tail_diff == 1) {
         goto state_one;
     }
@@ -431,13 +454,13 @@ block_44:
 state_zero:
     if (D_8006C770 != 0) {
         temp_v0_6 = temp_a0_3 + 1;
-        M2C_FIELD_35194(arg1, unsigned char *, 0x15) = temp_v0_6;
-        if (M2C_FIELD_35194(arg0, unsigned char *, 0x3D) != (temp_v0_6 & 0xFF)) {
+        M2C_FIELD_35194(arg1, unsigned char*, 0x15) = temp_v0_6;
+        if (M2C_FIELD_35194(arg0, unsigned char*, 0x3D) != (temp_v0_6 & 0xFF)) {
             D_8006C770 = 0;
-            M2C_FIELD_35194(arg0, signed char *, 0x40) = 0x72;
-            temp_v0_7 = M2C_FIELD_35194(arg1, unsigned char *, 0x15);
-            M2C_FIELD_35194(arg0, signed char *, 0x3F) = 0;
-            M2C_FIELD_35194(arg0, unsigned char *, 0x3D) = temp_v0_7;
+            M2C_FIELD_35194(arg0, signed char*, 0x40) = 0x72;
+            temp_v0_7 = M2C_FIELD_35194(arg1, unsigned char*, 0x15);
+            M2C_FIELD_35194(arg0, signed char*, 0x3F) = 0;
+            M2C_FIELD_35194(arg0, unsigned char*, 0x3D) = temp_v0_7;
             func_80035734(arg0);
         }
     }
@@ -447,26 +470,27 @@ state_one:
     if (var_s4 != 3) {
         goto final_call;
     }
-    if (M2C_FIELD_35194(arg1, unsigned char *, 0x16) != 0) {
+    if (M2C_FIELD_35194(arg1, unsigned char*, 0x16) != 0) {
         goto set_100;
     }
-    temp_v0_7 = M2C_FIELD_35194(arg1, unsigned char *, 0x15) + 1;
-    M2C_FIELD_35194(arg1, unsigned char *, 0x15) = temp_v0_7;
-    if (M2C_FIELD_35194(arg0, unsigned char *, 0x3C) == (temp_v0_7 & 0xFF)) {
+    temp_v0_7 = M2C_FIELD_35194(arg1, unsigned char*, 0x15) + 1;
+    M2C_FIELD_35194(arg1, unsigned char*, 0x15) = temp_v0_7;
+    if (M2C_FIELD_35194(arg0, unsigned char*, 0x3C) == (temp_v0_7 & 0xFF)) {
         goto final_call;
     }
-    moby_type = M2C_FIELD_35194(arg0, short *, 0x36);
+    moby_type = M2C_FIELD_35194(arg0, short*, 0x36);
     D_8006C770 = 0;
-    anim_frame = M2C_FIELD_35194(arg1, unsigned char *, 0x15);
-    M2C_FIELD_35194(arg0, signed char *, 0x40) = (signed char) (-((unsigned char) *M2C_FIELD_35194(
-        ((anim_frame * 4) + D_8006EE2C[moby_type]),
-        unsigned char **, 0x3C) >= 2U) & 0x30);
-    M2C_FIELD_35194(arg0, unsigned char *, 0x3C) = M2C_FIELD_35194(arg1, unsigned char *, 0x15);
-    __asm__ volatile ("" ::: "memory");
-    var_v1 = M2C_FIELD_35194(arg1, unsigned char *, 0x15);
-    M2C_FIELD_35194(arg0, signed char *, 0x3E) = 0;
-    M2C_FIELD_35194(arg0, signed char *, 0x3F) = 1;
-    M2C_FIELD_35194(arg0, unsigned char *, 0x3D) = var_v1;
+    anim_frame = M2C_FIELD_35194(arg1, unsigned char*, 0x15);
+    M2C_FIELD_35194(arg0, signed char*, 0x40) =
+        (signed char)(-((unsigned char)*M2C_FIELD_35194(((anim_frame * 4) + D_8006EE2C[moby_type]),
+                                                        unsigned char**, 0x3C) >= 2U) &
+                      0x30);
+    M2C_FIELD_35194(arg0, unsigned char*, 0x3C) = M2C_FIELD_35194(arg1, unsigned char*, 0x15);
+    MATCHING_BARRIER_VOLATILE("memory");
+    var_v1 = M2C_FIELD_35194(arg1, unsigned char*, 0x15);
+    M2C_FIELD_35194(arg0, signed char*, 0x3E) = 0;
+    M2C_FIELD_35194(arg0, signed char*, 0x3F) = 1;
+    M2C_FIELD_35194(arg0, unsigned char*, 0x3D) = var_v1;
     goto final_call;
 
 check_global:
@@ -618,7 +642,10 @@ int func_800359A4(void* pTimer, int pTimerType) {
  */
 /* Retail Rev 0: 0x80035A80..0x80035D38. Path nodes hold runtime
  * Vector3D coordinates; updates run on each call with D_8006C648 ticks. */
-typedef struct { Vector3D unk0; int unkC; } PathNodeRev0;
+typedef struct {
+    Vector3D unk0;
+    int unkC;
+} PathNodeRev0;
 typedef struct {
     short unk0, unk2;
     int unk4;
@@ -627,7 +654,8 @@ typedef struct {
 } PathHeaderRev0;
 int func_8004F334(Vector3D*, Vector3D*);
 int func_80035DDC(Moby*, int, int, int, int);
-int func_80035A80(Moby* arg0, PathHeaderRev0* arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7) {
+int func_80035A80(Moby* arg0, PathHeaderRev0* arg1, int arg2, int arg3, int arg4, int arg5,
+                  int arg6, int arg7) {
     int temp_a0;
     int temp_v0;
     int temp_v0_4;
@@ -645,30 +673,40 @@ int func_80035A80(Moby* arg0, PathHeaderRev0* arg1, int arg2, int arg3, int arg4
         var_s0_2 = 1;
     }
     if (func_8004F334(&arg0->position, &arg1->unkC[arg1->unk2].unk0) < arg2) {
-        if (var_s0_2) var_s4 = 1;
+        if (var_s0_2)
+            var_s4 = 1;
     }
     if (arg7 & 0x20000) {
-        if (func_8004F264(arg0->angle.yaw, func_8004E880(arg1->unkC[arg1->unk2].unk0.x - arg0->position.x, arg1->unkC[arg1->unk2].unk0.y - arg0->position.y, 0)) >= 0x41)
+        if (func_8004F264(arg0->angle.yaw,
+                          func_8004E880(arg1->unkC[arg1->unk2].unk0.x - arg0->position.x,
+                                        arg1->unkC[arg1->unk2].unk0.y - arg0->position.y, 0)) >=
+            0x41)
             var_s4 = 1;
     }
     if (var_s4 != 0) {
         temp_a0 = arg1->unk2 + arg1->unkA;
         arg1->unk2 = (temp_a0 + arg1->unk0) % arg1->unk0;
-        if (temp_a0 != arg1->unk2) var_s6 = 3;
-        else var_s6 = 1;
+        if (temp_a0 != arg1->unk2)
+            var_s6 = 3;
+        else
+            var_s6 = 1;
     }
-    temp_v0_4 = func_8004E880(arg1->unkC[arg1->unk2].unk0.x - arg0->position.x, arg1->unkC[arg1->unk2].unk0.y - arg0->position.y, 0);
+    temp_v0_4 = func_8004E880(arg1->unkC[arg1->unk2].unk0.x - arg0->position.x,
+                              arg1->unkC[arg1->unk2].unk0.y - arg0->position.y, 0);
     temp_v0_5 = func_8004F264(temp_v0_4, arg0->angle.yaw);
     if (arg6 >= temp_v0_5) {
         func_8003585C(arg0, temp_v0_4, arg5, arg6, 1, 0);
         func_80035DDC(arg0, arg3, arg4, 0, arg7);
     } else {
-        if (D_8006C648 == 3) arg5 += arg5 >> 1;
-        else if (D_8006C648 == 4) arg5 *= 2;
+        if (D_8006C648 == 3)
+            arg5 += arg5 >> 1;
+        else if (D_8006C648 == 4)
+            arg5 *= 2;
         MAX(arg5, temp_v0_5);
         func_8003585C(arg0, temp_v0_4, arg5, 0x80, 1, 0);
     }
-    if (func_8004F264(temp_v0_4, arg0->angle.yaw) > 0) var_s6 |= 4;
+    if (func_8004F264(temp_v0_4, arg0->angle.yaw) > 0)
+        var_s6 |= 4;
     return var_s6;
 }
 
@@ -727,7 +765,8 @@ int func_80035DDC(Moby* arg0, int arg1, int arg2, int arg3, int arg4) {
 int func_80035EE0(Moby* arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
     Vector3D sp18;
     if (!(arg5 & 0x10000)) {
-        if (D_8006C648 == 3) arg2 += arg2 >> 1;
+        if (D_8006C648 == 3)
+            arg2 += arg2 >> 1;
         else if (D_8006C648 == 4) arg2 *= 2;
     }
     sp18.x = (D_80065920[arg1] * arg2) >> 0xC;
@@ -858,8 +897,10 @@ int func_80036220(Vector3D* position, char* bounds, int margin, int zLimit) {
     }
     rotated.y = ry;
     width = *(int*)(bounds + 0xC);
-    if (rx < 0) rx = -rx;
-    if (rx >= width + margin) return 0;
+    if (rx < 0)
+        rx = -rx;
+    if (rx >= width + margin)
+        return 0;
     height = *(int*)(bounds + 0x10);
     {
         register int absY __asm__("$3");
@@ -867,12 +908,14 @@ int func_80036220(Vector3D* position, char* bounds, int margin, int zLimit) {
             absY = ry;
         } else {
             absY = ry;
-            __asm__ volatile ("subu %0,$zero,%0" : "=r"(absY) : "0"(absY));
+            __asm__ volatile("subu %0,$zero,%0" : "=r"(absY) : "0"(absY));
         }
         if (absY < height + margin) {
-            if (zLimit == 0) return 1;
+            if (zLimit == 0)
+                return 1;
             z = delta.z;
-            if (z < 0) z = -z;
+            if (z < 0)
+                z = -z;
             return z <= zLimit;
         }
     }
@@ -933,7 +976,11 @@ int func_8003645C(Vector3D* position, PathPointSet* path, int* selectedIndex) {
 
 /* Retail source: asm/nonmatchings/mobyutil/func_80036518.s,
  * 0x80036518..0x800365E4; path node stride is 16 runtime bytes. */
-typedef struct { short count, unk2; int unk4, unk8; char* nodes; } PathFindHeader;
+typedef struct {
+    short count, unk2;
+    int unk4, unk8;
+    char* nodes;
+} PathFindHeader;
 void func_8004F1C8(Vector3D*, Vector3D*, Vector3D*);
 int func_8004EDE8(Vector3D*, int);
 int func_80036518(Vector3D* position, PathFindHeader* path, int* closestIndex) {
@@ -950,18 +997,19 @@ int func_80036518(Vector3D* position, PathFindHeader* path, int* closestIndex) {
             bestIndex = i;
         }
     }
-    if (closestIndex != 0) *closestIndex = bestIndex;
+    if (closestIndex != 0)
+        *closestIndex = bestIndex;
     return best;
 }
 
-int func_800365E4(Vector3D* first, Vector3D* second, int divisor,
-                  int acceleration, int* outSteps) {
+int func_800365E4(Vector3D* first, Vector3D* second, int divisor, int acceleration, int* outSteps) {
     int delta[2];
     int steps;
     delta[0] = first->x - second->x;
     delta[1] = first->y - second->y;
     steps = func_8004EDE8((Vector3D*)delta, 0) / divisor;
-    if (outSteps != 0) *outSteps = steps;
+    if (outSteps != 0)
+        *outSteps = steps;
     if (steps != 0) {
         return -(first->z - second->z + ((acceleration * (steps * steps)) >> 1)) / steps;
     }
@@ -988,8 +1036,8 @@ void func_80036708(int arg0, Moby* arg1) {
     int digit;
     int product;
 
-    __asm__ volatile("" : "=r"(source), "=r"(place) : "0"(source), "1"(place));
-    __asm__ volatile("" : "=r"(var_s0) : "0"(var_s0));
+    MATCHING_KEEP2_VOLATILE(source, place);
+    MATCHING_KEEP_VOLATILE(var_s0);
     trig_arg = *(short*)var_s0;
     y = source->position.y;
     trig_result = func_8004EA2C(trig_arg - 0x400);
@@ -1032,8 +1080,8 @@ void func_80036708(int arg0, Moby* arg1) {
             int cosine = D_80065920[angle];
 
             velocity[2] -= 0x10;
-            __asm__ volatile("" : "=r"(sine) : "0"(sine));
-            __asm__ volatile("" : "=r"(cosine) : "0"(cosine));
+            MATCHING_KEEP_VOLATILE(sine);
+            MATCHING_KEEP_VOLATILE(cosine);
             x -= sine >> 4;
             y += cosine >> 4;
         }
@@ -1059,14 +1107,17 @@ int func_800368A4(void* object, int value, int mode) {
     if (flags & 0x10000) {
         if (mode == 2) {
             level += 0x20;
-            if (level >= 0x51) level = 0x50;
+            if (level >= 0x51)
+                level = 0x50;
         } else {
             level += 0x10;
-            if (level >= 0x40) level = 0x3F;
+            if (level >= 0x40)
+                level = 0x3F;
         }
     } else {
         level--;
-        if (level >= 0x21) level--;
+        if (level >= 0x21)
+            level--;
     }
     if (mode == 0) {
         *(int*)(state + 0x54) = 0x30000080 + ((level >> 2) << 24);
@@ -1177,7 +1228,7 @@ Moby* func_80036A68(Moby* arg0, int arg1, Vector3D* arg2, Vector3D* arg3) {
     register GemMobyTag* spawnedTag asm("$21");
 
     sourceMoby = arg0;
-    __asm__("" : "=r"(sourceMoby) : "0"(sourceMoby));
+    MATCHING_KEEP(sourceMoby);
     var_s2 = arg1;
     var_s0 = (int)arg2;
     requestedPosition = arg3;
@@ -1189,7 +1240,7 @@ Moby* func_80036A68(Moby* arg0, int arg1, Vector3D* arg2, Vector3D* arg3) {
         var_a0 = 0x141;
     }
     spawnedMoby = SpawnMoby(var_a0, sourceMoby);
-    __asm__ volatile("" : "=r"(spawnedMoby) : "0"(spawnedMoby) : "memory");
+    MATCHING_KEEP_VOLATILE_CLOBBER(spawnedMoby, "memory");
     spawnedTag = spawnedMoby->mobyTag;
     if (((g_CurrentLevel / 10) * 10) == (g_CurrentLevel - 8)) {
         spawnedMoby->mobyClass = 0x17D;
@@ -1232,19 +1283,16 @@ Moby* func_80036A68(Moby* arg0, int arg1, Vector3D* arg2, Vector3D* arg3) {
 no_requested_position:
     var_s0 = (int)&sp28;
     if ((var_s2 & 16) ||
-            (!(var_s2 & 1) &&
-             ((g_Spyro.movementState == MOVEMENT_STATE_CHARGE) ||
-              (g_Spyro.movementState == MOVEMENT_STATE_SWIM_CHARGE) ||
-              (g_Spyro.movementState == MOVEMENT_STATE_SKATEBOARD)))) {
+        (!(var_s2 & 1) && ((g_Spyro.movementState == MOVEMENT_STATE_CHARGE) ||
+                           (g_Spyro.movementState == MOVEMENT_STATE_SWIM_CHARGE) ||
+                           (g_Spyro.movementState == MOVEMENT_STATE_SKATEBOARD)))) {
         var_s0 = (int)&sp28;
         temp_a0 = var_s0;
-        __asm__("" : "=r"(temp_a0) : "0"(temp_a0));
+        MATCHING_KEEP(temp_a0);
         requestedPosition = &spawnedMoby->position;
         func_8004F1C8((Vector3D*)temp_a0, requestedPosition, &g_Spyro.position);
-        if ((var_s2 & 16) ||
-                (func_8004EDE8((Vector3D*)var_s0, 1) < 0xA00)) {
-            func_8004F504((Vector3D16*)((char*)spawnedTag + 4),
-                          (Vector3D16*)requestedPosition);
+        if ((var_s2 & 16) || (func_8004EDE8((Vector3D*)var_s0, 1) < 0xA00)) {
+            func_8004F504((Vector3D16*)((char*)spawnedTag + 4), (Vector3D16*)requestedPosition);
             spawnedTag->randomX = rand() & 0xE;
             spawnedTag->randomY = rand() & 0xE;
             spawnedTag->randomZ = rand() & 0xE;
@@ -1260,11 +1308,11 @@ loop_32:
     func_8004F178(&sp18, &sourceMoby->position);
     temp_v0_2 = rand();
     var_v1 = sp18.x;
-    __asm__("" : "=r"(var_v1) : "0"(var_v1));
+    MATCHING_KEEP(var_v1);
     temp_v0_2 &= 0x3FF;
     var_v1 -= 0x200;
     var_v1 += temp_v0_2;
-    __asm__("" : "=r"(var_v1) : "0"(var_v1));
+    MATCHING_KEEP(var_v1);
     sp18.x = var_v1;
     temp_v0_2 = rand();
     var_v1 = sp18.y;
@@ -1274,8 +1322,8 @@ loop_32:
     temp_v0_2 = func_8001A358(&sp18, 0x800);
     sp18.z = temp_v0_2;
     if ((temp_v0_2 <= 0) ||
-            (func_8004E880(D_80071920, func_8004EDE8((Vector3D*)var_s2, 0), 0) >= 0x18) ||
-            (func_8001BA30(&sp18, 0xC8, 0, 0, 0, sourceMoby) != 0)) {
+        (func_8004E880(D_80071920, func_8004EDE8((Vector3D*)var_s2, 0), 0) >= 0x18) ||
+        (func_8001BA30(&sp18, 0xC8, 0, 0, 0, sourceMoby) != 0)) {
         var_s0 += 1;
         if (var_s0 < 4) {
             goto loop_32;
@@ -1285,7 +1333,7 @@ loop_32:
     if (var_s0 == 4) {
         temp_a0 = (int)&sp18;
         var_a1 = (int)&sourceMoby->position;
-block_39:
+    block_39:
         func_8004F178((Vector3D*)temp_a0, (Vector3D*)var_a1);
         var_v1 = 0x8C;
     }
@@ -1418,7 +1466,7 @@ void func_80037168(Moby* moby, MobyWanderStateRev0* state, int flags) {
     distance = func_8004F334(position, &state->target);
     if ((result != 0) || ((state->maxDistance * 0x10) < distance)) {
         state->angle = func_8004E880(state->target.x - moby->position.x,
-                                    state->target.y - moby->position.y, 0);
+                                     state->target.y - moby->position.y, 0);
         state->timer = func_8003636C(0x1E, 0x5A);
         state->active = 1;
         return;
@@ -1426,9 +1474,10 @@ void func_80037168(Moby* moby, MobyWanderStateRev0* state, int flags) {
     distance = func_8004F334(position, (Vector3D*)&D_80070328);
     if (distance < 0x1000) {
         state->angle = ((state->angle * distance) +
-            (func_8004E880(moby->position.x - *(int*)(&D_80070328),
-                           moby->position.y - *(int*)(&D_80070328 + 4), 0) *
-             (0x1000 - distance))) >> 0xC;
+                        (func_8004E880(moby->position.x - *(int*)(&D_80070328),
+                                       moby->position.y - *(int*)(&D_80070328 + 4), 0) *
+                         (0x1000 - distance))) >>
+                       0xC;
     }
 }
 
@@ -1524,7 +1573,8 @@ TODO: investigate what the headers are for each line of dialogue
  * item 0xFE; insufficient D_8006C71C; signed byte boundaries; and default-loop
  * continuation. The parser visits each candidate message once per call until
  * selection or exhaustion.
- */extern int D_8006C58C, D_8006C590, D_8006C59C, D_8006C5C4, D_8006C5FC;
+ */
+extern int D_8006C58C, D_8006C590, D_8006C59C, D_8006C5C4, D_8006C5FC;
 extern int D_8006C608, D_8006C624, D_8006C66C;
 extern int D_8006C71C, D_8006C750, D_8006C76C, D_8006C798;
 extern unsigned char D_8006C62C, D_8006C6E4, D_8006C7B4;
@@ -1549,7 +1599,7 @@ void func_80037324(void** arg) {
     register int more __asm__("$2");
 
     found = 0;
-    __asm__ ("move %1,$0" : "=r"(message), "=r"(initial) : "0"(message));
+    __asm__("move %1,$0" : "=r"(message), "=r"(initial) : "0"(message));
     state = *(unsigned char**)arg;
     message = 0;
     if (initial != 0)
@@ -1574,7 +1624,7 @@ void func_80037324(void** arg) {
             next = cursor + 1;
             {
                 unsigned int opcode;
-parse_again:
+            parse_again:
                 opcode = cursor[0];
                 more = opcode < 10;
                 if (opcode != 0 && more) {
@@ -1594,92 +1644,101 @@ parse_again:
                         found = 1;
                         goto advance_two;
                     }
-advance_two:
+                advance_two:
                     next += 2;
                     cursor += 2;
                 } else {
                     register int switchOffset __asm__("$3");
-                    __asm__ volatile ("" : : : "memory");
+                    MATCHING_BARRIER_VOLATILE("memory");
                     more = cursor[0];
                     switchOffset = more - 0x23;
-                    __asm__ volatile ("" : "=r"(switchOffset) : "0"(switchOffset));
+                    MATCHING_KEEP_VOLATILE(switchOffset);
                     more = (unsigned int)switchOffset < 0x19;
                     if (!more) {
                         more = cursor < end;
                         goto test_more;
                     }
                     more = cursor < end;
-                    __asm__ volatile ("");
+                    __asm__ volatile("");
                     {
-                        static void * const jumpTable[26] __asm__("jtbl_800103A4") = {
-                            &&case_0, &&case_1, &&case_2, &&case_3, &&case_4,
-                            &&case_default, &&case_6, &&case_7, &&case_8, &&case_9,
-                            &&case_10, &&case_default, &&case_default, &&case_default, &&case_default,
-                            &&case_default, &&case_default, &&case_default, &&case_default, &&case_default,
-                            &&case_default, &&case_default, &&case_default, &&case_default, &&case_24, 0
-                        };
+                        static void* const jumpTable[26] __asm__("jtbl_800103A4") = {
+                            &&case_0,       &&case_1,
+                            &&case_2,       &&case_3,
+                            &&case_4,       &&case_default,
+                            &&case_6,       &&case_7,
+                            &&case_8,       &&case_9,
+                            &&case_10,      &&case_default,
+                            &&case_default, &&case_default,
+                            &&case_default, &&case_default,
+                            &&case_default, &&case_default,
+                            &&case_default, &&case_default,
+                            &&case_default, &&case_default,
+                            &&case_default, &&case_default,
+                            &&case_24,      0};
                         register int tableOffset __asm__("$2");
-                        register void *jump __asm__("$2");
+                        register void* jump __asm__("$2");
                         tableOffset = switchOffset << 2;
-                        jump = *(void **)((char *)jumpTable + tableOffset);
-                        goto *jump;
+                        jump = *(void**)((char*)jumpTable + tableOffset);
+                        goto* jump;
                     }
-case_24:
-                        D_8006C798 = one;
-                        next++;
-                        cursor++;
-                        goto loop_test;
-case_0:
-                        next += 3;
-                        cursor += 3;
-                        goto loop_test;
-case_10:
-                        if (state[2] == message)
-                            D_8006C608 = next[0] - 1;
-                        next += 2;
-                        cursor += 2;
-                        goto loop_test;
-case_6:
-                        if (state[2] == message)
-                            D_8006C624 = one;
-                        next += 2;
-                        cursor += 2;
-                        goto loop_test;
-case_2:
-                        if (state[2] == message) {
-                            register int itemByte __asm__("$2");
-                            register int item __asm__("$3");
-                            register int sentinel __asm__("$2");
-                            __asm__ volatile ("" : : : "memory");
-                            itemByte = next[5];
-                            item = itemByte - 1;
-                            sentinel = 0xFE;
-                            if (item != sentinel) {
-                                int paid;
-                                item <<= 2;
-                                D_8006C59C = *(short*)((char*)D_80066EAC + item);
-                                paid = *(short*)((char*)D_80066EAE + item);
-                                D_8006C750 = one;
-                                if (paid == 0 && D_8006C71C < *(short*)((char*)D_80066EAC_second + item)) {
-                                    state[2] = next[6] - 1;
-                                    return;
-                                }
-                            }
-                            D_8006C6E4 = 0;
-                            {
-                                int i;
-                                for (i = 0; i < 5; i++) {
-                                    register unsigned char* scan __asm__("$2") = cursor;
-                                    scan += i;
-                                    if (scan[1] != byteFF)
-                                        D_8006C6E4++;
-                                }
+                case_24:
+                    D_8006C798 = one;
+                    next++;
+                    cursor++;
+                    goto loop_test;
+                case_0:
+                    next += 3;
+                    cursor += 3;
+                    goto loop_test;
+                case_10:
+                    if (state[2] == message)
+                        D_8006C608 = next[0] - 1;
+                    next += 2;
+                    cursor += 2;
+                    goto loop_test;
+                case_6:
+                    if (state[2] == message)
+                        D_8006C624 = one;
+                    next += 2;
+                    cursor += 2;
+                    goto loop_test;
+                case_2:
+                    if (state[2] == message) {
+                        register int itemByte __asm__("$2");
+                        register int item __asm__("$3");
+                        register int sentinel __asm__("$2");
+                        MATCHING_BARRIER_VOLATILE("memory");
+                        itemByte = next[5];
+                        item = itemByte - 1;
+                        sentinel = 0xFE;
+                        if (item != sentinel) {
+                            int paid;
+                            item <<= 2;
+                            D_8006C59C = *(short*)((char*)D_80066EAC + item);
+                            paid = *(short*)((char*)D_80066EAE + item);
+                            D_8006C750 = one;
+                            if (paid == 0 &&
+                                D_8006C71C < *(short*)((char*)D_80066EAC_second + item)) {
+                                state[2] = next[6] - 1;
+                                return;
                             }
                         }
-                        next += 8;
-                        cursor += 8;
-                        goto loop_test;
-case_1: {
+                        D_8006C6E4 = 0;
+                        {
+                            int i;
+                            for (i = 0; i < 5; i++) {
+                                register unsigned char* scan __asm__("$2") = cursor;
+                                scan += i;
+                                if (scan[1] != byteFF)
+                                    D_8006C6E4++;
+                            }
+                        }
+                    }
+                    next += 8;
+                    cursor += 8;
+                    goto loop_test;
+                case_1:
+                    {
                         register unsigned int value __asm__("$4") = next[0];
                         register int selector __asm__("$3") = value - 1;
                         register unsigned int condition __asm__("$2");
@@ -1698,10 +1757,10 @@ case_1: {
                         }
                         if (selector < 20) {
                             condition = D_800719FA[selector];
-check_case_24:
-                            __asm__ volatile ("nop");
+                        check_case_24:
+                            __asm__ volatile("nop");
                             if (condition != 0) {
-accept_case_24:
+                            accept_case_24:
                                 state[2] = message;
                                 next[0] = byteFF;
                                 D_8006C624 = negativeOne;
@@ -1713,48 +1772,48 @@ accept_case_24:
                         }
                         goto advance_two;
                     }
-case_3:
-                        if (message == state[2])
-                            D_8006C5FC = one;
-                        next++;
-                        cursor++;
-                        goto loop_test;
-case_7:
-case_8:
-                        next++;
-                        cursor++;
-                        goto loop_test;
-case_4:
-                        if (message == state[2]) {
-                            register int flags __asm__("$3") = (int)D_8007145C;
-                            register int entry __asm__("$4") = D_8006C58C;
-                            register int bit __asm__("$2");
-                            __asm__ volatile ("" : "=r"(flags), "=r"(entry) : "0"(flags), "1"(entry));
-                            __asm__ volatile ("lbu %0,0(%3)\n\taddu %1,%1,%2"
-                                : "=r"(bit), "=r"(entry)
-                                : "r"(flags), "r"(next), "1"(entry));
-                            bit -= 1;
-                            flags = *(unsigned char*)entry;
-                            bit = one << bit;
-                            flags |= bit;
-                            *(unsigned char*)entry = flags;
-                        }
-                        next += 2;
-                        cursor += 2;
-                        goto loop_test;
-case_9:
-                        if (message == state[2])
-                            D_8006C590 = next[0] - 1;
-                        next += 2;
-                        cursor += 2;
-                        goto loop_test;
-case_default:
-                        more = cursor < end;
-                        goto test_more;
+                case_3:
+                    if (message == state[2])
+                        D_8006C5FC = one;
+                    next++;
+                    cursor++;
+                    goto loop_test;
+                case_7:
+                case_8:
+                    next++;
+                    cursor++;
+                    goto loop_test;
+                case_4:
+                    if (message == state[2]) {
+                        register int flags __asm__("$3") = (int)D_8007145C;
+                        register int entry __asm__("$4") = D_8006C58C;
+                        register int bit __asm__("$2");
+                        MATCHING_KEEP2_VOLATILE(flags, entry);
+                        __asm__ volatile("lbu %0,0(%3)\n\taddu %1,%1,%2"
+                                         : "=r"(bit), "=r"(entry)
+                                         : "r"(flags), "r"(next), "1"(entry));
+                        bit -= 1;
+                        flags = *(unsigned char*)entry;
+                        bit = one << bit;
+                        flags |= bit;
+                        *(unsigned char*)entry = flags;
+                    }
+                    next += 2;
+                    cursor += 2;
+                    goto loop_test;
+                case_9:
+                    if (message == state[2])
+                        D_8006C590 = next[0] - 1;
+                    next += 2;
+                    cursor += 2;
+                    goto loop_test;
+                case_default:
+                    more = cursor < end;
+                    goto test_more;
                 }
-loop_test:
+            loop_test:
                 more = cursor < end;
-test_more:
+            test_more:
                 if (more)
                     goto parse_again;
             }
@@ -1766,8 +1825,6 @@ test_more:
 finish:
     func_8003B7B4(state + 2, 1, &D_8006C7F8);
 }
-
-
 
 /* Retail source: USA Rev 0 PSX.EXE 0x80037768..0x80037A60
  * (190 instruction words), body SHA-256
@@ -1813,76 +1870,74 @@ void func_80037768(void* arg) {
     if (cursor < end) {
         valuesBase = values;
         do {
-        switch (*cursor) {
-        case 0x2A:
-            state[5] = 0xFF;
-            func_8003B7B4(state + 5, 1, &D_8006C7F8);
-            cursor++;
-            break;
-        case 0x26:
-        case 0x2B:
-        case 0x3B:
-            cursor++;
-            break;
-        case 0x29:
-            state[2] = cursor[1] - 1;
-            cursor += 2;
-            break;
-        case 0x23:
-            {
-                register int first __asm__("$2") = cursor[1];
-                register int second __asm__("$3") = cursor[2];
-                low = first - 1;
-                high = second - 1;
-            }
-            if (low != high) {
-                selected = func_8003636C(low, high);
-                if (state[2] == selected) {
-                    state[2]++;
-                    selected = high < state[2];
-                    if (selected)
+            switch (*cursor) {
+                case 0x2A:
+                    state[5] = 0xFF;
+                    func_8003B7B4(state + 5, 1, &D_8006C7F8);
+                    cursor++;
+                    break;
+                case 0x26:
+                case 0x2B:
+                case 0x3B:
+                    cursor++;
+                    break;
+                case 0x29:
+                    state[2] = cursor[1] - 1;
+                    cursor += 2;
+                    break;
+                case 0x23: {
+                    register int first __asm__("$2") = cursor[1];
+                    register int second __asm__("$3") = cursor[2];
+                    low = first - 1;
+                    high = second - 1;
+                }
+                    if (low != high) {
+                        selected = func_8003636C(low, high);
+                        if (state[2] == selected) {
+                            state[2]++;
+                            selected = high < state[2];
+                            if (selected)
+                                state[2] = low;
+                        }
+                    } else {
                         state[2] = low;
+                    }
+                    cursor += 3;
+                    break;
+                case 0x25: {
+                    register int itemByte __asm__("$2") = cursor[6];
+                    register int item __asm__("$6") = itemByte - 1;
+                    register int fallback __asm__("$3") = cursor[7] - 1;
+                    register int i __asm__("$4") = 0;
+                    register int* output __asm__("$5") = valuesBase;
+                    register unsigned char* entry __asm__("$2");
+                    do {
+                        entry = cursor + i;
+                        *output = entry[1] - 1;
+                        i++;
+                        output++;
+                    } while (i < 5);
+                    state[2] = valuesBase[D_8006C57C];
+                    if (D_8006C57C == 0 && item != 0xFE) {
+                        int cost = D_80066EAC[item * 2];
+                        if (D_8006C71C >= cost) {
+                            D_8006C71C -= cost;
+                            D_80066EAE[item * 2] = 1;
+                        } else {
+                            state[2] = fallback;
+                        }
+                    }
                 }
-            } else {
-                state[2] = low;
+                    if (state[2] >= 0x80) {
+                        state[2] += 0x80;
+                        D_8006C7A4 = 0;
+                    }
+                    cursor += 8;
+                    break;
+                default:
+                    cursor += 2;
+                    break;
             }
-            cursor += 3;
-            break;
-        case 0x25:
-            {
-                register int itemByte __asm__("$2") = cursor[6];
-                register int item __asm__("$6") = itemByte - 1;
-                register int fallback __asm__("$3") = cursor[7] - 1;
-                register int i __asm__("$4") = 0;
-                register int* output __asm__("$5") = valuesBase;
-                register unsigned char* entry __asm__("$2");
-                do {
-                    entry = cursor + i;
-                    *output = entry[1] - 1;
-                    i++;
-                    output++;
-                } while (i < 5);
-            state[2] = valuesBase[D_8006C57C];
-            if (D_8006C57C == 0 && item != 0xFE) {
-                int cost = D_80066EAC[item * 2];
-                if (D_8006C71C >= cost) {
-                    D_8006C71C -= cost;
-                    D_80066EAE[item * 2] = 1;
-                } else {
-                    state[2] = fallback;
-                }
-            }
-            }
-            if (state[2] >= 0x80) {
-                state[2] += 0x80;
-                D_8006C7A4 = 0;
-            }
-            cursor += 8;
-            break;
-        default:
-            cursor += 2;
-            break;
-        }
         } while (cursor < end);
     }
 
@@ -1899,24 +1954,24 @@ void func_80037768(void* arg) {
     cursor++;
     while (cursor < end) {
         switch (*cursor) {
-        case 0x2B:
-            state[5] = 2;
-            cursor++;
-            break;
-        case 0x26:
-        case 0x2A:
-        case 0x3B:
-            cursor++;
-            break;
-        case 0x23:
-            cursor += 3;
-            break;
-        case 0x25:
-            cursor += 8;
-            break;
-        default:
-            cursor += 2;
-            break;
+            case 0x2B:
+                state[5] = 2;
+                cursor++;
+                break;
+            case 0x26:
+            case 0x2A:
+            case 0x3B:
+                cursor++;
+                break;
+            case 0x23:
+                cursor += 3;
+                break;
+            case 0x25:
+                cursor += 8;
+                break;
+            default:
+                cursor += 2;
+                break;
         }
     }
     func_8003B7B4(state + 2, 1, &D_8006C7F8);
@@ -1937,20 +1992,23 @@ int func_80037A60(Moby* moby, void* state, int widthArg, int decrementArg, int m
         old = *(int*)state;
         velocity = old;
         *(int*)state = old - step;
-        if (*(int*)state < minimum) *(int*)state = minimum;
+        if (*(int*)state < minimum)
+            *(int*)state = minimum;
     } else if (width == 2) {
         int old;
         old = *(short*)state;
         velocity = old;
         *(short*)state = old - step;
-        if (*(short*)state < minimum) *(short*)state = minimum;
+        if (*(short*)state < minimum)
+            *(short*)state = minimum;
     } else {
         register int byteOld asm("$2");
         byteOld = *(unsigned char*)state;
-        __asm__("" : "=r"(byteOld) : "0"(byteOld));
+        MATCHING_KEEP(byteOld);
         velocity = byteOld & 0xFF;
         *(unsigned char*)state = byteOld - step;
-        if (*(unsigned char*)state < minimum) *(unsigned char*)state = minimum;
+        if (*(unsigned char*)state < minimum)
+            *(unsigned char*)state = minimum;
     }
     velocity = (velocity * D_8006C648) >> 1;
     if (velocity <= 0 && moby->position.z - moby->distanceToGround + velocity < ground) {
@@ -1992,7 +2050,8 @@ int func_80037BBC(Moby* moby, int flags) {
         return 0;
     }
     if (tag[5] == 2) {
-        if (distance >= 0xBB4) return 0;
+        if (distance >= 0xBB4)
+            return 0;
     } else if (distance >= 0xA00) {
         return 0;
     }
@@ -2002,16 +2061,18 @@ int func_80037BBC(Moby* moby, int flags) {
     enabled = ((flags & 1) != 0 || *(int*)(&D_80070328 + 0xB8) == 0);
     {
         register int retailUpper __asm__("$5");
-        __asm__ volatile (
-            "lh $2,56(%1)\n"
-            "lw $3,20(%1)\n"
-            "nop\n"
-            "subu %0,$3,$2"
-            : "=r"(retailUpper) : "r"(moby) : "$2", "$3");
+        __asm__ volatile("lh $2,56(%1)\n"
+                         "lw $3,20(%1)\n"
+                         "nop\n"
+                         "subu %0,$3,$2"
+                         : "=r"(retailUpper)
+                         : "r"(moby)
+                         : "$2", "$3");
         upper = retailUpper;
         lower = upper;
     }
-    if (flags & 8) lower -= 0x320;
+    if (flags & 8)
+        lower -= 0x320;
     if (*(int*)(&D_80070328 + 0x50) == 11) {
         upper += 0x708;
         lower -= 0x190;
@@ -2028,32 +2089,45 @@ int func_80037BBC(Moby* moby, int flags) {
         nearFacing = 0x20;
         farFacing = 0x48;
     }
-    if (!enabled) return 0;
-    if (upper < *(int*)(&D_80070328 + 8) || *(int*)(&D_80070328 + 8) < lower) return 0;
+    if (!enabled)
+        return 0;
+    if (upper < *(int*)(&D_80070328 + 8) || *(int*)(&D_80070328 + 8) < lower)
+        return 0;
     if (!(flags & 2)) {
         angle = func_8004E880(*(int*)&D_80070328 - moby->position.x,
-                             *(int*)(&D_80070328 + 4) - moby->position.y, 0);
-        if (func_8004F264(moby->angle.yaw, angle) > nearFacing) return 0;
+                              *(int*)(&D_80070328 + 4) - moby->position.y, 0);
+        if (func_8004F264(moby->angle.yaw, angle) > nearFacing)
+            return 0;
     }
     angle = func_8004E880(moby->position.x - *(int*)&D_80070328,
-                         moby->position.y - *(int*)(&D_80070328 + 4), 0);
-    if (func_8004F264(*(unsigned char*)(&D_80070328 + 0xE), angle) > farFacing) return 0;
-    if (moby->drawn == 0) return 0;
-    if (*(int*)(&D_80070328 + 0x50) == 0x13) return 0;
-    if ((D_8006C74C != 0 || D_8006C64C != 0) && tag[5] != 2) return 0;
-    if (D_8006E344 != 0) return 0;
-    if (!(flags & 4) && *(int*)(&D_80070328 + 0x50) == 4) return 0;
-    if (*(int*)(&D_80070328 + 0x50) == 9) return 0;
-    if (D_8006C640 < 10 && tag[5] != 0 && D_8006C508 != 0 && tag[2] != 0) tag[5] = 0;
+                          moby->position.y - *(int*)(&D_80070328 + 4), 0);
+    if (func_8004F264(*(unsigned char*)(&D_80070328 + 0xE), angle) > farFacing)
+        return 0;
+    if (moby->drawn == 0)
+        return 0;
+    if (*(int*)(&D_80070328 + 0x50) == 0x13)
+        return 0;
+    if ((D_8006C74C != 0 || D_8006C64C != 0) && tag[5] != 2)
+        return 0;
+    if (D_8006E344 != 0)
+        return 0;
+    if (!(flags & 4) && *(int*)(&D_80070328 + 0x50) == 4)
+        return 0;
+    if (*(int*)(&D_80070328 + 0x50) == 9)
+        return 0;
+    if (D_8006C640 < 10 && tag[5] != 0 && D_8006C508 != 0 && tag[2] != 0)
+        tag[5] = 0;
     if ((D_8006E53C & 0x10) != 0 || tag[5] != 0) {
-        if (tag[5] == 2) *(int*)(&D_80070328 + 0x20C) |= 0x10000002;
+        if (tag[5] == 2)
+            *(int*)(&D_80070328 + 0x20C) |= 0x10000002;
         tag[5] = 0;
         tag += 5;
         func_8003B7B4(tag, 1, &D_8006D088);
         func_8003B7B4(tag, 1, &D_8006C7F8);
         return 1;
     }
-    if (previousPrompt == 0) func_80037F50(moby);
+    if (previousPrompt == 0)
+        func_80037F50(moby);
     tag[7] = 2;
     return 0;
 }
@@ -2083,169 +2157,138 @@ void func_80037F50(Moby* arg0) {
  * signed integer world units; arg4 is a behavior bitfield evaluated once per
  * caller invocation. Confirmed by an exact 189/189 instruction comparison;
  * falsify with any word mismatch in this span or a different retail revision. */
-int func_80038000(Moby *arg0, Vector3D *arg1, int arg2, int arg3, int arg4)
-{
-  register int vertical asm("$18");
-  register int result asm("$17");
-  register int collision asm("$20");
-  int difference;
-  int angle;
-  result = 0;
-  if (arg4 & 1)
-  {
-    arg1->z += 0x12C + arg2;
-  }
-  if ((arg3 != 0) && (!(arg4 & 0x4000)))
-  {
-    collision = func_8001BA30(arg1, arg3, 0, 0, 0, arg0);
-  }
-  else
-  {
-    collision = 0;
-  }
-  if (collision != 0)
-  {
-    result |= 0x20;
-    if (!(arg4 & 2))
-    {
-      goto store_collision;
+int func_80038000(Moby* arg0, Vector3D* arg1, int arg2, int arg3, int arg4) {
+    register int vertical asm("$18");
+    register int result asm("$17");
+    register int collision asm("$20");
+    int difference;
+    int angle;
+    result = 0;
+    if (arg4 & 1) {
+        arg1->z += 0x12C + arg2;
     }
-    func_8004F178(arg1, &D_8007190C);
-  }
-  if ((arg2 != 0) && (func_80019194(arg1, arg2) != 0))
-  {
-    result |= 0x10;
-    if (!(arg4 & 0x20))
-    {
-      goto done;
+    if ((arg3 != 0) && (!(arg4 & 0x4000))) {
+        collision = func_8001BA30(arg1, arg3, 0, 0, 0, arg0);
+    } else {
+        collision = 0;
     }
-    func_8004F178(arg1, &D_8007190C);
-  }
-  if ((arg4 & 0x400) && (func_80018368(&arg0->position, arg1) != 0))
-  {
-    result |= 0x10;
-    goto done;
-  }
-  if (arg4 & 1)
-  {
-    arg1->z -= 0x12C + arg2;
-  }
-  arg1->z += 0x400;
-  vertical = func_8001A358(arg1, 0x2000);
-  if (arg4 & 0x1000)
-  {
-    arg1->z -= 0x400;
-  }
-  if (arg4 & 0x10)
-  {
-    int currentZ = arg0->position.z;
-    int combined = vertical + arg0->distanceToGround;
-    difference = combined - currentZ;
-    if (difference < 0)
-    {
-      goto negative_height;
+    if (collision != 0) {
+        result |= 0x20;
+        if (!(arg4 & 2)) {
+            goto store_collision;
+        }
+        func_8004F178(arg1, &D_8007190C);
     }
-    if (difference >= 0x191)
-    {
-      goto height_fail;
+    if ((arg2 != 0) && (func_80019194(arg1, arg2) != 0)) {
+        result |= 0x10;
+        if (!(arg4 & 0x20)) {
+            goto done;
+        }
+        func_8004F178(arg1, &D_8007190C);
     }
-    goto height_ok;
+    if ((arg4 & 0x400) && (func_80018368(&arg0->position, arg1) != 0)) {
+        result |= 0x10;
+        goto done;
+    }
+    if (arg4 & 1) {
+        arg1->z -= 0x12C + arg2;
+    }
+    arg1->z += 0x400;
+    vertical = func_8001A358(arg1, 0x2000);
+    if (arg4 & 0x1000) {
+        arg1->z -= 0x400;
+    }
+    if (arg4 & 0x10) {
+        int currentZ = arg0->position.z;
+        int combined = vertical + arg0->distanceToGround;
+        difference = combined - currentZ;
+        if (difference < 0) {
+            goto negative_height;
+        }
+        if (difference >= 0x191) {
+            goto height_fail;
+        }
+        goto height_ok;
     negative_height:
-    difference = currentZ - combined;
+        difference = currentZ - combined;
 
-    if (difference < 0x191)
-    {
-      goto height_ok;
-    }
+    if (difference < 0x191) {
+            goto height_ok;
+        }
     height_fail:
-    asm volatile("" : "=r"(result) : "0"(result));
+        asm volatile("" : "=r"(result) : "0"(result));
 
     result |= 0x40;
-    goto done;
-  }
-  height_ok:
-  if (arg4 & 0x200)
-  {
-    difference = (vertical + arg0->distanceToGround) - arg0->position.z;
-    if (difference < 0xC9)
-    {
-      goto angle_check;
+        goto done;
     }
-    asm volatile("" : "=r"(result) : "0"(result));
-    result |= 0x40;
-    goto done;
-  }
+height_ok:
+    if (arg4 & 0x200) {
+        difference = (vertical + arg0->distanceToGround) - arg0->position.z;
+        if (difference < 0xC9) {
+            goto angle_check;
+        }
+        asm volatile("" : "=r"(result) : "0"(result));
+        result |= 0x40;
+        goto done;
+    }
 
-  angle_check:
-  if (arg4 & 0x40)
-  {
-    register int magnitude asm("$2");
-    angle = func_8004E880(func_8004EDE8(&D_80071918, 0), D_80071920, 0);
-    if (angle >= 0x81)
-    {
-      angle -= 0x100;
+angle_check:
+    if (arg4 & 0x40) {
+        register int magnitude asm("$2");
+        angle = func_8004E880(func_8004EDE8(&D_80071918, 0), D_80071920, 0);
+        if (angle >= 0x81) {
+            angle -= 0x100;
+        }
+        magnitude = angle;
+        if (angle < 0) {
+            magnitude = -magnitude;
+        }
+        if (magnitude < 0x17) {
+            result |= 0x40;
+            goto done;
+        }
     }
-    magnitude = angle;
-    if (angle < 0)
-    {
-      magnitude = -magnitude;
-    }
-    if (magnitude < 0x17)
-    {
-      result |= 0x40;
-      goto done;
-    }
-  }
 
-  arg0->position.x = arg1->x;
-  arg0->position.y = arg1->y;
-  if (arg4 & 4)
-  {
-    int oldZ = arg0->position.z;
-    register int temp_v0 asm("$2");
-    temp_v0 = vertical + arg0->distanceToGround;
-    vertical = temp_v0 - oldZ;
-    temp_v0 = vertical < (-0xFA);
-    if (temp_v0)
-    {
-      vertical = -0xFA;
-      asm volatile("" : "=r"(vertical) : "0"(vertical));
-      temp_v0 = vertical < 0xFB;
-    }
-    else
-    {
-      temp_v0 = vertical < 0xFB;
-    }
-    if (temp_v0)
-    {
-      temp_v0 = oldZ + vertical;
-      goto assign_z;
-    }
-    vertical = 0xFA;
-    asm volatile("" : "=r"(vertical) : "0"(vertical));
-    temp_v0 = oldZ + vertical;
+    arg0->position.x = arg1->x;
+    arg0->position.y = arg1->y;
+    if (arg4 & 4) {
+        int oldZ = arg0->position.z;
+        register int temp_v0 asm("$2");
+        temp_v0 = vertical + arg0->distanceToGround;
+        vertical = temp_v0 - oldZ;
+        temp_v0 = vertical < (-0xFA);
+        if (temp_v0) {
+            vertical = -0xFA;
+            asm volatile("" : "=r"(vertical) : "0"(vertical));
+            temp_v0 = vertical < 0xFB;
+        } else {
+            temp_v0 = vertical < 0xFB;
+        }
+        if (temp_v0) {
+            temp_v0 = oldZ + vertical;
+            goto assign_z;
+        }
+        vertical = 0xFA;
+        asm volatile("" : "=r"(vertical) : "0"(vertical));
+        temp_v0 = oldZ + vertical;
     assign_z:
-    arg0->position.z = temp_v0;
+        arg0->position.z = temp_v0;
 
-  }
-  else
-    if (arg4 & 0x1000)
-  {
-    arg0->position.z = arg1->z;
-  }
-  asm volatile("" : "=r"(arg4) : "0"(arg4));
-  func_80056270(arg0);
-  func_8005629C(arg0);
-  func_80055D24(arg0, 2);
-  done:
-  if (collision != 0)
-  {
+    } else if (arg4 & 0x1000) {
+        arg0->position.z = arg1->z;
+    }
+    asm volatile("" : "=r"(arg4) : "0"(arg4));
+    func_80056270(arg0);
+    func_8005629C(arg0);
+    func_80055D24(arg0, 2);
+done:
+    if (collision != 0) {
     store_collision:
-    D_80071930 = collision;
-    asm volatile("" : : : "memory");
-  }
+        D_80071930 = collision;
+        asm volatile("" : : : "memory");
+    }
 
-  return result;
+    return result;
 }
 
 /* Retail source: USA Rev 0 PSX.EXE 0x800382F4..0x800387AC
@@ -2260,290 +2303,275 @@ int func_80038000(Moby *arg0, Vector3D *arg1, int arg2, int arg3, int arg4)
  * directed-edge positive/nonpositive cross products; projected endpoints inside and
  * outside normal or reversed bounds; clamp distances below/at 0x12D; first/last-edge
  * wrap states; and multiple shapes. */
-typedef struct Edge382 { int unk0, unk4, unk8, unkC, unk10, unk14, unk18; } Edge382;
-typedef struct Shape382 { unsigned char unk0, unk1; short unk2; int centerX, centerY; Edge382 edges[1]; } Shape382;
+typedef struct Edge382 {
+    int unk0, unk4, unk8, unkC, unk10, unk14, unk18;
+} Edge382;
+typedef struct Shape382 {
+    unsigned char unk0, unk1;
+    short unk2;
+    int centerX, centerY;
+    Edge382 edges[1];
+} Shape382;
 extern int func_8004F334(Vector3D*, Vector3D*);
 
-void *func_800382F4(Vector3D *arg0, void **arg1, int arg2)
-{
-  struct
-  {
-    int primary[2];
-    int projected[2];
-    int closest[2];
-    int count;
-    int pad;
-    int outer;
-    int reserved[6];
-  } frame;
-  int temp_a0_2;
-  int temp_a0_3;
-  int temp_a0_4;
-  int temp_a0_5;
-  int temp_a0_6;
-  int temp_a1;
-  int temp_a1_2;
-  int temp_a1_3;
-  int new_var;
-  int temp_a1_4;
-  register int temp_t0 asm("$8");
-  register int temp_t1 asm("$9");
-  int temp_v0;
-  int temp_v1;
-  int temp_v1_2;
-  int temp_v1_3;
-  int temp_v1_4;
-  int temp_v1_5;
-  int temp_v1_6;
-  int temp_v1_7;
-  register int var_a0 asm("$4");
-  register int var_a1 asm("$5");
-  int var_a2;
-  register int var_a2_2 asm("$6");
-  int var_a3;
-  register int var_s1 asm("$17");
-  register int var_s2 asm("$18");
-  register int var_s5 asm("$21");
-  register int var_s6 asm("$22");
-  int var_v0_2;
-  int var_v0_3;
-  unsigned char *var_fp;
-  Edge382 *temp_a0;
-  Edge382 *temp_s0;
-  register Shape382 *temp_s4 asm("$20");
-  register Vector3D *point asm("$19") = arg0;
-  register void *var_s7 asm("$23") = (  {
-    void *zero;
-    asm("move %0,$0" : "=r"(zero) : "r"(point));
-    zero;
-  }
-);
-  register void *var_v0 asm("$2");
-  frame.count = arg2;
-  if ((arg2 != 0) && ((frame.outer = 0, ((int) var_s7) < arg2)))
-  {
-    var_fp = (unsigned char *) arg1;
+void* func_800382F4(Vector3D* arg0, void** arg1, int arg2) {
+    struct {
+        int primary[2];
+        int projected[2];
+        int closest[2];
+        int count;
+        int pad;
+        int outer;
+        int reserved[6];
+    } frame;
+    int temp_a0_2;
+    int temp_a0_3;
+    int temp_a0_4;
+    int temp_a0_5;
+    int temp_a0_6;
+    int temp_a1;
+    int temp_a1_2;
+    int temp_a1_3;
+    int new_var;
+    int temp_a1_4;
+    register int temp_t0 asm("$8");
+    register int temp_t1 asm("$9");
+    int temp_v0;
+    int temp_v1;
+    int temp_v1_2;
+    int temp_v1_3;
+    int temp_v1_4;
+    int temp_v1_5;
+    int temp_v1_6;
+    int temp_v1_7;
+    register int var_a0 asm("$4");
+    register int var_a1 asm("$5");
+    int var_a2;
+    register int var_a2_2 asm("$6");
+    int var_a3;
+    register int var_s1 asm("$17");
+    register int var_s2 asm("$18");
+    register int var_s5 asm("$21");
+    register int var_s6 asm("$22");
+    int var_v0_2;
+    int var_v0_3;
+    unsigned char* var_fp;
+    Edge382* temp_a0;
+    Edge382* temp_s0;
+    register Shape382* temp_s4 asm("$20");
+    register Vector3D* point asm("$19") = arg0;
+    register void* var_s7 asm("$23") = ({
+        void* zero;
+        asm("move %0,$0" : "=r"(zero) : "r"(point));
+        zero;
+    });
+    register void* var_v0 asm("$2");
+    frame.count = arg2;
+    if ((arg2 != 0) && ((frame.outer = 0, ((int)var_s7) < arg2))) {
+        var_fp = (unsigned char*)arg1;
     loop_3:
-    temp_s4 = *((Shape382 **) var_fp);
+        temp_s4 = *((Shape382**)var_fp);
 
-    var_s6 = 0;
-    if (temp_s4->unk0 == 0)
-    {
-      if (func_8004F334(point, (Vector3D *) (((char *) temp_s4) + 4)) < temp_s4->unk2)
-      {
-        var_s1 = 0;
-        new_var = (int) temp_s4->unk1;
- do { if (new_var > 0) { var_a2 = 0xC; loop_7: temp_a0 = (Edge382 *) (((char *) temp_s4) + var_a2); temp_a1 = point->x - temp_a0->unk8; frame.primary[0] = temp_a1; temp_v1 = point->y - temp_a0->unkC; frame.primary[1] = temp_v1; if (((temp_a0->unk0 * temp_v1) - (temp_a0->unk4 * temp_a1)) >= 0) { new_var = temp_s4->unk1; var_s1 += 1; var_a2 += 0x1C; if (var_s1 < new_var) { goto loop_7; } } } } while (0);
-        if ((var_s1 == temp_s4->unk1) && ((var_s5 = 0x98967F, var_s1 = 0, temp_s4->unk1 != 0)))
-        {
-          var_s2 = 0xC;
-          do
-          {
-            temp_s0 = (Edge382 *) (((char *) temp_s4) + var_s2);
-            temp_a1_2 = temp_s0->unk10;
-            temp_a0_2 = point->x;
-            temp_v1_2 = ((int) (temp_s0->unk18 + ((temp_a1_2 * temp_a0_2) + (temp_s0->unk14 * point->y)))) >> 0xA;
-            frame.primary[0] = temp_a0_2 - (((int) (temp_v1_2 * temp_a1_2)) >> 0xA);
-            frame.primary[1] = point->y - (((int) (temp_v1_2 * temp_s0->unk14)) >> 0xA);
-            temp_v0 = func_8004F334((Vector3D *) (&frame.primary[0]), point);
-            if (temp_v0 < var_s5)
-            {
-              var_s7 = temp_s0;
-              var_s5 = temp_v0;
+        var_s6 = 0;
+        if (temp_s4->unk0 == 0) {
+            if (func_8004F334(point, (Vector3D*)(((char*)temp_s4) + 4)) < temp_s4->unk2) {
+                var_s1 = 0;
+                new_var = (int)temp_s4->unk1;
+                do {
+                    if (new_var > 0) {
+                        var_a2 = 0xC;
+                    loop_7:
+                        temp_a0 = (Edge382*)(((char*)temp_s4) + var_a2);
+                        temp_a1 = point->x - temp_a0->unk8;
+                        frame.primary[0] = temp_a1;
+                        temp_v1 = point->y - temp_a0->unkC;
+                        frame.primary[1] = temp_v1;
+                        if (((temp_a0->unk0 * temp_v1) - (temp_a0->unk4 * temp_a1)) >= 0) {
+                            new_var = temp_s4->unk1;
+                            var_s1 += 1;
+                            var_a2 += 0x1C;
+                            if (var_s1 < new_var) {
+                                goto loop_7;
+                            }
+                        }
+                    }
+                } while (0);
+                if ((var_s1 == temp_s4->unk1) &&
+                    ((var_s5 = 0x98967F, var_s1 = 0, temp_s4->unk1 != 0))) {
+                    var_s2 = 0xC;
+                    do {
+                        temp_s0 = (Edge382*)(((char*)temp_s4) + var_s2);
+                        temp_a1_2 = temp_s0->unk10;
+                        temp_a0_2 = point->x;
+                        temp_v1_2 = ((int)(temp_s0->unk18 + ((temp_a1_2 * temp_a0_2) +
+                                                             (temp_s0->unk14 * point->y)))) >>
+                                    0xA;
+                        frame.primary[0] = temp_a0_2 - (((int)(temp_v1_2 * temp_a1_2)) >> 0xA);
+                        frame.primary[1] = point->y - (((int)(temp_v1_2 * temp_s0->unk14)) >> 0xA);
+                        temp_v0 = func_8004F334((Vector3D*)(&frame.primary[0]), point);
+                        if (temp_v0 < var_s5) {
+                            var_s7 = temp_s0;
+                            var_s5 = temp_v0;
+                        }
+                        new_var = temp_s4->unk1;
+                        var_s1 += 1;
+                        var_s2 += 0x1C;
+                    } while (var_s1 < new_var);
+                    var_fp += 4;
+                } else {
+                    goto block_53;
+                }
+            } else {
+                goto block_53;
             }
-            new_var = temp_s4->unk1;
-            var_s1 += 1;
-            var_s2 += 0x1C;
-          }
-          while (var_s1 < new_var);
-          var_fp += 4;
+            goto block_54;
         }
-        else
-        {
-          goto block_53;
-        }
-      }
-      else
-      {
-        goto block_53;
-      }
-      goto block_54;
-    }
-    var_s5 = 0;
-    new_var = (int) temp_s4->unk1;
-    var_s1 = 0;
-    do {
-    if (new_var > 0)
-    {
-      var_s2 = 0xC;
-      loop_19:
-      temp_s0 = (Edge382 *) (((char *) temp_s4) + var_s2);
-
-      temp_a0_3 = point->x - temp_s0->unk8;
-      frame.primary[0] = temp_a0_3;
-      temp_v1_3 = point->y - temp_s0->unkC;
-      frame.primary[1] = temp_v1_3;
-      if (((temp_s0->unk0 * temp_v1_3) - (temp_s0->unk4 * temp_a0_3)) > 0)
-      {
-        temp_a0_4 = temp_s0->unk10;
-        temp_a1_3 = point->x;
-        temp_v1_4 = ((int) (temp_s0->unk18 + ((temp_a0_4 * temp_a1_3) + (temp_s0->unk14 * point->y)))) >> 0xA;
-        temp_a1_4 = temp_a1_3 - (((int) (temp_v1_4 * temp_a0_4)) >> 0xA);
-        frame.projected[0] = temp_a1_4;
-        temp_v1_5 = point->y - (((int) (temp_v1_4 * temp_s0->unk14)) >> 0xA);
-        frame.projected[1] = temp_v1_5;
-        temp_a0_5 = temp_s0->unk8;
-        {
-          register int xcmp __asm__("$2");
-          __asm__ volatile (
-              "slt %0,%1,%2\n\t"
-              "beqz %0,2f\n\t"
-              "slt %0,%2,%1\n\t"
-              "lw %0,0(%3)\n\t"
-              "nop\n\t"
-              "addu %0,%1,%0\n\t"
-              "slt %0,%0,%2\n\t"
-              "bnez %0,1f\n\t"
-              "slt %0,%2,%1\n"
-              "2:"
-              : "=&r"(xcmp)
-              : "r"(temp_a0_5), "r"(temp_a1_4), "r"(temp_s0));
-          if (xcmp)
-          {
-            if (temp_a1_4 < (temp_a0_5 + temp_s0->unk0))
-            {
-              goto block_29;
-            }
-          }
-        }
-        temp_a0_6 = temp_s0->unkC;
-        if (temp_a0_6 < temp_v1_5)
-        {
-          if ((temp_a0_6 + temp_s0->unk4) < temp_v1_5)
-          {
-            goto block_29;
-          }
-        }
-        if (!(temp_v1_5 < temp_a0_6))
-        {
-          return temp_s0;
-        }
-        if (!(temp_v1_5 < (temp_a0_6 + temp_s0->unk4)))
-        {
-          return temp_s0;
-        }
-        block_29:
-        __asm__ volatile (
-            "lw %0,8(%3)\n\t"
-            "1:\n\t"
-            "lw $2,0(%3)\n\t"
-            "move %1,%0\n\t"
-            "addu %2,%0,$2"
-            : "=r"(var_a0), "=r"(var_a3), "=r"(temp_v1_6)
-            : "r"(temp_s0)
-            : "$2");
-        var_a1 = var_a0;
-        if (temp_v1_6 < var_a3)
-        {
-          var_a3 = temp_v1_6;
-        }
-        if (var_a1 < temp_v1_6)
-        {
-          var_a1 = temp_v1_6;
-        }
-        var_a0 = temp_s0->unkC;
-        var_a2_2 = var_a0;
-        temp_v1_7 = var_a0 + temp_s0->unk4;
-        if (temp_v1_7 < var_a2_2)
-        {
-          var_a2_2 = temp_v1_7;
-        }
-        if (var_a0 < temp_v1_7)
-        {
-          var_a0 = temp_v1_7;
-        }
-        frame.closest[0] = frame.projected[0];
-        frame.closest[1] = frame.projected[1];
-        if (var_a1 < frame.projected[0])
-        {
-          frame.closest[0] = var_a1;
-        }
-        if (var_a0 < frame.projected[1])
-        {
- do { frame.closest[1] = var_a0; } while (0);
-        }
-        if (frame.closest[0] < var_a3)
-        {
-          frame.closest[0] = var_a3;
-        }
-        if (frame.closest[1] < var_a2_2)
-        {
-          frame.closest[1] = var_a2_2;
-        }
-        if (func_8004F334((Vector3D *) (&frame.closest[0]), point) < 0x12D)
-        {
-          var_s7 = temp_s0;
-          if ((var_s1 != (temp_s4->unk1 - 1)) || ((var_v0 = var_s7, var_s6 == 0)))
-          {
-            var_v0 = var_s7;
-            if (var_s5 == 0)
-            {
-              var_s5 = 1;
-              if (var_s1 == 0)
-              {
-                var_s6 = 1;
-              }
-              goto block_52;
-            }
-          }
-        }
-        else
-        {
-          goto block_52;
-        }
-      }
-      else
-      {
         var_s5 = 0;
-        block_52:
-        new_var = temp_s4->unk1;
+        new_var = (int)temp_s4->unk1;
+        var_s1 = 0;
+        do {
+            if (new_var > 0) {
+                var_s2 = 0xC;
+            loop_19:
+                temp_s0 = (Edge382*)(((char*)temp_s4) + var_s2);
 
-        var_s1 += 1;
-        var_s2 += 0x1C;
-        if (var_s1 >= new_var)
-        {
-          goto block_53;
-        }
-        goto loop_19;
-      }
-    }
-    else
-    {
-      block_53:
-      var_fp += 4;
+                temp_a0_3 = point->x - temp_s0->unk8;
+                frame.primary[0] = temp_a0_3;
+                temp_v1_3 = point->y - temp_s0->unkC;
+                frame.primary[1] = temp_v1_3;
+                if (((temp_s0->unk0 * temp_v1_3) - (temp_s0->unk4 * temp_a0_3)) > 0) {
+                    temp_a0_4 = temp_s0->unk10;
+                    temp_a1_3 = point->x;
+                    temp_v1_4 = ((int)(temp_s0->unk18 +
+                                       ((temp_a0_4 * temp_a1_3) + (temp_s0->unk14 * point->y)))) >>
+                                0xA;
+                    temp_a1_4 = temp_a1_3 - (((int)(temp_v1_4 * temp_a0_4)) >> 0xA);
+                    frame.projected[0] = temp_a1_4;
+                    temp_v1_5 = point->y - (((int)(temp_v1_4 * temp_s0->unk14)) >> 0xA);
+                    frame.projected[1] = temp_v1_5;
+                    temp_a0_5 = temp_s0->unk8;
+                    {
+                        register int xcmp __asm__("$2");
+                        __asm__ volatile("slt %0,%1,%2\n\t"
+                                         "beqz %0,2f\n\t"
+                                         "slt %0,%2,%1\n\t"
+                                         "lw %0,0(%3)\n\t"
+                                         "nop\n\t"
+                                         "addu %0,%1,%0\n\t"
+                                         "slt %0,%0,%2\n\t"
+                                         "bnez %0,1f\n\t"
+                                         "slt %0,%2,%1\n"
+                                         "2:"
+                                         : "=&r"(xcmp)
+                                         : "r"(temp_a0_5), "r"(temp_a1_4), "r"(temp_s0));
+                        if (xcmp) {
+                            if (temp_a1_4 < (temp_a0_5 + temp_s0->unk0)) {
+                                goto block_29;
+                            }
+                        }
+                    }
+                    temp_a0_6 = temp_s0->unkC;
+                    if (temp_a0_6 < temp_v1_5) {
+                        if ((temp_a0_6 + temp_s0->unk4) < temp_v1_5) {
+                            goto block_29;
+                        }
+                    }
+                    if (!(temp_v1_5 < temp_a0_6)) {
+                        return temp_s0;
+                    }
+                    if (!(temp_v1_5 < (temp_a0_6 + temp_s0->unk4))) {
+                        return temp_s0;
+                    }
+                block_29:
+                    __asm__ volatile("lw %0,8(%3)\n\t"
+                                     "1:\n\t"
+                                     "lw $2,0(%3)\n\t"
+                                     "move %1,%0\n\t"
+                                     "addu %2,%0,$2"
+                                     : "=r"(var_a0), "=r"(var_a3), "=r"(temp_v1_6)
+                                     : "r"(temp_s0)
+                                     : "$2");
+                    var_a1 = var_a0;
+                    if (temp_v1_6 < var_a3) {
+                        var_a3 = temp_v1_6;
+                    }
+                    if (var_a1 < temp_v1_6) {
+                        var_a1 = temp_v1_6;
+                    }
+                    var_a0 = temp_s0->unkC;
+                    var_a2_2 = var_a0;
+                    temp_v1_7 = var_a0 + temp_s0->unk4;
+                    if (temp_v1_7 < var_a2_2) {
+                        var_a2_2 = temp_v1_7;
+                    }
+                    if (var_a0 < temp_v1_7) {
+                        var_a0 = temp_v1_7;
+                    }
+                    frame.closest[0] = frame.projected[0];
+                    frame.closest[1] = frame.projected[1];
+                    if (var_a1 < frame.projected[0]) {
+                        frame.closest[0] = var_a1;
+                    }
+                    if (var_a0 < frame.projected[1]) {
+                        do {
+                            frame.closest[1] = var_a0;
+                        } while (0);
+                    }
+                    if (frame.closest[0] < var_a3) {
+                        frame.closest[0] = var_a3;
+                    }
+                    if (frame.closest[1] < var_a2_2) {
+                        frame.closest[1] = var_a2_2;
+                    }
+                    if (func_8004F334((Vector3D*)(&frame.closest[0]), point) < 0x12D) {
+                        var_s7 = temp_s0;
+                        if ((var_s1 != (temp_s4->unk1 - 1)) || ((var_v0 = var_s7, var_s6 == 0))) {
+                            var_v0 = var_s7;
+                            if (var_s5 == 0) {
+                                var_s5 = 1;
+                                if (var_s1 == 0) {
+                                    var_s6 = 1;
+                                }
+                                goto block_52;
+                            }
+                        }
+                    } else {
+                        goto block_52;
+                    }
+                } else {
+                    var_s5 = 0;
+                block_52:
+                    new_var = temp_s4->unk1;
 
-      block_54:
-      temp_t0 = frame.outer;
+                    var_s1 += 1;
+                    var_s2 += 0x1C;
+                    if (var_s1 >= new_var) {
+                        goto block_53;
+                    }
+                    goto loop_19;
+                }
+            } else {
+            block_53:
+                var_fp += 4;
 
-      temp_t1 = frame.count;
-      temp_t0 += 1;
-      var_v0 = (void *) (temp_t0 < temp_t1);
-      frame.outer = temp_t0;
-      if (var_v0)
-      {
-        goto loop_3;
-      }
-      goto block_55;
-    }
-    } while (0);
-  }
-  else
-  {
+            block_54:
+                temp_t0 = frame.outer;
+
+                temp_t1 = frame.count;
+                temp_t0 += 1;
+                var_v0 = (void*)(temp_t0 < temp_t1);
+                frame.outer = temp_t0;
+                if (var_v0) {
+                    goto loop_3;
+                }
+                goto block_55;
+            }
+        } while (0);
+    } else {
     block_55:
-    var_v0 = var_s7;
-
-  }
-  return var_v0;
+        var_v0 = var_s7;
+    }
+    return var_v0;
 }
 
 /* Retail source: USA Rev 0 PSX.EXE 0x800387AC..0x80038B44 (230 instructions).
@@ -2555,19 +2583,19 @@ void *func_800382F4(Vector3D *arg0, void **arg1, int arg2)
  * Falsify with any mismatch among the 230 opcodes, seven function-relative relocations,
  * or the linked executable hash above; test vectors include inside-edge, endpoint-wrap,
  * rejected half-plane, optional angle output, and distance-threshold paths. */
-int func_800387AC(unsigned char* polygon, int* point, int* projected,
-                  int* projectedAngle, volatile int referenceAngle, volatile int maxDistance) {
+int func_800387AC(unsigned char* polygon, int* point, int* projected, int* projectedAngle,
+                  volatile int referenceAngle, volatile int maxDistance) {
     register unsigned char* shape __asm__("$21") = polygon;
     register int* source __asm__("$18") = point;
     register int* output __asm__("$19") = projected;
     register int firstEndpoint = ({
         int zero;
-        __asm__ ("move %0,$0" : "=r"(zero) : "r"(shape), "r"(source), "r"(output));
+        __asm__("move %0,$0" : "=r"(zero) : "r"(shape), "r"(source), "r"(output));
         zero;
     });
     register int previousEndpoint __asm__("$23") = ({
         int zero;
-        __asm__ ("move %0,$0" : "=r"(zero) : "r"(firstEndpoint));
+        __asm__("move %0,$0" : "=r"(zero) : "r"(firstEndpoint));
         zero;
     });
     register int index __asm__("$20");
@@ -2586,7 +2614,8 @@ int func_800387AC(unsigned char* polygon, int* point, int* projected,
     local.result = 0;
 
     index = 0;
-    if (index >= shape[1]) goto done_387ac;
+    if (index >= shape[1])
+        goto done_387ac;
     offset = 12;
 loop_387ac:
     {
@@ -2595,13 +2624,13 @@ loop_387ac:
         register int deltaY __asm__("$3");
         register int edgeY __asm__("$2");
         edge = (int*)(shape + offset);
-        __asm__ volatile ("" : "=r"(edge) : "0"(edge));
+        MATCHING_KEEP_VOLATILE(edge);
         delta[0] = source[0] - edge[2];
         deltaY = source[1];
         edgeY = edge[3];
         deltaY = deltaY - edgeY;
         delta[1] = deltaY;
-        __asm__ volatile ("" : : "m"(delta[1]));
+        __asm__ volatile("" : : "m"(delta[1]));
         if (edge[0] * deltaY - edge[1] * delta[0] <= 0) {
             goto reset_endpoint_387ac;
         }
@@ -2613,44 +2642,49 @@ loop_387ac:
         angle = func_8004E880(edge[0], edge[1], 0);
         {
             register int difference __asm__("$2") = func_8004F264(angle, referenceAngle);
-            __asm__ volatile (
-                "slti $2,%2,65\n"
-                "bnez $2,.Langle_done_387ac\n"
-                "addiu $2,%0,128\n"
-                "andi %0,$2,255\n"
-                ".Langle_done_387ac:"
-                : "=r"(angle) : "0"(angle), "r"(difference) : "$2");
+            __asm__ volatile("slti $2,%2,65\n"
+                             "bnez $2,.Langle_done_387ac\n"
+                             "addiu $2,%0,128\n"
+                             "andi %0,$2,255\n"
+                             ".Langle_done_387ac:"
+                             : "=r"(angle)
+                             : "0"(angle), "r"(difference)
+                             : "$2");
         }
 
-        if (output[0] > edge[2] && output[0] > edge[2] + edge[0]) goto outside_edge;
-        if (output[0] < edge[2] && output[0] < edge[2] + edge[0]) goto outside_edge;
-        if (output[1] > edge[3] && output[1] > edge[3] + edge[1]) goto outside_edge;
-        if (output[1] < edge[3] && output[1] < edge[3] + edge[1]) goto outside_edge;
+        if (output[0] > edge[2] && output[0] > edge[2] + edge[0])
+            goto outside_edge;
+        if (output[0] < edge[2] && output[0] < edge[2] + edge[0])
+            goto outside_edge;
+        if (output[1] > edge[3] && output[1] > edge[3] + edge[1])
+            goto outside_edge;
+        if (output[1] < edge[3] && output[1] < edge[3] + edge[1])
+            goto outside_edge;
         {
-            register int withinDistance __asm__("$2") = func_8004F334((Vector3D*)output, (Vector3D*)source);
-            __asm__ volatile (
-                "lw $8,%1\n"
-                "nop\n"
-                "slt %0,%0,$8"
-                : "=r"(withinDistance) : "m"(maxDistance), "0"(withinDistance));
+            register int withinDistance __asm__("$2") =
+                func_8004F334((Vector3D*)output, (Vector3D*)source);
+            __asm__ volatile("lw $8,%1\n"
+                             "nop\n"
+                             "slt %0,%0,$8"
+                             : "=r"(withinDistance)
+                             : "m"(maxDistance), "0"(withinDistance));
             if (withinDistance) {
-                __asm__ volatile (
-                    "lw $8,%1\n"
-                    "nop\n"
-                    "beqz $8,1f\n"
-                    "nop\n"
-                    "sw %2,0($8)\n"
-                    "1:\n"
-                    "li $8,1\n"
-                    ".word 0x08000000\n"
-                    ".reloc .-4,R_MIPS_26,.Ldone_387ac\n"
-                    "sw $8,%0"
-                    : "=m"(local.result)
-                    : "m"(local.angleOutput), "r"(angle)
-                    : "memory");
+                __asm__ volatile("lw $8,%1\n"
+                                 "nop\n"
+                                 "beqz $8,1f\n"
+                                 "nop\n"
+                                 "sw %2,0($8)\n"
+                                 "1:\n"
+                                 "li $8,1\n"
+                                 ".word 0x08000000\n"
+                                 ".reloc .-4,R_MIPS_26,.Ldone_387ac\n"
+                                 "sw $8,%0"
+                                 : "=m"(local.result)
+                                 : "m"(local.angleOutput), "r"(angle)
+                                 : "memory");
             }
         }
-outside_edge:
+    outside_edge:
         {
             register int minX __asm__("$7");
             register int maxX __asm__("$5");
@@ -2663,41 +2697,53 @@ outside_edge:
             extent = edge[0];
             minX = base;
             endpoint = base + extent;
-            if (endpoint < minX) minX = endpoint;
+            if (endpoint < minX)
+                minX = endpoint;
             maxX = base;
-            if (maxX < endpoint) maxX = endpoint;
+            if (maxX < endpoint)
+                maxX = endpoint;
             base = edge[3];
             extent = edge[1];
             minY = base;
             endpoint = base + extent;
-            if (endpoint < minY) minY = endpoint;
+            if (endpoint < minY)
+                minY = endpoint;
             maxY = base;
-            if (maxY < endpoint) maxY = endpoint;
+            if (maxY < endpoint)
+                maxY = endpoint;
             closest[0] = output[0];
             closest[1] = output[1];
-            if (maxX < closest[0]) closest[0] = maxX;
-            if (maxY < closest[1]) closest[1] = maxY;
-            if (closest[0] < minX) closest[0] = minX;
-            if (closest[1] < minY) closest[1] = minY;
+            if (maxX < closest[0])
+                closest[0] = maxX;
+            if (maxY < closest[1])
+                closest[1] = maxY;
+            if (closest[0] < minX)
+                closest[0] = minX;
+            if (closest[1] < minY)
+                closest[1] = minY;
             {
-                register int exceedsDistance __asm__("$2") = func_8004F334((Vector3D*)closest, (Vector3D*)source);
-                __asm__ volatile (
-                    "lw $8,%1\n"
-                    "nop\n"
-                    "slt %0,$8,%0"
-                    : "=r"(exceedsDistance) : "m"(maxDistance), "0"(exceedsDistance));
+                register int exceedsDistance __asm__("$2") =
+                    func_8004F334((Vector3D*)closest, (Vector3D*)source);
+                __asm__ volatile("lw $8,%1\n"
+                                 "nop\n"
+                                 "slt %0,$8,%0"
+                                 : "=r"(exceedsDistance)
+                                 : "m"(maxDistance), "0"(exceedsDistance));
                 if (!exceedsDistance) {
-                    if (index == shape[1] - 1 && firstEndpoint != 0) return 0x2000;
-                    if (previousEndpoint != 0) return 0x2000;
+                    if (index == shape[1] - 1 && firstEndpoint != 0)
+                        return 0x2000;
+                    if (previousEndpoint != 0)
+                        return 0x2000;
                     previousEndpoint = 1;
-                    if (index == 0) firstEndpoint = 1;
+                    if (index == 0)
+                        firstEndpoint = 1;
                 }
             }
         }
         goto increment_387ac;
-reset_endpoint_387ac:
+    reset_endpoint_387ac:
         previousEndpoint = 0;
-increment_387ac:
+    increment_387ac:
         count = shape[1];
         index++;
         if (index < count) {
@@ -2706,7 +2752,7 @@ increment_387ac:
         }
     }
 done_387ac:
-    __asm__ volatile (".Ldone_387ac:");
+    __asm__ volatile(".Ldone_387ac:");
     return local.result;
 }
 
@@ -2792,7 +2838,7 @@ void func_80038BF8(Moby* arg0, EnemyTag* arg1, int arg2, int arg3) {
         }
         setup->unk11 = value;
         setup->unk6 = 0;
-        __asm__ volatile ("" ::: "memory");
+        MATCHING_BARRIER_VOLATILE("memory");
         animationOffset = animation * 4;
         temp_v0 = moby->mobyClass;
         temp_v1 = moby->animationState.id;
@@ -2808,7 +2854,7 @@ void func_80038BF8(Moby* arg0, EnemyTag* arg1, int arg2, int arg3) {
         base = (int)D_8006EE2C;
         if (temp_v1 != temp_v0) {
             temp_v1 = 1;
-            __asm__ volatile ("" ::: "memory");
+            MATCHING_BARRIER_VOLATILE("memory");
             temp_v0 = moby->mobyClass;
             moby->state = animation;
             temp_v0 <<= 2;
@@ -2817,14 +2863,14 @@ void func_80038BF8(Moby* arg0, EnemyTag* arg1, int arg2, int arg3) {
             temp_v0 = animationOffset + temp_v0;
             temp_v0 = *(int*)(temp_v0 + 0x3C);
             first = *(unsigned char*)temp_v0;
-            __asm__ volatile ("" : "=r"(first) : "0"(first));
+            MATCHING_KEEP_VOLATILE(first);
             moby->animationState.id = animation;
             moby->animationState.nextId = animation;
             moby->animationState.frame = 0;
             moby->animationState.nextFrame = temp_v1;
-            __asm__ volatile ("" : "=r"(first) : "0"(first), "m"(moby->animationState.nextFrame));
+            __asm__ volatile("" : "=r"(first) : "0"(first), "m"(moby->animationState.nextFrame));
             flag = first < 2;
-            __asm__ volatile ("" : "=r"(flag) : "0"(flag));
+            MATCHING_KEEP_VOLATILE(flag);
             flag ^= 1;
             flag = -flag;
             moby->animationProgress = flag & 0x30;
@@ -2841,61 +2887,61 @@ void func_80038BF8(Moby* arg0, EnemyTag* arg1, int arg2, int arg3) {
         }
 
         switch (mode) {
-        case 0:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-            break;
-        case 1:
-            setup->unk13 = 1;
-            setup->unk15 = animation;
-            setup->unk14 = animation;
-            setup->unk6 = 0xC8;
-            if (moby->damageFlags & 0x00020000) {
-                setup->unk6 = 0xF0;
-            }
-            break;
-        case 6:
-            setup->unk13 = 1;
-            setup->unk15 = animation;
-            setup->unk14 = animation;
-            setup->unk6 = 0xC8;
-            if (moby->damageFlags & 0x00020000) {
-                setup->unk6 = 0xF0;
-            }
-            setup->unk16 = func_8003636C(0x28, 0x46);
-            break;
-        case 7:
-            setup->unk13 = 1;
-            setup->unk15 = animation;
-            setup->unk14 = animation;
-            setup->unk6 = 0xC8;
-            if (moby->damageFlags & 0x00020000) {
-                setup->unk6 = 0xF0;
-            }
-            temp_v0 = func_8003636C(0x28, 0x46);
-            randomLow = 8;
-            randomHigh = 0xF;
-            setup->unk16 = temp_v0;
-            goto randomize_38bf8;
-        case 8:
-            setup->unk13 = 1;
-            setup->unk15 = animation;
-            setup->unk14 = animation;
-            setup->unk6 = 0xC8;
-            if (moby->damageFlags & 0x00020000) {
-                setup->unk6 = 0xF0;
-            }
-            setup->unk16 = func_8003636C(0x28, 0x46);
-            randomLow = 8;
-            setup->unk15 = setup->unk14 + 1;
-            randomHigh = 0xF;
-randomize_38bf8:
-            firstRandom = func_800363DC(randomLow, randomHigh);
-            secondRandom = func_800363DC(8, 0xF);
-            setup->unk17 = ((firstRandom / 2) * 0x10) + ((secondRandom / 2) & 0xF);
-            break;
+            case 0:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                break;
+            case 1:
+                setup->unk13 = 1;
+                setup->unk15 = animation;
+                setup->unk14 = animation;
+                setup->unk6 = 0xC8;
+                if (moby->damageFlags & 0x00020000) {
+                    setup->unk6 = 0xF0;
+                }
+                break;
+            case 6:
+                setup->unk13 = 1;
+                setup->unk15 = animation;
+                setup->unk14 = animation;
+                setup->unk6 = 0xC8;
+                if (moby->damageFlags & 0x00020000) {
+                    setup->unk6 = 0xF0;
+                }
+                setup->unk16 = func_8003636C(0x28, 0x46);
+                break;
+            case 7:
+                setup->unk13 = 1;
+                setup->unk15 = animation;
+                setup->unk14 = animation;
+                setup->unk6 = 0xC8;
+                if (moby->damageFlags & 0x00020000) {
+                    setup->unk6 = 0xF0;
+                }
+                temp_v0 = func_8003636C(0x28, 0x46);
+                randomLow = 8;
+                randomHigh = 0xF;
+                setup->unk16 = temp_v0;
+                goto randomize_38bf8;
+            case 8:
+                setup->unk13 = 1;
+                setup->unk15 = animation;
+                setup->unk14 = animation;
+                setup->unk6 = 0xC8;
+                if (moby->damageFlags & 0x00020000) {
+                    setup->unk6 = 0xF0;
+                }
+                setup->unk16 = func_8003636C(0x28, 0x46);
+                randomLow = 8;
+                setup->unk15 = setup->unk14 + 1;
+                randomHigh = 0xF;
+            randomize_38bf8:
+                firstRandom = func_800363DC(randomLow, randomHigh);
+                secondRandom = func_800363DC(8, 0xF);
+                setup->unk17 = ((firstRandom / 2) * 0x10) + ((secondRandom / 2) & 0xF);
+                break;
         }
     }
 }
@@ -2939,7 +2985,7 @@ void func_80038F14(Moby* arg0, void* arg1, unsigned int arg2, int arg3) {
         }
         setup->unk11 = value;
         setup->unk6 = 0;
-        __asm__ volatile ("" ::: "memory");
+        MATCHING_BARRIER_VOLATILE("memory");
         animationOffset = animation * 4;
         temp_v0 = moby->mobyClass;
         temp_v1 = moby->animationState.id;
@@ -2955,7 +3001,7 @@ void func_80038F14(Moby* arg0, void* arg1, unsigned int arg2, int arg3) {
         base = (int)D_8006EE2C;
         if (temp_v1 != temp_v0) {
             temp_v1 = 1;
-            __asm__ volatile ("" ::: "memory");
+            MATCHING_BARRIER_VOLATILE("memory");
             temp_v0 = moby->mobyClass;
             moby->state = animation;
             temp_v0 <<= 2;
@@ -2964,14 +3010,14 @@ void func_80038F14(Moby* arg0, void* arg1, unsigned int arg2, int arg3) {
             temp_v0 = animationOffset + temp_v0;
             temp_v0 = *(int*)(temp_v0 + 0x3C);
             first = *(unsigned char*)temp_v0;
-            __asm__ volatile ("" : "=r"(first) : "0"(first));
+            MATCHING_KEEP_VOLATILE(first);
             moby->animationState.id = animation;
             moby->animationState.nextId = animation;
             moby->animationState.frame = 0;
             moby->animationState.nextFrame = temp_v1;
-            __asm__ volatile ("" : "=r"(first) : "0"(first), "m"(moby->animationState.nextFrame));
+            __asm__ volatile("" : "=r"(first) : "0"(first), "m"(moby->animationState.nextFrame));
             flag = first < 2;
-            __asm__ volatile ("" : "=r"(flag) : "0"(flag));
+            MATCHING_KEEP_VOLATILE(flag);
             flag ^= 1;
             flag = -flag;
             moby->animationProgress = flag & 0x30;
@@ -2980,52 +3026,52 @@ void func_80038F14(Moby* arg0, void* arg1, unsigned int arg2, int arg3) {
             func_80034F40(moby, animation);
         }
         switch (mode) {
-        case 0:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-            break;
-        case 1:
-            setup->unk13 = 1;
-            setup->unk6 = 0xE6;
-            setup->unk4 = 0x78;
-            setup->unkE = 3;
-            setup->unk15 = animation;
-            setup->unk14 = animation;
-            setup->unkF = 0x17;
-            break;
-        case 6:
-            setup->unk13 = 1;
-            setup->unk6 = 0xE6;
-            setup->unk15 = animation;
-            setup->unk14 = animation;
-            setup->unkF = 0x17;
-            setup->unk16 = func_8003636C(0x28, 0x46);
-            break;
-        case 7:
-            setup->unk6 = 0xE6;
-            setup->unk16 = func_8003636C(0x28, 0x46);
-            randomLow = 8;
-            randomHigh = 0xF;
-            goto randomize;
-        case 8:
-            setup->unk13 = 1;
-            setup->unk15 = animation;
-            setup->unk14 = animation;
-            setup->unk6 = 0xC8;
-            if (moby->damageFlags & 0x20000) {
-                setup->unk6 = 0xF0;
-            }
-            setup->unk16 = func_8003636C(0x28, 0x46);
-            randomLow = 8;
-            setup->unk15 = setup->unk14 + 1;
-            randomHigh = 0xF;
-randomize:
-            firstRandom = func_800363DC(randomLow, randomHigh);
-            secondRandom = func_800363DC(8, 0xF);
-            setup->unk17 = ((firstRandom / 2) * 0x10) + ((secondRandom / 2) & 0xF);
-            break;
+            case 0:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                break;
+            case 1:
+                setup->unk13 = 1;
+                setup->unk6 = 0xE6;
+                setup->unk4 = 0x78;
+                setup->unkE = 3;
+                setup->unk15 = animation;
+                setup->unk14 = animation;
+                setup->unkF = 0x17;
+                break;
+            case 6:
+                setup->unk13 = 1;
+                setup->unk6 = 0xE6;
+                setup->unk15 = animation;
+                setup->unk14 = animation;
+                setup->unkF = 0x17;
+                setup->unk16 = func_8003636C(0x28, 0x46);
+                break;
+            case 7:
+                setup->unk6 = 0xE6;
+                setup->unk16 = func_8003636C(0x28, 0x46);
+                randomLow = 8;
+                randomHigh = 0xF;
+                goto randomize;
+            case 8:
+                setup->unk13 = 1;
+                setup->unk15 = animation;
+                setup->unk14 = animation;
+                setup->unk6 = 0xC8;
+                if (moby->damageFlags & 0x20000) {
+                    setup->unk6 = 0xF0;
+                }
+                setup->unk16 = func_8003636C(0x28, 0x46);
+                randomLow = 8;
+                setup->unk15 = setup->unk14 + 1;
+                randomHigh = 0xF;
+            randomize:
+                firstRandom = func_800363DC(randomLow, randomHigh);
+                secondRandom = func_800363DC(8, 0xF);
+                setup->unk17 = ((firstRandom / 2) * 0x10) + ((secondRandom / 2) & 0xF);
+                break;
         }
         if (moby->damageFlags & 0x04000000) {
             setup->unk4 = (setup->unk4 * 3) >> 1;
@@ -3043,10 +3089,13 @@ randomize:
  * shape. Confirmed by an exact 366-record object comparison including
  * relocations; falsify with any record mismatch or a different retail image. */
 #define M2C_FIELD(p, t, o) (*(t)((char*)(p) + (o)))
-Moby* func_800391E8(int arg0, int arg1, Moby* arg2, int arg3, int arg4, int arg5, unsigned short arg6) {
-    struct { int sp10, sp14, sp18, pad1C, sp20, pad24, sp28, pad2C, sp30, reserved[2]; } frame;
+Moby* func_800391E8(int arg0, int arg1, Moby* arg2, int arg3, int arg4, int arg5,
+                    unsigned short arg6) {
+    struct {
+        int sp10, sp14, sp18, pad1C, sp20, pad24, sp28, pad2C, sp30, reserved[2];
+    } frame;
 
-    register short *temp_a0 __asm__("$4");
+    register short* temp_a0 __asm__("$4");
     short temp_v0_2;
     register int temp_t1 __asm__("$9");
     register int temp_v0 __asm__("$2");
@@ -3059,84 +3108,90 @@ Moby* func_800391E8(int arg0, int arg1, Moby* arg2, int arg3, int arg4, int arg5
     register int var_v1 __asm__("$3");
     unsigned char temp_a0_2;
     unsigned char temp_v0_3;
-    register Moby *var_s2 __asm__("$18");
+    register Moby* var_s2 __asm__("$18");
     register int mobyClass __asm__("$20") = arg1;
-    register Moby *source __asm__("$19") = arg2;
-    register short *cosTable __asm__("$23");
-    register short *sinTable __asm__("$22");
-    Vector3D *playerVelocity;
-    register Spyro *playerBase __asm__("$21");
-    register void *temp_s1 __asm__("$17");
+    register Moby* source __asm__("$19") = arg2;
+    register short* cosTable __asm__("$23");
+    register short* sinTable __asm__("$22");
+    Vector3D* playerVelocity;
+    register Spyro* playerBase __asm__("$21");
+    register void* temp_s1 __asm__("$17");
     register int temp_s0 __asm__("$16");
     register int temp_t0 __asm__("$8");
     register int temp_t1_arg __asm__("$9");
     register int rangeLow __asm__("$4");
     register int rangeHigh __asm__("$5");
 
-
-    var_s2 = ({ Moby *zero; __asm__("move %0,$0" : "=r"(zero) : "r"(mobyClass), "r"(source)); zero; });
+    var_s2 = ({
+        Moby* zero;
+        __asm__("move %0,$0" : "=r"(zero) : "r"(mobyClass), "r"(source));
+        zero;
+    });
     frame.sp20 = arg0;
     frame.sp28 = arg3;
     frame.sp30 = 0;
     if (arg0 > 0) {
         cosTable = D_80065920;
-        __asm__ volatile ("" : : "r"(cosTable));
+        MATCHING_OBSERVE_VOLATILE(cosTable);
         sinTable = D_800658A0;
-        __asm__ volatile ("" : : "r"(sinTable));
+        MATCHING_OBSERVE_VOLATILE(sinTable);
         playerVelocity = &((Spyro*)&D_80070328)->unk7a[2];
-        __asm__ volatile ("addiu %0,%1,-140" : "=r"(playerBase) : "r"(playerVelocity));
-loop_2:
+        __asm__ volatile("addiu %0,%1,-140" : "=r"(playerBase) : "r"(playerVelocity));
+    loop_2:
         if ((D_8006C578 - D_8006C574) >= 0x15) {
             var_s2 = SpawnMoby(mobyClass, source);
-            __asm__ volatile ("" : "=r"(var_s2) : "0"(var_s2));
+            MATCHING_KEEP_VOLATILE(var_s2);
             if (var_s2 != 0) {
                 temp_s1 = var_s2->mobyTag;
                 temp_s0 = rand() & 0xFF;
                 temp_v0 = rand() & 0x7F;
-                __asm__ volatile (
-                    "sll $2,$2,1\n\t"
-                    "addu $4,$2,$23"
-                    : "=r"(temp_v0), "=r"(temp_a0) : "0"(temp_v0), "r"(cosTable));
-                __asm__ volatile (
-                    "lh $3,0($4)\n\t"
-                    "lw $8,124($sp)\n\t"
-                    "nop\n\t"
-                    "mult $8,$3\n\t"
-                    "sll $16,$16,1\n\t"
-                    "addu $3,$16,$23\n\t"
-                    "mflo $9\n\t"
-                    "lh $3,0($3)\n\t"
-                    "nop\n\t"
-                    "mult $9,$3\n\t"
-                    "mflo $8\n\t"
-                    "sra $3,$8,24\n\t"
-                    "sh $3,0($17)\n\t"
-                    "lh $3,0($4)\n\t"
-                    "lw $9,124($sp)\n\t"
-                    "nop\n\t"
-                    "mult $9,$3\n\t"
-                    "addu $16,$16,$22\n\t"
-                    "mflo $8\n\t"
-                    "lh $3,0($16)\n\t"
-                    "nop\n\t"
-                    "mult $8,$3\n\t"
-                    "addu $2,$2,$22\n\t"
-                    "mflo $9\n\t"
-                    "sra $3,$9,24\n\t"
-                    "sh $3,2($17)\n\t"
-                    "lh $2,0($2)\n\t"
-                    "lw $8,124($sp)\n\t"
-                    "nop\n\t"
-                    "mult $8,$2\n\t"
-                    "mflo $9\n\t"
-                    "sra $2,$9,12\n\t"
-                    "sh $2,4($17)"
-                    : "=r"(temp_v0), "=r"(temp_s0) : "0"(temp_v0), "1"(temp_s0), "r"(temp_a0), "r"(temp_s1), "r"(cosTable), "r"(sinTable) : "$3", "$8", "$9", "memory", "hi", "lo");                if (mobyClass == 0x2EE) {
+                __asm__ volatile("sll $2,$2,1\n\t"
+                                 "addu $4,$2,$23"
+                                 : "=r"(temp_v0), "=r"(temp_a0)
+                                 : "0"(temp_v0), "r"(cosTable));
+                __asm__ volatile("lh $3,0($4)\n\t"
+                                 "lw $8,124($sp)\n\t"
+                                 "nop\n\t"
+                                 "mult $8,$3\n\t"
+                                 "sll $16,$16,1\n\t"
+                                 "addu $3,$16,$23\n\t"
+                                 "mflo $9\n\t"
+                                 "lh $3,0($3)\n\t"
+                                 "nop\n\t"
+                                 "mult $9,$3\n\t"
+                                 "mflo $8\n\t"
+                                 "sra $3,$8,24\n\t"
+                                 "sh $3,0($17)\n\t"
+                                 "lh $3,0($4)\n\t"
+                                 "lw $9,124($sp)\n\t"
+                                 "nop\n\t"
+                                 "mult $9,$3\n\t"
+                                 "addu $16,$16,$22\n\t"
+                                 "mflo $8\n\t"
+                                 "lh $3,0($16)\n\t"
+                                 "nop\n\t"
+                                 "mult $8,$3\n\t"
+                                 "addu $2,$2,$22\n\t"
+                                 "mflo $9\n\t"
+                                 "sra $3,$9,24\n\t"
+                                 "sh $3,2($17)\n\t"
+                                 "lh $2,0($2)\n\t"
+                                 "lw $8,124($sp)\n\t"
+                                 "nop\n\t"
+                                 "mult $8,$2\n\t"
+                                 "mflo $9\n\t"
+                                 "sra $2,$9,12\n\t"
+                                 "sh $2,4($17)"
+                                 : "=r"(temp_v0), "=r"(temp_s0)
+                                 : "0"(temp_v0), "1"(temp_s0), "r"(temp_a0), "r"(temp_s1),
+                                   "r"(cosTable), "r"(sinTable)
+                                 : "$3", "$8", "$9", "memory", "hi", "lo");
+                if (mobyClass == 0x2EE) {
                     var_a0 = 0x28;
                     var_a1 = 0x46;
-                    var_s2->position.x = source->position.x + (M2C_FIELD(temp_s1, short *, 0) * 4);
-                    var_s2->position.y = source->position.y + (M2C_FIELD(temp_s1, short *, 2) * 4);
-                    var_s2->position.z = source->position.z + (M2C_FIELD(temp_s1, short *, 4) * 4);
+                    var_s2->position.x = source->position.x + (M2C_FIELD(temp_s1, short*, 0) * 4);
+                    var_s2->position.y = source->position.y + (M2C_FIELD(temp_s1, short*, 2) * 4);
+                    var_s2->position.z = source->position.z + (M2C_FIELD(temp_s1, short*, 4) * 4);
                     goto block_13;
                 }
                 if (mobyClass == 0x84) {
@@ -3152,95 +3207,118 @@ loop_2:
                 temp_a0_2 = source->unkb;
                 if (temp_a0_2 != 0) {
                     if (source->damageFlags & 0x100000) {
-                        M2C_FIELD(temp_s1, short *, 0) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 0) + ((int) (cosTable[temp_a0_2] * 0x4B) >> 0xB));
+                        M2C_FIELD(temp_s1, short*, 0) =
+                            (short)((unsigned short)M2C_FIELD(temp_s1, short*, 0) +
+                                    ((int)(cosTable[temp_a0_2] * 0x4B) >> 0xB));
                         var_a0 = 0x28;
                         var_a1 = 0x46;
-                        M2C_FIELD(temp_s1, short *, 2) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 2) + ((int) (sinTable[source->unkb] * 0x4B) >> 0xB));
-block_13:
-                        M2C_FIELD(temp_s1, short *, 4) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 4) + func_8003636C(var_a0, var_a1));
+                        M2C_FIELD(temp_s1, short*, 2) =
+                            (short)((unsigned short)M2C_FIELD(temp_s1, short*, 2) +
+                                    ((int)(sinTable[source->unkb] * 0x4B) >> 0xB));
+                    block_13:
+                        M2C_FIELD(temp_s1, short*, 4) =
+                            (short)((unsigned short)M2C_FIELD(temp_s1, short*, 4) +
+                                    func_8003636C(var_a0, var_a1));
                     } else {
                         goto block_14;
                     }
                 } else {
-block_14:
+                block_14:
                     temp_v1 = source->damageFlags;
                     if (temp_v1 & 0x40000) {
-                        M2C_FIELD(temp_s1, short *, 0) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 0) + ((int) M2C_FIELD(playerVelocity, int *, 0) >> 5));
-                        M2C_FIELD(temp_s1, short *, 2) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 2) + ((int) M2C_FIELD(playerVelocity, int *, 4) >> 5));
+                        M2C_FIELD(temp_s1, short*, 0) =
+                            (short)((unsigned short)M2C_FIELD(temp_s1, short*, 0) +
+                                    ((int)M2C_FIELD(playerVelocity, int*, 0) >> 5));
+                        M2C_FIELD(temp_s1, short*, 2) =
+                            (short)((unsigned short)M2C_FIELD(temp_s1, short*, 2) +
+                                    ((int)M2C_FIELD(playerVelocity, int*, 4) >> 5));
                         goto block_28;
                     }
-                    __asm__ volatile ("" : : : "memory");
+                    MATCHING_BARRIER_VOLATILE("memory");
                     if (temp_v1 & 0x02000000) {
-                        temp_v0 = func_8004E880(var_s2->position.x - playerBase->position.x, var_s2->position.y - playerBase->position.y, 0);
-                        __asm__ volatile (
-                            "sll $2,$2,1\n\t"
-                            "addu $2,$2,$23\n\t"
-                            "lh $2,0($2)"
-                            : "=r"(temp_v0) : "0"(temp_v0), "r"(cosTable));
+                        temp_v0 = func_8004E880(var_s2->position.x - playerBase->position.x,
+                                                var_s2->position.y - playerBase->position.y, 0);
+                        __asm__ volatile("sll $2,$2,1\n\t"
+                                         "addu $2,$2,$23\n\t"
+                                         "lh $2,0($2)"
+                                         : "=r"(temp_v0)
+                                         : "0"(temp_v0), "r"(cosTable));
                         frame.sp10 = temp_v0 >> 4;
-                        temp_v0 = func_8004E880(var_s2->position.x - playerBase->position.x, var_s2->position.y - playerBase->position.y, 0);
-                        __asm__ volatile (
-                            "sll $2,$2,1\n\t"
-                            "addu $2,$2,$22\n\t"
-                            "lh $2,0($2)"
-                            : "=r"(temp_v0) : "0"(temp_v0), "r"(sinTable));
+                        temp_v0 = func_8004E880(var_s2->position.x - playerBase->position.x,
+                                                var_s2->position.y - playerBase->position.y, 0);
+                        __asm__ volatile("sll $2,$2,1\n\t"
+                                         "addu $2,$2,$22\n\t"
+                                         "lh $2,0($2)"
+                                         : "=r"(temp_v0)
+                                         : "0"(temp_v0), "r"(sinTable));
                         var_v1 = frame.sp10;
                         frame.sp18 = 0;
-                        __asm__ volatile ("" : : : "memory");
+                        MATCHING_BARRIER_VOLATILE("memory");
                         var_v0_2 = temp_v0 >> 4;
                         goto block_27;
                     }
                     if (temp_v1 & 0x20000) {
                         if (((Spyro*)&D_80070328)->movementState != MOVEMENT_STATE_CHARGE) {
-                            if (((Spyro*)&D_80070328)->movementState != MOVEMENT_STATE_SWIM_CHARGE) {
-                                if (((Spyro*)&D_80070328)->movementState == MOVEMENT_STATE_SKATEBOARD) {
+                            if (((Spyro*)&D_80070328)->movementState !=
+                                MOVEMENT_STATE_SWIM_CHARGE) {
+                                if (((Spyro*)&D_80070328)->movementState ==
+                                    MOVEMENT_STATE_SKATEBOARD) {
                                     goto block_22;
                                 }
                                 goto block_24;
                             }
                             goto block_22;
                         }
-block_22:
-                        M2C_FIELD(temp_s1, short *, 0) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 0) + ((int) M2C_FIELD(playerVelocity, int *, 0) >> 6));
-                        M2C_FIELD(temp_s1, short *, 2) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 2) + ((int) M2C_FIELD(playerVelocity, int *, 4) >> 6));
+                    block_22:
+                        M2C_FIELD(temp_s1, short*, 0) =
+                            (short)((unsigned short)M2C_FIELD(temp_s1, short*, 0) +
+                                    ((int)M2C_FIELD(playerVelocity, int*, 0) >> 6));
+                        M2C_FIELD(temp_s1, short*, 2) =
+                            (short)((unsigned short)M2C_FIELD(temp_s1, short*, 2) +
+                                    ((int)M2C_FIELD(playerVelocity, int*, 4) >> 6));
                         goto block_28;
                     } else {
-block_24:
+                    block_24:
                         temp_v0_3 = source->unkb;
                         var_a0_2 = temp_v0_3 * 2;
                         if (temp_v0_3 == 0) {
-                            var_a0_2 = func_8004E880(var_s2->position.x - playerBase->position.x, var_s2->position.y - playerBase->position.y, 0) * 2;
+                            var_a0_2 =
+                                func_8004E880(var_s2->position.x - playerBase->position.x,
+                                              var_s2->position.y - playerBase->position.y, 0) *
+                                2;
                         }
-                        temp_v0 = *(short *)(var_a0_2 + (int)cosTable);
+                        temp_v0 = *(short*)(var_a0_2 + (int)cosTable);
                         var_a0_2 += (int)sinTable;
                         var_v1 = (temp_v0 * 0x23) >> 0xA;
                         frame.sp10 = var_v1;
-                        var_a0_2 = *(short *)var_a0_2;
+                        var_a0_2 = *(short*)var_a0_2;
                         frame.sp18 = 0;
                         var_v0_2 = (var_a0_2 * 0x23) >> 0xA;
-block_27:
+                    block_27:
                         frame.sp14 = var_v0_2;
-                        M2C_FIELD(temp_s1, short *, 0) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 0) + var_v1);
-                        M2C_FIELD(temp_s1, short *, 2) = (short) ((unsigned short) M2C_FIELD(temp_s1, short *, 2) + frame.sp14);
+                        M2C_FIELD(temp_s1, short*, 0) =
+                            (short)((unsigned short)M2C_FIELD(temp_s1, short*, 0) + var_v1);
+                        M2C_FIELD(temp_s1, short*, 2) =
+                            (short)((unsigned short)M2C_FIELD(temp_s1, short*, 2) + frame.sp14);
                     }
                 }
-block_28:
-                var_s2->position.x = source->position.x + (M2C_FIELD(temp_s1, short *, 0) * 4);
-                var_s2->position.y = source->position.y + (M2C_FIELD(temp_s1, short *, 2) * 4);
-                var_s2->position.z = source->position.z + (M2C_FIELD(temp_s1, short *, 4) * 4);
+            block_28:
+                var_s2->position.x = source->position.x + (M2C_FIELD(temp_s1, short*, 0) * 4);
+                var_s2->position.y = source->position.y + (M2C_FIELD(temp_s1, short*, 2) * 4);
+                var_s2->position.z = source->position.z + (M2C_FIELD(temp_s1, short*, 4) * 4);
                 var_s2->angle.pitch = rand();
                 var_s2->angle.yaw = rand();
-                M2C_FIELD(temp_s1, short *, 6) = (short) ((rand() & 0xE) - 7);
-                M2C_FIELD(temp_s1, short *, 8) = (short) ((rand() & 0xE) - 7);
-                M2C_FIELD(temp_s1, short *, 0xA) = (short) ((rand() & 0xE) - 7);
-                M2C_FIELD(temp_s1, short *, 0xE) = (short) (source->position.z - 0x40);
+                M2C_FIELD(temp_s1, short*, 6) = (short)((rand() & 0xE) - 7);
+                M2C_FIELD(temp_s1, short*, 8) = (short)((rand() & 0xE) - 7);
+                M2C_FIELD(temp_s1, short*, 0xA) = (short)((rand() & 0xE) - 7);
+                M2C_FIELD(temp_s1, short*, 0xE) = (short)(source->position.z - 0x40);
                 temp_v0 = func_8003636C(0x1E, 0x32);
-                __asm__ volatile ("lw %0,40($sp)" : "=r"(rangeLow));
-                __asm__ volatile ("lw %0,120($sp)" : "=r"(rangeHigh));
-                M2C_FIELD(temp_s1, short *, 0xC) = temp_v0;
-                M2C_FIELD(temp_s1, short *, 0x10) = 8;
-                __asm__ volatile ("lhu %0,128($sp)" : "=r"(temp_t0) : : "memory");
-                M2C_FIELD(temp_s1, unsigned short *, 0x12) = temp_t0;
+                __asm__ volatile("lw %0,40($sp)" : "=r"(rangeLow));
+                __asm__ volatile("lw %0,120($sp)" : "=r"(rangeHigh));
+                M2C_FIELD(temp_s1, short*, 0xC) = temp_v0;
+                M2C_FIELD(temp_s1, short*, 0x10) = 8;
+                __asm__ volatile("lhu %0,128($sp)" : "=r"(temp_t0) : : "memory");
+                M2C_FIELD(temp_s1, unsigned short*, 0x12) = temp_t0;
                 func_80034F80(var_s2, func_8003636C(rangeLow, rangeHigh));
                 var_s2->unknownCollision = 0;
             }
@@ -3253,7 +3331,7 @@ block_28:
             }
         }
     }
-    __asm__ volatile ("" : "=r"(var_s2) : "0"(var_s2));
+    MATCHING_KEEP_VOLATILE(var_s2);
     return var_s2;
 }
 #undef M2C_FIELD
@@ -3291,7 +3369,7 @@ int func_80039714(Moby* arg0) {
     int dot;
     register int projection __asm__("$7");
 
-    __asm__ volatile ("" : "=r"(moby) : "0"(moby));
+    MATCHING_KEEP_VOLATILE(moby);
     tag = moby->mobyTag;
 
     if ((tag->lifetime <= 0) || (moby->drawn == 0) ||

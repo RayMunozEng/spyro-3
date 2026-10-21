@@ -92,43 +92,47 @@ void func_8004F9C0(int startLba, int endLba, int track) {
 typedef struct {
     unsigned int mask;
     unsigned char unused[12];
-    struct { struct { short left, right; } volume; } cd;
+    struct {
+        struct {
+            short left, right;
+        } volume;
+    } cd;
     unsigned char unused_tail[16];
 } SpuCommonAttr;
 #define SPU_COMMON_CDVOLL 0x40
 #define SPU_COMMON_CDVOLR 0x80
-#define nullptr ((void *)0)
+#define nullptr ((void*)0)
 
 // psyq
-extern int func_8005DB1C(void); // CdInit
-extern int func_8005E074(int mode, unsigned char *result); // CdSync
-extern int func_8005E018(void); // CdStatus
-extern int func_8005E038(void); // CdLastCom
-extern CdLoc *CdIntToPos(int intLba, CdLoc *pos);
-extern int func_8005F570(CdLoc *pos); //CdPosToInt
-extern int func_8005E1F8(unsigned char com, unsigned char *param); //CdControlF
+extern int func_8005DB1C(void);                            // CdInit
+extern int func_8005E074(int mode, unsigned char* result); // CdSync
+extern int func_8005E018(void);                            // CdStatus
+extern int func_8005E038(void);                            // CdLastCom
+extern CdLoc* CdIntToPos(int intLba, CdLoc* pos);
+extern int func_8005F570(CdLoc* pos);                              //CdPosToInt
+extern int func_8005E1F8(unsigned char com, unsigned char* param); //CdControlF
 
 //spu
-extern void func_8005E630(SpuCommonAttr *attr); // SpuSetCommonAttr
+extern void func_8005E630(SpuCommonAttr* attr); // SpuSetCommonAttr
 
 extern StreamingData streamingData; // D_8006E48C
 
 // Similar in purpose to CdMusic in Spyro 1; layout is different.
 typedef struct {
-    unsigned char commandParam[8];   // 0x10 ControlF parameter
-    char syncData[8];                // 0x18 CdSync result buffer
-    CdLoc cdPos;                     // 0x20 CD position
-    unsigned char padding[4];        // 0x24
-    unsigned char trackParam[2];     // 0x28 XA track-selection parameters
-    unsigned char padding2[6];       // 0x2A
-    SpuCommonAttr attr;              // 0x30 SPU CD volume attributes
+    unsigned char commandParam[8]; // 0x10 ControlF parameter
+    char syncData[8];              // 0x18 CdSync result buffer
+    CdLoc cdPos;                   // 0x20 CD position
+    unsigned char padding[4];      // 0x24
+    unsigned char trackParam[2];   // 0x28 XA track-selection parameters
+    unsigned char padding2[6];     // 0x2A
+    SpuCommonAttr attr;            // 0x30 SPU CD volume attributes
 } CdMusic;
 
 // Globals referenced by func_8004FA24
-extern int *D_8006E504; // matches - 4 bytes
-extern int *D_8006E4DC; // matches - 4 bytes
-extern int *D_8006E4C8; // matches - 4 bytes
-extern int D_8006E4C0; // matches - 8-byte BSS object; only low 32 bits observed here
+extern int* D_8006E504; // matches - 4 bytes
+extern int* D_8006E4DC; // matches - 4 bytes
+extern int* D_8006E4C8; // matches - 4 bytes
+extern int D_8006E4C0;  // matches - 8-byte BSS object; only low 32 bits observed here
 
 // Similar in purpose to CDMusicUpdate in Spyro 1; implementation differs.
 void func_8004FA24(void) {
@@ -137,7 +141,7 @@ void func_8004FA24(void) {
 
     CdMusic cdMusic;
 
-    XaAudioData *currentAudio = nullptr;
+    XaAudioData* currentAudio = nullptr;
 
     int *currentVolumePtr;
     int *cdCommandStatePtr;
@@ -170,21 +174,19 @@ void func_8004FA24(void) {
             streamingData.dat_8006e48c = 8;
             streamingData.dat_8006e498 = 0;
         }
-        currentAudio = &streamingData.dat_8006e4e0;
-        break;
+            currentAudio = &streamingData.dat_8006e4e0;
+            break;
     }
 
     if (streamingData.musicEnabled == 0) {
-        if (streamingData.dat_8006e4a0 != 0 &&
-            streamingData.dat_8006e48c == 8) {
+        if (streamingData.dat_8006e4a0 != 0 && streamingData.dat_8006e48c == 8) {
             streamingData.dat_8006e48c = 6;
             streamingData.dat_8006e4a0 = 0;
         }
     }
 
     if (streamingData.musicEnabled != 0) {
-        if (currentAudio != nullptr &&
-            streamingData.dat_8006e4a0 == 0) {
+        if (currentAudio != nullptr && streamingData.dat_8006e4a0 == 0) {
             streamingData.dat_8006e48c = 8;
             streamingData.dat_8006e4a0 = 1;
             goto block_1fc;
@@ -192,8 +194,7 @@ void func_8004FA24(void) {
     }
 
     if (streamingData.musicEnabled != 0) {
-        if (currentAudio == nullptr &&
-            streamingData.dat_8006e4a0 == 0 &&
+        if (currentAudio == nullptr && streamingData.dat_8006e4a0 == 0 &&
             streamingData.dat_8006e48c != 0) {
             streamingData.dat_8006e4b4 = 0;
             streamingData.dat_8006e48c = 9;
@@ -261,7 +262,7 @@ block_2f4:
             else
                 CdIntToPos(0x3E8, &cdMusic.cdPos);
 
-            func_8005E1F8(2, (void *)&cdMusic.cdPos);
+            func_8005E1F8(2, (void*)&cdMusic.cdPos);
             return;
         }
 
@@ -287,7 +288,7 @@ block_2f4:
     case 0:
         /*  Select pending speech/music stream. */
         if (streamingData.musicEnabled != 0)
-            return;
+                return;
 
         else if (streamingData.speechData.unk0 != 0) {
             streamingData.dat_8006e4e0 = streamingData.speechData;
@@ -302,13 +303,13 @@ block_2f4:
         }
         else if (streamingData.dat_8006e4b8.unk0 != 0) {
 block_4d0:
-         /* Shared path: activate the pending music stream. */
+                /* Shared path: activate the pending music stream. */
             streamingData.dat_8006e4b4 = 1;
             streamingData.dat_8006e48c = 1;
         }
 
         func_8005E1F8(1, nullptr);
-        return;
+            return;
 
     case 1:
         /* Set up command 0x0E and initialise volume. */
@@ -327,7 +328,7 @@ block_4d0:
     case 2:
         /* Position CD at start of XA stream. */
         CdIntToPos(currentAudio->startLba, &cdMusic.cdPos);
-        func_8005E1F8(2, (void *)&cdMusic.cdPos);
+        func_8005E1F8(2, (void*)&cdMusic.cdPos);
 
         streamingData.dat_8006e48c = 3;
         break;
@@ -410,7 +411,7 @@ block_4d0:
 
             if (func_8005E038() == 0x11) {
                 trackPosition =
-                    func_8005F570((CdLoc *)&cdMusic.syncData[5]);
+                    func_8005F570((CdLoc*)&cdMusic.syncData[5]);
 
                 if (currentAudio->unk0 < trackPosition)
                     currentAudio->startLba = trackPosition;
@@ -441,60 +442,54 @@ block_4d0:
         }
 
         if (streamingData.dat_8006e494 > 0)
-            goto applyVolume;
+                goto applyVolume;
 
-        streamingData.dat_8006e494 = 0;
+            streamingData.dat_8006e494 = 0;
 
-        if (streamingData.musicEnabled != 0) {
-            streamingData.dat_8006e4b4 = 0;
-            streamingData.dat_8006e48c = 9;
-            streamingData.dat_8006e4a0 = 0;
-            goto applyVolume;
-        }
-
-        if (streamingData.speechData.unk0 != 0 &&
-            *D_8006E504 > 0) {
-            streamingData.dat_8006e4e0 = streamingData.speechData;
-            streamingData.dat_8006e4b4 = 2;
-            streamingData.speechData.unk0 = 0;
-            streamingData.dat_8006e48c = 1;
-            goto applyVolume;
-        }
-
-        if (streamingData.musicData.unk0 != 0 &&
-            *D_8006E4DC > 0) {
-            streamingData.dat_8006e4b8 = streamingData.musicData;
-            streamingData.musicData.unk0 = 0;
-            streamingData.dat_8006e4b4 = 1;
-            streamingData.dat_8006e48c = 1;
-            goto applyVolume;
-        }
-
-        if (streamingData.dat_8006e4b8.unk0 != 0 &&
-            *D_8006E4C8 > 0 ) {
-            if (streamingData.dat_8006e4b8.startLba <
-                    streamingData.dat_8006e4b8.unk0 ||
-                streamingData.dat_8006e4b8.startLba >
-                    D_8006E4C0 - 0x4C) {
-                streamingData.dat_8006e4b8.startLba =
-                    streamingData.dat_8006e4b8.unk0;
+            if (streamingData.musicEnabled != 0) {
+                streamingData.dat_8006e4b4 = 0;
+                streamingData.dat_8006e48c = 9;
+                streamingData.dat_8006e4a0 = 0;
+                goto applyVolume;
             }
-            streamingData.dat_8006e4b4 = 1;
-            streamingData.dat_8006e48c = 1;
-        } else {
-            streamingData.dat_8006e4b4 = 0;
-            streamingData.dat_8006e48c = 9;
-        }
-/* Apply the updated volume and return to the caller. */
-applyVolume:
-        {
+
+            if (streamingData.speechData.unk0 != 0 && *D_8006E504 > 0) {
+                streamingData.dat_8006e4e0 = streamingData.speechData;
+                streamingData.dat_8006e4b4 = 2;
+                streamingData.speechData.unk0 = 0;
+                streamingData.dat_8006e48c = 1;
+                goto applyVolume;
+            }
+
+            if (streamingData.musicData.unk0 != 0 && *D_8006E4DC > 0) {
+                streamingData.dat_8006e4b8 = streamingData.musicData;
+                streamingData.musicData.unk0 = 0;
+                streamingData.dat_8006e4b4 = 1;
+                streamingData.dat_8006e48c = 1;
+                goto applyVolume;
+            }
+
+            if (streamingData.dat_8006e4b8.unk0 != 0 && *D_8006E4C8 > 0) {
+                if (streamingData.dat_8006e4b8.startLba < streamingData.dat_8006e4b8.unk0 ||
+                    streamingData.dat_8006e4b8.startLba > D_8006E4C0 - 0x4C) {
+                    streamingData.dat_8006e4b8.startLba = streamingData.dat_8006e4b8.unk0;
+                }
+                streamingData.dat_8006e4b4 = 1;
+                streamingData.dat_8006e48c = 1;
+            } else {
+                streamingData.dat_8006e4b4 = 0;
+                streamingData.dat_8006e48c = 9;
+            }
+        /* Apply the updated volume and return to the caller. */
+        applyVolume:
+            {
             unsigned short volume;
             volume = streamingData.dat_8006e494;
             cdMusic.attr.mask = SPU_COMMON_CDVOLL | SPU_COMMON_CDVOLR;
             cdMusic.attr.cd.volume.right = volume;
             cdMusic.attr.cd.volume.left = volume;
             func_8005E630(&cdMusic.attr);
-            break;
+                break;
         }
     }
 }

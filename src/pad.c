@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "stdutil.h"
 #include "pad.h"
@@ -31,7 +32,7 @@ void func_80039E34(StickState* arg0, Pad* arg1) {
     *(int*)arg0 = 0x7F7F7F7F;
     *(int*)&arg1->unk2a = 0x7F7F7F7F;
     /* Keep the constant load after the two initialization stores. */
-    __asm__ volatile("" ::: "memory");
+    MATCHING_BARRIER_VOLATILE("memory");
     max = 0xFF;
     for (i = 0; i < 4; i++) {
         int high;
@@ -78,7 +79,8 @@ void func_80039E88(unsigned char* arg0, Pad* arg1) {
                 temp_a2_2 = axis[0x10];
                 if (temp_v1 < temp_a2_2)
                     arg0[var_t0] = (((temp_v1 - temp_a2_2) << 7) / axis[0x18]) - 0x80;
-                else arg0[var_t0] = 0x7F;
+                else
+                    arg0[var_t0] = 0x7F;
             }
         }
         return;
@@ -89,7 +91,8 @@ void func_80039E88(unsigned char* arg0, Pad* arg1) {
             arg0[var_v1] = (((temp_v1_2 - 0xAF) << 7) / 80) + 0x7F;
         else if (temp_v1_2 < 0x4F)
             arg0[var_v1] = (((temp_v1_2 - 0x4F) << 7) / 79) - 0x80;
-        else arg0[var_v1] = 0x7F;
+        else
+            arg0[var_v1] = 0x7F;
     }
 }
 
@@ -295,11 +298,13 @@ void func_8003A584() {
     int temp_a1, temp_v0, temp_v0_2, temp_v0_3;
     int var_fp, var_s0_2, i, var_s2_2, var_s4, var_s3;
     unsigned char temp_v1;
-    if (isDemoMode) func_8003A2B0();
+    if (isDemoMode)
+        func_8003A2B0();
     temp_v0 = D_8006C7CC;
     D_8006C7CC = 0;
     D_8006C648 = temp_v0;
-    if (temp_v0 >= 5) D_8006C648 = 4;
+    if (temp_v0 >= 5)
+        D_8006C648 = 4;
     for (var_fp = 0; var_fp < 2; var_fp++) {
         if (var_fp) {
             var_s1 = &pad2;
@@ -324,7 +329,8 @@ void func_8003A584() {
         for (i = 0; i < (temp_a1 = D_8006C648); i++) {
             var_s3 = (i + 4) * 0x10;
             var_s4 = (i + 1) * 0x10;
-            func_8004E7D4((int*)((char*)var_s1 + var_s3), (int*)((char*)var_s6 + temp_a1 * 0x10 - var_s4), 0x10);
+            func_8004E7D4((int*)((char*)var_s1 + var_s3),
+                          (int*)((char*)var_s6 + temp_a1 * 0x10 - var_s4), 0x10);
             var_s1->state.pressed |= var_s1->store[i].pressed;
             var_s1->state.released |= var_s1->store[i].released;
             temp_v1 = var_s1->store[i].stick.lx;
@@ -358,18 +364,24 @@ void func_8003A584() {
                             if (var_s2_2 < 0x3C) {
                                 if (var_s1->unk1b == 0) {
                                     func_8005DFC4(var_s5, sp10, 2);
-                                    if (func_8005DF44(var_s5, D_80065870) != 0) var_s1->unk1b = 1;
+                                    if (func_8005DF44(var_s5, D_80065870) != 0)
+                                        var_s1->unk1b = 1;
                                 }
                                 var_s1->unk1d = 1;
-                                if (func_8005DF7C(var_s5, 1, 0) != 0) var_s1->unk1c = 1;
-                            } else var_s1->unk2[0] = 0;
-                        } else var_s1->unk2[0] = 0;
+                                if (func_8005DF7C(var_s5, 1, 0) != 0)
+                                    var_s1->unk1c = 1;
+                            } else
+                                var_s1->unk2[0] = 0;
+                        } else
+                            var_s1->unk2[0] = 0;
                     }
-                } else var_s1->unk2[0] = 0;
+                } else
+                    var_s1->unk2[0] = 0;
             }
         }
     }
-    if (D_8006C648 < 2) D_8006C648 = 2;
+    if (D_8006C648 < 2)
+        D_8006C648 = 2;
 }
 
 /**

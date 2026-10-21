@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "mobyutil.h"
 #include "ovl_header.h"
@@ -5,16 +6,18 @@
 #include "camera.h"
 #include "spyro.h"
 
-extern short D_80065920[],D_800658A0[];
+extern short D_80065920[], D_800658A0[];
 extern int D_8006C648;
-int func_8004E880(int,int,int);
-int func_8003613C(int,int);
-int func_8004F264(int,int);
-int func_8004F334(Vector3D*,Vector3D*);
-int func_8003585C(Moby*,int,int,int,int,int);
-int func_80035EE0(Moby*,int,int,int,int,int);
-int func_80035DDC(Moby*,int,int,int,int);
-int func_level_16_8007F8AC(Moby* actor,Vector3D* center,int radius,int heading,int tolerance,int speed,int turnA,int turnB,int avoidA,int avoidB,int argA,int argB,int flags) {
+int func_8004E880(int, int, int);
+int func_8003613C(int, int);
+int func_8004F264(int, int);
+int func_8004F334(Vector3D*, Vector3D*);
+int func_8003585C(Moby*, int, int, int, int, int);
+int func_80035EE0(Moby*, int, int, int, int, int);
+int func_80035DDC(Moby*, int, int, int, int);
+int func_level_16_8007F8AC(Moby* actor, Vector3D* center, int radius, int heading, int tolerance,
+                           int speed, int turnA, int turnB, int avoidA, int avoidB, int argA,
+                           int argB, int flags) {
     register Moby* current __asm__("$19");
     register Vector3D* target __asm__("$20");
     register int range __asm__("$23");
@@ -29,68 +32,85 @@ int func_level_16_8007F8AC(Moby* actor,Vector3D* center,int radius,int heading,i
     int result;
     register int lowAngle __asm__("$16");
     Vector3D destination;
-    current=actor;
-    __asm__("" : "=r"(current) : "0"(current));
-    target=center;
-    __asm__("" : "=r"(target) : "0"(target));
-    range=radius;
-    __asm__("" : "=r"(range) : "0"(range));
-    initialHeading=heading;
-    __asm__("" : "=r"(initialHeading) : "0"(initialHeading));
-    rate=speed;
-    __asm__("" : "=r"(rate) : "0"(rate));
-    limit=tolerance;avoid=avoidA;
-    angle=func_8004E880(current->position.x-target->x,current->position.y-target->y,0);
-    error=func_8003613C(initialHeading,angle&0xFF);
-    distance=func_8004F334(&current->position,target);
-    absolute=error;
-    if(error<0)absolute=-absolute;
-    if(absolute<limit) {
-        int radial=distance-range;
-        if(radial<0)radial=range-distance;
-        if(radial<0xC8)goto done;
+    current = actor;
+    MATCHING_KEEP(current);
+    target = center;
+    MATCHING_KEEP(target);
+    range = radius;
+    MATCHING_KEEP(range);
+    initialHeading = heading;
+    MATCHING_KEEP(initialHeading);
+    rate = speed;
+    MATCHING_KEEP(rate);
+    limit = tolerance;
+    avoid = avoidA;
+    angle = func_8004E880(current->position.x - target->x, current->position.y - target->y, 0);
+    error = func_8003613C(initialHeading, angle & 0xFF);
+    distance = func_8004F334(&current->position, target);
+    absolute = error;
+    if (error < 0)
+        absolute = -absolute;
+    if (absolute < limit) {
+        int radial = distance - range;
+        if (radial < 0)
+            radial = range - distance;
+        if (radial < 0xC8)
+            goto done;
     }
-    if(avoid!=0xFF) {
-        lowAngle=angle&0xFF;
-        if(func_8004F264(lowAngle,avoid)<5) {
-            result=func_8003613C(avoid,lowAngle);
-            if(error<0 && result<0)return 0x100;
-            if(error>0 && result>0)return 0x100;
+    if (avoid != 0xFF) {
+        lowAngle = angle & 0xFF;
+        if (func_8004F264(lowAngle, avoid) < 5) {
+            result = func_8003613C(avoid, lowAngle);
+            if (error < 0 && result < 0)
+                return 0x100;
+            if (error > 0 && result > 0)
+                return 0x100;
         }
     }
-    if(avoidB!=0xFF) {
-        lowAngle=angle&0xFF;
-        if(func_8004F264(lowAngle,avoidB)<5) {
-            result=func_8003613C(avoidB,lowAngle);
-            if(error<0 && result<0)return 0x100;
-            if(error>0 && result>0)return 0x100;
+    if (avoidB != 0xFF) {
+        lowAngle = angle & 0xFF;
+        if (func_8004F264(lowAngle, avoidB) < 5) {
+            result = func_8003613C(avoidB, lowAngle);
+            if (error < 0 && result < 0)
+                return 0x100;
+            if (error > 0 && result > 0)
+                return 0x100;
         }
     }
-    if(error<0)angle+=3;else angle-=3;
+    if (error < 0)
+        angle += 3;
+    else
+        angle -= 3;
     {
-    register int lookup __asm__("$3")=angle&0xFF;
-    register int x __asm__("$7");
-    __asm__("" : "=r"(lookup) : "0"(lookup));
-    {register int product __asm__("$2")=(D_80065920[lookup]*range)>>12;
-    x=target->x;
-    __asm__("" : "=r"(product),"=r"(x) : "0"(product),"1"(x));
-    x+=product;}
-    destination.x=x;
-    destination.y=target->y+((D_800658A0[lookup]*range)>>12);
-    heading=func_8004E880(x-current->position.x,destination.y-current->position.y,0);
+        register int lookup __asm__("$3") = angle & 0xFF;
+        register int x __asm__("$7");
+        MATCHING_KEEP(lookup);
+        {
+            register int product __asm__("$2") = (D_80065920[lookup] * range) >> 12;
+            x = target->x;
+            MATCHING_KEEP2(product, x);
+            x += product;
+        }
+        destination.x = x;
+        destination.y = target->y + ((D_800658A0[lookup] * range) >> 12);
+        heading = func_8004E880(x - current->position.x, destination.y - current->position.y, 0);
     }
-    if(D_8006C648==3)rate+=rate>>1;
-    else if(D_8006C648==4)rate<<=1;
-    if(flags&8) {
-        result=func_8004E880(target->x-current->position.x,target->y-current->position.y,0);
-        func_8003585C(current,result,turnA,0,0,0);
-        result=func_80035EE0(current,heading,rate,argA,argB,flags);
+    if (D_8006C648 == 3)
+        rate += rate >> 1;
+    else if (D_8006C648 == 4)
+        rate <<= 1;
+    if (flags & 8) {
+        result = func_8004E880(target->x - current->position.x, target->y - current->position.y, 0);
+        func_8003585C(current, result, turnA, 0, 0, 0);
+        result = func_80035EE0(current, heading, rate, argA, argB, flags);
     } else {
-        if(!func_8003585C(current,heading,turnA,turnB,1,0))goto done;
-        result=func_80035DDC(current,rate,argA,argB,flags);
+        if (!func_8003585C(current, heading, turnA, turnB, 1, 0))
+            goto done;
+        result = func_80035DDC(current, rate, argA, argB, flags);
     }
-    if(result)return -result;
- done:
+    if (result)
+        return -result;
+done:
     return ABS(error);
 }
 
@@ -98,8 +118,8 @@ void func_level_16_8007FBC8(Moby* moby, int mode) {
     spyro.unk20a = 1;
     spyro.unk20b = mode;
     spyro.critterMobyPtr = moby;
-    if ((camera.cameraState == CAMERA_FIRST_PERSON && (unsigned int)camera.unk50 >= 2)
-        || (spyro.unk17b & 0x2000)) {
+    if ((camera.cameraState == CAMERA_FIRST_PERSON && (unsigned int)camera.unk50 >= 2) ||
+        (spyro.unk17b & 0x2000)) {
         moby->lowDrawDistance = 0;
         moby->drawn = 0;
     } else {
@@ -107,17 +127,17 @@ void func_level_16_8007FBC8(Moby* moby, int mode) {
     }
 }
 
-#define Controller582CField(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+#define Controller582CField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 extern unsigned char Controller582CPlayer[] __asm__("D_80070328");
 extern void* Controller582CLinked0 __asm__("D_80070328 + 0x250");
 extern void* Controller582CLinked1 __asm__("D_80070328 + 0x250");
 extern void* Controller582CLinked2 __asm__("D_80070328 + 0x250");
 extern unsigned char Controller582CSave[] __asm__("D_8006C7F8");
-extern int D_8006C6C0,D_8006C710,D_8006E524,D_8007203C,D_80072040;
-int Controller582CHelper3B7B4(void*,int,void*) __asm__("func_8003B7B4");
-int Controller582CHelper3BABC(void*,int,int) __asm__("func_8003BABC");
+extern int D_8006C6C0, D_8006C710, D_8006E524, D_8007203C, D_80072040;
+int Controller582CHelper3B7B4(void*, int, void*) __asm__("func_8003B7B4");
+int Controller582CPlayMobySoundEvent(void*, int, int) __asm__("func_8003BABC");
 int Controller582CHelper3BE70(int) __asm__("func_8003BE70");
-int Controller582CHelper3BFC0(void*,int) __asm__("func_8003BFC0");
+int Controller582CHelper3BFC0(void*, int) __asm__("func_8003BFC0");
 int Controller582CHelper498C0(void) __asm__("func_800498C0");
 int Controller582CHelper4BEF8(int) __asm__("func_8004BEF8");
 /* AI generated; not human reviewed. SCUS-94467 USA Rev 0.
@@ -135,201 +155,249 @@ int Controller582CHelper4BEF8(int) __asm__("func_8004BEF8");
  * Empty constraints preserve original register phases without opcode patches.
  */
 int func_level_16_8007FC40(int inputMask) {
-    register int* gateWord __asm__("$5")=(int*)(Controller582CPlayer+0x284);
+    register int* gateWord __asm__("$5") = (int*)(Controller582CPlayer + 0x284);
     register signed short* cosine __asm__("$21");
     register signed short* sine __asm__("$20");
     Vector3D offset;
     register int helperArgument __asm__("$4");
-    register signed short *cosinePointer __asm__("$5");
+    register signed short* cosinePointer __asm__("$5");
     register int firstSample __asm__("$16");
     register int firstTableWord __asm__("$16");
     register int selectedBits __asm__("$19");
     register int secondTableWord __asm__("$2");
     register int particleIndex __asm__("$18");
     int nextWord;
-    unsigned char *resultRecord;
-    register unsigned char *record0 __asm__("$17");
-    register unsigned char *record1 __asm__("$17");
+    unsigned char* resultRecord;
+    register unsigned char* record0 __asm__("$17");
+    register unsigned char* record1 __asm__("$17");
 
-    if ((*gateWord == 0) && (Controller582CField(Controller582CPlayer, int *, 0x1CC) == 0)) {
-        if (Controller582CField(Controller582CPlayer, unsigned int *, 0x24C) == 5) {
-            Controller582CField(Controller582CPlayer, int *, 0x24) = (int) Controller582CField(Controller582CField(Controller582CPlayer, void **, 0x250), int *, 0x18);
-            Controller582CField(Controller582CField(Controller582CPlayer, void **, 0x250), int *, 0x18) = 0;
+    if ((*gateWord == 0) && (Controller582CField(Controller582CPlayer, int*, 0x1CC) == 0)) {
+        if (Controller582CField(Controller582CPlayer, unsigned int*, 0x24C) == 5) {
+            Controller582CField(Controller582CPlayer, int*, 0x24) = (int)Controller582CField(
+                Controller582CField(Controller582CPlayer, void**, 0x250), int*, 0x18);
+            Controller582CField(Controller582CField(Controller582CPlayer, void**, 0x250), int*,
+                                0x18) = 0;
         }
-        { register int inputBits __asm__("$2")=Controller582CField(Controller582CPlayer,int*,0x24);
-          __asm__("" : "=r"(inputBits) : "0"(inputBits));
-          selectedBits=inputBits&inputMask; }
+        {
+            register int inputBits __asm__("$2") =
+                Controller582CField(Controller582CPlayer, int*, 0x24);
+            MATCHING_KEEP(inputBits);
+            selectedBits = inputBits & inputMask;
+        }
         if (selectedBits != 0) {
-            if (Controller582CField(Controller582CPlayer, unsigned int *, 0x24C) == 5) {
-                Controller582CField(Controller582CPlayer, unsigned int *, 0x284) = (unsigned int) Controller582CField(Controller582CPlayer, unsigned int *, 0x24C);
+            if (Controller582CField(Controller582CPlayer, unsigned int*, 0x24C) == 5) {
+                Controller582CField(Controller582CPlayer, unsigned int*, 0x284) =
+                    (unsigned int)Controller582CField(Controller582CPlayer, unsigned int*, 0x24C);
                 goto dispatch;
             }
-            if (Controller582CField(Controller582CPlayer, int *, 0x48) == 0x26) {
+            if (Controller582CField(Controller582CPlayer, int*, 0x48) == 0x26) {
                 helperArgument = 0x39;
-                Controller582CField(Controller582CPlayer, int *, 0x244) = 0;
-                Controller582CField(Controller582CPlayer, void **, 0x250) = 0;
+                Controller582CField(Controller582CPlayer, int*, 0x244) = 0;
+                Controller582CField(Controller582CPlayer, void**, 0x250) = 0;
                 goto sharedCall;
             }
             goto afterCall;
-sharedCall:
+        sharedCall:
             Controller582CHelper4BEF8(helperArgument);
-handled:
-            __asm__ volatile("" : : : "$2");
+        handled:
+            MATCHING_BARRIER_VOLATILE("$2");
             return 1;
-afterCall:
-            if (Controller582CField(Controller582CPlayer, unsigned int *, 0x24C) != 7) {
-                { register int literal __asm__("$2")=90;
-                  register int remaining __asm__("$3")=Controller582CField(Controller582CPlayer,int*,0x280);
-                  __asm__("" : "=r"(literal),"=r"(remaining) : "0"(literal),"1"(remaining));
-                  *gateWord=literal;
-                  if(remaining>=0){
-                    { register int next __asm__("$2")=remaining-1;
-                      Controller582CField(Controller582CPlayer,int*,0x280)=next;
-                      __asm__ volatile("" : : : "memory"); }
-                    D_8006C6C0+=1;D_8006C710+=1;
-                  } }
+        afterCall:
+            if (Controller582CField(Controller582CPlayer, unsigned int*, 0x24C) != 7) {
+                {
+                    register int literal __asm__("$2") = 90;
+                    register int remaining __asm__("$3") =
+                        Controller582CField(Controller582CPlayer, int*, 0x280);
+                    MATCHING_KEEP2(literal, remaining);
+                    *gateWord = literal;
+                    if (remaining >= 0) {
+                        {
+                            register int next __asm__("$2") = remaining - 1;
+                            Controller582CField(Controller582CPlayer, int*, 0x280) = next;
+                            MATCHING_BARRIER_VOLATILE("memory");
+                        }
+                        D_8006C6C0 += 1;
+                        D_8006C710 += 1;
+                    }
+                }
 
             }
-dispatch:
-            switch (Controller582CField(Controller582CPlayer, unsigned int *, 0x24C)) {
-            default:
-                goto handled;
-            case 0:
-                helperArgument=0x1B;
-                goto sharedCall;
-            case 1:
-                helperArgument = 0x48;
-                goto sharedCall;
-            case 2:
-                helperArgument = 0x58;
-                goto sharedCall;
-            case 3:
-                if (({ register int selector __asm__("$2")=selectedBits&8; __asm__("" : "=r"(selector) : "0"(selector)); selector; })) {
-                    helperArgument = 0x6C;
-                    if (Controller582CField(Controller582CPlayer, int *, 0x280) >= 0) {
-                        helperArgument = 0x6B;
-                    }
-                } else {
-                    helperArgument = 0x69;
-                    if (Controller582CField(Controller582CPlayer, int *, 0x280) >= 0) {
-                        helperArgument = 0x68;
-                    }
-                }
-                goto sharedCall;
-            case 4:
-                helperArgument = 0x79;
-                goto sharedCall;
-            case 5:
-                record0 = Controller582CField(Controller582CField(Controller582CPlayer, void **, 0x250), void **, 0);
-                            if (Controller582CField(Controller582CPlayer, int *, 0x240) == 0) {
-                    particleIndex = 0;
-                    cosine=D_80065920;
-                    sine=D_800658A0;
-                    do {
-                        particleIndex += 1;
-                        firstSample = rand() & 0xFF;
-                        secondTableWord=rand()&255;
-                        __asm__("" : "=r"(secondTableWord),"=r"(firstSample) : "0"(secondTableWord),"1"(firstSample));
-                        firstTableWord=firstSample*2;
-                        { register int firstAddress __asm__("$3")=firstTableWord+(int)cosine;
-                          register int sample __asm__("$3");
-                          register int factor __asm__("$4");
-                          register int product __asm__("$8");
-                          __asm__("" : "=r"(firstAddress) : "0"(firstAddress));
-                          secondTableWord*=2;
-                          cosinePointer=(signed short*)(secondTableWord+(int)cosine);
-                          sample=*(signed short*)firstAddress;
-                          factor=*cosinePointer;
-                          __asm__("" : "=r"(sample),"=r"(factor) : "0"(sample),"1"(factor));
-                          sample >>=7;
-                          product=sample*factor;
-                          firstTableWord+=(int)sine;
-                          __asm__("" : "=r"(product),"=r"(firstTableWord) : "0"(product),"1"(firstTableWord));
-                          sample=product>>12;
-                          __asm__("" : "=r"(sample) : "0"(sample));
-                          offset.x=sample;
-                          sample=*(signed short*)firstTableWord;
-                          factor=*cosinePointer;
-                          __asm__("" : "=r"(sample),"=r"(factor) : "0"(sample),"1"(factor));
-                          sample >>=7;
-                          product=sample*factor;
-                          { register unsigned char* position __asm__("$6")=record0+0x30;
-                            register Vector3D* prepared __asm__("$7");
-                            register void (*callback)(int,int,Vector3D*,Vector3D*) __asm__("$2");
-                            register int zero __asm__("$5");
-                            secondTableWord+=(int)sine;
-                            __asm__("" : "=r"(secondTableWord),"=r"(position) : "0"(secondTableWord),"1"(position) : "$7");
-                            prepared=&offset;
-                            __asm__("" : "=r"(product),"=r"(position),"=r"(prepared),"=r"(secondTableWord) : "0"(product),"1"(position),"2"(prepared),"3"(secondTableWord));
-                            sample=product>>12;
-                            __asm__("" : "=r"(sample) : "0"(sample));
-                            offset.y=sample;
-                            secondTableWord=*(signed short*)secondTableWord;
-                            __asm__("" : "=r"(secondTableWord) : "0"(secondTableWord) : "$5");
-                            zero=0;
-                            __asm__("" : "=r"(secondTableWord),"=r"(zero) : "0"(secondTableWord),"1"(zero));
-                            offset.z=secondTableWord>>7;
-                            __asm__ volatile("" : : : "memory");
-                            callback=(void(*)(int,int,Vector3D*,Vector3D*))SpawnParticle;
-                            __asm__("" : "=r"(callback) : "0"(callback) : "$4");
-                            callback(1,zero,(Vector3D*)position,prepared); }
+        dispatch:
+            switch (Controller582CField(Controller582CPlayer, unsigned int*, 0x24C)) {
+                default:
+                    goto handled;
+                case 0:
+                    helperArgument = 0x1B;
+                    goto sharedCall;
+                case 1:
+                    helperArgument = 0x48;
+                    goto sharedCall;
+                case 2:
+                    helperArgument = 0x58;
+                    goto sharedCall;
+                case 3:
+                    if (({
+                            register int selector __asm__("$2") = selectedBits & 8;
+                            MATCHING_KEEP(selector);
+                            selector;
+                        })) {
+                        helperArgument = 0x6C;
+                        if (Controller582CField(Controller582CPlayer, int*, 0x280) >= 0) {
+                            helperArgument = 0x6B;
                         }
+                    } else {
+                        helperArgument = 0x69;
+                        if (Controller582CField(Controller582CPlayer, int*, 0x280) >= 0) {
+                            helperArgument = 0x68;
+                        }
+                    }
+                    goto sharedCall;
+                case 4:
+                    helperArgument = 0x79;
+                    goto sharedCall;
+                case 5:
+                    record0 = Controller582CField(
+                        Controller582CField(Controller582CPlayer, void**, 0x250), void**, 0);
+                    if (Controller582CField(Controller582CPlayer, int*, 0x240) == 0) {
+                        particleIndex = 0;
+                        cosine = D_80065920;
+                        sine = D_800658A0;
+                        do {
+                            particleIndex += 1;
+                            firstSample = rand() & 0xFF;
+                            secondTableWord = rand() & 255;
+                            MATCHING_KEEP2(secondTableWord, firstSample);
+                            firstTableWord = firstSample * 2;
+                            {
+                                register int firstAddress __asm__("$3") =
+                                    firstTableWord + (int)cosine;
+                                register int sample __asm__("$3");
+                                register int factor __asm__("$4");
+                                register int product __asm__("$8");
+                                MATCHING_KEEP(firstAddress);
+                                secondTableWord *= 2;
+                                cosinePointer = (signed short*)(secondTableWord + (int)cosine);
+                                sample = *(signed short*)firstAddress;
+                                factor = *cosinePointer;
+                                MATCHING_KEEP2(sample, factor);
+                                sample >>= 7;
+                                product = sample * factor;
+                                firstTableWord += (int)sine;
+                                MATCHING_KEEP2(product, firstTableWord);
+                                sample = product >> 12;
+                                MATCHING_KEEP(sample);
+                                offset.x = sample;
+                                sample = *(signed short*)firstTableWord;
+                                factor = *cosinePointer;
+                                MATCHING_KEEP2(sample, factor);
+                                sample >>= 7;
+                                product = sample * factor;
+                                {
+                                    register unsigned char* position __asm__("$6") = record0 + 0x30;
+                                    register Vector3D* prepared __asm__("$7");
+                                    register void (*callback)(int, int, Vector3D*,
+                                                              Vector3D*) __asm__("$2");
+                                    register int zero __asm__("$5");
+                                    secondTableWord += (int)sine;
+                                    MATCHING_KEEP2_CLOBBER(secondTableWord, position, "$7");
+                                    prepared = &offset;
+                                    MATCHING_KEEP4(product, position, prepared, secondTableWord);
+                                    sample = product >> 12;
+                                    MATCHING_KEEP(sample);
+                                    offset.y = sample;
+                                    secondTableWord = *(signed short*)secondTableWord;
+                                    MATCHING_KEEP_CLOBBER(secondTableWord, "$5");
+                                    zero = 0;
+                                    MATCHING_KEEP2(secondTableWord, zero);
+                                    offset.z = secondTableWord >> 7;
+                                    MATCHING_BARRIER_VOLATILE("memory");
+                                    callback =
+                                        (void (*)(int, int, Vector3D*, Vector3D*))SpawnParticle;
+                                    MATCHING_KEEP_CLOBBER(callback, "$4");
+                                    callback(1, zero, (Vector3D*)position, prepared);
+                                }
+                            }
 
                     } while (particleIndex < 8);
-                    D_80072040 = 0xC8;
-                    D_8007203C = 0xA;
-                    if (selectedBits & 1) {
-                        Controller582CHelper4BEF8(0x8C);
-                        nextWord = Controller582CField(record0, int *, 0x24) - 1;
-                    } else if (({ register int selector __asm__("$2"); __asm__("" : : : "$2"); selector=selectedBits&2; __asm__("" : "=r"(selector) : "0"(selector)); selector; })) {
-                        Controller582CHelper4BEF8(0x8C);
-                        nextWord = Controller582CField(record0, int *, 0x24) - 3;
-                    } else {
-                        Controller582CHelper4BEF8(0x8D);
-                        nextWord = Controller582CField(record0, int *, 0x24) - 2;
+                        D_80072040 = 0xC8;
+                        D_8007203C = 0xA;
+                        if (selectedBits & 1) {
+                            Controller582CHelper4BEF8(0x8C);
+                            nextWord = Controller582CField(record0, int*, 0x24) - 1;
+                        } else if (({
+                                       register int selector __asm__("$2");
+                                       MATCHING_BARRIER("$2");
+                                       selector = selectedBits & 2;
+                                       MATCHING_KEEP(selector);
+                                       selector;
+                                   })) {
+                            Controller582CHelper4BEF8(0x8C);
+                            nextWord = Controller582CField(record0, int*, 0x24) - 3;
+                        } else {
+                            Controller582CHelper4BEF8(0x8D);
+                            nextWord = Controller582CField(record0, int*, 0x24) - 2;
+                        }
+                        Controller582CField(record0, int*, 0x24) = nextWord;
+                        D_8006C6C0 += 1;
+                        MATCHING_BARRIER_VOLATILE("memory");
+                        {
+                            register int counter __asm__("$2") = D_8006C710;
+                            register int remaining __asm__("$3") =
+                                Controller582CField(record0, int*, 0x24);
+                            MATCHING_KEEP2(counter, remaining);
+                            D_8006C710 = counter + 1;
+                            if (remaining < 0) {
+                                Controller582CField(record0, int*, 0x24) = 0;
+                            }
+                        }
+                        Controller582CHelper3B7B4(record0 + 0x24, 4, Controller582CSave);
+                        return 1;
                     }
-                    Controller582CField(record0, int *, 0x24) = nextWord;
-                    D_8006C6C0 += 1;
-                    __asm__ volatile("" : : : "memory");
-                    { register int counter __asm__("$2")=D_8006C710;
-                      register int remaining __asm__("$3")=Controller582CField(record0,int*,0x24);
-                      __asm__("" : "=r"(counter),"=r"(remaining) : "0"(counter),"1"(remaining));
-                      D_8006C710=counter+1;
-                      if (remaining < 0) {
-                        Controller582CField(record0, int *, 0x24) = 0;
-                    } }
-                    Controller582CHelper3B7B4(record0 + 0x24, 4, Controller582CSave);
-                    return 1;
-                }
 
                 return 0;
-            case 7:
-                { register void* linked __asm__("$2")=Controller582CLinked0;
-                  __asm__("" : "=r"(linked) : "0"(linked));
-                  record1=*(unsigned char**)linked; }
-                if (Controller582CField(record1,int*,0x1C)&1)return 1;
-                { register int duration __asm__("$16")=15;
-                  Controller582CField(Controller582CPlayer,int*,0x284)=duration;
-                  { register int count __asm__("$2")=Controller582CField(record1,int*,0x28);
-                    register int second __asm__("$5");
-                    __asm__("" : "=r"(count) : "0"(count) : "$5");
-                    second=2;
-                    __asm__("" : "=r"(count),"=r"(second) : "0"(count),"1"(second));
-                    Controller582CField(record1,int*,0x28)=count-1;
-                    __asm__ volatile("" : : : "memory");
-                    Controller582CHelper3BABC(Controller582CLinked0,second,0); }
-                  D_8006E524=duration; }
-                if(Controller582CField(Controller582CPlayer,int*,0x280)>0 && Controller582CField(record1,int*,0x28)>0)return 1;
-                if(Controller582CHelper3BFC0(Controller582CLinked1,Controller582CField(record1,int*,0x48))!=0){
-                    if(Controller582CHelper3BFC0(Controller582CLinked2,Controller582CField(record1,int*,0x48))!=0)Controller582CHelper3BE70(Controller582CField(record1,int*,0x48));
-                    Controller582CField(record1,int*,0x48)=-1;
+                case 7: {
+                    register void* linked __asm__("$2") = Controller582CLinked0;
+                    MATCHING_KEEP(linked);
+                    record1 = *(unsigned char**)linked;
                 }
-                Controller582CHelper498C0();
-                return 1;
-            case 6:
-                resultRecord = Controller582CField(Controller582CField(Controller582CPlayer, void **, 0x250), void **, 0);
-                Controller582CField(resultRecord, unsigned short *, 0x66) = (unsigned short) (Controller582CField(resultRecord, unsigned short *, 0x66) | selectedBits);
-                return 0;
+                    if (Controller582CField(record1, int*, 0x1C) & 1)
+                        return 1;
+                    {
+                        register int duration __asm__("$16") = 15;
+                        Controller582CField(Controller582CPlayer, int*, 0x284) = duration;
+                        {
+                            register int count __asm__("$2") =
+                                Controller582CField(record1, int*, 0x28);
+                            register int second __asm__("$5");
+                            MATCHING_KEEP_CLOBBER(count, "$5");
+                            second = 2;
+                            MATCHING_KEEP2(count, second);
+                            Controller582CField(record1, int*, 0x28) = count - 1;
+                            MATCHING_BARRIER_VOLATILE("memory");
+                            Controller582CPlayMobySoundEvent(Controller582CLinked0, second, 0);
+                        }
+                        D_8006E524 = duration;
+                    }
+                    if (Controller582CField(Controller582CPlayer, int*, 0x280) > 0 &&
+                        Controller582CField(record1, int*, 0x28) > 0)
+                        return 1;
+                    if (Controller582CHelper3BFC0(Controller582CLinked1,
+                                                  Controller582CField(record1, int*, 0x48)) != 0) {
+                        if (Controller582CHelper3BFC0(Controller582CLinked2,
+                                                      Controller582CField(record1, int*, 0x48)) !=
+                            0)
+                            Controller582CHelper3BE70(Controller582CField(record1, int*, 0x48));
+                        Controller582CField(record1, int*, 0x48) = -1;
+                    }
+                    Controller582CHelper498C0();
+                    return 1;
+                case 6:
+                    resultRecord = Controller582CField(
+                        Controller582CField(Controller582CPlayer, void**, 0x250), void**, 0);
+                    Controller582CField(resultRecord, unsigned short*, 0x66) =
+                        (unsigned short)(Controller582CField(resultRecord, unsigned short*, 0x66) |
+                                         selectedBits);
+                    return 0;
             }
         } else {
 
@@ -342,28 +410,28 @@ dispatch:
 
 #undef Controller582CField
 
-
 /* AI-generated; not human reviewed. Derived from this function's
  * original SCUS-94467 instructions; native words and targets matched.
  * Raw field units, helper meanings and update cadence remain unresolved. */
 /* AI generated;
  not human reviewed. UNINSTALLED inferred C. Original source asm/nonmatchings/overlays/level_16/level/func_level_16_800800C4.s SHA256 931f50252d4152dcd4ece528bdb7466993a54f9b83b7cbf38acca74367122852. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
-#define Level16_800C4Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+#define Level16_800C4Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 extern short Level16_800C4_D_800658A0[0x100] __asm__("D_800658A0");
 extern short Level16_800C4_D_80065920[0x100] __asm__("D_80065920");
 extern Spyro Level16_800C4_D_80070328 __asm__("D_80070328");
 extern int Level16_800C4_func_8001A358(Vector3D*, int) __asm__("func_8001A358");
-int Level16_800C4_func_8003585C(Moby*, int, int, int, int, int ) __asm__("func_8003585C");
-int Level16_800C4_func_800359A4(void*, int) __asm__("func_800359A4");
-int Level16_800C4_func_80035DDC(Moby* owner19, int private17, int mode18, int arg3, int arg4) __asm__("func_80035DDC");
-int Level16_800C4_func_8003636C(int low, int high) __asm__("func_8003636C");
-extern int Level16_800C4_func_8004E880(int, int, int) __asm__("func_8004E880");
-extern void Level16_800C4_func_8004F194(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004F194");
-extern int Level16_800C4_func_8004F334(Vector3D*, Vector3D*) __asm__("func_8004F334");
+int Level16_800C4TurnMobyTowardHeading(Moby*, int, int, int, int, int) __asm__("func_8003585C");
+int Level16_800C4CountTimerDown(void*, int) __asm__("func_800359A4");
+int Level16_800C4_func_80035DDC(Moby* owner19, int private17, int mode18, int arg3,
+                                int arg4) __asm__("func_80035DDC");
+int Level16_800C4RandBetween(int low, int high) __asm__("func_8003636C");
+extern int Level16_800C4PlanarHeadingLookup(int, int, int) __asm__("func_8004E880");
+extern void Level16_800C4AddVector(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004F194");
+extern int Level16_800C4ApproximatePlanarDistance(Vector3D*, Vector3D*) __asm__("func_8004F334");
 
-extern void *Level16_800C4_D_80071930 __asm__("D_80071930");
+extern void* Level16_800C4_D_80071930 __asm__("D_80071930");
 
-void func_level_16_800800C4(Moby *inputOwner, Vector3D *inputPrivate, int inputMode) {
+void func_level_16_800800C4(Moby* inputOwner, Vector3D* inputPrivate, int inputMode) {
     /* Original 0x50 frame, scratch vector SP18/1C/20 and distinct byte
      * producers are retained. The private helper pointer advances 15 bytes,
      * and the successful probe still performs the original byte stores
@@ -374,17 +442,18 @@ void func_level_16_800800C4(Moby *inputOwner, Vector3D *inputPrivate, int inputM
      * Helper contracts, physical units/fixed point, frame cadence and runtime
      * capture validation remain unresolved. AI generated;
       not human reviewed. */
-    register Moby *owner19 __asm__("$19")=inputOwner;
-    register Vector3D *private17 __asm__("$17")=inputPrivate;
+    register Moby* owner19 __asm__("$19") = inputOwner;
+    register Vector3D* private17 __asm__("$17") = inputPrivate;
     register int mode18 __asm__("$18");
 
-    struct {int sp18;
-     int sp1C;
-     int sp20;
-     unsigned char pad24[12];
+    struct {
+        int sp18;
+        int sp1C;
+        int sp20;
+        unsigned char pad24[12];
     } scratch;
 
-    register Vector3D *ownerPosition16 __asm__("$16");
+    register Vector3D* ownerPosition16 __asm__("$16");
     register int rawRange18 __asm__("$18");
     register int resultFlags16 __asm__("$16");
     register int distance18 __asm__("$18");
@@ -405,177 +474,203 @@ void func_level_16_800800C4(Moby *inputOwner, Vector3D *inputPrivate, int inputM
     register int state3 __asm__("$3");
     register int initialByte16 __asm__("$16");
 
-    __asm__("":"=r"(owner19),"=r"(private17),"=r"(mode18):"0"(owner19),"1"(private17));
-one8=1;
-__asm__("":"=r"(one8):"0"(one8));
-    state3 = Level16_800C4Field(private17, unsigned char *, 0xE);
-    initialByte16 = Level16_800C4Field(private17, unsigned char *, 0x10);
-    __asm__("":"=r"(mode18):"0"(mode18),"r"(state3),"r"(initialByte16));
-    __asm__("":"=r"(state3):"0"(state3),"r"(initialByte16),"r"(inputMode));
-    mode18=inputMode;
-    if(state3==one8)goto state1;
-    if(state3<2){randArgument4=-32;
-    if(!state3)goto state0;
-    goto afterDispatch;
+    __asm__("" : "=r"(owner19), "=r"(private17), "=r"(mode18) : "0"(owner19), "1"(private17));
+    one8 = 1;
+    MATCHING_KEEP(one8);
+    state3 = Level16_800C4Field(private17, unsigned char*, 0xE);
+    initialByte16 = Level16_800C4Field(private17, unsigned char*, 0x10);
+    __asm__("" : "=r"(mode18) : "0"(mode18), "r"(state3), "r"(initialByte16));
+    __asm__("" : "=r"(state3) : "0"(state3), "r"(initialByte16), "r"(inputMode));
+    mode18 = inputMode;
+    if (state3 == one8)
+        goto state1;
+    if (state3 < 2) {
+        randArgument4 = -32;
+        if (!state3)
+            goto state0;
+        goto afterDispatch;
     }
-    value2=2;
-    if(state3==value2)goto state2;
-    value2=3;
-    if(state3==value2)goto state3;
+    value2 = 2;
+    if (state3 == value2)
+        goto state2;
+    value2 = 3;
+    if (state3 == value2)
+        goto state3;
     goto afterDispatch;
 state0:
-        Level16_800C4Field(private17, unsigned char *, 0x13) = (unsigned char) (Level16_800C4Field(private17, unsigned char *, 0x13) + Level16_800C4_func_8003636C(randArgument4,0x20));
-        Level16_800C4Field(private17, signed char *, 0xF) = Level16_800C4_func_8003636C(0x1E, 0x5A);
-        Level16_800C4Field(private17, unsigned char *, 0xE) = 1U;
-        goto afterDispatch;
+    Level16_800C4Field(private17, unsigned char*, 0x13) =
+        (unsigned char)(Level16_800C4Field(private17, unsigned char*, 0x13) +
+                        Level16_800C4RandBetween(randArgument4, 0x20));
+    Level16_800C4Field(private17, signed char*, 0xF) = Level16_800C4RandBetween(0x1E, 0x5A);
+    Level16_800C4Field(private17, unsigned char*, 0xE) = 1U;
+    goto afterDispatch;
 state1:
-        __asm__("":"=r"(state3):"0"(state3));
-        Level16_800C4_func_8003585C(owner19, (int) Level16_800C4Field(private17, unsigned char *, 0x13), (int) Level16_800C4Field(private17, unsigned char *, 0x11), 0, one8, 0);
-        if (Level16_800C4_func_800359A4((unsigned char*)private17 + 0xF, 1) != 0) {
-            Level16_800C4Field(private17, unsigned char *, 0xE) = 0U;
-        }
-        goto afterDispatch;
+    MATCHING_KEEP(state3);
+    Level16_800C4TurnMobyTowardHeading(
+        owner19, (int)Level16_800C4Field(private17, unsigned char*, 0x13),
+        (int)Level16_800C4Field(private17, unsigned char*, 0x11), 0, one8, 0);
+    if (Level16_800C4CountTimerDown((unsigned char*)private17 + 0xF, 1) != 0) {
+        Level16_800C4Field(private17, unsigned char*, 0xE) = 0U;
+    }
+    goto afterDispatch;
 state2:
-        if (Level16_800C4_func_8003585C(owner19, (int) Level16_800C4Field(private17, unsigned char *, 0x13), (int) Level16_800C4Field(private17, unsigned char *, 0x11), 8, one8, 0) != 0) {
-            call4=(Vector3D*)30;
-            call5=(Vector3D*)90;
-            goto resetPrivateTimer;
-        }
-        goto functionReturn;
+    if (Level16_800C4TurnMobyTowardHeading(
+            owner19, (int)Level16_800C4Field(private17, unsigned char*, 0x13),
+            (int)Level16_800C4Field(private17, unsigned char*, 0x11), 8, one8, 0) != 0) {
+        call4 = (Vector3D*)30;
+        call5 = (Vector3D*)90;
+        goto resetPrivateTimer;
+    }
+    goto functionReturn;
 state3:
-        value2=Level16_800C4_func_8003585C(owner19,(int)Level16_800C4Field(private17,unsigned char*,19),(int)Level16_800C4Field(private17,unsigned char*,17),8,one8,0);
-        randArgument4=30;
-        if(value2){
-            Level16_800C4Field(private17,signed char*,15)=Level16_800C4_func_8003636C(randArgument4,90);
-            Level16_800C4Field(private17, unsigned char *, 0xE) = 1U;
-        }
-        initialByte16 = (int) initialByte16 >> 1;
-        goto afterDispatch;
+    value2 = Level16_800C4TurnMobyTowardHeading(
+        owner19, (int)Level16_800C4Field(private17, unsigned char*, 19),
+        (int)Level16_800C4Field(private17, unsigned char*, 17), 8, one8, 0);
+    randArgument4 = 30;
+    if (value2) {
+        Level16_800C4Field(private17, signed char*, 15) =
+            Level16_800C4RandBetween(randArgument4, 90);
+        Level16_800C4Field(private17, unsigned char*, 0xE) = 1U;
+    }
+    initialByte16 = (int)initialByte16 >> 1;
+    goto afterDispatch;
 afterDispatch:
-        call4=(Vector3D*)owner19;
-        if(mode18){
-            __asm__ volatile("# post-dispatch-nonzero");
-            call5=(Vector3D*)initialByte16;
-            argument6=Level16_800C4Field(private17,short*,12);
-            value2=119;
-        }else{
-            __asm__ volatile("# post-dispatch-zero");
-            call5=(Vector3D*)initialByte16;
-            argument6=Level16_800C4Field(private17,short*,12);
-            value2=34;
-        }
-        resultFlags16=Level16_800C4_func_80035DDC((Moby*)call4,(int)call5,argument6,argument6,value2);
-        __asm__("":"=r"(resultFlags16):"0"(resultFlags16));
-        argument6=0;
-        if (resultFlags16 & 1) {
-            Level16_800C4Field(private17, unsigned char *, 0x13) = Level16_800C4_func_8004E880(owner19->position.x - Level16_800C4Field(Level16_800C4_D_80071930, int *, 0xC), owner19->position.y - Level16_800C4Field(Level16_800C4_D_80071930, int *, 0x10), argument6);
-            Level16_800C4Field(private17, unsigned char *, 0xE) = 3U;
-            return;
-        }
-        goto checkProbeMode;
+    call4 = (Vector3D*)owner19;
+    if (mode18) {
+        __asm__ volatile("# post-dispatch-nonzero");
+        call5 = (Vector3D*)initialByte16;
+        argument6 = Level16_800C4Field(private17, short*, 12);
+        value2 = 119;
+    } else {
+        __asm__ volatile("# post-dispatch-zero");
+        call5 = (Vector3D*)initialByte16;
+        argument6 = Level16_800C4Field(private17, short*, 12);
+        value2 = 34;
+    }
+    resultFlags16 =
+        Level16_800C4_func_80035DDC((Moby*)call4, (int)call5, argument6, argument6, value2);
+    MATCHING_KEEP(resultFlags16);
+    argument6 = 0;
+    if (resultFlags16 & 1) {
+        Level16_800C4Field(private17, unsigned char*, 0x13) = Level16_800C4PlanarHeadingLookup(
+            owner19->position.x - Level16_800C4Field(Level16_800C4_D_80071930, int*, 0xC),
+            owner19->position.y - Level16_800C4Field(Level16_800C4_D_80071930, int*, 0x10),
+            argument6);
+        Level16_800C4Field(private17, unsigned char*, 0xE) = 3U;
+        return;
+    }
+    goto checkProbeMode;
 probeAccepted:
-        value2=2;
-        Level16_800C4Field(private17,volatile unsigned char*,0x13)=byte20;
-        Level16_800C4Field(private17,unsigned char*,0xE)=value2;
-        goto fallbackByte13;
+    value2 = 2;
+    Level16_800C4Field(private17, volatile unsigned char*, 0x13) = byte20;
+    Level16_800C4Field(private17, unsigned char*, 0xE) = value2;
+    goto fallbackByte13;
 checkProbeMode:
-        __asm__ volatile("":"=r"(argument6));
-        argument6=(int)&owner19->position;
-        if(!mode18)goto checkPrivateRange;
-        __asm__("":"=r"(argument6):"0"(argument6));
-        value3=Level16_800C4Field(private17,short*,12);
-        value2=owner19->angle.yaw;
-        __asm__ volatile("":::"memory");
-        call4=(Vector3D*)Level16_800C4Field(private17,unsigned char*,16);
-        value3*=2;
-        value2*=2;
-        value2=*(short*)((unsigned char*)Level16_800C4_D_80065920+value2);
-        rawRange18=(int)call4+value3;
-        scratch.sp18=(value2*rawRange18)>>12;
-        value2=Level16_800C4_D_800658A0[owner19->angle.yaw];
-        call4=(Vector3D*)&scratch.sp18;
-        call5=call4;
-        scratch.sp20=0;
-        scratch.sp1C=(value2*rawRange18)>>12;
-        scratch.sp20=128-owner19->distanceToGround;
-        Level16_800C4_func_8004F194(call4,call5,(Vector3D*)argument6);
-        call4=(Vector3D*)&scratch.sp18;
-        __asm__("":"=r"(call4):"0"(call4));
-        cosine20=Level16_800C4_D_80065920;
-        __asm__("":"=r"(cosine20):"0"(cosine20));
-        value2=Level16_800C4_func_8001A358(call4,256);
-        if(!value2)goto startHeadingSearch;
-        value2=resultFlags16&2;
-        if(!value2)goto checkPrivateRange;
+    __asm__ volatile("" : "=r"(argument6));
+    argument6 = (int)&owner19->position;
+    if (!mode18)
+        goto checkPrivateRange;
+    MATCHING_KEEP(argument6);
+    value3 = Level16_800C4Field(private17, short*, 12);
+    value2 = owner19->angle.yaw;
+    MATCHING_BARRIER_VOLATILE("memory");
+    call4 = (Vector3D*)Level16_800C4Field(private17, unsigned char*, 16);
+    value3 *= 2;
+    value2 *= 2;
+    value2 = *(short*)((unsigned char*)Level16_800C4_D_80065920 + value2);
+    rawRange18 = (int)call4 + value3;
+    scratch.sp18 = (value2 * rawRange18) >> 12;
+    value2 = Level16_800C4_D_800658A0[owner19->angle.yaw];
+    call4 = (Vector3D*)&scratch.sp18;
+    call5 = call4;
+    scratch.sp20 = 0;
+    scratch.sp1C = (value2 * rawRange18) >> 12;
+    scratch.sp20 = 128 - owner19->distanceToGround;
+    Level16_800C4AddVector(call4, call5, (Vector3D*)argument6);
+    call4 = (Vector3D*)&scratch.sp18;
+    MATCHING_KEEP(call4);
+    cosine20 = Level16_800C4_D_80065920;
+    MATCHING_KEEP(cosine20);
+    value2 = Level16_800C4_func_8001A358(call4, 256);
+    if (!value2)
+        goto startHeadingSearch;
+    value2 = resultFlags16 & 2;
+    if (!value2)
+        goto checkPrivateRange;
 startHeadingSearch:
-        step16=32;
-        cosine21=(int)cosine20;
-        __asm__("":"=r"(cosine21):"0"(cosine21));
+    step16 = 32;
+    cosine21 = (int)cosine20;
+    MATCHING_KEEP(cosine21);
 probeNextAngle:
-        value2=owner19->angle.yaw;
-        value2+=step16;
-        byte20=value2&255;
-        value3=byte20*2;
-        value2=*(short*)(value3+cosine21);
-        scratch.sp18=(value2*rawRange18)>>12;
-        value2=*(short*)((unsigned char*)Level16_800C4_D_800658A0+value3);
-        call4=(Vector3D*)&scratch.sp18;
-        call5=call4;
-        scratch.sp20=0;
-        scratch.sp1C=(value2*rawRange18)>>12;
-        scratch.sp20=128-owner19->distanceToGround;
-        Level16_800C4_func_8004F194(call4,call5,&owner19->position);
-        value2=Level16_800C4_func_8001A358((Vector3D*)&scratch.sp18,256);
-        step16+=64;
-        if(value2)goto probeAccepted;
-        if(step16<256)goto probeNextAngle;
+    value2 = owner19->angle.yaw;
+    value2 += step16;
+    byte20 = value2 & 255;
+    value3 = byte20 * 2;
+    value2 = *(short*)(value3 + cosine21);
+    scratch.sp18 = (value2 * rawRange18) >> 12;
+    value2 = *(short*)((unsigned char*)Level16_800C4_D_800658A0 + value3);
+    call4 = (Vector3D*)&scratch.sp18;
+    call5 = call4;
+    scratch.sp20 = 0;
+    scratch.sp1C = (value2 * rawRange18) >> 12;
+    scratch.sp20 = 128 - owner19->distanceToGround;
+    Level16_800C4AddVector(call4, call5, &owner19->position);
+    value2 = Level16_800C4_func_8001A358((Vector3D*)&scratch.sp18, 256);
+    step16 += 64;
+    if (value2)
+        goto probeAccepted;
+    if (step16 < 256)
+        goto probeNextAngle;
 fallbackByte13:
-        value2=owner19->angle.yaw;
-        value3=2;
-        Level16_800C4Field(private17,unsigned char*,14)=value3;
-        nextByte13=value2+128;
-        goto storePrivateByte13;
+    value2 = owner19->angle.yaw;
+    value3 = 2;
+    Level16_800C4Field(private17, unsigned char*, 14) = value3;
+    nextByte13 = value2 + 128;
+    goto storePrivateByte13;
 checkPrivateRange:
-        ownerPosition16 = &owner19->position;
-        if (Level16_800C4Field(private17, unsigned char *, 0xE) != 3) {
-            value2=Level16_800C4_func_8004F334(ownerPosition16,private17);
-            value3=Level16_800C4Field(private17,unsigned char*,18);
-            value3<<=4;
-            value3=value3<value2;
-            if(value3) {
-                Level16_800C4Field(private17, unsigned char *, 0x13) = Level16_800C4_func_8004E880(private17->x - owner19->position.x, private17->y - owner19->position.y, 0);
-                call4=(Vector3D*)30;
-                call5=(Vector3D*)90;
-resetPrivateTimer:
-                Level16_800C4Field(private17,signed char*,15)=Level16_800C4_func_8003636C((int)call4,(int)call5);
-                Level16_800C4Field(private17, unsigned char *, 0xE) = 1U;
-                return;
-            }
-            call4=ownerPosition16;
-            player16=&Level16_800C4_D_80070328.position;
-            __asm__("":"=r"(player16):"0"(player16));
-            distance18=Level16_800C4_func_8004F334(call4,player16);
-            __asm__("":"=r"(distance18):"0"(distance18));
-            if (distance18 < 0x1000) {
-                value2=Level16_800C4_func_8004E880(owner19->position.x-player16->x,owner19->position.y-Level16_800C4_D_80070328.position.y,0);
-                value3=Level16_800C4Field(private17,unsigned char*,19);
-                call4=(Vector3D*)(value3*distance18);
-                value3=4096;
-                value3-=distance18;
-                value3=value2*value3;
-                __asm__("":"=r"(value3):"0"(value3));
-                value2=(int)call4+value3;
-                nextByte13=value2>>12;
-storePrivateByte13:
-                Level16_800C4Field(private17, unsigned char *, 0x13) = (unsigned char) nextByte13;
-            }
-        } else {
+    ownerPosition16 = &owner19->position;
+    if (Level16_800C4Field(private17, unsigned char*, 0xE) != 3) {
+        value2 = Level16_800C4ApproximatePlanarDistance(ownerPosition16, private17);
+        value3 = Level16_800C4Field(private17, unsigned char*, 18);
+        value3 <<= 4;
+        value3 = value3 < value2;
+        if (value3) {
+            Level16_800C4Field(private17, unsigned char*, 0x13) = Level16_800C4PlanarHeadingLookup(
+                private17->x - owner19->position.x, private17->y - owner19->position.y, 0);
+            call4 = (Vector3D*)30;
+            call5 = (Vector3D*)90;
+        resetPrivateTimer:
+            Level16_800C4Field(private17, signed char*, 15) =
+                Level16_800C4RandBetween((int)call4, (int)call5);
+            Level16_800C4Field(private17, unsigned char*, 0xE) = 1U;
             return;
         }
+        call4 = ownerPosition16;
+        player16 = &Level16_800C4_D_80070328.position;
+        MATCHING_KEEP(player16);
+        distance18 = Level16_800C4ApproximatePlanarDistance(call4, player16);
+        MATCHING_KEEP(distance18);
+        if (distance18 < 0x1000) {
+            value2 = Level16_800C4PlanarHeadingLookup(
+                owner19->position.x - player16->x,
+                owner19->position.y - Level16_800C4_D_80070328.position.y, 0);
+            value3 = Level16_800C4Field(private17, unsigned char*, 19);
+            call4 = (Vector3D*)(value3 * distance18);
+            value3 = 4096;
+            value3 -= distance18;
+            value3 = value2 * value3;
+            MATCHING_KEEP(value3);
+            value2 = (int)call4 + value3;
+            nextByte13 = value2 >> 12;
+        storePrivateByte13:
+            Level16_800C4Field(private17, unsigned char*, 0x13) = (unsigned char)nextByte13;
+        }
+    } else {
+        return;
+    }
 functionReturn:;
 }
 #undef Level16_800C4Field
-
 
 extern int D_8006C578, D_8006C574;
 extern short D_80065920[], D_800658A0[];
@@ -597,14 +692,19 @@ int rand(void);
  * they retain the original compiler's argument and temporary lifetimes.
  * AI generated; not yet human reviewed. See the batch provenance document.
  */
-void func_level_16_800804F0(int count, int childClass, Moby* sourceMoby, Vector3D* offsets, int firstAnimation, int argument5) {
+void func_level_16_800804F0(int count, int childClass, Moby* sourceMoby, Vector3D* offsets,
+                            int firstAnimation, int argument5) {
     Vector3D average;
     int reserved1C;
     Vector3D temporary;
     int reserved2C;
     Vector3D impulse;
     int reserved3C;
-    struct { int childClass; int reserved44; Vector3D* offsets; } saved;
+    struct {
+        int childClass;
+        int reserved44;
+        Vector3D* offsets;
+    } saved;
     int reservedStack[4];
     register int index __asm__("$19");
     register Moby* source __asm__("$18") = sourceMoby;
@@ -628,9 +728,9 @@ void func_level_16_800804F0(int count, int childClass, Moby* sourceMoby, Vector3
     register Vector3D* offsetBase __asm__("$8");
     register int stackArgument4 __asm__("$8");
     register unsigned int stackArgument5 __asm__("$8");
-    __asm__("" : "=r"(source) : "0"(source));
+    MATCHING_KEEP(source);
     averageArgument = &average;
-    __asm__("" : : "r"(averageArgument));
+    MATCHING_OBSERVE(averageArgument);
     saved.childClass = childClass;
     saved.offsets = offsets;
     DecodedBatchZero(averageArgument);
@@ -657,17 +757,19 @@ void func_level_16_800804F0(int count, int childClass, Moby* sourceMoby, Vector3
         DecodedBatchMode(source, modeArgument);
     }
     temporaryPtr = &temporary;
-    if (count <= 0) return;
+    if (count <= 0)
+        return;
     cosine = D_80065920;
     sine = D_800658A0;
     player = DecodedBatchPlayer;
     __asm__("" : "=r"(cosine) : "0"(cosine), "r"(sine), "r"(player), "r"(temporaryPtr));
     do {
         /* Capacity exhaustion ends the whole spawn request. */
-        if (D_8006C578 - D_8006C574 < 21) return;
+        if (D_8006C578 - D_8006C574 < 21)
+            return;
         __asm__("" : "=m"(saved) : "m"(saved));
         child = SpawnMoby(saved.childClass, source);
-        __asm__("" : "=r"(child) : "0"(child));
+        MATCHING_KEEP(child);
         copyArgument = temporaryPtr;
         if (child != 0) {
             offsetArgument = index * 12;
@@ -715,7 +817,7 @@ void func_level_16_800804F0(int count, int childClass, Moby* sourceMoby, Vector3
                 tag[1] = (unsigned short)tag[1] + ((sine[source->unkb] * 75) >> 11);
                 randomLow = 40;
                 randomHigh = 70;
-randomZ:
+            randomZ:
                 tag[2] = (unsigned short)tag[2] + DecodedBatchRandom(randomLow, randomHigh);
                 goto finish;
             } else if (source->damageFlags & 0x40000) {
@@ -723,40 +825,47 @@ randomZ:
                 tag[1] = (unsigned short)tag[1] + (*(int*)(DecodedBatchPlayer + 0x90) >> 5);
                 goto finish;
             } else if (source->damageFlags & 0x2000000) {
-                sample0 = cosine[DecodedBatchAngle(child->position.x - *(int*)player, child->position.y - *(int*)(player + 4), 0)];
-                __asm__("" : "=r"(sample0) : "0"(sample0));
+                sample0 = cosine[DecodedBatchAngle(child->position.x - *(int*)player,
+                                                   child->position.y - *(int*)(player + 4), 0)];
+                MATCHING_KEEP(sample0);
                 impulse.x = sample0 >> 4;
-                sample0 = sine[DecodedBatchAngle(child->position.x - *(int*)player, child->position.y - *(int*)(player + 4), 0)];
-                __asm__("" : "=r"(sample0) : "0"(sample0));
+                sample0 = sine[DecodedBatchAngle(child->position.x - *(int*)player,
+                                                 child->position.y - *(int*)(player + 4), 0)];
+                MATCHING_KEEP(sample0);
                 impulseX = impulse.x;
                 impulse.y = sample0 >> 4;
                 impulse.z = 0;
                 __asm__("" : : "m"(impulse.z), "r"(impulseX));
-            } else if ((source->damageFlags & 0x20000) && (*(int*)(DecodedBatchPlayer + 0x50) == 4 || *(int*)(DecodedBatchPlayer + 0x50) == 12)) {
+            } else if ((source->damageFlags & 0x20000) &&
+                       (*(int*)(DecodedBatchPlayer + 0x50) == 4 ||
+                        *(int*)(DecodedBatchPlayer + 0x50) == 12)) {
                 tag[0] = (unsigned short)tag[0] + (*(int*)(DecodedBatchPlayer + 0x8C) >> 6);
                 tag[1] = (unsigned short)tag[1] + (*(int*)(DecodedBatchPlayer + 0x90) >> 6);
                 goto finish;
             } else {
-                if (source->mobyClass == 132) goto finish;
+                if (source->mobyClass == 132)
+                    goto finish;
                 angle = source->unkb;
-                if (angle == 0) angle = DecodedBatchAngle(child->position.x - *(int*)player, child->position.y - *(int*)(player + 4), 0);
+                if (angle == 0)
+                    angle = DecodedBatchAngle(child->position.x - *(int*)player,
+                                              child->position.y - *(int*)(player + 4), 0);
                 trigByteOffset = angle * 2;
-                __asm__("" : "=r"(trigByteOffset) : "0"(trigByteOffset));
+                MATCHING_KEEP(trigByteOffset);
                 sample0 = *(short*)(trigByteOffset + (unsigned int)cosine);
                 __asm__("" : "=r"(trigByteOffset) : "0"(trigByteOffset), "r"(sample0));
                 samplePointer = (short*)(trigByteOffset + (unsigned int)sine);
-                __asm__("" : "=r"(sample0), "=r"(samplePointer) : "0"(sample0), "1"(samplePointer));
+                MATCHING_KEEP2(sample0, samplePointer);
                 impulseX = (sample0 * 35) >> 10;
                 impulse.x = impulseX;
                 sample4 = *samplePointer;
-                __asm__("" : "=r"(sample4) : "0"(sample4));
+                MATCHING_KEEP(sample4);
                 impulse.y = (sample4 * 35) >> 10;
                 impulse.z = 0;
                 __asm__("" : : "m"(impulse.z), "r"(impulseX));
             }
             tag[0] = (unsigned short)tag[0] + impulseX;
             tag[1] = (unsigned short)tag[1] + impulse.y;
-finish:
+        finish:
             child->angle.roll = source->angle.roll;
             child->angle.pitch = source->angle.pitch;
             child->angle.yaw = source->angle.yaw;
@@ -768,13 +877,15 @@ finish:
             {
                 int lifetime = DecodedBatchRandom(30, 50);
                 register int animationArgument __asm__("$5");
-                __asm__("" : "=m"(firstAnimation), "=m"(argument5) : "m"(firstAnimation), "m"(argument5));
+                __asm__(""
+                        : "=m"(firstAnimation), "=m"(argument5)
+                        : "m"(firstAnimation), "m"(argument5));
                 stackArgument4 = *(int*)&firstAnimation;
                 tag[6] = lifetime;
                 tag[8] = 8;
                 animationArgument = stackArgument4 + index;
                 stackArgument5 = *(unsigned short*)&argument5;
-                __asm__("" : "=r"(stackArgument5) : "0"(stackArgument5));
+                MATCHING_KEEP(stackArgument5);
                 tag[9] = stackArgument5;
                 DecodedBatchAnimation(child, animationArgument);
             }

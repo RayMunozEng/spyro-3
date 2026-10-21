@@ -4,7 +4,8 @@
 #include "stdutil.h"
 #include "spyro.h"
 
-void func_cutscene_76_80074780(void) {}
+void func_cutscene_76_80074780(void) {
+}
 
 typedef struct {
     Vector3D position;
@@ -21,7 +22,8 @@ void func_cutscene_76_80074788(Moby* moby) {
     Vector3D savedPosition;
     if (!moby->mobyTag) {
         moby->mobyTag = func_8002EC50(4, 0x40, 0x489090);
-        if (!moby->mobyTag) return;
+        if (!moby->mobyTag)
+            return;
     }
     tag = moby->mobyTag;
     tag->byte10 = 4;
@@ -41,7 +43,8 @@ extern Moby* D_8006C550;
 Moby* func_cutscene_76_80074870(int mobyClass, Moby* parent) {
     Moby* moby = func_80055A7C(mobyClass, parent);
     void* tag;
-    if (!moby) return 0;
+    if (!moby)
+        return 0;
     tag = moby->mobyTag;
     func_8004E790(moby, 0, 0x58);
     moby->mobyTag = tag;
@@ -49,12 +52,17 @@ Moby* func_cutscene_76_80074870(int mobyClass, Moby* parent) {
     moby->mobyClass = mobyClass;
     if (parent) {
         int index = parent - D_8006C550;
-        if ((unsigned int)index < 0x100) moby->linkedMoby = index;
-        else moby->linkedMoby = 0xFF;
-    } else moby->linkedMoby = 0xFF;
+        if ((unsigned int)index < 0x100)
+            moby->linkedMoby = index;
+        else
+            moby->linkedMoby = 0xFF;
+    } else
+        moby->linkedMoby = 0xFF;
     func_80034FEC(moby);
-    if (parent) func_8004F178(&moby->position, &parent->position);
-    else func_8004F178(&moby->position, &spyro.position);
+    if (parent)
+        func_8004F178(&moby->position, &parent->position);
+    else
+        func_8004F178(&moby->position, &spyro.position);
     func_80055C24(moby);
     return moby;
 }

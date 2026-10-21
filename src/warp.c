@@ -354,9 +354,9 @@ void func_80058778() {
                             selectedIndex = D_80066FCC[D_8006C73C];
                         }
                         sp28.x = D_80067064[D_8006703C[selectedIndex]].pos.x * 4;
-                        sp28.y = D_80067064[D_8006703C[selectedIndex]].pos.y * 4;
-                        sp28.z = D_80067064[D_8006703C[selectedIndex]].pos.z * 4 - 0x164;
-                        var_s0 = D_80067134[D_8006703C[selectedIndex]];
+                            sp28.y = D_80067064[D_8006703C[selectedIndex]].pos.y * 4;
+                            sp28.z = D_80067064[D_8006703C[selectedIndex]].pos.z * 4 - 0x164;
+                            var_s0 = D_80067134[D_8006703C[selectedIndex]];
                         if (D_8006C73C >= 0x4D) {
                             var_s0 = (var_s0 + 0x80) & 0xFF;
                         }

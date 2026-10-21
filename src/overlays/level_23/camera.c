@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "stdutil.h"
 #include "spyro.h"
@@ -24,102 +25,103 @@ extern CameraPosition D_80069184, D_80069238;
  */
 void func_level_23_80095AA4(void) {
     int tableIndex = (camera.unk138 + 2) >> 2;
-    MAX(tableIndex,4);
+    MAX(tableIndex, 4);
     switch (camera.cameraState) {
-    case 13: {
-        Vector3D delta;
-        func_800142E0();
-        if (camera.unk16c != 0) {
-            func_8004F1C8(&delta, &camera.unk16c->position, (Vector3D*)&spyro);
-            camera.unk6c = func_8004E880(delta.x, delta.y, 1);
-            if (camera.unk134 == 0) {
-                func_80014354();
-                func_80013918(0x400);
+        case 13: {
+            Vector3D delta;
+            func_800142E0();
+            if (camera.unk16c != 0) {
+                func_8004F1C8(&delta, &camera.unk16c->position, (Vector3D*)&spyro);
+                camera.unk6c = func_8004E880(delta.x, delta.y, 1);
+                if (camera.unk134 == 0) {
+                    func_80014354();
+                    func_80013918(0x400);
+                }
+                func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
+                func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
+                func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
+                func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
             }
+            break;
+        }
+
+        case 17:
+            if (camera.unk168 != camera.cameraState)
+                break;
+
+            if (camera.unk134 == 0) {
+                func_800135A4(&camera.unk7c.pos[1], &camera.unk170, camera.unk6c);
+            }
+            func_8004F178(&camera.unk60, &camera.unk184);
+            camera.unk6c = 0;
+            func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
+            func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
+            func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
+            func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
+            if (!(camera.unk58 & 2)) {
+                func_800136F0(&camera.unk7c.pos[0], &camera.nextCameraPosCartesian, &camera.unk60);
+                camera.unk7c.pos[2].pos.azimuth = camera.unk7c.pos[0].pos.azimuth;
+            }
+            break;
+        case 21:
+            func_80013918(0x400);
+            if (camera.unk148[2] != 0) {
+                camera.unk140[2] = 1;
+            } else {
+                camera.unk140[2] = 0;
+            }
+            if (camera.unk134 == 0) {
+                func_800135A4(&camera.unk7c.pos[1], &D_80069184, camera.unk6c);
+            } else {
+                camera.unk148[2] = 0;
+            }
+            func_800142E0();
+            func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
+            func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
+            func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
+            func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
+            if (!(camera.unk58 & 2)) {
+                func_800136F0(&camera.unk7c.pos[0], &camera.nextCameraPosCartesian, &camera.unk60);
+                camera.unk7c.pos[2].pos.azimuth = camera.unk7c.pos[0].pos.azimuth;
+            }
+            break;
+        case 23:
+            if (camera.unk134 == 0) {
+                if (spyro.unk13e[1] & 0x80) {
+                    func_800135A4(&camera.unk7c.pos[1], &D_80069260, camera.unk6c);
+                } else {
+                    func_80014354();
+                    func_80013918(0x400);
+                }
+            }
+            func_800142E0();
+            camera.unk6c = spyro.m_WhirlwindPointer->angle.yaw * 0x10;
             func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
             func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
             func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
             func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
-        }
-        break;
-    }
-
-    case 17:
-        if (camera.unk168 != camera.cameraState) break;
-        
-        if (camera.unk134 == 0) {
-            func_800135A4(&camera.unk7c.pos[1], &camera.unk170, camera.unk6c);
-        }
-        func_8004F178(&camera.unk60, &camera.unk184);
-        camera.unk6c = 0;
-        func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
-        func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
-        func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
-        func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
-        if (!(camera.unk58 & 2)) {
-            func_800136F0(&camera.unk7c.pos[0], &camera.nextCameraPosCartesian, &camera.unk60);
-            camera.unk7c.pos[2].pos.azimuth = camera.unk7c.pos[0].pos.azimuth;
-        }
-        break;
-            case 21:
-        func_80013918(0x400);
-        if (camera.unk148[2] != 0) {
-            camera.unk140[2] = 1;
-        } else {
-            camera.unk140[2] = 0;
-        }
-        if (camera.unk134 == 0) {
-            func_800135A4(&camera.unk7c.pos[1], &D_80069184, camera.unk6c);
-        } else {
-            camera.unk148[2] = 0;
-        }
-        func_800142E0();
-        func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
-        func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
-        func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
-        func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
-        if (!(camera.unk58 & 2)) {
-            func_800136F0(&camera.unk7c.pos[0], &camera.nextCameraPosCartesian, &camera.unk60);
-            camera.unk7c.pos[2].pos.azimuth = camera.unk7c.pos[0].pos.azimuth;
-        }
-        break;
-    case 23:
-        if (camera.unk134 == 0) {
-            if (spyro.unk13e[1] & 0x80) {
-                func_800135A4(&camera.unk7c.pos[1], &D_80069260, camera.unk6c);
-            } else {
-                func_80014354();
-                func_80013918(0x400);
+            if (!(camera.unk58 & 2)) {
+                func_800136F0(&camera.unk7c.pos[0], &camera.nextCameraPosCartesian, &camera.unk60);
+                camera.unk7c.pos[2].pos.azimuth = camera.unk7c.pos[0].pos.azimuth;
             }
-        }
-        func_800142E0();
-        camera.unk6c = spyro.m_WhirlwindPointer->angle.yaw * 0x10;
-        func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
-        func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
-        func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
-        func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
-        if (!(camera.unk58 & 2)) {
-            func_800136F0(&camera.unk7c.pos[0], &camera.nextCameraPosCartesian, &camera.unk60);
-            camera.unk7c.pos[2].pos.azimuth = camera.unk7c.pos[0].pos.azimuth;
-        }
-        break;
-            case 33:
-        if (camera.unk134 == 0) {
-            func_800135A4(&camera.unk7c.pos[1], &D_80069238, camera.unk6c);
-            func_80013918(0xC0);
-            func_800139A4();
-        }
-        func_800142E0();
-        camera.unk6c = camera.unk170.pos.azimuth;
-        func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
-        if (camera.unk138 == 0) {
-            camera.unk7c.pos[5].pos.azimuth >>= 1;
-            *(int*)&camera.unk7c.pos[5].pos.radius >>= 1;
-        }
-        func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
-        func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
-        func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
-        break;
+            break;
+        case 33:
+            if (camera.unk134 == 0) {
+                func_800135A4(&camera.unk7c.pos[1], &D_80069238, camera.unk6c);
+                func_80013918(0xC0);
+                func_800139A4();
+            }
+            func_800142E0();
+            camera.unk6c = camera.unk170.pos.azimuth;
+            func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
+            if (camera.unk138 == 0) {
+                camera.unk7c.pos[5].pos.azimuth >>= 1;
+                *(int*)&camera.unk7c.pos[5].pos.radius >>= 1;
+            }
+            func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
+            func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
+            func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
+            break;
     }
 }
 
@@ -182,68 +184,69 @@ void func_level_23_80096058(int mode) {
     register CameraPosition* flagPosition __asm__("$17");
     register Vector3D* target __asm__("$18");
     switch (mode) {
-    case 23:
-        base = &D_8006E048;
-        *base = 0;
-        D_8006E138 = 0;
-        D_8006E139 = 0;
-        D_8006E13A = 1;
-        D_8006E13D = 0;
-        D_8006E054 = 0;
-        func_800142E0();
-        position = (CameraPosition*)((char*)base + 44);
-        __asm__("" : "=r"(position) : "0"(position));
-        func_800136F0(position, (Vector3D*)((char*)base - 40), (Vector3D*)((char*)base + 16));
-        goto settle;
-    case 13:
-    case 21:
-        base = &D_8006E048;
-        *base = 0;
-        D_8006E138 = 0;
-        D_8006E139 = 1;
-        D_8006E13A = 1;
-        D_8006E13D = 0;
-        D_8006E054 = 0;
-        func_800142E0();
-        position = (CameraPosition*)((char*)base + 44);
-        __asm__("" : "=r"(position) : "0"(position));
-        func_800136F0(position, (Vector3D*)((char*)base - 40), (Vector3D*)((char*)base + 16));
-        func_800138A0(position, position);
-        func_800135A4((CameraPosition*)((char*)base + 84), position, 0);
-        break;
-    case 17:
-        copyBase = &D_8006E048;
-        target = (Vector3D*)((char*)copyBase + 16);
-        *copyBase = 0;
-        D_8006E138 = 0;
-        D_8006E139 = 1;
-        D_8006E13A = 1;
-        D_8006E13D = 0;
-        func_8004F178(target, (Vector3D*)((char*)copyBase + 308));
-        copiedPosition = (CameraPosition*)((char*)copyBase + 44);
-        __asm__("" : "=r"(copiedPosition) : "0"(copiedPosition));
-        D_8006E064 = 0;
-        func_800136F0(copiedPosition, (Vector3D*)((char*)copyBase - 40), target);
-        func_800138A0(copiedPosition, copiedPosition);
-        func_800135A4((CameraPosition*)((char*)copyBase + 84), copiedPosition, 0);
-        break;
-    case 33:
-        copyBase = &D_8006E048;
-        *copyBase = 0;
-        D_8006E138 = 0;
-        D_8006E139 = 0;
-        D_8006E13A = 1;
-        D_8006E13D = 0;
-        D_8006E054 = 0;
-        func_800142E0();
-        copiedPosition = (CameraPosition*)((char*)copyBase + 44);
-        __asm__("" : "=r"(copiedPosition) : "0"(copiedPosition));
-        D_8006E064 = CameraSettleValue;
-        func_800136F0(copiedPosition, (Vector3D*)((char*)copyBase - 40), (Vector3D*)((char*)copyBase + 16));
-settle:
-        func_800138A0(&D_8006E074, &DecodedSettleInput);
-        func_800135A4(&D_8006E09C, &DecodedSettleFinal, 0);
-        break;
+        case 23:
+            base = &D_8006E048;
+            *base = 0;
+            D_8006E138 = 0;
+            D_8006E139 = 0;
+            D_8006E13A = 1;
+            D_8006E13D = 0;
+            D_8006E054 = 0;
+            func_800142E0();
+            position = (CameraPosition*)((char*)base + 44);
+            MATCHING_KEEP(position);
+            func_800136F0(position, (Vector3D*)((char*)base - 40), (Vector3D*)((char*)base + 16));
+            goto settle;
+        case 13:
+        case 21:
+            base = &D_8006E048;
+            *base = 0;
+            D_8006E138 = 0;
+            D_8006E139 = 1;
+            D_8006E13A = 1;
+            D_8006E13D = 0;
+            D_8006E054 = 0;
+            func_800142E0();
+            position = (CameraPosition*)((char*)base + 44);
+            MATCHING_KEEP(position);
+            func_800136F0(position, (Vector3D*)((char*)base - 40), (Vector3D*)((char*)base + 16));
+            func_800138A0(position, position);
+            func_800135A4((CameraPosition*)((char*)base + 84), position, 0);
+            break;
+        case 17:
+            copyBase = &D_8006E048;
+            target = (Vector3D*)((char*)copyBase + 16);
+            *copyBase = 0;
+            D_8006E138 = 0;
+            D_8006E139 = 1;
+            D_8006E13A = 1;
+            D_8006E13D = 0;
+            func_8004F178(target, (Vector3D*)((char*)copyBase + 308));
+            copiedPosition = (CameraPosition*)((char*)copyBase + 44);
+            MATCHING_KEEP(copiedPosition);
+            D_8006E064 = 0;
+            func_800136F0(copiedPosition, (Vector3D*)((char*)copyBase - 40), target);
+            func_800138A0(copiedPosition, copiedPosition);
+            func_800135A4((CameraPosition*)((char*)copyBase + 84), copiedPosition, 0);
+            break;
+        case 33:
+            copyBase = &D_8006E048;
+            *copyBase = 0;
+            D_8006E138 = 0;
+            D_8006E139 = 0;
+            D_8006E13A = 1;
+            D_8006E13D = 0;
+            D_8006E054 = 0;
+            func_800142E0();
+            copiedPosition = (CameraPosition*)((char*)copyBase + 44);
+            MATCHING_KEEP(copiedPosition);
+            D_8006E064 = CameraSettleValue;
+            func_800136F0(copiedPosition, (Vector3D*)((char*)copyBase - 40),
+                          (Vector3D*)((char*)copyBase + 16));
+        settle:
+            func_800138A0(&D_8006E074, &DecodedSettleInput);
+            func_800135A4(&D_8006E09C, &DecodedSettleFinal, 0);
+            break;
     }
 }
 
@@ -264,47 +267,55 @@ void func_level_23_80096270(void) {
     register int next __asm__("$4");
     register int index __asm__("$2");
     switch (DecodedCameraMode) {
-    case 13:
-        if (DecodedCameraHeld & 16) {
-            register int enabled __asm__("$2") = DecodedCameraPlayer[0x1B9];
-            next = 7;
-            if (enabled) goto change;
-        }
-        if (DecodedCameraPressed & 12) {
-            next = 8;
+        case 13:
+            if (DecodedCameraHeld & 16) {
+                register int enabled __asm__("$2") = DecodedCameraPlayer[0x1B9];
+                next = 7;
+                if (enabled)
+                    goto change;
+            }
+            if (DecodedCameraPressed & 12) {
+                next = 8;
+                goto change;
+            }
+            next = DecodedCameraOverride;
+            if (!next) {
+            tableRoute:
+                next = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
+                goto change;
+            }
+        compareOverride:
+            MATCHING_BARRIER("memory");
+            if (next == DecodedCameraMode)
+                return;
             goto change;
-        }
-        next = DecodedCameraOverride;
-        if (!next) {
-tableRoute:
-            next = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
+        case 33:
+            next = DecodedCameraOverride;
+            if (!next)
+                goto tableRoute;
+            goto compareOverride;
+        case 17:
+            next = DecodedCameraOverride;
+            if (!next)
+                goto tableRoute;
+            if (next == 17)
+                return;
             goto change;
-        }
-compareOverride:
-        __asm__("" : : : "memory");
-        if (next == DecodedCameraMode) return;
-        goto change;
-    case 33:
-        next = DecodedCameraOverride;
-        if (!next) goto tableRoute;
-        goto compareOverride;
-    case 17:
-        next = DecodedCameraOverride;
-        if (!next) goto tableRoute;
-        if (next == 17) return;
-        goto change;
-    case 21:
-    case 23:
-        next = DecodedCameraOverride;
-        if (next) goto change;
-        index = *(int*)(DecodedCameraPlayer + 0x48);
-        mode = DecodedCameraMode;
-        next = DecodedCameraModeTable[index];
-        if (mode == next) return;
-        if (!next) next = 6;
-        break;
-    default:
-        return;
+        case 21:
+        case 23:
+            next = DecodedCameraOverride;
+            if (next)
+                goto change;
+            index = *(int*)(DecodedCameraPlayer + 0x48);
+            mode = DecodedCameraMode;
+            next = DecodedCameraModeTable[index];
+            if (mode == next)
+                return;
+            if (!next)
+                next = 6;
+            break;
+        default:
+            return;
     }
 change:
     func_80016764(next);

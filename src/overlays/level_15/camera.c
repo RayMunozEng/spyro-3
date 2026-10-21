@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "spyro.h"
 #include "camera.h"
@@ -33,7 +34,7 @@ void func_level_15_80089968(void) {
     register int var_v0_2 __asm__("$2");
     int var_v1;
 
-    var_s0 = (int) (D_8006E130 + 2) >> 2;
+    var_s0 = (int)(D_8006E130 + 2) >> 2;
     if (var_s0 >= 5) {
         var_s0 = 4;
     }
@@ -41,13 +42,15 @@ void func_level_15_80089968(void) {
         if (D_8006E12C == 0) {
             func_80014354();
             temp_v0 = -spyro.rotation.pitch;
-            var_v1 = (int) (temp_v0 - D_8006E078) >> 2;
+            var_v1 = (int)(temp_v0 - D_8006E078) >> 2;
             D_8006E08C = temp_v0;
-            if (var_v1 > 0xC0) var_v1 = 0xC0;
-            if (var_v1 < -0xC0) var_v1 = -0xC0;
+            if (var_v1 > 0xC0)
+                var_v1 = 0xC0;
+            if (var_v1 < -0xC0)
+                var_v1 = -0xC0;
             var_v0_2 = var_v1;
             if (var_v1 < 0) {
-                __asm__ volatile("" : "=r"(var_v0_2) : "0"(var_v0_2));
+                MATCHING_KEEP_VOLATILE(var_v0_2);
                 var_v0_2 = -var_v0_2;
             }
             if (var_v0_2 >= 9) {
@@ -55,8 +58,9 @@ void func_level_15_80089968(void) {
             } else {
                 D_8006E094 = 0;
             }
-            if ((spyro.movementState != MOVEMENT_STATE_SUPERFLY) || (spyro.union144.b.unk148 <= 0)) {
-                D_8006E098 = (int) -spyro.rotation.roll >> 2;
+            if ((spyro.movementState != MOVEMENT_STATE_SUPERFLY) ||
+                (spyro.union144.b.unk148 <= 0)) {
+                D_8006E098 = (int)-spyro.rotation.roll >> 2;
             }
             func_80013918(0xC0);
             func_800139A4();
@@ -72,7 +76,8 @@ void func_level_15_80089968(void) {
         if (D_8006E0E8 < 0x40) {
             D_8006E0E8 = 0x40;
         }
-        func_800135A4((CameraPosition*)((unsigned char*)&D_8006E0D8 + 0x14), &D_80069328[var_s0], 0);
+        func_800135A4((CameraPosition*)((unsigned char*)&D_8006E0D8 + 0x14), &D_80069328[var_s0],
+                      0);
         func_800135A4((CameraPosition*)((unsigned char*)&D_8006E0D8 + 0x28), &D_800693C8, 0);
         func_800135A4((CameraPosition*)((unsigned char*)&D_8006E0D8 + 0x3C), &D_800693B4, 0);
         if (spyro.movementState == MOVEMENT_STATE_SUPERFLY) {
@@ -119,7 +124,7 @@ void func_level_15_80089BC8(int mode) {
         register int* state __asm__("$16") = &camera.unk50;
         CameraPosition* position;
         /* Keep the original shared address base; this constraint emits no code. */
-        __asm__("" : "=r"(state) : "0"(state));
+        MATCHING_KEEP(state);
         *state = 0;
         camera.unk140[0] = 0;
         camera.unk140[1] = 0;
@@ -140,20 +145,29 @@ void func_level_15_80089C64(void) {
     register int next __asm__("$4");
     if (D_8006E044 == 3) {
         next = D_8006E160;
-        if (next) goto change;
-        if ((D_8006E538 & 0x10) && spyro.idle) { next = 7; goto change; }
-        if (D_8006E53C & 0xC) { next = 8; goto change; }
+        if (next)
+            goto change;
+        if ((D_8006E538 & 0x10) && spyro.idle) {
+            next = 7;
+            goto change;
+        }
+        if (D_8006E53C & 0xC) {
+            next = 8;
+            goto change;
+        }
         {
             register int animation __asm__("$2") = spyro.animationState;
             register int current __asm__("$3") = D_8006E044;
             __asm__("" : "=r"(current) : "0"(current), "r"(animation));
             animation *= 4;
-            __asm__("" : "=r"(animation) : "0"(animation));
+            MATCHING_KEEP(animation);
             next = *(int*)((char*)D_80068CAC + animation);
-            if (current == next) return;
+            if (current == next)
+                return;
         }
-        if (!next) next = 6;
-change:
+        if (!next)
+            next = 6;
+    change:
         func_80016764(next);
     }
 }

@@ -46,7 +46,7 @@ extern int rand(void);
 #include "camera.h"
 int func_8004E9E4(int);
 int func_8004EA2C(int);
-void func_8004E7AC(int *dest, int set, int len);
+void func_8004E7AC(int* dest, int set, int len);
 void func_80055D10(Moby*);
 void func_8004ED6C(void*, Vector3D*, Vector3D*);
 extern Moby* D_8006C704;
@@ -62,8 +62,7 @@ typedef struct {
     short unkE;
     short unk10;
     short unk12;
-}
-Spawn14Tag84;
+} Spawn14Tag84;
 #include "ovl_header.h"
 extern int D_8006C5BC;
 extern unsigned char D_80071A04;
@@ -79,10 +78,9 @@ typedef struct {
     unsigned char byteE, padF;
     short timer10, pad12;
     Moby* child14;
-}
-Spawn46Tag197;
+} Spawn46Tag197;
 static __inline__ int Spawn46LinkIndex(int byteOffset) {
-    return (int)(0U-(unsigned int)byteOffset*0x45D1745DU)>>3;
+    return (int)(0U - (unsigned int)byteOffset * 0x45D1745DU) >> 3;
 }
 typedef struct {
     short word0, word2;
@@ -90,19 +88,16 @@ typedef struct {
     int word8, wordC;
     Moby* parent10;
     short word14, word16;
-}
-Spawn46Tag1000;
+} Spawn46Tag1000;
 typedef struct {
     Vector3D unk0;
     int unkC;
     int unk10;
-}
-Spawn46Tag92;
+} Spawn46Tag92;
 typedef struct {
     Vector3D vector0;
     int timerC, word10, word14;
-}
-Spawn46Tag245;
+} Spawn46Tag245;
 void func_8004F110(Vector3D*, int);
 Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
     Moby* newMoby;
@@ -117,16 +112,15 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
         union {
             SHORTMATRIX matrix;
             Vector3D vector;
-        }
-        work40;
+        } work40;
         int gap54;
         SHORTMATRIX matrix58;
         int gap6C;
         int gap70[6];
-    }
-    frame;
+    } frame;
     newMoby = func_80055A7C();
-    if (newMoby == 0) return 0;
+    if (newMoby == 0)
+        return 0;
     newMobyTag = newMoby->mobyTag;
     func_8004E790(newMoby, 0, 0x58);
     newMoby->mobyTag = newMobyTag;
@@ -135,24 +129,21 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
     if (linkedMoby != 0) {
         if (linkedMoby - mobyArrayPtr < 0x100U) {
             newMoby->linkedMoby = linkedMoby - mobyArrayPtr;
-        }
-        else {
+        } else {
             newMoby->linkedMoby = 0xFF;
         }
-    }
-    else {
+    } else {
         newMoby->linkedMoby = 0xFF;
     }
     func_80034FEC(newMoby);
     switch (mobyClass) {
-    case 1:
-        func_80055C24(newMoby);
-        newMoby->lowDrawDistance = 0x18;
-        newMoby->updateDistance = 0x40;
-        newMoby->unknown = -1;
-        break;
-    case 84:
-        {
+        case 1:
+            func_80055C24(newMoby);
+            newMoby->lowDrawDistance = 0x18;
+            newMoby->updateDistance = 0x40;
+            newMoby->unknown = -1;
+            break;
+        case 84: {
             Spawn14Tag84* mobyTag;
             int elevation;
             int azimuth;
@@ -166,8 +157,10 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
             elevation = func_8003636C(0x12C, 0x834);
             azimuth = (linkedMoby->angle.yaw + func_8003636C(-0x5DC, 0x5DC)) & 0xFFF;
             radius = 0x78;
-            mobyTag->unk0.x = ((func_8004EA2C(elevation) >> 6) * (func_8004EA2C(azimuth) * radius)) >> 0x12;
-            mobyTag->unk0.y = ((func_8004EA2C(elevation) >> 6) * (func_8004E9E4(azimuth) * radius)) >> 0x12;
+            mobyTag->unk0.x =
+                ((func_8004EA2C(elevation) >> 6) * (func_8004EA2C(azimuth) * radius)) >> 0x12;
+            mobyTag->unk0.y =
+                ((func_8004EA2C(elevation) >> 6) * (func_8004E9E4(azimuth) * radius)) >> 0x12;
             radius2 = 0x96;
             mobyTag->unk0.z = (func_8004E9E4(elevation) * radius2) >> 0xC;
             if ((linkedMoby->unkb) && (linkedMoby->damageFlags & 0x100000)) {
@@ -178,8 +171,7 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
             if (linkedMoby->damageFlags & 0x20000) {
                 mobyTag->unk0.x += (D_80065920[linkedMoby->angle.yaw] * 0x37) >> 0xA;
                 mobyTag->unk0.y += (D_800658A0[linkedMoby->angle.yaw] * 0x37) >> 0xA;
-            }
-            else {
+            } else {
                 mobyTag->unk0.x += (D_80065920[linkedMoby->angle.yaw] * 0x23) >> 0xA;
                 mobyTag->unk0.y += (D_800658A0[linkedMoby->angle.yaw] * 0x23) >> 0xA;
             }
@@ -190,8 +182,7 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
                 newMoby->position.x += mobyTag->unk0.x * 2;
                 newMoby->position.y += mobyTag->unk0.y * 2;
                 newMoby->position.z += mobyTag->unk0.z * 2;
-            }
-            else {
+            } else {
                 newMoby->angle.roll = linkedMoby->angle.roll;
                 newMoby->angle.pitch = linkedMoby->angle.pitch;
                 newMoby->angle.yaw = linkedMoby->angle.yaw;
@@ -204,16 +195,17 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
             mobyTag->unk12 = 0;
             break;
         }
-    case 16:
-    case 211:
-        {
+        case 16:
+        case 211: {
             MobyTag_16* mobyTag;
             int extraLifeThreshold;
             mobyTag = newMoby->mobyTag;
             if (newMoby->mobyClass == 0x10) {
                 extraLifeThreshold = 10;
-                if (D_8006C784 < 4)      extraLifeThreshold = 7;
-                else if (D_8006C784 < 7) extraLifeThreshold = 9;
+                if (D_8006C784 < 4)
+                    extraLifeThreshold = 7;
+                else if (D_8006C784 < 7)
+                    extraLifeThreshold = 9;
                 sparx.butterflyCount++;
                 if (sparx.butterflyCount >= extraLifeThreshold) {
                     sparx.butterflyCount = 0;
@@ -228,11 +220,10 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
             newMoby->unknown4 = 2;
             mobyTag->unkE = 0x708;
             mobyTag->unk11 = 0;
-            mobyTag->unk12 = (char) (rand() & 0xFC);
+            mobyTag->unk12 = (char)(rand() & 0xFC);
             break;
         }
-    case 92:
-        {
+        case 92: {
             Spawn46Tag92* tag = newMoby->mobyTag;
             func_8004F178(&newMoby->position, &linkedMoby->position);
             newMoby->angle.pitch = rand();
@@ -247,17 +238,16 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
             func_8004ED6C(&newMoby->rotationMatrix, &tag->unk0, &tag->unk0);
             break;
         }
-    case 102:
-        newMoby->angle.roll = linkedMoby->angle.roll;
-        newMoby->angle.pitch = linkedMoby->angle.pitch;
-        newMoby->angle.yaw = linkedMoby->angle.yaw;
-        func_80055F14(linkedMoby, 1, &newMoby->position);
-        func_80055C24(newMoby);
-        newMoby->state = 0;
-        newMoby->unknown4 = 3;
-        break;
-    case 120:
-        {
+        case 102:
+            newMoby->angle.roll = linkedMoby->angle.roll;
+            newMoby->angle.pitch = linkedMoby->angle.pitch;
+            newMoby->angle.yaw = linkedMoby->angle.yaw;
+            func_80055F14(linkedMoby, 1, &newMoby->position);
+            func_80055C24(newMoby);
+            newMoby->state = 0;
+            newMoby->unknown4 = 3;
+            break;
+        case 120: {
             MobyTag_120* mobyTag;
             char yaw;
             if (linkedMoby->mobyClass != mobyClass) {
@@ -276,8 +266,7 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
             mobyTag->unk14 = 0;
             if (linkedMoby != 0) {
                 func_8004F178(&newMoby->position, &linkedMoby->position);
-            }
-            else {
+            } else {
                 yaw = spyro.bodyRotation.yaw - 0x80;
                 frame.vector10.x = (D_80065920[yaw] * 0x7D) >> 9;
                 frame.vector10.y = (D_800658A0[yaw] * 0x7D) >> 9;
@@ -287,28 +276,28 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
             mobyTag->unk2 = 0xFF;
             break;
         }
-    case 132:
-        {
+        case 132: {
             int ground;
             newMoby->angle.yaw = linkedMoby->angle.yaw;
             func_8004F178(&newMoby->position, &linkedMoby->position);
             func_80055C24(newMoby);
             ground = func_80035D38(newMoby);
-            if (ground) newMoby->position.z = ground;
+            if (ground)
+                newMoby->position.z = ground;
             newMoby->state = 6;
             break;
         }
-    case 197:
-        {
+        case 197: {
             Spawn46Tag197* tag = newMoby->mobyTag;
             register Moby* child __asm__("$17");
-            if (linkedMoby && linkedMoby->mobyClass!=mobyClass) {
-                if (linkedMoby->mobyClass==99 && (camera.cameraState==31 || camera.cameraState==40)) {
+            if (linkedMoby && linkedMoby->mobyClass != mobyClass) {
+                if (linkedMoby->mobyClass == 99 &&
+                    (camera.cameraState == 31 || camera.cameraState == 40)) {
                     func_8004F178(&newMoby->position, &camera.nextCameraPosCartesian);
-                    if (camera.cameraState==40) newMoby->position.z-=128;
+                    if (camera.cameraState == 40)
+                        newMoby->position.z -= 128;
                     func_8004F178(&frame.vector20, &newMoby->position);
-                }
-                else {
+                } else {
                     func_80055D24(linkedMoby, 5);
                     func_80055F14(linkedMoby, 0, &frame.vector20);
                     frame.vector10.x = 600;
@@ -317,21 +306,21 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
                     func_8004ED6C(&linkedMoby->rotationMatrix, &frame.vector10, &frame.vector10);
                     func_8004F194(&newMoby->position, &frame.vector20, &frame.vector10);
                 }
-            }
-            else func_8004F178(&newMoby->position, &spyro.position);
+            } else
+                func_8004F178(&newMoby->position, &spyro.position);
             func_80055C24(newMoby);
             newMoby->lowDrawDistance = 40;
             newMoby->updateDistance = 255;
             if (linkedMoby) {
-                if (linkedMoby->mobyClass==197) {
+                if (linkedMoby->mobyClass == 197) {
                     unsigned int link = linkedMoby->linkedMoby;
-                    if (link<255) {
-                        register unsigned int byteOffset __asm__("$4") = link*0x58;
+                    if (link < 255) {
+                        register unsigned int byteOffset __asm__("$4") = link * 0x58;
                         __asm__("" : " = r"(byteOffset) : "0"(byteOffset));
                         newMoby->linkedMoby = Spawn46LinkIndex(byteOffset);
                     }
                 }
-                if (linkedMoby && linkedMoby->mobyClass!=197) {
+                if (linkedMoby && linkedMoby->mobyClass != 197) {
                     int roll, pitch, yaw;
                     register int alpha __asm__("$2");
                     unsigned short pitchWord;
@@ -346,73 +335,76 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
                     newMoby->colour.g = 255;
                     newMoby->colour.b = 255;
                     newMoby->colour.a = 63;
-                    if (linkedMoby->mobyClass==99) {
-                        if (D_8006C5BC==44 && D_80071A04) {
+                    if (linkedMoby->mobyClass == 99) {
+                        if (D_8006C5BC == 44 && D_80071A04) {
                             Moby* candidate;
                             Vector3D* position;
                             Vector3D* workVector;
-                            for(candidate = mobyArrayPtr;candidate<D_8006C704;candidate++) {
-                                if (candidate->mobyClass==962) break;
+                            for (candidate = mobyArrayPtr; candidate < D_8006C704; candidate++) {
+                                if (candidate->mobyClass == 962)
+                                    break;
                             }
                             workVector = &frame.vector30;
-                            func_8004F178(workVector, (Vector3D*)((unsigned char*)candidate->mobyTag+0x1C));
+                            func_8004F178(workVector,
+                                          (Vector3D*)((unsigned char*)candidate->mobyTag + 0x1C));
                             child = 0;
                             position = &newMoby->position;
-                            newMoby->position.z-=256;
+                            newMoby->position.z -= 256;
                             tag->wordC = 4096;
                             newMoby->state = 0;
-                            newMoby->angle.roll = (unsigned short)camera.unk44>>4;
-                            newMoby->angle.pitch = -(int)camera.unk46>>4;
-                            newMoby->angle.yaw = (unsigned short)camera.unk48>>4;
-                            if (func_80013E38(position, workVector, 0)) func_8004F1C8(workVector, workVector, position);
-                            else func_8004F1C8(workVector, &D_80071900.D_80071900, position);
+                            newMoby->angle.roll = (unsigned short)camera.unk44 >> 4;
+                            newMoby->angle.pitch = -(int)camera.unk46 >> 4;
+                            newMoby->angle.yaw = (unsigned short)camera.unk48 >> 4;
+                            if (func_80013E38(position, workVector, 0))
+                                func_8004F1C8(workVector, workVector, position);
+                            else
+                                func_8004F1C8(workVector, &D_80071900.D_80071900, position);
                             func_8004F08C(workVector, func_8004EDE8(workVector, 1), tag->wordC);
                             func_8004F178(&tag->vector0, workVector);
-                            newMoby->angle.pitch = func_8004E880(func_8004EDE8(&tag->vector0, 1), tag->vector0.z, 0);
+                            newMoby->angle.pitch =
+                                func_8004E880(func_8004EDE8(&tag->vector0, 1), tag->vector0.z, 0);
                             newMoby->angle.yaw = func_8004E880(tag->vector0.x, tag->vector0.y, 0);
-                        }
-                        else if (linkedMoby->mobyClass==99) {
+                        } else if (linkedMoby->mobyClass == 99) {
                             SHORTMATRIX* matrix;
                             int* modePointer;
                             int vectorX;
                             unsigned short yawWord;
                             modePointer = &camera.cameraState;
-                            if (*modePointer==40) {
+                            if (*modePointer == 40) {
                                 vectorX = 600;
                                 matrix = &frame.work40.matrix;
                                 goto cameraMatrix197;
                             }
-                            if (*modePointer==31) {
+                            if (*modePointer == 31) {
                                 tag->wordC = 4096;
                                 vectorX = 4096;
                                 matrix = &frame.matrix58;
                             cameraMatrix197:
                                 tag->vector0.x = vectorX;
                                 newMoby->state = 0;
-                                newMoby->angle.roll = (unsigned short)camera.unk44>>4;
-                                newMoby->angle.pitch = -(int)camera.unk46>>4;
+                                newMoby->angle.roll = (unsigned short)camera.unk44 >> 4;
+                                newMoby->angle.pitch = -(int)camera.unk46 >> 4;
                                 yawWord = camera.unk48;
                                 __asm__("" : : : "$17", "memory");
                                 child = 0;
-                                newMoby->angle.yaw = yawWord>>4;
-                                func_8004ECF4(matrix, (unsigned char*)modePointer-0x38);
+                                newMoby->angle.yaw = yawWord >> 4;
+                                func_8004ECF4(matrix, (unsigned char*)modePointer - 0x38);
                                 func_8004ED6C(matrix, &tag->vector0, &tag->vector0);
-                            }
-                            else {
+                            } else {
                                 newMoby->state = 5;
                                 goto rotated197;
                             }
-                        }
-                        else goto ordinary197;
-                    }
-                    else {
+                        } else
+                            goto ordinary197;
+                    } else {
                     ordinary197:
                         newMoby->state = 0;
                         tag->byteE = 1;
                     rotated197:
                         newMoby->angle.yaw = linkedMoby->angle.yaw;
                         func_8004ED6C(&linkedMoby->rotationMatrix, &tag->vector0, &tag->vector0);
-                        newMoby->angle.pitch = func_8004E880(func_8004EDE8(&tag->vector0, 1), tag->vector0.z, 0);
+                        newMoby->angle.pitch =
+                            func_8004E880(func_8004EDE8(&tag->vector0, 1), tag->vector0.z, 0);
                         newMoby->angle.yaw = func_8004E880(tag->vector0.x, tag->vector0.y, 0);
                         child = SpawnMoby(197, newMoby);
                     }
@@ -423,19 +415,18 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
                         childTag->timer10 = 3;
                         roll = func_8003636C(0, 255);
                         child->angle.roll = roll;
-                        yaw = (((short)camera.unk48>>4)+128)&255;
+                        yaw = (((short)camera.unk48 >> 4) + 128) & 255;
                         child->angle.yaw = yaw;
                         pitchWord = camera.unk46;
                         child->state = 1;
-                        pitch = (pitchWord>>4)&255;
+                        pitch = (pitchWord >> 4) & 255;
                         child->angle.pitch = pitch;
-                        if(linkedMoby->mobyClass==99) {
+                        if (linkedMoby->mobyClass == 99) {
                             alpha = 255;
                             child->colour.r = alpha;
                             alpha = 13;
                             child->colour.g = 0;
-                        }
-                        else {
+                        } else {
                             alpha = 255;
                             child->colour.g = alpha;
                             alpha = 12;
@@ -465,7 +456,7 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
                             func_80034F80(second, 3);
                         }
                     }
-                    if (linkedMoby->mobyClass==99 && camera.cameraState==31) {
+                    if (linkedMoby->mobyClass == 99 && camera.cameraState == 31) {
                         child = SpawnMoby(197, 0);
                         __asm__("" : " = r"(child) : "0"(child));
                         tag->child14 = child;
@@ -482,8 +473,7 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
                             child->colour.a = 13;
                             func_80034F80(child, 3);
                         }
-                    }
-                    else {
+                    } else {
                         child = SpawnMoby(197, 0);
                         __asm__("" : " = r"(child) : "0"(child));
                         tag->child14 = child;
@@ -495,13 +485,12 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
                             child->angle.yaw = childYaw;
                             func_8004F178(&child->position, &newMoby->position);
                             func_80034F80(child, 4);
-                            if(linkedMoby->mobyClass==99) {
+                            if (linkedMoby->mobyClass == 99) {
                                 alpha = 255;
                                 child->colour.r = alpha;
                                 alpha = 56;
                                 child->colour.g = 0;
-                            }
-                            else {
+                            } else {
                                 alpha = 255;
                                 child->colour.g = alpha;
                                 alpha = 56;
@@ -516,58 +505,63 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
             }
             break;
         }
-    case 245:
-        {
+        case 245: {
             Spawn46Tag245* tag = newMoby->mobyTag;
             register int azimuth __asm__("$16");
             int elevation;
             register short* cosine __asm__("$4");
-            if(linkedMoby) func_8004F178(&newMoby->position, &linkedMoby->position);
-            else func_8004F178(&newMoby->position, &spyro.position);
-            azimuth = rand()&255;
-            elevation = rand()&255;
+            if (linkedMoby)
+                func_8004F178(&newMoby->position, &linkedMoby->position);
+            else
+                func_8004F178(&newMoby->position, &spyro.position);
+            azimuth = rand() & 255;
+            elevation = rand() & 255;
             /* Original960 changes the masked table index to a byte offset. */
-            azimuth*=2;
+            azimuth *= 2;
             __asm__("" : " = r"(azimuth), " = r"(elevation) : "0"(azimuth), "1"(elevation) : "$4");
             cosine = D_80065920;
             __asm__("" : " = r"(cosine) : "0"(cosine));
-            cosine = (short*)((unsigned int)(elevation*2)+(unsigned int)cosine);
-            tag->vector0.x = (((*(short*)((unsigned char*)D_80065920+azimuth)*16)>>8)* *cosine)>>12;
-            tag->vector0.y = (((*(short*)((unsigned char*)D_800658A0+azimuth)*16)>>8)* *cosine)>>12;
-            tag->vector0.z = (D_800658A0[elevation]*16)>>8;
+            cosine = (short*)((unsigned int)(elevation * 2) + (unsigned int)cosine);
+            tag->vector0.x =
+                (((*(short*)((unsigned char*)D_80065920 + azimuth) * 16) >> 8) * *cosine) >> 12;
+            tag->vector0.y =
+                (((*(short*)((unsigned char*)D_800658A0 + azimuth) * 16) >> 8) * *cosine) >> 12;
+            tag->vector0.z = (D_800658A0[elevation] * 16) >> 8;
             tag->timerC = func_8003636C(90, 150);
             func_8004F194(&newMoby->position, &newMoby->position, &tag->vector0);
             func_8004F110(&tag->vector0, 1);
             newMoby->angle.yaw = rand();
             func_80055C24(newMoby);
-            switch(rand()&3) {
-            case 0: *(unsigned int*)&newMoby->colour = 0x3C0000FF;
-                break;
-            case 1: *(unsigned int*)&newMoby->colour = 0x3C00A0B0;
-                break;
-            case 2: *(unsigned int*)&newMoby->colour = 0x3C0080FF;
-                break;
-            case 3: *(unsigned int*)&newMoby->colour = 0x3C000000;
-                break;
+            switch (rand() & 3) {
+                case 0:
+                    *(unsigned int*)&newMoby->colour = 0x3C0000FF;
+                    break;
+                case 1:
+                    *(unsigned int*)&newMoby->colour = 0x3C00A0B0;
+                    break;
+                case 2:
+                    *(unsigned int*)&newMoby->colour = 0x3C0080FF;
+                    break;
+                case 3:
+                    *(unsigned int*)&newMoby->colour = 0x3C000000;
+                    break;
             }
             break;
         }
-    case 260:
-        func_80055C24(newMoby);
-        newMoby->colour.r = 2;
-        if (linkedMoby != 0) {
-            ((MobyTag_260*)newMoby->mobyTag)->unk0 = linkedMoby;
-            func_8004F178(&newMoby->position, &linkedMoby->position);
-            newMoby->updateDistance = 10;
-            newMoby->lowDrawDistance = 8;
-            newMoby->position.z += 0x400;
-        }
-        else {
-            newMoby->unknown = -1;
-        }
-        break;
-    case 272:
-        {
+        case 260:
+            func_80055C24(newMoby);
+            newMoby->colour.r = 2;
+            if (linkedMoby != 0) {
+                ((MobyTag_260*)newMoby->mobyTag)->unk0 = linkedMoby;
+                func_8004F178(&newMoby->position, &linkedMoby->position);
+                newMoby->updateDistance = 10;
+                newMoby->lowDrawDistance = 8;
+                newMoby->position.z += 0x400;
+            } else {
+                newMoby->unknown = -1;
+            }
+            break;
+        case 272: {
             MobyTag_272* mobyTag;
             mobyTag = newMoby->mobyTag;
             func_8004F178(&newMoby->position, &spyro.position);
@@ -583,11 +577,10 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
             newMoby->drawn = 0;
             break;
         }
-    case 308:
-    case 630:
-    case 631:
-    case 306:
-        {
+        case 308:
+        case 630:
+        case 631:
+        case 306: {
             MobyTag_Fragment* mobyTag;
             int azimuth;
             int elevation;
@@ -597,19 +590,25 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
             func_80055C24(newMoby);
             azimuth = rand() & 0xFFF;
             elevation = rand() & 0x7FF;
-            mobyTag->linearVel.x = (func_8004EA2C(elevation) * func_8004EA2C(azimuth) * linkedMoby->substate) >> 0x18;
-            mobyTag->linearVel.y = (func_8004EA2C(elevation) * func_8004E9E4(azimuth) * linkedMoby->substate) >> 0x18;
+            mobyTag->linearVel.x =
+                (func_8004EA2C(elevation) * func_8004EA2C(azimuth) * linkedMoby->substate) >> 0x18;
+            mobyTag->linearVel.y =
+                (func_8004EA2C(elevation) * func_8004E9E4(azimuth) * linkedMoby->substate) >> 0x18;
             mobyTag->linearVel.z = (func_8004E9E4(elevation) * linkedMoby->substate) >> 0xC;
             if (linkedMoby->damageFlags & 0x02000000) {
-                frame.work40.vector.x = D_80065920[func_8004E880(newMoby->position.x - spyro.position.x, newMoby->position.y - spyro.position.y, 0)];
+                frame.work40.vector.x =
+                    D_80065920[func_8004E880(newMoby->position.x - spyro.position.x,
+                                             newMoby->position.y - spyro.position.y, 0)];
                 frame.work40.vector.x = (short)frame.work40.vector.x >> 4;
-                frame.work40.vector.y = D_800658A0[func_8004E880(newMoby->position.x - spyro.position.x, newMoby->position.y - spyro.position.y, 0)];
+                frame.work40.vector.y =
+                    D_800658A0[func_8004E880(newMoby->position.x - spyro.position.x,
+                                             newMoby->position.y - spyro.position.y, 0)];
                 frame.work40.vector.y = (short)frame.work40.vector.y >> 4;
                 frame.work40.vector.z = 0;
                 mobyTag->linearVel.x += frame.work40.vector.x;
                 mobyTag->linearVel.y += frame.work40.vector.y;
-            }
-            else if ((linkedMoby->damageFlags & 0x20000) && ((spyro.movementState == 4) || (spyro.movementState == 0xC))) {
+            } else if ((linkedMoby->damageFlags & 0x20000) &&
+                       ((spyro.movementState == 4) || (spyro.movementState == 0xC))) {
                 mobyTag->linearVel.x += spyro.unk7a[2].x >> 6;
                 mobyTag->linearVel.y += spyro.unk7a[2].y >> 6;
             }
@@ -630,8 +629,7 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
             mobyTag->timer = func_8003636C(0x32, 0x50);
             break;
         }
-    case 1000:
-        {
+        case 1000: {
             Spawn46Tag1000* tag = newMoby->mobyTag;
             int sourceIndex;
             func_8004F178(&newMoby->position, &linkedMoby->position);
@@ -644,10 +642,10 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
             newMoby->drawn = 0;
             newMoby->angle.yaw = linkedMoby->angle.yaw;
             newMoby->position.z += 256;
-            sourceIndex = ((int*)linkedMoby->mobyTag)[0x70/4];
-            if(sourceIndex >= 0) {
-                Moby* sourceMoby = mobyArrayPtr+sourceIndex;
-                tag->buffer4 = (int*)((unsigned char*)sourceMoby->mobyTag+0x14);
+            sourceIndex = ((int*)linkedMoby->mobyTag)[0x70 / 4];
+            if (sourceIndex >= 0) {
+                Moby* sourceMoby = mobyArrayPtr + sourceIndex;
+                tag->buffer4 = (int*)((unsigned char*)sourceMoby->mobyTag + 0x14);
                 func_8004E7AC(tag->buffer4, 0, 0xEB0);
                 tag->word0 = 32;
                 tag->word2 = 25;
@@ -657,8 +655,7 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
             }
             break;
         }
-    case 1005:
-        {
+        case 1005: {
             Spawn46Tag1000* tag = newMoby->mobyTag;
             Moby* sourceMoby;
             Moby* end;
@@ -677,27 +674,27 @@ Moby* func_level_46_8008812C(int mobyClass, Moby* linkedMoby) {
             end = D_8006C704;
             __asm__("" : " = r"(end) : "0"(end), "r"(sourceMoby) : "$18");
             allocationSize = 0x9D0;
-            for(;sourceMoby<end;sourceMoby++) {
-                if(sourceMoby->mobyClass==1020 && ((int*)sourceMoby->mobyTag)[2]==0x13A0) break;
+            for (; sourceMoby < end; sourceMoby++) {
+                if (sourceMoby->mobyClass == 1020 && ((int*)sourceMoby->mobyTag)[2] == 0x13A0)
+                    break;
             }
-            if(sourceMoby) {
+            if (sourceMoby) {
                 int* owner = sourceMoby->mobyTag;
                 __asm__("" : " = r"(allocationSize) : "0"(allocationSize));
-                tag->buffer4 = (int*)((unsigned char*)owner+(owner[0]+0x14));
+                tag->buffer4 = (int*)((unsigned char*)owner + (owner[0] + 0x14));
                 owner[0] += allocationSize;
-                if(owner[0] >= owner[2]) owner[0] = 0;
+                if (owner[0] >= owner[2])
+                    owner[0] = 0;
                 func_8004E7AC(tag->buffer4, 0, allocationSize);
                 tag->word0 = 200;
                 tag->parent10 = sourceMoby;
             }
             break;
         }
-    default:
-        {
+        default: {
             if (linkedMoby) {
                 func_8004F178(&newMoby->position, &linkedMoby->position);
-            }
-            else {
+            } else {
                 func_8004F178(&newMoby->position, &spyro.position);
             }
             func_80055C24(newMoby);

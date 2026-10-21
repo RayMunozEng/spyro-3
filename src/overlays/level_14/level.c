@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "ovl_header.h"
 #include "mobyutil.h"
@@ -6,16 +7,18 @@
 #include "camera.h"
 #include "spyro.h"
 
-extern short D_80065920[],D_800658A0[];
+extern short D_80065920[], D_800658A0[];
 extern int D_8006C648;
-int func_8004E880(int,int,int);
-int func_8003613C(int,int);
-int func_8004F264(int,int);
-int func_8004F334(Vector3D*,Vector3D*);
-int func_8003585C(Moby*,int,int,int,int,int);
-int func_80035EE0(Moby*,int,int,int,int,int);
-int func_80035DDC(Moby*,int,int,int,int);
-int func_level_14_8008D9A4(Moby* actor,Vector3D* center,int radius,int heading,int tolerance,int speed,int turnA,int turnB,int avoidA,int avoidB,int argA,int argB,int flags) {
+int func_8004E880(int, int, int);
+int func_8003613C(int, int);
+int func_8004F264(int, int);
+int func_8004F334(Vector3D*, Vector3D*);
+int func_8003585C(Moby*, int, int, int, int, int);
+int func_80035EE0(Moby*, int, int, int, int, int);
+int func_80035DDC(Moby*, int, int, int, int);
+int func_level_14_8008D9A4(Moby* actor, Vector3D* center, int radius, int heading, int tolerance,
+                           int speed, int turnA, int turnB, int avoidA, int avoidB, int argA,
+                           int argB, int flags) {
     register Moby* current __asm__("$19");
     register Vector3D* target __asm__("$20");
     register int range __asm__("$23");
@@ -30,68 +33,85 @@ int func_level_14_8008D9A4(Moby* actor,Vector3D* center,int radius,int heading,i
     int result;
     register int lowAngle __asm__("$16");
     Vector3D destination;
-    current=actor;
-    __asm__("" : "=r"(current) : "0"(current));
-    target=center;
-    __asm__("" : "=r"(target) : "0"(target));
-    range=radius;
-    __asm__("" : "=r"(range) : "0"(range));
-    initialHeading=heading;
-    __asm__("" : "=r"(initialHeading) : "0"(initialHeading));
-    rate=speed;
-    __asm__("" : "=r"(rate) : "0"(rate));
-    limit=tolerance;avoid=avoidA;
-    angle=func_8004E880(current->position.x-target->x,current->position.y-target->y,0);
-    error=func_8003613C(initialHeading,angle&0xFF);
-    distance=func_8004F334(&current->position,target);
-    absolute=error;
-    if(error<0)absolute=-absolute;
-    if(absolute<limit) {
-        int radial=distance-range;
-        if(radial<0)radial=range-distance;
-        if(radial<0xC8)goto done;
+    current = actor;
+    MATCHING_KEEP(current);
+    target = center;
+    MATCHING_KEEP(target);
+    range = radius;
+    MATCHING_KEEP(range);
+    initialHeading = heading;
+    MATCHING_KEEP(initialHeading);
+    rate = speed;
+    MATCHING_KEEP(rate);
+    limit = tolerance;
+    avoid = avoidA;
+    angle = func_8004E880(current->position.x - target->x, current->position.y - target->y, 0);
+    error = func_8003613C(initialHeading, angle & 0xFF);
+    distance = func_8004F334(&current->position, target);
+    absolute = error;
+    if (error < 0)
+        absolute = -absolute;
+    if (absolute < limit) {
+        int radial = distance - range;
+        if (radial < 0)
+            radial = range - distance;
+        if (radial < 0xC8)
+            goto done;
     }
-    if(avoid!=0xFF) {
-        lowAngle=angle&0xFF;
-        if(func_8004F264(lowAngle,avoid)<5) {
-            result=func_8003613C(avoid,lowAngle);
-            if(error<0 && result<0)return 0x100;
-            if(error>0 && result>0)return 0x100;
+    if (avoid != 0xFF) {
+        lowAngle = angle & 0xFF;
+        if (func_8004F264(lowAngle, avoid) < 5) {
+            result = func_8003613C(avoid, lowAngle);
+            if (error < 0 && result < 0)
+                return 0x100;
+            if (error > 0 && result > 0)
+                return 0x100;
         }
     }
-    if(avoidB!=0xFF) {
-        lowAngle=angle&0xFF;
-        if(func_8004F264(lowAngle,avoidB)<5) {
-            result=func_8003613C(avoidB,lowAngle);
-            if(error<0 && result<0)return 0x100;
-            if(error>0 && result>0)return 0x100;
+    if (avoidB != 0xFF) {
+        lowAngle = angle & 0xFF;
+        if (func_8004F264(lowAngle, avoidB) < 5) {
+            result = func_8003613C(avoidB, lowAngle);
+            if (error < 0 && result < 0)
+                return 0x100;
+            if (error > 0 && result > 0)
+                return 0x100;
         }
     }
-    if(error<0)angle+=3;else angle-=3;
+    if (error < 0)
+        angle += 3;
+    else
+        angle -= 3;
     {
-    register int lookup __asm__("$3")=angle&0xFF;
-    register int x __asm__("$7");
-    __asm__("" : "=r"(lookup) : "0"(lookup));
-    {register int product __asm__("$2")=(D_80065920[lookup]*range)>>12;
-    x=target->x;
-    __asm__("" : "=r"(product),"=r"(x) : "0"(product),"1"(x));
-    x+=product;}
-    destination.x=x;
-    destination.y=target->y+((D_800658A0[lookup]*range)>>12);
-    heading=func_8004E880(x-current->position.x,destination.y-current->position.y,0);
+        register int lookup __asm__("$3") = angle & 0xFF;
+        register int x __asm__("$7");
+        MATCHING_KEEP(lookup);
+        {
+            register int product __asm__("$2") = (D_80065920[lookup] * range) >> 12;
+            x = target->x;
+            MATCHING_KEEP2(product, x);
+            x += product;
+        }
+        destination.x = x;
+        destination.y = target->y + ((D_800658A0[lookup] * range) >> 12);
+        heading = func_8004E880(x - current->position.x, destination.y - current->position.y, 0);
     }
-    if(D_8006C648==3)rate+=rate>>1;
-    else if(D_8006C648==4)rate<<=1;
-    if(flags&8) {
-        result=func_8004E880(target->x-current->position.x,target->y-current->position.y,0);
-        func_8003585C(current,result,turnA,0,0,0);
-        result=func_80035EE0(current,heading,rate,argA,argB,flags);
+    if (D_8006C648 == 3)
+        rate += rate >> 1;
+    else if (D_8006C648 == 4)
+        rate <<= 1;
+    if (flags & 8) {
+        result = func_8004E880(target->x - current->position.x, target->y - current->position.y, 0);
+        func_8003585C(current, result, turnA, 0, 0, 0);
+        result = func_80035EE0(current, heading, rate, argA, argB, flags);
     } else {
-        if(!func_8003585C(current,heading,turnA,turnB,1,0))goto done;
-        result=func_80035DDC(current,rate,argA,argB,flags);
+        if (!func_8003585C(current, heading, turnA, turnB, 1, 0))
+            goto done;
+        result = func_80035DDC(current, rate, argA, argB, flags);
     }
-    if(result)return -result;
- done:
+    if (result)
+        return -result;
+done:
     return ABS(error);
 }
 
@@ -112,17 +132,17 @@ void func_level_14_8008DCC0(Moby* pCritterMoby, int arg1) {
     pCritterMoby->lowDrawDistance = 0x10;
 }
 
-#define Controller582CField(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+#define Controller582CField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 extern unsigned char Controller582CPlayer[] __asm__("D_80070328");
 extern void* Controller582CLinked0 __asm__("D_80070328 + 0x250");
 extern void* Controller582CLinked1 __asm__("D_80070328 + 0x250");
 extern void* Controller582CLinked2 __asm__("D_80070328 + 0x250");
 extern unsigned char Controller582CSave[] __asm__("D_8006C7F8");
-extern int D_8006C6C0,D_8006C710,D_8006E524,D_8007203C,D_80072040;
-int Controller582CHelper3B7B4(void*,int,void*) __asm__("func_8003B7B4");
-int Controller582CHelper3BABC(void*,int,int) __asm__("func_8003BABC");
+extern int D_8006C6C0, D_8006C710, D_8006E524, D_8007203C, D_80072040;
+int Controller582CHelper3B7B4(void*, int, void*) __asm__("func_8003B7B4");
+int Controller582CPlayMobySoundEvent(void*, int, int) __asm__("func_8003BABC");
 int Controller582CHelper3BE70(int) __asm__("func_8003BE70");
-int Controller582CHelper3BFC0(void*,int) __asm__("func_8003BFC0");
+int Controller582CHelper3BFC0(void*, int) __asm__("func_8003BFC0");
 int Controller582CHelper498C0(void) __asm__("func_800498C0");
 int Controller582CHelper4BEF8(int) __asm__("func_8004BEF8");
 /* AI generated; not human reviewed. SCUS-94467 USA Rev 0.
@@ -140,201 +160,249 @@ int Controller582CHelper4BEF8(int) __asm__("func_8004BEF8");
  * Empty constraints preserve original register phases without opcode patches.
  */
 int func_level_14_8008DD38(int inputMask) {
-    register int* gateWord __asm__("$5")=(int*)(Controller582CPlayer+0x284);
+    register int* gateWord __asm__("$5") = (int*)(Controller582CPlayer + 0x284);
     register signed short* cosine __asm__("$21");
     register signed short* sine __asm__("$20");
     Vector3D offset;
     register int helperArgument __asm__("$4");
-    register signed short *cosinePointer __asm__("$5");
+    register signed short* cosinePointer __asm__("$5");
     register int firstSample __asm__("$16");
     register int firstTableWord __asm__("$16");
     register int selectedBits __asm__("$19");
     register int secondTableWord __asm__("$2");
     register int particleIndex __asm__("$18");
     int nextWord;
-    unsigned char *resultRecord;
-    register unsigned char *record0 __asm__("$17");
-    register unsigned char *record1 __asm__("$17");
+    unsigned char* resultRecord;
+    register unsigned char* record0 __asm__("$17");
+    register unsigned char* record1 __asm__("$17");
 
-    if ((*gateWord == 0) && (Controller582CField(Controller582CPlayer, int *, 0x1CC) == 0)) {
-        if (Controller582CField(Controller582CPlayer, unsigned int *, 0x24C) == 5) {
-            Controller582CField(Controller582CPlayer, int *, 0x24) = (int) Controller582CField(Controller582CField(Controller582CPlayer, void **, 0x250), int *, 0x18);
-            Controller582CField(Controller582CField(Controller582CPlayer, void **, 0x250), int *, 0x18) = 0;
+    if ((*gateWord == 0) && (Controller582CField(Controller582CPlayer, int*, 0x1CC) == 0)) {
+        if (Controller582CField(Controller582CPlayer, unsigned int*, 0x24C) == 5) {
+            Controller582CField(Controller582CPlayer, int*, 0x24) = (int)Controller582CField(
+                Controller582CField(Controller582CPlayer, void**, 0x250), int*, 0x18);
+            Controller582CField(Controller582CField(Controller582CPlayer, void**, 0x250), int*,
+                                0x18) = 0;
         }
-        { register int inputBits __asm__("$2")=Controller582CField(Controller582CPlayer,int*,0x24);
-          __asm__("" : "=r"(inputBits) : "0"(inputBits));
-          selectedBits=inputBits&inputMask; }
+        {
+            register int inputBits __asm__("$2") =
+                Controller582CField(Controller582CPlayer, int*, 0x24);
+            MATCHING_KEEP(inputBits);
+            selectedBits = inputBits & inputMask;
+        }
         if (selectedBits != 0) {
-            if (Controller582CField(Controller582CPlayer, unsigned int *, 0x24C) == 5) {
-                Controller582CField(Controller582CPlayer, unsigned int *, 0x284) = (unsigned int) Controller582CField(Controller582CPlayer, unsigned int *, 0x24C);
+            if (Controller582CField(Controller582CPlayer, unsigned int*, 0x24C) == 5) {
+                Controller582CField(Controller582CPlayer, unsigned int*, 0x284) =
+                    (unsigned int)Controller582CField(Controller582CPlayer, unsigned int*, 0x24C);
                 goto dispatch;
             }
-            if (Controller582CField(Controller582CPlayer, int *, 0x48) == 0x26) {
+            if (Controller582CField(Controller582CPlayer, int*, 0x48) == 0x26) {
                 helperArgument = 0x39;
-                Controller582CField(Controller582CPlayer, int *, 0x244) = 0;
-                Controller582CField(Controller582CPlayer, void **, 0x250) = 0;
+                Controller582CField(Controller582CPlayer, int*, 0x244) = 0;
+                Controller582CField(Controller582CPlayer, void**, 0x250) = 0;
                 goto sharedCall;
             }
             goto afterCall;
-sharedCall:
+        sharedCall:
             Controller582CHelper4BEF8(helperArgument);
-handled:
-            __asm__ volatile("" : : : "$2");
+        handled:
+            MATCHING_BARRIER_VOLATILE("$2");
             return 1;
-afterCall:
-            if (Controller582CField(Controller582CPlayer, unsigned int *, 0x24C) != 7) {
-                { register int literal __asm__("$2")=90;
-                  register int remaining __asm__("$3")=Controller582CField(Controller582CPlayer,int*,0x280);
-                  __asm__("" : "=r"(literal),"=r"(remaining) : "0"(literal),"1"(remaining));
-                  *gateWord=literal;
-                  if(remaining>=0){
-                    { register int next __asm__("$2")=remaining-1;
-                      Controller582CField(Controller582CPlayer,int*,0x280)=next;
-                      __asm__ volatile("" : : : "memory"); }
-                    D_8006C6C0+=1;D_8006C710+=1;
-                  } }
+        afterCall:
+            if (Controller582CField(Controller582CPlayer, unsigned int*, 0x24C) != 7) {
+                {
+                    register int literal __asm__("$2") = 90;
+                    register int remaining __asm__("$3") =
+                        Controller582CField(Controller582CPlayer, int*, 0x280);
+                    MATCHING_KEEP2(literal, remaining);
+                    *gateWord = literal;
+                    if (remaining >= 0) {
+                        {
+                            register int next __asm__("$2") = remaining - 1;
+                            Controller582CField(Controller582CPlayer, int*, 0x280) = next;
+                            MATCHING_BARRIER_VOLATILE("memory");
+                        }
+                        D_8006C6C0 += 1;
+                        D_8006C710 += 1;
+                    }
+                }
 
             }
-dispatch:
-            switch (Controller582CField(Controller582CPlayer, unsigned int *, 0x24C)) {
-            default:
-                goto handled;
-            case 0:
-                helperArgument=0x1B;
-                goto sharedCall;
-            case 1:
-                helperArgument = 0x48;
-                goto sharedCall;
-            case 2:
-                helperArgument = 0x58;
-                goto sharedCall;
-            case 3:
-                if (({ register int selector __asm__("$2")=selectedBits&8; __asm__("" : "=r"(selector) : "0"(selector)); selector; })) {
-                    helperArgument = 0x6C;
-                    if (Controller582CField(Controller582CPlayer, int *, 0x280) >= 0) {
-                        helperArgument = 0x6B;
-                    }
-                } else {
-                    helperArgument = 0x69;
-                    if (Controller582CField(Controller582CPlayer, int *, 0x280) >= 0) {
-                        helperArgument = 0x68;
-                    }
-                }
-                goto sharedCall;
-            case 4:
-                helperArgument = 0x79;
-                goto sharedCall;
-            case 5:
-                record0 = Controller582CField(Controller582CField(Controller582CPlayer, void **, 0x250), void **, 0);
-                            if (Controller582CField(Controller582CPlayer, int *, 0x240) == 0) {
-                    particleIndex = 0;
-                    cosine=D_80065920;
-                    sine=D_800658A0;
-                    do {
-                        particleIndex += 1;
-                        firstSample = rand() & 0xFF;
-                        secondTableWord=rand()&255;
-                        __asm__("" : "=r"(secondTableWord),"=r"(firstSample) : "0"(secondTableWord),"1"(firstSample));
-                        firstTableWord=firstSample*2;
-                        { register int firstAddress __asm__("$3")=firstTableWord+(int)cosine;
-                          register int sample __asm__("$3");
-                          register int factor __asm__("$4");
-                          register int product __asm__("$8");
-                          __asm__("" : "=r"(firstAddress) : "0"(firstAddress));
-                          secondTableWord*=2;
-                          cosinePointer=(signed short*)(secondTableWord+(int)cosine);
-                          sample=*(signed short*)firstAddress;
-                          factor=*cosinePointer;
-                          __asm__("" : "=r"(sample),"=r"(factor) : "0"(sample),"1"(factor));
-                          sample >>=7;
-                          product=sample*factor;
-                          firstTableWord+=(int)sine;
-                          __asm__("" : "=r"(product),"=r"(firstTableWord) : "0"(product),"1"(firstTableWord));
-                          sample=product>>12;
-                          __asm__("" : "=r"(sample) : "0"(sample));
-                          offset.x=sample;
-                          sample=*(signed short*)firstTableWord;
-                          factor=*cosinePointer;
-                          __asm__("" : "=r"(sample),"=r"(factor) : "0"(sample),"1"(factor));
-                          sample >>=7;
-                          product=sample*factor;
-                          { register unsigned char* position __asm__("$6")=record0+0x30;
-                            register Vector3D* prepared __asm__("$7");
-                            register void (*callback)(int,int,Vector3D*,Vector3D*) __asm__("$2");
-                            register int zero __asm__("$5");
-                            secondTableWord+=(int)sine;
-                            __asm__("" : "=r"(secondTableWord),"=r"(position) : "0"(secondTableWord),"1"(position) : "$7");
-                            prepared=&offset;
-                            __asm__("" : "=r"(product),"=r"(position),"=r"(prepared),"=r"(secondTableWord) : "0"(product),"1"(position),"2"(prepared),"3"(secondTableWord));
-                            sample=product>>12;
-                            __asm__("" : "=r"(sample) : "0"(sample));
-                            offset.y=sample;
-                            secondTableWord=*(signed short*)secondTableWord;
-                            __asm__("" : "=r"(secondTableWord) : "0"(secondTableWord) : "$5");
-                            zero=0;
-                            __asm__("" : "=r"(secondTableWord),"=r"(zero) : "0"(secondTableWord),"1"(zero));
-                            offset.z=secondTableWord>>7;
-                            __asm__ volatile("" : : : "memory");
-                            callback=(void(*)(int,int,Vector3D*,Vector3D*))SpawnParticle;
-                            __asm__("" : "=r"(callback) : "0"(callback) : "$4");
-                            callback(1,zero,(Vector3D*)position,prepared); }
+        dispatch:
+            switch (Controller582CField(Controller582CPlayer, unsigned int*, 0x24C)) {
+                default:
+                    goto handled;
+                case 0:
+                    helperArgument = 0x1B;
+                    goto sharedCall;
+                case 1:
+                    helperArgument = 0x48;
+                    goto sharedCall;
+                case 2:
+                    helperArgument = 0x58;
+                    goto sharedCall;
+                case 3:
+                    if (({
+                            register int selector __asm__("$2") = selectedBits & 8;
+                            MATCHING_KEEP(selector);
+                            selector;
+                        })) {
+                        helperArgument = 0x6C;
+                        if (Controller582CField(Controller582CPlayer, int*, 0x280) >= 0) {
+                            helperArgument = 0x6B;
                         }
+                    } else {
+                        helperArgument = 0x69;
+                        if (Controller582CField(Controller582CPlayer, int*, 0x280) >= 0) {
+                            helperArgument = 0x68;
+                        }
+                    }
+                    goto sharedCall;
+                case 4:
+                    helperArgument = 0x79;
+                    goto sharedCall;
+                case 5:
+                    record0 = Controller582CField(
+                        Controller582CField(Controller582CPlayer, void**, 0x250), void**, 0);
+                    if (Controller582CField(Controller582CPlayer, int*, 0x240) == 0) {
+                        particleIndex = 0;
+                        cosine = D_80065920;
+                        sine = D_800658A0;
+                        do {
+                            particleIndex += 1;
+                            firstSample = rand() & 0xFF;
+                            secondTableWord = rand() & 255;
+                            MATCHING_KEEP2(secondTableWord, firstSample);
+                            firstTableWord = firstSample * 2;
+                            {
+                                register int firstAddress __asm__("$3") =
+                                    firstTableWord + (int)cosine;
+                                register int sample __asm__("$3");
+                                register int factor __asm__("$4");
+                                register int product __asm__("$8");
+                                MATCHING_KEEP(firstAddress);
+                                secondTableWord *= 2;
+                                cosinePointer = (signed short*)(secondTableWord + (int)cosine);
+                                sample = *(signed short*)firstAddress;
+                                factor = *cosinePointer;
+                                MATCHING_KEEP2(sample, factor);
+                                sample >>= 7;
+                                product = sample * factor;
+                                firstTableWord += (int)sine;
+                                MATCHING_KEEP2(product, firstTableWord);
+                                sample = product >> 12;
+                                MATCHING_KEEP(sample);
+                                offset.x = sample;
+                                sample = *(signed short*)firstTableWord;
+                                factor = *cosinePointer;
+                                MATCHING_KEEP2(sample, factor);
+                                sample >>= 7;
+                                product = sample * factor;
+                                {
+                                    register unsigned char* position __asm__("$6") = record0 + 0x30;
+                                    register Vector3D* prepared __asm__("$7");
+                                    register void (*callback)(int, int, Vector3D*,
+                                                              Vector3D*) __asm__("$2");
+                                    register int zero __asm__("$5");
+                                    secondTableWord += (int)sine;
+                                    MATCHING_KEEP2_CLOBBER(secondTableWord, position, "$7");
+                                    prepared = &offset;
+                                    MATCHING_KEEP4(product, position, prepared, secondTableWord);
+                                    sample = product >> 12;
+                                    MATCHING_KEEP(sample);
+                                    offset.y = sample;
+                                    secondTableWord = *(signed short*)secondTableWord;
+                                    MATCHING_KEEP_CLOBBER(secondTableWord, "$5");
+                                    zero = 0;
+                                    MATCHING_KEEP2(secondTableWord, zero);
+                                    offset.z = secondTableWord >> 7;
+                                    MATCHING_BARRIER_VOLATILE("memory");
+                                    callback =
+                                        (void (*)(int, int, Vector3D*, Vector3D*))SpawnParticle;
+                                    MATCHING_KEEP_CLOBBER(callback, "$4");
+                                    callback(1, zero, (Vector3D*)position, prepared);
+                                }
+                            }
 
                     } while (particleIndex < 8);
-                    D_80072040 = 0xC8;
-                    D_8007203C = 0xA;
-                    if (selectedBits & 1) {
-                        Controller582CHelper4BEF8(0x8C);
-                        nextWord = Controller582CField(record0, int *, 0x24) - 1;
-                    } else if (({ register int selector __asm__("$2"); __asm__("" : : : "$2"); selector=selectedBits&2; __asm__("" : "=r"(selector) : "0"(selector)); selector; })) {
-                        Controller582CHelper4BEF8(0x8C);
-                        nextWord = Controller582CField(record0, int *, 0x24) - 3;
-                    } else {
-                        Controller582CHelper4BEF8(0x8D);
-                        nextWord = Controller582CField(record0, int *, 0x24) - 2;
+                        D_80072040 = 0xC8;
+                        D_8007203C = 0xA;
+                        if (selectedBits & 1) {
+                            Controller582CHelper4BEF8(0x8C);
+                            nextWord = Controller582CField(record0, int*, 0x24) - 1;
+                        } else if (({
+                                       register int selector __asm__("$2");
+                                       MATCHING_BARRIER("$2");
+                                       selector = selectedBits & 2;
+                                       MATCHING_KEEP(selector);
+                                       selector;
+                                   })) {
+                            Controller582CHelper4BEF8(0x8C);
+                            nextWord = Controller582CField(record0, int*, 0x24) - 3;
+                        } else {
+                            Controller582CHelper4BEF8(0x8D);
+                            nextWord = Controller582CField(record0, int*, 0x24) - 2;
+                        }
+                        Controller582CField(record0, int*, 0x24) = nextWord;
+                        D_8006C6C0 += 1;
+                        MATCHING_BARRIER_VOLATILE("memory");
+                        {
+                            register int counter __asm__("$2") = D_8006C710;
+                            register int remaining __asm__("$3") =
+                                Controller582CField(record0, int*, 0x24);
+                            MATCHING_KEEP2(counter, remaining);
+                            D_8006C710 = counter + 1;
+                            if (remaining < 0) {
+                                Controller582CField(record0, int*, 0x24) = 0;
+                            }
+                        }
+                        Controller582CHelper3B7B4(record0 + 0x24, 4, Controller582CSave);
+                        return 1;
                     }
-                    Controller582CField(record0, int *, 0x24) = nextWord;
-                    D_8006C6C0 += 1;
-                    __asm__ volatile("" : : : "memory");
-                    { register int counter __asm__("$2")=D_8006C710;
-                      register int remaining __asm__("$3")=Controller582CField(record0,int*,0x24);
-                      __asm__("" : "=r"(counter),"=r"(remaining) : "0"(counter),"1"(remaining));
-                      D_8006C710=counter+1;
-                      if (remaining < 0) {
-                        Controller582CField(record0, int *, 0x24) = 0;
-                    } }
-                    Controller582CHelper3B7B4(record0 + 0x24, 4, Controller582CSave);
-                    return 1;
-                }
 
                 return 0;
-            case 7:
-                { register void* linked __asm__("$2")=Controller582CLinked0;
-                  __asm__("" : "=r"(linked) : "0"(linked));
-                  record1=*(unsigned char**)linked; }
-                if (Controller582CField(record1,int*,0x1C)&1)return 1;
-                { register int duration __asm__("$16")=15;
-                  Controller582CField(Controller582CPlayer,int*,0x284)=duration;
-                  { register int count __asm__("$2")=Controller582CField(record1,int*,0x28);
-                    register int second __asm__("$5");
-                    __asm__("" : "=r"(count) : "0"(count) : "$5");
-                    second=2;
-                    __asm__("" : "=r"(count),"=r"(second) : "0"(count),"1"(second));
-                    Controller582CField(record1,int*,0x28)=count-1;
-                    __asm__ volatile("" : : : "memory");
-                    Controller582CHelper3BABC(Controller582CLinked0,second,0); }
-                  D_8006E524=duration; }
-                if(Controller582CField(Controller582CPlayer,int*,0x280)>0 && Controller582CField(record1,int*,0x28)>0)return 1;
-                if(Controller582CHelper3BFC0(Controller582CLinked1,Controller582CField(record1,int*,0x48))!=0){
-                    if(Controller582CHelper3BFC0(Controller582CLinked2,Controller582CField(record1,int*,0x48))!=0)Controller582CHelper3BE70(Controller582CField(record1,int*,0x48));
-                    Controller582CField(record1,int*,0x48)=-1;
+                case 7: {
+                    register void* linked __asm__("$2") = Controller582CLinked0;
+                    MATCHING_KEEP(linked);
+                    record1 = *(unsigned char**)linked;
                 }
-                Controller582CHelper498C0();
-                return 1;
-            case 6:
-                resultRecord = Controller582CField(Controller582CField(Controller582CPlayer, void **, 0x250), void **, 0);
-                Controller582CField(resultRecord, unsigned short *, 0x66) = (unsigned short) (Controller582CField(resultRecord, unsigned short *, 0x66) | selectedBits);
-                return 0;
+                    if (Controller582CField(record1, int*, 0x1C) & 1)
+                        return 1;
+                    {
+                        register int duration __asm__("$16") = 15;
+                        Controller582CField(Controller582CPlayer, int*, 0x284) = duration;
+                        {
+                            register int count __asm__("$2") =
+                                Controller582CField(record1, int*, 0x28);
+                            register int second __asm__("$5");
+                            MATCHING_KEEP_CLOBBER(count, "$5");
+                            second = 2;
+                            MATCHING_KEEP2(count, second);
+                            Controller582CField(record1, int*, 0x28) = count - 1;
+                            MATCHING_BARRIER_VOLATILE("memory");
+                            Controller582CPlayMobySoundEvent(Controller582CLinked0, second, 0);
+                        }
+                        D_8006E524 = duration;
+                    }
+                    if (Controller582CField(Controller582CPlayer, int*, 0x280) > 0 &&
+                        Controller582CField(record1, int*, 0x28) > 0)
+                        return 1;
+                    if (Controller582CHelper3BFC0(Controller582CLinked1,
+                                                  Controller582CField(record1, int*, 0x48)) != 0) {
+                        if (Controller582CHelper3BFC0(Controller582CLinked2,
+                                                      Controller582CField(record1, int*, 0x48)) !=
+                            0)
+                            Controller582CHelper3BE70(Controller582CField(record1, int*, 0x48));
+                        Controller582CField(record1, int*, 0x48) = -1;
+                    }
+                    Controller582CHelper498C0();
+                    return 1;
+                case 6:
+                    resultRecord = Controller582CField(
+                        Controller582CField(Controller582CPlayer, void**, 0x250), void**, 0);
+                    Controller582CField(resultRecord, unsigned short*, 0x66) =
+                        (unsigned short)(Controller582CField(resultRecord, unsigned short*, 0x66) |
+                                         selectedBits);
+                    return 0;
             }
         } else {
 
@@ -377,14 +445,19 @@ int rand(void);
  * they retain the original compiler's argument and temporary lifetimes.
  * AI generated; not yet human reviewed. See the batch provenance document.
  */
-void func_level_14_8008E230(int count, int childClass, Moby* sourceMoby, Vector3D* offsets, int firstAnimation, int argument5) {
+void func_level_14_8008E230(int count, int childClass, Moby* sourceMoby, Vector3D* offsets,
+                            int firstAnimation, int argument5) {
     Vector3D average;
     int reserved1C;
     Vector3D temporary;
     int reserved2C;
     Vector3D impulse;
     int reserved3C;
-    struct { int childClass; int reserved44; Vector3D* offsets; } saved;
+    struct {
+        int childClass;
+        int reserved44;
+        Vector3D* offsets;
+    } saved;
     int reservedStack[4];
     register int index __asm__("$19");
     register Moby* source __asm__("$18") = sourceMoby;
@@ -408,9 +481,9 @@ void func_level_14_8008E230(int count, int childClass, Moby* sourceMoby, Vector3
     register Vector3D* offsetBase __asm__("$8");
     register int stackArgument4 __asm__("$8");
     register unsigned int stackArgument5 __asm__("$8");
-    __asm__("" : "=r"(source) : "0"(source));
+    MATCHING_KEEP(source);
     averageArgument = &average;
-    __asm__("" : : "r"(averageArgument));
+    MATCHING_OBSERVE(averageArgument);
     saved.childClass = childClass;
     saved.offsets = offsets;
     DecodedBatchZero(averageArgument);
@@ -437,17 +510,19 @@ void func_level_14_8008E230(int count, int childClass, Moby* sourceMoby, Vector3
         DecodedBatchMode(source, modeArgument);
     }
     temporaryPtr = &temporary;
-    if (count <= 0) return;
+    if (count <= 0)
+        return;
     cosine = D_80065920;
     sine = D_800658A0;
     player = DecodedBatchPlayer;
     __asm__("" : "=r"(cosine) : "0"(cosine), "r"(sine), "r"(player), "r"(temporaryPtr));
     do {
         /* Capacity exhaustion ends the whole spawn request. */
-        if (D_8006C578 - D_8006C574 < 21) return;
+        if (D_8006C578 - D_8006C574 < 21)
+            return;
         __asm__("" : "=m"(saved) : "m"(saved));
         child = SpawnMoby(saved.childClass, source);
-        __asm__("" : "=r"(child) : "0"(child));
+        MATCHING_KEEP(child);
         copyArgument = temporaryPtr;
         if (child != 0) {
             offsetArgument = index * 12;
@@ -495,7 +570,7 @@ void func_level_14_8008E230(int count, int childClass, Moby* sourceMoby, Vector3
                 tag[1] = (unsigned short)tag[1] + ((sine[source->unkb] * 75) >> 11);
                 randomLow = 40;
                 randomHigh = 70;
-randomZ:
+            randomZ:
                 tag[2] = (unsigned short)tag[2] + DecodedBatchRandom(randomLow, randomHigh);
                 goto finish;
             } else if (source->damageFlags & 0x40000) {
@@ -503,40 +578,47 @@ randomZ:
                 tag[1] = (unsigned short)tag[1] + (*(int*)(DecodedBatchPlayer + 0x90) >> 5);
                 goto finish;
             } else if (source->damageFlags & 0x2000000) {
-                sample0 = cosine[DecodedBatchAngle(child->position.x - *(int*)player, child->position.y - *(int*)(player + 4), 0)];
-                __asm__("" : "=r"(sample0) : "0"(sample0));
+                sample0 = cosine[DecodedBatchAngle(child->position.x - *(int*)player,
+                                                   child->position.y - *(int*)(player + 4), 0)];
+                MATCHING_KEEP(sample0);
                 impulse.x = sample0 >> 4;
-                sample0 = sine[DecodedBatchAngle(child->position.x - *(int*)player, child->position.y - *(int*)(player + 4), 0)];
-                __asm__("" : "=r"(sample0) : "0"(sample0));
+                sample0 = sine[DecodedBatchAngle(child->position.x - *(int*)player,
+                                                 child->position.y - *(int*)(player + 4), 0)];
+                MATCHING_KEEP(sample0);
                 impulseX = impulse.x;
                 impulse.y = sample0 >> 4;
                 impulse.z = 0;
                 __asm__("" : : "m"(impulse.z), "r"(impulseX));
-            } else if ((source->damageFlags & 0x20000) && (*(int*)(DecodedBatchPlayer + 0x50) == 4 || *(int*)(DecodedBatchPlayer + 0x50) == 12)) {
+            } else if ((source->damageFlags & 0x20000) &&
+                       (*(int*)(DecodedBatchPlayer + 0x50) == 4 ||
+                        *(int*)(DecodedBatchPlayer + 0x50) == 12)) {
                 tag[0] = (unsigned short)tag[0] + (*(int*)(DecodedBatchPlayer + 0x8C) >> 6);
                 tag[1] = (unsigned short)tag[1] + (*(int*)(DecodedBatchPlayer + 0x90) >> 6);
                 goto finish;
             } else {
-                if (source->mobyClass == 132) goto finish;
+                if (source->mobyClass == 132)
+                    goto finish;
                 angle = source->unkb;
-                if (angle == 0) angle = DecodedBatchAngle(child->position.x - *(int*)player, child->position.y - *(int*)(player + 4), 0);
+                if (angle == 0)
+                    angle = DecodedBatchAngle(child->position.x - *(int*)player,
+                                              child->position.y - *(int*)(player + 4), 0);
                 trigByteOffset = angle * 2;
-                __asm__("" : "=r"(trigByteOffset) : "0"(trigByteOffset));
+                MATCHING_KEEP(trigByteOffset);
                 sample0 = *(short*)(trigByteOffset + (unsigned int)cosine);
                 __asm__("" : "=r"(trigByteOffset) : "0"(trigByteOffset), "r"(sample0));
                 samplePointer = (short*)(trigByteOffset + (unsigned int)sine);
-                __asm__("" : "=r"(sample0), "=r"(samplePointer) : "0"(sample0), "1"(samplePointer));
+                MATCHING_KEEP2(sample0, samplePointer);
                 impulseX = (sample0 * 35) >> 10;
                 impulse.x = impulseX;
                 sample4 = *samplePointer;
-                __asm__("" : "=r"(sample4) : "0"(sample4));
+                MATCHING_KEEP(sample4);
                 impulse.y = (sample4 * 35) >> 10;
                 impulse.z = 0;
                 __asm__("" : : "m"(impulse.z), "r"(impulseX));
             }
             tag[0] = (unsigned short)tag[0] + impulseX;
             tag[1] = (unsigned short)tag[1] + impulse.y;
-finish:
+        finish:
             child->angle.roll = source->angle.roll;
             child->angle.pitch = source->angle.pitch;
             child->angle.yaw = source->angle.yaw;
@@ -548,13 +630,15 @@ finish:
             {
                 int lifetime = DecodedBatchRandom(30, 50);
                 register int animationArgument __asm__("$5");
-                __asm__("" : "=m"(firstAnimation), "=m"(argument5) : "m"(firstAnimation), "m"(argument5));
+                __asm__(""
+                        : "=m"(firstAnimation), "=m"(argument5)
+                        : "m"(firstAnimation), "m"(argument5));
                 stackArgument4 = *(int*)&firstAnimation;
                 tag[6] = lifetime;
                 tag[8] = 8;
                 animationArgument = stackArgument4 + index;
                 stackArgument5 = *(unsigned short*)&argument5;
-                __asm__("" : "=r"(stackArgument5) : "0"(stackArgument5));
+                MATCHING_KEEP(stackArgument5);
                 tag[9] = stackArgument5;
                 DecodedBatchAnimation(child, animationArgument);
             }
@@ -610,23 +694,23 @@ int func_level_14_8008E920(HudEntry* argument) {
     register int centredY __asm__("$16");
     register int* xArgument __asm__("$5") = &x;
     register int* yArgument __asm__("$6");
-    __asm__("" : : "r"(xArgument));
+    MATCHING_OBSERVE(xArgument);
     {
         register int frame __asm__("$2") = (unsigned char)hud->unk1C.frame;
         register int initialX __asm__("$3");
         register int initialY __asm__("$7");
         register SpriteData* sprites __asm__("$3");
-        __asm__("" : "=r"(frame) : "0"(frame));
+        MATCHING_KEEP(frame);
         initialX = hud->unk0;
         initialY = hud->unk2;
-        __asm__("" : : "r"(initialX), "r"(initialY) : "$6");
+        MATCHING_OBSERVE2_CLOBBER(initialX, initialY, "$6");
         yArgument = &y;
-        __asm__("" : : "r"(initialX), "r"(initialY), "r"(yArgument));
+        MATCHING_OBSERVE3(initialX, initialY, yArgument);
         x = initialX;
         sprites = D_8006C788;
         __asm__("" : "=r"(frame) : "0"(frame), "r"(sprites));
         frame *= 8;
-        __asm__("" : "=r"(frame) : "0"(frame));
+        MATCHING_KEEP(frame);
         y = initialY;
         __asm__ volatile("" : : "m"(y));
         sprite = (SpriteData*)((int)sprites + frame);
@@ -643,9 +727,9 @@ int func_level_14_8008E920(HudEntry* argument) {
         register int height __asm__("$2") = sprite->unk5;
         register int low __asm__("$3") = sprite->unk1;
         register int storedY __asm__("$3");
-        __asm__("" : : "r"(height), "r"(low));
+        MATCHING_OBSERVE2(height, low);
         height -= low;
-        __asm__("" : "=r"(height) : "0"(height));
+        MATCHING_KEEP(height);
         storedY = y;
         centredY = storedY - (height >> 1);
         y = centredY;
@@ -653,13 +737,13 @@ int func_level_14_8008E920(HudEntry* argument) {
     /* Select the retail bar origin from the sprite bounds. */
     if (hud->displayMode & 1) {
         centredY++;
-        __asm__("" : "=r"(centredY) : "0"(centredY));
+        MATCHING_KEEP(centredY);
         barY = centredY;
     } else {
         register int edge __asm__("$2") = centredY + sprite->unk5;
         edge -= sprite->unk1;
         edge -= 7;
-        __asm__("" : "=r"(edge) : "0"(edge));
+        MATCHING_KEEP(edge);
         barY = edge;
     }
     /* Bit 3 places the bordered bar before the sprite. */
@@ -681,7 +765,7 @@ int func_level_14_8008E920(HudEntry* argument) {
         func_8004E758(line);
         line++;
         lineArgument = line;
-        __asm__("" : "=r"(lineArgument) : "0"(lineArgument));
+        MATCHING_KEEP(lineArgument);
         line->tag = lineTag;
         __asm__ volatile("" : : "m"(line->tag));
         line->code = lineCode;
@@ -689,16 +773,16 @@ int func_level_14_8008E920(HudEntry* argument) {
         line->green = colour;
         line->blue = 0;
         line->y0 = top;
-        __asm__ volatile("" : : : "memory");
+        MATCHING_BARRIER_VOLATILE("memory");
         bottom = barY + 6;
-        __asm__("" : "=r"(bottom) : "0"(bottom));
+        MATCHING_KEEP(bottom);
         line->y1 = bottom;
         line->x1 = x + 96;
         line->x0 = x + 96;
         func_8004E758(lineArgument);
         line++;
         lineArgument = line;
-        __asm__("" : "=r"(lineArgument) : "0"(lineArgument));
+        MATCHING_KEEP(lineArgument);
         line->tag = lineTag;
         __asm__ volatile("" : : "m"(line->tag));
         line->code = lineCode;
@@ -711,21 +795,21 @@ int func_level_14_8008E920(HudEntry* argument) {
         line->x1 = x + 96;
         func_8004E758(lineArgument);
         line++;
-        __asm__("" : "=r"(line) : "0"(line));
+        MATCHING_KEEP(line);
         {
             register DecodedHudLine* lastLine __asm__("$4") = line;
             register int xValue __asm__("$2");
-            __asm__("" : "=r"(lastLine) : "0"(lastLine));
+            MATCHING_KEEP(lastLine);
             lastLine->code = lineCode;
 
             lastLine->red = colour;
             lastLine->green = colour;
             lastLine->blue = 0;
-            __asm__ volatile("" : : : "memory");
+            MATCHING_BARRIER_VOLATILE("memory");
             xValue = x;
             __asm__("" : "=r"(lastLine) : "0"(lastLine), "r"(xValue));
             quad = (DecodedHudQuad*)(lastLine + 1);
-            __asm__("" : "=r"(quad) : "0"(quad));
+            MATCHING_KEEP(quad);
             lastLine->tag = lineTag;
             lastLine->y0 = top;
             lastLine->y1 = bottom;
@@ -738,7 +822,7 @@ int func_level_14_8008E920(HudEntry* argument) {
         quad->code = 56;
         {
             int channel = -32 - hud->unk40 * 224 / 96;
-            __asm__("" : "=r"(channel) : "0"(channel));
+            MATCHING_KEEP(channel);
             quad->red0 = quad->red2 = channel;
             __asm__ volatile("" : : "m"(quad->red0), "m"(quad->red2));
         }
@@ -750,28 +834,28 @@ int func_level_14_8008E920(HudEntry* argument) {
             quad->blue0 = quad->blue2 = 0;
             quad->green1 = quad->green3 = 0;
             quad->blue1 = quad->blue3 = 0;
-            __asm__("" : "=r"(quad) : "0"(quad));
+            MATCHING_KEEP(quad);
             quadArgument = quad;
-            __asm__("" : : "r"(quadArgument));
+            MATCHING_OBSERVE(quadArgument);
             quad->red1 = quad->red3 = 224;
             quad->green0 = quad->green2 = greenChannel;
         }
-        __asm__ volatile("" : : : "memory");
+        MATCHING_BARRIER_VOLATILE("memory");
         {
             register int value __asm__("$3") = hud->unk40;
             register int barCoordinate __asm__("$2");
             register int coordinate __asm__("$2");
-            __asm__ volatile("" : : : "memory");
+            MATCHING_BARRIER_VOLATILE("memory");
             barCoordinate = (unsigned short)barY;
-            __asm__("" : "=r"(barCoordinate) : "0"(barCoordinate));
+            MATCHING_KEEP(barCoordinate);
             quad->y2 = quad->y3 = bottom;
             quad->y0 = quad->y1 = barCoordinate;
-            __asm__ volatile("" : : : "memory");
+            MATCHING_BARRIER_VOLATILE("memory");
             coordinate = x;
             __asm__("" : "=r"(value) : "0"(value), "r"(coordinate));
             value -= 96;
             value = coordinate - value;
-            __asm__("" : "=r"(value) : "0"(value));
+            MATCHING_KEEP(value);
             coordinate += 96;
             quad->x0 = quad->x2 = value;
             quad->x1 = quad->x3 = coordinate;
@@ -784,9 +868,9 @@ int func_level_14_8008E920(HudEntry* argument) {
         {
             register int spriteWidth __asm__("$2") = sprite->unk4;
             register int left __asm__("$3") = sprite->unk0;
-            __asm__("" : : "r"(spriteWidth), "r"(left));
+            MATCHING_OBSERVE2(spriteWidth, left);
             spriteWidth -= left;
-            __asm__("" : "=r"(spriteWidth) : "0"(spriteWidth));
+            MATCHING_KEEP(spriteWidth);
             result = spriteWidth + 106;
         }
     } else {
@@ -798,9 +882,9 @@ int func_level_14_8008E920(HudEntry* argument) {
             register int callX __asm__("$5");
             int origin;
             register int callY __asm__("$6");
-            __asm__("" : : "r"(spriteArgument));
+            MATCHING_OBSERVE(spriteArgument);
             callX = x;
-            __asm__("" : "=r"(callX) : "0"(callX));
+            MATCHING_KEEP(callX);
             origin = barY;
             callY = y;
             top = origin - 1;
@@ -809,9 +893,9 @@ int func_level_14_8008E920(HudEntry* argument) {
         lineCode = 64;
         defaultColour = 192;
         lineTag = 0x03000000;
-        __asm__("" : : "r"(lineCode), "r"(defaultColour), "r"(lineTag));
+        MATCHING_OBSERVE3(lineCode, defaultColour, lineTag);
         width = sprite->unk4;
-        __asm__("" : "=r"(width) : "0"(width));
+        MATCHING_KEEP(width);
         {
             register int left __asm__("$2") = sprite->unk0;
             line = (DecodedHudLine*)DecodedHudPacketCursor;
@@ -823,7 +907,7 @@ int func_level_14_8008E920(HudEntry* argument) {
             register int offset __asm__("$3");
             __asm__("" : "=r"(width) : "0"(width), "r"(currentX));
             offset = width + 10;
-            __asm__("" : "=r"(offset) : "0"(offset));
+            MATCHING_KEEP(offset);
             x = currentX + offset;
         }
 
@@ -839,7 +923,7 @@ int func_level_14_8008E920(HudEntry* argument) {
         func_8004E758(line);
         line++;
         lineArgument = line;
-        __asm__("" : "=r"(lineArgument) : "0"(lineArgument));
+        MATCHING_KEEP(lineArgument);
         line->tag = lineTag;
         __asm__ volatile("" : : "m"(line->tag));
         line->code = lineCode;
@@ -847,16 +931,16 @@ int func_level_14_8008E920(HudEntry* argument) {
         line->green = 0;
         line->blue = defaultColour;
         line->y0 = top;
-        __asm__ volatile("" : : : "memory");
+        MATCHING_BARRIER_VOLATILE("memory");
         defaultBottom = barY + 6;
-        __asm__("" : "=r"(defaultBottom) : "0"(defaultBottom));
+        MATCHING_KEEP(defaultBottom);
         line->y1 = defaultBottom;
         line->x1 = x + 96;
         line->x0 = x + 96;
         func_8004E758(lineArgument);
         line++;
         lineArgument = line;
-        __asm__("" : "=r"(lineArgument) : "0"(lineArgument));
+        MATCHING_KEEP(lineArgument);
         line->tag = lineTag;
         __asm__ volatile("" : : "m"(line->tag));
         line->code = lineCode;
@@ -869,21 +953,21 @@ int func_level_14_8008E920(HudEntry* argument) {
         line->x1 = x + 96;
         func_8004E758(lineArgument);
         line++;
-        __asm__("" : "=r"(line) : "0"(line));
+        MATCHING_KEEP(line);
         {
             register DecodedHudLine* lastLine __asm__("$4") = line;
             register int xValue __asm__("$2");
-            __asm__("" : "=r"(lastLine) : "0"(lastLine));
+            MATCHING_KEEP(lastLine);
             lastLine->code = lineCode;
 
             lastLine->red = 0;
             lastLine->green = 0;
             lastLine->blue = defaultColour;
-            __asm__ volatile("" : : : "memory");
+            MATCHING_BARRIER_VOLATILE("memory");
             xValue = x;
             __asm__("" : "=r"(lastLine) : "0"(lastLine), "r"(xValue));
             quad = (DecodedHudQuad*)(lastLine + 1);
-            __asm__("" : "=r"(quad) : "0"(quad));
+            MATCHING_KEEP(quad);
             lastLine->tag = lineTag;
             lastLine->y0 = top;
             lastLine->y1 = defaultBottom;
@@ -899,7 +983,7 @@ int func_level_14_8008E920(HudEntry* argument) {
         quad->blue0 = quad->blue2 = 0;
         {
             int channel = -32 - hud->unk40 * 224 / 96;
-            __asm__("" : "=r"(channel) : "0"(channel));
+            MATCHING_KEEP(channel);
             quad->red1 = quad->red3 = channel;
             __asm__ volatile("" : : "m"(quad->red1), "m"(quad->red3));
         }
@@ -909,29 +993,29 @@ int func_level_14_8008E920(HudEntry* argument) {
             __asm__("" : "=r"(quad) : "0"(quad), "r"(numerator));
             greenChannel = numerator / 96;
             quad->blue1 = quad->blue3 = 0;
-            __asm__("" : "=r"(quad) : "0"(quad));
+            MATCHING_KEEP(quad);
             quad->green1 = quad->green3 = greenChannel;
         }
-        __asm__ volatile("" : : : "memory");
+        MATCHING_BARRIER_VOLATILE("memory");
         {
             register int currentX __asm__("$5") = x;
             register DecodedHudQuad* argument __asm__("$4");
             register int coordinate __asm__("$2");
             register int barCoordinate __asm__("$2");
             register int value __asm__("$3");
-            __asm__("" : : "r"(currentX) : "$4");
+            MATCHING_OBSERVE_CLOBBER(currentX, "$4");
             argument = quad;
-            __asm__("" : : "r"(argument));
+            MATCHING_OBSERVE(argument);
             coordinate = currentX;
             quad->x0 = quad->x2 = coordinate;
-            __asm__ volatile("" : : : "memory");
+            MATCHING_BARRIER_VOLATILE("memory");
             value = hud->unk40;
-            __asm__ volatile("" : : : "memory");
+            MATCHING_BARRIER_VOLATILE("memory");
             barCoordinate = (unsigned short)barY;
-            __asm__("" : "=r"(barCoordinate) : "0"(barCoordinate));
+            MATCHING_KEEP(barCoordinate);
             quad->y2 = quad->y3 = defaultBottom;
             value += currentX;
-            __asm__ volatile("" : "=r"(value) : "0"(value) : "memory");
+            MATCHING_KEEP_VOLATILE_CLOBBER(value, "memory");
             quad->y0 = quad->y1 = barCoordinate;
             quad->x1 = quad->x3 = value;
             func_8004E758(argument);
@@ -940,7 +1024,7 @@ int func_level_14_8008E920(HudEntry* argument) {
         DecodedHudPacketCursor = (unsigned char*)quad;
         result = width + 116;
     }
-    __asm__("" : "=r"(result) : "0"(result));
+    MATCHING_KEEP(result);
     return result;
 }
 
@@ -951,8 +1035,10 @@ void func_level_14_8008EEA0(HudEntry* hud) {
     if (hud->unk28 != 0) {
         value = *hud->unk28;
         maximum = hud->unk26;
-        if (value > maximum) value = maximum;
-        if (value < 0) value = 0;
+        if (value > maximum)
+            value = maximum;
+        if (value < 0)
+            value = 0;
         hud->unk40 = hud->unk42 = value * 96 / maximum;
     }
 }
@@ -962,26 +1048,37 @@ void func_level_14_8008EF48(HudEntry* hud) {
     if (hud->unk28 != 0) {
         value = *hud->unk28;
         maximum = hud->unk26;
-        if (value > maximum) value = maximum;
-        if (value < 0) value = 0;
+        if (value > maximum)
+            value = maximum;
+        if (value < 0)
+            value = 0;
         value = value * 96 / maximum;
-        if (value < 0) value = 0;
+        if (value < 0)
+            value = 0;
         current = hud->unk40;
         hud->unk42 = value;
-        if ((unsigned short)current < hud->unk42) hud->unk40 = current + 1;
-        else if (hud->unk42 < (unsigned short)current) hud->unk40 = current - 1;
-        if (*hud->unk28 > 0 && hud->unk40 == 0) hud->unk40 = 1;
+        if ((unsigned short)current < hud->unk42)
+            hud->unk40 = current + 1;
+        else if (hud->unk42 < (unsigned short)current)
+            hud->unk40 = current - 1;
+        if (*hud->unk28 > 0 && hud->unk40 == 0)
+            hud->unk40 = 1;
     }
     func_8002798C(hud);
 }
 
-#define Timer86B88High(a,b) ({ int high; __asm__ __volatile__("" : "=h"(high) : "l"((int)(a)*(int)(b)) : "memory"); high; })
-#define Timer86B88Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+#define Timer86B88High(a, b)                                                         \
+    ({                                                                               \
+        int high;                                                                    \
+        __asm__ __volatile__("" : "=h"(high) : "l"((int)(a) * (int)(b)) : "memory"); \
+        high;                                                                        \
+    })
+#define Timer86B88Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 extern int Timer86B88Motion __asm__("D_8006C64C");
-extern unsigned char *Timer86B88SpriteBase __asm__("D_8006C788");
+extern unsigned char* Timer86B88SpriteBase __asm__("D_8006C788");
 extern short Timer86B88DigitBase __asm__("D_800719CC");
-int Timer86B88Place(void*,int*,int*,int*) __asm__("func_80029708");
-int Timer86B88Draw(void*,int,int) __asm__("func_800289C8");
+int Timer86B88Place(void*, int*, int*, int*) __asm__("func_80029708");
+int Timer86B88Draw(void*, int, int) __asm__("func_800289C8");
 /* AI generated; not yet human reviewed. SCUS-94467 USA Rev 0.
  * Original 356-instruction timer family is the authority. Byte access widths,
  * signed high products, shifts and draw argument sequences retain the disc
@@ -991,22 +1088,24 @@ int Timer86B88Draw(void*,int,int) __asm__("func_800289C8");
  * Empty constraints emit no instructions. Acceptance requires full retail
  * hashes and unmasked linked instruction words, not a semantic runtime claim.
  */
-int func_level_14_8008F040(void *input) {
-    register unsigned char *owner __asm__("$21");
-    struct {int drawOrdinal,drawPositionX,drawPositionY,pad1C,quotient3600,pad24,digitWidth,pad2C,divide10Multiplier,pad34;
+int func_level_14_8008F040(void* input) {
+    register unsigned char* owner __asm__("$21");
+    struct {
+        int drawOrdinal, drawPositionX, drawPositionY, pad1C, quotient3600, pad24, digitWidth,
+            pad2C, divide10Multiplier, pad34;
     } frame;
-    int *counterPointer;
+    int* counterPointer;
     register int singleLeadingDigit __asm__("$2");
     int motionFlags;
     register int entryFlags __asm__("$4");
-    register int *horizontalOutput __asm__("$23");
-    register int *verticalOutput;
-    register void *drawOwner __asm__("$4");
-    register int *drawIndex __asm__("$5");
-    register int *drawX __asm__("$6");
-    register int *drawY __asm__("$7");
+    register int* horizontalOutput __asm__("$23");
+    register int* verticalOutput;
+    register void* drawOwner __asm__("$4");
+    register int* drawIndex __asm__("$5");
+    register int* drawX __asm__("$6");
+    register int* drawY __asm__("$7");
     register int digitQuotient __asm__("$16");
-    register unsigned char *sprite __asm__("$17");
+    register unsigned char* sprite __asm__("$17");
     register int index __asm__("$18");
     register int x __asm__("$19");
     register int remainder60 __asm__("$20");
@@ -1016,364 +1115,411 @@ int func_level_14_8008F040(void *input) {
     register int scaled __asm__("$3");
     register int scaledRemainder __asm__("$8");
     register int counterSign __asm__("$11");
-    {register int digit __asm__("$2")=Timer86B88DigitBase;
-     register unsigned char *base __asm__("$3")=Timer86B88SpriteBase;
-     register int width __asm__("$2");
-     register int other __asm__("$3");
-     owner=input;
-     __asm__ __volatile__("" : : "r"(owner),"r"(digit),"r"(base) : "$4");
-     x=Timer86B88Field(owner,short*,0);
-     __asm__("" : "=r"(x),"=r"(digit),"=r"(base) : "0"(x),"1"(digit),"2"(base));
-     digit<<=3;
-     sprite=base+digit;
-     width=Timer86B88Field(sprite,unsigned char*,5);
-     other=Timer86B88Field(sprite,unsigned char*,1);
-     {register int flags __asm__("$4")=Timer86B88Field(owner,unsigned char*,24);
-     __asm__("" : "=r"(width),"=r"(other),"=r"(flags) : "0"(width),"1"(other),"2"(flags));
-     motionFlags=flags;
-     }
-     width-=other;
-     other=Timer86B88Field(owner,short*,2);
-     width>>=1;
-     y=other-width;
-     }
+    {
+        register int digit __asm__("$2") = Timer86B88DigitBase;
+        register unsigned char* base __asm__("$3") = Timer86B88SpriteBase;
+        register int width __asm__("$2");
+        register int other __asm__("$3");
+        owner = input;
+        MATCHING_OBSERVE3_GNU_VOLATILE_CLOBBER(owner, digit, base, "$4");
+        x = Timer86B88Field(owner, short*, 0);
+        MATCHING_KEEP3(x, digit, base);
+        digit <<= 3;
+        sprite = base + digit;
+        width = Timer86B88Field(sprite, unsigned char*, 5);
+        other = Timer86B88Field(sprite, unsigned char*, 1);
+        {
+            register int flags __asm__("$4") = Timer86B88Field(owner, unsigned char*, 24);
+            MATCHING_KEEP3(width, other, flags);
+            motionFlags = flags;
+        }
+        width -= other;
+        other = Timer86B88Field(owner, short*, 2);
+        width >>= 1;
+        y = other - width;
+    }
     if (motionFlags & 2) {
         y -= Timer86B88Motion;
     } else if (motionFlags & 1) {
         y += Timer86B88Motion;
     }
-    {register int width __asm__("$3")=Timer86B88Field(sprite,unsigned char*,4);
-     register int other __asm__("$2")=Timer86B88Field(sprite,unsigned char*,0);
-     entryFlags=Timer86B88Field(owner,unsigned char*,63);
-     __asm__("" : "=r"(width),"=r"(other),"=r"(entryFlags) : "0"(width),"1"(other),"2"(entryFlags));
-     width-=other;
-     frame.digitWidth=width;
-     if(entryFlags) {other=entryFlags+10;
-     __asm__("" : "=r"(other) : "0"(other));
-     index=other>>1;
-     }
-     else {__asm__("" ::: "$4");
-     index=0;
-     }}
-    counterPointer = Timer86B88Field(owner, int **, 0x28);
-    counter=*counterPointer;
-    {register int magic60 __asm__("$4")=(int)0x88888889;
-     register int magic10 __asm__("$12");
-     register int width __asm__("$13");
-     register int value __asm__("$2");
-     register int highFirst __asm__("hi");
-     register int highSecond __asm__("hi");
-     register int highTens __asm__("hi");
-     register int highMinutes __asm__("hi");
-     register int digit __asm__("$3");
-     register unsigned char *base __asm__("$2");
-     highFirst=Timer86B88High(counter,magic60);
-     counterSign=counter>>31;
-     {register int word __asm__("$12")=highFirst;
-      __asm__("" : "=r"(word),"=r"(counterSign) : "0"(word),"1"(counterSign));
-      quotient60=((word+counter)>>5)-counterSign;
-      }
-     value=counter-quotient60*60;
-     scaled=value*100;
-     highSecond=Timer86B88High(scaled,magic60);
-     drawIndex=&frame.drawOrdinal;
-     horizontalOutput=&frame.drawPositionX;
-     width=frame.digitWidth;
-     drawX=horizontalOutput;
-     x-=width;
-     __asm__("" : "=r"(drawIndex),"=r"(horizontalOutput),"=r"(drawX),"=r"(x) : "0"(drawIndex),"1"(horizontalOutput),"2"(drawX),"3"(x),"r"(width) : "$12");
-     magic10=0x66666667;
-     {register int word __asm__("$13")=highSecond;
-      __asm__("" : "=r"(word) : "0"(word));
-      scaledRemainder=((word+scaled)>>5)-(scaled>>31);
-      }
-     highTens=Timer86B88High(scaledRemainder,magic10);
-     verticalOutput=&frame.drawPositionY;
-     drawY=verticalOutput;
-     __asm__("" : "=r"(drawY) : "0"(drawY));
-     frame.drawOrdinal=index;
-     index--;
-     frame.drawPositionX=x;
-     frame.drawPositionY=y;
-     __asm__ __volatile__("" ::: "$2","$4","memory");
-     value=(int)0x91A2B3C5;
-     drawOwner=owner;
-     __asm__("" : "=r"(value),"=r"(drawOwner) : "0"(value),"1"(drawOwner));
-     frame.divide10Multiplier=magic10;
-     {register int nextWidth __asm__("$12")=frame.digitWidth;
-      register int word __asm__("$13");
-      __asm__("" : "=r"(nextWidth),"=h"(highTens) : "0"(nextWidth),"1"(highTens) : "memory");
-      word=highTens;
-      __asm__("" : "=r"(word) : "0"(word) : "$3","memory");
-      digit=Timer86B88DigitBase;
-      __asm__("" : "=r"(word) : "0"(word) : "memory");
-      digitQuotient=word>>2;
-      __asm__("" : "=r"(counter),"=r"(digit) : "0"(counter),"1"(digit),"r"(digitQuotient));
-      highMinutes=Timer86B88High(counter,value);
-      x-=nextWidth;
-      }
-     value=scaledRemainder>>31;
-     digitQuotient-=value;
-     scaledRemainder-=digitQuotient*10;
-     digit+=scaledRemainder;
-     __asm__("" : "=r"(digit) : "0"(digit) : "$2","memory");
-     base=Timer86B88SpriteBase;
-     __asm__("" : "=r"(digit),"=r"(base) : "0"(digit),"1"(base));
-     digit<<=3;
-     sprite=base+digit;
-     __asm__("" : "=r"(sprite),"=h"(highMinutes) : "0"(sprite),"1"(highMinutes));
-     {register int word __asm__("$12")=highMinutes;
-      __asm__("" : "=r"(word) : "0"(word));
-      counter=((word+counter)>>11)-counterSign;
-      }
-     value=counter*60;
-     remainder60=quotient60-value;
-     frame.quotient3600=counter;
-     }
-    Timer86B88Place(drawOwner,drawIndex,drawX,drawY);
+    {
+        register int width __asm__("$3") = Timer86B88Field(sprite, unsigned char*, 4);
+        register int other __asm__("$2") = Timer86B88Field(sprite, unsigned char*, 0);
+        entryFlags = Timer86B88Field(owner, unsigned char*, 63);
+        MATCHING_KEEP3(width, other, entryFlags);
+        width -= other;
+        frame.digitWidth = width;
+        if (entryFlags) {
+            other = entryFlags + 10;
+            MATCHING_KEEP(other);
+            index = other >> 1;
+        } else {
+            MATCHING_BARRIER("$4");
+            index = 0;
+        }
+    }
+    counterPointer = Timer86B88Field(owner, int**, 0x28);
+    counter = *counterPointer;
+    {
+        register int magic60 __asm__("$4") = (int)0x88888889;
+        register int magic10 __asm__("$12");
+        register int width __asm__("$13");
+        register int value __asm__("$2");
+        register int highFirst __asm__("hi");
+        register int highSecond __asm__("hi");
+        register int highTens __asm__("hi");
+        register int highMinutes __asm__("hi");
+        register int digit __asm__("$3");
+        register unsigned char* base __asm__("$2");
+        highFirst = Timer86B88High(counter, magic60);
+        counterSign = counter >> 31;
+        {
+            register int word __asm__("$12") = highFirst;
+            MATCHING_KEEP2(word, counterSign);
+            quotient60 = ((word + counter) >> 5) - counterSign;
+        }
+        value = counter - quotient60 * 60;
+        scaled = value * 100;
+        highSecond = Timer86B88High(scaled, magic60);
+        drawIndex = &frame.drawOrdinal;
+        horizontalOutput = &frame.drawPositionX;
+        width = frame.digitWidth;
+        drawX = horizontalOutput;
+        x -= width;
+        __asm__(""
+                : "=r"(drawIndex), "=r"(horizontalOutput), "=r"(drawX), "=r"(x)
+                : "0"(drawIndex), "1"(horizontalOutput), "2"(drawX), "3"(x), "r"(width)
+                : "$12");
+        magic10 = 0x66666667;
+        {
+            register int word __asm__("$13") = highSecond;
+            MATCHING_KEEP(word);
+            scaledRemainder = ((word + scaled) >> 5) - (scaled >> 31);
+        }
+        highTens = Timer86B88High(scaledRemainder, magic10);
+        verticalOutput = &frame.drawPositionY;
+        drawY = verticalOutput;
+        MATCHING_KEEP(drawY);
+        frame.drawOrdinal = index;
+        index--;
+        frame.drawPositionX = x;
+        frame.drawPositionY = y;
+        __asm__ __volatile__("" ::: "$2", "$4", "memory");
+        value = (int)0x91A2B3C5;
+        drawOwner = owner;
+        MATCHING_KEEP2(value, drawOwner);
+        frame.divide10Multiplier = magic10;
+        {
+            register int nextWidth __asm__("$12") = frame.digitWidth;
+            register int word __asm__("$13");
+            __asm__(""
+                    : "=r"(nextWidth), "=h"(highTens)
+                    : "0"(nextWidth), "1"(highTens)
+                    : "memory");
+            word = highTens;
+            __asm__("" : "=r"(word) : "0"(word) : "$3", "memory");
+            digit = Timer86B88DigitBase;
+            MATCHING_KEEP_CLOBBER(word, "memory");
+            digitQuotient = word >> 2;
+            __asm__("" : "=r"(counter), "=r"(digit) : "0"(counter), "1"(digit), "r"(digitQuotient));
+            highMinutes = Timer86B88High(counter, value);
+            x -= nextWidth;
+        }
+        value = scaledRemainder >> 31;
+        digitQuotient -= value;
+        scaledRemainder -= digitQuotient * 10;
+        digit += scaledRemainder;
+        __asm__("" : "=r"(digit) : "0"(digit) : "$2", "memory");
+        base = Timer86B88SpriteBase;
+        MATCHING_KEEP2(digit, base);
+        digit <<= 3;
+        sprite = base + digit;
+        __asm__("" : "=r"(sprite), "=h"(highMinutes) : "0"(sprite), "1"(highMinutes));
+        {
+            register int word __asm__("$12") = highMinutes;
+            MATCHING_KEEP(word);
+            counter = ((word + counter) >> 11) - counterSign;
+        }
+        value = counter * 60;
+        remainder60 = quotient60 - value;
+        frame.quotient3600 = counter;
+    }
+    Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
     Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
-    {register int digit __asm__("$2");
-     register unsigned char *base __asm__("$3");
-     drawOwner=owner;
-     drawIndex=&frame.drawOrdinal;
-     drawX=horizontalOutput;
-     __asm__("" : "=r"(drawOwner),"=r"(drawIndex),"=r"(drawX) : "0"(drawOwner),"1"(drawIndex),"2"(drawX) : "$2","$3","memory");
-     digit=Timer86B88DigitBase;
-     base=Timer86B88SpriteBase;
-     __asm__("" : "=r"(digit) : "0"(digit) : "$7","memory");
-     drawY=verticalOutput;
-     __asm__("" : "=r"(digit),"=r"(drawY) : "0"(digit),"1"(drawY) : "memory");
-     frame.drawOrdinal=index;
-     index--;
-     frame.drawPositionX=x;
-     frame.drawPositionY=y;
-     __asm__("" : "=r"(digit) : "0"(digit) : "memory");
-     digit+=digitQuotient;
-     digit<<=3;
-     __asm__("" : "=r"(digit),"=r"(base) : "0"(digit),"1"(base));
-     sprite=base+digit;
-     Timer86B88Place(drawOwner,drawIndex,drawX,drawY);
-     Timer86B88Draw(sprite,frame.drawPositionX,frame.drawPositionY);
-     }
-    {register int digit __asm__("$2");
-     register unsigned char *base __asm__("$3");
-     register int other __asm__("$3");
-     drawOwner=owner;
-     drawIndex=&frame.drawOrdinal;
-     drawX=horizontalOutput;
-     __asm__("" : "=r"(drawOwner),"=r"(drawIndex),"=r"(drawX) : "0"(drawOwner),"1"(drawIndex),"2"(drawX) : "$2","$3","memory");
-     digit=Timer86B88DigitBase;
-     base=Timer86B88SpriteBase;
-     digit<<=3;
-     digit+=96;
-     __asm__("" : "=r"(digit),"=r"(base) : "0"(digit),"1"(base) : "$7");
-     sprite=base+digit;
-     digit=Timer86B88Field(sprite,unsigned char*,4);
-     other=Timer86B88Field(sprite,unsigned char*,0);
-     drawY=verticalOutput;
-     frame.drawPositionY=y;
-     frame.drawOrdinal=index;
-     __asm__("" : "=r"(digit),"=r"(other),"=r"(drawY) : "0"(digit),"1"(other),"2"(drawY) : "memory");
-     digit-=other;
-     x-=digit;
-     frame.drawPositionX=x;
-     Timer86B88Place(drawOwner,drawIndex,drawX,drawY);
-     Timer86B88Draw(sprite,frame.drawPositionX,frame.drawPositionY);
-     }
-    {register int test __asm__("$13")=frame.quotient3600;
-     __asm__("" : "=r"(test) : "0"(test));
-    drawIndex=&frame.drawOrdinal;
-    if(test) {
-        register int magic __asm__("$12");
-        register int high __asm__("hi");
-        register int width __asm__("$13");
-        register int digit __asm__("$3");
-        register int value __asm__("$2");
-        register unsigned char *base __asm__("$2");
-        register int word __asm__("$12");
+    {
+        register int digit __asm__("$2");
+        register unsigned char* base __asm__("$3");
+        drawOwner = owner;
+        drawIndex = &frame.drawOrdinal;
+        drawX = horizontalOutput;
+        __asm__(""
+                : "=r"(drawOwner), "=r"(drawIndex), "=r"(drawX)
+                : "0"(drawOwner), "1"(drawIndex), "2"(drawX)
+                : "$2", "$3", "memory");
+        digit = Timer86B88DigitBase;
+        base = Timer86B88SpriteBase;
+        __asm__("" : "=r"(digit) : "0"(digit) : "$7", "memory");
+        drawY = verticalOutput;
+        MATCHING_KEEP2_CLOBBER(digit, drawY, "memory");
+        frame.drawOrdinal = index;
         index--;
-        drawOwner=owner;
-        __asm__("" : "=r"(index),"=r"(drawOwner) : "0"(index),"1"(drawOwner) : "memory");
-        magic=frame.divide10Multiplier;
-        high=Timer86B88High(remainder60,magic);
-        drawX=horizontalOutput;
-        drawY=verticalOutput;
-        frame.drawOrdinal=index;
-        index--;
-        width=frame.digitWidth;
-        digit=Timer86B88DigitBase;
-        value=remainder60>>31;
-        frame.drawPositionY=y;
-        __asm__("" : "=r"(drawOwner),"=r"(drawX),"=r"(drawY),"=r"(x),"=r"(value) : "0"(drawOwner),"1"(drawX),"2"(drawY),"3"(x),"4"(value) : "memory");
-        x-=width;
-        frame.drawPositionX=x;
-        __asm__("" : "=r"(x),"=h"(high) : "0"(x),"1"(high) : "memory");
-        x-=width;
-        __asm__("" : "=r"(x),"=h"(high) : "0"(x),"1"(high),"r"(width));
-        word=high;
-        __asm__("" : "=r"(word) : "0"(word));
-        digitQuotient=(word>>2)-value;
-        value=remainder60-digitQuotient*10;
-        digit+=value;
-        __asm__("" : "=r"(digit) : "0"(digit) : "$2","memory");
-        base=Timer86B88SpriteBase;
-        __asm__("" : "=r"(digit),"=r"(base) : "0"(digit),"1"(base));
-        digit<<=3;
-        sprite=base+digit;
-        Timer86B88Place(drawOwner,drawIndex,drawX,drawY);
-        Timer86B88Draw(sprite,frame.drawPositionX,frame.drawPositionY);
-        {register int nextDigit __asm__("$2");
-         register unsigned char *nextBase __asm__("$3");
-         drawOwner=owner;
-         drawIndex=&frame.drawOrdinal;
-         drawX=horizontalOutput;
-         __asm__("" : "=r"(drawOwner),"=r"(drawIndex),"=r"(drawX) : "0"(drawOwner),"1"(drawIndex),"2"(drawX) : "$2","$3","memory");
-         nextDigit=Timer86B88DigitBase;
-         nextBase=Timer86B88SpriteBase;
-         __asm__("" : "=r"(nextDigit) : "0"(nextDigit) : "$7","memory");
-         drawY=verticalOutput;
-         __asm__("" : "=r"(nextDigit),"=r"(drawY) : "0"(nextDigit),"1"(drawY) : "memory");
-         frame.drawOrdinal=index;
-         index--;
-         frame.drawPositionX=x;
-         frame.drawPositionY=y;
-         __asm__("" : "=r"(nextDigit) : "0"(nextDigit) : "memory");
-         nextDigit+=digitQuotient;
-         nextDigit<<=3;
-         __asm__("" : "=r"(nextDigit),"=r"(nextBase) : "0"(nextDigit),"1"(nextBase));
-         sprite=nextBase+nextDigit;
-         Timer86B88Place(drawOwner,drawIndex,drawX,drawY);
-         Timer86B88Draw(sprite,frame.drawPositionX,frame.drawPositionY);
-         }
-        {register int nextDigit __asm__("$2");
-         register unsigned char *nextBase __asm__("$3");
-         register int other __asm__("$3");
-         drawOwner=owner;
-         drawIndex=&frame.drawOrdinal;
-         drawX=horizontalOutput;
-         __asm__("" : "=r"(drawOwner),"=r"(drawIndex),"=r"(drawX) : "0"(drawOwner),"1"(drawIndex),"2"(drawX) : "$2","$3","memory");
-         nextDigit=Timer86B88DigitBase;
-         nextBase=Timer86B88SpriteBase;
-         nextDigit<<=3;
-         nextDigit+=88;
-         __asm__("" : "=r"(nextDigit),"=r"(nextBase) : "0"(nextDigit),"1"(nextBase) : "$7");
-         sprite=nextBase+nextDigit;
-         nextDigit=Timer86B88Field(sprite,unsigned char*,4);
-         other=Timer86B88Field(sprite,unsigned char*,0);
-         drawY=verticalOutput;
-         frame.drawPositionY=y;
-         frame.drawOrdinal=index;
-         __asm__("" : "=r"(nextDigit),"=r"(other),"=r"(drawY) : "0"(nextDigit),"1"(other),"2"(drawY) : "memory");
-         nextDigit-=other;
-         x-=nextDigit;
-         frame.drawPositionX=x;
-         Timer86B88Place(drawOwner,drawIndex,drawX,drawY);
-         Timer86B88Draw(sprite,frame.drawPositionX,frame.drawPositionY);
-         }
-        {register int number __asm__("$13")=frame.quotient3600;
-         register int factor __asm__("$12")=frame.divide10Multiplier;
-         register int productHigh __asm__("hi");
-         register int remainder __asm__("$2");
-         register int digitBase __asm__("$3");
-         register unsigned char *sprites __asm__("$2");
-         __asm__("" : "=r"(index),"=r"(number),"=r"(factor) : "0"(index),"1"(number),"2"(factor));
-         index--;
-         productHigh=Timer86B88High(number,factor);
-         drawOwner=owner;
-         drawIndex=&frame.drawOrdinal;
-         number=frame.digitWidth;
-         drawX=horizontalOutput;
-         x-=number;
-         __asm__("" : "=r"(drawOwner),"=r"(drawIndex),"=r"(drawX),"=r"(x) : "0"(drawOwner),"1"(drawIndex),"2"(drawX),"3"(x),"r"(number) : "memory");
-         number=frame.quotient3600;
-         drawY=verticalOutput;
-         frame.drawPositionY=y;
-         frame.drawOrdinal=index;
-         frame.drawPositionX=x;
-         remainder=number>>31;
-         __asm__("" : "=h"(productHigh),"=r"(remainder),"=r"(number) : "0"(productHigh),"1"(remainder),"2"(number) : "memory");
-         factor=productHigh;
-         __asm__("" : "=r"(factor) : "0"(factor));
-         digitBase=factor>>2;
-         digitQuotient=digitBase-remainder;
-         remainder=digitQuotient*10;
-         digitBase=Timer86B88DigitBase;
-         remainder=number-remainder;
-         digitBase+=remainder;
-         __asm__("" : "=r"(digitBase) : "0"(digitBase) : "$2","memory");
-         sprites=Timer86B88SpriteBase;
-         __asm__("" : "=r"(digitBase),"=r"(sprites) : "0"(digitBase),"1"(sprites));
-         digitBase<<=3;
-         sprite=sprites+digitBase;
-         Timer86B88Place(drawOwner,drawIndex,drawX,drawY);
-         Timer86B88Draw(sprite,frame.drawPositionX,frame.drawPositionY);
-         factor=frame.quotient3600;
-         __asm__("" : "=r"(factor) : "0"(factor));
-         singleLeadingDigit=factor<10;
-         }
-    } else {
-        register int factor __asm__("$12");
-        register int productHigh __asm__("hi");
-        register int width __asm__("$13");
-        register int value __asm__("$2");
-        register int digit __asm__("$3");
-        register unsigned char *base __asm__("$2");
-        factor=frame.divide10Multiplier;
-        productHigh=Timer86B88High(remainder60,factor);
-        index--;
-        drawOwner=owner;
-        drawX=horizontalOutput;
-        drawY=verticalOutput;
-        width=frame.digitWidth;
-        value=remainder60>>31;
-        frame.drawPositionY=y;
-        frame.drawOrdinal=index;
-        __asm__("" : "=r"(drawOwner),"=r"(drawX),"=r"(drawY),"=r"(x),"=r"(value) : "0"(drawOwner),"1"(drawX),"2"(drawY),"3"(x),"4"(value) : "memory");
-        x-=width;
-        frame.drawPositionX=x;
-        __asm__("" : "=r"(x),"=h"(productHigh) : "0"(x),"1"(productHigh),"r"(width) : "memory");
-        factor=productHigh;
-        __asm__("" : "=r"(factor) : "0"(factor));
-        digit=factor>>2;
-        digitQuotient=digit-value;
-        value=digitQuotient*10;
-        digit=Timer86B88DigitBase;
-        value=remainder60-value;
-        digit+=value;
-        __asm__("" : "=r"(digit) : "0"(digit) : "$2","memory");
-        base=Timer86B88SpriteBase;
-        __asm__("" : "=r"(digit),"=r"(base) : "0"(digit),"1"(base));
-        digit<<=3;
-        sprite=base+digit;
-        Timer86B88Place(drawOwner,drawIndex,drawX,drawY);
-        Timer86B88Draw(sprite,frame.drawPositionX,frame.drawPositionY);
-        singleLeadingDigit=remainder60<10;
-    }}
-    __asm__("" : "=r"(singleLeadingDigit) : "0"(singleLeadingDigit));
-    if(!singleLeadingDigit) {
+        frame.drawPositionX = x;
+        frame.drawPositionY = y;
+        MATCHING_KEEP_CLOBBER(digit, "memory");
+        digit += digitQuotient;
+        digit <<= 3;
+        MATCHING_KEEP2(digit, base);
+        sprite = base + digit;
+        Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+        Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
+    }
+    {
+        register int digit __asm__("$2");
+        register unsigned char* base __asm__("$3");
+        register int other __asm__("$3");
+        drawOwner = owner;
+        drawIndex = &frame.drawOrdinal;
+        drawX = horizontalOutput;
+        __asm__(""
+                : "=r"(drawOwner), "=r"(drawIndex), "=r"(drawX)
+                : "0"(drawOwner), "1"(drawIndex), "2"(drawX)
+                : "$2", "$3", "memory");
+        digit = Timer86B88DigitBase;
+        base = Timer86B88SpriteBase;
+        digit <<= 3;
+        digit += 96;
+        MATCHING_KEEP2_CLOBBER(digit, base, "$7");
+        sprite = base + digit;
+        digit = Timer86B88Field(sprite, unsigned char*, 4);
+        other = Timer86B88Field(sprite, unsigned char*, 0);
+        drawY = verticalOutput;
+        frame.drawPositionY = y;
+        frame.drawOrdinal = index;
+        MATCHING_KEEP3_CLOBBER(digit, other, drawY, "memory");
+        digit -= other;
+        x -= digit;
+        frame.drawPositionX = x;
+        Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+        Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
+    }
+    {
+        register int test __asm__("$13") = frame.quotient3600;
+        MATCHING_KEEP(test);
+        drawIndex = &frame.drawOrdinal;
+        if (test) {
+            register int magic __asm__("$12");
+            register int high __asm__("hi");
+            register int width __asm__("$13");
+            register int digit __asm__("$3");
+            register int value __asm__("$2");
+            register unsigned char* base __asm__("$2");
+            register int word __asm__("$12");
+            index--;
+            drawOwner = owner;
+            MATCHING_KEEP2_CLOBBER(index, drawOwner, "memory");
+            magic = frame.divide10Multiplier;
+            high = Timer86B88High(remainder60, magic);
+            drawX = horizontalOutput;
+            drawY = verticalOutput;
+            frame.drawOrdinal = index;
+            index--;
+            width = frame.digitWidth;
+            digit = Timer86B88DigitBase;
+            value = remainder60 >> 31;
+            frame.drawPositionY = y;
+            MATCHING_KEEP5_CLOBBER(drawOwner, drawX, drawY, x, value, "memory");
+            x -= width;
+            frame.drawPositionX = x;
+            __asm__("" : "=r"(x), "=h"(high) : "0"(x), "1"(high) : "memory");
+            x -= width;
+            __asm__("" : "=r"(x), "=h"(high) : "0"(x), "1"(high), "r"(width));
+            word = high;
+            MATCHING_KEEP(word);
+            digitQuotient = (word >> 2) - value;
+            value = remainder60 - digitQuotient * 10;
+            digit += value;
+            __asm__("" : "=r"(digit) : "0"(digit) : "$2", "memory");
+            base = Timer86B88SpriteBase;
+            MATCHING_KEEP2(digit, base);
+            digit <<= 3;
+            sprite = base + digit;
+            Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+            Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
+            {
+                register int nextDigit __asm__("$2");
+                register unsigned char* nextBase __asm__("$3");
+                drawOwner = owner;
+                drawIndex = &frame.drawOrdinal;
+                drawX = horizontalOutput;
+                __asm__(""
+                        : "=r"(drawOwner), "=r"(drawIndex), "=r"(drawX)
+                        : "0"(drawOwner), "1"(drawIndex), "2"(drawX)
+                        : "$2", "$3", "memory");
+                nextDigit = Timer86B88DigitBase;
+                nextBase = Timer86B88SpriteBase;
+                __asm__("" : "=r"(nextDigit) : "0"(nextDigit) : "$7", "memory");
+                drawY = verticalOutput;
+                MATCHING_KEEP2_CLOBBER(nextDigit, drawY, "memory");
+                frame.drawOrdinal = index;
+                index--;
+                frame.drawPositionX = x;
+                frame.drawPositionY = y;
+                MATCHING_KEEP_CLOBBER(nextDigit, "memory");
+                nextDigit += digitQuotient;
+                nextDigit <<= 3;
+                MATCHING_KEEP2(nextDigit, nextBase);
+                sprite = nextBase + nextDigit;
+                Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+                Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
+            }
+            {
+                register int nextDigit __asm__("$2");
+                register unsigned char* nextBase __asm__("$3");
+                register int other __asm__("$3");
+                drawOwner = owner;
+                drawIndex = &frame.drawOrdinal;
+                drawX = horizontalOutput;
+                __asm__(""
+                        : "=r"(drawOwner), "=r"(drawIndex), "=r"(drawX)
+                        : "0"(drawOwner), "1"(drawIndex), "2"(drawX)
+                        : "$2", "$3", "memory");
+                nextDigit = Timer86B88DigitBase;
+                nextBase = Timer86B88SpriteBase;
+                nextDigit <<= 3;
+                nextDigit += 88;
+                MATCHING_KEEP2_CLOBBER(nextDigit, nextBase, "$7");
+                sprite = nextBase + nextDigit;
+                nextDigit = Timer86B88Field(sprite, unsigned char*, 4);
+                other = Timer86B88Field(sprite, unsigned char*, 0);
+                drawY = verticalOutput;
+                frame.drawPositionY = y;
+                frame.drawOrdinal = index;
+                MATCHING_KEEP3_CLOBBER(nextDigit, other, drawY, "memory");
+                nextDigit -= other;
+                x -= nextDigit;
+                frame.drawPositionX = x;
+                Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+                Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
+            }
+            {
+                register int number __asm__("$13") = frame.quotient3600;
+                register int factor __asm__("$12") = frame.divide10Multiplier;
+                register int productHigh __asm__("hi");
+                register int remainder __asm__("$2");
+                register int digitBase __asm__("$3");
+                register unsigned char* sprites __asm__("$2");
+                MATCHING_KEEP3(index, number, factor);
+                index--;
+                productHigh = Timer86B88High(number, factor);
+                drawOwner = owner;
+                drawIndex = &frame.drawOrdinal;
+                number = frame.digitWidth;
+                drawX = horizontalOutput;
+                x -= number;
+                __asm__(""
+                        : "=r"(drawOwner), "=r"(drawIndex), "=r"(drawX), "=r"(x)
+                        : "0"(drawOwner), "1"(drawIndex), "2"(drawX), "3"(x), "r"(number)
+                        : "memory");
+                number = frame.quotient3600;
+                drawY = verticalOutput;
+                frame.drawPositionY = y;
+                frame.drawOrdinal = index;
+                frame.drawPositionX = x;
+                remainder = number >> 31;
+                __asm__(""
+                        : "=h"(productHigh), "=r"(remainder), "=r"(number)
+                        : "0"(productHigh), "1"(remainder), "2"(number)
+                        : "memory");
+                factor = productHigh;
+                MATCHING_KEEP(factor);
+                digitBase = factor >> 2;
+                digitQuotient = digitBase - remainder;
+                remainder = digitQuotient * 10;
+                digitBase = Timer86B88DigitBase;
+                remainder = number - remainder;
+                digitBase += remainder;
+                __asm__("" : "=r"(digitBase) : "0"(digitBase) : "$2", "memory");
+                sprites = Timer86B88SpriteBase;
+                MATCHING_KEEP2(digitBase, sprites);
+                digitBase <<= 3;
+                sprite = sprites + digitBase;
+                Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+                Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
+                factor = frame.quotient3600;
+                MATCHING_KEEP(factor);
+                singleLeadingDigit = factor < 10;
+            }
+        } else {
+            register int factor __asm__("$12");
+            register int productHigh __asm__("hi");
+            register int width __asm__("$13");
+            register int value __asm__("$2");
+            register int digit __asm__("$3");
+            register unsigned char* base __asm__("$2");
+            factor = frame.divide10Multiplier;
+            productHigh = Timer86B88High(remainder60, factor);
+            index--;
+            drawOwner = owner;
+            drawX = horizontalOutput;
+            drawY = verticalOutput;
+            width = frame.digitWidth;
+            value = remainder60 >> 31;
+            frame.drawPositionY = y;
+            frame.drawOrdinal = index;
+            MATCHING_KEEP5_CLOBBER(drawOwner, drawX, drawY, x, value, "memory");
+            x -= width;
+            frame.drawPositionX = x;
+            __asm__(""
+                    : "=r"(x), "=h"(productHigh)
+                    : "0"(x), "1"(productHigh), "r"(width)
+                    : "memory");
+            factor = productHigh;
+            MATCHING_KEEP(factor);
+            digit = factor >> 2;
+            digitQuotient = digit - value;
+            value = digitQuotient * 10;
+            digit = Timer86B88DigitBase;
+            value = remainder60 - value;
+            digit += value;
+            __asm__("" : "=r"(digit) : "0"(digit) : "$2", "memory");
+            base = Timer86B88SpriteBase;
+            MATCHING_KEEP2(digit, base);
+            digit <<= 3;
+            sprite = base + digit;
+            Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+            Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
+            singleLeadingDigit = remainder60 < 10;
+        }
+    }
+    MATCHING_KEEP(singleLeadingDigit);
+    if (!singleLeadingDigit) {
         register int width __asm__("$13");
         register int digit __asm__("$2");
-        register unsigned char *base __asm__("$3");
+        register unsigned char* base __asm__("$3");
         index--;
-        drawOwner=owner;
-        drawIndex=&frame.drawOrdinal;
-        drawX=horizontalOutput;
-        __asm__("" : "=r"(drawOwner),"=r"(drawIndex),"=r"(drawX) : "0"(drawOwner),"1"(drawIndex),"2"(drawX) : "$2","$3","memory");
-        width=frame.digitWidth;
-        digit=Timer86B88DigitBase;
-        base=Timer86B88SpriteBase;
-        drawY=verticalOutput;
-        frame.drawPositionY=y;
-        frame.drawOrdinal=index;
-        __asm__("" : "=r"(x),"=r"(digit),"=r"(base),"=r"(width),"=r"(drawY) : "0"(x),"1"(digit),"2"(base),"3"(width),"4"(drawY) : "memory");
-        x-=width;
-        digit+=digitQuotient;
-        digit<<=3;
-        __asm__("" : "=r"(digit),"=r"(base) : "0"(digit),"1"(base));
-        sprite=base+digit;
-        frame.drawPositionX=x;
-        Timer86B88Place(drawOwner,drawIndex,drawX,drawY);
-        Timer86B88Draw(sprite,frame.drawPositionX,frame.drawPositionY);
+        drawOwner = owner;
+        drawIndex = &frame.drawOrdinal;
+        drawX = horizontalOutput;
+        __asm__(""
+                : "=r"(drawOwner), "=r"(drawIndex), "=r"(drawX)
+                : "0"(drawOwner), "1"(drawIndex), "2"(drawX)
+                : "$2", "$3", "memory");
+        width = frame.digitWidth;
+        digit = Timer86B88DigitBase;
+        base = Timer86B88SpriteBase;
+        drawY = verticalOutput;
+        frame.drawPositionY = y;
+        frame.drawOrdinal = index;
+        MATCHING_KEEP5_CLOBBER(x, digit, base, width, drawY, "memory");
+        x -= width;
+        digit += digitQuotient;
+        digit <<= 3;
+        MATCHING_KEEP2(digit, base);
+        sprite = base + digit;
+        frame.drawPositionX = x;
+        Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+        Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
     }
     return 0;
 }
@@ -1381,7 +1527,6 @@ int func_level_14_8008F040(void *input) {
 #undef Timer86B88Field
 
 #undef Timer86B88High
-
 
 /* Signed phase/plane halfwords and actor index at private +0/+2/+4. */
 typedef struct {
@@ -1400,22 +1545,24 @@ Moby* func_level_14_8008F5D0(Moby* owner, int planeDelta, int phaseDelta) {
     char* data;
     phaseDelta += 24;
     total = tag->phase + phaseDelta;
-    __asm__("" : "=r"(total) : "0"(total));
+    MATCHING_KEEP(total);
     phase = total % 24;
     target = (Moby*)(tag->actorIndex * 88 + (unsigned int)pool);
     plane = tag->plane + planeDelta;
     data = target->mobyTag;
-    if (plane >= 3) return 0;
+    if (plane >= 3)
+        return 0;
     {
-        register char* ring __asm__("$2") =
-            (char*)(plane * 96 + (unsigned int)data);
+        register char* ring __asm__("$2") = (char*)(plane * 96 + (unsigned int)data);
         ring += phase * 4;
         actorIndex = *(int*)(ring + 0x38);
     }
     /* Retail only rejects the -1 sentinel before indexing the pool. */
-    if (actorIndex == -1) return 0;
+    if (actorIndex == -1)
+        return 0;
     result = &pool[actorIndex];
-    if (result->state >= 128) result = 0;
+    if (result->state >= 128)
+        result = 0;
     return result;
 }
 
@@ -1434,7 +1581,7 @@ void func_level_14_8008F6AC(Moby* owner, int planeDelta, int phaseDelta, int val
     char* data;
     phaseDelta += 24;
     total = tag->phase + phaseDelta;
-    __asm__("" : "=r"(total) : "0"(total));
+    MATCHING_KEEP(total);
     /* Signed remainder retains negative inputs; no invented normalization. */
     phase = total % 24;
     target = (Moby*)(tag->actorIndex * 88 + (unsigned int)DecodedRingWritePool);
@@ -1444,7 +1591,7 @@ void func_level_14_8008F6AC(Moby* owner, int planeDelta, int phaseDelta, int val
     if (plane < 3) {
         int* ring = (int*)(plane * 96 + (unsigned int)data + 0x38);
         ring[phase] = value;
-        __asm__ volatile ("" : : "r"(ring));
+        MATCHING_OBSERVE_VOLATILE(ring);
     }
 }
 
@@ -1481,7 +1628,8 @@ void DecodedPathPrepare(Moby*, int) __asm__("func_80055D24");
  * AI-generated reconstruction; not yet human reviewed. Caller cadence,
  * helper return domains and browser/runtime interpretation are unresolved.
  */
-int func_level_14_8008F74C(Moby* argument, DecodedPathList* pathArgument, DecodedPathAngles* angleArgument) {
+int func_level_14_8008F74C(Moby* argument, DecodedPathList* pathArgument,
+                           DecodedPathAngles* angleArgument) {
     Vector3D position;
     int reserved1C;
     Vector3D velocity;
@@ -1504,20 +1652,20 @@ int func_level_14_8008F74C(Moby* argument, DecodedPathList* pathArgument, Decode
     register int product __asm__("$7");
     register int secondTrig __asm__("$2");
     register int scaled __asm__("$3");
-    __asm__("" : "=r"(moby) : "0"(moby));
+    MATCHING_KEEP(moby);
     path = pathArgument;
-    __asm__("" : "=r"(path) : "0"(path));
+    MATCHING_KEEP(path);
     angles = angleArgument;
-    __asm__("" : "=r"(angles) : "0"(angles));
+    MATCHING_KEEP(angles);
     advanced = 0;
-    __asm__("" : : : "$22");
+    MATCHING_BARRIER("$22");
     {
         register int index __asm__("$2") = path->index;
         register unsigned char* records __asm__("$3") = path->records;
         __asm__("" : "=r"(index) : "0"(index), "r"(records));
         index *= 16;
         target = (Vector3D*)(records + index);
-        __asm__("" : "=r"(target) : "0"(target));
+        MATCHING_KEEP(target);
     }
     /* Initialise the two raw angle accumulators only for the -1 sentinel. */
     {
@@ -1531,7 +1679,7 @@ int func_level_14_8008F74C(Moby* argument, DecodedPathList* pathArgument, Decode
             angles->yaw = moby->angle.yaw * 16;
         }
     }
-    __asm__ volatile("" : : : "memory");
+    MATCHING_BARRIER_VOLATILE("memory");
     DecodedPathCopy(&position, &moby->position);
     /* Preserve the original ground-offset matrix and vector helper chain. */
     if (moby->distanceToGround) {
@@ -1561,56 +1709,70 @@ int func_level_14_8008F74C(Moby* argument, DecodedPathList* pathArgument, Decode
     /* The optional flag uses the original absolute-difference threshold. */
     if (angles->advanceOnTurn) {
         register int magnitude __asm__("$2") = yawDifference;
-        if (yawDifference < 0) magnitude = -magnitude;
-        __asm__("" : "=r"(magnitude) : "0"(magnitude));
-        if (magnitude > 1024) goto turnExceeded;
+        if (yawDifference < 0)
+            magnitude = -magnitude;
+        MATCHING_KEEP(magnitude);
+        if (magnitude > 1024)
+            goto turnExceeded;
         magnitude = pitchDifference;
-        if (pitchDifference < 0) magnitude = -magnitude;
-        __asm__("" : "=r"(magnitude) : "0"(magnitude));
-        if (magnitude <= 1024) goto turnAccepted;
-        turnExceeded:
+        if (pitchDifference < 0)
+            magnitude = -magnitude;
+        MATCHING_KEEP(magnitude);
+        if (magnitude <= 1024)
+            goto turnAccepted;
+    turnExceeded:
         wrongFacing = 1;
     }
-    turnAccepted:
+turnAccepted:
     {
         int limit = angles->turnLimit;
         int negativeLimit = -limit;
-        if (yawDifference > limit) yawDifference = limit;
-        if (yawDifference < negativeLimit) yawDifference = negativeLimit;
-        if (pitchDifference > limit) pitchDifference = limit;
-        if (pitchDifference < negativeLimit) pitchDifference = negativeLimit;
+        if (yawDifference > limit)
+            yawDifference = limit;
+        if (yawDifference < negativeLimit)
+            yawDifference = negativeLimit;
+        if (pitchDifference > limit)
+            pitchDifference = limit;
+        if (pitchDifference < negativeLimit)
+            pitchDifference = negativeLimit;
     }
     /* Accumulate steps, retain the fresh signed read, then clamp both steps. */
     {
         register unsigned int newYawStep __asm__("$2") = (unsigned short)angles->yawStep;
         register unsigned int newPitchStep __asm__("$3") = (unsigned short)angles->pitchStep;
         newYawStep += yawDifference;
-        __asm__("" : "=r"(newYawStep) : "0"(newYawStep));
-        if (yawDifference < 0) yawDifference = -yawDifference;
+        MATCHING_KEEP(newYawStep);
+        if (yawDifference < 0)
+            yawDifference = -yawDifference;
         newPitchStep += pitchDifference;
         angles->yawStep = newYawStep;
         /* Retail reloads the stored halfword instead of forwarding its word value. */
-        __asm__ volatile("" : : "r"(newPitchStep) : "memory");
+        MATCHING_OBSERVE_VOLATILE_CLOBBER(newPitchStep, "memory");
         {
             register int currentYawStep __asm__("$2") = angles->yawStep;
-            __asm__("" : "=r"(currentYawStep) : "0"(currentYawStep));
-            if (pitchDifference < 0) pitchDifference = -pitchDifference;
+            MATCHING_KEEP(currentYawStep);
+            if (pitchDifference < 0)
+                pitchDifference = -pitchDifference;
             angles->pitchStep = newPitchStep;
-            if (currentYawStep > yawDifference) angles->yawStep = yawDifference;
+            if (currentYawStep > yawDifference)
+                angles->yawStep = yawDifference;
         }
     }
     {
         register int currentStep __asm__("$2") = angles->yawStep;
         register int negative __asm__("$3") = -yawDifference;
         __asm__("" : "=r"(negative) : "0"(negative), "r"(currentStep));
-        if (currentStep < negative) angles->yawStep = negative;
+        if (currentStep < negative)
+            angles->yawStep = negative;
     }
-    if (angles->pitchStep > pitchDifference) angles->pitchStep = pitchDifference;
+    if (angles->pitchStep > pitchDifference)
+        angles->pitchStep = pitchDifference;
     {
         register int currentStep __asm__("$2") = angles->pitchStep;
         register int negative __asm__("$3") = -pitchDifference;
         __asm__("" : "=r"(negative) : "0"(negative), "r"(currentStep));
-        if (currentStep < negative) angles->pitchStep = negative;
+        if (currentStep < negative)
+            angles->pitchStep = negative;
     }
     /* Wrap at 12 bits before writing the packed byte-angle fields. */
     {
@@ -1634,31 +1796,31 @@ int func_level_14_8008F74C(Moby* argument, DecodedPathList* pathArgument, Decode
     temporary = DecodedPathTrigA(angles->yaw);
     secondTrig = DecodedPathTrigA(angles->pitch);
     scaled = angles->speed;
-    __asm__("" : "=r"(scaled) : "0"(scaled));
+    MATCHING_KEEP(scaled);
     product = temporary * scaled;
     scaled = product >> 12;
-    __asm__("" : "=r"(scaled) : "0"(scaled));
+    MATCHING_KEEP(scaled);
     product = scaled * secondTrig;
     secondTrig = product >> 12;
-    __asm__("" : "=r"(secondTrig) : "0"(secondTrig));
+    MATCHING_KEEP(secondTrig);
     velocity.x = secondTrig;
     temporary = DecodedPathTrigB(angles->yaw);
     secondTrig = DecodedPathTrigA(angles->pitch);
     scaled = angles->speed;
-    __asm__("" : "=r"(scaled) : "0"(scaled));
+    MATCHING_KEEP(scaled);
     product = temporary * scaled;
     scaled = product >> 12;
-    __asm__("" : "=r"(scaled) : "0"(scaled));
+    MATCHING_KEEP(scaled);
     product = scaled * secondTrig;
     secondTrig = product >> 12;
-    __asm__("" : "=r"(secondTrig) : "0"(secondTrig));
+    MATCHING_KEEP(secondTrig);
     velocity.y = secondTrig;
     secondTrig = DecodedPathTrigB(angles->pitch);
     scaled = angles->speed;
-    __asm__("" : "=r"(scaled) : "0"(scaled));
+    MATCHING_KEEP(scaled);
     product = secondTrig * scaled;
     secondTrig = product >> 12;
-    __asm__("" : "=r"(secondTrig) : "0"(secondTrig));
+    MATCHING_KEEP(secondTrig);
     velocity.z = secondTrig;
     DecodedPathAdd(&moby->position, &moby->position, &velocity);
     DecodedPathAdd(&position, &position, &velocity);
@@ -1687,13 +1849,14 @@ void func_level_14_8008FB88(int selectorArg, Vector3D* positionArg) {
     register unsigned int byteOffset __asm__("$11");
     int reservedStack[2];
     /* Empty constraints preserve retail allocation and emit no instructions. */
-    __asm__("" : "=r"(position) : "0"(position));
-    __asm__("" : "=r"(selector) : "0"(selector));
+    MATCHING_KEEP(position);
+    MATCHING_KEEP(selector);
     index = 0;
     if (D_8006C77C > 0) {
         byteOffset = 0;
         do {
-            DecodedPackedPosition* entry = (DecodedPackedPosition*)(byteOffset + (unsigned int)D_8006C724);
+            DecodedPackedPosition* entry =
+                (DecodedPackedPosition*)(byteOffset + (unsigned int)D_8006C724);
             if (entry->selector == (selector & 255)) {
                 register unsigned int mask __asm__("$7") = 0x1FFFF;
                 register unsigned int* packet __asm__("$6");
@@ -1706,11 +1869,12 @@ void func_level_14_8008FB88(int selectorArg, Vector3D* positionArg) {
                 unsigned int packetFlags;
                 int firstZ;
                 register unsigned int retainedWord __asm__("$8");
-                __asm__("" : "=r"(mask) : "0"(mask));
+                MATCHING_KEEP(mask);
                 packet = D_8006D048[entry->packetIndex];
                 nextX = entry->nextX;
                 offsetZ = position->z >> 4;
-                packedXY = ((nextX + (position->x >> 4)) << 16) | ((entry->nextY + (position->y >> 4)) & 65535);
+                packedXY = ((nextX + (position->x >> 4)) << 16) |
+                           ((entry->nextY + (position->y >> 4)) & 65535);
                 preservedHalf = *(unsigned short*)((char*)packet + 4);
                 nextZ = entry->nextZ;
                 packet[0] = packedXY;
@@ -1718,14 +1882,15 @@ void func_level_14_8008FB88(int selectorArg, Vector3D* positionArg) {
                 /* Retail rereads the table base between these packet stores. */
                 firstEntry = D_8006C724;
                 packetFlags = packet[3];
-                __asm__ volatile("" ::: "memory");
+                MATCHING_BARRIER_VOLATILE("memory");
                 firstEntry = (DecodedPackedPosition*)(byteOffset + (unsigned int)firstEntry);
-                __asm__("" : "=r"(firstEntry), "=r"(preservedHalf) : "0"(firstEntry), "1"(preservedHalf) : "memory");
+                MATCHING_KEEP2_CLOBBER(firstEntry, preservedHalf, "memory");
                 __asm__ volatile("" : "=r"(retainedWord) : "0"(packedXY));
                 packet[1] = preservedHalf;
                 /* Preserve the low 17 bits when packing the first Z value. */
                 preservedHalf = packetFlags & mask;
-                packedXY = ((firstEntry->x + (position->x >> 4)) << 16) | ((firstEntry->y + (position->y >> 4)) & 65535);
+                packedXY = ((firstEntry->x + (position->x >> 4)) << 16) |
+                           ((firstEntry->y + (position->y >> 4)) & 65535);
                 firstZ = firstEntry->z + (position->z >> 5);
                 packet[2] = packedXY;
                 preservedHalf |= firstZ << 17;
@@ -1736,8 +1901,8 @@ void func_level_14_8008FB88(int selectorArg, Vector3D* positionArg) {
     }
 }
 
-void DecodedPolygonSubtract(void*,void*,void*) __asm__("func_8004F1C8");
-int DecodedPolygonLength(void*,int) __asm__("func_8004EDE8");
+void DecodedPolygonSubtract(void*, void*, void*) __asm__("func_8004F1C8");
+int DecodedPolygonLength(void*, int) __asm__("func_8004EDE8");
 /* Original polygon record: byte count, signed halfword bound, 28-byte entries. */
 int func_level_14_8008FCBC(unsigned char* polygonArg, Vector3D* positionArg) {
     register unsigned char* polygon __asm__("$19") = polygonArg;
@@ -1757,63 +1922,69 @@ int func_level_14_8008FCBC(unsigned char* polygonArg, Vector3D* positionArg) {
     __asm__("" : "=r"(polygon) : "0"(polygon), "r"(position) : "$22");
     minimum = 0xFFFFFF;
     entry = (unsigned char*)&delta;
-    DecodedPolygonSubtract(entry,position,polygon+4);
-    distance = DecodedPolygonLength(entry,0);
-    if (*(short*)(polygon+2) < distance) goto outside;
+    DecodedPolygonSubtract(entry, position, polygon + 4);
+    distance = DecodedPolygonLength(entry, 0);
+    if (*(short*)(polygon + 2) < distance)
+        goto outside;
     nearest = -1;
     limit = polygon[1];
-    __asm__("" : "=r"(limit) : "0"(limit));
+    MATCHING_KEEP(limit);
     index = 0;
     if (limit > 0) {
         work = (Vector3D*)entry;
         offset = 12;
         do {
             entry = polygon + offset;
-            DecodedPolygonSubtract(work,position,entry+8);
-            distance = DecodedPolygonLength(work,0);
+            DecodedPolygonSubtract(work, position, entry + 8);
+            distance = DecodedPolygonLength(work, 0);
             if (nearest < 0 || distance < minimum) {
                 nearest = index;
                 minimum = distance;
             }
             limit = polygon[1];
-            __asm__("" : "=r"(limit) : "0"(limit));
+            MATCHING_KEEP(limit);
             index++;
             offset += 28;
         } while (index < limit);
     }
     for (index = 0; index < 2; index++) {
         count = polygon[1];
-        __asm__ volatile("" : "=r"(index) : "0"(index) : "memory");
+        MATCHING_KEEP_VOLATILE_CLOBBER(index, "memory");
         sum = nearest + index;
 
         countMinusOne = count - 1;
         neighbor = (sum + countMinusOne) % count;
         neighbor = neighbor * 28 + 12;
-        __asm__("" : "=r"(neighbor) : "0"(neighbor));
+        MATCHING_KEEP(neighbor);
         entry = polygon + neighbor;
-        DecodedPolygonSubtract(&delta,position,entry+8);
-        sides[index] = delta.x * *(int*)(entry+16) + delta.y * *(int*)(entry+20);
+        DecodedPolygonSubtract(&delta, position, entry + 8);
+        sides[index] = delta.x * *(int*)(entry + 16) + delta.y * *(int*)(entry + 20);
     }
     neighbor = polygon[1] - 1;
-    __asm__("" : "=r"(neighbor) : "0"(neighbor));
+    MATCHING_KEEP(neighbor);
     index = (nearest + neighbor) % polygon[1];
-    __asm__("" : "=r"(index) : "0"(index));
+    MATCHING_KEEP(index);
     neighbor = index * 28 + 12;
-    __asm__("" : "=r"(neighbor) : "0"(neighbor));
+    MATCHING_KEEP(neighbor);
     entry = polygon + neighbor;
-    __asm__("" : "=r"(entry) : "0"(entry));
+    MATCHING_KEEP(entry);
     neighbor = nearest * 28;
-    __asm__("" : "=r"(neighbor) : "0"(neighbor));
+    MATCHING_KEEP(neighbor);
     /* Empty constraints retain the original address computation and registers. */
     nearestEntry = polygon + neighbor;
-    __asm__("" : "=r"(nearestEntry) : "0"(nearestEntry));
-    if (*(int*)(nearestEntry + 12) * *(int*)(entry+16) + *(int*)(nearestEntry + 16) * *(int*)(entry+20) >= 0) {
-        if (sides[0] < 0) return 0;
-        __asm__ volatile("" : : );
+    MATCHING_KEEP(nearestEntry);
+    if (*(int*)(nearestEntry + 12) * *(int*)(entry + 16) +
+            *(int*)(nearestEntry + 16) * *(int*)(entry + 20) >=
+        0) {
+        if (sides[0] < 0)
+            return 0;
+        __asm__ volatile("" : :);
     } else {
-        if (sides[0] >= 0) return 1;
+        if (sides[0] >= 0)
+            return 1;
     }
-    if (sides[1] >= 0) return 1;
+    if (sides[1] >= 0)
+        return 1;
 outside:
     return 0;
 }
@@ -1823,20 +1994,22 @@ outside:
  * Raw field units, helper meanings and update cadence remain unresolved. */
 /* AI generated;
  not human reviewed. Original-instruction-derived C. Original source asm/nonmatchings/overlays/level_14/level/func_level_14_8008FF40.s SHA256 8707a9600996bf03ed4e40bf5d6ed5da640ff42479a31a1b7e3cb8ccfadfb05b. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
-#define Level14_8FF40Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
+#define Level14_8FF40Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 extern Spyro Level14_8FF40_D_80070328 __asm__("D_80070328");
-int Level14_8FF40_func_8003636C(int low, int high) __asm__("func_8003636C");
-extern void Level14_8FF40_func_8004ED6C(SHORTMATRIX*, Vector3D*, Vector3D*) __asm__("func_8004ED6C");
-extern void Level14_8FF40_func_8004F110(Vector3D*, int) __asm__("func_8004F110");
-extern void Level14_8FF40_func_8004F178(Vector3D*, Vector3D*) __asm__("func_8004F178");
-extern void Level14_8FF40_func_8004F194(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004F194");
-extern void Level14_8FF40_func_80055B18(Moby*) __asm__("func_80055B18");
+int Level14_8FF40RandBetween(int low, int high) __asm__("func_8003636C");
+extern void Level14_8FF40TransformVectorByBasis(SHORTMATRIX*, Vector3D*,
+                                                Vector3D*) __asm__("func_8004ED6C");
+extern void Level14_8FF40ShiftVectorRightTowardZero(Vector3D*, int) __asm__("func_8004F110");
+extern void Level14_8FF40CopyVector(Vector3D*, Vector3D*) __asm__("func_8004F178");
+extern void Level14_8FF40AddVector(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004F194");
+extern void Level14_8FF40DeleteMoby(Moby*) __asm__("func_80055B18");
 extern int Level14_8FF40_rand() __asm__("rand");
 
-void Level14_8FF40_func_8004EA90(unsigned char*, SHORTMATRIX*, void*) __asm__("func_8004EA90");
- /* extern */
-void Level14_8FF40_func_8004F168(Vector3D*) __asm__("func_8004F168");
-                       /* extern */
+void Level14_8FF40BuildPackedAngleBasisMatrix(unsigned char*, SHORTMATRIX*,
+                                              void*) __asm__("func_8004EA90");
+/* extern */
+void Level14_8FF40ClearVector(Vector3D*) __asm__("func_8004F168");
+/* extern */
 extern int Level14_8FF40_D_8006C640 __asm__("D_8006C640");
 
 int func_level_14_8008FF40(void) {
@@ -1879,107 +2052,115 @@ int func_level_14_8008FF40(void) {
      * full original EXE/every-overlay hashes. No synchronized runtime or
      * subsystem completion claim. AI generated;
       not human reviewed. */
-    struct { Vector3D sp10;
-     unsigned char pad1C[4];
-     Vector3D vector20;
-     unsigned char pad2C[4];
-     Vector3D sp30;
-     unsigned char pad3C[4];
-     Vector3D vector40;
-     unsigned char pad4C[4];
-     Vector3D vector50;
-     unsigned char pad5C[4];
-     Vector3D sp60;
-     unsigned char pad6C[4];
-     unsigned char sp70;
-     unsigned char sp71;
-     unsigned char sp72;
-     unsigned char pad73[5];
-     SHORTMATRIX sp78;
-     unsigned char pad8C[4];
-     Vector3D vector90;
-     unsigned char pad9C[4];
-     Vector3D vectorA0;
-     unsigned char padAC[4];
-     SHORTMATRIX spB0;
-     unsigned char padC4[4];
-     Vector3D vectorC8;
-     unsigned char padD4[4];
-     Vector3D vectorD8;
-     unsigned char padE4[4];
-     } scratch;
-    Moby **matrixArgument4;
-    Moby *firstRemovedActor4;
-    Moby *secondRemovedActor4;
-    Moby *firstActor18;
-    register Moby *secondActor18 __asm__("18");
-    Moby *firstNewActor2;
-    Moby *secondNewActor2;
-    int *matrix30Pointer21;
+    struct {
+        Vector3D sp10;
+        unsigned char pad1C[4];
+        Vector3D vector20;
+        unsigned char pad2C[4];
+        Vector3D sp30;
+        unsigned char pad3C[4];
+        Vector3D vector40;
+        unsigned char pad4C[4];
+        Vector3D vector50;
+        unsigned char pad5C[4];
+        Vector3D sp60;
+        unsigned char pad6C[4];
+        unsigned char sp70;
+        unsigned char sp71;
+        unsigned char sp72;
+        unsigned char pad73[5];
+        SHORTMATRIX sp78;
+        unsigned char pad8C[4];
+        Vector3D vector90;
+        unsigned char pad9C[4];
+        Vector3D vectorA0;
+        unsigned char padAC[4];
+        SHORTMATRIX spB0;
+        unsigned char padC4[4];
+        Vector3D vectorC8;
+        unsigned char padD4[4];
+        Vector3D vectorD8;
+        unsigned char padE4[4];
+    } scratch;
+    Moby** matrixArgument4;
+    Moby* firstRemovedActor4;
+    Moby* secondRemovedActor4;
+    Moby* firstActor18;
+    register Moby* secondActor18 __asm__("18");
+    Moby* firstNewActor2;
+    Moby* secondNewActor2;
+    int* matrix30Pointer21;
     int secondWord64_21;
     int firstWord64_22;
     int scaledWordAC_23;
-    register int *wordB4_17 __asm__("17");
-    register Moby **slot250_19 __asm__("19");
+    register int* wordB4_17 __asm__("17");
+    register Moby** slot250_19 __asm__("19");
     int coefficient4;
     int entryIndex16;
     int firstBatchIndex20;
     int secondBatchIndex20;
     int initialResult;
-    signed char *firstPacket3;
-    signed char *secondPacket3;
-    signed char *thirdPacket3;
-    void *privateRecord21;
+    signed char* firstPacket3;
+    signed char* secondPacket3;
+    signed char* thirdPacket3;
+    void* privateRecord21;
 
     wordB4_17 = &Level14_8FF40_D_80070328.unk8[1];
     entryIndex16 = 0;
-    matrix30Pointer21 = ((unsigned char *)wordB4_17) - 0x84;
+    matrix30Pointer21 = ((unsigned char*)wordB4_17) - 0x84;
     do {
         if ((*wordB4_17 >= 0x401) && (entryIndex16 < 2) && (Level14_8FF40_D_8006C640 & 1)) {
-            Level14_8FF40_func_8004F178(&scratch.sp10, (Vector3D *) (((unsigned char *)wordB4_17) - 0xB4));
-            { int word3;
-             register int literal2 __asm__("2");
-             word3 = Level14_8FF40Field(wordB4_17,int*,-4);
-             __asm__("" : "=r"(word3) : "0"(word3));
-             literal2 = 0xB4;
-             __asm__("" : "=r"(literal2) : "0"(literal2));
-             scratch.vector20.y = literal2;
-             scratch.vector20.z = 0;
-             __asm__ volatile("" : "=r"(word3) : "0"(word3) : "memory");
-             word3 >>= 5;
-             scratch.vector20.x = word3;
-             }
+            Level14_8FF40CopyVector(&scratch.sp10, (Vector3D*)(((unsigned char*)wordB4_17) - 0xB4));
+            {
+                int word3;
+                register int literal2 __asm__("2");
+                word3 = Level14_8FF40Field(wordB4_17, int*, -4);
+                MATCHING_KEEP(word3);
+                literal2 = 0xB4;
+                MATCHING_KEEP(literal2);
+                scratch.vector20.y = literal2;
+                scratch.vector20.z = 0;
+                MATCHING_KEEP_VOLATILE_CLOBBER(word3, "memory");
+                word3 >>= 5;
+                scratch.vector20.x = word3;
+            }
             if (entryIndex16 != 0) {
                 scratch.vector20.y = -0xB4;
             }
-            Level14_8FF40_func_8004ED6C((SHORTMATRIX *) matrix30Pointer21, (Vector3D *) &scratch.vector20, &scratch.sp30);
-            Level14_8FF40_func_8004F194(&scratch.sp10, &scratch.sp10, &scratch.sp30);
-            { register SHORTMATRIX *matrix4 __asm__("4");
-             register Vector3D *input5 __asm__("5");
-             register Vector3D *output6 __asm__("6");
-             register int word2 __asm__("2");
-             matrix4 = (SHORTMATRIX *)matrix30Pointer21;
-             input5 = (Vector3D *)&scratch.vector20;
-             __asm__("" : "=r"(matrix4), "=r"(input5) : "0"(matrix4), "1"(input5));
-             word2 = Level14_8FF40Field(wordB4_17,int*,0x40);
-             output6 = (Vector3D *)&scratch.vector20;
-             scratch.vector20.x = 0;
-             scratch.sp10.z = word2;
-             Level14_8FF40_func_8004ED6C(matrix4,input5,output6);
-             }
-            Level14_8FF40_func_8004F110((Vector3D *) &scratch.vector20, 3);
-            firstPacket3 = SpawnParticle(1, 0x2A, &scratch.sp10, (Vector3D *) &scratch.vector20);
-            if (firstPacket3 != 0) {
-                Level14_8FF40Field(firstPacket3, signed char *, 0xA) = 0x28;
+            Level14_8FF40TransformVectorByBasis((SHORTMATRIX*)matrix30Pointer21,
+                                                (Vector3D*)&scratch.vector20, &scratch.sp30);
+            Level14_8FF40AddVector(&scratch.sp10, &scratch.sp10, &scratch.sp30);
+            {
+                register SHORTMATRIX* matrix4 __asm__("4");
+                register Vector3D* input5 __asm__("5");
+                register Vector3D* output6 __asm__("6");
+                register int word2 __asm__("2");
+                matrix4 = (SHORTMATRIX*)matrix30Pointer21;
+                input5 = (Vector3D*)&scratch.vector20;
+                MATCHING_KEEP2(matrix4, input5);
+                word2 = Level14_8FF40Field(wordB4_17, int*, 0x40);
+                output6 = (Vector3D*)&scratch.vector20;
+                scratch.vector20.x = 0;
+                scratch.sp10.z = word2;
+                Level14_8FF40TransformVectorByBasis(matrix4, input5, output6);
             }
-        } else if ((*wordB4_17 < 0x201) && (entryIndex16 == 0) && !(Level14_8FF40_D_8006C640 & 7) && !(Level14_8FF40_rand() & 3)) {
+            Level14_8FF40ShiftVectorRightTowardZero((Vector3D*)&scratch.vector20, 3);
+            firstPacket3 = SpawnParticle(1, 0x2A, &scratch.sp10, (Vector3D*)&scratch.vector20);
+            if (firstPacket3 != 0) {
+                Level14_8FF40Field(firstPacket3, signed char*, 0xA) = 0x28;
+            }
+        } else if ((*wordB4_17 < 0x201) && (entryIndex16 == 0) && !(Level14_8FF40_D_8006C640 & 7) &&
+                   !(Level14_8FF40_rand() & 3)) {
             scratch.vector40.x = 0x80;
             scratch.vector40.y = 0;
             scratch.vector40.z = 0;
-            Level14_8FF40_func_8004ED6C((SHORTMATRIX *) (((unsigned char *)wordB4_17) - 0x84), (Vector3D *) &scratch.vector40, (Vector3D *) &scratch.vector40);
-            Level14_8FF40_func_8004F194((Vector3D *) &scratch.vector40, (Vector3D *) &scratch.vector40, (Vector3D *) (((unsigned char *)wordB4_17) - 0xB4));
-            scratch.vector40.z = Level14_8FF40Field(wordB4_17,int*,0x40);
-            SpawnParticle(1, 0x2B, (Vector3D *) &scratch.vector40, (Vector3D *)1);
+            Level14_8FF40TransformVectorByBasis((SHORTMATRIX*)(((unsigned char*)wordB4_17) - 0x84),
+                                                (Vector3D*)&scratch.vector40,
+                                                (Vector3D*)&scratch.vector40);
+            Level14_8FF40AddVector((Vector3D*)&scratch.vector40, (Vector3D*)&scratch.vector40,
+                                   (Vector3D*)(((unsigned char*)wordB4_17) - 0xB4));
+            scratch.vector40.z = Level14_8FF40Field(wordB4_17, int*, 0x40);
+            SpawnParticle(1, 0x2B, (Vector3D*)&scratch.vector40, (Vector3D*)1);
         }
         entryIndex16 += 1;
     } while (entryIndex16 < 2);
@@ -1993,187 +2174,222 @@ int func_level_14_8008FF40(void) {
         }
         scaledWordAC_23 = (Level14_8FF40_D_80070328.horizontalSpeed * coefficient4) / 9216;
         if (Level14_8FF40_D_80070328.unk8[1] < 0x1F4) {
-            firstRemovedActor4 = Level14_8FF40Field(privateRecord21, Moby **, 0x10);
+            firstRemovedActor4 = Level14_8FF40Field(privateRecord21, Moby**, 0x10);
             if (firstRemovedActor4 != 0) {
-                Level14_8FF40_func_80055B18(firstRemovedActor4);
-                Level14_8FF40Field(privateRecord21, Moby **, 0x10) = 0;
+                Level14_8FF40DeleteMoby(firstRemovedActor4);
+                Level14_8FF40Field(privateRecord21, Moby**, 0x10) = 0;
             }
-            secondRemovedActor4 = Level14_8FF40Field(privateRecord21, Moby **, 0x14);
+            secondRemovedActor4 = Level14_8FF40Field(privateRecord21, Moby**, 0x14);
             if (secondRemovedActor4 != 0) {
-                Level14_8FF40_func_80055B18(secondRemovedActor4);
-                Level14_8FF40Field(privateRecord21, Moby **, 0x14) = 0;
+                Level14_8FF40DeleteMoby(secondRemovedActor4);
+                Level14_8FF40Field(privateRecord21, Moby**, 0x14) = 0;
             }
             initialResult = 1;
             if (Level14_8FF40_D_80070328.unk8[1] != 0) {
-                if (Level14_8FF40Field(privateRecord21, short *, 0xC) == 0) {
+                if (Level14_8FF40Field(privateRecord21, short*, 0xC) == 0) {
                     scratch.vector50.x = -0x1F4;
                     scratch.vector50.y = -0x190;
                     scratch.vector50.z = -0xFA;
-                    Level14_8FF40_func_8004ED6C((SHORTMATRIX *) (((unsigned char *)slot250_19) - 0x220), (Vector3D *) &scratch.vector50, (Vector3D *) &scratch.vector50);
-                    Level14_8FF40_func_8004F194(&scratch.sp60, (Vector3D *) (((unsigned char *)slot250_19) - 0x250), (Vector3D *) &scratch.vector50);
-                    Level14_8FF40_func_8004F168(&scratch.vector50);
-                    secondPacket3 = SpawnParticle(1, 0x37, &scratch.sp60, (Vector3D *) &scratch.vector50);
+                    Level14_8FF40TransformVectorByBasis(
+                        (SHORTMATRIX*)(((unsigned char*)slot250_19) - 0x220),
+                        (Vector3D*)&scratch.vector50, (Vector3D*)&scratch.vector50);
+                    Level14_8FF40AddVector(&scratch.sp60,
+                                           (Vector3D*)(((unsigned char*)slot250_19) - 0x250),
+                                           (Vector3D*)&scratch.vector50);
+                    Level14_8FF40ClearVector(&scratch.vector50);
+                    secondPacket3 =
+                        SpawnParticle(1, 0x37, &scratch.sp60, (Vector3D*)&scratch.vector50);
                     if (secondPacket3 != 0) {
-                        Level14_8FF40Field(secondPacket3, signed char *, 0xA) = 0x19;
+                        Level14_8FF40Field(secondPacket3, signed char*, 0xA) = 0x19;
                     }
                 }
-                if (Level14_8FF40Field(privateRecord21, short *, 0xE) == 0) {
+                if (Level14_8FF40Field(privateRecord21, short*, 0xE) == 0) {
                     scratch.vector50.x = -0x1F4;
                     scratch.vector50.y = 0x190;
                     scratch.vector50.z = -0xFA;
-                    Level14_8FF40_func_8004ED6C(&Level14_8FF40_D_80070328.mat30, (Vector3D *) &scratch.vector50, (Vector3D *) &scratch.vector50);
-                    Level14_8FF40_func_8004F194(&scratch.sp60, ((unsigned char *)&Level14_8FF40_D_80070328.mat30) - 0x30, (Vector3D *) &scratch.vector50);
-                    Level14_8FF40_func_8004F168(&scratch.vector50);
-                    thirdPacket3 = SpawnParticle(1, 0x37, &scratch.sp60, (Vector3D *) &scratch.vector50);
+                    Level14_8FF40TransformVectorByBasis(&Level14_8FF40_D_80070328.mat30,
+                                                        (Vector3D*)&scratch.vector50,
+                                                        (Vector3D*)&scratch.vector50);
+                    Level14_8FF40AddVector(&scratch.sp60,
+                                           ((unsigned char*)&Level14_8FF40_D_80070328.mat30) - 0x30,
+                                           (Vector3D*)&scratch.vector50);
+                    Level14_8FF40ClearVector(&scratch.vector50);
+                    thirdPacket3 =
+                        SpawnParticle(1, 0x37, &scratch.sp60, (Vector3D*)&scratch.vector50);
                     if (thirdPacket3 != 0) {
-                        Level14_8FF40Field(thirdPacket3, signed char *, 0xA) = 0x19;
+                        Level14_8FF40Field(thirdPacket3, signed char*, 0xA) = 0x19;
                     }
                 }
-                Level14_8FF40Field(privateRecord21, short *, 0xC) = (short) ((Level14_8FF40Field(privateRecord21, short *, 0xC) + 1) % 3);
-                Level14_8FF40Field(privateRecord21, short *, 0xE) = (short) ((Level14_8FF40Field(privateRecord21, short *, 0xE) + 1) % 3);
+                Level14_8FF40Field(privateRecord21, short*, 0xC) =
+                    (short)((Level14_8FF40Field(privateRecord21, short*, 0xC) + 1) % 3);
+                Level14_8FF40Field(privateRecord21, short*, 0xE) =
+                    (short)((Level14_8FF40Field(privateRecord21, short*, 0xE) + 1) % 3);
                 return 2;
             }
             return initialResult;
         }
-        if (Level14_8FF40Field(privateRecord21, Moby **, 0x10) == 0) {
+        if (Level14_8FF40Field(privateRecord21, Moby**, 0x10) == 0) {
             firstNewActor2 = SpawnMoby(0x217, 0);
-            Level14_8FF40Field(privateRecord21, Moby **, 0x10) = firstNewActor2;
+            Level14_8FF40Field(privateRecord21, Moby**, 0x10) = firstNewActor2;
             if (firstNewActor2 != 0) {
-                matrixArgument4 = ((unsigned char *)slot250_19) - 0x220;
+                matrixArgument4 = ((unsigned char*)slot250_19) - 0x220;
                 goto block_34;
             }
         } else {
-            matrixArgument4 = ((unsigned char *)slot250_19) - 0x220;
-block_34:
-            firstActor18 = Level14_8FF40Field(privateRecord21, Moby **, 0x10);
+            matrixArgument4 = ((unsigned char*)slot250_19) - 0x220;
+        block_34:
+            firstActor18 = Level14_8FF40Field(privateRecord21, Moby**, 0x10);
             scratch.vector50.x = -0x1F4;
             scratch.vector50.y = -0x190;
             scratch.vector50.z = -0xFA;
-            Level14_8FF40_func_8004ED6C((SHORTMATRIX *) matrixArgument4, (Vector3D *) &scratch.vector50, (Vector3D *) &scratch.vector50);
-            Level14_8FF40_func_8004F194(&firstActor18->position, (Vector3D *) (((unsigned char *)slot250_19) - 0x250), (Vector3D *) &scratch.vector50);
-            firstActor18->size = Level14_8FF40_func_8003636C(0, 0x40) - (scaledWordAC_23 + 0x41);
-            firstActor18->angle.roll = Level14_8FF40_func_8003636C(0, 8) * 0x10;
-            firstActor18->angle.pitch = (unsigned char) -((int) Level14_8FF40_D_80070328.rotation.pitch >> 4);
-            firstActor18->angle.yaw = ((int) Level14_8FF40_D_80070328.rotation.yaw >> 4) - 0x80;
+            Level14_8FF40TransformVectorByBasis((SHORTMATRIX*)matrixArgument4,
+                                                (Vector3D*)&scratch.vector50,
+                                                (Vector3D*)&scratch.vector50);
+            Level14_8FF40AddVector(&firstActor18->position,
+                                   (Vector3D*)(((unsigned char*)slot250_19) - 0x250),
+                                   (Vector3D*)&scratch.vector50);
+            firstActor18->size = Level14_8FF40RandBetween(0, 0x40) - (scaledWordAC_23 + 0x41);
+            firstActor18->angle.roll = Level14_8FF40RandBetween(0, 8) * 0x10;
+            firstActor18->angle.pitch =
+                (unsigned char)-((int)Level14_8FF40_D_80070328.rotation.pitch >> 4);
+            firstActor18->angle.yaw = ((int)Level14_8FF40_D_80070328.rotation.yaw >> 4) - 0x80;
             if (Level14_8FF40_D_80070328.horizontalSpeed >= 0x1389) {
                 firstBatchIndex20 = 0;
-                firstWord64_22 = (int) Level14_8FF40_D_80070328.rotation.yaw >> 4;
+                firstWord64_22 = (int)Level14_8FF40_D_80070328.rotation.yaw >> 4;
                 do {
-                    scratch.sp70 = Level14_8FF40_func_8003636C(0, 0xFF);
+                    scratch.sp70 = Level14_8FF40RandBetween(0, 0xFF);
                     scratch.sp71 = 0;
-                    scratch.sp72 = (signed char) firstWord64_22;
-                    Level14_8FF40_func_8004EA90(&scratch.sp70, &scratch.sp78, 0);
+                    scratch.sp72 = (signed char)firstWord64_22;
+                    Level14_8FF40BuildPackedAngleBasisMatrix(&scratch.sp70, &scratch.sp78, 0);
                     scratch.vector90.x = 0;
                     scratch.vector90.y = 0x32;
                     scratch.vector90.z = 0;
-                    Level14_8FF40_func_8004ED6C(&scratch.sp78, (Vector3D *) &scratch.vector90, (Vector3D *) &scratch.vector90);
+                    Level14_8FF40TransformVectorByBasis(&scratch.sp78, (Vector3D*)&scratch.vector90,
+                                                        (Vector3D*)&scratch.vector90);
                     scratch.vectorA0.x = -0x96;
                     scratch.vectorA0.y = 0x96;
                     scratch.vectorA0.z = 0;
-                    Level14_8FF40_func_8004ED6C(&scratch.sp78, (Vector3D *) &scratch.vectorA0, (Vector3D *) &scratch.vectorA0);
-                    Level14_8FF40_func_8004F194((Vector3D *) &scratch.vector90, &firstActor18->position, (Vector3D *) &scratch.vector90);
-                    SpawnParticle(1, 0x55, (Vector3D *) &scratch.vector90, (Vector3D *) &scratch.vectorA0);
+                    Level14_8FF40TransformVectorByBasis(&scratch.sp78, (Vector3D*)&scratch.vectorA0,
+                                                        (Vector3D*)&scratch.vectorA0);
+                    Level14_8FF40AddVector((Vector3D*)&scratch.vector90, &firstActor18->position,
+                                           (Vector3D*)&scratch.vector90);
+                    SpawnParticle(1, 0x55, (Vector3D*)&scratch.vector90,
+                                  (Vector3D*)&scratch.vectorA0);
                     firstBatchIndex20 += 1;
                 } while (firstBatchIndex20 < 3);
-                if (Level14_8FF40_func_8003636C(0, 0xA) == 0) {
-                    { register int parameter4 __asm__("4");
-                     register int kind5 __asm__("5");
-                     register int x2 __asm__("2");
-                     char *(*callback3)(int,int,Vector3D*,Vector3D*);
-                     register Vector3D *destination6 __asm__("6");
-                     register int y8 __asm__("8");
-                     register int wordF4_2 __asm__("2");
-                     register Vector3D *mode7 __asm__("7");
-                     parameter4 = 1;
-                     kind5 = 0x29;
-                     __asm__("" : "=r"(parameter4), "=r"(kind5) : "0"(parameter4), "1"(kind5));
-                     x2 = firstActor18->position.x;
-                     callback3 = SpawnParticle;
-                     __asm__ volatile("" : "=r"(x2), "=r"(callback3) : "0"(x2), "1"(callback3) : "6");
-                     destination6 = (Vector3D *)&scratch.vectorA0;
-                     __asm__("" : "=r"(x2), "=r"(callback3), "=r"(destination6) : "0"(x2), "1"(callback3), "2"(destination6));
-                     scratch.vectorA0.x = x2;
-                     y8 = firstActor18->position.y;
-                     wordF4_2 = Level14_8FF40_D_80070328.unk9ha[4];
-                     mode7 = 0;
-                     scratch.vectorA0.z = wordF4_2;
-                     scratch.vectorA0.y = y8;
-                     callback3(parameter4,kind5,destination6,mode7);
-                     }
+                if (Level14_8FF40RandBetween(0, 0xA) == 0) {
+                    {
+                        register int parameter4 __asm__("4");
+                        register int kind5 __asm__("5");
+                        register int x2 __asm__("2");
+                        char* (*callback3)(int, int, Vector3D*, Vector3D*);
+                        register Vector3D* destination6 __asm__("6");
+                        register int y8 __asm__("8");
+                        register int wordF4_2 __asm__("2");
+                        register Vector3D* mode7 __asm__("7");
+                        parameter4 = 1;
+                        kind5 = 0x29;
+                        MATCHING_KEEP2(parameter4, kind5);
+                        x2 = firstActor18->position.x;
+                        callback3 = SpawnParticle;
+                        MATCHING_KEEP2_VOLATILE_CLOBBER(x2, callback3, "6");
+                        destination6 = (Vector3D*)&scratch.vectorA0;
+                        MATCHING_KEEP3(x2, callback3, destination6);
+                        scratch.vectorA0.x = x2;
+                        y8 = firstActor18->position.y;
+                        wordF4_2 = Level14_8FF40_D_80070328.unk9ha[4];
+                        mode7 = 0;
+                        scratch.vectorA0.z = wordF4_2;
+                        scratch.vectorA0.y = y8;
+                        callback3(parameter4, kind5, destination6, mode7);
+                    }
                 }
             }
         }
-        if ((Level14_8FF40Field(privateRecord21, Moby **, 0x14) != 0) || (secondNewActor2 = SpawnMoby(0x217, 0), Level14_8FF40Field(privateRecord21, Moby **, 0x14) = secondNewActor2, (secondNewActor2 != 0))) {
-            secondActor18 = Level14_8FF40Field(privateRecord21, Moby **, 0x14);
+        if ((Level14_8FF40Field(privateRecord21, Moby**, 0x14) != 0) ||
+            (secondNewActor2 = SpawnMoby(0x217, 0),
+             Level14_8FF40Field(privateRecord21, Moby**, 0x14) = secondNewActor2,
+             (secondNewActor2 != 0))) {
+            secondActor18 = Level14_8FF40Field(privateRecord21, Moby**, 0x14);
             scratch.vector50.x = -0x1F4;
             scratch.vector50.y = 0x190;
             scratch.vector50.z = -0xFA;
-            Level14_8FF40_func_8004ED6C(&Level14_8FF40_D_80070328.mat30, (Vector3D *) &scratch.vector50, (Vector3D *) &scratch.vector50);
-            Level14_8FF40_func_8004F194(&secondActor18->position, ((unsigned char *)&Level14_8FF40_D_80070328.mat30) - 0x30, (Vector3D *) &scratch.vector50);
-            secondActor18->size = Level14_8FF40_func_8003636C(0, 0x40) - (scaledWordAC_23 + 0x41);
-            secondActor18->angle.roll = Level14_8FF40_func_8003636C(0, 8) * 0x10;
-            secondActor18->angle.pitch = (unsigned char) -((int) Level14_8FF40_D_80070328.rotation.pitch >> 4);
-            secondActor18->angle.yaw = ((int) Level14_8FF40_D_80070328.rotation.yaw >> 4) - 0x80;
+            Level14_8FF40TransformVectorByBasis(&Level14_8FF40_D_80070328.mat30,
+                                                (Vector3D*)&scratch.vector50,
+                                                (Vector3D*)&scratch.vector50);
+            Level14_8FF40AddVector(&secondActor18->position,
+                                   ((unsigned char*)&Level14_8FF40_D_80070328.mat30) - 0x30,
+                                   (Vector3D*)&scratch.vector50);
+            secondActor18->size = Level14_8FF40RandBetween(0, 0x40) - (scaledWordAC_23 + 0x41);
+            secondActor18->angle.roll = Level14_8FF40RandBetween(0, 8) * 0x10;
+            secondActor18->angle.pitch =
+                (unsigned char)-((int)Level14_8FF40_D_80070328.rotation.pitch >> 4);
+            secondActor18->angle.yaw = ((int)Level14_8FF40_D_80070328.rotation.yaw >> 4) - 0x80;
             ;
             if (Level14_8FF40_D_80070328.horizontalSpeed >= 0x1389) {
                 secondBatchIndex20 = 0;
-                secondWord64_21 = (int) Level14_8FF40_D_80070328.rotation.yaw >> 4;
+                secondWord64_21 = (int)Level14_8FF40_D_80070328.rotation.yaw >> 4;
                 do {
-                    scratch.sp70 = Level14_8FF40_func_8003636C(0, 0xFF);
+                    scratch.sp70 = Level14_8FF40RandBetween(0, 0xFF);
                     scratch.sp71 = 0;
-                    scratch.sp72 = (signed char) secondWord64_21;
-                    Level14_8FF40_func_8004EA90(&scratch.sp70, &scratch.spB0, 0);
+                    scratch.sp72 = (signed char)secondWord64_21;
+                    Level14_8FF40BuildPackedAngleBasisMatrix(&scratch.sp70, &scratch.spB0, 0);
                     scratch.vectorC8.x = 0;
                     scratch.vectorC8.y = 0x32;
                     scratch.vectorC8.z = 0;
-                    Level14_8FF40_func_8004ED6C(&scratch.spB0, (Vector3D *) &scratch.vectorC8, (Vector3D *) &scratch.vectorC8);
+                    Level14_8FF40TransformVectorByBasis(&scratch.spB0, (Vector3D*)&scratch.vectorC8,
+                                                        (Vector3D*)&scratch.vectorC8);
                     scratch.vectorD8.x = -0x96;
                     scratch.vectorD8.y = 0x96;
                     scratch.vectorD8.z = 0;
-                    Level14_8FF40_func_8004ED6C(&scratch.spB0, (Vector3D *) &scratch.vectorD8, (Vector3D *) &scratch.vectorD8);
-                    Level14_8FF40_func_8004F194((Vector3D *) &scratch.vectorC8, &secondActor18->position, (Vector3D *) &scratch.vectorC8);
-                    SpawnParticle(1, 0x55, (Vector3D *) &scratch.vectorC8, (Vector3D *) &scratch.vectorD8);
+                    Level14_8FF40TransformVectorByBasis(&scratch.spB0, (Vector3D*)&scratch.vectorD8,
+                                                        (Vector3D*)&scratch.vectorD8);
+                    Level14_8FF40AddVector((Vector3D*)&scratch.vectorC8, &secondActor18->position,
+                                           (Vector3D*)&scratch.vectorC8);
+                    SpawnParticle(1, 0x55, (Vector3D*)&scratch.vectorC8,
+                                  (Vector3D*)&scratch.vectorD8);
                     secondBatchIndex20 += 1;
                 } while (secondBatchIndex20 < 3);
                 ;
-                if (Level14_8FF40_func_8003636C(0, 0xA) == 0) {
-                    __asm__ volatile("" : : : "4");
-                    { register int parameter4 __asm__("4");
-                     register int kind5 __asm__("5");
-                     register int x2 __asm__("2");
-                     char *(*callback3)(int,int,Vector3D*,Vector3D*);
-                     register Vector3D *destination6 __asm__("6");
-                     register int y8 __asm__("8");
-                     register int wordF4_2 __asm__("2");
-                     register Vector3D *mode7 __asm__("7");
-                     parameter4 = 1;
-                     kind5 = 0x29;
-                     __asm__("" : "=r"(parameter4), "=r"(kind5) : "0"(parameter4), "1"(kind5));
-                     x2 = secondActor18->position.x;
-                     callback3 = SpawnParticle;
-                     __asm__ volatile("" : "=r"(x2), "=r"(callback3) : "0"(x2), "1"(callback3) : "6");
-                     destination6 = (Vector3D *)&scratch.vectorD8;
-                     __asm__("" : "=r"(x2), "=r"(callback3), "=r"(destination6) : "0"(x2), "1"(callback3), "2"(destination6));
-                     scratch.vectorD8.x = x2;
-                     y8 = secondActor18->position.y;
-                     wordF4_2 = Level14_8FF40_D_80070328.unk9ha[4];
-                     mode7 = 0;
-                     scratch.vectorD8.z = wordF4_2;
-                     scratch.vectorD8.y = y8;
-                     callback3(parameter4,kind5,destination6,mode7);
-                     }
+                if (Level14_8FF40RandBetween(0, 0xA) == 0) {
+                    MATCHING_BARRIER_VOLATILE("4");
+                    {
+                        register int parameter4 __asm__("4");
+                        register int kind5 __asm__("5");
+                        register int x2 __asm__("2");
+                        char* (*callback3)(int, int, Vector3D*, Vector3D*);
+                        register Vector3D* destination6 __asm__("6");
+                        register int y8 __asm__("8");
+                        register int wordF4_2 __asm__("2");
+                        register Vector3D* mode7 __asm__("7");
+                        parameter4 = 1;
+                        kind5 = 0x29;
+                        MATCHING_KEEP2(parameter4, kind5);
+                        x2 = secondActor18->position.x;
+                        callback3 = SpawnParticle;
+                        MATCHING_KEEP2_VOLATILE_CLOBBER(x2, callback3, "6");
+                        destination6 = (Vector3D*)&scratch.vectorD8;
+                        MATCHING_KEEP3(x2, callback3, destination6);
+                        scratch.vectorD8.x = x2;
+                        y8 = secondActor18->position.y;
+                        wordF4_2 = Level14_8FF40_D_80070328.unk9ha[4];
+                        mode7 = 0;
+                        scratch.vectorD8.z = wordF4_2;
+                        scratch.vectorD8.y = y8;
+                        callback3(parameter4, kind5, destination6, mode7);
+                    }
                     goto block_46;
                 }
             }
         } else {
-block_46:
-            ;
+        block_46:;
         }
-        { register int returning2 __asm__("2");
-         returning2 = 3;
-         __asm__("" : "=r"(returning2) : "0"(returning2));
-         return returning2;
-         }
+        {
+            register int returning2 __asm__("2");
+            returning2 = 3;
+            MATCHING_KEEP(returning2);
+            return returning2;
+        }
     }
     return initialResult;
 }

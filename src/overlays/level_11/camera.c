@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "camera.h"
 #include "spyro.h"
@@ -204,65 +205,76 @@ void func_level_11_80091CA8(void) {
     register int next __asm__("$4");
     register int index __asm__("$2");
     switch (mode) {
-    case 3:
-        next = DecodedCameraOverride;
-        if (next) goto change;
-        if (DecodedCameraHeld & 16) {
-            register int enabled __asm__("$2") = DecodedCameraPlayer[0x1B9];
-            next = 7;
-            if (enabled) goto change;
-        }
-        if (DecodedCameraPressed & 12) {
-            next = 8;
+        case 3:
+            next = DecodedCameraOverride;
+            if (next)
+                goto change;
+            if (DecodedCameraHeld & 16) {
+                register int enabled __asm__("$2") = DecodedCameraPlayer[0x1B9];
+                next = 7;
+                if (enabled)
+                    goto change;
+            }
+            if (DecodedCameraPressed & 12) {
+                next = 8;
+                goto change;
+            }
+            index = *(int*)(DecodedCameraPlayer + 0x48);
+            MATCHING_BARRIER("memory");
+            mode = DecodedCameraMode;
+            goto compareTable;
+        case 12:
+            if (DecodedCameraHeld & 16) {
+                register int enabled __asm__("$2") = DecodedCameraPlayer[0x1B9];
+                next = 7;
+                if (enabled)
+                    goto change;
+            }
+            if (DecodedCameraPressed & 12) {
+                next = 8;
+                goto change;
+            }
+            next = DecodedCameraOverride;
+            if (!next) {
+                next = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
+                MATCHING_KEEP(next);
+                goto change;
+            }
+            MATCHING_BARRIER("memory");
+            if (next != DecodedCameraMode)
+                goto change;
+            mode = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
+            next = 2;
+            if (mode != 2)
+                return;
             goto change;
-        }
-        index = *(int*)(DecodedCameraPlayer + 0x48);
-        __asm__("" : : : "memory");
-        mode = DecodedCameraMode;
-        goto compareTable;
-    case 12:
-        if (DecodedCameraHeld & 16) {
-            register int enabled __asm__("$2") = DecodedCameraPlayer[0x1B9];
-            next = 7;
-            if (enabled) goto change;
-        }
-        if (DecodedCameraPressed & 12) {
-            next = 8;
-            goto change;
-        }
-        next = DecodedCameraOverride;
-        if (!next) {
+        case 23:
+            next = DecodedCameraOverride;
+            if (next)
+                goto change;
             next = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
-            __asm__("" : "=r"(next) : "0"(next));
+            if (next == mode)
+                return;
+            if (!next)
+                goto defaultMode;
+            MATCHING_BARRIER_VOLATILE("memory");
             goto change;
-        }
-        __asm__("" : : : "memory");
-        if (next != DecodedCameraMode) goto change;
-        mode = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
-        next = 2;
-        if (mode != 2) return;
-        goto change;
-    case 23:
-        next = DecodedCameraOverride;
-        if (next) goto change;
-        next = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
-        if (next == mode) return;
-        if (!next) goto defaultMode;
-        __asm__ volatile("" : : : "memory");
-        goto change;
-    case 36:
-        next = DecodedCameraOverride;
-        if (next) goto change;
-        index = *(int*)(DecodedCameraPlayer + 0x48);
-compareTable:
-        next = DecodedCameraModeTable[index];
-        if (next == mode) return;
-        if (next) goto change;
-defaultMode:
-        next = 6;
-        break;
-    default:
-        return;
+        case 36:
+            next = DecodedCameraOverride;
+            if (next)
+                goto change;
+            index = *(int*)(DecodedCameraPlayer + 0x48);
+        compareTable:
+            next = DecodedCameraModeTable[index];
+            if (next == mode)
+                return;
+            if (next)
+                goto change;
+        defaultMode:
+            next = 6;
+            break;
+        default:
+            return;
     }
 change:
     func_80016764(next);

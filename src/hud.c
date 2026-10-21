@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "hud.h"
 #include "spu.h"
@@ -270,13 +271,12 @@ void func_80027FCC(HudEntry* hud, int spriteClass) {
 /* Retail source: asm/nonmatchings/hud/func_8002803C.s,
  * 0x8002803C..0x80028154. HUD entry stride is 0x54 bytes;
  * raw selector and reset fields update on call. */
-int func_8002803C(int slot, int number, void* callbackA, void* callbackB,
-                  void* callbackC, int* display, int max) {
+int func_8002803C(int slot, int number, void* callbackA, void* callbackB, void* callbackC,
+                  int* display, int max) {
     HudEntry* entry = &D_80067248[slot & 15];
     int packed = slot & 0xFFF0;
-    if (entry->unk8 != display || entry->unk6 != max ||
-        entry->unk4 != number || entry->unk3A != packed ||
-        entry->unkC != callbackA || entry->unk10 != callbackB ||
+    if (entry->unk8 != display || entry->unk6 != max || entry->unk4 != number ||
+        entry->unk3A != packed || entry->unkC != callbackA || entry->unk10 != callbackB ||
         entry->unk14 != callbackC) {
         unsigned short* count = (unsigned short*)&g_Hud.DAT_800719c8;
         unsigned int old;
@@ -394,53 +394,53 @@ int func_80028378(SpriteAnimationData* animData, int arg1) {
     ret = 0;
     if (spriteDef->spriteClass != -1) {
         switch (animData->animationType) {
-        case 0:
-            ret = animData->frame;
-            break;
-        case 1:
-            temp = (D_8006C644 / spriteDef->frameDelay) + arg1;
-            ret = spriteDef->frame + (temp % spriteDef->frameCount);
-            break;
-        case 2: {
-            int quotient;
-            int count;
-            int result;
-            int span;
-            quotient = D_8006C644 / spriteDef->frameDelay;
-            count = spriteDef->frameCount;
-            result = quotient + arg1;
-            __asm__ volatile("" : "=r"(result) : "0"(result), "r"(count));
-            span = count * 2;
-            ret = result % (span - 2);
-            if (ret >= count) {
-                int adjusted = ret + 2;
-                /* Keep the retail add-two then subtract order in GCC 2.7.2. */
-                __asm__ volatile("" : "=r"(adjusted) : "0"(adjusted));
-                ret = span - adjusted;
+            case 0:
+                ret = animData->frame;
+                break;
+            case 1:
+                temp = (D_8006C644 / spriteDef->frameDelay) + arg1;
+                ret = spriteDef->frame + (temp % spriteDef->frameCount);
+                break;
+            case 2: {
+                int quotient;
+                int count;
+                int result;
+                int span;
+                quotient = D_8006C644 / spriteDef->frameDelay;
+                count = spriteDef->frameCount;
+                result = quotient + arg1;
+                __asm__ volatile("" : "=r"(result) : "0"(result), "r"(count));
+                span = count * 2;
+                ret = result % (span - 2);
+                if (ret >= count) {
+                    int adjusted = ret + 2;
+                    /* Keep the retail add-two then subtract order in GCC 2.7.2. */
+                    MATCHING_KEEP_VOLATILE(adjusted);
+                    ret = span - adjusted;
+                }
+                ret = ret + spriteDef->frame;
+                break;
             }
-            ret = ret + spriteDef->frame;
-            break;
-        }
-        case 3:
-            ret = spriteDef->frame;
-            if (!(rand() & 0x1F)) {
-                animData->animationType = 4;
-            }
-            break;
-        case 4:
-            ret = animData->frame + 1;
-            if (ret >= (spriteDef->frame + spriteDef->frameCount)) {
-                animData->animationType = 5;
-                ret = (spriteDef->frame + spriteDef->frameCount) - 1;
-            }
-            break;
-        case 5:
-            ret = animData->frame - 1;
-            if (spriteDef->frame >= ret) {
-                animData->animationType = 3;
+            case 3:
                 ret = spriteDef->frame;
-            }
-            break;
+                if (!(rand() & 0x1F)) {
+                    animData->animationType = 4;
+                }
+                break;
+            case 4:
+                ret = animData->frame + 1;
+                if (ret >= (spriteDef->frame + spriteDef->frameCount)) {
+                    animData->animationType = 5;
+                    ret = (spriteDef->frame + spriteDef->frameCount) - 1;
+                }
+                break;
+            case 5:
+                ret = animData->frame - 1;
+                if (spriteDef->frame >= ret) {
+                    animData->animationType = 3;
+                    ret = spriteDef->frame;
+                }
+                break;
         }
     }
     return ret;
@@ -477,7 +477,9 @@ int func_800285A4(int arg0) {
             hud->movementFrame = 50;
         }
         
-        if (g_Hud.DAT_800719d4 != 0 || D_8006C598 == 0xFF || (short)hud->unk44 <= 0 || hud->isOffScreen || !arg0 || (!(D_8006C74C == 0 && D_8006C64C == 0) && !(g_HudEntries[i].unk38 & 0x20)) ) {
+        if (g_Hud.DAT_800719d4 != 0 || D_8006C598 == 0xFF || (short)hud->unk44 <= 0 ||
+            hud->isOffScreen || !arg0 ||
+            (!(D_8006C74C == 0 && D_8006C64C == 0) && !(g_HudEntries[i].unk38 & 0x20))) {
             if (hud->movementFrame > 100) {
                 hud->movementFrame = 0;
             }
@@ -538,7 +540,8 @@ int* func_800289C8(SpriteData* arg0, int arg1, int arg2) {
     POLY_FT4* temp_t6;
     temp_s1->tag = 0x09000000;
     *(int*)&temp_s1->r0 = 0x2C808080;
-    if ((arg0->unk6 & 0x60) != 0x60) temp_s1->code |= 2;
+    if ((arg0->unk6 & 0x60) != 0x60)
+        temp_s1->code |= 2;
     temp_s1->x0 = arg1;
     temp_s1->x2 = arg1;
     temp_s1->y0 = arg2;
@@ -552,13 +555,15 @@ int* func_800289C8(SpriteData* arg0, int arg1, int arg2) {
     if ((temp_s1->u1 & 0xFF) != 0xFF) {
         temp_s1->u1++;
         temp_s1->x1++;
-    } else var_s0 = 1;
+    } else
+        var_s0 = 1;
     temp_s1->v0 = arg0->unk1;
     temp_s1->v2 = arg0->unk5;
     if ((temp_s1->v2 & 0xFF) != 0xFF) {
         temp_s1->v2++;
         temp_s1->y2++;
-    } else var_s2 = 1;
+    } else
+        var_s2 = 1;
     temp_s1->x3 = temp_s1->x1;
     temp_s1->y3 = temp_s1->y2;
     temp_s1->u2 = temp_s1->u0;
@@ -644,7 +649,8 @@ int* func_80028D30(SpriteData* arg0, short arg1, short arg2, int arg3) {
     temp_s1->tag = 0x09000000;
     *(int*)&temp_s1->r0 = 0x2C808080;
 
-    if (arg3 & 8) var_t1 = arg3 >> 0x10;
+    if (arg3 & 8)
+        var_t1 = arg3 >> 0x10;
 
     if (((arg0->unk6 & 0x60) != 0x60) || (arg3 & 0x10)) {
         temp_s1->code |= 0x02;
@@ -675,8 +681,7 @@ int* func_80028D30(SpriteData* arg0, short arg1, short arg2, int arg3) {
         temp_s1->y0 += var_t1;
         temp_s1->y1 += var_t1;
         temp_s1->v0 += var_t1;
-    }
-    else if (var_t1 < 0) {
+    } else if (var_t1 < 0) {
         var_t1 = -var_t1;
         MAX(var_t1, temp_a0);
         temp_s1->y2 = temp_s1->y0 + var_t1;
@@ -692,18 +697,15 @@ int* func_80028D30(SpriteData* arg0, short arg1, short arg2, int arg3) {
                 temp_s1->v2--;
             }
             temp_s1->y2++;
-        }
-        else {
+        } else {
             var_s2 = 1;
         }
-    }
-    else if ((temp_s1->v2 & 0xFF) != 0xFF) {
+    } else if ((temp_s1->v2 & 0xFF) != 0xFF) {
         if (!(arg3 & 4)) {
             temp_s1->v2++;
         }
         temp_s1->y2++;
-    }
-    else {
+    } else {
         var_s2 = 1;
     }
 
@@ -716,18 +718,15 @@ int* func_80028D30(SpriteData* arg0, short arg1, short arg2, int arg3) {
                 temp_s1->u1--;
             }
             temp_s1->x1++;
-        }
-        else {
+        } else {
             var_s0 = 1;
         }
-    }
-    else if ((temp_s1->u1 & 0xFF) != 0xFF) {
+    } else if ((temp_s1->u1 & 0xFF) != 0xFF) {
         if (!(arg3 & 4)) {
             temp_s1->u1++;
         }
         temp_s1->x1++;
-    }
-    else {
+    } else {
         var_s0 = 1;
     }
 
@@ -766,7 +765,6 @@ int* func_80028D30(SpriteData* arg0, short arg1, short arg2, int arg3) {
         temp_t6->clut = temp_s1->clut;
         func_8004E758(temp_t6);
         D_8006C664 = temp_t6 + 1;
-
     }
     if (var_s2 != 0) {
         POLY_FT4* temp_s0;
@@ -833,7 +831,7 @@ int func_800291B8(int arg0, int arg1, int arg2, int arg3) {
     var_s4 = 0;
     var_a3 = arg0;
     temp_height = (temp_v0->unk5 - temp_v0->unk1) >> 1;
-    __asm__ volatile ("" : "=r"(temp_height) : "0"(temp_height));
+    MATCHING_KEEP_VOLATILE(temp_height);
     sp10 = temp_height;
     var_v0 = arg3 >= 0 ? arg3 : -arg3;
     sp20 = ((var_v0 + 0xA) >> 1) - 1;
@@ -845,7 +843,8 @@ int func_800291B8(int arg0, int arg1, int arg2, int arg3) {
     }
     sp18 = (var_s4 + 1) * temp_fp;
     var_a3 = arg0;
-    if (var_s4 < 0) return sp18;
+    if (var_s4 < 0)
+        return sp18;
     var_s3 = sp20 - var_s4;
     var_s2 = var_s4 * temp_fp + arg1;
     var_s1 = var_s4 * temp_fp;
@@ -857,8 +856,10 @@ int func_800291B8(int arg0, int arg1, int arg2, int arg3) {
             var_a2 = 60;
             if (sp20 < var_a2) {
                 var_a2 = D_800674E8[var_s3];
-                if (arg3 < 0) var_a2 = arg2 - var_a2;
-                else var_a2 += arg2;
+                if (arg3 < 0)
+                    var_a2 = arg2 - var_a2;
+                else
+                    var_a2 += arg2;
                 var_a1 = arg1 + var_s1;
             } else {
                 var_a1 = D_800674AC[var_s3];
@@ -868,8 +869,7 @@ int func_800291B8(int arg0, int arg1, int arg2, int arg3) {
         }
         var_s3 += 1;
         var_s4 -= 1;
-        func_800289C8(&D_8006C788[D_800719CC + (var_a3 % 10)],
-                      var_a1, var_a2 - sp10);
+        func_800289C8(&D_8006C788[D_800719CC + (var_a3 % 10)], var_a1, var_a2 - sp10);
         var_v0 = -temp_fp;
         var_s2 += var_v0;
         var_s1 += var_v0;
@@ -915,7 +915,7 @@ int func_800293C4(int arg0, int arg1, int arg2, int arg3, int arg4) {
     saved_arg4 = arg4;
     saved_arg3 = arg3;
     /* Keep GCC's zero initialization after the saved Y-coordinate move. */
-    __asm__ ("move %0,$0" : "=r"(var_s1) : "r"(saved_arg3));
+    __asm__("move %0,$0" : "=r"(var_s1) : "r"(saved_arg3));
     temp_v0_addr <<= 3;
     temp_v0_addr += (int)temp_v0;
     temp_v0 = (SpriteData*)temp_v0_addr;
@@ -939,7 +939,8 @@ int func_800293C4(int arg0, int arg1, int arg2, int arg3, int arg4) {
     }
     sp28 = (var_s1 + 1) * sp18;
     var_s0 = arg1;
-    if (var_s1 < 0) return sp28;
+    if (var_s1 < 0)
+        return sp28;
     temp_lo = var_s1 * sp18;
     var_s4 = sp30 - var_s1;
     var_s3 = temp_lo + arg2;
@@ -956,8 +957,10 @@ int func_800293C4(int arg0, int arg1, int arg2, int arg3, int arg4) {
         } else {
             if ((var_a2 = sp30) < 0x3C) {
                 var_a2 = D_800674E8[var_s4];
-                if (saved_arg4 < 0) var_a2 = saved_arg3 - var_a2;
-                else var_a2 += saved_arg3;
+                if (saved_arg4 < 0)
+                    var_a2 = saved_arg3 - var_a2;
+                else
+                    var_a2 += saved_arg3;
                 var_a1 = arg2 + var_s2;
             } else {
                 var_a1 = D_800674AC[var_s4];
@@ -966,11 +969,9 @@ int func_800293C4(int arg0, int arg1, int arg2, int arg3, int arg4) {
             }
         }
         if (var_s0 < 0) {
-            func_800289C8(&D_8006C788[D_800719CC + 0xA],
-                          var_a1 + 4, var_a2 - sp20);
+            func_800289C8(&D_8006C788[D_800719CC + 0xA], var_a1 + 4, var_a2 - sp20);
         } else {
-            func_800289C8(&D_8006C788[D_800719CC + (var_s0 % 10)],
-                          var_a1, var_a2 - sp20);
+            func_800289C8(&D_8006C788[D_800719CC + (var_s0 % 10)], var_a1, var_a2 - sp20);
         }
         temp_v0_2 = -sp18;
         var_s3 += temp_v0_2;
@@ -1021,8 +1022,10 @@ int func_80029674(HudEntry* arg0, int* arg1, int* arg2) {
 extern unsigned char D_800674E8[];
 void func_80029708(HudEntry* hud, int* frame, int* x, int* y) {
     unsigned char mode;
-    if (*frame < 0) *frame = 0;
-    if (*frame >= 60) *frame = 59;
+    if (*frame < 0)
+        *frame = 0;
+    if (*frame >= 60)
+        *frame = 59;
     mode = hud->displayMode;
     if (mode & 1) {
         *y -= D_800674E8[*frame];
@@ -1128,8 +1131,10 @@ int func_80029AA0(HudEntry* hudEntry) {
     SpriteData* spriteData = &D_8006C788[hudEntry->unk1C.frame];
     sp18 = hudEntry->unk0;
     sp1C = hudEntry->unk2;
-    if (hudEntry->movementFrame != 0) sp20 = (hudEntry->movementFrame + 10) >> 1;
-    else sp20 = 0;
+    if (hudEntry->movementFrame != 0)
+        sp20 = (hudEntry->movementFrame + 10) >> 1;
+    else
+        sp20 = 0;
     func_80029674(hudEntry, &sp18, &sp1C);
     sp24 = sp18;
     sp28 = sp1C;
@@ -1140,7 +1145,7 @@ int func_80029AA0(HudEntry* hudEntry) {
     second = spriteData->unk0;
     argA = hudEntry->unk40;
     argB = hudEntry->unk26;
-    __asm__ volatile ("" : "=r"(x) : "r"(first), "r"(second), "r"(argA), "r"(argB), "0"(sp18));
+    __asm__ volatile("" : "=r"(x) : "r"(first), "r"(second), "r"(argA), "r"(argB), "0"(sp18));
     width = first - second + 10;
     sp18 = x + width;
     return width + func_800293C4(argA, argB, sp18, sp1C, sp20);
@@ -1163,7 +1168,8 @@ int func_80029BB0(HudEntry* hudEntry) {
     int temp_v0;
     temp_v0 = D_8006C738[hudEntry->unk1C.index].frame;
     sprData0 = &D_8006C788[temp_v0];
-    sprData1 = temp_v0 == hudEntry->unk1C.frame ? &D_8006C788[temp_v0 + 1] : &D_8006C788[hudEntry->unk1C.frame];
+    sprData1 = temp_v0 == hudEntry->unk1C.frame ? &D_8006C788[temp_v0 + 1]
+                                                : &D_8006C788[hudEntry->unk1C.frame];
     x = hudEntry->unk0;
     y = hudEntry->unk2;
     sp18 = hudEntry->movementFrame != 0 ? (hudEntry->movementFrame + 0xA) >> 1 : 0;
@@ -1218,7 +1224,7 @@ int func_80029CF8(HudEntry* hud) {
 extern unsigned char D_80066F54[40], D_80066F7C[40], D_80070300[40];
 extern int D_80071A10[40], levelIndex, D_8006C640;
 extern volatile int levelIndexForHud asm("levelIndex");
-extern char* D_8006C430[], *D_8006C434[];
+extern char *D_8006C430[], *D_8006C434[];
 void func_80029E48(void) {
 
     int (*temp_v0_9)(HudEntry*);
@@ -1240,48 +1246,50 @@ void func_80029E48(void) {
     short foo1;
     short foo2;
 
-
-
-
-
     if (game.state != GAMESTATE_PAUSE) {
-        if (!(D_8006C598 != 0 || D_8006C74C != 0 || D_8006C640 < 31 || D_8006C64C != 0 || g_Hud.DAT_800719d4 != 0)) {
+        if (!(D_8006C598 != 0 || D_8006C74C != 0 || D_8006C640 < 31 || D_8006C64C != 0 ||
+              g_Hud.DAT_800719d4 != 0)) {
 
-        totalGems = D_80066F54[levelIndex] * 100; // gems in level
-        collectedEggsBitMask = D_80070300[levelIndex]; // eggs bitmask
-        allEggsBitMask = (1 << D_80066F7C[levelIndex]) - 1; // (1 << eggs-in-level) - 1, oh 1111...1111
-        collectedGems = D_80071A10[levelIndex]; // gems collected
-        func_800359A4(&g_Hud.DAT_800719de, 2); //fCountDownTimer, type = char
+            totalGems = D_80066F54[levelIndex] * 100;      // gems in level
+            collectedEggsBitMask = D_80070300[levelIndex]; // eggs bitmask
+            allEggsBitMask =
+                (1 << D_80066F7C[levelIndex]) - 1;  // (1 << eggs-in-level) - 1, oh 1111...1111
+            collectedGems = D_80071A10[levelIndex]; // gems collected
+            func_800359A4(&g_Hud.DAT_800719de, 2);  //fCountDownTimer, type = char
 
-        // if timer finished
-        if (g_Hud.DAT_800719de == 0) {
-            if (g_Hud.DAT_800719dc == 2) {
-                g_Hud.DAT_800719dc = 0;
-            } else if (g_Hud.DAT_800719d6 == 2) {
-                g_Hud.DAT_800719d6 = 1;
-            } else if (g_Hud.DAT_800719d8 == 2) {
-                g_Hud.DAT_800719d8 = 1;
-            } else if (g_Hud.DAT_800719da == 2) {
-                g_Hud.DAT_800719da = 1;
-            }
-        }
-        if (g_Hud.DAT_800719dc != 0) {
-            if ((g_Hud.DAT_800719de == 0)) {
-                if (g_Hud.DAT_800719dc == 1) {
-
-                g_Hud.DAT_800719dc = 2;
-                g_Hud.DAT_800719de = 240;
+            // if timer finished
+            if (g_Hud.DAT_800719de == 0) {
+                if (g_Hud.DAT_800719dc == 2) {
+                    g_Hud.DAT_800719dc = 0;
+                } else if (g_Hud.DAT_800719d6 == 2) {
+                    g_Hud.DAT_800719d6 = 1;
+                } else if (g_Hud.DAT_800719d8 == 2) {
+                    g_Hud.DAT_800719d8 = 1;
+                } else if (g_Hud.DAT_800719da == 2) {
+                    g_Hud.DAT_800719da = 1;
                 }
             }
-        } else if ((((g_CurrentLevel / 10) * 0xA) != (g_CurrentLevel - 7)) && (g_Hud.DAT_800719de == 0)) {
+            if (g_Hud.DAT_800719dc != 0) {
+                if ((g_Hud.DAT_800719de == 0)) {
+                    if (g_Hud.DAT_800719dc == 1) {
 
-            if ((g_Hud.DAT_800719da == 0) && (g_Hud.DAT_800719d6 == 0) && (g_Hud.DAT_800719d8 == 0) && (collectedGems == totalGems) && (collectedEggsBitMask == allEggsBitMask)) {
-                g_Hud.DAT_800719d6 = 1;
-                g_Hud.DAT_800719d8 = 1;
-                g_Hud.DAT_800719da = 2;
-                g_Hud.DAT_800719de = 240;
-            }
-            if ( (g_Hud.DAT_800719de == 0) && (g_Hud.DAT_800719d6 == 0) && (collectedGems == totalGems)) {
+                        g_Hud.DAT_800719dc = 2;
+                        g_Hud.DAT_800719de = 240;
+                    }
+                }
+            } else if ((((g_CurrentLevel / 10) * 0xA) != (g_CurrentLevel - 7)) &&
+                       (g_Hud.DAT_800719de == 0)) {
+
+                if ((g_Hud.DAT_800719da == 0) && (g_Hud.DAT_800719d6 == 0) &&
+                    (g_Hud.DAT_800719d8 == 0) && (collectedGems == totalGems) &&
+                    (collectedEggsBitMask == allEggsBitMask)) {
+                    g_Hud.DAT_800719d6 = 1;
+                    g_Hud.DAT_800719d8 = 1;
+                    g_Hud.DAT_800719da = 2;
+                    g_Hud.DAT_800719de = 240;
+                }
+                if ((g_Hud.DAT_800719de == 0) && (g_Hud.DAT_800719d6 == 0) &&
+                    (collectedGems == totalGems)) {
                     if (collectedGems == 0) {
                         g_Hud.DAT_800719d6 = 1;
                     } else {
@@ -1302,95 +1310,101 @@ void func_80029E48(void) {
                         g_Hud.DAT_800719d8 = 2;
                         g_Hud.DAT_800719de = 240;
                     }
-                    if ( (g_Hud.DAT_800719de == 0) && (g_Hud.DAT_800719da == 0) && (collectedGems == totalGems) && (collectedEggsBitMask == allEggsBitMask)) {
+                    if ((g_Hud.DAT_800719de == 0) && (g_Hud.DAT_800719da == 0) &&
+                        (collectedGems == totalGems) && (collectedEggsBitMask == allEggsBitMask)) {
                         g_Hud.DAT_800719da = 2;
                         g_Hud.DAT_800719de = 240;
                     }
                 }
             }
 
-        if (g_Hud.DAT_800719de < 210) {
-            // i think these should probs just be ifs and not else ifs but else if is giving a better match atm
-            if (g_Hud.DAT_800719dc == 2) {
-                temp_s0 = func_8002EBB0(D_8006C434[D_8006C76C]) >> 1; // "Skill Point!"
-                // foo1 = 250 - temp_s0;
-                func_8001FE48(250 - temp_s0, temp_s0 + 262, 52, 69); //drawutil
-                func_8002E748(D_8006C434[D_8006C76C], 256 - temp_s0, 56, 1, 0); // handwritten
-            } else if (g_Hud.DAT_800719d6 == 2) {
-                register int workValue asm("$2");
-                register SpriteData *drawSprite asm("$16");
-                register int halfWidth asm("$17");
-                register int displayGems asm("$18");
-                workValue = g_Hud.numberFrame;
-                {
-                    register int tableOffset asm("$3");
-                    register SpriteData *spriteBase asm("$4");
-                    register int topEdge asm("$4");
-                    spriteBase = D_8006C788;
-                    workValue <<= 3;
-                    workValue += (int)spriteBase;
-                    tableOffset = levelIndex;
-                    __asm__ ("" : "=r"(workValue) : "0"(workValue), "r"(tableOffset));
-                    tableOffset <<= 2;
-                    topEdge = ((SpriteData *)workValue)->unk4;
-                    workValue = ((SpriteData *)workValue)->unk0;
-                    displayGems = *(int *)((char *)D_80071A10 + tableOffset);
-                    halfWidth = topEdge - workValue;
-                    __asm__ volatile("" : "=r"(halfWidth) : "0"(halfWidth));
+            if (g_Hud.DAT_800719de < 210) {
+                // i think these should probs just be ifs and not else ifs but else if is giving a better match atm
+                if (g_Hud.DAT_800719dc == 2) {
+                    temp_s0 = func_8002EBB0(D_8006C434[D_8006C76C]) >> 1; // "Skill Point!"
+                    // foo1 = 250 - temp_s0;
+                    func_8001FE48(250 - temp_s0, temp_s0 + 262, 52, 69);            //drawutil
+                    func_8002E748(D_8006C434[D_8006C76C], 256 - temp_s0, 56, 1, 0); // handwritten
+                } else if (g_Hud.DAT_800719d6 == 2) {
+                    register int workValue asm("$2");
+                    register SpriteData* drawSprite asm("$16");
+                    register int halfWidth asm("$17");
+                    register int displayGems asm("$18");
+                    workValue = g_Hud.numberFrame;
+                    {
+                        register int tableOffset asm("$3");
+                        register SpriteData* spriteBase asm("$4");
+                        register int topEdge asm("$4");
+                        spriteBase = D_8006C788;
+                        workValue <<= 3;
+                        workValue += (int)spriteBase;
+                        tableOffset = levelIndex;
+                        __asm__("" : "=r"(workValue) : "0"(workValue), "r"(tableOffset));
+                        tableOffset <<= 2;
+                        topEdge = ((SpriteData*)workValue)->unk4;
+                        workValue = ((SpriteData*)workValue)->unk0;
+                        displayGems = *(int*)((char*)D_80071A10 + tableOffset);
+                        halfWidth = topEdge - workValue;
+                        MATCHING_KEEP_VOLATILE(halfWidth);
+                    }
+                    if (displayGems < 1000)
+                        halfWidth = (halfWidth << 3) - halfWidth;
+                    else
+                        halfWidth += halfWidth << 3;
+                    workValue = halfWidth + 30;
+                    halfWidth = workValue >> 1;
+                    g_Hud.DAT_800719e3 =
+                        func_80028378((SpriteAnimationData*)&g_Hud.DAT_800719e0, 0);
+                    drawSprite = &D_8006C788[g_Hud.DAT_800719e3 & 0xFF];
+                    func_8001FE48(250 - halfWidth, halfWidth + 262, 48, 73);
+                    func_800289C8(drawSprite, 256 - halfWidth, 51);
+                    func_800293C4(displayGems, displayGems, 286 - halfWidth, 60, 0);
+                } else if (g_Hud.DAT_800719d8 == 2) {
+                    register int workValue asm("$2");
+                    register SpriteData* drawSprite asm("$16");
+                    int halfWidth;
+                    register int eggCount asm("$17");
+                    workValue = g_Hud.numberFrame;
+                    {
+                        register SpriteData* spriteBase asm("$3");
+                        spriteBase = D_8006C788;
+                        workValue <<= 3;
+                        workValue += (int)spriteBase;
+                    }
+                    {
+                        register int topEdge asm("$3");
+                        topEdge = ((volatile SpriteData*)workValue)->unk4;
+                        workValue = ((volatile SpriteData*)workValue)->unk0;
+                        halfWidth = topEdge - workValue;
+                    }
+                    workValue = (halfWidth << 1) + halfWidth;
+                    workValue += 30;
+                    eggCount = D_80066F7C[levelIndexForHud];
+                    halfWidth = workValue >> 1;
+                    g_Hud.DAT_800719eb =
+                        func_80028378((SpriteAnimationData*)&g_Hud.DAT_800719e8, 0);
+                    drawSprite = &D_8006C788[g_Hud.DAT_800719eb & 0xFF];
+                    func_8001FE48(250 - halfWidth, halfWidth + 262, 48, 73);
+                    func_800289C8(drawSprite, 256 - halfWidth, 50);
+                    func_800293C4(eggCount, eggCount, 286 - halfWidth, 60, 0);
+                } else if (g_Hud.DAT_800719da == 2) {
+                    temp_s0_4 = func_8002EBB0(D_8006C430[D_8006C76C]) >> 1; // "Level Complete"
+                    func_8001FE48(250 - temp_s0_4, temp_s0_4 + 262, 52, 69);
+                    func_8002E748(D_8006C430[D_8006C76C], 256 - temp_s0_4, 56, 1, 0);
                 }
-                if (displayGems < 1000) halfWidth = (halfWidth << 3) - halfWidth; else halfWidth += halfWidth << 3;
-                workValue = halfWidth + 30;
-                halfWidth = workValue >> 1;
-                g_Hud.DAT_800719e3 = func_80028378((SpriteAnimationData *)&g_Hud.DAT_800719e0, 0);
-                drawSprite = &D_8006C788[g_Hud.DAT_800719e3 & 0xFF];
-                func_8001FE48(250 - halfWidth, halfWidth + 262, 48, 73);
-                func_800289C8(drawSprite, 256 - halfWidth, 51);
-                func_800293C4(displayGems, displayGems, 286 - halfWidth, 60, 0);
-            } else if (g_Hud.DAT_800719d8 == 2) {
-                register int workValue asm("$2");
-                register SpriteData *drawSprite asm("$16");
-                int halfWidth;
-                register int eggCount asm("$17");
-                workValue = g_Hud.numberFrame;
-                {
-                    register SpriteData *spriteBase asm("$3");
-                    spriteBase = D_8006C788;
-                    workValue <<= 3;
-                    workValue += (int)spriteBase;
-                }
-                {
-                    register int topEdge asm("$3");
-                    topEdge = ((volatile SpriteData *)workValue)->unk4;
-                    workValue = ((volatile SpriteData *)workValue)->unk0;
-                    halfWidth = topEdge - workValue;
-                }
-                workValue = (halfWidth << 1) + halfWidth;
-                workValue += 30;
-                eggCount = D_80066F7C[levelIndexForHud];
-                halfWidth = workValue >> 1;
-                g_Hud.DAT_800719eb = func_80028378((SpriteAnimationData *)&g_Hud.DAT_800719e8, 0);
-                drawSprite = &D_8006C788[g_Hud.DAT_800719eb & 0xFF];
-                func_8001FE48(250 - halfWidth, halfWidth + 262, 48, 73);
-                func_800289C8(drawSprite, 256 - halfWidth, 50);
-                func_800293C4(eggCount, eggCount, 286 - halfWidth, 60, 0);
-            } else if (g_Hud.DAT_800719da == 2) {
-                temp_s0_4 = func_8002EBB0(D_8006C430[D_8006C76C]) >> 1; // "Level Complete"
-                func_8001FE48(250 - temp_s0_4, temp_s0_4 + 262, 52, 69);
-                func_8002E748(D_8006C430[D_8006C76C], 256 - temp_s0_4, 56, 1, 0);
             }
         }
     }
-    }
     {
         extern unsigned char D_8006727C[];
-        register HudEntry *tailEntry asm("$17");
+        register HudEntry* tailEntry asm("$17");
         register int tailCount asm("$18");
         register int tailOffset asm("$16");
         tailCount = 0;
         tailEntry = D_80067248;
         tailOffset = 0;
         do {
-            temp_v0_9 = *(int (**)(HudEntry *))(D_8006727C + tailOffset);
+            temp_v0_9 = *(int (**)(HudEntry*))(D_8006727C + tailOffset);
             if (temp_v0_9 != 0) {
                 temp_v0_9(tailEntry);
             }

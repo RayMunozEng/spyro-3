@@ -1,19 +1,22 @@
+#include "matching.h"
 #include "common.h"
 #include "ovl_header.h"
 #include "mobyutil.h"
 #include "spu.h"
 #include "hud.h"
 
-extern short D_80065920[],D_800658A0[];
+extern short D_80065920[], D_800658A0[];
 extern int D_8006C648;
-int func_8004E880(int,int,int);
-int func_8003613C(int,int);
-int func_8004F264(int,int);
-int func_8004F334(Vector3D*,Vector3D*);
-int func_8003585C(Moby*,int,int,int,int,int);
-int func_80035EE0(Moby*,int,int,int,int,int);
-int func_80035DDC(Moby*,int,int,int,int);
-int func_level_12_80084AEC(Moby* actor,Vector3D* center,int radius,int heading,int tolerance,int speed,int turnA,int turnB,int avoidA,int avoidB,int argA,int argB,int flags) {
+int func_8004E880(int, int, int);
+int func_8003613C(int, int);
+int func_8004F264(int, int);
+int func_8004F334(Vector3D*, Vector3D*);
+int func_8003585C(Moby*, int, int, int, int, int);
+int func_80035EE0(Moby*, int, int, int, int, int);
+int func_80035DDC(Moby*, int, int, int, int);
+int func_level_12_80084AEC(Moby* actor, Vector3D* center, int radius, int heading, int tolerance,
+                           int speed, int turnA, int turnB, int avoidA, int avoidB, int argA,
+                           int argB, int flags) {
     register Moby* current __asm__("$19");
     register Vector3D* target __asm__("$20");
     register int range __asm__("$23");
@@ -28,68 +31,85 @@ int func_level_12_80084AEC(Moby* actor,Vector3D* center,int radius,int heading,i
     int result;
     register int lowAngle __asm__("$16");
     Vector3D destination;
-    current=actor;
-    __asm__("" : "=r"(current) : "0"(current));
-    target=center;
-    __asm__("" : "=r"(target) : "0"(target));
-    range=radius;
-    __asm__("" : "=r"(range) : "0"(range));
-    initialHeading=heading;
-    __asm__("" : "=r"(initialHeading) : "0"(initialHeading));
-    rate=speed;
-    __asm__("" : "=r"(rate) : "0"(rate));
-    limit=tolerance;avoid=avoidA;
-    angle=func_8004E880(current->position.x-target->x,current->position.y-target->y,0);
-    error=func_8003613C(initialHeading,angle&0xFF);
-    distance=func_8004F334(&current->position,target);
-    absolute=error;
-    if(error<0)absolute=-absolute;
-    if(absolute<limit) {
-        int radial=distance-range;
-        if(radial<0)radial=range-distance;
-        if(radial<0xC8)goto done;
+    current = actor;
+    MATCHING_KEEP(current);
+    target = center;
+    MATCHING_KEEP(target);
+    range = radius;
+    MATCHING_KEEP(range);
+    initialHeading = heading;
+    MATCHING_KEEP(initialHeading);
+    rate = speed;
+    MATCHING_KEEP(rate);
+    limit = tolerance;
+    avoid = avoidA;
+    angle = func_8004E880(current->position.x - target->x, current->position.y - target->y, 0);
+    error = func_8003613C(initialHeading, angle & 0xFF);
+    distance = func_8004F334(&current->position, target);
+    absolute = error;
+    if (error < 0)
+        absolute = -absolute;
+    if (absolute < limit) {
+        int radial = distance - range;
+        if (radial < 0)
+            radial = range - distance;
+        if (radial < 0xC8)
+            goto done;
     }
-    if(avoid!=0xFF) {
-        lowAngle=angle&0xFF;
-        if(func_8004F264(lowAngle,avoid)<5) {
-            result=func_8003613C(avoid,lowAngle);
-            if(error<0 && result<0)return 0x100;
-            if(error>0 && result>0)return 0x100;
+    if (avoid != 0xFF) {
+        lowAngle = angle & 0xFF;
+        if (func_8004F264(lowAngle, avoid) < 5) {
+            result = func_8003613C(avoid, lowAngle);
+            if (error < 0 && result < 0)
+                return 0x100;
+            if (error > 0 && result > 0)
+                return 0x100;
         }
     }
-    if(avoidB!=0xFF) {
-        lowAngle=angle&0xFF;
-        if(func_8004F264(lowAngle,avoidB)<5) {
-            result=func_8003613C(avoidB,lowAngle);
-            if(error<0 && result<0)return 0x100;
-            if(error>0 && result>0)return 0x100;
+    if (avoidB != 0xFF) {
+        lowAngle = angle & 0xFF;
+        if (func_8004F264(lowAngle, avoidB) < 5) {
+            result = func_8003613C(avoidB, lowAngle);
+            if (error < 0 && result < 0)
+                return 0x100;
+            if (error > 0 && result > 0)
+                return 0x100;
         }
     }
-    if(error<0)angle+=3;else angle-=3;
+    if (error < 0)
+        angle += 3;
+    else
+        angle -= 3;
     {
-    register int lookup __asm__("$3")=angle&0xFF;
-    register int x __asm__("$7");
-    __asm__("" : "=r"(lookup) : "0"(lookup));
-    {register int product __asm__("$2")=(D_80065920[lookup]*range)>>12;
-    x=target->x;
-    __asm__("" : "=r"(product),"=r"(x) : "0"(product),"1"(x));
-    x+=product;}
-    destination.x=x;
-    destination.y=target->y+((D_800658A0[lookup]*range)>>12);
-    heading=func_8004E880(x-current->position.x,destination.y-current->position.y,0);
+        register int lookup __asm__("$3") = angle & 0xFF;
+        register int x __asm__("$7");
+        MATCHING_KEEP(lookup);
+        {
+            register int product __asm__("$2") = (D_80065920[lookup] * range) >> 12;
+            x = target->x;
+            MATCHING_KEEP2(product, x);
+            x += product;
+        }
+        destination.x = x;
+        destination.y = target->y + ((D_800658A0[lookup] * range) >> 12);
+        heading = func_8004E880(x - current->position.x, destination.y - current->position.y, 0);
     }
-    if(D_8006C648==3)rate+=rate>>1;
-    else if(D_8006C648==4)rate<<=1;
-    if(flags&8) {
-        result=func_8004E880(target->x-current->position.x,target->y-current->position.y,0);
-        func_8003585C(current,result,turnA,0,0,0);
-        result=func_80035EE0(current,heading,rate,argA,argB,flags);
+    if (D_8006C648 == 3)
+        rate += rate >> 1;
+    else if (D_8006C648 == 4)
+        rate <<= 1;
+    if (flags & 8) {
+        result = func_8004E880(target->x - current->position.x, target->y - current->position.y, 0);
+        func_8003585C(current, result, turnA, 0, 0, 0);
+        result = func_80035EE0(current, heading, rate, argA, argB, flags);
     } else {
-        if(!func_8003585C(current,heading,turnA,turnB,1,0))goto done;
-        result=func_80035DDC(current,rate,argA,argB,flags);
+        if (!func_8003585C(current, heading, turnA, turnB, 1, 0))
+            goto done;
+        result = func_80035DDC(current, rate, argA, argB, flags);
     }
-    if(result)return -result;
- done:
+    if (result)
+        return -result;
+done:
     return ABS(error);
 }
 
@@ -113,14 +133,19 @@ int rand(void);
  * they retain the original compiler's argument and temporary lifetimes.
  * AI generated; not yet human reviewed. See the batch provenance document.
  */
-void func_level_12_80084E08(int count, int childClass, Moby* sourceMoby, Vector3D* offsets, int firstAnimation, int argument5) {
+void func_level_12_80084E08(int count, int childClass, Moby* sourceMoby, Vector3D* offsets,
+                            int firstAnimation, int argument5) {
     Vector3D average;
     int reserved1C;
     Vector3D temporary;
     int reserved2C;
     Vector3D impulse;
     int reserved3C;
-    struct { int childClass; int reserved44; Vector3D* offsets; } saved;
+    struct {
+        int childClass;
+        int reserved44;
+        Vector3D* offsets;
+    } saved;
     int reservedStack[4];
     register int index __asm__("$19");
     register Moby* source __asm__("$18") = sourceMoby;
@@ -144,9 +169,9 @@ void func_level_12_80084E08(int count, int childClass, Moby* sourceMoby, Vector3
     register Vector3D* offsetBase __asm__("$8");
     register int stackArgument4 __asm__("$8");
     register unsigned int stackArgument5 __asm__("$8");
-    __asm__("" : "=r"(source) : "0"(source));
+    MATCHING_KEEP(source);
     averageArgument = &average;
-    __asm__("" : : "r"(averageArgument));
+    MATCHING_OBSERVE(averageArgument);
     saved.childClass = childClass;
     saved.offsets = offsets;
     DecodedBatchZero(averageArgument);
@@ -173,17 +198,19 @@ void func_level_12_80084E08(int count, int childClass, Moby* sourceMoby, Vector3
         DecodedBatchMode(source, modeArgument);
     }
     temporaryPtr = &temporary;
-    if (count <= 0) return;
+    if (count <= 0)
+        return;
     cosine = D_80065920;
     sine = D_800658A0;
     player = DecodedBatchPlayer;
     __asm__("" : "=r"(cosine) : "0"(cosine), "r"(sine), "r"(player), "r"(temporaryPtr));
     do {
         /* Capacity exhaustion ends the whole spawn request. */
-        if (D_8006C578 - D_8006C574 < 21) return;
+        if (D_8006C578 - D_8006C574 < 21)
+            return;
         __asm__("" : "=m"(saved) : "m"(saved));
         child = SpawnMoby(saved.childClass, source);
-        __asm__("" : "=r"(child) : "0"(child));
+        MATCHING_KEEP(child);
         copyArgument = temporaryPtr;
         if (child != 0) {
             offsetArgument = index * 12;
@@ -231,7 +258,7 @@ void func_level_12_80084E08(int count, int childClass, Moby* sourceMoby, Vector3
                 tag[1] = (unsigned short)tag[1] + ((sine[source->unkb] * 75) >> 11);
                 randomLow = 40;
                 randomHigh = 70;
-randomZ:
+            randomZ:
                 tag[2] = (unsigned short)tag[2] + DecodedBatchRandom(randomLow, randomHigh);
                 goto finish;
             } else if (source->damageFlags & 0x40000) {
@@ -239,40 +266,47 @@ randomZ:
                 tag[1] = (unsigned short)tag[1] + (*(int*)(DecodedBatchPlayer + 0x90) >> 5);
                 goto finish;
             } else if (source->damageFlags & 0x2000000) {
-                sample0 = cosine[DecodedBatchAngle(child->position.x - *(int*)player, child->position.y - *(int*)(player + 4), 0)];
-                __asm__("" : "=r"(sample0) : "0"(sample0));
+                sample0 = cosine[DecodedBatchAngle(child->position.x - *(int*)player,
+                                                   child->position.y - *(int*)(player + 4), 0)];
+                MATCHING_KEEP(sample0);
                 impulse.x = sample0 >> 4;
-                sample0 = sine[DecodedBatchAngle(child->position.x - *(int*)player, child->position.y - *(int*)(player + 4), 0)];
-                __asm__("" : "=r"(sample0) : "0"(sample0));
+                sample0 = sine[DecodedBatchAngle(child->position.x - *(int*)player,
+                                                 child->position.y - *(int*)(player + 4), 0)];
+                MATCHING_KEEP(sample0);
                 impulseX = impulse.x;
                 impulse.y = sample0 >> 4;
                 impulse.z = 0;
                 __asm__("" : : "m"(impulse.z), "r"(impulseX));
-            } else if ((source->damageFlags & 0x20000) && (*(int*)(DecodedBatchPlayer + 0x50) == 4 || *(int*)(DecodedBatchPlayer + 0x50) == 12)) {
+            } else if ((source->damageFlags & 0x20000) &&
+                       (*(int*)(DecodedBatchPlayer + 0x50) == 4 ||
+                        *(int*)(DecodedBatchPlayer + 0x50) == 12)) {
                 tag[0] = (unsigned short)tag[0] + (*(int*)(DecodedBatchPlayer + 0x8C) >> 6);
                 tag[1] = (unsigned short)tag[1] + (*(int*)(DecodedBatchPlayer + 0x90) >> 6);
                 goto finish;
             } else {
-                if (source->mobyClass == 132) goto finish;
+                if (source->mobyClass == 132)
+                    goto finish;
                 angle = source->unkb;
-                if (angle == 0) angle = DecodedBatchAngle(child->position.x - *(int*)player, child->position.y - *(int*)(player + 4), 0);
+                if (angle == 0)
+                    angle = DecodedBatchAngle(child->position.x - *(int*)player,
+                                              child->position.y - *(int*)(player + 4), 0);
                 trigByteOffset = angle * 2;
-                __asm__("" : "=r"(trigByteOffset) : "0"(trigByteOffset));
+                MATCHING_KEEP(trigByteOffset);
                 sample0 = *(short*)(trigByteOffset + (unsigned int)cosine);
                 __asm__("" : "=r"(trigByteOffset) : "0"(trigByteOffset), "r"(sample0));
                 samplePointer = (short*)(trigByteOffset + (unsigned int)sine);
-                __asm__("" : "=r"(sample0), "=r"(samplePointer) : "0"(sample0), "1"(samplePointer));
+                MATCHING_KEEP2(sample0, samplePointer);
                 impulseX = (sample0 * 35) >> 10;
                 impulse.x = impulseX;
                 sample4 = *samplePointer;
-                __asm__("" : "=r"(sample4) : "0"(sample4));
+                MATCHING_KEEP(sample4);
                 impulse.y = (sample4 * 35) >> 10;
                 impulse.z = 0;
                 __asm__("" : : "m"(impulse.z), "r"(impulseX));
             }
             tag[0] = (unsigned short)tag[0] + impulseX;
             tag[1] = (unsigned short)tag[1] + impulse.y;
-finish:
+        finish:
             child->angle.roll = source->angle.roll;
             child->angle.pitch = source->angle.pitch;
             child->angle.yaw = source->angle.yaw;
@@ -284,13 +318,15 @@ finish:
             {
                 int lifetime = DecodedBatchRandom(30, 50);
                 register int animationArgument __asm__("$5");
-                __asm__("" : "=m"(firstAnimation), "=m"(argument5) : "m"(firstAnimation), "m"(argument5));
+                __asm__(""
+                        : "=m"(firstAnimation), "=m"(argument5)
+                        : "m"(firstAnimation), "m"(argument5));
                 stackArgument4 = *(int*)&firstAnimation;
                 tag[6] = lifetime;
                 tag[8] = 8;
                 animationArgument = stackArgument4 + index;
                 stackArgument5 = *(unsigned short*)&argument5;
-                __asm__("" : "=r"(stackArgument5) : "0"(stackArgument5));
+                MATCHING_KEEP(stackArgument5);
                 tag[9] = stackArgument5;
                 DecodedBatchAnimation(child, animationArgument);
             }
@@ -347,35 +383,37 @@ int func_level_12_800855F0(HudEntry* hud) {
     /* Empty constraints retain retail allocation and ordering; emit no instructions. */
     x = hud->unk0;
     y = hud->unk2;
-    __asm__("" : "=r"(x), "=r"(y) : "0"(x), "1"(y));
+    MATCHING_KEEP2(x, y);
     position.x = x;
     position.y = y;
-    if (*(unsigned char*)&hud->movementFrame) position.z = (*(unsigned char*)&hud->movementFrame + 10) >> 1;
-    else position.z = 0;
+    if (*(unsigned char*)&hud->movementFrame)
+        position.z = (*(unsigned char*)&hud->movementFrame + 10) >> 1;
+    else
+        position.z = 0;
     func_80029674(hud, &position.x, &position.y);
     func_80029708(hud, &position.z, &position.x, &position.y);
     /* Select the original sprite records and retain their byte dimensions. */
     baseIndex = hud->unk4C;
     sprites = D_8006C788;
     frameIndex = (unsigned char)hud->unk1C.frame;
-    __asm__("" : "=r"(baseIndex), "=r"(sprites), "=r"(frameIndex) : "0"(baseIndex), "1"(sprites), "2"(frameIndex));
+    MATCHING_KEEP3(baseIndex, sprites, frameIndex);
     sprite = &sprites[baseIndex];
-    __asm__("" : "=r"(sprite) : "0"(sprite));
+    MATCHING_KEEP(sprite);
     firstRight = sprite->unk4;
     frameIndex *= sizeof(SpriteData);
     firstLeft = sprite->unk0;
-    __asm__("" : "=r"(firstRight), "=r"(firstLeft) : "0"(firstRight), "1"(firstLeft));
+    MATCHING_KEEP2(firstRight, firstLeft);
     sprite = (SpriteData*)((char*)sprites + frameIndex);
-    __asm__("" : "=r"(sprite) : "0"(sprite));
+    MATCHING_KEEP(sprite);
     firstDraw = sprite;
-    __asm__("" : "=r"(firstDraw) : "0"(firstDraw));
+    MATCHING_KEEP(firstDraw);
     secondRight = sprite->unk4;
     secondLeft = sprite->unk0;
-    __asm__("" : "=r"(firstRight), "=r"(firstLeft) : "0"(firstRight), "1"(firstLeft) : "memory");
+    MATCHING_KEEP2_CLOBBER(firstRight, firstLeft, "memory");
     width = firstRight - firstLeft;
-    __asm__("" : "=r"(width) : "0"(width));
+    MATCHING_KEEP(width);
     width = (width - (secondRight - secondLeft)) >> 1;
-    __asm__("" : "=r"(width) : "0"(width) : "memory");
+    MATCHING_KEEP_CLOBBER(width, "memory");
     position.y += 22 - (sprite->unk5 - sprite->unk1);
     func_800289C8(firstDraw, position.x + width, position.y);
     baseIndex = hud->unk4C;
@@ -384,12 +422,12 @@ int func_level_12_800855F0(HudEntry* hud) {
     sprites = D_8006C788;
     oldBottom = sprite->unk1;
     drawY = position.y;
-    __asm__("" : "=r"(baseIndex), "=r"(sprites), "=r"(oldTop), "=r"(oldBottom), "=r"(drawX) : "0"(baseIndex), "1"(sprites), "2"(oldTop), "3"(oldBottom), "4"(drawX) : "memory");
+    MATCHING_KEEP5_CLOBBER(baseIndex, sprites, oldTop, oldBottom, drawX, "memory");
     sprite = &sprites[baseIndex];
     firstDraw = sprite;
-    __asm__("" : "=r"(firstDraw) : "0"(firstDraw));
+    MATCHING_KEEP(firstDraw);
     drawY += 2;
-    __asm__("" : "=r"(drawY), "=r"(oldTop) : "0"(drawY), "1"(oldTop));
+    MATCHING_KEEP2(drawY, oldTop);
     oldTop -= oldBottom;
     drawY += oldTop;
     position.y = drawY;
@@ -398,7 +436,7 @@ int func_level_12_800855F0(HudEntry* hud) {
     oldTop = sprite->unk5;
     sprites = D_8006C788;
     secondBottom = sprite->unk1;
-    __asm__("" : "=r"(baseIndex), "=r"(sprites), "=r"(oldTop), "=r"(secondBottom) : "0"(baseIndex), "1"(sprites), "2"(oldTop), "3"(secondBottom));
+    MATCHING_KEEP4(baseIndex, sprites, oldTop, secondBottom);
     sprite = &sprites[baseIndex + 2];
     position.y += oldTop - secondBottom;
     height = sprite->unk5 - sprite->unk1;
@@ -407,7 +445,8 @@ int func_level_12_800855F0(HudEntry* hud) {
     fill = *hud->unk28 * remaining / hud->unk26;
     remaining -= height;
     for (index = 0; index < 6; index++) {
-        if (fill >= remaining) break;
+        if (fill >= remaining)
+            break;
         func_800289C8(sprite, position.x, position.y);
         remaining -= height;
         position.y += height;
@@ -418,10 +457,10 @@ int func_level_12_800855F0(HudEntry* hud) {
     clipFlags = ((height - fill) << 16) | 8;
     drawX = position.x;
     endIndex = hud->unk4C;
-    __asm__ volatile("" : "=r"(clipFlags), "=r"(drawX) : "0"(clipFlags), "1"(drawX) : "memory");
+    MATCHING_KEEP2_VOLATILE_CLOBBER(clipFlags, drawX, "memory");
     drawY = position.y;
     endBase = D_8006C788;
-    __asm__("" : "=r"(endIndex), "=r"(endBase), "=r"(drawX), "=r"(drawY) : "0"(endIndex), "1"(endBase), "2"(drawX), "3"(drawY));
+    MATCHING_KEEP4(endIndex, endBase, drawX, drawY);
     sprite = &endBase[endIndex + 3];
     DecodedDrawClipped(sprite, drawX, drawY, clipFlags);
     goto advance;
@@ -430,7 +469,7 @@ int func_level_12_800855F0(HudEntry* hud) {
     advance:
         position.y += height;
         index++;
-        __asm__ volatile("" ::: "memory");
+        MATCHING_BARRIER_VOLATILE("memory");
     } while (index < 6);
     func_800289C8(&D_8006C788[hud->unk4C + 1], position.x, position.y);
     return 0;
@@ -441,10 +480,10 @@ void func_level_12_800858C0(HudEntry* hud) {
     func_80027A60(hud);
     value = *hud->unk28;
     step = value / 30;
-    if (step < hud->unk50 && value != 0
-        && (step < 8 || (step < 16 && (step & 1)))) {
+    if (step < hud->unk50 && value != 0 && (step < 8 || (step < 16 && (step & 1)))) {
         PlaySound(D_8006C654->timerRunOut, 0, 0);
     }
     hud->unk50 = step;
-    if (*hud->unk28 == 0) func_80028154(hud->unk1A);
+    if (*hud->unk28 == 0)
+        func_80028154(hud->unk1A);
 }

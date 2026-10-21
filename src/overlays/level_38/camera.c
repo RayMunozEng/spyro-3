@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "spyro.h"
 #include "stdutil.h"
@@ -21,7 +22,7 @@ extern short D_8006E1EC, D_8006E1EE, D_8006E1F0;
 void func_level_38_800882C4(void) {
     Vector3D offset;
     /* Empty constraint retains the retail return-address save before the branch. */
-    __asm__ volatile("" : : : "$31");
+    MATCHING_BARRIER_VOLATILE("$31");
     if (D_8006E044 == CAMERA_SPARX_OVERHEAD) {
         if (D_8006E048 == 1) {
             D_8006C598 = 0x100 - D_8006E04C * 16;
@@ -97,9 +98,9 @@ void func_level_38_800883A0(int mode) {
             D_8006E048 = 0;
         }
         func_8004F178(&D_8006E1B0, (Vector3D*)((char*)&D_8006E1B0 - 0x190));
-        D_8006E1BC = (int) D_8006E03C;
-        D_8006E1C0 = (int) D_8006E03E;
-        D_8006E1C4 = (int) D_8006E040;
+        D_8006E1BC = (int)D_8006E03C;
+        D_8006E1C0 = (int)D_8006E03E;
+        D_8006E1C4 = (int)D_8006E040;
         func_80013900((void*)((char*)&D_8006E1B0 - 0xEC));
         D_8006E13D = 1;
         D_8006E12C = 0;
@@ -110,7 +111,6 @@ void func_level_38_800883A0(int mode) {
     }
 }
 
-
 extern int D_8006E044, D_8006E048, D_8006E160;
 extern int D_80068CAC[];
 void func_level_38_80088474(void) {
@@ -120,11 +120,13 @@ void func_level_38_80088474(void) {
             int animation = spyro.animationState;
             register int mode __asm__("$3");
             /* Non-emitting barrier retains the second retail state read. */
-            __asm__ volatile("" : : : "memory");
+            MATCHING_BARRIER_VOLATILE("memory");
             mode = D_8006E044;
             choice = D_80068CAC[animation];
-            if (mode == choice) return;
-            if (choice == 0) choice = 6;
+            if (mode == choice)
+                return;
+            if (choice == 0)
+                choice = 6;
         }
         func_80016764(choice);
     }

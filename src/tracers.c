@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "stdutil.h"
 #include "tracers.h"
@@ -26,15 +27,15 @@ Tracer* func_80050844(void* source, int mode, int count, int flags) {
     register int flagMask asm("$3");
     register Tracer* returnValue asm("$2");
     sourceReg = source;
-    __asm__("" : "=r"(sourceReg) : "0"(sourceReg));
+    MATCHING_KEEP(sourceReg);
     modeReg = mode;
-    __asm__("" : "=r"(modeReg) : "0"(modeReg));
+    MATCHING_KEEP(modeReg);
     countReg = count;
-    __asm__("" : "=r"(countReg) : "0"(countReg));
+    MATCHING_KEEP(countReg);
     base = (char*)&D_80070610[0].unk4[0];
     result = (Tracer*)(base - 4);
     endBase = base + 0x64;
-    __asm__("" : "=r"(endBase) : "0"(endBase));
+    MATCHING_KEEP(endBase);
     lastField = (int*)endBase;
     offset = 0;
     firstVector = (Vector3D16*)base;
@@ -64,14 +65,14 @@ Tracer* func_80050844(void* source, int mode, int count, int flags) {
                 } while (j < countReg);
             }
             returnValue = result;
-            __asm__("" : "=r"(returnValue) : "0"(returnValue));
+            MATCHING_KEEP(returnValue);
             *(unsigned char*)((char*)D_80070610 + offset + 0x64) = 0;
             *(unsigned char*)((char*)D_80070610 + offset + 0x65) = countReg;
             *(unsigned char*)((char*)D_80070610 + offset + 0x66) = modeReg;
             originalFlags = storedFlags;
-            __asm__("" : "=r"(originalFlags) : "0"(originalFlags));
+            MATCHING_KEEP(originalFlags);
             flagMask = 0x3E000000;
-            __asm__("" : "=r"(flagMask) : "0"(flagMask));
+            MATCHING_KEEP(flagMask);
             *lastField = originalFlags | flagMask;
             return returnValue;
         }
@@ -79,7 +80,8 @@ Tracer* func_80050844(void* source, int mode, int count, int flags) {
         lastField = (int*)((char*)lastField + 0x6C);
         offset += 0x6C;
         firstVector = (Vector3D16*)((char*)firstVector + 0x6C);
-        if ((int)lastField >= (int)(endBase + 0xD80)) break;
+        if ((int)lastField >= (int)(endBase + 0xD80))
+            break;
     }
     return 0;
 }

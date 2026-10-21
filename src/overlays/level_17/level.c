@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "ovl_header.h"
 #include "mobyutil.h"
@@ -6,16 +7,18 @@
 #include "camera.h"
 #include "spyro.h"
 
-extern short D_80065920[],D_800658A0[];
+extern short D_80065920[], D_800658A0[];
 extern int D_8006C648;
-int func_8004E880(int,int,int);
-int func_8003613C(int,int);
-int func_8004F264(int,int);
-int func_8004F334(Vector3D*,Vector3D*);
-int func_8003585C(Moby*,int,int,int,int,int);
-int func_80035EE0(Moby*,int,int,int,int,int);
-int func_80035DDC(Moby*,int,int,int,int);
-int func_level_17_8007F3E8(Moby* actor,Vector3D* center,int radius,int heading,int tolerance,int speed,int turnA,int turnB,int avoidA,int avoidB,int argA,int argB,int flags) {
+int func_8004E880(int, int, int);
+int func_8003613C(int, int);
+int func_8004F264(int, int);
+int func_8004F334(Vector3D*, Vector3D*);
+int func_8003585C(Moby*, int, int, int, int, int);
+int func_80035EE0(Moby*, int, int, int, int, int);
+int func_80035DDC(Moby*, int, int, int, int);
+int func_level_17_8007F3E8(Moby* actor, Vector3D* center, int radius, int heading, int tolerance,
+                           int speed, int turnA, int turnB, int avoidA, int avoidB, int argA,
+                           int argB, int flags) {
     register Moby* current __asm__("$19");
     register Vector3D* target __asm__("$20");
     register int range __asm__("$23");
@@ -30,68 +33,85 @@ int func_level_17_8007F3E8(Moby* actor,Vector3D* center,int radius,int heading,i
     int result;
     register int lowAngle __asm__("$16");
     Vector3D destination;
-    current=actor;
-    __asm__("" : "=r"(current) : "0"(current));
-    target=center;
-    __asm__("" : "=r"(target) : "0"(target));
-    range=radius;
-    __asm__("" : "=r"(range) : "0"(range));
-    initialHeading=heading;
-    __asm__("" : "=r"(initialHeading) : "0"(initialHeading));
-    rate=speed;
-    __asm__("" : "=r"(rate) : "0"(rate));
-    limit=tolerance;avoid=avoidA;
-    angle=func_8004E880(current->position.x-target->x,current->position.y-target->y,0);
-    error=func_8003613C(initialHeading,angle&0xFF);
-    distance=func_8004F334(&current->position,target);
-    absolute=error;
-    if(error<0)absolute=-absolute;
-    if(absolute<limit) {
-        int radial=distance-range;
-        if(radial<0)radial=range-distance;
-        if(radial<0xC8)goto done;
+    current = actor;
+    MATCHING_KEEP(current);
+    target = center;
+    MATCHING_KEEP(target);
+    range = radius;
+    MATCHING_KEEP(range);
+    initialHeading = heading;
+    MATCHING_KEEP(initialHeading);
+    rate = speed;
+    MATCHING_KEEP(rate);
+    limit = tolerance;
+    avoid = avoidA;
+    angle = func_8004E880(current->position.x - target->x, current->position.y - target->y, 0);
+    error = func_8003613C(initialHeading, angle & 0xFF);
+    distance = func_8004F334(&current->position, target);
+    absolute = error;
+    if (error < 0)
+        absolute = -absolute;
+    if (absolute < limit) {
+        int radial = distance - range;
+        if (radial < 0)
+            radial = range - distance;
+        if (radial < 0xC8)
+            goto done;
     }
-    if(avoid!=0xFF) {
-        lowAngle=angle&0xFF;
-        if(func_8004F264(lowAngle,avoid)<5) {
-            result=func_8003613C(avoid,lowAngle);
-            if(error<0 && result<0)return 0x100;
-            if(error>0 && result>0)return 0x100;
+    if (avoid != 0xFF) {
+        lowAngle = angle & 0xFF;
+        if (func_8004F264(lowAngle, avoid) < 5) {
+            result = func_8003613C(avoid, lowAngle);
+            if (error < 0 && result < 0)
+                return 0x100;
+            if (error > 0 && result > 0)
+                return 0x100;
         }
     }
-    if(avoidB!=0xFF) {
-        lowAngle=angle&0xFF;
-        if(func_8004F264(lowAngle,avoidB)<5) {
-            result=func_8003613C(avoidB,lowAngle);
-            if(error<0 && result<0)return 0x100;
-            if(error>0 && result>0)return 0x100;
+    if (avoidB != 0xFF) {
+        lowAngle = angle & 0xFF;
+        if (func_8004F264(lowAngle, avoidB) < 5) {
+            result = func_8003613C(avoidB, lowAngle);
+            if (error < 0 && result < 0)
+                return 0x100;
+            if (error > 0 && result > 0)
+                return 0x100;
         }
     }
-    if(error<0)angle+=3;else angle-=3;
+    if (error < 0)
+        angle += 3;
+    else
+        angle -= 3;
     {
-    register int lookup __asm__("$3")=angle&0xFF;
-    register int x __asm__("$7");
-    __asm__("" : "=r"(lookup) : "0"(lookup));
-    {register int product __asm__("$2")=(D_80065920[lookup]*range)>>12;
-    x=target->x;
-    __asm__("" : "=r"(product),"=r"(x) : "0"(product),"1"(x));
-    x+=product;}
-    destination.x=x;
-    destination.y=target->y+((D_800658A0[lookup]*range)>>12);
-    heading=func_8004E880(x-current->position.x,destination.y-current->position.y,0);
+        register int lookup __asm__("$3") = angle & 0xFF;
+        register int x __asm__("$7");
+        MATCHING_KEEP(lookup);
+        {
+            register int product __asm__("$2") = (D_80065920[lookup] * range) >> 12;
+            x = target->x;
+            MATCHING_KEEP2(product, x);
+            x += product;
+        }
+        destination.x = x;
+        destination.y = target->y + ((D_800658A0[lookup] * range) >> 12);
+        heading = func_8004E880(x - current->position.x, destination.y - current->position.y, 0);
     }
-    if(D_8006C648==3)rate+=rate>>1;
-    else if(D_8006C648==4)rate<<=1;
-    if(flags&8) {
-        result=func_8004E880(target->x-current->position.x,target->y-current->position.y,0);
-        func_8003585C(current,result,turnA,0,0,0);
-        result=func_80035EE0(current,heading,rate,argA,argB,flags);
+    if (D_8006C648 == 3)
+        rate += rate >> 1;
+    else if (D_8006C648 == 4)
+        rate <<= 1;
+    if (flags & 8) {
+        result = func_8004E880(target->x - current->position.x, target->y - current->position.y, 0);
+        func_8003585C(current, result, turnA, 0, 0, 0);
+        result = func_80035EE0(current, heading, rate, argA, argB, flags);
     } else {
-        if(!func_8003585C(current,heading,turnA,turnB,1,0))goto done;
-        result=func_80035DDC(current,rate,argA,argB,flags);
+        if (!func_8003585C(current, heading, turnA, turnB, 1, 0))
+            goto done;
+        result = func_80035DDC(current, rate, argA, argB, flags);
     }
-    if(result)return -result;
- done:
+    if (result)
+        return -result;
+done:
     return ABS(error);
 }
 
@@ -131,14 +151,19 @@ int rand(void);
  * they retain the original compiler's argument and temporary lifetimes.
  * AI generated; not yet human reviewed. See the batch provenance document.
  */
-void func_level_17_8007F7CC(int count, int childClass, Moby* sourceMoby, Vector3D* offsets, int firstAnimation, int argument5) {
+void func_level_17_8007F7CC(int count, int childClass, Moby* sourceMoby, Vector3D* offsets,
+                            int firstAnimation, int argument5) {
     Vector3D average;
     int reserved1C;
     Vector3D temporary;
     int reserved2C;
     Vector3D impulse;
     int reserved3C;
-    struct { int childClass; int reserved44; Vector3D* offsets; } saved;
+    struct {
+        int childClass;
+        int reserved44;
+        Vector3D* offsets;
+    } saved;
     int reservedStack[4];
     register int index __asm__("$19");
     register Moby* source __asm__("$18") = sourceMoby;
@@ -162,9 +187,9 @@ void func_level_17_8007F7CC(int count, int childClass, Moby* sourceMoby, Vector3
     register Vector3D* offsetBase __asm__("$8");
     register int stackArgument4 __asm__("$8");
     register unsigned int stackArgument5 __asm__("$8");
-    __asm__("" : "=r"(source) : "0"(source));
+    MATCHING_KEEP(source);
     averageArgument = &average;
-    __asm__("" : : "r"(averageArgument));
+    MATCHING_OBSERVE(averageArgument);
     saved.childClass = childClass;
     saved.offsets = offsets;
     DecodedBatchZero(averageArgument);
@@ -191,17 +216,19 @@ void func_level_17_8007F7CC(int count, int childClass, Moby* sourceMoby, Vector3
         DecodedBatchMode(source, modeArgument);
     }
     temporaryPtr = &temporary;
-    if (count <= 0) return;
+    if (count <= 0)
+        return;
     cosine = D_80065920;
     sine = D_800658A0;
     player = DecodedBatchPlayer;
     __asm__("" : "=r"(cosine) : "0"(cosine), "r"(sine), "r"(player), "r"(temporaryPtr));
     do {
         /* Capacity exhaustion ends the whole spawn request. */
-        if (D_8006C578 - D_8006C574 < 21) return;
+        if (D_8006C578 - D_8006C574 < 21)
+            return;
         __asm__("" : "=m"(saved) : "m"(saved));
         child = SpawnMoby(saved.childClass, source);
-        __asm__("" : "=r"(child) : "0"(child));
+        MATCHING_KEEP(child);
         copyArgument = temporaryPtr;
         if (child != 0) {
             offsetArgument = index * 12;
@@ -249,7 +276,7 @@ void func_level_17_8007F7CC(int count, int childClass, Moby* sourceMoby, Vector3
                 tag[1] = (unsigned short)tag[1] + ((sine[source->unkb] * 75) >> 11);
                 randomLow = 40;
                 randomHigh = 70;
-randomZ:
+            randomZ:
                 tag[2] = (unsigned short)tag[2] + DecodedBatchRandom(randomLow, randomHigh);
                 goto finish;
             } else if (source->damageFlags & 0x40000) {
@@ -257,40 +284,47 @@ randomZ:
                 tag[1] = (unsigned short)tag[1] + (*(int*)(DecodedBatchPlayer + 0x90) >> 5);
                 goto finish;
             } else if (source->damageFlags & 0x2000000) {
-                sample0 = cosine[DecodedBatchAngle(child->position.x - *(int*)player, child->position.y - *(int*)(player + 4), 0)];
-                __asm__("" : "=r"(sample0) : "0"(sample0));
+                sample0 = cosine[DecodedBatchAngle(child->position.x - *(int*)player,
+                                                   child->position.y - *(int*)(player + 4), 0)];
+                MATCHING_KEEP(sample0);
                 impulse.x = sample0 >> 4;
-                sample0 = sine[DecodedBatchAngle(child->position.x - *(int*)player, child->position.y - *(int*)(player + 4), 0)];
-                __asm__("" : "=r"(sample0) : "0"(sample0));
+                sample0 = sine[DecodedBatchAngle(child->position.x - *(int*)player,
+                                                 child->position.y - *(int*)(player + 4), 0)];
+                MATCHING_KEEP(sample0);
                 impulseX = impulse.x;
                 impulse.y = sample0 >> 4;
                 impulse.z = 0;
                 __asm__("" : : "m"(impulse.z), "r"(impulseX));
-            } else if ((source->damageFlags & 0x20000) && (*(int*)(DecodedBatchPlayer + 0x50) == 4 || *(int*)(DecodedBatchPlayer + 0x50) == 12)) {
+            } else if ((source->damageFlags & 0x20000) &&
+                       (*(int*)(DecodedBatchPlayer + 0x50) == 4 ||
+                        *(int*)(DecodedBatchPlayer + 0x50) == 12)) {
                 tag[0] = (unsigned short)tag[0] + (*(int*)(DecodedBatchPlayer + 0x8C) >> 6);
                 tag[1] = (unsigned short)tag[1] + (*(int*)(DecodedBatchPlayer + 0x90) >> 6);
                 goto finish;
             } else {
-                if (source->mobyClass == 132) goto finish;
+                if (source->mobyClass == 132)
+                    goto finish;
                 angle = source->unkb;
-                if (angle == 0) angle = DecodedBatchAngle(child->position.x - *(int*)player, child->position.y - *(int*)(player + 4), 0);
+                if (angle == 0)
+                    angle = DecodedBatchAngle(child->position.x - *(int*)player,
+                                              child->position.y - *(int*)(player + 4), 0);
                 trigByteOffset = angle * 2;
-                __asm__("" : "=r"(trigByteOffset) : "0"(trigByteOffset));
+                MATCHING_KEEP(trigByteOffset);
                 sample0 = *(short*)(trigByteOffset + (unsigned int)cosine);
                 __asm__("" : "=r"(trigByteOffset) : "0"(trigByteOffset), "r"(sample0));
                 samplePointer = (short*)(trigByteOffset + (unsigned int)sine);
-                __asm__("" : "=r"(sample0), "=r"(samplePointer) : "0"(sample0), "1"(samplePointer));
+                MATCHING_KEEP2(sample0, samplePointer);
                 impulseX = (sample0 * 35) >> 10;
                 impulse.x = impulseX;
                 sample4 = *samplePointer;
-                __asm__("" : "=r"(sample4) : "0"(sample4));
+                MATCHING_KEEP(sample4);
                 impulse.y = (sample4 * 35) >> 10;
                 impulse.z = 0;
                 __asm__("" : : "m"(impulse.z), "r"(impulseX));
             }
             tag[0] = (unsigned short)tag[0] + impulseX;
             tag[1] = (unsigned short)tag[1] + impulse.y;
-finish:
+        finish:
             child->angle.roll = source->angle.roll;
             child->angle.pitch = source->angle.pitch;
             child->angle.yaw = source->angle.yaw;
@@ -302,13 +336,15 @@ finish:
             {
                 int lifetime = DecodedBatchRandom(30, 50);
                 register int animationArgument __asm__("$5");
-                __asm__("" : "=m"(firstAnimation), "=m"(argument5) : "m"(firstAnimation), "m"(argument5));
+                __asm__(""
+                        : "=m"(firstAnimation), "=m"(argument5)
+                        : "m"(firstAnimation), "m"(argument5));
                 stackArgument4 = *(int*)&firstAnimation;
                 tag[6] = lifetime;
                 tag[8] = 8;
                 animationArgument = stackArgument4 + index;
                 stackArgument5 = *(unsigned short*)&argument5;
-                __asm__("" : "=r"(stackArgument5) : "0"(stackArgument5));
+                MATCHING_KEEP(stackArgument5);
                 tag[9] = stackArgument5;
                 DecodedBatchAnimation(child, animationArgument);
             }
@@ -364,23 +400,23 @@ int func_level_17_8007FEBC(HudEntry* argument) {
     register int centredY __asm__("$16");
     register int* xArgument __asm__("$5") = &x;
     register int* yArgument __asm__("$6");
-    __asm__("" : : "r"(xArgument));
+    MATCHING_OBSERVE(xArgument);
     {
         register int frame __asm__("$2") = (unsigned char)hud->unk1C.frame;
         register int initialX __asm__("$3");
         register int initialY __asm__("$7");
         register SpriteData* sprites __asm__("$3");
-        __asm__("" : "=r"(frame) : "0"(frame));
+        MATCHING_KEEP(frame);
         initialX = hud->unk0;
         initialY = hud->unk2;
-        __asm__("" : : "r"(initialX), "r"(initialY) : "$6");
+        MATCHING_OBSERVE2_CLOBBER(initialX, initialY, "$6");
         yArgument = &y;
-        __asm__("" : : "r"(initialX), "r"(initialY), "r"(yArgument));
+        MATCHING_OBSERVE3(initialX, initialY, yArgument);
         x = initialX;
         sprites = D_8006C788;
         __asm__("" : "=r"(frame) : "0"(frame), "r"(sprites));
         frame *= 8;
-        __asm__("" : "=r"(frame) : "0"(frame));
+        MATCHING_KEEP(frame);
         y = initialY;
         __asm__ volatile("" : : "m"(y));
         sprite = (SpriteData*)((int)sprites + frame);
@@ -397,9 +433,9 @@ int func_level_17_8007FEBC(HudEntry* argument) {
         register int height __asm__("$2") = sprite->unk5;
         register int low __asm__("$3") = sprite->unk1;
         register int storedY __asm__("$3");
-        __asm__("" : : "r"(height), "r"(low));
+        MATCHING_OBSERVE2(height, low);
         height -= low;
-        __asm__("" : "=r"(height) : "0"(height));
+        MATCHING_KEEP(height);
         storedY = y;
         centredY = storedY - (height >> 1);
         y = centredY;
@@ -407,13 +443,13 @@ int func_level_17_8007FEBC(HudEntry* argument) {
     /* Select the retail bar origin from the sprite bounds. */
     if (hud->displayMode & 1) {
         centredY++;
-        __asm__("" : "=r"(centredY) : "0"(centredY));
+        MATCHING_KEEP(centredY);
         barY = centredY;
     } else {
         register int edge __asm__("$2") = centredY + sprite->unk5;
         edge -= sprite->unk1;
         edge -= 7;
-        __asm__("" : "=r"(edge) : "0"(edge));
+        MATCHING_KEEP(edge);
         barY = edge;
     }
     /* Bit 3 places the bordered bar before the sprite. */
@@ -435,7 +471,7 @@ int func_level_17_8007FEBC(HudEntry* argument) {
         func_8004E758(line);
         line++;
         lineArgument = line;
-        __asm__("" : "=r"(lineArgument) : "0"(lineArgument));
+        MATCHING_KEEP(lineArgument);
         line->tag = lineTag;
         __asm__ volatile("" : : "m"(line->tag));
         line->code = lineCode;
@@ -443,16 +479,16 @@ int func_level_17_8007FEBC(HudEntry* argument) {
         line->green = colour;
         line->blue = 0;
         line->y0 = top;
-        __asm__ volatile("" : : : "memory");
+        MATCHING_BARRIER_VOLATILE("memory");
         bottom = barY + 6;
-        __asm__("" : "=r"(bottom) : "0"(bottom));
+        MATCHING_KEEP(bottom);
         line->y1 = bottom;
         line->x1 = x + 96;
         line->x0 = x + 96;
         func_8004E758(lineArgument);
         line++;
         lineArgument = line;
-        __asm__("" : "=r"(lineArgument) : "0"(lineArgument));
+        MATCHING_KEEP(lineArgument);
         line->tag = lineTag;
         __asm__ volatile("" : : "m"(line->tag));
         line->code = lineCode;
@@ -465,21 +501,21 @@ int func_level_17_8007FEBC(HudEntry* argument) {
         line->x1 = x + 96;
         func_8004E758(lineArgument);
         line++;
-        __asm__("" : "=r"(line) : "0"(line));
+        MATCHING_KEEP(line);
         {
             register DecodedHudLine* lastLine __asm__("$4") = line;
             register int xValue __asm__("$2");
-            __asm__("" : "=r"(lastLine) : "0"(lastLine));
+            MATCHING_KEEP(lastLine);
             lastLine->code = lineCode;
 
             lastLine->red = colour;
             lastLine->green = colour;
             lastLine->blue = 0;
-            __asm__ volatile("" : : : "memory");
+            MATCHING_BARRIER_VOLATILE("memory");
             xValue = x;
             __asm__("" : "=r"(lastLine) : "0"(lastLine), "r"(xValue));
             quad = (DecodedHudQuad*)(lastLine + 1);
-            __asm__("" : "=r"(quad) : "0"(quad));
+            MATCHING_KEEP(quad);
             lastLine->tag = lineTag;
             lastLine->y0 = top;
             lastLine->y1 = bottom;
@@ -492,7 +528,7 @@ int func_level_17_8007FEBC(HudEntry* argument) {
         quad->code = 56;
         {
             int channel = -32 - hud->unk40 * 224 / 96;
-            __asm__("" : "=r"(channel) : "0"(channel));
+            MATCHING_KEEP(channel);
             quad->red0 = quad->red2 = channel;
             __asm__ volatile("" : : "m"(quad->red0), "m"(quad->red2));
         }
@@ -504,28 +540,28 @@ int func_level_17_8007FEBC(HudEntry* argument) {
             quad->blue0 = quad->blue2 = 0;
             quad->green1 = quad->green3 = 0;
             quad->blue1 = quad->blue3 = 0;
-            __asm__("" : "=r"(quad) : "0"(quad));
+            MATCHING_KEEP(quad);
             quadArgument = quad;
-            __asm__("" : : "r"(quadArgument));
+            MATCHING_OBSERVE(quadArgument);
             quad->red1 = quad->red3 = 224;
             quad->green0 = quad->green2 = greenChannel;
         }
-        __asm__ volatile("" : : : "memory");
+        MATCHING_BARRIER_VOLATILE("memory");
         {
             register int value __asm__("$3") = hud->unk40;
             register int barCoordinate __asm__("$2");
             register int coordinate __asm__("$2");
-            __asm__ volatile("" : : : "memory");
+            MATCHING_BARRIER_VOLATILE("memory");
             barCoordinate = (unsigned short)barY;
-            __asm__("" : "=r"(barCoordinate) : "0"(barCoordinate));
+            MATCHING_KEEP(barCoordinate);
             quad->y2 = quad->y3 = bottom;
             quad->y0 = quad->y1 = barCoordinate;
-            __asm__ volatile("" : : : "memory");
+            MATCHING_BARRIER_VOLATILE("memory");
             coordinate = x;
             __asm__("" : "=r"(value) : "0"(value), "r"(coordinate));
             value -= 96;
             value = coordinate - value;
-            __asm__("" : "=r"(value) : "0"(value));
+            MATCHING_KEEP(value);
             coordinate += 96;
             quad->x0 = quad->x2 = value;
             quad->x1 = quad->x3 = coordinate;
@@ -538,9 +574,9 @@ int func_level_17_8007FEBC(HudEntry* argument) {
         {
             register int spriteWidth __asm__("$2") = sprite->unk4;
             register int left __asm__("$3") = sprite->unk0;
-            __asm__("" : : "r"(spriteWidth), "r"(left));
+            MATCHING_OBSERVE2(spriteWidth, left);
             spriteWidth -= left;
-            __asm__("" : "=r"(spriteWidth) : "0"(spriteWidth));
+            MATCHING_KEEP(spriteWidth);
             result = spriteWidth + 106;
         }
     } else {
@@ -552,9 +588,9 @@ int func_level_17_8007FEBC(HudEntry* argument) {
             register int callX __asm__("$5");
             int origin;
             register int callY __asm__("$6");
-            __asm__("" : : "r"(spriteArgument));
+            MATCHING_OBSERVE(spriteArgument);
             callX = x;
-            __asm__("" : "=r"(callX) : "0"(callX));
+            MATCHING_KEEP(callX);
             origin = barY;
             callY = y;
             top = origin - 1;
@@ -563,9 +599,9 @@ int func_level_17_8007FEBC(HudEntry* argument) {
         lineCode = 64;
         defaultColour = 192;
         lineTag = 0x03000000;
-        __asm__("" : : "r"(lineCode), "r"(defaultColour), "r"(lineTag));
+        MATCHING_OBSERVE3(lineCode, defaultColour, lineTag);
         width = sprite->unk4;
-        __asm__("" : "=r"(width) : "0"(width));
+        MATCHING_KEEP(width);
         {
             register int left __asm__("$2") = sprite->unk0;
             line = (DecodedHudLine*)DecodedHudPacketCursor;
@@ -577,7 +613,7 @@ int func_level_17_8007FEBC(HudEntry* argument) {
             register int offset __asm__("$3");
             __asm__("" : "=r"(width) : "0"(width), "r"(currentX));
             offset = width + 10;
-            __asm__("" : "=r"(offset) : "0"(offset));
+            MATCHING_KEEP(offset);
             x = currentX + offset;
         }
 
@@ -593,7 +629,7 @@ int func_level_17_8007FEBC(HudEntry* argument) {
         func_8004E758(line);
         line++;
         lineArgument = line;
-        __asm__("" : "=r"(lineArgument) : "0"(lineArgument));
+        MATCHING_KEEP(lineArgument);
         line->tag = lineTag;
         __asm__ volatile("" : : "m"(line->tag));
         line->code = lineCode;
@@ -601,16 +637,16 @@ int func_level_17_8007FEBC(HudEntry* argument) {
         line->green = 0;
         line->blue = defaultColour;
         line->y0 = top;
-        __asm__ volatile("" : : : "memory");
+        MATCHING_BARRIER_VOLATILE("memory");
         defaultBottom = barY + 6;
-        __asm__("" : "=r"(defaultBottom) : "0"(defaultBottom));
+        MATCHING_KEEP(defaultBottom);
         line->y1 = defaultBottom;
         line->x1 = x + 96;
         line->x0 = x + 96;
         func_8004E758(lineArgument);
         line++;
         lineArgument = line;
-        __asm__("" : "=r"(lineArgument) : "0"(lineArgument));
+        MATCHING_KEEP(lineArgument);
         line->tag = lineTag;
         __asm__ volatile("" : : "m"(line->tag));
         line->code = lineCode;
@@ -623,21 +659,21 @@ int func_level_17_8007FEBC(HudEntry* argument) {
         line->x1 = x + 96;
         func_8004E758(lineArgument);
         line++;
-        __asm__("" : "=r"(line) : "0"(line));
+        MATCHING_KEEP(line);
         {
             register DecodedHudLine* lastLine __asm__("$4") = line;
             register int xValue __asm__("$2");
-            __asm__("" : "=r"(lastLine) : "0"(lastLine));
+            MATCHING_KEEP(lastLine);
             lastLine->code = lineCode;
 
             lastLine->red = 0;
             lastLine->green = 0;
             lastLine->blue = defaultColour;
-            __asm__ volatile("" : : : "memory");
+            MATCHING_BARRIER_VOLATILE("memory");
             xValue = x;
             __asm__("" : "=r"(lastLine) : "0"(lastLine), "r"(xValue));
             quad = (DecodedHudQuad*)(lastLine + 1);
-            __asm__("" : "=r"(quad) : "0"(quad));
+            MATCHING_KEEP(quad);
             lastLine->tag = lineTag;
             lastLine->y0 = top;
             lastLine->y1 = defaultBottom;
@@ -653,7 +689,7 @@ int func_level_17_8007FEBC(HudEntry* argument) {
         quad->blue0 = quad->blue2 = 0;
         {
             int channel = -32 - hud->unk40 * 224 / 96;
-            __asm__("" : "=r"(channel) : "0"(channel));
+            MATCHING_KEEP(channel);
             quad->red1 = quad->red3 = channel;
             __asm__ volatile("" : : "m"(quad->red1), "m"(quad->red3));
         }
@@ -663,29 +699,29 @@ int func_level_17_8007FEBC(HudEntry* argument) {
             __asm__("" : "=r"(quad) : "0"(quad), "r"(numerator));
             greenChannel = numerator / 96;
             quad->blue1 = quad->blue3 = 0;
-            __asm__("" : "=r"(quad) : "0"(quad));
+            MATCHING_KEEP(quad);
             quad->green1 = quad->green3 = greenChannel;
         }
-        __asm__ volatile("" : : : "memory");
+        MATCHING_BARRIER_VOLATILE("memory");
         {
             register int currentX __asm__("$5") = x;
             register DecodedHudQuad* argument __asm__("$4");
             register int coordinate __asm__("$2");
             register int barCoordinate __asm__("$2");
             register int value __asm__("$3");
-            __asm__("" : : "r"(currentX) : "$4");
+            MATCHING_OBSERVE_CLOBBER(currentX, "$4");
             argument = quad;
-            __asm__("" : : "r"(argument));
+            MATCHING_OBSERVE(argument);
             coordinate = currentX;
             quad->x0 = quad->x2 = coordinate;
-            __asm__ volatile("" : : : "memory");
+            MATCHING_BARRIER_VOLATILE("memory");
             value = hud->unk40;
-            __asm__ volatile("" : : : "memory");
+            MATCHING_BARRIER_VOLATILE("memory");
             barCoordinate = (unsigned short)barY;
-            __asm__("" : "=r"(barCoordinate) : "0"(barCoordinate));
+            MATCHING_KEEP(barCoordinate);
             quad->y2 = quad->y3 = defaultBottom;
             value += currentX;
-            __asm__ volatile("" : "=r"(value) : "0"(value) : "memory");
+            MATCHING_KEEP_VOLATILE_CLOBBER(value, "memory");
             quad->y0 = quad->y1 = barCoordinate;
             quad->x1 = quad->x3 = value;
             func_8004E758(argument);
@@ -694,7 +730,7 @@ int func_level_17_8007FEBC(HudEntry* argument) {
         DecodedHudPacketCursor = (unsigned char*)quad;
         result = width + 116;
     }
-    __asm__("" : "=r"(result) : "0"(result));
+    MATCHING_KEEP(result);
     return result;
 }
 
@@ -705,8 +741,10 @@ void func_level_17_8008043C(HudEntry* hud) {
     if (hud->unk28 != 0) {
         value = *hud->unk28;
         maximum = hud->unk26;
-        if (value > maximum) value = maximum;
-        if (value < 0) value = 0;
+        if (value > maximum)
+            value = maximum;
+        if (value < 0)
+            value = 0;
         hud->unk40 = hud->unk42 = value * 96 / maximum;
     }
 }
@@ -716,15 +754,21 @@ void func_level_17_800804E4(HudEntry* hud) {
     if (hud->unk28 != 0) {
         value = *hud->unk28;
         maximum = hud->unk26;
-        if (value > maximum) value = maximum;
-        if (value < 0) value = 0;
+        if (value > maximum)
+            value = maximum;
+        if (value < 0)
+            value = 0;
         value = value * 96 / maximum;
-        if (value < 0) value = 0;
+        if (value < 0)
+            value = 0;
         current = hud->unk40;
         hud->unk42 = value;
-        if ((unsigned short)current < hud->unk42) hud->unk40 = current + 1;
-        else if (hud->unk42 < (unsigned short)current) hud->unk40 = current - 1;
-        if (*hud->unk28 > 0 && hud->unk40 == 0) hud->unk40 = 1;
+        if ((unsigned short)current < hud->unk42)
+            hud->unk40 = current + 1;
+        else if (hud->unk42 < (unsigned short)current)
+            hud->unk40 = current - 1;
+        if (*hud->unk28 > 0 && hud->unk40 == 0)
+            hud->unk40 = 1;
     }
     func_8002798C(hud);
 }

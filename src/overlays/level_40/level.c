@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "ovl_header.h"
 #include "mobyutil.h"
@@ -5,16 +6,18 @@
 #include "camera.h"
 #include "spyro.h"
 
-extern short D_80065920[],D_800658A0[];
+extern short D_80065920[], D_800658A0[];
 extern int D_8006C648;
-int func_8004E880(int,int,int);
-int func_8003613C(int,int);
-int func_8004F264(int,int);
-int func_8004F334(Vector3D*,Vector3D*);
-int func_8003585C(Moby*,int,int,int,int,int);
-int func_80035EE0(Moby*,int,int,int,int,int);
-int func_80035DDC(Moby*,int,int,int,int);
-int func_level_40_80082D2C(Moby* actor,Vector3D* center,int radius,int heading,int tolerance,int speed,int turnA,int turnB,int avoidA,int avoidB,int argA,int argB,int flags) {
+int func_8004E880(int, int, int);
+int func_8003613C(int, int);
+int func_8004F264(int, int);
+int func_8004F334(Vector3D*, Vector3D*);
+int func_8003585C(Moby*, int, int, int, int, int);
+int func_80035EE0(Moby*, int, int, int, int, int);
+int func_80035DDC(Moby*, int, int, int, int);
+int func_level_40_80082D2C(Moby* actor, Vector3D* center, int radius, int heading, int tolerance,
+                           int speed, int turnA, int turnB, int avoidA, int avoidB, int argA,
+                           int argB, int flags) {
     register Moby* current __asm__("$19");
     register Vector3D* target __asm__("$20");
     register int range __asm__("$23");
@@ -29,68 +32,85 @@ int func_level_40_80082D2C(Moby* actor,Vector3D* center,int radius,int heading,i
     int result;
     register int lowAngle __asm__("$16");
     Vector3D destination;
-    current=actor;
-    __asm__("" : "=r"(current) : "0"(current));
-    target=center;
-    __asm__("" : "=r"(target) : "0"(target));
-    range=radius;
-    __asm__("" : "=r"(range) : "0"(range));
-    initialHeading=heading;
-    __asm__("" : "=r"(initialHeading) : "0"(initialHeading));
-    rate=speed;
-    __asm__("" : "=r"(rate) : "0"(rate));
-    limit=tolerance;avoid=avoidA;
-    angle=func_8004E880(current->position.x-target->x,current->position.y-target->y,0);
-    error=func_8003613C(initialHeading,angle&0xFF);
-    distance=func_8004F334(&current->position,target);
-    absolute=error;
-    if(error<0)absolute=-absolute;
-    if(absolute<limit) {
-        int radial=distance-range;
-        if(radial<0)radial=range-distance;
-        if(radial<0xC8)goto done;
+    current = actor;
+    MATCHING_KEEP(current);
+    target = center;
+    MATCHING_KEEP(target);
+    range = radius;
+    MATCHING_KEEP(range);
+    initialHeading = heading;
+    MATCHING_KEEP(initialHeading);
+    rate = speed;
+    MATCHING_KEEP(rate);
+    limit = tolerance;
+    avoid = avoidA;
+    angle = func_8004E880(current->position.x - target->x, current->position.y - target->y, 0);
+    error = func_8003613C(initialHeading, angle & 0xFF);
+    distance = func_8004F334(&current->position, target);
+    absolute = error;
+    if (error < 0)
+        absolute = -absolute;
+    if (absolute < limit) {
+        int radial = distance - range;
+        if (radial < 0)
+            radial = range - distance;
+        if (radial < 0xC8)
+            goto done;
     }
-    if(avoid!=0xFF) {
-        lowAngle=angle&0xFF;
-        if(func_8004F264(lowAngle,avoid)<5) {
-            result=func_8003613C(avoid,lowAngle);
-            if(error<0 && result<0)return 0x100;
-            if(error>0 && result>0)return 0x100;
+    if (avoid != 0xFF) {
+        lowAngle = angle & 0xFF;
+        if (func_8004F264(lowAngle, avoid) < 5) {
+            result = func_8003613C(avoid, lowAngle);
+            if (error < 0 && result < 0)
+                return 0x100;
+            if (error > 0 && result > 0)
+                return 0x100;
         }
     }
-    if(avoidB!=0xFF) {
-        lowAngle=angle&0xFF;
-        if(func_8004F264(lowAngle,avoidB)<5) {
-            result=func_8003613C(avoidB,lowAngle);
-            if(error<0 && result<0)return 0x100;
-            if(error>0 && result>0)return 0x100;
+    if (avoidB != 0xFF) {
+        lowAngle = angle & 0xFF;
+        if (func_8004F264(lowAngle, avoidB) < 5) {
+            result = func_8003613C(avoidB, lowAngle);
+            if (error < 0 && result < 0)
+                return 0x100;
+            if (error > 0 && result > 0)
+                return 0x100;
         }
     }
-    if(error<0)angle+=3;else angle-=3;
+    if (error < 0)
+        angle += 3;
+    else
+        angle -= 3;
     {
-    register int lookup __asm__("$3")=angle&0xFF;
-    register int x __asm__("$7");
-    __asm__("" : "=r"(lookup) : "0"(lookup));
-    {register int product __asm__("$2")=(D_80065920[lookup]*range)>>12;
-    x=target->x;
-    __asm__("" : "=r"(product),"=r"(x) : "0"(product),"1"(x));
-    x+=product;}
-    destination.x=x;
-    destination.y=target->y+((D_800658A0[lookup]*range)>>12);
-    heading=func_8004E880(x-current->position.x,destination.y-current->position.y,0);
+        register int lookup __asm__("$3") = angle & 0xFF;
+        register int x __asm__("$7");
+        MATCHING_KEEP(lookup);
+        {
+            register int product __asm__("$2") = (D_80065920[lookup] * range) >> 12;
+            x = target->x;
+            MATCHING_KEEP2(product, x);
+            x += product;
+        }
+        destination.x = x;
+        destination.y = target->y + ((D_800658A0[lookup] * range) >> 12);
+        heading = func_8004E880(x - current->position.x, destination.y - current->position.y, 0);
     }
-    if(D_8006C648==3)rate+=rate>>1;
-    else if(D_8006C648==4)rate<<=1;
-    if(flags&8) {
-        result=func_8004E880(target->x-current->position.x,target->y-current->position.y,0);
-        func_8003585C(current,result,turnA,0,0,0);
-        result=func_80035EE0(current,heading,rate,argA,argB,flags);
+    if (D_8006C648 == 3)
+        rate += rate >> 1;
+    else if (D_8006C648 == 4)
+        rate <<= 1;
+    if (flags & 8) {
+        result = func_8004E880(target->x - current->position.x, target->y - current->position.y, 0);
+        func_8003585C(current, result, turnA, 0, 0, 0);
+        result = func_80035EE0(current, heading, rate, argA, argB, flags);
     } else {
-        if(!func_8003585C(current,heading,turnA,turnB,1,0))goto done;
-        result=func_80035DDC(current,rate,argA,argB,flags);
+        if (!func_8003585C(current, heading, turnA, turnB, 1, 0))
+            goto done;
+        result = func_80035DDC(current, rate, argA, argB, flags);
     }
-    if(result)return -result;
- done:
+    if (result)
+        return -result;
+done:
     return ABS(error);
 }
 
@@ -130,14 +150,19 @@ int rand(void);
  * they retain the original compiler's argument and temporary lifetimes.
  * AI generated; not yet human reviewed. See the batch provenance document.
  */
-void func_level_40_80083110(int count, int childClass, Moby* sourceMoby, Vector3D* offsets, int firstAnimation, int argument5) {
+void func_level_40_80083110(int count, int childClass, Moby* sourceMoby, Vector3D* offsets,
+                            int firstAnimation, int argument5) {
     Vector3D average;
     int reserved1C;
     Vector3D temporary;
     int reserved2C;
     Vector3D impulse;
     int reserved3C;
-    struct { int childClass; int reserved44; Vector3D* offsets; } saved;
+    struct {
+        int childClass;
+        int reserved44;
+        Vector3D* offsets;
+    } saved;
     int reservedStack[4];
     register int index __asm__("$19");
     register Moby* source __asm__("$18") = sourceMoby;
@@ -161,9 +186,9 @@ void func_level_40_80083110(int count, int childClass, Moby* sourceMoby, Vector3
     register Vector3D* offsetBase __asm__("$8");
     register int stackArgument4 __asm__("$8");
     register unsigned int stackArgument5 __asm__("$8");
-    __asm__("" : "=r"(source) : "0"(source));
+    MATCHING_KEEP(source);
     averageArgument = &average;
-    __asm__("" : : "r"(averageArgument));
+    MATCHING_OBSERVE(averageArgument);
     saved.childClass = childClass;
     saved.offsets = offsets;
     DecodedBatchZero(averageArgument);
@@ -190,17 +215,19 @@ void func_level_40_80083110(int count, int childClass, Moby* sourceMoby, Vector3
         DecodedBatchMode(source, modeArgument);
     }
     temporaryPtr = &temporary;
-    if (count <= 0) return;
+    if (count <= 0)
+        return;
     cosine = D_80065920;
     sine = D_800658A0;
     player = DecodedBatchPlayer;
     __asm__("" : "=r"(cosine) : "0"(cosine), "r"(sine), "r"(player), "r"(temporaryPtr));
     do {
         /* Capacity exhaustion ends the whole spawn request. */
-        if (D_8006C578 - D_8006C574 < 21) return;
+        if (D_8006C578 - D_8006C574 < 21)
+            return;
         __asm__("" : "=m"(saved) : "m"(saved));
         child = SpawnMoby(saved.childClass, source);
-        __asm__("" : "=r"(child) : "0"(child));
+        MATCHING_KEEP(child);
         copyArgument = temporaryPtr;
         if (child != 0) {
             offsetArgument = index * 12;
@@ -248,7 +275,7 @@ void func_level_40_80083110(int count, int childClass, Moby* sourceMoby, Vector3
                 tag[1] = (unsigned short)tag[1] + ((sine[source->unkb] * 75) >> 11);
                 randomLow = 40;
                 randomHigh = 70;
-randomZ:
+            randomZ:
                 tag[2] = (unsigned short)tag[2] + DecodedBatchRandom(randomLow, randomHigh);
                 goto finish;
             } else if (source->damageFlags & 0x40000) {
@@ -256,40 +283,47 @@ randomZ:
                 tag[1] = (unsigned short)tag[1] + (*(int*)(DecodedBatchPlayer + 0x90) >> 5);
                 goto finish;
             } else if (source->damageFlags & 0x2000000) {
-                sample0 = cosine[DecodedBatchAngle(child->position.x - *(int*)player, child->position.y - *(int*)(player + 4), 0)];
-                __asm__("" : "=r"(sample0) : "0"(sample0));
+                sample0 = cosine[DecodedBatchAngle(child->position.x - *(int*)player,
+                                                   child->position.y - *(int*)(player + 4), 0)];
+                MATCHING_KEEP(sample0);
                 impulse.x = sample0 >> 4;
-                sample0 = sine[DecodedBatchAngle(child->position.x - *(int*)player, child->position.y - *(int*)(player + 4), 0)];
-                __asm__("" : "=r"(sample0) : "0"(sample0));
+                sample0 = sine[DecodedBatchAngle(child->position.x - *(int*)player,
+                                                 child->position.y - *(int*)(player + 4), 0)];
+                MATCHING_KEEP(sample0);
                 impulseX = impulse.x;
                 impulse.y = sample0 >> 4;
                 impulse.z = 0;
                 __asm__("" : : "m"(impulse.z), "r"(impulseX));
-            } else if ((source->damageFlags & 0x20000) && (*(int*)(DecodedBatchPlayer + 0x50) == 4 || *(int*)(DecodedBatchPlayer + 0x50) == 12)) {
+            } else if ((source->damageFlags & 0x20000) &&
+                       (*(int*)(DecodedBatchPlayer + 0x50) == 4 ||
+                        *(int*)(DecodedBatchPlayer + 0x50) == 12)) {
                 tag[0] = (unsigned short)tag[0] + (*(int*)(DecodedBatchPlayer + 0x8C) >> 6);
                 tag[1] = (unsigned short)tag[1] + (*(int*)(DecodedBatchPlayer + 0x90) >> 6);
                 goto finish;
             } else {
-                if (source->mobyClass == 132) goto finish;
+                if (source->mobyClass == 132)
+                    goto finish;
                 angle = source->unkb;
-                if (angle == 0) angle = DecodedBatchAngle(child->position.x - *(int*)player, child->position.y - *(int*)(player + 4), 0);
+                if (angle == 0)
+                    angle = DecodedBatchAngle(child->position.x - *(int*)player,
+                                              child->position.y - *(int*)(player + 4), 0);
                 trigByteOffset = angle * 2;
-                __asm__("" : "=r"(trigByteOffset) : "0"(trigByteOffset));
+                MATCHING_KEEP(trigByteOffset);
                 sample0 = *(short*)(trigByteOffset + (unsigned int)cosine);
                 __asm__("" : "=r"(trigByteOffset) : "0"(trigByteOffset), "r"(sample0));
                 samplePointer = (short*)(trigByteOffset + (unsigned int)sine);
-                __asm__("" : "=r"(sample0), "=r"(samplePointer) : "0"(sample0), "1"(samplePointer));
+                MATCHING_KEEP2(sample0, samplePointer);
                 impulseX = (sample0 * 35) >> 10;
                 impulse.x = impulseX;
                 sample4 = *samplePointer;
-                __asm__("" : "=r"(sample4) : "0"(sample4));
+                MATCHING_KEEP(sample4);
                 impulse.y = (sample4 * 35) >> 10;
                 impulse.z = 0;
                 __asm__("" : : "m"(impulse.z), "r"(impulseX));
             }
             tag[0] = (unsigned short)tag[0] + impulseX;
             tag[1] = (unsigned short)tag[1] + impulse.y;
-finish:
+        finish:
             child->angle.roll = source->angle.roll;
             child->angle.pitch = source->angle.pitch;
             child->angle.yaw = source->angle.yaw;
@@ -301,13 +335,15 @@ finish:
             {
                 int lifetime = DecodedBatchRandom(30, 50);
                 register int animationArgument __asm__("$5");
-                __asm__("" : "=m"(firstAnimation), "=m"(argument5) : "m"(firstAnimation), "m"(argument5));
+                __asm__(""
+                        : "=m"(firstAnimation), "=m"(argument5)
+                        : "m"(firstAnimation), "m"(argument5));
                 stackArgument4 = *(int*)&firstAnimation;
                 tag[6] = lifetime;
                 tag[8] = 8;
                 animationArgument = stackArgument4 + index;
                 stackArgument5 = *(unsigned short*)&argument5;
-                __asm__("" : "=r"(stackArgument5) : "0"(stackArgument5));
+                MATCHING_KEEP(stackArgument5);
                 tag[9] = stackArgument5;
                 DecodedBatchAnimation(child, animationArgument);
             }
@@ -318,9 +354,18 @@ finish:
     } while (index < count);
 }
 
-typedef struct { Vector3D position; int reserved0C; } DecodedBlendPoint;
-typedef struct { short count, index; short reserved04[3], step; DecodedBlendPoint* points; } DecodedBlendPath;
-typedef struct { short current, previous; } DecodedBlendWeight;
+typedef struct {
+    Vector3D position;
+    int reserved0C;
+} DecodedBlendPoint;
+typedef struct {
+    short count, index;
+    short reserved04[3], step;
+    DecodedBlendPoint* points;
+} DecodedBlendPath;
+typedef struct {
+    short current, previous;
+} DecodedBlendWeight;
 extern DecodedBlendWeight DecodedBlendWeights[] __asm__("D_80066F0C");
 extern DecodedBlendWeight DecodedSingleWeight __asm__("D_8006C410");
 void func_8004F1C8(Vector3D*, Vector3D*, Vector3D*);
@@ -329,18 +374,32 @@ void func_8004F110(Vector3D*, int);
 int func_8004EDE8(Vector3D*, int);
 void func_80037014(Moby*);
 void func_80055D24(Moby*, int);
-int func_level_40_80083800(Moby* moby, DecodedBlendPath* path, Vector3D* previous,
-        int* timer, int period, int flags) {
-    struct { Vector3D delta; int reserved1C; Vector3D weightedPrevious; int reserved2C; } work;
+int func_level_40_80083800(Moby* moby, DecodedBlendPath* path, Vector3D* previous, int* timer,
+                           int period, int flags) {
+    struct {
+        Vector3D delta;
+        int reserved1C;
+        Vector3D weightedPrevious;
+        int reserved2C;
+    } work;
     DecodedBlendWeight* weights;
     int threshold;
     int result = 0;
     int flat;
     /* Retail selects weight-table blocks by the supplied period. */
-    if (period >= 9) { weights = DecodedBlendWeights + 10; threshold = 7; }
-    else if (period >= 7) { weights = DecodedBlendWeights + 4; threshold = 5; }
-    else if (period >= 5) { weights = DecodedBlendWeights; threshold = 3; }
-    else { weights = &DecodedSingleWeight; threshold = 1; }
+    if (period >= 9) {
+        weights = DecodedBlendWeights + 10;
+        threshold = 7;
+    } else if (period >= 7) {
+        weights = DecodedBlendWeights + 4;
+        threshold = 5;
+    } else if (period >= 5) {
+        weights = DecodedBlendWeights;
+        threshold = 3;
+    } else {
+        weights = &DecodedSingleWeight;
+        threshold = 1;
+    }
     if (*timer >= period) {
         short next;
         func_8004F1C8(&work.delta, &path->points[path->index].position, &moby->position);
@@ -348,8 +407,8 @@ int func_level_40_80083800(Moby* moby, DecodedBlendPath* path, Vector3D* previou
         next = (path->index + path->step + path->count) % path->count;
         path->index = next;
         result = 1;
-        if ((path->step < 0 && next == path->count - 1)
-                || (path->step > 0 && next == 0)) result |= 2;
+        if ((path->step < 0 && next == path->count - 1) || (path->step > 0 && next == 0))
+            result |= 2;
         *timer = 0;
     } else if (*timer > threshold) {
         int divisor;
@@ -358,13 +417,15 @@ int func_level_40_80083800(Moby* moby, DecodedBlendPath* path, Vector3D* previou
         func_8004F1C8(&work.delta, &path->points[path->index].position, &moby->position);
         /* Empty constraints retain the original subtraction and division allocation. */
         elapsed = *timer - 1;
-        __asm__("" : "=r"(elapsed) : "0"(elapsed));
+        MATCHING_KEEP(elapsed);
         divisor = period - elapsed;
         x = work.delta.x / divisor;
         y = work.delta.y / divisor;
         z = work.delta.z / divisor;
-        __asm__("" : "=r"(x), "=r"(y), "=r"(z) : "0"(x), "1"(y), "2"(z));
-        work.delta.x = x; work.delta.y = y; work.delta.z = z;
+        MATCHING_KEEP3(x, y, z);
+        work.delta.x = x;
+        work.delta.y = y;
+        work.delta.z = z;
         (*timer)++;
     } else {
         int divisor;
@@ -373,13 +434,15 @@ int func_level_40_80083800(Moby* moby, DecodedBlendPath* path, Vector3D* previou
         func_8004F1C8(&work.delta, &path->points[path->index].position, &moby->position);
         /* Empty constraints retain the original subtraction and division allocation. */
         elapsed = *timer - 1;
-        __asm__("" : "=r"(elapsed) : "0"(elapsed));
+        MATCHING_KEEP(elapsed);
         divisor = period - elapsed;
         x = work.delta.x / divisor;
         y = work.delta.y / divisor;
         z = work.delta.z / divisor;
-        __asm__("" : "=r"(x), "=r"(y), "=r"(z) : "0"(x), "1"(y), "2"(z));
-        work.delta.x = x; work.delta.y = y; work.delta.z = z;
+        MATCHING_KEEP3(x, y, z);
+        work.delta.x = x;
+        work.delta.y = y;
+        work.delta.z = z;
         func_8004F1FC(&work.delta, &work.delta, weights[*timer].current);
         func_8004F1FC(&work.weightedPrevious, previous, weights[*timer].previous);
         func_8004F194(&work.delta, &work.delta, &work.weightedPrevious);
@@ -388,11 +451,13 @@ int func_level_40_80083800(Moby* moby, DecodedBlendPath* path, Vector3D* previou
     }
     /* Bit 2 clears the vertical displacement and gates the extra actor helper. */
     flat = flags & 4;
-    if (flat) work.delta.z = 0;
+    if (flat)
+        work.delta.z = 0;
     moby->angle.yaw = func_8004E880(work.delta.x, work.delta.y, 0);
     moby->angle.pitch = -func_8004E880(work.delta.z, func_8004EDE8(&work.delta, 0), 0) + 0x40;
     func_8004F194(&moby->position, &moby->position, &work.delta);
-    if (flat) func_80037014(moby);
+    if (flat)
+        func_80037014(moby);
     func_80055D24(moby, 2);
     return result;
 }
@@ -412,13 +477,14 @@ void func_level_40_80083C08(int selectorArg, Vector3D* positionArg) {
     register unsigned int byteOffset __asm__("$11");
     int reservedStack[2];
     /* Empty constraints preserve retail allocation and emit no instructions. */
-    __asm__("" : "=r"(position) : "0"(position));
-    __asm__("" : "=r"(selector) : "0"(selector));
+    MATCHING_KEEP(position);
+    MATCHING_KEEP(selector);
     index = 0;
     if (D_8006C77C > 0) {
         byteOffset = 0;
         do {
-            DecodedPackedPosition* entry = (DecodedPackedPosition*)(byteOffset + (unsigned int)D_8006C724);
+            DecodedPackedPosition* entry =
+                (DecodedPackedPosition*)(byteOffset + (unsigned int)D_8006C724);
             if (entry->selector == (selector & 255)) {
                 register unsigned int mask __asm__("$7") = 0x1FFFF;
                 register unsigned int* packet __asm__("$6");
@@ -431,11 +497,12 @@ void func_level_40_80083C08(int selectorArg, Vector3D* positionArg) {
                 unsigned int packetFlags;
                 int firstZ;
                 register unsigned int retainedWord __asm__("$8");
-                __asm__("" : "=r"(mask) : "0"(mask));
+                MATCHING_KEEP(mask);
                 packet = D_8006D048[entry->packetIndex];
                 nextX = entry->nextX;
                 offsetZ = position->z >> 4;
-                packedXY = ((nextX + (position->x >> 4)) << 16) | ((entry->nextY + (position->y >> 4)) & 65535);
+                packedXY = ((nextX + (position->x >> 4)) << 16) |
+                           ((entry->nextY + (position->y >> 4)) & 65535);
                 preservedHalf = *(unsigned short*)((char*)packet + 4);
                 nextZ = entry->nextZ;
                 packet[0] = packedXY;
@@ -443,14 +510,15 @@ void func_level_40_80083C08(int selectorArg, Vector3D* positionArg) {
                 /* Retail rereads the table base between these packet stores. */
                 firstEntry = D_8006C724;
                 packetFlags = packet[3];
-                __asm__ volatile("" ::: "memory");
+                MATCHING_BARRIER_VOLATILE("memory");
                 firstEntry = (DecodedPackedPosition*)(byteOffset + (unsigned int)firstEntry);
-                __asm__("" : "=r"(firstEntry), "=r"(preservedHalf) : "0"(firstEntry), "1"(preservedHalf) : "memory");
+                MATCHING_KEEP2_CLOBBER(firstEntry, preservedHalf, "memory");
                 __asm__ volatile("" : "=r"(retainedWord) : "0"(packedXY));
                 packet[1] = preservedHalf;
                 /* Preserve the low 17 bits when packing the first Z value. */
                 preservedHalf = packetFlags & mask;
-                packedXY = ((firstEntry->x + (position->x >> 4)) << 16) | ((firstEntry->y + (position->y >> 4)) & 65535);
+                packedXY = ((firstEntry->x + (position->x >> 4)) << 16) |
+                           ((firstEntry->y + (position->y >> 4)) & 65535);
                 firstZ = firstEntry->z + (position->z >> 5);
                 packet[2] = packedXY;
                 preservedHalf |= firstZ << 17;

@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "spyro.h"
 #include "drawutil.h"
@@ -78,7 +79,8 @@ void func_cutscene_74_800765C0() {}
 
 
 
-extern int D_8006C58C,D_8006EDD8,D_8006E470,D_8006E344,D_8006C718,D_8006EDDC,D_8006EDE0,D_8006C5BC,D_8006EE14,D_8006C578;
+extern int D_8006C58C, D_8006EDD8, D_8006E470, D_8006E344, D_8006C718, D_8006EDDC, D_8006EDE0,
+    D_8006C5BC, D_8006EE14, D_8006C578;
 extern WadHeader D_8006D8D8;
 extern unsigned char* D_800722CC;
 extern unsigned char* D_800722D0;
@@ -88,36 +90,52 @@ extern unsigned char* D_8006C7E0;
 extern int* D_8006C6A0;
 extern Moby* D_8006C704;
 extern Moby* D_8006C610;
-extern unsigned char D_8006E33C,D_8006E33D,D_8006E33E,D_8006FC15,D_8006FC16,D_8006FC17,D_8006FC89,D_8006FC8A,D_8006FC8B;
-void func_cutscene_74_80076D30(unsigned char*,int);
-void func_cutscene_74_80076FE0(unsigned char*,int,int);
+extern unsigned char D_8006E33C, D_8006E33D, D_8006E33E, D_8006FC15, D_8006FC16, D_8006FC17,
+    D_8006FC89, D_8006FC8A, D_8006FC8B;
+void func_cutscene_74_80076D30(unsigned char*, int);
+void func_cutscene_74_80076FE0(unsigned char*, int, int);
 int func_cutscene_74_800765C8(int mode) {
     unsigned char* base;
     int i;
-    int* state=&D_8006EDD8;
-    *state=mode;
-    if(!D_8006D8D8.cutscene[D_8006C58C].mdls.size)return 0;
-    base=D_800722CC;
-    CDLoadSync(D_8006E470,base,0x800,D_8006D8D8.cutscene[D_8006C58C].mdls.offset);
-    D_8006E344=6;D_8006C718=1;
+    int* state = &D_8006EDD8;
+    *state = mode;
+    if (!D_8006D8D8.cutscene[D_8006C58C].mdls.size)
+        return 0;
+    base = D_800722CC;
+    CDLoadSync(D_8006E470, base, 0x800, D_8006D8D8.cutscene[D_8006C58C].mdls.offset);
+    D_8006E344 = 6;
+    D_8006C718 = 1;
     func_8001FB10(0x1C000);
-    func_cutscene_74_80076D30(base,1);
-    D_8006EDDC=0;D_8006EDE0=0;
-    func_cutscene_74_80076FE0(D_8006EE08,0,1);
-    D_8006FC15=D_8006E33C;D_8006FC16=D_8006E33D;D_8006FC17=D_8006E33E;
-    D_8006FC89=D_8006E33C;D_8006FC8A=D_8006E33D;D_8006FC8B=D_8006E33E;
-    if(D_8006C5BC>=0x3C) {func_8002B768((Particle*)(D_800722D0-0x2004));
-    D_8006C7E0=D_8006C554-0x1000;
-    func_8004E790(D_8006C7E0,0,0x1000);
+    func_cutscene_74_80076D30(base, 1);
+    D_8006EDDC = 0;
+    D_8006EDE0 = 0;
+    func_cutscene_74_80076FE0(D_8006EE08, 0, 1);
+    D_8006FC15 = D_8006E33C;
+    D_8006FC16 = D_8006E33D;
+    D_8006FC17 = D_8006E33E;
+    D_8006FC89 = D_8006E33C;
+    D_8006FC8A = D_8006E33D;
+    D_8006FC8B = D_8006E33E;
+    if (D_8006C5BC >= 0x3C) {
+        func_8002B768((Particle*)(D_800722D0 - 0x2004));
+        D_8006C7E0 = D_8006C554 - 0x1000;
+        func_8004E790(D_8006C7E0, 0, 0x1000);
     }
-    func_8004E7D4(state+0x10,D_8006C6A0,0x14);
-    {int* entry=D_8006C6A0;
-    entry[0]=0x1010;((short*)entry)[3]=0x2FFF;((short*)entry)[6]=0x7F8;((short*)entry)[7]=0x7F8;((unsigned char*)entry)[0x10]=1;}
-    D_8006EE14=-1;
-    *((int*)((char*)&spyro+0x288))=1;
-    D_8006C610=D_8006C704;
-    func_8004E790(D_8006C704,0,(D_8006C578+1)*sizeof(Moby));
-    for(i=0;i<D_8006C578+1;i++)D_8006C610[i].state=0xFF;
+    func_8004E7D4(state + 0x10, D_8006C6A0, 0x14);
+    {
+        int* entry = D_8006C6A0;
+        entry[0] = 0x1010;
+        ((short*)entry)[3] = 0x2FFF;
+        ((short*)entry)[6] = 0x7F8;
+        ((short*)entry)[7] = 0x7F8;
+        ((unsigned char*)entry)[0x10] = 1;
+    }
+    D_8006EE14 = -1;
+    *((int*)((char*)&spyro + 0x288)) = 1;
+    D_8006C610 = D_8006C704;
+    func_8004E790(D_8006C704, 0, (D_8006C578 + 1) * sizeof(Moby));
+    for (i = 0; i < D_8006C578 + 1; i++)
+        D_8006C610[i].state = 0xFF;
     return 1;
 }
 
@@ -129,128 +147,215 @@ extern int D_8006EE18[];
 void func_cutscene_74_80076820(void) {
     register int type __asm__("$4");
     int level;
-    func_8004E7D4((int*)D_8006EE2C,D_8006EE10,D_8006EDFC*4);
-    if(*((unsigned char*)&g_CheatFlags+5)) {
-        func_800584BC(0,*((unsigned char*)&g_CheatFlags+5));
-        *((unsigned char*)&g_CheatFlags+5)=0;
+    func_8004E7D4((int*)D_8006EE2C, D_8006EE10, D_8006EDFC * 4);
+    if (*((unsigned char*)&g_CheatFlags + 5)) {
+        func_800584BC(0, *((unsigned char*)&g_CheatFlags + 5));
+        *((unsigned char*)&g_CheatFlags + 5) = 0;
         return;
     }
-    switch(D_8006EDD8) {
-    case 0:func_8004E7D4(D_8006C6A0,D_8006EE18,0x14);return;
-    case 1:type=6; __asm__("" : "=r"(type) : "0"(type), "i"(1)); level=0x4B;break;
-    case 2:type=6; __asm__("" : "=r"(type) : "0"(type), "i"(2)); level=0x4C;break;
-    case 3:type=0; __asm__("" : "=r"(type) : "0"(type), "i"(3)); level=0xA;break;
-    case 4:type=0; __asm__("" : "=r"(type) : "0"(type), "i"(4)); level=0x11;break;
-    case 5:type=0; __asm__("" : "=r"(type) : "0"(type), "i"(5)); level=0x1B;break;
-    case 6:type=0; __asm__("" : "=r"(type) : "0"(type), "i"(6)); level=0x25;break;
-    case 7:type=0; __asm__("" : "=r"(type) : "0"(type), "i"(7)); level=0xA;break;
-    case 8:type=0; __asm__("" : "=r"(type) : "0"(type), "i"(8)); level=0x14;break;
-    case 9:type=0; __asm__("" : "=r"(type) : "0"(type), "i"(9)); level=0x1E;break;
-    case 10:type=0; __asm__("" : "=r"(type) : "0"(type), "i"(10)); level=0x28;break;
-    case 11:type=0; __asm__("" : "=r"(type) : "0"(type), "i"(11)); level=0xA;break;
-    case 12:type=0; __asm__("" : "=r"(type) : "0"(type), "i"(12)); level=0x14;break;
-    case 13:type=0; __asm__("" : "=r"(type) : "0"(type), "i"(13)); level=0x1E;break;
-    case 18:case 19:D_8006E344=0x13;return;
-    case 14:type=0; __asm__("" : "=r"(type) : "0"(type), "i"(14)); level=0x28;break;
-    case 15:type=6; __asm__("" : "=r"(type) : "0"(type), "i"(15)); level=0x46;break;
-    case 16:type=6; __asm__("" : "=r"(type) : "0"(type), "i"(16)); level=0x47;break;
-    case 17:type=6; __asm__("" : "=r"(type) : "0"(type), "i"(17)); level=0x49;break;
-    default:return;
+    switch (D_8006EDD8) {
+        case 0:
+            func_8004E7D4(D_8006C6A0, D_8006EE18, 0x14);
+            return;
+        case 1:
+            type = 6;
+            __asm__("" : "=r"(type) : "0"(type), "i"(1));
+            level = 0x4B;
+            break;
+        case 2:
+            type = 6;
+            __asm__("" : "=r"(type) : "0"(type), "i"(2));
+            level = 0x4C;
+            break;
+        case 3:
+            type = 0;
+            __asm__("" : "=r"(type) : "0"(type), "i"(3));
+            level = 0xA;
+            break;
+        case 4:
+            type = 0;
+            __asm__("" : "=r"(type) : "0"(type), "i"(4));
+            level = 0x11;
+            break;
+        case 5:
+            type = 0;
+            __asm__("" : "=r"(type) : "0"(type), "i"(5));
+            level = 0x1B;
+            break;
+        case 6:
+            type = 0;
+            __asm__("" : "=r"(type) : "0"(type), "i"(6));
+            level = 0x25;
+            break;
+        case 7:
+            type = 0;
+            __asm__("" : "=r"(type) : "0"(type), "i"(7));
+            level = 0xA;
+            break;
+        case 8:
+            type = 0;
+            __asm__("" : "=r"(type) : "0"(type), "i"(8));
+            level = 0x14;
+            break;
+        case 9:
+            type = 0;
+            __asm__("" : "=r"(type) : "0"(type), "i"(9));
+            level = 0x1E;
+            break;
+        case 10:
+            type = 0;
+            __asm__("" : "=r"(type) : "0"(type), "i"(10));
+            level = 0x28;
+            break;
+        case 11:
+            type = 0;
+            __asm__("" : "=r"(type) : "0"(type), "i"(11));
+            level = 0xA;
+            break;
+        case 12:
+            type = 0;
+            __asm__("" : "=r"(type) : "0"(type), "i"(12));
+            level = 0x14;
+            break;
+        case 13:
+            type = 0;
+            __asm__("" : "=r"(type) : "0"(type), "i"(13));
+            level = 0x1E;
+            break;
+        case 18:
+        case 19:
+            D_8006E344 = 0x13;
+            return;
+        case 14:
+            type = 0;
+            __asm__("" : "=r"(type) : "0"(type), "i"(14));
+            level = 0x28;
+            break;
+        case 15:
+            type = 6;
+            __asm__("" : "=r"(type) : "0"(type), "i"(15));
+            level = 0x46;
+            break;
+        case 16:
+            type = 6;
+            __asm__("" : "=r"(type) : "0"(type), "i"(16));
+            level = 0x47;
+            break;
+        case 17:
+            type = 6;
+            __asm__("" : "=r"(type) : "0"(type), "i"(17));
+            level = 0x49;
+            break;
+        default:
+            return;
     }
-    func_800584BC(type,level);
+    func_800584BC(type, level);
 }
 
-extern int D_8006EDDC,D_8006EDE0,D_8006EDE4,D_8006EDE8,D_8006EDEC,D_8006EDF0,D_8006EE14,D_8006C648,D_8006C598,D_8006E53C,D_8006E470,D_8006C58C;
+extern int D_8006EDDC, D_8006EDE0, D_8006EDE4, D_8006EDE8, D_8006EDEC, D_8006EDF0, D_8006EE14,
+    D_8006C648, D_8006C598, D_8006E53C, D_8006E470, D_8006C58C;
 extern int* D_8006EDF4;
 extern int* D_8006EDF8;
 extern WadHeader D_8006D8D8;
 void func_cutscene_74_80076820(void);
-void func_cutscene_74_80076FE0(unsigned char*,int,int);
+void func_cutscene_74_80076FE0(unsigned char*, int, int);
 void func_cutscene_74_800771C0(void);
 void func_cutscene_74_800769BC(void) {
-    register int* tick __asm__("$4")=&D_8006EDDC;
+    register int* tick __asm__("$4") = &D_8006EDDC;
     register int total __asm__("$5");
     register int* pending __asm__("$16");
-    __asm__("" : "=r"(tick) : "0"(tick));
-    total=tick[4];
-    *tick+=D_8006C648;
-    if(*tick>total-1)*tick=total-1;
+    MATCHING_KEEP(tick);
+    total = tick[4];
+    *tick += D_8006C648;
+    if (*tick > total - 1)
+        *tick = total - 1;
     {
-        register int current __asm__("$4")=*tick;
-        if(current<0x14) {
-            D_8006C598=(0xF-current)<<4;
-            if(D_8006C598<0)D_8006C598=0;
+        register int current __asm__("$4") = *tick;
+        if (current < 0x14) {
+            D_8006C598 = (0xF - current) << 4;
+            if (D_8006C598 < 0)
+                D_8006C598 = 0;
         } else {
-            register int remaining __asm__("$3")=total;
-            __asm__("" : "=r"(remaining) : "0"(remaining));
-            if(current>remaining-0xA) {
-                remaining-=current;
-                D_8006C598=(0xA-remaining)<<5;
-            } else if(D_8006C598)D_8006C598+=0x20;
-            else if(current>=0x78) {
-                register int boundary __asm__("$2")=total-0x20;
-                boundary=current<boundary;
-                __asm__("" : "=r"(boundary) : "0"(boundary));
-                if(boundary && (D_8006E53C&0x940))D_8006C598=0x20;
+            register int remaining __asm__("$3") = total;
+            MATCHING_KEEP(remaining);
+            if (current > remaining - 0xA) {
+                remaining -= current;
+                D_8006C598 = (0xA - remaining) << 5;
+            } else if (D_8006C598)
+                D_8006C598 += 0x20;
+            else if (current >= 0x78) {
+                register int boundary __asm__("$2") = total - 0x20;
+                boundary = current < boundary;
+                MATCHING_KEEP(boundary);
+                if (boundary && (D_8006E53C & 0x940))
+                    D_8006C598 = 0x20;
             }
         }
     }
-    if(D_8006C598>=0xFF) {
-        D_8006C598=0xFF;
-        func_cutscene_74_80076820();return;
+    if (D_8006C598 >= 0xFF) {
+        D_8006C598 = 0xFF;
+        func_cutscene_74_80076820();
+        return;
     }
-    if(D_8006EDDC>=2) {
-        if(D_8006EE14<0)D_8006EE14=PlaySound(0,0,4);
-        else func_8003C140(D_8006EE14,(0x100-D_8006C598)*24);
+    if (D_8006EDDC >= 2) {
+        if (D_8006EE14 < 0)
+            D_8006EE14 = PlaySound(0, 0, 4);
+        else
+            func_8003C140(D_8006EE14, (0x100 - D_8006C598) * 24);
     }
-    pending=&D_8006EDE8;
-    __asm__("" : "=r"(pending) : "0"(pending));
-    if(*pending<0 && !CDLoadTime()) {
-        int next=D_8006EDE0+1;
+    pending = &D_8006EDE8;
+    MATCHING_KEEP(pending);
+    if (*pending < 0 && !CDLoadTime()) {
+        int next = D_8006EDE0 + 1;
         {
-            int offset=(next&1)<<2;
-            register unsigned int address __asm__("$2")=(unsigned int)pending+offset;
-            __asm__("" : "=r"(address) : "0"(address));
-            func_cutscene_74_80076FE0(*(unsigned char**)(address+0x20),next,1);
+            int offset = (next & 1) << 2;
+            register unsigned int address __asm__("$2") = (unsigned int)pending + offset;
+            MATCHING_KEEP(address);
+            func_cutscene_74_80076FE0(*(unsigned char**)(address + 0x20), next, 1);
         }
     }
     {
-        register int current __asm__("$4")=D_8006EDDC;
-        int quotient=current/0x78;
-        int remainder=current%0x78;
-        register int* frame __asm__("$7")=&D_8006EDE0;
-        register int delta __asm__("$5")=D_8006C648;
-        __asm__("" : "=r"(frame) : "0"(frame),"r"(current),"r"(delta));
-        *frame=quotient;D_8006EDE4=remainder;
-        if(remainder<delta && D_8006EDE8<quotient) {
-            current-=delta;
-            D_8006EDDC=current;
-            {int nextQuotient=current/0x78;int nextRemainder=current%0x78;
-            *frame=nextQuotient;D_8006EDE4=nextRemainder;}
+        register int current __asm__("$4") = D_8006EDDC;
+        int quotient = current / 0x78;
+        int remainder = current % 0x78;
+        register int* frame __asm__("$7") = &D_8006EDE0;
+        register int delta __asm__("$5") = D_8006C648;
+        __asm__("" : "=r"(frame) : "0"(frame), "r"(current), "r"(delta));
+        *frame = quotient;
+        D_8006EDE4 = remainder;
+        if (remainder < delta && D_8006EDE8 < quotient) {
+            current -= delta;
+            D_8006EDDC = current;
+            {
+                int nextQuotient = current / 0x78;
+                int nextRemainder = current % 0x78;
+                *frame = nextQuotient;
+                D_8006EDE4 = nextRemainder;
+            }
             func_8003BEDC();
         }
     }
     {
-    register int next __asm__("$5");
-    register int* cursor __asm__("$6")=&D_8006EDE4;
-    __asm__("" : "=r"(cursor) : "0"(cursor));
-    if(*cursor && D_8006C648>=*cursor && (next=D_8006EDE0+1)<D_8006EDF0) {
-        int index=next-1;
-        D_8006EDE8=-1;
-        __asm__("" : : : "memory");
-        {
-        int offset=(next&1)<<2;
-        register unsigned int address __asm__("$2")=(unsigned int)cursor+offset;
-        __asm__("" : "=r"(address) : "0"(address));
-        CDLoadAsync(D_8006E470,*(unsigned char**)(address+0x24),
-            D_8006EDF8[index+1],D_8006D8D8.cutscene[D_8006C58C].mdls.offset+D_8006EDF4[index+1]);
+        register int next __asm__("$5");
+        register int* cursor __asm__("$6") = &D_8006EDE4;
+        MATCHING_KEEP(cursor);
+        if (*cursor && D_8006C648 >= *cursor && (next = D_8006EDE0 + 1) < D_8006EDF0) {
+            int index = next - 1;
+            D_8006EDE8 = -1;
+            MATCHING_BARRIER("memory");
+            {
+                int offset = (next & 1) << 2;
+                register unsigned int address __asm__("$2") = (unsigned int)cursor + offset;
+                MATCHING_KEEP(address);
+                CDLoadAsync(D_8006E470, *(unsigned char**)(address + 0x24), D_8006EDF8[index + 1],
+                            D_8006D8D8.cutscene[D_8006C58C].mdls.offset + D_8006EDF4[index + 1]);
+            }
         }
     }
-    }
     {
-        register int* localFrame __asm__("$3")=&D_8006EDE4;
-        __asm__("" : "=r"(localFrame) : "0"(localFrame));
-        *localFrame&=0xFE;
+        register int* localFrame __asm__("$3") = &D_8006EDE4;
+        MATCHING_KEEP(localFrame);
+        *localFrame &= 0xFE;
         func_cutscene_74_800771C0();
     }
 }
@@ -290,16 +395,15 @@ void func_cutscene_74_80076D30(unsigned char* base, int load) {
     D_8006EE0C = base + offset + length;
     cursor += firstCount;
     if (load) {
-        CDLoadSync(D_8006E470, base + 0x800,
-            offset + *D_8006EDF8 - 0x800,
-            D_8006D8D8.cutscene[D_8006C58C].mdls.offset + 0x800);
+        CDLoadSync(D_8006E470, base + 0x800, offset + *D_8006EDF8 - 0x800,
+                   D_8006D8D8.cutscene[D_8006C58C].mdls.offset + 0x800);
     }
     actorOffset = *cursor++;
-    __asm__ volatile("" : "=r"(cursor), "=r"(actorOffset) : "0"(cursor), "1"(actorOffset) : "memory");
+    MATCHING_KEEP2_VOLATILE_CLOBBER(cursor, actorOffset, "memory");
     modelTable = D_8006EE2C;
     {
         register int copyOffset __asm__("$4") = D_8006EE00;
-        __asm__ volatile("" : : "r"(copyOffset) : "memory");
+        MATCHING_OBSERVE_VOLATILE_CLOBBER(copyOffset, "memory");
         byteLength = D_8006EDFC * 4;
         copyStart = (int*)(base + copyOffset - byteLength);
     }
@@ -319,8 +423,10 @@ void func_cutscene_74_80076D30(unsigned char* base, int load) {
             if (header->count < 0) {
                 func_8002AF9C((int*)header, index, (int*)0x80800000);
             } else {
-                if (header->offset34 != 0) header->offset34 = (unsigned int)header + header->offset34;
-                if ((*entry)->offset38 != 0) (*entry)->offset38 = (unsigned int)*entry + (*entry)->offset38;
+                if (header->offset34 != 0)
+                    header->offset34 = (unsigned int)header + header->offset34;
+                if ((*entry)->offset38 != 0)
+                    (*entry)->offset38 = (unsigned int)*entry + (*entry)->offset38;
             }
             actor = (Moby*)(byteOffset + (unsigned int)D_8006C550);
             retainedHalfword = actor->distanceToGround;
@@ -329,15 +435,17 @@ void func_cutscene_74_80076D30(unsigned char* base, int load) {
                 register int lowDistance __asm__("$2") = 0x20;
                 __asm__ volatile("" : "=r"(lowDistance) : "0"(lowDistance), "r"(retainedHalfword));
                 entry++;
-            {
-                register Moby* current __asm__("$3") = (Moby*)(byteOffset + (unsigned int)D_8006C550);
-                current->lowDrawDistance = lowDistance;
-                current->mobyClass = index;
-            }
+                {
+                    register Moby* current __asm__("$3") =
+                        (Moby*)(byteOffset + (unsigned int)D_8006C550);
+                    current->lowDrawDistance = lowDistance;
+                    current->mobyClass = index;
+                }
             }
             ((Moby*)(byteOffset + (unsigned int)D_8006C550))->highDrawDistance = 0x40;
             {
-                register Moby* current __asm__("$3") = (Moby*)(byteOffset + (unsigned int)D_8006C550);
+                register Moby* current __asm__("$3") =
+                    (Moby*)(byteOffset + (unsigned int)D_8006C550);
                 current->subtype = 0xFF;
             }
             {
@@ -347,7 +455,7 @@ void func_cutscene_74_80076D30(unsigned char* base, int load) {
                 current = (Moby*)(byteOffset + (unsigned int)current);
                 current->distanceToGround = retainedHalfword;
             }
-            __asm__ volatile("" : : : "memory");
+            MATCHING_BARRIER_VOLATILE("memory");
             byteOffset += sizeof(Moby);
         } while (index < D_8006EDFC);
     }
@@ -371,11 +479,16 @@ void func_cutscene_74_80076FE0(unsigned char* base, int recordIndex, int mode) {
     D_8006EDE8 = recordIndex;
     archive = (DecodedArchiveEntry*)(base + D_8006C76C * 8);
     length = archive->length;
-    if (mode != 0) address = length * (recordIndex & 1) + 0x1010;
-    else { address = 0x21010; address += length * recordIndex; }
+    if (mode != 0)
+        address = length * (recordIndex & 1) + 0x1010;
+    else {
+        address = 0x21010;
+        address += length * recordIndex;
+    }
     func_80064A2C(address);
     func_80064A8C(base + archive->offset, length);
-    while (func_80064AEC(0) == 0) {}
+    while (func_80064AEC(0) == 0) {
+    }
     index = 0;
     initialCount = &D_8006EDFC;
     if (*initialCount > 0) {
@@ -387,21 +500,28 @@ void func_cutscene_74_80076FE0(unsigned char* base, int recordIndex, int mode) {
         entry = D_8006EE2C;
         do {
             if ((int)*entry < 0 && recordIndex < (*entry)->count) {
-                (*entry)->records[recordIndex] = (unsigned int)base + (*entry)->records[recordIndex];
-                ((DecodedRelocationRecord*)(*entry)->records[recordIndex])->offset0C = (unsigned int)base + ((DecodedRelocationRecord*)(*entry)->records[recordIndex])->offset0C;
+                (*entry)->records[recordIndex] =
+                    (unsigned int)base + (*entry)->records[recordIndex];
+                ((DecodedRelocationRecord*)(*entry)->records[recordIndex])->offset0C =
+                    (unsigned int)base +
+                    ((DecodedRelocationRecord*)(*entry)->records[recordIndex])->offset0C;
                 {
                     DecodedRelocationHeader* header = *entry;
-                    DecodedRelocationRecord* record = (DecodedRelocationRecord*)header->records[recordIndex];
+                    DecodedRelocationRecord* record =
+                        (DecodedRelocationRecord*)header->records[recordIndex];
                     record->offset10 = (unsigned int)header + record->offset10;
                 }
                 {
                     DecodedRelocationHeader* header = *entry;
-                    DecodedRelocationRecord* record = (DecodedRelocationRecord*)header->records[recordIndex];
+                    DecodedRelocationRecord* record =
+                        (DecodedRelocationRecord*)header->records[recordIndex];
                     record->offset14 = (unsigned int)header + record->offset14;
                 }
                 ((DecodedRelocationRecord*)(*entry)->records[recordIndex])->unk18 = 0;
                 ((DecodedRelocationRecord*)(*entry)->records[recordIndex])->unk1C = 0;
-                ((DecodedRelocationRecord*)(*entry)->records[recordIndex])->offset20 = (unsigned int)base + ((DecodedRelocationRecord*)(*entry)->records[recordIndex])->offset20;
+                ((DecodedRelocationRecord*)(*entry)->records[recordIndex])->offset20 =
+                    (unsigned int)base +
+                    ((DecodedRelocationRecord*)(*entry)->records[recordIndex])->offset20;
             }
             currentCount = *count;
             /* Preserve the retail load before the loop increment, without emitting code. */
@@ -413,12 +533,18 @@ void func_cutscene_74_80076FE0(unsigned char* base, int recordIndex, int mode) {
 }
 
 typedef struct {
-    Vector3D first; int reserved1C;
-    Vector3D second; int reserved2C;
-    Vector3D difference; int reserved3C;
-    Vector3D firstAngles; int reserved4C;
-    Vector3D temporary; int reserved5C;
-    Vector3D secondAngles; int reserved6C;
+    Vector3D first;
+    int reserved1C;
+    Vector3D second;
+    int reserved2C;
+    Vector3D difference;
+    int reserved3C;
+    Vector3D firstAngles;
+    int reserved4C;
+    Vector3D temporary;
+    int reserved5C;
+    Vector3D secondAngles;
+    int reserved6C;
 } DecodedCutsceneSamples;
 extern int DecodedCutsceneDelta __asm__("D_8006C648");
 extern volatile int DecodedCutsceneFrame __asm__("D_8006EDE0");
@@ -471,7 +597,7 @@ void func_cutscene_74_800771C0(void) {
     DecodedCutsceneBeginModels();
     {
         register volatile int* count __asm__("$3") = &DecodedCutsceneCount;
-        __asm__("" : "=r"(count) : "0"(count));
+        MATCHING_KEEP(count);
         actorOffset = 0;
         if (*count > 0) {
             int loopCount;
@@ -489,7 +615,7 @@ void func_cutscene_74_800771C0(void) {
                     register int duration __asm__("$5");
                     {
                         register volatile int* frame __asm__("$4") = &DecodedCutsceneFrame;
-                        __asm__("" : "=r"(frame) : "0"(frame));
+                        MATCHING_KEEP(frame);
                         DECODED_CUTSCENE_ACTOR->animationState.id = *frame;
                         DECODED_CUTSCENE_ACTOR->animationState.nextId = *frame;
                         header = *modelCursor;
@@ -513,7 +639,7 @@ void func_cutscene_74_800771C0(void) {
                     } else {
                         register int frameTick __asm__("$9");
                         register int countMinusOne __asm__("$2") = *record - 1;
-                        __asm__("" : "=r"(countMinusOne) : "0"(countMinusOne));
+                        MATCHING_KEEP(countMinusOne);
                         selected = 0;
                         if (countMinusOne > 0) {
                             frameTick = *tick;
@@ -521,23 +647,27 @@ void func_cutscene_74_800771C0(void) {
                             __asm__("" : "=r"(last) : "0"(last), "r"(frameTick));
                             do {
                                 {
-                                    register int packedDuration __asm__("$2") = *(int*)(record + 0x28) & 0x1E00;
-                                    __asm__("" : "=r"(packedDuration) : "0"(packedDuration));
+                                    register int packedDuration __asm__("$2") =
+                                        *(int*)(record + 0x28) & 0x1E00;
+                                    MATCHING_KEEP(packedDuration);
                                     duration = (packedDuration >> 9) + 1;
                                 }
                                 if (frameTick < elapsed + duration) {
                                     DECODED_CUTSCENE_ACTOR->animationState.frame = selected;
                                     {
-                                        register Moby* frameActor __asm__("$2") = DecodedCutsceneMobys;
+                                        register Moby* frameActor __asm__("$2") =
+                                            DecodedCutsceneMobys;
                                         register int nextFrame __asm__("$3");
                                         __asm__ __volatile__("" : : : "$3", "memory");
                                         nextFrame = selected + 1;
-                                        __asm__("" : "=r"(nextFrame) : "0"(nextFrame));
-                                        frameActor = (Moby*)(actorOffset + (unsigned int)frameActor);
+                                        MATCHING_KEEP(nextFrame);
+                                        frameActor =
+                                            (Moby*)(actorOffset + (unsigned int)frameActor);
                                         frameActor->animationState.nextFrame = nextFrame;
                                     }
                                     {
-                                        register int progress __asm__("$2") = ((*tick - elapsed) * 16) / duration;
+                                        register int progress __asm__("$2") =
+                                            ((*tick - elapsed) * 16) / duration;
                                         register Moby* actor __asm__("$3") = DECODED_CUTSCENE_ACTOR;
                                         __asm__("" : "=r"(actor) : "0"(actor), "r"(progress));
                                         actor->animationProgress = progress;
@@ -551,8 +681,9 @@ void func_cutscene_74_800771C0(void) {
                         }
                     checkLastRecord:
                         {
-                            register unsigned char* lastRecord __asm__("$2") = *(unsigned char**)(*modelCursor + DecodedCutsceneFrame * 4 + 0x3C);
-                            __asm__("" : "=r"(lastRecord) : "0"(lastRecord));
+                            register unsigned char* lastRecord __asm__("$2") =
+                                *(unsigned char**)(*modelCursor + DecodedCutsceneFrame * 4 + 0x3C);
+                            MATCHING_KEEP(lastRecord);
                             if (selected == *lastRecord - 1) {
                                 DECODED_CUTSCENE_ACTOR->animationState.frame = selected;
                                 DECODED_CUTSCENE_ACTOR->animationState.nextFrame = selected;
@@ -574,7 +705,7 @@ void func_cutscene_74_800771C0(void) {
                         register int secondOffset __asm__("$7");
                         register Vector3D* subtractFirst __asm__("$5");
                         register Vector3D* subtractDestination __asm__("$4");
-                        __asm__("" : "=r"(yMask), "=r"(xMask) : "0"(yMask), "1"(xMask));
+                        MATCHING_KEEP2(yMask, xMask);
                         yMask |= 0xFC00;
                         __asm__ __volatile__("" : "=r"(yMask) : "0"(yMask), "r"(xMask) : "memory");
                         moby = DECODED_CUTSCENE_ACTOR;
@@ -582,24 +713,26 @@ void func_cutscene_74_800771C0(void) {
                         __asm__ __volatile__("" : : : "$16", "memory");
                         scratch = &sample.difference;
                         index = (index & 1) * 4;
-                        firstRecord = *(volatile int**)((unsigned char*)DecodedCutsceneBanks + index);
+                        firstRecord =
+                            *(volatile int**)((unsigned char*)DecodedCutsceneBanks + index);
                         __asm__ __volatile__("" : : : "$3", "memory");
                         frame = moby->animationState.frame;
                         index = tableOffset + (int)firstRecord;
-                        __asm__("" : "=r"(index) : "0"(index));
+                        MATCHING_KEEP(index);
                         index = *(int*)(index + 12);
                         frame *= 4;
                         firstRecord = (volatile int*)((unsigned char*)firstRecord + index);
-                        __asm__ __volatile__("" : "=r"(firstRecord) : "0"(firstRecord) : "memory");
+                        MATCHING_KEEP_GNU_VOLATILE_CLOBBER(firstRecord, "memory");
                         index = *(volatile unsigned char*)&moby->animationState.nextId;
-                        __asm__ __volatile__("" : "=r"(frame) : "0"(frame) : "memory");
+                        MATCHING_KEEP_GNU_VOLATILE_CLOBBER(frame, "memory");
                         firstRecord = (volatile int*)((unsigned char*)firstRecord + frame);
-                        __asm__("" : "=r"(firstRecord) : "0"(firstRecord));
+                        MATCHING_KEEP(firstRecord);
                         index = (index & 1) * 4;
-                        secondRecord = *(volatile int**)((unsigned char*)DecodedCutsceneBanks + index);
+                        secondRecord =
+                            *(volatile int**)((unsigned char*)DecodedCutsceneBanks + index);
                         index = *firstRecord;
                         frame = tableOffset + (int)secondRecord;
-                        __asm__("" : "=r"(frame) : "0"(frame));
+                        MATCHING_KEEP(frame);
                         index &= xMask;
                         secondOffset = *(int*)(frame + 12);
                         frame = moby->animationState.nextFrame;
@@ -611,19 +744,19 @@ void func_cutscene_74_800771C0(void) {
                         index &= yMask;
                         index >>= 2;
                         secondRecord = (volatile int*)((unsigned char*)secondRecord + secondOffset);
-                        __asm__ __volatile__("" : "=r"(frame) : "0"(frame) : "memory");
+                        MATCHING_KEEP_GNU_VOLATILE_CLOBBER(frame, "memory");
                         frame *= 4;
                         sample.first.y = index;
                         index = *firstRecord;
-                        __asm__ __volatile__("" : "=r"(frame) : "0"(frame) : "memory");
+                        MATCHING_KEEP_GNU_VOLATILE_CLOBBER(frame, "memory");
                         secondRecord = (volatile int*)((unsigned char*)secondRecord + frame);
-                        __asm__("" : "=r"(secondRecord) : "0"(secondRecord));
+                        MATCHING_KEEP(secondRecord);
                         index = (index & 0x3FF) << 8;
                         sample.first.z = index;
                         index = *secondRecord;
                         __asm__ __volatile__("" : : : "$5", "memory");
                         subtractFirst = &sample.first;
-                        __asm__("" : "=r"(subtractFirst) : "0"(subtractFirst));
+                        MATCHING_KEEP(subtractFirst);
                         sample.second.x = (index & xMask) >> 12;
                         index = *secondRecord;
                         __asm__ __volatile__("" : : : "$4", "memory");
@@ -645,7 +778,7 @@ void func_cutscene_74_800771C0(void) {
                         register int limit __asm__("$5");
                         __asm__ __volatile__("" : : : "$5", "memory");
                         limit = 16;
-                        __asm__("" : "=r"(limit) : "0"(limit));
+                        MATCHING_KEEP(limit);
                         moby = (Moby*)(actorOffset + (unsigned int)moby);
                         sample.first.x *= limit - moby->animationProgress;
                         sample.first.y *= limit - moby->animationProgress;
@@ -661,7 +794,7 @@ void func_cutscene_74_800771C0(void) {
                             register Vector3D* copySource __asm__("$5");
                             __asm__ __volatile__("" : : : "$5", "memory");
                             copySource = &sample.first;
-                            __asm__("" : "=r"(copySource) : "0"(copySource));
+                            MATCHING_KEEP(copySource);
                             copyActor = (Moby*)((unsigned char*)copyActor + actorOffset);
                             DecodedCutsceneCopy(&copyActor->position, copySource);
                         }
@@ -669,14 +802,16 @@ void func_cutscene_74_800771C0(void) {
                 }
                 {
                     Moby* moby = DECODED_CUTSCENE_ACTOR;
-                    register int packedSelector __asm__("$4") = (moby->distanceToGround % 1000) << 16;
-                    __asm__("" : "=r"(packedSelector) : "0"(packedSelector) : "memory");
+                    register int packedSelector __asm__("$4") = (moby->distanceToGround % 1000)
+                                                                << 16;
+                    MATCHING_KEEP_CLOBBER(packedSelector, "memory");
                     {
                         register void (**callbacks)(Moby*) __asm__("$3") = DecodedCutsceneCallbacks;
                         if (callbacks) {
                             void (*callback)(Moby*) = callbacks[packedSelector >> 16];
-                            __asm__("" : : "r"(packedSelector));
-                            if (callback) callback(moby);
+                            MATCHING_OBSERVE(packedSelector);
+                            if (callback)
+                                callback(moby);
                         }
                     }
                 }
@@ -684,7 +819,7 @@ void func_cutscene_74_800771C0(void) {
                 actorOffset += 0x58;
                 tableOffset += 4;
                 loopCount = DecodedCutsceneCount;
-                __asm__("" : : : "memory");
+                MATCHING_BARRIER("memory");
                 actorIndex++;
                 modelCursor++;
             } while (actorIndex < loopCount);
@@ -703,16 +838,19 @@ void func_cutscene_74_800771C0(void) {
             do {
                 {
                     register int flags __asm__("$2") = currentState & 0x80;
-                    __asm__("" : "=r"(flags) : "0"(flags));
+                    MATCHING_KEEP(flags);
                     if (!flags) {
-                        register int packedSelector __asm__("$4") = (*(short*)(state - 0x10) % 1000) << 16;
-                        __asm__("" : "=r"(packedSelector) : "0"(packedSelector) : "memory");
+                        register int packedSelector __asm__("$4") = (*(short*)(state - 0x10) % 1000)
+                                                                    << 16;
+                        MATCHING_KEEP_CLOBBER(packedSelector, "memory");
                         {
-                            register void (**callbacks)(Moby*) __asm__("$3") = DecodedCutsceneCallbacks;
+                            register void (**callbacks)(Moby*) __asm__("$3") =
+                                DecodedCutsceneCallbacks;
                             if (callbacks) {
                                 void (*callback)(Moby*) = callbacks[packedSelector >> 16];
-                                __asm__("" : : "r"(packedSelector));
-                                if (callback) callback(moby);
+                                MATCHING_OBSERVE(packedSelector);
+                                if (callback)
+                                    callback(moby);
                             }
                         }
                     }
@@ -725,7 +863,8 @@ void func_cutscene_74_800771C0(void) {
             } while ((currentState & 255) != endState);
         }
     }
-    if (DecodedCutsceneParticles) DecodedCutsceneParticles(DecodedCutsceneDelta);
+    if (DecodedCutsceneParticles)
+        DecodedCutsceneParticles(DecodedCutsceneDelta);
     DecodedCutsceneEndActors();
     {
         register unsigned char* samples __asm__("$17");
@@ -735,36 +874,36 @@ void func_cutscene_74_800771C0(void) {
         register int byteOffset __asm__("$5");
         int current;
         register Vector3D* unpackDestination __asm__("$4");
-        __asm__("" : "=r"(frame) : "0"(frame));
+        MATCHING_KEEP(frame);
         second = &sample.second;
-        __asm__("" : "=r"(second) : "0"(second));
+        MATCHING_KEEP(second);
         {
             register int slot __asm__("$2") = *frame;
             __asm__ __volatile__("" : : : "$4", "memory");
             unpackDestination = second;
             __asm__("" : "=r"(slot) : "0"(slot), "r"(unpackDestination));
             slot &= 1;
-            __asm__("" : "=r"(slot) : "0"(slot));
+            MATCHING_KEEP(slot);
             frame = (volatile int*)((unsigned char*)frame + slot * 4);
-            __asm__("" : "=r"(frame) : "0"(frame));
+            MATCHING_KEEP(frame);
             archive = *(unsigned char* volatile*)((unsigned char*)frame + 0x28);
         }
         {
             register int archiveOffset __asm__("$3");
             packedTick = DecodedCutsceneTick;
             archiveOffset = *(volatile int*)(archive + 8);
-            __asm__ __volatile__("" : "=r"(packedTick) : "0"(packedTick) : "memory");
+            MATCHING_KEEP_GNU_VOLATILE_CLOBBER(packedTick, "memory");
             packedTick >>= 1;
-            __asm__("" : "=r"(packedTick) : "0"(packedTick));
+            MATCHING_KEEP(packedTick);
             samples = archive + archiveOffset;
         }
         byteOffset = packedTick * 12;
-        __asm__("" : "=r"(byteOffset) : "0"(byteOffset));
+        MATCHING_KEEP(byteOffset);
         DecodedCutsceneUnpackPosition(unpackDestination, samples + byteOffset);
         packedTick = DecodedCutsceneTick >> 1;
-        __asm__("" : "=r"(packedTick) : "0"(packedTick));
+        MATCHING_KEEP(packedTick);
         byteOffset = packedTick * 12;
-        __asm__("" : "=r"(byteOffset) : "0"(byteOffset));
+        MATCHING_KEEP(byteOffset);
         DecodedCutsceneUnpackAngles(&sample.firstAngles, samples + byteOffset + 6);
         current = DecodedCutsceneTick;
         if ((current & 1) && current + 1 < 120) {
@@ -773,22 +912,26 @@ void func_cutscene_74_800771C0(void) {
             packedTick = current >> 1;
             __asm__("" : "=r"(packedTick) : "0"(packedTick), "r"(unpackDestination));
             byteOffset = packedTick * 12;
-            __asm__("" : "=r"(byteOffset) : "0"(byteOffset));
+            MATCHING_KEEP(byteOffset);
             DecodedCutsceneUnpackPosition(unpackDestination, samples + byteOffset + 12);
             DecodedCutsceneSubtract(scratch, scratch, second);
             packedTick = DecodedCutsceneTick >> 1;
-            __asm__("" : "=r"(packedTick) : "0"(packedTick));
+            MATCHING_KEEP(packedTick);
             byteOffset = packedTick * 12;
-            __asm__("" : "=r"(byteOffset) : "0"(byteOffset));
+            MATCHING_KEEP(byteOffset);
             DecodedCutsceneUnpackAngles(&sample.secondAngles, samples + byteOffset + 18);
-            sample.secondAngles.x = DecodedCutsceneAngleDifference(sample.secondAngles.x, sample.firstAngles.x);
-            sample.secondAngles.y = DecodedCutsceneAngleDifference(sample.secondAngles.y, sample.firstAngles.y);
-            sample.secondAngles.z = DecodedCutsceneAngleDifference(sample.secondAngles.z, sample.firstAngles.z);
-            if (DecodedCutsceneLength(scratch, 1) < 256 && (unsigned int)(sample.secondAngles.z + 255) < 511) {
+            sample.secondAngles.x =
+                DecodedCutsceneAngleDifference(sample.secondAngles.x, sample.firstAngles.x);
+            sample.secondAngles.y =
+                DecodedCutsceneAngleDifference(sample.secondAngles.y, sample.firstAngles.y);
+            sample.secondAngles.z =
+                DecodedCutsceneAngleDifference(sample.secondAngles.z, sample.firstAngles.z);
+            if (DecodedCutsceneLength(scratch, 1) < 256 &&
+                (unsigned int)(sample.secondAngles.z + 255) < 511) {
                 DecodedCutsceneShift(scratch, 1);
                 {
                     register Vector3D* destination __asm__("$4") = second;
-                    __asm__("" : "=r"(destination) : "0"(destination));
+                    MATCHING_KEEP(destination);
                     DecodedCutsceneAdd(destination, destination, scratch);
                 }
                 sample.firstAngles.x += sample.secondAngles.x >> 1;

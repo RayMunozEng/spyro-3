@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "stdutil.h"
 #include "spyro.h"
@@ -24,42 +25,43 @@
  */
 void func_level_16_80086260(void) {
     int index = (camera.unk138 + 2) >> 2;
-    if (index > 4) index = 4;
+    if (index > 4)
+        index = 4;
     switch (camera.cameraState) {
-    case 12: {
-        Vector3D delta;
-        if (camera.unk134 == 0) {
-            func_80014354();
-            func_80013918(0x400);
-        }
-        func_800142E0();
-        if (camera.unk16c != 0) {
-            func_8004F1C8(&delta, &camera.unk16c->position, (Vector3D*)&spyro);
-            camera.unk6c = func_8004E880(delta.x, delta.y, 1);
-            func_800135A4(&camera.unk7c.pos[5], &D_8006929C[index], 0);
-            func_800135A4(&camera.unk7c.pos[6], &D_80069328[index], 0);
-            func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
-            func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
-        }
-        break;
-    }
-    case 13: {
-        Vector3D delta;
-        func_800142E0();
-        if (camera.unk16c != 0) {
-            func_8004F1C8(&delta, &camera.unk16c->position, (Vector3D*)&spyro);
-            camera.unk6c = func_8004E880(delta.x, delta.y, 1);
+        case 12: {
+            Vector3D delta;
             if (camera.unk134 == 0) {
                 func_80014354();
                 func_80013918(0x400);
             }
-            func_800135A4(&camera.unk7c.pos[5], &D_8006929C[index], 0);
-            func_800135A4(&camera.unk7c.pos[6], &D_80069328[index], 0);
-            func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
-            func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
+            func_800142E0();
+            if (camera.unk16c != 0) {
+                func_8004F1C8(&delta, &camera.unk16c->position, (Vector3D*)&spyro);
+                camera.unk6c = func_8004E880(delta.x, delta.y, 1);
+                func_800135A4(&camera.unk7c.pos[5], &D_8006929C[index], 0);
+                func_800135A4(&camera.unk7c.pos[6], &D_80069328[index], 0);
+                func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
+                func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
+            }
+            break;
         }
-        break;
-    }
+        case 13: {
+            Vector3D delta;
+            func_800142E0();
+            if (camera.unk16c != 0) {
+                func_8004F1C8(&delta, &camera.unk16c->position, (Vector3D*)&spyro);
+                camera.unk6c = func_8004E880(delta.x, delta.y, 1);
+                if (camera.unk134 == 0) {
+                    func_80014354();
+                    func_80013918(0x400);
+                }
+                func_800135A4(&camera.unk7c.pos[5], &D_8006929C[index], 0);
+                func_800135A4(&camera.unk7c.pos[6], &D_80069328[index], 0);
+                func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
+                func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
+            }
+            break;
+        }
     }
 }
 
@@ -101,24 +103,25 @@ void func_level_16_80086494(int mode) {
     CameraPosition* position;
     register int one __asm__("$2");
     switch (mode) {
-    case 0xC:
-        state = &camera.unk50;
-        __asm__("" : "=r"(state) : "0"(state));
-        *state = 0;
-        camera.unk140[0] = 0;
-        camera.unk140[1] = 0;
-        one = 1;
-        goto shared;
-    case 0xD:
-        one = 1;
-        __asm__("" : "=r"(one) : "0"(one) : "$16");
-        state = &camera.unk50;
-        __asm__("" : "=r"(state) : "0"(state), "r"(one));
-        *state = 0;
-        camera.unk140[0] = 0;
-        camera.unk140[1] = one;
-        break;
-    default: return;
+        case 0xC:
+            state = &camera.unk50;
+            MATCHING_KEEP(state);
+            *state = 0;
+            camera.unk140[0] = 0;
+            camera.unk140[1] = 0;
+            one = 1;
+            goto shared;
+        case 0xD:
+            one = 1;
+            MATCHING_KEEP_CLOBBER(one, "$16");
+            state = &camera.unk50;
+            __asm__("" : "=r"(state) : "0"(state), "r"(one));
+            *state = 0;
+            camera.unk140[0] = 0;
+            camera.unk140[1] = one;
+            break;
+        default:
+            return;
     }
 shared:
     camera.unk140[2] = one;
@@ -150,48 +153,53 @@ void func_level_16_80086564(void) {
     register int next __asm__("$4");
     register int index __asm__("$2");
     switch (mode) {
-    case 12:
-        if (DecodedCameraHeld & 16) {
-            register int enabled __asm__("$2") = DecodedCameraPlayer[0x1B9];
-            next = 7;
-            if (enabled) goto change;
-        }
-        if (DecodedCameraPressed & 12) {
-            next = 8;
+        case 12:
+            if (DecodedCameraHeld & 16) {
+                register int enabled __asm__("$2") = DecodedCameraPlayer[0x1B9];
+                next = 7;
+                if (enabled)
+                    goto change;
+            }
+            if (DecodedCameraPressed & 12) {
+                next = 8;
+                goto change;
+            }
+            next = DecodedCameraOverride;
+            if (!next) {
+                next = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
+                MATCHING_KEEP(next);
+                goto change;
+            }
+            MATCHING_BARRIER("memory");
+            if (next != DecodedCameraMode)
+                goto change;
+            mode = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
+            next = 2;
+            if (mode != 2)
+                return;
             goto change;
-        }
-        next = DecodedCameraOverride;
-        if (!next) {
-            next = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
-            __asm__("" : "=r"(next) : "0"(next));
-            goto change;
-        }
-        __asm__("" : : : "memory");
-        if (next != DecodedCameraMode) goto change;
-        mode = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
-        next = 2;
-        if (mode != 2) return;
-        goto change;
-    case 13:
-        if (DecodedCameraHeld & 16) {
-            register int enabled __asm__("$2") = DecodedCameraPlayer[0x1B9];
-            next = 7;
-            if (enabled) goto change;
-        }
-        if (DecodedCameraPressed & 12) {
-            next = 8;
-            goto change;
-        }
-        next = DecodedCameraOverride;
-        if (!next) {
-            next = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
-            goto change;
-        }
-        __asm__("" : : : "memory");
-        if (next == DecodedCameraMode) return;
-        break;
-    default:
-        return;
+        case 13:
+            if (DecodedCameraHeld & 16) {
+                register int enabled __asm__("$2") = DecodedCameraPlayer[0x1B9];
+                next = 7;
+                if (enabled)
+                    goto change;
+            }
+            if (DecodedCameraPressed & 12) {
+                next = 8;
+                goto change;
+            }
+            next = DecodedCameraOverride;
+            if (!next) {
+                next = DecodedCameraModeTable[*(int*)(DecodedCameraPlayer + 0x48)];
+                goto change;
+            }
+            MATCHING_BARRIER("memory");
+            if (next == DecodedCameraMode)
+                return;
+            break;
+        default:
+            return;
     }
 change:
     func_80016764(next);

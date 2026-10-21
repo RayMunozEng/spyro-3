@@ -46,7 +46,8 @@ Moby* func_level_12_800842D0(int mobyClass, Moby* linkedMoby) {
     void* newMobyTag;
     Vector3D v;
     newMoby = func_80055A7C();
-    if (newMoby == 0) return 0;
+    if (newMoby == 0)
+        return 0;
     newMobyTag = newMoby->mobyTag;
     func_8004E790(newMoby, 0, 0x58);
     newMoby->mobyTag = newMobyTag;
@@ -55,32 +56,31 @@ Moby* func_level_12_800842D0(int mobyClass, Moby* linkedMoby) {
     if (linkedMoby != 0) {
         if (linkedMoby - mobyArrayPtr < 0x100U) {
             newMoby->linkedMoby = linkedMoby - mobyArrayPtr;
-        }
-        else {
+        } else {
             newMoby->linkedMoby = 0xFF;
         }
-    }
-    else {
+    } else {
         newMoby->linkedMoby = 0xFF;
     }
     func_80034FEC(newMoby);
     switch (mobyClass) {
-    case 1:
-        func_80055C24(newMoby);
-        newMoby->lowDrawDistance = 0x18;
-        newMoby->updateDistance = 0x40;
-        newMoby->unknown = -1;
-        break;
-    case 16:
-    case 211:
-        {
+        case 1:
+            func_80055C24(newMoby);
+            newMoby->lowDrawDistance = 0x18;
+            newMoby->updateDistance = 0x40;
+            newMoby->unknown = -1;
+            break;
+        case 16:
+        case 211: {
             MobyTag_16* mobyTag;
             int extraLifeThreshold;
             mobyTag = newMoby->mobyTag;
             if (newMoby->mobyClass == 0x10) {
                 extraLifeThreshold = 10;
-                if (D_8006C784 < 4)      extraLifeThreshold = 7;
-                else if (D_8006C784 < 7) extraLifeThreshold = 9;
+                if (D_8006C784 < 4)
+                    extraLifeThreshold = 7;
+                else if (D_8006C784 < 7)
+                    extraLifeThreshold = 9;
                 sparx.butterflyCount++;
                 if (sparx.butterflyCount >= extraLifeThreshold) {
                     sparx.butterflyCount = 0;
@@ -95,11 +95,10 @@ Moby* func_level_12_800842D0(int mobyClass, Moby* linkedMoby) {
             newMoby->unknown4 = 2;
             mobyTag->unkE = 0x708;
             mobyTag->unk11 = 0;
-            mobyTag->unk12 = (char) (rand() & 0xFC);
+            mobyTag->unk12 = (char)(rand() & 0xFC);
             break;
         }
-    case 120:
-        {
+        case 120: {
             MobyTag_120* mobyTag;
             char yaw;
             if (linkedMoby->mobyClass != mobyClass) {
@@ -118,8 +117,7 @@ Moby* func_level_12_800842D0(int mobyClass, Moby* linkedMoby) {
             mobyTag->unk14 = 0;
             if (linkedMoby != 0) {
                 func_8004F178(&newMoby->position, &linkedMoby->position);
-            }
-            else {
+            } else {
                 yaw = spyro.bodyRotation.yaw - 0x80;
                 v.x = (D_80065920[yaw] * 0x7D) >> 9;
                 v.y = (D_800658A0[yaw] * 0x7D) >> 9;
@@ -129,33 +127,31 @@ Moby* func_level_12_800842D0(int mobyClass, Moby* linkedMoby) {
             mobyTag->unk2 = 0xFF;
             break;
         }
-    case 132:
-        {
+        case 132: {
             int ground;
             newMoby->angle.yaw = linkedMoby->angle.yaw;
             func_8004F178(&newMoby->position, &linkedMoby->position);
             func_80055C24(newMoby);
             ground = func_80035D38(newMoby);
-            if (ground) newMoby->position.z = ground;
+            if (ground)
+                newMoby->position.z = ground;
             newMoby->state = 6;
             break;
         }
-    case 260:
-        func_80055C24(newMoby);
-        newMoby->colour.r = 2;
-        if (linkedMoby != 0) {
-            ((MobyTag_260*)newMoby->mobyTag)->unk0 = linkedMoby;
-            func_8004F178(&newMoby->position, &linkedMoby->position);
-            newMoby->updateDistance = 10;
-            newMoby->lowDrawDistance = 8;
-            newMoby->position.z += 0x400;
-        }
-        else {
-            newMoby->unknown = -1;
-        }
-        break;
-    case 272:
-        {
+        case 260:
+            func_80055C24(newMoby);
+            newMoby->colour.r = 2;
+            if (linkedMoby != 0) {
+                ((MobyTag_260*)newMoby->mobyTag)->unk0 = linkedMoby;
+                func_8004F178(&newMoby->position, &linkedMoby->position);
+                newMoby->updateDistance = 10;
+                newMoby->lowDrawDistance = 8;
+                newMoby->position.z += 0x400;
+            } else {
+                newMoby->unknown = -1;
+            }
+            break;
+        case 272: {
             MobyTag_272* mobyTag;
             mobyTag = newMoby->mobyTag;
             func_8004F178(&newMoby->position, &spyro.position);
@@ -171,10 +167,9 @@ Moby* func_level_12_800842D0(int mobyClass, Moby* linkedMoby) {
             newMoby->drawn = 0;
             break;
         }
-    case 306:
-    case 307:
-    case 568:
-        {
+        case 306:
+        case 307:
+        case 568: {
             int azimuth;
             int elevation;
             MobyTag_Fragment* mobyTag;
@@ -184,19 +179,23 @@ Moby* func_level_12_800842D0(int mobyClass, Moby* linkedMoby) {
             func_80055C24(newMoby);
             azimuth = rand() & 0xFFF;
             elevation = rand() & 0x7FF;
-            mobyTag->linearVel.x = (func_8004EA2C(elevation) * func_8004EA2C(azimuth) * linkedMoby->substate) >> 0x18;
-            mobyTag->linearVel.y = (func_8004EA2C(elevation) * func_8004E9E4(azimuth) * linkedMoby->substate) >> 0x18;
+            mobyTag->linearVel.x =
+                (func_8004EA2C(elevation) * func_8004EA2C(azimuth) * linkedMoby->substate) >> 0x18;
+            mobyTag->linearVel.y =
+                (func_8004EA2C(elevation) * func_8004E9E4(azimuth) * linkedMoby->substate) >> 0x18;
             mobyTag->linearVel.z = (func_8004E9E4(elevation) * linkedMoby->substate) >> 0xC;
             if (linkedMoby->damageFlags & 0x02000000) {
-                v.x = D_80065920[func_8004E880(newMoby->position.x - spyro.position.x, newMoby->position.y - spyro.position.y, 0)];
+                v.x = D_80065920[func_8004E880(newMoby->position.x - spyro.position.x,
+                                               newMoby->position.y - spyro.position.y, 0)];
                 v.x = (short)v.x >> 4;
-                v.y = D_800658A0[func_8004E880(newMoby->position.x - spyro.position.x, newMoby->position.y - spyro.position.y, 0)];
+                v.y = D_800658A0[func_8004E880(newMoby->position.x - spyro.position.x,
+                                               newMoby->position.y - spyro.position.y, 0)];
                 v.y = (short)v.y >> 4;
                 v.z = 0;
                 mobyTag->linearVel.x += v.x;
                 mobyTag->linearVel.y += v.y;
-            }
-            else if ((linkedMoby->damageFlags & 0x20000) && ((spyro.movementState == 4) || (spyro.movementState == 0xC))) {
+            } else if ((linkedMoby->damageFlags & 0x20000) &&
+                       ((spyro.movementState == 4) || (spyro.movementState == 0xC))) {
                 mobyTag->linearVel.x += spyro.unk7a[2].x >> 6;
                 mobyTag->linearVel.y += spyro.unk7a[2].y >> 6;
             }
@@ -217,8 +216,7 @@ Moby* func_level_12_800842D0(int mobyClass, Moby* linkedMoby) {
             mobyTag->timer = func_8003636C(0x32, 0x50);
             break;
         }
-    case 704:
-        {
+        case 704: {
             MobyTag_704* mobyTag;
             mobyTag = newMoby->mobyTag;
             func_8004F178(&newMoby->position, &spyro.position);
@@ -238,15 +236,13 @@ Moby* func_level_12_800842D0(int mobyClass, Moby* linkedMoby) {
             func_80055C24(newMoby);
             break;
         }
-    default:
-        {
+        default: {
             Vector3D* mobyPos;
             Vector3D* newPos;
             if (linkedMoby != 0) {
                 mobyPos = &newMoby->position;
                 newPos = &linkedMoby->position;
-            }
-            else {
+            } else {
                 mobyPos = &newMoby->position;
                 newPos = &spyro.position;
             }

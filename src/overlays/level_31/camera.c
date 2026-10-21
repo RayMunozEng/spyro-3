@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "stdutil.h"
 #include "spyro.h"
@@ -27,56 +28,59 @@ extern int D_8006C6D0;
 void func_level_31_8008F4E4(void) {
     int tableIndex = (camera.unk138 + 2) >> 2;
     int turnDelta;
-    if (tableIndex > 4) tableIndex = 4;
+    if (tableIndex > 4)
+        tableIndex = 4;
     switch (camera.cameraState) {
-    case 5: {
-        Vector3D delta;
-        if (camera.unk134 == 0) {
-            func_800135A4(&camera.unk7c.pos[1], &D_80068FCC, camera.unk6c);
-            func_8004F178(&delta, &spyro.unk7a[2]);
-            func_8004F110(&delta, 2);
-            func_8004F194(&delta, (Vector3D*)&spyro, &delta);
-            func_8004F1C8(&delta, &delta, &camera.nextCameraPosCartesian);
-            turnDelta = (func_8004E880(delta.x, delta.y, 1) - camera.unk48) & 0xFFF;
-            if (turnDelta > 0x800) turnDelta -= 0x1000;
-            turnDelta = turnDelta * 205 >> 8;
-            MAX(turnDelta, 0xC0);
-            MIN(turnDelta, -0xC0);
-            camera.unk7c.pos[1].pitch = ABS(turnDelta) >= 9 ? turnDelta : 0;
-            func_80013918(0x180);
-            func_800139A4();
+        case 5: {
+            Vector3D delta;
+            if (camera.unk134 == 0) {
+                func_800135A4(&camera.unk7c.pos[1], &D_80068FCC, camera.unk6c);
+                func_8004F178(&delta, &spyro.unk7a[2]);
+                func_8004F110(&delta, 2);
+                func_8004F194(&delta, (Vector3D*)&spyro, &delta);
+                func_8004F1C8(&delta, &delta, &camera.nextCameraPosCartesian);
+                turnDelta = (func_8004E880(delta.x, delta.y, 1) - camera.unk48) & 0xFFF;
+                if (turnDelta > 0x800)
+                    turnDelta -= 0x1000;
+                turnDelta = turnDelta * 205 >> 8;
+                MAX(turnDelta, 0xC0);
+                MIN(turnDelta, -0xC0);
+                camera.unk7c.pos[1].pitch = ABS(turnDelta) >= 9 ? turnDelta : 0;
+                func_80013918(0x180);
+                func_800139A4();
+            }
+            func_800142E0();
+            func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
+            MIN(camera.unk7c.pos[5].pos.azimuth, 0x80);
+            MIN(camera.unk7c.pos[5].pitch, 0x40);
+            func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
+            func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
+            func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
+            break;
         }
-        func_800142E0();
-        func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
-        MIN(camera.unk7c.pos[5].pos.azimuth, 0x80);
-        MIN(camera.unk7c.pos[5].pitch, 0x40);
-        func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
-        func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
-        func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
-        break;
-    }
-    case 34: {
-        Vector3D delta;
-        if (camera.unk16c == 0) break;
-        func_8004F1C8(&delta, &camera.unk16c->position, (Vector3D*)&spyro);
-        delta.z = 0;
-        camera.unk6c = func_8004E880(delta.x, delta.y, 1) + 0x400;
-        func_800135A4(&camera.unk7c.pos[1], &D_80069224, camera.unk6c);
-        camera.unk7c.pos[1].pos.radius = func_8004EDE8(&delta, 0) + 0x400;
-        MIN(*(int*)&camera.unk7c.pos[1].pos.radius, 0x1000);
-        func_8004F110(&delta, 1);
-        func_8004F194(&camera.unk60, &delta, (Vector3D*)&spyro);
-        camera.unk148[2] = 0;
-        camera.unk60.z += D_8006C6D0;
-        func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
-        func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
-        if ((int)camera.unk7c.pos[2].pos.radius > (int)camera.unk7c.pos[1].pos.radius) {
-            camera.unk7c.pos[6].pos.radius = 24;
+        case 34: {
+            Vector3D delta;
+            if (camera.unk16c == 0)
+                break;
+            func_8004F1C8(&delta, &camera.unk16c->position, (Vector3D*)&spyro);
+            delta.z = 0;
+            camera.unk6c = func_8004E880(delta.x, delta.y, 1) + 0x400;
+            func_800135A4(&camera.unk7c.pos[1], &D_80069224, camera.unk6c);
+            camera.unk7c.pos[1].pos.radius = func_8004EDE8(&delta, 0) + 0x400;
+            MIN(*(int*)&camera.unk7c.pos[1].pos.radius, 0x1000);
+            func_8004F110(&delta, 1);
+            func_8004F194(&camera.unk60, &delta, (Vector3D*)&spyro);
+            camera.unk148[2] = 0;
+            camera.unk60.z += D_8006C6D0;
+            func_800135A4(&camera.unk7c.pos[5], &D_8006929C[tableIndex], 0);
+            func_800135A4(&camera.unk7c.pos[6], &D_80069328[tableIndex], 0);
+            if ((int)camera.unk7c.pos[2].pos.radius > (int)camera.unk7c.pos[1].pos.radius) {
+                camera.unk7c.pos[6].pos.radius = 24;
+            }
+            func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
+            func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
+            break;
         }
-        func_800135A4(&camera.unk7c.pos[7], &D_800693C8, 0);
-        func_800135A4(&camera.unk7c.pos[8], &D_800693B4, 0);
-        break;
-    }
     }
 }
 
@@ -139,45 +143,48 @@ void func_level_31_8008F894(int mode) {
     register CameraPosition* copiedPosition __asm__("$16");
     register Vector3D* target __asm__("$18");
     switch (mode) {
-    case 5:
-        base = &D_8006E048;
-        *base = 0;
-        D_8006E138 = 0;
-        D_8006E139 = 0;
-        D_8006E13A = 1;
-        D_8006E13D = 0;
-        D_8006E054 = 0;
-        func_800142E0();
-        position = (CameraPosition*)((char*)base + 44);
-        __asm__("" : "=r"(position) : "0"(position));
-        func_800136F0(position, (Vector3D*)((char*)base - 40), (Vector3D*)((char*)base + 16));
-        goto settle;
-    case 34:
-        deltaArgument = &delta;
-        player = (Vector3D*)DecodedBoxPlayer;
-        playerArgument = player;
-        __asm__ volatile ("" : "=r"(playerArgument) : "0"(playerArgument), "r"(deltaArgument) : "$17");
-        copyBase = &D_8006E048;
-        *copyBase = 0;
-        D_8006E138 = 0;
-        D_8006E139 = 1;
-        D_8006E13A = 1;
-        D_8006E13D = 0;
-        D_8006E054 = 0;
-        func_8004F1C8(deltaArgument, &D_8006E164->position, playerArgument);
-        delta.z = 0;
-        D_8006E064 = func_8004E880(delta.x, delta.y, 1) + 1024;
-        func_8004F110(&delta, 1);
-        target = (Vector3D*)((char*)copyBase + 16);
-        func_8004F194(target, &delta, player);
-        copiedPosition = (CameraPosition*)((char*)copyBase + 44);
-        __asm__("" : "=r"(copiedPosition) : "0"(copiedPosition));
-        D_8006E060 += D_8006C6D0;
-        func_800136F0(copiedPosition, (Vector3D*)((char*)copyBase - 40), target);
-settle:
-        func_800138A0(&D_8006E074, &DecodedSettleInput);
-        func_800135A4(&D_8006E09C, &DecodedSettleFinal, 0);
-        break;
+        case 5:
+            base = &D_8006E048;
+            *base = 0;
+            D_8006E138 = 0;
+            D_8006E139 = 0;
+            D_8006E13A = 1;
+            D_8006E13D = 0;
+            D_8006E054 = 0;
+            func_800142E0();
+            position = (CameraPosition*)((char*)base + 44);
+            MATCHING_KEEP(position);
+            func_800136F0(position, (Vector3D*)((char*)base - 40), (Vector3D*)((char*)base + 16));
+            goto settle;
+        case 34:
+            deltaArgument = &delta;
+            player = (Vector3D*)DecodedBoxPlayer;
+            playerArgument = player;
+            __asm__ volatile(""
+                             : "=r"(playerArgument)
+                             : "0"(playerArgument), "r"(deltaArgument)
+                             : "$17");
+            copyBase = &D_8006E048;
+            *copyBase = 0;
+            D_8006E138 = 0;
+            D_8006E139 = 1;
+            D_8006E13A = 1;
+            D_8006E13D = 0;
+            D_8006E054 = 0;
+            func_8004F1C8(deltaArgument, &D_8006E164->position, playerArgument);
+            delta.z = 0;
+            D_8006E064 = func_8004E880(delta.x, delta.y, 1) + 1024;
+            func_8004F110(&delta, 1);
+            target = (Vector3D*)((char*)copyBase + 16);
+            func_8004F194(target, &delta, player);
+            copiedPosition = (CameraPosition*)((char*)copyBase + 44);
+            MATCHING_KEEP(copiedPosition);
+            D_8006E060 += D_8006C6D0;
+            func_800136F0(copiedPosition, (Vector3D*)((char*)copyBase - 40), target);
+        settle:
+            func_800138A0(&D_8006E074, &DecodedSettleInput);
+            func_800135A4(&D_8006E09C, &DecodedSettleFinal, 0);
+            break;
     }
 }
 
@@ -188,20 +195,25 @@ void func_level_31_8008FA28(void) {
     int next;
     register int mode __asm__("$3") = D_8006E044;
     switch (mode) {
-    case 5:
-        next = D_8006E160;
-        if (!next) {
-            next = DecodedCameraStateTable[spyro.animationState];
-            if (next == mode) return;
-            if (!next) next = 6;
-        }
-        break;
-    case 0x22:
-        next = D_8006E160;
-        if (!next) next = D_80068CAC[spyro.animationState];
-        else if (next == mode) return;
-        break;
-    default: return;
+        case 5:
+            next = D_8006E160;
+            if (!next) {
+                next = DecodedCameraStateTable[spyro.animationState];
+                if (next == mode)
+                    return;
+                if (!next)
+                    next = 6;
+            }
+            break;
+        case 0x22:
+            next = D_8006E160;
+            if (!next)
+                next = D_80068CAC[spyro.animationState];
+            else if (next == mode)
+                return;
+            break;
+        default:
+            return;
     }
     func_80016764(next);
 }

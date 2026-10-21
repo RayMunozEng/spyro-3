@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "stdutil.h"
 #include "spyro.h"
@@ -21,7 +22,8 @@ void func_level_36_8008653C(void) {
     int* counter = &D_8006E130;
     int index = (*counter + 2) >> 2;
     Vector3D delta;
-    if (index > 4) index = 4;
+    if (index > 4)
+        index = 4;
     if (D_8006E044 == 13) {
         func_800142E0();
         if (D_8006E164) {
@@ -77,7 +79,7 @@ void func_level_36_80086698(int mode) {
         register int* state __asm__("$16") = &camera.unk50;
         CameraPosition* position;
         /* Keep the original shared address base; this constraint emits no code. */
-        __asm__("" : "=r"(state) : "0"(state));
+        MATCHING_KEEP(state);
         *state = 0;
         camera.unk140[0] = 0;
         camera.unk140[1] = 1;
@@ -97,13 +99,18 @@ extern int D_80068CAC[];
 void func_80016764(int);
 void func_level_36_80086734(void) {
     int next;
-    if (D_8006E044 != 0xD) return;
-    if ((D_8006E538 & 0x10) && *((unsigned char*)&spyro + 0x1B9)) next = 7;
-    else if (D_8006E53C & 0xC) next = 8;
+    if (D_8006E044 != 0xD)
+        return;
+    if ((D_8006E538 & 0x10) && *((unsigned char*)&spyro + 0x1B9))
+        next = 7;
+    else if (D_8006E53C & 0xC)
+        next = 8;
     else {
         next = D_8006E160;
-        if (!next) next = D_80068CAC[spyro.animationState];
-        else if (next == D_8006E044) return;
+        if (!next)
+            next = D_80068CAC[spyro.animationState];
+        else if (next == D_8006E044)
+            return;
     }
     func_80016764(next);
 }

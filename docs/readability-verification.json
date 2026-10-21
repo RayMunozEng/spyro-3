@@ -1,0 +1,29 @@
+{
+  "AI_generated": true,
+  "human_reviewed": false,
+  "based_on_commit": "2a4b15ee1d24dbe333fd3e758193711647907fa3",
+  "working_source_native_checks": 95,
+  "BASE_reference_images": 62,
+  "executable_functions": 337,
+  "overlay_functions": 3098,
+  "frozen_compiler_sha256": "f2714650b4d1903eb65d882a16e0e0d566b4dd89c98924be17832f2f145bcbd5",
+  "frozen_jump_filter_sha256": "0e0cae6f3d84a06cd95c90c23c5a8696c06a0a603c9bf38448869a05a75e4f40",
+  "frozen_build_driver_sha256": "07150570d3699f2adc0d0215ab71d44bb46aaab8880c0e58494a54c966f68d61",
+  "working_source_verification_receipt_sha256": "bb25411765a237dbdf7d39ce3c30356daa10fae96d5c36273f34e5e411e8b275",
+  "staged_source_verification": "passed before commit",
+  "semantic_or_runtime_completeness_claimed": false,
+  "staged_source_native_checks": 95,
+  "staged_source_BASE_reference_images": 62,
+  "staged_source_verification_receipt_sha256": "982218ec9c2b0c98b45b9c4bf46e8f7921345f19a39d19bb2bab8fbc6145d37a",
+  "staged_source_gate_commands_sha256": "e62f82934f3538d9659d520874add4035b311e96a5be2d959a4c0106a123d36d",
+  "staged_source_manifest_sha256": "f33da3aea882cbf363502bb7beb80e9e63b6841fa96e26998cb622d63f451c93",
+  "frozen_pipeline_hashes": {
+    "tools/gcc2.7.2/cc1": "f2714650b4d1903eb65d882a16e0e0d566b4dd89c98924be17832f2f145bcbd5",
+    "tools/fix_jtbl_align.py": "0e0cae6f3d84a06cd95c90c23c5a8696c06a0a603c9bf38448869a05a75e4f40",
+    "tools/fix_coff_debug.py": "0e850e256ddc1382385c424c4355b837f3574c2d2f675ab3830af09596d9b8ea",
+    "tools/fix_str_align.py": "1b6809b3cd5059fd7ec665654f5d1215ce5292f96a5a9e349c30deefccd329ab",
+    "tools/maspsx/maspsx.py": "e18ab6fefaa0dcda74a09f9b8b21bea7b7756171c81a23be87d9fbd0f0b1da62",
+    "build.py": "07150570d3699f2adc0d0215ab71d44bb46aaab8880c0e58494a54c966f68d61"
+  },
+  "verification_completed_UTC": "2026-10-21T14:18:50.480672+00:00"
+}

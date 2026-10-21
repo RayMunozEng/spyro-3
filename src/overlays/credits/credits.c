@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "libgpu.h"
 #include "common.h"
 #include "stdutil.h"
@@ -46,121 +47,118 @@ extern char* CreditsEnvironmentSecond __asm__("D_8006D054");
 extern int CreditsEnvironmentFirstMode __asm__("D_8006D058");
 extern int CreditsEnvironmentLimit __asm__("D_8006D074");
 extern char* CreditsEnvironmentData __asm__("D_8006E340");
-extern unsigned char CreditsEnvironmentR __asm__("D_8006E33C"), CreditsEnvironmentG __asm__("D_8006E33D"), CreditsEnvironmentB __asm__("D_8006E33E");
+extern unsigned char CreditsEnvironmentR __asm__("D_8006E33C"),
+    CreditsEnvironmentG __asm__("D_8006E33D"), CreditsEnvironmentB __asm__("D_8006E33E");
 extern int CreditsEnvironmentDataCount __asm__("D_8006E334");
 extern int* CreditsEnvironmentDataOffsets __asm__("D_8006E338");
 extern unsigned short CreditsEnvironmentConfig __asm__("D_8006C6A8");
-void CreditsEnvironmentFinish(char*,int) __asm__("func_8002C9F4");
-void CreditsEnvironmentSound(int,int,int) __asm__("PlaySound");
+void CreditsEnvironmentFinish(char*, int) __asm__("func_8002C9F4");
+void CreditsEnvironmentSound(int, int, int) __asm__("PlaySound");
 char* func_credits_8007458C(char* input) {
-    char* cursor=input;
-    register char* block __asm__("$17")=cursor;
+    char* cursor = input;
+    register char* block __asm__("$17") = cursor;
     register int count __asm__("$2");
     int index;
     volatile int reservedStack[4];
     register int* nodeCount __asm__("$4");
-    __asm__("" : "=r"(block) : "0"(block));
-    cursor+=4;
-    count=*(int*)cursor;
-    cursor+=4;
-    CreditsEnvironmentNodes=(int*)cursor;
-    nodeCount=&CreditsEnvironmentNodeCount;
-    *nodeCount=count;
-    cursor=block+*(int*)block;
-    block=cursor;
-    cursor+=4;
-    CreditsEnvironmentPacked=cursor+4;
-    CreditsEnvironmentPackedCount=(*(int*)cursor-4)/28;
-    cursor+=*(int*)cursor;
-    count=*(int*)cursor;
-    cursor+=4;
-    CreditsEnvironmentOffsets=(int*)cursor;
-    CreditsEnvironmentOffsetCount=count;
-    index=0;
-    if(count>0) {
-        nodeCount=(int*)((char*)nodeCount-32);
+    MATCHING_KEEP(block);
+    cursor += 4;
+    count = *(int*)cursor;
+    cursor += 4;
+    CreditsEnvironmentNodes = (int*)cursor;
+    nodeCount = &CreditsEnvironmentNodeCount;
+    *nodeCount = count;
+    cursor = block + *(int*)block;
+    block = cursor;
+    cursor += 4;
+    CreditsEnvironmentPacked = cursor + 4;
+    CreditsEnvironmentPackedCount = (*(int*)cursor - 4) / 28;
+    cursor += *(int*)cursor;
+    count = *(int*)cursor;
+    cursor += 4;
+    CreditsEnvironmentOffsets = (int*)cursor;
+    CreditsEnvironmentOffsetCount = count;
+    index = 0;
+    if (count > 0) {
+        nodeCount = (int*)((char*)nodeCount - 32);
         do {
-            int offset=*(int*)cursor+4;
-            __asm__("" : "=r"(offset) : "0"(offset));
-            *(int*)cursor=(int)block+offset;
+            int offset = *(int*)cursor + 4;
+            MATCHING_KEEP(offset);
+            *(int*)cursor = (int)block + offset;
             index++;
-            cursor+=4;
-        }
-        while(index<*nodeCount);
+            cursor += 4;
+        } while (index < *nodeCount);
     }
-    cursor=block+*(int*)block;
-    block=cursor;
-    __asm__("" : "=r"(block) : "0"(block));
+    cursor = block + *(int*)block;
+    block = cursor;
+    MATCHING_KEEP(block);
     {
-        int size=*(int*)cursor;
-        int again=*(volatile int*)block;
-        cursor+=size;
-        if(again<9) {
-            CreditsEnvironmentFirst=block;
-            CreditsEnvironmentFirstMode=0;
-        }
-        else {
-            register char* next __asm__("$2")=block+4;
-            __asm__("" : "=r"(next) : "0"(next));
-            CreditsEnvironmentFirst=next;
-            CreditsEnvironmentFirstMode=1;
+        int size = *(int*)cursor;
+        int again = *(volatile int*)block;
+        cursor += size;
+        if (again < 9) {
+            CreditsEnvironmentFirst = block;
+            CreditsEnvironmentFirstMode = 0;
+        } else {
+            register char* next __asm__("$2") = block + 4;
+            MATCHING_KEEP(next);
+            CreditsEnvironmentFirst = next;
+            CreditsEnvironmentFirstMode = 1;
         }
     }
-    CreditsEnvironmentLimit=180224;
-    block=cursor;
-    __asm__("" : "=r"(block) : "0"(block));
+    CreditsEnvironmentLimit = 180224;
+    block = cursor;
+    MATCHING_KEEP(block);
     {
-        int size=*(int*)cursor;
-        int again=*(volatile int*)block;
-        cursor+=size;
-        if(again<9) {
-            CreditsEnvironmentSecond=block;
-            *(int*)block=-1;
-        }
-        else {
-            register char* next __asm__("$2")=block+4;
-            __asm__("" : "=r"(next) : "0"(next));
-            CreditsEnvironmentSecond=next;
+        int size = *(int*)cursor;
+        int again = *(volatile int*)block;
+        cursor += size;
+        if (again < 9) {
+            CreditsEnvironmentSecond = block;
+            *(int*)block = -1;
+        } else {
+            register char* next __asm__("$2") = block + 4;
+            MATCHING_KEEP(next);
+            CreditsEnvironmentSecond = next;
         }
     }
     {
-        register char** slot __asm__("$3")=&CreditsEnvironmentData;
+        register char** slot __asm__("$3") = &CreditsEnvironmentData;
         register int* offsets __asm__("$4");
         register int index __asm__("$5");
-        *slot=cursor+4;
-        CreditsEnvironmentR=cursor[4];
-        CreditsEnvironmentG=cursor[5];
-        count=(unsigned char)cursor[6];
+        *slot = cursor + 4;
+        CreditsEnvironmentR = cursor[4];
+        CreditsEnvironmentG = cursor[5];
+        count = (unsigned char)cursor[6];
         __asm__("" : : "r"(count) : "$4", "$5");
-        offsets=(int*)(cursor+12);
-        CreditsEnvironmentB=count;
-        count=*(int*)(cursor+8);
-        CreditsEnvironmentDataOffsets=offsets;
-        CreditsEnvironmentDataCount=count;
-        index=0;
-        if(count>0) {
-            register char** loopSlot __asm__("$6")=slot;
+        offsets = (int*)(cursor + 12);
+        CreditsEnvironmentB = count;
+        count = *(int*)(cursor + 8);
+        CreditsEnvironmentDataOffsets = offsets;
+        CreditsEnvironmentDataCount = count;
+        index = 0;
+        if (count > 0) {
+            register char** loopSlot __asm__("$6") = slot;
             do {
-                *offsets=(int)*loopSlot+*offsets;
+                *offsets = (int)*loopSlot + *offsets;
                 index++;
                 offsets++;
-            }
-            while(index<*(int*)((char*)loopSlot-12));
+            } while (index < *(int*)((char*)loopSlot - 12));
         }
     }
     {
-        int config=(short)CreditsEnvironmentConfig;
-        cursor+=*(int*)cursor;
-        if((short)(config%12)==0) {
-            block=cursor;
-            CreditsEnvironmentFinish(block+4,1);
-            __asm__("" : "=r"(block) : "0"(block));
+        int config = (short)CreditsEnvironmentConfig;
+        cursor += *(int*)cursor;
+        if ((short)(config % 12) == 0) {
+            block = cursor;
+            CreditsEnvironmentFinish(block + 4, 1);
+            MATCHING_KEEP(block);
             {
-                register int zero __asm__("$4")=0;
-                __asm__("" : : "r"(zero));
-                count=*(int*)block;
-                cursor=block+count;
-                CreditsEnvironmentSound(zero,0,4);
+                register int zero __asm__("$4") = 0;
+                MATCHING_OBSERVE(zero);
+                count = *(int*)block;
+                cursor = block + count;
+                CreditsEnvironmentSound(zero, 0, 4);
             }
         }
     }
@@ -181,18 +179,19 @@ void func_credits_80074820(int* arg0, int arg1, int* arg2) {
     register char* record __asm__("$4");
     int count;
 
-    if ((unsigned)root >= (unsigned)arg2) return;
-    __asm__("" : "=r"(root): "0"(root));
+    if ((unsigned)root >= (unsigned)arg2)
+        return;
+    MATCHING_KEEP(root);
     firstWord = *(volatile int*)root;
-    __asm__("" : "=r"(firstWord) : "0"(firstWord));
+    MATCHING_KEEP(firstWord);
     index = 0;
     if (firstWord < 0) {
         register char* negativeRoot __asm__("$8");
-        negativeRoot=root;
-        __asm__("" : "=r"(negativeRoot) : "0"(negativeRoot),"r"(root));
+        negativeRoot = root;
+        __asm__("" : "=r"(negativeRoot) : "0"(negativeRoot), "r"(root));
         fieldOffset = 8;
-        cursor=root;
-        __asm__("" : "=r"(cursor) : "0"(cursor),"r"(root));
+        cursor = root;
+        __asm__("" : "=r"(cursor) : "0"(cursor), "r"(root));
         do {
             int value = *(int*)(cursor + 8);
             if (value != 0 && (unsigned)(negativeRoot + fieldOffset) < (unsigned)arg2) {
@@ -217,19 +216,19 @@ void func_credits_80074820(int* arg0, int arg1, int* arg2) {
                 }
                 record = *(char**)(nestedCursor + 20);
                 if ((unsigned)(record + 8) < (unsigned)arg2) {
-                    *(unsigned short*)(record + 8) = *(unsigned short*)(record + 8) +
-                        (*(int*)(negativeRoot + 16) - (int)record);
+                    *(unsigned short*)(record + 8) =
+                        *(unsigned short*)(record + 8) + (*(int*)(negativeRoot + 16) - (int)record);
                     record = *(char**)(nestedCursor + 20);
                     *(unsigned short*)(record + 10) = *(unsigned short*)(record + 10) +
-                        (*(int*)(negativeRoot + 16) - (int)record);
+                                                      (*(int*)(negativeRoot + 16) - (int)record);
                 }
                 record = *(char**)(nestedCursor + 20);
                 if ((unsigned)(record + 12) < (unsigned)arg2) {
                     *(unsigned short*)(record + 12) = *(unsigned short*)(record + 12) +
-                        (*(int*)(negativeRoot + 16) - (int)record);
+                                                      (*(int*)(negativeRoot + 16) - (int)record);
                     record = *(char**)(nestedCursor + 20);
                     *(unsigned short*)(record + 14) = *(unsigned short*)(record + 14) +
-                        (*(int*)(negativeRoot + 16) - (int)record);
+                                                      (*(int*)(negativeRoot + 16) - (int)record);
                 }
                 nestedCursor += 4;
                 count = *(volatile int*)negativeRoot;
@@ -241,8 +240,8 @@ void func_credits_80074820(int* arg0, int arg1, int* arg2) {
     } else {
         index = 0;
         fieldOffset = 20;
-        cursor=root;
-        __asm__("" : "=r"(cursor) : "0"(cursor),"r"(root));
+        cursor = root;
+        __asm__("" : "=r"(cursor) : "0"(cursor), "r"(root));
         do {
             int value = *(int*)(cursor + 20);
             if (value != 0 && (unsigned)(root + fieldOffset) < (unsigned)arg2) {
@@ -252,8 +251,10 @@ void func_credits_80074820(int* arg0, int arg1, int* arg2) {
             index++;
             cursor += 4;
         } while (index < 8);
-        if ((unsigned)(root + 52) < (unsigned)arg2) *(int*)(root + 52) = (int)base + *(int*)(root + 52);
-        if ((unsigned)(root + 56) < (unsigned)arg2) *(int*)(root + 56) = (int)base + *(int*)(root + 56);
+        if ((unsigned)(root + 52) < (unsigned)arg2)
+            *(int*)(root + 52) = (int)base + *(int*)(root + 52);
+        if ((unsigned)(root + 56) < (unsigned)arg2)
+            *(int*)(root + 56) = (int)base + *(int*)(root + 56);
         index = 0;
         if (*(int*)root > 0) {
             register char* nestedCursor __asm__("$7") = root;
@@ -298,7 +299,6 @@ void func_credits_80074820(int* arg0, int arg1, int* arg2) {
     ((int*)&D_8006EE2C)[arg1] = (int)root;
 }
 
-
 /* AI-generated; not human reviewed. Derived from this function's
  * original SCUS-94467 instructions; native words and targets matched.
  * Raw field units, helper meanings and update cadence remain unresolved. */
@@ -342,25 +342,25 @@ void func_credits_80074820(int* arg0, int arg1, int* arg2) {
  * No complete credits subsystem or browser parity claim is made.
  */
 /* Original assembly SHA256 6cc95ca9bb2efcae10495c19158db0b841b2b0c4d50e64fe5e4d27741b55db72 */
-#define Credits_74BA0Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
-#define Credits_74BA0Keep(x) __asm__ volatile("":"=r"(x):"0"(x))
-int Credits_74BA0_CDLoadAsync(int,void*,int,int) __asm__("CDLoadAsync");
-void Credits_74BA0_CDLoadSync(int,void*,int,int) __asm__("CDLoadSync");
+#define Credits_74BA0Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
+#define Credits_74BA0Keep(x) __asm__ volatile("" : "=r"(x) : "0"(x))
+int Credits_74BA0_CDLoadAsync(int, void*, int, int) __asm__("CDLoadAsync");
+void Credits_74BA0_CDLoadSync(int, void*, int, int) __asm__("CDLoadSync");
 int Credits_74BA0_DrawSync(int) __asm__("DrawSync");
-int Credits_74BA0_LoadImage(void*,void*) __asm__("LoadImage");
-int Credits_74BA0_MoveImage(void*,int,int) __asm__("MoveImage");
-int Credits_74BA0_func_800359A4(void*,int) __asm__("func_800359A4");
-int Credits_74BA0_func_8003636C(int,int) __asm__("func_8003636C");
-int Credits_74BA0_func_800363DC(int,int) __asm__("func_800363DC");
-void Credits_74BA0_func_8004E7D4(void*,void*,int) __asm__("func_8004E7D4");
+int Credits_74BA0_LoadImage(void*, void*) __asm__("LoadImage");
+int Credits_74BA0_MoveImage(void*, int, int) __asm__("MoveImage");
+int Credits_74BA0CountTimerDown(void*, int) __asm__("func_800359A4");
+int Credits_74BA0RandBetween(int, int) __asm__("func_8003636C");
+int Credits_74BA0RandSignedBetween(int, int) __asm__("func_800363DC");
+void Credits_74BA0_func_8004E7D4(void*, void*, int) __asm__("func_8004E7D4");
 int Credits_74BA0_func_8004F6B4() __asm__("func_8004F6B4");
 int Credits_74BA0_func_8005E074() __asm__("func_8005E074");
-int Credits_74BA0_func_8005F5FC(const char*,...) __asm__("func_8005F5FC");
+int Credits_74BA0_func_8005F5FC(const char*, ...) __asm__("func_8005F5FC");
 int Credits_74BA0_func_80064A2C() __asm__("func_80064A2C");
 int Credits_74BA0_func_80064A8C() __asm__("func_80064A8C");
 int Credits_74BA0_func_80064AEC() __asm__("func_80064AEC");
 void* Credits_74BA0_func_credits_8007458C(void*) __asm__("func_credits_8007458C");
-void Credits_74BA0_func_credits_80074820(void*,int,void*) __asm__("func_credits_80074820");
+void Credits_74BA0_func_credits_80074820(void*, int, void*) __asm__("func_credits_80074820");
 extern unsigned char Credits_74BA0_D_800658A0 __asm__("D_800658A0");
 extern int Credits_74BA0_D_8006C500 __asm__("D_8006C500");
 extern short Credits_74BA0_D_8006C510 __asm__("D_8006C510");
@@ -422,10 +422,8 @@ typedef union {
         unsigned low;
         int high;
 #endif
-    }
-    words;
-}
-Credits_74BA0CompleteProduct;
+    } words;
+} Credits_74BA0CompleteProduct;
 extern int Credits_74BA0Index0[] __asm__("D_8006D8D8+1464");
 extern int Credits_74BA0Index1[] __asm__("D_8006D8D8+1464");
 extern int Credits_74BA0Index2[] __asm__("D_8006D8D8+1464");
@@ -436,31 +434,35 @@ extern int Credits_74BA0Index6[] __asm__("D_8006D8D8+1464");
 extern int Credits_74BA0Index7[] __asm__("D_8006D8D8+1464");
 extern int Credits_74BA0Index8[] __asm__("D_8006D8D8+1464");
 void func_credits_80074BA0(void) {
-    register int bufferRowOrSlotOffset16 __asm__("$16"),headerTextOrDivisor17 __asm__("$17"),ioRootOrSlotIndex18 __asm__("$18"),rowIndex19 __asm__("$19"),spacingMode20 __asm__("$20"),slotOrHalfWidth21 __asm__("$21"),rowCursor22 __asm__("$22"),rowByteOffset23 __asm__("$23");
-    register int resultOrIntermediate2 __asm__("$2"),fieldOrIntermediate3 __asm__("$3"),argumentOrIntermediate4 __asm__("$4"),argumentOrIntermediate5 __asm__("$5"),argumentOrIntermediate6 __asm__("$6"),argumentOrIntermediate7 __asm__("$7"),constantOrLowCapture8 __asm__("$8"),snapshotOrHighCapture9 __asm__("$9"),lowCapture10 __asm__("$10"),work11 __asm__("$11");
+    register int bufferRowOrSlotOffset16 __asm__("$16"), headerTextOrDivisor17 __asm__("$17"),
+        ioRootOrSlotIndex18 __asm__("$18"), rowIndex19 __asm__("$19"), spacingMode20 __asm__("$20"),
+        slotOrHalfWidth21 __asm__("$21"), rowCursor22 __asm__("$22"),
+        rowByteOffset23 __asm__("$23");
+    register int resultOrIntermediate2 __asm__("$2"), fieldOrIntermediate3 __asm__("$3"),
+        argumentOrIntermediate4 __asm__("$4"), argumentOrIntermediate5 __asm__("$5"),
+        argumentOrIntermediate6 __asm__("$6"), argumentOrIntermediate7 __asm__("$7"),
+        constantOrLowCapture8 __asm__("$8"), snapshotOrHighCapture9 __asm__("$9"),
+        lowCapture10 __asm__("$10"), work11 __asm__("$11");
     struct {
-        short sp10,sp12,sp14,sp16;
+        short sp10, sp12, sp14, sp16;
         union {
             int word;
             struct {
-                short low,high;
-            }
-            half;
-        }
-        home18,home1C,home20;
-        short sp24,sp26;
-        int sp28,sp2C,sp30;
+                short low, high;
+            } half;
+        } home18, home1C, home20;
+        short sp24, sp26;
+        int sp28, sp2C, sp30;
         char reserve34[12];
         int sp40;
         char reserve44[32];
-    }
-    originalFrame;
+    } originalFrame;
     short temp_v0_8;
     short temp_v0_9;
     int temp_a0;
     int spacingIncrement;
     register short symbolIndex2 __asm__("$2");
-    Credits_74BA0CompleteProduct product1,product2,product3,product4,product5,product6;
+    Credits_74BA0CompleteProduct product1, product2, product3, product4, product5, product6;
     int temp_v0_4;
     unsigned int var_v0_4;
     int temp_v0_5;
@@ -468,159 +470,181 @@ void func_credits_80074BA0(void) {
     if (Credits_74BA0_D_8006C510 != -1) {
         goto block_11;
     }
-    Credits_74BA0Field((int)&Credits_74BA0_D_80070328, int *, 0x288) = 1;
+    Credits_74BA0Field((int)&Credits_74BA0_D_80070328, int*, 0x288) = 1;
     Credits_74BA0_DrawSync(0);
-    resultOrIntermediate2=0x2C000;
-    fieldOrIntermediate3=Credits_74BA0_D_800722D8;
-    Credits_74BA0_D_8006C7DC=resultOrIntermediate2;
-    fieldOrIntermediate3-=resultOrIntermediate2;
-    resultOrIntermediate2=fieldOrIntermediate3-resultOrIntermediate2;
+    resultOrIntermediate2 = 0x2C000;
+    fieldOrIntermediate3 = Credits_74BA0_D_800722D8;
+    Credits_74BA0_D_8006C7DC = resultOrIntermediate2;
+    fieldOrIntermediate3 -= resultOrIntermediate2;
+    resultOrIntermediate2 = fieldOrIntermediate3 - resultOrIntermediate2;
     Credits_74BA0Keep(resultOrIntermediate2);
     Credits_74BA0Keep(fieldOrIntermediate3);
-    Credits_74BA0_D_800722D0=resultOrIntermediate2;
-    Credits_74BA0_D_8006FC6C=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0_D_8006C7F0;
-    __asm__ volatile("":"=r"(resultOrIntermediate2):"0"(resultOrIntermediate2):"$16");
-    bufferRowOrSlotOffset16=(int)&Credits_74BA0_D_credits_80076318;
+    Credits_74BA0_D_800722D0 = resultOrIntermediate2;
+    Credits_74BA0_D_8006FC6C = resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0_D_8006C7F0;
+    MATCHING_KEEP_VOLATILE_CLOBBER(resultOrIntermediate2, "$16");
+    bufferRowOrSlotOffset16 = (int)&Credits_74BA0_D_credits_80076318;
     Credits_74BA0Keep(bufferRowOrSlotOffset16);
-    Credits_74BA0_D_800722D4=fieldOrIntermediate3;
-    Credits_74BA0_D_8006FCE0=fieldOrIntermediate3;
-    fieldOrIntermediate3=0;
-    if(resultOrIntermediate2!=0)goto block_5;
+    Credits_74BA0_D_800722D4 = fieldOrIntermediate3;
+    Credits_74BA0_D_8006FCE0 = fieldOrIntermediate3;
+    fieldOrIntermediate3 = 0;
+    if (resultOrIntermediate2 != 0)
+        goto block_5;
     Credits_74BA0Keep(resultOrIntermediate2);
     Credits_74BA0Keep(fieldOrIntermediate3);
-    argumentOrIntermediate4=0;
-    Credits_74BA0_D_8006C5F0=bufferRowOrSlotOffset16;
-    Credits_74BA0_D_8006C5A4=0;
+    argumentOrIntermediate4 = 0;
+    Credits_74BA0_D_8006C5F0 = bufferRowOrSlotOffset16;
+    Credits_74BA0_D_8006C5A4 = 0;
 loop_3:
-    resultOrIntermediate2=Credits_74BA0_D_8006C5F0;
-    argumentOrIntermediate4+=1;
-    resultOrIntermediate2=fieldOrIntermediate3+resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0_D_8006C5F0;
+    argumentOrIntermediate4 += 1;
+    resultOrIntermediate2 = fieldOrIntermediate3 + resultOrIntermediate2;
     Credits_74BA0Keep(resultOrIntermediate2);
-    Credits_74BA0Field(resultOrIntermediate2,signed char*,4)=0;
-    fieldOrIntermediate3+=0x1C;
-    if(argumentOrIntermediate4<0x64)goto loop_3;
-    resultOrIntermediate2=bufferRowOrSlotOffset16+0xAF0;
-    Credits_74BA0_D_8006C524=resultOrIntermediate2;
-    resultOrIntermediate2=bufferRowOrSlotOffset16+0x2800;
-    Credits_74BA0_D_8006C550=resultOrIntermediate2;
-    resultOrIntermediate2=bufferRowOrSlotOffset16+0x6400;
-    Credits_74BA0_D_800722C4=resultOrIntermediate2;
-    resultOrIntermediate2=0xB400;
-    resultOrIntermediate2=bufferRowOrSlotOffset16+resultOrIntermediate2;
+    Credits_74BA0Field(resultOrIntermediate2, signed char*, 4) = 0;
+    fieldOrIntermediate3 += 0x1C;
+    if (argumentOrIntermediate4 < 0x64)
+        goto loop_3;
+    resultOrIntermediate2 = bufferRowOrSlotOffset16 + 0xAF0;
+    Credits_74BA0_D_8006C524 = resultOrIntermediate2;
+    resultOrIntermediate2 = bufferRowOrSlotOffset16 + 0x2800;
+    Credits_74BA0_D_8006C550 = resultOrIntermediate2;
+    resultOrIntermediate2 = bufferRowOrSlotOffset16 + 0x6400;
+    Credits_74BA0_D_800722C4 = resultOrIntermediate2;
+    resultOrIntermediate2 = 0xB400;
+    resultOrIntermediate2 = bufferRowOrSlotOffset16 + resultOrIntermediate2;
     Credits_74BA0Keep(resultOrIntermediate2);
-    Credits_74BA0_D_8006C7F0=resultOrIntermediate2;
-    Credits_74BA0_D_800722BC=resultOrIntermediate2;
-    Credits_74BA0_D_800722C0=resultOrIntermediate2;
+    Credits_74BA0_D_8006C7F0 = resultOrIntermediate2;
+    Credits_74BA0_D_800722BC = resultOrIntermediate2;
+    Credits_74BA0_D_800722C0 = resultOrIntermediate2;
 block_5:
     /* Initial buffer/header load phase. */
-    ioRootOrSlotIndex18=(int)&Credits_74BA0_D_8006E470;
-    bufferRowOrSlotOffset16=(int)&Credits_74BA0_D_800722C0;
+    ioRootOrSlotIndex18 = (int)&Credits_74BA0_D_8006E470;
+    bufferRowOrSlotOffset16 = (int)&Credits_74BA0_D_800722C0;
     Credits_74BA0Keep(ioRootOrSlotIndex18);
     Credits_74BA0Keep(bufferRowOrSlotOffset16);
-    Credits_74BA0_CDLoadSync(Credits_74BA0Field(ioRootOrSlotIndex18,int*,0), Credits_74BA0Field(bufferRowOrSlotOffset16,int*,0), 0x800, Credits_74BA0Index0[Credits_74BA0_D_8006C6A8*2]);
-    headerTextOrDivisor17=(int)&Credits_74BA0_D_80072098;
+    Credits_74BA0_CDLoadSync(Credits_74BA0Field(ioRootOrSlotIndex18, int*, 0),
+                             Credits_74BA0Field(bufferRowOrSlotOffset16, int*, 0), 0x800,
+                             Credits_74BA0Index0[Credits_74BA0_D_8006C6A8 * 2]);
+    headerTextOrDivisor17 = (int)&Credits_74BA0_D_80072098;
     Credits_74BA0Keep(headerTextOrDivisor17);
-    Credits_74BA0_func_8004E7D4(headerTextOrDivisor17, Credits_74BA0Field(bufferRowOrSlotOffset16,int*,0), (void *)0x220);
-    Credits_74BA0_CDLoadSync(Credits_74BA0Field(ioRootOrSlotIndex18,int*,0), Credits_74BA0Field(bufferRowOrSlotOffset16,int*,0), 0x60000, Credits_74BA0Field(headerTextOrDivisor17,int*,0) + Credits_74BA0Index1[Credits_74BA0_D_8006C6A8*2]);
-    argumentOrIntermediate4=(int)&originalFrame.sp10;
-    argumentOrIntermediate5=Credits_74BA0Field(bufferRowOrSlotOffset16,int*,0);
+    Credits_74BA0_func_8004E7D4(headerTextOrDivisor17,
+                                Credits_74BA0Field(bufferRowOrSlotOffset16, int*, 0), (void*)0x220);
+    Credits_74BA0_CDLoadSync(Credits_74BA0Field(ioRootOrSlotIndex18, int*, 0),
+                             Credits_74BA0Field(bufferRowOrSlotOffset16, int*, 0), 0x60000,
+                             Credits_74BA0Field(headerTextOrDivisor17, int*, 0) +
+                                 Credits_74BA0Index1[Credits_74BA0_D_8006C6A8 * 2]);
+    argumentOrIntermediate4 = (int)&originalFrame.sp10;
+    argumentOrIntermediate5 = Credits_74BA0Field(bufferRowOrSlotOffset16, int*, 0);
     Credits_74BA0Keep(argumentOrIntermediate4);
     Credits_74BA0Keep(argumentOrIntermediate5);
-    resultOrIntermediate2=0x200;
-    originalFrame.sp10=resultOrIntermediate2;
-    originalFrame.sp14=resultOrIntermediate2;
-    resultOrIntermediate2=0x180;
-    originalFrame.sp12=0;
-    originalFrame.sp16=resultOrIntermediate2;
-    Credits_74BA0_LoadImage(argumentOrIntermediate4,argumentOrIntermediate5);
-    Credits_74BA0_CDLoadSync(Credits_74BA0Field(ioRootOrSlotIndex18,int*,0), Credits_74BA0Field(bufferRowOrSlotOffset16,int*,0), Credits_74BA0_D_8007209C + 0xFFFA0000, Credits_74BA0Field(headerTextOrDivisor17,int*,0) + Credits_74BA0Index2[Credits_74BA0_D_8006C6A8*2] + 0x60000);
+    resultOrIntermediate2 = 0x200;
+    originalFrame.sp10 = resultOrIntermediate2;
+    originalFrame.sp14 = resultOrIntermediate2;
+    resultOrIntermediate2 = 0x180;
+    originalFrame.sp12 = 0;
+    originalFrame.sp16 = resultOrIntermediate2;
+    Credits_74BA0_LoadImage(argumentOrIntermediate4, argumentOrIntermediate5);
+    Credits_74BA0_CDLoadSync(Credits_74BA0Field(ioRootOrSlotIndex18, int*, 0),
+                             Credits_74BA0Field(bufferRowOrSlotOffset16, int*, 0),
+                             Credits_74BA0_D_8007209C + 0xFFFA0000,
+                             Credits_74BA0Field(headerTextOrDivisor17, int*, 0) +
+                                 Credits_74BA0Index2[Credits_74BA0_D_8006C6A8 * 2] + 0x60000);
     Credits_74BA0_func_80064A2C(0x1010);
-    Credits_74BA0_func_80064A8C(Credits_74BA0Field(bufferRowOrSlotOffset16,int*,0), 0x7EFF0);
+    Credits_74BA0_func_80064A8C(Credits_74BA0Field(bufferRowOrSlotOffset16, int*, 0), 0x7EFF0);
 loop_6:
     if (Credits_74BA0_func_80064AEC(0) == 0) {
         goto loop_6;
     }
-    headerTextOrDivisor17=(int)&Credits_74BA0_D_8006E470;
-    bufferRowOrSlotOffset16=(int)&Credits_74BA0_D_800722C0;
+    headerTextOrDivisor17 = (int)&Credits_74BA0_D_8006E470;
+    bufferRowOrSlotOffset16 = (int)&Credits_74BA0_D_800722C0;
     Credits_74BA0Keep(headerTextOrDivisor17);
     Credits_74BA0Keep(bufferRowOrSlotOffset16);
-    Credits_74BA0_CDLoadSync(Credits_74BA0Field(headerTextOrDivisor17,int*,0), Credits_74BA0Field(bufferRowOrSlotOffset16,int*,0), Credits_74BA0_D_800720A4, Credits_74BA0_D_800720A0 + Credits_74BA0Index3[Credits_74BA0_D_8006C6A8*2]);
-    resultOrIntermediate2=Credits_74BA0_func_credits_8007458C(Credits_74BA0Field(bufferRowOrSlotOffset16,int*,0));
-    argumentOrIntermediate4=Credits_74BA0Field(headerTextOrDivisor17,int*,0);
-    argumentOrIntermediate5=Credits_74BA0_D_800722C4;
-    argumentOrIntermediate6=Credits_74BA0_D_800720AC;
-    fieldOrIntermediate3=Credits_74BA0_D_8006C6A8;
-    Credits_74BA0_D_800722C8=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0_D_800720A8;
-    Credits_74BA0_D_8006C5E0=0;
-    argumentOrIntermediate7=Credits_74BA0Index4[fieldOrIntermediate3*2];
-    argumentOrIntermediate7=resultOrIntermediate2+argumentOrIntermediate7;
-    Credits_74BA0_CDLoadSync(argumentOrIntermediate4,argumentOrIntermediate5,argumentOrIntermediate6,argumentOrIntermediate7);
-    Credits_74BA0_func_credits_80074820(Credits_74BA0_D_800722C4, Credits_74BA0_D_80072238, 0x80800000);
-    Credits_74BA0_CDLoadSync(Credits_74BA0Field(headerTextOrDivisor17,int*,0), Credits_74BA0_D_800722C8, Credits_74BA0_D_800720B4, Credits_74BA0_D_800720B0 + Credits_74BA0Index5[Credits_74BA0_D_8006C6A8*2]);
-    resultOrIntermediate2=Credits_74BA0_D_800722C8;
-    argumentOrIntermediate4=Credits_74BA0_D_8006C524;
-    fieldOrIntermediate3=Credits_74BA0Field(resultOrIntermediate2,int*,4);
-    Credits_74BA0_D_8006C6AC=resultOrIntermediate2;
-    fieldOrIntermediate3+=4;
-    resultOrIntermediate2+=fieldOrIntermediate3;
-    argumentOrIntermediate5=resultOrIntermediate2+0xC;
-    Credits_74BA0_D_8006C7EC=resultOrIntermediate2;
-    argumentOrIntermediate6=Credits_74BA0Field(resultOrIntermediate2,int*,0);
-    fieldOrIntermediate3=Credits_74BA0Field(resultOrIntermediate2,int*,4);
-    resultOrIntermediate2=Credits_74BA0Field(resultOrIntermediate2,int*,8);
-    argumentOrIntermediate6-=0xC;
-    Credits_74BA0_D_8006C540=resultOrIntermediate2;
-    resultOrIntermediate2=argumentOrIntermediate4+fieldOrIntermediate3;
-    bufferRowOrSlotOffset16=resultOrIntermediate2-0xC;
-    Credits_74BA0_func_8004E7D4(argumentOrIntermediate4,argumentOrIntermediate5,argumentOrIntermediate6);
-    argumentOrIntermediate4=0;
-    resultOrIntermediate2=Credits_74BA0_D_8006C540;
+    Credits_74BA0_CDLoadSync(
+        Credits_74BA0Field(headerTextOrDivisor17, int*, 0),
+        Credits_74BA0Field(bufferRowOrSlotOffset16, int*, 0), Credits_74BA0_D_800720A4,
+        Credits_74BA0_D_800720A0 + Credits_74BA0Index3[Credits_74BA0_D_8006C6A8 * 2]);
+    resultOrIntermediate2 =
+        Credits_74BA0_func_credits_8007458C(Credits_74BA0Field(bufferRowOrSlotOffset16, int*, 0));
+    argumentOrIntermediate4 = Credits_74BA0Field(headerTextOrDivisor17, int*, 0);
+    argumentOrIntermediate5 = Credits_74BA0_D_800722C4;
+    argumentOrIntermediate6 = Credits_74BA0_D_800720AC;
+    fieldOrIntermediate3 = Credits_74BA0_D_8006C6A8;
+    Credits_74BA0_D_800722C8 = resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0_D_800720A8;
+    Credits_74BA0_D_8006C5E0 = 0;
+    argumentOrIntermediate7 = Credits_74BA0Index4[fieldOrIntermediate3 * 2];
+    argumentOrIntermediate7 = resultOrIntermediate2 + argumentOrIntermediate7;
+    Credits_74BA0_CDLoadSync(argumentOrIntermediate4, argumentOrIntermediate5,
+                             argumentOrIntermediate6, argumentOrIntermediate7);
+    Credits_74BA0_func_credits_80074820(Credits_74BA0_D_800722C4, Credits_74BA0_D_80072238,
+                                        0x80800000);
+    Credits_74BA0_CDLoadSync(Credits_74BA0Field(headerTextOrDivisor17, int*, 0),
+                             Credits_74BA0_D_800722C8, Credits_74BA0_D_800720B4,
+                             Credits_74BA0_D_800720B0 +
+                                 Credits_74BA0Index5[Credits_74BA0_D_8006C6A8 * 2]);
+    resultOrIntermediate2 = Credits_74BA0_D_800722C8;
+    argumentOrIntermediate4 = Credits_74BA0_D_8006C524;
+    fieldOrIntermediate3 = Credits_74BA0Field(resultOrIntermediate2, int*, 4);
+    Credits_74BA0_D_8006C6AC = resultOrIntermediate2;
+    fieldOrIntermediate3 += 4;
+    resultOrIntermediate2 += fieldOrIntermediate3;
+    argumentOrIntermediate5 = resultOrIntermediate2 + 0xC;
+    Credits_74BA0_D_8006C7EC = resultOrIntermediate2;
+    argumentOrIntermediate6 = Credits_74BA0Field(resultOrIntermediate2, int*, 0);
+    fieldOrIntermediate3 = Credits_74BA0Field(resultOrIntermediate2, int*, 4);
+    resultOrIntermediate2 = Credits_74BA0Field(resultOrIntermediate2, int*, 8);
+    argumentOrIntermediate6 -= 0xC;
+    Credits_74BA0_D_8006C540 = resultOrIntermediate2;
+    resultOrIntermediate2 = argumentOrIntermediate4 + fieldOrIntermediate3;
+    bufferRowOrSlotOffset16 = resultOrIntermediate2 - 0xC;
+    Credits_74BA0_func_8004E7D4(argumentOrIntermediate4, argumentOrIntermediate5,
+                                argumentOrIntermediate6);
+    argumentOrIntermediate4 = 0;
+    resultOrIntermediate2 = Credits_74BA0_D_8006C540;
     if (resultOrIntermediate2 <= 0) {
         goto block_10;
     }
-    argumentOrIntermediate5=resultOrIntermediate2;
-    fieldOrIntermediate3=Credits_74BA0_D_8006C524;
+    argumentOrIntermediate5 = resultOrIntermediate2;
+    fieldOrIntermediate3 = Credits_74BA0_D_8006C524;
     Credits_74BA0Keep(argumentOrIntermediate5);
 loop_9:
-    resultOrIntermediate2=Credits_74BA0Field(fieldOrIntermediate3,int*,0);
-    argumentOrIntermediate4+=1;
-    resultOrIntermediate2=bufferRowOrSlotOffset16+resultOrIntermediate2;
-    Credits_74BA0Field(fieldOrIntermediate3,int*,0)=resultOrIntermediate2;
-    fieldOrIntermediate3+=0xC;
+    resultOrIntermediate2 = Credits_74BA0Field(fieldOrIntermediate3, int*, 0);
+    argumentOrIntermediate4 += 1;
+    resultOrIntermediate2 = bufferRowOrSlotOffset16 + resultOrIntermediate2;
+    Credits_74BA0Field(fieldOrIntermediate3, int*, 0) = resultOrIntermediate2;
+    fieldOrIntermediate3 += 0xC;
     if (argumentOrIntermediate4 < argumentOrIntermediate5) {
         goto loop_9;
     }
 block_10:
     Credits_74BA0_D_8006C510 = 0;
-    Credits_74BA0_D_8006C6A8 = (unsigned short) Credits_74BA0_D_8006C6A8 + 1;
+    Credits_74BA0_D_8006C6A8 = (unsigned short)Credits_74BA0_D_8006C6A8 + 1;
 block_11:
     /* Camera-record cursor update. */
     if (Credits_74BA0_D_8006C6AC == 0) {
         goto block_24;
     }
-    resultOrIntermediate2=Credits_74BA0_D_8006C510;
+    resultOrIntermediate2 = Credits_74BA0_D_8006C510;
     if (resultOrIntermediate2 < 0) {
         goto block_24;
     }
-    argumentOrIntermediate6=resultOrIntermediate2;
+    argumentOrIntermediate6 = resultOrIntermediate2;
     Credits_74BA0Keep(argumentOrIntermediate6);
     var_v1_3 = Credits_74BA0Field(Credits_74BA0_D_8006C6AC, int*, 0) + Credits_74BA0_D_8006C648;
-    temp_a0 = Credits_74BA0Field(Credits_74BA0_D_8006C6AC, int *, 8) * 2;
+    temp_a0 = Credits_74BA0Field(Credits_74BA0_D_8006C6AC, int*, 8) * 2;
     Credits_74BA0Field(Credits_74BA0_D_8006C6AC, int*, 0) = var_v1_3;
-    if ((int) var_v1_3 >= temp_a0) {
+    if ((int)var_v1_3 >= temp_a0) {
         goto block_23;
     }
-    if ((int) var_v1_3 < 0x20) {
+    if ((int)var_v1_3 < 0x20) {
         goto block_16;
     }
     var_v1_3 = temp_a0 - var_v1_3;
-    if ((int) var_v1_3 >= 0x20) {
+    if ((int)var_v1_3 >= 0x20) {
         goto block_17;
     }
 block_16:
-    Credits_74BA0_D_8006C598 = 0x10 - ((int) var_v1_3 >> 1);
+    Credits_74BA0_D_8006C598 = 0x10 - ((int)var_v1_3 >> 1);
     goto block_18;
 block_17:
     Credits_74BA0_D_8006C598 = 0;
@@ -636,53 +660,53 @@ block_20:
     Credits_74BA0_D_8006C598 = 0;
 block_22:
     /* Original six halfword projections from the selected record. */
-    argumentOrIntermediate4=Credits_74BA0_D_8006C6AC;
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate4,int*,0)>>1;
-    resultOrIntermediate2=fieldOrIntermediate3*3;
-    resultOrIntermediate2*=4;
-    resultOrIntermediate2=resultOrIntermediate2+argumentOrIntermediate4;
+    argumentOrIntermediate4 = Credits_74BA0_D_8006C6AC;
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate4, int*, 0) >> 1;
+    resultOrIntermediate2 = fieldOrIntermediate3 * 3;
+    resultOrIntermediate2 *= 4;
+    resultOrIntermediate2 = resultOrIntermediate2 + argumentOrIntermediate4;
     Credits_74BA0Keep(resultOrIntermediate2);
-    resultOrIntermediate2=Credits_74BA0Field(resultOrIntermediate2,unsigned short*,0x10);
-    Credits_74BA0_D_8006E020=resultOrIntermediate2*4;
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate4,int*,0)>>1;
-    resultOrIntermediate2=fieldOrIntermediate3*3;
-    resultOrIntermediate2*=4;
-    resultOrIntermediate2=argumentOrIntermediate4+resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0Field(resultOrIntermediate2, unsigned short*, 0x10);
+    Credits_74BA0_D_8006E020 = resultOrIntermediate2 * 4;
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate4, int*, 0) >> 1;
+    resultOrIntermediate2 = fieldOrIntermediate3 * 3;
+    resultOrIntermediate2 *= 4;
+    resultOrIntermediate2 = argumentOrIntermediate4 + resultOrIntermediate2;
     Credits_74BA0Keep(resultOrIntermediate2);
-    resultOrIntermediate2=Credits_74BA0Field(resultOrIntermediate2,unsigned short*,0x12);
-    Credits_74BA0_D_8006E024=resultOrIntermediate2*4;
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate4,int*,0)>>1;
-    resultOrIntermediate2=fieldOrIntermediate3*3;
-    resultOrIntermediate2*=4;
-    resultOrIntermediate2=argumentOrIntermediate4+resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0Field(resultOrIntermediate2, unsigned short*, 0x12);
+    Credits_74BA0_D_8006E024 = resultOrIntermediate2 * 4;
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate4, int*, 0) >> 1;
+    resultOrIntermediate2 = fieldOrIntermediate3 * 3;
+    resultOrIntermediate2 *= 4;
+    resultOrIntermediate2 = argumentOrIntermediate4 + resultOrIntermediate2;
     Credits_74BA0Keep(resultOrIntermediate2);
-    resultOrIntermediate2=Credits_74BA0Field(resultOrIntermediate2,unsigned short*,0x14);
-    Credits_74BA0_D_8006E028=resultOrIntermediate2*4;
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate4,int*,0)>>1;
-    resultOrIntermediate2=fieldOrIntermediate3*3;
-    resultOrIntermediate2*=4;
-    resultOrIntermediate2=argumentOrIntermediate4+resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0Field(resultOrIntermediate2, unsigned short*, 0x14);
+    Credits_74BA0_D_8006E028 = resultOrIntermediate2 * 4;
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate4, int*, 0) >> 1;
+    resultOrIntermediate2 = fieldOrIntermediate3 * 3;
+    resultOrIntermediate2 *= 4;
+    resultOrIntermediate2 = argumentOrIntermediate4 + resultOrIntermediate2;
     Credits_74BA0Keep(resultOrIntermediate2);
-    resultOrIntermediate2=Credits_74BA0Field(resultOrIntermediate2,unsigned short*,0x16);
-    Credits_74BA0_D_8006E03C=resultOrIntermediate2;
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate4,int*,0)>>1;
-    resultOrIntermediate2=fieldOrIntermediate3*3;
-    resultOrIntermediate2*=4;
-    resultOrIntermediate2=argumentOrIntermediate4+resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0Field(resultOrIntermediate2, unsigned short*, 0x16);
+    Credits_74BA0_D_8006E03C = resultOrIntermediate2;
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate4, int*, 0) >> 1;
+    resultOrIntermediate2 = fieldOrIntermediate3 * 3;
+    resultOrIntermediate2 *= 4;
+    resultOrIntermediate2 = argumentOrIntermediate4 + resultOrIntermediate2;
     Credits_74BA0Keep(resultOrIntermediate2);
-    resultOrIntermediate2=Credits_74BA0Field(resultOrIntermediate2,unsigned short*,0x18);
-    Credits_74BA0_D_8006E03E=resultOrIntermediate2;
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate4,int*,0)>>1;
-    resultOrIntermediate2=fieldOrIntermediate3*3;
-    resultOrIntermediate2*=4;
-    argumentOrIntermediate4=argumentOrIntermediate4+resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0Field(resultOrIntermediate2, unsigned short*, 0x18);
+    Credits_74BA0_D_8006E03E = resultOrIntermediate2;
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate4, int*, 0) >> 1;
+    resultOrIntermediate2 = fieldOrIntermediate3 * 3;
+    resultOrIntermediate2 *= 4;
+    argumentOrIntermediate4 = argumentOrIntermediate4 + resultOrIntermediate2;
     Credits_74BA0Keep(argumentOrIntermediate4);
-    resultOrIntermediate2=Credits_74BA0Field(argumentOrIntermediate4,unsigned short*,0x1A);
-    Credits_74BA0_D_8006E040=resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0Field(argumentOrIntermediate4, unsigned short*, 0x1A);
+    Credits_74BA0_D_8006E040 = resultOrIntermediate2;
     goto block_24;
 block_23:
-    resultOrIntermediate2=argumentOrIntermediate6+1;
-    Credits_74BA0_D_8006C510=resultOrIntermediate2;
+    resultOrIntermediate2 = argumentOrIntermediate6 + 1;
+    Credits_74BA0_D_8006C510 = resultOrIntermediate2;
 block_24:
     if (!(Credits_74BA0_D_8006E53C & 0x810)) {
         goto block_26;
@@ -699,12 +723,12 @@ block_26:
         goto block_33;
     }
 block_29:
-    fieldOrIntermediate3=Credits_74BA0_D_8006C648;
-    resultOrIntermediate2=Credits_74BA0_D_8006C780;
-    temp_v0_4=resultOrIntermediate2+fieldOrIntermediate3;
+    fieldOrIntermediate3 = Credits_74BA0_D_8006C648;
+    resultOrIntermediate2 = Credits_74BA0_D_8006C780;
+    temp_v0_4 = resultOrIntermediate2 + fieldOrIntermediate3;
     Credits_74BA0_D_8006C780 = temp_v0_4;
-    Credits_74BA0_D_8006C598 = (int) (short) temp_v0_4;
-    if ((short) temp_v0_4 < 0x10) {
+    Credits_74BA0_D_8006C598 = (int)(short)temp_v0_4;
+    if ((short)temp_v0_4 < 0x10) {
         goto block_31;
     }
     Credits_74BA0_D_8006C598 = 0xF;
@@ -729,28 +753,28 @@ block_37:
     rowCursor22 = Credits_74BA0_D_8006C744;
     Credits_74BA0Keep(rowCursor22);
     spacingMode20 = 1;
-    snapshotOrHighCapture9=(int)Credits_74BA0_D_8006C740;
-    resultOrIntermediate2=snapshotOrHighCapture9<rowCursor22;
+    snapshotOrHighCapture9 = (int)Credits_74BA0_D_8006C740;
+    resultOrIntermediate2 = snapshotOrHighCapture9 < rowCursor22;
     Credits_74BA0Keep(resultOrIntermediate2);
-    originalFrame.sp40=snapshotOrHighCapture9;
+    originalFrame.sp40 = snapshotOrHighCapture9;
     if (resultOrIntermediate2) {
         goto block_100;
     }
-    resultOrIntermediate2=rowCursor22*3;
+    resultOrIntermediate2 = rowCursor22 * 3;
     Credits_74BA0Keep(resultOrIntermediate2);
-    rowByteOffset23=resultOrIntermediate2*4;
+    rowByteOffset23 = resultOrIntermediate2 * 4;
 loop_39:
     rowIndex19 = -1;
-    if (Credits_74BA0_func_800359A4(Credits_74BA0_D_8006C524 + rowByteOffset23 + 6, 2) == 0) {
+    if (Credits_74BA0CountTimerDown(Credits_74BA0_D_8006C524 + rowByteOffset23 + 6, 2) == 0) {
         goto block_43;
     }
     temp_v0_5 = rowByteOffset23 + Credits_74BA0_D_8006C524;
-    resultOrIntermediate2=temp_v0_5;
-    fieldOrIntermediate3=2;
+    resultOrIntermediate2 = temp_v0_5;
+    fieldOrIntermediate3 = 2;
     Credits_74BA0Keep(resultOrIntermediate2);
     Credits_74BA0Keep(fieldOrIntermediate3);
-    Credits_74BA0Field(resultOrIntermediate2, short *, 0xA) = fieldOrIntermediate3;
-    if (Credits_74BA0Field(resultOrIntermediate2, short *, 8) != 0) {
+    Credits_74BA0Field(resultOrIntermediate2, short*, 0xA) = fieldOrIntermediate3;
+    if (Credits_74BA0Field(resultOrIntermediate2, short*, 8) != 0) {
         goto block_43;
     }
     if (rowCursor22 != Credits_74BA0_D_8006C744) {
@@ -758,16 +782,16 @@ loop_39:
     }
     Credits_74BA0_D_8006C744 += 1;
 block_43:
-    if (Credits_74BA0Field(Credits_74BA0_D_8006C524, short *, 0xA) != 0) {
+    if (Credits_74BA0Field(Credits_74BA0_D_8006C524, short*, 0xA) != 0) {
         goto block_45;
     }
     rowIndex19 = 0;
     goto block_49;
 block_45:
-    if (Credits_74BA0_func_800359A4(Credits_74BA0_D_8006C524 + rowByteOffset23 + 8, 2) == 0) {
+    if (Credits_74BA0CountTimerDown(Credits_74BA0_D_8006C524 + rowByteOffset23 + 8, 2) == 0) {
         goto block_50;
     }
-    if (Credits_74BA0Field((rowByteOffset23 + Credits_74BA0_D_8006C524), short *, 0x16) != 0) {
+    if (Credits_74BA0Field((rowByteOffset23 + Credits_74BA0_D_8006C524), short*, 0x16) != 0) {
         goto block_50;
     }
     if (rowCursor22 >= (Credits_74BA0_D_8006C540 - 1)) {
@@ -779,17 +803,17 @@ block_50:
     if (rowIndex19 == -1) {
         goto block_99;
     }
-    resultOrIntermediate2=rowIndex19*2;
-    slotOrHalfWidth21=0;
-    resultOrIntermediate2+=rowIndex19;
-    fieldOrIntermediate3=Credits_74BA0_D_8006C524;
-    resultOrIntermediate2*=4;
-    argumentOrIntermediate5=resultOrIntermediate2+fieldOrIntermediate3;
+    resultOrIntermediate2 = rowIndex19 * 2;
+    slotOrHalfWidth21 = 0;
+    resultOrIntermediate2 += rowIndex19;
+    fieldOrIntermediate3 = Credits_74BA0_D_8006C524;
+    resultOrIntermediate2 *= 4;
+    argumentOrIntermediate5 = resultOrIntermediate2 + fieldOrIntermediate3;
     Credits_74BA0Keep(argumentOrIntermediate5);
-    Credits_74BA0Field(argumentOrIntermediate5, short *, 0xA) = 1;
-    resultOrIntermediate2=Credits_74BA0_D_8006C740;
-    resultOrIntermediate2=resultOrIntermediate2<rowIndex19;
-    spacingIncrement=16;
+    Credits_74BA0Field(argumentOrIntermediate5, short*, 0xA) = 1;
+    resultOrIntermediate2 = Credits_74BA0_D_8006C740;
+    resultOrIntermediate2 = resultOrIntermediate2 < rowIndex19;
+    spacingIncrement = 16;
     if (!resultOrIntermediate2) {
         goto block_53;
     }
@@ -802,36 +826,36 @@ block_53:
 block_55:
     /* Initialize every scalar frame home used by the byte parser. */
     originalFrame.home18.word = 0x100;
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate5,short*,4);
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate5, short*, 4);
     originalFrame.home20.word = 0xDAC;
     originalFrame.sp28 = 0xE;
     originalFrame.sp2C = 1;
     originalFrame.sp30 = 0x1194;
-    originalFrame.home1C.word=fieldOrIntermediate3;
-    headerTextOrDivisor17 = Credits_74BA0Field(argumentOrIntermediate5, unsigned char **, 0);
-    fieldOrIntermediate3 = Credits_74BA0Field(headerTextOrDivisor17,unsigned char*,0);
+    originalFrame.home1C.word = fieldOrIntermediate3;
+    headerTextOrDivisor17 = Credits_74BA0Field(argumentOrIntermediate5, unsigned char**, 0);
+    fieldOrIntermediate3 = Credits_74BA0Field(headerTextOrDivisor17, unsigned char*, 0);
     Credits_74BA0Keep(fieldOrIntermediate3);
     if (fieldOrIntermediate3 == 0) {
         goto block_94;
     }
 loop_56:
-    ioRootOrSlotIndex18=slotOrHalfWidth21;
+    ioRootOrSlotIndex18 = slotOrHalfWidth21;
     if ((fieldOrIntermediate3 & 0xFF) == 0x20) {
         goto block_90;
     }
     Credits_74BA0Keep(ioRootOrSlotIndex18);
-    fieldOrIntermediate3=Credits_74BA0_D_8006C5A4;
-    resultOrIntermediate2=ioRootOrSlotIndex18<fieldOrIntermediate3;
+    fieldOrIntermediate3 = Credits_74BA0_D_8006C5A4;
+    resultOrIntermediate2 = ioRootOrSlotIndex18 < fieldOrIntermediate3;
     Credits_74BA0Keep(resultOrIntermediate2);
-    argumentOrIntermediate5=fieldOrIntermediate3;
+    argumentOrIntermediate5 = fieldOrIntermediate3;
     if (!resultOrIntermediate2) {
         goto block_63;
     }
-    fieldOrIntermediate3=Credits_74BA0_D_8006C5F0;
-    resultOrIntermediate2=ioRootOrSlotIndex18*28;
-    argumentOrIntermediate4=resultOrIntermediate2+fieldOrIntermediate3;
+    fieldOrIntermediate3 = Credits_74BA0_D_8006C5F0;
+    resultOrIntermediate2 = ioRootOrSlotIndex18 * 28;
+    argumentOrIntermediate4 = resultOrIntermediate2 + fieldOrIntermediate3;
 loop_59:
-    if (Credits_74BA0Field(argumentOrIntermediate4, unsigned char *, 4) == 0) {
+    if (Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 4) == 0) {
         goto block_61;
     }
     ioRootOrSlotIndex18 += 1;
@@ -843,68 +867,72 @@ block_61:
     if (ioRootOrSlotIndex18 >= Credits_74BA0_D_8006C5A4) {
         goto block_63;
     }
-    slotOrHalfWidth21=ioRootOrSlotIndex18;
-    resultOrIntermediate2=(ioRootOrSlotIndex18*8)-slotOrHalfWidth21;
-    resultOrIntermediate2*=4;
+    slotOrHalfWidth21 = ioRootOrSlotIndex18;
+    resultOrIntermediate2 = (ioRootOrSlotIndex18 * 8) - slotOrHalfWidth21;
+    resultOrIntermediate2 *= 4;
     goto block_64;
 block_63:
-    argumentOrIntermediate4=Credits_74BA0Field((int)&Credits_74BA0_D_8006C5A4,unsigned short*,0);
+    argumentOrIntermediate4 =
+        Credits_74BA0Field((int)&Credits_74BA0_D_8006C5A4, unsigned short*, 0);
     Credits_74BA0Keep(argumentOrIntermediate4);
-    fieldOrIntermediate3=(int)((unsigned)argumentOrIntermediate4<<16);
+    fieldOrIntermediate3 = (int)((unsigned)argumentOrIntermediate4 << 16);
     Credits_74BA0Keep(fieldOrIntermediate3);
-    fieldOrIntermediate3>>=16;
-    resultOrIntermediate2=(fieldOrIntermediate3*7)*4;
-    fieldOrIntermediate3=Credits_74BA0_D_8006C5F0;
-    argumentOrIntermediate4+=1;
-    Credits_74BA0_D_8006C5A4=argumentOrIntermediate4;
+    fieldOrIntermediate3 >>= 16;
+    resultOrIntermediate2 = (fieldOrIntermediate3 * 7) * 4;
+    fieldOrIntermediate3 = Credits_74BA0_D_8006C5F0;
+    argumentOrIntermediate4 += 1;
+    Credits_74BA0_D_8006C5A4 = argumentOrIntermediate4;
 block_64:
-    bufferRowOrSlotOffset16=fieldOrIntermediate3+resultOrIntermediate2;
-    fieldOrIntermediate3 = Credits_74BA0Field(headerTextOrDivisor17,unsigned char*,0);
+    bufferRowOrSlotOffset16 = fieldOrIntermediate3 + resultOrIntermediate2;
+    fieldOrIntermediate3 = Credits_74BA0Field(headerTextOrDivisor17, unsigned char*, 0);
     Credits_74BA0Keep(fieldOrIntermediate3);
-    if ((unsigned int) (fieldOrIntermediate3 - 0x41) >= 0x1AU) {
+    if ((unsigned int)(fieldOrIntermediate3 - 0x41) >= 0x1AU) {
         goto block_66;
     }
     spacingMode20 = 1;
 block_66:
-    resultOrIntermediate2=fieldOrIntermediate3-0x61;
+    resultOrIntermediate2 = fieldOrIntermediate3 - 0x61;
     Credits_74BA0Keep(resultOrIntermediate2);
-    if ((unsigned int) resultOrIntermediate2 >= 0x1AU) {
+    if ((unsigned int)resultOrIntermediate2 >= 0x1AU) {
         goto block_68;
     }
     spacingMode20 = 0;
 block_68:
-    Credits_74BA0Field(bufferRowOrSlotOffset16, signed char *, 4) = 1;
-    resultOrIntermediate2=Credits_74BA0_D_8006C5A4;
-    resultOrIntermediate2=resultOrIntermediate2<0x65;
-    Credits_74BA0Field(bufferRowOrSlotOffset16, short *, 0x18) = rowIndex19;
+    Credits_74BA0Field(bufferRowOrSlotOffset16, signed char*, 4) = 1;
+    resultOrIntermediate2 = Credits_74BA0_D_8006C5A4;
+    resultOrIntermediate2 = resultOrIntermediate2 < 0x65;
+    Credits_74BA0Field(bufferRowOrSlotOffset16, short*, 0x18) = rowIndex19;
     if (resultOrIntermediate2) {
         goto block_70;
     }
     Credits_74BA0_func_8005F5FC("Too many moby tags.\n");
     Credits_74BA0_func_8004F6B4();
 block_70:
-    Credits_74BA0Field(bufferRowOrSlotOffset16, short *, 0x12) = (short) originalFrame.home18.word;
-    Credits_74BA0Field(bufferRowOrSlotOffset16, unsigned short *, 0x14) = (unsigned short) originalFrame.home1C.word;
-    Credits_74BA0Field(bufferRowOrSlotOffset16, short *, 0x16) = (short) originalFrame.home20.word;
+    Credits_74BA0Field(bufferRowOrSlotOffset16, short*, 0x12) = (short)originalFrame.home18.word;
+    Credits_74BA0Field(bufferRowOrSlotOffset16, unsigned short*, 0x14) =
+        (unsigned short)originalFrame.home1C.word;
+    Credits_74BA0Field(bufferRowOrSlotOffset16, short*, 0x16) = (short)originalFrame.home20.word;
     if (spacingMode20 != 0) {
         goto block_72;
     }
-    Credits_74BA0Field(bufferRowOrSlotOffset16, unsigned short *, 0x14) = (unsigned short) (Credits_74BA0Field(bufferRowOrSlotOffset16, unsigned short *, 0x14) + originalFrame.sp2C);
-    Credits_74BA0Field(bufferRowOrSlotOffset16, short *, 0x16) = (short) originalFrame.sp30;
+    Credits_74BA0Field(bufferRowOrSlotOffset16, unsigned short*, 0x14) =
+        (unsigned short)(Credits_74BA0Field(bufferRowOrSlotOffset16, unsigned short*, 0x14) +
+                         originalFrame.sp2C);
+    Credits_74BA0Field(bufferRowOrSlotOffset16, short*, 0x16) = (short)originalFrame.sp30;
 block_72:
     /* Byte-range and punctuation index mapping. */
-    fieldOrIntermediate3 = Credits_74BA0Field(headerTextOrDivisor17,unsigned char*,0);
+    fieldOrIntermediate3 = Credits_74BA0Field(headerTextOrDivisor17, unsigned char*, 0);
     Credits_74BA0Keep(fieldOrIntermediate3);
-    if((unsigned)(fieldOrIntermediate3-0x30)<10){
-        symbolIndex2=fieldOrIntermediate3-0x16;
+    if ((unsigned)(fieldOrIntermediate3 - 0x30) < 10) {
+        symbolIndex2 = fieldOrIntermediate3 - 0x16;
         goto block_85;
     }
-    if((unsigned)(fieldOrIntermediate3-0x41)<26){
-        symbolIndex2=(short)(fieldOrIntermediate3-0x41);
+    if ((unsigned)(fieldOrIntermediate3 - 0x41) < 26) {
+        symbolIndex2 = (short)(fieldOrIntermediate3 - 0x41);
         goto block_85;
     }
-    if((unsigned)(fieldOrIntermediate3-0x61)<26){
-        symbolIndex2=(short)(fieldOrIntermediate3-0x61);
+    if ((unsigned)(fieldOrIntermediate3 - 0x61) < 26) {
+        symbolIndex2 = (short)(fieldOrIntermediate3 - 0x61);
         goto block_85;
     }
     fieldOrIntermediate3 = fieldOrIntermediate3 & 0xFF;
@@ -917,39 +945,39 @@ block_77:
     if (fieldOrIntermediate3 != 0x2C) {
         goto block_79;
     }
-    fieldOrIntermediate3=Credits_74BA0Field(bufferRowOrSlotOffset16,unsigned short*,0x14);
-    symbolIndex2=0x25;
-    Credits_74BA0Field(bufferRowOrSlotOffset16,short*,0x1A)=symbolIndex2;
-    fieldOrIntermediate3+=5;
-    Credits_74BA0Field(bufferRowOrSlotOffset16,unsigned short*,0x14)=fieldOrIntermediate3;
+    fieldOrIntermediate3 = Credits_74BA0Field(bufferRowOrSlotOffset16, unsigned short*, 0x14);
+    symbolIndex2 = 0x25;
+    Credits_74BA0Field(bufferRowOrSlotOffset16, short*, 0x1A) = symbolIndex2;
+    fieldOrIntermediate3 += 5;
+    Credits_74BA0Field(bufferRowOrSlotOffset16, unsigned short*, 0x14) = fieldOrIntermediate3;
     goto block_86;
 block_79:
     if (fieldOrIntermediate3 != 0x2E) {
         goto block_81;
     }
-    fieldOrIntermediate3=Credits_74BA0Field(bufferRowOrSlotOffset16,unsigned short*,0x14);
-    symbolIndex2=0x26;
-    Credits_74BA0Field(bufferRowOrSlotOffset16,short*,0x1A)=symbolIndex2;
-    fieldOrIntermediate3+=3;
-    Credits_74BA0Field(bufferRowOrSlotOffset16,unsigned short*,0x14)=fieldOrIntermediate3;
+    fieldOrIntermediate3 = Credits_74BA0Field(bufferRowOrSlotOffset16, unsigned short*, 0x14);
+    symbolIndex2 = 0x26;
+    Credits_74BA0Field(bufferRowOrSlotOffset16, short*, 0x1A) = symbolIndex2;
+    fieldOrIntermediate3 += 3;
+    Credits_74BA0Field(bufferRowOrSlotOffset16, unsigned short*, 0x14) = fieldOrIntermediate3;
     goto block_86;
 block_81:
     if (fieldOrIntermediate3 == 0x2D) {
         goto block_84;
     }
-    resultOrIntermediate2=0x3A;
+    resultOrIntermediate2 = 0x3A;
     Credits_74BA0Keep(resultOrIntermediate2);
-    if(fieldOrIntermediate3==resultOrIntermediate2){
-        symbolIndex2=0x28;
+    if (fieldOrIntermediate3 == resultOrIntermediate2) {
+        symbolIndex2 = 0x28;
         goto block_85;
     }
-    symbolIndex2=0x27;
+    symbolIndex2 = 0x27;
     goto block_85;
 block_84:
-    symbolIndex2=0x27;
+    symbolIndex2 = 0x27;
     Credits_74BA0Keep(symbolIndex2);
 block_85:
-    Credits_74BA0Field(bufferRowOrSlotOffset16, short *, 0x1A) = symbolIndex2;
+    Credits_74BA0Field(bufferRowOrSlotOffset16, short*, 0x1A) = symbolIndex2;
 block_86:
     Credits_74BA0Keep(spacingIncrement);
     if (spacingMode20 == 0) {
@@ -958,14 +986,14 @@ block_86:
     resultOrIntermediate2 = originalFrame.home18.word + spacingIncrement;
     goto block_89;
 block_88:
-    resultOrIntermediate2=originalFrame.home18.word;
-    fieldOrIntermediate3=originalFrame.sp28;
-    resultOrIntermediate2+=fieldOrIntermediate3;
+    resultOrIntermediate2 = originalFrame.home18.word;
+    fieldOrIntermediate3 = originalFrame.sp28;
+    resultOrIntermediate2 += fieldOrIntermediate3;
 block_89:
     originalFrame.home18.word = resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0Field(headerTextOrDivisor17,unsigned char*,0);
-    resultOrIntermediate2-=0x30;
-    spacingMode20=(unsigned)resultOrIntermediate2<10;
+    resultOrIntermediate2 = Credits_74BA0Field(headerTextOrDivisor17, unsigned char*, 0);
+    resultOrIntermediate2 -= 0x30;
+    spacingMode20 = (unsigned)resultOrIntermediate2 < 10;
     goto block_93;
 block_90:
     fieldOrIntermediate3 = originalFrame.sp28 * 3;
@@ -975,190 +1003,194 @@ block_90:
     }
     fieldOrIntermediate3 += 3;
 block_92:
-    resultOrIntermediate2=originalFrame.home18.word+(fieldOrIntermediate3>>2);
-    originalFrame.home18.word=resultOrIntermediate2;
+    resultOrIntermediate2 = originalFrame.home18.word + (fieldOrIntermediate3 >> 2);
+    originalFrame.home18.word = resultOrIntermediate2;
 block_93:
     headerTextOrDivisor17 += 1;
-    fieldOrIntermediate3 = Credits_74BA0Field(headerTextOrDivisor17,unsigned char*,0);
+    fieldOrIntermediate3 = Credits_74BA0Field(headerTextOrDivisor17, unsigned char*, 0);
     Credits_74BA0Keep(fieldOrIntermediate3);
     if (fieldOrIntermediate3 != 0) {
         goto loop_56;
     }
 block_94:
     /* Derive the signed half-width and initialize the original divisor30. */
-    resultOrIntermediate2=originalFrame.home18.word;
-    ioRootOrSlotIndex18=0;
-    resultOrIntermediate2-=0x100;
-    slotOrHalfWidth21=resultOrIntermediate2>>1;
+    resultOrIntermediate2 = originalFrame.home18.word;
+    ioRootOrSlotIndex18 = 0;
+    resultOrIntermediate2 -= 0x100;
+    slotOrHalfWidth21 = resultOrIntermediate2 >> 1;
     Credits_74BA0Keep(slotOrHalfWidth21);
-    headerTextOrDivisor17=30;
+    headerTextOrDivisor17 = 30;
     if (Credits_74BA0_D_8006C5A4 <= 0) {
         goto block_99;
     }
-    bufferRowOrSlotOffset16=0;
+    bufferRowOrSlotOffset16 = 0;
 loop_96:
     /* Initialize slot motion from complete quotient/product values. */
-    resultOrIntermediate2=Credits_74BA0_D_8006C5F0;
-    argumentOrIntermediate7=bufferRowOrSlotOffset16+resultOrIntermediate2;
-    if(Credits_74BA0Field(argumentOrIntermediate7,short*,0x18)!=rowIndex19)goto block_98;
-    argumentOrIntermediate5=15;
-    argumentOrIntermediate6=Credits_74BA0Field(argumentOrIntermediate7,unsigned short*,0x12)-slotOrHalfWidth21;
-    resultOrIntermediate2=(short)argumentOrIntermediate6;
+    resultOrIntermediate2 = Credits_74BA0_D_8006C5F0;
+    argumentOrIntermediate7 = bufferRowOrSlotOffset16 + resultOrIntermediate2;
+    if (Credits_74BA0Field(argumentOrIntermediate7, short*, 0x18) != rowIndex19)
+        goto block_98;
+    argumentOrIntermediate5 = 15;
+    argumentOrIntermediate6 =
+        Credits_74BA0Field(argumentOrIntermediate7, unsigned short*, 0x12) - slotOrHalfWidth21;
+    resultOrIntermediate2 = (short)argumentOrIntermediate6;
     Credits_74BA0Keep(resultOrIntermediate2);
-    resultOrIntermediate2-=0x100;
-    fieldOrIntermediate3=-((resultOrIntermediate2*2)+resultOrIntermediate2);
+    resultOrIntermediate2 -= 0x100;
+    fieldOrIntermediate3 = -((resultOrIntermediate2 * 2) + resultOrIntermediate2);
     Credits_74BA0Keep(fieldOrIntermediate3);
     Credits_74BA0Keep(headerTextOrDivisor17);
-    fieldOrIntermediate3=fieldOrIntermediate3/headerTextOrDivisor17;
+    fieldOrIntermediate3 = fieldOrIntermediate3 / headerTextOrDivisor17;
     Credits_74BA0Keep(fieldOrIntermediate3);
-    resultOrIntermediate2=Credits_74BA0Field(argumentOrIntermediate7,short*,0x16);
-    resultOrIntermediate2=-(resultOrIntermediate2*2);
+    resultOrIntermediate2 = Credits_74BA0Field(argumentOrIntermediate7, short*, 0x16);
+    resultOrIntermediate2 = -(resultOrIntermediate2 * 2);
     Credits_74BA0Keep(resultOrIntermediate2);
-    resultOrIntermediate2=resultOrIntermediate2/headerTextOrDivisor17;
+    resultOrIntermediate2 = resultOrIntermediate2 / headerTextOrDivisor17;
     Credits_74BA0Keep(resultOrIntermediate2);
-    product1.full=(long long)(int)fieldOrIntermediate3*(long long)(int)headerTextOrDivisor17;
-    __asm__("":"=x"(product1.full):"0"(product1.full));
-    lowCapture10=(int)product1.words.low;
+    product1.full = (long long)(int)fieldOrIntermediate3 * (long long)(int)headerTextOrDivisor17;
+    __asm__("" : "=x"(product1.full) : "0"(product1.full));
+    lowCapture10 = (int)product1.words.low;
     Credits_74BA0Keep(lowCapture10);
-    product2.full=(long long)(int)resultOrIntermediate2*(long long)(int)headerTextOrDivisor17;
-    __asm__("":"=x"(product2.full):"0"(product2.full));
-    Credits_74BA0Field(argumentOrIntermediate7,unsigned short*,0x12)=argumentOrIntermediate6;
-    __asm__ volatile(""::"m"(Credits_74BA0Field(argumentOrIntermediate7,unsigned short*,0x12)));
-    argumentOrIntermediate4=4;
-    Credits_74BA0Field(argumentOrIntermediate7,short*,0xC)=fieldOrIntermediate3;
-    Credits_74BA0Field(argumentOrIntermediate7,short*,0x10)=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0Field(argumentOrIntermediate7,unsigned short*,0x16);
-    __asm__(""::"m"(Credits_74BA0Field(argumentOrIntermediate7,short*,0xC)),"m"(Credits_74BA0Field(argumentOrIntermediate7,short*,0x10)));
-    argumentOrIntermediate6-=lowCapture10;
-    Credits_74BA0Field(argumentOrIntermediate7,unsigned short*,0x12)=argumentOrIntermediate6;
-    constantOrLowCapture8=(int)product2.words.low;
+    product2.full = (long long)(int)resultOrIntermediate2 * (long long)(int)headerTextOrDivisor17;
+    __asm__("" : "=x"(product2.full) : "0"(product2.full));
+    Credits_74BA0Field(argumentOrIntermediate7, unsigned short*, 0x12) = argumentOrIntermediate6;
+    __asm__ volatile("" ::"m"(Credits_74BA0Field(argumentOrIntermediate7, unsigned short*, 0x12)));
+    argumentOrIntermediate4 = 4;
+    Credits_74BA0Field(argumentOrIntermediate7, short*, 0xC) = fieldOrIntermediate3;
+    Credits_74BA0Field(argumentOrIntermediate7, short*, 0x10) = resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0Field(argumentOrIntermediate7, unsigned short*, 0x16);
+    __asm__("" ::"m"(Credits_74BA0Field(argumentOrIntermediate7, short*, 0xC)),
+            "m"(Credits_74BA0Field(argumentOrIntermediate7, short*, 0x10)));
+    argumentOrIntermediate6 -= lowCapture10;
+    Credits_74BA0Field(argumentOrIntermediate7, unsigned short*, 0x12) = argumentOrIntermediate6;
+    constantOrLowCapture8 = (int)product2.words.low;
     Credits_74BA0Keep(constantOrLowCapture8);
-    resultOrIntermediate2-=constantOrLowCapture8;
-    __asm__ volatile(""::"r"(argumentOrIntermediate6),"r"(argumentOrIntermediate7));
-    Credits_74BA0Field(argumentOrIntermediate7,short*,0x16)=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0_func_800363DC(argumentOrIntermediate4,argumentOrIntermediate5);
-    fieldOrIntermediate3=bufferRowOrSlotOffset16+Credits_74BA0_D_8006C5F0;
-    Credits_74BA0Field(fieldOrIntermediate3,signed char*,8)=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0_func_800363DC(4,15);
-    fieldOrIntermediate3=bufferRowOrSlotOffset16+Credits_74BA0_D_8006C5F0;
-    Credits_74BA0Field(fieldOrIntermediate3,signed char*,9)=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0_func_800363DC(4,15);
-    fieldOrIntermediate3=bufferRowOrSlotOffset16+Credits_74BA0_D_8006C5F0;
-    Credits_74BA0Field(fieldOrIntermediate3,signed char*,0xA)=resultOrIntermediate2;
-    fieldOrIntermediate3=bufferRowOrSlotOffset16+Credits_74BA0_D_8006C5F0;
+    resultOrIntermediate2 -= constantOrLowCapture8;
+    MATCHING_OBSERVE2_VOLATILE(argumentOrIntermediate6, argumentOrIntermediate7);
+    Credits_74BA0Field(argumentOrIntermediate7, short*, 0x16) = resultOrIntermediate2;
+    resultOrIntermediate2 =
+        Credits_74BA0RandSignedBetween(argumentOrIntermediate4, argumentOrIntermediate5);
+    fieldOrIntermediate3 = bufferRowOrSlotOffset16 + Credits_74BA0_D_8006C5F0;
+    Credits_74BA0Field(fieldOrIntermediate3, signed char*, 8) = resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0RandSignedBetween(4, 15);
+    fieldOrIntermediate3 = bufferRowOrSlotOffset16 + Credits_74BA0_D_8006C5F0;
+    Credits_74BA0Field(fieldOrIntermediate3, signed char*, 9) = resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0RandSignedBetween(4, 15);
+    fieldOrIntermediate3 = bufferRowOrSlotOffset16 + Credits_74BA0_D_8006C5F0;
+    Credits_74BA0Field(fieldOrIntermediate3, signed char*, 0xA) = resultOrIntermediate2;
+    fieldOrIntermediate3 = bufferRowOrSlotOffset16 + Credits_74BA0_D_8006C5F0;
     Credits_74BA0Keep(fieldOrIntermediate3);
-    resultOrIntermediate2=-(int)Credits_74BA0Field(fieldOrIntermediate3,unsigned char*,8);
+    resultOrIntermediate2 = -(int)Credits_74BA0Field(fieldOrIntermediate3, unsigned char*, 8);
     Credits_74BA0Keep(resultOrIntermediate2);
-    product3.full=(long long)(int)resultOrIntermediate2*(long long)(int)headerTextOrDivisor17;
-    __asm__("":"=x"(product3.full):"0"(product3.full));
-    constantOrLowCapture8=(int)product3.words.low;
+    product3.full = (long long)(int)resultOrIntermediate2 * (long long)(int)headerTextOrDivisor17;
+    __asm__("" : "=x"(product3.full) : "0"(product3.full));
+    constantOrLowCapture8 = (int)product3.words.low;
     Credits_74BA0Keep(constantOrLowCapture8);
-    Credits_74BA0Field(fieldOrIntermediate3,signed char*,5)=constantOrLowCapture8;
-    fieldOrIntermediate3=bufferRowOrSlotOffset16+Credits_74BA0_D_8006C5F0;
+    Credits_74BA0Field(fieldOrIntermediate3, signed char*, 5) = constantOrLowCapture8;
+    fieldOrIntermediate3 = bufferRowOrSlotOffset16 + Credits_74BA0_D_8006C5F0;
     Credits_74BA0Keep(fieldOrIntermediate3);
-    resultOrIntermediate2=-(int)Credits_74BA0Field(fieldOrIntermediate3,unsigned char*,9);
+    resultOrIntermediate2 = -(int)Credits_74BA0Field(fieldOrIntermediate3, unsigned char*, 9);
     Credits_74BA0Keep(resultOrIntermediate2);
-    product4.full=(long long)(int)resultOrIntermediate2*(long long)(int)headerTextOrDivisor17;
-    __asm__("":"=x"(product4.full):"0"(product4.full));
-    constantOrLowCapture8=(int)product4.words.low;
+    product4.full = (long long)(int)resultOrIntermediate2 * (long long)(int)headerTextOrDivisor17;
+    __asm__("" : "=x"(product4.full) : "0"(product4.full));
+    constantOrLowCapture8 = (int)product4.words.low;
     Credits_74BA0Keep(constantOrLowCapture8);
-    Credits_74BA0Field(fieldOrIntermediate3,signed char*,6)=constantOrLowCapture8;
-    fieldOrIntermediate3=bufferRowOrSlotOffset16+Credits_74BA0_D_8006C5F0;
+    Credits_74BA0Field(fieldOrIntermediate3, signed char*, 6) = constantOrLowCapture8;
+    fieldOrIntermediate3 = bufferRowOrSlotOffset16 + Credits_74BA0_D_8006C5F0;
     Credits_74BA0Keep(fieldOrIntermediate3);
-    resultOrIntermediate2=-(int)Credits_74BA0Field(fieldOrIntermediate3,unsigned char*,0xA);
+    resultOrIntermediate2 = -(int)Credits_74BA0Field(fieldOrIntermediate3, unsigned char*, 0xA);
     Credits_74BA0Keep(resultOrIntermediate2);
-    product5.full=(long long)(int)resultOrIntermediate2*(long long)(int)headerTextOrDivisor17;
-    __asm__("":"=x"(product5.full):"0"(product5.full));
-    constantOrLowCapture8=(int)product5.words.low;
+    product5.full = (long long)(int)resultOrIntermediate2 * (long long)(int)headerTextOrDivisor17;
+    __asm__("" : "=x"(product5.full) : "0"(product5.full));
+    constantOrLowCapture8 = (int)product5.words.low;
     Credits_74BA0Keep(constantOrLowCapture8);
-    Credits_74BA0Field(fieldOrIntermediate3,signed char*,7)=constantOrLowCapture8;
-    resultOrIntermediate2=bufferRowOrSlotOffset16+Credits_74BA0_D_8006C5F0;
+    Credits_74BA0Field(fieldOrIntermediate3, signed char*, 7) = constantOrLowCapture8;
+    resultOrIntermediate2 = bufferRowOrSlotOffset16 + Credits_74BA0_D_8006C5F0;
     Credits_74BA0Keep(resultOrIntermediate2);
-    Credits_74BA0Field(resultOrIntermediate2,signed char*,0xB)=headerTextOrDivisor17;
+    Credits_74BA0Field(resultOrIntermediate2, signed char*, 0xB) = headerTextOrDivisor17;
 block_98:
-    resultOrIntermediate2=Credits_74BA0_D_8006C5A4;
-    __asm__("":"=r"(ioRootOrSlotIndex18):"0"(ioRootOrSlotIndex18),"r"(resultOrIntermediate2));
-    ioRootOrSlotIndex18+=1;
-    bufferRowOrSlotOffset16+=0x1C;
+    resultOrIntermediate2 = Credits_74BA0_D_8006C5A4;
+    __asm__("" : "=r"(ioRootOrSlotIndex18) : "0"(ioRootOrSlotIndex18), "r"(resultOrIntermediate2));
+    ioRootOrSlotIndex18 += 1;
+    bufferRowOrSlotOffset16 += 0x1C;
     if (ioRootOrSlotIndex18 < resultOrIntermediate2) {
         goto loop_96;
     }
 block_99:
-    snapshotOrHighCapture9=originalFrame.sp40;
-    __asm__("":"=r"(rowCursor22):"0"(rowCursor22),"r"(snapshotOrHighCapture9));
-    rowCursor22+=1;
-    resultOrIntermediate2=snapshotOrHighCapture9<rowCursor22;
+    snapshotOrHighCapture9 = originalFrame.sp40;
+    __asm__("" : "=r"(rowCursor22) : "0"(rowCursor22), "r"(snapshotOrHighCapture9));
+    rowCursor22 += 1;
+    resultOrIntermediate2 = snapshotOrHighCapture9 < rowCursor22;
     Credits_74BA0Keep(resultOrIntermediate2);
-    rowByteOffset23+=0xC;
+    rowByteOffset23 += 0xC;
     if (!resultOrIntermediate2) {
         goto loop_39;
     }
 block_100:
     /* Apply row completion state transitions. */
-    ioRootOrSlotIndex18=0;
-    resultOrIntermediate2=Credits_74BA0_D_8006C5A4;
+    ioRootOrSlotIndex18 = 0;
+    resultOrIntermediate2 = Credits_74BA0_D_8006C5A4;
     if (resultOrIntermediate2 <= 0) {
         goto block_109CurrentCount;
     }
-    constantOrLowCapture8=2;
-    argumentOrIntermediate7=3;
-    argumentOrIntermediate6=4;
-    argumentOrIntermediate5=0;
+    constantOrLowCapture8 = 2;
+    argumentOrIntermediate7 = 3;
+    argumentOrIntermediate6 = 4;
+    argumentOrIntermediate5 = 0;
     Credits_74BA0Keep(constantOrLowCapture8);
     Credits_74BA0Keep(argumentOrIntermediate7);
     Credits_74BA0Keep(argumentOrIntermediate6);
 loop_102:
-    resultOrIntermediate2=Credits_74BA0_D_8006C5F0;
-    argumentOrIntermediate4=argumentOrIntermediate5+resultOrIntermediate2;
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate4,short*,0x18);
+    resultOrIntermediate2 = Credits_74BA0_D_8006C5F0;
+    argumentOrIntermediate4 = argumentOrIntermediate5 + resultOrIntermediate2;
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate4, short*, 0x18);
     Credits_74BA0Keep(fieldOrIntermediate3);
-    resultOrIntermediate2=fieldOrIntermediate3*3;
-    fieldOrIntermediate3=Credits_74BA0_D_8006C524;
-    resultOrIntermediate2*=4;
-    resultOrIntermediate2+=fieldOrIntermediate3;
-    fieldOrIntermediate3=Credits_74BA0Field(resultOrIntermediate2,short*,0xA);
+    resultOrIntermediate2 = fieldOrIntermediate3 * 3;
+    fieldOrIntermediate3 = Credits_74BA0_D_8006C524;
+    resultOrIntermediate2 *= 4;
+    resultOrIntermediate2 += fieldOrIntermediate3;
+    fieldOrIntermediate3 = Credits_74BA0Field(resultOrIntermediate2, short*, 0xA);
     if (fieldOrIntermediate3 != constantOrLowCapture8) {
         goto block_107;
     }
-    resultOrIntermediate2 = Credits_74BA0Field(argumentOrIntermediate4, unsigned char *, 4);
+    resultOrIntermediate2 = Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 4);
     if (resultOrIntermediate2 != fieldOrIntermediate3) {
         goto block_105;
     }
-    Credits_74BA0Field(argumentOrIntermediate4, unsigned char *, 4) = argumentOrIntermediate7;
+    Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 4) = argumentOrIntermediate7;
     goto block_107;
 block_105:
     if (resultOrIntermediate2 != argumentOrIntermediate6) {
         goto block_107;
     }
-    Credits_74BA0Field(argumentOrIntermediate4, unsigned char *, 4) = 0U;
+    Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 4) = 0U;
 block_107:
-    resultOrIntermediate2=Credits_74BA0_D_8006C5A4;
-    ioRootOrSlotIndex18+=1;
-    argumentOrIntermediate5+=0x1C;
+    resultOrIntermediate2 = Credits_74BA0_D_8006C5A4;
+    ioRootOrSlotIndex18 += 1;
+    argumentOrIntermediate5 += 0x1C;
     if (ioRootOrSlotIndex18 < resultOrIntermediate2) {
         goto loop_102;
     }
 block_109:
     /* Load a fresh count after the first loop. */
-    __asm__ volatile("":::"memory");
-    resultOrIntermediate2=Credits_74BA0_D_8006C5A4;
+    MATCHING_BARRIER_VOLATILE("memory");
+    resultOrIntermediate2 = Credits_74BA0_D_8006C5A4;
 block_109CurrentCount:
     /* The earlier nonpositive-count path arrives with its initialized count. */
     Credits_74BA0Keep(resultOrIntermediate2);
-    ioRootOrSlotIndex18=0;
+    ioRootOrSlotIndex18 = 0;
     if (resultOrIntermediate2 <= 0) {
         goto block_132;
     }
     bufferRowOrSlotOffset16 = 0;
 loop_111:
     /* Update the selected slot state. */
-    resultOrIntermediate2=Credits_74BA0_D_8006C5F0;
-    argumentOrIntermediate6=bufferRowOrSlotOffset16+resultOrIntermediate2;
-    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate6, unsigned char *, 4);
+    resultOrIntermediate2 = Credits_74BA0_D_8006C5F0;
+    argumentOrIntermediate6 = bufferRowOrSlotOffset16 + resultOrIntermediate2;
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate6, unsigned char*, 4);
     if (fieldOrIntermediate3 == 2) {
         goto block_122;
     }
-    if ((int) fieldOrIntermediate3 >= 3) {
+    if ((int)fieldOrIntermediate3 >= 3) {
         goto block_115;
     }
     if (fieldOrIntermediate3 == 1) {
@@ -1171,364 +1203,429 @@ block_115:
     }
     goto block_131;
 block_117:
-    resultOrIntermediate2=Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0x12);
-    argumentOrIntermediate4=Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0xC);
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate6,unsigned char*,5);
-    argumentOrIntermediate5=Credits_74BA0Field(argumentOrIntermediate6,unsigned char*,8);
-    resultOrIntermediate2+=argumentOrIntermediate4;
-    Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0x12)=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0x16);
-    fieldOrIntermediate3+=argumentOrIntermediate5;
-    Credits_74BA0Field(argumentOrIntermediate6,unsigned char*,5)=fieldOrIntermediate3;
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0x10);
-    argumentOrIntermediate4=Credits_74BA0_D_8006C5F0;
-    resultOrIntermediate2+=fieldOrIntermediate3;
-    argumentOrIntermediate4=bufferRowOrSlotOffset16+argumentOrIntermediate4;
-    Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0x16)=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0Field(argumentOrIntermediate4,unsigned char*,6);
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate4,unsigned char*,9);
-    resultOrIntermediate2+=fieldOrIntermediate3;
-    Credits_74BA0Field(argumentOrIntermediate4,unsigned char*,6)=resultOrIntermediate2;
-    argumentOrIntermediate4=Credits_74BA0_D_8006C5F0;
-    argumentOrIntermediate4=bufferRowOrSlotOffset16+argumentOrIntermediate4;
-    resultOrIntermediate2=Credits_74BA0Field(argumentOrIntermediate4,unsigned char*,7);
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate4,unsigned char*,0xA);
-    resultOrIntermediate2+=fieldOrIntermediate3;
-    Credits_74BA0Field(argumentOrIntermediate4,unsigned char*,7)=resultOrIntermediate2;
-    fieldOrIntermediate3=Credits_74BA0_D_8006C5F0;
-    fieldOrIntermediate3=bufferRowOrSlotOffset16+fieldOrIntermediate3;
-    resultOrIntermediate2=Credits_74BA0Field(fieldOrIntermediate3,unsigned char*,0xB)-1;
-    Credits_74BA0Field(fieldOrIntermediate3,unsigned char*,0xB)=resultOrIntermediate2;
-    resultOrIntermediate2&=255;
-    fieldOrIntermediate3=2;
-    if(resultOrIntermediate2)goto block_131;
-    resultOrIntermediate2=Credits_74BA0_D_8006C5F0;
-    resultOrIntermediate2=bufferRowOrSlotOffset16+resultOrIntermediate2;
-    Credits_74BA0Field(resultOrIntermediate2,unsigned char*,4)=fieldOrIntermediate3;
-    argumentOrIntermediate4=Credits_74BA0_D_8006C5F0;
-    argumentOrIntermediate4=bufferRowOrSlotOffset16+argumentOrIntermediate4;
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate4,short*,0x12);
-    __asm__("":"=r"(fieldOrIntermediate3):"0"(fieldOrIntermediate3):"$6");
-    argumentOrIntermediate6=argumentOrIntermediate4;
-    fieldOrIntermediate3-=0x100;
-    resultOrIntermediate2=fieldOrIntermediate3*3;
-    resultOrIntermediate2=resultOrIntermediate2*8+fieldOrIntermediate3;
-    resultOrIntermediate2>>=8;
-    __asm__("":"=r"(argumentOrIntermediate4):"0"(argumentOrIntermediate4),"r"(argumentOrIntermediate6));
-    Credits_74BA0Field(argumentOrIntermediate4,short*,0xC)=resultOrIntermediate2;
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate6,short*,0x12);
-    resultOrIntermediate2=0x100;
-    argumentOrIntermediate4=resultOrIntermediate2-fieldOrIntermediate3;
+    resultOrIntermediate2 = Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0x12);
+    argumentOrIntermediate4 = Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0xC);
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate6, unsigned char*, 5);
+    argumentOrIntermediate5 = Credits_74BA0Field(argumentOrIntermediate6, unsigned char*, 8);
+    resultOrIntermediate2 += argumentOrIntermediate4;
+    Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0x12) = resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0x16);
+    fieldOrIntermediate3 += argumentOrIntermediate5;
+    Credits_74BA0Field(argumentOrIntermediate6, unsigned char*, 5) = fieldOrIntermediate3;
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0x10);
+    argumentOrIntermediate4 = Credits_74BA0_D_8006C5F0;
+    resultOrIntermediate2 += fieldOrIntermediate3;
+    argumentOrIntermediate4 = bufferRowOrSlotOffset16 + argumentOrIntermediate4;
+    Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0x16) = resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 6);
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 9);
+    resultOrIntermediate2 += fieldOrIntermediate3;
+    Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 6) = resultOrIntermediate2;
+    argumentOrIntermediate4 = Credits_74BA0_D_8006C5F0;
+    argumentOrIntermediate4 = bufferRowOrSlotOffset16 + argumentOrIntermediate4;
+    resultOrIntermediate2 = Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 7);
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 0xA);
+    resultOrIntermediate2 += fieldOrIntermediate3;
+    Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 7) = resultOrIntermediate2;
+    fieldOrIntermediate3 = Credits_74BA0_D_8006C5F0;
+    fieldOrIntermediate3 = bufferRowOrSlotOffset16 + fieldOrIntermediate3;
+    resultOrIntermediate2 = Credits_74BA0Field(fieldOrIntermediate3, unsigned char*, 0xB) - 1;
+    Credits_74BA0Field(fieldOrIntermediate3, unsigned char*, 0xB) = resultOrIntermediate2;
+    resultOrIntermediate2 &= 255;
+    fieldOrIntermediate3 = 2;
+    if (resultOrIntermediate2)
+        goto block_131;
+    resultOrIntermediate2 = Credits_74BA0_D_8006C5F0;
+    resultOrIntermediate2 = bufferRowOrSlotOffset16 + resultOrIntermediate2;
+    Credits_74BA0Field(resultOrIntermediate2, unsigned char*, 4) = fieldOrIntermediate3;
+    argumentOrIntermediate4 = Credits_74BA0_D_8006C5F0;
+    argumentOrIntermediate4 = bufferRowOrSlotOffset16 + argumentOrIntermediate4;
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate4, short*, 0x12);
+    MATCHING_KEEP_CLOBBER(fieldOrIntermediate3, "$6");
+    argumentOrIntermediate6 = argumentOrIntermediate4;
+    fieldOrIntermediate3 -= 0x100;
+    resultOrIntermediate2 = fieldOrIntermediate3 * 3;
+    resultOrIntermediate2 = resultOrIntermediate2 * 8 + fieldOrIntermediate3;
+    resultOrIntermediate2 >>= 8;
+    __asm__(""
+            : "=r"(argumentOrIntermediate4)
+            : "0"(argumentOrIntermediate4), "r"(argumentOrIntermediate6));
+    Credits_74BA0Field(argumentOrIntermediate4, short*, 0xC) = resultOrIntermediate2;
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate6, short*, 0x12);
+    resultOrIntermediate2 = 0x100;
+    argumentOrIntermediate4 = resultOrIntermediate2 - fieldOrIntermediate3;
     Credits_74BA0Keep(argumentOrIntermediate4);
-    if(argumentOrIntermediate4<0)goto block_120;
-    resultOrIntermediate2=argumentOrIntermediate4*15;
+    if (argumentOrIntermediate4 < 0)
+        goto block_120;
+    resultOrIntermediate2 = argumentOrIntermediate4 * 15;
     goto block_121;
 block_120:
-    fieldOrIntermediate3-=0x100;
-    resultOrIntermediate2=fieldOrIntermediate3*15;
+    fieldOrIntermediate3 -= 0x100;
+    resultOrIntermediate2 = fieldOrIntermediate3 * 15;
 block_121:
-    resultOrIntermediate2=(unsigned)resultOrIntermediate2>>6;
-    __asm__ volatile(""::"r"(argumentOrIntermediate6));
-    Credits_74BA0Field(argumentOrIntermediate6,short*,0x10)=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0_func_8003636C(0x60,0xC0);
-    argumentOrIntermediate4=4;
-    argumentOrIntermediate5=9;
+    resultOrIntermediate2 = (unsigned)resultOrIntermediate2 >> 6;
+    MATCHING_OBSERVE_VOLATILE(argumentOrIntermediate6);
+    Credits_74BA0Field(argumentOrIntermediate6, short*, 0x10) = resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0RandBetween(0x60, 0xC0);
+    argumentOrIntermediate4 = 4;
+    argumentOrIntermediate5 = 9;
     Credits_74BA0Keep(argumentOrIntermediate5);
-    fieldOrIntermediate3=Credits_74BA0_D_8006C5F0;
-    resultOrIntermediate2=-resultOrIntermediate2;
-    fieldOrIntermediate3=bufferRowOrSlotOffset16+fieldOrIntermediate3;
-    Credits_74BA0Field(fieldOrIntermediate3,short*,0xE)=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0_func_800363DC(argumentOrIntermediate4,argumentOrIntermediate5);
-    fieldOrIntermediate3=bufferRowOrSlotOffset16+Credits_74BA0_D_8006C5F0;
-    Credits_74BA0Field(fieldOrIntermediate3,signed char*,8)=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0_func_800363DC(4,9);
-    fieldOrIntermediate3=bufferRowOrSlotOffset16+Credits_74BA0_D_8006C5F0;
-    Credits_74BA0Field(fieldOrIntermediate3,signed char*,9)=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0_func_800363DC(4,9);
-    fieldOrIntermediate3=bufferRowOrSlotOffset16+Credits_74BA0_D_8006C5F0;
-    Credits_74BA0Field(fieldOrIntermediate3,signed char*,0xA)=resultOrIntermediate2;
+    fieldOrIntermediate3 = Credits_74BA0_D_8006C5F0;
+    resultOrIntermediate2 = -resultOrIntermediate2;
+    fieldOrIntermediate3 = bufferRowOrSlotOffset16 + fieldOrIntermediate3;
+    Credits_74BA0Field(fieldOrIntermediate3, short*, 0xE) = resultOrIntermediate2;
+    resultOrIntermediate2 =
+        Credits_74BA0RandSignedBetween(argumentOrIntermediate4, argumentOrIntermediate5);
+    fieldOrIntermediate3 = bufferRowOrSlotOffset16 + Credits_74BA0_D_8006C5F0;
+    Credits_74BA0Field(fieldOrIntermediate3, signed char*, 8) = resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0RandSignedBetween(4, 9);
+    fieldOrIntermediate3 = bufferRowOrSlotOffset16 + Credits_74BA0_D_8006C5F0;
+    Credits_74BA0Field(fieldOrIntermediate3, signed char*, 9) = resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0RandSignedBetween(4, 9);
+    fieldOrIntermediate3 = bufferRowOrSlotOffset16 + Credits_74BA0_D_8006C5F0;
+    Credits_74BA0Field(fieldOrIntermediate3, signed char*, 0xA) = resultOrIntermediate2;
     goto block_131;
 block_122:
-    resultOrIntermediate2=Credits_74BA0Field(argumentOrIntermediate6,unsigned char*,0xB)+1;
-    Credits_74BA0Field(argumentOrIntermediate6,unsigned char*,0xB)=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0_D_8006C5F0;
-    fieldOrIntermediate3=bufferRowOrSlotOffset16+resultOrIntermediate2;
-    if(Credits_74BA0Field(fieldOrIntermediate3,unsigned char*,0xB)>=0x40)Credits_74BA0Field(fieldOrIntermediate3,unsigned char*,0xB)=0;
+    resultOrIntermediate2 = Credits_74BA0Field(argumentOrIntermediate6, unsigned char*, 0xB) + 1;
+    Credits_74BA0Field(argumentOrIntermediate6, unsigned char*, 0xB) = resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0_D_8006C5F0;
+    fieldOrIntermediate3 = bufferRowOrSlotOffset16 + resultOrIntermediate2;
+    if (Credits_74BA0Field(fieldOrIntermediate3, unsigned char*, 0xB) >= 0x40)
+        Credits_74BA0Field(fieldOrIntermediate3, unsigned char*, 0xB) = 0;
 block_124:
-    resultOrIntermediate2=Credits_74BA0_D_8006C5F0;
-    argumentOrIntermediate4=bufferRowOrSlotOffset16+resultOrIntermediate2;
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate4,unsigned char*,0xB);
+    resultOrIntermediate2 = Credits_74BA0_D_8006C5F0;
+    argumentOrIntermediate4 = bufferRowOrSlotOffset16 + resultOrIntermediate2;
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 0xB);
     Credits_74BA0Keep(fieldOrIntermediate3);
-    if(fieldOrIntermediate3<32){
-        resultOrIntermediate2=fieldOrIntermediate3*2;
+    if (fieldOrIntermediate3 < 32) {
+        resultOrIntermediate2 = fieldOrIntermediate3 * 2;
         goto block_126;
     }
-    resultOrIntermediate2=64;
-    fieldOrIntermediate3=resultOrIntermediate2-fieldOrIntermediate3;
+    resultOrIntermediate2 = 64;
+    fieldOrIntermediate3 = resultOrIntermediate2 - fieldOrIntermediate3;
     Credits_74BA0Keep(fieldOrIntermediate3);
-    resultOrIntermediate2=fieldOrIntermediate3*2;
+    resultOrIntermediate2 = fieldOrIntermediate3 * 2;
 block_126:
-    resultOrIntermediate2=Credits_74BA0Field((int)&Credits_74BA0_D_800658A0,unsigned short*,resultOrIntermediate2);
-    resultOrIntermediate2=((int)((unsigned)resultOrIntermediate2<<16))>>22;
-    resultOrIntermediate2-=32;
-    Credits_74BA0Field(argumentOrIntermediate4,signed char*,7)=resultOrIntermediate2;
+    resultOrIntermediate2 =
+        Credits_74BA0Field((int)&Credits_74BA0_D_800658A0, unsigned short*, resultOrIntermediate2);
+    resultOrIntermediate2 = ((int)((unsigned)resultOrIntermediate2 << 16)) >> 22;
+    resultOrIntermediate2 -= 32;
+    Credits_74BA0Field(argumentOrIntermediate4, signed char*, 7) = resultOrIntermediate2;
     goto block_131;
 block_127:
-    resultOrIntermediate2=Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0x12);
-    argumentOrIntermediate4=Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0xC);
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0xE);
-    argumentOrIntermediate5=Credits_74BA0Field(argumentOrIntermediate6,unsigned char*,8);
-    resultOrIntermediate2+=argumentOrIntermediate4;
-    fieldOrIntermediate3=(int)((unsigned)fieldOrIntermediate3<<16)>>20;
-    Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0x12)=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0x14);
-    argumentOrIntermediate4=Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0x10);
-    resultOrIntermediate2+=fieldOrIntermediate3;
-    Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0x14)=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0x16);
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate6,unsigned char*,5);
-    resultOrIntermediate2+=argumentOrIntermediate4;
-    Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0x16)=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0xE);
-    fieldOrIntermediate3+=argumentOrIntermediate5;
-    Credits_74BA0Field(argumentOrIntermediate6,unsigned char*,5)=fieldOrIntermediate3;
-    argumentOrIntermediate4=Credits_74BA0_D_8006C5F0;
-    resultOrIntermediate2+=14;
-    argumentOrIntermediate4=bufferRowOrSlotOffset16+argumentOrIntermediate4;
-    Credits_74BA0Field(argumentOrIntermediate6,unsigned short*,0xE)=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0Field(argumentOrIntermediate4,unsigned char*,6);
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate4,unsigned char*,9);
-    resultOrIntermediate2+=fieldOrIntermediate3;
-    Credits_74BA0Field(argumentOrIntermediate4,unsigned char*,6)=resultOrIntermediate2;
-    argumentOrIntermediate4=Credits_74BA0_D_8006C5F0;
-    argumentOrIntermediate4=bufferRowOrSlotOffset16+argumentOrIntermediate4;
-    resultOrIntermediate2=Credits_74BA0Field(argumentOrIntermediate4,unsigned char*,7);
-    fieldOrIntermediate3=Credits_74BA0Field(argumentOrIntermediate4,unsigned char*,0xA);
-    resultOrIntermediate2+=fieldOrIntermediate3;
-    Credits_74BA0Field(argumentOrIntermediate4,unsigned char*,7)=resultOrIntermediate2;
-    resultOrIntermediate2=Credits_74BA0_D_8006C5F0;
-    fieldOrIntermediate3=bufferRowOrSlotOffset16+resultOrIntermediate2;
-    if(Credits_74BA0Field(fieldOrIntermediate3,short*,0xE)>=0x141)Credits_74BA0Field(fieldOrIntermediate3,short*,0xE)=0x140;
+    resultOrIntermediate2 = Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0x12);
+    argumentOrIntermediate4 = Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0xC);
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0xE);
+    argumentOrIntermediate5 = Credits_74BA0Field(argumentOrIntermediate6, unsigned char*, 8);
+    resultOrIntermediate2 += argumentOrIntermediate4;
+    fieldOrIntermediate3 = (int)((unsigned)fieldOrIntermediate3 << 16) >> 20;
+    Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0x12) = resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0x14);
+    argumentOrIntermediate4 = Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0x10);
+    resultOrIntermediate2 += fieldOrIntermediate3;
+    Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0x14) = resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0x16);
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate6, unsigned char*, 5);
+    resultOrIntermediate2 += argumentOrIntermediate4;
+    Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0x16) = resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0xE);
+    fieldOrIntermediate3 += argumentOrIntermediate5;
+    Credits_74BA0Field(argumentOrIntermediate6, unsigned char*, 5) = fieldOrIntermediate3;
+    argumentOrIntermediate4 = Credits_74BA0_D_8006C5F0;
+    resultOrIntermediate2 += 14;
+    argumentOrIntermediate4 = bufferRowOrSlotOffset16 + argumentOrIntermediate4;
+    Credits_74BA0Field(argumentOrIntermediate6, unsigned short*, 0xE) = resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 6);
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 9);
+    resultOrIntermediate2 += fieldOrIntermediate3;
+    Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 6) = resultOrIntermediate2;
+    argumentOrIntermediate4 = Credits_74BA0_D_8006C5F0;
+    argumentOrIntermediate4 = bufferRowOrSlotOffset16 + argumentOrIntermediate4;
+    resultOrIntermediate2 = Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 7);
+    fieldOrIntermediate3 = Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 0xA);
+    resultOrIntermediate2 += fieldOrIntermediate3;
+    Credits_74BA0Field(argumentOrIntermediate4, unsigned char*, 7) = resultOrIntermediate2;
+    resultOrIntermediate2 = Credits_74BA0_D_8006C5F0;
+    fieldOrIntermediate3 = bufferRowOrSlotOffset16 + resultOrIntermediate2;
+    if (Credits_74BA0Field(fieldOrIntermediate3, short*, 0xE) >= 0x141)
+        Credits_74BA0Field(fieldOrIntermediate3, short*, 0xE) = 0x140;
 block_129:
-    resultOrIntermediate2=Credits_74BA0_D_8006C5F0;
-    fieldOrIntermediate3=bufferRowOrSlotOffset16+resultOrIntermediate2;
-    if(Credits_74BA0Field(fieldOrIntermediate3,short*,0x14)>=0x119)Credits_74BA0Field(fieldOrIntermediate3,signed char*,4)=4;
+    resultOrIntermediate2 = Credits_74BA0_D_8006C5F0;
+    fieldOrIntermediate3 = bufferRowOrSlotOffset16 + resultOrIntermediate2;
+    if (Credits_74BA0Field(fieldOrIntermediate3, short*, 0x14) >= 0x119)
+        Credits_74BA0Field(fieldOrIntermediate3, signed char*, 4) = 4;
 block_131:
-    __asm__ volatile("":::"memory");
-    resultOrIntermediate2=Credits_74BA0_D_8006C5A4;
-    ioRootOrSlotIndex18+=1;
-    bufferRowOrSlotOffset16+=0x1C;
+    MATCHING_BARRIER_VOLATILE("memory");
+    resultOrIntermediate2 = Credits_74BA0_D_8006C5A4;
+    ioRootOrSlotIndex18 += 1;
+    bufferRowOrSlotOffset16 += 0x1C;
     if (ioRootOrSlotIndex18 < resultOrIntermediate2) {
         goto loop_111;
     }
 block_132:
     /* Retire trailing inactive slots using the original signed16 count. */
-    fieldOrIntermediate3=Credits_74BA0_D_8006C5A4;
+    fieldOrIntermediate3 = Credits_74BA0_D_8006C5A4;
     Credits_74BA0Keep(fieldOrIntermediate3);
-    if(fieldOrIntermediate3<=0)goto block_137;
-    resultOrIntermediate2=(fieldOrIntermediate3*7)*4;
-    fieldOrIntermediate3=Credits_74BA0_D_8006C5F0;
-    resultOrIntermediate2+=fieldOrIntermediate3;
-    if(Credits_74BA0Field(resultOrIntermediate2,unsigned char*,-0x18))goto block_137;
-    argumentOrIntermediate4=fieldOrIntermediate3;
+    if (fieldOrIntermediate3 <= 0)
+        goto block_137;
+    resultOrIntermediate2 = (fieldOrIntermediate3 * 7) * 4;
+    fieldOrIntermediate3 = Credits_74BA0_D_8006C5F0;
+    resultOrIntermediate2 += fieldOrIntermediate3;
+    if (Credits_74BA0Field(resultOrIntermediate2, unsigned char*, -0x18))
+        goto block_137;
+    argumentOrIntermediate4 = fieldOrIntermediate3;
 loop_135:
-    resultOrIntermediate2=Credits_74BA0Field((int)&Credits_74BA0_D_8006C5A4,unsigned short*,0)-1;
-    Credits_74BA0_D_8006C5A4=resultOrIntermediate2;
-    resultOrIntermediate2=(int)((unsigned)resultOrIntermediate2<<16);
+    resultOrIntermediate2 =
+        Credits_74BA0Field((int)&Credits_74BA0_D_8006C5A4, unsigned short*, 0) - 1;
+    Credits_74BA0_D_8006C5A4 = resultOrIntermediate2;
+    resultOrIntermediate2 = (int)((unsigned)resultOrIntermediate2 << 16);
     Credits_74BA0Keep(resultOrIntermediate2);
-    fieldOrIntermediate3=resultOrIntermediate2>>16;
+    fieldOrIntermediate3 = resultOrIntermediate2 >> 16;
     Credits_74BA0Keep(fieldOrIntermediate3);
-    if(fieldOrIntermediate3<=0)goto block_137;
-    resultOrIntermediate2=(fieldOrIntermediate3*7)*4;
-    resultOrIntermediate2+=argumentOrIntermediate4;
-    if(!Credits_74BA0Field(resultOrIntermediate2,unsigned char*,-0x18))goto loop_135;
+    if (fieldOrIntermediate3 <= 0)
+        goto block_137;
+    resultOrIntermediate2 = (fieldOrIntermediate3 * 7) * 4;
+    resultOrIntermediate2 += argumentOrIntermediate4;
+    if (!Credits_74BA0Field(resultOrIntermediate2, unsigned char*, -0x18))
+        goto loop_135;
 block_137:
     /* Original external-operation and five-way loader dispatch gates. */
-    fieldOrIntermediate3=Credits_74BA0_D_8006C510;
-    resultOrIntermediate2=-1;
-    if(fieldOrIntermediate3==resultOrIntermediate2)goto block_155;
-    if(fieldOrIntermediate3<=0)goto block_142;
-    resultOrIntermediate2=(int)&Credits_74BA0_D_8006E480;
+    fieldOrIntermediate3 = Credits_74BA0_D_8006C510;
+    resultOrIntermediate2 = -1;
+    if (fieldOrIntermediate3 == resultOrIntermediate2)
+        goto block_155;
+    if (fieldOrIntermediate3 <= 0)
+        goto block_142;
+    resultOrIntermediate2 = (int)&Credits_74BA0_D_8006E480;
     Credits_74BA0Keep(resultOrIntermediate2);
-    resultOrIntermediate2=Credits_74BA0Field(resultOrIntermediate2,int*,0);
-    if(resultOrIntermediate2!=0)goto block_155;
-    argumentOrIntermediate4=1;
-    __asm__("":"=r"(resultOrIntermediate2):"0"(resultOrIntermediate2),"r"(argumentOrIntermediate4));
-    argumentOrIntermediate5=0;
-    resultOrIntermediate2=Credits_74BA0_func_8005E074(argumentOrIntermediate4,argumentOrIntermediate5);
-    fieldOrIntermediate3=2;
-    if(resultOrIntermediate2!=fieldOrIntermediate3)goto block_155;
-    fieldOrIntermediate3=Credits_74BA0_D_8006C510;
+    resultOrIntermediate2 = Credits_74BA0Field(resultOrIntermediate2, int*, 0);
+    if (resultOrIntermediate2 != 0)
+        goto block_155;
+    argumentOrIntermediate4 = 1;
+    __asm__(""
+            : "=r"(resultOrIntermediate2)
+            : "0"(resultOrIntermediate2), "r"(argumentOrIntermediate4));
+    argumentOrIntermediate5 = 0;
+    resultOrIntermediate2 =
+        Credits_74BA0_func_8005E074(argumentOrIntermediate4, argumentOrIntermediate5);
+    fieldOrIntermediate3 = 2;
+    if (resultOrIntermediate2 != fieldOrIntermediate3)
+        goto block_155;
+    fieldOrIntermediate3 = Credits_74BA0_D_8006C510;
 block_142:
-    switch(fieldOrIntermediate3){
-    case 0:
-        __asm__ volatile(""::"r"(fieldOrIntermediate3));
-        argumentOrIntermediate4=Credits_74BA0_D_8006E470;
-        resultOrIntermediate2=Credits_74BA0_D_8006C6A8;
-        argumentOrIntermediate5=Credits_74BA0_D_8006C7EC;
-        argumentOrIntermediate7=Credits_74BA0Index6[resultOrIntermediate2*2];
-        argumentOrIntermediate6=0x800;
-        goto block_148;
-    case 1:
-        __asm__ volatile(""::"r"(fieldOrIntermediate3));
-        bufferRowOrSlotOffset16=(int)&Credits_74BA0_D_80072098;
-        Credits_74BA0Keep(bufferRowOrSlotOffset16);
-        Credits_74BA0_func_8004E7D4(bufferRowOrSlotOffset16,Credits_74BA0_D_8006C7EC,0x220);
-        resultOrIntermediate2=Credits_74BA0_D_8006C6A8;
-        argumentOrIntermediate4=Credits_74BA0_D_8006E470;
-        fieldOrIntermediate3=Credits_74BA0Field(bufferRowOrSlotOffset16,int*,0);
-        __asm__("":"=r"(resultOrIntermediate2):"0"(resultOrIntermediate2),"r"(argumentOrIntermediate4),"r"(fieldOrIntermediate3));
-        argumentOrIntermediate7=Credits_74BA0Index7[resultOrIntermediate2*2];
-        argumentOrIntermediate5=Credits_74BA0_D_8006C7EC;
-        argumentOrIntermediate6=0x20000;
-        goto block_147;
-    case 2:
-        __asm__ volatile(""::"r"(fieldOrIntermediate3));
-        argumentOrIntermediate4=0;
-        Credits_74BA0Keep(argumentOrIntermediate4);
-        fieldOrIntermediate3=0x200;
-        resultOrIntermediate2=0x180;
-        originalFrame.home18.half.high=resultOrIntermediate2;
-        resultOrIntermediate2=0x80;
-        originalFrame.home18.half.low=fieldOrIntermediate3;
-        originalFrame.home1C.half.low=fieldOrIntermediate3;
-        originalFrame.home1C.half.high=resultOrIntermediate2;
-        Credits_74BA0_DrawSync(argumentOrIntermediate4);
-        Credits_74BA0_LoadImage(&originalFrame.home18.word,Credits_74BA0_D_8006C7EC);
-        Credits_74BA0_DrawSync(0);
-        resultOrIntermediate2=0x40000;
-        argumentOrIntermediate4=Credits_74BA0_D_8006E470;
-        argumentOrIntermediate5=Credits_74BA0_D_8006C7EC;
-        fieldOrIntermediate3=Credits_74BA0_D_800720B4;
-        argumentOrIntermediate6=Credits_74BA0_D_800720A4;
-        fieldOrIntermediate3+=resultOrIntermediate2;
-        argumentOrIntermediate6+=fieldOrIntermediate3;
-        resultOrIntermediate2=Credits_74BA0_D_8006C6A8;
-        fieldOrIntermediate3=Credits_74BA0_D_80072098;
-        resultOrIntermediate2=Credits_74BA0Index8[resultOrIntermediate2*2];
-        argumentOrIntermediate7=0x20000;
-        Credits_74BA0_D_8006C500=argumentOrIntermediate6;
-        fieldOrIntermediate3+=resultOrIntermediate2;
-    block_147:
-        argumentOrIntermediate7=fieldOrIntermediate3+argumentOrIntermediate7;
-    block_148:
-        Credits_74BA0_CDLoadAsync(argumentOrIntermediate4,argumentOrIntermediate5,argumentOrIntermediate6,argumentOrIntermediate7);
-        Credits_74BA0_D_8006C510=(unsigned short)Credits_74BA0_D_8006C510+1;
-        return;
-    case 3:
-        __asm__ volatile(""::"r"(fieldOrIntermediate3));
-        Credits_74BA0_D_8006C5E4 = 0;
-        return;
-    case 4:
-        __asm__ volatile(""::"r"(fieldOrIntermediate3));
-        originalFrame.home20.half.low = 0x200;
-        originalFrame.home20.half.high = 0x80;
-        originalFrame.sp24 = 0x200;
-        originalFrame.sp26 = 0x100;
-        Credits_74BA0_D_800722BC = Credits_74BA0_D_8006C7F0;
-        Credits_74BA0_D_800722C0 = Credits_74BA0_D_8006C7F0;
-        Credits_74BA0_DrawSync(0);
-        Credits_74BA0_LoadImage(&originalFrame.home20.word, Credits_74BA0_D_8006C7EC);
-        originalFrame.home20.half.low = 0x200;
-        originalFrame.home20.half.high = 0x180;
-        originalFrame.sp24 = 0x200;
-        originalFrame.sp26 = 0x80;
-        Credits_74BA0_MoveImage(&originalFrame.home20.word, 0x200, 0);
-        Credits_74BA0_DrawSync(0);
-        Credits_74BA0_func_8004E7D4(Credits_74BA0_D_8006C7F0, Credits_74BA0_D_8006C7EC + 0x40000, Credits_74BA0_D_8006C500 - 0x40000);
-        Credits_74BA0_D_8006C7EC = (Credits_74BA0_D_8006C7F0 + Credits_74BA0_D_8006C500) - 0x40000;
-        resultOrIntermediate2=Credits_74BA0_func_credits_8007458C(Credits_74BA0_D_800722C0);
-        fieldOrIntermediate3=0x2AAAAAAB;
-        argumentOrIntermediate5=Credits_74BA0Field((int)&Credits_74BA0_D_8006C6A8,unsigned short*,0);
-        argumentOrIntermediate5=(int)((unsigned)argumentOrIntermediate5<<16);
-        argumentOrIntermediate4=argumentOrIntermediate5>>16;
-        product6.full=(long long)(int)argumentOrIntermediate4*(long long)(int)fieldOrIntermediate3;
-        argumentOrIntermediate6=Credits_74BA0_D_800720A4;
-        Credits_74BA0_D_800722C4=resultOrIntermediate2;
-        fieldOrIntermediate3=Credits_74BA0_D_800722C0;
-        argumentOrIntermediate5>>=31;
-        fieldOrIntermediate3+=argumentOrIntermediate6;
-        Credits_74BA0_D_800722C8=fieldOrIntermediate3;
-        Credits_74BA0_D_8006C6AC=fieldOrIntermediate3;
-        snapshotOrHighCapture9=product6.words.high;
-        Credits_74BA0Keep(snapshotOrHighCapture9);
-        fieldOrIntermediate3=snapshotOrHighCapture9>>1;
-        Credits_74BA0Keep(fieldOrIntermediate3);
-        fieldOrIntermediate3-=argumentOrIntermediate5;
-        resultOrIntermediate2=fieldOrIntermediate3*12;
-        argumentOrIntermediate4-=resultOrIntermediate2;
-        argumentOrIntermediate4=(short)argumentOrIntermediate4;
-        if(argumentOrIntermediate4>=11)goto block_152;
-        Credits_74BA0_D_8006C510 = 0;
-        goto block_153;
-    block_152:
-        Credits_74BA0_D_8006C510 = 3;
-    block_153:
-        temp_v0_9 = (unsigned short) Credits_74BA0_D_8006C6A8 + 1;
-        Credits_74BA0_D_8006C6A8 = temp_v0_9;
-        if (temp_v0_9 != 0xC) {
+    switch (fieldOrIntermediate3) {
+        case 0:
+            MATCHING_OBSERVE_VOLATILE(fieldOrIntermediate3);
+            argumentOrIntermediate4 = Credits_74BA0_D_8006E470;
+            resultOrIntermediate2 = Credits_74BA0_D_8006C6A8;
+            argumentOrIntermediate5 = Credits_74BA0_D_8006C7EC;
+            argumentOrIntermediate7 = Credits_74BA0Index6[resultOrIntermediate2 * 2];
+            argumentOrIntermediate6 = 0x800;
+            goto block_148;
+        case 1:
+            MATCHING_OBSERVE_VOLATILE(fieldOrIntermediate3);
+            bufferRowOrSlotOffset16 = (int)&Credits_74BA0_D_80072098;
+            Credits_74BA0Keep(bufferRowOrSlotOffset16);
+            Credits_74BA0_func_8004E7D4(bufferRowOrSlotOffset16, Credits_74BA0_D_8006C7EC, 0x220);
+            resultOrIntermediate2 = Credits_74BA0_D_8006C6A8;
+            argumentOrIntermediate4 = Credits_74BA0_D_8006E470;
+            fieldOrIntermediate3 = Credits_74BA0Field(bufferRowOrSlotOffset16, int*, 0);
+            __asm__(""
+                    : "=r"(resultOrIntermediate2)
+                    : "0"(resultOrIntermediate2), "r"(argumentOrIntermediate4),
+                      "r"(fieldOrIntermediate3));
+            argumentOrIntermediate7 = Credits_74BA0Index7[resultOrIntermediate2 * 2];
+            argumentOrIntermediate5 = Credits_74BA0_D_8006C7EC;
+            argumentOrIntermediate6 = 0x20000;
+            goto block_147;
+        case 2:
+            MATCHING_OBSERVE_VOLATILE(fieldOrIntermediate3);
+            argumentOrIntermediate4 = 0;
+            Credits_74BA0Keep(argumentOrIntermediate4);
+            fieldOrIntermediate3 = 0x200;
+            resultOrIntermediate2 = 0x180;
+            originalFrame.home18.half.high = resultOrIntermediate2;
+            resultOrIntermediate2 = 0x80;
+            originalFrame.home18.half.low = fieldOrIntermediate3;
+            originalFrame.home1C.half.low = fieldOrIntermediate3;
+            originalFrame.home1C.half.high = resultOrIntermediate2;
+            Credits_74BA0_DrawSync(argumentOrIntermediate4);
+            Credits_74BA0_LoadImage(&originalFrame.home18.word, Credits_74BA0_D_8006C7EC);
+            Credits_74BA0_DrawSync(0);
+            resultOrIntermediate2 = 0x40000;
+            argumentOrIntermediate4 = Credits_74BA0_D_8006E470;
+            argumentOrIntermediate5 = Credits_74BA0_D_8006C7EC;
+            fieldOrIntermediate3 = Credits_74BA0_D_800720B4;
+            argumentOrIntermediate6 = Credits_74BA0_D_800720A4;
+            fieldOrIntermediate3 += resultOrIntermediate2;
+            argumentOrIntermediate6 += fieldOrIntermediate3;
+            resultOrIntermediate2 = Credits_74BA0_D_8006C6A8;
+            fieldOrIntermediate3 = Credits_74BA0_D_80072098;
+            resultOrIntermediate2 = Credits_74BA0Index8[resultOrIntermediate2 * 2];
+            argumentOrIntermediate7 = 0x20000;
+            Credits_74BA0_D_8006C500 = argumentOrIntermediate6;
+            fieldOrIntermediate3 += resultOrIntermediate2;
+        block_147:
+            argumentOrIntermediate7 = fieldOrIntermediate3 + argumentOrIntermediate7;
+        block_148:
+            Credits_74BA0_CDLoadAsync(argumentOrIntermediate4, argumentOrIntermediate5,
+                                      argumentOrIntermediate6, argumentOrIntermediate7);
+            Credits_74BA0_D_8006C510 = (unsigned short)Credits_74BA0_D_8006C510 + 1;
+            return;
+        case 3:
+            MATCHING_OBSERVE_VOLATILE(fieldOrIntermediate3);
+            Credits_74BA0_D_8006C5E4 = 0;
+            return;
+        case 4:
+            MATCHING_OBSERVE_VOLATILE(fieldOrIntermediate3);
+            originalFrame.home20.half.low = 0x200;
+            originalFrame.home20.half.high = 0x80;
+            originalFrame.sp24 = 0x200;
+            originalFrame.sp26 = 0x100;
+            Credits_74BA0_D_800722BC = Credits_74BA0_D_8006C7F0;
+            Credits_74BA0_D_800722C0 = Credits_74BA0_D_8006C7F0;
+            Credits_74BA0_DrawSync(0);
+            Credits_74BA0_LoadImage(&originalFrame.home20.word, Credits_74BA0_D_8006C7EC);
+            originalFrame.home20.half.low = 0x200;
+            originalFrame.home20.half.high = 0x180;
+            originalFrame.sp24 = 0x200;
+            originalFrame.sp26 = 0x80;
+            Credits_74BA0_MoveImage(&originalFrame.home20.word, 0x200, 0);
+            Credits_74BA0_DrawSync(0);
+            Credits_74BA0_func_8004E7D4(Credits_74BA0_D_8006C7F0,
+                                        Credits_74BA0_D_8006C7EC + 0x40000,
+                                        Credits_74BA0_D_8006C500 - 0x40000);
+            Credits_74BA0_D_8006C7EC =
+                (Credits_74BA0_D_8006C7F0 + Credits_74BA0_D_8006C500) - 0x40000;
+            resultOrIntermediate2 = Credits_74BA0_func_credits_8007458C(Credits_74BA0_D_800722C0);
+            fieldOrIntermediate3 = 0x2AAAAAAB;
+            argumentOrIntermediate5 =
+                Credits_74BA0Field((int)&Credits_74BA0_D_8006C6A8, unsigned short*, 0);
+            argumentOrIntermediate5 = (int)((unsigned)argumentOrIntermediate5 << 16);
+            argumentOrIntermediate4 = argumentOrIntermediate5 >> 16;
+            product6.full =
+                (long long)(int)argumentOrIntermediate4 * (long long)(int)fieldOrIntermediate3;
+            argumentOrIntermediate6 = Credits_74BA0_D_800720A4;
+            Credits_74BA0_D_800722C4 = resultOrIntermediate2;
+            fieldOrIntermediate3 = Credits_74BA0_D_800722C0;
+            argumentOrIntermediate5 >>= 31;
+            fieldOrIntermediate3 += argumentOrIntermediate6;
+            Credits_74BA0_D_800722C8 = fieldOrIntermediate3;
+            Credits_74BA0_D_8006C6AC = fieldOrIntermediate3;
+            snapshotOrHighCapture9 = product6.words.high;
+            Credits_74BA0Keep(snapshotOrHighCapture9);
+            fieldOrIntermediate3 = snapshotOrHighCapture9 >> 1;
+            Credits_74BA0Keep(fieldOrIntermediate3);
+            fieldOrIntermediate3 -= argumentOrIntermediate5;
+            resultOrIntermediate2 = fieldOrIntermediate3 * 12;
+            argumentOrIntermediate4 -= resultOrIntermediate2;
+            argumentOrIntermediate4 = (short)argumentOrIntermediate4;
+            if (argumentOrIntermediate4 >= 11)
+                goto block_152;
+            Credits_74BA0_D_8006C510 = 0;
+            goto block_153;
+        block_152:
+            Credits_74BA0_D_8006C510 = 3;
+        block_153:
+            temp_v0_9 = (unsigned short)Credits_74BA0_D_8006C6A8 + 1;
+            Credits_74BA0_D_8006C6A8 = temp_v0_9;
+            if (temp_v0_9 != 0xC) {
+                goto block_155;
+            }
+            Credits_74BA0_D_8006C6A8 = 6;
+        block_155:
+            return;
+        default:
             goto block_155;
-        }
-        Credits_74BA0_D_8006C6A8 = 6;
-    block_155:
-        return;
-        default:goto block_155;
     }
 }
 #undef Credits_74BA0Field
 #undef Credits_74BA0Keep
 
-
 /* AI generated; not human reviewed. Numeric retail credits actor rebuild. */
-typedef struct {unsigned char reserved00[4];unsigned char kind,roll,pitch,yaw;unsigned char reserved08[10];short x,y,z;unsigned char reserved18[2];unsigned short value;} CreditsLayoutRecord;
-extern short D_8006C510,D_8006C5A4;
+typedef struct {
+    unsigned char reserved00[4];
+    unsigned char kind, roll, pitch, yaw;
+    unsigned char reserved08[10];
+    short x, y, z;
+    unsigned char reserved18[2];
+    unsigned short value;
+} CreditsLayoutRecord;
+extern short D_8006C510, D_8006C5A4;
 extern Moby* D_8006C550;
 extern CreditsLayoutRecord* D_8006C5F0;
-extern unsigned char D_8006E33C,D_8006E33D,D_8006E33E;
-extern unsigned char D_8006FC15,D_8006FC16,D_8006FC17,D_8006FC89,D_8006FC8A,D_8006FC8B;
-extern int D_8006C598,D_8006D074;
-void CreditsShade(int,int,int,int) __asm__("func_credits_800744BC");
-extern void func_80022378(void),func_8001C368(void);
+extern unsigned char D_8006E33C, D_8006E33D, D_8006E33E;
+extern unsigned char D_8006FC15, D_8006FC16, D_8006FC17, D_8006FC89, D_8006FC8A, D_8006FC8B;
+extern int D_8006C598, D_8006D074;
+void CreditsShade(int, int, int, int) __asm__("func_credits_800744BC");
+extern void func_80022378(void), func_8001C368(void);
 void func_credits_80076118(void) {
- volatile unsigned char stackSpace[8];
- register Moby* actor __asm__("$19");
- register unsigned char* fields __asm__("$17");
- register int i __asm__("$18");
- register int offset __asm__("$20");
- register CreditsLayoutRecord* record __asm__("$16");
- if(D_8006C510==-1) {func_8001EBAC();return;}
- actor=D_8006C550;
- {int r=D_8006E33C,g=D_8006E33D,b=D_8006E33E;
-  D_8006FC15=r;D_8006FC16=g;D_8006FC17=b;
-  D_8006FC89=r;D_8006FC8A=g;D_8006FC8B=b;}
- i=0;
- if(D_8006C5A4>0) {
-  offset=0;fields=(unsigned char*)actor+0x47;
-  do {
-   register int kind __asm__("$3");
-   {register CreditsLayoutRecord* base __asm__("$2")=D_8006C5F0;
-    __asm__("" : "=r"(base): "0"(base));
-    record=(CreditsLayoutRecord*)((char*)base+offset);}
-   kind=record->kind;
-   __asm__("" : "=r"(kind): "0"(kind));
-   if((unsigned int)(kind-1)<2 || (unsigned char)kind==3) {
-    func_8004E790(actor,0,0x58);
-    *(int*)(fields-0x3B)=record->x;
-    *(int*)(fields-0x37)=record->y;
-    *(int*)(fields-0x33)=record->z;
-    fields[-3]=record->roll;fields[-2]=record->pitch;fields[-1]=record->yaw;
-    fields[-11]=record->value;
-    {int next=record->value;
-     actor++;
-     *(short*)(fields-0x11)=0x3B;
-     fields[13]=2;fields[5]=255;fields[7]=32;fields[0]=127;fields[-10]=next;}
-    fields+=0x58;
-    __asm__("" : "=r"(fields): "0"(fields));
-   }
-   offset+=28;i++;
-  }while(i<D_8006C5A4);
- }
- actor->state=255;
- if(D_8006C598) {int shade=D_8006C598<<4;CreditsShade(2,shade,shade,shade);}
- func_8001EC5C();D_8006D074=0x18000;func_80022378();func_8001C368();
+    volatile unsigned char stackSpace[8];
+    register Moby* actor __asm__("$19");
+    register unsigned char* fields __asm__("$17");
+    register int i __asm__("$18");
+    register int offset __asm__("$20");
+    register CreditsLayoutRecord* record __asm__("$16");
+    if (D_8006C510 == -1) {
+        func_8001EBAC();
+        return;
+    }
+    actor = D_8006C550;
+    {
+        int r = D_8006E33C, g = D_8006E33D, b = D_8006E33E;
+        D_8006FC15 = r;
+        D_8006FC16 = g;
+        D_8006FC17 = b;
+        D_8006FC89 = r;
+        D_8006FC8A = g;
+        D_8006FC8B = b;
+    }
+    i = 0;
+    if (D_8006C5A4 > 0) {
+        offset = 0;
+        fields = (unsigned char*)actor + 0x47;
+        do {
+            register int kind __asm__("$3");
+            {
+                register CreditsLayoutRecord* base __asm__("$2") = D_8006C5F0;
+                MATCHING_KEEP(base);
+                record = (CreditsLayoutRecord*)((char*)base + offset);
+            }
+            kind = record->kind;
+            MATCHING_KEEP(kind);
+            if ((unsigned int)(kind - 1) < 2 || (unsigned char)kind == 3) {
+                func_8004E790(actor, 0, 0x58);
+                *(int*)(fields - 0x3B) = record->x;
+                *(int*)(fields - 0x37) = record->y;
+                *(int*)(fields - 0x33) = record->z;
+                fields[-3] = record->roll;
+                fields[-2] = record->pitch;
+                fields[-1] = record->yaw;
+                fields[-11] = record->value;
+                {
+                    int next = record->value;
+                    actor++;
+                    *(short*)(fields - 0x11) = 0x3B;
+                    fields[13] = 2;
+                    fields[5] = 255;
+                    fields[7] = 32;
+                    fields[0] = 127;
+                    fields[-10] = next;
+                }
+                fields += 0x58;
+                MATCHING_KEEP(fields);
+            }
+            offset += 28;
+            i++;
+        } while (i < D_8006C5A4);
+    }
+    actor->state = 255;
+    if (D_8006C598) {
+        int shade = D_8006C598 << 4;
+        CreditsShade(2, shade, shade, shade);
+    }
+    func_8001EC5C();
+    D_8006D074 = 0x18000;
+    func_80022378();
+    func_8001C368();
 }

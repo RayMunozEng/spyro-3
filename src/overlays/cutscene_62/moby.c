@@ -1,9 +1,11 @@
+#include "matching.h"
 #include "common.h"
 #include "ovl_header.h"
 #include "stdutil.h"
 #include "spyro.h"
 
-void func_cutscene_62_80074780(void) {}
+void func_cutscene_62_80074780(void) {
+}
 
 extern short D_800658A0[], D_80065920[];
 extern int DecodedParticleColour __asm__("D_80065868");
@@ -35,7 +37,8 @@ void func_cutscene_62_80074788(Moby* moby) {
     SpawnParticle(2, 0x42, &offset, (Vector3D*)1);
     if (!moby->mobyTag) {
         moby->mobyTag = func_8002EC50(1, 0x40, 0x489090);
-        if (!moby->mobyTag) return;
+        if (!moby->mobyTag)
+            return;
     }
     {
         effect = moby->mobyTag;
@@ -51,16 +54,16 @@ void func_cutscene_62_80074788(Moby* moby) {
  * Helper aliases describe argument producers visible at each original call;
  * the second 4EA90 call does not establish a new fourth argument.
  */
-#define Cutscene74788Field(p,t,o) (*(t)((unsigned char*)(p)+(o)))
-int Cutscene74788Helper4EA90Four(void*,void*,int,int) __asm__("func_8004EA90");
-int Cutscene74788Helper4EA90(void*,void*,int) __asm__("func_8004EA90");
-int Cutscene74788Helper4ED6C(void*,void*,void*) __asm__("func_8004ED6C");
-int Cutscene74788Helper4F168(void*) __asm__("func_8004F168");
-int Cutscene74788Helper4F178(void*,void*) __asm__("func_8004F178");
-int Cutscene74788Helper4F194(void*,void*,void*) __asm__("func_8004F194");
-int Cutscene74788Helper4F554(void*,void*,int) __asm__("func_8004F554");
-int Cutscene74788Helper55D24(void*,int) __asm__("func_80055D24");
-int Cutscene74788Helper55F14(void*,int,void*) __asm__("func_80055F14");
+#define Cutscene74788Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
+int Cutscene74788Helper4EA90Four(void*, void*, int, int) __asm__("func_8004EA90");
+int Cutscene74788BuildPackedAngleBasisMatrix(void*, void*, int) __asm__("func_8004EA90");
+int Cutscene74788TransformVectorByBasis(void*, void*, void*) __asm__("func_8004ED6C");
+int Cutscene74788ClearVector(void*) __asm__("func_8004F168");
+int Cutscene74788CopyVector(void*, void*) __asm__("func_8004F178");
+int Cutscene74788AddVector(void*, void*, void*) __asm__("func_8004F194");
+int Cutscene74788Helper4F554(void*, void*, int) __asm__("func_8004F554");
+int Cutscene74788RefreshMobySpatialGridAndBasis(void*, int) __asm__("func_80055D24");
+int Cutscene74788InterpolateMobyVertex(void*, int, void*) __asm__("func_80055F14");
 extern unsigned char Cutscene74788D_800695F8[] __asm__("D_800695F8");
 extern unsigned char Cutscene74788D_800698B8[] __asm__("D_800698B8");
 extern unsigned char Cutscene74788D_80069C58[] __asm__("D_80069C58");
@@ -76,11 +79,23 @@ extern int Cutscene74788D_8006EDDC __asm__("D_8006EDDC");
 extern unsigned char Cutscene74788D_800717A9 __asm__("D_800717A9");
 extern unsigned char Cutscene74788D_800717AA __asm__("D_800717AA");
 extern unsigned char Cutscene74788D_80071834 __asm__("D_80071834");
-extern int (*Cutscene74788SpawnParticle)(int,int,void*,void*) __asm__("SpawnParticle");
-void func_cutscene_62_800749DC(void *input) {
-    register unsigned char *owner __asm__("$22")=input;
-    struct {unsigned char colour[8]; struct {int x,y,z;} first;int pad24; struct {int x,y,z;} second;int pad34;int inactive;int pad3C[3];} frame;
-    register unsigned char *keyframeTable __asm__("$2");
+extern int (*Cutscene74788SpawnParticle)(int, int, void*, void*) __asm__("SpawnParticle");
+void func_cutscene_62_800749DC(void* input) {
+    register unsigned char* owner __asm__("$22") = input;
+    struct {
+        unsigned char colour[8];
+        struct {
+            int x, y, z;
+        } first;
+        int pad24;
+        struct {
+            int x, y, z;
+        } second;
+        int pad34;
+        int inactive;
+        int pad3C[3];
+    } frame;
+    register unsigned char* keyframeTable __asm__("$2");
     register int startThreshold __asm__("$4");
     register int expiryThreshold __asm__("$4");
     register int tickIndex __asm__("$6");
@@ -88,32 +103,32 @@ void func_cutscene_62_800749DC(void *input) {
     register int keyframeOffset __asm__("$9");
     register int slotIndex __asm__("$18");
     register int slotByteOffset __asm__("$23");
-    register unsigned char *previousPosition __asm__("$20");
-    register unsigned char *slotTimer __asm__("$16");
-    register unsigned char *slotState __asm__("$19");
+    register unsigned char* previousPosition __asm__("$20");
+    register unsigned char* slotTimer __asm__("$16");
+    register unsigned char* slotState __asm__("$19");
     unsigned char currentFrame;
     unsigned char ownerState;
-    void *sharedTransform;
-    register void *slotKeyframes __asm__("$3");
+    void* sharedTransform;
+    register void* slotKeyframes __asm__("$3");
 
-    register unsigned char *timerBytes __asm__("$5");
-    register unsigned char *selectors __asm__("$7");
+    register unsigned char* timerBytes __asm__("$5");
+    register unsigned char* selectors __asm__("$7");
     register int step __asm__("$4");
     register int thirtyTwo __asm__("$8");
     register int colour __asm__("$7");
-    register void *firstVector __asm__("$17");
-    register void *secondVector __asm__("$21");
+    register void* firstVector __asm__("$17");
+    register void* secondVector __asm__("$21");
     register int inactiveCount __asm__("$9");
     frame.inactive = 0;
-    ownerState = Cutscene74788Field(owner, unsigned char *, 0x48);
+    ownerState = Cutscene74788Field(owner, unsigned char*, 0x48);
     if (ownerState != 2) {
         startThreshold = 0x954;
         if (ownerState == 0) {
-            if (Cutscene74788Field(owner, short *, 0x38) == 0x2711) {
+            if (Cutscene74788Field(owner, short*, 0x38) == 0x2711) {
                 startThreshold = 0xD16;
             }
-            colour=0xC0;
-            __asm__("" : "=r"(colour) : "0"(colour));
+            colour = 0xC0;
+            MATCHING_KEEP(colour);
             if (Cutscene74788D_8006EDDC >= startThreshold) {
                 frame.colour[0] = 0;
                 frame.colour[1] = 0;
@@ -121,48 +136,63 @@ void func_cutscene_62_800749DC(void *input) {
                 Cutscene74788D_800717A8[0] = 0;
                 Cutscene74788D_800717A9 = 0;
                 Cutscene74788D_800717AA = 0xC0;
-                Cutscene74788Helper4EA90Four(&frame.colour[0], Cutscene74788D_800717A8 + 0x90, 0, colour);
-                Cutscene74788Helper4EA90(&frame.colour[0], Cutscene74788D_800717A8 + 0xA4, 0);
-                Cutscene74788Helper4F168(Cutscene74788D_800717A8 + 0x118);
+                Cutscene74788Helper4EA90Four(&frame.colour[0], Cutscene74788D_800717A8 + 0x90, 0,
+                                             colour);
+                Cutscene74788BuildPackedAngleBasisMatrix(&frame.colour[0],
+                                                         Cutscene74788D_800717A8 + 0xA4, 0);
+                Cutscene74788ClearVector(Cutscene74788D_800717A8 + 0x118);
                 Cutscene74788D_80071834 = 1;
-                Cutscene74788Field(Cutscene74788D_80071835, unsigned char *, 0) = 0U;
-                Cutscene74788Field(owner, unsigned char *, 0x48) = 1U;
+                Cutscene74788Field(Cutscene74788D_80071835, unsigned char*, 0) = 0U;
+                Cutscene74788Field(owner, unsigned char*, 0x48) = 1U;
                 goto updateSlots;
             }
         } else {
-updateSlots:
-            step=Cutscene74788D_8006C648;
-            tickIndex=0;
-            if(step>0) {
-                timerBytes=Cutscene74788D_80071835;
-                selectors=Cutscene74788D_80069C58;
-                thirtyTwo=32;
-                __asm__("" : "=r"(timerBytes),"=r"(selectors),"=r"(thirtyTwo) : "0"(timerBytes),"1"(selectors),"2"(thirtyTwo));
+        updateSlots:
+            step = Cutscene74788D_8006C648;
+            tickIndex = 0;
+            if (step > 0) {
+                timerBytes = Cutscene74788D_80071835;
+                selectors = Cutscene74788D_80069C58;
+                thirtyTwo = 32;
+                MATCHING_KEEP3(timerBytes, selectors, thirtyTwo);
                 do {
-                    if ((unsigned char) Cutscene74788Field(timerBytes, unsigned char *, 0) < 8U) {
-                        {register int selected __asm__("$3")=*((Cutscene74788Field(timerBytes,unsigned char*,2)*8)+selectors+Cutscene74788Field(timerBytes,unsigned char*,0));
-                         register int value __asm__("$2");
-                         __asm__("" : "=r"(selected),"=r"(step) : "0"(selected),"1"(step) : "$2");
-                         value=step-tickIndex;Cutscene74788D_800717BC[selected]=value;}
-                        *(Cutscene74788D_800717C4 + *((Cutscene74788Field(timerBytes, unsigned char *, 2) * 8) + selectors + Cutscene74788Field(timerBytes, unsigned char *, 0))) = thirtyTwo;
-                        *(Cutscene74788D_800717CC + *((Cutscene74788Field(timerBytes, unsigned char *, 2) * 8) + selectors + Cutscene74788Field(timerBytes, unsigned char *, 0))) = 0;
+                    if ((unsigned char)Cutscene74788Field(timerBytes, unsigned char*, 0) < 8U) {
+                        {
+                            register int selected __asm__("$3") =
+                                *((Cutscene74788Field(timerBytes, unsigned char*, 2) * 8) +
+                                  selectors + Cutscene74788Field(timerBytes, unsigned char*, 0));
+                            register int value __asm__("$2");
+                            MATCHING_KEEP2_CLOBBER(selected, step, "$2");
+                            value = step - tickIndex;
+                            Cutscene74788D_800717BC[selected] = value;
+                        }
+                        *(Cutscene74788D_800717C4 +
+                          *((Cutscene74788Field(timerBytes, unsigned char*, 2) * 8) + selectors +
+                            Cutscene74788Field(timerBytes, unsigned char*, 0))) = thirtyTwo;
+                        *(Cutscene74788D_800717CC +
+                          *((Cutscene74788Field(timerBytes, unsigned char*, 2) * 8) + selectors +
+                            Cutscene74788Field(timerBytes, unsigned char*, 0))) = 0;
                     }
                     tickIndex += 1;
                     __asm__ volatile("" : "=r"(tickIndex) : "0"(tickIndex) : "$2", "memory");
-                    {register int count __asm__("$2")=Cutscene74788Field(timerBytes,unsigned char*,0);
-                     step=Cutscene74788D_8006C648;
-                     __asm__("" : "=r"(count),"=r"(step) : "0"(count),"1"(step));
-                     count+=1;Cutscene74788Field(timerBytes,unsigned char*,0)=count;}
+                    {
+                        register int count __asm__("$2") =
+                            Cutscene74788Field(timerBytes, unsigned char*, 0);
+                        step = Cutscene74788D_8006C648;
+                        MATCHING_KEEP2(count, step);
+                        count += 1;
+                        Cutscene74788Field(timerBytes, unsigned char*, 0) = count;
+                    }
                 } while (tickIndex < step);
             }
-            Cutscene74788Helper55D24(owner, 4);
-            Cutscene74788Helper55F14(owner, 0, Cutscene74788D_8007179C);
+            Cutscene74788RefreshMobySpatialGridAndBasis(owner, 4);
+            Cutscene74788InterpolateMobyVertex(owner, 0, Cutscene74788D_8007179C);
             slotIndex = 0;
-            firstVector=&frame.first.x;
-            __asm__("" : "=r"(firstVector) : "0"(firstVector));
+            firstVector = &frame.first.x;
+            MATCHING_KEEP(firstVector);
             sharedTransform = Cutscene74788D_8007179C + 0x9C;
-            secondVector=&frame.second.x;
-            __asm__("" : "=r"(secondVector) : "0"(secondVector));
+            secondVector = &frame.second.x;
+            MATCHING_KEEP(secondVector);
             slotByteOffset = 0;
             previousPosition = Cutscene74788D_8007179C + 0xC4;
             slotState = Cutscene74788D_8007179C + 0x30;
@@ -179,41 +209,58 @@ updateSlots:
                     if (*slotState != 0) {
                         *slotTimer += Cutscene74788D_8006C648;
                     }
-                    if ((int) *slotTimer >= expiryThreshold) {
+                    if ((int)*slotTimer >= expiryThreshold) {
                         *slotTimer = 0;
                         goto advanceSlot;
                     }
                     if (*slotState != 2) {
                         if (slotIndex < 4) {
-                            keyframeOffset=slotIndex*keyframeCount;
+                            keyframeOffset = slotIndex * keyframeCount;
                             keyframeTable = Cutscene74788D_800695F8;
                         } else {
-                            {register int offset __asm__("$2")=slotIndex-4;
-                             __asm__("" : "=r"(offset) : "0"(offset));
-                             keyframeOffset=offset*keyframeCount;}
+                            {
+                                register int offset __asm__("$2") = slotIndex - 4;
+                                MATCHING_KEEP(offset);
+                                keyframeOffset = offset * keyframeCount;
+                            }
                             keyframeTable = Cutscene74788D_800698B8;
                         }
-                        __asm__("" : "=r"(keyframeOffset),"=r"(keyframeTable) : "0"(keyframeOffset),"1"(keyframeTable));
+                        MATCHING_KEEP2(keyframeOffset, keyframeTable);
                         slotKeyframes = (keyframeOffset * 8);
-                        __asm__("" : "=r"(slotKeyframes) : "0"(slotKeyframes));
-                        slotKeyframes+= (int)keyframeTable;
+                        MATCHING_KEEP(slotKeyframes);
+                        slotKeyframes += (int)keyframeTable;
                         currentFrame = *slotTimer;
-                        if ((int) currentFrame < (keyframeCount - 1)) {
-                            Cutscene74788Helper4F554(firstVector, slotKeyframes + ((currentFrame + 1) * 8), keyframeCount);
-                            Cutscene74788Helper4ED6C(sharedTransform, firstVector, firstVector);
-                            Cutscene74788Helper4F194(firstVector, firstVector, sharedTransform - 0x9C);
+                        if ((int)currentFrame < (keyframeCount - 1)) {
+                            Cutscene74788Helper4F554(firstVector,
+                                                     slotKeyframes + ((currentFrame + 1) * 8),
+                                                     keyframeCount);
+                            Cutscene74788TransformVectorByBasis(sharedTransform, firstVector,
+                                                                firstVector);
+                            Cutscene74788AddVector(firstVector, firstVector,
+                                                   sharedTransform - 0x9C);
                             if (*slotState == 0) {
-                                Cutscene74788Helper4F178(&frame.second.x, owner + 0xC);
+                                Cutscene74788CopyVector(&frame.second.x, owner + 0xC);
                                 *slotState = 1;
                             } else {
-                                Cutscene74788Helper4F178(&frame.second.x, previousPosition);
+                                Cutscene74788CopyVector(&frame.second.x, previousPosition);
                             }
-                            Cutscene74788Helper4F178(previousPosition, &frame.first.x);
+                            Cutscene74788CopyVector(previousPosition, &frame.first.x);
                             slotByteOffset += 0xC;
-                        } else if ((keyframeCount < (currentFrame + Cutscene74788D_8006C648)) && (keyframeCount >= (int) currentFrame) && (Cutscene74788Helper4F554(firstVector, slotKeyframes + ((keyframeCount - 2) * 8), keyframeCount), Cutscene74788Helper4ED6C(sharedTransform, firstVector, firstVector), Cutscene74788Helper4F194(firstVector, firstVector, sharedTransform - 0x9C), Cutscene74788Helper4F168(secondVector), (Cutscene74788SpawnParticle != 0))) {
+                        } else if ((keyframeCount < (currentFrame + Cutscene74788D_8006C648)) &&
+                                   (keyframeCount >= (int)currentFrame) &&
+                                   (Cutscene74788Helper4F554(
+                                        firstVector, slotKeyframes + ((keyframeCount - 2) * 8),
+                                        keyframeCount),
+                                    Cutscene74788TransformVectorByBasis(sharedTransform,
+                                                                        firstVector, firstVector),
+                                    Cutscene74788AddVector(firstVector, firstVector,
+                                                           sharedTransform - 0x9C),
+                                    Cutscene74788ClearVector(secondVector),
+                                    (Cutscene74788SpawnParticle != 0))) {
                             Cutscene74788SpawnParticle(1, 0, firstVector, secondVector);
                             Cutscene74788SpawnParticle(4, 0x4E, firstVector, 0);
-                            Cutscene74788Helper4ED6C(0, slotByteOffset + Cutscene74788D_80069C68, secondVector);
+                            Cutscene74788TransformVectorByBasis(
+                                0, slotByteOffset + Cutscene74788D_80069C68, secondVector);
                             Cutscene74788SpawnParticle(5, 0x4F, firstVector, secondVector);
                             slotByteOffset += 0xC;
                         } else {
@@ -223,10 +270,11 @@ updateSlots:
                         goto advanceSlot;
                     }
                 } else {
-                    inactiveCount=frame.inactive;
-                    __asm__("" : "=r"(inactiveCount) : "0"(inactiveCount));
-                    inactiveCount+=1;frame.inactive=inactiveCount;
-advanceSlot:
+                    inactiveCount = frame.inactive;
+                    MATCHING_KEEP(inactiveCount);
+                    inactiveCount += 1;
+                    frame.inactive = inactiveCount;
+                advanceSlot:
                     slotByteOffset += 0xC;
                 }
                 previousPosition += 0xC;
@@ -234,11 +282,11 @@ advanceSlot:
                 slotIndex += 1;
                 slotTimer += 1;
             } while (slotIndex < 8);
-            inactiveCount=frame.inactive;
-            __asm__("" : "=r"(inactiveCount) : "0"(inactiveCount));
+            inactiveCount = frame.inactive;
+            MATCHING_KEEP(inactiveCount);
             if (inactiveCount == 8) {
                 Cutscene74788D_80071834 = 0;
-                Cutscene74788Field(owner, unsigned char *, 0x48) = 2U;
+                Cutscene74788Field(owner, unsigned char*, 0x48) = 2U;
             }
         }
     }
@@ -247,200 +295,217 @@ advanceSlot:
 #undef Cutscene74788Field
 
 
-#define P74E60_FIELD(type,base,offset) (*(type*)((unsigned char*)(base)+(offset)))
+#define P74E60_FIELD(type, base, offset) (*(type*)((unsigned char*)(base) + (offset)))
 extern int D_8006EDDC;
-extern Moby *D_8006C550;
-void *P74E60Allocate(int,int,int) __asm__("func_8002EC50");
-void P74E60Scale(Vector3D*,int,int) __asm__("func_8004F08C");
-void P74E60Vector(Moby*,int,Vector3D*) __asm__("func_80055F14");
+extern Moby* D_8006C550;
+void* P74E60Allocate(int, int, int) __asm__("func_8002EC50");
+void P74E60Scale(Vector3D*, int, int) __asm__("func_8004F08C");
+void P74E60Vector(Moby*, int, Vector3D*) __asm__("func_80055F14");
 /* USA Rev 0, 0x80074E60..0x800751F4: 230 original instructions.
  * Two vectors, exact raw field widths and original helper call arguments.
  * Register bindings and empty constraints preserve compiler scheduling.
  * Complete helper/field semantics, physical units and caller cadence unresolved.
  * AI generated; not yet human reviewed. */
-void func_cutscene_62_80074E60(Moby *input) {
-    register int clock3 __asm__("$3")=D_8006EDDC;
-    register Moby *owner __asm__("$19")=input;
+void func_cutscene_62_80074E60(Moby* input) {
+    register int clock3 __asm__("$3") = D_8006EDDC;
+    register Moby* owner __asm__("$19") = input;
     register int gate2 __asm__("$2"), allocate6 __asm__("$6");
     register int random2 __asm__("$2"), word3 __asm__("$3");
     register int call4 __asm__("$4"), call5 __asm__("$5");
     register Vector3D *call6 __asm__("$6"), *call7 __asm__("$7");
-    register char *(*particle8)(int,int,Vector3D*,Vector3D*) __asm__("$8");
+    register char* (*particle8)(int, int, Vector3D*, Vector3D*)__asm__("$8");
     Vector3D samplePosition;
     Vector3D difference;
-    Vector3D *entry;
-    Vector3D *otherEntry;
-    Vector3D *activeEntry;
-    Vector3D *otherActiveEntry;
-    register Vector3D *privateVector17 __asm__("$17");
-    Vector3D *firstEntry;
-    Vector3D *secondEntry;
+    Vector3D* entry;
+    Vector3D* otherEntry;
+    Vector3D* activeEntry;
+    Vector3D* otherActiveEntry;
+    register Vector3D* privateVector17 __asm__("$17");
+    Vector3D* firstEntry;
+    Vector3D* secondEntry;
     register int iteration16 __asm__("$16");
     unsigned char firstByte11;
     unsigned char secondByte11;
-    register void *privateData18 __asm__("$18");
-    register void *privateData18Later __asm__("$18");
-    register void *allocation2 __asm__("$2");
-    void *secondAllocation;
-    register void *activeData18 __asm__("$18");
+    register void* privateData18 __asm__("$18");
+    register void* privateData18Later __asm__("$18");
+    register void* allocation2 __asm__("$2");
+    void* secondAllocation;
+    register void* activeData18 __asm__("$18");
 
-    gate2=clock3<0x79E;
+    gate2 = clock3 < 0x79E;
     if (!gate2) {
-        __asm__("" : "=r"(owner) : "0"(owner));
+        MATCHING_KEEP(owner);
         privateData18 = owner->mobyTag;
-        firstEntry = P74E60_FIELD(Vector3D *,privateData18,0);
+        firstEntry = P74E60_FIELD(Vector3D*, privateData18, 0);
         if (firstEntry != 0) {
-            P74E60_FIELD(signed char,firstEntry,0x10) = 0;
-            P74E60_FIELD(Vector3D *,privateData18,0) = 0;
+            P74E60_FIELD(signed char, firstEntry, 0x10) = 0;
+            P74E60_FIELD(Vector3D*, privateData18, 0) = 0;
         }
-        secondEntry = P74E60_FIELD(Vector3D *,privateData18,4);
+        secondEntry = P74E60_FIELD(Vector3D*, privateData18, 4);
         if (secondEntry != 0) {
-            P74E60_FIELD(signed char,secondEntry,0x10) = 0;
-            P74E60_FIELD(Vector3D *,privateData18,4) = 0;
+            P74E60_FIELD(signed char, secondEntry, 0x10) = 0;
+            P74E60_FIELD(Vector3D*, privateData18, 4) = 0;
         }
     } else {
-        __asm__("" : "=r"(owner) : "0"(owner));
-        __asm__("" : "=r"(clock3) : "0"(clock3));
+        MATCHING_KEEP(owner);
+        MATCHING_KEEP(clock3);
         if (clock3 >= 0x76B) {
             privateData18Later = owner->mobyTag;
-            SpawnParticle(2, 0x42, P74E60_FIELD(Vector3D *,privateData18Later,4), (Vector3D *)2);
+            SpawnParticle(2, 0x42, P74E60_FIELD(Vector3D*, privateData18Later, 4), (Vector3D*)2);
             privateVector17 = privateData18Later + 8;
-            func_8004F1C8(&difference, privateVector17, P74E60_FIELD(Vector3D *,privateData18Later,4));
+            func_8004F1C8(&difference, privateVector17,
+                          P74E60_FIELD(Vector3D*, privateData18Later, 4));
             P74E60Scale(&difference, func_8004EDE8(&difference, 1), 0xC8);
-            entry = P74E60_FIELD(Vector3D *,privateData18Later,4);
+            entry = P74E60_FIELD(Vector3D*, privateData18Later, 4);
             func_8004F194(entry, entry, &difference);
-            SpawnParticle(2, 0x42, P74E60_FIELD(Vector3D *,privateData18Later,0), (Vector3D *)2);
-            func_8004F1C8(&difference, privateVector17, P74E60_FIELD(Vector3D *,privateData18Later,0));
+            SpawnParticle(2, 0x42, P74E60_FIELD(Vector3D*, privateData18Later, 0), (Vector3D*)2);
+            func_8004F1C8(&difference, privateVector17,
+                          P74E60_FIELD(Vector3D*, privateData18Later, 0));
             P74E60Scale(&difference, func_8004EDE8(&difference, 1), 0xC8);
-            otherEntry = P74E60_FIELD(Vector3D *,privateData18Later,0);
+            otherEntry = P74E60_FIELD(Vector3D*, privateData18Later, 0);
             func_8004F194(otherEntry, otherEntry, &difference);
             return;
         }
-        gate2=clock3<0x732;
-        __asm__("" : "=r"(gate2) : "0"(gate2));
+        gate2 = clock3 < 0x732;
+        MATCHING_KEEP(gate2);
         if (!gate2) {
             if (owner->state == 0) {
-                allocation2=SpawnMoby(0x2C3A,owner);
-                call4=1;call5=0x10;allocate6=0x480000;
-                __asm__("" : "=r"(allocation2) : "0"(allocation2), "r"(call4), "r"(call5), "r"(allocate6));
-                allocation2=P74E60_FIELD(void*,allocation2,0);
-                __asm__("" : "=r"(allocation2) : "0"(allocation2));
-                allocate6|=0x9090;
+                allocation2 = SpawnMoby(0x2C3A, owner);
+                call4 = 1;
+                call5 = 0x10;
+                allocate6 = 0x480000;
+                __asm__(""
+                        : "=r"(allocation2)
+                        : "0"(allocation2), "r"(call4), "r"(call5), "r"(allocate6));
+                allocation2 = P74E60_FIELD(void*, allocation2, 0);
+                MATCHING_KEEP(allocation2);
+                allocate6 |= 0x9090;
                 __asm__("" : "=r"(allocate6) : "0"(allocate6), "r"(allocation2));
-                activeData18=allocation2;
+                activeData18 = allocation2;
                 owner->mobyTag = activeData18;
                 allocation2 = P74E60Allocate(call4, call5, allocate6);
-                P74E60_FIELD(void *,activeData18,0) = allocation2;
-                P74E60_FIELD(signed char,allocation2,0x10) = 4;
-                P74E60_FIELD(signed char,P74E60_FIELD(void *,activeData18,0),0x13) = 8;
+                P74E60_FIELD(void*, activeData18, 0) = allocation2;
+                P74E60_FIELD(signed char, allocation2, 0x10) = 4;
+                P74E60_FIELD(signed char, P74E60_FIELD(void*, activeData18, 0), 0x13) = 8;
                 secondAllocation = P74E60Allocate(1, 0x10, 0x489090);
-                P74E60_FIELD(void *,activeData18,4) = secondAllocation;
-                P74E60_FIELD(signed char,secondAllocation,0x10) = 4;
-                P74E60_FIELD(signed char,P74E60_FIELD(void *,activeData18,4),0x13) = 8;
-                func_8004F178(activeData18 + 8, (Vector3D*)((unsigned char*)D_8006C550+0xBC));
+                P74E60_FIELD(void*, activeData18, 4) = secondAllocation;
+                P74E60_FIELD(signed char, secondAllocation, 0x10) = 4;
+                P74E60_FIELD(signed char, P74E60_FIELD(void*, activeData18, 4), 0x13) = 8;
+                func_8004F178(activeData18 + 8, (Vector3D*)((unsigned char*)D_8006C550 + 0xBC));
                 owner->state = 1;
             } else {
                 activeData18 = owner->mobyTag;
             }
             func_80055D24(owner, 4);
             P74E60Vector(owner, 0, &samplePosition);
-            activeEntry = P74E60_FIELD(Vector3D *,activeData18,0);
-            firstByte11 = P74E60_FIELD(unsigned char,activeEntry,0x11);
+            activeEntry = P74E60_FIELD(Vector3D*, activeData18, 0);
+            firstByte11 = P74E60_FIELD(unsigned char, activeEntry, 0x11);
             if (firstByte11 < 0xF4U) {
-                P74E60_FIELD(unsigned char,activeEntry,0x11) = (unsigned char) (firstByte11 + 0xC);
+                P74E60_FIELD(unsigned char, activeEntry, 0x11) = (unsigned char)(firstByte11 + 0xC);
             }
-            call4=(int)P74E60_FIELD(Vector3D *,activeData18,0);call5=(int)&samplePosition;
-            __asm__("" : : "r"(call4), "r"(call5));
-            iteration16=0;
+            call4 = (int)P74E60_FIELD(Vector3D*, activeData18, 0);
+            call5 = (int)&samplePosition;
+            MATCHING_OBSERVE2(call4, call5);
+            iteration16 = 0;
             func_8004F178((Vector3D*)call4, (Vector3D*)call5);
             do {
-                random2=func_8003636C(0,0xC8);
-                call4=0;call5=0xC8;
-                __asm__("" : : "r"(call4), "r"(call5), "r"(random2));
-                word3=samplePosition.x;
+                random2 = func_8003636C(0, 0xC8);
+                call4 = 0;
+                call5 = 0xC8;
+                MATCHING_OBSERVE3(call4, call5, random2);
+                word3 = samplePosition.x;
                 __asm__("" : "=r"(word3) : "0"(word3), "r"(random2));
                 iteration16++;
                 __asm__("" : "=r"(iteration16) : "0"(iteration16), "r"(word3));
-                word3-=0x64;
+                word3 -= 0x64;
                 __asm__("" : "=r"(word3) : "0"(word3), "r"(random2));
-                word3+=random2;
-                samplePosition.x=word3;
-                random2=func_8003636C(call4,call5);
-                call4=0;
-                __asm__("" : : "r"(call4), "r"(random2));
-                word3=samplePosition.y;
+                word3 += random2;
+                samplePosition.x = word3;
+                random2 = func_8003636C(call4, call5);
+                call4 = 0;
+                MATCHING_OBSERVE2(call4, random2);
+                word3 = samplePosition.y;
                 __asm__("" : "=r"(word3) : "0"(word3), "r"(random2));
-                call5=0xC8;
+                call5 = 0xC8;
                 __asm__("" : "=r"(call5) : "0"(call5), "r"(word3));
-                word3-=0x64;
+                word3 -= 0x64;
                 __asm__("" : "=r"(word3) : "0"(word3), "r"(random2));
-                word3+=random2;
-                samplePosition.y=word3;
-                random2=func_8003636C(call4,call5);
-                call4=2;call5=0x42;call6=&samplePosition;call7=(Vector3D*)2;
-                __asm__("" : : "r"(call4), "r"(call5), "r"(call6), "r"(call7), "r"(random2));
-                word3=samplePosition.z;
-                particle8=SpawnParticle;
+                word3 += random2;
+                samplePosition.y = word3;
+                random2 = func_8003636C(call4, call5);
+                call4 = 2;
+                call5 = 0x42;
+                call6 = &samplePosition;
+                call7 = (Vector3D*)2;
+                MATCHING_OBSERVE5(call4, call5, call6, call7, random2);
+                word3 = samplePosition.z;
+                particle8 = SpawnParticle;
                 __asm__("" : "=r"(particle8) : "0"(particle8), "r"(word3));
                 __asm__("" : "=r"(word3) : "0"(word3), "r"(random2));
-                word3-=0x64;
+                word3 -= 0x64;
                 __asm__("" : "=r"(word3) : "0"(word3), "r"(random2));
-                word3+=random2;
-                samplePosition.z=word3;
-                particle8(call4,call5,call6,call7);
+                word3 += random2;
+                samplePosition.z = word3;
+                particle8(call4, call5, call6, call7);
             } while (iteration16 < 3);
             P74E60Vector(owner, 1, &samplePosition);
-            otherActiveEntry = P74E60_FIELD(Vector3D *,activeData18,4);
-            secondByte11 = P74E60_FIELD(unsigned char,otherActiveEntry,0x11);
+            otherActiveEntry = P74E60_FIELD(Vector3D*, activeData18, 4);
+            secondByte11 = P74E60_FIELD(unsigned char, otherActiveEntry, 0x11);
             if (secondByte11 < 0xF4U) {
-                P74E60_FIELD(unsigned char,otherActiveEntry,0x11) = (unsigned char) (secondByte11 + 0xC);
+                P74E60_FIELD(unsigned char, otherActiveEntry, 0x11) =
+                    (unsigned char)(secondByte11 + 0xC);
             }
-            call4=(int)P74E60_FIELD(Vector3D *,activeData18,4);call5=(int)&samplePosition;
-            __asm__("" : : "r"(call4), "r"(call5));
-            iteration16=0;
+            call4 = (int)P74E60_FIELD(Vector3D*, activeData18, 4);
+            call5 = (int)&samplePosition;
+            MATCHING_OBSERVE2(call4, call5);
+            iteration16 = 0;
             func_8004F178((Vector3D*)call4, (Vector3D*)call5);
             do {
-                random2=func_8003636C(0,0xC8);
-                call4=0;call5=0xC8;
-                __asm__("" : : "r"(call4), "r"(call5), "r"(random2));
-                word3=samplePosition.x;
+                random2 = func_8003636C(0, 0xC8);
+                call4 = 0;
+                call5 = 0xC8;
+                MATCHING_OBSERVE3(call4, call5, random2);
+                word3 = samplePosition.x;
                 __asm__("" : "=r"(word3) : "0"(word3), "r"(random2));
                 iteration16++;
                 __asm__("" : "=r"(iteration16) : "0"(iteration16), "r"(word3));
-                word3-=0x64;
+                word3 -= 0x64;
                 __asm__("" : "=r"(word3) : "0"(word3), "r"(random2));
-                word3+=random2;
-                samplePosition.x=word3;
-                random2=func_8003636C(call4,call5);
-                call4=0;
-                __asm__("" : : "r"(call4), "r"(random2));
-                word3=samplePosition.y;
+                word3 += random2;
+                samplePosition.x = word3;
+                random2 = func_8003636C(call4, call5);
+                call4 = 0;
+                MATCHING_OBSERVE2(call4, random2);
+                word3 = samplePosition.y;
                 __asm__("" : "=r"(word3) : "0"(word3), "r"(random2));
-                call5=0xC8;
+                call5 = 0xC8;
                 __asm__("" : "=r"(call5) : "0"(call5), "r"(word3));
-                word3-=0x64;
+                word3 -= 0x64;
                 __asm__("" : "=r"(word3) : "0"(word3), "r"(random2));
-                word3+=random2;
-                samplePosition.y=word3;
-                random2=func_8003636C(call4,call5);
-                call4=2;call5=0x42;call6=&samplePosition;call7=(Vector3D*)2;
-                __asm__("" : : "r"(call4), "r"(call5), "r"(call6), "r"(call7), "r"(random2));
-                word3=samplePosition.z;
-                particle8=SpawnParticle;
+                word3 += random2;
+                samplePosition.y = word3;
+                random2 = func_8003636C(call4, call5);
+                call4 = 2;
+                call5 = 0x42;
+                call6 = &samplePosition;
+                call7 = (Vector3D*)2;
+                MATCHING_OBSERVE5(call4, call5, call6, call7, random2);
+                word3 = samplePosition.z;
+                particle8 = SpawnParticle;
                 __asm__("" : "=r"(particle8) : "0"(particle8), "r"(word3));
                 __asm__("" : "=r"(word3) : "0"(word3), "r"(random2));
-                word3-=0x64;
+                word3 -= 0x64;
                 __asm__("" : "=r"(word3) : "0"(word3), "r"(random2));
-                word3+=random2;
-                samplePosition.z=word3;
-                particle8(call4,call5,call6,call7);
+                word3 += random2;
+                samplePosition.z = word3;
+                particle8(call4, call5, call6, call7);
             } while (iteration16 < 3);
         }
     }
 }
 
-
-void func_cutscene_62_800751F8(void) {}
+void func_cutscene_62_800751F8(void) {
+}
 
 extern Moby* D_8006C550;
 Moby* func_80055A7C(void);
@@ -451,7 +516,8 @@ void func_8004F178(Vector3D*, Vector3D*);
 Moby* func_cutscene_62_80075200(int mobyClass, Moby* parent) {
     Moby* moby = func_80055A7C();
     void* tag;
-    if (!moby) return 0;
+    if (!moby)
+        return 0;
     tag = moby->mobyTag;
     func_8004E790(moby, 0, sizeof(Moby));
     moby->mobyTag = tag;
@@ -459,9 +525,12 @@ Moby* func_cutscene_62_80075200(int mobyClass, Moby* parent) {
     moby->mobyClass = mobyClass;
     if (parent) {
         int index = parent - D_8006C550;
-        if ((unsigned int)index < 0x100) moby->linkedMoby = index;
-        else moby->linkedMoby = 0xFF;
-    } else moby->linkedMoby = 0xFF;
+        if ((unsigned int)index < 0x100)
+            moby->linkedMoby = index;
+        else
+            moby->linkedMoby = 0xFF;
+    } else
+        moby->linkedMoby = 0xFF;
     func_80034FEC(moby);
     if (mobyClass == 0x2C3A) {
         func_8004F178(&moby->position, &parent->position);
@@ -470,8 +539,10 @@ Moby* func_cutscene_62_80075200(int mobyClass, Moby* parent) {
         func_80055D10(moby);
         moby->updateDistance = 0xFF;
     } else {
-        if (parent) func_8004F178(&moby->position, &parent->position);
-        else func_8004F178(&moby->position, &spyro.position);
+        if (parent)
+            func_8004F178(&moby->position, &parent->position);
+        else
+            func_8004F178(&moby->position, &spyro.position);
         func_80055C24(moby);
     }
     return moby;

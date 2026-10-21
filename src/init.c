@@ -1,3 +1,4 @@
+#include "matching.h"
 #include "common.h"
 #include "init.h"
 #include "spu.h"
@@ -72,8 +73,7 @@ void func_8002A834(void) {
         register int a2 __asm__("$6") = 12;
         register int a3 __asm__("$7") = 512;
         /* Keep the first four argument registers before assigning height. */
-        __asm__ volatile ("" : "=r"(a0), "=r"(a1), "=r"(a2), "=r"(a3)
-                         : "0"(a0), "1"(a1), "2"(a2), "3"(a3));
+        MATCHING_KEEP4_VOLATILE(a0, a1, a2, a3);
         height = 0xD8;
         func_8005E500(a0, a1, a2, a3, height);
     }
@@ -85,8 +85,7 @@ void func_8002A834(void) {
         register int a2 __asm__("$6") = 228;
         register int a3 __asm__("$7") = 512;
         /* Keep the first four argument registers before assigning height. */
-        __asm__ volatile ("" : "=r"(a0), "=r"(a1), "=r"(a2), "=r"(a3)
-                         : "0"(a0), "1"(a1), "2"(a2), "3"(a3));
+        MATCHING_KEEP4_VOLATILE(a0, a1, a2, a3);
         height = 240;
         func_8005E5C0(a0, a1, a2, a3, height);
     }
@@ -220,29 +219,58 @@ static inline int crc16ptr3(unsigned char* start, unsigned char* end) {
     return sum;
 }
 
-#define CRC16_RANGE(start, end, check) do { \
-    count = 0; p = (unsigned char*)(start); \
-    length = (int)(end) - (int)(start); \
-    while (count < length) { check = crc16(p, check); p++; count++; } \
-    check &= 0xffff; \
-} while (0)
-#define CRC16_RANGE_RESET(start, end, check) do { \
-    p = (unsigned char*)(start); length = (int)(end) - (int)(start); \
-    do { check = 0; } while (0); count = 0; \
-    while (count < length) { check = crc16(p, check); p++; count++; } \
-    check &= 0xffff; \
-} while (0)
-#define CRC16_RANGE_SECOND(start, end, check) do { \
-    p1 = (unsigned char*)(start); length1 = (int)(end) - (int)(start); count1 = 0; \
-    while (count1 < length1) { check = crc16(p1, check); p1++; count1++; } \
-    check &= 0xffff; \
-} while (0)
-#define CRC16_RANGE_RESET_SECOND(start, end, check) do { \
-    p1 = (unsigned char*)(start); length1 = (int)(end) - (int)(start); \
-    count1 = 0; check = 0; \
-    while (count1 < length1) { check = crc16(p1, check); p1++; count1++; } \
-    check &= 0xffff; \
-} while (0)
+#define CRC16_RANGE(start, end, check)      \
+    do {                                    \
+        count = 0;                          \
+        p = (unsigned char*)(start);        \
+        length = (int)(end) - (int)(start); \
+        while (count < length) {            \
+            check = crc16(p, check);        \
+            p++;                            \
+            count++;                        \
+        }                                   \
+        check &= 0xffff;                    \
+    } while (0)
+#define CRC16_RANGE_RESET(start, end, check) \
+    do {                                     \
+        p = (unsigned char*)(start);         \
+        length = (int)(end) - (int)(start);  \
+        do {                                 \
+            check = 0;                       \
+        } while (0);                         \
+        count = 0;                           \
+        while (count < length) {             \
+            check = crc16(p, check);         \
+            p++;                             \
+            count++;                         \
+        }                                    \
+        check &= 0xffff;                     \
+    } while (0)
+#define CRC16_RANGE_SECOND(start, end, check) \
+    do {                                      \
+        p1 = (unsigned char*)(start);         \
+        length1 = (int)(end) - (int)(start);  \
+        count1 = 0;                           \
+        while (count1 < length1) {            \
+            check = crc16(p1, check);         \
+            p1++;                             \
+            count1++;                         \
+        }                                     \
+        check &= 0xffff;                      \
+    } while (0)
+#define CRC16_RANGE_RESET_SECOND(start, end, check) \
+    do {                                            \
+        p1 = (unsigned char*)(start);               \
+        length1 = (int)(end) - (int)(start);        \
+        count1 = 0;                                 \
+        check = 0;                                  \
+        while (count1 < length1) {                  \
+            check = crc16(p1, check);               \
+            p1++;                                   \
+            count1++;                               \
+        }                                           \
+        check &= 0xffff;                            \
+    } while (0)
 
 void func_8002AB38(void) {
     int check;
@@ -264,20 +292,25 @@ void func_8002AB38(void) {
 
     check = crc16ptr((unsigned char*)&func_title_80074DEC, (unsigned char*)&title_text_end, 0);
     CRC16_RANGE(&main, &main_TEXT_END, check);
-    if (check) ((int*)&InitCdAndWad)[rand() & 0xf] = 0;
+    if (check)
+        ((int*)&InitCdAndWad)[rand() & 0xf] = 0;
 
     CRC16_RANGE_RESET(&func_title_80074DEC, &title_text_end, check);
-    if (check) ((int*)&func_8002A834)[rand() & 0x1f] = 0;
+    if (check)
+        ((int*)&func_8002A834)[rand() & 0x1f] = 0;
 
     func_title_80074DEC(1);
 
     check = crc16ptr3((unsigned char*)&func_title_80074DEC, (unsigned char*)&title_text_end);
     CRC16_RANGE_SECOND(&main, &main_TEXT_END, check);
-    if (check) ((int*)&func_8002AB38)[rand() & 0x3f] = 0;
+    if (check)
+        ((int*)&func_8002AB38)[rand() & 0x3f] = 0;
 
     CRC16_RANGE_RESET_SECOND(&func_title_80074DEC, &title_text_end, check);
-    if (check) ((int*)&crc16)[rand() & 0x3f] = 0;
-    else func_title_8007AED8();
+    if (check)
+        ((int*)&crc16)[rand() & 0x3f] = 0;
+    else
+        func_title_8007AED8();
 
     D_8006C7B8 = 1;
     func_80054E5C();

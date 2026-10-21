@@ -95,11 +95,18 @@ void func_8003B7B4(void* address, int width, Savepoint* save) {
             key |= width << 24;
             save->savedMemory[area][count].ptr = key;
             switch (width) {
-                case 1: save->savedMemory[area][count].val = *(unsigned char*)address; break;
-                case 2: save->savedMemory[area][count].val = *(short*)address; break;
-                case 4: save->savedMemory[area][count].val = *(int*)address; break;
+                case 1:
+                    save->savedMemory[area][count].val = *(unsigned char*)address;
+                    break;
+                case 2:
+                    save->savedMemory[area][count].val = *(short*)address;
+                    break;
+                case 4:
+                    save->savedMemory[area][count].val = *(int*)address;
+                    break;
             }
-            if (isNew) save->savedMemoryCount[area]++;
+            if (isNew)
+                save->savedMemoryCount[area]++;
         }
     }
 }
