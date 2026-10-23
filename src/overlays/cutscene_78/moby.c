@@ -33,8 +33,8 @@ int P747DCPlanarHeadingLookup(int, int, int) __asm__("func_8004E880");
  * complete original SCUS-94467 Rev0 cutscene78/800747DC instructions.
  * Raw field widths, pool stride88, signed table products and three spawn
  * sequences retained. Helper meanings, units and cadence unresolved. */
-void func_cutscene_78_800747DC(Moby* argument) {
-    register Moby* owner __asm__("$19") = argument;
+void func_cutscene_78_800747DC(Moby* moby) {
+    register Moby* owner __asm__("$19") = moby;
     union {
         int words[8];
         struct {

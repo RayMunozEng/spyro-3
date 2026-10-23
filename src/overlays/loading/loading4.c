@@ -27,14 +27,14 @@
 unsigned char LoadingCallCDLoadAsyncView1() __asm__("CDLoadAsync");
 int LoadingCallCDLoadTimeView1() __asm__("CDLoadTime");
 int LoadingCallPlaySoundView1() __asm__("PlaySound");
-unsigned char LoadingCall1EBACView1() __asm__("func_8001EBAC");
-unsigned char LoadingCall2AF9CView1() __asm__("func_8002AF9C");
-unsigned char LoadingCall2CA50View1() __asm__("func_8002CA50");
-unsigned char LoadingCall3C140View1() __asm__("func_8003C140");
-unsigned char LoadingCall44240View1() __asm__("func_80044240");
-unsigned char LoadingCall47190View1() __asm__("func_80047190");
-int LoadingCall48444View1() __asm__("func_80048444");
-unsigned char LoadingCall4BEF8View1() __asm__("func_8004BEF8");
+unsigned char LoadingClearTwoDisplayRegionsView1() __asm__("func_8001EBAC");
+unsigned char LoadingRelocateAndPublishModelView1() __asm__("func_8002AF9C");
+unsigned char LoadingServiceLevelResourceLoadingView1() __asm__("func_8002CA50");
+unsigned char LoadingSetSoundHandleWord0CAndFlag10View1() __asm__("func_8003C140");
+unsigned char LoadingUpdatePlayerAnimationSubstepsView1() __asm__("func_80044240");
+unsigned char LoadingResetPlayerRuntimeStateView1() __asm__("func_80047190");
+int LoadingPullPlayerPoseTowardTargetView1() __asm__("func_80048444");
+unsigned char LoadingDispatchPlayerStateRequestView1() __asm__("func_8004BEF8");
 unsigned char LoadingCall75738View1() __asm__("func_loading_80075738");
 int LoadingCallrandView1() __asm__("rand");
 extern unsigned char LoadingData6668CView1 __asm__("D_8006668C");
@@ -114,7 +114,7 @@ void func_loading_80078678(void) {
     {
     loadingState1:
         if (LoadingData6C518View1 < 2) {
-            LoadingCall2CA50View1(argumentWord4, argumentWord5);
+            LoadingServiceLevelResourceLoadingView1(argumentWord4, argumentWord5);
             return;
         }
         LoadingField(argumentWord5, int*, 0) = argumentWord4;
@@ -148,7 +148,7 @@ void func_loading_80078678(void) {
                 goto clearPendingColorBytes;
             basePointerOrIndex16 = (int)&LoadingData722ECView1;
             MATCHING_KEEP(basePointerOrIndex16);
-            if (LoadingCall48444View1(basePointerOrIndex16) < 1024) {
+            if (LoadingPullPlayerPoseTowardTargetView1(basePointerOrIndex16) < 1024) {
                 rawWord2 = LoadingField(basePointerOrIndex16, int*, 0);
                 argumentWord4 = LoadingData722F8View1;
                 rawWord3 = LoadingData722F0View1;
@@ -158,7 +158,7 @@ void func_loading_80078678(void) {
                 LoadingField(basePointerOrIndex16, int*, 0) = rawWord2;
                 LoadingData722F0View1 = rawWord3;
             }
-            LoadingCall44240View1();
+            LoadingUpdatePlayerAnimationSubstepsView1();
             rawWord2 = LoadingField(timerPointerOrOffset17, int*, 0);
             LoadingData6C598View1 = rawWord2 * 16;
             return;
@@ -181,25 +181,28 @@ void func_loading_80078678(void) {
             argumentWord6 = 0x80800000;
             argumentWord4 += timerPointerOrOffset17;
             argumentWord4 = basePointerOrIndex16 + argumentWord4;
-            LoadingCall2AF9CView1(argumentWord4 + 20, argumentWord5, argumentWord6);
+            LoadingRelocateAndPublishModelView1(argumentWord4 + 20, argumentWord5, argumentWord6);
             argumentWord5 = 0x202;
             argumentWord6 = 0x80800000;
             argumentWord4 = LoadingField(basePointerOrIndex16, int*, 0x2A004);
             rawWord2 = LoadingField(bufferPointerOrStep18, int*, 0);
             argumentWord4 += timerPointerOrOffset17;
-            LoadingCall2AF9CView1(rawWord2 + argumentWord4, argumentWord5, argumentWord6);
+            LoadingRelocateAndPublishModelView1(rawWord2 + argumentWord4, argumentWord5,
+                                                argumentWord6);
             argumentWord5 = 0x204;
             argumentWord6 = 0x80800000;
             argumentWord4 = LoadingField(basePointerOrIndex16, int*, 0x2A008);
             rawWord2 = LoadingField(bufferPointerOrStep18, int*, 0);
             argumentWord4 += timerPointerOrOffset17;
-            LoadingCall2AF9CView1(rawWord2 + argumentWord4, argumentWord5, argumentWord6);
+            LoadingRelocateAndPublishModelView1(rawWord2 + argumentWord4, argumentWord5,
+                                                argumentWord6);
             argumentWord5 = 0x28B;
             argumentWord6 = 0x80800000;
             argumentWord4 = LoadingField(basePointerOrIndex16, int*, 0x2A00C);
             rawWord2 = LoadingField(bufferPointerOrStep18, int*, 0);
             argumentWord4 += timerPointerOrOffset17;
-            LoadingCall2AF9CView1(rawWord2 + argumentWord4, argumentWord5, argumentWord6);
+            LoadingRelocateAndPublishModelView1(rawWord2 + argumentWord4, argumentWord5,
+                                                argumentWord6);
             rawWord2 = LoadingField(basePointerOrIndex16, int*, 0x2A010);
             __asm__ __volatile__("" ::: "$5", "memory");
             argumentWord5 = (int)&LoadingData6E33CView1;
@@ -252,21 +255,21 @@ void func_loading_80078678(void) {
         return;
     loadingState3:
         if (LoadingData6C518View1 < 8) {
-            LoadingCall2CA50View1();
+            LoadingServiceLevelResourceLoadingView1();
         }
         if (LoadingData6FBC4View1 == 0) {
-            LoadingCall47190View1();
+            LoadingResetPlayerRuntimeStateView1();
             LoadingField(&LoadingData70328View1, int*, 0) = 0x2000;
             LoadingField(&LoadingData70328View1, int*, 4) = 0x2000;
             LoadingField(&LoadingData70328View1, int*, 8) = 0x2000;
             LoadingField(&LoadingData70328View1, signed char*, 0x1E) = 0;
-            LoadingCall4BEF8View1(0);
+            LoadingDispatchPlayerStateRequestView1(0);
             LoadingField(&LoadingData70328View1, signed char*, 0xC) = 0;
             LoadingField(&LoadingData70328View1, signed char*, 0xD) = 0;
             LoadingField(&LoadingData70328View1, signed char*, 0xE) = 0;
             LoadingData72328View1 = LoadingCallrandView1() & 1;
         }
-        LoadingCall44240View1();
+        LoadingUpdatePlayerAnimationSubstepsView1();
         if ((unsigned int)(LoadingData6FBC4View1 - 0x20) < 0x49U) {
             if (LoadingData6FBC4View1 == 0x20) {
                 LoadingData6C764View1 = &LoadingData6E988View1;
@@ -302,7 +305,8 @@ void func_loading_80078678(void) {
                             LoadingField(temporaryPointer2, unsigned char*, 4) = retainedOne20;
                             if ((bufferPointerOrStep18 != retainedOne20) ||
                                 (basePointerOrIndex16 == ((basePointerOrIndex16 / 3) * 3))) {
-                                LoadingCall3C140View1(LoadingCallPlaySoundView1(1, 0, 0), 0x800);
+                                LoadingSetSoundHandleWord0CAndFlag10View1(
+                                    LoadingCallPlaySoundView1(1, 0, 0), 0x800);
                             }
                             rawWord2 = (int)LoadingData6C764View1;
                             rawWord2 = timerPointerOrOffset17 + rawWord2;
@@ -351,7 +355,8 @@ void func_loading_80078678(void) {
                             ((LoadingField(temporaryPointer3, signed char*, 4) = 0,
                               (bufferPointerOrStep18 != retainedOne20)) ||
                              (basePointerOrIndex16 == ((basePointerOrIndex16 / 3) * 3)))) {
-                            LoadingCall3C140View1(LoadingCallPlaySoundView1(0, 0, 0), 0x800);
+                            LoadingSetSoundHandleWord0CAndFlag10View1(
+                                LoadingCallPlaySoundView1(0, 0, 0), 0x800);
                         }
                     }
                 }
@@ -396,12 +401,12 @@ void func_loading_80078678(void) {
     loadingState4:
         __asm__ __volatile__("" : "=m"(originalUnusedFrameExtent));
         if (LoadingData6C518View1 < 8) {
-            LoadingCall2CA50View1();
+            LoadingServiceLevelResourceLoadingView1();
         }
         if (LoadingData6FBC4View1 == 0) {
             LoadingData72328View1 = (LoadingCallrandView1() & 1) + 2;
         }
-        LoadingCall44240View1();
+        LoadingUpdatePlayerAnimationSubstepsView1();
         LoadingCall75738View1();
         argumentWord4 = LoadingData6FBC4View1;
         rawWord3 = argumentWord4 + 1;
@@ -428,7 +433,7 @@ void func_loading_80078678(void) {
         MATCHING_KEEP(basePointerOrIndex16);
         rawWord3 = LoadingField(basePointerOrIndex16, int*, 0);
         if (rawWord3 == 120) {
-            LoadingCall1EBACView1();
+            LoadingClearTwoDisplayRegionsView1();
             rawWord2 = 5;
             LoadingData6FBC8View1 = rawWord2;
             rawWord2 = LoadingData6C518View1;
@@ -437,7 +442,7 @@ void func_loading_80078678(void) {
             LoadingData6C718View1 = rawWord3;
             if (rawWord2 < 8) {
                 do {
-                    LoadingCall2CA50View1();
+                    LoadingServiceLevelResourceLoadingView1();
                 } while (LoadingData6C518View1 < 8);
             }
         }

@@ -24,7 +24,7 @@ extern unsigned char SharedEnvironmentR __asm__("D_8006E33C"),
 extern int SharedEnvironmentDataCount __asm__("D_8006E334");
 extern int* SharedEnvironmentDataOffsets __asm__("D_8006E338");
 extern unsigned short SharedEnvironmentConfig __asm__("D_8006C6A8");
-void SharedEnvironmentFinish(char*, int) __asm__("func_8002C9F4");
+void SharedBindSoundTables(char*, int) __asm__("func_8002C9F4");
 void SharedEnvironmentSound(int, int, int) __asm__("PlaySound");
 /* Numeric assembly evidence: build/shared-loader-evidence2160.md. */
 extern int* SharedExtraOffsets __asm__("D_8006D05C");
@@ -190,7 +190,7 @@ char* func_loading_800795BC(char* input) {
     cursor += 32;
     MATCHING_KEEP(cursor);
     block = cursor;
-    SharedEnvironmentFinish(block + 4, 1);
+    SharedBindSoundTables(block + 4, 1);
     MATCHING_KEEP(block);
     {
         int offsets = (int)SharedEnvironmentOffsets;

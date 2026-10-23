@@ -32,12 +32,12 @@
  * selector/data word and full EXE/every-overlay retail hash.
  * Binary identity does not establish synchronized runtime/system completion. */
 #define Physics14Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Physics14Call363DCView1() __asm__("func_800363DC");
-unsigned char Physics14Call40D10View1() __asm__("func_80040D10");
-unsigned char Physics14Call41580View1() __asm__("func_80041580");
-unsigned char Physics14Call416F4View1() __asm__("func_800416F4");
-unsigned char Physics14Call417FCView1() __asm__("func_800417FC");
-unsigned char Physics14Call41B64View1() __asm__("func_80041B64");
+int Physics14RandSignedBetweenView1() __asm__("func_800363DC");
+unsigned char Physics14UpdatePlayerGroundInputTargetsView1() __asm__("func_80040D10");
+unsigned char Physics14ApproachPlayerTargetHeadingView1() __asm__("func_80041580");
+unsigned char Physics14BlendPlayerHeadingFromInputVectorView1() __asm__("func_800416F4");
+unsigned char Physics14ApproachPlayerTargetSpeedView1() __asm__("func_800417FC");
+unsigned char Physics14BuildPlayerResponseVectorView1() __asm__("func_80041B64");
 int Physics14InterpolateSineView1() __asm__("func_8004E9E4");
 int Physics14InterpolateCosineView1() __asm__("func_8004EA2C");
 unsigned char Physics14TransformVectorByBasisView1() __asm__("func_8004ED6C");
@@ -56,12 +56,12 @@ extern int Physics14Data6E044View1 __asm__("D_8006E044");
 extern unsigned char Physics14Data6E548View1 __asm__("D_8006E548");
 extern unsigned char Physics14Player0View1 __asm__("D_80070328");
 extern void* (*Controller88028_SpawnParticle)() __asm__("SpawnParticle");
-int Physics14Call40D10View2() __asm__("func_80040D10");
-int Physics14Call41580View2() __asm__("func_80041580");
-int Physics14Call416F4View2() __asm__("func_800416F4");
-int Physics14Call417FCView2() __asm__("func_800417FC");
-int Physics14Call41848View1() __asm__("func_80041848");
-int Physics14Call41B64View2() __asm__("func_80041B64");
+int Physics14UpdatePlayerGroundInputTargetsView2() __asm__("func_80040D10");
+int Physics14ApproachPlayerTargetHeadingView2() __asm__("func_80041580");
+int Physics14BlendPlayerHeadingFromInputVectorView2() __asm__("func_800416F4");
+int Physics14ApproachPlayerTargetSpeedView2() __asm__("func_800417FC");
+int Physics14BuildPlayerMovementVectorView1() __asm__("func_80041848");
+int Physics14BuildPlayerResponseVectorView2() __asm__("func_80041B64");
 int Physics14InterpolateSineView2() __asm__("func_8004E9E4");
 int Physics14InterpolateCosineView2() __asm__("func_8004EA2C");
 int Physics14MeasureVectorLengthView2() __asm__("func_8004EDE8");
@@ -104,12 +104,12 @@ extern int Physics14Player148View1 __asm__("D_80070328+0x148");
 extern int Physics14PlayerCCView1 __asm__("D_80070328+0xCC");
 extern int Physics14PlayerD0View1 __asm__("D_80070328+0xD0");
 extern int Physics14PlayerE4View1 __asm__("D_80070328+0xE4");
-int Physics14Call40D10View3() __asm__("func_80040D10");
-int Physics14Call410F8View1() __asm__("func_800410F8");
-int Physics14Call41580View3() __asm__("func_80041580");
-int Physics14Call417FCView3() __asm__("func_800417FC");
-int Physics14Call41848View2() __asm__("func_80041848");
-int Physics14Call41B64View3() __asm__("func_80041B64");
+int Physics14UpdatePlayerGroundInputTargetsView3() __asm__("func_80040D10");
+int Physics14UpdateSmoothedInputPairView1() __asm__("func_800410F8");
+int Physics14ApproachPlayerTargetHeadingView3() __asm__("func_80041580");
+int Physics14ApproachPlayerTargetSpeedView3() __asm__("func_800417FC");
+int Physics14BuildPlayerMovementVectorView2() __asm__("func_80041848");
+int Physics14BuildPlayerResponseVectorView3() __asm__("func_80041B64");
 int Physics14InterpolateCosineView3() __asm__("func_8004EA2C");
 int Physics14TransformVectorByBasisView2() __asm__("func_8004ED6C");
 int Physics14ShiftVectorRightTowardZeroView1() __asm__("func_8004F110");
@@ -226,9 +226,9 @@ void func_level_14_80093F80(int slotIndex) {
             Physics14ClearVectorView1(globalVector80);
             Physics14ClearVectorView1(globalVector80 + 0xC);
             if (Physics14Data6E044View1 != 7) {
-                Physics14Call40D10View1(0x1200);
-                Physics14Call416F4View1();
-                Physics14Call41580View1(0x5A, 0x10);
+                Physics14UpdatePlayerGroundInputTargetsView1(0x1200);
+                Physics14BlendPlayerHeadingFromInputVectorView1();
+                Physics14ApproachPlayerTargetHeadingView1(0x5A, 0x10);
                 return;
             }
             return;
@@ -316,9 +316,9 @@ void func_level_14_80093F80(int slotIndex) {
                 originalFrame.sp38 = 0xE;
                 Physics14CopyVectorView1(&originalFrame.sp40,
                                          (&Physics14Player0View1 + 0x94) - 0x94);
-                originalFrame.sp40 += Physics14Call363DCView1(0, 0x12C);
-                originalFrame.sp44 += Physics14Call363DCView1(0, 0x12C);
-                originalFrame.sp48 += Physics14Call363DCView1(0, 0x12C);
+                originalFrame.sp40 += Physics14RandSignedBetweenView1(0, 0x12C);
+                originalFrame.sp44 += Physics14RandSignedBetweenView1(0, 0x12C);
+                originalFrame.sp48 += Physics14RandSignedBetweenView1(0, 0x12C);
                 temp_v0_7 =
                     Controller88028_SpawnParticle(1, 0xD, &originalFrame.sp40, &originalFrame.sp30);
                 Physics14Field(temp_v0_7, signed char*, 2) = 6;
@@ -335,7 +335,7 @@ void func_level_14_80093F80(int slotIndex) {
                 goto block_132;
             call5 -= 192;
             MATCHING_KEEP(workWord2);
-            Physics14Call410F8View1(call4, call5, 0);
+            Physics14UpdateSmoothedInputPairView1(call4, call5, 0);
             workWord3 = Physics14Player4CView1;
             workWord2 = 1;
             if (workWord3 == workWord2) {
@@ -390,12 +390,12 @@ void func_level_14_80093F80(int slotIndex) {
                 Physics14Field(&Physics14Player0View4, int*, 0xAC) = 0;
             }
             if (Physics14Field(&Physics14Player0View4, int*, 0x4C) == 2) {
-                Physics14Call417FCView3(0xC0, 0xC0);
+                Physics14ApproachPlayerTargetSpeedView3(0xC0, 0xC0);
                 if (Physics14Field(&Physics14Player0View4, int*, 0xB0) < 0xE01) {
                     Physics14Field(&Physics14Player0View4, int*, 0x4C) = 0;
                 }
             } else {
-                Physics14Call417FCView3(0xC0, 0x30);
+                Physics14ApproachPlayerTargetSpeedView3(0xC0, 0x30);
             }
             raw21_temp_s0_7 = &Physics14Player0View4 + 0x60;
             raw21_temp_a0_5 =
@@ -421,7 +421,7 @@ void func_level_14_80093F80(int slotIndex) {
             if (Physics14Field(&Physics14Player0View4, int*, 0x5C) >= 0x301) {
                 Physics14Field(&Physics14Player0View4, int*, 0x5C) = 0x300;
             }
-            Physics14Call41848View2(raw21_temp_a0_5, raw21_temp_a1_2);
+            Physics14BuildPlayerMovementVectorView2(raw21_temp_a0_5, raw21_temp_a1_2);
             Physics14CopyVectorView4(raw21_temp_s0_7 + 0x2C, raw21_temp_s0_7 + 0x20);
             workWord2 = Physics14CallRandView2() & 31;
             if (workWord2)
@@ -450,7 +450,8 @@ void func_level_14_80093F80(int slotIndex) {
             raw21_temp_s1_5 = &Physics14Player0View4 + 0x20C;
             if (!(Physics14Field(&Physics14Player0View4, int*, 0x20C) & 0x40)) {
                 if (Physics14Data6E044View3 != 7) {
-                    Physics14Call410F8View1(&originalFrame.sp38, raw21_temp_s1_5 - 0xC0, 0);
+                    Physics14UpdateSmoothedInputPairView1(&originalFrame.sp38,
+                                                          raw21_temp_s1_5 - 0xC0, 0);
                     workWord3 = originalFrame.sp38;
                     numeric4 = originalFrame.sp3C;
                     workWord2 = workWord3 * 5;
@@ -559,7 +560,7 @@ void func_level_14_80093F80(int slotIndex) {
         run42:
             call5 -= 192;
             MATCHING_KEEP(workWord2);
-            Physics14Call410F8View1(call4, call5, 0);
+            Physics14UpdateSmoothedInputPairView1(call4, call5, 0);
             workWord3 = Physics14Player4CView1;
             workWord2 = 1;
             if (workWord3 == workWord2) {
@@ -635,7 +636,7 @@ void func_level_14_80093F80(int slotIndex) {
                 if (workWord2)
                     Physics14PlayerACView1 = 0;
             }
-            Physics14Call417FCView2(numeric4, 48);
+            Physics14ApproachPlayerTargetSpeedView2(numeric4, 48);
             pointer16 = &Physics14Player60View1;
             workWord2 = Physics14InterpolateCosineView2(Physics14Field(pointer16, int*, 0));
             workWord2 <<= 5;
@@ -668,7 +669,7 @@ void func_level_14_80093F80(int slotIndex) {
             workWord2 = workWord2 < 769;
             if (!workWord2)
                 Physics14Player5CView1 = 768;
-            Physics14Call41848View1();
+            Physics14BuildPlayerMovementVectorView1();
             Physics14CopyVectorView2(pointer16 + 44, pointer16 + 32);
             if (Physics21_SpawnParticle && Physics14PlayerB4View1 >= 2001) {
                 originalFrame.sp48 = -400;
@@ -703,8 +704,8 @@ void func_level_14_80093F80(int slotIndex) {
             if (workWord3 == workWord2) {
                 Physics14Field(&Physics14Player0View4, int*, 0xB0) = 0;
             } else {
-                Physics14Call40D10View3(0x980);
-                raw21_var_v0_2 = Physics14Call41580View3(0x5A, 0x10);
+                Physics14UpdatePlayerGroundInputTargetsView3(0x980);
+                raw21_var_v0_2 = Physics14ApproachPlayerTargetHeadingView3(0x5A, 0x10);
                 if (raw21_var_v0_2 < 0) {
                     raw21_var_v0_2 = -raw21_var_v0_2;
                 }
@@ -718,12 +719,12 @@ void func_level_14_80093F80(int slotIndex) {
                 } else {
                     raw21_var_a1_4 = 0x40;
                 }
-                Physics14Call417FCView3(raw21_var_a0_2, raw21_var_a1_4);
+                Physics14ApproachPlayerTargetSpeedView3(raw21_var_a0_2, raw21_var_a1_4);
             }
             raw21_temp_s0_11 = &Physics14Player0View4 + 0xB0;
             if (Physics14Field(&Physics14Player0View4, int*, 0xB0) != 0) {
-                Physics14Call41848View2();
-                Physics14Call41B64View3();
+                Physics14BuildPlayerMovementVectorView2();
+                Physics14BuildPlayerResponseVectorView3();
                 Physics14Field(&Physics14Player0View4, int*, 0x94) = 0;
             } else {
                 Physics14ClearVectorView3(raw21_temp_s0_11 - 0x30);
@@ -818,16 +819,16 @@ void func_level_14_80093F80(int slotIndex) {
             denominator17 = 9216;
             if (!workWord2)
                 goto slow27;
-            Physics14Call40D10View2(9216);
+            Physics14UpdatePlayerGroundInputTargetsView2(9216);
             Physics14PlayerACView1 = denominator17;
             limit18 = 64;
             goto input27;
         slow27:
             denominator17 = 4608;
-            Physics14Call40D10View2(4608);
+            Physics14UpdatePlayerGroundInputTargetsView2(4608);
             limit18 = 32;
         input27:
-            Physics14Call41580View2(25, 5);
+            Physics14ApproachPlayerTargetHeadingView2(25, 5);
             pointer16 = &Physics14PlayerACView1;
             MATCHING_KEEP(pointer16);
             workWord3 = Physics14Field(pointer16, int*, 0);
@@ -871,9 +872,9 @@ void func_level_14_80093F80(int slotIndex) {
             Physics14ClearVectorView2(globalVector80);
             Physics14ClearVectorView2(globalVector80 + 12);
             if (Physics14Data6E044View2 != 7) {
-                Physics14Call40D10View2(6016);
-                Physics14Call416F4View2();
-                Physics14Call41580View2(90, 16);
+                Physics14UpdatePlayerGroundInputTargetsView2(6016);
+                Physics14BlendPlayerHeadingFromInputVectorView2();
+                Physics14ApproachPlayerTargetHeadingView2(90, 16);
             }
             workWord2 = Physics14Player1BAView1;
             if (!workWord2)
@@ -895,17 +896,17 @@ void func_level_14_80093F80(int slotIndex) {
             workWord3 = Physics14Data6E044View2;
             workWord2 = 8;
             if (workWord3 != workWord2)
-                Physics14Call40D10View2(6016);
+                Physics14UpdatePlayerGroundInputTargetsView2(6016);
             globalVector80 = &Physics14Data6E538View1;
             workWord2 = Physics14Field(globalVector80, int*, 0) & 12;
             if (workWord2)
                 Physics14PlayerACView1 = 0;
-            workWord2 = Physics14Call416F4View2();
+            workWord2 = Physics14BlendPlayerHeadingFromInputVectorView2();
             call4 = (void*)90;
             call5 = (void*)16;
             MATCHING_KEEP2(call4, call5);
             globalFieldA4Pointer = (void*)workWord2;
-            workWord2 = Physics14Call41580View2(call4, call5);
+            workWord2 = Physics14ApproachPlayerTargetHeadingView2(call4, call5);
             workWord3 = Physics14PlayerA8View1;
             if (workWord3 < 0)
                 workWord3 = -workWord3;
@@ -945,7 +946,7 @@ void func_level_14_80093F80(int slotIndex) {
                     Physics14Field(call4, int*, 0) = workWord3;
             }
         pass101:
-            Physics14Call417FCView2(320, 192);
+            Physics14ApproachPlayerTargetSpeedView2(320, 192);
             workWord2 = Physics14Player101View1;
             call4 = &Physics14PlayerACView1;
             Physics14Field(call4, int*, 0) = (int)globalVector80;
@@ -953,8 +954,8 @@ void func_level_14_80093F80(int slotIndex) {
                 Physics14ClearVectorView2(call4 - 32);
                 goto fields101;
             }
-            Physics14Call41848View1(call4);
-            Physics14Call41B64View2();
+            Physics14BuildPlayerMovementVectorView1(call4);
+            Physics14BuildPlayerResponseVectorView2();
         fields101:
             call6 = &Physics14PlayerFCView1;
             workWord2 = Physics14Field(call6, unsigned char*, 0);
@@ -968,9 +969,9 @@ void func_level_14_80093F80(int slotIndex) {
             goto vectorInput71;
         case 67: {
             int lowProduct3Case67, lowProduct4Case67;
-            Physics14Call40D10View1(0xC80);
-            Physics14Call41580View1(0x28, 8);
-            Physics14Call417FCView1(0x140, 0xC0);
+            Physics14UpdatePlayerGroundInputTargetsView1(0xC80);
+            Physics14ApproachPlayerTargetHeadingView1(0x28, 8);
+            Physics14ApproachPlayerTargetSpeedView1(0x140, 0xC0);
             globalFieldA4Pointer = &Physics14Player0View1 + 0xA4;
             globalVector8C = globalFieldA4Pointer - 0x18;
             workWord2 =
@@ -998,7 +999,7 @@ void func_level_14_80093F80(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer - 0x24;
             }
             Physics14AddVectorView1(var_a0_3, globalVector8C, &originalFrame.sp90);
-            Physics14Call41B64View1();
+            Physics14BuildPlayerResponseVectorView1();
             workWord2 = combinedIndex < 13;
             if (!workWord2)
                 goto subtract320_73;
@@ -1026,9 +1027,9 @@ void func_level_14_80093F80(int slotIndex) {
             numeric5 = 1600;
             if ((int)call4 == workWord2)
                 numeric5 = 3200;
-            Physics14Call40D10View1(numeric5, numeric5);
-            Physics14Call41580View1(22, 4);
-            Physics14Call417FCView1(320, 192);
+            Physics14UpdatePlayerGroundInputTargetsView1(numeric5, numeric5);
+            Physics14ApproachPlayerTargetHeadingView1(22, 4);
+            Physics14ApproachPlayerTargetSpeedView1(320, 192);
             MATCHING_KEEP(globalFieldA4Pointer);
             globalVector8C = globalFieldA4Pointer + 64;
             workWord2 =
@@ -1056,7 +1057,7 @@ void func_level_14_80093F80(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer + 52;
             }
             Physics14AddVectorView1(var_a0_3, globalVector8C, &originalFrame.spA0);
-            Physics14Call41B64View1();
+            Physics14BuildPlayerResponseVectorView1();
             workWord2 = Physics14Player94View1;
             workWord2 -= 320;
             Physics14Player94View1 = workWord2;
@@ -1075,9 +1076,9 @@ void func_level_14_80093F80(int slotIndex) {
         }
         case 70: {
             int lowProduct3Case70, lowProduct4Case70;
-            Physics14Call40D10View1(0xC80);
-            Physics14Call41580View1(0x28, 8);
-            Physics14Call417FCView1(0x140, 0xC0);
+            Physics14UpdatePlayerGroundInputTargetsView1(0xC80);
+            Physics14ApproachPlayerTargetHeadingView1(0x28, 8);
+            Physics14ApproachPlayerTargetSpeedView1(0x140, 0xC0);
             globalFieldA4Pointer = &Physics14Player0View1 + 0xA4;
             globalVector8C = globalFieldA4Pointer - 0x18;
             workWord2 =
@@ -1105,7 +1106,7 @@ void func_level_14_80093F80(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer - 0x24;
             }
             Physics14AddVectorView1(var_a0_3, globalVector8C, &originalFrame.spB0);
-            Physics14Call41B64View1();
+            Physics14BuildPlayerResponseVectorView1();
             workWord2 = combinedIndex < 7;
             if (!workWord2)
                 goto subtract320_73;
@@ -1131,9 +1132,9 @@ void func_level_14_80093F80(int slotIndex) {
             numeric5 = 1600;
             if (workWord3 == workWord2)
                 numeric5 = 3200;
-            Physics14Call40D10View1(numeric5, numeric5);
-            Physics14Call41580View1(22, 4);
-            Physics14Call417FCView1(320, 192);
+            Physics14UpdatePlayerGroundInputTargetsView1(numeric5, numeric5);
+            Physics14ApproachPlayerTargetHeadingView1(22, 4);
+            Physics14ApproachPlayerTargetSpeedView1(320, 192);
             MATCHING_KEEP(globalFieldA4Pointer);
             globalVector8C = globalFieldA4Pointer - 44;
             workWord2 = Physics14InterpolateCosineView1(Physics14PlayerA4View1);
@@ -1161,7 +1162,7 @@ void func_level_14_80093F80(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer - 56;
             }
             Physics14AddVectorView1(var_a0_3, globalVector8C, &originalFrame.spC0);
-            Physics14Call41B64View1();
+            Physics14BuildPlayerResponseVectorView1();
             workWord2 = Physics14Player94View1;
             workWord2 -= 320;
             Physics14Player94View1 = workWord2;
@@ -1175,17 +1176,17 @@ void func_level_14_80093F80(int slotIndex) {
             workWord3 = Physics14Data6E044View2;
             workWord2 = 8;
             if (workWord3 != workWord2)
-                Physics14Call40D10View2(6016);
+                Physics14UpdatePlayerGroundInputTargetsView2(6016);
             globalVector80 = &Physics14Data6E538View1;
             workWord2 = Physics14Field(globalVector80, int*, 0) & 12;
             if (workWord2)
                 Physics14PlayerACView1 = 0;
-            workWord2 = Physics14Call416F4View2();
+            workWord2 = Physics14BlendPlayerHeadingFromInputVectorView2();
             call4 = (void*)90;
             call5 = (void*)16;
             MATCHING_KEEP2(call4, call5);
             globalFieldA4Pointer = (void*)workWord2;
-            workWord2 = Physics14Call41580View2(call4, call5);
+            workWord2 = Physics14ApproachPlayerTargetHeadingView2(call4, call5);
             workWord3 = Physics14PlayerA8View1;
             if (workWord3 < 0)
                 workWord3 = -workWord3;
@@ -1225,7 +1226,7 @@ void func_level_14_80093F80(int slotIndex) {
                     Physics14Field(call4, int*, 0) = workWord3;
             }
         pass71:
-            Physics14Call417FCView2(320, 192);
+            Physics14ApproachPlayerTargetSpeedView2(320, 192);
             workWord2 = Physics14Player101View1;
             call4 = &Physics14PlayerACView1;
             Physics14Field(call4, int*, 0) = (int)globalVector80;
@@ -1233,8 +1234,8 @@ void func_level_14_80093F80(int slotIndex) {
                 Physics14ClearVectorView2(call4 - 32);
                 goto fields71;
             }
-            Physics14Call41848View1(call4);
-            Physics14Call41B64View2();
+            Physics14BuildPlayerMovementVectorView1(call4);
+            Physics14BuildPlayerResponseVectorView2();
         fields71:
             call6 = &Physics14PlayerFCView1;
             workWord2 = Physics14Field(call6, unsigned char*, 0);
@@ -1295,9 +1296,9 @@ void func_level_14_80093F80(int slotIndex) {
             }
             return;
         vector72:
-            Physics14Call40D10View1(3200);
-            Physics14Call41580View1(40, 8);
-            Physics14Call417FCView1(320, 192);
+            Physics14UpdatePlayerGroundInputTargetsView1(3200);
+            Physics14ApproachPlayerTargetHeadingView1(40, 8);
+            Physics14ApproachPlayerTargetSpeedView1(320, 192);
             MATCHING_KEEP(globalFieldA4Pointer);
             globalVector8C = globalFieldA4Pointer + 64;
             workWord2 = Physics14InterpolateCosineView1(Physics14PlayerA4View1);
@@ -1325,7 +1326,7 @@ void func_level_14_80093F80(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer + 52;
             }
             Physics14AddVectorView1(var_a0_3, globalVector8C, &originalFrame.spD0);
-            Physics14Call41B64View1();
+            Physics14BuildPlayerResponseVectorView1();
             if (combinedIndex < 13) {
                 MATCHING_OBSERVE(combinedIndex);
                 workWord2 = Physics14Player94View1;
@@ -1349,7 +1350,7 @@ void func_level_14_80093F80(int slotIndex) {
                     MATCHING_KEEP(vectorAt40);
                 spawnParticleLoop72:
                     if (particleThreshold < (Physics14CallRandView1() & 0xFF)) {
-                        workWord2 = Physics14Call363DCView1(0, 0xC);
+                        workWord2 = Physics14RandSignedBetweenView1(0, 0xC);
                         call4 = globalByteE + 0x22;
                         workWord3 = *globalByteE;
                         MATCHING_KEEP(workWord3);
@@ -1372,9 +1373,9 @@ void func_level_14_80093F80(int slotIndex) {
                         MATCHING_BARRIER_VOLATILE("memory");
                         originalFrame.spE4 = (workWord3 * 5) >> 0xA;
                         Physics14TransformVectorByBasisView1(call4, call5, call6, signedTableWord);
-                        originalFrame.spF0 += Physics14Call363DCView1(0, 0x50);
-                        originalFrame.spF4 += Physics14Call363DCView1(0, 0x50);
-                        originalFrame.spF8 += Physics14Call363DCView1(0, 0x50);
+                        originalFrame.spF0 += Physics14RandSignedBetweenView1(0, 0x50);
+                        originalFrame.spF4 += Physics14RandSignedBetweenView1(0, 0x50);
+                        originalFrame.spF8 += Physics14RandSignedBetweenView1(0, 0x50);
                         Physics14AddVectorView1(vectorAt40, vectorAt40, globalByteE - 0xE);
                         temp_v0_5 =
                             Controller88028_SpawnParticle(1, 0xD, vectorAt40, &originalFrame.spE0);
@@ -1394,9 +1395,9 @@ void func_level_14_80093F80(int slotIndex) {
         }
         case 73: {
             int lowProduct3Case73, lowProduct4Case73;
-            Physics14Call40D10View1(0x640);
-            Physics14Call41580View1(0x28, 8);
-            Physics14Call417FCView1(0x140, 0xC0);
+            Physics14UpdatePlayerGroundInputTargetsView1(0x640);
+            Physics14ApproachPlayerTargetHeadingView1(0x28, 8);
+            Physics14ApproachPlayerTargetSpeedView1(0x140, 0xC0);
             globalFieldA4Pointer = &Physics14Player0View1 + 0xA4;
             globalVector8C = globalFieldA4Pointer - 0x18;
             workWord2 =
@@ -1424,7 +1425,7 @@ void func_level_14_80093F80(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer - 0x24;
             }
             Physics14AddVectorView1(var_a0_3, globalVector8C, &originalFrame.spE0);
-            Physics14Call41B64View1();
+            Physics14BuildPlayerResponseVectorView1();
             workWord2 = combinedIndex < 19;
             if (!workWord2)
                 goto subtract320_73;
@@ -1619,26 +1620,29 @@ void func_level_14_80093F80(int slotIndex) {
  * Every code/table word, strict fullTU and every EXE/overlay hash required.
  */
 extern Spyro Callback14Player __asm__("D_80070328");
-int Callback14Call80037058(int x, int y) __asm__("func_80037058");
-void Callback14Call80041930(void) __asm__("func_80041930");
-void Callback14Call80041AE8(void) __asm__("func_80041AE8");
-void Callback14Call80041C20(void) __asm__("func_80041C20");
-void Callback14Call80042A44(void) __asm__("func_80042A44");
-void Callback14Call80043A38(int scale) __asm__("func_80043A38");
+int Callback14SamplePlanarPhaseTable(int x, int y) __asm__("func_80037058");
+void Callback14ProbePlayerContactSegment(void) __asm__("func_80041930");
+void Callback14CapturePlayerPlanarVectorDifference(void) __asm__("func_80041AE8");
+void Callback14UpdatePlayerCollisionResponse(void) __asm__("func_80041C20");
+void Callback14UpdatePlayerSurfaceState(void) __asm__("func_80042A44");
+void Callback14BuildNegatedNormalizedPlayerVector(int scale) __asm__("func_80043A38");
 extern int Callback14Word8006E538 __asm__("D_8006E538");
 extern int D_8006FA38, D_8006C648;
 extern int D_80071924;
 extern int** Callback14Table __asm__("D_8006D048+0x14");
-int Callback14Call80055E84(Moby*) __asm__("func_80055E84");
-void Callback14Call8004ED6C(void*, Vector3D*, Vector3D*) __asm__("func_8004ED6C");
-void Callback14Call8001BA30(Vector3D*, int, int, int, int, Moby*) __asm__("func_8001BA30");
-int Callback14Call80019138(Vector3D*, int, int, int, int, Moby*) __asm__("func_80019138");
-int Callback14Call8001830C(Vector3D*, Vector3D*, int, int, Moby*) __asm__("func_8001830C");
+int Callback14ReadSelectedFrameScalar(Moby*) __asm__("func_80055E84");
+void Callback14TransformVectorByBasis(void*, Vector3D*, Vector3D*) __asm__("func_8004ED6C");
+void Callback14QueryDynamicMobyGeometry(Vector3D*, int, int, int, int,
+                                        Moby*) __asm__("func_8001BA30");
+int Callback14QueryWorldSphereWithOptions(Vector3D*, int, int, int, int,
+                                          Moby*) __asm__("func_80019138");
+int Callback14QueryWorldSegmentWithOptions(Vector3D*, Vector3D*, int, int,
+                                           Moby*) __asm__("func_8001830C");
 extern int Callback14Word290 __asm__("D_80070328+0x290");
 extern unsigned char Callback14Flags[] __asm__("D_8006FCE6");
 extern unsigned char Callback14Values[] __asm__("D_8006FCF0");
-void Callback14Call80049590(void) __asm__("func_80049590");
-int Callback14Call8003BF6C(int, int) __asm__("func_8003BF6C");
+void Callback14MarkPlayerSegmentSurfaceType3Flags(void) __asm__("func_80049590");
+int Callback14SoundHandleMatchesIdInStates1Or2(int, int) __asm__("func_8003BF6C");
 extern int D_80071908, D_80071934;
 int Callback14First42A44(void) __asm__("func_80042A44");
 void func_level_14_800960DC(void) {
@@ -1666,43 +1670,44 @@ void func_level_14_800960DC(void) {
         case 0x41:
             if (func_800438F4() == 0)
                 func_80043728();
-            Callback14Call80041C20();
+            Callback14UpdatePlayerCollisionResponse();
             Callback14Player.unk9a = 0;
-            Callback14Call80042A44();
+            Callback14UpdatePlayerSurfaceState();
             goto clearSharedValue;
         default:
             return;
         case 0x20:
         case 0x44:
         case 0x4A:
-            Callback14Call80041C20();
-            Callback14Call80042A44();
+            Callback14UpdatePlayerCollisionResponse();
+            Callback14UpdatePlayerSurfaceState();
             goto clearSharedValue;
         case 0x42:
         case 0x45:
             func_800438F4();
-            Callback14Call80041C20();
-            Callback14Call80042A44();
-            Callback14Call80041930();
+            Callback14UpdatePlayerCollisionResponse();
+            Callback14UpdatePlayerSurfaceState();
+            Callback14ProbePlayerContactSegment();
             goto queryC00;
         case 0x1D:
-            Callback14Call80041C20();
+            Callback14UpdatePlayerCollisionResponse();
             {
                 register int unusedResult __asm__("$2") = Callback14First42A44();
                 MATCHING_OBSERVE_VOLATILE(unusedResult);
             }
             goto queryC00;
         case 0x1A:
-            Callback14Call80041C20();
-            Callback14Call80042A44();
+            Callback14UpdatePlayerCollisionResponse();
+            Callback14UpdatePlayerSurfaceState();
             goto queryC00;
         case 0x28:
         case 0x29:
         case 0x39:
-            Callback14Call80041C20();
-            Callback14Call80042A44();
+            Callback14UpdatePlayerCollisionResponse();
+            Callback14UpdatePlayerSurfaceState();
             descriptor = &Callback14Player.unk22[2];
-            if (Callback14Call8003BF6C((int)D_8006C654->underwater, *descriptor) != 0) {
+            if (Callback14SoundHandleMatchesIdInStates1Or2((int)D_8006C654->underwater,
+                                                           *descriptor) != 0) {
                 valueOffset = *descriptor * 0x2C;
                 decreasingValue = *(int*)(Callback14Values + valueOffset);
                 {
@@ -1717,11 +1722,12 @@ void func_level_14_800960DC(void) {
             }
             goto clearSharedValue;
         case 0x2A:
-            Callback14Call80041C20();
-            Callback14Call80042A44();
-            Callback14Call80049590();
+            Callback14UpdatePlayerCollisionResponse();
+            Callback14UpdatePlayerSurfaceState();
+            Callback14MarkPlayerSegmentSurfaceType3Flags();
             descriptor = &Callback14Player.unk22[2];
-            if (Callback14Call8003BF6C((int)D_8006C654->underwater, *descriptor) == 0) {
+            if (Callback14SoundHandleMatchesIdInStates1Or2((int)D_8006C654->underwater,
+                                                           *descriptor) == 0) {
                 descriptorResult = PlaySound((int)D_8006C654->underwater, 0, 4);
                 *descriptor = descriptorResult;
                 if (descriptorResult >= 0) {
@@ -1732,7 +1738,8 @@ void func_level_14_800960DC(void) {
                 __asm__ volatile("" : : : "$16", "memory");
                 descriptor = &Callback14Player.unk22[2];
             }
-            if (Callback14Call8003BF6C((int)D_8006C654->underwater, *descriptor) != 0) {
+            if (Callback14SoundHandleMatchesIdInStates1Or2((int)D_8006C654->underwater,
+                                                           *descriptor) != 0) {
                 valueOffset = *descriptor * 0x2C;
                 increasingValue = *(int*)(Callback14Values + valueOffset);
                 {
@@ -1755,13 +1762,13 @@ void func_level_14_800960DC(void) {
         case 0x2C:
         case 0x4E:
         case 0x4F:
-            Callback14Call80041C20();
-            Callback14Call80042A44();
-            Callback14Call80041AE8();
+            Callback14UpdatePlayerCollisionResponse();
+            Callback14UpdatePlayerSurfaceState();
+            Callback14CapturePlayerPlanarVectorDifference();
             if ((unsigned char)Callback14Player.unk10[4] != 0) {
                 computedValue = -Callback14Player.unk9ha[4] -
-                                Callback14Call80037058(Callback14Player.position.x,
-                                                       Callback14Player.position.y);
+                                Callback14SamplePlanarPhaseTable(Callback14Player.position.x,
+                                                                 Callback14Player.position.y);
                 positionValue = Callback14Player.unk4a - computedValue;
                 Callback14Player.unk4[0] = computedValue;
                 positionDelta = (int)Callback14Player.union144.a.unk13cc >> 6;
@@ -1781,8 +1788,8 @@ void func_level_14_800960DC(void) {
             register int inputValue __asm__("$3");
             register int halfword __asm__("$2");
             register int oldValue __asm__("$3");
-            Callback14Call80041C20();
-            Callback14Call80042A44();
+            Callback14UpdatePlayerCollisionResponse();
+            Callback14UpdatePlayerSurfaceState();
             {
                 register Vector3D* copyDestination __asm__("$4") = &local.first;
                 MATCHING_KEEP(copyDestination);
@@ -1798,8 +1805,8 @@ void func_level_14_800960DC(void) {
                 statusPointer = &D_80071934;
                 *statusPointer = 0;
                 local.first.z -= 0x800;
-                Callback14Call8001830C(argument0, argument1, argument2, argument3,
-                                       Callback14Player.critterMobyPtr);
+                Callback14QueryWorldSegmentWithOptions(argument0, argument1, argument2, argument3,
+                                                       Callback14Player.critterMobyPtr);
             }
             if (*statusPointer != 0) {
                 Callback14Player.unk9ha[4] = D_80071908;
@@ -1848,9 +1855,9 @@ void func_level_14_800960DC(void) {
         case 0x43:
         case 0x46:
         case 0x49:
-            Callback14Call80041C20();
-            Callback14Call80042A44();
-            Callback14Call80041930();
+            Callback14UpdatePlayerCollisionResponse();
+            Callback14UpdatePlayerSurfaceState();
+            Callback14ProbePlayerContactSegment();
             if (Callback14Player.unk7a[3].z < 0 && Callback14Player.animationStateFrames >= 4) {
                 Callback14Player.unk5 = 1;
             } else {
@@ -1866,16 +1873,16 @@ void func_level_14_800960DC(void) {
             register Vector3D* vectorBase __asm__("$17");
             register int flags __asm__("$18");
             if (Callback14Player.ticksSinceLastSurfaceTouch) {
-                Callback14Call80041C20();
-                Callback14Call80042A44();
+                Callback14UpdatePlayerCollisionResponse();
+                Callback14UpdatePlayerSurfaceState();
             } else {
                 func_800438F4();
-                Callback14Call80041C20();
-                Callback14Call80042A44();
-                Callback14Call80041930();
-                Callback14Call80043A38(0xC00);
+                Callback14UpdatePlayerCollisionResponse();
+                Callback14UpdatePlayerSurfaceState();
+                Callback14ProbePlayerContactSegment();
+                Callback14BuildNegatedNormalizedPlayerVector(0xC00);
             }
-            progress = Callback14Call80055E84(Callback14Player.critterMobyPtr);
+            progress = Callback14ReadSelectedFrameScalar(Callback14Player.critterMobyPtr);
             if (Callback14Player.critterMobyPtr->animationState.id == 6 &&
                 (unsigned int)(progress - 2) < 6) {
                 if (progress < 6)
@@ -1888,7 +1895,8 @@ void func_level_14_800960DC(void) {
                 vectorBase = &local.second;
                 local.second.y = 0;
                 local.second.z = 0x200 - *sourceBase;
-                Callback14Call8004ED6C((unsigned char*)sourceBase - 0x14, vectorBase, vectorBase);
+                Callback14TransformVectorByBasis((unsigned char*)sourceBase - 0x14, vectorBase,
+                                                 vectorBase);
                 {
                     register Vector3D* argument0 __asm__("$4") = vectorBase;
                     register Vector3D* argument1 __asm__("$5") = vectorBase;
@@ -1897,12 +1905,13 @@ void func_level_14_800960DC(void) {
                     func_8004F194(argument0, argument1, (Vector3D*)sourceBase);
                 }
                 flags = 0x02000000;
-                Callback14Call8001BA30(vectorBase, 0x200, 0, 0, flags,
-                                       Callback14Player.critterMobyPtr);
-                if ((Callback14Call80019138(vectorBase, 0x200, 0, 0, flags,
-                                            Callback14Player.critterMobyPtr) != 0 ||
-                     Callback14Call8001830C((Vector3D*)sourceBase, vectorBase, 0, 0x02000000,
-                                            Callback14Player.critterMobyPtr) != 0)) {
+                Callback14QueryDynamicMobyGeometry(vectorBase, 0x200, 0, 0, flags,
+                                                   Callback14Player.critterMobyPtr);
+                if ((Callback14QueryWorldSphereWithOptions(vectorBase, 0x200, 0, 0, flags,
+                                                           Callback14Player.critterMobyPtr) != 0 ||
+                     Callback14QueryWorldSegmentWithOptions(
+                         (Vector3D*)sourceBase, vectorBase, 0, 0x02000000,
+                         Callback14Player.critterMobyPtr) != 0)) {
                     register int* selector __asm__("$16") = &D_80071924;
                     if (func_80040954(*selector) == 3) {
                         register int index __asm__("$2") = *selector;
@@ -1919,21 +1928,21 @@ void func_level_14_800960DC(void) {
         case 0x4B:
         case 0x4C:
         case 0x4D:
-            Callback14Call80041C20();
-            Callback14Call80042A44();
+            Callback14UpdatePlayerCollisionResponse();
+            Callback14UpdatePlayerSurfaceState();
             if (Callback14Player.unk5 == 1)
                 func_800494A8();
             goto clearSharedValue;
         case 0x48:
-            Callback14Call80041C20();
-            Callback14Call80042A44();
+            Callback14UpdatePlayerCollisionResponse();
+            Callback14UpdatePlayerSurfaceState();
             if (Callback14Player.unk5 != 0)
                 goto call41930;
         queryC00:
-            Callback14Call80043A38(0xC00);
+            Callback14BuildNegatedNormalizedPlayerVector(0xC00);
             goto clearSharedValue;
         call41930:
-            Callback14Call80041930();
+            Callback14ProbePlayerContactSegment();
         clearSharedValue:
             Callback14Player.unk4[0] = 0;
             return;
@@ -2025,11 +2034,11 @@ extern void (*Call14Header)(Moby*) __asm__("unk_ovlheader_8007432C");
 extern unsigned char Raw14State[] __asm__("D_80070328+0x50");
 
 extern int D_80071934;
-int Call14A358(Vector3D*, int) __asm__("func_8001A358");
+int Call14QueryWorldHeight(Vector3D*, int) __asm__("func_8001A358");
 extern int Raw14NegativeWord __asm__("D_80070328+0x28");
 int Transition14RandBetween(int, int) __asm__("func_8003636C");
-void Transition14_func_800441F0(void) __asm__("func_800441F0");
-void Transition14_func_80043A38(int) __asm__("func_80043A38");
+void Transition14ClearPlayerMotionVectors(void) __asm__("func_800441F0");
+void Transition14BuildNegatedNormalizedPlayerVector(int) __asm__("func_80043A38");
 void func_level_14_80096A68(int arg0) {
     struct {
         Vector3D first;
@@ -2075,7 +2084,7 @@ void func_level_14_80096A68(int arg0) {
         case 0x14:
             Transition14_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Transition14_D_80070328.unk5 = 0;
-            Transition14_func_800441F0();
+            Transition14ClearPlayerMotionVectors();
             Transition14_D_80070328.grounded = 1;
             Transition14_D_80070328.union144.a.unk13cb = Transition14RandBetween(1, 3);
             Transition14_D_80070328.union144.a.unk13cc = 0;
@@ -2104,7 +2113,7 @@ void func_level_14_80096A68(int arg0) {
             if (third == 0)
                 second = Transition14_D_80070328.unk7a[3].z;
             Transition14_D_80070328.unk7a[2].z = second;
-            Transition14_func_80043A38(0xC00);
+            Transition14BuildNegatedNormalizedPlayerVector(0xC00);
             Transition14_D_80070328.grounded = 1;
             Transition14_D_8006E524 = 15;
             if (SpawnParticle)
@@ -2137,7 +2146,7 @@ void func_level_14_80096A68(int arg0) {
         case 0x20:
             Transition14_D_80070328.movementState = MOVEMENT_STATE_DEATH;
             Transition14_D_80070328.unk5 = 0;
-            Transition14_func_80043A38(0xC00);
+            Transition14BuildNegatedNormalizedPlayerVector(0xC00);
             Transition14_D_80070328.grounded = 1;
             if ((arg0 == 0x3A) || (arg0 == 0x6C)) {
                 PlaySound((int)D_8006C654->lavaBurn, 0, 0);
@@ -2166,7 +2175,7 @@ void func_level_14_80096A68(int arg0) {
                     }
                     if (Transition14_D_80070328.movementState == MOVEMENT_STATE_CHARGE) {
                         vectors.first.z += 0x400;
-                        firstResult = Call14A358(&vectors.first, 0x800);
+                        firstResult = Call14QueryWorldHeight(&vectors.first, 0x800);
                         vectors.first.z = firstResult;
                         if (firstResult != 0) {
                             firstParticleKind = 6;
@@ -2231,7 +2240,7 @@ void func_level_14_80096A68(int arg0) {
                     if (Transition14_D_80070328.movementState == MOVEMENT_STATE_CHARGE) {
                         localVector = &vectors.second;
                         vectors.second.z += 0x400;
-                        secondResult = Call14A358(localVector, 0x800);
+                        secondResult = Call14QueryWorldHeight(localVector, 0x800);
                         vectors.second.z = secondResult;
                         if (secondResult != 0) {
                             secondParticleKind = 6;
@@ -2292,7 +2301,7 @@ void func_level_14_80096A68(int arg0) {
                     localVector = &vectors.third;
                     func_8004F178(localVector, (Vector3D*)(unionPointer - 0x144));
                     vectors.third.z += 0x400;
-                    lengthResult = Call14A358(localVector, 0x800);
+                    lengthResult = Call14QueryWorldHeight(localVector, 0x800);
                     vectors.third.z = lengthResult;
                     if (lengthResult != 0 && D_80071934 != 0 && SpawnParticle) {
                         SpawnParticle(10, 0x29, localVector, 0);
@@ -2360,7 +2369,7 @@ void func_level_14_80096A68(int arg0) {
         case 0x41:
             Transition14_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Transition14_D_80070328.unk5 = MOVEMENT_STATE_STAND;
-            Transition14_func_800441F0();
+            Transition14ClearPlayerMotionVectors();
             Transition14_D_80070328.grounded = 1;
             return;
         case 0x42:
@@ -2380,7 +2389,7 @@ void func_level_14_80096A68(int arg0) {
             }
             Transition14_D_80070328.unk8[0] =
                 Transition14MeasureVectorLength(&Transition14_D_80070328.unk7a[3], 0);
-            Transition14_func_80043A38(0xC00);
+            Transition14BuildNegatedNormalizedPlayerVector(0xC00);
             Transition14_D_80070328.union144.a.unk13cb = MOVEMENT_STATE_STAND;
             Transition14_D_80070328.grounded = 1;
             goto clearFlags;
@@ -2475,7 +2484,7 @@ void func_level_14_80096A68(int arg0) {
             } else {
                 Transition14_D_80070328.movementState = MOVEMENT_STATE_WALK;
                 Transition14_D_80070328.unk5 = MOVEMENT_STATE_STAND;
-                Transition14_func_80043A38(0xC00);
+                Transition14BuildNegatedNormalizedPlayerVector(0xC00);
                 Transition14_D_80070328.union144.a.unk13cb = MOVEMENT_STATE_STAND;
                 Transition14_D_80070328.grounded = 1;
             }
@@ -2510,7 +2519,7 @@ void func_level_14_80096A68(int arg0) {
                     localVector = &vectors.fifth;
                     func_8004F178(localVector, (Vector3D*)(unionPointer - 0x144));
                     vectors.fifth.z += 0x400;
-                    lengthResult = Call14A358(localVector, 0x800);
+                    lengthResult = Call14QueryWorldHeight(localVector, 0x800);
                     vectors.fifth.z = lengthResult;
                     if (lengthResult != 0 && D_80071934 != 0 && SpawnParticle) {
                         SpawnParticle(10, 0x29, localVector, 0);
@@ -2566,7 +2575,7 @@ void func_level_14_80096A68(int arg0) {
                 func_8004F178(
                     &Transition14_D_80070328.unk7a[1],
                     (Vector3D*)((unsigned char*)(&Transition14_D_80070328.unk7a[1]) + 0xC));
-                Transition14_func_80043A38(0xC00);
+                Transition14BuildNegatedNormalizedPlayerVector(0xC00);
                 Transition14_D_80070328.grounded = 1;
             }
             Transition14_D_8006E524 = 0xF;
@@ -2579,7 +2588,7 @@ void func_level_14_80096A68(int arg0) {
         case 0x4A:
             Transition14_D_80070328.movementState = MOVEMENT_STATE_DEATH;
             Transition14_D_80070328.unk5 = MOVEMENT_STATE_STAND;
-            Transition14_func_80043A38(0xC00);
+            Transition14BuildNegatedNormalizedPlayerVector(0xC00);
             Transition14_D_80070328.grounded = 1;
             Transition14_D_8006E524 = 0xF;
             return;
@@ -2663,9 +2672,9 @@ extern unsigned char Anim14Data66530View1[] __asm__("D_80066530");
 extern int Anim14Data6E538View1 __asm__("D_8006E538"), Anim14Data6E53CView1 __asm__("D_8006E53C");
 extern int Anim14Data6E044View1 __asm__("D_8006E044"), A4898Gate __asm__("D_8006E344"),
     A4898Count __asm__("D_8006C514");
-int Anim14Call40994View1() __asm__("func_80040994");
-int Anim14Call4BEF8View1() __asm__("func_8004BEF8");
-int Anim14Call49688View1() __asm__("func_80049688");
+int Anim14ProcessPlayerStateFlagsView1() __asm__("func_80040994");
+int Anim14DispatchPlayerStateRequestView1() __asm__("func_8004BEF8");
+int Anim14SelectPlayerAnimationLoopRequestView1() __asm__("func_80049688");
 extern int Anim14Player4CView1 __asm__("D_80070328 + 0x4C");
 extern int Anim14Player54View2 __asm__("D_80070328 + 0x54");
 extern int Anim14PlayerB0View1 __asm__("D_80070328 + 0xB0");
@@ -2679,16 +2688,16 @@ extern int (*Anim14Data74374View1)() __asm__("unk_ovlheader_80074374");
 extern int Anim14Player24View1 __asm__("D_80070328 + 0x24");
 extern unsigned char* Anim14Data6C654View1 __asm__("D_8006C654");
 int Anim14CallPlaySoundView1() __asm__("PlaySound");
-int Anim14Call40994View2() __asm__("func_80040994");
-int Anim14Call4BEF8View2() __asm__("func_8004BEF8");
-int Anim14Call498C0View1() __asm__("func_800498C0");
+int Anim14ProcessPlayerStateFlagsView2() __asm__("func_80040994");
+int Anim14DispatchPlayerStateRequestView2() __asm__("func_8004BEF8");
+int Anim14UpdatePlayerRetryStateView1() __asm__("func_800498C0");
 extern volatile int Anim14Player20CView1 __asm__("D_80070328 + 0x20C");
 extern int Anim14Player214View1 __asm__("D_80070328 + 0x214");
 extern unsigned char Anim14Player100View1 __asm__("D_80070328 + 0x100");
 extern unsigned char Anim14Data6E535View1 __asm__("D_8006E535");
 extern unsigned char* Anim14Data6EE2CView1 __asm__("D_8006EE2C");
-int Anim14Call40BCCView1() __asm__("func_80040BCC");
-int Anim14Call1A310View1() __asm__("func_8001A310");
+int Anim14ProcessPlayerContactFlagsView1() __asm__("func_80040BCC");
+int Anim14QueryWorldHeightWithOptionsView1() __asm__("func_8001A310");
 extern int (*Anim14Data7431CView1)(int) __asm__("unk_ovlheader_8007431C");
 extern int Anim14Player44View1 __asm__("D_80070328 + 0x44");
 extern int Anim14Player48View3 __asm__("D_80070328 + 0x48");
@@ -2720,9 +2729,9 @@ extern int Anim14Data6E52CView1 __asm__("D_8006E52C");
 extern unsigned char* Anim14Data6C654View2 __asm__("D_8006C654");
 extern int (*Anim14Data7431CView2)(int) __asm__("unk_ovlheader_8007431C");
 extern int (*Anim14DataSpawnParticleView1)(int, int, void*, int) __asm__("SpawnParticle");
-int Anim14Call55E84View1(void*) __asm__("func_80055E84");
-int Anim14Call1A358View1(void*, int) __asm__("func_8001A358");
-int Anim14Call4BEF8View3(int) __asm__("func_8004BEF8");
+int Anim14ReadSelectedFrameScalarView1(void*) __asm__("func_80055E84");
+int Anim14QueryWorldHeightView1(void*, int) __asm__("func_8001A358");
+int Anim14DispatchPlayerStateRequestView3(int) __asm__("func_8004BEF8");
 int Anim14CallPlaySoundView2(unsigned char, int, int) __asm__("PlaySound");
 #define Anim14Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 void func_level_14_80097AD0(void) {
@@ -2736,7 +2745,7 @@ void func_level_14_80097AD0(void) {
     rawValue2 = Anim14Player48View1;
     switch (rawValue2) {
         case 20:
-            if (Anim14Call40994View1())
+            if (Anim14ProcessPlayerStateFlagsView1())
                 return;
             rawValue2 = Anim14Data6E53CView1 & 64;
             nextSelector4 = 6;
@@ -2773,7 +2782,7 @@ void func_level_14_80097AD0(void) {
                 MATCHING_KEEP(savedPointer16);
                 if (!*savedPointer16)
                     return;
-                Anim14Call4BEF8View1(0);
+                Anim14DispatchPlayerStateRequestView1(0);
                 if (Anim14Data66530View1[*((unsigned char*)savedPointer16 - 0x2C)] >= 96) {
                     Anim14Player14View1 = Anim14Player15View1;
                     Anim14Player16View1 = Anim14Player17View1;
@@ -2791,7 +2800,7 @@ void func_level_14_80097AD0(void) {
             nextSelector4 = 15;
             if (rawValue2)
                 goto select;
-            Anim14Call49688View1();
+            Anim14SelectPlayerAnimationLoopRequestView1();
             return;
         case 29:
             if (Anim14Player54View1 < 25)
@@ -2865,10 +2874,10 @@ void func_level_14_80097AD0(void) {
             if (Anim14Player54View2 < 125)
                 return;
         call498C0:
-            Anim14Call498C0View1();
+            Anim14UpdatePlayerRetryStateView1();
             return;
         case 40:
-            if (Anim14Call40994View2())
+            if (Anim14ProcessPlayerStateFlagsView2())
                 return;
             if ((Anim14Data6E538View2 & 128) && Anim14Player4CView1 != 1) {
                 nextSelector4 = 42;
@@ -2884,7 +2893,7 @@ void func_level_14_80097AD0(void) {
                 return;
             goto select;
         case 41:
-            if (Anim14Call40994View2())
+            if (Anim14ProcessPlayerStateFlagsView2())
                 return;
             nextSelector4 = Anim14Data6E538View2;
             rawValue2 = nextSelector4 & 128;
@@ -2906,7 +2915,7 @@ void func_level_14_80097AD0(void) {
                 goto select;
             return;
         case 42:
-            if (Anim14Call40BCCView1())
+            if (Anim14ProcessPlayerContactFlagsView1())
                 return;
             if ((Anim14Data6E538View2 & 128) || Anim14Player4CView1 == 1)
                 goto flag64;
@@ -2922,7 +2931,7 @@ void func_level_14_80097AD0(void) {
             goto select;
         case 43: {
             register unsigned char* byte4 __asm__("$4");
-            if (Anim14Call40994View2())
+            if (Anim14ProcessPlayerStateFlagsView2())
                 return;
             if ((Anim14Data6E53CView2 & 64) && Anim14Player54View2 >= 9) {
                 nextSelector4 = 6;
@@ -2942,13 +2951,13 @@ void func_level_14_80097AD0(void) {
             byte4 -= 256;
             if (!rawValue2)
                 goto check44;
-            rawValue2 = Anim14Call1A310View1(byte4, 1024, 1, 0);
+            rawValue2 = Anim14QueryWorldHeightWithOptionsView1(byte4, 1024, 1, 0);
             nextSelector4 = 40;
             if (rawValue2)
                 goto check44;
             goto select;
         partialCall:
-            Anim14Call4BEF8View2(nextSelector4);
+            Anim14DispatchPlayerStateRequestView2(nextSelector4);
         check44:
             rawValue2 = Anim14Data6E535View1;
             nextSelector4 = 44;
@@ -2977,7 +2986,7 @@ void func_level_14_80097AD0(void) {
         missingCallback:
             goto call498C0;
         other44:
-            if (Anim14Call40994View2())
+            if (Anim14ProcessPlayerStateFlagsView2())
                 return;
             if ((Anim14Data6E53CView2 & 64) && Anim14Player54View2 >= 9) {
                 nextSelector4 = 6;
@@ -2997,7 +3006,7 @@ void func_level_14_80097AD0(void) {
             byte4 -= 256;
             if (!rawValue2)
                 goto mode44;
-            rawValue2 = Anim14Call1A310View1(byte4, 1024, 1, 0);
+            rawValue2 = Anim14QueryWorldHeightWithOptionsView1(byte4, 1024, 1, 0);
             nextSelector4 = 40;
             if (!rawValue2)
                 goto select;
@@ -3117,7 +3126,7 @@ void func_level_14_80097AD0(void) {
             if (rawValue2)
                 goto input66;
         query66:
-            rawValue2 = Anim14Call55E84View1((void*)nextSelector4);
+            rawValue2 = Anim14ReadSelectedFrameScalarView1((void*)nextSelector4);
             rawValue2 = rawValue2 < 4;
             if (!rawValue2)
                 return;
@@ -3159,7 +3168,7 @@ void func_level_14_80097AD0(void) {
             if (rawValue2) {
                 product5 = Anim14Player44View1;
                 nextSelector4 = (int)Anim14Player0View1;
-                rawValue2 = Anim14Call1A358View1((void*)nextSelector4, product5 + 512);
+                rawValue2 = Anim14QueryWorldHeightView1((void*)nextSelector4, product5 + 512);
                 nextSelector4 = 75;
                 if (!rawValue2)
                     goto select;
@@ -3224,7 +3233,7 @@ void func_level_14_80097AD0(void) {
                     rawValue2 = Anim14Player54View3 < 31;
                     nextSelector4 -= 76;
                     if (rawValue2) {
-                        rawValue2 = Anim14Call1A358View1((void*)nextSelector4, 1024);
+                        rawValue2 = Anim14QueryWorldHeightView1((void*)nextSelector4, 1024);
                         if (!rawValue2) {
                             nextSelector4 = 70;
                             goto select;
@@ -3247,7 +3256,7 @@ void func_level_14_80097AD0(void) {
                 nextSelector4 -= 76;
                 if (rawValue2) {
                     product5 = Anim14Player44View1;
-                    rawValue2 = Anim14Call1A358View1((void*)nextSelector4, product5 + 512);
+                    rawValue2 = Anim14QueryWorldHeightView1((void*)nextSelector4, product5 + 512);
                     nextSelector4 = 75;
                     if (!rawValue2)
                         goto select;
@@ -3325,7 +3334,7 @@ void func_level_14_80097AD0(void) {
             if (rawValue2)
                 goto input69;
         query69:
-            rawValue2 = Anim14Call55E84View1((void*)nextSelector4);
+            rawValue2 = Anim14ReadSelectedFrameScalarView1((void*)nextSelector4);
             rawValue2 = rawValue2 < 4;
             if (!rawValue2)
                 return;
@@ -3364,7 +3373,7 @@ void func_level_14_80097AD0(void) {
             if (rawValue2) {
                 product5 = Anim14Player44View1;
                 nextSelector4 = (int)Anim14Player0View1;
-                rawValue2 = Anim14Call1A358View1((void*)nextSelector4, product5 + 512);
+                rawValue2 = Anim14QueryWorldHeightView1((void*)nextSelector4, product5 + 512);
                 nextSelector4 = 75;
                 if (!rawValue2)
                     goto select;
@@ -3428,7 +3437,7 @@ void func_level_14_80097AD0(void) {
             if (!rawValue2)
                 return;
         effectSelect:
-            Anim14Call4BEF8View3(nextSelector4);
+            Anim14DispatchPlayerStateRequestView3(nextSelector4);
             {
                 register int (*spawn2)(int, int, void*, int) __asm__("$2") =
                     Anim14DataSpawnParticleView1;
@@ -3486,7 +3495,7 @@ void func_level_14_80097AD0(void) {
             nextSelector4 = 65;
             goto select;
         query71:
-            rawValue2 = Anim14Call55E84View1((void*)nextSelector4);
+            rawValue2 = Anim14ReadSelectedFrameScalarView1((void*)nextSelector4);
             rawValue2 = rawValue2 < 16;
             if (rawValue2)
                 return;
@@ -3519,7 +3528,7 @@ void func_level_14_80097AD0(void) {
             if (rawValue2) {
                 product5 = Anim14Player44View1;
                 nextSelector4 = (int)Anim14Player0View1;
-                rawValue2 = Anim14Call1A358View1((void*)nextSelector4, product5 + 512);
+                rawValue2 = Anim14QueryWorldHeightView1((void*)nextSelector4, product5 + 512);
                 nextSelector4 = 75;
                 if (!rawValue2)
                     goto select;
@@ -3666,7 +3675,7 @@ void func_level_14_80097AD0(void) {
             if (rawValue2)
                 goto after78;
         partial78:
-            Anim14Call4BEF8View3(nextSelector4);
+            Anim14DispatchPlayerStateRequestView3(nextSelector4);
         after78:
             rawValue2 = Anim14Data6E535View2;
             nextSelector4 = 79;
@@ -3700,7 +3709,7 @@ void func_level_14_80097AD0(void) {
             return;
     }
 select:
-    Anim14Call4BEF8View1(nextSelector4);
+    Anim14DispatchPlayerStateRequestView1(nextSelector4);
     return;
 }
 #undef Anim14Field

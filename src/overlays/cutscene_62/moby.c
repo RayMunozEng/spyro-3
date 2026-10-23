@@ -55,13 +55,13 @@ void func_cutscene_62_80074788(Moby* moby) {
  * the second 4EA90 call does not establish a new fourth argument.
  */
 #define Cutscene74788Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Cutscene74788Helper4EA90Four(void*, void*, int, int) __asm__("func_8004EA90");
+int Cutscene74788BuildPackedAngleBasisMatrixFour(void*, void*, int, int) __asm__("func_8004EA90");
 int Cutscene74788BuildPackedAngleBasisMatrix(void*, void*, int) __asm__("func_8004EA90");
 int Cutscene74788TransformVectorByBasis(void*, void*, void*) __asm__("func_8004ED6C");
 int Cutscene74788ClearVector(void*) __asm__("func_8004F168");
 int Cutscene74788CopyVector(void*, void*) __asm__("func_8004F178");
 int Cutscene74788AddVector(void*, void*, void*) __asm__("func_8004F194");
-int Cutscene74788Helper4F554(void*, void*, int) __asm__("func_8004F554");
+int Cutscene74788ExpandSignedHalfwordVector(void*, void*, int) __asm__("func_8004F554");
 int Cutscene74788RefreshMobySpatialGridAndBasis(void*, int) __asm__("func_80055D24");
 int Cutscene74788InterpolateMobyVertex(void*, int, void*) __asm__("func_80055F14");
 extern unsigned char Cutscene74788D_800695F8[] __asm__("D_800695F8");
@@ -136,8 +136,8 @@ void func_cutscene_62_800749DC(void* input) {
                 Cutscene74788D_800717A8[0] = 0;
                 Cutscene74788D_800717A9 = 0;
                 Cutscene74788D_800717AA = 0xC0;
-                Cutscene74788Helper4EA90Four(&frame.colour[0], Cutscene74788D_800717A8 + 0x90, 0,
-                                             colour);
+                Cutscene74788BuildPackedAngleBasisMatrixFour(
+                    &frame.colour[0], Cutscene74788D_800717A8 + 0x90, 0, colour);
                 Cutscene74788BuildPackedAngleBasisMatrix(&frame.colour[0],
                                                          Cutscene74788D_800717A8 + 0xA4, 0);
                 Cutscene74788ClearVector(Cutscene74788D_800717A8 + 0x118);
@@ -231,9 +231,9 @@ void func_cutscene_62_800749DC(void* input) {
                         slotKeyframes += (int)keyframeTable;
                         currentFrame = *slotTimer;
                         if ((int)currentFrame < (keyframeCount - 1)) {
-                            Cutscene74788Helper4F554(firstVector,
-                                                     slotKeyframes + ((currentFrame + 1) * 8),
-                                                     keyframeCount);
+                            Cutscene74788ExpandSignedHalfwordVector(
+                                firstVector, slotKeyframes + ((currentFrame + 1) * 8),
+                                keyframeCount);
                             Cutscene74788TransformVectorByBasis(sharedTransform, firstVector,
                                                                 firstVector);
                             Cutscene74788AddVector(firstVector, firstVector,
@@ -248,7 +248,7 @@ void func_cutscene_62_800749DC(void* input) {
                             slotByteOffset += 0xC;
                         } else if ((keyframeCount < (currentFrame + Cutscene74788D_8006C648)) &&
                                    (keyframeCount >= (int)currentFrame) &&
-                                   (Cutscene74788Helper4F554(
+                                   (Cutscene74788ExpandSignedHalfwordVector(
                                         firstVector, slotKeyframes + ((keyframeCount - 2) * 8),
                                         keyframeCount),
                                     Cutscene74788TransformVectorByBasis(sharedTransform,
@@ -306,9 +306,9 @@ void P74E60Vector(Moby*, int, Vector3D*) __asm__("func_80055F14");
  * Register bindings and empty constraints preserve compiler scheduling.
  * Complete helper/field semantics, physical units and caller cadence unresolved.
  * AI generated; not yet human reviewed. */
-void func_cutscene_62_80074E60(Moby* input) {
+void func_cutscene_62_80074E60(Moby* moby) {
     register int clock3 __asm__("$3") = D_8006EDDC;
-    register Moby* owner __asm__("$19") = input;
+    register Moby* owner __asm__("$19") = moby;
     register int gate2 __asm__("$2"), allocate6 __asm__("$6");
     register int random2 __asm__("$2"), word3 __asm__("$3");
     register int call4 __asm__("$4"), call5 __asm__("$5");

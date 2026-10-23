@@ -15,14 +15,14 @@ extern unsigned short Level12SpawnD_8006E03E __asm__("D_8006E03E");
 extern short Level12SpawnD_8006E040 __asm__("D_8006E040");
 int Level12SpawnInterpolateCosine(int, int) __asm__("func_8004EA2C");
 int Level12SpawnInterpolateSine(int, int) __asm__("func_8004E9E4");
-int Level12Spawnfunc_8001A310(void*, int, int, int) __asm__("func_8001A310");
-int Level12Spawnfunc_8001A358(void*, int) __asm__("func_8001A358");
+int Level12SpawnQueryWorldHeightWithOptions(void*, int, int, int) __asm__("func_8001A310");
+int Level12SpawnQueryWorldHeight(void*, int) __asm__("func_8001A358");
 extern int Level12SpawnD_8006D07C __asm__("D_8006D07C");
 extern int Level12SpawnD_8006D080 __asm__("D_8006D080");
 extern int Level12SpawnD_8006D084 __asm__("D_8006D084");
 extern int Level12SpawnD_80071934 __asm__("D_80071934");
 extern unsigned char Level12SpawnPlayerE __asm__("D_80070328 + 0xE");
-int Level12Spawnfunc_8001A358(void*, int) __asm__("func_8001A358");
+int Level12SpawnQueryWorldHeight(void*, int) __asm__("func_8001A358");
 extern int Level12SpawnD_8006D07C __asm__("D_8006D07C");
 extern int Level12SpawnD_8006D080 __asm__("D_8006D080");
 extern int Level12SpawnD_8006D084 __asm__("D_8006D084");
@@ -44,16 +44,16 @@ extern unsigned char Level12SpawnPlayerE __asm__("D_80070328 + 0xE");
 extern unsigned char Level12SpawnColor1[] __asm__("D_80066BAC");
 extern unsigned char Level12SpawnColor2[] __asm__("D_80066BAC");
 #define Level12SpawnField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Level12Spawnfunc_8004EA90(void*, void*, int) __asm__("func_8004EA90");
+int Level12SpawnBuildPackedAngleBasisMatrix(void*, void*, int) __asm__("func_8004EA90");
 int Level12SpawnTransformVectorByBasis(void*, void*, void*) __asm__("func_8004ED6C");
 int Level12SpawnShiftVectorRightTowardZero(void*, int) __asm__("func_8004F110");
 int Level12SpawnCopyVector(void*, void*) __asm__("func_8004F178");
 int Level12SpawnAddVector(void*, void*, void*) __asm__("func_8004F194");
 int Level12SpawnMultiplyVectorGpfSf0(void*, void*, int) __asm__("func_8004F1FC");
 int Level12SpawnPackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-void* Level12Spawnfunc_80056434(int) __asm__("func_80056434");
+void* Level12SpawnAllocateParticleRecord(int) __asm__("func_80056434");
 int Level12SpawnRandBetween(int, int) __asm__("func_8003636C");
-int Level12Spawnfunc_8004F58C(void*, void*) __asm__("func_8004F58C");
+int Level12SpawnCopyHalfwordVector(void*, void*) __asm__("func_8004F58C");
 int Level12Spawnrand(void) __asm__("rand");
 extern unsigned char Level12SpawnD_800658A0[] __asm__("D_800658A0");
 extern unsigned char Level12SpawnD_80065920[] __asm__("D_80065920");
@@ -183,7 +183,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
             MATCHING_KEEP2_VOLATILE_CLOBBER(byte255, byte128, "memory");
             switch (kindSelector) { /* switch 1 */
                 case 0x0:           /* switch 1 */
-                    record = Level12Spawnfunc_80056434(2);
+                    record = Level12SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -211,7 +211,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     goto storeTrailingF8;
 
                 case 0x1: /* switch 1 */
-                    record = Level12Spawnfunc_80056434(2);
+                    record = Level12SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -242,7 +242,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     Level12SpawnField(record, unsigned char*, 15) = commonByte9;
                     goto initializeTrailingBytes;
                 case 0x2:
-                    record = Level12Spawnfunc_80056434(2);
+                    record = Level12SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -282,7 +282,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     goto storeTrailingF8;
 
                 case 0x4:
-                    record = Level12Spawnfunc_80056434(2);
+                    record = Level12SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -325,7 +325,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     break;
                 case 0x6:
                     temp_s1 = Level12SpawnField(reference, unsigned char**, 0);
-                    record = Level12Spawnfunc_80056434(3);
+                    record = Level12SpawnAllocateParticleRecord(3);
                     Level12SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level12Spawnrand();
                     {
@@ -384,7 +384,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x8:
-                    record = Level12Spawnfunc_80056434(4);
+                    record = Level12SpawnAllocateParticleRecord(4);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -393,7 +393,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                         Level12SpawnField(record, unsigned char*, 0) = kindSelector;
                         Level12SpawnField(record, unsigned char*, 2) = 0;
                         Level12SpawnField(record, unsigned char*, 3) = tailByte;
-                        Level12Spawnfunc_8004F58C(destination, source);
+                        Level12SpawnCopyHalfwordVector(destination, source);
                     }
                     tailByte = Level12Spawnrand();
                     tailByte &= 6;
@@ -416,7 +416,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x9: /* switch 1 */
-                    record = Level12Spawnfunc_80056434(2);
+                    record = Level12SpawnAllocateParticleRecord(2);
                     {
                         register void* playerVector __asm__("$16") = &frame.sp20;
                         register void* destination __asm__("$4") = playerVector;
@@ -484,7 +484,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     goto initializeTrailingBytes;
 
                 case 0xA: /* switch 1 */
-                    record = Level12Spawnfunc_80056434(3);
+                    record = Level12SpawnAllocateParticleRecord(3);
                     Level12SpawnField(record, unsigned char*, 0) = kindSelector;
                     {
                         register void* destination __asm__("$4") = record + 4;
@@ -547,7 +547,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0xC: /* switch 1 */
-                    record = Level12Spawnfunc_80056434(2);
+                    record = Level12SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = reference + 32;
                         register int iteration __asm__("$8") = frame.spE8;
@@ -713,7 +713,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                                          4 + (Level12Spawnrand() & 7));
                     break;
                 case 0xd:
-                    record = Level12Spawnfunc_80056434(2);
+                    record = Level12SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -730,7 +730,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     Level12SpawnField(record, unsigned short*, 30) = 0;
                     goto initializeRand37;
                 case 0x13:
-                    record = Level12Spawnfunc_80056434(2);
+                    record = Level12SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -760,7 +760,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     goto initializeTrailingBytes;
 
                 case 0x21: /* switch 1 */
-                    record = Level12Spawnfunc_80056434(2);
+                    record = Level12SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level12SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -940,7 +940,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     Level12SpawnField(record, unsigned char*, 14) = scratch19;
                     goto storeTrailingF8;
                 case 0x2D: /* switch 1 */
-                    record = Level12Spawnfunc_80056434(2);
+                    record = Level12SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -969,7 +969,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     goto initializeTrailingBytes;
 
                 case 0x37:
-                    record = Level12Spawnfunc_80056434(2);
+                    record = Level12SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1005,7 +1005,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     break;
 
                 case 0x38:
-                    record = Level12Spawnfunc_80056434(2);
+                    record = Level12SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level12SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -1038,7 +1038,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x3B: /* switch 1 */
-                    record = Level12Spawnfunc_80056434(5);
+                    record = Level12SpawnAllocateParticleRecord(5);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1106,7 +1106,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                 case 0x42: /* switch 1 */
                 {
                     register int local128 __asm__("$8");
-                    record = Level12Spawnfunc_80056434(0);
+                    record = Level12SpawnAllocateParticleRecord(0);
                     Level12SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level12SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level12Spawnrand() & 0xF);
@@ -1274,7 +1274,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                         break;
                     if (value4 <= 0)
                         break;
-                    value2 = Level12Spawnfunc_8001A310(&frame.sp60, 0x60C0, 2, 0);
+                    value2 = Level12SpawnQueryWorldHeightWithOptions(&frame.sp60, 0x60C0, 2, 0);
                     value3 = Level12SpawnD_8006E03E;
                     MATCHING_KEEP2_CLOBBER(value2, value3, "memory");
                     scratch16 = value2;
@@ -1307,7 +1307,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                         break;
                     if (scratch16 != 0 && Level12SpawnD_80071920 <= 0)
                         break;
-                    record = Level12Spawnfunc_80056434(1);
+                    record = Level12SpawnAllocateParticleRecord(1);
                     tailByte = 1;
                     Level12SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level12SpawnField(record, unsigned char*, 3) = tailByte;
@@ -1378,7 +1378,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                 case 0x46: /* switch 1 */
                 {
                     register int local128 __asm__("$8");
-                    record = Level12Spawnfunc_80056434(1);
+                    record = Level12SpawnAllocateParticleRecord(1);
                     Level12SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level12SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level12Spawnrand() & 0xF);
@@ -1386,7 +1386,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     frame.spA0 = 0;
                     frame.spA1 = Level12Spawnrand();
                     frame.spA2 = Level12Spawnrand();
-                    Level12Spawnfunc_8004EA90(&frame.spA0, &frame.spA8, 0);
+                    Level12SpawnBuildPackedAngleBasisMatrix(&frame.spA0, &frame.spA8, 0);
                     frame.sp90 = (int)modeSelector;
                     frame.sp94 = 0;
                     frame.sp98 = 0;
@@ -1440,7 +1440,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     break;
                 }
                 case 0x47: /* switch 1 */
-                    record = Level12Spawnfunc_80056434(1);
+                    record = Level12SpawnAllocateParticleRecord(1);
                     Level12SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level12SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level12Spawnrand() & 7);
@@ -1515,7 +1515,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x4E: /* switch 1 */
-                    record = Level12Spawnfunc_80056434(0);
+                    record = Level12SpawnAllocateParticleRecord(0);
                     Level12SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level12SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level12Spawnrand() & 0x1F);
@@ -1585,7 +1585,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                 case 0x4F: /* switch 1 */
                 {
                     register int local128 __asm__("$9");
-                    record = Level12Spawnfunc_80056434(1);
+                    record = Level12SpawnAllocateParticleRecord(1);
                     Level12SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level12SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level12Spawnrand() & 0xF);
@@ -1664,7 +1664,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                 }
                 case 0x52:
                     temp_s1 = Level12SpawnField(reference, unsigned char**, 0);
-                    record = Level12Spawnfunc_80056434(1);
+                    record = Level12SpawnAllocateParticleRecord(1);
                     Level12SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level12Spawnrand();
                     tailByte &= 15;
@@ -1741,7 +1741,7 @@ void* func_level_12_80086F50(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x54:
-                    record = Level12Spawnfunc_80056434(0);
+                    record = Level12SpawnAllocateParticleRecord(0);
                     Level12SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level12Spawnrand();
                     tailByte &= 15;

@@ -38,19 +38,19 @@ int Title74DECCallDrawSyncView1() __asm__("DrawSync");
 int Title74DECCallLoadImageView1() __asm__("LoadImage");
 int Title74DECCallPlaySoundView1() __asm__("PlaySound");
 int Title74DECCallVSyncView1() __asm__("VSync");
-int Title74DECCall1EBACView1() __asm__("func_8001EBAC");
-int Title74DECCall1FB10View1() __asm__("func_8001FB10");
-int Title74DECCall20168View1() __asm__("func_80020168");
-int Title74DECCall2A9D0View1() __asm__("func_8002A9D0");
-int Title74DECCall2AE00View1() __asm__("func_8002AE00");
-int Title74DECCall2B6C8View1() __asm__("func_8002B6C8");
-int Title74DECCall2B768View1() __asm__("func_8002B768");
-int Title74DECCall2B810View1() __asm__("func_8002B810");
-int Title74DECCall4E790View1() __asm__("func_8004E790");
-int Title74DECCall4E7D4View1() __asm__("func_8004E7D4");
-int Title74DECCall64A2CView1() __asm__("func_80064A2C");
-int Title74DECCall64A8CView1() __asm__("func_80064A8C");
-int Title74DECCall64AECView1() __asm__("func_80064AEC");
+int Title74DECClearTwoDisplayRegionsView1() __asm__("func_8001EBAC");
+int Title74DECConfigureDrawBufferRangesView1() __asm__("func_8001FB10");
+int Title74DECInitializeDisplayBufferPairView1() __asm__("func_80020168");
+int Title74DECInitializePadAndVSyncCallbackView1() __asm__("func_8002A9D0");
+int Title74DECReloadResourceArenaAndResetPlayerView1() __asm__("func_8002AE00");
+int Title74DECApplyPendingTripletOffsetsView1() __asm__("func_8002B6C8");
+int Title74DECInitializeParticleAndEffectPoolsView1() __asm__("func_8002B768");
+int Title74DECInitializeLevelSceneView1() __asm__("func_8002B810");
+int Title74DECFillWordRangeView1() __asm__("func_8004E790");
+int Title74DECCopyWordRangeUnrolled4View1() __asm__("func_8004E7D4");
+int Title74DECSetSpuTransferAddressView1() __asm__("func_80064A2C");
+int Title74DECWriteSpuTransferDataView1() __asm__("func_80064A8C");
+int Title74DECCheckSpuTransferCompletionView1() __asm__("func_80064AEC");
 int Title74DECCall78848View1() __asm__("func_title_80078848");
 int Title74DECCall79744View1() __asm__("func_title_80079744");
 int Title74DECCall79D30View1() __asm__("func_title_80079D30");
@@ -133,7 +133,7 @@ void func_title_80074DEC(int input) {
     retainedLoadWord23 = 0;
     retainedThirdLoadWord = 0;
     retainedSyncWord21 = 0;
-    Title74DECCall1FB10View1(0x1C000);
+    Title74DECConfigureDrawBufferRangesView1(0x1C000);
     loadBufferAddress20 = 0x8017C000;
     Title74DECData6C3F8View1 = 0xA;
     Title74DECData6C3FCView1 = 0xA;
@@ -150,9 +150,9 @@ void func_title_80074DEC(int input) {
         retainedSyncWord21 = Title74DECCallVSyncView1(-1);
         Title74DECCall78848View1(0x8017C000, loadBufferAddress20 + retainedLoadWord19, 0x78);
         Title74DECCall7D6B4View1(0);
-        Title74DECCall2A9D0View1();
+        Title74DECInitializePadAndVSyncCallbackView1();
         Title74DECCall7C1F8View1();
-        Title74DECCall2AE00View1();
+        Title74DECReloadResourceArenaAndResetPlayerView1();
     } else {
         Title74DECCall7C1F8View1();
     }
@@ -186,8 +186,8 @@ void func_title_80074DEC(int input) {
             Title74DECCallVSyncView1(0);
             goto waitFirstSyncThreshold;
         }
-        Title74DECCall20168View1();
-        Title74DECCall1EBACView1();
+        Title74DECInitializeDisplayBufferPairView1();
+        Title74DECClearTwoDisplayRegionsView1();
         Title74DECCallVSyncView1(4);
         if (incomingMode22 != 0) {
             retainedSyncWord21 = Title74DECCallVSyncView1(-1);
@@ -205,7 +205,8 @@ void func_title_80074DEC(int input) {
     MATCHING_OBSERVE_GNU_VOLATILE_CLOBBER(argumentWord4, "$17");
     retainedAddress17 = (int)&Title74DECData722C0View1;
     MATCHING_KEEP(retainedAddress17);
-    Title74DECCall4E7D4View1(argumentWord4, Title74DECField(retainedAddress17, int*, 0), 0x220);
+    Title74DECCopyWordRangeUnrolled4View1(argumentWord4,
+                                          Title74DECField(retainedAddress17, int*, 0), 0x220);
     Title74DECCallCDLoadAsyncView1(
         Title74DECData6E470View1, Title74DECField(retainedAddress17, int*, 0), 0x80000,
         Title74DECField(retainedWord16, int*, 0) + Title74DECData6D908View1);
@@ -249,11 +250,12 @@ void func_title_80074DEC(int input) {
     argumentWord7 += rawWord2;
     argumentWord7 += retainedWord16;
     Title74DECCallCDLoadSyncView1(argumentWord4, argumentWord5, argumentWord6, argumentWord7);
-    Title74DECCall64A2CView1(0x1010);
-    Title74DECCall64A8CView1(Title74DECField(retainedAddress17, int*, 0),
-                             Title74DECField(retainedSizeAddress18, int*, 0) - retainedWord16);
+    Title74DECSetSpuTransferAddressView1(0x1010);
+    Title74DECWriteSpuTransferDataView1(Title74DECField(retainedAddress17, int*, 0),
+                                        Title74DECField(retainedSizeAddress18, int*, 0) -
+                                            retainedWord16);
     do {
-    } while (Title74DECCall64AECView1(0) == 0);
+    } while (Title74DECCheckSpuTransferCompletionView1(0) == 0);
     MATCHING_KEEP(retainedAddress17);
     retainedWord16 = (int)&Title74DECData722C0View1;
     MATCHING_KEEP(retainedWord16);
@@ -261,15 +263,15 @@ void func_title_80074DEC(int input) {
         Title74DECData6E470View1, Title74DECField(retainedWord16, int*, 0),
         Title74DECData720A4View1, Title74DECData720A0View1 + Title74DECData6D908View1);
     Title74DECData722C8View1 = Title74DECCall79744View1(Title74DECField(retainedWord16, int*, 0));
-    Title74DECCall2B6C8View1();
+    Title74DECApplyPendingTripletOffsetsView1();
     if (incomingMode22 != 0) {
     waitThirdSyncThreshold:
         if ((Title74DECCallVSyncView1(-1) - retainedSyncWord21) < 0xB4) {
             Title74DECCallVSyncView1(0);
             goto waitThirdSyncThreshold;
         }
-        Title74DECCall20168View1();
-        Title74DECCall1EBACView1();
+        Title74DECInitializeDisplayBufferPairView1();
+        Title74DECClearTwoDisplayRegionsView1();
         Title74DECCallVSyncView1(4);
         if (incomingMode22 != 0) {
             retainedSyncWord21 = Title74DECCallVSyncView1(-1);
@@ -283,7 +285,7 @@ void func_title_80074DEC(int input) {
     Title74DECCallCDLoadSyncView1(
         Title74DECField(retainedAddress17, int*, 0), Title74DECField(retainedWord16, int*, 0),
         Title74DECData720B4View1, Title74DECData720B0View1 + Title74DECData6D908View1);
-    rawWord2 = Title74DECCall2B810View1(Title74DECField(retainedWord16, int*, 0));
+    rawWord2 = Title74DECInitializeLevelSceneView1(Title74DECField(retainedWord16, int*, 0));
     argumentWord4 = Title74DECField(retainedAddress17, int*, 0);
     argumentWord6 = Title74DECField(&Title74DECData6D8D8View1, int*, 0x44);
     argumentWord7 = Title74DECField(&Title74DECData6D8D8View1, int*, 0x40);
@@ -317,11 +319,11 @@ void func_title_80074DEC(int input) {
     Title74DECData6FC89View1 = 0;
     Title74DECData6FC8AView1 = 0;
     Title74DECData6FC8BView1 = 0;
-    Title74DECCall2B768View1(argumentWord4 - 0x2004);
+    Title74DECInitializeParticleAndEffectPoolsView1(argumentWord4 - 0x2004);
     temporaryWord2 = Title74DECData6C554View1 - 0x1000;
     Title74DECData6C7E0View1 = temporaryWord2;
-    Title74DECCall4E790View1(temporaryWord2, 0, 0x1000);
-    Title74DECCall4E7D4View1(retainedWord16 + 0x38, Title74DECData6C6A0View1, 0x14);
+    Title74DECFillWordRangeView1(temporaryWord2, 0, 0x1000);
+    Title74DECCopyWordRangeUnrolled4View1(retainedWord16 + 0x38, Title74DECData6C6A0View1, 0x14);
     if (incomingMode22) {
         rawWord3 = 131072;
         MATCHING_KEEP_GNU_VOLATILE_CLOBBER(rawWord3, "$2");
@@ -424,7 +426,7 @@ storeSelectedHeaderWord:
         }
         crcAccumulator &= 65535;
         if (crcAccumulator) {
-            Title74DECField((unsigned char*)Title74DECCall2A9D0View1, int*,
+            Title74DECField((unsigned char*)Title74DECInitializePadAndVSyncCallbackView1, int*,
                             (Title74DECCallrandView1() & 31) * 4) = 0;
         }
         titleCodeCursor = &Title74DECDatatitle_text_startView1;
@@ -504,21 +506,21 @@ storeSelectedHeaderWord:
 #define TitleMenu7566CField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 int TitleMenu7566C_PlaySound(int originalWord1, int originalWord2,
                              int originalWord3) __asm__("PlaySound");
-void TitleMenu7566C_func_80020168(void) __asm__("func_80020168");
-int TitleMenu7566C_func_80027934(int originalWord1) __asm__("func_80027934");
-int TitleMenu7566C_func_8003BB10(int originalWord1, int originalWord2,
-                                 int originalWord3) __asm__("func_8003BB10");
-void TitleMenu7566C_func_8003BEDC(void) __asm__("func_8003BEDC");
-void TitleMenu7566C_func_8003C184(void) __asm__("func_8003C184");
-void TitleMenu7566C_func_8004E790(int originalWord1, int originalWord2,
-                                  int originalWord3) __asm__("func_8004E790");
-void TitleMenu7566C_func_8004E7D4(int originalWord1, int originalWord2,
-                                  int originalWord3) __asm__("func_8004E7D4");
-void TitleMenu7566C_func_8004F984(int originalWord1, int originalWord2,
-                                  int originalWord3) __asm__("func_8004F984");
-void TitleMenu7566C_func_800584BC(int originalWord1, int originalWord2) __asm__("func_800584BC");
-void TitleMenu7566C_func_8005E0BC(int originalWord1, int originalWord2,
-                                  int originalWord3) __asm__("func_8005E0BC");
+void TitleMenu7566CInitializeDisplayBufferPair(void) __asm__("func_80020168");
+int TitleMenu7566CFindHudClassIndex(int originalWord1) __asm__("func_80027934");
+int TitleMenu7566CPlaySoundFromGlobalByteTable(int originalWord1, int originalWord2,
+                                               int originalWord3) __asm__("func_8003BB10");
+void TitleMenu7566CTransitionUnmaskedSoundSlots(void) __asm__("func_8003BEDC");
+void TitleMenu7566CUpdateSoundVoiceSlots(void) __asm__("func_8003C184");
+void TitleMenu7566CFillWordRange(int originalWord1, int originalWord2,
+                                 int originalWord3) __asm__("func_8004E790");
+void TitleMenu7566CCopyWordRangeUnrolled4(int originalWord1, int originalWord2,
+                                          int originalWord3) __asm__("func_8004E7D4");
+void TitleMenu7566CConfigurePrimaryRangeRequest(int originalWord1, int originalWord2,
+                                                int originalWord3) __asm__("func_8004F984");
+void TitleMenu7566CBeginLevelWarp(int originalWord1, int originalWord2) __asm__("func_800584BC");
+void TitleMenu7566CIssueCdControlCommand(int originalWord1, int originalWord2,
+                                         int originalWord3) __asm__("func_8005E0BC");
 void TitleMenu7566C_func_title_80078918(void) __asm__("func_title_80078918");
 void TitleMenu7566C_func_title_80078B88(void) __asm__("func_title_80078B88");
 int TitleMenu7566C_func_title_80078BF4(int originalWord1) __asm__("func_title_80078BF4");
@@ -779,7 +781,7 @@ register int savedWord16 __asm__("$16"), savedWord17 __asm__("$17"), savedWord18
     resultWord = workWord - argumentWord5;
     if (resultWord >= 0x4B0)
         goto titleCounterFullMagic;
-    TitleMenu7566C_func_8003BB10(0, 9, 1);
+    TitleMenu7566CPlaySoundFromGlobalByteTable(0, 9, 1);
 titleCounterFullMagic:
     resultWord = 0x88880000;
 titleCounterExtendMagic:
@@ -854,10 +856,10 @@ titleBlock10:
     resultWord = 1;
     if (workWord == resultWord)
         goto titleBlock20;
-    TitleMenu7566C_func_8005E0BC(0xC, 0, 0);
+    TitleMenu7566CIssueCdControlCommand(0xC, 0, 0);
     temp_a0_2 = TitleMenu7566C_D_8006C3F4 +
                 TitleMenu7566CField((int)&TitleMenu7566C_D_800652B0, int*, 0x90);
-    TitleMenu7566C_func_8004F984(
+    TitleMenu7566CConfigurePrimaryRangeRequest(
         temp_a0_2,
         temp_a0_2 + TitleMenu7566CField((int)&TitleMenu7566C_D_800652B4, unsigned short*, 0x90),
         TitleMenu7566CField((int)&TitleMenu7566C_D_800652B6, unsigned short*, 0x90));
@@ -1052,9 +1054,9 @@ title2390_dispatch2_selector6:
     resultWord = TitleMenu7566C_D_8006E53C;
     if (!(resultWord & 0x840))
         goto titleBlock53;
-    TitleMenu7566C_func_8003BEDC();
+    TitleMenu7566CTransitionUnmaskedSoundSlots();
     MATCHING_BARRIER_VOLATILE("$4");
-    TitleMenu7566C_func_8003BB10(0, 4, 0x41);
+    TitleMenu7566CPlaySoundFromGlobalByteTable(0, 4, 0x41);
     workWord = 0x42D70;
     argumentWord4 = 0;
     argumentWord5 = 0;
@@ -1113,9 +1115,9 @@ titleBlock65:
     resultWord = 0x86;
     if (argumentWord4 != resultWord)
         goto titleBlock67;
-    TitleMenu7566C_func_8003BEDC();
-    TitleMenu7566C_func_8003C184();
-    TitleMenu7566C_func_80020168();
+    TitleMenu7566CTransitionUnmaskedSoundSlots();
+    TitleMenu7566CUpdateSoundVoiceSlots();
+    TitleMenu7566CInitializeDisplayBufferPair();
     TitleMenu7566C_func_title_80078B88();
     goto titleBlock391;
 titleBlock67:
@@ -1160,13 +1162,13 @@ titleBlock76:
     argumentWord4 = 0;
     argumentWord5 = 7;
 titleBlock78:
-    TitleMenu7566C_func_8003BB10(argumentWord4, argumentWord5, 1);
+    TitleMenu7566CPlaySoundFromGlobalByteTable(argumentWord4, argumentWord5, 1);
 titleBlock79:
     if (TitleMenu7566C_D_title_8007F134 < 0x34) {
         goto titleBlock391;
     }
     TitleMenu7566C_D_title_8007F12C = 2;
-    TitleMenu7566C_func_8003BB10(0, 2, 1);
+    TitleMenu7566CPlaySoundFromGlobalByteTable(0, 2, 1);
     goto titleBlock391;
 title2390_dispatch1_selector2:
     savedWord16 = (int)&TitleMenu7566C_D_800725E0;
@@ -1753,9 +1755,9 @@ titleHeaderRetryExit23:
     resultWord = 23;
     goto titleState23HeaderRetryEntry;
 title2390_dispatch3_selector2:
-    TitleMenu7566C_func_8004E790((int)&TitleMenu7566C_D_title_8007F154, 0, 0x1D80);
-    TitleMenu7566C_func_8004E7D4((int)&TitleMenu7566C_D_title_8007F154,
-                                 (int)&TitleMenu7566C_D_title_8007ECA0, 0x200);
+    TitleMenu7566CFillWordRange((int)&TitleMenu7566C_D_title_8007F154, 0, 0x1D80);
+    TitleMenu7566CCopyWordRangeUnrolled4((int)&TitleMenu7566C_D_title_8007F154,
+                                         (int)&TitleMenu7566C_D_title_8007ECA0, 0x200);
     TitleMenu7566C_D_title_8007F357 = 0;
     TitleMenu7566C_D_title_8007F3D8 = 0;
     TitleMenu7566C_D_title_8007F354 = (signed char)TitleMenu7566C_D_8006C694;
@@ -1924,7 +1926,7 @@ titleBlock216:
     savedWord17 = 0;
     savedWord19 += 38;
 loop_217:
-    temp_v0_7 = TitleMenu7566C_func_80027934(
+    temp_v0_7 = TitleMenu7566CFindHudClassIndex(
         TitleMenu7566CField((int)&TitleMenu7566C_D_title_8007F3D8, unsigned char*, savedWord18) +
         1000);
     TitleMenu7566CField(savedWord16, short*, 0) = temp_v0_7;
@@ -2029,9 +2031,9 @@ titleBlock235:
     savedWord19 = argumentWord4 + 38;
 loop_236:
     temp_v0_10 =
-        TitleMenu7566C_func_80027934(TitleMenu7566CField((int)&TitleMenu7566C_D_title_8007F3D8,
-                                                         unsigned char*, (savedWord18) * 1) +
-                                     0x3E8);
+        TitleMenu7566CFindHudClassIndex(TitleMenu7566CField((int)&TitleMenu7566C_D_title_8007F3D8,
+                                                            unsigned char*, (savedWord18) * 1) +
+                                        0x3E8);
     TitleMenu7566CField(savedWord16, short*, 0) = temp_v0_10;
     savedWord18 += 0x900;
     TitleMenu7566CField((int)&TitleMenu7566C_D_title_8007F13E, unsigned char*, (savedWord17) * 1) =
@@ -2208,7 +2210,7 @@ titleBlock271:
     savedWord16 = -1;
     savedWord17++;
 loop_272:
-    resultWord = TitleMenu7566C_func_80027934(savedWord17 + 1001);
+    resultWord = TitleMenu7566CFindHudClassIndex(savedWord17 + 1001);
     workWord = TitleMenu7566C_D_8006C738;
     resultWord *= 8;
     resultWord += workWord;
@@ -2249,7 +2251,7 @@ titleBlock281:
     resultWord = savedWord17 < savedWord16;
     if (!argumentWord6)
         goto loop_274;
-    resultWord = TitleMenu7566C_func_80027934(savedWord16 + 1000);
+    resultWord = TitleMenu7566CFindHudClassIndex(savedWord16 + 1000);
     TitleMenu7566C_D_title_8007F13C = resultWord;
     workWord = TitleMenu7566C_D_8006C738;
     resultWord = (resultWord << 16) >> 13;
@@ -2299,7 +2301,7 @@ titleBlock285:
     savedWord17 = -1;
     savedWord16++;
 loop_287:
-    resultWord = TitleMenu7566C_func_80027934(savedWord16 + 1001);
+    resultWord = TitleMenu7566CFindHudClassIndex(savedWord16 + 1001);
     workWord = TitleMenu7566C_D_8006C738;
     resultWord *= 8;
     resultWord += workWord;
@@ -2350,7 +2352,7 @@ titleBlock298:
         goto titleBlock391;
     savedWord16++;
 loop_300:
-    resultWord = TitleMenu7566C_func_80027934(savedWord16 + 1001);
+    resultWord = TitleMenu7566CFindHudClassIndex(savedWord16 + 1001);
     workWord = TitleMenu7566C_D_8006C738;
     resultWord *= 8;
     resultWord += workWord;
@@ -2392,7 +2394,7 @@ titleBlock309:
         goto loop_302;
 titleBlock310:
     TitleMenu7566C_D_title_8007F130 = argumentWord5;
-    resultWord = TitleMenu7566C_func_80027934(argumentWord5 + 1000);
+    resultWord = TitleMenu7566CFindHudClassIndex(argumentWord5 + 1000);
     TitleMenu7566C_D_title_8007F13C = resultWord;
     workWord = TitleMenu7566C_D_8006C738;
     resultWord = (resultWord << 16) >> 13;
@@ -2802,7 +2804,7 @@ title2390_dispatch4_selector44:
 titleBlock384:
     TitleMenu7566C_D_8006C5C0 = resultWord;
 titleBlock385:
-    TitleMenu7566C_func_800584BC(0, TitleMenu7566C_D_8006C5BC);
+    TitleMenu7566CBeginLevelWarp(0, TitleMenu7566C_D_8006C5BC);
     TitleMenu7566C_D_8006C658 = 1;
     TitleMenu7566C_D_8006C55C = 0x80100000;
     TitleMenu7566C_D_8006C538 = 0x80100004;
@@ -2813,10 +2815,10 @@ title2390_dispatch1_selector20:
         goto titleBlock388;
     }
     TitleMenu7566C_D_8006C534 = 1;
-    TitleMenu7566C_func_800584BC(6, 0x3D);
+    TitleMenu7566CBeginLevelWarp(6, 0x3D);
     goto titleBlock391;
 titleBlock388:
-    TitleMenu7566C_func_800584BC(0, TitleMenu7566C_D_8006C5BC);
+    TitleMenu7566CBeginLevelWarp(0, TitleMenu7566C_D_8006C5BC);
     goto titleBlock391;
 title2390_dispatch1_selector22:
 title2390_dispatch1_selector23:
@@ -2954,10 +2956,10 @@ void func_title_80077C04(void) {
 #define TitleField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 unsigned char TitleCallDrawStringCenteredView1() __asm__("DrawStringCentered");
 unsigned char TitleCallDrawStringRowCenteredView1() __asm__("DrawStringRowCentered");
-unsigned char TitleCall1E460View1() __asm__("func_8001E460");
-int TitleCall27934View1() __asm__("func_80027934");
-int TitleCall28378View1() __asm__("func_80028378");
-void* TitleCall289C8View1() __asm__("func_800289C8");
+unsigned char TitleDispatchFrameRenderMaskView1() __asm__("func_8001E460");
+int TitleFindHudClassIndexView1() __asm__("func_80027934");
+int TitleSelectHudIconAnimationFrameView1() __asm__("func_80028378");
+void* TitleEmitHudTexturedQuadsView1() __asm__("func_800289C8");
 unsigned char TitleCall77BC4View1() __asm__("func_title_80077BC4");
 unsigned char TitleCall77C04View1() __asm__("func_title_80077C04");
 unsigned char TitleCall7AA54View1() __asm__("func_title_8007AA54");
@@ -3001,7 +3003,7 @@ void func_title_80077CFC(void) {
         argumentWord6 __asm__("$6"), argumentWord7 __asm__("$7");
     register int selectionPointerOrHalfWidth16 __asm__("$16"), verticalOffset17 __asm__("$17"),
         selectedByte18 __asm__("$18");
-    TitleCall1E460View1(13);
+    TitleDispatchFrameRenderMaskView1(13);
     switch (TitleData7F12CView1) {
         case 1:
             TitleCall77C04View1();
@@ -3482,7 +3484,7 @@ void func_title_80077CFC(void) {
             rawWord2 = TitleField(argumentWord4, unsigned char*, 0);
             argumentWord4 += 14;
             if (rawWord2) {
-                rawWord2 = TitleCall28378View1(argumentWord4, 0);
+                rawWord2 = TitleSelectHudIconAnimationFrameView1(argumentWord4, 0);
                 TitleData7F13FView1 = rawWord2;
                 rawWord2 &= 255;
                 rawWord2 <<= 3;
@@ -3499,9 +3501,9 @@ void func_title_80077CFC(void) {
                 rawWord2 = argumentWord6 >> 1;
                 argumentWord5 = 256;
                 argumentWord5 -= rawWord2;
-                TitleCall289C8View1(argumentWord4, argumentWord5,
-                                    selectionPointerOrHalfWidth16 - verticalOffset17);
-                rawWord2 = TitleCall27934View1(1102);
+                TitleEmitHudTexturedQuadsView1(argumentWord4, argumentWord5,
+                                               selectionPointerOrHalfWidth16 - verticalOffset17);
+                rawWord2 = TitleFindHudClassIndexView1(1102);
                 rawWord3 = TitleData6C738View1;
                 rawWord2 <<= 3;
                 rawWord2 += rawWord3;
@@ -3519,7 +3521,8 @@ void func_title_80077CFC(void) {
                 selectionPointerOrHalfWidth16 = argumentWord6 >> 1;
                 argumentWord5 = 344;
                 argumentWord5 -= selectionPointerOrHalfWidth16;
-                rawWord2 = (int)TitleCall289C8View1(argumentWord4, argumentWord5, verticalOffset17);
+                rawWord2 = (int)TitleEmitHudTexturedQuadsView1(argumentWord4, argumentWord5,
+                                                               verticalOffset17);
                 rawWord3 = TitleData7F134View1;
                 rawWord3 &= 31;
                 rawWord3 = rawWord3 < 22;
@@ -3537,8 +3540,8 @@ void func_title_80077CFC(void) {
                 argumentWord6 = verticalOffset17;
                 rawWord2 = TitleData6C788View1;
                 argumentWord4 = selectedByte18 * 8;
-                rawWord2 = (int)TitleCall289C8View1(rawWord2 + argumentWord4, argumentWord5,
-                                                    argumentWord6);
+                rawWord2 = (int)TitleEmitHudTexturedQuadsView1(rawWord2 + argumentWord4,
+                                                               argumentWord5, argumentWord6);
                 rawWord3 = TitleData7F134View1;
                 rawWord3 &= 31;
                 rawWord3 = rawWord3 < 22;

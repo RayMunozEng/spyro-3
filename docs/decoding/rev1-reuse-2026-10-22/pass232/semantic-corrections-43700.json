@@ -1,0 +1,1905 @@
+{
+  "AI_generated": true,
+  "human_reviewed": false,
+  "predecessor": "semantic-corrections-43466.json",
+  "original_source_identity": "USA Rev1 BOOT006363e485559dcd9a203fe71fe4267cb254d476ca59f04ee841048831ad969e; individual disc/runtime identities retained in each proof",
+  "corrections": [
+    {
+      "legacy_source": "tools/yotd_re/archive_read_runtime.py",
+      "original_entries": [
+        "8005059C",
+        "800506A4",
+        "8005F504"
+      ],
+      "incorrect_claims": [
+        "E554 is the disc sector",
+        "E568 is the sector count",
+        "Add120 to the sector argument passed to5F504"
+      ],
+      "source_backed_replacement": [
+        "E554 receives the source-computed transfer-sector count; E568 receives that count plus120.",
+        "5F504 receives original archive argument plus the signed byte-offset quotient, without the old extra120.",
+        "5F504 performs its own low32+150 and signed divisions/byte encoding; do not move that arithmetic to its caller."
+      ],
+      "examples": [
+        "Declared2048-byte request: E554=1 andE568=121.",
+        "Genuine8192-byte request: E554=4 andE568=124; inputsector597 encodes000972.",
+        "Declared source-produced63371 argument encodes140671; old63491 prediction is a counterexample."
+      ],
+      "still_open": [
+        "Independent consumer meaning of count+120",
+        "All natural SDK/CD/retry/interrupt execution"
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/archive_request_fields_live_runtime.py",
+        "tools/yotd_re/disc_sector_position_live_runtime.py"
+      ],
+      "evidence": [
+        "docs/yotd-re/evidence-tests/archive-read-start-live-validation.json",
+        "docs/yotd-re/evidence-tests/disc-sector-position-live-validation.json",
+        "build/archive_40792.original-stream-disc-provenance.json"
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/tracked_camera_snapshot_runtime.py",
+      "original_entries": [
+        "8003B658"
+      ],
+      "incorrect_claims": [
+        "The active marker is destination+24hex",
+        "The final32-byte copy targets destination+838hex",
+        "The copied third coordinate is dereferenced as a pointer on this route"
+      ],
+      "source_backed_replacement": [
+        "The first JAL delay stores literal1 to destination+0.",
+        "The supplied three-word tuple goes to destination+24hex; incoming third formal shifted4 and maskedFFF goes to+30hex.",
+        "Fresh D110/D114/D118/D11C words go to+838..844hex; the later32-byte C8DC copy goes to+4.",
+        "The third copied word is added to fresh7044C; this route does not dereference that copied value."
+      ],
+      "still_open": [
+        "Natural raw289 scheduling",
+        "Whole snapshot lifetime and alias domains",
+        "Coordinate units and camera-only meaning"
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/tracked_snapshot_live_runtime.py"
+      ],
+      "evidence": [
+        "build/linked_geometry_40964.tracked-snapshot-ready.json",
+        "docs/yotd-re/tracked-snapshot-live.md"
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/halfword_run_global_range_runtime.py",
+      "original_entries": [
+        "8004F844"
+      ],
+      "incorrect_claims": [
+        "The array convenience API models every live-memory stream, including a zero first control and aliases"
+      ],
+      "source_backed_replacement": [
+        "The first control is processed unconditionally; only subsequent control loads test zero termination.",
+        "Original literal reads and halfword stores remain interleaved; physical source/destination aliases cannot be replaced by a pre-read array."
+      ],
+      "still_open": [
+        "Natural packed-stream history beyond the specifically captured archive/upload calls",
+        "All possible alias lifetimes"
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/halfword_run_semantics.py",
+        "tools/yotd_re/halfword_run_live_runtime.py"
+      ],
+      "evidence": [
+        "docs/yotd-re/evidence-tests/halfword-run-readable-validation.json",
+        "docs/yotd-re/evidence-tests/halfword-run-live-validation.json"
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/playable_enchanted_raw542_direct_controller_runtime.py",
+      "original_entries": [
+        "ordinaryCPUloadstoGP0"
+      ],
+      "incorrect_claims": [
+        "A successful ordinary load toGP0 should create a pending(0,value) tuple"
+      ],
+      "source_backed_replacement": [
+        "The read and its device effects occur; originalWriteRegDelayed returns immediately forGP0.",
+        "OriginalUpdateLoadDelay still retires an older valid delayed register write."
+      ],
+      "still_open": [
+        "Failed-read exception retirement",
+        "COP/GTE GP0 transfers",
+        "Inactive delayed-load payload storage in the analysis decoder"
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/source_discarded_load_runtime.py",
+        "tests/yotd_re/bios_discarded_load_native_reference.py"
+      ],
+      "evidence": [
+        "docs/yotd-re/evidence-tests/source-discarded-load-validation.json"
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/primitive_record_dispatch_runtime.py",
+      "original_entries": [
+        "8005A2FC"
+      ],
+      "incorrect_claims": [
+        "Treat1183C as a callback table or infer that all5A2FC targets are primitive-record consumers from the profile name."
+      ],
+      "source_backed_replacement": [
+        "1183C contains the literal DrawSync format string, not the operation callback table.",
+        "The operation callback is read through the live root at8006A1F8, then offset3C.",
+        "The separate diagnostic path is gated by the actual byte8006A202 and reads its target at8006A1FC."
+      ],
+      "examples": [
+        "This genuine continuation hasA202=0,A1F8=8006A1B8,slot+3C=8005C258 and actualA0=0."
+      ],
+      "still_open": [
+        "All live dispatch-root mutations and other diagnostic inputs.",
+        "This render invocation's complete callback, device and IRQ execution."
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/crawdad_post_voice_render_live_runtime.py",
+        "tools/yotd_re/crawdad_render_basis_live_runtime.py",
+        "tools/yotd_re/crawdad_render_presentation_live_runtime.py",
+        "tests/yotd_re/test_crawdad_render_packet_live_runtime.py",
+        "tools/yotd_re/game_state_render_controller_runtime.py"
+      ],
+      "evidence": [
+        "docs/yotd-re/evidence-tests/crawdad-render-packet-validation.json"
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/world_surface_animation_runtime.py",
+      "original_entries": [
+        "80022018"
+      ],
+      "incorrect_claims": [
+        "Only phase low2 equal3 doubles the frame word."
+      ],
+      "source_backed_replacement": [
+        "Phase low2 0/1/2/3 selects frame multipliers1/2/2/3.",
+        "8002210C SLL executes in the BNE delay slot on both edges;80022110 ADD executes only for low2 equal3.",
+        "Use the ordered live-memory/GTE successor; preserve next-sample preloads and original signed traps."
+      ],
+      "examples": [
+        "Frame word2 and sample phase byte3 produce phase9, not the frozen profile prediction7."
+      ],
+      "still_open": [
+        "Every natural descriptor/feature/input domain and byte-writer history.",
+        "Universal cadence, physical rendering timing and complete frame integration."
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/world_surface_live_runtime.py"
+      ],
+      "evidence": [
+        "docs/yotd-re/evidence-tests/world-surface-live-validation.json",
+        "docs/yotd-re/evidence-tests/world-surface-natural-validation.json"
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/archive_read_runtime.py",
+      "incorrect_claims": [
+        "E564 is completed sectors",
+        "The50528 callback advances destination and completed-sector count on reason2"
+      ],
+      "source_backed_replacement": [
+        "3A430 readsE564, increments low32 and stores in the3A450 branch delay on both C738 edges.",
+        "The actual2A9F4 bootstrap installs3A430 in subscriber slot4;5F73C reloads and invokes nonzero slots.",
+        "5046C..50484 compares signedE564 against signedE568; below threshold it returns1, otherwise the original SDK retry sequence begins.",
+        "50528 does nothing to active state if already zero; low8 reason2 clearsE560, while other reasons enter the real Setloc/read restart chain.",
+        "The count+120 threshold is expressed against callback invocations; no seconds, physical frame rate or whole-lifetime bound is inferred."
+      ],
+      "falsifiable_vectors": [
+        "E564FFFFFFFF becomes0 even whenC738is nonzero.",
+        "Active1,counter5,threshold131 returns1 without SDK call.",
+        "Active1,reason102hex clearsE560; reason1 reaches5E154 before any new E564 reset."
+      ],
+      "boundary": "22 declared original-source unit vectors; SDK targets remain boundaries; full observed reader invocations are separate proofs."
+    },
+    {
+      "legacy_label": "GPU0 request",
+      "source_backed_replacement": [
+        "IRQ0 is VBLANK; the GPU source produces that request.",
+        "The separate GPU GP0(1Fh) interrupt is IRQ1.",
+        "Earlier numeric bit0 counts and native store qualifications are unchanged; the producer label did not mean IRQ1."
+      ],
+      "source": "Original pinned SwanStation interrupt_controller.h enum and gpu.cpp request site"
+    },
+    {
+      "legacy_source": "tools/yotd_re/boot_integrity_runtime.py",
+      "original_entries": [
+        "8002AB20",
+        "8002AB5C"
+      ],
+      "incorrect_claims": [
+        "A low16-only fold is the complete original leaf return.",
+        "Four check descriptions denote four isolated scan ranges."
+      ],
+      "source_backed_replacement": [
+        "The leaf returns full32 after eight MSB-first rounds using polynomial8005; the caller selects low16 at each check.",
+        "Six scans form four checks. Each sparse overlay scan feeds its following resident scan; each dense overlay scan starts at zero.",
+        "The two groups surround the real WAD1 call; no helper result or memory-retention premise is supplied."
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/startup_integrity_memory_runtime.py"
+      ],
+      "evidence": [
+        "build/startup42207.readable-memory-control-ready.json",
+        "docs/yotd-re/evidence-tests/startup-integrity-memory-validation.json",
+        "docs/yotd-re/startup-integrity-memory-packets.md"
+      ],
+      "still_open": [
+        "Whole startup semantic meaning and natural nonzero-residue branches; low16 legacy helper remains valid within its declared projection."
+      ]
+    },
+    {
+      "legacy_source": "tests/yotd_re/next_frame_architectural_native_reference.py",
+      "original_entries": [
+        "8004EE4C",
+        "8004EEA8"
+      ],
+      "incorrect_claims": [
+        "Writing LZCS leaves LZCR unchanged in the cached reference."
+      ],
+      "source_backed_replacement": [
+        "The unchanged source decoder and original GTE register method publish the leading count of bits equal to the sign bit into LZCR.",
+        "New reference mixins repair the omitted publication; expected native state and original instructions stay unchanged."
+      ],
+      "falsifiable_vectors": [
+        "InitialLZCR0 and LZCS12345678 must publish LZCR3; the old reference returns0."
+      ],
+      "preferred_sources": [
+        "tests/yotd_re/cold_startup_leading_gte_reference.py",
+        "tests/yotd_re/descriptor_query_transfer_reference.py"
+      ],
+      "evidence": [
+        "docs/yotd-re/evidence-tests/cold-startup-LZCS-reference-validation.json",
+        "docs/yotd-re/evidence-tests/descriptor-query-transfer-reference-validation.json",
+        "docs/yotd-re/evidence-tests/second-cold-frame-complete-validation.json"
+      ],
+      "still_open": [
+        "GTE latency/interlocks and physical instruction timing remain separate from completed storage equations."
+      ]
+    },
+    {
+      "legacy_source": "build/import42244.actual-source-produced-pointer-prefix.json and import42247 labels",
+      "original_entries": [
+        "8007A01C",
+        "8004E7F8"
+      ],
+      "incorrect_claims": [
+        "Actual A0 A9E10 is the source of the 20-byte copy."
+      ],
+      "source_backed_replacement": [
+        "The original21-word copier treats A0 as destination and A1 as source.",
+        "The genuine WAD1 call copies20 decimal bytes from8006EF0C to800A9E10.",
+        "The corrected100-instruction actual prefix and42 transactions include the real copier and return to7A024."
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/wad1_import_copy_memory_runtime.py"
+      ],
+      "evidence": [
+        "build/importCopy42267.direction-qualified-ready.json",
+        "docs/yotd-re/evidence-tests/wad1-import-copy-memory-validation.json",
+        "docs/yotd-re/wad1-import-copy-direction.md"
+      ],
+      "still_open": [
+        "Record semantics and complete allocation/root lifetime are not implied by this local copy."
+      ]
+    },
+    {
+      "legacy_label": "Crawdad original41163 episode described as cold or without restore",
+      "source_backed_replacement": [
+        "The actual host preserves original retro_unserialize and initializes from saved state c61e69d72b0f623f1b5c550f5d1a64ed62952f550221b8110489f299aeb21eba.",
+        "It executes1800 original controller frames, including Cross on10..19; new authority receipts explicitly record the restore.",
+        "The computed622102-instruction next-update/render chain belongs to that saved episode and is separate from the117996933-instruction cold startup chain."
+      ],
+      "evidence": [
+        "build/crawdadPostrender42261.actual-complete-window-ready.json",
+        "build/crawdadSecondRender42278.actual-complete-window-ready.json",
+        "docs/yotd-re/evidence-tests/crawdad-complete-next-update-validation.json",
+        "docs/yotd-re/evidence-tests/crawdad-next-render-complete-validation.json"
+      ],
+      "still_open": [
+        "Cold admission to this same Crawdad state; no cold provenance is transferred from a different world/version."
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/player_surface_orientation_runtime.py",
+      "original_entries": [
+        "80043AE0",
+        "80043C1C"
+      ],
+      "incorrect_claims": [
+        "An unbounded velocity>>2 expression describes the original raw32 filter for every word."
+      ],
+      "source_backed_replacement": [
+        "The original first wraps SLL4 to32bits, then takes signed SRA6. Its full raw-word domain differs from unbounded signed velocity>>2.",
+        "The209-word successor retains low32 operations, full HI/LO, fresh loads and actual calls without silently changing the old projection."
+      ],
+      "falsifiable_vectors": [
+        "Velocity20000000/error0: source updated velocity20000000; old unbounded formula18000000. Values are hexadecimal raw32 words."
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/player_surface_filter_memory_runtime.py"
+      ],
+      "evidence": [
+        "build/surfaceFilter42524.readable-observed-ready.json",
+        "build/surfaceComplete42535.all209-readable-own-words-ready.json",
+        "docs/yotd-re/player-surface-filter-live-memory.md"
+      ],
+      "still_open": [
+        "A narrower velocity domain may make the old expression agree; that domain requires producer evidence."
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/player_special_mode_housekeeping_runtime.py",
+      "original_entries": [
+        "8004896C"
+      ],
+      "incorrect_claims": [
+        "Unbounded max(timer-count,0) describes arbitrary raw32 source operands."
+      ],
+      "source_backed_replacement": [
+        "Original SUBU wraps32, stores that raw result, then conditionally stores zero if the wrapped word is signed-negative.",
+        "The old pure formula needs its nonnegative signed operand domain; the successor preserves both stores and fresh pointer guards."
+      ],
+      "falsifiable_vectors": [
+        "Raw timer00000000/countFFFFFFFF outside mode7: original result00000001; old pure formula00000000."
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/player_core_tail_memory_runtime.py"
+      ],
+      "evidence": [
+        "docs/yotd-re/evidence-tests/player-core-tail-memory-validation.json",
+        "docs/yotd-re/player-core-tail-memory.md"
+      ],
+      "still_open": [
+        "Natural producer domain of every timer/decrement pair; old code and assertions remain unchanged."
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/geometry_conversion_helpers_runtime.py",
+      "original_entries": [
+        "8004F600",
+        "8004F694",
+        "8004F698"
+      ],
+      "incorrect_claims": [
+        "Packed middle Z delta occupies bits14..21."
+      ],
+      "source_backed_replacement": [
+        "Original SLL8/SRL24 selects unsigned bits16..23; final output includes its original left shift4.",
+        "The live successor preserves actual header+20 root, five reads before nine axis-major stores, signed-address traps and JR-delay publication."
+      ],
+      "falsifiable_vectors": [
+        "Packed Z00004000: original middle delta0 and final second Z0; old delta1 and final second Z16decimal."
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/packed_triangle_memory_runtime.py"
+      ],
+      "evidence": [
+        "build/packedTriangle42540.readable-observed-ready.json",
+        "docs/yotd-re/packed-triangle-live-memory.md"
+      ],
+      "still_open": [
+        "The sampled naturally observed triangle is flat in Z and does not itself expose this counterexample. Existing callers of the old formula are not silently upgraded."
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/player_subframe_dispatch_runtime.py",
+      "original_entries": [
+        "80044264",
+        "80044394",
+        "80044398"
+      ],
+      "incorrect_claims": [
+        "The ordinary route always executes exactly the captured initial update count."
+      ],
+      "source_backed_replacement": [
+        "Initial signed count gates admission; after each actual secondary helper the original rereads6C728.",
+        "Actual current S0 increments modulo32 before signed SLT against that fresh count. Callee effects, including changed registers, remain real boundaries."
+      ],
+      "falsifiable_vectors": [
+        "At44394 with S0=0, fresh count1 exits and fresh count2 repeats; the same initial admission cannot determine both outcomes.",
+        "At44394 with S0=7FFFFFFF and fresh count0, wrapped80000000 is signed-less than0 and repeats."
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/player_subframe_memory_runtime.py"
+      ],
+      "evidence": [
+        "docs/yotd-re/evidence-tests/player-subframe-memory-validation.json",
+        "docs/yotd-re/player-subframe-memory.md"
+      ],
+      "still_open": [
+        "Ordinary-route natural admission and the five helpers whole semantics; the observed saved episode takes only the special route."
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/player_world_event_transition_runtime.py",
+      "original_entries": [
+        "8003F214",
+        "8003F21C",
+        "8003F220"
+      ],
+      "incorrect_claims": [
+        "The third event probe return feeds the later transition gates."
+      ],
+      "source_backed_replacement": [
+        "The real phase2 helper returns to3F21C,whose LUI V0,8007 overwrites its returned V0 immediately.",
+        "The following LW V0,704FC supplies the next branch value. Helper memory effects and all other actual continuation registers remain real inputs.",
+        "This correction concerns the returned V0 predicate only; it does not make the helper effect-free or invent its event meaning."
+      ],
+      "falsifiable_vectors": [
+        "At3F21C,varying only incoming V0 with the same memory produces identical next control gates; every original V0 word is overwritten before testing."
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/player_world_transition_memory_runtime.py"
+      ],
+      "evidence": [
+        "docs/yotd-re/evidence-tests/player-world-transition-memory-source.json",
+        "docs/yotd-re/evidence-tests/player-world-transition-memory-validation.json",
+        "docs/yotd-re/player-world-transition-memory.md"
+      ],
+      "still_open": [
+        "Whole event meaning,lifetimes and natural alternate caller histories remain separate."
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/fixed_point_angle_matrix_runtime.py",
+      "original_entries": [
+        "8004E8A4",
+        "8004E9A4",
+        "8004E9D4"
+      ],
+      "incorrect_claims": [
+        "The older unbounded precision_heading formula is equivalent for arbitrary fullword component/mode inputs."
+      ],
+      "source_backed_replacement": [
+        "The numerator is low32(minAbs<<14), then signed DIV; its actual quotient determines raw unsigned halfword lookup addresses.",
+        "Original checked negations and the mode-minus-one branch-delay ADDI retain signed traps.",
+        "No table bound, default sample or natural caller range is invented."
+      ],
+      "falsifiable_vectors": [
+        "Original quarter-table x=y=00040000,mode1 returns0; the older unbounded formula returns512.",
+        "Raw mode80000000 traps at8004E9D4 with branch EPC8004E9D0."
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/precision_heading_memory_runtime.py"
+      ],
+      "evidence": [
+        "build/headingLookup42581.readable-observed-ready.json",
+        "docs/yotd-re/precision-heading-live-memory.md"
+      ],
+      "still_open": [
+        "Caller units,producer ranges,cadence and table lifetime."
+      ]
+    },
+    {
+      "legacy_source": "Any conventional signed4096 folding description of the first positive-response heading gate",
+      "original_entries": [
+        "800423A8",
+        "800423B8",
+        "800423F8"
+      ],
+      "incorrect_claims": [
+        "Both response folds subtract4096 above2048."
+      ],
+      "source_backed_replacement": [
+        "The first low12 gate subtracts2048 above2048; the later difference gate subtracts4096.",
+        "The earlier transformed values from its closed producer are nonnegative; an explicit internal-entry case covers its separate NEG word."
+      ],
+      "falsifiable_vectors": [
+        "Raw4095 becomes2047 at the first gate and skips the later heading call; a signed4096 fold would produce-1 and admit it."
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/player_response_positive_runtime.py"
+      ],
+      "evidence": [
+        "docs/yotd-re/evidence-tests/player-response-positive-validation.json",
+        "docs/yotd-re/player-response-positive-live.md"
+      ],
+      "still_open": [
+        "Positive-query natural admission and actual alternate helper effects."
+      ]
+    },
+    {
+      "legacy_source": "docs/yotd-re/evidence-tests/native-software-display-values-validation.json confirmed[2] wording",
+      "original_entries": [
+        "native UpdateDisplay settings display_aspect_ratio"
+      ],
+      "incorrect_claims": [
+        "The two captured display calls use Auto aspect mode."
+      ],
+      "source_backed_replacement": [
+        "Both actual settings captures contain mode3, fixed4:3, with original binary32 table value3FAAAAAB.",
+        "The frozen numeric replay already consumed actual mode3 and all491520 pixel bytes matched; this corrects descriptive scope only.",
+        "The successor additionally computes all256 actual host bytes per call from actual prior host/vector storage and real Begin/End effects."
+      ],
+      "falsifiable_vectors": [
+        "Read the actual settings mode in both original invocation packets:3,3."
+      ],
+      "preferred_sources": [
+        "docs/yotd-re/evidence-tests/native-software-display-host-validation.json"
+      ],
+      "evidence": [
+        "build/displayHost42693.actual-aspect-branch-correction.json",
+        "docs/yotd-re/evidence-tests/native-software-display-host-validation.json"
+      ],
+      "still_open": [
+        "Threaded Sync queue and the postSync VRAM producer."
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/player_input_state_runtime.py",
+      "original_entries": [
+        "8003A988",
+        "8003A9AC",
+        "8003A9E0"
+      ],
+      "incorrect_claims": [
+        "The source actor is restored after cloning and the destination actor is reset."
+      ],
+      "source_backed_replacement": [
+        "IncomingA0 is source,S5; incomingA1 is destination,S0.",
+        "Destination+1C/+20/+24/+28 are saved before the actual destination-first4E7F8(destination,source,128) call and restored afterward.",
+        "The later real3A92C receives the source pointer and clears source fields. Physical/frame aliases and current register effects remain live."
+      ],
+      "falsifiable_vectors": [
+        "ActualE5E8 source\u2192E4B0 destination returns47484; actualE4B0 source\u2192E5E8 destination returns47CD8. Both execute109 accesses with the real copy/clear helpers.",
+        "Distinct source/destination marker bytes show the four preserved destination words and later source clear. Overlap/physical/frame alias vectors remain independently checked."
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/control_clone_memory_runtime.py"
+      ],
+      "evidence": [
+        "build/controlClone42905.readable-observed-ready.json",
+        "docs/yotd-re/control-clone-destination-preservation.md"
+      ],
+      "still_open": [
+        "Gameplay field meaning,complete object lifetimes and all natural alias domains."
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/camera_dynamic_contact_runtime.py::camera_contact_grid_bounds",
+      "original_entries": [
+        "8001BA44",
+        "8001BAA8",
+        "8001BAB0",
+        "8001BB14"
+      ],
+      "incorrect_claims": [
+        "Reusing a negative-radius-rejecting pure API as an arbitrary raw32 retail prefix contract."
+      ],
+      "source_backed_replacement": [
+        "The original prefix has no universal negative-extent input rejection. It performs actual signed subtractions/additions,including operations in rejection branch delays,then logical upper shifts.",
+        "The older API input restriction remains valid only for its separately declared restricted domain."
+      ],
+      "falsifiable_vectors": [
+        "X=Y=0,extentFFFFFFFF reachesBB14 with lower0/0 and upper00200000/04000000.",
+        "The Y subtraction atBAA8 and X addition atBAB0 can trap in a branch delay even when the preceding predicate requests rejection."
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/dynamic_query_prefix_runtime.py"
+      ],
+      "evidence": [
+        "docs/yotd-re/evidence-tests/Midday-dynamic-query-prefix-validation.json",
+        "docs/yotd-re/dynamic-query-prefix-live.md"
+      ],
+      "still_open": [
+        "Complete-query termination,allocation ranges,natural negative inputs and pointer lifetimes."
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/world_height_query_runtime.py::world_height_vertical_range",
+      "original_entries": [
+        "8001A3CC",
+        "8001A3D0",
+        "8001A474"
+      ],
+      "incorrect_claims": [
+        "Reusing the pure helper negative-range restriction as a universal retail entry rejection."
+      ],
+      "source_backed_replacement": [
+        "The original entry rejects negative resulting coordinate words by OR/sign,then computes signed Z minus actual extent. Only a negative subtraction result is clamped to zero.",
+        "There is no separate blanket negative-extent gate in the66-word prefix. Later list/geometry semantics remain independent."
+      ],
+      "falsifiable_vectors": [
+        "RawZ0/extentFFFFFFFF reachesA474 with current lower wordsS5=S6=1; the older pure vertical-range API rejects that input.",
+        "RawZ7FFFFFFF/extentFFFFFFFF traps atA3CC rather than wrapping or rejecting by an invented radius gate."
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/world_height_prefix_runtime.py"
+      ],
+      "evidence": [
+        "docs/yotd-re/evidence-tests/world-height-prefix-validation.json",
+        "docs/yotd-re/world-height-prefix-live.md"
+      ],
+      "still_open": [
+        "Whole642-word query and naturally produced extent ranges; prefix admission is not complete-query admission."
+      ]
+    },
+    {
+      "legacy_source": "Frozen renderer fixture descriptive491520pixels flags and historical progress wording",
+      "original_entries": [
+        "Two original BeginWriteDisplayPixels512x240RGB565 calls"
+      ],
+      "incorrect_claims": [
+        "The two captured displays contain491520 RGB565 pixels."
+      ],
+      "source_backed_replacement": [
+        "Two512x240 RGB565 displays contain245760 pixels and491520 output bytes.",
+        "The canonical numeric byte fields and all byte comparisons were already correct; only descriptive units are corrected.",
+        "The selected seven-command successor carries one initial VRAM through both displays without postSync VRAM installation."
+      ],
+      "falsifiable_vectors": [
+        "2*512*240=245760 pixels; two bytes per RGB565 pixel gives491520 bytes."
+      ],
+      "preferred_sources": [
+        "docs/yotd-re/evidence-tests/source-backend-display-composition-validation.json"
+      ],
+      "evidence": [
+        "build/displayUnits42754.descriptive-pixel-byte-correction.json",
+        "build/backend42755.ready.json"
+      ],
+      "still_open": [
+        "Actual concurrent stage/OS/eventcount equivalence and other raster templates."
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/controller_input_runtime.py",
+      "original_entries": [
+        "8003A2D4"
+      ],
+      "incorrect_claims": [
+        "The two-port-poll label means two distinct record arguments or proves both decoded records are updated."
+      ],
+      "source_backed_replacement": [
+        "Both source-controlled passes call3A034 with the same literal A0=8006E5E8. Current outer storage/counters remain separate and fresh.",
+        "The87-word caller exposes actual decoder/wait boundaries; physical port meaning,cadence and mode2 natural admission are not established by the label."
+      ],
+      "still_open": [
+        "Natural3A2D4 admission on a separately qualified source episode",
+        "Physical input device/port identity and full asynchronous buffer ownership"
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/input_poll_memory_runtime.py"
+      ],
+      "evidence": [
+        "build/inputPoll42945.readable-memory-ready.json",
+        "docs/yotd-re/input-poll-live-memory.md"
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/dynamic_object_segment_query_runtime.py",
+      "original_entries": [
+        "8001B778",
+        "8001B9A4"
+      ],
+      "incorrect_claims": [
+        "Query flag bit0 suppresses the accepted owner+0x18 OR-store when clear."
+      ],
+      "source_backed_replacement": [
+        "Descriptor bit2 alone suppresses the owner+0x18 load/OR/store. Query bit0 is read in its branch delay and selects the later retry/return.",
+        "Declared query0,descriptor0,owner0x20,mask0x10 writes0x30 before retryB1E8 in both original blocks. The frozen legacy projection keeps0x20/no-write.",
+        "Current aliases and lateB9D8 jump-delay scratch6C read remain observable. No old test or runtime is rewritten."
+      ],
+      "still_open": [
+        "Naturally admitted segment acceptance",
+        "Owner/descriptor lifetime and alias domains",
+        "Caller-specific flag meanings"
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/dynamic_segment_acceptance_runtime.py"
+      ],
+      "evidence": [
+        "build/linked_geometry_43129.readable-segment-acceptance-and-gate-falsification.json",
+        "docs/yotd-re/dynamic-segment-acceptance-live.md"
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/world_event_segment_query_runtime.py",
+      "qualification_kind": "Ambiguous semantic label; no old numeric helper implementation rewritten.",
+      "original_entries": [
+        "8004ED90",
+        "800408DC"
+      ],
+      "incorrect_claims": [
+        "The older normalization wording proves length division or unit-vector endpoints."
+      ],
+      "source_backed_replacement": [
+        "4ED90 conditionally loads five original matrix controls,uses original sign/IR/MAC ports and MVMVA,and keeps current controls for nullA0.",
+        "Original declared8192-diagonal matrix maps(3,4,12) to(6,8,24); no length normalization is performed by these31 words.",
+        "408DC transforms both endpoint buffers,adds current80070408 through real helpers,then queries1837C and conditionally calls40978."
+      ],
+      "still_open": [
+        "Actual matrix producer and caller-specific units",
+        "Natural408DC admission and complete1837C helper join"
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/query_endpoint_transform_runtime.py",
+        "tools/yotd_re/world_event_query_caller_runtime.py"
+      ],
+      "evidence": [
+        "docs/yotd-re/evidence-tests/query-endpoint-event-caller-validation.json",
+        "docs/yotd-re/query-endpoint-event-caller-live.md"
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/world_segment_collision_runtime.py",
+      "qualification_kind": "Ambiguous strict-crossing wording; no old runtime or tests rewritten.",
+      "original_entries": [
+        "80018320",
+        "8001837C",
+        "80018D84",
+        "80018D90",
+        "80018D94"
+      ],
+      "incorrect_claims": [
+        "The strict-crossing label requires both endpoint MACs to be nonzero."
+      ],
+      "source_backed_replacement": [
+        "Bit1 uses the sign bit of the XOR of the two computed MAC words; zero is on the nonnegative side.",
+        "The original complete optional query computes MACs00000000/FFFF6000 and accepts for both clear and set bit1."
+      ],
+      "still_open": [
+        "Natural admission of the declared boundary input",
+        "Caller-specific coordinate/matrix domains"
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/world_segment_geometry_runtime.py",
+        "tools/yotd_re/world_segment_routine_runtime.py"
+      ],
+      "evidence": [
+        "docs/yotd-re/evidence-tests/world-segment-zero-endpoint-validation.json"
+      ]
+    },
+    {
+      "legacy_source": "tools/yotd_re/player_sphere_overlap_runtime.py",
+      "qualification_kind": "Declared original-instruction counterexample to unbounded scalar arithmetic.",
+      "original_entries": [
+        "8001C29C"
+      ],
+      "incorrect_claims": [
+        "Unbounded coordinate and radius squares reproduce all raw-word inputs to the retail helper."
+      ],
+      "source_backed_replacement": [
+        "The helper uses checked signed32 axis arithmetic,signedlow16 GTE SQR and the LOW signed radius-product word.",
+        "Declared center(65536,65536,0),radius65536,player origin/radius0 passes; low16 coordinates and low radius square are zero.",
+        "Original returns1 and ORs flags10 to90 for mask80; frozen unbounded plan returnsFalse."
+      ],
+      "still_open": [
+        "Exact naturally admitted caller input domains",
+        "Any separately authorized correction to the shared/browser model"
+      ],
+      "preferred_sources": [
+        "tools/yotd_re/player_sphere_overlap_live_runtime.py"
+      ],
+      "evidence": [
+        "docs/yotd-re/evidence-tests/player-sphere-overlap-live-validation.json",
+        "docs/yotd-re/player-sphere-overlap-live.md"
+      ]
+    },
+    {
+      "legacy_source": "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\manifests\\actor-linked-effect-runtime.json",
+      "original_entries": [
+        "80039998"
+      ],
+      "incorrect_claims": [
+        "area-indexed-effect-dispatch"
+      ],
+      "source_backed_replacement": [
+        "Index the original level-header8-byte offset/size pair by A0. If supplied A2=0, replace it with record.size-A1; call actual50680(CDLoadAsync) with current sector, current destination, computed size and A1 plus current indexed-level offset plus record.offset. Preserve wrapped address/size arithmetic, arbitrary index, actual four-argument call, live source roots and callee boundary. This requests a slice; no completed transfer, payload semantic model identity or effect dispatch is claimed."
+      ],
+      "preferred_sources": [
+        "build/helper_names43576.authority-ledger.json"
+      ],
+      "evidence": [
+        "build/helper_names43576.review-ready.json"
+      ],
+      "historical_bytes_unchanged": true
+    },
+    {
+      "legacy_source": "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\manifests\\cloud-spires-type-272-runtime.json",
+      "original_entries": [
+        "8002F564"
+      ],
+      "incorrect_claims": [
+        "sound-control"
+      ],
+      "source_backed_replacement": [
+        "Scan8 fixed48-byte records for byte+1C=0; return0 if full. Store A0 byte1C, zero1D, A1 byte1E and A2 word18, overwrite byte1B with0x26; loop actual RNG and halfword stores beginning+20 until its source pointer comparison terminates, then return selected record. The loop count/arbitrary A0 domain is not repaired or bounded; untouched fields, traps, aliases, return and RNG cadence remain source-exact. No sound-control or playback operation is present in this body."
+      ],
+      "preferred_sources": [
+        "build/helper_names43576.authority-ledger.json"
+      ],
+      "evidence": [
+        "build/helper_names43576.review-ready.json"
+      ],
+      "historical_bytes_unchanged": true
+    },
+    {
+      "original_entries": [
+        "80049300"
+      ],
+      "qualification": {
+        "kind": "existing semantic-label qualification",
+        "Rev0_target": "800492DC",
+        "Rev1_target": "80049300",
+        "immutable_old_manifest": "docs/yotd-re/manifests/cloud-spires-type-132-runtime.json",
+        "JSON_path": [
+          "code",
+          "support_helpers",
+          12,
+          "name"
+        ],
+        "old_label": "global-event",
+        "actual_local_effect": "The complete106-word body stores two signed12-bit helper results at70594/70598, clamps them to[-384,384]/[-512,512], and ORs10000004 into fresh70614.",
+        "qualification": "No generic global-event operation or event identifier is established by the old label."
+      },
+      "preferred_sources": [
+        "build/helper_names43069.authority-ledger.json"
+      ],
+      "historical_bytes_unchanged": true,
+      "legacy_source": "docs/yotd-re/manifests/cloud-spires-type-132-runtime.json",
+      "incorrect_claims": [
+        "global-event"
+      ],
+      "source_backed_replacement": [
+        "The complete106-word body stores two signed12-bit helper results at70594/70598, clamps them to[-384,384]/[-512,512], and ORs10000004 into fresh70614."
+      ]
+    },
+    {
+      "original_entries": [
+        "800498E4"
+      ],
+      "qualification": {
+        "kind": "existing scalar formula contradicted by actual original instructions",
+        "Rev0_target": "800498C0",
+        "Rev1_target": "800498E4",
+        "immutable_old_module": "tools/yotd_re/player_death_respawn_controller_runtime.py",
+        "old_callable": "level_exempts_life_decrement",
+        "old_formula": "6 * (level_id // 10) == level_id - 8",
+        "exact_source_formula": "10 * trunc_toward_zero(signed32(level_id) / 10) == wrapped32(level_id - 8)",
+        "native_PC_range_inclusive": [
+          "80049A2C",
+          "80049A60"
+        ],
+        "source_sequence": "MULT level,66666667; MFHI; arithmetic>>2; subtract sign; (q<<2)+q; <<1; compare level-8",
+        "falsifiable_vector": {
+          "level_id": 18,
+          "actual_quotient": 1,
+          "actual_left": 10,
+          "actual_right": 10,
+          "actual_skip_life_decrement": true,
+          "old_left": 6,
+          "old_skip_life_decrement": false
+        },
+        "exact_scope": "No old assertion/model/test is edited. Current matching fork C already uses10*(level/10); naming authority uses actual original words only."
+      },
+      "preferred_sources": [
+        "tools/yotd_re/player_death_respawn_controller_runtime.py",
+        "tests/yotd_re/test_player_retry_exemption_source_runtime.py"
+      ],
+      "historical_bytes_unchanged": true,
+      "legacy_source": "tools/yotd_re/player_death_respawn_controller_runtime.py",
+      "incorrect_claims": [
+        "6 * (level_id // 10) == level_id - 8"
+      ],
+      "source_backed_replacement": [
+        "10 * trunc_toward_zero(signed32(level_id) / 10) == wrapped32(level_id - 8)"
+      ],
+      "evidence": [
+        "build/retry43073.corrected-ready.json"
+      ],
+      "applied_decoder_correction": true,
+      "old_source_archive_qualification": {
+        "old_authority": "build/helper_names43069.authority-ledger.json",
+        "old_model_dependency_SHA256": "5b213c6c1c5b8369f81bfee1131e658af4fbf254e86e0692f646cfd4e6a5706a",
+        "immutable_old_bytes_archive": {
+          "path": "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\retry43070\\before.zip",
+          "SHA256": "0fd321c6b60d8682e4e6183332e78e85509a1b2041cc7f696067ca3dbe55444f"
+        },
+        "changed_live_model_SHA256": "b16431e0a06a38bb946fad14d1a62a2aac682fffe1f84df2e4567806da3983e5",
+        "exact_scope": "The original literal6*floor arithmetic claim and level14 assertion are disproved by native49A2C..49A60. The current original-word model uses10*trunc; all other instructions, helper boundaries and game behavior remain unchanged.",
+        "historical_manifest_prose": "Existing manifests that embed recover() evidence retain their old literal6*floor sentence. They are historical snapshots, not current scalar-formula authority; no historical manifest bytes or receipt hashes are rewritten.",
+        "affected_historical_manifests": [
+          "docs/yotd-re/manifests/player-death-respawn-controller-runtime.json",
+          "docs/yotd-re/manifests/sleepy-head-encounter-runtime.json",
+          "docs/yotd-re/manifests/sorceress-lair-sfx-retry-runtime.json"
+        ],
+        "regenerated_profile_scope": "Current recover() evidence text now says10*trunc. A prose-only renderer equality to an immutable prior manifest must be qualified separately, without relaxing gameplay assertions."
+      }
+    },
+    {
+      "legacy_source": "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\evidence-tests\\crawdad-spawned-326-541-validation.json",
+      "original_entries": [
+        "8004E7B4"
+      ],
+      "source_backed_replacement": [
+        "Full-word fill with end expressed in byte addresses, not byte repetition. The original Rev0 assembly also exposes the legacy symbol memset, which does not establish C memset semantics. No zero/count/alignment guard may be added."
+      ],
+      "qualification": {
+        "kind": "Historical wording qualification; no frozen result or implementation changed",
+        "source_Rev0": "asm/stdutil.s::func_8004E790",
+        "source_Rev1": "docs/yotd-re/evidence-tests/tracked-commit-live-source.json::8004E7B4",
+        "historical_wording": {
+          "path": "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\evidence-tests\\crawdad-spawned-326-541-validation.json",
+          "JSON_field": "explicit_conditions",
+          "exact_text": "Actual six326/541 children are identified by the source factory byte-clear arguments; their live class/private/state fields are never supplied."
+        },
+        "exact_instruction_facts": {
+          "8004E7B4": "00C43020 ADD end,count,destination",
+          "8004E7B8": "20C6FFFC ADDI end,end,-4",
+          "8004E7BC": "AC850000 SW fillword,0(destination)",
+          "8004E7C0": "1486FFFE BNE destination,end,8004E7BC",
+          "8004E7C4": "20840004 ADDI destination,destination,4 in BNE delay",
+          "8004E7C8": "03E00008 JR RA",
+          "8004E7CC": "00000000 NOP"
+        },
+        "correction": "Full-word fill with end expressed in byte addresses, not byte repetition. The original Rev0 assembly also exposes the legacy symbol memset, which does not establish C memset semantics. No zero/count/alignment guard may be added.",
+        "existing_correct_decoder": "tools/yotd_re/tracked_commit_live_runtime.py::TrackedCommitMemoryDecoder.fill_words",
+        "extent_phrases_not_falsified": "Descriptions such as an88-byte clear can correctly state the zero-filled extent. They are not independently claims that the source uses SB, and are not classified as errors here.",
+        "verified_result_changed": false,
+        "original_receipts_unchanged": true
+      },
+      "preferred_sources": [
+        "tools/yotd_re/tracked_commit_live_runtime.py::TrackedCommitMemoryDecoder.fill_words"
+      ],
+      "evidence": [
+        "build/helper_names43191.authority-ledger.json"
+      ],
+      "historical_bytes_unchanged": true,
+      "existing_verified_result_changed": false
+    },
+    {
+      "legacy_source": "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\helper_names43578.authority-ledger.json",
+      "original_entries": [
+        "80038BF8",
+        "80038C1C"
+      ],
+      "incorrect_claims": [
+        "flag-selected duration additions"
+      ],
+      "source_backed_replacement": [
+        "source flag-selected additions to descriptor halfword+4, consumed as the planar heading-displacement operand; no duration or physical speed unit asserted",
+        "Descriptor+4 is signed-loaded as A2 at35194\u219235EE0 and participates in source table products/SRA12 planar component construction. Descriptor+E is subtracted on its selected update route. These are per-call source arithmetic facts, not an asserted universal speed, duration, frame/fps scale, coordinate conversion, lifecycle or immutable descriptor theorem."
+      ],
+      "evidence": [
+        "build/helper_names43579.descriptor-field-qualification.json"
+      ],
+      "preferred_sources": [
+        "build/helper_names43579.descriptor-field-qualification.json"
+      ],
+      "operation_identifier_and_all_original_words_unchanged": true,
+      "historical_bytes_unchanged": true
+    },
+    {
+      "legacy_source": "tools/yotd_re/bounded_counter_runtime.py::clamp_counter_source / sync_counter_target",
+      "original_entries": [
+        "80027A84",
+        "80027AE4"
+      ],
+      "incorrect_claims": [
+        "min(max(source_value,0),maximum)"
+      ],
+      "source_backed_replacement": [
+        "LW source pointer/value; signed-negative input becomes0",
+        "LHU maximum+26 before target store",
+        "SH source low16 at target+42",
+        "ANDI source,FFFF then unsigned SLTU maximum<low16",
+        "optional SH maximum at target+42",
+        "27AE4 freshly LHU target+42 then SH current+40 in JR delay; 27A84 instead calls real279B0"
+      ],
+      "qualification": {
+        "kind": "Source-proven general-domain qualification; no active/frozen model or test changed",
+        "Rev0_targets": [
+          "80027A60",
+          "80027AC0"
+        ],
+        "Rev1_targets": [
+          "80027A84",
+          "80027AE4"
+        ],
+        "old_projection": "tools/yotd_re/bounded_counter_runtime.py::clamp_counter_source / sync_counter_target",
+        "old_formula": "min(max(source_value,0),maximum)",
+        "source_sequence": [
+          "LW source pointer/value; signed-negative input becomes0",
+          "LHU maximum+26 before target store",
+          "SH source low16 at target+42",
+          "ANDI source,FFFF then unsigned SLTU maximum<low16",
+          "optional SH maximum at target+42",
+          "27AE4 freshly LHU target+42 then SH current+40 in JR delay; 27A84 instead calls real279B0"
+        ],
+        "declared_disjoint_counterexample": {
+          "source_word": 65536,
+          "maximum_halfword": 100,
+          "native_target_halfword": 0,
+          "old_projection": 100,
+          "admission": "Declared raw values, not a captured HUD source"
+        },
+        "exact_relevant_words": {
+          "80027AB0": "94830026",
+          "80027AB4": "A4820042",
+          "80027AB8": "3042FFFF",
+          "80027ABC": "0062102B",
+          "80027B08": "94830026",
+          "80027B0C": "A4820042",
+          "80027B10": "3042FFFF",
+          "80027B14": "0062102B",
+          "80027B24": "94820042",
+          "80027B2C": "A4820040"
+        },
+        "interface_domain": "Existing scalar functions accept int values without an explicit low16 restriction. The accepted small nonnegative vectors remain valid; arbitrary full-word equivalence is not established by that formula.",
+        "pending_next_step": "Parent authorized staged source-backed scalar correction and focused original-word tests after this authority freezes. Hold active edits until the naming snapshot is accepted."
+      },
+      "applied_decoder_correction": true,
+      "preferred_sources": [
+        "tools/yotd_re/bounded_counter_runtime.py",
+        "docs/yotd-re/evidence-tests/bounded-counter-source-width-validation.json"
+      ],
+      "evidence": [
+        "build/bounded_counter43195.applied-ready.json"
+      ],
+      "accepted_original_tests_unchanged": 6,
+      "new_focused_tests": 4,
+      "original_word_cases": 840,
+      "executed_words": 39,
+      "available_words": 43,
+      "real_helper_boundary": "279B0; four post-helper epilogue words are not executed by this width proof.",
+      "declared_counterexample": {
+        "source_word": 65536,
+        "maximum_halfword": 100,
+        "native_target_halfword": 0,
+        "old_projection": 100,
+        "admission": "Declared raw values, not a captured HUD source"
+      },
+      "old_source_archive_pins": {
+        "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\bounded_counter43193.before\\tools\\yotd_re\\bounded_counter_runtime.py": "211fee8a323d901cf08a51956c0d45a12ae85eb3d51031913e1fa7cf21d70099",
+        "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\bounded_counter43193.before\\tests\\yotd_re\\test_bounded_counter_runtime.py": "7e230dcbecd0ae4d6570359fd1d745291940e626e5634e7d7fccac4e8a59a962",
+        "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\bounded_counter43193.before\\docs\\yotd-re\\bounded-counter-runtime.md": "edc2b87709ce0a1f9a44612102741c59144d3cde36c19158101931d65ee14767",
+        "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\bounded_counter43193.before\\docs\\yotd-re\\manifests\\bounded-counter-runtime.json": "267488d6bd271f5e887d1572832e0f02a0924f1a5e2601a15d398afa0157797c"
+      },
+      "historical_bytes_unchanged": true
+    },
+    {
+      "original_entries": [
+        "8004E7F8"
+      ],
+      "qualification": {
+        "kind": "Access-envelope qualification, no changed semantics",
+        "Rev0_target": "8004E7D4",
+        "Rev1_target": "8004E7F8",
+        "source": "asm/stdutil.s / tracked-commit-live-source.json",
+        "exact_fact": "LW source+0/+4/+8/+12 all occur before the first SW or any tail test, even for a4-byte output tail",
+        "limits": "The existing fixed_pool_memory_helpers.copy_word_count explicitly restricts its count projection to positive multiples of4; that helper is not itself an accessible-memory or memcpy equivalence proof."
+      },
+      "source_backed_replacement": [
+        "LW source+0/+4/+8/+12 all occur before the first SW or any tail test, even for a4-byte output tail",
+        "The existing fixed_pool_memory_helpers.copy_word_count explicitly restricts its count projection to positive multiples of4; that helper is not itself an accessible-memory or memcpy equivalence proof."
+      ],
+      "preferred_sources": [
+        "build/helper_names43192.authority-ledger.json"
+      ],
+      "historical_bytes_unchanged": true,
+      "active_decoder_behavior_changed": false
+    },
+    {
+      "id": "fixed193-player-point-not-effect-emission",
+      "category": "semantic_label_qualification_only",
+      "targets": [
+        "Rev0 80049484",
+        "Rev1 800494A8"
+      ],
+      "old_sources": [
+        {
+          "path": "tools/yotd_re/player_effect_and_collision_helpers_runtime.py",
+          "selector": "PROFILES[0].name / recover/render evidence"
+        },
+        {
+          "path": "docs/yotd-re/manifests/player-effect-and-collision-helpers-runtime.json",
+          "JSON_path": [
+            "code",
+            "functions",
+            0,
+            "name"
+          ]
+        }
+      ],
+      "superseded_phrases": [
+        "effect-id-193-wrapper",
+        "dispatch fixed effect ID193"
+      ],
+      "corrected_statement": "The literal193 wrapper calls actual49ACC/49AF0, the complete169-word current model-point selection/sampling/vector-transform body.193 is the requested point input; this wrapper is not an effect emitter.",
+      "remaining_conditions": "Actual point normalization, current model/frame/table roots, output/helper effects, aliases, units and invocation history remain conditional.",
+      "proof": [
+        {
+          "path": "build/helper_names43196.authority-ledger.json",
+          "JSON_path": [
+            "source_corrections",
+            0
+          ],
+          "file_SHA256": "ed6897bbf117f8a4ecf6287098266c257836a5a01b374eec78d09f98634de7b3",
+          "selected_JSON_SHA256": "66ddf9dfcdc7ad92c9c7575656250d4e9dd3bd8f6909c2802a42fb8c15ce4d86"
+        },
+        {
+          "path": "build/helper_names43196.authority-ledger.json",
+          "JSON_path": [
+            "additional_complete_identity_bodies",
+            3
+          ],
+          "file_SHA256": "ed6897bbf117f8a4ecf6287098266c257836a5a01b374eec78d09f98634de7b3",
+          "selected_JSON_SHA256": "af8ec5f397448f805adc9348d92d3619afe8f574de6290d1ea45f6124d52144b"
+        }
+      ]
+    },
+    {
+      "id": "hud-sound-word0C-not-proved-duration",
+      "category": "semantic_label_qualification_only",
+      "targets": [
+        "Rev0 8002A714 / Rev1 8002A738",
+        "Rev0 8002A754 / Rev1 8002A778"
+      ],
+      "old_sources": [
+        {
+          "path": "tools/yotd_re/hud_feedback_runtime.py",
+          "selector": "HudFeedbackSpec / recover evidence / behavior.sounds"
+        },
+        {
+          "path": "docs/yotd-re/manifests/hud-feedback-runtime.json",
+          "selector": "runtime duration fields / behavior.sounds / code.evidence"
+        }
+      ],
+      "superseded_phrases": [
+        "sound_byte_18_duration",
+        "sound_byte_1a_duration",
+        "durations1600/3072",
+        "fixed durations"
+      ],
+      "corrected_statement": "Actual signed-nonnegative handles are passed with0640/0C00 to Rev0 3C140 / Rev1 3C164. That17-word writer stores the full supplied word at slot+0C and ORs byte+2 with10hex. A duration unit is not established by this local chain.",
+      "remaining_conditions": "Pause/volume/asset/audible meaning and later consumers remain separate. Rev0 3BF6C / Rev1 3BF90 is the distinct21-word ID/state predicate; no correction to the already-correct43063 authority or installed names is required.",
+      "proof": [
+        {
+          "path": "build/helper_names43196.authority-ledger.json",
+          "JSON_path": [
+            "source_corrections",
+            1
+          ],
+          "file_SHA256": "ed6897bbf117f8a4ecf6287098266c257836a5a01b374eec78d09f98634de7b3",
+          "selected_JSON_SHA256": "dd03f6df9ef5392b2b39be8e250c85fb4c4b8f4ed52c02cda18a1e59f9f68145"
+        },
+        {
+          "path": "build/spu_names43063.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "8003C140"
+          ],
+          "file_SHA256": "ae90e1448cb987bf9b2d7c09acb3f080ea249228d30f07bf601b8a8ffa92a130",
+          "selected_JSON_SHA256": "73a6cbc4666777713a8f68c68f24dbf39cb52658ee457964e5d121faa19c7c6c"
+        }
+      ]
+    },
+    {
+      "id": "bootstrap-pad-not-audio",
+      "category": "semantic_label_qualification_only",
+      "targets": [
+        "Rev0 8002A9D0",
+        "Rev1 8002A9F4"
+      ],
+      "old_sources": [
+        {
+          "path": "tools/yotd_re/system_bootstrap_runtime.py",
+          "selector": "SYSTEM_BOOTSTRAP_FUNCTIONS[3].name"
+        },
+        {
+          "path": "docs/yotd-re/manifests/system-bootstrap-runtime.json",
+          "JSON_path": [
+            "code",
+            "functions",
+            3,
+            "name"
+          ]
+        }
+      ],
+      "superseded_phrases": [
+        "controller-audio-service-bootstrap"
+      ],
+      "corrected_statement": "The exact composition initializes the actual two pad buffers, calls original PadStartCom, initializes two pad-lane ready/status fields and supplies3A40C/3A430 to original VSyncCallback. No audio initialization is established.",
+      "remaining_conditions": "Original callback-manager target, device/callee results, aliases, initialization success and scheduling remain live; the operation name does not supply them.",
+      "proof": [
+        {
+          "path": "build/helper_names43197.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "8002A9D0"
+          ],
+          "file_SHA256": "54690a4287ab025f9f3a052ecbcc04b03e578eb0752b32edcddb10e7bb8e132b",
+          "selected_JSON_SHA256": "63909fdeef3026560a4db7f460abf1ab9ff38e68c0dd85ffc9af63280f4c280e"
+        },
+        {
+          "path": "build/helper_names43197.authority-ledger.json",
+          "JSON_path": [
+            "source_corrections",
+            0
+          ],
+          "file_SHA256": "54690a4287ab025f9f3a052ecbcc04b03e578eb0752b32edcddb10e7bb8e132b",
+          "selected_JSON_SHA256": "6247b115f50f6d8cf2f9947d939b726124d4f2613ed66fc31b389cb7f11cc21a"
+        }
+      ]
+    },
+    {
+      "id": "completion-percent-not-motion-descriptor",
+      "category": "semantic_label_qualification_only",
+      "targets": [
+        "Rev0 80038B44",
+        "Rev1 80038B68"
+      ],
+      "old_sources": [
+        {
+          "path": "tools/yotd_re/actor_collision_hit_motion_runtime.py",
+          "selector": "FUNCTIONS[3].name"
+        },
+        {
+          "path": "docs/yotd-re/manifests/actor-collision-hit-motion-runtime.json",
+          "JSON_path": [
+            "code",
+            "functions",
+            3,
+            "name"
+          ]
+        }
+      ],
+      "superseded_phrases": [
+        "motion-descriptor-step"
+      ],
+      "corrected_statement": "All45 own words calculate a signed weighted percentage from three inputs and two indexed total tables, retaining minimum1 for nonzero numerator with zero quotient. No motion descriptor is loaded or written. CalculateAtlasPercentage is an upstream comment, not the canonical C identifier or an additional gameplay theorem.",
+      "remaining_conditions": "Lowword arithmetic, signed division/BREAK/overflow, live tables/index and denominator remain source-specific; no100cap or whole-progress completion is supplied.",
+      "proof": [
+        {
+          "path": "build/helper_names43582.authority-ledger.json",
+          "JSON_path": [
+            "semantic_corrections",
+            0
+          ],
+          "file_SHA256": "9f9f5302b7a8082e1a76a04426a07fbd25ad63312c9c6b2e0c81fefe86514d04",
+          "selected_JSON_SHA256": "4f86e8887e4b0c4bbf200d4163ece0c8982e735f4052969ad208050ed9105e5a"
+        },
+        {
+          "path": "build/helper_names43582.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "80038B44"
+          ],
+          "file_SHA256": "9f9f5302b7a8082e1a76a04426a07fbd25ad63312c9c6b2e0c81fefe86514d04",
+          "selected_JSON_SHA256": "d19210462b06a6113157f53d9bc2cd00c3d069c34669bb1ca4b911d0026e1326"
+        }
+      ]
+    },
+    {
+      "id": "bootstrap-call-address-revisions",
+      "category": "reference_prose_qualification_only",
+      "old_source": {
+        "path": "build/helper_names43192.authority-ledger.json",
+        "selector": "explicitly_deferred Rev0_address8002A9D0 / proven_operation"
+      },
+      "superseded_statement": "The historical prose called5CD94,5DD04,3AA10,5C7AC original without separating revisions.",
+      "corrected_statement": "Rev0 calls5CCFC,5DC6C,3A9EC,5C714; Rev1 calls5CD94,5DD04,3AA10,5C7AC. Actual source words and profiles in43192 were already correct; only prose reference labeling is qualified.",
+      "proof": [
+        {
+          "path": "build/helper_names43197.authority-ledger.json",
+          "JSON_path": [
+            "source_corrections",
+            0
+          ],
+          "file_SHA256": "54690a4287ab025f9f3a052ecbcc04b03e578eb0752b32edcddb10e7bb8e132b",
+          "selected_JSON_SHA256": "6247b115f50f6d8cf2f9947d939b726124d4f2613ed66fc31b389cb7f11cc21a"
+        }
+      ]
+    },
+    {
+      "id": "sixth-entry-scope-8004EF74",
+      "category": "entry_extent_revision_or_scope_qualification_only",
+      "targets": [
+        "Rev0 8004EF74",
+        "Rev1 8004EF98"
+      ],
+      "old_sources": [
+        {
+          "path": "docs/yotd-re/manifests/gte-vector-geometry-runtime.json",
+          "JSON_path": [
+            "code",
+            "functions",
+            4
+          ],
+          "original_profile_label": "vector-plane-response",
+          "label_not_rejected_merely_for_extent_or_entry_qualification": true
+        }
+      ],
+      "superseded_inference": "Zero-size interior label belongs to98-word EF04 assembly owner, but its own70-word plane-response body has two complete returns. Status0 is not a no-write result; no normalized plane, physical reflection model or unit conversion is assumed.",
+      "corrected_statement": "A zero-size interior ELF label owns a complete70-word two-return plane-response body inside the98-word EF04 owner. Status0 still copies all three input words to the destination; it is not a no-write outcome.",
+      "no_active_scalar_correction_claim": true,
+      "proof": [
+        {
+          "path": "build/helper_names43075.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "8004EF74",
+            "linked_extent_qualification"
+          ],
+          "file_SHA256": "e37622080ab71787f73c95274a8607f3c782ca71d055e0733e4d9e1942fb988e",
+          "selected_JSON_SHA256": "7b972c1d6b1a3d165de6ae863ab4d0343bb0ce5a6455a1111c10171b4ce62d8d"
+        }
+      ]
+    },
+    {
+      "id": "sixth-entry-scope-8004F6C4",
+      "category": "entry_extent_revision_or_scope_qualification_only",
+      "targets": [
+        "Rev0 8004F6C4",
+        "Rev1 8004F6E8"
+      ],
+      "old_sources": [
+        {
+          "path": "docs/yotd-re/manifests/euler-to-basis-matrix-runtime.json",
+          "JSON_path": [
+            "code"
+          ],
+          "original_profile_label": null,
+          "label_not_rejected_merely_for_extent_or_entry_qualification": true
+        }
+      ],
+      "superseded_inference": "The linked138-word owner includes this87-word function plus the distinct51-word RLE entry4F820. The RLE operation is not part of this name. No general Euler order, host floating-point matrix or physical scaling is added.",
+      "corrected_statement": "The function is87 words. Its138-word linked owner also contains the distinct51-word RLE entry; neither the RLE operation nor a universal real-valued Euler theorem belongs to this basis-builder name.",
+      "no_active_scalar_correction_claim": true,
+      "proof": [
+        {
+          "path": "build/helper_names43075.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "8004F6C4",
+            "linked_extent_qualification"
+          ],
+          "file_SHA256": "e37622080ab71787f73c95274a8607f3c782ca71d055e0733e4d9e1942fb988e",
+          "selected_JSON_SHA256": "78330ff7b18ddd7b6a57afefe6515ccaa24105fe3e0905395d0dd4fdc820ef91"
+        }
+      ]
+    },
+    {
+      "id": "sixth-entry-scope-800584BC",
+      "category": "entry_extent_revision_or_scope_qualification_only",
+      "targets": [
+        "Rev0 800584BC",
+        "Rev1 8005854C"
+      ],
+      "old_sources": [
+        {
+          "path": "docs/yotd-re/evidence-tests/level-entry-bootstrap-live-source.json",
+          "JSON_path": [
+            "complete_additional_original_bodies",
+            0
+          ],
+          "original_profile_label": "level_entry_bootstrap",
+          "label_not_rejected_merely_for_extent_or_entry_qualification": true
+        }
+      ],
+      "superseded_inference": "Actual revisions differ: Rev0 has175 physical words, Rev1 has165, including a changed initial gate/latch block. The old128-word Rev1 profile is a reachable CFG subset, not the whole physical body. No all-revision opcode equivalence, source admission or callee result is invented.",
+      "corrected_statement": "Rev0 physical warp-preparation body has175 words, Rev1 has165; the old128-word Rev1 CFG profile is a reachable subset. Initial gate/latch differences are genuine; warp preparation is not completed synchronous loading.",
+      "no_active_scalar_correction_claim": true,
+      "proof": [
+        {
+          "path": "build/helper_names43075.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "800584BC",
+            "linked_extent_qualification"
+          ],
+          "file_SHA256": "e37622080ab71787f73c95274a8607f3c782ca71d055e0733e4d9e1942fb988e",
+          "selected_JSON_SHA256": "43e06d67f24520f38a0fd6c6f76ec8e71e5458fcd59eb208f90dd095eae4264f"
+        }
+      ]
+    },
+    {
+      "id": "sixth-entry-scope-80053F50",
+      "category": "entry_extent_revision_or_scope_qualification_only",
+      "targets": [
+        "Rev0 80053F50",
+        "Rev1 80053FD0"
+      ],
+      "old_sources": [
+        {
+          "path": "docs/yotd-re/manifests/full-level-load-portal-runtime.json",
+          "JSON_path": [
+            "code",
+            "portal_owner"
+          ],
+          "original_profile_label": "portal-transition-owner",
+          "label_not_rejected_merely_for_extent_or_entry_qualification": true
+        }
+      ],
+      "superseded_inference": "Rev1 has324 words and additionally clearsE2B0 and calls595F4(341) near its tail. These are explicit real revision-specific operations, not borrowed Rev0 behavior. Helper results, portal indices, progression meanings, geometry domains and later load completion remain bounded by existing source.",
+      "corrected_statement": "Rev0 portal preparation has320 words; Rev1 has324 and additionally clearsE2B0 and calls595F4(341). Those explicit revision-specific operations must not be silently shared or removed.",
+      "no_active_scalar_correction_claim": true,
+      "proof": [
+        {
+          "path": "build/helper_names43075.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "80053F50",
+            "linked_extent_qualification"
+          ],
+          "file_SHA256": "e37622080ab71787f73c95274a8607f3c782ca71d055e0733e4d9e1942fb988e",
+          "selected_JSON_SHA256": "9e7ef7e0724ebfe5ad91cc5b1a25fd19fd0cae414c16bb2fbdee28acbb1f4c6d"
+        }
+      ]
+    },
+    {
+      "id": "sixth-entry-scope-8005F35C",
+      "category": "entry_extent_revision_or_scope_qualification_only",
+      "targets": [
+        "Rev0 8005F35C",
+        "Rev1 8005F3F4"
+      ],
+      "old_sources": [
+        {
+          "path": "docs/yotd-re/evidence-tests/crawdad-render-basis-source.json",
+          "JSON_path": [
+            "complete_original_source_rows",
+            1
+          ],
+          "original_profile_label": null,
+          "label_not_rejected_merely_for_extent_or_entry_qualification": true
+        }
+      ],
+      "superseded_inference": "67 executable words plus one original trailing NOP padding, not68 executed words. Packed GTE/Q12 arithmetic with source saturation and aliases is retained; this is not a host general-purpose matrix multiply.",
+      "corrected_statement": "The packed GTE matrix multiply has67 executable words plus one padding NOP. It retains SF1 MVMVA/IR saturation and packing/store order, not a general host matrix arithmetic contract.",
+      "no_active_scalar_correction_claim": true,
+      "proof": [
+        {
+          "path": "build/helper_names43075.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "8005F35C",
+            "linked_extent_qualification"
+          ],
+          "file_SHA256": "e37622080ab71787f73c95274a8607f3c782ca71d055e0733e4d9e1942fb988e",
+          "selected_JSON_SHA256": "8aa1e461a2e89d7e111a0ed24273bf4cf68e833f88f6134ee94e6f84c3994a08"
+        }
+      ]
+    },
+    {
+      "id": "sixth-entry-scope-8005F5FC",
+      "category": "entry_extent_revision_or_scope_qualification_only",
+      "targets": [
+        "Rev0 8005F5FC",
+        "Rev1 8005F694"
+      ],
+      "old_sources": [
+        {
+          "path": "docs/yotd-re/evidence-tests/spu-diagnostic-live-source.json",
+          "JSON_path": [
+            "original_bodies",
+            0
+          ],
+          "original_profile_label": "diagnostic_variadic_wrapper",
+          "label_not_rejected_merely_for_extent_or_entry_qualification": true
+        }
+      ],
+      "superseded_inference": "Rev0 ELF size16 includes one trailing padding NOP; Rev1 selected function has15 words and immediately precedes another real entry. Name the numeric formatted-output wrapper, not an audio/geometry operation or a particular output message.",
+      "corrected_statement": "The variadic formatted-output wrapper has15 executable words plus one Rev0 linked padding NOP. Its real formatter/output callback and result remain dependencies, not an audio or geometry meaning.",
+      "no_active_scalar_correction_claim": true,
+      "proof": [
+        {
+          "path": "build/helper_names43075.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "8005F5FC",
+            "linked_extent_qualification"
+          ],
+          "file_SHA256": "e37622080ab71787f73c95274a8607f3c782ca71d055e0733e4d9e1942fb988e",
+          "selected_JSON_SHA256": "1843c0870d0041bada4dd0bfcc71e28a12b493a0ae64616b234de0fd202436b2"
+        }
+      ]
+    },
+    {
+      "id": "sixth-entry-scope-80064A2C",
+      "category": "entry_extent_revision_or_scope_qualification_only",
+      "targets": [
+        "Rev0 80064A2C",
+        "Rev1 80064AC4"
+      ],
+      "old_sources": [
+        {
+          "path": "docs/yotd-re/evidence-tests/spu-transfer-original-source.json",
+          "JSON_path": [
+            "original_bodies",
+            8
+          ],
+          "original_profile_label": "dma_address",
+          "label_not_rejected_merely_for_extent_or_entry_qualification": true
+        }
+      ],
+      "superseded_inference": "Zero-size entry is inside the36-word649FC assembly owner after three veneers. Its own body is23 words plus one padding NOP. Numeric SPU transfer-byte address and source-selected units only; no transfer completion or playback semantics inferred.",
+      "corrected_statement": "This23-word address setter plus one padding NOP is a zero-size interior entry inside the36-word649FC owner. Its actual wrapped range gate, returned halfword/shift and normalizer remain source-defined; no transfer completion is proved.",
+      "no_active_scalar_correction_claim": true,
+      "proof": [
+        {
+          "path": "build/helper_names43075.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "80064A2C",
+            "linked_extent_qualification"
+          ],
+          "file_SHA256": "e37622080ab71787f73c95274a8607f3c782ca71d055e0733e4d9e1942fb988e",
+          "selected_JSON_SHA256": "ef5603fd22bc0191e66196559c3b6a1cfaf28ea06a63d8cf3422465a5c7419e3"
+        }
+      ]
+    },
+    {
+      "id": "sixth-entry-scope-80064A8C",
+      "category": "entry_extent_revision_or_scope_qualification_only",
+      "targets": [
+        "Rev0 80064A8C",
+        "Rev1 80064B24"
+      ],
+      "old_sources": [
+        {
+          "path": "docs/yotd-re/evidence-tests/spu-transfer-original-source.json",
+          "JSON_path": [
+            "original_bodies",
+            9
+          ],
+          "original_profile_label": "dma_write",
+          "label_not_rejected_merely_for_extent_or_entry_qualification": true
+        }
+      ],
+      "superseded_inference": "23 function words plus one padding NOP. This wrapper does not manufacture DMA duration, payload, callback dispatch, hardware acknowledgement or completion.",
+      "corrected_statement": "This23-word write wrapper plus one padding NOP caps the unsigned count and calls the real coordinator; its callback-dependent completion-shadow write is not DMA duration, payload validity or completed hardware transfer.",
+      "no_active_scalar_correction_claim": true,
+      "proof": [
+        {
+          "path": "build/helper_names43075.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "80064A8C",
+            "linked_extent_qualification"
+          ],
+          "file_SHA256": "e37622080ab71787f73c95274a8607f3c782ca71d055e0733e4d9e1942fb988e",
+          "selected_JSON_SHA256": "17d7c3d07c187c05cee6c24ab1645035df3ef0a39554abea6769f992a6f01cfb"
+        }
+      ]
+    },
+    {
+      "id": "sixth-entry-scope-80064AEC",
+      "category": "entry_extent_revision_or_scope_qualification_only",
+      "targets": [
+        "Rev0 80064AEC",
+        "Rev1 80064B84"
+      ],
+      "old_sources": [
+        {
+          "path": "docs/yotd-re/evidence-tests/spu-transfer-original-source.json",
+          "JSON_path": [
+            "original_bodies",
+            10
+          ],
+          "original_profile_label": "dma_control",
+          "label_not_rejected_merely_for_extent_or_entry_qualification": true
+        }
+      ],
+      "superseded_inference": "41 executable words and three original trailing NOPs. Event arrival, live dispatch-table target, IRQ timing and callbacks remain actual external/callee inputs; no generic ready or audio state is invented.",
+      "corrected_statement": "The completion checker has41 executable words plus three padding NOPs. It preserves exact busy/cache1 tests, actual event-test results and possibly unbounded mode1 wait; it supplies no event arrival or generic ready status.",
+      "no_active_scalar_correction_claim": true,
+      "proof": [
+        {
+          "path": "build/helper_names43075.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "80064AEC",
+            "linked_extent_qualification"
+          ],
+          "file_SHA256": "e37622080ab71787f73c95274a8607f3c782ca71d055e0733e4d9e1942fb988e",
+          "selected_JSON_SHA256": "d7ca62ca9a477e3ebf49f226c56777f7e52bb02791c3b17d55d6fdb2aba3403e"
+        }
+      ]
+    },
+    {
+      "id": "sixth-entry-scope-80030258",
+      "category": "entry_extent_revision_or_scope_qualification_only",
+      "targets": [
+        "Rev0 80030258",
+        "Rev1 8003027C"
+      ],
+      "old_sources": [
+        {
+          "path": "docs/yotd-re/manifests/dynamic-mesh-screen-remap-runtime.json",
+          "JSON_path": [
+            "code",
+            "functions",
+            1
+          ],
+          "original_profile_label": "primitive-list-screen-remapper",
+          "label_not_rejected_merely_for_extent_or_entry_qualification": true
+        },
+        {
+          "path": "docs/yotd-re/manifests/dynamic-mesh-screen-remap-runtime.json",
+          "JSON_path": [
+            "code",
+            "functions",
+            2
+          ],
+          "original_profile_label": "packed-screen-coordinate-remapper",
+          "label_not_rejected_merely_for_extent_or_entry_qualification": true
+        }
+      ],
+      "superseded_inference": "The linked77-word owner combines this53-word wrapper and the separate24-word3032C leaf. No packet-bound guard, projection scale, visual effect name or universally safe phase is inferred; real signed traps, division, list aliases and terminal reads remain.",
+      "corrected_statement": "The77-word linked owner contains the53-word primitive-list wrapper and the separate24-word packed-coordinate leaf. Preserve actual terminal tag read, packet tags/strides, aliases and traps; no general projection/visual-effect contract follows.",
+      "no_active_scalar_correction_claim": true,
+      "proof": [
+        {
+          "path": "build/helper_names43075.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "80030258",
+            "linked_extent_qualification"
+          ],
+          "file_SHA256": "e37622080ab71787f73c95274a8607f3c782ca71d055e0733e4d9e1942fb988e",
+          "selected_JSON_SHA256": "666d5eb8aa0f692d032b134c171b52b22d17e5658cea7c5ee206212b68c46aac"
+        }
+      ]
+    },
+    {
+      "id": "sixth-entry-scope-8004F6B4",
+      "category": "entry_extent_revision_or_scope_qualification_only",
+      "targets": [
+        "Rev0 8004F6B4",
+        "Rev1 8004F6D8"
+      ],
+      "old_sources": [
+        {
+          "path": "docs/yotd-re/manifests/geometry-conversion-helpers-runtime.json",
+          "JSON_path": [
+            "code",
+            "functions",
+            10
+          ],
+          "original_profile_label": "kernel-register-jump-stub",
+          "label_not_rejected_merely_for_extent_or_entry_qualification": true
+        },
+        {
+          "path": "docs/yotd-re/manifests/geometry-conversion-helpers-runtime.json",
+          "JSON_path": [
+            "code",
+            "functions",
+            11
+          ],
+          "original_profile_label": "constant-register-stub",
+          "label_not_rejected_merely_for_extent_or_entry_qualification": true
+        }
+      ],
+      "superseded_inference": "The Rev1 entryF6D8 is also the preceding kernel-jump profile delay slot; the existing3-word constant profile begins atF6DC and has caller-providedAT instead. These entry contracts are distinct. No invocation, exception timing or BIOS recovery result is inferred.",
+      "corrected_statement": "A normal entry at Rev0 F6B4 / Rev1 F6D8 executes LUIAT4000,LUIV04000,JRRA,ADDAT,AT,V0; signed addition overflows in JR's delay. The three-word profile at Rev1 F6DC has caller-providedAT and is a distinct entry contract, not proof that the four-word entry successfully returns a constant.",
+      "no_active_scalar_correction_claim": true,
+      "proof": [
+        {
+          "path": "build/helper_names43075.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "8004F6B4",
+            "linked_extent_qualification"
+          ],
+          "file_SHA256": "e37622080ab71787f73c95274a8607f3c782ca71d055e0733e4d9e1942fb988e",
+          "selected_JSON_SHA256": "2ad927148055b007c798f8de15021ffb7eaa83e310405775179fdfc80a7eb034"
+        }
+      ]
+    },
+    {
+      "id": "clear-leaf-release-scope",
+      "category": "operation_scope_qualification_only",
+      "targets": [
+        "Rev0 800509E8 / Rev1 80050A0C",
+        "Rev0 80050B88 / Rev1 80050BAC"
+      ],
+      "old_sources": [
+        {
+          "path": "tools/yotd_re/trail_effect_pools_runtime.py",
+          "selector": "FUNCTIONS[1]/[4]"
+        },
+        {
+          "path": "docs/yotd-re/manifests/trail-effect-pools-runtime.json",
+          "selector": "code.functions[1]/[4]"
+        }
+      ],
+      "old_role_labels": [
+        "trail-history-release",
+        "eight-slot-effect-release"
+      ],
+      "corrected_statement": "Both own bodies are identical JRRA plus SWzero(A0) in its delay. Their distinct counterparts/family roles follow the exact211-word neighboring source join. Release labels do not prove an exclusive pool pointer, whole-record clearing, deallocation or lifetime closure.",
+      "no_active_scalar_correction_claim": true,
+      "proof": [
+        {
+          "path": "build/helper_names43196.authority-ledger.json",
+          "JSON_path": [
+            "exact_duplicate_leaf_family_join"
+          ],
+          "file_SHA256": "ed6897bbf117f8a4ecf6287098266c257836a5a01b374eec78d09f98634de7b3",
+          "selected_JSON_SHA256": "2fe994f6880baf1460231293e91ed20d27d2c946c9d1a573f157d9f9276f7d04"
+        },
+        {
+          "path": "build/helper_names43196.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "800509E8"
+          ],
+          "file_SHA256": "ed6897bbf117f8a4ecf6287098266c257836a5a01b374eec78d09f98634de7b3",
+          "selected_JSON_SHA256": "18e45c929fe8176f233c53b573945629981f63086f50045a6d353fe8107cd217"
+        },
+        {
+          "path": "build/helper_names43196.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "80050B88"
+          ],
+          "file_SHA256": "ed6897bbf117f8a4ecf6287098266c257836a5a01b374eec78d09f98634de7b3",
+          "selected_JSON_SHA256": "211d29ca331df42807355b3cc31233269b796631b7c0726ad86377647c23f33f"
+        }
+      ]
+    },
+    {
+      "id": "cold-reset-composition-scope",
+      "category": "operation_scope_qualification_only",
+      "targets": [
+        "Rev0 8002AE00",
+        "Rev1 8002AE24"
+      ],
+      "old_sources": [
+        {
+          "path": "tools/yotd_re/packed_resource_relocation_runtime.py",
+          "selector": "PACKED_RESOURCE_RELOCATION_FUNCTIONS[0].name"
+        },
+        {
+          "path": "docs/yotd-re/manifests/packed-resource-relocation-runtime.json",
+          "JSON_path": [
+            "code",
+            "functions",
+            0,
+            "name"
+          ]
+        }
+      ],
+      "old_role_labels": [
+        "cold-resource-reset"
+      ],
+      "corrected_statement": "The actual wrapper requests the staged resource/arena rebase, writes\u22121 to its exact index word, and executes the selected player runtime reset. It does not itself zero all cold state or guarantee successful load, device results, memory separation or a natural transition history.",
+      "no_active_scalar_correction_claim": true,
+      "proof": [
+        {
+          "path": "build/helper_names43197.authority-ledger.json",
+          "JSON_path": [
+            "original_authority",
+            "8002AE00"
+          ],
+          "file_SHA256": "54690a4287ab025f9f3a052ecbcc04b03e578eb0752b32edcddb10e7bb8e132b",
+          "selected_JSON_SHA256": "e5df910434b9b7f0d667eefa22a1644f3d87d910d67f551200e97e463326b3bf"
+        }
+      ]
+    }
+  ],
+  "new_source_backed_qualifications": 18,
+  "new_active_decoder_formula_corrections": 0,
+  "active_decoder_formula_corrections_in_continuation": 2,
+  "scalar_correction_details": [
+    {
+      "id": "bounded-counter-source-width",
+      "category": "applied_scalar_behavior_correction",
+      "active_model": "tools/yotd_re/bounded_counter_runtime.py::clamp_counter_source",
+      "old_formula": "min(max(source_value,0),maximum)",
+      "corrected_statement": "Interpret the source as signed32; replace negative with0; take its low16; cap against the unsigned16 maximum. This is the already-read, nonnull scalar path, not a fabricated null-source or smoothing result.",
+      "falsifying_vectors": [
+        {
+          "source_word": 65536,
+          "maximum_halfword": 100,
+          "old_result": 100,
+          "native_corrected_result": 0
+        }
+      ],
+      "verification": "Six unchanged plus four new tests pass;840 original-word cases.39/43 available own words execute; smoothing stops at actual279B0 and the four post-helper epilogue words remain unexecuted.",
+      "preserved_history": [
+        "build/bounded_counter43193.before",
+        "docs/yotd-re/manifests/bounded-counter-runtime.json"
+      ],
+      "old_manifest_status": "Historical formula prose is superseded by this source-width proof; bytes and original six tests remain unchanged.",
+      "proof": [
+        {
+          "path": "docs/yotd-re/evidence-tests/bounded-counter-source-width-validation.json",
+          "JSON_path": [],
+          "file_SHA256": "c6448f3f0b8cf5e43ab99472db9f0ab962a83020237d6f4ed950a6bd47e6f346",
+          "selected_JSON_SHA256": "209d192c8639f92baab675a78ff4edca3d57791100e26e0b79733c878792bc2b"
+        },
+        {
+          "path": "build/bounded_counter43195.applied-ready.json",
+          "JSON_path": [],
+          "file_SHA256": "e57c1f807e9cbc53ec26e91fae2cd6bbed85dbbbde274804967b3a843978ecc7",
+          "selected_JSON_SHA256": "6e33a836351f2f94f5f0e71a9009488cce84b7c7c5418442a9784e830311a384"
+        }
+      ]
+    },
+    {
+      "id": "retry-exemption-native-ten-times-trunc",
+      "category": "applied_scalar_behavior_correction",
+      "active_model": "tools/yotd_re/player_death_respawn_controller_runtime.py",
+      "old_formula": "6*(level_id//10)==level_id-8",
+      "corrected_statement": "For the original signed32 input word, obtain q by signed division10 toward zero; execute the native low32 shift/add/shift producing10*q; compare against the exact32-bit level\u22128 word. Preserve actual arithmetic and branch domains.",
+      "falsifying_vectors": [
+        {
+          "level_id": 18,
+          "old_exempt": false,
+          "native_corrected_exempt": true
+        },
+        {
+          "level_id": 14,
+          "old_exempt": true,
+          "native_corrected_exempt": false
+        }
+      ],
+      "verification": "118 signed source selectors/1888 original instructions and12 focused/local/adjacent tests pass, including retained level30 and46 routes. The missing-MFHI reference failure43072 remains preserved.",
+      "preserved_history": [
+        "build/retry43070/before.zip",
+        "docs/yotd-re/manifests/player-death-respawn-controller-runtime.json",
+        "docs/yotd-re/manifests/sleepy-head-encounter-runtime.json",
+        "docs/yotd-re/manifests/sorceress-lair-sfx-retry-runtime.json"
+      ],
+      "old_manifest_status": "Historical6*floor renderer prose is superseded by43073; manifests/old receipts remain immutable and current runtime/native/browser admission scope is not expanded.",
+      "proof": [
+        {
+          "path": "build/retry43073.corrected-ready.json",
+          "JSON_path": [],
+          "file_SHA256": "2ebcc6b79abb3680cb56c5fae15dd77807f0cb3731c7b95f049509be31ab67d4",
+          "selected_JSON_SHA256": "908c180b66a0b6d165496021fec1a42d96fa37beafcc3b3f47ea4e13a450d7ba"
+        },
+        {
+          "path": "docs/yotd-re/evidence-tests/player-retry-exemption-source.json",
+          "JSON_path": [],
+          "file_SHA256": "964e6c4e0798713cc9d21ac720ad564e4b3ada2e11493f53b72ee72cf750c1b7",
+          "selected_JSON_SHA256": "385d31920ae24d4fc3f1b5cb0a376b47dddcdab60bf9f84a24e6eac7d9cad0e0"
+        }
+      ]
+    }
+  ],
+  "immutable_legacy_reports_changed": false,
+  "native_and_browser_behavior_changed": false,
+  "whole_game_semantic_decode_complete": false,
+  "dependencies": {
+    "docs/yotd-re/manifests/semantic-corrections-43466.json": "f6d37fb1a5fb5d8c7e1bbd561c13138ec6a8df52d6c8a1c0ef61990bbc4dd034",
+    "build/helper_corrections43198.json-ready-list.json": "b0a3d37a59493765d488cdbe4d010dd074cea1df819e748844f910e11cf8d0e5",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\audit_helper_corrections43198.py": "f2ac2a2e3364b91c3ac40a51545ce052a60ebc6e47d083706aad51d9eecaf703",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\evidence-tests\\bounded-counter-source-width-validation.json": "c6448f3f0b8cf5e43ab99472db9f0ab962a83020237d6f4ed950a6bd47e6f346",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\retry43073.corrected-ready.json": "2ebcc6b79abb3680cb56c5fae15dd77807f0cb3731c7b95f049509be31ab67d4",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\bounded_counter43195.applied-ready.json": "e57c1f807e9cbc53ec26e91fae2cd6bbed85dbbbde274804967b3a843978ecc7",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\evidence-tests\\player-retry-exemption-source.json": "964e6c4e0798713cc9d21ac720ad564e4b3ada2e11493f53b72ee72cf750c1b7",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\helper_names43196.authority-ledger.json": "ed6897bbf117f8a4ecf6287098266c257836a5a01b374eec78d09f98634de7b3",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\helper_names43197.authority-ledger.json": "54690a4287ab025f9f3a052ecbcc04b03e578eb0752b32edcddb10e7bb8e132b",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\helper_names43582.authority-ledger.json": "9f9f5302b7a8082e1a76a04426a07fbd25ad63312c9c6b2e0c81fefe86514d04",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\spu_names43063.authority-ledger.json": "ae90e1448cb987bf9b2d7c09acb3f080ea249228d30f07bf601b8a8ffa92a130",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\helper_names43075.authority-ledger.json": "e37622080ab71787f73c95274a8607f3c782ca71d055e0733e4d9e1942fb988e",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\manifests\\gte-vector-geometry-runtime.json": "68f30ab1ab09b6bb3ba15c676fafa4bd363307e78dafd5a422c9602f73f251df",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\manifests\\euler-to-basis-matrix-runtime.json": "0d963b8633128893ba0216228a0b97f36339cfc06424bc309edc85aed6eff350",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\evidence-tests\\level-entry-bootstrap-live-source.json": "d00af1341dfaf88a62083611562be2016dcfef886f76189bd5787f15b416e047",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\manifests\\full-level-load-portal-runtime.json": "9d9549654394b3191ed868691a31cc4d33d09a496b76536eb08356a95caba580",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\evidence-tests\\crawdad-render-basis-source.json": "af10517c8e5ff6c9f0fc09f36e88f72b94ed1c379f892d8bba23672781a64467",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\evidence-tests\\spu-diagnostic-live-source.json": "d2dd06fa3a9144b697d0526e43075e22b16af2a024ba591bd1202750bb3ca158",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\evidence-tests\\spu-transfer-original-source.json": "3503f0265913d09df21efa3358e7529595e7e7ad976a0501c680e6baf29093e6",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\manifests\\dynamic-mesh-screen-remap-runtime.json": "adf553f5aba0197e9a1ba19a30b64f31007adf177d4ae39a431e996fbaa7e341",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\manifests\\geometry-conversion-helpers-runtime.json": "5171194aae8270550c235f04b7989dfb688109e612a709c37c85a131be281a4b",
+    "build/helper_names43196.authority-ledger.json": "ed6897bbf117f8a4ecf6287098266c257836a5a01b374eec78d09f98634de7b3",
+    "build/spu_names43063.authority-ledger.json": "ae90e1448cb987bf9b2d7c09acb3f080ea249228d30f07bf601b8a8ffa92a130",
+    "build/helper_names43197.authority-ledger.json": "54690a4287ab025f9f3a052ecbcc04b03e578eb0752b32edcddb10e7bb8e132b",
+    "build/helper_names43582.authority-ledger.json": "9f9f5302b7a8082e1a76a04426a07fbd25ad63312c9c6b2e0c81fefe86514d04",
+    "build/helper_names43075.authority-ledger.json": "e37622080ab71787f73c95274a8607f3c782ca71d055e0733e4d9e1942fb988e",
+    "docs/yotd-re/evidence-tests/bounded-counter-source-width-validation.json": "c6448f3f0b8cf5e43ab99472db9f0ab962a83020237d6f4ed950a6bd47e6f346",
+    "build/bounded_counter43195.applied-ready.json": "e57c1f807e9cbc53ec26e91fae2cd6bbed85dbbbde274804967b3a843978ecc7",
+    "build/retry43073.corrected-ready.json": "2ebcc6b79abb3680cb56c5fae15dd77807f0cb3731c7b95f049509be31ab67d4",
+    "docs/yotd-re/evidence-tests/player-retry-exemption-source.json": "964e6c4e0798713cc9d21ac720ad564e4b3ada2e11493f53b72ee72cf750c1b7"
+  }
+}

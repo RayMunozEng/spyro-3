@@ -30,10 +30,10 @@
  * target, selector/data word and full EXE/every-overlay retail hash.
  * Binary identity does not establish synchronized runtime/system completion. */
 #define Physics21Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Physics21Call363DCView1() __asm__("func_800363DC");
-unsigned char Physics21Call40D10View1() __asm__("func_80040D10");
-unsigned char Physics21Call41580View1() __asm__("func_80041580");
-unsigned char Physics21Call416F4View1() __asm__("func_800416F4");
+int Physics21RandSignedBetweenView1() __asm__("func_800363DC");
+unsigned char Physics21UpdatePlayerGroundInputTargetsView1() __asm__("func_80040D10");
+unsigned char Physics21ApproachPlayerTargetHeadingView1() __asm__("func_80041580");
+unsigned char Physics21BlendPlayerHeadingFromInputVectorView1() __asm__("func_800416F4");
 int Physics21MeasureVectorLengthView1() __asm__("func_8004EDE8");
 unsigned char Physics21ScaleVectorRatioQ15View1() __asm__("func_8004F08C");
 unsigned char Physics21ClearVectorView1() __asm__("func_8004F168");
@@ -46,12 +46,12 @@ extern int Physics21Data6E044View1 __asm__("D_8006E044");
 extern unsigned char Physics21Data6E548View1 __asm__("D_8006E548");
 extern unsigned char Physics21Player0View1 __asm__("D_80070328");
 extern void* (*Controller88028_SpawnParticle)() __asm__("SpawnParticle");
-int Physics21Call40F48View1() __asm__("func_80040F48");
-int Physics21Call410F8View1() __asm__("func_800410F8");
-int Physics21Call41404View1() __asm__("func_80041404");
-int Physics21Call417FCView1() __asm__("func_800417FC");
-int Physics21Call41848View1() __asm__("func_80041848");
-int Physics21Call41B64View1() __asm__("func_80041B64");
+int Physics21BuildOrientedInputPairView1() __asm__("func_80040F48");
+int Physics21UpdateSmoothedInputPairView1() __asm__("func_800410F8");
+int Physics21ApplyPlayerRotationStepView1() __asm__("func_80041404");
+int Physics21ApproachPlayerTargetSpeedView1() __asm__("func_800417FC");
+int Physics21BuildPlayerMovementVectorView1() __asm__("func_80041848");
+int Physics21BuildPlayerResponseVectorView1() __asm__("func_80041B64");
 int Physics21InterpolateSineView1() __asm__("func_8004E9E4");
 int Physics21InterpolateCosineView1() __asm__("func_8004EA2C");
 int Physics21AddVectorView2() __asm__("func_8004F194");
@@ -92,12 +92,12 @@ extern unsigned char Physics21Player0View2 __asm__("D_80070328");
 extern void* (*Physics34_SpawnParticle)() __asm__("SpawnParticle");
 extern int Physics21Player16CView1 __asm__("D_80070328+0x16C");
 extern void* (*Physics12_SpawnParticle)() __asm__("SpawnParticle");
-int Physics21Call40D10View2() __asm__("func_80040D10");
-int Physics21Call410F8View2() __asm__("func_800410F8");
-int Physics21Call41580View2() __asm__("func_80041580");
-int Physics21Call417FCView2() __asm__("func_800417FC");
-int Physics21Call41848View2() __asm__("func_80041848");
-int Physics21Call41B64View2() __asm__("func_80041B64");
+int Physics21UpdatePlayerGroundInputTargetsView2() __asm__("func_80040D10");
+int Physics21UpdateSmoothedInputPairView2() __asm__("func_800410F8");
+int Physics21ApproachPlayerTargetHeadingView2() __asm__("func_80041580");
+int Physics21ApproachPlayerTargetSpeedView2() __asm__("func_800417FC");
+int Physics21BuildPlayerMovementVectorView2() __asm__("func_80041848");
+int Physics21BuildPlayerResponseVectorView2() __asm__("func_80041B64");
 int Physics21InterpolateSineView2() __asm__("func_8004E9E4");
 int Physics21InterpolateCosineView2() __asm__("func_8004EA2C");
 int Physics21TransformVectorByBasisView1() __asm__("func_8004ED6C");
@@ -192,9 +192,9 @@ void func_level_21_8008B0BC(int slotIndex) {
             Physics21ClearVectorView1(globalVector80);
             Physics21ClearVectorView1(globalVector80 + 0xC);
             if (Physics21Data6E044View1 != 7) {
-                Physics21Call40D10View1(0x1200);
-                Physics21Call416F4View1();
-                Physics21Call41580View1(0x5A, 0x10);
+                Physics21UpdatePlayerGroundInputTargetsView1(0x1200);
+                Physics21BlendPlayerHeadingFromInputVectorView1();
+                Physics21ApproachPlayerTargetHeadingView1(0x5A, 0x10);
                 return;
             }
             return;
@@ -217,14 +217,14 @@ void func_level_21_8008B0BC(int slotIndex) {
             workWord2 = 7;
             call4 = (void*)50;
             if (workWord3 != workWord2) {
-                Physics21Call40D10View2(4608);
+                Physics21UpdatePlayerGroundInputTargetsView2(4608);
                 call4 = (void*)50;
             } else {
                 workWord2 = Physics21Player64View1;
                 Physics21PlayerACView1 = 0;
                 Physics21PlayerA4View1 = workWord2;
             }
-            Physics21Call41580View2(call4, 10);
+            Physics21ApproachPlayerTargetHeadingView2(call4, 10);
             workWord3 = 0x38E30000;
             MATCHING_KEEP(workWord3);
             pointer16 = &Physics21PlayerACView1;
@@ -479,7 +479,7 @@ void func_level_21_8008B0BC(int slotIndex) {
             workWord2 = workWord2 < -8960;
             goto clamp19;
         case 25:
-            Physics21Call40F48View1(&originalFrame.sp40, 1);
+            Physics21BuildOrientedInputPairView1(&originalFrame.sp40, 1);
             workWord2 = originalFrame.sp40;
             call4 = &Physics21PlayerA8View1;
             workWord2 >>= 1;
@@ -496,8 +496,8 @@ void func_level_21_8008B0BC(int slotIndex) {
                 Physics21Field(call4, int*, 0) = workWord2;
             }
             call4 = (void*)Physics21Field(call4, int*, 0);
-            Physics21Call41404View1(call4);
-            Physics21Call417FCView1(576, 384);
+            Physics21ApplyPlayerRotationStepView1(call4);
+            Physics21ApproachPlayerTargetSpeedView1(576, 384);
             workWord2 = Physics21InterpolateCosineView1(Physics21Player64View1);
             workWord3 = Physics21PlayerB0View1;
             lowProduct0 = workWord3 * workWord2;
@@ -513,7 +513,7 @@ void func_level_21_8008B0BC(int slotIndex) {
             workWord2 = lowProduct1 >> 12;
             MATCHING_KEEP(workWord2);
             Physics21Player84View1 = workWord2;
-            Physics21Call41B64View1();
+            Physics21BuildPlayerResponseVectorView1();
             workWord2 = Physics21Player144View1;
             workWord2 += 12;
             Physics21Player144View1 = workWord2;
@@ -585,9 +585,9 @@ void func_level_21_8008B0BC(int slotIndex) {
                 originalFrame.sp5C = 0;
                 originalFrame.sp60 = 0xE;
                 Physics21CopyVectorView1(&originalFrame.sp68, call5 - 148);
-                originalFrame.sp68 += Physics21Call363DCView1(0, 0x12C);
-                originalFrame.sp6C += Physics21Call363DCView1(0, 0x12C);
-                originalFrame.sp70 += Physics21Call363DCView1(0, 0x12C);
+                originalFrame.sp68 += Physics21RandSignedBetweenView1(0, 0x12C);
+                originalFrame.sp6C += Physics21RandSignedBetweenView1(0, 0x12C);
+                originalFrame.sp70 += Physics21RandSignedBetweenView1(0, 0x12C);
                 temp_v0_7 =
                     Controller88028_SpawnParticle(1, 0xD, &originalFrame.sp68, &originalFrame.sp58);
                 Physics21Field(temp_v0_7, signed char*, 2) = 6;
@@ -597,7 +597,7 @@ void func_level_21_8008B0BC(int slotIndex) {
         case 38: {
             register int numeric4 __asm__("$4");
             register int numeric5 __asm__("$5");
-            Physics21Call410F8View1(&originalFrame.sp58, &Physics21Player14CView1, 0);
+            Physics21UpdateSmoothedInputPairView1(&originalFrame.sp58, &Physics21Player14CView1, 0);
             workWord3 = Physics21Player60View1;
             workWord2 = workWord3 + 800;
             workWord2 = (unsigned int)workWord2 < 1825;
@@ -655,12 +655,12 @@ void func_level_21_8008B0BC(int slotIndex) {
             workWord3 = Physics21Player4CView1;
             workWord2 = 2;
             if (workWord3 == workWord2) {
-                Physics21Call417FCView1(320, 192);
+                Physics21ApproachPlayerTargetSpeedView1(320, 192);
                 workWord2 = Physics21PlayerB0View1 < 6145;
                 if (workWord2)
                     Physics21Player4CView1 = 0;
             } else
-                Physics21Call417FCView1(320, 80);
+                Physics21ApproachPlayerTargetSpeedView1(320, 80);
             globalFieldA4Pointer = &Physics21Player60View1;
             MATCHING_KEEP(globalFieldA4Pointer);
             workWord2 =
@@ -698,7 +698,7 @@ void func_level_21_8008B0BC(int slotIndex) {
                 workWord2 = 768;
                 Physics21Player5CView1 = workWord2;
             }
-            Physics21Call41848View1(numeric4, numeric5);
+            Physics21BuildPlayerMovementVectorView1(numeric4, numeric5);
             goto block_188;
         }
         case 40: {
@@ -711,7 +711,7 @@ void func_level_21_8008B0BC(int slotIndex) {
                 goto block_132;
             call5 -= 192;
             MATCHING_KEEP(workWord2);
-            Physics21Call410F8View2(call4, call5, 0);
+            Physics21UpdateSmoothedInputPairView2(call4, call5, 0);
             workWord3 = Physics21Player4CView1;
             workWord2 = 1;
             if (workWord3 == workWord2) {
@@ -766,12 +766,12 @@ void func_level_21_8008B0BC(int slotIndex) {
                 Physics21Field(&Physics21Player0View3, int*, 0xAC) = 0;
             }
             if (Physics21Field(&Physics21Player0View3, int*, 0x4C) == 2) {
-                Physics21Call417FCView2(0xC0, 0xC0);
+                Physics21ApproachPlayerTargetSpeedView2(0xC0, 0xC0);
                 if (Physics21Field(&Physics21Player0View3, int*, 0xB0) < 0xE01) {
                     Physics21Field(&Physics21Player0View3, int*, 0x4C) = 0;
                 }
             } else {
-                Physics21Call417FCView2(0xC0, 0x30);
+                Physics21ApproachPlayerTargetSpeedView2(0xC0, 0x30);
             }
             raw21_temp_s0_7 = &Physics21Player0View3 + 0x60;
             raw21_temp_a0_5 =
@@ -797,7 +797,7 @@ void func_level_21_8008B0BC(int slotIndex) {
             if (Physics21Field(&Physics21Player0View3, int*, 0x5C) >= 0x301) {
                 Physics21Field(&Physics21Player0View3, int*, 0x5C) = 0x300;
             }
-            Physics21Call41848View2(raw21_temp_a0_5, raw21_temp_a1_2);
+            Physics21BuildPlayerMovementVectorView2(raw21_temp_a0_5, raw21_temp_a1_2);
             Physics21CopyVectorView3(raw21_temp_s0_7 + 0x2C, raw21_temp_s0_7 + 0x20);
             workWord2 = Physics21CallRandView1() & 31;
             if (workWord2)
@@ -826,7 +826,8 @@ void func_level_21_8008B0BC(int slotIndex) {
             raw21_temp_s1_5 = &Physics21Player0View3 + 0x20C;
             if (!(Physics21Field(&Physics21Player0View3, int*, 0x20C) & 0x40)) {
                 if (Physics21Data6E044View2 != 7) {
-                    Physics21Call410F8View2(&originalFrame.sp68, raw21_temp_s1_5 - 0xC0, 0);
+                    Physics21UpdateSmoothedInputPairView2(&originalFrame.sp68,
+                                                          raw21_temp_s1_5 - 0xC0, 0);
                     workWord3 = originalFrame.sp68;
                     numeric4 = originalFrame.sp6C;
                     workWord2 = workWord3 * 5;
@@ -932,7 +933,7 @@ void func_level_21_8008B0BC(int slotIndex) {
         run42:
             call5 -= 192;
             MATCHING_KEEP(workWord2);
-            Physics21Call410F8View2(call4, call5, 0);
+            Physics21UpdateSmoothedInputPairView2(call4, call5, 0);
             workWord3 = Physics21Player4CView1;
             workWord2 = 1;
             if (workWord3 == workWord2) {
@@ -984,7 +985,7 @@ void func_level_21_8008B0BC(int slotIndex) {
                 Physics21Field(&Physics21Player0View3, int*, 0x60) = 0x320;
             }
             Physics21Field(&Physics21Player0View3, int*, 0xAC) = 0x1C00;
-            Physics21Call417FCView2(0x240, 0x30);
+            Physics21ApproachPlayerTargetSpeedView2(0x240, 0x30);
             raw21_temp_a0_6 =
                 (((int)(raw21_temp_s0_10 * -(Physics21InterpolateCosineView2(
                                                  Physics21Field(&Physics21Player0View3, int*, 0x60))
@@ -1009,7 +1010,7 @@ void func_level_21_8008B0BC(int slotIndex) {
             if (Physics21Field(&Physics21Player0View3, int*, 0x5C) >= 0x301) {
                 Physics21Field(&Physics21Player0View3, int*, 0x5C) = 0x300;
             }
-            Physics21Call41848View2(raw21_temp_a0_6, raw21_temp_a1_3);
+            Physics21BuildPlayerMovementVectorView2(raw21_temp_a0_6, raw21_temp_a1_3);
             Physics21CopyVectorView3(raw21_temp_s1_6 + 0x28, raw21_temp_s1_6 + 0x1C);
             if ((Physics21_SpawnParticle != 0) &&
                 (Physics21Field(&Physics21Player0View3, int*, 0xB4) >= 0x7D1)) {
@@ -1043,8 +1044,8 @@ void func_level_21_8008B0BC(int slotIndex) {
             if (workWord3 == workWord2) {
                 Physics21Field(&Physics21Player0View3, int*, 0xB0) = 0;
             } else {
-                Physics21Call40D10View2(0x980);
-                raw21_var_v0_2 = Physics21Call41580View2(0x5A, 0x10);
+                Physics21UpdatePlayerGroundInputTargetsView2(0x980);
+                raw21_var_v0_2 = Physics21ApproachPlayerTargetHeadingView2(0x5A, 0x10);
                 if (raw21_var_v0_2 < 0) {
                     raw21_var_v0_2 = -raw21_var_v0_2;
                 }
@@ -1058,12 +1059,12 @@ void func_level_21_8008B0BC(int slotIndex) {
                 } else {
                     raw21_var_a1_4 = 0x40;
                 }
-                Physics21Call417FCView2(raw21_var_a0_2, raw21_var_a1_4);
+                Physics21ApproachPlayerTargetSpeedView2(raw21_var_a0_2, raw21_var_a1_4);
             }
             raw21_temp_s0_11 = &Physics21Player0View3 + 0xB0;
             if (Physics21Field(&Physics21Player0View3, int*, 0xB0) != 0) {
-                Physics21Call41848View2();
-                Physics21Call41B64View2();
+                Physics21BuildPlayerMovementVectorView2();
+                Physics21BuildPlayerResponseVectorView2();
                 Physics21Field(&Physics21Player0View3, int*, 0x94) = 0;
             } else {
                 Physics21ClearVectorView3(raw21_temp_s0_11 - 0x30);
@@ -1149,7 +1150,7 @@ void func_level_21_8008B0BC(int slotIndex) {
             Physics21CopyVectorView3(call4, call5);
             return;
         case 61:
-            Physics21Call40F48View1(&originalFrame.spA8, 1);
+            Physics21BuildOrientedInputPairView1(&originalFrame.spA8, 1);
             workWord3 = originalFrame.spA8;
             workWord2 = workWord3 * 25;
             call4 = (void*)(workWord2 >> 7);
@@ -1188,7 +1189,7 @@ void func_level_21_8008B0BC(int slotIndex) {
             if (workWord2)
                 Physics21Field(call5, int*, 0) = (int)call4;
             call4 = (void*)Physics21PlayerA8View1;
-            Physics21Call41404View1(call4);
+            Physics21ApplyPlayerRotationStepView1(call4);
             workWord3 = Physics21Player60View1;
             workWord2 = workWord3 < 2049;
             if (!workWord2) {
@@ -1219,8 +1220,8 @@ void func_level_21_8008B0BC(int slotIndex) {
             workWord2 = Physics21Data67640View1;
             Physics21PlayerACView1 = workWord2;
         update61:
-            Physics21Call417FCView1(576, 384);
-            Physics21Call41848View1();
+            Physics21ApproachPlayerTargetSpeedView1(576, 384);
+            Physics21BuildPlayerMovementVectorView1();
             call6 = &Physics21PlayerFCView1;
             workWord2 = Physics21Field(call6, unsigned char*, 0);
             if (workWord2)
@@ -1252,18 +1253,18 @@ void func_level_21_8008B0BC(int slotIndex) {
  * Every original word, strict full TU and all retail hashes required.
  */
 extern Spyro Callback21Player __asm__("D_80070328");
-int Callback21Call80037058(int x, int y) __asm__("func_80037058");
-int Callback21Call8003BF6C(int soundId, int index) __asm__("func_8003BF6C");
-void Callback21Call80041930(void) __asm__("func_80041930");
-void Callback21Call80041AE8(void) __asm__("func_80041AE8");
-void Callback21Call80041C20(void) __asm__("func_80041C20");
-void Callback21Call80042A44(void) __asm__("func_80042A44");
-void Callback21Call80043A38(int scale) __asm__("func_80043A38");
+int Callback21SamplePlanarPhaseTable(int x, int y) __asm__("func_80037058");
+int Callback21SoundHandleMatchesIdInStates1Or2(int soundId, int index) __asm__("func_8003BF6C");
+void Callback21ProbePlayerContactSegment(void) __asm__("func_80041930");
+void Callback21CapturePlayerPlanarVectorDifference(void) __asm__("func_80041AE8");
+void Callback21UpdatePlayerCollisionResponse(void) __asm__("func_80041C20");
+void Callback21UpdatePlayerSurfaceState(void) __asm__("func_80042A44");
+void Callback21BuildNegatedNormalizedPlayerVector(int scale) __asm__("func_80043A38");
 extern int D_8006FA38, D_8006C648;
 extern int Callback21Word290 __asm__("D_80070328+0x290");
 extern unsigned char Callback21Flags[] __asm__("D_8006FCE6");
 extern unsigned char Callback21Values[] __asm__("D_8006FCF0");
-void Callback21Call80049590(void) __asm__("func_80049590");
+void Callback21MarkPlayerSegmentSurfaceType3Flags(void) __asm__("func_80049590");
 extern int Callback21Word8006E344 __asm__("D_8006E344");
 extern int Callback21Word8006E52C __asm__("D_8006E52C");
 extern int Callback21Word8006E530 __asm__("D_8006E530");
@@ -1285,13 +1286,13 @@ void func_level_21_8008CA58(void) {
         case 0x14:
             if (func_800438F4() == 0)
                 func_80043728();
-            Callback21Call80041C20();
+            Callback21UpdatePlayerCollisionResponse();
             Callback21Player.unk9a = 0;
             goto call42A44;
         case 0x20:
-            Callback21Call80041C20();
+            Callback21UpdatePlayerCollisionResponse();
         call42A44:
-            Callback21Call80042A44();
+            Callback21UpdatePlayerSurfaceState();
         clearSharedValue:
             Callback21Player.unk4[0] = 0;
             return;
@@ -1299,20 +1300,20 @@ void func_level_21_8008CA58(void) {
         case 0xB:
         case 0xC:
             func_800438F4();
-            Callback21Call80041C20();
-            Callback21Call80042A44();
-            Callback21Call80041930();
+            Callback21UpdatePlayerCollisionResponse();
+            Callback21UpdatePlayerSurfaceState();
+            Callback21ProbePlayerContactSegment();
             goto queryC00;
         case 0x13:
-            Callback21Call80041C20();
-            Callback21Call80042A44();
-            Callback21Call80041930();
+            Callback21UpdatePlayerCollisionResponse();
+            Callback21UpdatePlayerSurfaceState();
+            Callback21ProbePlayerContactSegment();
             goto clearSharedValue;
         case 0x19:
-            Callback21Call80041C20();
-            Callback21Call80042A44();
-            Callback21Call80041930();
-            Callback21Call80049590();
+            Callback21UpdatePlayerCollisionResponse();
+            Callback21UpdatePlayerSurfaceState();
+            Callback21ProbePlayerContactSegment();
+            Callback21MarkPlayerSegmentSurfaceType3Flags();
             if (Callback21Player.movementState == MOVEMENT_STATE_SUPERCHARGE && SpawnParticle != 0)
                 SpawnParticle(1, 9, 0, 0);
             if (Callback21Player.unk7a[3].z < 0 && Callback21Player.animationStateFrames >= 4)
@@ -1322,19 +1323,20 @@ void func_level_21_8008CA58(void) {
             goto clearSharedValue;
         case 0x1A:
         case 0x1D:
-            Callback21Call80041C20();
-            Callback21Call80042A44();
+            Callback21UpdatePlayerCollisionResponse();
+            Callback21UpdatePlayerSurfaceState();
         queryC00:
-            Callback21Call80043A38(0xC00);
+            Callback21BuildNegatedNormalizedPlayerVector(0xC00);
             goto clearSharedValue;
         case 0x26:
         case 0x28:
         case 0x29:
         case 0x39:
-            Callback21Call80041C20();
-            Callback21Call80042A44();
+            Callback21UpdatePlayerCollisionResponse();
+            Callback21UpdatePlayerSurfaceState();
             descriptor = &Callback21Player.unk22[2];
-            if (Callback21Call8003BF6C((int)D_8006C654->underwater, *descriptor) != 0) {
+            if (Callback21SoundHandleMatchesIdInStates1Or2((int)D_8006C654->underwater,
+                                                           *descriptor) != 0) {
                 valueOffset = *descriptor * 0x2C;
                 decreasingValue = *(int*)(Callback21Values + valueOffset);
                 {
@@ -1355,11 +1357,12 @@ void func_level_21_8008CA58(void) {
             }
             goto clearSharedValue;
         case 0x2A:
-            Callback21Call80041C20();
-            Callback21Call80042A44();
-            Callback21Call80049590();
+            Callback21UpdatePlayerCollisionResponse();
+            Callback21UpdatePlayerSurfaceState();
+            Callback21MarkPlayerSegmentSurfaceType3Flags();
             descriptor = &Callback21Player.unk22[2];
-            if (Callback21Call8003BF6C((int)D_8006C654->underwater, *descriptor) == 0) {
+            if (Callback21SoundHandleMatchesIdInStates1Or2((int)D_8006C654->underwater,
+                                                           *descriptor) == 0) {
                 descriptorResult = PlaySound((int)D_8006C654->underwater, 0, 4);
                 *descriptor = descriptorResult;
                 if (descriptorResult >= 0) {
@@ -1370,7 +1373,8 @@ void func_level_21_8008CA58(void) {
                 __asm__ volatile("" : : : "$16", "memory");
                 descriptor = &Callback21Player.unk22[2];
             }
-            if (Callback21Call8003BF6C((int)D_8006C654->underwater, *descriptor) != 0) {
+            if (Callback21SoundHandleMatchesIdInStates1Or2((int)D_8006C654->underwater,
+                                                           *descriptor) != 0) {
                 valueOffset = *descriptor * 0x2C;
                 increasingValue = *(int*)(Callback21Values + valueOffset);
                 {
@@ -1391,13 +1395,13 @@ void func_level_21_8008CA58(void) {
             goto clearSharedValue;
         case 0x2B:
         case 0x2C:
-            Callback21Call80041C20();
-            Callback21Call80042A44();
-            Callback21Call80041AE8();
+            Callback21UpdatePlayerCollisionResponse();
+            Callback21UpdatePlayerSurfaceState();
+            Callback21CapturePlayerPlanarVectorDifference();
             if ((unsigned char)Callback21Player.unk10[4] != 0) {
                 computedValue = -Callback21Player.unk9ha[4] -
-                                Callback21Call80037058(Callback21Player.position.x,
-                                                       Callback21Player.position.y);
+                                Callback21SamplePlanarPhaseTable(Callback21Player.position.x,
+                                                                 Callback21Player.position.y);
                 positionValue = Callback21Player.unk4a - computedValue;
                 Callback21Player.unk4[0] = computedValue;
                 positionDelta = (int)Callback21Player.union144.a.unk13cc >> 6;
@@ -1410,18 +1414,18 @@ void func_level_21_8008CA58(void) {
             Callback21Player.position.z = positionValue;
             return;
         case 0x3D:
-            Callback21Call80041C20();
-            Callback21Call80042A44();
-            Callback21Call80043A38(0xC00);
-            Callback21Call80049590();
+            Callback21UpdatePlayerCollisionResponse();
+            Callback21UpdatePlayerSurfaceState();
+            Callback21BuildNegatedNormalizedPlayerVector(0xC00);
+            Callback21MarkPlayerSegmentSurfaceType3Flags();
             if (SpawnParticle != 0)
                 SpawnParticle(1, 9, 0, 0);
             Callback21Word8006E530 = 120;
             Callback21Player.unk4[0] = 0;
             Callback21Word8006E52C = 4;
             if (Callback21Word8006E344 == 0 &&
-                Callback21Call8003BF6C((int)D_8006C654->supercharge, Callback21Player.unk22[2]) ==
-                    0) {
+                Callback21SoundHandleMatchesIdInStates1Or2((int)D_8006C654->supercharge,
+                                                           Callback21Player.unk22[2]) == 0) {
                 Callback21Player.unk22[2] = PlaySound((int)D_8006C654->supercharge, 0, 4);
                 Callback21Player.unk22[3] = (int)D_8006C654->supercharge;
             }
@@ -1490,13 +1494,13 @@ extern short Signed21TableA[] __asm__("D_800658A0");
 extern short Signed21TableB[] __asm__("D_80065920");
 
 extern int D_80071934;
-int Call21A358(Vector3D*, int) __asm__("func_8001A358");
+int Call21QueryWorldHeight(Vector3D*, int) __asm__("func_8001A358");
 extern int Raw21NegativeWord __asm__("D_80070328+0x28");
 extern int Raw21TableIndex __asm__("D_80070328+0x298");
 extern int Raw21Yaw __asm__("D_80070328+0x64");
 int Transition21RandBetween(int, int) __asm__("func_8003636C");
-void Transition21_func_800441F0(void) __asm__("func_800441F0");
-void Transition21_func_80043A38(int) __asm__("func_80043A38");
+void Transition21ClearPlayerMotionVectors(void) __asm__("func_800441F0");
+void Transition21BuildNegatedNormalizedPlayerVector(int) __asm__("func_80043A38");
 void func_80047138(void);
 void func_level_21_8008D198(int arg0) {
     struct {
@@ -1524,7 +1528,7 @@ void func_level_21_8008D198(int arg0) {
         case 0x14:
             Transition21_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Transition21_D_80070328.unk5 = 0;
-            Transition21_func_800441F0();
+            Transition21ClearPlayerMotionVectors();
             Transition21_D_80070328.grounded = 1;
             Transition21_D_80070328.union144.a.unk13cb = Transition21RandBetween(1, 3);
             Transition21_D_80070328.union144.a.unk13cc = 0;
@@ -1536,7 +1540,7 @@ void func_level_21_8008D198(int arg0) {
             Transition21_D_80070328.unk5 = 0;
             Transition21_D_80070328.unk8[0] = Transition21MeasureVectorLength(
                 (Vector3D*)((unsigned char*)&Transition21_D_80070328.movementState + 0x48), 0);
-            Transition21_func_80043A38(0xC00);
+            Transition21BuildNegatedNormalizedPlayerVector(0xC00);
             Transition21_D_80070328.grounded = 1;
             goto clearPointers;
         case 0x13: {
@@ -1611,7 +1615,7 @@ void func_level_21_8008D198(int arg0) {
             if (third == 0)
                 second = Transition21_D_80070328.unk7a[3].z;
             Transition21_D_80070328.unk7a[2].z = second;
-            Transition21_func_80043A38(0xC00);
+            Transition21BuildNegatedNormalizedPlayerVector(0xC00);
             Transition21_D_80070328.grounded = 1;
             Transition21_D_8006E524 = 15;
             if (SpawnParticle)
@@ -1654,7 +1658,7 @@ void func_level_21_8008D198(int arg0) {
         case 0x20:
             Transition21_D_80070328.movementState = MOVEMENT_STATE_DEATH;
             Transition21_D_80070328.unk5 = 0;
-            Transition21_func_80043A38(0xC00);
+            Transition21BuildNegatedNormalizedPlayerVector(0xC00);
             Transition21_D_80070328.grounded = 1;
             if ((arg0 == 0x3A) || (arg0 == 0x6C)) {
                 PlaySound((int)D_8006C654->lavaBurn, 0, 0);
@@ -1696,7 +1700,7 @@ void func_level_21_8008D198(int arg0) {
                     }
                     if (Transition21_D_80070328.movementState == MOVEMENT_STATE_CHARGE) {
                         vectors.first.z += 0x400;
-                        firstResult = Call21A358(&vectors.first, 0x800);
+                        firstResult = Call21QueryWorldHeight(&vectors.first, 0x800);
                         vectors.first.z = firstResult;
                         if (firstResult != 0) {
                             firstParticleKind = 6;
@@ -1761,7 +1765,7 @@ void func_level_21_8008D198(int arg0) {
                     if (Transition21_D_80070328.movementState == MOVEMENT_STATE_CHARGE) {
                         localVector = &vectors.second;
                         vectors.second.z += 0x400;
-                        secondResult = Call21A358(localVector, 0x800);
+                        secondResult = Call21QueryWorldHeight(localVector, 0x800);
                         vectors.second.z = secondResult;
                         if (secondResult != 0) {
                             secondParticleKind = 6;
@@ -1822,7 +1826,7 @@ void func_level_21_8008D198(int arg0) {
                     localVector = &vectors.third;
                     func_8004F178(localVector, (Vector3D*)(unionPointer - 0x144));
                     vectors.third.z += 0x400;
-                    lengthResult = Call21A358(localVector, 0x800);
+                    lengthResult = Call21QueryWorldHeight(localVector, 0x800);
                     vectors.third.z = lengthResult;
                     if (lengthResult != 0 && D_80071934 != 0 && SpawnParticle) {
                         SpawnParticle(10, 0x29, localVector, 0);
@@ -1875,7 +1879,7 @@ void func_level_21_8008D198(int arg0) {
             Transition21_D_80070328.unk8[0] = Transition21MeasureVectorLength(
                 (Vector3D*)((unsigned char*)&Transition21_D_80070328.movementState + 0x48), 0);
             Transition21_D_80070328.horizontalSpeed = 0x1E80;
-            Transition21_func_80043A38(0xC00);
+            Transition21BuildNegatedNormalizedPlayerVector(0xC00);
             Transition21_D_80070328.grounded = 1;
             if ((Transition21_D_80070328.unk13f[0] != 0) ||
                 (Transition21_D_80070328.spitState != 0) || (Transition21_D_80070328.unk17t != 6)) {
@@ -1945,23 +1949,23 @@ extern int A21W290 __asm__("D_80070328 + 0x290");
 extern int A21Surface __asm__("D_8006FA38");
 extern unsigned char* A21SoundDesc __asm__("D_8006C654");
 int A21Sound() __asm__("PlaySound");
-int A21H40994() __asm__("func_80040994");
-int A21H4BEF8() __asm__("func_8004BEF8");
-int A21H49688() __asm__("func_80049688");
+int A21ProcessPlayerStateFlags() __asm__("func_80040994");
+int A21DispatchPlayerStateRequest() __asm__("func_8004BEF8");
+int A21SelectPlayerAnimationLoopRequest() __asm__("func_80049688");
 int A21ApproximatePlanarDistance() __asm__("func_8004F334");
-int A21H498C0() __asm__("func_800498C0");
+int A21UpdatePlayerRetryState() __asm__("func_800498C0");
 extern volatile int A21W20C __asm__("D_80070328 + 0x20C");
 extern int A21W214 __asm__("D_80070328 + 0x214");
 extern unsigned char A21B100 __asm__("D_80070328 + 0x100");
 extern unsigned char A21E535 __asm__("D_8006E535");
 extern unsigned char* A21Models __asm__("D_8006EE2C");
-int A21H40BCC() __asm__("func_80040BCC");
-int A21H1A310() __asm__("func_8001A310");
+int A21ProcessPlayerContactFlags() __asm__("func_80040BCC");
+int A21QueryWorldHeightWithOptions() __asm__("func_8001A310");
 extern int A21W10C __asm__("D_80070328 + 0x10C");
 extern int A21WB4 __asm__("D_80070328 + 0xB4");
 extern int A21WA4 __asm__("D_80070328 + 0xA4");
 extern int (*A21Callback1)(int) __asm__("unk_ovlheader_8007431C");
-int A21H40954() __asm__("func_80040954");
+int A21GetSurfaceTypeFromFlags() __asm__("func_80040954");
 void func_level_21_8008DCD4(void) {
     register int work2 __asm__("$2");
     register int work3 __asm__("$3");
@@ -2006,7 +2010,7 @@ void func_level_21_8008DCD4(void) {
         case 60:
             return;
         case 20:
-            if (A21H40994())
+            if (A21ProcessPlayerStateFlags())
                 return;
             work2 = A21NewButtons & 64;
             work4 = 6;
@@ -2043,7 +2047,7 @@ void func_level_21_8008DCD4(void) {
                 MATCHING_KEEP(state);
                 if (!*state)
                     return;
-                A21H4BEF8(0);
+                A21DispatchPlayerStateRequest(0);
                 if (A21Table[*((unsigned char*)state - 0x2C)] >= 96) {
                     A21B14 = A21B15;
                     A21B16 = A21B17;
@@ -2061,10 +2065,10 @@ void func_level_21_8008DCD4(void) {
             work4 = 15;
             if (work2)
                 goto call;
-            A21H49688();
+            A21SelectPlayerAnimationLoopRequest();
             return;
         case 10:
-            if (A21H40994())
+            if (A21ProcessPlayerStateFlags())
                 return;
             work2 = A21WB8 < 4;
             work4 = 7;
@@ -2072,7 +2076,7 @@ void func_level_21_8008DCD4(void) {
                 goto call;
             if (A21WE4 >= 23)
                 goto call;
-            work2 = A21H40954(A21W10C);
+            work2 = A21GetSurfaceTypeFromFlags(A21W10C);
             work3 = 4;
             work4 = 1;
             if (work2 != work3)
@@ -2091,7 +2095,7 @@ void func_level_21_8008DCD4(void) {
                 return;
             goto call;
         case 11:
-            if (A21H40994())
+            if (A21ProcessPlayerStateFlags())
                 return;
             work2 = A21WB8 < 4;
             work4 = 7;
@@ -2099,7 +2103,7 @@ void func_level_21_8008DCD4(void) {
                 goto call;
             if (A21WE4 >= 23)
                 goto call;
-            work2 = A21H40954(A21W10C);
+            work2 = A21GetSurfaceTypeFromFlags(A21W10C);
             work3 = 4;
             work4 = 1;
             if (work2 != work3)
@@ -2113,7 +2117,7 @@ void func_level_21_8008DCD4(void) {
             work4 = 12;
             goto call;
         case 12:
-            if (A21H40994())
+            if (A21ProcessPlayerStateFlags())
                 return;
             work2 = A21WB8 < 4;
             work4 = 7;
@@ -2121,7 +2125,7 @@ void func_level_21_8008DCD4(void) {
                 goto call;
             if (A21WE4 >= 23)
                 goto call;
-            work2 = A21H40954(A21W10C);
+            work2 = A21GetSurfaceTypeFromFlags(A21W10C);
             work3 = 4;
             work4 = 1;
             if (work2 != work3)
@@ -2139,20 +2143,20 @@ void func_level_21_8008DCD4(void) {
             if (A21W54 < 25)
                 return;
             if (A21W280 < 0) {
-                A21H4BEF8(31);
+                A21DispatchPlayerStateRequest(31);
                 return;
             }
             work2 = 10;
             work3 = A21W144;
             if (work3 == work2) {
                 MATCHING_BARRIER_VOLATILE("memory");
-                A21H4BEF8(44);
+                A21DispatchPlayerStateRequest(44);
                 return;
             }
             work2 = work3 - 11;
             if ((unsigned)work2 < 2) {
                 MATCHING_BARRIER_VOLATILE("memory");
-                A21H4BEF8(41);
+                A21DispatchPlayerStateRequest(41);
                 return;
             }
             work2 = A21WB8;
@@ -2163,7 +2167,7 @@ void func_level_21_8008DCD4(void) {
             work4 = 7;
             goto call;
         case 19:
-            if (A21H40994())
+            if (A21ProcessPlayerStateFlags())
                 return;
             work2 = 13;
             work3 = A21Gate;
@@ -2182,7 +2186,7 @@ void func_level_21_8008DCD4(void) {
                 return;
             goto call;
         case 25:
-            if (A21H40BCC())
+            if (A21ProcessPlayerContactFlags())
                 return;
             if (A21B1B5 && (A21NewButtons & 64))
                 A21B1B6 = 1;
@@ -2230,7 +2234,7 @@ void func_level_21_8008DCD4(void) {
             if (A21W54 < 25)
                 return;
             if (A21W280 < 0) {
-                A21H4BEF8(32);
+                A21DispatchPlayerStateRequest(32);
                 return;
             }
             A21Sound(A21SoundDesc[15], 0, 0);
@@ -2238,13 +2242,13 @@ void func_level_21_8008DCD4(void) {
             work2 = 10;
             if (work3 == work2) {
                 MATCHING_BARRIER_VOLATILE("memory");
-                A21H4BEF8(44);
+                A21DispatchPlayerStateRequest(44);
                 return;
             }
             work2 = work3 - 11;
             if ((unsigned)work2 < 2) {
                 MATCHING_BARRIER_VOLATILE("memory");
-                A21H4BEF8(41);
+                A21DispatchPlayerStateRequest(41);
                 return;
             }
             work2 = A21WB8;
@@ -2258,7 +2262,7 @@ void func_level_21_8008DCD4(void) {
             if (A21W54 < 125)
                 return;
         fallback32:
-            A21H498C0();
+            A21UpdatePlayerRetryState();
             return;
 
         case 38: {
@@ -2268,7 +2272,7 @@ void func_level_21_8008DCD4(void) {
             return;
         }
         case 40:
-            if (A21H40994())
+            if (A21ProcessPlayerStateFlags())
                 return;
             if ((A21Buttons & 128) && A21W4C != 1) {
                 work4 = 42;
@@ -2284,7 +2288,7 @@ void func_level_21_8008DCD4(void) {
                 return;
             goto call;
         case 41:
-            if (A21H40994())
+            if (A21ProcessPlayerStateFlags())
                 return;
             work4 = A21Buttons;
             work2 = work4 & 128;
@@ -2306,7 +2310,7 @@ void func_level_21_8008DCD4(void) {
                 goto call;
             return;
         case 42:
-            if (A21H40BCC())
+            if (A21ProcessPlayerContactFlags())
                 return;
             if ((A21Buttons & 128) || A21W4C == 1)
                 goto flag64;
@@ -2322,7 +2326,7 @@ void func_level_21_8008DCD4(void) {
             goto call;
         case 43: {
             register unsigned char* byte4 __asm__("$4");
-            if (A21H40994())
+            if (A21ProcessPlayerStateFlags())
                 return;
             if ((A21NewButtons & 64) && A21W54 >= 9) {
                 work4 = 6;
@@ -2342,13 +2346,13 @@ void func_level_21_8008DCD4(void) {
             byte4 -= 256;
             if (!work2)
                 goto check44;
-            work2 = A21H1A310(byte4, 1024, 1, 0);
+            work2 = A21QueryWorldHeightWithOptions(byte4, 1024, 1, 0);
             work4 = 40;
             if (work2)
                 goto check44;
             goto call;
         partialCall:
-            A21H4BEF8(work4);
+            A21DispatchPlayerStateRequest(work4);
         check44:
             work2 = A21E535;
             work4 = 44;
@@ -2377,7 +2381,7 @@ void func_level_21_8008DCD4(void) {
         missingCallback:
             goto fallback32;
         other44:
-            if (A21H40994())
+            if (A21ProcessPlayerStateFlags())
                 return;
             if ((A21NewButtons & 64) && A21W54 >= 9) {
                 work4 = 6;
@@ -2397,7 +2401,7 @@ void func_level_21_8008DCD4(void) {
             byte4 -= 256;
             if (!work2)
                 goto mode44;
-            work2 = A21H1A310(byte4, 1024, 1, 0);
+            work2 = A21QueryWorldHeightWithOptions(byte4, 1024, 1, 0);
             work4 = 40;
             if (!work2)
                 goto call;
@@ -2416,7 +2420,7 @@ void func_level_21_8008DCD4(void) {
             if (A21W54 < 25)
                 return;
             if (A21W280 < 0) {
-                A21H4BEF8(31);
+                A21DispatchPlayerStateRequest(31);
                 return;
             }
             work2 = 10;
@@ -2427,7 +2431,7 @@ void func_level_21_8008DCD4(void) {
             work4 = 44;
             goto call;
         case 61:
-            if (A21H40BCC())
+            if (A21ProcessPlayerContactFlags())
                 return;
             work2 = 1;
             MATCHING_KEEP(work2);
@@ -2437,7 +2441,7 @@ void func_level_21_8008DCD4(void) {
             if (work3 == work2) {
                 if (A21WB8 >= 4)
                     goto partial25;
-                work2 = A21H40954(A21W10C);
+                work2 = A21GetSurfaceTypeFromFlags(A21W10C);
                 work3 = 9;
                 if (work2 == work3)
                     goto finalSpeed;
@@ -2446,7 +2450,7 @@ void func_level_21_8008DCD4(void) {
             }
             if (A21Buttons & 64) {
             partial25:
-                A21H4BEF8(25);
+                A21DispatchPlayerStateRequest(25);
                 work2 = A21WB8;
                 work3 = 3520;
                 A21W94 = work3;
@@ -2501,7 +2505,7 @@ void func_level_21_8008DCD4(void) {
             MATCHING_BARRIER_VOLATILE("memory");
         call:
             MATCHING_BARRIER_VOLATILE("memory");
-            A21H4BEF8(work4);
+            A21DispatchPlayerStateRequest(work4);
             return;
     }
 }

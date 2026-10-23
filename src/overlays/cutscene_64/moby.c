@@ -56,7 +56,7 @@ void func_cutscene_64_800749DC(void) {
 /* AI generated;
  not human reviewed. Matched C. Original source asm/nonmatchings/overlays/cutscene_64/moby/func_cutscene_64_800749E4.s SHA256 4845922c3a1ca3827759876e832499c36fcdfe106ea5f6f6ff3798f70f0299ef. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
 #define Cutscene64_749E4Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-extern int Cutscene64_749E4_func_8002EC50(char, char, int) __asm__("func_8002EC50");
+extern int Cutscene64_749E4AllocatePoolRecord20(char, char, int) __asm__("func_8002EC50");
 int Cutscene64_749E4RandBetween(int low, int high) __asm__("func_8003636C");
 extern void Cutscene64_749E4CopyVector(Vector3D*, Vector3D*) __asm__("func_8004F178");
 extern void Cutscene64_749E4RefreshMobySpatialGridAndBasis(Moby*, int) __asm__("func_80055D24");
@@ -154,14 +154,14 @@ void func_cutscene_64_800749E4(Moby* inputOwner) {
     if (activeOrLoop16 != 0) {
         if (owner18->state == 0) {
             if (primary21 != 0) {
-                temp_v0 = Cutscene64_749E4_func_8002EC50(1, 0x10, 0x489090);
+                temp_v0 = Cutscene64_749E4AllocatePoolRecord20(1, 0x10, 0x489090);
                 Cutscene64_749E4Field(private17, int*, 0) = temp_v0;
                 Cutscene64_749E4Field(temp_v0, signed char*, 0x10) = 4;
                 Cutscene64_749E4Field(Cutscene64_749E4Field(private17, int*, 0), signed char*,
                                       0x13) = 8;
             }
             if (secondary19 != 0) {
-                temp_v0_2 = Cutscene64_749E4_func_8002EC50(1, 0x10, 0x489090);
+                temp_v0_2 = Cutscene64_749E4AllocatePoolRecord20(1, 0x10, 0x489090);
                 Cutscene64_749E4Field(private17, int*, 4) = temp_v0_2;
                 Cutscene64_749E4Field(temp_v0_2, signed char*, 0x10) = 4;
                 Cutscene64_749E4Field(Cutscene64_749E4Field(private17, int*, 4), signed char*,

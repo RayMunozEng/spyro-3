@@ -28,7 +28,7 @@ void func_title_80078C1C(SaveFile* save, int noUpdate) {
 
 void Title78EAC_ActivateSparxPowers(void) __asm__("ActivateSparxPowers");
 /* extern */
-void Title78EAC_func_8004E7D4(void*, void*, int) __asm__("func_8004E7D4");
+void Title78EACCopyWordRangeUnrolled4(void*, void*, int) __asm__("func_8004E7D4");
 /* extern */
 extern unsigned char Title78EAC_D_80066BC8 __asm__("D_80066BC8");
 extern unsigned char Title78EAC_D_80066EAC __asm__("D_80066EAC");
@@ -116,8 +116,8 @@ void func_title_80078EAC(void* inputOwner) {
     if (Title78EAC_D_8006C784 < 4) {
         Title78EAC_D_8006C784 = 4;
     }
-    Title78EAC_func_8004E7D4(&Title78EAC_D_80071FB0, buffer16 + 8, 0x28);
-    Title78EAC_func_8004E7D4(&Title78EAC_D_80071AB0, buffer16 + 0x30, 0x500);
+    Title78EACCopyWordRangeUnrolled4(&Title78EAC_D_80071FB0, buffer16 + 8, 0x28);
+    Title78EACCopyWordRangeUnrolled4(&Title78EAC_D_80071AB0, buffer16 + 0x30, 0x500);
     recordIndex5 = 0;
     recordFlags7 = &Title78EAC_D_80070300;
     wordTotals6 = &Title78EAC_D_80071A10;
@@ -163,9 +163,9 @@ void func_title_80078EAC(void* inputOwner) {
     Title78EAC_D_8006C70C = temp_v1;
     Title78EAC_D_8006C710 = temp_a3;
     Title78EAC_D_8006C7A8 = word8;
-    Title78EAC_func_8004E7D4(copy4, copy5, 240);
-    Title78EAC_func_8004E7D4(&Title78EAC_D_800716AC, buffer16 + 0x74C, 0xF0);
-    Title78EAC_func_8004E7D4(&Title78EAC_D_80066EAC, buffer16 + 0x5A8, 0x30);
+    Title78EACCopyWordRangeUnrolled4(copy4, copy5, 240);
+    Title78EACCopyWordRangeUnrolled4(&Title78EAC_D_800716AC, buffer16 + 0x74C, 0xF0);
+    Title78EACCopyWordRangeUnrolled4(&Title78EAC_D_80066EAC, buffer16 + 0x5A8, 0x30);
     comparisonOne5 = 1;
     if (Title78EAC_D_80071573 == 0) {
         byteOffset4 = 0;
@@ -177,9 +177,9 @@ void func_title_80078EAC(void* inputOwner) {
             byteOffset4 += 4;
         } while (byteOffset4 < 0x30);
     }
-    Title78EAC_func_8004E7D4(&Title78EAC_D_80071570, buffer16 + 0x5D8, 0x4C);
-    Title78EAC_func_8004E7D4(&Title78EAC_D_8007145C, buffer16 + 0x624, 0x28);
-    Title78EAC_func_8004E7D4(&Title78EAC_D_80066BC8, buffer16 + 0x874, 0x4C);
+    Title78EACCopyWordRangeUnrolled4(&Title78EAC_D_80071570, buffer16 + 0x5D8, 0x4C);
+    Title78EACCopyWordRangeUnrolled4(&Title78EAC_D_8007145C, buffer16 + 0x624, 0x28);
+    Title78EACCopyWordRangeUnrolled4(&Title78EAC_D_80066BC8, buffer16 + 0x874, 0x4C);
     recordIndex5_2 = 0;
     recordThreshold9 = 0x8C9F;
     recordOne8 = 1;
@@ -271,7 +271,10 @@ int func_title_8007928C(DecodedCompletionRecord* record) {
 INCLUDE_RODATA("asm/nonmatchings/overlays/title/title2", D_title_8007464C);
 
 
-/* AI-generated; not human reviewed. Numeric original callback; helper semantics unresolved. */
+/* AI-generated; not human reviewed. Memory-card save operation state machine.
+ * Poll completion, retry reads/writes, serialize save data and verify checksums.
+ * Original states, retry limits, transfer sizes and helper calls are retained.
+ */
 extern int RawFields[] __asm__("D_800725B0");
 extern int RawPending __asm__("D_800725B4"), RawResult __asm__("D_800725C4"),
     RawError __asm__("D_800725C8");

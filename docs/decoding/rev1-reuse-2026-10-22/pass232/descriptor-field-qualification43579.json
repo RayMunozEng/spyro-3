@@ -1,0 +1,189 @@
+{
+  "AI_generated": true,
+  "human_reviewed": false,
+  "qualification_ready_for_parent_review": true,
+  "corrected_authority": "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\helper_names43578.authority-ledger.json",
+  "corrected_JSON_path": [
+    "original_authority",
+    "80038BF8",
+    "proven_operation"
+  ],
+  "rejected_phrase": "flag-selected duration additions",
+  "replacement": "source flag-selected additions to descriptor halfword+4, consumed as the planar heading-displacement operand; no duration or physical speed unit asserted",
+  "precise_scope": "Descriptor+4 is signed-loaded as A2 at35194\u219235EE0 and participates in source table products/SRA12 planar component construction. Descriptor+E is subtracted on its selected update route. These are per-call source arithmetic facts, not an asserted universal speed, duration, frame/fps scale, coordinate conversion, lifecycle or immutable descriptor theorem.",
+  "exact_original_word_chain": [
+    {
+      "Rev0_PC": "80038C34",
+      "Rev1_PC": "80038C58",
+      "Rev0_word": "2402010E",
+      "Rev1_word": "2402010E",
+      "exact_local_fact": "ADDIU V0,ZERO,0x10E: initial scalar"
+    },
+    {
+      "Rev0_PC": "80038C38",
+      "Rev1_PC": "80038C5C",
+      "Rev0_word": "A6220004",
+      "Rev1_word": "A6220004",
+      "exact_local_fact": "SH V0,4(S1): producer writes descriptor halfword+4"
+    },
+    {
+      "Rev0_PC": "80038D4C",
+      "Rev1_PC": "80038D70",
+      "Rev0_word": "96220004",
+      "Rev1_word": "96220004",
+      "exact_local_fact": "LHU V0,4(S1): actual flag-selected source reload"
+    },
+    {
+      "Rev0_PC": "80038D54",
+      "Rev1_PC": "80038D78",
+      "Rev0_word": "244200B4",
+      "Rev1_word": "244200B4",
+      "exact_local_fact": "ADDIU V0,V0,0xB4 in J delay"
+    },
+    {
+      "Rev0_PC": "80038D68",
+      "Rev1_PC": "80038D8C",
+      "Rev0_word": "96220004",
+      "Rev1_word": "96220004",
+      "exact_local_fact": "LHU V0,4(S1): alternate source reload"
+    },
+    {
+      "Rev0_PC": "80038D70",
+      "Rev1_PC": "80038D94",
+      "Rev0_word": "2442008C",
+      "Rev1_word": "2442008C",
+      "exact_local_fact": "ADDIU V0,V0,0x8C"
+    },
+    {
+      "Rev0_PC": "80038D74",
+      "Rev1_PC": "80038D98",
+      "Rev0_word": "A6220004",
+      "Rev1_word": "A6220004",
+      "exact_local_fact": "SH V0,4(S1): actual adjusted scalar producer"
+    },
+    {
+      "Rev0_PC": "80035218",
+      "Rev1_PC": "8003523C",
+      "Rev0_word": "86060004",
+      "Rev1_word": "86060004",
+      "exact_local_fact": "LH A2,4(S0): descriptor+4 becomes heading-step operand A2"
+    },
+    {
+      "Rev0_PC": "8003522C",
+      "Rev1_PC": "80035250",
+      "Rev0_word": "0C00D7B8",
+      "Rev1_word": "0C00D7C1",
+      "exact_local_fact": "JAL35EE0 (Rev1 35F04): actual heading-step consumer"
+    },
+    {
+      "Rev0_PC": "80035338",
+      "Rev1_PC": "8003535C",
+      "Rev0_word": "9203000E",
+      "Rev1_word": "9203000E",
+      "exact_local_fact": "LBU V1,0xE(S0): current descriptor decrement byte"
+    },
+    {
+      "Rev0_PC": "8003533C",
+      "Rev1_PC": "80035360",
+      "Rev0_word": "96020004",
+      "Rev1_word": "96020004",
+      "exact_local_fact": "LHU V0,4(S0): current scalar before decrement"
+    },
+    {
+      "Rev0_PC": "80035344",
+      "Rev1_PC": "80035368",
+      "Rev0_word": "00431023",
+      "Rev1_word": "00431023",
+      "exact_local_fact": "SUBU V0,V0,V1: subtract descriptor+E"
+    },
+    {
+      "Rev0_PC": "80035348",
+      "Rev1_PC": "8003536C",
+      "Rev0_word": "A6020004",
+      "Rev1_word": "A6020004",
+      "exact_local_fact": "SH V0,4(S0): source halfword write"
+    },
+    {
+      "Rev0_PC": "80035358",
+      "Rev1_PC": "8003537C",
+      "Rev0_word": "A6000004",
+      "Rev1_word": "A6000004",
+      "exact_local_fact": "SH ZERO,4(S0): actual negative-result clamp branch"
+    },
+    {
+      "Rev0_PC": "80035F4C",
+      "Rev1_PC": "80035F70",
+      "Rev0_word": "00460018",
+      "Rev1_word": "00460018",
+      "exact_local_fact": "MULT V0,A2: first signed table value times current scalar"
+    },
+    {
+      "Rev0_PC": "80035F50",
+      "Rev1_PC": "80035F74",
+      "Rev0_word": "00004012",
+      "Rev1_word": "00004012",
+      "exact_local_fact": "MFLO T0: keep original low32 product"
+    },
+    {
+      "Rev0_PC": "80035F54",
+      "Rev1_PC": "80035F78",
+      "Rev0_word": "00081303",
+      "Rev1_word": "00081303",
+      "exact_local_fact": "SRA V0,T0,12"
+    },
+    {
+      "Rev0_PC": "80035F58",
+      "Rev1_PC": "80035F7C",
+      "Rev0_word": "AFA20018",
+      "Rev1_word": "AFA20018",
+      "exact_local_fact": "SW V0,0x18(SP): first planar candidate component"
+    },
+    {
+      "Rev0_PC": "80035F6C",
+      "Rev1_PC": "80035F90",
+      "Rev0_word": "00460018",
+      "Rev1_word": "00460018",
+      "exact_local_fact": "MULT V0,A2: second signed table value times scalar"
+    },
+    {
+      "Rev0_PC": "80035F80",
+      "Rev1_PC": "80035FA4",
+      "Rev0_word": "00004012",
+      "Rev1_word": "00004012",
+      "exact_local_fact": "MFLO T0"
+    },
+    {
+      "Rev0_PC": "80035F84",
+      "Rev1_PC": "80035FA8",
+      "Rev0_word": "00081303",
+      "Rev1_word": "00081303",
+      "exact_local_fact": "SRA V0,T0,12"
+    },
+    {
+      "Rev0_PC": "80035F88",
+      "Rev1_PC": "80035FAC",
+      "Rev0_word": "0C013C65",
+      "Rev1_word": "0C013C6E",
+      "exact_local_fact": "JAL vector-add4F194 (Rev1 4F1B8)"
+    },
+    {
+      "Rev0_PC": "80035F8C",
+      "Rev1_PC": "80035FB0",
+      "Rev0_word": "AFA2001C",
+      "Rev1_word": "AFA2001C",
+      "exact_local_fact": "SW V0,0x1C(SP) in vector-add call delay"
+    }
+  ],
+  "source_words_and_identifier_proofs_remain_valid": true,
+  "operation_identifier_unchanged": "InitializeMobyMotionState",
+  "frozen_predecessors_unchanged": true,
+  "F_read_only": true,
+  "no_new_runtime_or_full_state_tests": true,
+  "dependencies": {
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\helper_names43578.authority-ledger.json": "58b04fe60f85117afc86865c11018655e54bba6c8c13396744da8688cabd5c14",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\helper_names43575.authority-ledger.json": "525efd763ec1f5a72aebab77dbdf34ceb322376be88b721aeef0be580bd5fcd9",
+    "C:\\Users\\rmuno\\AppData\\Local\\Temp\\mobycollective-spyro-3\\build\\PSX.EXE": "e5406997dccc7300c8198498c20b9d6c4c0a547813be1010446b6c4e5d50e39f",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\extracted\\year-of-the-dragon\\SCUS_944.67": "006363e485559dcd9a203fe71fe4267cb254d476ca59f04ee841048831ad969e",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\qualify_motion_field43579.py": "a87cba61c8b6202000645f22af61da33b0bd27a7b3fe2f2132ba9c5f2d56a045"
+  }
+}

@@ -556,11 +556,11 @@ extern Moby* DecodedCutsceneSecondary __asm__("D_8006C704");
 extern void (**DecodedCutsceneCallbacks)(Moby*) __asm__("MobyUpdate");
 extern void (*DecodedCutsceneParticles)(int) __asm__("UpdateParticles");
 extern unsigned char DecodedCutsceneCamera[] __asm__("D_8006E020");
-void DecodedCutsceneBegin(int) __asm__("func_80020E74");
-void DecodedCutsceneBeginActors(void) __asm__("func_80021FF4");
-void DecodedCutsceneBeginFrames(void) __asm__("func_80022158");
-void DecodedCutsceneBeginModels(void) __asm__("func_80022260");
-void DecodedCutsceneEndActors(void) __asm__("func_800509F0");
+void DecodedUpdateLinkedState(int) __asm__("func_80020E74");
+void DecodedUpdateWorldSurfaceTint(void) __asm__("func_80021FF4");
+void DecodedUpdateWorldSurfaceSingleAxisWave(void) __asm__("func_80022158");
+void DecodedUpdateWorldSurfaceThreeAxisWave(void) __asm__("func_80022260");
+void DecodedUpdateTracers(void) __asm__("func_800509F0");
 void DecodedCutsceneCopy(void*, const void*) __asm__("func_8004F178");
 void DecodedCutsceneSubtract(Vector3D*, const Vector3D*, const Vector3D*) __asm__("func_8004F1C8");
 void DecodedCutsceneAdd(Vector3D*, const Vector3D*, const Vector3D*) __asm__("func_8004F194");
@@ -589,11 +589,11 @@ void func_cutscene_78_80077910(void) {
     register volatile int* tick __asm__("$22");
     register Vector3D* second __asm__("$18");
     register void* scratch __asm__("$16");
-    DecodedCutsceneBegin(DecodedCutsceneDelta);
-    DecodedCutsceneBeginActors();
+    DecodedUpdateLinkedState(DecodedCutsceneDelta);
+    DecodedUpdateWorldSurfaceTint();
     actorIndex = 0;
-    DecodedCutsceneBeginFrames();
-    DecodedCutsceneBeginModels();
+    DecodedUpdateWorldSurfaceSingleAxisWave();
+    DecodedUpdateWorldSurfaceThreeAxisWave();
     {
         register volatile int* count __asm__("$3") = &DecodedCutsceneCount;
         MATCHING_KEEP(count);
@@ -864,7 +864,7 @@ void func_cutscene_78_80077910(void) {
     }
     if (DecodedCutsceneParticles)
         DecodedCutsceneParticles(DecodedCutsceneDelta);
-    DecodedCutsceneEndActors();
+    DecodedUpdateTracers();
     {
         register unsigned char* samples __asm__("$17");
         register volatile int* frame __asm__("$3") = &DecodedCutsceneFrame;

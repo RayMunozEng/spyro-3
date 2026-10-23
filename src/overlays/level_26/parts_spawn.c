@@ -15,14 +15,14 @@
 extern unsigned char Level26SpawnColor1[] __asm__("D_80066BAC");
 extern unsigned char Level26SpawnColor2[] __asm__("D_80066BAC");
 #define Level26SpawnField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Level26Spawnfunc_8004EA90(void*, void*, int) __asm__("func_8004EA90");
+int Level26SpawnBuildPackedAngleBasisMatrix(void*, void*, int) __asm__("func_8004EA90");
 int Level26SpawnTransformVectorByBasis(void*, void*, void*) __asm__("func_8004ED6C");
 int Level26SpawnShiftVectorRightTowardZero(void*, int) __asm__("func_8004F110");
 int Level26SpawnCopyVector(void*, void*) __asm__("func_8004F178");
 int Level26SpawnAddVector(void*, void*, void*) __asm__("func_8004F194");
 int Level26SpawnMultiplyVectorGpfSf0(void*, void*, int) __asm__("func_8004F1FC");
 int Level26SpawnPackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-void* Level26Spawnfunc_80056434(int) __asm__("func_80056434");
+void* Level26SpawnAllocateParticleRecord(int) __asm__("func_80056434");
 int Level26Spawnrand(void) __asm__("rand");
 extern unsigned char Level26SpawnD_800658A0[] __asm__("D_800658A0");
 extern unsigned char Level26SpawnD_80065920[] __asm__("D_80065920");
@@ -138,7 +138,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
         do {
             switch (kindSelector) { /* switch 1 */
                 case 0x0:           /* switch 1 */
-                    record = Level26Spawnfunc_80056434(2);
+                    record = Level26SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -182,7 +182,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
                     Level26SpawnField(record, unsigned char*, 16) = 0;
                     break;
                 case 0x1: /* switch 1 */
-                    record = Level26Spawnfunc_80056434(2);
+                    record = Level26SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -208,7 +208,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
 
                     goto initializeE;
                 case 0x2:
-                    record = Level26Spawnfunc_80056434(2);
+                    record = Level26SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -247,7 +247,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
                     Level26SpawnField(record, unsigned char*, 15) = commonByte;
                     goto initializeByte11;
                 case 0x9: /* switch 1 */
-                    record = Level26Spawnfunc_80056434(2);
+                    record = Level26SpawnAllocateParticleRecord(2);
                     {
                         register void* playerVector __asm__("$16") = &frame.sp20;
                         register void* destination __asm__("$4") = playerVector;
@@ -324,7 +324,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
                     Level26SpawnField(record, unsigned char*, 15) = commonByte9;
                     goto initializeByte11;
                 case 0xA: /* switch 1 */
-                    record = Level26Spawnfunc_80056434(3);
+                    record = Level26SpawnAllocateParticleRecord(3);
                     Level26SpawnField(record, unsigned char*, 0) = kindSelector;
                     {
                         register void* destination __asm__("$4") = record + 4;
@@ -387,7 +387,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0xC: /* switch 1 */
-                    record = Level26Spawnfunc_80056434(2);
+                    record = Level26SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = reference + 32;
                         register void* table __asm__("$5");
@@ -551,7 +551,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
                                          4 + (Level26Spawnrand() & 7));
                     break;
                 case 0xd:
-                    record = Level26Spawnfunc_80056434(2);
+                    record = Level26SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -585,7 +585,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
                     Level26SpawnField(record, unsigned char*, 15) = commonByte;
                     goto initializeByte11;
                 case 0x13:
-                    record = Level26Spawnfunc_80056434(2);
+                    record = Level26SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -618,7 +618,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
 
                     goto initializeTrailingBytes;
                 case 0x21: /* switch 1 */
-                    record = Level26Spawnfunc_80056434(2);
+                    record = Level26SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level26SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -802,7 +802,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
                     Level26SpawnField(record, unsigned char*, 15) = commonByte;
                     goto initializeByte11;
                 case 0x37:
-                    record = Level26Spawnfunc_80056434(2);
+                    record = Level26SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -828,7 +828,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
                     Level26SpawnField(record, unsigned char*, 0xE) = 0;
                     goto initializeTrailingBytes;
                 case 0x38:
-                    record = Level26Spawnfunc_80056434(2);
+                    record = Level26SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level26SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -861,7 +861,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x3B: /* switch 1 */
-                    record = Level26Spawnfunc_80056434(5);
+                    record = Level26SpawnAllocateParticleRecord(5);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -927,7 +927,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
                         (short)((Level26Spawnrand() & 0xF) - 8);
                     break;
                 case 0x3F:
-                    record = Level26Spawnfunc_80056434(2);
+                    record = Level26SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -967,7 +967,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
                     Level26SpawnField(record, unsigned char*, 16) = 0;
                     break;
                 case 0x42: /* switch 1 */
-                    record = Level26Spawnfunc_80056434(0);
+                    record = Level26SpawnAllocateParticleRecord(0);
                     Level26SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level26SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level26Spawnrand() & 0xF);
@@ -1069,7 +1069,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
                     Level26SpawnField(record, unsigned char*, 0xF) = 0x40;
                     break;
                 case 0x46: /* switch 1 */
-                    record = Level26Spawnfunc_80056434(1);
+                    record = Level26SpawnAllocateParticleRecord(1);
                     Level26SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level26SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level26Spawnrand() & 0xF);
@@ -1077,7 +1077,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
                     frame.sp70 = 0;
                     frame.sp71 = Level26Spawnrand();
                     frame.sp72 = Level26Spawnrand();
-                    Level26Spawnfunc_8004EA90(&frame.sp70, &frame.sp78, 0);
+                    Level26SpawnBuildPackedAngleBasisMatrix(&frame.sp70, &frame.sp78, 0);
                     frame.sp60 = (int)modeSelector;
                     frame.sp64 = 0;
                     frame.sp68 = 0;
@@ -1131,7 +1131,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x47: /* switch 1 */
-                    record = Level26Spawnfunc_80056434(1);
+                    record = Level26SpawnAllocateParticleRecord(1);
                     Level26SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level26SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level26Spawnrand() & 7);
@@ -1206,7 +1206,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x4E: /* switch 1 */
-                    record = Level26Spawnfunc_80056434(0);
+                    record = Level26SpawnAllocateParticleRecord(0);
                     Level26SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level26SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level26Spawnrand() & 0x1F);
@@ -1274,7 +1274,7 @@ void* func_level_26_80087A14(int entryCount, int kind, void* input, void* mode) 
                     Level26SpawnField(record, unsigned char*, 0xA) = 2;
                     break;
                 case 0x4F: /* switch 1 */
-                    record = Level26Spawnfunc_80056434(1);
+                    record = Level26SpawnAllocateParticleRecord(1);
                     Level26SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level26SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level26Spawnrand() & 0xF);

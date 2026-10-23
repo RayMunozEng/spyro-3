@@ -15,16 +15,16 @@
 extern unsigned char Level40SpawnColor1[] __asm__("D_80066BAC");
 extern unsigned char Level40SpawnColor2[] __asm__("D_80066BAC");
 #define Level40SpawnField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Level40Spawnfunc_8004EA90(void*, void*, int) __asm__("func_8004EA90");
+int Level40SpawnBuildPackedAngleBasisMatrix(void*, void*, int) __asm__("func_8004EA90");
 int Level40SpawnTransformVectorByBasis(void*, void*, void*) __asm__("func_8004ED6C");
 int Level40SpawnShiftVectorRightTowardZero(void*, int) __asm__("func_8004F110");
 int Level40SpawnCopyVector(void*, void*) __asm__("func_8004F178");
 int Level40SpawnAddVector(void*, void*, void*) __asm__("func_8004F194");
 int Level40SpawnMultiplyVectorGpfSf0(void*, void*, int) __asm__("func_8004F1FC");
 int Level40SpawnPackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-void* Level40Spawnfunc_80056434(int) __asm__("func_80056434");
+void* Level40SpawnAllocateParticleRecord(int) __asm__("func_80056434");
 int Level40SpawnRandBetween(int, int) __asm__("func_8003636C");
-int Level40Spawnfunc_8004F58C(void*, void*) __asm__("func_8004F58C");
+int Level40SpawnCopyHalfwordVector(void*, void*) __asm__("func_8004F58C");
 int Level40Spawnrand(void) __asm__("rand");
 extern unsigned char Level40SpawnD_800658A0[] __asm__("D_800658A0");
 extern unsigned char Level40SpawnD_80065920[] __asm__("D_80065920");
@@ -140,7 +140,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
         do {
             switch (kindSelector) { /* switch 1 */
                 case 0x0:           /* switch 1 */
-                    record = Level40Spawnfunc_80056434(2);
+                    record = Level40SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -177,7 +177,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
 
                     goto initializeTrailingBytes;
                 case 0x1: /* switch 1 */
-                    record = Level40Spawnfunc_80056434(2);
+                    record = Level40SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -206,7 +206,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
                     tailByte = 4;
                     goto initializeTrailingBytes;
                 case 0x2:
-                    record = Level40Spawnfunc_80056434(2);
+                    record = Level40SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -250,7 +250,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
                     break;
                 case 0x6:
                     temp_s1 = Level40SpawnField(reference, unsigned char**, 0);
-                    record = Level40Spawnfunc_80056434(3);
+                    record = Level40SpawnAllocateParticleRecord(3);
                     Level40SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level40Spawnrand();
                     {
@@ -309,7 +309,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x9: /* switch 1 */
-                    record = Level40Spawnfunc_80056434(2);
+                    record = Level40SpawnAllocateParticleRecord(2);
                     {
                         register void* playerVector __asm__("$16") = &frame.sp20;
                         register void* destination __asm__("$4") = playerVector;
@@ -384,7 +384,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
 
                     goto initializeTrailingBytes;
                 case 0xA: /* switch 1 */
-                    record = Level40Spawnfunc_80056434(3);
+                    record = Level40SpawnAllocateParticleRecord(3);
                     Level40SpawnField(record, unsigned char*, 0) = kindSelector;
                     {
                         register void* destination __asm__("$4") = record + 4;
@@ -447,7 +447,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0xC: /* switch 1 */
-                    record = Level40Spawnfunc_80056434(2);
+                    record = Level40SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = reference + 32;
                         register void* table __asm__("$5");
@@ -611,7 +611,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
                                          4 + (Level40Spawnrand() & 7));
                     break;
                 case 0x21: /* switch 1 */
-                    record = Level40Spawnfunc_80056434(2);
+                    record = Level40SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level40SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -797,13 +797,13 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
                     Level40SpawnField(record, unsigned char*, 0x10) = 0;
                     break;
                 case 0x2B:
-                    record = Level40Spawnfunc_80056434(4);
+                    record = Level40SpawnAllocateParticleRecord(4);
                     tailByte = 1;
                     Level40SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level40SpawnField(record, unsigned char*, 2) = 0;
                     Level40SpawnField(record, unsigned char*, 3) = tailByte;
                     if (modeSelector == 0) {
-                        Level40Spawnfunc_8004F58C(record + 4, reference);
+                        Level40SpawnCopyHalfwordVector(record + 4, reference);
                         tailByte = Level40Spawnrand();
                         tailByte &= 7;
                         tailByte += 2;
@@ -860,7 +860,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x3B: /* switch 1 */
-                    record = Level40Spawnfunc_80056434(5);
+                    record = Level40SpawnAllocateParticleRecord(5);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -926,7 +926,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
                         (short)((Level40Spawnrand() & 0xF) - 8);
                     break;
                 case 0x42: /* switch 1 */
-                    record = Level40Spawnfunc_80056434(0);
+                    record = Level40SpawnAllocateParticleRecord(0);
                     Level40SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level40SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level40Spawnrand() & 0xF);
@@ -1028,7 +1028,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
                     Level40SpawnField(record, unsigned char*, 0xF) = 0x40;
                     break;
                 case 0x46: /* switch 1 */
-                    record = Level40Spawnfunc_80056434(1);
+                    record = Level40SpawnAllocateParticleRecord(1);
                     Level40SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level40SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level40Spawnrand() & 0xF);
@@ -1036,7 +1036,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
                     frame.sp70 = 0;
                     frame.sp71 = Level40Spawnrand();
                     frame.sp72 = Level40Spawnrand();
-                    Level40Spawnfunc_8004EA90(&frame.sp70, &frame.sp78, 0);
+                    Level40SpawnBuildPackedAngleBasisMatrix(&frame.sp70, &frame.sp78, 0);
                     frame.sp60 = (int)modeSelector;
                     frame.sp64 = 0;
                     frame.sp68 = 0;
@@ -1090,7 +1090,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x47: /* switch 1 */
-                    record = Level40Spawnfunc_80056434(1);
+                    record = Level40SpawnAllocateParticleRecord(1);
                     Level40SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level40SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level40Spawnrand() & 7);
@@ -1165,7 +1165,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x4E: /* switch 1 */
-                    record = Level40Spawnfunc_80056434(0);
+                    record = Level40SpawnAllocateParticleRecord(0);
                     Level40SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level40SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level40Spawnrand() & 0x1F);
@@ -1233,7 +1233,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
                     Level40SpawnField(record, unsigned char*, 0xA) = 2;
                     break;
                 case 0x4F: /* switch 1 */
-                    record = Level40Spawnfunc_80056434(1);
+                    record = Level40SpawnAllocateParticleRecord(1);
                     Level40SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level40SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level40Spawnrand() & 0xF);
@@ -1309,7 +1309,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
                     break;
                 case 0x52:
                     temp_s1 = Level40SpawnField(reference, unsigned char**, 0);
-                    record = Level40Spawnfunc_80056434(1);
+                    record = Level40SpawnAllocateParticleRecord(1);
                     Level40SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level40Spawnrand();
                     tailByte &= 15;
@@ -1386,7 +1386,7 @@ void* func_level_40_80084DA4(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x54:
-                    record = Level40Spawnfunc_80056434(0);
+                    record = Level40SpawnAllocateParticleRecord(0);
                     Level40SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level40Spawnrand();
                     tailByte &= 15;

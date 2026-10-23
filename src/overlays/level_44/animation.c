@@ -33,7 +33,7 @@
  * selector/data word and full EXE/every-overlay retail hash.
  * Binary identity does not establish synchronized runtime/system completion. */
 #define Physics44Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-unsigned char Physics44Call41B64View1() __asm__("func_80041B64");
+unsigned char Physics44BuildPlayerResponseVectorView1() __asm__("func_80041B64");
 int Physics44InterpolateSineView1() __asm__("func_8004E9E4");
 int Physics44InterpolateCosineView1() __asm__("func_8004EA2C");
 int Physics44MeasureVectorLengthView1() __asm__("func_8004EDE8");
@@ -44,13 +44,13 @@ extern void* Physics44Data6C570View1 __asm__("D_8006C570");
 extern unsigned char Physics44Data6E548View1 __asm__("D_8006E548");
 extern unsigned char Physics44Player0View1 __asm__("D_80070328");
 extern void* (*Controller88028_SpawnParticle)() __asm__("SpawnParticle");
-int Physics44Call40D10View1() __asm__("func_80040D10");
-int Physics44Call40F48View1() __asm__("func_80040F48");
-int Physics44Call41580View1() __asm__("func_80041580");
-int Physics44Call416F4View1() __asm__("func_800416F4");
-int Physics44Call417FCView1() __asm__("func_800417FC");
-int Physics44Call41848View1() __asm__("func_80041848");
-int Physics44Call41B64View2() __asm__("func_80041B64");
+int Physics44UpdatePlayerGroundInputTargetsView1() __asm__("func_80040D10");
+int Physics44BuildOrientedInputPairView1() __asm__("func_80040F48");
+int Physics44ApproachPlayerTargetHeadingView1() __asm__("func_80041580");
+int Physics44BlendPlayerHeadingFromInputVectorView1() __asm__("func_800416F4");
+int Physics44ApproachPlayerTargetSpeedView1() __asm__("func_800417FC");
+int Physics44BuildPlayerMovementVectorView1() __asm__("func_80041848");
+int Physics44BuildPlayerResponseVectorView2() __asm__("func_80041B64");
 int Physics44InterpolateSineView2() __asm__("func_8004E9E4");
 int Physics44InterpolateCosineView2() __asm__("func_8004EA2C");
 int Physics44MeasureVectorLengthView2() __asm__("func_8004EDE8");
@@ -82,8 +82,8 @@ extern signed char Physics44Player1B9View1 __asm__("D_80070328+0x1B9");
 extern int Physics44Player20CView1 __asm__("D_80070328+0x20C");
 extern unsigned char Physics44Player101View1 __asm__("D_80070328+0x101");
 extern int Physics44PlayerA4View1 __asm__("D_80070328+0xA4");
-int Physics44Call40F48View2() __asm__("func_80040F48");
-int Physics44Call43194View1() __asm__("func_80043194");
+int Physics44BuildOrientedInputPairView2() __asm__("func_80040F48");
+int Physics44TestPlayerProbePatternView1() __asm__("func_80043194");
 int Physics44PlanarHeadingLookupView1() __asm__("func_8004E880");
 int Physics44TransformVectorByBasisView1() __asm__("func_8004ED6C");
 int Physics44MeasureVectorLengthView3() __asm__("func_8004EDE8");
@@ -95,12 +95,12 @@ extern int Physics44Data6E044View2 __asm__("D_8006E044");
 extern unsigned char Physics44Player0View3 __asm__("D_80070328");
 extern void* (*Physics34_SpawnParticle)() __asm__("SpawnParticle");
 extern void* (*Physics12_SpawnParticle)() __asm__("SpawnParticle");
-int Physics44Call40D10View2() __asm__("func_80040D10");
-int Physics44Call410F8View1() __asm__("func_800410F8");
-int Physics44Call41580View2() __asm__("func_80041580");
-int Physics44Call417FCView2() __asm__("func_800417FC");
-int Physics44Call41848View2() __asm__("func_80041848");
-int Physics44Call41B64View3() __asm__("func_80041B64");
+int Physics44UpdatePlayerGroundInputTargetsView2() __asm__("func_80040D10");
+int Physics44UpdateSmoothedInputPairView1() __asm__("func_800410F8");
+int Physics44ApproachPlayerTargetHeadingView2() __asm__("func_80041580");
+int Physics44ApproachPlayerTargetSpeedView2() __asm__("func_800417FC");
+int Physics44BuildPlayerMovementVectorView2() __asm__("func_80041848");
+int Physics44BuildPlayerResponseVectorView3() __asm__("func_80041B64");
 int Physics44InterpolateCosineView3() __asm__("func_8004EA2C");
 int Physics44TransformVectorByBasisView2() __asm__("func_8004ED6C");
 int Physics44ShiftVectorRightTowardZeroView1() __asm__("func_8004F110");
@@ -210,7 +210,7 @@ void func_level_44_8008E694(int slotIndex) {
                 goto block_132;
             call5 -= 192;
             MATCHING_KEEP(workWord2);
-            Physics44Call410F8View1(call4, call5, 0);
+            Physics44UpdateSmoothedInputPairView1(call4, call5, 0);
             workWord3 = Physics44Player4CView1;
             workWord2 = 1;
             if (workWord3 == workWord2) {
@@ -265,12 +265,12 @@ void func_level_44_8008E694(int slotIndex) {
                 Physics44Field(&Physics44Player0View4, int*, 0xAC) = 0;
             }
             if (Physics44Field(&Physics44Player0View4, int*, 0x4C) == 2) {
-                Physics44Call417FCView2(0xC0, 0xC0);
+                Physics44ApproachPlayerTargetSpeedView2(0xC0, 0xC0);
                 if (Physics44Field(&Physics44Player0View4, int*, 0xB0) < 0xE01) {
                     Physics44Field(&Physics44Player0View4, int*, 0x4C) = 0;
                 }
             } else {
-                Physics44Call417FCView2(0xC0, 0x30);
+                Physics44ApproachPlayerTargetSpeedView2(0xC0, 0x30);
             }
             raw21_temp_s0_7 = &Physics44Player0View4 + 0x60;
             raw21_temp_a0_5 =
@@ -296,7 +296,7 @@ void func_level_44_8008E694(int slotIndex) {
             if (Physics44Field(&Physics44Player0View4, int*, 0x5C) >= 0x301) {
                 Physics44Field(&Physics44Player0View4, int*, 0x5C) = 0x300;
             }
-            Physics44Call41848View2(raw21_temp_a0_5, raw21_temp_a1_2);
+            Physics44BuildPlayerMovementVectorView2(raw21_temp_a0_5, raw21_temp_a1_2);
             Physics44CopyVectorView2(raw21_temp_s0_7 + 0x2C, raw21_temp_s0_7 + 0x20);
             workWord2 = Physics44CallRandView1() & 31;
             if (workWord2)
@@ -325,7 +325,8 @@ void func_level_44_8008E694(int slotIndex) {
             raw21_temp_s1_5 = &Physics44Player0View4 + 0x20C;
             if (!(Physics44Field(&Physics44Player0View4, int*, 0x20C) & 0x40)) {
                 if (Physics44Data6E044View3 != 7) {
-                    Physics44Call410F8View1(&originalFrame.sp18, raw21_temp_s1_5 - 0xC0, 0);
+                    Physics44UpdateSmoothedInputPairView1(&originalFrame.sp18,
+                                                          raw21_temp_s1_5 - 0xC0, 0);
                     workWord3 = originalFrame.sp18;
                     numeric4 = originalFrame.sp1C;
                     workWord2 = workWord3 * 5;
@@ -432,7 +433,7 @@ void func_level_44_8008E694(int slotIndex) {
         run42:
             call5 -= 192;
             MATCHING_KEEP(workWord2);
-            Physics44Call410F8View1(call4, call5, 0);
+            Physics44UpdateSmoothedInputPairView1(call4, call5, 0);
             workWord3 = Physics44Player4CView1;
             workWord2 = 1;
             if (workWord3 == workWord2) {
@@ -484,7 +485,7 @@ void func_level_44_8008E694(int slotIndex) {
                 Physics44Field(&Physics44Player0View4, int*, 0x60) = 0x320;
             }
             Physics44Field(&Physics44Player0View4, int*, 0xAC) = 0x1C00;
-            Physics44Call417FCView2(0x240, 0x30);
+            Physics44ApproachPlayerTargetSpeedView2(0x240, 0x30);
             raw21_temp_a0_6 =
                 (((int)(raw21_temp_s0_10 * -(Physics44InterpolateCosineView3(
                                                  Physics44Field(&Physics44Player0View4, int*, 0x60))
@@ -509,7 +510,7 @@ void func_level_44_8008E694(int slotIndex) {
             if (Physics44Field(&Physics44Player0View4, int*, 0x5C) >= 0x301) {
                 Physics44Field(&Physics44Player0View4, int*, 0x5C) = 0x300;
             }
-            Physics44Call41848View2(raw21_temp_a0_6, raw21_temp_a1_3);
+            Physics44BuildPlayerMovementVectorView2(raw21_temp_a0_6, raw21_temp_a1_3);
             Physics44CopyVectorView2(raw21_temp_s1_6 + 0x28, raw21_temp_s1_6 + 0x1C);
             if ((Physics21_SpawnParticle != 0) &&
                 (Physics44Field(&Physics44Player0View4, int*, 0xB4) >= 0x7D1)) {
@@ -537,8 +538,8 @@ void func_level_44_8008E694(int slotIndex) {
             if (workWord3 == workWord2) {
                 Physics44Field(&Physics44Player0View4, int*, 0xB0) = 0;
             } else {
-                Physics44Call40D10View2(0x980);
-                raw21_var_v0_2 = Physics44Call41580View2(0x5A, 0x10);
+                Physics44UpdatePlayerGroundInputTargetsView2(0x980);
+                raw21_var_v0_2 = Physics44ApproachPlayerTargetHeadingView2(0x5A, 0x10);
                 if (raw21_var_v0_2 < 0) {
                     raw21_var_v0_2 = -raw21_var_v0_2;
                 }
@@ -552,12 +553,12 @@ void func_level_44_8008E694(int slotIndex) {
                 } else {
                     raw21_var_a1_4 = 0x40;
                 }
-                Physics44Call417FCView2(raw21_var_a0_2, raw21_var_a1_4);
+                Physics44ApproachPlayerTargetSpeedView2(raw21_var_a0_2, raw21_var_a1_4);
             }
             raw21_temp_s0_11 = &Physics44Player0View4 + 0xB0;
             if (Physics44Field(&Physics44Player0View4, int*, 0xB0) != 0) {
-                Physics44Call41848View2();
-                Physics44Call41B64View3();
+                Physics44BuildPlayerMovementVectorView2();
+                Physics44BuildPlayerResponseVectorView3();
                 Physics44Field(&Physics44Player0View4, int*, 0x94) = 0;
             } else {
                 Physics44ClearVectorView3(raw21_temp_s0_11 - 0x30);
@@ -634,7 +635,7 @@ void func_level_44_8008E694(int slotIndex) {
             workWord2 = 7;
             if (workWord3 == workWord2)
                 goto zero47;
-            Physics44Call40F48View2(&originalFrame.sp58, 0);
+            Physics44BuildOrientedInputPairView2(&originalFrame.sp58, 0);
             workWord2 = originalFrame.sp58;
             numeric6 = originalFrame.sp5C;
             originalFrame.sp78 = 0;
@@ -662,7 +663,7 @@ void func_level_44_8008E694(int slotIndex) {
                     __asm__ volatile("" ::"i"(0x8008F2D4) : "memory");
                     numeric4 = 1;
                 }
-                if (!Physics44Call43194View1(numeric4)) {
+                if (!Physics44TestPlayerProbePatternView1(numeric4)) {
                     originalFrame.sp7C = 0;
                 }
             } else {
@@ -674,7 +675,7 @@ void func_level_44_8008E694(int slotIndex) {
                     numeric4 = 2;
                 } else
                     numeric4 = 3;
-                if (!Physics44Call43194View1(numeric4)) {
+                if (!Physics44TestPlayerProbePatternView1(numeric4)) {
                     originalFrame.sp80 = 0;
                 }
             }
@@ -703,7 +704,7 @@ void func_level_44_8008E694(int slotIndex) {
             register int numeric4 __asm__("$4");
             register int numeric5 __asm__("$5");
             register int numeric6 __asm__("$6");
-            Physics44Call40F48View2(&originalFrame.sp88, 0);
+            Physics44BuildOrientedInputPairView2(&originalFrame.sp88, 0);
             workWord2 = originalFrame.sp88;
             numeric6 = originalFrame.sp8C;
             originalFrame.sp90 = 0;
@@ -731,7 +732,7 @@ void func_level_44_8008E694(int slotIndex) {
                     __asm__ volatile("" ::"i"(0x8008F3F4) : "memory");
                     numeric4 = 1;
                 }
-                if (!Physics44Call43194View1(numeric4)) {
+                if (!Physics44TestPlayerProbePatternView1(numeric4)) {
                     originalFrame.sp94 = 0;
                 }
             } else {
@@ -743,7 +744,7 @@ void func_level_44_8008E694(int slotIndex) {
                     numeric4 = 2;
                 } else
                     numeric4 = 3;
-                if (!Physics44Call43194View1(numeric4)) {
+                if (!Physics44TestPlayerProbePatternView1(numeric4)) {
                     originalFrame.sp98 = 0;
                 }
             }
@@ -851,9 +852,9 @@ void func_level_44_8008E694(int slotIndex) {
             workWord2 = 31;
             if (workWord3 == workWord2)
                 goto bytes115;
-            Physics44Call40D10View1(3840);
-            Physics44Call416F4View1();
-            Physics44Call41580View1(90, 16);
+            Physics44UpdatePlayerGroundInputTargetsView1(3840);
+            Physics44BlendPlayerHeadingFromInputVectorView1();
+            Physics44ApproachPlayerTargetHeadingView1(90, 16);
         bytes115:
             globalPointer = &Physics44Player1BAView1;
             workWord2 = Physics44Field(globalPointer, unsigned char*, 0);
@@ -883,11 +884,11 @@ void func_level_44_8008E694(int slotIndex) {
                 goto callback131;
             workWord2 = 8;
             if (workWord3 != workWord2)
-                Physics44Call40D10View1(3840);
+                Physics44UpdatePlayerGroundInputTargetsView1(3840);
             workWord2 = Physics44Data6E538View1 & 12;
             if (workWord2)
                 Physics44PlayerACView1 = 0;
-            workWord2 = Physics44Call416F4View1();
+            workWord2 = Physics44BlendPlayerHeadingFromInputVectorView1();
             workWord3 = Physics44Field(mode16, int*, 0);
             callback18 = workWord2;
             if (workWord3 == mode17) {
@@ -897,7 +898,7 @@ void func_level_44_8008E694(int slotIndex) {
                 call4 = (void*)90;
                 call5 = (void*)16;
             }
-            workWord2 = Physics44Call41580View1(call4, call5);
+            workWord2 = Physics44ApproachPlayerTargetHeadingView1(call4, call5);
             workWord3 = workWord2;
             workWord2 = Physics44PlayerA8View1;
             if (workWord2 < 0)
@@ -936,7 +937,7 @@ void func_level_44_8008E694(int slotIndex) {
                     Physics44Field(call4, int*, 0) = workWord3;
             }
         pass116:
-            Physics44Call417FCView1(320, 192);
+            Physics44ApproachPlayerTargetSpeedView1(320, 192);
             workWord2 = Physics44Player101View1;
             call4 = &Physics44PlayerACView1;
             Physics44Field(call4, int*, 0) = (int)globalVector80;
@@ -944,8 +945,8 @@ void func_level_44_8008E694(int slotIndex) {
                 Physics44ClearVectorView1(call4 - 32);
                 goto fields116;
             }
-            Physics44Call41848View1(call4);
-            Physics44Call41B64View2();
+            Physics44BuildPlayerMovementVectorView1(call4);
+            Physics44BuildPlayerResponseVectorView2();
         fields116:
             call6 = &Physics44PlayerFCView1;
             workWord2 = Physics44Field(call6, unsigned char*, 0);
@@ -961,7 +962,7 @@ void func_level_44_8008E694(int slotIndex) {
         case 132:
             goto callback131;
         case 118:
-            Physics44Call40D10View1(3200);
+            Physics44UpdatePlayerGroundInputTargetsView1(3200);
             workWord3 = Physics44Data6E044View1;
             workWord2 = 40;
             call4 = (void*)40;
@@ -970,8 +971,8 @@ void func_level_44_8008E694(int slotIndex) {
                 call5 = (void*)1;
             } else
                 call5 = (void*)8;
-            Physics44Call41580View1(call4, call5);
-            Physics44Call417FCView1(320, 192);
+            Physics44ApproachPlayerTargetHeadingView1(call4, call5);
+            Physics44ApproachPlayerTargetSpeedView1(320, 192);
             globalFieldA4Pointer = &Physics44PlayerA4View1;
             globalVector8C = globalFieldA4Pointer - 24;
             workWord2 =
@@ -1012,7 +1013,7 @@ void func_level_44_8008E694(int slotIndex) {
                 call4 = globalFieldA4Pointer - 36;
             }
             Physics44AddVectorView1(call4, globalVector8C, vectorAt40);
-            Physics44Call41B64View1();
+            Physics44BuildPlayerResponseVectorView1();
         gate118:
             __asm__ volatile("" ::"i"(0x8008F9BC) : "memory");
             workWord2 = combinedIndex < 13;
@@ -1038,9 +1039,9 @@ void func_level_44_8008E694(int slotIndex) {
             workWord2 = 3;
             if (workWord3 != workWord2)
                 goto airborne119;
-            Physics44Call40D10View1(1600);
-            Physics44Call41580View1(22, 4);
-            Physics44Call417FCView1(320, 192);
+            Physics44UpdatePlayerGroundInputTargetsView1(1600);
+            Physics44ApproachPlayerTargetHeadingView1(22, 4);
+            Physics44ApproachPlayerTargetSpeedView1(320, 192);
             globalVector8C = globalFieldA4Pointer + 60;
             workWord2 = Physics44InterpolateCosineView1(Physics44PlayerA4View1);
             workWord3 = Physics44PlayerB0View1;
@@ -1070,14 +1071,14 @@ void func_level_44_8008E694(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer + 48;
             }
             Physics44AddVectorView1(var_a0_3, globalVector8C, vectorAt40);
-            Physics44Call41B64View1();
+            Physics44BuildPlayerResponseVectorView1();
             workWord2 = Physics44Player94View1;
             workWord2 -= 192;
             Physics44Player94View1 = workWord2;
             workWord2 = workWord2 < -8960;
             goto clamp119;
         airborne119:
-            Physics44Call40D10View1(3200);
+            Physics44UpdatePlayerGroundInputTargetsView1(3200);
             workWord3 = Physics44Data6E044View1;
             workWord2 = 40;
             call4 = (void*)40;
@@ -1086,8 +1087,8 @@ void func_level_44_8008E694(int slotIndex) {
                 call5 = (void*)1;
             } else
                 call5 = (void*)8;
-            Physics44Call41580View1(call4, call5);
-            Physics44Call417FCView1(320, 192);
+            Physics44ApproachPlayerTargetHeadingView1(call4, call5);
+            Physics44ApproachPlayerTargetSpeedView1(320, 192);
             globalFieldA4Pointer = &Physics44PlayerA4View1;
             globalVector8C = globalFieldA4Pointer - 24;
             workWord2 =
@@ -1180,7 +1181,7 @@ void func_level_44_8008E694(int slotIndex) {
             call4 = &originalFrame.spE0;
             workWord2 = Physics44Player250View1;
             child18 = Physics44Field((void*)workWord2, void**, 0);
-            Physics44Call40F48View1(call4, 0);
+            Physics44BuildOrientedInputPairView1(call4, 0);
             input16 = &Physics44Data6E040View1;
             workWord2 = Physics44InterpolateCosineView2(Physics44Field(input16, short*, 0));
             position19 = child18 + 100;
@@ -1254,7 +1255,7 @@ void func_level_44_8008E694(int slotIndex) {
                 call5 = (void*)1;
             } else
                 call5 = (void*)4;
-            Physics44Call41580View1(call4, call5);
+            Physics44ApproachPlayerTargetHeadingView1(call4, call5);
             workWord2 = length16 < 6145;
             if (workWord2)
                 goto below122;
@@ -1298,11 +1299,11 @@ void func_level_44_8008E694(int slotIndex) {
             MATCHING_KEEP(globalVector80);
             workWord3 = Physics44Field(globalVector80, int*, 0);
             if (workWord3 != workWord2)
-                Physics44Call40D10View1(3840);
+                Physics44UpdatePlayerGroundInputTargetsView1(3840);
             workWord2 = Physics44Data6E538View1 & 12;
             if (workWord2)
                 Physics44PlayerACView1 = 0;
-            workWord2 = Physics44Call416F4View1();
+            workWord2 = Physics44BlendPlayerHeadingFromInputVectorView1();
             callback17 = workWord2;
             workWord3 = Physics44Field(globalVector80, int*, 0);
             workWord2 = 40;
@@ -1312,7 +1313,7 @@ void func_level_44_8008E694(int slotIndex) {
                 call5 = (void*)1;
             } else
                 call5 = (void*)16;
-            workWord2 = Physics44Call41580View1(call4, call5);
+            workWord2 = Physics44ApproachPlayerTargetHeadingView1(call4, call5);
             workWord3 = workWord2;
             workWord2 = Physics44PlayerA8View1;
             if (workWord2 < 0)
@@ -1351,7 +1352,7 @@ void func_level_44_8008E694(int slotIndex) {
                     Physics44Field(call4, int*, 0) = workWord3;
             }
         pass130:
-            Physics44Call417FCView1(320, 192);
+            Physics44ApproachPlayerTargetSpeedView1(320, 192);
             workWord2 = Physics44Player101View1;
             call4 = &Physics44PlayerACView1;
             Physics44Field(call4, int*, 0) = (int)globalVector80;
@@ -1359,8 +1360,8 @@ void func_level_44_8008E694(int slotIndex) {
                 Physics44ClearVectorView1(call4 - 32);
                 goto fields130;
             }
-            Physics44Call41848View1(call4);
-            Physics44Call41B64View2();
+            Physics44BuildPlayerMovementVectorView1(call4);
+            Physics44BuildPlayerResponseVectorView2();
         fields130:
             call6 = &Physics44PlayerFCView1;
             workWord2 = Physics44Field(call6, unsigned char*, 0);
@@ -1381,7 +1382,7 @@ void func_level_44_8008E694(int slotIndex) {
             Physics44AddVectorView2(call4, call5, call6 - 20);
             return;
         airborne130:
-            Physics44Call40D10View1(3200);
+            Physics44UpdatePlayerGroundInputTargetsView1(3200);
             workWord3 = Physics44Data6E044View1;
             workWord2 = 40;
             call4 = (void*)40;
@@ -1390,8 +1391,8 @@ void func_level_44_8008E694(int slotIndex) {
                 call5 = (void*)1;
             } else
                 call5 = (void*)8;
-            Physics44Call41580View1(call4, call5);
-            Physics44Call417FCView1(320, 192);
+            Physics44ApproachPlayerTargetHeadingView1(call4, call5);
+            Physics44ApproachPlayerTargetSpeedView1(320, 192);
             globalFieldA4Pointer = &Physics44PlayerA4View1;
             globalVector8C = globalFieldA4Pointer - 24;
             workWord2 =
@@ -1423,7 +1424,7 @@ void func_level_44_8008E694(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer - 36;
             }
             Physics44AddVectorView1(var_a0_3, globalVector8C, vectorAt40);
-            Physics44Call41B64View1();
+            Physics44BuildPlayerResponseVectorView1();
             workWord2 = combinedIndex < 13;
             if (!workWord2)
                 goto subtract192_130;
@@ -1469,13 +1470,13 @@ extern int Callback44Step __asm__("D_80070328+0x144");
 extern int Callback44Z __asm__("D_80070328+8");
 extern int Callback44Limit __asm__("D_80070328+0x280");
 extern Spyro Callback44Player __asm__("D_80070328");
-int Callback44Call80037058(int x, int y) __asm__("func_80037058");
-int Callback44Call8003BF6C(int soundId, int index) __asm__("func_8003BF6C");
-void Callback44Call80041930(void) __asm__("func_80041930");
-void Callback44Call80041AE8(void) __asm__("func_80041AE8");
-void Callback44Call80041C20(void) __asm__("func_80041C20");
-void Callback44Call80042A44(void) __asm__("func_80042A44");
-void Callback44Call80043A38(int scale) __asm__("func_80043A38");
+int Callback44SamplePlanarPhaseTable(int x, int y) __asm__("func_80037058");
+int Callback44SoundHandleMatchesIdInStates1Or2(int soundId, int index) __asm__("func_8003BF6C");
+void Callback44ProbePlayerContactSegment(void) __asm__("func_80041930");
+void Callback44CapturePlayerPlanarVectorDifference(void) __asm__("func_80041AE8");
+void Callback44UpdatePlayerCollisionResponse(void) __asm__("func_80041C20");
+void Callback44UpdatePlayerSurfaceState(void) __asm__("func_80042A44");
+void Callback44BuildNegatedNormalizedPlayerVector(int scale) __asm__("func_80043A38");
 extern int Callback44Word8006E538 __asm__("D_8006E538");
 extern int D_8006FA38, D_8006C648;
 int Callback44Query(Vector3D*, int) __asm__("func_8001A358");
@@ -1483,7 +1484,7 @@ int Callback44Length(Vector3D*, int) __asm__("func_8004EDE8");
 extern int Callback44Word290 __asm__("D_80070328+0x290");
 extern unsigned char Callback44Flags[] __asm__("D_8006FCE6");
 extern unsigned char Callback44Values[] __asm__("D_8006FCF0");
-void Callback44Call80049590(void) __asm__("func_80049590");
+void Callback44MarkPlayerSegmentSurfaceType3Flags(void) __asm__("func_80049590");
 void func_level_44_800902B4(void) {
     struct {
         Vector3D first;
@@ -1514,19 +1515,19 @@ void func_level_44_800902B4(void) {
             if (func_800438F4() == 0) {
                 func_80043728();
             }
-            Callback44Call80041C20();
+            Callback44UpdatePlayerCollisionResponse();
             Callback44Player.unk9a = 0;
-            Callback44Call80042A44();
+            Callback44UpdatePlayerSurfaceState();
             goto clearSharedValue;
         default:
             return;
         case 0x80:
-            Callback44Call80041C20();
-            Callback44Call80042A44();
+            Callback44UpdatePlayerCollisionResponse();
+            Callback44UpdatePlayerSurfaceState();
             goto clearSharedValue;
         case 0x79:
-            Callback44Call80041C20();
-            Callback44Call80042A44();
+            Callback44UpdatePlayerCollisionResponse();
+            Callback44UpdatePlayerSurfaceState();
             goto queryC00;
         case 0x81: {
             register int* zWord __asm__("$5") = &Callback44Z;
@@ -1566,8 +1567,8 @@ void func_level_44_800902B4(void) {
                     Callback44Step = 0x2580;
             }
         limitsDone:
-            Callback44Call80041C20();
-            Callback44Call80042A44();
+            Callback44UpdatePlayerCollisionResponse();
+            Callback44UpdatePlayerSurfaceState();
             func_8004F178(&local.first, &Callback44Player.position);
             local.first.z += 0x400;
             Callback44Player.unk4[0] = Callback44Query(&local.first, 0xC00);
@@ -1579,10 +1580,11 @@ void func_level_44_800902B4(void) {
         case 0x28:
         case 0x29:
         case 0x39:
-            Callback44Call80041C20();
-            Callback44Call80042A44();
+            Callback44UpdatePlayerCollisionResponse();
+            Callback44UpdatePlayerSurfaceState();
             descriptor = &Callback44Player.unk22[2];
-            if (Callback44Call8003BF6C((int)D_8006C654->underwater, *descriptor) != 0) {
+            if (Callback44SoundHandleMatchesIdInStates1Or2((int)D_8006C654->underwater,
+                                                           *descriptor) != 0) {
                 valueOffset = *descriptor * 0x2C;
                 decreasingValue = *(int*)(Callback44Values + valueOffset);
                 {
@@ -1597,11 +1599,12 @@ void func_level_44_800902B4(void) {
             }
             goto clearSharedValue;
         case 0x2A:
-            Callback44Call80041C20();
-            Callback44Call80042A44();
-            Callback44Call80049590();
+            Callback44UpdatePlayerCollisionResponse();
+            Callback44UpdatePlayerSurfaceState();
+            Callback44MarkPlayerSegmentSurfaceType3Flags();
             descriptor = &Callback44Player.unk22[2];
-            if (Callback44Call8003BF6C((int)D_8006C654->underwater, *descriptor) == 0) {
+            if (Callback44SoundHandleMatchesIdInStates1Or2((int)D_8006C654->underwater,
+                                                           *descriptor) == 0) {
                 descriptorResult = PlaySound((int)D_8006C654->underwater, 0, 4);
                 *descriptor = descriptorResult;
                 if (descriptorResult >= 0) {
@@ -1612,7 +1615,8 @@ void func_level_44_800902B4(void) {
                 __asm__ volatile("" : : : "$16", "memory");
                 descriptor = &Callback44Player.unk22[2];
             }
-            if (Callback44Call8003BF6C((int)D_8006C654->underwater, *descriptor) != 0) {
+            if (Callback44SoundHandleMatchesIdInStates1Or2((int)D_8006C654->underwater,
+                                                           *descriptor) != 0) {
                 valueOffset = *descriptor * 0x2C;
                 increasingValue = *(int*)(Callback44Values + valueOffset);
                 {
@@ -1633,13 +1637,13 @@ void func_level_44_800902B4(void) {
             goto clearSharedValue;
         case 0x2B:
         case 0x2C:
-            Callback44Call80041C20();
-            Callback44Call80042A44();
-            Callback44Call80041AE8();
+            Callback44UpdatePlayerCollisionResponse();
+            Callback44UpdatePlayerSurfaceState();
+            Callback44CapturePlayerPlanarVectorDifference();
             if ((unsigned char)Callback44Player.unk10[4] != 0) {
                 computedValue = -Callback44Player.unk9ha[4] -
-                                Callback44Call80037058(Callback44Player.position.x,
-                                                       Callback44Player.position.y);
+                                Callback44SamplePlanarPhaseTable(Callback44Player.position.x,
+                                                                 Callback44Player.position.y);
                 positionValue = Callback44Player.unk4a - computedValue;
                 Callback44Player.unk4[0] = computedValue;
                 positionDelta = (int)Callback44Player.union144.a.unk13cc >> 6;
@@ -1652,15 +1656,15 @@ void func_level_44_800902B4(void) {
             Callback44Player.position.z = positionValue;
             return;
         case 0x2F:
-            Callback44Call80041C20();
-            Callback44Call80042A44();
-            Callback44Call80041930();
+            Callback44UpdatePlayerCollisionResponse();
+            Callback44UpdatePlayerSurfaceState();
+            Callback44ProbePlayerContactSegment();
             func_80042F64();
             goto clearSharedValue;
         case 0x32:
-            Callback44Call80041C20();
-            Callback44Call80042A44();
-            Callback44Call80041930();
+            Callback44UpdatePlayerCollisionResponse();
+            Callback44UpdatePlayerSurfaceState();
+            Callback44ProbePlayerContactSegment();
             func_80042F64();
             numerator = (int)((unsigned int)Callback44Player.unk7a[3].z << 2);
             Callback44Player.unk4[0] = 0;
@@ -1679,9 +1683,9 @@ void func_level_44_800902B4(void) {
             goto compareUpperLimit;
         case 0x33:
         case 0x34:
-            Callback44Call80041C20();
-            Callback44Call80042A44();
-            Callback44Call80041930();
+            Callback44UpdatePlayerCollisionResponse();
+            Callback44UpdatePlayerSurfaceState();
+            Callback44ProbePlayerContactSegment();
             func_80042F64();
             Callback44Player.unk4[0] = 0;
             {
@@ -1710,9 +1714,9 @@ void func_level_44_800902B4(void) {
             return;
         case 0x76:
         case 0x77:
-            Callback44Call80041C20();
-            Callback44Call80042A44();
-            Callback44Call80041930();
+            Callback44UpdatePlayerCollisionResponse();
+            Callback44UpdatePlayerSurfaceState();
+            Callback44ProbePlayerContactSegment();
             if (Callback44Player.unk5 != 0x7F) {
                 if ((Callback44Player.unk7a[3].z < 0) &&
                     (Callback44Player.animationStateFrames >= 4)) {
@@ -1730,16 +1734,16 @@ void func_level_44_800902B4(void) {
         case 0x83:
         case 0x84:
             func_800438F4();
-            Callback44Call80041C20();
-            Callback44Call80042A44();
-            Callback44Call80041930();
+            Callback44UpdatePlayerCollisionResponse();
+            Callback44UpdatePlayerSurfaceState();
+            Callback44ProbePlayerContactSegment();
         queryC00:
-            Callback44Call80043A38(0xC00);
+            Callback44BuildNegatedNormalizedPlayerVector(0xC00);
             goto clearSharedValue;
         other82:
-            Callback44Call80041C20();
-            Callback44Call80042A44();
-            Callback44Call80041930();
+            Callback44UpdatePlayerCollisionResponse();
+            Callback44UpdatePlayerSurfaceState();
+            Callback44ProbePlayerContactSegment();
             if ((Callback44Player.unk7a[3].z < 0) && (Callback44Player.animationStateFrames >= 4)) {
                 Callback44Player.unk5 = 1;
             } else {
@@ -1830,20 +1834,20 @@ extern unsigned char Transition44RawUnion[] __asm__("D_80070328+0x144");
 extern int Transition44RawMovement __asm__("D_80070328+0x50");
 extern int Raw44Movement __asm__("D_80070328+0x50");
 extern int Raw44Union __asm__("D_80070328+0x144");
-void Call44ED6C(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004ED6C");
+void Call44TransformVectorByBasis(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004ED6C");
 extern void (*Call44Header)(Moby*) __asm__("unk_ovlheader_8007432C");
 extern unsigned char Raw44State[] __asm__("D_80070328+0x50");
 extern Spyro Special44_D_80070328 __asm__("D_80070328");
 extern short Signed44TableA[] __asm__("D_800658A0");
 extern short Signed44TableB[] __asm__("D_80065920");
 int Special44MeasureVectorLength(Vector3D*, int) __asm__("func_8004EDE8");
-void Special44_func_80043A38(int scale) __asm__("func_80043A38");
-void Special44_func_800441F0(void) __asm__("func_800441F0");
+void Special44BuildNegatedNormalizedPlayerVector(int scale) __asm__("func_80043A38");
+void Special44ClearPlayerMotionVectors(void) __asm__("func_800441F0");
 void Special44ClearVector(Vector3D*) __asm__("func_8004F168");
 extern int Special44_D_8006E524 __asm__("D_8006E524");
 
 extern int D_80071934;
-int Call44A358(Vector3D*, int) __asm__("func_8001A358");
+int Call44QueryWorldHeight(Vector3D*, int) __asm__("func_8001A358");
 extern int Raw44NegativeWord __asm__("D_80070328+0x28");
 extern int Raw44TableIndex __asm__("D_80070328+0x298");
 extern int Raw44Yaw __asm__("D_80070328+0x64");
@@ -1894,7 +1898,7 @@ void func_level_44_80090BF0(int arg0) {
                     }
                     if (Transition44_D_80070328.movementState == MOVEMENT_STATE_CHARGE) {
                         vectors.first.z += 0x400;
-                        firstResult = Call44A358(&vectors.first, 0x800);
+                        firstResult = Call44QueryWorldHeight(&vectors.first, 0x800);
                         vectors.first.z = firstResult;
                         if (firstResult != 0) {
                             firstParticleKind = 6;
@@ -1959,7 +1963,7 @@ void func_level_44_80090BF0(int arg0) {
                     if (Transition44_D_80070328.movementState == MOVEMENT_STATE_CHARGE) {
                         localVector = &vectors.second;
                         vectors.second.z += 0x400;
-                        secondResult = Call44A358(localVector, 0x800);
+                        secondResult = Call44QueryWorldHeight(localVector, 0x800);
                         vectors.second.z = secondResult;
                         if (secondResult != 0) {
                             secondParticleKind = 6;
@@ -2020,7 +2024,7 @@ void func_level_44_80090BF0(int arg0) {
                     localVector = &vectors.third;
                     func_8004F178(localVector, (Vector3D*)(unionPointer - 0x144));
                     vectors.third.z += 0x400;
-                    lengthResult = Call44A358(localVector, 0x800);
+                    lengthResult = Call44QueryWorldHeight(localVector, 0x800);
                     vectors.third.z = lengthResult;
                     if (lengthResult != 0 && D_80071934 != 0 && SpawnParticle) {
                         SpawnParticle(10, 0x29, localVector, 0);
@@ -2096,7 +2100,7 @@ void func_level_44_80090BF0(int arg0) {
         case 0x7E:
             Special44_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Special44_D_80070328.unk5 = 0;
-            Special44_func_800441F0();
+            Special44ClearPlayerMotionVectors();
             Special44_D_80070328.grounded = 1;
             return;
         case 0x74:
@@ -2116,7 +2120,7 @@ void func_level_44_80090BF0(int arg0) {
         case 0x80:
             Special44_D_80070328.movementState = MOVEMENT_STATE_DEATH;
             Special44_D_80070328.unk5 = 0;
-            Special44_func_80043A38(0xC00);
+            Special44BuildNegatedNormalizedPlayerVector(0xC00);
             Special44_D_80070328.grounded = 1;
             Special44_D_8006E524 = 0xF;
             return;
@@ -2184,7 +2188,7 @@ void func_level_44_80090BF0(int arg0) {
             *(int*)state = 0;
             Special44_D_80070328.unk5 = 0;
             vector = (Vector3D*)(privateData + 0x64);
-            Special44_func_800441F0();
+            Special44ClearPlayerMotionVectors();
             Special44_D_80070328.grounded = 1;
             Special44_D_80070328.idle = 0;
             Special44_D_80070328.unk15g = 0;
@@ -2192,14 +2196,14 @@ void func_level_44_80090BF0(int arg0) {
             *(int*)(privateData + 0x64) = 0x1800;
             *(int*)(privateData + 0x68) = 0;
             *(int*)(privateData + 0x6C) = 0;
-            Call44ED6C((Vector3D*)(state - 0x20), vector, vector);
+            Call44TransformVectorByBasis((Vector3D*)(state - 0x20), vector, vector);
             func_8004F194(vector, vector, (Vector3D*)(state - 0x50));
             Call44Header(Special44_D_80070328.critterMobyPtr);
             return;
         }
         case 0x7B:
             Special44_D_80070328.movementState = 0;
-            Special44_func_800441F0();
+            Special44ClearPlayerMotionVectors();
             groundValue = 1;
             goto sharedGround;
         case 0x7C: {
@@ -2207,7 +2211,7 @@ void func_level_44_80090BF0(int arg0) {
                 Special44_D_80070328.critterMobyPtr->mobyTag;
             register unsigned char* child __asm__("$4");
             Special44_D_80070328.movementState = 0;
-            Special44_func_800441F0();
+            Special44ClearPlayerMotionVectors();
             Special44_D_80070328.grounded = 1;
             Special44_D_80070328.idle = 0;
             Special44_D_80070328.unk15g = 0;
@@ -2267,7 +2271,7 @@ void func_level_44_80090BF0(int arg0) {
                 }
                 Special44_D_80070328.unk8[0] = Special44MeasureVectorLength(
                     (Vector3D*)((unsigned char*)&Special44_D_80070328.movementState + 0x48), 0);
-                Special44_func_80043A38(0xC00);
+                Special44BuildNegatedNormalizedPlayerVector(0xC00);
                 groundValue = 1;
                 MATCHING_KEEP(groundValue);
                 Special44_D_80070328.union144.a.unk13cb = 0;
@@ -2310,8 +2314,8 @@ extern int Anim44Player4CView1 __asm__("D_80070328 + 0x4C");
 extern int Anim44PlayerA0View1 __asm__("D_80070328 + 0xA0");
 extern int Anim44PlayerACView1 __asm__("D_80070328 + 0xAC");
 extern int Anim44Data6E538View1 __asm__("D_8006E538"), Anim44Data6E53CView1 __asm__("D_8006E53C");
-int Anim44Call40994View1() __asm__("func_80040994");
-int Anim44Call4BEF8View1() __asm__("func_8004BEF8");
+int Anim44ProcessPlayerStateFlagsView1() __asm__("func_80040994");
+int Anim44DispatchPlayerStateRequestView1() __asm__("func_8004BEF8");
 extern int Anim44PlayerB4View1 __asm__("D_80070328 + 0xB4");
 extern int Anim44PlayerA4View1 __asm__("D_80070328 + 0xA4");
 extern int Anim44Player4CView2 __asm__("D_80070328 + 0x4C");
@@ -2323,15 +2327,15 @@ extern int Anim44Data6E538View2 __asm__("D_8006E538"), Anim44Data6E53CView2 __as
 extern int Anim44Data6E044View1 __asm__("D_8006E044"), A21Gate __asm__("D_8006E344"),
     A21Count __asm__("D_8006C514");
 extern int (*Anim44Data74374View1)() __asm__("unk_ovlheader_80074374");
-int Anim44Call40994View2() __asm__("func_80040994");
-int Anim44Call4BEF8View2() __asm__("func_8004BEF8");
+int Anim44ProcessPlayerStateFlagsView2() __asm__("func_80040994");
+int Anim44DispatchPlayerStateRequestView2() __asm__("func_8004BEF8");
 extern volatile int Anim44Player20CView1 __asm__("D_80070328 + 0x20C");
 extern int Anim44Player214View1 __asm__("D_80070328 + 0x214");
 extern unsigned char Anim44Player100View1 __asm__("D_80070328 + 0x100");
 extern unsigned char Anim44Data6E535View1 __asm__("D_8006E535");
 extern unsigned char* Anim44Data6EE2CView1 __asm__("D_8006EE2C");
-int Anim44Call40BCCView1() __asm__("func_80040BCC");
-int Anim44Call1A310View1() __asm__("func_8001A310");
+int Anim44ProcessPlayerContactFlagsView1() __asm__("func_80040BCC");
+int Anim44QueryWorldHeightWithOptionsView1() __asm__("func_8001A310");
 extern int Anim44Player48View2 __asm__("D_80070328 + 0x48");
 extern int Anim44Player50View1 __asm__("D_80070328 + 0x50");
 extern int Anim44Player54View2 __asm__("D_80070328 + 0x54");
@@ -2359,16 +2363,16 @@ extern int Anim44Data6E52CView1 __asm__("D_8006E52C");
 extern unsigned char* Anim44Data6C654View1 __asm__("D_8006C654");
 extern int (*Anim44Data7431CView1)(int) __asm__("unk_ovlheader_8007431C");
 extern int (*Anim44DataSpawnParticleView1)(int, int, void*, int) __asm__("SpawnParticle");
-int Anim44Call55E84View1(void*) __asm__("func_80055E84");
-int Anim44Call4BEF8View3(int) __asm__("func_8004BEF8");
+int Anim44ReadSelectedFrameScalarView1(void*) __asm__("func_80055E84");
+int Anim44DispatchPlayerStateRequestView3(int) __asm__("func_8004BEF8");
 int Anim44CallPlaySoundView1(unsigned char, int, int) __asm__("PlaySound");
 extern int Anim44PlayerB4View2 __asm__("D_80070328 + 0xB4");
 extern int Anim44Player28CView1 __asm__("D_80070328 + 0x28C");
 extern int Anim44Player290View1 __asm__("D_80070328 + 0x290");
 extern int Anim44Data6E044View2 __asm__("D_8006E044");
-int Anim44Call498C0View1(void*) __asm__("func_800498C0");
-int Anim44Call3BF6CView1(int, int) __asm__("func_8003BF6C");
-int Anim44Call3BE70View1(int) __asm__("func_8003BE70");
+int Anim44UpdatePlayerRetryStateView1(void*) __asm__("func_800498C0");
+int Anim44SoundHandleMatchesIdInStates1Or2View1(int, int) __asm__("func_8003BF6C");
+int Anim44TransitionSoundHandleTo3Or5View1(int) __asm__("func_8003BE70");
 #define Anim44Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 void func_level_44_80091774(void) {
     register int rawValue2 __asm__("$2");
@@ -2381,7 +2385,7 @@ void func_level_44_80091774(void) {
     rawValue2 = Anim44Player48View1;
     switch (rawValue2) {
         case 40:
-            if (Anim44Call40994View2())
+            if (Anim44ProcessPlayerStateFlagsView2())
                 return;
             if ((Anim44Data6E538View2 & 128) && Anim44Player4CView2 != 1) {
                 nextSelector4 = 42;
@@ -2397,7 +2401,7 @@ void func_level_44_80091774(void) {
                 return;
             goto select;
         case 41:
-            if (Anim44Call40994View2())
+            if (Anim44ProcessPlayerStateFlagsView2())
                 return;
             nextSelector4 = Anim44Data6E538View2;
             rawValue2 = nextSelector4 & 128;
@@ -2419,7 +2423,7 @@ void func_level_44_80091774(void) {
                 goto select;
             return;
         case 42:
-            if (Anim44Call40BCCView1())
+            if (Anim44ProcessPlayerContactFlagsView1())
                 return;
             if ((Anim44Data6E538View2 & 128) || Anim44Player4CView2 == 1)
                 goto flag64;
@@ -2435,7 +2439,7 @@ void func_level_44_80091774(void) {
             goto select;
         case 43: {
             register unsigned char* byte4 __asm__("$4");
-            if (Anim44Call40994View2())
+            if (Anim44ProcessPlayerStateFlagsView2())
                 return;
             if ((Anim44Data6E53CView2 & 64) && Anim44Player54View1 >= 9) {
                 nextSelector4 = 6;
@@ -2455,13 +2459,13 @@ void func_level_44_80091774(void) {
             byte4 -= 256;
             if (!rawValue2)
                 goto check44;
-            rawValue2 = Anim44Call1A310View1(byte4, 1024, 1, 0);
+            rawValue2 = Anim44QueryWorldHeightWithOptionsView1(byte4, 1024, 1, 0);
             nextSelector4 = 40;
             if (rawValue2)
                 goto check44;
             goto select;
         partialCall:
-            Anim44Call4BEF8View2(nextSelector4);
+            Anim44DispatchPlayerStateRequestView2(nextSelector4);
         check44:
             rawValue2 = Anim44Data6E535View1;
             nextSelector4 = 44;
@@ -2490,7 +2494,7 @@ void func_level_44_80091774(void) {
         missingCallback:
             goto call498C0;
         other44:
-            if (Anim44Call40994View2())
+            if (Anim44ProcessPlayerStateFlagsView2())
                 return;
             if ((Anim44Data6E53CView2 & 64) && Anim44Player54View1 >= 9) {
                 nextSelector4 = 6;
@@ -2510,7 +2514,7 @@ void func_level_44_80091774(void) {
             byte4 -= 256;
             if (!rawValue2)
                 goto mode44;
-            rawValue2 = Anim44Call1A310View1(byte4, 1024, 1, 0);
+            rawValue2 = Anim44QueryWorldHeightWithOptionsView1(byte4, 1024, 1, 0);
             nextSelector4 = 40;
             if (!rawValue2)
                 goto select;
@@ -2526,7 +2530,7 @@ void func_level_44_80091774(void) {
             goto select;
         }
         case 47:
-            if (Anim44Call40994View1())
+            if (Anim44ProcessPlayerStateFlagsView1())
                 return;
             if (Anim44Data6E53CView1 & 64) {
                 rawValue2 = Anim44Data6E538View1 & 16384;
@@ -2542,7 +2546,7 @@ void func_level_44_80091774(void) {
                 return;
             goto select;
         case 50:
-            if (Anim44Call40994View1())
+            if (Anim44ProcessPlayerStateFlagsView1())
                 return;
             if (Anim44Data6E53CView1 & 64) {
                 rawValue2 = Anim44Data6E538View1 & 16384;
@@ -2573,7 +2577,7 @@ void func_level_44_80091774(void) {
             goto select;
         case 51:
         case 52:
-            if (Anim44Call40994View1())
+            if (Anim44ProcessPlayerStateFlagsView1())
                 return;
             if (Anim44Data6E53CView1 & 64) {
                 rawValue2 = Anim44Data6E538View1 & 16384;
@@ -2581,7 +2585,7 @@ void func_level_44_80091774(void) {
                 if (!rawValue2)
                     goto select;
             specialJump:
-                Anim44Call4BEF8View1(7);
+                Anim44DispatchPlayerStateRequestView1(7);
                 rawValue2 = 3;
                 Anim44Player4CView1 = rawValue2;
                 return;
@@ -2755,7 +2759,7 @@ void func_level_44_80091774(void) {
             if (rawValue2)
                 return;
             nextSelector4 = (int)Anim44Player250View1;
-            rawValue2 = Anim44Call55E84View1((void*)nextSelector4);
+            rawValue2 = Anim44ReadSelectedFrameScalarView1((void*)nextSelector4);
             rawValue2 = rawValue2 < 37;
             nextSelector4 = 117;
             if (rawValue2)
@@ -2961,7 +2965,7 @@ void func_level_44_80091774(void) {
                 goto effect119;
             nextSelector4 = 117;
         effect119:
-            Anim44Call4BEF8View3(nextSelector4);
+            Anim44DispatchPlayerStateRequestView3(nextSelector4);
             {
                 register int (*spawn2)(int, int, void*, int) __asm__("$2") =
                     Anim44DataSpawnParticleView1;
@@ -3250,7 +3254,7 @@ void func_level_44_80091774(void) {
             goto helper128;
         call498C0:
         helper128:
-            Anim44Call498C0View1((void*)nextSelector4);
+            Anim44UpdatePlayerRetryStateView1((void*)nextSelector4);
             return;
         case 129:
             rawValue2 = Anim44Data6E53CView3 & 64;
@@ -3288,10 +3292,10 @@ void func_level_44_80091774(void) {
             if (product5 < 0)
                 goto select;
             nextSelector4 = Anim44Player290View1;
-            rawValue2 = Anim44Call3BF6CView1(nextSelector4, product5);
+            rawValue2 = Anim44SoundHandleMatchesIdInStates1Or2View1(nextSelector4, product5);
             if (rawValue2) {
                 nextSelector4 = Anim44Player28CView1;
-                Anim44Call3BE70View1(nextSelector4);
+                Anim44TransitionSoundHandleTo3Or5View1(nextSelector4);
             }
             rawValue2 = -1;
             Anim44Player28CView1 = rawValue2;
@@ -3333,7 +3337,7 @@ void func_level_44_80091774(void) {
             goto select;
         preserveAge:
             savedWord16 = Anim44Player54View2;
-            Anim44Call4BEF8View3(119);
+            Anim44DispatchPlayerStateRequestView3(119);
             Anim44Player54View2 = savedWord16;
             return;
         other130:
@@ -3488,7 +3492,7 @@ void func_level_44_80091774(void) {
 select116:
     nextSelector4 = 116;
 select:
-    Anim44Call4BEF8View1(nextSelector4);
+    Anim44DispatchPlayerStateRequestView1(nextSelector4);
     return;
 }
 #undef Anim44Field

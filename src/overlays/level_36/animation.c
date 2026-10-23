@@ -33,10 +33,10 @@ extern unsigned char Raw36State[] __asm__("D_80070328+0x50");
  * actual internal/conditional target,selector/data word and full EXE/every
  * overlay retail hash. Binary identity does not establish runtime completion. */
 #define Physics36Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-unsigned char Physics36Call40D10View1() __asm__("func_80040D10");
-unsigned char Physics36Call41580View1() __asm__("func_80041580");
-unsigned char Physics36Call417FCView1() __asm__("func_800417FC");
-unsigned char Physics36Call41B64View1() __asm__("func_80041B64");
+unsigned char Physics36UpdatePlayerGroundInputTargetsView1() __asm__("func_80040D10");
+unsigned char Physics36ApproachPlayerTargetHeadingView1() __asm__("func_80041580");
+unsigned char Physics36ApproachPlayerTargetSpeedView1() __asm__("func_800417FC");
+unsigned char Physics36BuildPlayerResponseVectorView1() __asm__("func_80041B64");
 int Physics36InterpolateSineView1() __asm__("func_8004E9E4");
 int Physics36InterpolateCosineView1() __asm__("func_8004EA2C");
 int Physics36MeasureVectorLengthView1() __asm__("func_8004EDE8");
@@ -47,12 +47,12 @@ extern void* Physics36Data6C570View1 __asm__("D_8006C570");
 extern unsigned char Physics36Data6E548View1 __asm__("D_8006E548");
 extern unsigned char Physics36Player0View1 __asm__("D_80070328");
 extern void* (*Controller88028_SpawnParticle)() __asm__("SpawnParticle");
-int Physics36Call40D10View2() __asm__("func_80040D10");
-int Physics36Call41580View2() __asm__("func_80041580");
-int Physics36Call416F4View1() __asm__("func_800416F4");
-int Physics36Call417FCView2() __asm__("func_800417FC");
-int Physics36Call41848View1() __asm__("func_80041848");
-int Physics36Call41B64View2() __asm__("func_80041B64");
+int Physics36UpdatePlayerGroundInputTargetsView2() __asm__("func_80040D10");
+int Physics36ApproachPlayerTargetHeadingView2() __asm__("func_80041580");
+int Physics36BlendPlayerHeadingFromInputVectorView1() __asm__("func_800416F4");
+int Physics36ApproachPlayerTargetSpeedView2() __asm__("func_800417FC");
+int Physics36BuildPlayerMovementVectorView1() __asm__("func_80041848");
+int Physics36BuildPlayerResponseVectorView2() __asm__("func_80041B64");
 int Physics36InterpolateSineView2() __asm__("func_8004E9E4");
 int Physics36InterpolateCosineView2() __asm__("func_8004EA2C");
 int Physics36MeasureVectorLengthView2() __asm__("func_8004EDE8");
@@ -148,9 +148,9 @@ void func_level_36_80084060(int slotIndex) {
             Physics36ClearVectorView1(globalVector80);
             Physics36ClearVectorView1(globalVector80 + 12);
             if (Physics36Data6E044View1 != 7) {
-                Physics36Call40D10View2(3840);
-                Physics36Call416F4View1();
-                Physics36Call41580View2(90, 16);
+                Physics36UpdatePlayerGroundInputTargetsView2(3840);
+                Physics36BlendPlayerHeadingFromInputVectorView1();
+                Physics36ApproachPlayerTargetHeadingView2(90, 16);
             }
             workWord2 = Physics36Player1BAView1;
             if (!workWord2)
@@ -172,17 +172,17 @@ void func_level_36_80084060(int slotIndex) {
             workWord3 = Physics36Data6E044View1;
             workWord2 = 8;
             if (workWord3 != workWord2)
-                Physics36Call40D10View2(3840);
+                Physics36UpdatePlayerGroundInputTargetsView2(3840);
             globalVector80 = &Physics36Data6E538View1;
             workWord2 = Physics36Field(globalVector80, int*, 0) & 12;
             if (workWord2)
                 Physics36PlayerACView1 = 0;
-            workWord2 = Physics36Call416F4View1();
+            workWord2 = Physics36BlendPlayerHeadingFromInputVectorView1();
             call4 = (void*)90;
             call5 = (void*)16;
             MATCHING_KEEP2(call4, call5);
             globalFieldA4Pointer = (void*)workWord2;
-            workWord2 = Physics36Call41580View2(call4, call5);
+            workWord2 = Physics36ApproachPlayerTargetHeadingView2(call4, call5);
             workWord3 = Physics36PlayerA8View1;
             if (workWord3 < 0)
                 workWord3 = -workWord3;
@@ -222,7 +222,7 @@ void func_level_36_80084060(int slotIndex) {
                     Physics36Field(call4, int*, 0) = workWord3;
             }
         pass101:
-            Physics36Call417FCView2(256, 384);
+            Physics36ApproachPlayerTargetSpeedView2(256, 384);
             workWord2 = Physics36Player101View1;
             call4 = &Physics36PlayerACView1;
             Physics36Field(call4, int*, 0) = (int)globalVector80;
@@ -230,8 +230,8 @@ void func_level_36_80084060(int slotIndex) {
                 Physics36ClearVectorView1(call4 - 32);
                 goto fields101;
             }
-            Physics36Call41848View1(call4);
-            Physics36Call41B64View2();
+            Physics36BuildPlayerMovementVectorView1(call4);
+            Physics36BuildPlayerResponseVectorView2();
         fields101:
             call6 = &Physics36PlayerFCView1;
             MATCHING_KEEP(call6);
@@ -249,9 +249,9 @@ void func_level_36_80084060(int slotIndex) {
             workWord2 = 1;
             if (workWord3 != workWord2)
                 goto ground87;
-            Physics36Call40D10View2(3200);
-            Physics36Call41580View2(40, 8);
-            Physics36Call417FCView2(256, 384);
+            Physics36UpdatePlayerGroundInputTargetsView2(3200);
+            Physics36ApproachPlayerTargetHeadingView2(40, 8);
+            Physics36ApproachPlayerTargetSpeedView2(256, 384);
             globalFieldA4Pointer = globalVector80 + 64;
             workWord2 = Physics36InterpolateCosineView2(Physics36PlayerA4View1);
             workWord3 = Physics36PlayerB0View1;
@@ -280,7 +280,7 @@ void func_level_36_80084060(int slotIndex) {
                 var_a0_3 = globalVector80 + 52;
             }
             Physics36AddVectorView2(var_a0_3, globalFieldA4Pointer, &originalFrame.sp10);
-            Physics36Call41B64View2();
+            Physics36BuildPlayerResponseVectorView2();
             workWord2 = combinedIndex < 13;
             if (!workWord2)
                 goto subtract87;
@@ -304,17 +304,17 @@ void func_level_36_80084060(int slotIndex) {
             workWord3 = Physics36Data6E044View1;
             workWord2 = 8;
             if (workWord3 != workWord2)
-                Physics36Call40D10View2(3840);
+                Physics36UpdatePlayerGroundInputTargetsView2(3840);
             globalVector80 = &Physics36Data6E538View1;
             workWord2 = Physics36Field(globalVector80, int*, 0) & 12;
             if (workWord2)
                 Physics36PlayerACView1 = 0;
-            workWord2 = Physics36Call416F4View1();
+            workWord2 = Physics36BlendPlayerHeadingFromInputVectorView1();
             call4 = (void*)90;
             call5 = (void*)16;
             MATCHING_KEEP2(call4, call5);
             globalFieldA4Pointer = (void*)workWord2;
-            workWord2 = Physics36Call41580View2(call4, call5);
+            workWord2 = Physics36ApproachPlayerTargetHeadingView2(call4, call5);
             workWord3 = Physics36PlayerA8View1;
             if (workWord3 < 0)
                 workWord3 = -workWord3;
@@ -354,7 +354,7 @@ void func_level_36_80084060(int slotIndex) {
                     Physics36Field(call4, int*, 0) = workWord3;
             }
         pass87:
-            Physics36Call417FCView2(256, 384);
+            Physics36ApproachPlayerTargetSpeedView2(256, 384);
             workWord2 = Physics36Player101View1;
             call4 = &Physics36PlayerACView1;
             Physics36Field(call4, int*, 0) = (int)globalVector80;
@@ -362,8 +362,8 @@ void func_level_36_80084060(int slotIndex) {
                 Physics36ClearVectorView1(call4 - 32);
                 goto fields87;
             }
-            Physics36Call41848View1(call4);
-            Physics36Call41B64View2();
+            Physics36BuildPlayerMovementVectorView1(call4);
+            Physics36BuildPlayerResponseVectorView2();
         fields87:
             call6 = &Physics36PlayerFCView1;
             workWord2 = Physics36Field(call6, unsigned char*, 0);
@@ -462,11 +462,11 @@ void func_level_36_80084060(int slotIndex) {
             call4 = (void*)22;
             goto speed89;
         free89:
-            Physics36Call40D10View2(1600);
+            Physics36UpdatePlayerGroundInputTargetsView2(1600);
             call4 = (void*)22;
         speed89:
-            Physics36Call41580View2(call4, 4);
-            Physics36Call417FCView2(256, 384);
+            Physics36ApproachPlayerTargetHeadingView2(call4, 4);
+            Physics36ApproachPlayerTargetSpeedView2(256, 384);
             globalFieldA4Pointer = &Physics36Player4CView1;
             MATCHING_KEEP(globalFieldA4Pointer);
             workWord3 = Physics36Field(globalFieldA4Pointer, int*, 0);
@@ -521,7 +521,7 @@ void func_level_36_80084060(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer + 52;
             }
             Physics36AddVectorView2(var_a0_3, globalVector8C, globalVector80);
-            Physics36Call41B64View2();
+            Physics36BuildPlayerResponseVectorView2();
         subtract89:
             globalPointer = &Physics36Player94View1;
             workWord2 = Physics36Field(globalPointer, int*, 0);
@@ -531,9 +531,9 @@ void func_level_36_80084060(int slotIndex) {
         }
         case 93:
         case 94: {
-            Physics36Call40D10View1(0xC80);
-            Physics36Call41580View1(0x28, 8);
-            Physics36Call417FCView1(256, 384);
+            Physics36UpdatePlayerGroundInputTargetsView1(0xC80);
+            Physics36ApproachPlayerTargetHeadingView1(0x28, 8);
+            Physics36ApproachPlayerTargetSpeedView1(256, 384);
             globalFieldA4Pointer = &Physics36Player0View1 + 0xA4;
             globalVector8C = globalFieldA4Pointer - 0x18;
             workWord2 =
@@ -561,7 +561,7 @@ void func_level_36_80084060(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer - 0x24;
             }
             Physics36AddVectorView1(var_a0_3, globalVector8C, &originalFrame.sp40);
-            Physics36Call41B64View1();
+            Physics36BuildPlayerResponseVectorView1();
             workWord2 = combinedIndex < 13;
             if (!workWord2)
                 goto subtract93;
@@ -604,7 +604,7 @@ void func_level_36_80084060(int slotIndex) {
             workWord3 = Physics36Data6E044View1;
             workWord2 = 8;
             if (workWord3 != workWord2)
-                Physics36Call40D10View2(1536);
+                Physics36UpdatePlayerGroundInputTargetsView2(1536);
             numeric4 = Physics36Field(globalVector80, int*, 80);
             workWord2 = Physics36PlayerA4View1;
             workWord3 = numeric4 - 512;
@@ -635,7 +635,7 @@ void func_level_36_80084060(int slotIndex) {
             Physics36PlayerACView1 = workWord2;
             if (workWord2 < 0)
                 Physics36PlayerACView1 = 0;
-            workWord2 = Physics36Call41580View2(90, 16);
+            workWord2 = Physics36ApproachPlayerTargetHeadingView2(90, 16);
             angle17 = Physics36PlayerACView1;
             if (workWord2 < 0)
                 workWord2 = -workWord2;
@@ -647,7 +647,7 @@ void func_level_36_80084060(int slotIndex) {
                 if (workWord2)
                     Physics36PlayerACView1 = workWord3;
             }
-            Physics36Call417FCView2(call4, 256);
+            Physics36ApproachPlayerTargetSpeedView2(call4, 256);
             call4 = (void*)Physics36PlayerA4View1;
             MATCHING_OBSERVE_VOLATILE_CLOBBER(call4, "memory");
             globalVector80 = &Physics36PlayerACView1;
@@ -753,18 +753,21 @@ extern int Callback36WordE1D8 __asm__("D_8006E1D8");
 extern int Callback36WordE530 __asm__("D_8006E530");
 extern int Callback36WordE52C __asm__("D_8006E52C");
 extern void (*Callback36Header344)(void) __asm__("unk_ovlheader_80074344");
-int Callback36Call80018368(Vector3D*, Vector3D*) __asm__("func_80018368");
+int Callback36QueryWorldSegment(Vector3D*, Vector3D*) __asm__("func_80018368");
 extern Spyro Callback36Player __asm__("D_80070328");
-void Callback36Call80041930(void) __asm__("func_80041930");
-void Callback36Call80041C20(void) __asm__("func_80041C20");
-void Callback36Call80042A44(void) __asm__("func_80042A44");
-void Callback36Call80043A38(int scale) __asm__("func_80043A38");
+void Callback36ProbePlayerContactSegment(void) __asm__("func_80041930");
+void Callback36UpdatePlayerCollisionResponse(void) __asm__("func_80041C20");
+void Callback36UpdatePlayerSurfaceState(void) __asm__("func_80042A44");
+void Callback36BuildNegatedNormalizedPlayerVectorAlias(int scale) __asm__("func_80043A38");
 extern int Callback36Word8006E538 __asm__("D_8006E538");
-int Callback36Call80055E84(Moby*) __asm__("func_80055E84");
-void Callback36Call8004ED6C(void*, Vector3D*, Vector3D*) __asm__("func_8004ED6C");
-void* Callback36Call8001BA30(Vector3D*, int, int, int, int, Moby*) __asm__("func_8001BA30");
-int Callback36Call80019138(Vector3D*, int, int, int, int, Moby*) __asm__("func_80019138");
-int Callback36Call8001830C(Vector3D*, Vector3D*, int, int, Moby*) __asm__("func_8001830C");
+int Callback36ReadSelectedFrameScalar(Moby*) __asm__("func_80055E84");
+void Callback36TransformVectorByBasis(void*, Vector3D*, Vector3D*) __asm__("func_8004ED6C");
+void* Callback36QueryDynamicMobyGeometry(Vector3D*, int, int, int, int,
+                                         Moby*) __asm__("func_8001BA30");
+int Callback36QueryWorldSphereWithOptions(Vector3D*, int, int, int, int,
+                                          Moby*) __asm__("func_80019138");
+int Callback36QueryWorldSegmentWithOptions(Vector3D*, Vector3D*, int, int,
+                                           Moby*) __asm__("func_8001830C");
 void func_level_36_80084D08(void) {
     struct {
         Vector3D first;
@@ -782,25 +785,25 @@ void func_level_36_80084D08(void) {
         case 0x55:
             if (func_800438F4() == 0)
                 func_80043728();
-            Callback36Call80041C20();
+            Callback36UpdatePlayerCollisionResponse();
             Callback36Player.unk9a = 0;
-            Callback36Call80042A44();
+            Callback36UpdatePlayerSurfaceState();
             goto clearSharedValue;
         case 0x5A:
-            Callback36Call80041C20();
-            Callback36Call80042A44();
+            Callback36UpdatePlayerCollisionResponse();
+            Callback36UpdatePlayerSurfaceState();
             goto clearSharedValue;
         case 0x58:
-            Callback36Call80041C20();
-            Callback36Call80042A44();
+            Callback36UpdatePlayerCollisionResponse();
+            Callback36UpdatePlayerSurfaceState();
             goto queryC00;
         case 0x56:
         case 0x5C:
             privateData = Callback36Player.critterMobyPtr->mobyTag;
             func_800438F4();
-            Callback36Call80041C20();
-            Callback36Call80042A44();
-            Callback36Call80041930();
+            Callback36UpdatePlayerCollisionResponse();
+            Callback36UpdatePlayerSurfaceState();
+            Callback36ProbePlayerContactSegment();
             if ((unsigned char)Callback36Player.unk10[2] != 0) {
                 selected = Callback36Word71930;
                 *(Moby**)(privateData + 0x4C) = selected;
@@ -822,20 +825,22 @@ void func_level_36_80084D08(void) {
             void* result;
             register Moby* initialMoby __asm__("$4");
             func_800438F4();
-            Callback36Call80041C20();
-            Callback36Call80042A44();
-            Callback36Call80041930();
-            Callback36Call80043A38(0xC00);
+            Callback36UpdatePlayerCollisionResponse();
+            Callback36UpdatePlayerSurfaceState();
+            Callback36ProbePlayerContactSegment();
+            Callback36BuildNegatedNormalizedPlayerVectorAlias(0xC00);
             initialMoby = Callback36InitialMoby;
             MATCHING_KEEP_VOLATILE_CLOBBER(initialMoby, "memory");
             clearedWord = &Callback36ClearedWord;
             *clearedWord = 0;
-            if (initialMoby->animationState.id == 2 && Callback36Call80055E84(initialMoby) >= 4 &&
-                Callback36Call80055E84(Callback36QueryMoby) < 13) {
+            if (initialMoby->animationState.id == 2 &&
+                Callback36ReadSelectedFrameScalar(initialMoby) >= 4 &&
+                Callback36ReadSelectedFrameScalar(Callback36QueryMoby) < 13) {
                 local.first.x = 0x600;
                 local.first.y = 0;
                 local.first.z = -0x380;
-                Callback36Call8004ED6C((unsigned char*)clearedWord + 8, &local.first, &local.first);
+                Callback36TransformVectorByBasis((unsigned char*)clearedWord + 8, &local.first,
+                                                 &local.first);
                 {
                     register Vector3D* destination __asm__("$4") = &local.first;
                     register Vector3D* firstSource __asm__("$5") = destination;
@@ -844,14 +849,14 @@ void func_level_36_80084D08(void) {
                     func_8004F194(destination, firstSource, (Vector3D*)sourceBase);
                 }
 
-            result =
-                    Callback36Call8001BA30(&local.first, 0x400, 1, 0, 0, Callback36FirstCallMoby);
+            result = Callback36QueryDynamicMobyGeometry(&local.first, 0x400, 1, 0, 0,
+                                                            Callback36FirstCallMoby);
                 if (result) {
                     func_8004F178(&local.second, (Vector3D*)((unsigned char*)result + 0xC));
                     local.second.z += 0x80;
-                    if (Callback36Call80018368((Vector3D*)sourceBase, &local.second) == 0)
-                        Callback36Call8001BA30(&local.first, 0x400, 1, 0, 0x04000000,
-                                               Callback36SecondCallMoby);
+                    if (Callback36QueryWorldSegment((Vector3D*)sourceBase, &local.second) == 0)
+                        Callback36QueryDynamicMobyGeometry(&local.first, 0x400, 1, 0, 0x04000000,
+                                                           Callback36SecondCallMoby);
                 }
                 {
                     register Vector3D* argument0 __asm__("$4") = &local.first;
@@ -863,12 +868,13 @@ void func_level_36_80084D08(void) {
                                                     "memory");
                     mobyPointer = (Moby**)Callback36MobyPointer;
                     lastMoby = *mobyPointer;
-                    Callback36Call80019138(argument0, argument1, argument2, argument3, 0x04000000,
-                                           lastMoby);
+                    Callback36QueryWorldSphereWithOptions(argument0, argument1, argument2,
+                                                          argument3, 0x04000000, lastMoby);
                 }
-                Callback36Call8001830C((Vector3D*)((unsigned char*)mobyPointer - 0x250),
-                                       &local.first, 0, 0x04000000, *mobyPointer);
-                if (Callback36Call80055E84(*mobyPointer) >= 8) {
+                Callback36QueryWorldSegmentWithOptions(
+                    (Vector3D*)((unsigned char*)mobyPointer - 0x250), &local.first, 0, 0x04000000,
+                    *mobyPointer);
+                if (Callback36ReadSelectedFrameScalar(*mobyPointer) >= 8) {
                     register int* limitPointer __asm__("$3") = &Callback36WordE1D4;
                     if (*limitPointer < 0xC00)
                         *limitPointer = 0xC00;
@@ -890,9 +896,9 @@ void func_level_36_80084D08(void) {
         case 0x59:
             privateOther = Callback36Player.critterMobyPtr->mobyTag;
             Callback36Header344();
-            Callback36Call80041C20();
-            Callback36Call80042A44();
-            Callback36Call80041930();
+            Callback36UpdatePlayerCollisionResponse();
+            Callback36UpdatePlayerSurfaceState();
+            Callback36ProbePlayerContactSegment();
             if ((unsigned char)Callback36Player.unk10[2] != 0) {
                 selected = Callback36Word71930;
                 *(Moby**)(privateOther + 0x4C) = selected;
@@ -928,10 +934,10 @@ void func_level_36_80084D08(void) {
             register void* argument0 __asm__("$4");
             if (func_800438F4() == 0)
                 func_80043728();
-            Callback36Call80041C20();
+            Callback36UpdatePlayerCollisionResponse();
             originalBase = (unsigned char*)&Callback36Player.unk9a;
             *(int*)originalBase = 0;
-            Callback36Call80042A44();
+            Callback36UpdatePlayerSurfaceState();
             Callback36Player.unk4[0] = 0;
             argument0 = originalBase - 0x8C;
             if (Callback36Player.critterMobyPtr->animationState.id == 6) {
@@ -939,18 +945,18 @@ void func_level_36_80084D08(void) {
                 local.second.x = 0x400;
                 local.second.y = 0;
                 local.second.z = 0x200;
-                Callback36Call8004ED6C(argument0, vectorBase, vectorBase);
+                Callback36TransformVectorByBasis(argument0, vectorBase, vectorBase);
                 func_8004F194(vectorBase, vectorBase, (Vector3D*)(originalBase - 0xBC));
-                Callback36Call8001BA30(vectorBase, 0x400, 0, 0, 0x08000000,
-                                       Callback36Player.critterMobyPtr);
+                Callback36QueryDynamicMobyGeometry(vectorBase, 0x400, 0, 0, 0x08000000,
+                                                   Callback36Player.critterMobyPtr);
             }
             return;
         }
         case 0x5D:
         case 0x5E:
-            Callback36Call80041C20();
-            Callback36Call80042A44();
-            Callback36Call80041930();
+            Callback36UpdatePlayerCollisionResponse();
+            Callback36UpdatePlayerSurfaceState();
+            Callback36ProbePlayerContactSegment();
             if (Callback36Player.unk5 != 0x7F) {
                 if (Callback36Player.unk7a[3].z < 0 && Callback36Player.animationStateFrames >= 4)
                     Callback36Player.unk5 = 1;
@@ -965,9 +971,9 @@ void func_level_36_80084D08(void) {
             privateData = Callback36Player.critterMobyPtr->mobyTag;
             Callback36Header344();
             func_800438F4();
-            Callback36Call80041C20();
-            Callback36Call80042A44();
-            Callback36Call80041930();
+            Callback36UpdatePlayerCollisionResponse();
+            Callback36UpdatePlayerSurfaceState();
+            Callback36ProbePlayerContactSegment();
             if ((unsigned char)Callback36Player.unk10[2] != 0) {
                 selected = Callback36Word71930;
                 *(Moby**)(privateData + 0x4C) = selected;
@@ -999,7 +1005,7 @@ void func_level_36_80084D08(void) {
         clearSelected:
             *(Moby**)(privateData + 0x4C) = 0;
         queryC00:
-            Callback36Call80043A38(0xC00);
+            Callback36BuildNegatedNormalizedPlayerVectorAlias(0xC00);
         clearSharedValue:
             Callback36Player.unk4[0] = 0;
             return;
@@ -1046,8 +1052,8 @@ extern Spyro Callback36_D_80070328 __asm__("D_80070328");
 extern short Signed36TableA[] __asm__("D_800658A0");
 extern short Signed36TableB[] __asm__("D_80065920");
 int Callback36MeasureVectorLength(Vector3D*, int) __asm__("func_8004EDE8");
-void Callback36_func_80043A38(int scale) __asm__("func_80043A38");
-void Callback36_func_800441F0(void) __asm__("func_800441F0");
+void Callback36BuildNegatedNormalizedPlayerVector(int scale) __asm__("func_80043A38");
+void Callback36ClearPlayerMotionVectors(void) __asm__("func_800441F0");
 void Callback36ClearVector(Vector3D*) __asm__("func_8004F168");
 extern int Callback36_D_8006E524 __asm__("D_8006E524");
 
@@ -1065,7 +1071,7 @@ void func_level_36_80085520(int arg0) {
         case 0x5B:
             Callback36_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Callback36_D_80070328.unk5 = 0;
-            Callback36_func_800441F0();
+            Callback36ClearPlayerMotionVectors();
             Callback36_D_80070328.grounded = 1;
             return;
         case 0x56:
@@ -1085,7 +1091,7 @@ void func_level_36_80085520(int arg0) {
             }
             Callback36_D_80070328.unk8[0] =
                 Callback36MeasureVectorLength(&Callback36_D_80070328.unk7a[3], 0);
-            Callback36_func_80043A38(0xC00);
+            Callback36BuildNegatedNormalizedPlayerVector(0xC00);
             Callback36_D_80070328.union144.a.unk13cb = 0;
             Callback36_D_80070328.grounded = 1;
             goto clearTail;
@@ -1120,7 +1126,7 @@ void func_level_36_80085520(int arg0) {
         case 0x5A:
             Callback36_D_80070328.movementState = MOVEMENT_STATE_DEATH;
             Callback36_D_80070328.unk5 = 0;
-            Callback36_func_80043A38(0xC00);
+            Callback36BuildNegatedNormalizedPlayerVector(0xC00);
             Callback36_D_80070328.grounded = 1;
             Callback36_D_8006E524 = 0xF;
             return;
@@ -1190,8 +1196,8 @@ void func_level_36_80085520(int arg0) {
  * Falsification: every native/linked word,actual target,selector/data and
  * full EXE/every overlay hash. Binary identity is the only parity claim. */
 extern int Anim36Player48View1 __asm__("D_80070328 + 0x48");
-int Anim36Call4BEF8View1() __asm__("func_8004BEF8");
-int Anim36Call498C0View1() __asm__("func_800498C0");
+int Anim36DispatchPlayerStateRequestView1() __asm__("func_8004BEF8");
+int Anim36UpdatePlayerRetryStateView1() __asm__("func_800498C0");
 extern int Anim36Player48View2 __asm__("D_80070328 + 0x48");
 extern int Anim36Player4CView1 __asm__("D_80070328 + 0x4C");
 extern int Anim36Player54View1 __asm__("D_80070328 + 0x54");
@@ -1218,8 +1224,8 @@ extern int Anim36Data6E530View1 __asm__("D_8006E530");
 extern int Anim36Data6E52CView1 __asm__("D_8006E52C");
 extern int (*Anim36Data7431CView1)(int) __asm__("unk_ovlheader_8007431C");
 extern int (*Anim36DataSpawnParticleView1)(int, int, void*, int) __asm__("SpawnParticle");
-int Anim36Call55E84View1(void*) __asm__("func_80055E84");
-int Anim36Call4BEF8View2(int) __asm__("func_8004BEF8");
+int Anim36ReadSelectedFrameScalarView1(void*) __asm__("func_80055E84");
+int Anim36DispatchPlayerStateRequestView2(int) __asm__("func_8004BEF8");
 extern int Anim36PlayerA4View1 __asm__("D_80070328 + 0xA4");
 extern int Anim36PlayerB4View1 __asm__("D_80070328 + 0xB4");
 extern int Anim36PlayerA0View1 __asm__("D_80070328 + 0xA0");
@@ -1345,7 +1351,7 @@ void func_level_36_80085870(void) {
             if (rawValue2)
                 return;
             nextSelector4 = (int)Anim36Player250View1;
-            rawValue2 = Anim36Call55E84View1((void*)nextSelector4);
+            rawValue2 = Anim36ReadSelectedFrameScalarView1((void*)nextSelector4);
             rawValue2 = rawValue2 < 33;
             nextSelector4 = 92;
             if (rawValue2)
@@ -1415,7 +1421,7 @@ void func_level_36_80085870(void) {
             nextSelector4 = 86;
             if (!rawValue2)
                 nextSelector4 = 85;
-            Anim36Call4BEF8View2(nextSelector4);
+            Anim36DispatchPlayerStateRequestView2(nextSelector4);
             {
                 register int (*spawn2)(int, int, void*, int) __asm__("$2") =
                     Anim36DataSpawnParticleView1;
@@ -1444,7 +1450,7 @@ void func_level_36_80085870(void) {
             if (!rawValue2)
                 return;
         call498C0:
-            Anim36Call498C0View1();
+            Anim36UpdatePlayerRetryStateView1();
             return;
         case 91:
             rawValue2 = Anim36Data7431CView1(1);
@@ -1817,7 +1823,7 @@ void func_level_36_80085870(void) {
             return;
     }
 select:
-    Anim36Call4BEF8View1(nextSelector4);
+    Anim36DispatchPlayerStateRequestView1(nextSelector4);
     return;
 }
 #undef Anim36Field

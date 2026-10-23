@@ -55,9 +55,9 @@ int rand(void);
  * instructions and retain the retail compiler's temporary lifetimes.
  * AI generated; not yet human reviewed. See the batch provenance document.
  */
-void func_level_37_80074D90(Moby* argument) {
+void func_level_37_80074D90(Moby* mobyArgument) {
     Vector3D candidatePosition;
-    register Moby* moby __asm__("$17") = argument;
+    register Moby* moby __asm__("$17") = mobyArgument;
     register DecodedButterflyTag* tag __asm__("$18");
     register int distanceOrTurned __asm__("$20");
     register int collision __asm__("$19");
@@ -243,19 +243,19 @@ effect:
  */
 extern unsigned char Controller75F38TablePlayer[] __asm__("D_80070328");
 #define Controller75F38Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Controller75F38Helper19194(void*, int) __asm__("func_80019194");
-void* Controller75F38Helper2EC50(int, int, int) __asm__("func_8002EC50");
+int Controller75F38QueryWorldSphere(void*, int) __asm__("func_80019194");
+void* Controller75F38AllocatePoolRecord20(int, int, int) __asm__("func_8002EC50");
 int Controller75F38RequestMobyAnimation(void*, int) __asm__("func_80034F40");
 int Controller75F38EmptyAnimationTransitionHook(void*, int) __asm__("func_80035734");
 int Controller75F38TurnMobyTowardHeading(void*, int, int, int, int, int) __asm__("func_8003585C");
 int Controller75F38CountTimerDown(void*, int) __asm__("func_800359A4");
-int Controller75F38Helper36018(int, int, int) __asm__("func_80036018");
+int Controller75F38ApproachAngle8(int, int, int) __asm__("func_80036018");
 unsigned int Controller75F38RandBetween(int, int) __asm__("func_8003636C");
 int Controller75F38PlayMobySoundEvent(void*, int, int) __asm__("func_8003BABC");
-int Controller75F38Helper3BFC0(void*, int) __asm__("func_8003BFC0");
+int Controller75F38SoundHandleMatchesOwnerInStates1Or2(void*, int) __asm__("func_8003BFC0");
 int Controller75F38PlanarHeadingLookup(int, int, int) __asm__("func_8004E880");
-int Controller75F38Helper4EA74(int) __asm__("func_8004EA74");
-int Controller75F38Helper4ECF4(void*, void*) __asm__("func_8004ECF4");
+int Controller75F38GetLeadingTransitionIndex(int) __asm__("func_8004EA74");
+int Controller75F38TransposePackedHalfwordMatrix3x3(void*, void*) __asm__("func_8004ECF4");
 int Controller75F38TransformVectorByBasis(void*, void*, void*) __asm__("func_8004ED6C");
 int Controller75F38MeasureVectorLength(void*, int) __asm__("func_8004EDE8");
 int Controller75F38NormalizeVectorToLength(void*, int) __asm__("func_8004EF04");
@@ -267,7 +267,7 @@ int Controller75F38SubtractVector(void*, void*, void*) __asm__("func_8004F1C8");
 int Controller75F38SignedByteAngleDelta(int, int) __asm__("func_8004F2A4");
 int Controller75F38ApproximatePlanarDistance(void*, void*) __asm__("func_8004F334");
 int Controller75F38PackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-int Controller75F38Helper4F554(void*, void*) __asm__("func_8004F554");
+int Controller75F38ExpandSignedHalfwordVector(void*, void*) __asm__("func_8004F554");
 int Controller75F38DeleteMoby(void*) __asm__("func_80055B18");
 int Controller75F38RefreshMobySpatialGridAndBasis(void*, int) __asm__("func_80055D24");
 int Controller75F38InterpolateMobyVertex(void*, int, void*) __asm__("func_80055F14");
@@ -423,11 +423,10 @@ void func_level_37_8007541C(void* input) {
     void* temp_v1_3;
     register void* var_s1 __asm__("$17");
 
-    tag = Controller75F38Field(owner, void**, 0);
-    originalAngle = Controller75F38Field(owner, unsigned char*, 0x46);
+    tag = ((Moby*)owner)->mobyTag;
+    originalAngle = ((Moby*)owner)->angle.yaw;
     if (((unsigned int)(Controller75F38Field(Controller75F38D_80070328, int*, 0x50) - 0xB) < 2U) &&
-        (Controller75F38Field(tag, unsigned char*, 0xA) == 0) &&
-        (Controller75F38Field(owner, unsigned char*, 0x4D) != 0)) {
+        (Controller75F38Field(tag, unsigned char*, 0xA) == 0) && (((Moby*)owner)->drawn != 0)) {
         {
             register int one __asm__("$6");
             register int model __asm__("$5");
@@ -456,12 +455,11 @@ void func_level_37_8007541C(void* input) {
         }
     }
     if ((Controller75F38Field(Controller75F38D_80070328, int*, 0x280) >= 2) &&
-        (Controller75F38Field(owner, unsigned char*, 0x4D) != 0)) {
+        (((Moby*)owner)->drawn != 0)) {
         {
             register void* particleVector __asm__("$16") = &frame.second.x;
             register void* first __asm__("$4") = particleVector;
-            register int angleIndex __asm__("$3") =
-                Controller75F38Field(owner, unsigned char*, 0x46);
+            register int angleIndex __asm__("$3") = ((Moby*)owner)->angle.yaw;
             register void* second __asm__("$5");
             register int sample __asm__("$6");
             register int value __asm__("$2");
@@ -490,9 +488,10 @@ void func_level_37_8007541C(void* input) {
         }
     }
     if ((Controller75F38Field(Controller75F38D_80070328, int*, 0x280) >= 3) &&
-        (Controller75F38Field(owner, unsigned char*, 0x4C) != 0)) {
+        (((Moby*)owner)->lowDrawDistance != 0)) {
         if (Controller75F38Field(tag, void**, 0x10) == 0) {
-            Controller75F38Field(tag, void**, 0x10) = Controller75F38Helper2EC50(1, 0x40, 0x489090);
+            Controller75F38Field(tag, void**, 0x10) =
+                Controller75F38AllocatePoolRecord20(1, 0x40, 0x489090);
         }
     } else {
         temp_v0_2 = Controller75F38Field(tag, void**, 0x10);
@@ -596,10 +595,10 @@ void func_level_37_8007541C(void* input) {
         }
     }
     if (Controller75F38Field(tag, unsigned char**, 0x14) != 0) {
-        temp_v1_6 = Controller75F38Field(owner, unsigned char*, 0x49);
+        temp_v1_6 = ((Moby*)owner)->substate;
         switch (temp_v1_6) { /* switch 1 */
             case 0:          /* switch 1 */
-                temp_s1_2 = Controller75F38Field(owner, unsigned char*, 0x3D);
+                temp_s1_2 = ((Moby*)owner)->animationState.nextId;
                 Controller75F38CopyVector(&frame.third.x,
                                           Controller75F38Field(tag, unsigned char**, 0x14) + 0xC);
                 if (temp_s1_2 == 0) {
@@ -645,11 +644,10 @@ void func_level_37_8007541C(void* input) {
                 thirdY -= var_v0_2;
                 frame.third.y = thirdY;
                 if (temp_s1_2 != 0) {
-                    if ((unsigned char)Controller75F38Field(owner, unsigned char*, 0x3F) >= 7U) {
-                        Controller75F38Field(owner, unsigned char*, 0x49) =
-                            (unsigned char)(Controller75F38Field(owner, unsigned char*, 0x49) + 1);
+                    if ((unsigned char)((Moby*)owner)->animationState.nextFrame >= 7U) {
+                        ((Moby*)owner)->substate = (unsigned char)(((Moby*)owner)->substate + 1);
                     }
-                    temp_a0_3 = Controller75F38Field(owner, unsigned char*, 0x45);
+                    temp_a0_3 = ((Moby*)owner)->angle.pitch;
                     var_v1_2 = -(int)temp_a0_3;
                     if ((unsigned int)((temp_a0_3 - 3) & 0xFF) < 0xFBU) {
                         var_v0_3 = var_v1_2 < 3;
@@ -666,7 +664,7 @@ void func_level_37_8007541C(void* input) {
                             var_v0_3 = temp_a0_3 + var_v1_2;
                         } else
                             var_v0_3 = temp_a0_3 + var_v1_2;
-                        Controller75F38Field(owner, unsigned char*, 0x45) = var_v0_3;
+                        ((Moby*)owner)->angle.pitch = var_v0_3;
                     }
                 }
                 temp_s0_2 = (unsigned char*)&frame.third.x;
@@ -675,20 +673,20 @@ void func_level_37_8007541C(void* input) {
                 temp_s0 = Controller75F38MeasureVectorLength(temp_s0_2, 1);
                 if ((temp_s1_2 == 0) && (Controller75F38CountTimerDown(tag, 2) != 0)) {
                     MATCHING_KEEP_VOLATILE(temp_s1_2);
-                    if (Controller75F38Helper3BFC0(
+                    if (Controller75F38SoundHandleMatchesOwnerInStates1Or2(
                             owner, Controller75F38Field(tag, unsigned char*, 2)) == 0) {
                         Controller75F38Field(tag, unsigned char*, 2) =
                             Controller75F38PlayMobySoundEvent(owner, 0, 0);
                     }
-                    if (Controller75F38Field(owner, unsigned char*, 0x3D) != 1) {
+                    if (((Moby*)owner)->animationState.nextId != 1) {
                         Controller75F38D_8006C770 = 0;
-                        temp_v1_7 = Controller75F38Field(owner, unsigned char*, 0x3D);
-                        temp_a1_2 = Controller75F38Field(owner, unsigned char*, 0x3F);
+                        temp_v1_7 = ((Moby*)owner)->animationState.nextId;
+                        temp_a1_2 = ((Moby*)owner)->animationState.nextFrame;
                         Controller75F38Field(owner, signed char*, 0x40) = 0x72;
-                        Controller75F38Field(owner, unsigned char*, 0x3D) = 1U;
-                        Controller75F38Field(owner, unsigned char*, 0x3F) = 0U;
-                        Controller75F38Field(owner, unsigned char*, 0x3C) = temp_v1_7;
-                        Controller75F38Field(owner, unsigned char*, 0x3E) = temp_a1_2;
+                        ((Moby*)owner)->animationState.nextId = 1U;
+                        ((Moby*)owner)->animationState.nextFrame = 0U;
+                        ((Moby*)owner)->animationState.id = temp_v1_7;
+                        ((Moby*)owner)->animationState.frame = temp_a1_2;
                         Controller75F38EmptyAnimationTransitionHook(owner, temp_a1_2);
                     }
                 }
@@ -751,32 +749,31 @@ void func_level_37_8007541C(void* input) {
                         Controller75F38D_8006C784 = 0x63;
                     }
                 }
-                Controller75F38Field(owner, unsigned char*, 0x49) =
-                    (unsigned char)(Controller75F38Field(owner, unsigned char*, 0x49) + 1);
+                ((Moby*)owner)->substate = (unsigned char)(((Moby*)owner)->substate + 1);
                 Controller75F38DeleteMoby(Controller75F38Field(tag, unsigned char**, 0x14));
                 break;
             case 2: /* switch 1 */
                 if (Controller75F38D_8006C770 != 0) {
                     register void* callbackOwner __asm__("$4") = owner;
-                    if (Controller75F38Field(owner, unsigned char*, 0x3D) != 0) {
+                    if (((Moby*)owner)->animationState.nextId != 0) {
                         MATCHING_KEEP(callbackOwner);
                         Controller75F38D_8006C770 = 0;
-                        temp_v0_7 = Controller75F38Field(owner, unsigned char*, 0x3D);
-                        temp_a1_3 = Controller75F38Field(owner, unsigned char*, 0x3F);
+                        temp_v0_7 = ((Moby*)owner)->animationState.nextId;
+                        temp_a1_3 = ((Moby*)owner)->animationState.nextFrame;
                         {
                             register int value __asm__("$3");
                             MATCHING_KEEP2_CLOBBER(temp_v0_7, temp_a1_3, "$3");
                             value = 114;
                             MATCHING_KEEP(value);
-                            Controller75F38Field(owner, unsigned char*, 0x40) = value;
-                            Controller75F38Field(owner, unsigned char*, 0x3D) = 0U;
-                            Controller75F38Field(owner, unsigned char*, 0x3F) = 0U;
-                            Controller75F38Field(owner, unsigned char*, 0x3C) = temp_v0_7;
-                            Controller75F38Field(owner, unsigned char*, 0x3E) = temp_a1_3;
+                            ((Moby*)owner)->animationProgress = value;
+                            ((Moby*)owner)->animationState.nextId = 0U;
+                            ((Moby*)owner)->animationState.nextFrame = 0U;
+                            ((Moby*)owner)->animationState.id = temp_v0_7;
+                            ((Moby*)owner)->animationState.frame = temp_a1_3;
                             Controller75F38EmptyAnimationTransitionHook(callbackOwner, temp_a1_3);
                         }
                     }
-                    Controller75F38Field(owner, unsigned char*, 0x49) = 0U;
+                    ((Moby*)owner)->substate = 0U;
                     Controller75F38Field(tag, unsigned char**, 0x14) = 0;
                 }
                 break;
@@ -918,15 +915,15 @@ void func_level_37_8007541C(void* input) {
                 break;
             block_97:
                 temp_v0_4 = Controller75F38PlanarHeadingLookup(var_a0_4, var_a1, 0);
-                Controller75F38Field(owner, unsigned char*, 0x45) = temp_v0_4;
-                Controller75F38Field(owner, unsigned char*, 0x45) =
-                    Controller75F38Helper36018(temp_v0_4 & 0xFF, 0, 0x30);
+                ((Moby*)owner)->angle.pitch = temp_v0_4;
+                ((Moby*)owner)->angle.pitch =
+                    Controller75F38ApproachAngle8(temp_v0_4 & 0xFF, 0, 0x30);
                 break;
             case 9: /* switch 1 */
                 Controller75F38Field(tag, short*, 8) = 0x180;
                 Controller75F38Field(tag, short*, 4) = 0;
                 Controller75F38Field(tag, short*, 6) = 0;
-                Controller75F38Field(owner, unsigned char*, 0x49) = 5U;
+                ((Moby*)owner)->substate = 5U;
                 break;
         }
     } else if (Controller75F38Field(Controller75F38D_80065830, void**, 0) != 0) {
@@ -936,7 +933,8 @@ void func_level_37_8007541C(void* input) {
         if (Controller75F38D_80065828 >= 0x401) {
             if (Controller75F38D_80065828 >= 0x4001) {
                 Controller75F38ShiftVectorRightTowardZero(
-                    &frame.first.x, Controller75F38Helper4EA74(Controller75F38D_80065828) - 0xE);
+                    &frame.first.x,
+                    Controller75F38GetLeadingTransitionIndex(Controller75F38D_80065828) - 0xE);
             }
             {
                 register int sample __asm__("$2") =
@@ -954,13 +952,11 @@ void func_level_37_8007541C(void* input) {
             frame.first.z = -0x100;
         }
         Controller75F38Field(owner, signed char*, 0x44) = 0;
-        Controller75F38Field(owner, unsigned char*, 0x45) = Controller75F38PlanarHeadingLookup(
+        ((Moby*)owner)->angle.pitch = Controller75F38PlanarHeadingLookup(
             Controller75F38MeasureVectorLength(&frame.first.x, 0), frame.first.z, 0);
-        Controller75F38Field(owner, unsigned char*, 0x46) = Controller75F38PlanarHeadingLookup(
-            Controller75F38Field(owner, int*, 0xC) -
-                Controller75F38Field(Controller75F38D_80070328, int*, 0),
-            Controller75F38Field(owner, int*, 0x10) -
-                Controller75F38Field(Controller75F38D_80070328, int*, 4),
+        ((Moby*)owner)->angle.yaw = Controller75F38PlanarHeadingLookup(
+            ((Moby*)owner)->position.x - Controller75F38Field(Controller75F38D_80070328, int*, 0),
+            ((Moby*)owner)->position.y - Controller75F38Field(Controller75F38D_80070328, int*, 4),
             0);
         Controller75F38AddVector(&frame.first.x, &frame.first.x, Controller75F38D_80070328);
         {
@@ -972,7 +968,7 @@ void func_level_37_8007541C(void* input) {
         }
         Controller75F38ShiftVectorRightTowardZero(&frame.first.x, 2);
         Controller75F38AddVector(temp_s0_2, temp_s0_2, &frame.first.x);
-        if (Controller75F38Helper19194(temp_s0_2, 0x100) != 0) {
+        if (Controller75F38QueryWorldSphere(temp_s0_2, 0x100) != 0) {
             Controller75F38CopyVector(temp_s0_2, Controller75F38D_8007190C);
         }
     } else {
@@ -1222,8 +1218,9 @@ void func_level_37_8007541C(void* input) {
                         goto transformOffset;
                     }
                     if (temp_v1_12 & 2) {
-                        Controller75F38Helper4ECF4(&frame.matrix[0], Controller75F38D_8006E00C);
-                        Controller75F38Helper4F554(&frame.first.x, tag + 4);
+                        Controller75F38TransposePackedHalfwordMatrix3x3(&frame.matrix[0],
+                                                                        Controller75F38D_8006E00C);
+                        Controller75F38ExpandSignedHalfwordVector(&frame.first.x, tag + 4);
                         Controller75F38TransformVectorByBasis(&frame.matrix[0], &frame.first.x,
                                                               &frame.first.x);
                         matrixFirst = &frame.first.x;
@@ -1242,7 +1239,7 @@ void func_level_37_8007541C(void* input) {
                     }
                     Controller75F38ShiftVectorRightTowardZero(&frame.first.x, 2);
                     Controller75F38AddVector(temp_s0_5, temp_s0_5, &frame.first.x);
-                    if (Controller75F38Helper19194(temp_s0_5, 0x100) != 0) {
+                    if (Controller75F38QueryWorldSphere(temp_s0_5, 0x100) != 0) {
                         Controller75F38CopyVector(temp_s0_5, Controller75F38D_8007190C);
                     }
                     if (frame.first.z >= 0x21) {
@@ -1252,8 +1249,7 @@ void func_level_37_8007541C(void* input) {
                         frame.first.z = -0x20;
                     }
                     Controller75F38Field(owner, signed char*, 0x44) = 0;
-                    Controller75F38Field(owner, unsigned char*, 0x45) =
-                        (unsigned char)frame.first.z;
+                    ((Moby*)owner)->angle.pitch = (unsigned char)frame.first.z;
                     temp_v1_13 = Controller75F38Field(tag, unsigned char*, 0xB);
                     {
                         register int flag __asm__("$2") = temp_v1_13 & 4;
@@ -1297,7 +1293,7 @@ void func_level_37_8007541C(void* input) {
                     initialMagnitude = Controller75F38MeasureVectorLength(&frame.sixth.x, 0);
                     initialAngle =
                         Controller75F38PlanarHeadingLookup(frame.sixth.x, frame.sixth.y, 0);
-                    Controller75F38Helper4F554(&frame.sixth.x, tag + 4);
+                    Controller75F38ExpandSignedHalfwordVector(&frame.sixth.x, tag + 4);
                     Controller75F38TransformVectorByBasis(Controller75F38D_80070328 + 0x30,
                                                           &frame.sixth.x, &frame.sixth.x);
                     {
@@ -1338,7 +1334,7 @@ void func_level_37_8007541C(void* input) {
                         playerZ = Controller75F38Field(Controller75F38D_80070328, int*, 8);
                         MATCHING_KEEP4(vertical, playerX, playerZ, product);
                         sample = (product >> 12) + playerX;
-                        Controller75F38Field(owner, int*, 12) = sample;
+                        ((Moby*)owner)->position.x = sample;
                         sample = *(short*)(Controller75F38D_800658A0 + temp_a1_4);
                         product = sample * adjustedMagnitude;
                         __asm__(""
@@ -1348,22 +1344,22 @@ void func_level_37_8007541C(void* input) {
                         vertical += playerZ;
                         movementPosition = ownerPosition;
                         __asm__("" : "=r"(movementPosition) : "0"(movementPosition) : "$2", "$5");
-                        sample = Controller75F38Field(owner, int*, 20);
+                        sample = ((Moby*)owner)->position.z;
                         MATCHING_KEEP_CLOBBER(sample, "$5");
                         movementRadius = 256;
                         MATCHING_KEEP3(sample, vertical, movementRadius);
                         vertical -= sample;
                         verticalStep = vertical >> 3;
-                        sample = Controller75F38Field(owner, int*, 20);
+                        sample = ((Moby*)owner)->position.z;
                         vertical = Controller75F38Field(Controller75F38D_80070328, int*, 4);
                         MATCHING_KEEP2(sample, vertical);
                         sample += verticalStep;
-                        Controller75F38Field(owner, int*, 20) = sample;
+                        ((Moby*)owner)->position.z = sample;
                         MATCHING_BARRIER_VOLATILE("memory");
                         sample = (product >> 12) + vertical;
-                        Controller75F38Field(owner, int*, 16) = sample;
+                        ((Moby*)owner)->position.y = sample;
                     }
-                    if (Controller75F38Helper19194(movementPosition, movementRadius) != 0) {
+                    if (Controller75F38QueryWorldSphere(movementPosition, movementRadius) != 0) {
                         Controller75F38CopyVector(ownerPosition, Controller75F38D_8007190C);
                         MATCHING_KEEP_VOLATILE(verticalStep);
                     }
@@ -1375,7 +1371,7 @@ void func_level_37_8007541C(void* input) {
                     if (verticalStep < -0x20) {
                         verticalStep = -0x20;
                     }
-                    Controller75F38Field(owner, unsigned char*, 0x45) = (unsigned char)verticalStep;
+                    ((Moby*)owner)->angle.pitch = (unsigned char)verticalStep;
                     {
                         register int state __asm__("$3") =
                             Controller75F38Field(tag, unsigned char*, 3);
@@ -1399,13 +1395,13 @@ void func_level_37_8007541C(void* input) {
                     }
                 storeOwnerAngle:
                     MATCHING_OBSERVE_VOLATILE(adjustedAngle);
-                    Controller75F38Field(owner, unsigned char*, 0x46) = var_v0_11;
+                    ((Moby*)owner)->angle.yaw = var_v0_11;
                     break;
                 case 3: /* switch 5 */
                 {
                     register int angle __asm__("$2") = Controller75F38PlanarHeadingLookup(
-                        Controller75F38D_8006E020 - Controller75F38Field(owner, int*, 0xC),
-                        Controller75F38D_8006E024 - Controller75F38Field(owner, int*, 0x10), 0);
+                        Controller75F38D_8006E020 - ((Moby*)owner)->position.x,
+                        Controller75F38D_8006E024 - ((Moby*)owner)->position.y, 0);
                     commonOwner = owner;
                     MATCHING_KEEP_CLOBBER(commonOwner, "$5");
                     var_a1_3 = angle;
@@ -1417,15 +1413,13 @@ void func_level_37_8007541C(void* input) {
                     break;
                 case 6: /* switch 5 */
                     if (Controller75F38Callback(owner, Controller75F38D_80070328, 0,
-                                                Controller75F38Field(owner, unsigned char*, 0x46),
-                                                8, 0xA0,
+                                                ((Moby*)owner)->angle.yaw, 8, 0xA0,
                                                 (int)Controller75F38Field(tag, unsigned char*, 0xC),
                                                 0x80, 0xFF, 0xFF, 0, 0, 0) < 0) {
                         Controller75F38Field(tag, short*, 0) = 0;
                     }
                     {
-                        register int ownerHeight __asm__("$2") =
-                            Controller75F38Field(owner, int*, 20);
+                        register int ownerHeight __asm__("$2") = ((Moby*)owner)->position.z;
                         register int playerHeight __asm__("$3") =
                             Controller75F38Field(Controller75F38D_80070328, int*, 8);
                         MATCHING_KEEP2(ownerHeight, playerHeight);
@@ -1433,15 +1427,15 @@ void func_level_37_8007541C(void* input) {
                         playerHeight -= ownerHeight;
                         playerHeight >>= 2;
                         frame.first.z = playerHeight;
-                        ownerHeight = Controller75F38Field(owner, int*, 20);
-                        Controller75F38Field(owner, int*, 20) = ownerHeight + playerHeight;
+                        ownerHeight = ((Moby*)owner)->position.z;
+                        ((Moby*)owner)->position.z = ownerHeight + playerHeight;
                     }
                     break;
             }
         }
     }
     if ((Controller75F38Field(tag, void**, 0x10) != 0) &&
-        (Controller75F38Field(owner, unsigned char*, 0x46) != originalAngle)) {
+        (((Moby*)owner)->angle.yaw != originalAngle)) {
         Controller75F38RefreshMobySpatialGridAndBasis(owner, 4);
     }
     {
@@ -1462,8 +1456,7 @@ void func_level_37_8007541C(void* input) {
         }
         Controller75F38InterpolateMobyVertex(owner, 0, Controller75F38Field(tag, void**, 0x10));
     }
-    if ((Controller75F38Field(owner, unsigned char*, 0x3D) == 1) &&
-        (Controller75F38D_8006C770 != 0)) {
+    if ((((Moby*)owner)->animationState.nextId == 1) && (Controller75F38D_8006C770 != 0)) {
         Controller75F38RequestMobyAnimation(owner, 0);
     }
 }
@@ -1626,16 +1619,16 @@ void func_level_37_80076C18(Moby* moby) {
 
 
 #define Controller78288Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Controller78288Helper1A358(void*, int) __asm__("func_8001A358");
-void* Controller78288Helper2EC50(int, int, int) __asm__("func_8002EC50");
-void* Controller78288Helper2F540(int, int, int) __asm__("func_8002F540");
+int Controller78288QueryWorldHeight(void*, int) __asm__("func_8001A358");
+void* Controller78288AllocatePoolRecord20(int, int, int) __asm__("func_8002EC50");
+void* Controller78288AllocatePoolRecord48(int, int, int) __asm__("func_8002F540");
 int Controller78288RequestMobyAnimation(void*, int) __asm__("func_80034F40");
 int Controller78288TurnMobyTowardPlayer(void*, int, int, int) __asm__("func_8003573C");
 int Controller78288TurnMobyTowardHeading(void*, int, int, int, int, int) __asm__("func_8003585C");
-int Controller78288Helper37BBC(void*, int) __asm__("func_80037BBC");
-int Controller78288Helper3B634(void*, void*, int) __asm__("func_8003B634");
+int Controller78288UpdateMobyInteractionGate(void*, int) __asm__("func_80037BBC");
+int Controller78288WriteTrackedSnapshot(void*, void*, int) __asm__("func_8003B634");
 int Controller78288PlayMobySoundEvent(void*, int, int) __asm__("func_8003BABC");
-int Controller78288Helper492DC(void*) __asm__("func_800492DC");
+int Controller78288SetClampedPlayerTargetAngles(void*) __asm__("func_800492DC");
 int Controller78288PlanarHeadingLookup(int, int, int) __asm__("func_8004E880");
 int Controller78288ShiftVectorLeft(void*, int) __asm__("func_8004F0E8");
 int Controller78288ShiftVectorRightTowardZero(void*, int) __asm__("func_8004F110");
@@ -1644,10 +1637,10 @@ int Controller78288AddVector(void*, void*, void*) __asm__("func_8004F194");
 int Controller78288SubtractVector(void*, void*, void*) __asm__("func_8004F1C8");
 int Controller78288DivideVector(void*, void*, int) __asm__("func_8004F228");
 int Controller78288ApproximatePlanarDistance(void*, void*) __asm__("func_8004F334");
-int Controller78288Helper512E4(void*, int, int) __asm__("func_800512E4");
+int Controller78288StartDialogue(void*, int, int) __asm__("func_800512E4");
 int Controller78288DeleteMoby(void*) __asm__("func_80055B18");
 int Controller78288RefreshMobySpatialGridAndBasis(void*, int) __asm__("func_80055D24");
-int Controller78288Helper55E84(void*) __asm__("func_80055E84");
+int Controller78288ReadSelectedFrameScalar(void*) __asm__("func_80055E84");
 int Controller78288InterpolateMobyVertex(void*, int, void*) __asm__("func_80055F14");
 extern unsigned char Controller78288D_80065920[] __asm__("D_80065920");
 extern int Controller78288D_8006C550 __asm__("D_8006C550");
@@ -1732,20 +1725,20 @@ void func_level_37_80076F1C(void* input) {
 
     if (owner >= (unsigned char*)Controller78288D_8006C704) {
         MATCHING_KEEP(owner);
-        tag = Controller78288Field(owner, void**, 0);
+        tag = ((Moby*)owner)->mobyTag;
         prefixTag = 0;
     } else {
         MATCHING_KEEP(owner);
-        prefixTag = Controller78288Field(owner, void**, 0);
+        prefixTag = ((Moby*)owner)->mobyTag;
         tag = prefixTag + 0x2C;
     }
     ownerPositionWord = (int)(owner + 0xC);
     distanceResult = Controller78288ApproximatePlanarDistance((void*)ownerPositionWord,
                                                               Controller78288D_80070328);
-    state = Controller78288Field(owner, unsigned char*, 0x48);
+    state = ((Moby*)owner)->state;
     switch (state) {
         case 0:
-            substate = Controller78288Field(owner, unsigned char*, 0x49);
+            substate = ((Moby*)owner)->substate;
             switch (substate) {
                 case 0:
                     kind = Controller78288Field(tag, unsigned char*, 2);
@@ -1776,7 +1769,7 @@ void func_level_37_80076F1C(void* input) {
                                 bitIndex = product + base;
                                 if (byte == 0)
                                     Controller78288Field(tag, unsigned char*, 4) =
-                                        Controller78288Field(owner, unsigned char*, 0x46);
+                                        ((Moby*)owner)->angle.yaw;
                             }
                         }
                         {
@@ -1801,14 +1794,12 @@ void func_level_37_80076F1C(void* input) {
                         if (Controller78288Field(tag, unsigned char*, 2) == 1) {
                             Controller78288Field(prefixTag, unsigned char*, 5) = 1U;
                             Controller78288Field(tag, short*, 6) = -0x280;
-                            Controller78288Field(owner, int*, 0x14) =
-                                (int)(Controller78288Field(owner, int*, 0x14) - 0x280);
+                            ((Moby*)owner)->position.z = (int)(((Moby*)owner)->position.z - 0x280);
                         } else {
                             Controller78288Field(prefixTag, unsigned char*, 5) = 0U;
                         }
                         {
-                            register int heading __asm__("$2") =
-                                Controller78288Field(owner, unsigned char*, 0x46);
+                            register int heading __asm__("$2") = ((Moby*)owner)->angle.yaw;
                             kind = Controller78288Field(tag, unsigned char*, 2);
                             MATCHING_KEEP2(heading, kind);
                             Controller78288Field(tag, unsigned char*, 3) = heading;
@@ -1828,10 +1819,10 @@ void func_level_37_80076F1C(void* input) {
                 caseZeroOne:
                     stateValue = 1;
                 caseZeroStore:
-                    Controller78288Field(owner, unsigned char*, 0x49) = stateValue;
+                    ((Moby*)owner)->substate = stateValue;
                     Controller78288Field(owner, signed char*, 0x41) = 0;
                     Controller78288Field(owner, signed char*, 0x4C) = 0;
-                    Controller78288Field(owner, unsigned char*, 0x4D) = 0U;
+                    ((Moby*)owner)->drawn = 0U;
                     goto clearExtraHandle;
                 case 1:
                     if ((distanceResult < 0x2400) ||
@@ -1841,57 +1832,49 @@ void func_level_37_80076F1C(void* input) {
                             MATCHING_KEEP(one);
                             Controller78288Field(owner, signed char*, 0x4C) = 24;
                             Controller78288Field(owner, signed char*, 0x41) = one;
-                            Controller78288Field(owner, unsigned char*, 0x4D) = one;
-                            Controller78288Field(owner, unsigned char*, 0x4F) = 127;
+                            ((Moby*)owner)->drawn = one;
+                            ((Moby*)owner)->size = 127;
                         }
                         if (Controller78288Field(tag, unsigned char*, 2) == 1) {
-                            Controller78288Field(owner, unsigned char*, 0x46) =
+                            ((Moby*)owner)->angle.yaw =
                                 (unsigned char)Controller78288Field(tag, unsigned char*, 3);
                         } else {
-                            Controller78288Field(owner, unsigned char*, 0x46) =
-                                Controller78288PlanarHeadingLookup(
-                                    Controller78288Field(Controller78288D_80070328, int*, 0) -
-                                        Controller78288Field(owner, int*, 0xC),
-                                    Controller78288Field(Controller78288D_80070328, int*, 4) -
-                                        Controller78288Field(owner, int*, 0x10),
-                                    0);
+                            ((Moby*)owner)->angle.yaw = Controller78288PlanarHeadingLookup(
+                                Controller78288Field(Controller78288D_80070328, int*, 0) -
+                                    ((Moby*)owner)->position.x,
+                                Controller78288Field(Controller78288D_80070328, int*, 4) -
+                                    ((Moby*)owner)->position.y,
+                                0);
                         }
-                        Controller78288Field(owner, unsigned char*, 0x49) = 2U;
-                        Controller78288Field(owner, unsigned char*, 0x46) =
-                            (unsigned char)(Controller78288Field(owner, unsigned char*, 0x46) +
-                                            0x67);
+                        ((Moby*)owner)->substate = 2U;
+                        ((Moby*)owner)->angle.yaw =
+                            (unsigned char)(((Moby*)owner)->angle.yaw + 0x67);
                     }
                     goto clearExtraHandle;
                 case 2:
-                    Controller78288Field(owner, unsigned char*, 0x46) =
-                        (unsigned char)(Controller78288Field(owner, unsigned char*, 0x46) + 8);
-                    Controller78288Field(owner, unsigned char*, 0x4F) =
-                        (unsigned char)(Controller78288Field(owner, unsigned char*, 0x4F) - 5);
+                    ((Moby*)owner)->angle.yaw = (unsigned char)(((Moby*)owner)->angle.yaw + 8);
+                    ((Moby*)owner)->size = (unsigned char)(((Moby*)owner)->size - 5);
                     if ((Controller78288Field(Controller78288D_80070328, int*, 0xB4) >= 0x1400) ||
                         (Controller78288Field(tag, unsigned char*, 2) == 2)) {
-                        Controller78288Field(owner, unsigned char*, 0x46) =
-                            (unsigned char)(Controller78288Field(owner, unsigned char*, 0x46) + 8);
-                        Controller78288Field(owner, unsigned char*, 0x4F) =
-                            (unsigned char)(Controller78288Field(owner, unsigned char*, 0x4F) - 5);
+                        ((Moby*)owner)->angle.yaw = (unsigned char)(((Moby*)owner)->angle.yaw + 8);
+                        ((Moby*)owner)->size = (unsigned char)(((Moby*)owner)->size - 5);
                     }
                     Controller78288RefreshMobySpatialGridAndBasis(owner, 4);
                     Controller78288SpawnParticle(1, 0xC, owner, 5);
-                    if ((unsigned char)Controller78288Field(owner, unsigned char*, 0x4F) < 0x21U) {
-                        Controller78288Field(owner, unsigned char*, 0x4F) = 0x20U;
+                    if ((unsigned char)((Moby*)owner)->size < 0x21U) {
+                        ((Moby*)owner)->size = 0x20U;
                         goto setSubstateFour;
                     }
                     goto clearExtraHandle;
                 case 3:
                 case 5:
-                    if (Controller78288Field(owner, unsigned char*, 0x4F) == 0) {
-                        Controller78288Field(owner, unsigned char*, 0x4F) = 0x20U;
+                    if (((Moby*)owner)->size == 0) {
+                        ((Moby*)owner)->size = 0x20U;
                     }
-                    Controller78288Field(owner, unsigned char*, 0x46) =
-                        (unsigned char)(Controller78288Field(owner, unsigned char*, 0x46) - 8);
-                    Controller78288Field(owner, unsigned char*, 0x4F) =
-                        (unsigned char)(Controller78288Field(owner, unsigned char*, 0x4F) + 5);
+                    ((Moby*)owner)->angle.yaw = (unsigned char)(((Moby*)owner)->angle.yaw - 8);
+                    ((Moby*)owner)->size = (unsigned char)(((Moby*)owner)->size + 5);
                     Controller78288RefreshMobySpatialGridAndBasis(owner, 4);
-                    if ((unsigned char)Controller78288Field(owner, unsigned char*, 0x4F) >= 0x7FU) {
+                    if ((unsigned char)((Moby*)owner)->size >= 0x7FU) {
                         Controller78288SpawnParticle(6, 0xC, owner, 5);
                         if (Controller78288Field(tag, unsigned char*, 2) == 2) {
                             oldPrimaryHandle = Controller78288Field(tag, int**, 8);
@@ -1903,10 +1886,9 @@ void func_level_37_80076F1C(void* input) {
                         }
                         Controller78288Field(owner, signed char*, 0x41) = 0;
                         Controller78288Field(owner, signed char*, 0x4C) = 0;
-                        Controller78288Field(owner, unsigned char*, 0x4D) = 0U;
+                        ((Moby*)owner)->drawn = 0U;
                         {
-                            register int state __asm__("$3") =
-                                Controller78288Field(owner, unsigned char*, 0x49);
+                            register int state __asm__("$3") = ((Moby*)owner)->substate;
                             register int five __asm__("$2") = 5;
                             MATCHING_KEEP2(state, five);
                             if (state != five)
@@ -1924,8 +1906,8 @@ void func_level_37_80076F1C(void* input) {
                     tagKind = Controller78288Field(tag, unsigned char*, 2);
                     if (tagKind != 2) {
                         if (tagKind == 1) {
-                            if (Controller78288Helper37BBC(owner, 0xC) != 0) {
-                                Controller78288Helper512E4(owner, 0, 0);
+                            if (Controller78288UpdateMobyInteractionGate(owner, 0xC) != 0) {
+                                Controller78288StartDialogue(owner, 0, 0);
                                 {
                                     register int diff __asm__("$4") = Controller78288D_8006C550;
                                     register int product __asm__("$3");
@@ -1957,16 +1939,16 @@ void func_level_37_80076F1C(void* input) {
                                     *(int*)diff = bank;
                                 }
                                 Controller78288Field(tag, unsigned char*, 2) = 0U;
-                                Controller78288Field(owner, unsigned char*, 0x49) = 7U;
+                                ((Moby*)owner)->substate = 7U;
                             }
                         } else {
                             Controller78288TurnMobyTowardPlayer(owner, 4, 0, 0);
                             Controller78288RefreshMobySpatialGridAndBasis(owner, 4);
                             if (distanceResult >= 0x2801) {
-                                Controller78288Field(owner, unsigned char*, 0x49) = 3U;
+                                ((Moby*)owner)->substate = 3U;
                             } else if (distanceResult < 0x1000) {
-                                ownerHeight = Controller78288Field(owner, int*, 0x14) -
-                                              Controller78288Field(owner, short*, 0x38);
+                                ownerHeight =
+                                    ((Moby*)owner)->position.z - ((Moby*)owner)->distanceToGround;
                                 heightDelta = ownerHeight - Controller78288Field(
                                                                 Controller78288D_80070328, int*, 8);
                                 if (heightDelta >= 0) {
@@ -1978,8 +1960,8 @@ void func_level_37_80076F1C(void* input) {
                                             ownerHeight) < 0x800) {
                                 checkHeightAndPlayer:
                                     playerHeightAddress = Controller78288D_80070328 + 8;
-                                    if ((((Controller78288Field(owner, int*, 0x14) -
-                                           Controller78288Field(owner, short*, 0x38)) -
+                                    if ((((((Moby*)owner)->position.z -
+                                           ((Moby*)owner)->distanceToGround) -
                                           Controller78288Field(Controller78288D_80070328, int*,
                                                                8)) >= -0x1F3) &&
                                         ((Controller78288Field(Controller78288D_80070328, int*,
@@ -2023,7 +2005,7 @@ void func_level_37_80076F1C(void* input) {
                     } else {
                     enterStateOneFromRange:
                     enterStateOne:
-                        Controller78288Field(owner, unsigned char*, 0x48) = 1U;
+                        ((Moby*)owner)->state = 1U;
                         Controller78288RequestMobyAnimation(owner, 1);
                     }
                     if ((Controller78288D_8006C644 & 0xF) < 2) {
@@ -2041,7 +2023,7 @@ void func_level_37_80076F1C(void* input) {
                     goto clearExtraHandle;
                 case 6:
                     if (distanceResult >= 0x2801) {
-                        Controller78288Field(owner, unsigned char*, 0x49) = 1U;
+                        ((Moby*)owner)->substate = 1U;
                     }
                     goto clearExtraHandle;
                 case 7:
@@ -2054,7 +2036,7 @@ void func_level_37_80076F1C(void* input) {
         setSubstateFour:
             nextSubstate = 4;
         storeSubstate:
-            Controller78288Field(owner, unsigned char*, 0x49) = nextSubstate;
+            ((Moby*)owner)->substate = nextSubstate;
         clearExtraHandle:
             extraHandle = Controller78288Field(tag, int**, 0xC);
             if (extraHandle != 0) {
@@ -2065,19 +2047,17 @@ void func_level_37_80076F1C(void* input) {
         case 1:
             if (Controller78288Field(tag, unsigned char*, 2) == state) {
                 Controller78288Field(Controller78288D_80070328, int*, 0x20C) = 0x10000002;
-                Controller78288Helper492DC(ownerPositionWord);
+                Controller78288SetClampedPlayerTargetAngles(ownerPositionWord);
             }
-            phaseResult = Controller78288Helper55E84(owner);
+            phaseResult = Controller78288ReadSelectedFrameScalar(owner);
             ownerIndex = Controller78288Field(tag, int*, 0x10);
             if (ownerIndex >= 0) {
                 indexedOwner = (ownerIndex * 0x58) + Controller78288D_8006C550;
                 Controller78288TurnMobyTowardHeading(
                     owner,
                     Controller78288PlanarHeadingLookup(
-                        Controller78288Field(indexedOwner, int*, 0xC) -
-                            Controller78288Field(owner, int*, 0xC),
-                        Controller78288Field(indexedOwner, int*, 0x10) -
-                            Controller78288Field(owner, int*, 0x10),
+                        Controller78288Field(indexedOwner, int*, 0xC) - ((Moby*)owner)->position.x,
+                        Controller78288Field(indexedOwner, int*, 0x10) - ((Moby*)owner)->position.y,
                         0),
                     6, 0, 0, 0);
             } else {
@@ -2087,7 +2067,7 @@ void func_level_37_80076F1C(void* input) {
             if (phaseResult < 0x14) {
                 if ((Controller78288Field(tag, unsigned char*, 2) != 2) &&
                     (distanceResult >= 0x1001)) {
-                    Controller78288Field(owner, unsigned char*, 0x48) = 0U;
+                    ((Moby*)owner)->state = 0U;
                     Controller78288RequestMobyAnimation(owner, 0);
                 }
             } else if (({
@@ -2095,18 +2075,18 @@ void func_level_37_80076F1C(void* input) {
                            MATCHING_KEEP_CLOBBER(within, "$3");
                            within;
                        })) {
-                if (Controller78288Field(owner, unsigned char*, 0x49) != 5) {
+                if (((Moby*)owner)->substate != 5) {
                     Controller78288CopyVector(&frame.second.x, owner + 0xC);
                     savedSelector = Controller78288Field(tag, unsigned char*, 4);
-                    heightResult = Controller78288Helper1A358(&frame.second.x, 0x800);
+                    heightResult = Controller78288QueryWorldHeight(&frame.second.x, 0x800);
                     frame.second.z = heightResult;
                     if (heightResult == 0) {
                         frame.second.z = Controller78288Field(Controller78288D_80070328, int*, 8);
                     }
-                    Controller78288Helper3B634(Controller78288D_8006D088, &frame.second.x,
-                                               savedSelector);
+                    Controller78288WriteTrackedSnapshot(Controller78288D_8006D088, &frame.second.x,
+                                                        savedSelector);
                     Controller78288PlayMobySoundEvent(owner, 0, 0x80);
-                    Controller78288Field(owner, unsigned char*, 0x49) = 5U;
+                    ((Moby*)owner)->substate = 5U;
                 }
                 {
                     register void* handle __asm__("$2") = Controller78288Field(tag, void**, 0xC);
@@ -2120,7 +2100,7 @@ void func_level_37_80076F1C(void* input) {
                         if (close) {
                             MATCHING_KEEP(prepared);
                             Controller78288Field(tag, void**, 0xC) =
-                                Controller78288Helper2F540((int)prepared, 1, 0x608080);
+                                Controller78288AllocatePoolRecord48((int)prepared, 1, 0x608080);
                         }
                     }
                     handle = Controller78288Field(tag, void**, 0xC);
@@ -2193,21 +2173,20 @@ void func_level_37_80076F1C(void* input) {
             }
             if ((Controller78288Field(tag, short*, 6) < 0) &&
                 (Controller78288Field(tag, unsigned char*, 2) != 1)) {
-                Controller78288Field(owner, int*, 0x14) =
-                    (int)(Controller78288Field(owner, int*, 0x14) + 0x20);
+                ((Moby*)owner)->position.z = (int)(((Moby*)owner)->position.z + 0x20);
                 Controller78288Field(tag, short*, 6) =
                     (short)((unsigned short)Controller78288Field(tag, short*, 6) + 0x20);
             }
             if (Controller78288D_8006C770 != 0) {
                 if (Controller78288Field(tag, unsigned char*, 2) == 1) {
-                    Controller78288Field(owner, unsigned char*, 0x49) = 4U;
+                    ((Moby*)owner)->substate = 4U;
                     if ((Controller78288Field(tag, int*, 0x14) != 0) &&
                         (Controller78288D_8006E044 == 0x11)) {
                         Controller78288D_8006E160 = 0;
                         Controller78288Field(tag, int*, 0x14) = 0;
                     }
                 }
-                Controller78288Field(owner, unsigned char*, 0x48) = 0U;
+                ((Moby*)owner)->state = 0U;
                 Controller78288RequestMobyAnimation(owner, 0);
             }
             goto updatePrimaryHandle;
@@ -2220,13 +2199,13 @@ updatePrimaryHandle:
         MATCHING_KEEP_CLOBBER(handle, "$3");
         scaledDistance = distanceResult >> 6;
         if (handle == 0) {
-            allocatedHandle =
-                Controller78288Helper2EC50(4, 0x40, ({
-                                               register int zero __asm__("$6");
-                                               MATCHING_KEEP_VOLATILE_CLOBBER(handle, "$6");
-                                               zero = 0;
-                                               zero;
-                                           }));
+            allocatedHandle = Controller78288AllocatePoolRecord20(
+                4, 0x40, ({
+                    register int zero __asm__("$6");
+                    MATCHING_KEEP_VOLATILE_CLOBBER(handle, "$6");
+                    zero = 0;
+                    zero;
+                }));
             Controller78288Field(tag, int**, 8) = allocatedHandle;
             if (allocatedHandle != 0) {
                 MATCHING_KEEP_VOLATILE(distanceResult);
@@ -2260,7 +2239,7 @@ updatePrimaryHandle:
                           colour;
                       }) +
                       ((colourChannel >> 1) << 0x10));
-            if (Controller78288Field(owner, unsigned char*, 0x4D) != 0) {
+            if (((Moby*)owner)->drawn != 0) {
                 Controller78288InterpolateMobyVertex(owner, 0, &frame.first.x);
                 {
                     register void* first __asm__("$4") = &frame.first.x;
@@ -2270,8 +2249,7 @@ updatePrimaryHandle:
                     Controller78288SubtractVector(first, second, handleOwnerPosition);
                 }
                 Controller78288ShiftVectorLeft(&frame.first.x, 5);
-                Controller78288DivideVector(&frame.first.x, &frame.first.x,
-                                            Controller78288Field(owner, unsigned char*, 0x4F));
+                Controller78288DivideVector(&frame.first.x, &frame.first.x, ((Moby*)owner)->size);
                 Controller78288AddVector(Controller78288Field(tag, int**, 8), handleOwnerPosition,
                                          &frame.first.x);
                 return;
@@ -2402,8 +2380,8 @@ typedef union {
 #endif
     } words;
 } Original899CompleteProduct;
-void func_level_37_80077A90(Moby* arg0) {
-    Moby* owner = arg0;
+void func_level_37_80077A90(Moby* moby) {
+    Moby* owner = moby;
     int x = owner->position.x;
     register Original899PrivateRecord* tag __asm__("$22") = owner->mobyTag;
     int y;
@@ -2800,25 +2778,25 @@ void func_level_37_8007889C(Moby* moby) {
  not human reviewed. Original-instruction-derived C. Original source asm/nonmatchings/overlays/level_37/moby/func_level_37_800788BC.s SHA256 9e581b414f770b37513f0e06ad242dca341f2418cbd92bc6629f9ea6a665e21f. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
 #define Level37_788BCField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 
-int Level37_788BC_func_80019194() __asm__("func_80019194");
+int Level37_788BCQueryWorldSphere() __asm__("func_80019194");
 /* extern */
 int Level37_788BCCountTimerDown() __asm__("func_800359A4");
 /* extern */
 int Level37_788BCProbeGroundFromRaisedMoby() __asm__("func_80035D38");
 /* extern */
-unsigned int Level37_788BC_func_80035EE0() __asm__("func_80035EE0");
+unsigned int Level37_788BCResolveMobyHeadingStep() __asm__("func_80035EE0");
 /* extern */
 int Level37_788BCRandBetween() __asm__("func_8003636C");
 /* extern */
 int Level37_788BCRandSignedBetween() __asm__("func_800363DC");
 /* extern */
-unsigned int Level37_788BC_func_80037014() __asm__("func_80037014");
+unsigned int Level37_788BCSetMobyZFromGroundProbe() __asm__("func_80037014");
 /* extern */
-int Level37_788BC_func_80037A60() __asm__("func_80037A60");
+int Level37_788BCUpdateEffectConfiguration() __asm__("func_80037A60");
 /* extern */
 unsigned int Level37_788BCPlayMobySoundEvent() __asm__("func_8003BABC");
 /* extern */
-unsigned int Level37_788BC_func_8004E790() __asm__("func_8004E790");
+unsigned int Level37_788BCFillWordRange() __asm__("func_8004E790");
 /* extern */
 int Level37_788BCPlanarHeadingLookup() __asm__("func_8004E880");
 /* extern */
@@ -2990,7 +2968,7 @@ block_8:
     Level37_788BC_SpawnParticle(8, 0x46, ownerRecord19 + 0xC, (int*)0x10);
     goto block_70;
 block_10:
-    if (Level37_788BC_func_80019194(ownerRecord19 + 0xC, 0x12C) == 0) {
+    if (Level37_788BCQueryWorldSphere(ownerRecord19 + 0xC, 0x12C) == 0) {
         goto block_13;
     }
     globalWords17 = &Level37_788BC_D_80071918;
@@ -3063,21 +3041,23 @@ block_20:
     Level37_788BCCopyVector(&originalFrame.sp38, ownerRecord19 + 0xC);
     originalFrame.sp40 += 0x190;
     Level37_788BC_SpawnParticle(1, 0, &originalFrame.sp38, &originalFrame.sp28);
-    if (Level37_788BC_func_80037A60(ownerRecord19, ((unsigned char*)temp_s4 + 2), 2,
-                                    -Level37_788BCField(temp_s4, short*, 6), -0xC8) == 0) {
+    if (Level37_788BCUpdateEffectConfiguration(ownerRecord19, ((unsigned char*)temp_s4 + 2), 2,
+                                               -Level37_788BCField(temp_s4, short*, 6),
+                                               -0xC8) == 0) {
         goto block_22;
     }
     temp_s1 = Level37_788BCField(ownerRecord19, int**, 0);
     temp_s2 = Level37_788BCField(temp_s4, int*, 8);
     temp_s0_2 = Level37_788BCField(temp_s4, short*, 2);
-    Level37_788BC_func_8004E790(temp_s1, 0, 0x18);
+    Level37_788BCFillWordRange(temp_s1, 0, 0x18);
     Level37_788BCField(temp_s1, short*, 8) = (short)temp_s2;
     Level37_788BCField(temp_s1, short*, 0xE) = (short)(-temp_s0_2 / 3);
     Level37_788BCField(ownerRecord19, unsigned char*, 0x48) = 1U;
     return;
 block_22:
-    Level37_788BC_func_80035EE0(ownerRecord19, Level37_788BCField(temp_s4, unsigned char*, 4),
-                                Level37_788BCField(temp_s4, short*, 0), 0, 0, 0x4001);
+    Level37_788BCResolveMobyHeadingStep(ownerRecord19,
+                                        Level37_788BCField(temp_s4, unsigned char*, 4),
+                                        Level37_788BCField(temp_s4, short*, 0), 0, 0, 0x4001);
     Level37_788BCRefreshMobySpatialGridAndBasis(ownerRecord19, 3);
     return;
 block_23:
@@ -3250,7 +3230,7 @@ block_55:
     }
     Level37_788BCField(spawnedRecord17, int*, 0x1C) =
         (int)(Level37_788BCField(spawnedRecord17, int*, 0x1C) | 0x80000000);
-    Level37_788BC_func_80037014(spawnedRecord17);
+    Level37_788BCSetMobyZFromGroundProbe(spawnedRecord17);
     Level37_788BCField(spawnedRecord17, signed char*, 0x4C) = 0x3F;
     Level37_788BCField(spawnedRecord17, signed char*, 0x4E) = 0x3F;
     Level37_788BCField(spawnedRecord17, signed char*, 0x46) =
@@ -3454,8 +3434,8 @@ block_96:
  * Rev1 raw193 is route context, not authority for pointer/helper semantics. */
 extern unsigned char DecodedScorchPlayer[] __asm__("D_80070328");
 extern unsigned char* DecodedScorchModels[] __asm__("D_8006EE2C");
-void func_level_37_8007934C(Moby* argument) {
-    register Moby* moby __asm__("$16") = argument;
+void func_level_37_8007934C(Moby* mobyArgument) {
+    register Moby* moby __asm__("$16") = mobyArgument;
     register unsigned char* tag __asm__("$17") = moby->mobyTag;
     register Moby* child __asm__("$18");
     register unsigned char* childTag __asm__("$19");
@@ -3639,23 +3619,25 @@ void func_level_37_80079664(Moby* moby) {
     } while (0)
 #define Level37_79844Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 #define Level37_79844Keep(v) __asm__("" : "=r"(v) : "0"(v))
-void Level37_79844Call13ACCView1(void*, int) __asm__("func_80013ACC");
+void Level37_79844SetCameraOwnerAndControlWordView1(void*, int) __asm__("func_80013ACC");
 void Level37_79844RequestMobyAnimationView1(void*, int) __asm__("func_80034F40");
-int Level37_79844Call35194View1(void*, void*) __asm__("func_80035194");
+int Level37_79844UpdateMobyMotionDescriptorView1(void*, void*) __asm__("func_80035194");
 void Level37_79844EmptyAnimationTransitionHookView1(void*) __asm__("func_80035734");
 int Level37_79844TurnMobyTowardPlayerView1(void*, int, int, int) __asm__("func_8003573C");
 int Level37_79844TurnMobyTowardHeadingView1(void*, int, int, int, int,
                                             int) __asm__("func_8003585C");
 int Level37_79844CountTimerDownView1(void*, int) __asm__("func_800359A4");
-int Level37_79844Call35DDCView1(void*, int, int, int, int) __asm__("func_80035DDC");
-int Level37_79844Call35EE0View1(void*, int, int, int, int, int) __asm__("func_80035EE0");
+int Level37_79844ResolveMobyYawStepView1(void*, int, int, int, int) __asm__("func_80035DDC");
+int Level37_79844ResolveMobyHeadingStepView1(void*, int, int, int, int,
+                                             int) __asm__("func_80035EE0");
 int Level37_79844SubAngle8View1(int, int) __asm__("func_8003613C");
-void Level37_79844Call369B8View1(void*, int) __asm__("func_800369B8");
-int Level37_79844Call37A60View1(void*, void*, int, int, int) __asm__("func_80037A60");
-void Level37_79844Call38BF8View1(void*, void*, int, int) __asm__("func_80038BF8");
+void Level37_79844EmitMobyVertexParticlesView1(void*, int) __asm__("func_800369B8");
+int Level37_79844UpdateEffectConfigurationView1(void*, void*, int, int,
+                                                int) __asm__("func_80037A60");
+void Level37_79844InitializeMobyMotionStateView1(void*, void*, int, int) __asm__("func_80038BF8");
 int Level37_79844PlayMobySoundEventView1(void*, int, int) __asm__("func_8003BABC");
-void Level37_79844Call3BE70View1(int) __asm__("func_8003BE70");
-int Level37_79844Call3BFC0View1(void*, int) __asm__("func_8003BFC0");
+void Level37_79844TransitionSoundHandleTo3Or5View1(int) __asm__("func_8003BE70");
+int Level37_79844SoundHandleMatchesOwnerInStates1Or2View1(void*, int) __asm__("func_8003BFC0");
 int Level37_79844PlanarHeadingLookupView1(int, int, int) __asm__("func_8004E880");
 int Level37_79844MeasureVectorLengthView1(void*, int) __asm__("func_8004EDE8");
 void Level37_79844CopyVectorView1(void*, void*) __asm__("func_8004F178");
@@ -3664,7 +3646,7 @@ int Level37_79844AbsoluteByteAngleDeltaView1(int, int) __asm__("func_8004F264");
 int Level37_79844ApproximatePlanarDistanceView1(void*, void*) __asm__("func_8004F334");
 void Level37_79844DeleteMobyView1(void*) __asm__("func_80055B18");
 void Level37_79844RefreshMobySpatialGridAndBasisView1(void*, int) __asm__("func_80055D24");
-int Level37_79844Call55E84View1() __asm__("func_80055E84");
+int Level37_79844ReadSelectedFrameScalarView1() __asm__("func_80055E84");
 extern int Level37_79844Data658A0View1 __asm__("D_800658A0");
 extern int Level37_79844Data65920View1 __asm__("D_80065920");
 extern unsigned char Level37_79844Data6C40AView1 __asm__("D_8006C40A");
@@ -3773,12 +3755,13 @@ void func_level_37_80079844(void* ownerParameter) {
             Level37_79844Keep(resultOrField2);
             Level37_79844Field(owner17, signed char*, 81) = 0;
             predicateOrValue16 = (unsigned int)resultOrField2 < 1;
-            if (Level37_79844Call3BFC0View1(argumentOrField4,
-                                            Level37_79844Field(privateRecord18, int*, 0x40)) != 0) {
-                Level37_79844Call3BE70View1(Level37_79844Field(privateRecord18, int*, 0x40));
+            if (Level37_79844SoundHandleMatchesOwnerInStates1Or2View1(
+                    argumentOrField4, Level37_79844Field(privateRecord18, int*, 0x40)) != 0) {
+                Level37_79844TransitionSoundHandleTo3Or5View1(
+                    Level37_79844Field(privateRecord18, int*, 0x40));
             }
             Level37_79844Field(privateRecord18, int*, 0x40) = -1;
-            Level37_79844Call38BF8View1(owner17, privateRecord18, 0, 8);
+            Level37_79844InitializeMobyMotionStateView1(owner17, privateRecord18, 0, 8);
             resultOrField2 = Level37_79844Field(owner17, short*, 54);
             __asm__ volatile("" ::: "$3", "memory");
             fieldOrIntermediate3 = 8;
@@ -3907,7 +3890,7 @@ void func_level_37_80079844(void* ownerParameter) {
             goto applySharedPrivateState;
         case 0:
             if (Level37_79844Data6E160View1 != 9) {
-                Level37_79844Call13ACCView1(owner17, 0xD);
+                Level37_79844SetCameraOwnerAndControlWordView1(owner17, 0xD);
             }
             Level37_79844TurnMobyTowardPlayerView1(owner17, 4, 0, 0);
             if ((Level37_79844CountTimerDownView1(privateRecord18 + 0x1E, 2) != 0) &&
@@ -3992,7 +3975,7 @@ void func_level_37_80079844(void* ownerParameter) {
                         if (temp_v0_5 >= 0x12D) {
                             Level37_79844Field(privateRecord18, short*, 0x1C) = 0x12C;
                         }
-                        Level37_79844Call35DDCView1(
+                        Level37_79844ResolveMobyYawStepView1(
                             owner17, Level37_79844Field(privateRecord18, short*, 0x1C), 0, 0, 5);
                     }
                     var_v0_4 = Level37_79844ApproximatePlanarDistanceView1(
@@ -4018,8 +4001,8 @@ void func_level_37_80079844(void* ownerParameter) {
             if (temp_v0_6 >= 0x15F) {
                 Level37_79844Field(privateRecord18, short*, 0x1C) = 0x15E;
             }
-            Level37_79844Call35DDCView1(owner17, Level37_79844Field(privateRecord18, short*, 0x1C),
-                                        0, 0, 5);
+            Level37_79844ResolveMobyYawStepView1(
+                owner17, Level37_79844Field(privateRecord18, short*, 0x1C), 0, 0, 5);
             if ((capturedLowOrFrameValue8 = originalFrame.sp40,
                  resultOrField2 = capturedLowOrFrameValue8 < 0xDAC, resultOrField2)) {
                 if (Level37_79844AbsoluteByteAngleDeltaView1(
@@ -4089,7 +4072,7 @@ void func_level_37_80079844(void* ownerParameter) {
                               Level37_79844Field(owner17, int*, 0x10) -
                                   Level37_79844Field((int)&Level37_79844Data70328View1, int*, 4),
                               0)) >= 0x20)) &&
-                    (Level37_79844Call55E84View1(owner17) >= 6)) {
+                    (Level37_79844ReadSelectedFrameScalarView1(owner17) >= 6)) {
                     if ((Level37_79844AbsoluteByteAngleDeltaView1(
                              Level37_79844Field((int)&Level37_79844Data70328View1, unsigned char*,
                                                 0xE),
@@ -4155,7 +4138,7 @@ void func_level_37_80079844(void* ownerParameter) {
                 ((short)Level37_79844Field(privateRecord18, unsigned short*, 4) < 0x78)) {
                 Level37_79844Field(privateRecord18, unsigned short*, 4) = 0x78U;
             }
-            if (Level37_79844Call35194View1(owner17, privateRecord18) == 0x100) {
+            if (Level37_79844UpdateMobyMotionDescriptorView1(owner17, privateRecord18) == 0x100) {
                 if ((resultOrField2 = retainedDistance22 < 0x3801, resultOrField2 == 0)) {
                     Level37_79844PlayMobySoundEventView1(owner17, 0, 0);
                     Level37_79844Field(owner17, unsigned char*, 0x49) = 0U;
@@ -4170,7 +4153,7 @@ void func_level_37_80079844(void* ownerParameter) {
             Level37_79844Field(owner17, unsigned char*, 0x49) = 0U;
             Level37_79844Field(owner17, unsigned char*, 0x48) = 0x15U;
         case 21:
-            resultOrField2 = Level37_79844Call55E84View1(owner17);
+            resultOrField2 = Level37_79844ReadSelectedFrameScalarView1(owner17);
             argumentOrField4 = owner17;
             argumentOrField5 = 7;
             argumentOrField6 = 0;
@@ -4274,7 +4257,7 @@ void func_level_37_80079844(void* ownerParameter) {
                             Level37_79844Keep(resultOrField2);
                             (unsigned int)resultOrField2 < 18;
                         })) {
-                        Level37_79844Call35EE0View1(
+                        Level37_79844ResolveMobyHeadingStepView1(
                             owner17, Level37_79844Field(privateRecord18, unsigned char*, 0x11),
                             0xA5, 0, 0, (int)temp_v1_6);
                     }
@@ -4286,22 +4269,23 @@ void func_level_37_80079844(void* ownerParameter) {
             goto applySharedPrivateState;
         case 9:
             if ((resultOrField2 = retainedDistance22 < 0x4994, resultOrField2)) {
-                Level37_79844Call35EE0View1(
+                Level37_79844ResolveMobyHeadingStepView1(
                     owner17, Level37_79844Field(privateRecord18, unsigned char*, 0x11), 0x78, 0, 0,
                     0);
-                Level37_79844Call37A60View1(owner17, privateRecord18 + 6, 2, 0x10, -0xC8);
+                Level37_79844UpdateEffectConfigurationView1(owner17, privateRecord18 + 6, 2, 0x10,
+                                                            -0xC8);
             }
             predicateOrValue16 = (int)&Level37_79844Data6E160View1;
             Level37_79844Keep(predicateOrValue16);
             if ((Level37_79844Field(predicateOrValue16, int*, 0) != 9) &&
-                (Level37_79844Call55E84View1(owner17) >= 0x1F) &&
+                (Level37_79844ReadSelectedFrameScalarView1(owner17) >= 0x1F) &&
                 (Level37_79844Data6E164View1 == owner17)) {
                 Level37_79844Field(predicateOrValue16, int*, 0) = 0;
                 Level37_79844Data6E164View1 = 0;
             }
             if (Level37_79844Data6C770View1 != 0) {
                 Level37_79844RefreshMobySpatialGridAndBasisView1(owner17, 4);
-                Level37_79844Call369B8View1(owner17, 0x30);
+                Level37_79844EmitMobyVertexParticlesView1(owner17, 0x30);
                 Level37_79844DeleteMobyView1(owner17);
                 return;
             }
@@ -4505,17 +4489,17 @@ void func_level_37_8007A980(Moby* moby) {
 /* AI generated; not human reviewed. Original-derived C. Original source asm/nonmatchings/overlays/level_37/moby/func_level_37_8007AC9C.s SHA256 24d979b3223d8eec8b7b39e1d933c509c8b5d214da47fc250aeb8f21217fa4f9. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
 #define ScorchField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 
-int Scorch334_func_8001830C() __asm__("func_8001830C");      /* extern */
-int Scorch334_func_80036220() __asm__("func_80036220");      /* extern */
-int Scorch334_func_80036A68() __asm__("func_80036A68");      /* extern */
-int Scorch334_func_80037A60() __asm__("func_80037A60");      /* extern */
-int Scorch334_func_800399E8() __asm__("func_800399E8");      /* extern */
-int Scorch334_func_80039B6C() __asm__("func_80039B6C");      /* extern */
-int Scorch334_func_80040954() __asm__("func_80040954");      /* extern */
-int Scorch334MeasureVectorLength() __asm__("func_8004EDE8"); /* extern */
-int Scorch334SubtractVector() __asm__("func_8004F1C8");      /* extern */
-int Scorch334DeleteMoby() __asm__("func_80055B18");          /* extern */
-int Scorch334_rand() __asm__("rand");                        /* extern */
+int Scorch334QueryWorldSegmentWithOptions() __asm__("func_8001830C"); /* extern */
+int Scorch334TestPaddedRotatedBox() __asm__("func_80036220");         /* extern */
+int Scorch334SpawnMobyFromValueSelector() __asm__("func_80036A68");   /* extern */
+int Scorch334UpdateEffectConfiguration() __asm__("func_80037A60");    /* extern */
+int Scorch334SpawnSurfaceType4LinkedMoby() __asm__("func_800399E8");  /* extern */
+int Scorch334UpdateLinkedMobyReflection() __asm__("func_80039B6C");   /* extern */
+int Scorch334GetSurfaceTypeFromFlags() __asm__("func_80040954");      /* extern */
+int Scorch334MeasureVectorLength() __asm__("func_8004EDE8");          /* extern */
+int Scorch334SubtractVector() __asm__("func_8004F1C8");               /* extern */
+int Scorch334DeleteMoby() __asm__("func_80055B18");                   /* extern */
+int Scorch334_rand() __asm__("rand");                                 /* extern */
 extern unsigned char Scorch334_D_800658A0 __asm__("D_800658A0");
 extern unsigned char Scorch334_D_80065920 __asm__("D_80065920");
 extern void** Scorch334_D_8006C550 __asm__("D_8006C550");
@@ -4589,7 +4573,7 @@ void func_level_37_8007AC9C(Moby* inputOwner) {
     privateData = owner->mobyTag;
     if (value2 != value3) {
         if (ScorchField(privateData, void**, 0xC) == 0) {
-            Scorch334_func_800399E8(inputOwner, privateData + 0xC);
+            Scorch334SpawnSurfaceType4LinkedMoby(inputOwner, privateData + 0xC);
         }
         argument4 = (int)&frame.sp18;
         argument5 = (int)&owner->position;
@@ -4719,8 +4703,8 @@ void func_level_37_8007AC9C(Moby* inputOwner) {
                 MATCHING_KEEP4(argument4, timer5, argument6, argument7);
                 vector16 = &Scorch334_D_80071924;
                 ScorchField(vector16, int*, 0) = 255;
-                Scorch334_func_80037A60(argument4, timer5, argument6, argument7, -200);
-                if (Scorch334_func_80040954(ScorchField(vector16, int*, 0)) != 4) {
+                Scorch334UpdateEffectConfiguration(argument4, timer5, argument6, argument7, -200);
+                if (Scorch334GetSurfaceTypeFromFlags(ScorchField(vector16, int*, 0)) != 4) {
                     attachment3 = ScorchField(privateData, void**, 0xC);
                     value2 = 248;
                     if (attachment3 != 0) {
@@ -4771,7 +4755,8 @@ void func_level_37_8007AC9C(Moby* inputOwner) {
                                       (ScorchField(privateData, unsigned char*, 1) * 2)) *
                           (ScorchField(privateData, short*, 2) + 0x96)) >>
                     0xC;
-                value2 = Scorch334_func_8001830C(position16, &frame.sp28, 0, 0, owner);
+                value2 =
+                    Scorch334QueryWorldSegmentWithOptions(position16, &frame.sp28, 0, 0, owner);
                 if (value2 != 0) {
                     rawAngle17 = func_8004E880(Scorch334_D_80071918, Scorch334_D_8007191C, 0);
                     rawAngle16 = rawAngle17 + 0x40;
@@ -4895,11 +4880,11 @@ void func_level_37_8007AC9C(Moby* inputOwner) {
                 spawned4->angle.yaw = ((int)(Scorch334_D_8006E040 << 0x10) >> 0x14) - 0x40;
             }
             if (owner->gemValue != 0xFF) {
-                Scorch334_func_80036A68(owner, 0, 0, 0);
+                Scorch334SpawnMobyFromValueSelector(owner, 0, 0, 0);
                 func_8003BA00(owner);
             }
             if ((ScorchField(privateData, int*, 0x14) != 0) &&
-                (Scorch334_func_80036220(&owner->position, privateData + 0x18, 0, 0) != 0)) {
+                (Scorch334TestPaddedRotatedBox(&owner->position, privateData + 0x18, 0, 0) != 0)) {
                 ScorchField(
                     ((ScorchField(privateData, int*, 0x30) * 0x58) + (int)Scorch334_D_8006C550),
                     signed char*, 0x49) = 1;
@@ -4911,7 +4896,7 @@ void func_level_37_8007AC9C(Moby* inputOwner) {
             Scorch334DeleteMoby(owner);
         }
         if (ScorchField(privateData, void**, 0xC) != 0) {
-            Scorch334_func_80039B6C(owner, privateData + 0xC);
+            Scorch334UpdateLinkedMobyReflection(owner, privateData + 0xC);
         }
     }
 }
@@ -4926,16 +4911,17 @@ extern unsigned char Controller810A0Player[] __asm__("D_80070328");
 extern void* Controller810A0Models[] __asm__("D_8006EE2C");
 extern int D_8006C770;
 extern void* (*Controller810A0Spawn)(int, void*)__asm__("SpawnMoby");
-int Controller810A0Helper18368(void*, void*) __asm__("func_80018368");
-void* Controller810A0Helper1BA30(void*, int, int, int, int, int) __asm__("func_8001BA30");
-int Controller810A0Helper1C288(void*, int, int) __asm__("func_8001C288");
+int Controller810A0QueryWorldSegment(void*, void*) __asm__("func_80018368");
+void* Controller810A0QueryDynamicMobyGeometry(void*, int, int, int, int,
+                                              int) __asm__("func_8001BA30");
+int Controller810A0TestPlayerSphereOverlap(void*, int, int) __asm__("func_8001C288");
 int Controller810A0CountTimerDown(void*, int) __asm__("func_800359A4");
 int Controller810A0PlayMobySoundEvent(void*, int, int) __asm__("func_8003BABC");
 int Controller810A0PlanarHeadingLookup(int, int, int) __asm__("func_8004E880");
 int Controller810A0CopyVector(void*, void*) __asm__("func_8004F178");
 int Controller810A0AbsoluteByteAngleDelta(int, int) __asm__("func_8004F264");
-int Controller810A0Helper50844(void*, int, int, int) __asm__("func_80050844");
-int Controller810A0Helper509E8(int) __asm__("func_800509E8");
+int Controller810A0AllocateVectorTrailRecord(void*, int, int, int) __asm__("func_80050844");
+int Controller810A0ClearHistorySourceWord(int) __asm__("func_800509E8");
 int Controller810A0DeleteMoby(void*) __asm__("func_80055B18");
 int Controller810A0Random(void) __asm__("rand");
 /* AI generated; not human reviewed. SCUS-94467 USA Rev 0.
@@ -4979,8 +4965,8 @@ void func_level_37_8007B4CC(void* input) {
         MATCHING_KEEP_CLOBBER(owner, "$2");
         stateTwo = 2;
         MATCHING_KEEP_CLOBBER(stateTwo, "$3");
-        state = Controller810A0Field(owner, unsigned char*, 0x48);
-        tag = Controller810A0Field(owner, void**, 0);
+        state = ((Moby*)owner)->state;
+        tag = ((Moby*)owner)->mobyTag;
         MATCHING_KEEP2(state, tag);
         if (state == stateTwo)
             goto moving;
@@ -5005,7 +4991,7 @@ initialize:
                     Controller810A0Field((entryOffset + Controller810A0Field(tag, int*, 0xC)),
                                          unsigned char*, 1),
                     0x40) < 0x3C) {
-                spawned = Controller810A0Spawn(Controller810A0Field(owner, short*, 0x36), owner);
+                spawned = Controller810A0Spawn(((Moby*)owner)->mobyClass, owner);
                 MATCHING_KEEP(spawned);
                 if (spawned != 0) {
                     spawnTag = Controller810A0Field(spawned, void**, 0);
@@ -5031,7 +5017,7 @@ initialize:
                         Controller810A0Field(spawned, unsigned char*, 0x40) = selector & 0x30;
                     }
                     Controller810A0Field(spawnTag, int*, 8) =
-                        Controller810A0Helper50844(spawned + 0xC, 7, 0xA, 0x4080E0);
+                        Controller810A0AllocateVectorTrailRecord(spawned + 0xC, 7, 0xA, 0x4080E0);
                     {
                         register int address __asm__("$2") = Controller810A0Field(tag, int*, 0xC);
                         register int angle __asm__("$3") = Controller810A0Angle1;
@@ -5066,23 +5052,22 @@ initialize:
         } while (entryIndex < 0x20);
     }
     Controller810A0PlayMobySoundEvent(owner, 0, 0);
-    Controller810A0Field(owner, unsigned char*, 0x48) = 0xAU;
+    ((Moby*)owner)->state = 0xAU;
     idlePosition = owner + 0xC;
 idle:
-    nearby = Controller810A0Helper1BA30(idlePosition, 0x7D0, 0, 0, 0x30000, 0);
+    nearby = Controller810A0QueryDynamicMobyGeometry(idlePosition, 0x7D0, 0, 0, 0x30000, 0);
     if (nearby != 0) {
         Controller810A0Field(nearby, signed char*, 0x51) = Controller810A0PlanarHeadingLookup(
-            Controller810A0Field(nearby, int*, 0xC) - Controller810A0Field(owner, int*, 0xC),
-            Controller810A0Field(nearby, int*, 0x10) - Controller810A0Field(owner, int*, 0x10), 0);
+            Controller810A0Field(nearby, int*, 0xC) - ((Moby*)owner)->position.x,
+            Controller810A0Field(nearby, int*, 0x10) - ((Moby*)owner)->position.y, 0);
     }
-    if (Controller810A0Helper1C288(idlePosition, 0x4B0, 7) != 0) {
-        playerAngle = Controller810A0PlanarHeadingLookup(
-                          Controller810A0Field(&Controller810A0Player, int*, 0) -
-                              Controller810A0Field(owner, int*, 0xC),
-                          Controller810A0Field(&Controller810A0Player, int*, 4) -
-                              Controller810A0Field(owner, int*, 0x10),
-                          0) &
-                      0xFF;
+    if (Controller810A0TestPlayerSphereOverlap(idlePosition, 0x4B0, 7) != 0) {
+        playerAngle =
+            Controller810A0PlanarHeadingLookup(
+                Controller810A0Field(&Controller810A0Player, int*, 0) - ((Moby*)owner)->position.x,
+                Controller810A0Field(&Controller810A0Player, int*, 4) - ((Moby*)owner)->position.y,
+                0) &
+            0xFF;
         Controller810A0Field(&Controller810A0Player, int*, 0x298) = playerAngle;
         tableOffset = playerAngle * 2;
         Controller810A0Field(&Controller810A0Player, int*, 0x20C) = 0x10000400;
@@ -5113,8 +5098,8 @@ moving:
             (signed char)((unsigned short)Controller810A0Angle0 >> 4);
         Controller810A0CopyVector(preparedVector, position);
     }
-    Controller810A0Field(owner, int*, 0xC) =
-        (int)(Controller810A0Field(owner, int*, 0xC) +
+    ((Moby*)owner)->position.x =
+        (int)(((Moby*)owner)->position.x +
               ((int)(((int)(*(short*)(Controller810A0Cos +
                                       (Controller810A0Field(tag, unsigned char*, 1) * 2)) *
                             Controller810A0Field(tag, short*, 2)) >>
@@ -5122,8 +5107,8 @@ moving:
                      *(short*)(Controller810A0Cos +
                                (Controller810A0Field(tag, unsigned char*, 0) * 2))) >>
                0xC));
-    Controller810A0Field(owner, int*, 0x10) =
-        (int)(Controller810A0Field(owner, int*, 0x10) +
+    ((Moby*)owner)->position.y =
+        (int)(((Moby*)owner)->position.y +
               ((int)(((int)(*(short*)(Controller810A0Sin +
                                       (Controller810A0Field(tag, unsigned char*, 1) * 2)) *
                             Controller810A0Field(tag, short*, 2)) >>
@@ -5131,13 +5116,13 @@ moving:
                      *(short*)(Controller810A0Cos +
                                (Controller810A0Field(tag, unsigned char*, 0) * 2))) >>
                0xC));
-    Controller810A0Field(owner, int*, 0x14) =
-        (int)(Controller810A0Field(owner, int*, 0x14) +
+    ((Moby*)owner)->position.z =
+        (int)(((Moby*)owner)->position.z +
               ((int)(*(short*)(Controller810A0Sin +
                                (Controller810A0Field(tag, unsigned char*, 0) * 2)) *
                      Controller810A0Field(tag, short*, 2)) >>
                0xC));
-    if (Controller810A0Helper18368(&frame.previous, position) != 0) {
+    if (Controller810A0QueryWorldSegment(&frame.previous, position) != 0) {
         Controller810A0Field(tag, int*, 4) = 0;
     }
     decrementedHalfword = (unsigned short)Controller810A0Field(tag, short*, 2) - 0x1E;
@@ -5155,7 +5140,7 @@ moving:
     if (Controller810A0CountTimerDown(tag + 4, 4) != 0) {
         handle = Controller810A0Field(tag, int*, 8);
         if (handle != 0) {
-            Controller810A0Helper509E8(handle);
+            Controller810A0ClearHistorySourceWord(handle);
         }
         goto removeOwner;
     }
@@ -5405,25 +5390,25 @@ extern int Level37_7BD9C_D_8006C7C4 __asm__("D_8006C7C4");
  */
 #define Level37_7BD9CField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 #define Level37_7BD9CKeep(v) __asm__("" : "=r"(v) : "0"(v))
-void Level37_7BD9C_func_80013ACC(int, int) __asm__("func_80013ACC");
-void Level37_7BD9C_func_80013AE4(int, int) __asm__("func_80013AE4");
-void Level37_7BD9C_func_80013D44(int, int, int, int) __asm__("func_80013D44");
-int Level37_7BD9C_func_8001A358(int, int) __asm__("func_8001A358");
-int Level37_7BD9C_func_8002803C(int, int, int, int, int, int, int) __asm__("func_8002803C");
-int Level37_7BD9C_func_80028154(int) __asm__("func_80028154");
+void Level37_7BD9CSetCameraOwnerAndControlWord(int, int) __asm__("func_80013ACC");
+void Level37_7BD9CPrepareCameraMode9Vectors(int, int) __asm__("func_80013AE4");
+void Level37_7BD9CSetCameraMode11Target(int, int, int, int) __asm__("func_80013D44");
+int Level37_7BD9CQueryWorldHeight(int, int) __asm__("func_8001A358");
+int Level37_7BD9CConfigureHudEntry(int, int, int, int, int, int, int) __asm__("func_8002803C");
+int Level37_7BD9CResetHudEntryByHandle(int) __asm__("func_80028154");
 void Level37_7BD9CRequestMobyAnimation(int, int) __asm__("func_80034F40");
-int Level37_7BD9C_func_80035194(int, int) __asm__("func_80035194");
+int Level37_7BD9CUpdateMobyMotionDescriptor(int, int) __asm__("func_80035194");
 int Level37_7BD9CTurnMobyTowardPlayer(int, int, int, int) __asm__("func_8003573C");
 int Level37_7BD9CTurnMobyTowardHeading(int, int, int, int, int, int) __asm__("func_8003585C");
 int Level37_7BD9CCountTimerDown(int, int) __asm__("func_800359A4");
 int Level37_7BD9CRandBetween(int, int) __asm__("func_8003636C");
 int Level37_7BD9CRandSignedBetween(int, int) __asm__("func_800363DC");
-int Level37_7BD9C_func_800365E4(int, int, int, int, int) __asm__("func_800365E4");
-void Level37_7BD9C_func_80038BF8(int, int, int, int) __asm__("func_80038BF8");
-void Level37_7BD9C_func_8003B7B4(int, int, int) __asm__("func_8003B7B4");
+int Level37_7BD9CComputeArcVerticalVelocity(int, int, int, int, int) __asm__("func_800365E4");
+void Level37_7BD9CInitializeMobyMotionState(int, int, int, int) __asm__("func_80038BF8");
+void Level37_7BD9CRegisterTrackedValue(int, int, int) __asm__("func_8003B7B4");
 int Level37_7BD9CPlayMobySoundEvent(int, int, int) __asm__("func_8003BABC");
-void Level37_7BD9C_func_8003BE70(int) __asm__("func_8003BE70");
-int Level37_7BD9C_func_8003BFC0(int, int) __asm__("func_8003BFC0");
+void Level37_7BD9CTransitionSoundHandleTo3Or5(int) __asm__("func_8003BE70");
+int Level37_7BD9CSoundHandleMatchesOwnerInStates1Or2(int, int) __asm__("func_8003BFC0");
 int Level37_7BD9CPlanarHeadingLookup(int, int, int) __asm__("func_8004E880");
 int Level37_7BD9CMeasureVectorLength(int, int) __asm__("func_8004EDE8");
 void Level37_7BD9CShiftVectorRightTowardZero(int, int) __asm__("func_8004F110");
@@ -5433,7 +5418,7 @@ void Level37_7BD9CSubtractVector(int, int, int) __asm__("func_8004F1C8");
 int Level37_7BD9CAbsoluteByteAngleDelta(int, int) __asm__("func_8004F264");
 void Level37_7BD9CDeleteMoby(int) __asm__("func_80055B18");
 void Level37_7BD9CRefreshMobySpatialGridAndBasis(int, int) __asm__("func_80055D24");
-int Level37_7BD9C_func_80055E84(int) __asm__("func_80055E84");
+int Level37_7BD9CReadSelectedFrameScalar(int) __asm__("func_80055E84");
 void Level37_7BD9CInterpolateMobyVertex(int, int, int) __asm__("func_80055F14");
 int Level37_7BD9C_rand(void) __asm__("rand");
 extern int Level37_7BD9C_D_8006580C __asm__("D_8006580C");
@@ -5568,12 +5553,13 @@ void func_level_37_8007BD9C(void* input) {
         Level37_7BD9CField(privateAddress20, int*, 0x40) = 1;
         Level37_7BD9CField(privateAddress20, int*, 0x44) = 2;
         Level37_7BD9CField(privateAddress20, int*, 0x48) = 9;
-        Level37_7BD9C_func_80013ACC(ownerAddress21, 0xD);
+        Level37_7BD9CSetCameraOwnerAndControlWord(ownerAddress21, 0xD);
         if (Level37_7BD9CField(privateAddress20, int*, 0x58) < 0) {
-            Level37_7BD9CField(privateAddress20, int*, 0x58) = (short)Level37_7BD9C_func_8002803C(
-                0x17, 0x172, Level37_7BD9C_unk_ovlheader_80074368,
-                Level37_7BD9C_unk_ovlheader_8007436C, Level37_7BD9C_unk_ovlheader_80074364,
-                privateAddress20 + 0x48, Level37_7BD9CField(privateAddress20, int*, 0x48));
+            Level37_7BD9CField(privateAddress20, int*, 0x58) =
+                (short)Level37_7BD9CConfigureHudEntry(
+                    0x17, 0x172, Level37_7BD9C_unk_ovlheader_80074368,
+                    Level37_7BD9C_unk_ovlheader_8007436C, Level37_7BD9C_unk_ovlheader_80074364,
+                    privateAddress20 + 0x48, Level37_7BD9CField(privateAddress20, int*, 0x48));
         }
     }
     if (Level37_7BD9CField(privateAddress20, short*, 0x56) == 0) {
@@ -5582,7 +5568,7 @@ void func_level_37_8007BD9C(void* input) {
             (Level37_7BD9CField((int)&Level37_7BD9C_D_80070328, int*, 0x240) == 0)) {
             Level37_7BD9CField(privateAddress20, short*, 0x54) = 0x1E;
             Level37_7BD9CField(privateAddress20, short*, 0x56) = 1;
-            Level37_7BD9C_func_80013ACC(ownerAddress21, 0xD);
+            Level37_7BD9CSetCameraOwnerAndControlWord(ownerAddress21, 0xD);
         }
     } else {
         if ((Level37_7BD9CField(ownerAddress21, int*, 0x18) & 0x100000) &&
@@ -5591,9 +5577,10 @@ void func_level_37_8007BD9C(void* input) {
                 Level37_7BD9CField(privateAddress20, int*, 0xD4) = 0x1E;
                 goto block_30;
             }
-            if (Level37_7BD9C_func_8003BFC0(
+            if (Level37_7BD9CSoundHandleMatchesOwnerInStates1Or2(
                     ownerAddress21, Level37_7BD9CField(privateAddress20, int*, 0x5C)) != 0) {
-                Level37_7BD9C_func_8003BE70(Level37_7BD9CField(privateAddress20, int*, 0x5C));
+                Level37_7BD9CTransitionSoundHandleTo3Or5(
+                    Level37_7BD9CField(privateAddress20, int*, 0x5C));
             }
             Level37_7BD9CField(privateAddress20, int*, 0x5C) = -1;
             Level37_7BD9CField(privateAddress20, int*, 0xD0) = 0x3C;
@@ -5603,20 +5590,21 @@ void func_level_37_8007BD9C(void* input) {
                 (Level37_7BD9CField((int)&Level37_7BD9C_D_80070328, int*, 0x50) != 8)) {
                 temp_a0 = Level37_7BD9CField(privateAddress20, int*, 0x64);
                 if (temp_a0 != -1) {
-                    Level37_7BD9C_func_80028154(temp_a0);
+                    Level37_7BD9CResetHudEntryByHandle(temp_a0);
                 }
                 temp_a0_2 = Level37_7BD9CField(privateAddress20, int*, 0x68);
                 Level37_7BD9CField(privateAddress20, int*, 0x64) = -1;
                 if (temp_a0_2 != -1) {
-                    Level37_7BD9C_func_80028154(temp_a0_2);
+                    Level37_7BD9CResetHudEntryByHandle(temp_a0_2);
                 }
                 temp_a0_3 = Level37_7BD9CField(privateAddress20, int*, 0x58);
                 Level37_7BD9CField(privateAddress20, int*, 0x68) = -1;
                 if (temp_a0_3 != -1) {
-                    Level37_7BD9C_func_80028154(temp_a0_3);
+                    Level37_7BD9CResetHudEntryByHandle(temp_a0_3);
                 }
                 Level37_7BD9CField(privateAddress20, int*, 0x58) = -1;
-                Level37_7BD9C_func_80038BF8(ownerAddress21, privateAddress20 + 0x20, 0, 4);
+                Level37_7BD9CInitializeMobyMotionState(ownerAddress21, privateAddress20 + 0x20, 0,
+                                                       4);
                 workWord3 = Level37_7BD9CField(privateAddress20, int*, 56);
                 __asm__ volatile("" ::"r"(privateAddress20) : "$2", "memory");
                 workWord2 = 240;
@@ -5679,7 +5667,7 @@ void func_level_37_8007BD9C(void* input) {
                     Level37_7BD9CField(privateAddress20, int*, 0x44) = temp_v1;
                 }
             }
-            Level37_7BD9C_func_80038BF8(ownerAddress21, privateAddress20 + 0x20, 0, 5);
+            Level37_7BD9CInitializeMobyMotionState(ownerAddress21, privateAddress20 + 0x20, 0, 5);
             Level37_7BD9CField(privateAddress20, short*, 0x26) = 0;
             Level37_7BD9CField(privateAddress20, signed char*, 0x2F) = 0;
             Level37_7BD9CField(privateAddress20, unsigned short*, 0x24) = 0x12CU;
@@ -5748,7 +5736,7 @@ void func_level_37_8007BD9C(void* input) {
         Level37_7BD9CCountTimerDown(argumentWord4, 2);
         if ((Level37_7BD9CField(ownerAddress21, unsigned char*, 0x48) != 4) &&
             (Level37_7BD9C_D_8006E160 == 0)) {
-            Level37_7BD9C_func_80013ACC(ownerAddress21, 0xD);
+            Level37_7BD9CSetCameraOwnerAndControlWord(ownerAddress21, 0xD);
         }
         if ((Level37_7BD9CField(privateAddress20, int*, 0x6C) != 0) ||
             (Level37_7BD9CField((int)&Level37_7BD9C_D_80070328, int*, 0x1E8) != 0)) {
@@ -5762,22 +5750,22 @@ void func_level_37_8007BD9C(void* input) {
             if (workWord3 == 0) {
                 temp_a0_4 = Level37_7BD9CField(privateAddress20, int*, 0x64);
                 if (temp_a0_4 != -1) {
-                    Level37_7BD9C_func_80028154(temp_a0_4);
+                    Level37_7BD9CResetHudEntryByHandle(temp_a0_4);
                 }
                 Level37_7BD9CField(privateAddress20, int*, 0x64) = -1;
                 Level37_7BD9CField(privateAddress20, int*, 0x68) =
-                    (short)Level37_7BD9C_func_8002803C(
+                    (short)Level37_7BD9CConfigureHudEntry(
                         0x15, 0x174, (int)&Level37_7BD9C_func_80027E40,
                         (int)&Level37_7BD9C_func_80027A60, (int)&Level37_7BD9C_func_80029904,
                         privateAddress20 + 0x6C, 0xA);
             } else {
                 temp_a0_5 = Level37_7BD9CField(privateAddress20, int*, 0x68);
                 if (temp_a0_5 != -1) {
-                    Level37_7BD9C_func_80028154(temp_a0_5);
+                    Level37_7BD9CResetHudEntryByHandle(temp_a0_5);
                 }
                 Level37_7BD9CField(privateAddress20, int*, 0x68) = -1;
                 Level37_7BD9CField(privateAddress20, int*, 0x64) =
-                    (short)Level37_7BD9C_func_8002803C(
+                    (short)Level37_7BD9CConfigureHudEntry(
                         0x15, 0x173, (int)&Level37_7BD9C_func_80027E40,
                         (int)&Level37_7BD9C_func_80027A60, (int)&Level37_7BD9C_func_80029904,
                         savedWord17, 0xC8);
@@ -5786,12 +5774,12 @@ void func_level_37_8007BD9C(void* input) {
             temp_a0_6 = Level37_7BD9CField(privateAddress20, int*, 0x64);
             Level37_7BD9CField(privateAddress20, signed char*, 0x70) = 0;
             if (temp_a0_6 != -1) {
-                Level37_7BD9C_func_80028154(temp_a0_6);
+                Level37_7BD9CResetHudEntryByHandle(temp_a0_6);
             }
             temp_a0_7 = Level37_7BD9CField(privateAddress20, int*, 0x68);
             Level37_7BD9CField(privateAddress20, int*, 0x64) = -1;
             if (temp_a0_7 != -1) {
-                Level37_7BD9C_func_80028154(temp_a0_7);
+                Level37_7BD9CResetHudEntryByHandle(temp_a0_7);
             }
             Level37_7BD9CField(privateAddress20, int*, 0x68) = -1;
         }
@@ -5830,11 +5818,11 @@ void func_level_37_8007BD9C(void* input) {
             }
             savedWord16 = privateAddress20 + 0xDC;
         }
-        Level37_7BD9C_func_8003B7B4(savedWord16, 4, (int)&Level37_7BD9C_D_8006D088);
-        Level37_7BD9C_func_8003B7B4(savedWord16, 4, (int)&Level37_7BD9C_D_8006C7F8);
+        Level37_7BD9CRegisterTrackedValue(savedWord16, 4, (int)&Level37_7BD9C_D_8006D088);
+        Level37_7BD9CRegisterTrackedValue(savedWord16, 4, (int)&Level37_7BD9C_D_8006C7F8);
         savedWord16 = privateAddress20 + 0xD8;
-        Level37_7BD9C_func_8003B7B4(savedWord16, 4, (int)&Level37_7BD9C_D_8006D088);
-        Level37_7BD9C_func_8003B7B4(savedWord16, 4, (int)&Level37_7BD9C_D_8006C7F8);
+        Level37_7BD9CRegisterTrackedValue(savedWord16, 4, (int)&Level37_7BD9C_D_8006D088);
+        Level37_7BD9CRegisterTrackedValue(savedWord16, 4, (int)&Level37_7BD9C_D_8006C7F8);
         temp_v1_7 = Level37_7BD9CField(ownerAddress21, unsigned char*, 0x48);
         if ((temp_v1_7 != 1) && (temp_v1_7 != 4) &&
             (Level37_7BD9CCountTimerDown(privateAddress20 + 0xD0, 4) != 0)) {
@@ -6026,7 +6014,7 @@ void func_level_37_8007BD9C(void* input) {
                                Level37_7BD9CField(privateAddress20, unsigned char*, 0x72)) < 8;
                 goto block_173;
             case 3:
-                if ((Level37_7BD9C_func_80055E84(ownerAddress21) >= 0x23) &&
+                if ((Level37_7BD9CReadSelectedFrameScalar(ownerAddress21) >= 0x23) &&
                     (Level37_7BD9CField(privateAddress20, unsigned char*, 0x73) == 0)) {
                     savedWord19 = 20;
                     argumentWord4 = 0;
@@ -6088,7 +6076,7 @@ void func_level_37_8007BD9C(void* input) {
                 }
                 goto block_172;
             case 2:
-                workWord2 = Level37_7BD9C_func_80055E84(ownerAddress21);
+                workWord2 = Level37_7BD9CReadSelectedFrameScalar(ownerAddress21);
                 argumentWord6 = 0;
                 __asm__("" : "=r"(workWord2) : "0"(workWord2), "r"(argumentWord6));
                 savedWord16 = workWord2;
@@ -6421,7 +6409,7 @@ void func_level_37_8007BD9C(void* input) {
                                 workWord2 = -16;
                                 Level37_7BD9CField(savedWord19, short*, 6) = workWord2;
                                 workWord2 = (int)&originalFrame.spD0;
-                                workWord2 = Level37_7BD9C_func_800365E4(
+                                workWord2 = Level37_7BD9CComputeArcVerticalVelocity(
                                     argumentWord4, argumentWord5, argumentWord6, argumentWord7,
                                     workWord2);
                                 Level37_7BD9CField(savedWord19, short*, 2) = workWord2;
@@ -6444,7 +6432,8 @@ void func_level_37_8007BD9C(void* input) {
                 if (!workWord2) {
                     Level37_7BD9CField(privateAddress20, unsigned short*, 0x24) = 0U;
                 }
-                if (Level37_7BD9C_func_80035194(ownerAddress21, privateAddress20 + 0x20) == 0x100) {
+                if (Level37_7BD9CUpdateMobyMotionDescriptor(ownerAddress21,
+                                                            privateAddress20 + 0x20) == 0x100) {
                     Level37_7BD9CField(ownerAddress21, signed char*, 0x49) = 0;
                     Level37_7BD9CField(ownerAddress21, unsigned char*, 0x48) = 0U;
                     Level37_7BD9CRequestMobyAnimation(ownerAddress21, 0);
@@ -6503,10 +6492,12 @@ void func_level_37_8007BD9C(void* input) {
                 temp_v1_13 = Level37_7BD9CField(privateAddress20, int*, 0xC);
                 switch (temp_v1_13) {
                     case 0:
-                        Level37_7BD9C_func_80035194(ownerAddress21, privateAddress20 + 0x20);
+                        Level37_7BD9CUpdateMobyMotionDescriptor(ownerAddress21,
+                                                                privateAddress20 + 0x20);
                         if (Level37_7BD9CCountTimerDown(privateAddress20 + 0x10, 2) == 2) {
                             Level37_7BD9CField(privateAddress20, short*, 0x10) = 0x3C;
-                            Level37_7BD9C_func_80013AE4(savedWord22, retainedFrameAddress);
+                            Level37_7BD9CPrepareCameraMode9Vectors(savedWord22,
+                                                                   retainedFrameAddress);
                             if (Level37_7BD9CField((int)&Level37_7BD9C_D_80070328, int*, 0x280) <
                                 0) {
                                 Level37_7BD9CField((int)&Level37_7BD9C_D_80070328, int*, 0x280) = 0;
@@ -6521,7 +6512,8 @@ void func_level_37_8007BD9C(void* input) {
                         Level37_7BD9CKeep(savedWord16);
                         if (Level37_7BD9CField(savedWord16, int*, 0) < 0)
                             Level37_7BD9CField(savedWord16, int*, 0) = 0;
-                        Level37_7BD9C_func_80035194(ownerAddress21, privateAddress20 + 0x20);
+                        Level37_7BD9CUpdateMobyMotionDescriptor(ownerAddress21,
+                                                                privateAddress20 + 0x20);
                         if ((Level37_7BD9C_D_8006E048 & 1) ||
                             (Level37_7BD9CCountTimerDown(privateAddress20 + 0x10, 2) != 0)) {
                             Level37_7BD9CPlayer524 = 0x10008000;
@@ -6584,8 +6576,8 @@ void func_level_37_8007BD9C(void* input) {
                                                                   0x12);
                             Level37_7BD9CPlayMobySoundEvent(ownerAddress21, 0, 0);
                             Level37_7BD9CField(ownerAddress21, unsigned char*, 0x48) = 0U;
-                            Level37_7BD9C_func_80038BF8(ownerAddress21, privateAddress20 + 0x20, 0,
-                                                        4);
+                            Level37_7BD9CInitializeMobyMotionState(ownerAddress21,
+                                                                   privateAddress20 + 0x20, 0, 4);
                             Level37_7BD9CField(privateAddress20, signed char*, 0x2E) = 9;
                             Level37_7BD9CField(privateAddress20, unsigned short*, 0x24) =
                                 (unsigned short)(Level37_7BD9CField(privateAddress20,
@@ -6657,11 +6649,11 @@ void func_level_37_8007BD9C(void* input) {
                         workWord3 = workWord12 >> 12;
                         workWord2 += workWord3;
                         originalFrame.sp6C = workWord2;
-                        Level37_7BD9C_func_80013AE4(argumentWord4, argumentWord5);
+                        Level37_7BD9CPrepareCameraMode9Vectors(argumentWord4, argumentWord5);
                         argumentWord4 = ownerAddress21;
                         MATCHING_OBSERVE_VOLATILE(argumentWord4);
                         savedWord16 = privateAddress20 + 32;
-                        Level37_7BD9C_func_80035194(argumentWord4, savedWord16);
+                        Level37_7BD9CUpdateMobyMotionDescriptor(argumentWord4, savedWord16);
                         if (Level37_7BD9CCountTimerDown(privateAddress20 + 0x10, 2) != 0) {
                             Level37_7BD9CCopyVector(originalFrame.sp100, privateAddress20);
                             Level37_7BD9CField(ownerAddress21, int*, 0x18) =
@@ -6678,8 +6670,8 @@ void func_level_37_8007BD9C(void* input) {
                             argumentWord7 = 4;
                             Level37_7BD9CField(ownerAddress21, unsigned char*, 72) = 0;
                             Level37_7BD9CField(ownerAddress21, unsigned char*, 81) = workWord2;
-                            Level37_7BD9C_func_80038BF8(argumentWord4, argumentWord5, argumentWord6,
-                                                        argumentWord7);
+                            Level37_7BD9CInitializeMobyMotionState(argumentWord4, argumentWord5,
+                                                                   argumentWord6, argumentWord7);
                             Level37_7BD9CField(privateAddress20, signed char*, 0x2E) = 8;
                             Level37_7BD9CField(privateAddress20, unsigned short*, 0x24) =
                                 (unsigned short)(Level37_7BD9CField(privateAddress20,
@@ -6759,18 +6751,18 @@ void func_level_37_8007BD9C(void* input) {
                         workWord3 = workWord12 >> 12;
                         workWord2 += workWord3;
                         originalFrame.sp6C = workWord2;
-                        Level37_7BD9C_func_80013AE4(argumentWord4, argumentWord5);
+                        Level37_7BD9CPrepareCameraMode9Vectors(argumentWord4, argumentWord5);
                         if (Level37_7BD9CField(privateAddress20, unsigned char*, 0x13) != 0) {
                             Level37_7BD9CField(ownerAddress21, int*, 0x14) =
                                 (int)(Level37_7BD9CField(ownerAddress21, int*, 0x14) - 0x5A);
                             goto block_216;
                         }
-                        workWord2 =
-                            Level37_7BD9C_func_80035194(ownerAddress21, privateAddress20 + 32);
+                        workWord2 = Level37_7BD9CUpdateMobyMotionDescriptor(ownerAddress21,
+                                                                            privateAddress20 + 32);
                         argumentWord4 = ownerAddress21;
                         MATCHING_OBSERVE_VOLATILE(argumentWord4);
                         savedWord16 = workWord2;
-                        if (Level37_7BD9C_func_80055E84(argumentWord4) >= 39) {
+                        if (Level37_7BD9CReadSelectedFrameScalar(argumentWord4) >= 39) {
                             Level37_7BD9CField(privateAddress20, unsigned char*, 0x13) = 1U;
                             if (Level37_7BD9CField(privateAddress20, short*, 0x10) >= 0x29) {
                                 Level37_7BD9CField(privateAddress20, short*, 0x10) = 0x28;
@@ -6799,7 +6791,7 @@ void func_level_37_8007BD9C(void* input) {
                                         0xC));
                                 Level37_7BD9CField(savedWord19, int*, 0x14) =
                                     (int)(Level37_7BD9CField(savedWord19, int*, 0x14) + 0x1F4);
-                                workWord2 = Level37_7BD9C_func_8001A358(savedWord16, 8192);
+                                workWord2 = Level37_7BD9CQueryWorldHeight(savedWord16, 8192);
                                 savedWord17 = (int)&originalFrame.sp88;
                                 argumentWord4 = savedWord17;
                                 Level37_7BD9CKeep(argumentWord4);
@@ -6842,7 +6834,7 @@ void func_level_37_8007BD9C(void* input) {
                                 workWord2 >>= 6;
                                 workWord3 += workWord2;
                                 originalFrame.sp8C = workWord3;
-                                Level37_7BD9C_func_80013D44(
+                                Level37_7BD9CSetCameraMode11Target(
                                     argumentWord4,
                                     Level37_7BD9CField(savedWord19, unsigned char*, 70) + 128,
                                     argumentWord6, 0);
@@ -6875,8 +6867,8 @@ extern int D_8006C578, D_8006C574, D_8006C648, D_8006C770;
 extern int DecodedRaw447Counters[] __asm__("D_80066EEC");
 extern unsigned char DecodedRaw447Player[] __asm__("D_80070328");
 int func_80037A60(Moby*, void*, int, int, int);
-void func_level_37_8007D694(Moby* argument) {
-    register Moby* moby __asm__("$17") = argument;
+void func_level_37_8007D694(Moby* mobyArgument) {
+    register Moby* moby __asm__("$17") = mobyArgument;
     register unsigned char* tag __asm__("$18") = moby->mobyTag;
     register int index __asm__("$16");
     if (moby->state < 2 && moby->damageFlags) {
@@ -7022,8 +7014,8 @@ void func_level_37_8007D9F4(Moby* moby) {
 /* AI generated; not human reviewed. Instruction-matched C candidate. Original source asm/nonmatchings/overlays/level_37/moby/func_level_37_8007DB84.s SHA256 23bdc147e220795da54444211c5710324636629dc1407bcb367ec47dd47c0a6e. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
 #define M2C_FIELD(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 
-void* Controller7DB84_func_8001BA30() __asm__("func_8001BA30");               /* extern */
-int Controller7DB84_func_8001C288() __asm__("func_8001C288");                 /* extern */
+void* Controller7DB84QueryDynamicMobyGeometry() __asm__("func_8001BA30");     /* extern */
+int Controller7DB84TestPlayerSphereOverlap() __asm__("func_8001C288");        /* extern */
 int Controller7DB84BuildPackedAngleBasisMatrix() __asm__("func_8004EA90");    /* extern */
 int Controller7DB84TransformVectorByBasis() __asm__("func_8004ED6C");         /* extern */
 int Controller7DB84ShiftVectorLeft() __asm__("func_8004F0E8");                /* extern */
@@ -7234,14 +7226,14 @@ void func_level_37_8007DB84(Moby* inputOwner) {
                 }
             }
             position17 = &owner18->position;
-            hit16 = Controller7DB84_func_8001BA30(position17, radius20 + 0x3E8, 1, 0, 0x100000,
-                                                  owner18);
+            hit16 = Controller7DB84QueryDynamicMobyGeometry(position17, radius20 + 0x3E8, 1, 0,
+                                                            0x100000, owner18);
             if (hit16 != 0) {
                 M2C_FIELD(hit16, signed char*, 0x51) =
                     func_8004E880(M2C_FIELD(hit16, int*, 0xC) - owner18->position.x,
                                   M2C_FIELD(hit16, int*, 0x10) - owner18->position.y, 0);
             }
-            Controller7DB84_func_8001C288(position17, (int)(radius20 + 0x190) / 2, 7);
+            Controller7DB84TestPlayerSphereOverlap(position17, (int)(radius20 + 0x190) / 2, 7);
             if (func_800359A4(tag23, 4) != 0) {
                 Controller7DB84DeleteMoby(owner18);
                 return;
@@ -7259,13 +7251,13 @@ updateOwner:
 /* AI generated; not human reviewed. Instruction-matched C candidate. Original source asm/nonmatchings/overlays/level_37/moby/func_level_37_8007E1C8.s SHA256 faa85d6e4196b3dc7618805c77a1e8d401f488fb80ac0f37d406abebaaba3d64. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
 #define M2C_FIELD(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 
-int Controller7E1C8_func_80018368() __asm__("func_80018368");                 /* extern */
-int Controller7E1C8_func_80019194() __asm__("func_80019194");                 /* extern */
+int Controller7E1C8QueryWorldSegment() __asm__("func_80018368");              /* extern */
+int Controller7E1C8QueryWorldSphere() __asm__("func_80019194");               /* extern */
 int Controller7E1C8ApproximatePlanarDistance() __asm__("func_8004F334");      /* extern */
-int Controller7E1C8_func_8004F388() __asm__("func_8004F388");                 /* extern */
+int Controller7E1C8EstimateSquareRootFromTable() __asm__("func_8004F388");    /* extern */
 int Controller7E1C8DeleteMoby() __asm__("func_80055B18");                     /* extern */
 int Controller7E1C8RefreshMobySpatialGridAndBasis() __asm__("func_80055D24"); /* extern */
-int Controller7E1C8_func_80056504() __asm__("func_80056504");                 /* extern */
+int Controller7E1C8ReleaseParticleRecord() __asm__("func_80056504");          /* extern */
 int Controller7E1C8_rand() __asm__("rand");                                   /* extern */
 extern unsigned char Controller7E1C8_D_800658A0 __asm__("D_800658A0");
 extern unsigned char Controller7E1C8_D_80065920 __asm__("D_80065920");
@@ -7325,7 +7317,7 @@ void func_level_37_8007E1C8(Moby* inputOwner) {
             record16 = *Controller7E1C8_D_8006C550;
             position21 = &owner18->position;
             seed20 = Controller7E1C8_rand();
-            value3 = Controller7E1C8_func_8004F388(func_8003636C(0x640, 0x4204)) * 25;
+            value3 = Controller7E1C8EstimateSquareRootFromTable(func_8003636C(0x640, 0x4204)) * 25;
             MATCHING_KEEP(value3);
             argument4 = (seed20 & 0xFF) * 2;
             sample2 = M2C_FIELD(&Controller7E1C8_D_80065920, short*, argument4);
@@ -7357,7 +7349,7 @@ void func_level_37_8007E1C8(Moby* inputOwner) {
                 value3 += 7;
             }
             M2C_FIELD(tag19, short*, 0x10) =
-                (short)(Controller7E1C8_func_8004F388(-(argument4 = value3 >> 3)) * 8);
+                (short)(Controller7E1C8EstimateSquareRootFromTable(-(argument4 = value3 >> 3)) * 8);
             remainder5 = (M2C_FIELD(tag19, short*, 8) % 5) << 0x10;
             if (remainder5 == 0) {
                 func_8003BABC(owner18, Controller7E1C8_rand() & 1, 1);
@@ -7397,7 +7389,7 @@ void func_level_37_8007E1C8(Moby* inputOwner) {
             argument4 = (int)previous16;
             MATCHING_KEEP(argument4);
             position17 = &owner18->position;
-            if (Controller7E1C8_func_80018368(argument4, position17) != 0) {
+            if (Controller7E1C8QueryWorldSegment(argument4, position17) != 0) {
                 func_8004F178(position17, previous16);
                 owner18->state = 3;
             }
@@ -7437,12 +7429,12 @@ void func_level_37_8007E1C8(Moby* inputOwner) {
                 (owner18->position.y < 0x400) || (owner18->position.z < 0x400)) {
                 particle4 = M2C_FIELD(tag19, signed char**, 0xC);
                 if (particle4 != 0) {
-                    Controller7E1C8_func_80056504(particle4);
+                    Controller7E1C8ReleaseParticleRecord(particle4);
                 }
                 goto deleteOwner;
             }
             Controller7E1C8RefreshMobySpatialGridAndBasis(owner18, 2);
-            if (Controller7E1C8_func_80019194(&owner18->position, 0x1F4) != 0) {
+            if (Controller7E1C8QueryWorldSphere(&owner18->position, 0x1F4) != 0) {
                 owner18->state = 3;
             }
             goto checkFinalState;
@@ -7502,9 +7494,9 @@ void Level37_7E824EmptyAnimationTransitionHook(Moby* moby) __asm__("func_8003573
 int Level37_7E824TurnMobyTowardPlayer(Moby* ownerRecord, int arg1, int arg2,
                                       int arg3) __asm__("func_8003573C");
 int Level37_7E824CountTimerDown(void*, int) __asm__("func_800359A4");
-int Level37_7E824_func_80035DDC(Moby* ownerRecord, int arg1, int arg2, int arg3,
-                                int arg4) __asm__("func_80035DDC");
-int Level37_7E824_func_80035EE0(Moby*, int, int, int, int, int) __asm__("func_80035EE0");
+int Level37_7E824ResolveMobyYawStep(Moby* ownerRecord, int arg1, int arg2, int arg3,
+                                    int arg4) __asm__("func_80035DDC");
+int Level37_7E824ResolveMobyHeadingStep(Moby*, int, int, int, int, int) __asm__("func_80035EE0");
 int Level37_7E824RandBetween(int low, int high) __asm__("func_8003636C");
 int Level37_7E824PlayMobySoundEvent(Moby*, int, int) __asm__("func_8003BABC");
 extern int Level37_7E824PlanarHeadingLookup(int, int, int) __asm__("func_8004E880");
@@ -7517,7 +7509,7 @@ extern int Level37_7E824ApproximatePlanarDistance(Vector3D*, Vector3D*) __asm__(
 extern void Level37_7E824DeleteMoby(Moby*) __asm__("func_80055B18");
 extern void Level37_7E824RefreshMobySpatialGridAndBasis(Moby*, int) __asm__("func_80055D24");
 
-int Level37_7E824_func_80037A60() __asm__("func_80037A60");
+int Level37_7E824UpdateEffectConfiguration() __asm__("func_80037A60");
 /* extern */
 unsigned char Level37_7E824ClearVector() __asm__("func_8004F168");
 /* extern */
@@ -7807,13 +7799,13 @@ void func_level_37_8007E824(Moby* ownerRecord) {
             Level37_7E824CopyVector(&scratch.sp38, &ownerRecord->position);
             scratch.sp38.z += 0x190;
             SpawnParticle(1, 0, &scratch.sp38, &scratch.sp28);
-            if (Level37_7E824_func_80037A60(ownerRecord, privateRecord19 + 8, 2,
-                                            -Level37_7E824Field(privateRecord19, short*, 0xC),
-                                            -0xC8) != 0) {
+            if (Level37_7E824UpdateEffectConfiguration(
+                    ownerRecord, privateRecord19 + 8, 2,
+                    -Level37_7E824Field(privateRecord19, short*, 0xC), -0xC8) != 0) {
                 ownerRecord->state = 0x1F;
                 return;
             }
-            Level37_7E824_func_80035EE0(
+            Level37_7E824ResolveMobyHeadingStep(
                 ownerRecord, (int)Level37_7E824Field(privateRecord19, unsigned char*, 0xA),
                 (int)Level37_7E824Field(privateRecord19, short*, 6), 0, 0, 0x4001);
             goto prepareCall55;
@@ -7850,7 +7842,7 @@ void func_level_37_8007E824(Moby* ownerRecord) {
             distanceResult16 = Level37_7E824ApproximatePlanarDistance(
                 &ownerRecord->position, &Level37_7E824_D_80070328.position);
             if ((Level37_7E824TurnMobyTowardPlayer(ownerRecord, 6, 0x14, 1) != 0) &&
-                (Level37_7E824_func_80035DDC(ownerRecord, 0xB4, 0, 0x190, 0x255) != 0)) {
+                (Level37_7E824ResolveMobyYawStep(ownerRecord, 0xB4, 0, 0x190, 0x255) != 0)) {
                 Level37_7E824Field(privateRecord19, short*, 0) = 0x78;
                 ownerRecord->state = 0;
                 Level37_7E824RequestMobyAnimation(ownerRecord, 0);
@@ -7976,24 +7968,24 @@ call55WithPreparedOwner:
 * actual branch/call target,full EXE and every overlay retail hash.
 */
 #define Level37_7EFFCField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Level37_7EFFCCall34F40View1() __asm__("func_80034F40");
+int Level37_7EFFCRequestMobyAnimationView1() __asm__("func_80034F40");
 int Level37_7EFFCEmptyAnimationTransitionHookView1() __asm__("func_80035734");
 int Level37_7EFFCTurnMobyTowardPlayerView1() __asm__("func_8003573C");
 int Level37_7EFFCCountTimerDownView1(void*, int) __asm__("func_800359A4");
 int Level37_7EFFCSubAngle8View1() __asm__("func_8003613C");
 int Level37_7EFFCRandBetweenView1() __asm__("func_8003636C");
-int Level37_7EFFCCall365E4View1() __asm__("func_800365E4");
-int Level37_7EFFCCall37014View1() __asm__("func_80037014");
-int Level37_7EFFCCall37BBCView1(void*, int) __asm__("func_80037BBC");
-void Level37_7EFFCCall3B7B4View1(void*, int, void*) __asm__("func_8003B7B4");
+int Level37_7EFFCComputeArcVerticalVelocityView1() __asm__("func_800365E4");
+int Level37_7EFFCSetMobyZFromGroundProbeView1() __asm__("func_80037014");
+int Level37_7EFFCUpdateMobyInteractionGateView1(void*, int) __asm__("func_80037BBC");
+void Level37_7EFFCRegisterTrackedValueView1(void*, int, void*) __asm__("func_8003B7B4");
 int Level37_7EFFCPlayMobySoundEventView1() __asm__("func_8003BABC");
-int Level37_7EFFCCall3BE70View1() __asm__("func_8003BE70");
-int Level37_7EFFCCall3BFC0View1() __asm__("func_8003BFC0");
+int Level37_7EFFCTransitionSoundHandleTo3Or5View1() __asm__("func_8003BE70");
+int Level37_7EFFCSoundHandleMatchesOwnerInStates1Or2View1() __asm__("func_8003BFC0");
 int Level37_7EFFCPlanarHeadingLookupView1(int, int, int) __asm__("func_8004E880");
 int Level37_7EFFCCopyVectorView1() __asm__("func_8004F178");
 int Level37_7EFFCAddVectorView1() __asm__("func_8004F194");
 int Level37_7EFFCApproximatePlanarDistanceView1() __asm__("func_8004F334");
-int Level37_7EFFCCall512E4View1() __asm__("func_800512E4");
+int Level37_7EFFCStartDialogueView1() __asm__("func_800512E4");
 int Level37_7EFFCDeleteMobyView1() __asm__("func_80055B18");
 int Level37_7EFFCRefreshMobySpatialGridAndBasisView1() __asm__("func_80055D24");
 int Level37_7EFFCDatarandView1(void) __asm__("rand");
@@ -8174,7 +8166,7 @@ dispatchOriginalStateZero:
                                         7) >>
                                   1;
             Level37_7EFFCCopyVectorView1(ownerRecord19 + 0xC, &originalFrame.sp38);
-            Level37_7EFFCCall37014View1(ownerRecord19);
+            Level37_7EFFCSetMobyZFromGroundProbeView1(ownerRecord19);
             Level37_7EFFCField(ownerRecord19, unsigned char*, 0x52) = 0xFE;
             Level37_7EFFCRefreshMobySpatialGridAndBasisView1(ownerRecord19, 2);
             retainedResultOrChild17 += 0xC0;
@@ -8183,9 +8175,11 @@ dispatchOriginalStateZero:
         }
         Level37_7EFFCField(ownerRecord19, unsigned char*, 0x48) = 0xAU;
         addressOrResult16 = privateRecord18 + 0x58;
-        Level37_7EFFCCall3B7B4View1(addressOrResult16, 4, (int)&Level37_7EFFCData6D088View1);
-        Level37_7EFFCCall3B7B4View1(addressOrResult16, 4, (int)&Level37_7EFFCData6C7F8View1);
-        Level37_7EFFCCall34F40View1(ownerRecord19, 0);
+        Level37_7EFFCRegisterTrackedValueView1(addressOrResult16, 4,
+                                               (int)&Level37_7EFFCData6D088View1);
+        Level37_7EFFCRegisterTrackedValueView1(addressOrResult16, 4,
+                                               (int)&Level37_7EFFCData6C7F8View1);
+        Level37_7EFFCRequestMobyAnimationView1(ownerRecord19, 0);
         return;
     }
     Level37_7EFFCField(ownerRecord19, short*, 0x38) = 0;
@@ -8195,11 +8189,11 @@ dispatchOriginalStateZero:
     if (rawWord2)
         return;
     __asm__ __volatile__("" ::: "$2", "$3");
-    rawWord2 = Level37_7EFFCCall37BBCView1(argumentWord4, 0);
+    rawWord2 = Level37_7EFFCUpdateMobyInteractionGateView1(argumentWord4, 0);
     argumentWord4 = (int)ownerRecord19;
     if (!rawWord2)
         return;
-    Level37_7EFFCCall512E4View1(argumentWord4, 0, 1);
+    Level37_7EFFCStartDialogueView1(argumentWord4, 0, 1);
     Level37_7EFFCField(ownerRecord19, unsigned char*, 0x48) = addressOrResult16;
     return;
 dispatchOriginalStateOne:
@@ -8213,8 +8207,9 @@ dispatchOriginalStateOne:
                 : "0"(argumentWord6), "r"(argumentWord4), "r"(argumentWord5)
                 : "$3");
         Level37_7EFFCField(privateRecord18, int*, 0x58) = argumentWord7;
-        Level37_7EFFCCall3B7B4View1(argumentWord4, argumentWord5, argumentWord6);
-        Level37_7EFFCCall3B7B4View1(addressOrResult16, 4, (int)&Level37_7EFFCData6C7F8View1);
+        Level37_7EFFCRegisterTrackedValueView1(argumentWord4, argumentWord5, argumentWord6);
+        Level37_7EFFCRegisterTrackedValueView1(addressOrResult16, 4,
+                                               (int)&Level37_7EFFCData6C7F8View1);
         argumentWord4 = (int)ownerRecord19;
         MATCHING_KEEP(argumentWord4);
         argumentWord5 = 0;
@@ -8404,7 +8399,7 @@ dispatchOriginalStateTen:
             Level37_7EFFCField(argumentWord4, signed char*, 0x49) = 0;
         storeOriginalStateAndCall:
             Level37_7EFFCField(argumentWord4, signed char*, 0x48) = rawWord2;
-            Level37_7EFFCCall34F40View1(argumentWord4, argumentWord5);
+            Level37_7EFFCRequestMobyAnimationView1(argumentWord4, argumentWord5);
             return;
         }
     }
@@ -8448,8 +8443,8 @@ processOriginalStateFiveSelectorZero:
         Level37_7EFFCField(Level37_7EFFCField(privateRecord18, void**, 0x48), signed char*, 0x4E) =
             0x3F;
     }
-    if (Level37_7EFFCCall3BFC0View1(ownerRecord19,
-                                    Level37_7EFFCField(privateRecord18, int*, 0x54)) == 0) {
+    if (Level37_7EFFCSoundHandleMatchesOwnerInStates1Or2View1(
+            ownerRecord19, Level37_7EFFCField(privateRecord18, int*, 0x54)) == 0) {
         Level37_7EFFCField(privateRecord18, int*, 0x54) =
             Level37_7EFFCPlayMobySoundEventView1(ownerRecord19, 0, 4);
     }
@@ -8518,9 +8513,11 @@ processOriginalStateFiveSelectorZero:
                     originalFrame.sp3C - Level37_7EFFCField(retainedResultOrChild17, int*, 0x10),
                     0);
             Level37_7EFFCField(retainedByteOrRecord20, short*, 6) = -0xE;
-            Level37_7EFFCField(retainedByteOrRecord20, short*, 2) = Level37_7EFFCCall365E4View1(
-                retainedResultOrChild17 + 0xC, &originalFrame.sp38,
-                Level37_7EFFCField(retainedByteOrRecord20, short*, 0), -0xE, &originalFrame.sp60);
+            Level37_7EFFCField(retainedByteOrRecord20, short*, 2) =
+                Level37_7EFFCComputeArcVerticalVelocityView1(
+                    retainedResultOrChild17 + 0xC, &originalFrame.sp38,
+                    Level37_7EFFCField(retainedByteOrRecord20, short*, 0), -0xE,
+                    &originalFrame.sp60);
         }
         Level37_7EFFCField(ownerRecord19, unsigned char*, 0x49) =
             (unsigned char)(Level37_7EFFCField(ownerRecord19, unsigned char*, 0x49) + 1);
@@ -8530,9 +8527,10 @@ processOriginalStateFiveSelectorZero:
     return;
 processOriginalStateFiveSelectorOne:
     if (Level37_7EFFCCountTimerDownView1(privateRecord18 + 0x44, 4) != 0) {
-        if (Level37_7EFFCCall3BFC0View1(ownerRecord19,
-                                        Level37_7EFFCField(privateRecord18, int*, 0x54)) != 0) {
-            Level37_7EFFCCall3BE70View1(Level37_7EFFCField(privateRecord18, int*, 0x54));
+        if (Level37_7EFFCSoundHandleMatchesOwnerInStates1Or2View1(
+                ownerRecord19, Level37_7EFFCField(privateRecord18, int*, 0x54)) != 0) {
+            Level37_7EFFCTransitionSoundHandleTo3Or5View1(
+                Level37_7EFFCField(privateRecord18, int*, 0x54));
         }
         argumentWord4 = Level37_7EFFCField(privateRecord18, void**, 0x48);
         Level37_7EFFCField(privateRecord18, int*, 0x54) = -1;
@@ -8583,28 +8581,28 @@ extern int Level37_7FC30Player488 __asm__("D_80070328+488");
     } while (0)
 #define Level37_7FC30Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 #define Level37_7FC30Keep(v) __asm__("" : "=r"(v) : "0"(v))
-int Level37_7FC30_func_80018368() __asm__("func_80018368");
-int Level37_7FC30_func_80019194() __asm__("func_80019194");
-int Level37_7FC30_func_8001BA30() __asm__("func_8001BA30");
-int Level37_7FC30_func_8002803C(int, int, Level37_7FC30HudCallback, Level37_7FC30HudCallback,
-                                Level37_7FC30HudCallback, int*, int) __asm__("func_8002803C");
+int Level37_7FC30QueryWorldSegment() __asm__("func_80018368");
+int Level37_7FC30QueryWorldSphere() __asm__("func_80019194");
+int Level37_7FC30QueryDynamicMobyGeometry() __asm__("func_8001BA30");
+int Level37_7FC30ConfigureHudEntry(int, int, Level37_7FC30HudCallback, Level37_7FC30HudCallback,
+                                   Level37_7FC30HudCallback, int*, int) __asm__("func_8002803C");
 int Level37_7FC30CountTimerDown() __asm__("func_800359A4");
 int Level37_7FC30ProbeGroundFromRaisedMoby() __asm__("func_80035D38");
 int Level37_7FC30SubAngle8() __asm__("func_8003613C");
 int Level37_7FC30RandSignedBetween() __asm__("func_800363DC");
-int Level37_7FC30_func_80037014() __asm__("func_80037014");
-int Level37_7FC30_func_80038000() __asm__("func_80038000");
-int Level37_7FC30_func_800391E8() __asm__("func_800391E8");
+int Level37_7FC30SetMobyZFromGroundProbe() __asm__("func_80037014");
+int Level37_7FC30ResolveMobyMotionCollision() __asm__("func_80038000");
+int Level37_7FC30SpawnBallisticMobyBatch() __asm__("func_800391E8");
 int Level37_7FC30PlayMobySoundEvent() __asm__("func_8003BABC");
-int Level37_7FC30_func_8003BE70() __asm__("func_8003BE70");
-int Level37_7FC30_func_8003BFC0() __asm__("func_8003BFC0");
-int Level37_7FC30_func_8003C140() __asm__("func_8003C140");
-int Level37_7FC30_func_80049484() __asm__("func_80049484");
+int Level37_7FC30TransitionSoundHandleTo3Or5() __asm__("func_8003BE70");
+int Level37_7FC30SoundHandleMatchesOwnerInStates1Or2() __asm__("func_8003BFC0");
+int Level37_7FC30SetSoundHandleWord0CAndFlag10() __asm__("func_8003C140");
+int Level37_7FC30ResolvePlayerPoint193() __asm__("func_80049484");
 int Level37_7FC30PlanarHeadingLookup() __asm__("func_8004E880");
 int Level37_7FC30BuildPackedAngleBasisMatrix() __asm__("func_8004EA90");
 int Level37_7FC30TransformVectorByBasis() __asm__("func_8004ED6C");
 int Level37_7FC30MeasureVectorLength() __asm__("func_8004EDE8");
-int Level37_7FC30_func_8004EF74() __asm__("func_8004EF74");
+int Level37_7FC30ComputeVectorPlaneResponse() __asm__("func_8004EF74");
 int Level37_7FC30ScaleVectorRatioQ15() __asm__("func_8004F08C");
 int Level37_7FC30ClearVector() __asm__("func_8004F168");
 int Level37_7FC30CopyVector() __asm__("func_8004F178");
@@ -8612,10 +8610,10 @@ int Level37_7FC30AddVector() __asm__("func_8004F194");
 int Level37_7FC30SubtractVector() __asm__("func_8004F1C8");
 int Level37_7FC30AbsoluteByteAngleDelta() __asm__("func_8004F264");
 int Level37_7FC30ApproximatePlanarDistance() __asm__("func_8004F334");
-int Level37_7FC30_func_80050844() __asm__("func_80050844");
+int Level37_7FC30AllocateVectorTrailRecord() __asm__("func_80050844");
 int Level37_7FC30DeleteMoby() __asm__("func_80055B18");
 int Level37_7FC30RefreshMobySpatialGridAndBasis() __asm__("func_80055D24");
-int Level37_7FC30_func_8005629C() __asm__("func_8005629C");
+int Level37_7FC30RefreshMobyPackedQueryField() __asm__("func_8005629C");
 int Level37_7FC30_rand() __asm__("rand");
 extern int Level37_7FC30_D_800658A0 __asm__("D_800658A0");
 extern int Level37_7FC30_D_80065920 __asm__("D_80065920");
@@ -8734,7 +8732,7 @@ void func_level_37_8007FC30(void* ownerInput) {
                 if (Level37_7FC30_D_8006E044 == 7) {
                     Level37_7FC30Keep(owner);
                     MATCHING_BARRIER_VOLATILE("$4");
-                    Level37_7FC30_func_80049484(owner + 0xC);
+                    Level37_7FC30ResolvePlayerPoint193(owner + 0xC);
                 } else {
                     Level37_7FC30Keep(argument0);
                     Level37_7FC30Field(owner, int*, 0xC) =
@@ -8852,7 +8850,7 @@ void func_level_37_8007FC30(void* ownerInput) {
                 Level37_7FC30Field(owner, signed char*, 77) = temporary3;
             case 22:
             case 23:
-                temporary2 = Level37_7FC30_func_8003BFC0(
+                temporary2 = Level37_7FC30SoundHandleMatchesOwnerInStates1Or2(
                     owner, Level37_7FC30Field(savedPointer21, short*, 22));
                 argument0 = owner;
                 if (temporary2 == 0) {
@@ -9003,14 +9001,15 @@ void func_level_37_8007FC30(void* ownerInput) {
                 argument0 = (int)&locals.sp20;
                 Level37_7FC30Keep(argument0);
                 working16 = owner + 12;
-                temporary2 = Level37_7FC30_func_80018368(argument0, working16);
+                temporary2 = Level37_7FC30QueryWorldSegment(argument0, working16);
                 argument0 = working16;
                 if (temporary2) {
                     argument1 = working16;
                     Level37_7FC30SubtractVector(argument0, argument1, &locals.sp30);
                     Level37_7FC30Field(owner, unsigned char*, 0x48) = 0x18U;
                 }
-                working16 = Level37_7FC30_func_8001BA30(working16, 0x12C, 0, 0, 0x100000, owner);
+                working16 =
+                    Level37_7FC30QueryDynamicMobyGeometry(working16, 0x12C, 0, 0, 0x100000, owner);
                 Level37_7FC30Keep(working16);
                 Level37_7FC30Keep(owner);
                 argument0 = owner + 0xC;
@@ -9026,7 +9025,7 @@ void func_level_37_8007FC30(void* ownerInput) {
                     Level37_7FC30Field(owner, unsigned char*, 0x48) = 0x18U;
                     argument0 = owner + 0xC;
                 }
-                if (Level37_7FC30_func_80019194(argument0, working20) != 0) {
+                if (Level37_7FC30QueryWorldSphere(argument0, working20) != 0) {
                     Level37_7FC30Field(owner, unsigned char*, 0x48) = 0x18U;
                 }
                 goto block_125;
@@ -9074,8 +9073,8 @@ void func_level_37_8007FC30(void* ownerInput) {
                                 temporary2 &= 48;
                                 Level37_7FC30Field(working16, signed char*, 64) = temporary2;
                             }
-                            temporary2 =
-                                Level37_7FC30_func_80050844(working16 + 12, 7, 10, 0x40E080);
+                            temporary2 = Level37_7FC30AllocateVectorTrailRecord(working16 + 12, 7,
+                                                                                10, 0x40E080);
                             Level37_7FC30Field(working17, int*, 8) = temporary2;
                             temporary2 = Level37_7FC30Field(savedPointer23, int*, 184);
                             temporary2 = privateState + temporary2;
@@ -9098,9 +9097,10 @@ void func_level_37_8007FC30(void* ownerInput) {
                     working20 += 1;
                     privateState = working20 * 2;
                 } while (working20 < 0x20);
-                if (Level37_7FC30_func_8003BFC0(
+                if (Level37_7FC30SoundHandleMatchesOwnerInStates1Or2(
                         owner, Level37_7FC30Field(savedPointer21, short*, 0x16)) != 0) {
-                    Level37_7FC30_func_8003BE70(Level37_7FC30Field(savedPointer21, short*, 0x16));
+                    Level37_7FC30TransitionSoundHandleTo3Or5(
+                        Level37_7FC30Field(savedPointer21, short*, 0x16));
                 }
                 Level37_7FC30Field(savedPointer21, short*, 0x16) = -1;
                 Level37_7FC30PlayMobySoundEvent(owner, 2, 0);
@@ -9303,7 +9303,7 @@ void func_level_37_8007FC30(void* ownerInput) {
                     working20 = temporary3;
                 }
                 Level37_7FC30RefreshMobySpatialGridAndBasis(owner, 2);
-                if (Level37_7FC30_func_80019194(working17, working20) != 0) {
+                if (Level37_7FC30QueryWorldSphere(working17, working20) != 0) {
                     temp_a0_8 = Level37_7FC30Field(privateState, int*, 0xC);
                     if ((temp_a0_8 != 0) &&
                         (Level37_7FC30Field(temp_a0_8, short*, 0x36) == 0x1BF)) {
@@ -9312,7 +9312,7 @@ void func_level_37_8007FC30(void* ownerInput) {
                         Level37_7FC30Keep(temporary2);
                         if (temporary2) {
                             working16 = Level37_7FC30Field(temp_a0_8, int**, 0);
-                            Level37_7FC30_func_80037014(temp_a0_8);
+                            Level37_7FC30SetMobyZFromGroundProbe(temp_a0_8);
                             temp_a0_9 = Level37_7FC30Field(privateState, int*, 0xC);
                             Level37_7FC30Field(temp_a0_9, int*, 0x1C) =
                                 (int)(Level37_7FC30Field(temp_a0_9, int*, 0x1C) | 0x80000000);
@@ -9343,8 +9343,8 @@ void func_level_37_8007FC30(void* ownerInput) {
                     if (working16) {
                         working16 = (int)&locals.spA0;
                         Level37_7FC30CopyVector(working16, working20);
-                        if (Level37_7FC30_func_8004EF74(&locals.sp90, working16, &locals.sp90) !=
-                            0) {
+                        if (Level37_7FC30ComputeVectorPlaneResponse(&locals.sp90, working16,
+                                                                    &locals.sp90) != 0) {
                             Level37_7FC30Field(privateState, short*, 2) =
                                 ((int)(Level37_7FC30Field(privateState, short*, 2) * 3) >> 2);
                             temp_v0_14 = Level37_7FC30PlayMobySoundEvent(owner, 0, 0);
@@ -9354,7 +9354,8 @@ void func_level_37_8007FC30(void* ownerInput) {
                                     temporary2 = -temporary2;
                                 }
                                 MATCHING_KEEP_VOLATILE(temporary2);
-                                Level37_7FC30_func_8003C140(temp_v0_14, temporary2 * 0x28);
+                                Level37_7FC30SetSoundHandleWord0CAndFlag10(temp_v0_14,
+                                                                           temporary2 * 0x28);
                             }
                         }
                     } else if (((({
@@ -9374,7 +9375,8 @@ void func_level_37_8007FC30(void* ownerInput) {
                                 temporary2 = -temporary2;
                             }
                             MATCHING_KEEP_VOLATILE(temporary2);
-                            Level37_7FC30_func_8003C140(temp_v0_15, temporary2 * 0x28);
+                            Level37_7FC30SetSoundHandleWord0CAndFlag10(temp_v0_15,
+                                                                       temporary2 * 0x28);
                         }
                         if (Level37_7FC30Field(privateState, short*, 2) < 0x28) {
                             Level37_7FC30Field(owner, int*, 0x14) =
@@ -9387,10 +9389,10 @@ void func_level_37_8007FC30(void* ownerInput) {
                 }
             block_117:
                 Level37_7FC30ProbeGroundFromRaisedMoby(owner);
-                Level37_7FC30_func_8005629C(owner);
+                Level37_7FC30RefreshMobyPackedQueryField(owner);
                 goto block_125;
             case 3:
-                Level37_7FC30_func_800391E8(0xA, 0x6B, owner, 0, 5, 0x6E, 0xC8);
+                Level37_7FC30SpawnBallisticMobyBatch(0xA, 0x6B, owner, 0, 5, 0x6E, 0xC8);
                 Level37_7FC30PlayMobySoundEvent(owner, 1, 0);
                 if (Level37_7FC30Field(owner, unsigned char*, 0x49) == 2) {
                     Level37_7FC30Field(owner, unsigned char*, 0x48) = 4U;
@@ -9496,7 +9498,7 @@ void func_level_37_8007FC30(void* ownerInput) {
                             working16, Level37_7FC30MeasureVectorLength(working16, 1, temp_lo),
                             0x64);
                         Level37_7FC30AddVector(working16, owner + 0xC, working16);
-                        Level37_7FC30_func_80038000(owner, working16, 0x12C, 0, 0x21);
+                        Level37_7FC30ResolveMobyMotionCollision(owner, working16, 0x12C, 0, 0x21);
                     }
                     argument0 = owner + 12;
                     Level37_7FC30Keep(argument0);
@@ -9552,9 +9554,10 @@ void func_level_37_8007FC30(void* ownerInput) {
                                     : "=&r"(descriptorAddress)
                                     : "0"(descriptorAddress), "r"(working16));
                             Level37_7FC30Field(working16, int*, 460) = temporary3;
-                            Level37_7FC30_func_8002803C(argument0, 8, callbackWord3, callbackWord4,
-                                                        Level37_7FC30_unk_ovlheader_800743BC,
-                                                        descriptorAddress, temporary3);
+                            Level37_7FC30ConfigureHudEntry(argument0, 8, callbackWord3,
+                                                           callbackWord4,
+                                                           Level37_7FC30_unk_ovlheader_800743BC,
+                                                           descriptorAddress, temporary3);
                             Level37_7FC30Keep(working16);
                             temporary2 = 3;
                             goto block_161;
@@ -9654,31 +9657,31 @@ typedef struct {
     int timer;
 } Vehicle546Tag;
 extern unsigned char Vehicle546Table[] __asm__("D_80071FB0");
-void func_level_37_80081064(Moby* arg0) {
+void func_level_37_80081064(Moby* moby) {
     Vector3D sp10, sp20, sp30, sp40, sp50;
     int temp_v1_3, count;
-    Vehicle546Tag* mobyTag = (Vehicle546Tag*)arg0->mobyTag;
-    switch (arg0->state) {
+    Vehicle546Tag* mobyTag = (Vehicle546Tag*)moby->mobyTag;
+    switch (moby->state) {
         case 0:
-            switch (arg0->substate) {
+            switch (moby->substate) {
                 case 0:
                     if (progressFlags.lvl20_WhirligigUsable)
                         goto deleteVehicle;
                     if (D_8006C73C != 0 && currentLevel != D_8006C73C &&
                         ((temp_v1_3 = D_8006C73C % 10, temp_v1_3 == 0) ||
                          (temp_v1_3 == 7 && D_8006C73C < 60))) {
-                        arg0->position.z += 0xC00;
+                        moby->position.z += 0xC00;
                         func_800136F0(&camera.unk170, (Vector3D*)mobyTag->path->nodes,
-                                      &arg0->position);
+                                      &moby->position);
                         camera.unk170.pos.azimuth -= spyro.rotation.yaw;
                         camera.unk170.yaw = 0;
                         camera.unk170.pitch = 0;
-                        func_8004F178(&spyro.position, &arg0->position);
+                        func_8004F178(&spyro.position, &moby->position);
                         spyro.position.z += spyro.unk4a + 0x280;
                         func_80012BA8(&camera.unk170);
                         func_8004F178(&camera.unk184, &camera.unk60);
-                        arg0->substate = 1;
-                        arg0->state = 7;
+                        moby->substate = 1;
+                        moby->state = 7;
                     } else {
                         count = eggsCollectedArray[lvlIdToIndex[21]] & 1;
                         if (eggsCollectedArray[lvlIdToIndex[22]] & 1)
@@ -9691,63 +9694,63 @@ void func_level_37_80081064(Moby* arg0) {
                             count++;
                         if (count == 5) {
                         deleteVehicle:
-                            func_80055B18(arg0);
+                            func_80055B18(moby);
                             return;
                         }
                         if (currentLevel != 10 || Vehicle546Table[lvlIdToIndex[17]] != 0) {
-                            arg0->substate = 1;
-                            arg0->state = 3;
+                            moby->substate = 1;
+                            moby->state = 3;
                         } else {
-                            arg0->substate = 2;
-                            arg0->state = 1;
-                            arg0->position.z += 0xC00;
+                            moby->substate = 2;
+                            moby->state = 1;
+                            moby->position.z += 0xC00;
                         }
-                        func_80055D24(arg0, 2);
+                        func_80055D24(moby, 2);
                         mobyTag->timer = 0;
                     }
                     break;
                 case 1:
-                    arg0->state = 3;
+                    moby->state = 3;
                     break;
                 case 2:
-                    arg0->position.z += 0xC00;
-                    func_80055D24(arg0, 2);
+                    moby->position.z += 0xC00;
+                    func_80055D24(moby, 2);
                     mobyTag->timer = 0;
-                    arg0->state = 1;
+                    moby->state = 1;
                     break;
             }
-            func_8003B7B4(&arg0->substate, 1, &unsavedData);
+            func_8003B7B4(&moby->substate, 1, &unsavedData);
             break;
         case 2:
-            arg0->position.z -= 64;
-            func_8004F178(&sp10, &arg0->position);
+            moby->position.z -= 64;
+            func_8004F178(&sp10, &moby->position);
             sp10.z += 512;
             sp10.z = func_8001A358(&sp10, 512);
             if (sp10.z != 0) {
-                arg0->position.z = sp10.z;
-                arg0->state = 3;
-                func_8003B7B4(&arg0->state, 1, &savedData);
-                func_8003B7B4(&arg0->state, 1, &unsavedData);
-                arg0->substate = 0;
+                moby->position.z = sp10.z;
+                moby->state = 3;
+                func_8003B7B4(&moby->state, 1, &savedData);
+                func_8003B7B4(&moby->state, 1, &unsavedData);
+                moby->substate = 0;
             }
-            func_80055D24(arg0, 2);
+            func_80055D24(moby, 2);
             break;
         case 3:
-            if (spyro.m_StoodOnMoby == arg0) {
-                arg0->state = 4;
+            if (spyro.m_StoodOnMoby == moby) {
+                moby->state = 4;
                 case 4:
-                    if (spyro.m_StoodOnMoby != arg0) {
+                    if (spyro.m_StoodOnMoby != moby) {
                         camera.unk168 = 0;
-                        arg0->state = 3;
+                        moby->state = 3;
                     } else {
-                        if (ovlHeader.unk2b(&arg0->position, arg0->angle.yaw, 0) != 0) {
+                        if (ovlHeader.unk2b(&moby->position, moby->angle.yaw, 0) != 0) {
                             Vehicle506Global = 1;
                             func_8005663C();
-                            arg0->state = 5;
+                            moby->state = 5;
                         }
-                        func_8004F178(&camera.unk184, &arg0->position);
+                        func_8004F178(&camera.unk184, &moby->position);
                         func_800136F0(&camera.unk170, (Vector3D*)mobyTag->path->nodes,
-                                      &arg0->position);
+                                      &moby->position);
                         camera.unk170.yaw = 0;
                         camera.unk170.pitch = 0;
                         camera.unk168 = 0x11;
@@ -9759,23 +9762,23 @@ void func_level_37_80081064(Moby* arg0) {
             camera.unk168 = 0;
             if (D_80070104.loadLevel != 0) {
                 mobyTag->timer = 0x78;
-                arg0->state = 6;
+                moby->state = 6;
             } else {
-                arg0->state = 8;
+                moby->state = 8;
             }
             break;
 
         case 6:
-            arg0->position.z = (int)(arg0->position.z + 0x40);
+            moby->position.z = (int)(moby->position.z + 0x40);
             spyro.unk17a = 0x10008000;
             spyro.unk20[1] = 0;
-            func_8004F178(&spyro.unk19, &arg0->position);
+            func_8004F178(&spyro.unk19, &moby->position);
             spyro.unk19.z += spyro.unk4a + 0x280;
             spyro.unk18.roll = spyro.bodyRotation.roll;
             spyro.unk18.pitch = spyro.bodyRotation.pitch;
             spyro.unk18.yaw = spyro.bodyRotation.yaw;
-            func_8004F178(&camera.unk184, &arg0->position);
-            func_800136F0(&camera.unk170, (Vector3D*)mobyTag->path->nodes, &arg0->position);
+            func_8004F178(&camera.unk184, &moby->position);
+            func_800136F0(&camera.unk170, (Vector3D*)mobyTag->path->nodes, &moby->position);
             camera.unk170.yaw = 0;
             camera.unk170.pitch = 0;
             camera.unk168 = 0x11;
@@ -9793,60 +9796,60 @@ void func_level_37_80081064(Moby* arg0) {
                     // This was fixed in all later revisions
                     if ((D_80070104.loadLevel != 0x11) ||
                         (progressFlags.lvl63_BiancaStrikesBack != 0)) {
-                        func_80054F94(D_80070104.loadLevel, arg0);
+                        func_80054F94(D_80070104.loadLevel, moby);
                     } else {
                         progressFlags.lvl63_BiancaStrikesBack = 1;
                         func_800584BC(6, 0x3F);
                     }
                 }
             }
-            func_80055D24(arg0, 2);
+            func_80055D24(moby, 2);
             break;
 
         case 7:
-            arg0->position.z -= 0x40;
+            moby->position.z -= 0x40;
             spyro.unk17a = 0x10008000;
             spyro.unk20[1] = 0;
-            func_8004F178(&spyro.unk19, &arg0->position);
+            func_8004F178(&spyro.unk19, &moby->position);
             spyro.unk19.z += spyro.unk4a + 0x280;
-            spyro.unk18.roll = arg0->angle.roll;
-            spyro.unk18.pitch = arg0->angle.pitch;
-            spyro.unk18.yaw = arg0->angle.yaw;
+            spyro.unk18.roll = moby->angle.roll;
+            spyro.unk18.pitch = moby->angle.pitch;
+            spyro.unk18.yaw = moby->angle.yaw;
             func_80013AE4((Vector3D*)mobyTag->path->nodes, &spyro.position);
-            func_8004F178(&sp20, &arg0->position);
+            func_8004F178(&sp20, &moby->position);
             sp20.z += 0x200;
             sp20.z = func_8001A358(&sp20, 0x200);
             if (sp20.z != 0) {
-                arg0->position.z = sp20.z;
+                moby->position.z = sp20.z;
                 func_80013B7C(0);
-                arg0->state = 8;
+                moby->state = 8;
             }
-            func_80055D24(arg0, 2);
+            func_80055D24(moby, 2);
             break;
 
         case 8:
-            sp30.x = D_80065920[arg0->angle.yaw];
-            sp30.y = D_800658A0[arg0->angle.yaw];
+            sp30.x = D_80065920[moby->angle.yaw];
+            sp30.y = D_800658A0[moby->angle.yaw];
             sp30.z = 0;
-            func_8004F194(&sp30, &sp30, &arg0->position);
+            func_8004F194(&sp30, &sp30, &moby->position);
             if (ovlHeader.unk2c(&sp30) != 0) {
                 spyro.unk17c = 0;
-                ovlHeader.unk2b(&sp30, arg0->angle.yaw, 0);
+                ovlHeader.unk2b(&sp30, moby->angle.yaw, 0);
                 mobyTag->timer = 120;
-                arg0->state = 9;
+                moby->state = 9;
             }
             break;
 
         case 9:
-            sp40.x = D_80065920[arg0->angle.yaw];
-            sp40.y = D_800658A0[arg0->angle.yaw];
+            sp40.x = D_80065920[moby->angle.yaw];
+            sp40.y = D_800658A0[moby->angle.yaw];
             sp40.z = 0;
-            func_8004F194(&sp40, &sp40, &arg0->position);
-            if (ovlHeader.unk2b(&sp40, arg0->angle.yaw, 0) != 0) {
+            func_8004F194(&sp40, &sp40, &moby->position);
+            if (ovlHeader.unk2b(&sp40, moby->angle.yaw, 0) != 0) {
                 func_8004F178(&sp50, &spyro.position);
                 sp50.z -= spyro.unk4a;
                 func_8003B634(&savedData, &sp50, spyro.bodyRotation.yaw);
-                arg0->state = 3;
+                moby->state = 3;
             }
             break;
     }
@@ -9862,59 +9865,59 @@ typedef struct {
 extern Moby* Vehicle864Moby __asm__("D_8006C65C");
 extern int D_8006C770;
 void func_80034F80(Moby*, int);
-void func_level_37_800818EC(Moby* arg0) {
+void func_level_37_800818EC(Moby* moby) {
     Vector3D sp10, sp20, sp30, sp40, sp50, sp60;
     int temp_v1_3;
     Vehicle864Tag* mobyTag;
 
-    mobyTag = (Vehicle864Tag*)arg0->mobyTag;
-    switch (arg0->state) {
+    mobyTag = (Vehicle864Tag*)moby->mobyTag;
+    switch (moby->state) {
 
         case 0:
-            switch (arg0->substate) {
+            switch (moby->substate) {
                 case 0:
                     if (currentLevel != 30 && !progressFlags.lvl30_RocketUsable) {
-                        func_80055B18(arg0);
+                        func_80055B18(moby);
                         return;
                     } else {
-                        func_80034F80(arg0, 2);
-                        arg0->position.z += 0x1000;
+                        func_80034F80(moby, 2);
+                        moby->position.z += 0x1000;
                         if (currentLevel == 37)
-                            arg0->position.z += 0x800;
+                            moby->position.z += 0x800;
                         spyro.unk17a = 0x1001A000;
                         spyro.unk20[1] = 0;
-                        func_8004F178(&spyro.unk19, &arg0->position);
+                        func_8004F178(&spyro.unk19, &moby->position);
                         spyro.unk19.z += spyro.unk4a + 0x604;
-                        spyro.unk18.roll = arg0->angle.roll;
-                        spyro.unk18.pitch = arg0->angle.pitch;
-                        spyro.unk18.yaw = arg0->angle.yaw;
-                        arg0->substate = 1;
-                        func_8003B7B4(&arg0->substate, 1, &savedData);
-                        func_8003B7B4(&arg0->substate, 1, &unsavedData);
-                        arg0->state = 8;
+                        spyro.unk18.roll = moby->angle.roll;
+                        spyro.unk18.pitch = moby->angle.pitch;
+                        spyro.unk18.yaw = moby->angle.yaw;
+                        moby->substate = 1;
+                        func_8003B7B4(&moby->substate, 1, &savedData);
+                        func_8003B7B4(&moby->substate, 1, &unsavedData);
+                        moby->state = 8;
                         if ((D_8006C73C != 0) && (currentLevel != D_8006C73C) &&
                             ((temp_v1_3 = D_8006C73C % 10, (temp_v1_3 == 0)) ||
                              ((temp_v1_3 == 7) && (D_8006C73C < 0x3C))) &&
-                            (arg0->mobyClass == D_8006C528) && D_8006C73C != 47) {
-                            func_80034F80(arg0, 2);
-                            arg0->position.z += 0xC00;
+                            (moby->mobyClass == D_8006C528) && D_8006C73C != 47) {
+                            func_80034F80(moby, 2);
+                            moby->position.z += 0xC00;
                             func_800136F0(&camera.unk170, (Vector3D*)mobyTag->path->nodes,
-                                          &arg0->position);
+                                          &moby->position);
                             camera.unk170.pos.azimuth -= spyro.rotation.yaw;
                             camera.unk170.yaw = 0;
                             camera.unk170.pitch = 0;
                             spyro.unk17a = 0x1001A000;
                             spyro.unk20[1] = 0;
-                            func_8004F178(&spyro.unk19, &arg0->position);
+                            func_8004F178(&spyro.unk19, &moby->position);
                             spyro.unk19.z += spyro.unk4a + 0x604;
-                            spyro.unk18.roll = arg0->angle.roll;
-                            spyro.unk18.pitch = arg0->angle.pitch;
-                            spyro.unk18.yaw = arg0->angle.yaw;
+                            spyro.unk18.roll = moby->angle.roll;
+                            spyro.unk18.pitch = moby->angle.pitch;
+                            spyro.unk18.yaw = moby->angle.yaw;
                             func_80012BA8(&camera.unk170);
                             func_8004F178(&camera.unk184, &camera.unk60);
-                            arg0->state = 8;
-                        } else if (arg0->state == 0) {
-                            arg0->state = 1;
+                            moby->state = 8;
+                        } else if (moby->state == 0) {
+                            moby->state = 1;
                         }
                     }
                     break;
@@ -9923,48 +9926,48 @@ void func_level_37_800818EC(Moby* arg0) {
                     break;
 
                 case 1:
-                    func_80034F80(arg0, 2);
-                    arg0->position.z += 0xF00;
-                    func_80055D24(arg0, 2);
+                    func_80034F80(moby, 2);
+                    moby->position.z += 0xF00;
+                    func_80055D24(moby, 2);
                     mobyTag->timer = 0;
-                    arg0->state = 10;
+                    moby->state = 10;
                     break;
             }
             break;
 
         case 1:
-            switch (arg0->substate) {
+            switch (moby->substate) {
                 case 0:
-                    sp10.x = (D_80065920[arg0->angle.yaw] * 3) >> 3;
-                    sp10.y = (D_800658A0[arg0->angle.yaw] * 3) >> 3;
+                    sp10.x = (D_80065920[moby->angle.yaw] * 3) >> 3;
+                    sp10.y = (D_800658A0[moby->angle.yaw] * 3) >> 3;
                     sp10.z = 0;
-                    func_8004F194(&sp10, &sp10, &arg0->position);
-                    if (ovlHeader.unk2b(&sp10, arg0->angle.yaw + 0x80, 0) != 0) {
+                    func_8004F194(&sp10, &sp10, &moby->position);
+                    if (ovlHeader.unk2b(&sp10, moby->angle.yaw + 0x80, 0) != 0) {
                         spyro.unk17c = 0;
-                        func_8004F178(&sp10, &arg0->position);
+                        func_8004F178(&sp10, &moby->position);
                         sp10.z += 0x280;
                         ovlHeader.unk2c(&sp10);
-                        arg0->substate = 1;
+                        moby->substate = 1;
                     }
                     break;
                 case 1:
-                    func_8004F178(&sp10, &arg0->position);
+                    func_8004F178(&sp10, &moby->position);
                     sp10.z += 0x280;
                     ovlHeader.unk2c(&sp10);
                     break;
             }
-            if (spyro.m_StoodOnMoby == arg0) {
-                arg0->state = 2;
+            if (spyro.m_StoodOnMoby == moby) {
+                moby->state = 2;
                 case 2:
-                    if (spyro.m_StoodOnMoby != arg0) {
+                    if (spyro.m_StoodOnMoby != moby) {
                         camera.unk168 = 0;
-                        arg0->state = 1;
+                        moby->state = 1;
                     } else {
-                        if (ovlHeader.unk2b(&arg0->position, arg0->angle.yaw, 0) != 0) {
+                        if (ovlHeader.unk2b(&moby->position, moby->angle.yaw, 0) != 0) {
                             D_80070104.loadLevel = ((currentLevel / 10) + 1) * 10;
-                            func_80034F40(arg0, 1);
+                            func_80034F40(moby, 1);
                             spyro.unk17a = 0x10018000;
-                            func_8004F178(&spyro.unk19, &arg0->position);
+                            func_8004F178(&spyro.unk19, &moby->position);
                             spyro.unk19.z += 0x400;
                             {
                                 int height = func_8001A358(&spyro.unk19, 0x800);
@@ -9972,13 +9975,13 @@ void func_level_37_800818EC(Moby* arg0) {
                                 spyro.unk18.roll = 0;
                                 spyro.unk18.pitch = 0;
                                 spyro.unk19.z = height + spyro.unk4a;
-                                spyro.unk18.yaw = arg0->angle.yaw;
+                                spyro.unk18.yaw = moby->angle.yaw;
                             }
-                            arg0->state = 4;
+                            moby->state = 4;
                         }
-                        func_8004F178(&camera.unk184, &arg0->position);
+                        func_8004F178(&camera.unk184, &moby->position);
                         func_800136F0(&camera.unk170, (Vector3D*)mobyTag->path->nodes,
-                                      &arg0->position);
+                                      &moby->position);
                         camera.unk170.yaw = 0;
                         camera.unk170.pitch = 0;
                         camera.unk168 = 0x11;
@@ -9989,9 +9992,9 @@ void func_level_37_800818EC(Moby* arg0) {
         case 3:
             camera.unk168 = 0;
             if (D_80070104.loadLevel != 0) {
-                func_80034F40(arg0, 1);
+                func_80034F40(moby, 1);
                 spyro.unk17a = 0x10018000;
-                func_8004F178(&spyro.unk19, &arg0->position);
+                func_8004F178(&spyro.unk19, &moby->position);
                 spyro.unk19.z += 0x400;
                 {
                     int height = func_8001A358(&spyro.unk19, 0x800);
@@ -9999,11 +10002,11 @@ void func_level_37_800818EC(Moby* arg0) {
                     spyro.unk18.roll = 0;
                     spyro.unk18.pitch = 0;
                     spyro.unk19.z = height + spyro.unk4a;
-                    spyro.unk18.yaw = arg0->angle.yaw;
+                    spyro.unk18.yaw = moby->angle.yaw;
                 }
-                arg0->state = 4;
+                moby->state = 4;
             } else
-                arg0->state = 6;
+                moby->state = 6;
             break;
         case 4:
             spyro.unk17a = 0x10018000;
@@ -10014,30 +10017,30 @@ void func_level_37_800818EC(Moby* arg0) {
                 spyro.unk18.roll = 0;
                 spyro.unk18.pitch = 0;
                 spyro.unk19.z = height + spyro.unk4a;
-                spyro.unk18.yaw = arg0->angle.yaw;
+                spyro.unk18.yaw = moby->angle.yaw;
             }
             if (D_8006C770 != 0) {
-                func_80034F80(arg0, 2);
+                func_80034F80(moby, 2);
                 spyro.unk17a |= 0x2000;
                 if (Vehicle864Moby != 0) {
                     *((unsigned char*)Vehicle864Moby + 0x4C) = 0;
                     *((unsigned char*)Vehicle864Moby + 0x4D) = 0;
                 }
                 mobyTag->timer = 120;
-                arg0->state = 5;
+                moby->state = 5;
             }
             break;
         case 5:
-            arg0->position.z = (int)(arg0->position.z + 0x40);
+            moby->position.z = (int)(moby->position.z + 0x40);
             spyro.unk17a = 0x1001A000;
             spyro.unk20[1] = 0;
-            func_8004F178(&spyro.unk19, &arg0->position);
+            func_8004F178(&spyro.unk19, &moby->position);
             spyro.unk19.z += spyro.unk4a + 0x604;
             spyro.unk18.roll = spyro.bodyRotation.roll;
             spyro.unk18.pitch = spyro.bodyRotation.pitch;
             spyro.unk18.yaw = spyro.bodyRotation.yaw;
-            func_8004F178(&camera.unk184, &arg0->position);
-            func_800136F0(&camera.unk170, (Vector3D*)mobyTag->path->nodes, &arg0->position);
+            func_8004F178(&camera.unk184, &moby->position);
+            func_800136F0(&camera.unk170, (Vector3D*)mobyTag->path->nodes, &moby->position);
             camera.unk170.yaw = 0;
             camera.unk170.pitch = 0;
             camera.unk168 = 0x11;
@@ -10046,63 +10049,63 @@ void func_level_37_800818EC(Moby* arg0) {
                 if (D_8006C598 >= 0xFF) {
                     D_8006C598 = 0xFF;
                     if (progressFlags.lvl68_TheEscape != 0) {
-                        func_80054F94(D_80070104.loadLevel, arg0);
+                        func_80054F94(D_80070104.loadLevel, moby);
                     } else {
                         progressFlags.lvl68_TheEscape = 1;
                         func_800584BC(6, 0x44);
                     }
                 }
             }
-            func_80055D24(arg0, 2);
+            func_80055D24(moby, 2);
             break;
 
         case 6:
-            sp20.x = D_80065920[arg0->angle.yaw];
-            sp20.y = D_800658A0[arg0->angle.yaw];
+            sp20.x = D_80065920[moby->angle.yaw];
+            sp20.y = D_800658A0[moby->angle.yaw];
             sp20.z = 0;
-            func_8004F194(&sp20, &sp20, &arg0->position);
+            func_8004F194(&sp20, &sp20, &moby->position);
             if (ovlHeader.unk2c(&sp20) != 0) {
                 spyro.unk17c = 0;
-                ovlHeader.unk2b(&sp20, arg0->angle.yaw, 0);
-                arg0->state = 7;
+                ovlHeader.unk2b(&sp20, moby->angle.yaw, 0);
+                moby->state = 7;
             }
             break;
 
         case 7:
-            sp30.x = D_80065920[arg0->angle.yaw];
-            sp30.y = D_800658A0[arg0->angle.yaw];
+            sp30.x = D_80065920[moby->angle.yaw];
+            sp30.y = D_800658A0[moby->angle.yaw];
             sp30.z = 0;
-            func_8004F194(&sp30, &sp30, &arg0->position);
-            if (ovlHeader.unk2b(&sp30, arg0->angle.yaw, 0) != 0) {
+            func_8004F194(&sp30, &sp30, &moby->position);
+            if (ovlHeader.unk2b(&sp30, moby->angle.yaw, 0) != 0) {
                 func_8004F178(&sp40, &spyro.position);
                 sp40.z -= spyro.unk4a;
                 func_8003B634(&savedData, &sp40, spyro.bodyRotation.yaw);
                 mobyTag->timer = 120;
-                arg0->substate = 0;
-                func_80034F40(arg0, 1);
-                arg0->state = 10;
+                moby->substate = 0;
+                func_80034F40(moby, 1);
+                moby->state = 10;
             }
             break;
 
         case 8:
-            arg0->position.z -= 0x40;
+            moby->position.z -= 0x40;
             spyro.unk17a = 0x1001A000;
             spyro.unk20[1] = 0;
-            func_8004F178(&spyro.unk19, &arg0->position);
+            func_8004F178(&spyro.unk19, &moby->position);
             spyro.unk19.z += spyro.unk4a + 0x604;
-            spyro.unk18.roll = arg0->angle.roll;
-            spyro.unk18.pitch = arg0->angle.pitch;
-            spyro.unk18.yaw = arg0->angle.yaw;
+            spyro.unk18.roll = moby->angle.roll;
+            spyro.unk18.pitch = moby->angle.pitch;
+            spyro.unk18.yaw = moby->angle.yaw;
             func_80013AE4((Vector3D*)mobyTag->path->nodes, &spyro.position);
-            func_8004F178(&sp50, &arg0->position);
-            arg0->position.z += 0x400;
+            func_8004F178(&sp50, &moby->position);
+            moby->position.z += 0x400;
             sp50.z += 0x200;
             sp50.z = func_8001A358(&sp50, 0x200);
             if (sp50.z != 0) {
-                arg0->position.z = sp50.z;
-                func_80034F40(arg0, 3);
+                moby->position.z = sp50.z;
+                func_80034F40(moby, 3);
                 spyro.unk17a = 0x10018000;
-                func_8004F178(&spyro.unk19, &arg0->position);
+                func_8004F178(&spyro.unk19, &moby->position);
                 spyro.unk19.z += 0xE00;
                 {
                     int height = func_8001A358(&spyro.unk19, 0x800);
@@ -10110,9 +10113,9 @@ void func_level_37_800818EC(Moby* arg0) {
                     spyro.unk18.roll = 0;
                     spyro.unk18.pitch = 0;
                     spyro.unk19.z = height + spyro.unk4a;
-                    spyro.unk18.yaw = arg0->angle.yaw;
+                    spyro.unk18.yaw = moby->angle.yaw;
                 }
-                arg0->state = 9;
+                moby->state = 9;
                 goto updateCollision2;
             } else
                 goto rollbackLanding;
@@ -10127,55 +10130,55 @@ void func_level_37_800818EC(Moby* arg0) {
                 spyro.unk18.roll = 0;
                 spyro.unk18.pitch = 0;
                 spyro.unk19.z = height + spyro.unk4a;
-                spyro.unk18.yaw = arg0->angle.yaw;
+                spyro.unk18.yaw = moby->angle.yaw;
             }
             func_80013AE4((Vector3D*)mobyTag->path->nodes, &spyro.position);
             if (D_8006C770 != 0) {
-                func_80034F80(arg0, 0);
+                func_80034F80(moby, 0);
                 func_80013B7C(0);
-                arg0->state = 6;
+                moby->state = 6;
             }
             break;
         case 10:
             if (mobyTag->timer != 0) {
-                arg0->position.z += 64;
+                moby->position.z += 64;
                 func_800359A4(&mobyTag->timer, 4);
-                if (arg0->substate == 0) {
+                if (moby->substate == 0) {
                     spyro.unk17a = 0x10000002;
                     if (spyro.movementState == 0)
-                        arg0->substate = 1;
+                        moby->substate = 1;
                 }
             }
             if (D_8006C7B4 & 1) {
-                func_80034F40(arg0, 3);
-                arg0->state = 11;
-            } else if (arg0->animationState.id == 1 && D_8006C770 != 0)
-                func_80034F80(arg0, 2);
+                func_80034F40(moby, 3);
+                moby->state = 11;
+            } else if (moby->animationState.id == 1 && D_8006C770 != 0)
+                func_80034F80(moby, 2);
             break;
         case 11:
-            if (arg0->animationState.id == 3 && D_8006C770 != 0)
-                func_80034F80(arg0, 0);
+            if (moby->animationState.id == 3 && D_8006C770 != 0)
+                func_80034F80(moby, 0);
             spyro.unk17a = 0x10000002;
-            arg0->position.z -= 64;
-            func_8004F178(&sp60, &arg0->position);
-            arg0->position.z += 1024;
+            moby->position.z -= 64;
+            func_8004F178(&sp60, &moby->position);
+            moby->position.z += 1024;
             sp60.z += 512;
             sp60.z = func_8001A358(&sp60, 512);
             if (sp60.z != 0) {
-                arg0->position.z = sp60.z;
-                if (arg0->animationState.id == 0) {
-                    arg0->substate = 0;
-                    arg0->state = 1;
+                moby->position.z = sp60.z;
+                if (moby->animationState.id == 0) {
+                    moby->substate = 0;
+                    moby->state = 1;
                 }
             } else {
             rollbackLanding:
-                arg0->position.z -= 1024;
+                moby->position.z -= 1024;
             }
         updateCollision2:
-            func_80055D24(arg0, 2);
+            func_80055D24(moby, 2);
             break;
     }
-    func_80055D24(arg0, 1);
+    func_80055D24(moby, 1);
 }
 
 extern ProgressFlags progressFlags;
@@ -10406,23 +10409,24 @@ extern unsigned char Controller821F8AngleTable[] __asm__("D_80065398");
 extern unsigned char Controller821F8InitialTable[] __asm__("D_80066BDC");
 #define Controller821F8Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 int Controller821F8CDLoadTime(void) __asm__("CDLoadTime");
-int Controller821F8func_8002803C(int, int, void*, int, void*, int, int) __asm__("func_8002803C");
-int Controller821F8func_80028154(int) __asm__("func_80028154");
-int Controller821F8func_8002AF9C(void*, int, int) __asm__("func_8002AF9C");
+int Controller821F8ConfigureHudEntry(int, int, void*, int, void*, int,
+                                     int) __asm__("func_8002803C");
+int Controller821F8ResetHudEntryByHandle(int) __asm__("func_80028154");
+int Controller821F8RelocateAndPublishModel(void*, int, int) __asm__("func_8002AF9C");
 int Controller821F8RequestMobyAnimation(void*, int) __asm__("func_80034F40");
 int Controller821F8CountTimerDown(void*, int) __asm__("func_800359A4");
 int Controller821F8SubAngle8(int, int) __asm__("func_8003613C");
-int Controller821F8func_80039974(int, int, int) __asm__("func_80039974");
+int Controller821F8RequestIndexedLevelDataSlice(int, int, int) __asm__("func_80039974");
 int Controller821F8PlayMobySoundEvent(void*, int, int) __asm__("func_8003BABC");
-int Controller821F8func_8003BE70(int) __asm__("func_8003BE70");
-int Controller821F8func_8003BFC0(void*, int) __asm__("func_8003BFC0");
-int Controller821F8func_8003C140(int, int) __asm__("func_8003C140");
-int Controller821F8func_800492DC(void*, int) __asm__("func_800492DC");
+int Controller821F8TransitionSoundHandleTo3Or5(int) __asm__("func_8003BE70");
+int Controller821F8SoundHandleMatchesOwnerInStates1Or2(void*, int) __asm__("func_8003BFC0");
+int Controller821F8SetSoundHandleWord0CAndFlag10(int, int) __asm__("func_8003C140");
+int Controller821F8SetClampedPlayerTargetAngles(void*, int) __asm__("func_800492DC");
 int Controller821F8PlanarHeadingLookup(int, int, int) __asm__("func_8004E880");
 int Controller821F8CopyVector(void*, void*) __asm__("func_8004F178");
 int Controller821F8AbsoluteByteAngleDelta(int, int) __asm__("func_8004F264");
 int Controller821F8ApproximatePlanarDistance(void*, void*) __asm__("func_8004F334");
-int Controller821F8func_800527C4(void*, int) __asm__("func_800527C4");
+int Controller821F8SetState15OwnerContext(void*, int) __asm__("func_800527C4");
 int Controller821F8DeleteMoby(void*) __asm__("func_80055B18");
 int Controller821F8RefreshMobySpatialGridAndBasis(void*, int) __asm__("func_80055D24");
 int Controller821F8InterpolateMobyVertex(void*, int, void*) __asm__("func_80055F14");
@@ -10526,11 +10530,11 @@ void func_level_37_80082E54(void* input) {
     void* temp_v1_14;
     void* temp_v1_8;
 
-    tag = Controller821F8Field(owner, void**, 0);
+    tag = ((Moby*)owner)->mobyTag;
     distance = Controller821F8ApproximatePlanarDistance(owner + 0xC, Controller821F8D_80070328);
     {
-        register int heightOffset __asm__("$3") = Controller821F8Field(owner, short*, 0x38);
-        temp_v0 = Controller821F8Field(owner, int*, 20);
+        register int heightOffset __asm__("$3") = ((Moby*)owner)->distanceToGround;
+        temp_v0 = ((Moby*)owner)->position.z;
         MATCHING_KEEP2(heightOffset, temp_v0);
         temp_v0 -= heightOffset;
         MATCHING_KEEP_CLOBBER(temp_v0, "$3");
@@ -10553,12 +10557,11 @@ void func_level_37_80082E54(void* input) {
         Controller821F8InterpolateMobyVertex(temp_a0, 0, &frame.vector);
     }
     MATCHING_KEEP_VOLATILE(sharedTailEnabled);
-    temp_v1 = Controller821F8Field(owner, unsigned char*, 0x48);
+    temp_v1 = ((Moby*)owner)->state;
     switch (temp_v1) { /* switch 1 */
         case 0:        /* switch 1 */
             if (Controller821F8Field(tag, short*, 6) < 0) {
-                Controller821F8Field(tag, short*, 6) =
-                    (short)Controller821F8Field(owner, unsigned char*, 0x46);
+                Controller821F8Field(tag, short*, 6) = (short)((Moby*)owner)->angle.yaw;
             }
             temp_v1_2 = Controller821F8Field(tag, short*, 0);
             if (temp_v1_2 >= 0) {
@@ -10568,8 +10571,7 @@ void func_level_37_80082E54(void* input) {
                     Controller821F8DeleteMoby(owner);
                 } else if (Controller821F8ApproximatePlanarDistance(
                                owner + 0xC, Controller821F8D_80070328) < 0x2000) {
-                    var_v0 = ((Controller821F8Field(owner, int*, 0x14) -
-                               Controller821F8Field(owner, short*, 0x38)) -
+                    var_v0 = ((((Moby*)owner)->position.z - ((Moby*)owner)->distanceToGround) -
                               Controller821F8Field(Controller821F8D_80070328, int*, 8)) +
                              Controller821F8Field(Controller821F8D_80070328, int*, 0x44);
                     if (var_v0 < 0) {
@@ -10577,15 +10579,15 @@ void func_level_37_80082E54(void* input) {
                     }
                     if ((var_v0 < 0x800) &&
                         ((Controller821F8AbsoluteByteAngleDelta(
-                              Controller821F8Field(owner, unsigned char*, 0x46),
+                              ((Moby*)owner)->angle.yaw,
                               Controller821F8PlanarHeadingLookup(
                                   Controller821F8Field(Controller821F8D_80070328, int*, 0) -
-                                      Controller821F8Field(owner, int*, 0xC),
+                                      ((Moby*)owner)->position.x,
                                   Controller821F8Field(Controller821F8D_80070328, int*, 4) -
-                                      Controller821F8Field(owner, int*, 0x10),
+                                      ((Moby*)owner)->position.y,
                                   0)) < 0x20) ||
                          (Controller821F8Field(tag, short*, 0x16) != 0))) {
-                        Controller821F8Field(owner, unsigned char*, 0x48) = 7U;
+                        ((Moby*)owner)->state = 7U;
                         Controller821F8Field(tag, unsigned short*, 0xC) = 0U;
                     }
                 }
@@ -10594,33 +10596,34 @@ void func_level_37_80082E54(void* input) {
             goto sharedTail;
         case 7: /* switch 1 */
             if ((distance >= 0x2401) || (verticalDistance >= 0x901)) {
-                Controller821F8Field(owner, unsigned char*, 0x48) = 0U;
+                ((Moby*)owner)->state = 0U;
             } else if ((distance < 0x800) && (verticalDistance < 0x200) &&
                        ((Controller821F8Field(Controller821F8D_80070328, int*, 0xB8) == 0) ||
                         ((unsigned int)(Controller821F8Field(Controller821F8D_80070328, int*,
                                                              0x50) -
                                         0xB) < 2U)) &&
                        ((Controller821F8AbsoluteByteAngleDelta(
-                             Controller821F8Field(owner, unsigned char*, 0x46),
+                             ((Moby*)owner)->angle.yaw,
                              Controller821F8PlanarHeadingLookup(
                                  Controller821F8Field(Controller821F8D_80070328, int*, 0) -
-                                     Controller821F8Field(owner, int*, 0xC),
+                                     ((Moby*)owner)->position.x,
                                  Controller821F8Field(Controller821F8D_80070328, int*, 4) -
-                                     Controller821F8Field(owner, int*, 0x10),
+                                     ((Moby*)owner)->position.y,
                                  0)) < 0x20) ||
                         (Controller821F8Field(tag, short*, 0x16) != 0))) {
-                Controller821F8Field(owner, unsigned char*, 0x48) = 1U;
+                ((Moby*)owner)->state = 1U;
             }
             goto sharedTail;
         case 1: /* switch 1 */
-            Controller821F8func_800527C4(owner, Controller821F8Field(tag, short*, 0));
+            Controller821F8SetState15OwnerContext(owner, Controller821F8Field(tag, short*, 0));
             /* fallthrough */
         case 2: /* switch 1 */
-            if (Controller821F8func_8003BFC0(owner, Controller821F8Field(tag, short*, 0x14)) == 0) {
+            if (Controller821F8SoundHandleMatchesOwnerInStates1Or2(
+                    owner, Controller821F8Field(tag, short*, 0x14)) == 0) {
                 temp_v0_2 = Controller821F8PlayMobySoundEvent(owner, 0, 4);
                 Controller821F8Field(tag, short*, 0x14) = temp_v0_2;
                 if (temp_v0_2 >= 0) {
-                    Controller821F8func_8003C140(temp_v0_2, 1);
+                    Controller821F8SetSoundHandleWord0CAndFlag10(temp_v0_2, 1);
                 }
             }
             temp_a0_2 = Controller821F8Field(tag, short*, 0);
@@ -10639,27 +10642,28 @@ void func_level_37_80082E54(void* input) {
                 MATCHING_KEEP2(flags, var_a1);
                 Controller821F8Field(Controller821F8D_80070328, int*, 0x20C) = flags | var_a1;
             }
-            Controller821F8func_800492DC(owner + 0xC, var_a1);
+            Controller821F8SetClampedPlayerTargetAngles(owner + 0xC, var_a1);
             Controller821F8Field(tag, short*, 2) = 0xB4;
             Controller821F8D_8006C3EC = 0;
-            Controller821F8Field(owner, unsigned char*, 0x48) = 3U;
+            ((Moby*)owner)->state = 3U;
             if (Controller821F8Field(
                     ((Controller821F8Field(tag, short*, 0) * 0xC) + Controller821F8D_8006C7A0),
                     unsigned char*, 7) == 0xFF) {
                 Controller821F8Field(tag, short*, 4) = -1;
-                Controller821F8Field(owner, unsigned char*, 0x49) = 4U;
+                ((Moby*)owner)->substate = 4U;
             } else {
-                Controller821F8Field(tag, short*, 4) = Controller821F8func_8002803C(
+                Controller821F8Field(tag, short*, 4) = Controller821F8ConfigureHudEntry(
                     0x36, -1, Controller821F8func_80027F88, 0, Controller821F8func_80029CF8,
                     *(int*)((Controller821F8Field(tag, short*, 0) * 0xC) +
                             Controller821F8D_8006C7A0),
                     0);
                 Controller821F8D_8006E49C = 1;
-                Controller821F8Field(owner, unsigned char*, 0x49) = 0U;
+                ((Moby*)owner)->substate = 0U;
             }
             goto sharedTail;
         case 3: /* switch 1 */
-            if (Controller821F8func_8003BFC0(owner, Controller821F8Field(tag, short*, 0x14)) == 0) {
+            if (Controller821F8SoundHandleMatchesOwnerInStates1Or2(
+                    owner, Controller821F8Field(tag, short*, 0x14)) == 0) {
                 temp_v0_3 = Controller821F8PlayMobySoundEvent(owner, 0, 4);
                 Controller821F8Field(tag, short*, 0x14) = temp_v0_3;
                 var_a0 = (temp_v0_3 << 16) >> 16;
@@ -10676,7 +10680,7 @@ void func_level_37_80082E54(void* input) {
                     if (condition) {
                         var_a0 = Controller821F8Field(tag, short*, 0x14);
                     updateOwnerHeight:
-                        Controller821F8func_8003C140(var_a0, (var_a1 >> 6) | 1);
+                        Controller821F8SetSoundHandleWord0CAndFlag10(var_a0, (var_a1 >> 6) | 1);
                     }
                 }
             }
@@ -10692,42 +10696,42 @@ void func_level_37_80082E54(void* input) {
                         : "=r"(selector), "=r"(kind), "=r"(particleOwner), "=r"(mode)
                         : "0"(selector), "1"(kind), "2"(particleOwner), "3"(mode)
                         : "$2", "$3", "$8");
-                height = Controller821F8Field(owner, int*, 20);
-                alpha = Controller821F8Field(owner, unsigned char*, 79);
+                height = ((Moby*)owner)->position.z;
+                alpha = ((Moby*)owner)->size;
                 MATCHING_KEEP2_CLOBBER(height, alpha, "$8");
                 particle = Controller821F8SpawnParticle;
                 MATCHING_KEEP2(particle, height);
                 height += 128;
                 height -= alpha;
-                Controller821F8Field(owner, int*, 20) = height;
+                ((Moby*)owner)->position.z = height;
                 particle(selector, kind, particleOwner, mode);
-                height = Controller821F8Field(owner, int*, 20);
-                alpha = Controller821F8Field(owner, unsigned char*, 79);
+                height = ((Moby*)owner)->position.z;
+                alpha = ((Moby*)owner)->size;
                 __asm__ volatile(""
                                  : "=r"(height), "=r"(alpha)
                                  : "0"(height), "1"(alpha)
                                  : "$4", "memory");
-                temp_a0_3 = Controller821F8Field(owner, unsigned char*, 79);
+                temp_a0_3 = ((Moby*)owner)->size;
                 MATCHING_KEEP3(temp_a0_3, height, alpha);
                 height -= 128;
                 height += alpha;
-                Controller821F8Field(owner, int*, 20) = height;
+                ((Moby*)owner)->position.z = height;
             }
             if ((temp_a0_3 != 0) &&
                 ((unsigned int)owner >= (unsigned int)Controller821F8D_8006C704)) {
-                Controller821F8Field(owner, unsigned char*, 0x4F) = (unsigned char)*(
-                    int*)(Controller821F8D_80065398 + 0xA4 + (Controller821F8D_8006C3EC * 0xC));
+                ((Moby*)owner)->size = (unsigned char)*(int*)(Controller821F8D_80065398 + 0xA4 +
+                                                              (Controller821F8D_8006C3EC * 0xC));
             }
-            Controller821F8Field(owner, unsigned char*, 0x44) = (unsigned char)*(
-                int*)(Controller821F8AngleTable + 0x9C + (Controller821F8D_8006C3EC * 0xC));
-            Controller821F8Field(owner, unsigned char*, 0x45) = (unsigned char)*(
-                int*)(Controller821F8D_80065398 + 0xA0 + (Controller821F8D_8006C3EC * 0xC));
+            ((Moby*)owner)->angle.roll = (unsigned char)*(int*)(Controller821F8AngleTable + 0x9C +
+                                                                (Controller821F8D_8006C3EC * 0xC));
+            ((Moby*)owner)->angle.pitch = (unsigned char)*(int*)(Controller821F8D_80065398 + 0xA0 +
+                                                                 (Controller821F8D_8006C3EC * 0xC));
             nextTableIndex = Controller821F8D_8006C3EC + 1;
             Controller821F8D_8006C3EC = nextTableIndex;
             if (nextTableIndex >= 0x40) {
                 Controller821F8D_8006C3EC = 0x2F;
             }
-            temp_v1_5 = Controller821F8Field(owner, unsigned char*, 0x49);
+            temp_v1_5 = ((Moby*)owner)->substate;
             switch (temp_v1_5) {
                 case 0:
                     if (Controller821F8D_8006E48C != 0)
@@ -10737,7 +10741,7 @@ void func_level_37_80082E54(void* input) {
                     var_a1 = 0;
                     MATCHING_KEEP_CLOBBER(var_a1, "$4");
                     var_a0 = Controller821F8Field(tag, short*, 0);
-                    Controller821F8func_80039974(var_a0, var_a1, 0x3000);
+                    Controller821F8RequestIndexedLevelDataSlice(var_a0, var_a1, 0x3000);
                     var_v0_2 = 1;
                     goto storeLoadingState;
                 case 1:
@@ -10757,7 +10761,7 @@ void func_level_37_80082E54(void* input) {
                     var_a1 = 0x3000;
                     MATCHING_KEEP_CLOBBER(var_a1, "$4");
                     var_a0 = Controller821F8Field(tag, short*, 0);
-                    Controller821F8func_80039974(var_a0, var_a1, 0);
+                    Controller821F8RequestIndexedLevelDataSlice(var_a0, var_a1, 0);
                     var_v0_2 = 3;
                     goto storeLoadingState;
                 case 3:
@@ -10765,10 +10769,11 @@ void func_level_37_80082E54(void* input) {
                         goto loadingBusy;
                     var_a1 = 500;
                     MATCHING_KEEP_CLOBBER(var_a1, "$4");
-                    Controller821F8func_8002AF9C(Controller821F8D_8006C5B0, var_a1, 0x80400000);
+                    Controller821F8RelocateAndPublishModel(Controller821F8D_8006C5B0, var_a1,
+                                                           0x80400000);
                     var_v0_2 = 4;
                 storeLoadingState:
-                    Controller821F8Field(owner, unsigned char*, 73) = var_v0_2;
+                    ((Moby*)owner)->substate = var_v0_2;
                 loadingBusy:
                 default:
                 loadingDone:
@@ -10781,9 +10786,9 @@ void func_level_37_80082E54(void* input) {
                 MATCHING_KEEP2(flags, var_a1);
                 Controller821F8Field(Controller821F8D_80070328, int*, 0x20C) = flags | var_a1;
             }
-            Controller821F8func_800492DC(owner + 0xC, var_a1);
+            Controller821F8SetClampedPlayerTargetAngles(owner + 0xC, var_a1);
             if ((Controller821F8CountTimerDown(tag + 2, 2) != 0) &&
-                (Controller821F8Field(owner, unsigned char*, 0x49) == 4)) {
+                (((Moby*)owner)->substate == 4)) {
                 if (Controller821F8Field(
                         ((Controller821F8Field(tag, short*, 0) * 0xC) + Controller821F8D_8006C7A0),
                         unsigned char*, 7) == 0xFF) {
@@ -10803,15 +10808,16 @@ void func_level_37_80082E54(void* input) {
                                 Controller821F8Field(childForAngle, int*, 0x10),
                             0);
                     Controller821F8D_8006E49C = 0;
-                    Controller821F8Field(owner, unsigned char*, 0x48) = 4U;
+                    ((Moby*)owner)->state = 4U;
                     Controller821F8D_8006C3EC = 0;
                     Controller821F8Field(owner, signed char*, 0x4C) = 0;
                     Controller821F8Field(owner, signed char*, 0x4D) = 0;
                     Controller821F8RefreshMobySpatialGridAndBasis(
                         Controller821F8Field(tag, void**, 8), 4);
-                    if (Controller821F8func_8003BFC0(
+                    if (Controller821F8SoundHandleMatchesOwnerInStates1Or2(
                             owner, Controller821F8Field(tag, short*, 0x14)) != 0) {
-                        Controller821F8func_8003BE70(Controller821F8Field(tag, short*, 0x14));
+                        Controller821F8TransitionSoundHandleTo3Or5(
+                            Controller821F8Field(tag, short*, 0x14));
                     }
                     Controller821F8Field(tag, short*, 0x14) = -1;
                     Controller821F8PlayMobySoundEvent(owner, 1, 4);
@@ -10828,7 +10834,7 @@ void func_level_37_80082E54(void* input) {
                 MATCHING_KEEP2(flags, var_a1);
                 Controller821F8Field(Controller821F8D_80070328, int*, 0x20C) = flags | var_a1;
             }
-            Controller821F8func_800492DC(&frame.vector, var_a1);
+            Controller821F8SetClampedPlayerTargetAngles(&frame.vector, var_a1);
             if (({
                     register unsigned char* child __asm__("$2") =
                         Controller821F8Field(tag, void**, 8);
@@ -10848,7 +10854,7 @@ void func_level_37_80082E54(void* input) {
                     register unsigned char* child __asm__("$3") =
                         Controller821F8Field(tag, void**, 8);
                     MATCHING_KEEP2_CLOBBER(child, heightOffset, "$4");
-                    temp_a0_5 = Controller821F8Field(owner, int*, 20);
+                    temp_a0_5 = ((Moby*)owner)->position.z;
                     temp_v1_6 = Controller821F8Field(child, int*, 20);
                 }
                 if ((temp_a0_5 + heightOffset) < temp_v1_6) {
@@ -10864,12 +10870,13 @@ void func_level_37_80082E54(void* input) {
                                          0x4F) = 0xFFU;
                 }
                 Controller821F8PlayMobySoundEvent(owner, 2, 0);
-                Controller821F8Field(owner, unsigned char*, 0x48) = 8U;
+                ((Moby*)owner)->state = 8U;
             }
             goto sharedTail;
         case 9: /* switch 1 */
-            if (Controller821F8func_8003BFC0(owner, Controller821F8Field(tag, short*, 0x14)) != 0) {
-                Controller821F8func_8003BE70(Controller821F8Field(tag, short*, 0x14));
+            if (Controller821F8SoundHandleMatchesOwnerInStates1Or2(
+                    owner, Controller821F8Field(tag, short*, 0x14)) != 0) {
+                Controller821F8TransitionSoundHandleTo3Or5(Controller821F8Field(tag, short*, 0x14));
             }
             Controller821F8Field(tag, short*, 0x14) = -1;
             var_a1 = 0x10000002;
@@ -10879,17 +10886,15 @@ void func_level_37_80082E54(void* input) {
                 MATCHING_KEEP2(flags, var_a1);
                 Controller821F8Field(Controller821F8D_80070328, int*, 0x20C) = flags | var_a1;
             }
-            Controller821F8func_800492DC(owner + 0xC, var_a1);
+            Controller821F8SetClampedPlayerTargetAngles(owner + 0xC, var_a1);
             Controller821F8Field(owner, int*, 0x54) =
-                (int)(((Controller821F8Field(owner, int*, 0x14) +
-                        Controller821F8Field(tag, short*, 2)) &
+                (int)(((((Moby*)owner)->position.z + Controller821F8Field(tag, short*, 2)) &
                        0xFFFFFF) |
                       0x80000000);
             temp_a0_6 = Controller821F8Field(tag, void**, 0x10);
             if (temp_a0_6 != 0) {
                 Controller821F8Field(temp_a0_6, int*, 0x14) =
-                    (int)(Controller821F8Field(owner, int*, 0x14) +
-                          Controller821F8Field(tag, short*, 2));
+                    (int)(((Moby*)owner)->position.z + Controller821F8Field(tag, short*, 2));
             }
             temp_v0_7 = (unsigned short)Controller821F8Field(tag, short*, 2) +
                         (Controller821F8D_8006C648 << 5);
@@ -10937,18 +10942,16 @@ void func_level_37_80082E54(void* input) {
                 MATCHING_KEEP2(flags, var_a1);
                 Controller821F8Field(Controller821F8D_80070328, int*, 0x20C) = flags | var_a1;
             }
-            Controller821F8func_800492DC(&frame.vector, var_a1);
+            Controller821F8SetClampedPlayerTargetAngles(&frame.vector, var_a1);
             Controller821F8CopyVector(owner + 0xC, &frame.vector);
             Controller821F8Field(Controller821F8Field(tag, void**, 8), int*, 0x54) =
-                (int)(((Controller821F8Field(owner, int*, 0x14) +
-                        Controller821F8Field(tag, short*, 2)) &
+                (int)(((((Moby*)owner)->position.z + Controller821F8Field(tag, short*, 2)) &
                        0xFFFFFF) |
                       0x80000000);
             temp_a0_9 = Controller821F8Field(tag, void**, 0x10);
             if (temp_a0_9 != 0) {
                 Controller821F8Field(temp_a0_9, int*, 0x14) =
-                    (int)(Controller821F8Field(owner, int*, 0x14) +
-                          Controller821F8Field(tag, short*, 2));
+                    (int)(((Moby*)owner)->position.z + Controller821F8Field(tag, short*, 2));
             }
             temp_v0_8 = (unsigned short)Controller821F8Field(tag, short*, 2) +
                         (Controller821F8D_8006C648 << 5);
@@ -10987,7 +10990,7 @@ void func_level_37_80082E54(void* input) {
                     Controller821F8DeleteMoby(finishOwner);
                 }
             enterStateFive:
-                Controller821F8Field(owner, unsigned char*, 72) = 5;
+                ((Moby*)owner)->state = 5;
             }
             goto sharedTail;
         case 5: /* switch 1 */
@@ -11001,7 +11004,7 @@ void func_level_37_80082E54(void* input) {
                                      4) =
                     (signed char)(unsigned short)Controller821F8Field(tag, short*, 6);
             }
-            Controller821F8func_80028154(Controller821F8Field(tag, short*, 4));
+            Controller821F8ResetHudEntryByHandle(Controller821F8Field(tag, short*, 4));
             {
                 register int index __asm__("$2") = Controller821F8Field(tag, short*, 0);
                 register int level __asm__("$4") = Controller821F8D_8006C58C;
@@ -11195,7 +11198,7 @@ void func_level_37_80082E54(void* input) {
             }
             Controller821F8D_8006C7B4 |= 1 << Controller821F8Field(tag, short*, 0);
             Controller821F8D_8006C62C |= 1 << Controller821F8Field(tag, short*, 0);
-            Controller821F8Field(owner, unsigned char*, 0x48) = 0xAU;
+            ((Moby*)owner)->state = 0xAU;
             return;
         case 10: /* switch 1 */
             if (Controller821F8CDLoadTime() == 0) {
@@ -11214,16 +11217,14 @@ sharedTail:
                 condition;
             })) {
             if (Controller821F8Field(owner, unsigned short*, 0x44) != 0) {
-                var_v1 =
-                    Controller821F8SubAngle8(Controller821F8Field(owner, unsigned char*, 0x44), 0);
+                var_v1 = Controller821F8SubAngle8(((Moby*)owner)->angle.roll, 0);
                 if (var_v1 < 0) {
                     var_v1 -= 1;
                 } else if (var_v1 > 0) {
                     var_v1 += 1;
                 }
-                Controller821F8Field(owner, unsigned char*, 0x44) =
-                    (unsigned char)(Controller821F8Field(owner, unsigned char*, 0x44) +
-                                    (var_v1 >> 1));
+                ((Moby*)owner)->angle.roll =
+                    (unsigned char)(((Moby*)owner)->angle.roll + (var_v1 >> 1));
                 return;
             }
         } else {
@@ -11234,7 +11235,7 @@ sharedTail:
                 Controller821F8Field(tag, unsigned short*, 0xC) + ((int)(0x2400 - distance) >> 6);
             Controller821F8Field(tag, unsigned short*, 0xC) = temp_v1_3;
             var_v1_2 = Controller821F8SubAngle8(
-                Controller821F8Field(owner, unsigned char*, 0x44),
+                ((Moby*)owner)->angle.roll,
                 (int)(*(unsigned short*)(Controller821F8D_800658A0 + (temp_v1_3 & 0x1FE))
                       << 0x10) >>
                     0x18);
@@ -11243,11 +11244,10 @@ sharedTail:
             } else if (var_v1_2 > 0) {
                 var_v1_2 += 1;
             }
-            Controller821F8Field(owner, unsigned char*, 0x44) =
-                (unsigned char)(Controller821F8Field(owner, unsigned char*, 0x44) +
-                                (var_v1_2 >> 1));
+            ((Moby*)owner)->angle.roll =
+                (unsigned char)(((Moby*)owner)->angle.roll + (var_v1_2 >> 1));
             var_v1_3 = Controller821F8SubAngle8(
-                Controller821F8Field(owner, unsigned char*, 0x45),
+                ((Moby*)owner)->angle.pitch,
                 (int)(*(unsigned short*)(Controller821F8D_80065920 +
                                          (Controller821F8Field(tag, unsigned short*, 0xC) & 0x1FE))
                       << 0x10) >>
@@ -11257,9 +11257,8 @@ sharedTail:
             } else if (var_v1_3 > 0) {
                 var_v1_3 += 1;
             }
-            Controller821F8Field(owner, unsigned char*, 0x45) =
-                (unsigned char)(Controller821F8Field(owner, unsigned char*, 0x45) +
-                                (var_v1_3 >> 1));
+            ((Moby*)owner)->angle.pitch =
+                (unsigned char)(((Moby*)owner)->angle.pitch + (var_v1_3 >> 1));
         }
     } else {
         return;
@@ -11300,8 +11299,8 @@ static __inline__ short DecodedOrbitQuotientFive(int packed) {
 static __inline__ short DecodedOrbitQuotientThree(int packed) {
     return (packed >> 16) / 3;
 }
-void func_level_37_80083FC8(Moby* argument) {
-    register Moby* moby __asm__("$10") = argument;
+void func_level_37_80083FC8(Moby* mobyArgument) {
+    register Moby* moby __asm__("$10") = mobyArgument;
     int reservedStack[6];
     register DecodedOrbitTag* tag __asm__("$14") = moby->mobyTag;
     register Moby* parent __asm__("$11") = tag->parent;

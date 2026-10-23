@@ -1,0 +1,422 @@
+{
+  "schema_version": 1,
+  "AI_generated": true,
+  "human_reviewed": false,
+  "existing_evidence_reuse_only": true,
+  "no_FORK_or_historical_report_writes": true,
+  "no_new_facade_model_solver_capture_or_test_run": true,
+  "subject": "Narrow currently listed raw588 actor-lifetime targets using already frozen Rev1 decoding.",
+  "confirmed_reusable": [
+    {
+      "target_Rev0": "8007F4EC",
+      "target_Rev1": "8007F5CC",
+      "operation": "SH1 through selected current owner-private pointer+2A",
+      "prior_proof": "build/raw588_37900.foreign-transport.json:positive_SH1_universal_byte_product",
+      "accepted_component_qualification": "build/raw588_37905.decode-ready.json:explicit_conditions",
+      "conclusion": "This single store cannot turn a previously true(LH(private+28)!=0 OR LW(private+30)!=0) predicate false, for arbitrary prior16/32-bit values and arbitrary aligned SH destination under the recorded byte identity domain. Destination exclusion is unnecessary for this one predicate.",
+      "precise_domain": {
+        "SMT_result": "UNSAT",
+        "address_word_bits": 32,
+        "private_alignment": 4,
+        "normal_SH_alignment": 2,
+        "predicate": "LH(private+28hex)!=0 OR LW(private+30hex)!=0",
+        "arbitrary_prior_half16_and_word32": true,
+        "arbitrary_SH_address": true,
+        "no_destination_exclusion_needed": true
+      },
+      "remains_open": "Normal SH alignment, same physical protected cells, retained GP22/private identity and other root/alias/helper/asynchronous effects. This does not establish a whole-lifetime invariant or an initialized cold stack."
+    },
+    {
+      "targets_Rev0": [
+        "8007F3F8",
+        "8007F468"
+      ],
+      "targets_Rev1": [
+        "8007F4D8",
+        "8007F548"
+      ],
+      "prior_proof": "build/raw588_37900.foreign-transport.json:actual_store_roots/indexed_SWzero_all_current_owner_destinations_disjoint_all_protected_fields",
+      "conclusion": "The exact sampled-base/reloaded-index roots are already decoded. All329 initial pool destinations miss protected pairs, conditional on actual current base/index domain and physical cell identity.",
+      "exact_roots": [
+        {
+          "PC": "0x8007f3f8",
+          "expression": "(LW[C550] sampled atF3AC)+88*(LW[private+20hex] reloaded atF3D8)+18hex, modulo32",
+          "width": 4,
+          "payload": 0,
+          "earlier_flag_index_sample": "F38C; earlier nonzero flags read F3B8",
+          "own_OR_store": "F3D4 can matter if roots alias"
+        },
+        {
+          "PC": "0x8007f468",
+          "expression": "(LW[C550] sampled atF41C)+88*(LW[private+24hex] reloaded atF448)+18hex, modulo32",
+          "width": 4,
+          "payload": 0,
+          "earlier_flag_index_sample": "F3FC; earlier nonzero flags read F428",
+          "own_OR_store": "F444 can matter if roots alias"
+        }
+      ],
+      "retained_domain": "{initial184or185or-1}; own writes only set-1",
+      "explicit_countermodels": [
+        {
+          "index": "0x207",
+          "target": {
+            "record_index": 185,
+            "offset": 40,
+            "address": 2148808360,
+            "width": 2
+          }
+        },
+        {
+          "index": "0x1a2e8daa",
+          "target": {
+            "record_index": 185,
+            "offset": 48,
+            "address": 2148808368,
+            "width": 4
+          }
+        }
+      ],
+      "remains_open": "Current pool base, live private+20/+24 index domains, index reload epochs and all other writers/rebindings across callbacks. The unrestricted exclusion is falsified by the existing explicit countermodels; they are not retail-admitted histories."
+    },
+    {
+      "target_range_Rev0": "80080124..80080368",
+      "prior_static_proof": "build/raw588_37901.spawned-private.json:actual_caller_sites/exact_constructor_root_transport",
+      "later_proofs": [
+        "build/raw588_39293.actual-scalar12-pairs-ready.json",
+        "build/raw588_39295.linked-index-chains-ready.json",
+        "build/raw588_40392.positive-segment-ready.json"
+      ],
+      "conclusion": "The selected590/591/601 constructor-to-return/private-write chains and their real intervening audio/attachment/query/deletion effects already have complete source compositions and bounded full-architecture comparisons. They are no longer missing helper implementations for these recorded inputs.",
+      "class590": {
+        "factory_call_Rev0": "80080050",
+        "factory_call_Rev1": "80080130",
+        "class_word": 590,
+        "audio_call_Rev0": "80080068",
+        "audio_call_Rev1": "80080148",
+        "actual_source_byte_selector": "2E",
+        "private_root_reloads_Rev0": [
+          "8008011C",
+          "80080140",
+          "8008014C"
+        ],
+        "private_root_reloads_Rev1": [
+          "800801FC",
+          "80080220",
+          "8008022C"
+        ],
+        "writes_Rev0": [
+          "80080124",
+          "80080148",
+          "80080154"
+        ],
+        "writes_Rev1": [
+          "80080204",
+          "80080228",
+          "80080234"
+        ],
+        "scope": "Two constructions in the portable scalar12 source vector; genuine state3/scalar12 full-return pairs separately verified in39293. Pointer reloads remain separate epochs; no arbitrary owner/private noalias promise."
+      },
+      "class591": {
+        "factory_call_Rev0": "800801A4",
+        "factory_call_Rev1": "80080284",
+        "class_word": 591,
+        "audio_call_Rev0": "800801BC",
+        "audio_call_Rev1": "8008029C",
+        "actual_source_byte_selector": "2F",
+        "private_root_reload_Rev0": "80080244",
+        "private_root_reload_Rev1": "80080324",
+        "write_Rev0": "8008024C",
+        "write_Rev1": "8008032C",
+        "scope": "Constructed actual-entry alternative changes only private+24 to-1; two real factories/audio calls; actual50844 return is stored, not supplied."
+      },
+      "class601": {
+        "factory_call_Rev0": "80080298",
+        "factory_call_Rev1": "80080378",
+        "class_word": 601,
+        "private_root_load_Rev0": "800802B0",
+        "private_root_load_Rev1": "80080390",
+        "held_register": "GP18 across all four stores",
+        "final_write_Rev0": "80080368",
+        "final_write_Rev1": "80080448",
+        "real_query": "8001837C",
+        "delete_call_Rev0": "80080374",
+        "delete_call_Rev1": "80080454",
+        "first_return_cache_Rev0": "80080390",
+        "first_return_cache_Rev1": "80080470",
+        "scope": "Constructed both-indices=-1 route executes16 real factories and queries. Later positive-segment vector executes16 real query acceptances/deletes. First nonnull owner can be cached after DeleteMoby; this is not a live-child theorem."
+      },
+      "remains_open": "Reason/index lifetime admitting alternatives, live allocator/model/grid/private root retention outside the exact vectors, physical aliases and later cached-pointer consumption. Numeric selectors2E/2F are not sound asset meanings or units."
+    }
+  ],
+  "not_closed": [
+    {
+      "target": "Whole private+28/+30 invariant across callbacks",
+      "missing": "A real retained owner/private/base/index writer/rebinding history spanning every relevant sample, including physical aliases; existing local own-write geometry alone is insufficient."
+    },
+    {
+      "target": "All helper-memory effects preserve the pair",
+      "counterevidence": "build/raw588_40380.delete-unlink-alias-vector.json",
+      "exact_fact": "A supplied-memory full-return deletion/unlink countermodel changes the private28 cell through the real grid unlink slot. Thus executable helper decoding is not a general no-alias proof; retail admission of that supplied index/root remains unproved."
+    },
+    {
+      "target": "Actual null-route cold SP20/SP24 byte history",
+      "missing": "A naturally reached null-route callback entry with the earlier physical stack-byte writers across prior callbacks/nested callees; the current retained-gate and nonnull captures do not supply that history."
+    },
+    {
+      "target": "Complete raw588 gameplay/lifetime/units",
+      "missing": "Synchronized admitted histories for the unresolved domains; complete per-vector machine agreement and local revision correspondence do not establish these global claims."
+    }
+  ],
+  "suggested_frontier_narrowing": "Replace the blanket unresolved-root wording with: F3F8/F468 live-base/index retention remains open; F4EC paired-gate preservation is already proved only under its exact ordinary-aligned/same-cells domain; selected590/591/601 local spawned-return/private/audio/query/deletion chains are decoded and verified under their recorded input domains, while longer root/alias/index/cache lifetimes remain open.",
+  "exact_selected_original_word_pairs": [
+    {
+      "index_in_verified_complete_correspondence": 100,
+      "Rev0_PC": "8007F3AC",
+      "Rev1_PC": "8007F48C",
+      "Rev0_word": "8C84C550",
+      "Rev1_word": "8C84C630"
+    },
+    {
+      "index_in_verified_complete_correspondence": 111,
+      "Rev0_PC": "8007F3D8",
+      "Rev1_PC": "8007F4B8",
+      "Rev0_word": "8EC30020",
+      "Rev1_word": "8EC30020"
+    },
+    {
+      "index_in_verified_complete_correspondence": 119,
+      "Rev0_PC": "8007F3F8",
+      "Rev1_PC": "8007F4D8",
+      "Rev0_word": "AC400018",
+      "Rev1_word": "AC400018"
+    },
+    {
+      "index_in_verified_complete_correspondence": 128,
+      "Rev0_PC": "8007F41C",
+      "Rev1_PC": "8007F4FC",
+      "Rev0_word": "8C84C550",
+      "Rev1_word": "8C84C630"
+    },
+    {
+      "index_in_verified_complete_correspondence": 139,
+      "Rev0_PC": "8007F448",
+      "Rev1_PC": "8007F528",
+      "Rev0_word": "8EC30024",
+      "Rev1_word": "8EC30024"
+    },
+    {
+      "index_in_verified_complete_correspondence": 147,
+      "Rev0_PC": "8007F468",
+      "Rev1_PC": "8007F548",
+      "Rev0_word": "AC400018",
+      "Rev1_word": "AC400018"
+    },
+    {
+      "index_in_verified_complete_correspondence": 175,
+      "Rev0_PC": "8007F4D8",
+      "Rev1_PC": "8007F5B8",
+      "Rev0_word": "8C63C550",
+      "Rev1_word": "8C63C630"
+    },
+    {
+      "index_in_verified_complete_correspondence": 178,
+      "Rev0_PC": "8007F4E4",
+      "Rev1_PC": "8007F5C4",
+      "Rev0_word": "8C430000",
+      "Rev1_word": "8C430000"
+    },
+    {
+      "index_in_verified_complete_correspondence": 180,
+      "Rev0_PC": "8007F4EC",
+      "Rev1_PC": "8007F5CC",
+      "Rev0_word": "A462002A",
+      "Rev1_word": "A462002A"
+    },
+    {
+      "index_in_verified_complete_correspondence": 909,
+      "Rev0_PC": "80080050",
+      "Rev1_PC": "80080130",
+      "Rev0_word": "0040F809",
+      "Rev1_word": "0040F809"
+    },
+    {
+      "index_in_verified_complete_correspondence": 915,
+      "Rev0_PC": "80080068",
+      "Rev1_PC": "80080148",
+      "Rev0_word": "0C00EEAF",
+      "Rev1_word": "0C00EEB8"
+    },
+    {
+      "index_in_verified_complete_correspondence": 960,
+      "Rev0_PC": "8008011C",
+      "Rev1_PC": "800801FC",
+      "Rev0_word": "8E620000",
+      "Rev1_word": "8E620000"
+    },
+    {
+      "index_in_verified_complete_correspondence": 962,
+      "Rev0_PC": "80080124",
+      "Rev1_PC": "80080204",
+      "Rev0_word": "AC430000",
+      "Rev1_word": "AC430000"
+    },
+    {
+      "index_in_verified_complete_correspondence": 969,
+      "Rev0_PC": "80080140",
+      "Rev1_PC": "80080220",
+      "Rev0_word": "8E620000",
+      "Rev1_word": "8E620000"
+    },
+    {
+      "index_in_verified_complete_correspondence": 971,
+      "Rev0_PC": "80080148",
+      "Rev1_PC": "80080228",
+      "Rev0_word": "AC430004",
+      "Rev1_word": "AC430004"
+    },
+    {
+      "index_in_verified_complete_correspondence": 972,
+      "Rev0_PC": "8008014C",
+      "Rev1_PC": "8008022C",
+      "Rev0_word": "8E620000",
+      "Rev1_word": "8E620000"
+    },
+    {
+      "index_in_verified_complete_correspondence": 974,
+      "Rev0_PC": "80080154",
+      "Rev1_PC": "80080234",
+      "Rev0_word": "AC400008",
+      "Rev1_word": "AC400008"
+    },
+    {
+      "index_in_verified_complete_correspondence": 994,
+      "Rev0_PC": "800801A4",
+      "Rev1_PC": "80080284",
+      "Rev0_word": "0060F809",
+      "Rev1_word": "0060F809"
+    },
+    {
+      "index_in_verified_complete_correspondence": 1000,
+      "Rev0_PC": "800801BC",
+      "Rev1_PC": "8008029C",
+      "Rev0_word": "0C00EEAF",
+      "Rev1_word": "0C00EEB8"
+    },
+    {
+      "index_in_verified_complete_correspondence": 1034,
+      "Rev0_PC": "80080244",
+      "Rev1_PC": "80080324",
+      "Rev0_word": "8E630000",
+      "Rev1_word": "8E630000"
+    },
+    {
+      "index_in_verified_complete_correspondence": 1036,
+      "Rev0_PC": "8008024C",
+      "Rev1_PC": "8008032C",
+      "Rev0_word": "AC620008",
+      "Rev1_word": "AC620008"
+    },
+    {
+      "index_in_verified_complete_correspondence": 1055,
+      "Rev0_PC": "80080298",
+      "Rev1_PC": "80080378",
+      "Rev0_word": "0040F809",
+      "Rev1_word": "0040F809"
+    },
+    {
+      "index_in_verified_complete_correspondence": 1061,
+      "Rev0_PC": "800802B0",
+      "Rev1_PC": "80080390",
+      "Rev0_word": "8E720000",
+      "Rev1_word": "8E720000"
+    },
+    {
+      "index_in_verified_complete_correspondence": 1094,
+      "Rev0_PC": "80080334",
+      "Rev1_PC": "80080414",
+      "Rev0_word": "AE420000",
+      "Rev1_word": "AE420000"
+    },
+    {
+      "index_in_verified_complete_correspondence": 1099,
+      "Rev0_PC": "80080348",
+      "Rev1_PC": "80080428",
+      "Rev0_word": "AE400008",
+      "Rev1_word": "AE400008"
+    },
+    {
+      "index_in_verified_complete_correspondence": 1100,
+      "Rev0_PC": "8008034C",
+      "Rev1_PC": "8008042C",
+      "Rev0_word": "AE42000C",
+      "Rev1_word": "AE42000C"
+    },
+    {
+      "index_in_verified_complete_correspondence": 1106,
+      "Rev0_PC": "80080364",
+      "Rev1_PC": "80080444",
+      "Rev0_word": "0C0060DA",
+      "Rev1_word": "0C0060DF"
+    },
+    {
+      "index_in_verified_complete_correspondence": 1107,
+      "Rev0_PC": "80080368",
+      "Rev1_PC": "80080448",
+      "Rev0_word": "AE420004",
+      "Rev1_word": "AE420004"
+    },
+    {
+      "index_in_verified_complete_correspondence": 1110,
+      "Rev0_PC": "80080374",
+      "Rev1_PC": "80080454",
+      "Rev0_word": "0C0156C6",
+      "Rev1_word": "0C0156EA"
+    },
+    {
+      "index_in_verified_complete_correspondence": 1117,
+      "Rev0_PC": "80080390",
+      "Rev1_PC": "80080470",
+      "Rev0_word": "AED30000",
+      "Rev1_word": "AED30000"
+    }
+  ],
+  "source_identity": {
+    "Rev0": "SCUS-94467 USA Rev0",
+    "Rev0_fork_level": 18,
+    "Rev0_actual_level_ID": 20,
+    "Rev1": "USA Rev1",
+    "Rev1_actual_level_ID": 20,
+    "raw_class": 588,
+    "Rev1_overlay_entry": 114,
+    "Rev1_overlay_source_sha256": "2E9407AD65CAC48CD246A2759FF5AD20858156EACC7CF0EDEE917E40094FF423",
+    "Rev1_disc_sha256": "C3081998797FDF3A82829103924445FA823A4431561E0F1C394EE849F08A427F"
+  },
+  "units_and_cadence": "Original byte offsets, modular32 addresses and recorded instruction/callback occurrences only; no new physical units or frame/cadence rule.",
+  "verification_scope": "Read and rejoined existing source words and proof fields only. No historical report, interpreter assertion, expected result or source behavior was modified; no tests were rerun.",
+  "dependencies": {
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\raw588-rev0-rev1-decoding-frontier.md": "d9c00e9d93b8ea2f74d8f312f79ab255f5d203049f8166c4e987e63bb916b20d",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\raw588_37900.foreign-transport.json": "cd857bfcf9301c2913e37a80a68c7d622b8bdba3fc809a4e8d5137b900de635a",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\raw588_37901.spawned-private.json": "3e22de429f1bc972677c332f829ac086d838ddcb7e340979d375ae548309f14d",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\raw588_37905.decode-ready.json": "58a6cfcd56aada455a41ce3a8d8a49ccec402921ebc65c9a94850f72abbf74e5",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\raw588_37903.fresh-Rev1-disc.json": "074e050c1f6f379e8afb59f263d22ea071e7ddc09c28dc0d9d864c572e3f114d",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\raw588_36600.revision-crosswalk.json": "58392da1afc0634e5c87a13997d52c8b9f1b41c403fc2ed204e7c7da625d0237",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\evidence-tests\\raw588-callback-live-source.json": "cba3ef12aeaabc9248fefc201cceca6d472fd1ca42ce95c895065ea25c8e06f9",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\evidence-tests\\raw588-spawn-transports.json": "4a1227ce4e57eb9eda85859a6309b297d13b03f2bfa299cbd0b1b7a7fc15bc57",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\raw588_37902.transport-fixture.json": "fafdfbb760e7af7c2898818c2e311824b6137ee636a7d825b11782ebc61dd716",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\evidence-tests\\raw588-linked-index-source-vectors.json": "821094ca6cd0e5be51df7769ed1bc176836e19e8410e4c7fd6d83793488c349a",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\raw588_39295.linked-index-chains-ready.json": "518ebf175a6faf503e15754c2555995e54a1d2333adfd2040fc9ce885216b588",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\evidence-tests\\raw588-state3-frame12-source-vector.json": "a036449b4923e8ca184e81fa210f00b14f5cfa297359d622afccee1196169edf",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\raw588_39293.actual-scalar12-pairs-ready.json": "d429bdbf8df4fc9a88c444e9d952296fd7f5e01e7054f329ddaf8909e463a017",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\raw588_40392.positive-segment-ready.json": "6a70792932044c2300b6e3d6396a958d20b0b0ef2022daeac70496392a0917d8",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\raw588_40380.delete-unlink-alias-vector.json": "6135227e2f5d2b5626b1b104de189210d6399c729d1a7df3ed24f31ac5bcf822",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\raw588-foreign-and-spawn-transports.md": "97ef0ea40ccfee31f32dbfe25d0606578ba4b7e337d932e628d91bada7e79662",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\raw588-linked-index-chains.md": "0999614ce62d05581227e053268f58e7286a55813815caf694ea0b81ee61712a",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\tools\\yotd_re\\raw588_spawn_transport_runtime.py": "1e005f3ea5a5742a1bdee49000cc9018cd79707528f95bb088ff0942f3db8dc8",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\tools\\yotd_re\\raw588_callback_helper_closure_runtime.py": "1c31763e8e742b637b0aa3d345da1352ca23b4f4c21b11987f2bc931465fbcf8",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\tests\\yotd_re\\test_raw588_spawn_transport_runtime.py": "3d6b0de93d766f8663f5b0ee02d9c33701e43f1be2ac2cbe2dd26f1a2077584f",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\tests\\yotd_re\\test_raw588_linked_index_chains.py": "e16830e02ff392e6d095f1f7af522af5b73b8bb1a4dcb585f1762d7d122c194d",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\tests\\yotd_re\\test_raw588_state3_frame12_chain.py": "3dc9efe49ddc1d0d9bdbfa95dbed541d333ebfbf5abb86ecb594490cb290bad7",
+    "C:\\Users\\rmuno\\AppData\\Local\\Temp\\mobycollective-spyro-3\\asm\\nonmatchings\\overlays\\level_18\\moby\\func_level_18_8007F21C.s": "adee8b955c603fa49eccf13ef948fd18381c68ad2e76427d6952055dd6e7469d",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\audit_raw588_frontier_reuse43594.py": "301108f8c36fe7d2fa862de84040de9f4bdace81b659e63106a744f8b9805a37"
+  }
+}

@@ -17,12 +17,12 @@
  * native and linked words/targets plus full executable/all overlay hashes.
  */
 #define Update85DF0Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Update85DF0func_8004E9E4(short) __asm__("func_8004E9E4");
+int Update85DF0InterpolateSine(short) __asm__("func_8004E9E4");
 int Update85DF0InterpolateCosine(short) __asm__("func_8004EA2C");
 int Update85DF0CopyVector(void*, void*) __asm__("func_8004F178");
 int Update85DF0PackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-int Update85DF0func_8004F5A8(void*, void*, void*) __asm__("func_8004F5A8");
-int Update85DF0func_80056504(void*) __asm__("func_80056504");
+int Update85DF0AddHalfwordVectors(void*, void*, void*) __asm__("func_8004F5A8");
+int Update85DF0ReleaseParticleRecord(void*) __asm__("func_80056504");
 extern int Update85DF0D_8006C648 __asm__("D_8006C648");
 int Update85DF0ShiftVectorLeft(void*, int) __asm__("func_8004F0E8");
 int Update85DF0SubtractVector(void*, void*, void*) __asm__("func_8004F1C8");
@@ -48,10 +48,10 @@ extern int (*Update85DF0SpawnParticle)(int, int, void*, int) __asm__("SpawnParti
 extern unsigned char Update85DF0Table658A0[] __asm__("D_800658A0");
 extern unsigned char Update85DF0Table65920[] __asm__("D_80065920");
 extern void* Update85DF0D_8006C550 __asm__("D_8006C550");
-int Update85DF0func_8004F554(void*, void*) __asm__("func_8004F554");
+int Update85DF0ExpandSignedHalfwordVector(void*, void*) __asm__("func_8004F554");
 int Update85DF0ApproximatePlanarDistance(void*, void*) __asm__("func_8004F334");
-int Update85DF0func_8001BA30(void*, int, int, int, int, int) __asm__("func_8001BA30");
-int Update85DF0func_80019194(void*, int) __asm__("func_80019194");
+int Update85DF0QueryDynamicMobyGeometry(void*, int, int, int, int, int) __asm__("func_8001BA30");
+int Update85DF0QueryWorldSphere(void*, int) __asm__("func_80019194");
 int Update85DF0PlanarHeadingLookup(int, int, int) __asm__("func_8004E880");
 unsigned char* func_level_27_80085DF0(int initialStep) {
     register unsigned char* playerEnd __asm__("$5");
@@ -153,7 +153,7 @@ unsigned char* func_level_27_80085DF0(int initialStep) {
                 temp_v1 = *record;
                 switch (temp_v1) {
                     case 0x0:
-                        Update85DF0func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update85DF0AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update85DF0Field(recordPlus1, short*, 0x1D);
                         toggleOne8 = 1;
                         if (scratch2 != 0) {
@@ -186,7 +186,7 @@ unsigned char* func_level_27_80085DF0(int initialStep) {
                         Update85DF0Field(recordPlus1, unsigned char*, 0xD) = scratch3;
                         goto checkPredicate;
                     case 0x1:
-                        Update85DF0func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update85DF0AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update85DF0Field(recordPlus1, short*, 0x1D);
                         __asm__ __volatile__("" ::: "$3", "memory");
                         if (scratch2 != 0) {
@@ -223,7 +223,7 @@ unsigned char* func_level_27_80085DF0(int initialStep) {
                         Update85DF0Field(recordPlus1, unsigned char*, 0xD) = scratch3;
                         goto checkPredicate;
                     case 0x9:
-                        Update85DF0func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update85DF0AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update85DF0Field(recordPlus1, short*, 0x1D);
                         toggleOne8 = 1;
                         if (scratch2 != 0) {
@@ -266,7 +266,7 @@ unsigned char* func_level_27_80085DF0(int initialStep) {
                         scratch3 += scratch2;
                         frame.words[0] = scratch3;
                         scratch2 =
-                            Update85DF0func_8004E9E4(Update85DF0Field(recordPlus1, short*, 0x17));
+                            Update85DF0InterpolateSine(Update85DF0Field(recordPlus1, short*, 0x17));
                         scratch4 = (int)recordPlus4;
                         playerEnd = (unsigned char*)&frame.words[0];
                         MATCHING_KEEP3(scratch4, playerEnd, scratch2);
@@ -319,7 +319,7 @@ unsigned char* func_level_27_80085DF0(int initialStep) {
                         MATCHING_KEEP2(scratch2, toggleOne8);
                         scratch2 = toggleOne8 - scratch2;
                         Update85DF0Field(recordPlus1, unsigned short*, 0x1D) = scratch2;
-                        Update85DF0func_8004F5A8((void*)scratch4, playerEnd, (void*)scratch6);
+                        Update85DF0AddHalfwordVectors((void*)scratch4, playerEnd, (void*)scratch6);
                         scratch2 = Update85DF0Field(recordPlus1, unsigned char*, 9);
                         MATCHING_KEEP_CLOBBER(scratch2, "memory");
                         doubledStep = frame.spill.doubledStep;
@@ -349,7 +349,7 @@ unsigned char* func_level_27_80085DF0(int initialStep) {
                     case 0xC:
                         Update85DF0Field(recordPlus1, unsigned char*, 0xA) =
                             (unsigned char)(Update85DF0Field(recordPlus1, unsigned char*, 0xA) + 8);
-                        Update85DF0func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update85DF0AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         temp_v0_4 = Update85DF0Field(recordPlus1, unsigned char*, 0xB);
                         if (temp_v0_4 != 0) {
                             Update85DF0Field(recordPlus1, unsigned char*, 0xB) =
@@ -405,7 +405,7 @@ unsigned char* func_level_27_80085DF0(int initialStep) {
                         scratch2 = Update85DF0Field(recordPlus1, unsigned char*, 1);
                         if ((unsigned int)scratch2 >= 28)
                             goto removeRecord;
-                        Update85DF0func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update85DF0AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update85DF0Field(recordPlus1, short*, 0x1D);
                         if (scratch2 != 0) {
                             scratch2 = Update85DF0Field(recordPlus1, unsigned short*, 0x1B);
@@ -471,7 +471,7 @@ unsigned char* func_level_27_80085DF0(int initialStep) {
                         Update85DF0Field(recordPlus1, unsigned char*, 1) = scratch2;
                         goto nextRecord;
                     case 0x16:
-                        Update85DF0func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update85DF0AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         toggleOne8 = 1;
                         MATCHING_KEEP(toggleOne8);
                         MATCHING_KEEP_CLOBBER(toggleOne8, "memory");
@@ -549,7 +549,7 @@ unsigned char* func_level_27_80085DF0(int initialStep) {
                         Update85DF0Field(recordPlus1, unsigned char*, 0xC) = scratch2;
                         goto nextRecord;
                     case 0x1D:
-                        Update85DF0func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update85DF0AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update85DF0Field(recordPlus1, unsigned char*, 1);
                         scratch2 += step;
                         Update85DF0Field(recordPlus1, unsigned char*, 1) = scratch2;
@@ -594,10 +594,10 @@ unsigned char* func_level_27_80085DF0(int initialStep) {
                         scratch3 &= 7;
                         scratch2 &= 7;
                         if (scratch3 == scratch2) {
-                            Update85DF0func_8004F554(contact30, recordPlus4);
+                            Update85DF0ExpandSignedHalfwordVector(contact30, recordPlus4);
                             Update85DF0ShiftVectorLeft(contact30, 2);
-                            hit16 =
-                                (void*)Update85DF0func_8001BA30(contact30, 512, 3, 0, 0x100000, 0);
+                            hit16 = (void*)Update85DF0QueryDynamicMobyGeometry(contact30, 512, 3, 0,
+                                                                               0x100000, 0);
                             if (hit16) {
                                 scratch4 = Update85DF0Field(recordPlus1, short*, 0x17);
                                 frame.words[16] = scratch4;
@@ -606,7 +606,7 @@ unsigned char* func_level_27_80085DF0(int initialStep) {
                                 scratch2 = Update85DF0PlanarHeadingLookup(scratch4, argument5, 0);
                                 Update85DF0Field(hit16, unsigned char*, 0x51) = scratch2;
                             } else {
-                                scratch2 = Update85DF0func_80019194(contact30, 256);
+                                scratch2 = Update85DF0QueryWorldSphere(contact30, 256);
                                 if (scratch2 == 0)
                                     goto nextRecord;
                             }
@@ -625,7 +625,7 @@ unsigned char* func_level_27_80085DF0(int initialStep) {
                             goto removeRecord;
                         } else {
                             hit16 = Update85DF0D_8006C550;
-                            Update85DF0func_8004F554(contact30, recordPlus4);
+                            Update85DF0ExpandSignedHalfwordVector(contact30, recordPlus4);
                             Update85DF0ShiftVectorLeft(contact30, 2);
                             scratch2 = Update85DF0ApproximatePlanarDistance(
                                 contact30, (unsigned char*)hit16 + 12);
@@ -643,7 +643,7 @@ unsigned char* func_level_27_80085DF0(int initialStep) {
                             goto nextRecord;
                         }
                     case 0x21:
-                        Update85DF0func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update85DF0AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update85DF0Field(recordPlus1, short*, 0x1D);
                         if (scratch2 != 0) {
                             scratch2 = Update85DF0Field(recordPlus1, unsigned short*, 0x1B);
@@ -687,7 +687,7 @@ unsigned char* func_level_27_80085DF0(int initialStep) {
                     case 0x3B:
                         Update85DF0Field(recordPlus1, unsigned char*, 0xA) =
                             (unsigned char)(Update85DF0Field(recordPlus1, unsigned char*, 0xA) + 8);
-                        Update85DF0func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update85DF0AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         if (Update85DF0D_8006C640 & 1) {
                             Update85DF0Field(recordPlus1, unsigned short*, 0x19) =
                                 (unsigned short)(Update85DF0Field(recordPlus1, unsigned short*,
@@ -1169,7 +1169,7 @@ unsigned char* func_level_27_80085DF0(int initialStep) {
                         if (scratch2 != 0)
                             goto surviving4F;
                     removeRecord:
-                        Update85DF0func_80056504(record);
+                        Update85DF0ReleaseParticleRecord(record);
                         recordPlus1 += 32;
                         break;
                     surviving4F:

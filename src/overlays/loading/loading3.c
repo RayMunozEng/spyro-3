@@ -52,17 +52,17 @@ void Loading76FEC_CDLoadSync(int, void*, int, int) __asm__("CDLoadSync");
 /* extern */
 /* extern */
 /* extern */
-unsigned char Loading76FEC_func_8001EBAC() __asm__("func_8001EBAC");
+unsigned char Loading76FECClearTwoDisplayRegions() __asm__("func_8001EBAC");
 /* extern */
-unsigned char Loading76FEC_func_8001FB10(int) __asm__("func_8001FB10");
+unsigned char Loading76FECConfigureDrawBufferRanges(int) __asm__("func_8001FB10");
 /* extern */
-unsigned char Loading76FEC_func_8002CA50() __asm__("func_8002CA50");
+unsigned char Loading76FECServiceLevelResourceLoading() __asm__("func_8002CA50");
 /* extern */
-unsigned char Loading76FEC_func_80044240() __asm__("func_80044240");
+unsigned char Loading76FECUpdatePlayerAnimationSubsteps() __asm__("func_80044240");
 /* extern */
-unsigned char Loading76FEC_func_80047190() __asm__("func_80047190");
+unsigned char Loading76FECResetPlayerRuntimeState() __asm__("func_80047190");
 /* extern */
-unsigned char Loading76FEC_func_8004BEF8(unsigned char) __asm__("func_8004BEF8");
+unsigned char Loading76FECDispatchPlayerStateRequest(unsigned char) __asm__("func_8004BEF8");
 /* extern */
 void Loading76FECCopyVector(void*, void*) __asm__("func_8004F178");
 /* extern */
@@ -141,7 +141,7 @@ void func_loading_80076FEC(void) {
         case 1:
             counter2 = Loading76FEC_D_8006FBC4;
             if (counter2 == 0) {
-                Loading76FEC_func_8001FB10(0x1C000);
+                Loading76FECConfigureDrawBufferRanges(0x1C000);
                 Loading76FEC_CDLoadSync(Loading76FEC_D_8006E470,
                                         (void*)(Loading76FEC_D_80011254 + Loading76FEC_D_8006C714),
                                         Loading76FECField(&Loading76FEC_D_8006D8D8, int*, 0x58C),
@@ -160,15 +160,15 @@ void func_loading_80076FEC(void) {
                 Loading76FEC_D_8006E03E = -0x30;
                 Loading76FEC_D_8006E040 = 0;
                 Loading76FEC_D_8006E038 = 0;
-                Loading76FEC_func_80047190();
-                Loading76FEC_func_8004BEF8(0x11);
-                Loading76FEC_func_80044240();
+                Loading76FECResetPlayerRuntimeState();
+                Loading76FECDispatchPlayerStateRequest(0x11);
+                Loading76FECUpdatePlayerAnimationSubsteps();
                 counter2 = Loading76FEC_D_8006FBC4;
             }
             Loading76FEC_D_8006C648 = state16;
             __asm__ volatile("# counter-after-init" : "=r"(counter2) : "0"(counter2));
             Loading76FEC_D_8006FBC4 = counter2 + 1;
-            Loading76FEC_func_80044240();
+            Loading76FECUpdatePlayerAnimationSubsteps();
             scratchVector19 = &scratch.vector;
             if (Loading76FEC_D_8006FBC4 < 0x78) {
                 Loading76FECCopyVector(scratchVector19, &Loading76FEC_D_80070328);
@@ -191,7 +191,7 @@ void func_loading_80076FEC(void) {
                 Loading76FECField(&Loading76FEC_D_80070328, signed char*, 0xE) =
                     (signed char)((((0x78 - Loading76FEC_D_8006FBC4) * 0x50) / 120) - 0x60);
                 if (Loading76FEC_D_8006FBC4 == 0x74) {
-                    Loading76FEC_func_8004BEF8(0xF);
+                    Loading76FECDispatchPlayerStateRequest(0xF);
                 }
             } else if (Loading76FEC_D_8006FBC4 == 0x78) {
                 raw2 = 0x2AF8;
@@ -210,7 +210,7 @@ void func_loading_80076FEC(void) {
                 Loading76FECField(&Loading76FEC_D_80070328, signed char*, 14) = raw2;
             }
             if (Loading76FEC_D_8006C518 < 8) {
-                Loading76FEC_func_8002CA50();
+                Loading76FECServiceLevelResourceLoading();
             }
             counterPointer4 = &Loading76FEC_D_8006FBC4;
             raw3 = *counterPointer4;
@@ -250,7 +250,7 @@ void func_loading_80076FEC(void) {
             }
             MATCHING_BARRIER_VOLATILE("$2");
             blockIndex16 = 0;
-            Loading76FEC_func_8001EBAC();
+            Loading76FECClearTwoDisplayRegions();
             bufferPointer18 = &Loading76FEC_D_800722D0;
             rectangleWidth17 = 512;
             readLength6 = 0x20000;
@@ -643,16 +643,16 @@ extern volatile int Loading77964Data6FBC4View1 __asm__("D_8006FBC4");
 void Loading77964CallDrawStringCenteredView1(char*, int, int, int) __asm__("DrawStringCentered");
 void Loading77964CallDrawStringRightAlignedView1(char*, int, int,
                                                  int) __asm__("DrawStringRightAligned");
-void Loading77964Call1C368View1(void) __asm__("func_8001C368");
-void Loading77964Call1EDECView1() __asm__("func_8001EDEC");
-int Loading77964Call200A0View1() __asm__("func_800200A0");
-void Loading77964Call20428View1(int, int, int, int) __asm__("func_80020428");
-void Loading77964Call2E748View1(char*, int, int, int, int*) __asm__("func_8002E748");
-void Loading77964Call30478View1(void) __asm__("func_80030478");
-void Loading77964Call33C5CView1(void) __asm__("func_80033C5C");
-int Loading77964Call3CDA0View1() __asm__("func_8003CDA0");
-void Loading77964Call4E790View1(void*, int, int) __asm__("func_8004E790");
-int Loading77964Call4E7ACView1() __asm__("func_8004E7AC");
+void Loading77964EmitVisibleWorldTrianglePacketsView1(void) __asm__("func_8001C368");
+void Loading77964EmitPortalVolumePacketsView1() __asm__("func_8001EDEC");
+int Loading77964EmitScreenColorQuadView1() __asm__("func_800200A0");
+void Loading77964DrawNumericCounterTextView1(int, int, int, int) __asm__("func_80020428");
+void Loading77964EmitUiTextGlyphPacketsView1(char*, int, int, int, int*) __asm__("func_8002E748");
+void Loading77964BuildMobyRenderListsView1(void) __asm__("func_80030478");
+void Loading77964EmitVisibleRecordPacketsView1(void) __asm__("func_80033C5C");
+int Loading77964EmitPlayerModelPacketsView1() __asm__("func_8003CDA0");
+void Loading77964FillWordRangeView1(void*, int, int) __asm__("func_8004E790");
+int Loading77964FillWordRangeUnrolled4View1() __asm__("func_8004E7AC");
 int Loading77964Call75114View1() __asm__("func_loading_80075114");
 int Loading77964CallsprintfView1(char*, const char*, ...) __asm__("sprintf");
 extern unsigned char Loading77964Data658A0View1 __asm__("D_800658A0");
@@ -688,7 +688,7 @@ extern unsigned char Loading77964Data70328View1 __asm__("D_80070328");
 extern unsigned char Loading77964Data71A10View1 __asm__("D_80071A10");
 extern void* Loading77964Data722D0View1 __asm__("D_800722D0");
 extern unsigned char Loading77964Data74504View1 __asm__("D_loading_80074504");
-void Loading77964Call31124View1(void) __asm__("func_80031124");
+void Loading77964EmitMobyModelPacketsView1(void) __asm__("func_80031124");
 void Loading77964SetMobyAnimationView1(void*, int) __asm__("func_80034F80");
 void Loading77964CopyVectorView1(void*, void*) __asm__("func_8004F178");
 extern int Loading77964Data6C528View1 __asm__("D_8006C528");
@@ -712,8 +712,9 @@ void func_loading_80077964(void) {
         case 1:
         case 2:
             if (Loading77964Data6FBC4View2 < 0x10) {
-                Loading77964Call1EDECView1();
-                Loading77964Call4E7ACView1(Loading77964Data6C668View1 - 0x3000, 0, 0xC00);
+                Loading77964EmitPortalVolumePacketsView1();
+                Loading77964FillWordRangeUnrolled4View1(Loading77964Data6C668View1 - 0x3000, 0,
+                                                        0xC00);
                 goto queueOriginalCommonDraw;
             }
             break;
@@ -727,7 +728,8 @@ void func_loading_80077964(void) {
             rawWord2 = actorBaseOffsetOrAmount16 + rawWord2;
             actorThenRecordIndex18 = rawWord2;
             Loading77964Data6C550View1 = (void*)actorThenRecordIndex18;
-            Loading77964Call4E790View1((void*)actorThenRecordIndex18, argumentWord5, argumentWord6);
+            Loading77964FillWordRangeView1((void*)actorThenRecordIndex18, argumentWord5,
+                                           argumentWord6);
             rawWord2 = Loading77964Data6C528View1;
             argumentWord5 = (int)&Loading77964Data70328View1;
             Loading77964Field(actorBaseOffsetOrAmount16, short*, 0x36036) = rawWord2;
@@ -815,7 +817,7 @@ void func_loading_80077964(void) {
                     actorBaseOffsetOrAmount16 = actorThenRecordIndex18 * 8;
                     if (Loading77964Field((actorBaseOffsetOrAmount16 + Loading77964Data6C764View1),
                                           unsigned char*, 4) != 0) {
-                        Loading77964Call4E790View1(Loading77964Data6C604View1, 0, 0x58);
+                        Loading77964FillWordRangeView1(Loading77964Data6C604View1, 0, 0x58);
                         Loading77964Field(Loading77964Data6C604View1, short*, 0x36) = 1;
                         Loading77964Field(Loading77964Data6C604View1, unsigned char*, 0x3C) =
                             (unsigned char)Loading77964Field(byteCursorRowOrSavedWord17,
@@ -1000,9 +1002,9 @@ void func_loading_80077964(void) {
                                           (Loading77964Data6C76CView1 * 4),
                                       int*, 0),
                     0x12C, byteCursorRowOrSavedWord17, 1);
-                Loading77964Call20428View1(actorBaseOffsetOrAmount16, 0x17C,
-                                           byteCursorRowOrSavedWord17, 1);
-                Loading77964Call4E790View1(Loading77964Data6C604View1, 0, 0x58);
+                Loading77964DrawNumericCounterTextView1(actorBaseOffsetOrAmount16, 0x17C,
+                                                        byteCursorRowOrSavedWord17, 1);
+                Loading77964FillWordRangeView1(Loading77964Data6C604View1, 0, 0x58);
                 rawWord3 = Loading77964Data6C604View1;
                 rawWord2 = 0x154;
                 Loading77964Field(rawWord3, int*, 12) = rawWord2;
@@ -1083,13 +1085,14 @@ void func_loading_80077964(void) {
                 if (actorBaseOffsetOrAmount16 < 0) {
                     actorBaseOffsetOrAmount16 = 0;
                 }
-                Loading77964Call2E748View1(Loading77964Field((int)&Loading77964Data69DCCView1 +
-                                                                 (Loading77964Data6C76CView1 * 4),
-                                                             int*, 0),
-                                           0xDC, byteCursorRowOrSavedWord17, 1, 0);
-                Loading77964Call20428View1(actorBaseOffsetOrAmount16, -0x8C,
-                                           byteCursorRowOrSavedWord17, 1);
-                Loading77964Call4E790View1(Loading77964Data6C604View1, 0, 0x58);
+                Loading77964EmitUiTextGlyphPacketsView1(
+                    Loading77964Field((int)&Loading77964Data69DCCView1 +
+                                          (Loading77964Data6C76CView1 * 4),
+                                      int*, 0),
+                    0xDC, byteCursorRowOrSavedWord17, 1, 0);
+                Loading77964DrawNumericCounterTextView1(actorBaseOffsetOrAmount16, -0x8C,
+                                                        byteCursorRowOrSavedWord17, 1);
+                Loading77964FillWordRangeView1(Loading77964Data6C604View1, 0, 0x58);
                 rawWord3 = Loading77964Data6C604View1;
                 rawWord2 = 0xB4;
                 Loading77964Field(rawWord3, int*, 12) = rawWord2;
@@ -1119,7 +1122,8 @@ void func_loading_80077964(void) {
             rawWord2 = actorBaseOffsetOrAmount16 + rawWord2;
             actorThenRecordIndex18 = rawWord2;
             Loading77964Data6C550View1 = (void*)actorThenRecordIndex18;
-            Loading77964Call4E790View1((void*)actorThenRecordIndex18, argumentWord5, argumentWord6);
+            Loading77964FillWordRangeView1((void*)actorThenRecordIndex18, argumentWord5,
+                                           argumentWord6);
             rawWord2 = Loading77964Data6C528View1;
             argumentWord5 = (int)&Loading77964Data70328View1;
             Loading77964Field(actorBaseOffsetOrAmount16, short*, 0x36036) = rawWord2;
@@ -1253,26 +1257,27 @@ renderOriginalCommonRecords:
     MATCHING_KEEP(actorBaseOffsetOrAmount16);
     byteCursorRowOrSavedWord17 = Loading77964Field(actorBaseOffsetOrAmount16, int*, 0);
     Loading77964Field(actorBaseOffsetOrAmount16, int*, 0) = 0;
-    Loading77964Call1C368View1();
+    Loading77964EmitVisibleWorldTrianglePacketsView1();
     argumentWord5 = 0;
     argumentWord4 = Loading77964Data6C668View1;
     argumentWord6 = 3072;
     argumentWord4 -= 12288;
     MATCHING_KEEP(argumentWord4);
     Loading77964Field(actorBaseOffsetOrAmount16, int*, 0) = byteCursorRowOrSavedWord17;
-    Loading77964Call4E7ACView1(argumentWord4, argumentWord5, argumentWord6);
-    Loading77964Call30478View1();
-    Loading77964Call31124View1();
-    Loading77964Call33C5CView1();
+    Loading77964FillWordRangeUnrolled4View1(argumentWord4, argumentWord5, argumentWord6);
+    Loading77964BuildMobyRenderListsView1();
+    Loading77964EmitMobyModelPacketsView1();
+    Loading77964EmitVisibleRecordPacketsView1();
 queueOriginalCommonDraw:
-    Loading77964Call3CDA0View1();
+    Loading77964EmitPlayerModelPacketsView1();
     argumentWord5 = Loading77964Data6C598View1;
     argumentWord4 = 2;
     if (argumentWord5 != 0) {
         argumentWord6 = argumentWord5;
         argumentWord7 = argumentWord5;
     drawOriginalFade:
-        Loading77964Call200A0View1(argumentWord4, argumentWord5, argumentWord6, argumentWord7);
+        Loading77964EmitScreenColorQuadView1(argumentWord4, argumentWord5, argumentWord6,
+                                             argumentWord7);
     }
 finishOriginalInvocation:
     Loading77964Call75114View1(0xAE);

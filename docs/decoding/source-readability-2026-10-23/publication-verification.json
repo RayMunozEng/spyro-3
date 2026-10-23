@@ -1,0 +1,19 @@
+{
+  "AI_generated": true,
+  "human_reviewed": false,
+  "base_commit": "6537ded606595a6a6089bd1987e0897a738e6c41",
+  "source_acceptance": "docs/decoding/source-readability-2026-10-23/accepted.json",
+  "source_acceptance_Git_blob_SHA256": "1ed427372589da5e97ad3f9f5a2ddbeb52d3df3ede2f20bf9f9f9281b2f380d8",
+  "hash_domain": "Git blob bytes, before checkout newline conversion",
+  "all480_staged_native_source_and_header_blobs_equal_the_verified_source": true,
+  "source_normalization_changed_files": 0,
+  "all96_unchanged_native_commands_passed": true,
+  "all62_original_BASE_image_hashes_match": true,
+  "all337_EXE_and3098_overlay_function_matches_retained": true,
+  "linked_ELF_SHA256": "2d31c38c36ef65865a1785bf50e9fdc647fac7378711b7d0e6189aeee3a56e6f",
+  "PSX_EXE_SHA256": "e5406997dccc7300c8198498c20b9d6c4c0a547813be1010446b6c4e5d50e39f",
+  "native_receipt_SHA256": "5afd8a1fc27f339411930f741cd65effda93f865f0a238630b2e362e995253f0",
+  "duplicate_native_build_unnecessary": "The index contains exactly the 480 already verified C/header byte sequences; compiler/filter pins and output bytes are unchanged.",
+  "publication": "Recorded by the containing cleanup commit; no pull request is created.",
+  "extra_raw588_verification": "Stopped at user request; remains stopped."
+}

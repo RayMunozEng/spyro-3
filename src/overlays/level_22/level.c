@@ -156,12 +156,12 @@ extern void* Controller582CLinked1 __asm__("D_80070328 + 0x250");
 extern void* Controller582CLinked2 __asm__("D_80070328 + 0x250");
 extern unsigned char Controller582CSave[] __asm__("D_8006C7F8");
 extern int D_8006C6C0, D_8006C710, D_8006E524, D_8007203C, D_80072040;
-int Controller582CHelper3B7B4(void*, int, void*) __asm__("func_8003B7B4");
+int Controller582CRegisterTrackedValue(void*, int, void*) __asm__("func_8003B7B4");
 int Controller582CPlayMobySoundEvent(void*, int, int) __asm__("func_8003BABC");
-int Controller582CHelper3BE70(int) __asm__("func_8003BE70");
-int Controller582CHelper3BFC0(void*, int) __asm__("func_8003BFC0");
-int Controller582CHelper498C0(void) __asm__("func_800498C0");
-int Controller582CHelper4BEF8(int) __asm__("func_8004BEF8");
+int Controller582CTransitionSoundHandleTo3Or5(int) __asm__("func_8003BE70");
+int Controller582CSoundHandleMatchesOwnerInStates1Or2(void*, int) __asm__("func_8003BFC0");
+int Controller582CUpdatePlayerRetryState(void) __asm__("func_800498C0");
+int Controller582CDispatchPlayerStateRequest(int) __asm__("func_8004BEF8");
 /* AI generated; not human reviewed. SCUS-94467 USA Rev 0.
  * Original289 instructions and eight owned jump-table words per copy.
  * Original instruction streams, global/helper symbols and table offsets checked
@@ -220,7 +220,7 @@ int func_level_22_8008FCB4(int inputMask) {
             }
             goto afterCall;
         sharedCall:
-            Controller582CHelper4BEF8(helperArgument);
+            Controller582CDispatchPlayerStateRequest(helperArgument);
         handled:
             MATCHING_BARRIER_VOLATILE("$2");
             return 1;
@@ -344,7 +344,7 @@ int func_level_22_8008FCB4(int inputMask) {
                         D_80072040 = 0xC8;
                         D_8007203C = 0xA;
                         if (selectedBits & 1) {
-                            Controller582CHelper4BEF8(0x8C);
+                            Controller582CDispatchPlayerStateRequest(0x8C);
                             nextWord = Controller582CField(record0, int*, 0x24) - 1;
                         } else if (({
                                        register int selector __asm__("$2");
@@ -353,10 +353,10 @@ int func_level_22_8008FCB4(int inputMask) {
                                        MATCHING_KEEP(selector);
                                        selector;
                                    })) {
-                            Controller582CHelper4BEF8(0x8C);
+                            Controller582CDispatchPlayerStateRequest(0x8C);
                             nextWord = Controller582CField(record0, int*, 0x24) - 3;
                         } else {
-                            Controller582CHelper4BEF8(0x8D);
+                            Controller582CDispatchPlayerStateRequest(0x8D);
                             nextWord = Controller582CField(record0, int*, 0x24) - 2;
                         }
                         Controller582CField(record0, int*, 0x24) = nextWord;
@@ -372,7 +372,7 @@ int func_level_22_8008FCB4(int inputMask) {
                                 Controller582CField(record0, int*, 0x24) = 0;
                             }
                         }
-                        Controller582CHelper3B7B4(record0 + 0x24, 4, Controller582CSave);
+                        Controller582CRegisterTrackedValue(record0 + 0x24, 4, Controller582CSave);
                         return 1;
                     }
 
@@ -403,15 +403,16 @@ int func_level_22_8008FCB4(int inputMask) {
                     if (Controller582CField(Controller582CPlayer, int*, 0x280) > 0 &&
                         Controller582CField(record1, int*, 0x28) > 0)
                         return 1;
-                    if (Controller582CHelper3BFC0(Controller582CLinked1,
-                                                  Controller582CField(record1, int*, 0x48)) != 0) {
-                        if (Controller582CHelper3BFC0(Controller582CLinked2,
-                                                      Controller582CField(record1, int*, 0x48)) !=
+                    if (Controller582CSoundHandleMatchesOwnerInStates1Or2(
+                            Controller582CLinked1, Controller582CField(record1, int*, 0x48)) != 0) {
+                        if (Controller582CSoundHandleMatchesOwnerInStates1Or2(
+                                Controller582CLinked2, Controller582CField(record1, int*, 0x48)) !=
                             0)
-                            Controller582CHelper3BE70(Controller582CField(record1, int*, 0x48));
+                            Controller582CTransitionSoundHandleTo3Or5(
+                                Controller582CField(record1, int*, 0x48));
                         Controller582CField(record1, int*, 0x48) = -1;
                     }
-                    Controller582CHelper498C0();
+                    Controller582CUpdatePlayerRetryState();
                     return 1;
                 case 6:
                     resultRecord = Controller582CField(
@@ -1105,7 +1106,7 @@ void func_level_22_80090F60(HudEntry* hud) {
 extern int Timer86B88Motion __asm__("D_8006C64C");
 extern unsigned char* Timer86B88SpriteBase __asm__("D_8006C788");
 extern short Timer86B88DigitBase __asm__("D_800719CC");
-int Timer86B88Place(void*, int*, int*, int*) __asm__("func_80029708");
+int Timer86B88ApplyHudMovement(void*, int*, int*, int*) __asm__("func_80029708");
 int Timer86B88Draw(void*, int, int) __asm__("func_800289C8");
 /* AI generated; not yet human reviewed. SCUS-94467 USA Rev 0.
  * Original 356-instruction timer family is the authority. Byte access widths,
@@ -1273,7 +1274,7 @@ int func_level_22_80091058(void* input) {
         remainder60 = quotient60 - value;
         frame.quotient3600 = counter;
     }
-    Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+    Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
     Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
     {
         register int digit __asm__("$2");
@@ -1299,7 +1300,7 @@ int func_level_22_80091058(void* input) {
         digit <<= 3;
         MATCHING_KEEP2(digit, base);
         sprite = base + digit;
-        Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+        Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
         Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
     }
     {
@@ -1328,7 +1329,7 @@ int func_level_22_80091058(void* input) {
         digit -= other;
         x -= digit;
         frame.drawPositionX = x;
-        Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+        Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
         Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
     }
     {
@@ -1372,7 +1373,7 @@ int func_level_22_80091058(void* input) {
             MATCHING_KEEP2(digit, base);
             digit <<= 3;
             sprite = base + digit;
-            Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+            Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
             Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
             {
                 register int nextDigit __asm__("$2");
@@ -1398,7 +1399,7 @@ int func_level_22_80091058(void* input) {
                 nextDigit <<= 3;
                 MATCHING_KEEP2(nextDigit, nextBase);
                 sprite = nextBase + nextDigit;
-                Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+                Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
                 Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
             }
             {
@@ -1427,7 +1428,7 @@ int func_level_22_80091058(void* input) {
                 nextDigit -= other;
                 x -= nextDigit;
                 frame.drawPositionX = x;
-                Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+                Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
                 Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
             }
             {
@@ -1472,7 +1473,7 @@ int func_level_22_80091058(void* input) {
                 MATCHING_KEEP2(digitBase, sprites);
                 digitBase <<= 3;
                 sprite = sprites + digitBase;
-                Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+                Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
                 Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
                 factor = frame.quotient3600;
                 MATCHING_KEEP(factor);
@@ -1515,7 +1516,7 @@ int func_level_22_80091058(void* input) {
             MATCHING_KEEP2(digit, base);
             digit <<= 3;
             sprite = base + digit;
-            Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+            Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
             Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
             singleLeadingDigit = remainder60 < 10;
         }
@@ -1546,7 +1547,7 @@ int func_level_22_80091058(void* input) {
         MATCHING_KEEP2(digit, base);
         sprite = base + digit;
         frame.drawPositionX = x;
-        Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+        Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
         Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
     }
     return 0;
@@ -1589,7 +1590,7 @@ void DecodedPathPrepare(Moby*, int) __asm__("func_80055D24");
  * AI-generated reconstruction; not yet human reviewed. Caller cadence,
  * helper return domains and browser/runtime interpretation are unresolved.
  */
-int func_level_22_800915E8(Moby* argument, DecodedPathList* pathArgument,
+int func_level_22_800915E8(Moby* mobyArgument, DecodedPathList* pathArgument,
                            DecodedPathAngles* angleArgument) {
     Vector3D position;
     int reserved1C;
@@ -1601,7 +1602,7 @@ int func_level_22_800915E8(Moby* argument, DecodedPathList* pathArgument,
     Angle orientation;
     Vector3D distance;
     int reserved6C;
-    register Moby* moby __asm__("$19") = argument;
+    register Moby* moby __asm__("$19") = mobyArgument;
     register DecodedPathList* path __asm__("$20");
     register DecodedPathAngles* angles __asm__("$17");
     register int advanced __asm__("$23");
@@ -2959,7 +2960,6 @@ void func_level_22_8009297C(int incomingSelector, void* buffer, int forceOrCopyC
 }
 
 #undef Leaf87A04Field
-
 
 extern void (*DecodedRecordInit)(void*) asm("unk_ovlheader_80074444");
 void func_level_22_8009303C(DecodedOverlayRecord* record) {

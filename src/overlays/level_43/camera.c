@@ -53,10 +53,11 @@ extern CameraPosition Camera43_95668_D_800693B4 __asm__("D_800693B4");
 extern CameraPosition Camera43_95668_D_800693C8 __asm__("D_800693C8");
 extern int Camera43_95668_D_8006C5BC __asm__("D_8006C5BC");
 extern Spyro Camera43_95668_D_80070328 __asm__("D_80070328");
-void Camera43_95668_func_800135A4(CameraPosition*, CameraPosition*, int) __asm__("func_800135A4");
-void Camera43_95668_func_80013918(int) __asm__("func_80013918");
-void Camera43_95668_func_800142E0() __asm__("func_800142E0");
-void Camera43_95668_func_80014354() __asm__("func_80014354");
+void Camera43_95668CopyCameraPositionWithWrappedAngle(CameraPosition*, CameraPosition*,
+                                                      int) __asm__("func_800135A4");
+void Camera43_95668SelectSignedCameraOrbitRequest(int) __asm__("func_80013918");
+void Camera43_95668RefreshCameraPlayerAnchor() __asm__("func_800142E0");
+void Camera43_95668SelectCameraFollowProfile() __asm__("func_80014354");
 int Camera43_95668SubAngle12(int arg0, int arg1) __asm__("func_8003615C");
 extern int Camera43_95668PlanarHeadingLookup(int, int, int) __asm__("func_8004E880");
 extern void Camera43_95668CopyVector(Vector3D*, Vector3D*) __asm__("func_8004F178");
@@ -93,7 +94,7 @@ extern int Camera43_95668_D_8006E538 __asm__("D_8006E538");
 extern unsigned char Camera43_95668_D_8006E546 __asm__("D_8006E546");
 extern unsigned char Camera43_95668_D_8006E547 __asm__("D_8006E547");
 extern unsigned char Camera43_95668_D_80071A04 __asm__("D_80071A04");
-void Camera43_95668_func_800139A4() __asm__("func_800139A4");
+void Camera43_95668UpdateCameraOrbitReturn() __asm__("func_800139A4");
 extern CameraPosition Camera43_95668_D_80069238 __asm__("D_80069238");
 extern int Camera43_95668_D_8006E0E0 __asm__("D_8006E0E0");
 extern int Camera43_95668_D_8006E168 __asm__("D_8006E168");
@@ -155,7 +156,7 @@ void func_level_43_80095668(void) {
     switch (Camera43_95668_D_8006E044) {
             /* irregular */
         case 13:
-            Camera43_95668_func_800142E0();
+            Camera43_95668RefreshCameraPlayerAnchor();
             if (Camera43_95668_D_8006E164 != 0) {
                 Camera43_95668SubtractVector(&originalFrame.sp10, Camera43_95668_D_8006E164 + 0xC,
                                              &Camera43_95668_D_80070328.position);
@@ -166,13 +167,14 @@ void func_level_43_80095668(void) {
                 Camera43_95668_D_8006E064 = word2;
                 var_a0 = (int*)(base18 - 0x58);
                 if (word3 == 0) {
-                    Camera43_95668_func_80014354(var_a0);
-                    Camera43_95668_func_80013918(0x400);
+                    Camera43_95668SelectCameraFollowProfile(var_a0);
+                    Camera43_95668SelectSignedCameraOrbitRequest(0x400);
                     MATCHING_KEEP_GNU_VOLATILE_CLOBBER(base18, "$4");
                     var_a0 = (int*)(base18 - 0x58);
                 }
                 var_s0 = var_s1 * 0x14;
-                Camera43_95668_func_800135A4(var_a0, &Camera43_95668_D_8006929C[var_s1], 0);
+                Camera43_95668CopyCameraPositionWithWrappedAngle(
+                    var_a0, &Camera43_95668_D_8006929C[var_s1], 0);
                 var_a0_2 = (int*)(base18 - 0x44);
                 goto block_88;
             }
@@ -413,12 +415,13 @@ void func_level_43_80095668(void) {
             return;
         case 33:
             if (Camera43_95668_D_8006E12C == 0) {
-                Camera43_95668_func_800135A4((CameraPosition*)(base18 - 0xA8),
-                                             &Camera43_95668_D_80069238, Camera43_95668_D_8006E064);
-                Camera43_95668_func_80013918(0xC0);
-                Camera43_95668_func_800139A4();
+                Camera43_95668CopyCameraPositionWithWrappedAngle((CameraPosition*)(base18 - 0xA8),
+                                                                 &Camera43_95668_D_80069238,
+                                                                 Camera43_95668_D_8006E064);
+                Camera43_95668SelectSignedCameraOrbitRequest(0xC0);
+                Camera43_95668UpdateCameraOrbitReturn();
             }
-            Camera43_95668_func_800142E0();
+            Camera43_95668RefreshCameraPlayerAnchor();
             __asm__ __volatile__("" : "=r"(base18) : "0"(base18) : "$16", "$4");
             address4 = (int*)(base18 - 0x58);
             MATCHING_KEEP(address4);
@@ -428,7 +431,7 @@ void func_level_43_80095668(void) {
             MATCHING_KEEP(word2);
             var_s0 = word2 << 2;
             Camera43_95668_D_8006E064 = Camera43_95668_D_8006E168;
-            Camera43_95668_func_800135A4(
+            Camera43_95668CopyCameraPositionWithWrappedAngle(
                 (CameraPosition*)address4,
                 (CameraPosition*)((unsigned char*)Camera43_95668_D_8006929C + var_s0), 0);
             var_a0_2 = (int*)(base18 - 0x44);
@@ -443,39 +446,40 @@ void func_level_43_80095668(void) {
                 Camera43_95668_D_8006E0E0 = word3;
             }
         block_88:
-            Camera43_95668_func_800135A4(
+            Camera43_95668CopyCameraPositionWithWrappedAngle(
                 var_a0_2, (CameraPosition*)((unsigned char*)Camera43_95668_D_80069328 + var_s0), 0);
-            Camera43_95668_func_800135A4((CameraPosition*)(base18 - 0x30),
-                                         &Camera43_95668_D_800693C8, 0);
-            Camera43_95668_func_800135A4((CameraPosition*)(base18 - 0x1C),
-                                         &Camera43_95668_D_800693B4, 0);
+            Camera43_95668CopyCameraPositionWithWrappedAngle((CameraPosition*)(base18 - 0x30),
+                                                             &Camera43_95668_D_800693C8, 0);
+            Camera43_95668CopyCameraPositionWithWrappedAngle((CameraPosition*)(base18 - 0x1C),
+                                                             &Camera43_95668_D_800693B4, 0);
             return;
         case 39:
             temp_a0_4 = (CameraPosition*)(base18 - 0x58);
             if (Camera43_95668_D_8006E12C == 0) {
-                Camera43_95668_func_80014354(temp_a0_4);
+                Camera43_95668SelectCameraFollowProfile(temp_a0_4);
                 MATCHING_KEEP_GNU_VOLATILE_CLOBBER(base18, "$4");
-                Camera43_95668_func_800135A4((CameraPosition*)(base18 - 0x58),
-                                             &Camera43_95668_D_80069314, 0);
-                Camera43_95668_func_800135A4((CameraPosition*)(base18 - 0x44),
-                                             &Camera43_95668_D_800693A0, 0);
-                Camera43_95668_func_800135A4((CameraPosition*)(base18 - 0x30),
-                                             &Camera43_95668_D_800693C8, 0);
+                Camera43_95668CopyCameraPositionWithWrappedAngle((CameraPosition*)(base18 - 0x58),
+                                                                 &Camera43_95668_D_80069314, 0);
+                Camera43_95668CopyCameraPositionWithWrappedAngle((CameraPosition*)(base18 - 0x44),
+                                                                 &Camera43_95668_D_800693A0, 0);
+                Camera43_95668CopyCameraPositionWithWrappedAngle((CameraPosition*)(base18 - 0x30),
+                                                                 &Camera43_95668_D_800693C8, 0);
                 Camera43_95668_D_8006E114 = -1;
                 Camera43_95668_D_8006E118 = -1;
                 Camera43_95668_D_8006E11C = -1;
                 Camera43_95668_D_8006E120 = -1;
                 Camera43_95668_D_8006E124 = -1;
             } else {
-                Camera43_95668_func_800135A4(temp_a0_4, &Camera43_95668_D_8006929C[var_s1], 0);
-                Camera43_95668_func_800135A4((CameraPosition*)(base18 - 0x44),
-                                             &Camera43_95668_D_80069328[var_s1], 0);
-                Camera43_95668_func_800135A4((CameraPosition*)(base18 - 0x1C),
-                                             &Camera43_95668_D_800693B4, 0);
-                Camera43_95668_func_800135A4((CameraPosition*)(base18 - 0x30),
-                                             &Camera43_95668_D_800693C8, 0);
+                Camera43_95668CopyCameraPositionWithWrappedAngle(
+                    temp_a0_4, &Camera43_95668_D_8006929C[var_s1], 0);
+                Camera43_95668CopyCameraPositionWithWrappedAngle(
+                    (CameraPosition*)(base18 - 0x44), &Camera43_95668_D_80069328[var_s1], 0);
+                Camera43_95668CopyCameraPositionWithWrappedAngle((CameraPosition*)(base18 - 0x1C),
+                                                                 &Camera43_95668_D_800693B4, 0);
+                Camera43_95668CopyCameraPositionWithWrappedAngle((CameraPosition*)(base18 - 0x30),
+                                                                 &Camera43_95668_D_800693C8, 0);
             }
-            Camera43_95668_func_800142E0();
+            Camera43_95668RefreshCameraPlayerAnchor();
             break;
     }
     return;

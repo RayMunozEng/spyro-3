@@ -369,7 +369,7 @@ void DecodedPathPrepare(Moby*, int) __asm__("func_80055D24");
  * AI-generated reconstruction; not yet human reviewed. Caller cadence,
  * helper return domains and browser/runtime interpretation are unresolved.
  */
-int func_level_21_80086D18(Moby* argument, DecodedPathList* pathArgument,
+int func_level_21_80086D18(Moby* mobyArgument, DecodedPathList* pathArgument,
                            DecodedPathAngles* angleArgument) {
     Vector3D position;
     int reserved1C;
@@ -381,7 +381,7 @@ int func_level_21_80086D18(Moby* argument, DecodedPathList* pathArgument,
     Angle orientation;
     Vector3D distance;
     int reserved6C;
-    register Moby* moby __asm__("$19") = argument;
+    register Moby* moby __asm__("$19") = mobyArgument;
     register DecodedPathList* path __asm__("$20");
     register DecodedPathAngles* angles __asm__("$17");
     register int advanced __asm__("$23");

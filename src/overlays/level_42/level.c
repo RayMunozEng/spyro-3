@@ -138,12 +138,12 @@ extern void* Controller582CLinked1 __asm__("D_80070328 + 0x250");
 extern void* Controller582CLinked2 __asm__("D_80070328 + 0x250");
 extern unsigned char Controller582CSave[] __asm__("D_8006C7F8");
 extern int D_8006C6C0, D_8006C710, D_8006E524, D_8007203C, D_80072040;
-int Controller582CHelper3B7B4(void*, int, void*) __asm__("func_8003B7B4");
+int Controller582CRegisterTrackedValue(void*, int, void*) __asm__("func_8003B7B4");
 int Controller582CPlayMobySoundEvent(void*, int, int) __asm__("func_8003BABC");
-int Controller582CHelper3BE70(int) __asm__("func_8003BE70");
-int Controller582CHelper3BFC0(void*, int) __asm__("func_8003BFC0");
-int Controller582CHelper498C0(void) __asm__("func_800498C0");
-int Controller582CHelper4BEF8(int) __asm__("func_8004BEF8");
+int Controller582CTransitionSoundHandleTo3Or5(int) __asm__("func_8003BE70");
+int Controller582CSoundHandleMatchesOwnerInStates1Or2(void*, int) __asm__("func_8003BFC0");
+int Controller582CUpdatePlayerRetryState(void) __asm__("func_800498C0");
+int Controller582CDispatchPlayerStateRequest(int) __asm__("func_8004BEF8");
 /* AI generated; not human reviewed. SCUS-94467 USA Rev 0.
  * Original289 instructions and eight owned jump-table words per copy.
  * Original instruction streams, global/helper symbols and table offsets checked
@@ -202,7 +202,7 @@ int func_level_42_80084E4C(int inputMask) {
             }
             goto afterCall;
         sharedCall:
-            Controller582CHelper4BEF8(helperArgument);
+            Controller582CDispatchPlayerStateRequest(helperArgument);
         handled:
             MATCHING_BARRIER_VOLATILE("$2");
             return 1;
@@ -325,7 +325,7 @@ int func_level_42_80084E4C(int inputMask) {
                         D_80072040 = 0xC8;
                         D_8007203C = 0xA;
                         if (selectedBits & 1) {
-                            Controller582CHelper4BEF8(0x8C);
+                            Controller582CDispatchPlayerStateRequest(0x8C);
                             nextWord = Controller582CField(record0, int*, 0x24) - 1;
                         } else if (({
                                        register int selector __asm__("$2");
@@ -334,10 +334,10 @@ int func_level_42_80084E4C(int inputMask) {
                                        MATCHING_KEEP(selector);
                                        selector;
                                    })) {
-                            Controller582CHelper4BEF8(0x8C);
+                            Controller582CDispatchPlayerStateRequest(0x8C);
                             nextWord = Controller582CField(record0, int*, 0x24) - 3;
                         } else {
-                            Controller582CHelper4BEF8(0x8D);
+                            Controller582CDispatchPlayerStateRequest(0x8D);
                             nextWord = Controller582CField(record0, int*, 0x24) - 2;
                         }
                         Controller582CField(record0, int*, 0x24) = nextWord;
@@ -353,7 +353,7 @@ int func_level_42_80084E4C(int inputMask) {
                                 Controller582CField(record0, int*, 0x24) = 0;
                             }
                         }
-                        Controller582CHelper3B7B4(record0 + 0x24, 4, Controller582CSave);
+                        Controller582CRegisterTrackedValue(record0 + 0x24, 4, Controller582CSave);
                         return 1;
                     }
 
@@ -384,15 +384,16 @@ int func_level_42_80084E4C(int inputMask) {
                     if (Controller582CField(Controller582CPlayer, int*, 0x280) > 0 &&
                         Controller582CField(record1, int*, 0x28) > 0)
                         return 1;
-                    if (Controller582CHelper3BFC0(Controller582CLinked1,
-                                                  Controller582CField(record1, int*, 0x48)) != 0) {
-                        if (Controller582CHelper3BFC0(Controller582CLinked2,
-                                                      Controller582CField(record1, int*, 0x48)) !=
+                    if (Controller582CSoundHandleMatchesOwnerInStates1Or2(
+                            Controller582CLinked1, Controller582CField(record1, int*, 0x48)) != 0) {
+                        if (Controller582CSoundHandleMatchesOwnerInStates1Or2(
+                                Controller582CLinked2, Controller582CField(record1, int*, 0x48)) !=
                             0)
-                            Controller582CHelper3BE70(Controller582CField(record1, int*, 0x48));
+                            Controller582CTransitionSoundHandleTo3Or5(
+                                Controller582CField(record1, int*, 0x48));
                         Controller582CField(record1, int*, 0x48) = -1;
                     }
-                    Controller582CHelper498C0();
+                    Controller582CUpdatePlayerRetryState();
                     return 1;
                 case 6:
                     resultRecord = Controller582CField(
@@ -713,7 +714,7 @@ void DecodedPathPrepare(Moby*, int) __asm__("func_80055D24");
  * AI-generated reconstruction; not yet human reviewed. Caller cadence,
  * helper return domains and browser/runtime interpretation are unresolved.
  */
-int func_level_42_80085B0C(Moby* argument, DecodedPathList* pathArgument,
+int func_level_42_80085B0C(Moby* mobyArgument, DecodedPathList* pathArgument,
                            DecodedPathAngles* angleArgument) {
     Vector3D position;
     int reserved1C;
@@ -725,7 +726,7 @@ int func_level_42_80085B0C(Moby* argument, DecodedPathList* pathArgument,
     Angle orientation;
     Vector3D distance;
     int reserved6C;
-    register Moby* moby __asm__("$19") = argument;
+    register Moby* moby __asm__("$19") = mobyArgument;
     register DecodedPathList* path __asm__("$20");
     register DecodedPathAngles* angles __asm__("$17");
     register int advanced __asm__("$23");

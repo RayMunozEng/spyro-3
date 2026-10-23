@@ -15,8 +15,8 @@ extern unsigned short Level23SpawnD_8006E03E __asm__("D_8006E03E");
 extern short Level23SpawnD_8006E040 __asm__("D_8006E040");
 int Level23SpawnInterpolateCosine(int, int) __asm__("func_8004EA2C");
 int Level23SpawnInterpolateSine(int, int) __asm__("func_8004E9E4");
-int Level23Spawnfunc_8001A310(void*, int, int, int) __asm__("func_8001A310");
-int Level23Spawnfunc_8001A358(void*, int) __asm__("func_8001A358");
+int Level23SpawnQueryWorldHeightWithOptions(void*, int, int, int) __asm__("func_8001A310");
+int Level23SpawnQueryWorldHeight(void*, int) __asm__("func_8001A358");
 extern int Level23SpawnD_8006D07C __asm__("D_8006D07C");
 extern int Level23SpawnD_8006D080 __asm__("D_8006D080");
 extern int Level23SpawnD_8006D084 __asm__("D_8006D084");
@@ -38,16 +38,16 @@ extern unsigned char Level23SpawnPlayerE __asm__("D_80070328 + 0xE");
 extern unsigned char Level23SpawnColor1[] __asm__("D_80066BAC");
 extern unsigned char Level23SpawnColor2[] __asm__("D_80066BAC");
 #define Level23SpawnField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Level23Spawnfunc_8004EA90(void*, void*, int) __asm__("func_8004EA90");
+int Level23SpawnBuildPackedAngleBasisMatrix(void*, void*, int) __asm__("func_8004EA90");
 int Level23SpawnTransformVectorByBasis(void*, void*, void*) __asm__("func_8004ED6C");
 int Level23SpawnShiftVectorRightTowardZero(void*, int) __asm__("func_8004F110");
 int Level23SpawnCopyVector(void*, void*) __asm__("func_8004F178");
 int Level23SpawnAddVector(void*, void*, void*) __asm__("func_8004F194");
 int Level23SpawnMultiplyVectorGpfSf0(void*, void*, int) __asm__("func_8004F1FC");
 int Level23SpawnPackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-void* Level23Spawnfunc_80056434(int) __asm__("func_80056434");
+void* Level23SpawnAllocateParticleRecord(int) __asm__("func_80056434");
 int Level23SpawnRandBetween(int, int) __asm__("func_8003636C");
-int Level23Spawnfunc_8004F58C(void*, void*) __asm__("func_8004F58C");
+int Level23SpawnCopyHalfwordVector(void*, void*) __asm__("func_8004F58C");
 int Level23Spawnrand(void) __asm__("rand");
 extern unsigned char Level23SpawnD_800658A0[] __asm__("D_800658A0");
 extern unsigned char Level23SpawnD_80065920[] __asm__("D_80065920");
@@ -185,7 +185,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
             MATCHING_KEEP_VOLATILE_CLOBBER(byte255, "memory");
             switch (kindSelector) { /* switch 1 */
                 case 0x0:           /* switch 1 */
-                    record = Level23Spawnfunc_80056434(2);
+                    record = Level23SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -213,7 +213,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                     Level23SpawnField(record, unsigned char*, 14) = commonByte8;
                     goto storeTrailingF9;
                 case 0x1: /* switch 1 */
-                    record = Level23Spawnfunc_80056434(2);
+                    record = Level23SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -244,7 +244,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                     Level23SpawnField(record, unsigned char*, 15) = commonByte8;
                     goto initializeTrailingBytes;
                 case 0x2:
-                    record = Level23Spawnfunc_80056434(2);
+                    record = Level23SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -288,7 +288,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                     break;
                 case 0x6:
                     temp_s1 = Level23SpawnField(reference, unsigned char**, 0);
-                    record = Level23Spawnfunc_80056434(3);
+                    record = Level23SpawnAllocateParticleRecord(3);
                     Level23SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level23Spawnrand();
                     {
@@ -350,7 +350,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                         break;
                     }
                 case 0x8:
-                    record = Level23Spawnfunc_80056434(4);
+                    record = Level23SpawnAllocateParticleRecord(4);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -359,7 +359,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                         Level23SpawnField(record, unsigned char*, 0) = kindSelector;
                         Level23SpawnField(record, unsigned char*, 2) = 0;
                         Level23SpawnField(record, unsigned char*, 3) = tailByte;
-                        Level23Spawnfunc_8004F58C(destination, source);
+                        Level23SpawnCopyHalfwordVector(destination, source);
                     }
                     tailByte = Level23Spawnrand();
                     tailByte &= 6;
@@ -382,7 +382,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x9: /* switch 1 */
-                    record = Level23Spawnfunc_80056434(2);
+                    record = Level23SpawnAllocateParticleRecord(2);
                     {
                         register void* playerVector __asm__("$16") = &frame.sp20;
                         register void* destination __asm__("$4") = playerVector;
@@ -452,7 +452,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                     Level23SpawnField(record, unsigned char*, 14) = commonByte8;
                     goto storeTrailingF9;
                 case 0xA: /* switch 1 */
-                    record = Level23Spawnfunc_80056434(3);
+                    record = Level23SpawnAllocateParticleRecord(3);
                     Level23SpawnField(record, unsigned char*, 0) = kindSelector;
                     {
                         register void* destination __asm__("$4") = record + 4;
@@ -515,7 +515,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0xC: /* switch 1 */
-                    record = Level23Spawnfunc_80056434(2);
+                    record = Level23SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = reference + 32;
                         register int iteration __asm__("$8") = frame.sp118;
@@ -677,7 +677,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                                          4 + (Level23Spawnrand() & 7));
                     break;
                 case 0xd:
-                    record = Level23Spawnfunc_80056434(2);
+                    record = Level23SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -708,7 +708,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                     Level23SpawnField(record, unsigned char*, 15) = commonByte8;
                     goto initializeTrailingBytes;
                 case 0x21: /* switch 1 */
-                    record = Level23Spawnfunc_80056434(2);
+                    record = Level23SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level23SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -1030,13 +1030,13 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                         value3 = low8 >> 12;
                         value2 += value3;
                         frame.sp74 = value2;
-                        value2 = Level23Spawnfunc_8001A358(destination4, (int)source5);
+                        value2 = Level23SpawnQueryWorldHeight(destination4, (int)source5);
                     }
                     MATCHING_KEEP_VOLATILE_CLOBBER(byte255, "memory");
                     frame.sp78 = value2;
                     if (value2 == 0)
                         break;
-                    record = Level23Spawnfunc_80056434(3);
+                    record = Level23SpawnAllocateParticleRecord(3);
                     MATCHING_KEEP_VOLATILE_CLOBBER(byte255, "memory");
                     value2 = 1;
                     MATCHING_KEEP_CLOBBER(value2, "memory");
@@ -1112,7 +1112,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                     Level23SpawnField(record, unsigned char*, 31) = Level23SpawnD_80071934;
                 } break;
                 case 0x2A:
-                    record = Level23Spawnfunc_80056434(4);
+                    record = Level23SpawnAllocateParticleRecord(4);
                     {
                         register void* arg4 __asm__("$4") = record + 4;
                         register void* arg5 __asm__("$5") = reference;
@@ -1157,13 +1157,13 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                     {
                         register int commonByte3 __asm__("$3");
                         case 0x2B:
-                            record = Level23Spawnfunc_80056434(4);
+                            record = Level23SpawnAllocateParticleRecord(4);
                             tailByte = 1;
                             Level23SpawnField(record, unsigned char*, 0) = kindSelector;
                             Level23SpawnField(record, unsigned char*, 2) = 0;
                             Level23SpawnField(record, unsigned char*, 3) = tailByte;
                             if (modeSelector == 0) {
-                                Level23Spawnfunc_8004F58C(record + 4, reference);
+                                Level23SpawnCopyHalfwordVector(record + 4, reference);
                                 tailByte = Level23Spawnrand();
                                 tailByte &= 7;
                                 tailByte += 2;
@@ -1224,7 +1224,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                             break;
                     }
                 case 0x2E:
-                    record = Level23Spawnfunc_80056434(2);
+                    record = Level23SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1284,7 +1284,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                     Level23SpawnField(record, unsigned char*, 15) = commonByte8;
                     goto initializeTrailingBytes;
                 case 0x37:
-                    record = Level23Spawnfunc_80056434(2);
+                    record = Level23SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1312,7 +1312,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                     goto storeTrailingF9;
 
                 case 0x38:
-                    record = Level23Spawnfunc_80056434(2);
+                    record = Level23SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level23SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -1345,7 +1345,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x3B: /* switch 1 */
-                    record = Level23Spawnfunc_80056434(5);
+                    record = Level23SpawnAllocateParticleRecord(5);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1411,7 +1411,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                         (short)((Level23Spawnrand() & 0xF) - 8);
                     break;
                 case 0x3C:
-                    record = Level23Spawnfunc_80056434(2);
+                    record = Level23SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1456,7 +1456,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                 case 0x42: /* switch 1 */
                 {
                     register int local128 __asm__("$9");
-                    record = Level23Spawnfunc_80056434(0);
+                    record = Level23SpawnAllocateParticleRecord(0);
                     Level23SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level23SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level23Spawnrand() & 0xF);
@@ -1626,7 +1626,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                         break;
                     if (value4 <= 0)
                         break;
-                    value2 = Level23Spawnfunc_8001A310(&frame.sp90, 0x60C0, 2, 0);
+                    value2 = Level23SpawnQueryWorldHeightWithOptions(&frame.sp90, 0x60C0, 2, 0);
                     value3 = Level23SpawnD_8006E03E;
                     MATCHING_KEEP2_CLOBBER(value2, value3, "memory");
                     scratch16 = value2;
@@ -1659,7 +1659,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                         break;
                     if (scratch16 != 0 && Level23SpawnD_80071920 <= 0)
                         break;
-                    record = Level23Spawnfunc_80056434(1);
+                    record = Level23SpawnAllocateParticleRecord(1);
                     tailByte = 1;
                     Level23SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level23SpawnField(record, unsigned char*, 3) = tailByte;
@@ -1730,7 +1730,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                 case 0x46: /* switch 1 */
                 {
                     register int local128 __asm__("$8");
-                    record = Level23Spawnfunc_80056434(1);
+                    record = Level23SpawnAllocateParticleRecord(1);
                     Level23SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level23SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level23Spawnrand() & 0xF);
@@ -1738,7 +1738,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                     frame.spD0 = 0;
                     frame.spD1 = Level23Spawnrand();
                     frame.spD2 = Level23Spawnrand();
-                    Level23Spawnfunc_8004EA90(&frame.spD0, &frame.spD8, 0);
+                    Level23SpawnBuildPackedAngleBasisMatrix(&frame.spD0, &frame.spD8, 0);
                     frame.spC0 = (int)modeSelector;
                     frame.spC4 = 0;
                     frame.spC8 = 0;
@@ -1794,7 +1794,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                     break;
                 }
                 case 0x47: /* switch 1 */
-                    record = Level23Spawnfunc_80056434(1);
+                    record = Level23SpawnAllocateParticleRecord(1);
                     Level23SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level23SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level23Spawnrand() & 7);
@@ -1869,7 +1869,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x4E: /* switch 1 */
-                    record = Level23Spawnfunc_80056434(0);
+                    record = Level23SpawnAllocateParticleRecord(0);
                     Level23SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level23SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level23Spawnrand() & 0x1F);
@@ -1939,7 +1939,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                 case 0x4F: /* switch 1 */
                 {
                     register int commonByte9 __asm__("$9");
-                    record = Level23Spawnfunc_80056434(1);
+                    record = Level23SpawnAllocateParticleRecord(1);
                     Level23SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level23SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level23Spawnrand() & 0xF);
@@ -2019,7 +2019,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                 }
                 case 0x52:
                     temp_s1 = Level23SpawnField(reference, unsigned char**, 0);
-                    record = Level23Spawnfunc_80056434(1);
+                    record = Level23SpawnAllocateParticleRecord(1);
                     Level23SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level23Spawnrand();
                     tailByte &= 15;
@@ -2096,7 +2096,7 @@ void* func_level_23_8008FA1C(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x54:
-                    record = Level23Spawnfunc_80056434(0);
+                    record = Level23SpawnAllocateParticleRecord(0);
                     Level23SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level23Spawnrand();
                     tailByte &= 15;

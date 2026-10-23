@@ -10,14 +10,14 @@
 extern unsigned char Cutscene75B88Color1[] __asm__("D_80066BAC");
 extern unsigned char Cutscene75B88Color2[] __asm__("D_80066BAC");
 #define Cutscene75B88Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Cutscene75B88func_8004EA90(void*, void*, int) __asm__("func_8004EA90");
+int Cutscene75B88BuildPackedAngleBasisMatrix(void*, void*, int) __asm__("func_8004EA90");
 int Cutscene75B88TransformVectorByBasis(void*, void*, void*) __asm__("func_8004ED6C");
 int Cutscene75B88ShiftVectorRightTowardZero(void*, int) __asm__("func_8004F110");
 int Cutscene75B88CopyVector(void*, void*) __asm__("func_8004F178");
 int Cutscene75B88AddVector(void*, void*, void*) __asm__("func_8004F194");
 int Cutscene75B88MultiplyVectorGpfSf0(void*, void*, int) __asm__("func_8004F1FC");
 int Cutscene75B88PackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-void* Cutscene75B88func_80056434(int) __asm__("func_80056434");
+void* Cutscene75B88AllocateParticleRecord(int) __asm__("func_80056434");
 int Cutscene75B88rand(void) __asm__("rand");
 extern unsigned char Cutscene75B88D_800658A0[] __asm__("D_800658A0");
 extern unsigned char Cutscene75B88D_80065920[] __asm__("D_80065920");
@@ -96,7 +96,7 @@ void* func_level_17_8008163C(int entryCount, int kind, void* input, void* mode) 
         do {
             switch (kindSelector) { /* switch 1 */
                 case 0x0:           /* switch 1 */
-                    record = Cutscene75B88func_80056434(2);
+                    record = Cutscene75B88AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -134,7 +134,7 @@ void* func_level_17_8008163C(int entryCount, int kind, void* input, void* mode) 
 
                     goto initializeTrailingBytes;
                 case 0x1: /* switch 1 */
-                    record = Cutscene75B88func_80056434(2);
+                    record = Cutscene75B88AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -163,7 +163,7 @@ void* func_level_17_8008163C(int entryCount, int kind, void* input, void* mode) 
                     tailByte = 4;
                     goto initializeTrailingBytes;
                 case 0x9: /* switch 1 */
-                    record = Cutscene75B88func_80056434(2);
+                    record = Cutscene75B88AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = &frame.sp10;
                         register unsigned char* player __asm__("$16");
@@ -238,7 +238,7 @@ void* func_level_17_8008163C(int entryCount, int kind, void* input, void* mode) 
 
                     goto initializeTrailingBytes;
                 case 0xA: /* switch 1 */
-                    record = Cutscene75B88func_80056434(3);
+                    record = Cutscene75B88AllocateParticleRecord(3);
                     Cutscene75B88Field(record, unsigned char*, 0) = kindSelector;
                     {
                         register void* destination __asm__("$4") = record + 4;
@@ -298,7 +298,7 @@ void* func_level_17_8008163C(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0xC: /* switch 1 */
-                    record = Cutscene75B88func_80056434(2);
+                    record = Cutscene75B88AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = reference + 32;
                         register void* table __asm__("$5");
@@ -462,7 +462,7 @@ void* func_level_17_8008163C(int entryCount, int kind, void* input, void* mode) 
                                          4 + (Cutscene75B88rand() & 7));
                     break;
                 case 0xd:
-                    record = Cutscene75B88func_80056434(2);
+                    record = Cutscene75B88AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -493,7 +493,7 @@ void* func_level_17_8008163C(int entryCount, int kind, void* input, void* mode) 
                     __asm__("" : "=r"(tailByte) : "0"(tailByte), "r"(kindSelector));
                     goto initializeTrailingBytes;
                 case 0x20:
-                    record = Cutscene75B88func_80056434(2);
+                    record = Cutscene75B88AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -524,7 +524,7 @@ void* func_level_17_8008163C(int entryCount, int kind, void* input, void* mode) 
                     __asm__("" : "=r"(tailByte) : "0"(tailByte), "r"(record));
                     goto initializeTrailingBytes;
                 case 0x21: /* switch 1 */
-                    record = Cutscene75B88func_80056434(2);
+                    record = Cutscene75B88AllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Cutscene75B88Field(record, unsigned char*, 0) = kindSelector;
@@ -687,7 +687,7 @@ void* func_level_17_8008163C(int entryCount, int kind, void* input, void* mode) 
                     Cutscene75B88Field(record, unsigned char*, 0x10) = 0;
                     break;
                 case 0x3B: /* switch 1 */
-                    record = Cutscene75B88func_80056434(5);
+                    record = Cutscene75B88AllocateParticleRecord(5);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -754,7 +754,7 @@ void* func_level_17_8008163C(int entryCount, int kind, void* input, void* mode) 
                         (short)((Cutscene75B88rand() & 0xF) - 8);
                     break;
                 case 0x42: /* switch 1 */
-                    record = Cutscene75B88func_80056434(0);
+                    record = Cutscene75B88AllocateParticleRecord(0);
                     Cutscene75B88Field(record, unsigned char*, 0) = kindSelector;
                     Cutscene75B88Field(record, unsigned char*, 2) =
                         (unsigned char)(Cutscene75B88rand() & 0xF);
@@ -858,7 +858,7 @@ void* func_level_17_8008163C(int entryCount, int kind, void* input, void* mode) 
                     Cutscene75B88Field(record, unsigned char*, 0xF) = 0x40;
                     break;
                 case 0x46: /* switch 1 */
-                    record = Cutscene75B88func_80056434(1);
+                    record = Cutscene75B88AllocateParticleRecord(1);
                     Cutscene75B88Field(record, unsigned char*, 0) = kindSelector;
                     Cutscene75B88Field(record, unsigned char*, 2) =
                         (unsigned char)(Cutscene75B88rand() & 0xF);
@@ -866,7 +866,7 @@ void* func_level_17_8008163C(int entryCount, int kind, void* input, void* mode) 
                     frame.sp60 = 0;
                     frame.sp61 = Cutscene75B88rand();
                     frame.sp62 = Cutscene75B88rand();
-                    Cutscene75B88func_8004EA90(&frame.sp60, &frame.sp68, 0);
+                    Cutscene75B88BuildPackedAngleBasisMatrix(&frame.sp60, &frame.sp68, 0);
                     frame.sp50 = modeSelector;
                     frame.sp54 = 0;
                     frame.sp58 = 0;
@@ -920,7 +920,7 @@ void* func_level_17_8008163C(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x47: /* switch 1 */
-                    record = Cutscene75B88func_80056434(1);
+                    record = Cutscene75B88AllocateParticleRecord(1);
                     Cutscene75B88Field(record, unsigned char*, 0) = kindSelector;
                     Cutscene75B88Field(record, unsigned char*, 2) =
                         (unsigned char)(Cutscene75B88rand() & 7);
@@ -995,7 +995,7 @@ void* func_level_17_8008163C(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x4E: /* switch 1 */
-                    record = Cutscene75B88func_80056434(0);
+                    record = Cutscene75B88AllocateParticleRecord(0);
                     Cutscene75B88Field(record, unsigned char*, 0) = kindSelector;
                     Cutscene75B88Field(record, unsigned char*, 2) =
                         (unsigned char)(Cutscene75B88rand() & 0x1F);
@@ -1065,7 +1065,7 @@ void* func_level_17_8008163C(int entryCount, int kind, void* input, void* mode) 
                     Cutscene75B88Field(record, unsigned char*, 0xA) = 2;
                     break;
                 case 0x4F: /* switch 1 */
-                    record = Cutscene75B88func_80056434(1);
+                    record = Cutscene75B88AllocateParticleRecord(1);
                     Cutscene75B88Field(record, unsigned char*, 0) = kindSelector;
                     Cutscene75B88Field(record, unsigned char*, 2) =
                         (unsigned char)(Cutscene75B88rand() & 0xF);

@@ -28,8 +28,8 @@ void CutsceneOrbitPoint(Moby*, int, Vector3D*) __asm__("func_80055F14");
 void CutsceneOrbitAdd(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004F194");
 void CutsceneOrbitShift(Vector3D*, int) __asm__("func_8004F110");
 void* CutsceneOrbitEffect(Vector3D*, int, int, int) __asm__("func_80050844");
-void func_cutscene_67_80074788(Moby* argument) {
-    register Moby* moby __asm__("$17") = argument;
+void func_cutscene_67_80074788(Moby* mobyArgument) {
+    register Moby* moby __asm__("$17") = mobyArgument;
     register Moby* child __asm__("$16");
     register Vector3D* temporary __asm__("$16");
     register DecodedCutsceneOrbitTag* first __asm__("$21");

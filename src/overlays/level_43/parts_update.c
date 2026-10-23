@@ -31,12 +31,12 @@ extern unsigned char* Update8DE8CD_8006C550 __asm__("D_8006C550");
 int Update8DE8CCountTimerDown(void*, int) __asm__("func_800359A4");
 extern int Update8DE8CD_8006C648 __asm__("D_8006C648");
 #define Update8DE8CField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Update8DE8Cfunc_8004E9E4(short) __asm__("func_8004E9E4");
+int Update8DE8CInterpolateSine(short) __asm__("func_8004E9E4");
 int Update8DE8CInterpolateCosine(short) __asm__("func_8004EA2C");
 int Update8DE8CCopyVector(void*, void*) __asm__("func_8004F178");
 int Update8DE8CPackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-int Update8DE8Cfunc_8004F5A8(void*, void*, void*) __asm__("func_8004F5A8");
-int Update8DE8Cfunc_80056504(void*) __asm__("func_80056504");
+int Update8DE8CAddHalfwordVectors(void*, void*, void*) __asm__("func_8004F5A8");
+int Update8DE8CReleaseParticleRecord(void*) __asm__("func_80056504");
 extern int Update8DE8CD_8006C644 __asm__("D_8006C644");
 extern unsigned short Update8DE8CSin[] __asm__("D_80065920");
 extern unsigned short Update8DE8CCos[] __asm__("D_800658A0");
@@ -161,7 +161,7 @@ unsigned char* func_level_43_8008DE8C(int initialStep) {
                 temp_v1 = *record;
                 switch (temp_v1) {
                     case 0x0:
-                        Update8DE8Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update8DE8CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update8DE8CField(recordPlus1, short*, 0x1D);
                         __asm__ __volatile__("" ::: "$3", "memory");
                         word9 = 1;
@@ -194,7 +194,7 @@ unsigned char* func_level_43_8008DE8C(int initialStep) {
                         Update8DE8CField(recordPlus1, unsigned char*, 0xD) = scratch3;
                         goto checkPredicate;
                     case 0x1:
-                        Update8DE8Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update8DE8CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update8DE8CField(recordPlus1, short*, 0x1D);
                         __asm__ __volatile__("" ::: "$3", "memory");
                         if (scratch2 != 0) {
@@ -231,7 +231,7 @@ unsigned char* func_level_43_8008DE8C(int initialStep) {
                         Update8DE8CField(recordPlus1, unsigned char*, 0xD) = scratch3;
                         goto checkPredicate;
                     case 0x2:
-                        Update8DE8Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update8DE8CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         if (Update8DE8CField(recordPlus1, short*, 0x1D) != 0)
                             Update8DE8CField(recordPlus1, unsigned short*, 0x1B) =
                                 Update8DE8CField(recordPlus1, unsigned short*, 0x1B) + 1;
@@ -276,7 +276,7 @@ unsigned char* func_level_43_8008DE8C(int initialStep) {
                         predicate2 = (unsigned int)scratch2 < 32;
                         goto checkPredicate;
                     case 0x9:
-                        Update8DE8Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update8DE8CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update8DE8CField(recordPlus1, short*, 0x1D);
                         word9 = 1;
                         if (scratch2 != 0) {
@@ -319,7 +319,7 @@ unsigned char* func_level_43_8008DE8C(int initialStep) {
                         scratch3 += scratch2;
                         frame.words[0] = scratch3;
                         scratch2 =
-                            Update8DE8Cfunc_8004E9E4(Update8DE8CField(recordPlus1, short*, 0x17));
+                            Update8DE8CInterpolateSine(Update8DE8CField(recordPlus1, short*, 0x17));
                         scratch4 = (int)recordPlus4;
                         playerEnd = (unsigned char*)&frame.words[0];
                         MATCHING_KEEP3(scratch4, playerEnd, scratch2);
@@ -373,7 +373,7 @@ unsigned char* func_level_43_8008DE8C(int initialStep) {
                         MATCHING_KEEP2(word9, scratch2);
                         scratch2 = word9 - scratch2;
                         Update8DE8CField(recordPlus1, unsigned short*, 0x1D) = scratch2;
-                        Update8DE8Cfunc_8004F5A8((void*)scratch4, playerEnd, (void*)scratch6);
+                        Update8DE8CAddHalfwordVectors((void*)scratch4, playerEnd, (void*)scratch6);
                         scratch2 = Update8DE8CField(recordPlus1, unsigned char*, 9);
                         word9 = frame.saved.doubled48;
                         MATCHING_KEEP2(scratch2, word9);
@@ -402,7 +402,7 @@ unsigned char* func_level_43_8008DE8C(int initialStep) {
                     case 0xC:
                         Update8DE8CField(recordPlus1, unsigned char*, 0xA) =
                             (unsigned char)(Update8DE8CField(recordPlus1, unsigned char*, 0xA) + 8);
-                        Update8DE8Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update8DE8CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         temp_v0_4 = Update8DE8CField(recordPlus1, unsigned char*, 0xB);
                         if (temp_v0_4 != 0) {
                             Update8DE8CField(recordPlus1, unsigned char*, 0xB) =
@@ -435,7 +435,7 @@ unsigned char* func_level_43_8008DE8C(int initialStep) {
                             goto removeRecord;
                         if (Update8DE8CField(recordPlus1, unsigned char*, 2) == 0)
                             goto removeRecord;
-                        Update8DE8Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update8DE8CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update8DE8CField(recordPlus1, short*, 0x1D);
                         if (scratch2 != 0) {
                             scratch2 = Update8DE8CField(recordPlus1, unsigned short*, 0x1B);
@@ -508,7 +508,7 @@ unsigned char* func_level_43_8008DE8C(int initialStep) {
                         Update8DE8CField(recordPlus1, unsigned char*, 1) = scratch2;
                         goto nextRecord;
                     case 0x21:
-                        Update8DE8Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update8DE8CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         if (Update8DE8CField(recordPlus1, short*, 0x1D) != 0) {
                             Update8DE8CField(recordPlus1, unsigned short*, 0x1B) =
                                 (unsigned short)(Update8DE8CField(recordPlus1, unsigned short*,
@@ -600,7 +600,7 @@ unsigned char* func_level_43_8008DE8C(int initialStep) {
                             Update8DE8CField(recordPlus1, unsigned short*, 7) = scratch2;
                             goto original25Tail;
                         }
-                        Update8DE8Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update8DE8CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                     original25Tail:
                         scratch2 = Update8DE8CField(recordPlus1, unsigned char*, 9);
                         scratch2 += step;
@@ -824,7 +824,7 @@ unsigned char* func_level_43_8008DE8C(int initialStep) {
                         recordPlus1 += 32;
                         break;
                     case 0x38:
-                        Update8DE8Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update8DE8CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update8DE8CField(recordPlus1, unsigned char*, 1);
                         scratch2 += step;
                         Update8DE8CField(recordPlus1, unsigned char*, 1) = scratch2;
@@ -860,7 +860,7 @@ unsigned char* func_level_43_8008DE8C(int initialStep) {
                     case 0x3B:
                         Update8DE8CField(recordPlus1, unsigned char*, 0xA) =
                             (unsigned char)(Update8DE8CField(recordPlus1, unsigned char*, 0xA) + 8);
-                        Update8DE8Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update8DE8CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         if (Update8DE8CD_8006C640 & 1) {
                             Update8DE8CField(recordPlus1, unsigned short*, 0x19) =
                                 (unsigned short)(Update8DE8CField(recordPlus1, unsigned short*,
@@ -904,7 +904,7 @@ unsigned char* func_level_43_8008DE8C(int initialStep) {
                             goto removeRecord;
                         if (Update8DE8CField(recordPlus1, unsigned char*, 2) == 0)
                             goto removeRecord;
-                        Update8DE8Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update8DE8CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update8DE8CField(recordPlus1, short*, 0x1D);
                         word9 = 1;
                         if (scratch2 != 0) {
@@ -1179,7 +1179,7 @@ unsigned char* func_level_43_8008DE8C(int initialStep) {
                             goto finishByteModes;
                         }
                         if (mode18 == 7 && savedLow22 != 0)
-                            Update8DE8Cfunc_80056504(record);
+                            Update8DE8CReleaseParticleRecord(record);
                         goto finishByteModes;
                     finishByteModes:
                         scratch2 = Update8DE8CField(recordPlus1, unsigned char*, 1);
@@ -1724,7 +1724,7 @@ unsigned char* func_level_43_8008DE8C(int initialStep) {
                             goto removeRecord;
                         goto nextRecord;
                     removeRecord:
-                        Update8DE8Cfunc_80056504(record);
+                        Update8DE8CReleaseParticleRecord(record);
                         goto nextRecord;
                     default:
                         goto nextRecord;

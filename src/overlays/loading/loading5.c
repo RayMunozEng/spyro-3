@@ -23,7 +23,10 @@ void func_loading_80078FB0(SaveFile* save, int noUpdate) {
 INCLUDE_RODATA("asm/nonmatchings/overlays/loading/loading5", D_loading_8007460C);
 
 
-/* AI-generated; not human reviewed. Numeric original callback; helper semantics unresolved. */
+/* AI-generated; not human reviewed. Memory-card save operation state machine.
+ * Poll completion, retry reads/writes, serialize save data and verify checksums.
+ * Original states, retry limits, transfer sizes and helper calls are retained.
+ */
 extern int RawFields[] __asm__("D_800725B0");
 extern int RawPending __asm__("D_800725B4"), RawResult __asm__("D_800725C4"),
     RawError __asm__("D_800725C8");

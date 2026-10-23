@@ -4,7 +4,7 @@
 /* AI-generated; not human reviewed. Verified sibling C adapted only
  * to this function's original SCUS-94467 instructions. Raw field units,
  * helper meanings and update cadence remain unresolved. */
-int Level16Spawnfunc_8001A358(void*, int) __asm__("func_8001A358");
+int Level16SpawnQueryWorldHeight(void*, int) __asm__("func_8001A358");
 extern int Level16SpawnD_8006D07C __asm__("D_8006D07C");
 extern int Level16SpawnD_8006D080 __asm__("D_8006D080");
 extern int Level16SpawnD_8006D084 __asm__("D_8006D084");
@@ -26,16 +26,16 @@ extern unsigned char Level16SpawnPlayerE __asm__("D_80070328 + 0xE");
 extern unsigned char Level16SpawnColor1[] __asm__("D_80066BAC");
 extern unsigned char Level16SpawnColor2[] __asm__("D_80066BAC");
 #define Level16SpawnField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Level16Spawnfunc_8004EA90(void*, void*, int) __asm__("func_8004EA90");
+int Level16SpawnBuildPackedAngleBasisMatrix(void*, void*, int) __asm__("func_8004EA90");
 int Level16SpawnTransformVectorByBasis(void*, void*, void*) __asm__("func_8004ED6C");
 int Level16SpawnShiftVectorRightTowardZero(void*, int) __asm__("func_8004F110");
 int Level16SpawnCopyVector(void*, void*) __asm__("func_8004F178");
 int Level16SpawnAddVector(void*, void*, void*) __asm__("func_8004F194");
 int Level16SpawnMultiplyVectorGpfSf0(void*, void*, int) __asm__("func_8004F1FC");
 int Level16SpawnPackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-void* Level16Spawnfunc_80056434(int) __asm__("func_80056434");
+void* Level16SpawnAllocateParticleRecord(int) __asm__("func_80056434");
 int Level16SpawnRandBetween(int, int) __asm__("func_8003636C");
-int Level16Spawnfunc_8004F58C(void*, void*) __asm__("func_8004F58C");
+int Level16SpawnCopyHalfwordVector(void*, void*) __asm__("func_8004F58C");
 int Level16Spawnrand(void) __asm__("rand");
 extern unsigned char Level16SpawnD_800658A0[] __asm__("D_800658A0");
 extern unsigned char Level16SpawnD_80065920[] __asm__("D_80065920");
@@ -157,7 +157,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
             MATCHING_KEEP_VOLATILE_CLOBBER(byte255, "memory");
             switch (kindSelector) { /* switch 1 */
                 case 0x0:           /* switch 1 */
-                    record = Level16Spawnfunc_80056434(2);
+                    record = Level16SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -188,7 +188,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                     tailByte = 4;
                     goto storeTrailingE8;
                 case 0x1: /* switch 1 */
-                    record = Level16Spawnfunc_80056434(2);
+                    record = Level16SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -219,7 +219,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                     Level16SpawnField(record, unsigned char*, 15) = commonByte8;
                     goto initializeTrailingBytes;
                 case 0x2:
-                    record = Level16Spawnfunc_80056434(2);
+                    record = Level16SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -262,7 +262,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                     Level16SpawnField(record, unsigned char*, 16) = 0;
                     break;
                 case 0x9: /* switch 1 */
-                    record = Level16Spawnfunc_80056434(2);
+                    record = Level16SpawnAllocateParticleRecord(2);
                     {
                         register void* playerVector __asm__("$16") = &frame.sp20;
                         register void* destination __asm__("$4") = playerVector;
@@ -328,7 +328,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                     goto storeTrailingE8;
 
                 case 0xA: /* switch 1 */
-                    record = Level16Spawnfunc_80056434(3);
+                    record = Level16SpawnAllocateParticleRecord(3);
                     Level16SpawnField(record, unsigned char*, 0) = kindSelector;
                     {
                         register void* destination __asm__("$4") = record + 4;
@@ -391,7 +391,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0xC: /* switch 1 */
-                    record = Level16Spawnfunc_80056434(2);
+                    record = Level16SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = reference + 32;
                         register int iteration __asm__("$8") = frame.spD8;
@@ -557,7 +557,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                                          4 + (Level16Spawnrand() & 7));
                     break;
                 case 0x21: /* switch 1 */
-                    record = Level16Spawnfunc_80056434(2);
+                    record = Level16SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level16SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -878,13 +878,13 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                         value3 = low8 >> 12;
                         value2 += value3;
                         frame.sp74 = value2;
-                        value2 = Level16Spawnfunc_8001A358(destination4, (int)source5);
+                        value2 = Level16SpawnQueryWorldHeight(destination4, (int)source5);
                     }
                     MATCHING_KEEP_VOLATILE_CLOBBER(byte255, "memory");
                     frame.sp78 = value2;
                     if (value2 == 0)
                         break;
-                    record = Level16Spawnfunc_80056434(3);
+                    record = Level16SpawnAllocateParticleRecord(3);
                     MATCHING_KEEP_VOLATILE_CLOBBER(byte255, "memory");
                     value2 = 1;
                     MATCHING_KEEP_CLOBBER(value2, "memory");
@@ -960,7 +960,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                     Level16SpawnField(record, unsigned char*, 31) = Level16SpawnD_80071934;
                 } break;
                 case 0x2A:
-                    record = Level16Spawnfunc_80056434(4);
+                    record = Level16SpawnAllocateParticleRecord(4);
                     {
                         register void* arg4 __asm__("$4") = record + 4;
                         register void* arg5 __asm__("$5") = reference;
@@ -1005,13 +1005,13 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                     {
                         register int commonByte3 __asm__("$3");
                         case 0x2B:
-                            record = Level16Spawnfunc_80056434(4);
+                            record = Level16SpawnAllocateParticleRecord(4);
                             tailByte = 1;
                             Level16SpawnField(record, unsigned char*, 0) = kindSelector;
                             Level16SpawnField(record, unsigned char*, 2) = 0;
                             Level16SpawnField(record, unsigned char*, 3) = tailByte;
                             if (modeSelector == 0) {
-                                Level16Spawnfunc_8004F58C(record + 4, reference);
+                                Level16SpawnCopyHalfwordVector(record + 4, reference);
                                 tailByte = Level16Spawnrand();
                                 tailByte &= 7;
                                 tailByte += 2;
@@ -1072,7 +1072,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                             break;
                     }
                 case 0x2E:
-                    record = Level16Spawnfunc_80056434(2);
+                    record = Level16SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1139,7 +1139,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                     Level16SpawnField(record, unsigned char*, 16) = 0;
                     break;
                 case 0x3B: /* switch 1 */
-                    record = Level16Spawnfunc_80056434(5);
+                    record = Level16SpawnAllocateParticleRecord(5);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1207,7 +1207,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                 case 0x42: /* switch 1 */
                 {
                     register int local128 __asm__("$9");
-                    record = Level16Spawnfunc_80056434(0);
+                    record = Level16SpawnAllocateParticleRecord(0);
                     Level16SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level16SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level16Spawnrand() & 0xF);
@@ -1314,7 +1314,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                 case 0x46: /* switch 1 */
                 {
                     register int local128 __asm__("$9");
-                    record = Level16Spawnfunc_80056434(1);
+                    record = Level16SpawnAllocateParticleRecord(1);
                     Level16SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level16SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level16Spawnrand() & 0xF);
@@ -1322,7 +1322,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                     frame.spA0 = 0;
                     frame.spA1 = Level16Spawnrand();
                     frame.spA2 = Level16Spawnrand();
-                    Level16Spawnfunc_8004EA90(&frame.spA0, &frame.spA8, 0);
+                    Level16SpawnBuildPackedAngleBasisMatrix(&frame.spA0, &frame.spA8, 0);
                     frame.sp90 = (int)modeSelector;
                     frame.sp94 = 0;
                     frame.sp98 = 0;
@@ -1378,7 +1378,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                     break;
                 }
                 case 0x47: /* switch 1 */
-                    record = Level16Spawnfunc_80056434(1);
+                    record = Level16SpawnAllocateParticleRecord(1);
                     Level16SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level16SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level16Spawnrand() & 7);
@@ -1453,7 +1453,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x4E: /* switch 1 */
-                    record = Level16Spawnfunc_80056434(0);
+                    record = Level16SpawnAllocateParticleRecord(0);
                     Level16SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level16SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level16Spawnrand() & 0x1F);
@@ -1523,7 +1523,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                 case 0x4F: /* switch 1 */
                 {
                     register int local128 __asm__("$8");
-                    record = Level16Spawnfunc_80056434(1);
+                    record = Level16SpawnAllocateParticleRecord(1);
                     Level16SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level16SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level16Spawnrand() & 0xF);
@@ -1600,7 +1600,7 @@ void* func_level_16_80081F48(int entryCount, int kind, void* input, void* mode) 
                     break;
                 }
                 case 0x54:
-                    record = Level16Spawnfunc_80056434(0);
+                    record = Level16SpawnAllocateParticleRecord(0);
                     Level16SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level16Spawnrand();
                     tailByte &= 15;

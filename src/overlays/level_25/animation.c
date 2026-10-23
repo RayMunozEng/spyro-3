@@ -30,11 +30,11 @@
  * overlay retail hash. Binary identity does not establish runtime completion. */
 #define Physics25Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 int Physics25RandSignedBetweenView5() __asm__("func_800363DC");
-unsigned char Physics25Call40D10View6() __asm__("func_80040D10");
-unsigned char Physics25Call41580View6() __asm__("func_80041580");
-unsigned char Physics25Call416F4View6() __asm__("func_800416F4");
-unsigned char Physics25Call417FCView6() __asm__("func_800417FC");
-unsigned char Physics25Call41B64View6() __asm__("func_80041B64");
+unsigned char Physics25UpdatePlayerGroundInputTargetsView6() __asm__("func_80040D10");
+unsigned char Physics25ApproachPlayerTargetHeadingView6() __asm__("func_80041580");
+unsigned char Physics25BlendPlayerHeadingFromInputVectorView6() __asm__("func_800416F4");
+unsigned char Physics25ApproachPlayerTargetSpeedView6() __asm__("func_800417FC");
+unsigned char Physics25BuildPlayerResponseVectorView6() __asm__("func_80041B64");
 int Physics25InterpolateSineView6() __asm__("func_8004E9E4");
 int Physics25InterpolateCosineView6() __asm__("func_8004EA2C");
 unsigned char Physics25TransformVectorByBasisView5() __asm__("func_8004ED6C");
@@ -55,15 +55,15 @@ extern unsigned char Physics25Data6E548View6 __asm__("D_8006E548");
 extern unsigned char Physics25Player0View6 __asm__("D_80070328");
 extern int Physics25Player94View4 __asm__("D_80070328+0x94");
 extern void* (*Controller88028_SpawnParticle)() __asm__("SpawnParticle");
-int Physics25Call40D10View7() __asm__("func_80040D10");
-int Physics25Call40F48View4() __asm__("func_80040F48");
-int Physics25Call410F8View4() __asm__("func_800410F8");
-int Physics25Call41404View3() __asm__("func_80041404");
-int Physics25Call41580View7() __asm__("func_80041580");
-int Physics25Call416F4View7() __asm__("func_800416F4");
-int Physics25Call417FCView7() __asm__("func_800417FC");
-int Physics25Call41848View5() __asm__("func_80041848");
-int Physics25Call41B64View7() __asm__("func_80041B64");
+int Physics25UpdatePlayerGroundInputTargetsView7() __asm__("func_80040D10");
+int Physics25BuildOrientedInputPairView4() __asm__("func_80040F48");
+int Physics25UpdateSmoothedInputPairView4() __asm__("func_800410F8");
+int Physics25ApplyPlayerRotationStepView3() __asm__("func_80041404");
+int Physics25ApproachPlayerTargetHeadingView7() __asm__("func_80041580");
+int Physics25BlendPlayerHeadingFromInputVectorView7() __asm__("func_800416F4");
+int Physics25ApproachPlayerTargetSpeedView7() __asm__("func_800417FC");
+int Physics25BuildPlayerMovementVectorView5() __asm__("func_80041848");
+int Physics25BuildPlayerResponseVectorView7() __asm__("func_80041B64");
 int Physics25InterpolateSineView7() __asm__("func_8004E9E4");
 int Physics25InterpolateCosineView7() __asm__("func_8004EA2C");
 int Physics25MeasureVectorLengthView7() __asm__("func_8004EDE8");
@@ -114,14 +114,14 @@ extern int Physics25Player210View3 __asm__("D_80070328+0x210");
 extern int Physics25PlayerF8View3 __asm__("D_80070328+0xF8");
 extern int Physics25Player8View3 __asm__("D_80070328+0x8");
 int Physics25RandSignedBetweenView6() __asm__("func_800363DC");
-int Physics25Call40D10View8() __asm__("func_80040D10");
-int Physics25Call40F48View5() __asm__("func_80040F48");
-int Physics25Call41580View8() __asm__("func_80041580");
-int Physics25Call416F4View8() __asm__("func_800416F4");
-int Physics25Call417FCView8() __asm__("func_800417FC");
-int Physics25Call41848View6() __asm__("func_80041848");
-int Physics25Call41B64View8() __asm__("func_80041B64");
-int Physics25Call43194View2() __asm__("func_80043194");
+int Physics25UpdatePlayerGroundInputTargetsView8() __asm__("func_80040D10");
+int Physics25BuildOrientedInputPairView5() __asm__("func_80040F48");
+int Physics25ApproachPlayerTargetHeadingView8() __asm__("func_80041580");
+int Physics25BlendPlayerHeadingFromInputVectorView8() __asm__("func_800416F4");
+int Physics25ApproachPlayerTargetSpeedView8() __asm__("func_800417FC");
+int Physics25BuildPlayerMovementVectorView6() __asm__("func_80041848");
+int Physics25BuildPlayerResponseVectorView8() __asm__("func_80041B64");
+int Physics25TestPlayerProbePatternView2() __asm__("func_80043194");
 int Physics25PlanarHeadingLookupView3() __asm__("func_8004E880");
 int Physics25InterpolateSineView8() __asm__("func_8004E9E4");
 int Physics25InterpolateCosineView8() __asm__("func_8004EA2C");
@@ -150,16 +150,16 @@ extern unsigned char Physics25Data6E548View8 __asm__("D_8006E548");
 extern unsigned char Physics25Player0View8 __asm__("D_80070328");
 extern void* (*Physics34_SpawnParticle)() __asm__("SpawnParticle");
 extern int Physics25Player16CView2 __asm__("D_80070328+0x16C");
-int Physics25Call13E38View2() __asm__("func_80013E38");
+int Physics25TestSubdividedSegmentPathView2() __asm__("func_80013E38");
 int Physics25RandSignedBetweenView7() __asm__("func_800363DC");
-int Physics25Call40D10View9() __asm__("func_80040D10");
-int Physics25Call410F8View5() __asm__("func_800410F8");
-int Physics25Call41580View9() __asm__("func_80041580");
-int Physics25Call416F4View9() __asm__("func_800416F4");
-int Physics25Call417FCView9() __asm__("func_800417FC");
-int Physics25Call41848View7() __asm__("func_80041848");
-int Physics25Call41B64View9() __asm__("func_80041B64");
-int Physics25Call4E4E4View2() __asm__("func_8004E4E4");
+int Physics25UpdatePlayerGroundInputTargetsView9() __asm__("func_80040D10");
+int Physics25UpdateSmoothedInputPairView5() __asm__("func_800410F8");
+int Physics25ApproachPlayerTargetHeadingView9() __asm__("func_80041580");
+int Physics25BlendPlayerHeadingFromInputVectorView9() __asm__("func_800416F4");
+int Physics25ApproachPlayerTargetSpeedView9() __asm__("func_800417FC");
+int Physics25BuildPlayerMovementVectorView7() __asm__("func_80041848");
+int Physics25BuildPlayerResponseVectorView9() __asm__("func_80041B64");
+int Physics25EvaluateClampedPlayerRootCurveView2() __asm__("func_8004E4E4");
 int Physics25PlanarHeadingLookupView4() __asm__("func_8004E880");
 int Physics25InterpolateSineView9() __asm__("func_8004E9E4");
 int Physics25InterpolateCosineView9() __asm__("func_8004EA2C");
@@ -222,15 +222,15 @@ extern int Physics25PlayerD0View2 __asm__("D_80070328+0xD0");
 extern int Physics25PlayerE4View2 __asm__("D_80070328+0xE4");
 extern unsigned char Physics25PlayerFCView4 __asm__("D_80070328+0xFC");
 int Physics25RandSignedBetweenView8() __asm__("func_800363DC");
-int Physics25Call40D10View10() __asm__("func_80040D10");
-int Physics25Call40F48View6() __asm__("func_80040F48");
-int Physics25Call410F8View6() __asm__("func_800410F8");
-int Physics25Call41404View4() __asm__("func_80041404");
-int Physics25Call41580View10() __asm__("func_80041580");
-int Physics25Call416F4View10() __asm__("func_800416F4");
-int Physics25Call417FCView10() __asm__("func_800417FC");
-int Physics25Call41848View8() __asm__("func_80041848");
-int Physics25Call41B64View10() __asm__("func_80041B64");
+int Physics25UpdatePlayerGroundInputTargetsView10() __asm__("func_80040D10");
+int Physics25BuildOrientedInputPairView6() __asm__("func_80040F48");
+int Physics25UpdateSmoothedInputPairView6() __asm__("func_800410F8");
+int Physics25ApplyPlayerRotationStepView4() __asm__("func_80041404");
+int Physics25ApproachPlayerTargetHeadingView10() __asm__("func_80041580");
+int Physics25BlendPlayerHeadingFromInputVectorView10() __asm__("func_800416F4");
+int Physics25ApproachPlayerTargetSpeedView10() __asm__("func_800417FC");
+int Physics25BuildPlayerMovementVectorView8() __asm__("func_80041848");
+int Physics25BuildPlayerResponseVectorView10() __asm__("func_80041B64");
 int Physics25InterpolateSineView10() __asm__("func_8004E9E4");
 int Physics25InterpolateCosineView10() __asm__("func_8004EA2C");
 int Physics25TransformVectorByBasisView8() __asm__("func_8004ED6C");
@@ -267,11 +267,11 @@ extern void* (*Physics44_SpawnParticle)() __asm__("SpawnParticle");
 extern int (*Physics44Slot4454)() __asm__("unk_ovlheader_80074454");
 extern int (*Physics44Slot432C)() __asm__("unk_ovlheader_8007432C");
 int Physics25RandSignedBetweenView5() __asm__("func_800363DC");
-unsigned char Physics25Call40D10View6() __asm__("func_80040D10");
-unsigned char Physics25Call41580View6() __asm__("func_80041580");
-unsigned char Physics25Call416F4View6() __asm__("func_800416F4");
-unsigned char Physics25Call417FCView6() __asm__("func_800417FC");
-unsigned char Physics25Call41B64View6() __asm__("func_80041B64");
+unsigned char Physics25UpdatePlayerGroundInputTargetsView6() __asm__("func_80040D10");
+unsigned char Physics25ApproachPlayerTargetHeadingView6() __asm__("func_80041580");
+unsigned char Physics25BlendPlayerHeadingFromInputVectorView6() __asm__("func_800416F4");
+unsigned char Physics25ApproachPlayerTargetSpeedView6() __asm__("func_800417FC");
+unsigned char Physics25BuildPlayerResponseVectorView6() __asm__("func_80041B64");
 int Physics25InterpolateSineView6() __asm__("func_8004E9E4");
 int Physics25InterpolateCosineView6() __asm__("func_8004EA2C");
 unsigned char Physics25TransformVectorByBasisView5() __asm__("func_8004ED6C");
@@ -292,15 +292,15 @@ extern unsigned char Physics25Data6E548View6 __asm__("D_8006E548");
 extern unsigned char Physics25Player0View6 __asm__("D_80070328");
 extern int Physics25Player94View4 __asm__("D_80070328+0x94");
 extern void* (*Controller88028_SpawnParticle)() __asm__("SpawnParticle");
-int Physics25Call40D10View7() __asm__("func_80040D10");
-int Physics25Call40F48View4() __asm__("func_80040F48");
-int Physics25Call410F8View4() __asm__("func_800410F8");
-int Physics25Call41404View3() __asm__("func_80041404");
-int Physics25Call41580View7() __asm__("func_80041580");
-int Physics25Call416F4View7() __asm__("func_800416F4");
-int Physics25Call417FCView7() __asm__("func_800417FC");
-int Physics25Call41848View5() __asm__("func_80041848");
-int Physics25Call41B64View7() __asm__("func_80041B64");
+int Physics25UpdatePlayerGroundInputTargetsView7() __asm__("func_80040D10");
+int Physics25BuildOrientedInputPairView4() __asm__("func_80040F48");
+int Physics25UpdateSmoothedInputPairView4() __asm__("func_800410F8");
+int Physics25ApplyPlayerRotationStepView3() __asm__("func_80041404");
+int Physics25ApproachPlayerTargetHeadingView7() __asm__("func_80041580");
+int Physics25BlendPlayerHeadingFromInputVectorView7() __asm__("func_800416F4");
+int Physics25ApproachPlayerTargetSpeedView7() __asm__("func_800417FC");
+int Physics25BuildPlayerMovementVectorView5() __asm__("func_80041848");
+int Physics25BuildPlayerResponseVectorView7() __asm__("func_80041B64");
 int Physics25InterpolateSineView7() __asm__("func_8004E9E4");
 int Physics25InterpolateCosineView7() __asm__("func_8004EA2C");
 int Physics25MeasureVectorLengthView7() __asm__("func_8004EDE8");
@@ -351,14 +351,14 @@ extern int Physics25Player210View3 __asm__("D_80070328+0x210");
 extern int Physics25PlayerF8View3 __asm__("D_80070328+0xF8");
 extern int Physics25Player8View3 __asm__("D_80070328+0x8");
 int Physics25RandSignedBetweenView6() __asm__("func_800363DC");
-int Physics25Call40D10View8() __asm__("func_80040D10");
-int Physics25Call40F48View5() __asm__("func_80040F48");
-int Physics25Call41580View8() __asm__("func_80041580");
-int Physics25Call416F4View8() __asm__("func_800416F4");
-int Physics25Call417FCView8() __asm__("func_800417FC");
-int Physics25Call41848View6() __asm__("func_80041848");
-int Physics25Call41B64View8() __asm__("func_80041B64");
-int Physics25Call43194View2() __asm__("func_80043194");
+int Physics25UpdatePlayerGroundInputTargetsView8() __asm__("func_80040D10");
+int Physics25BuildOrientedInputPairView5() __asm__("func_80040F48");
+int Physics25ApproachPlayerTargetHeadingView8() __asm__("func_80041580");
+int Physics25BlendPlayerHeadingFromInputVectorView8() __asm__("func_800416F4");
+int Physics25ApproachPlayerTargetSpeedView8() __asm__("func_800417FC");
+int Physics25BuildPlayerMovementVectorView6() __asm__("func_80041848");
+int Physics25BuildPlayerResponseVectorView8() __asm__("func_80041B64");
+int Physics25TestPlayerProbePatternView2() __asm__("func_80043194");
 int Physics25PlanarHeadingLookupView3() __asm__("func_8004E880");
 int Physics25InterpolateSineView8() __asm__("func_8004E9E4");
 int Physics25InterpolateCosineView8() __asm__("func_8004EA2C");
@@ -387,16 +387,16 @@ extern unsigned char Physics25Data6E548View8 __asm__("D_8006E548");
 extern unsigned char Physics25Player0View8 __asm__("D_80070328");
 extern void* (*Physics34_SpawnParticle)() __asm__("SpawnParticle");
 extern int Physics25Player16CView2 __asm__("D_80070328+0x16C");
-int Physics25Call13E38View2() __asm__("func_80013E38");
+int Physics25TestSubdividedSegmentPathView2() __asm__("func_80013E38");
 int Physics25RandSignedBetweenView7() __asm__("func_800363DC");
-int Physics25Call40D10View9() __asm__("func_80040D10");
-int Physics25Call410F8View5() __asm__("func_800410F8");
-int Physics25Call41580View9() __asm__("func_80041580");
-int Physics25Call416F4View9() __asm__("func_800416F4");
-int Physics25Call417FCView9() __asm__("func_800417FC");
-int Physics25Call41848View7() __asm__("func_80041848");
-int Physics25Call41B64View9() __asm__("func_80041B64");
-int Physics25Call4E4E4View2() __asm__("func_8004E4E4");
+int Physics25UpdatePlayerGroundInputTargetsView9() __asm__("func_80040D10");
+int Physics25UpdateSmoothedInputPairView5() __asm__("func_800410F8");
+int Physics25ApproachPlayerTargetHeadingView9() __asm__("func_80041580");
+int Physics25BlendPlayerHeadingFromInputVectorView9() __asm__("func_800416F4");
+int Physics25ApproachPlayerTargetSpeedView9() __asm__("func_800417FC");
+int Physics25BuildPlayerMovementVectorView7() __asm__("func_80041848");
+int Physics25BuildPlayerResponseVectorView9() __asm__("func_80041B64");
+int Physics25EvaluateClampedPlayerRootCurveView2() __asm__("func_8004E4E4");
 int Physics25PlanarHeadingLookupView4() __asm__("func_8004E880");
 int Physics25InterpolateSineView9() __asm__("func_8004E9E4");
 int Physics25InterpolateCosineView9() __asm__("func_8004EA2C");
@@ -459,15 +459,15 @@ extern int Physics25PlayerD0View2 __asm__("D_80070328+0xD0");
 extern int Physics25PlayerE4View2 __asm__("D_80070328+0xE4");
 extern unsigned char Physics25PlayerFCView4 __asm__("D_80070328+0xFC");
 int Physics25RandSignedBetweenView8() __asm__("func_800363DC");
-int Physics25Call40D10View10() __asm__("func_80040D10");
-int Physics25Call40F48View6() __asm__("func_80040F48");
-int Physics25Call410F8View6() __asm__("func_800410F8");
-int Physics25Call41404View4() __asm__("func_80041404");
-int Physics25Call41580View10() __asm__("func_80041580");
-int Physics25Call416F4View10() __asm__("func_800416F4");
-int Physics25Call417FCView10() __asm__("func_800417FC");
-int Physics25Call41848View8() __asm__("func_80041848");
-int Physics25Call41B64View10() __asm__("func_80041B64");
+int Physics25UpdatePlayerGroundInputTargetsView10() __asm__("func_80040D10");
+int Physics25BuildOrientedInputPairView6() __asm__("func_80040F48");
+int Physics25UpdateSmoothedInputPairView6() __asm__("func_800410F8");
+int Physics25ApplyPlayerRotationStepView4() __asm__("func_80041404");
+int Physics25ApproachPlayerTargetHeadingView10() __asm__("func_80041580");
+int Physics25BlendPlayerHeadingFromInputVectorView10() __asm__("func_800416F4");
+int Physics25ApproachPlayerTargetSpeedView10() __asm__("func_800417FC");
+int Physics25BuildPlayerMovementVectorView8() __asm__("func_80041848");
+int Physics25BuildPlayerResponseVectorView10() __asm__("func_80041B64");
 int Physics25InterpolateSineView10() __asm__("func_8004E9E4");
 int Physics25InterpolateCosineView10() __asm__("func_8004EA2C");
 int Physics25TransformVectorByBasisView8() __asm__("func_8004ED6C");
@@ -551,14 +551,14 @@ void func_level_25_800870B4(int slotIndex) {
             Physics25ClearVectorView6(globalVector80);
             Physics25ClearVectorView6(globalVector80 + 0xC);
             if (Physics25Data6E044View6 != 7) {
-                Physics25Call40D10View6(0x1200);
-                Physics25Call416F4View6();
-                Physics25Call41580View6(0x5A, 0x10);
+                Physics25UpdatePlayerGroundInputTargetsView6(0x1200);
+                Physics25BlendPlayerHeadingFromInputVectorView6();
+                Physics25ApproachPlayerTargetHeadingView6(0x5A, 0x10);
                 return;
             }
             return;
         case 25:
-            Physics25Call40F48View4(&originalFrame.sp10, 1);
+            Physics25BuildOrientedInputPairView4(&originalFrame.sp10, 1);
             workWord2 = originalFrame.sp10;
             call4 = &Physics25PlayerA8View3;
             workWord2 >>= 1;
@@ -575,8 +575,8 @@ void func_level_25_800870B4(int slotIndex) {
                 Physics25Field(call4, int*, 0) = workWord2;
             }
             call4 = (void*)Physics25Field(call4, int*, 0);
-            Physics25Call41404View3(call4);
-            Physics25Call417FCView7(576, 384);
+            Physics25ApplyPlayerRotationStepView3(call4);
+            Physics25ApproachPlayerTargetSpeedView7(576, 384);
             workWord2 = Physics25InterpolateCosineView7(Physics25Player64View3);
             workWord3 = Physics25PlayerB0View3;
             lowProduct0 = workWord3 * workWord2;
@@ -592,7 +592,7 @@ void func_level_25_800870B4(int slotIndex) {
             workWord2 = lowProduct1 >> 12;
             MATCHING_KEEP(workWord2);
             Physics25Player84View2 = workWord2;
-            Physics25Call41B64View7();
+            Physics25BuildPlayerResponseVectorView7();
             workWord2 = Physics25Player144View3;
             workWord2 += 12;
             Physics25Player144View3 = workWord2;
@@ -627,7 +627,7 @@ void func_level_25_800870B4(int slotIndex) {
             call4 = &originalFrame.sp18;
             MATCHING_OBSERVE_VOLATILE_CLOBBER(call4, "memory");
             pointer17 = &Physics25Player154View2;
-            Physics25Call410F8View5(call4, pointer17, 0);
+            Physics25UpdateSmoothedInputPairView5(call4, pointer17, 0);
             workWord2 = originalFrame.sp1C;
             numeric4 = Physics25Player94View6;
             workWord2 = -workWord2;
@@ -658,7 +658,7 @@ void func_level_25_800870B4(int slotIndex) {
                 originalFrame.sp20 = workWord2;
                 originalFrame.sp24 = workWord3;
                 Physics25AddVectorView9(call4, call5, call6);
-                if (!Physics25Call13E38View2(pointer17, pointer16, 2)) {
+                if (!Physics25TestSubdividedSegmentPathView2(pointer17, pointer16, 2)) {
                     workWord2 = Physics25Player8View4;
                     workWord3 = Physics25Data71908View2;
                     workWord2 -= workWord3;
@@ -769,7 +769,7 @@ void func_level_25_800870B4(int slotIndex) {
         nonnegative33:
             numeric4 = Physics25Player8View4;
             limit16 = 0;
-            workWord2 = Physics25Call4E4E4View2(numeric4);
+            workWord2 = Physics25EvaluateClampedPlayerRootCurveView2(numeric4);
             workWord3 = Physics25Player148View3;
             MATCHING_OBSERVE2_VOLATILE_CLOBBER(workWord3, workWord2, "memory");
             numeric4 = workWord2;
@@ -882,7 +882,7 @@ void func_level_25_800870B4(int slotIndex) {
         storeAngle33:
             Physics25Player5CView4 = workWord2;
         rotationDone33:
-            Physics25Call41848View7();
+            Physics25BuildPlayerMovementVectorView7();
             call5 = &Physics25Player4CView4;
             numeric4 = Physics25Field(call5, int*, 0);
             if (numeric4)
@@ -950,7 +950,7 @@ void func_level_25_800870B4(int slotIndex) {
                 Physics25Field(pointer2, int*, 0) = workWord3;
             }
         end33:
-            Physics25Call41B64View9();
+            Physics25BuildPlayerResponseVectorView9();
             return;
         }
         case 43:
@@ -971,8 +971,8 @@ void func_level_25_800870B4(int slotIndex) {
             if (workWord3 == workWord2) {
                 Physics25Field(&Physics25Player0View10, int*, 0xB0) = 0;
             } else {
-                Physics25Call40D10View10(0x980);
-                raw21_var_v0_2 = Physics25Call41580View10(0x5A, 0x10);
+                Physics25UpdatePlayerGroundInputTargetsView10(0x980);
+                raw21_var_v0_2 = Physics25ApproachPlayerTargetHeadingView10(0x5A, 0x10);
                 if (raw21_var_v0_2 < 0) {
                     raw21_var_v0_2 = -raw21_var_v0_2;
                 }
@@ -986,12 +986,12 @@ void func_level_25_800870B4(int slotIndex) {
                 } else {
                     raw21_var_a1_4 = 0x40;
                 }
-                Physics25Call417FCView10(raw21_var_a0_2, raw21_var_a1_4);
+                Physics25ApproachPlayerTargetSpeedView10(raw21_var_a0_2, raw21_var_a1_4);
             }
             raw21_temp_s0_11 = &Physics25Player0View10 + 0xB0;
             if (Physics25Field(&Physics25Player0View10, int*, 0xB0) != 0) {
-                Physics25Call41848View8();
-                Physics25Call41B64View10();
+                Physics25BuildPlayerMovementVectorView8();
+                Physics25BuildPlayerResponseVectorView10();
                 Physics25Field(&Physics25Player0View10, int*, 0x94) = 0;
             } else {
                 Physics25ClearVectorView10(raw21_temp_s0_11 - 0x30);
@@ -1081,7 +1081,7 @@ void func_level_25_800870B4(int slotIndex) {
             return;
         }
         case 61:
-            Physics25Call40F48View4(&originalFrame.sp50, 1);
+            Physics25BuildOrientedInputPairView4(&originalFrame.sp50, 1);
             workWord3 = originalFrame.sp50;
             workWord2 = workWord3 * 25;
             call4 = (void*)(workWord2 >> 7);
@@ -1120,7 +1120,7 @@ void func_level_25_800870B4(int slotIndex) {
             if (workWord2)
                 Physics25Field(call5, int*, 0) = (int)call4;
             call4 = (void*)Physics25PlayerA8View3;
-            Physics25Call41404View3(call4);
+            Physics25ApplyPlayerRotationStepView3(call4);
             workWord3 = Physics25Player60View3;
             workWord2 = workWord3 < 2049;
             if (!workWord2) {
@@ -1151,8 +1151,8 @@ void func_level_25_800870B4(int slotIndex) {
             workWord2 = Physics25Data67640View3;
             Physics25PlayerACView3 = workWord2;
         update61:
-            Physics25Call417FCView7(576, 384);
-            Physics25Call41848View5();
+            Physics25ApproachPlayerTargetSpeedView7(576, 384);
+            Physics25BuildPlayerMovementVectorView5();
             call6 = &Physics25PlayerFCView3;
             workWord2 = Physics25Field(call6, unsigned char*, 0);
             if (workWord2)
@@ -1177,14 +1177,14 @@ void func_level_25_800870B4(int slotIndex) {
 
 extern Spyro Callback25Player __asm__("D_80070328");
 int Callback25_80037058(int x, int y) __asm__("func_80037058");
-int Callback25_8003BF6C(int soundId, int index) __asm__("func_8003BF6C");
-void Callback25_80041930(void) __asm__("func_80041930");
+int Callback25_SoundHandleMatchesIdInStates1Or2(int soundId, int index) __asm__("func_8003BF6C");
+void Callback25_ProbePlayerContactSegment(void) __asm__("func_80041930");
 void Callback25_80041AE8(void) __asm__("func_80041AE8");
 void Callback25_80041C20(void) __asm__("func_80041C20");
-void Callback25_80042A44(void) __asm__("func_80042A44");
-void Callback25_80043A38(int scale) __asm__("func_80043A38");
+void Callback25_UpdatePlayerSurfaceState(void) __asm__("func_80042A44");
+void Callback25_BuildNegatedNormalizedPlayerVector(int scale) __asm__("func_80043A38");
 void Callback25_80049590(void) __asm__("func_80049590");
-void Callback25_8004F110(Vector3D*, int) __asm__("func_8004F110");
+void Callback25_ShiftVectorRightTowardZero(Vector3D*, int) __asm__("func_8004F110");
 extern int Callback25_8006E344 __asm__("D_8006E344");
 extern int Callback25_8006E52C __asm__("D_8006E52C");
 extern int Callback25_8006E530 __asm__("D_8006E530");
@@ -1211,14 +1211,14 @@ void func_level_25_80087F34(void) {
         case 0x35:
         case 0x36:
             Callback25_80041C20();
-            Callback25_80042A44();
+            Callback25_UpdatePlayerSurfaceState();
         block_3:
             Callback25Player.unk4[0] = 0;
             return;
         case 0x19:
             Callback25_80041C20();
-            Callback25_80042A44();
-            Callback25_80041930();
+            Callback25_UpdatePlayerSurfaceState();
+            Callback25_ProbePlayerContactSegment();
             Callback25_80049590();
             if ((Callback25Player.movementState == MOVEMENT_STATE_SUPERCHARGE) &&
                 (SpawnParticle != 0)) {
@@ -1234,8 +1234,8 @@ void func_level_25_80087F34(void) {
         case 0x22:
         case 0x23:
             Callback25_80041C20();
-            Callback25_80042A44();
-            Callback25_80041930();
+            Callback25_UpdatePlayerSurfaceState();
+            Callback25_ProbePlayerContactSegment();
             if ((SpawnParticle != 0) && (Callback25Player.union144.b.unk148 != 0)) {
                 iterationLimit = 1;
                 if (Callback25Player.union144.b.unk148 >= 2) {
@@ -1246,7 +1246,7 @@ void func_level_25_80087F34(void) {
                     sourceBytes = (unsigned char*)&Callback25Player.union144.a.unk13cc - 0xB0;
                     do {
                         func_8004F178(&local.value, (Vector3D*)sourceBytes);
-                        Callback25_8004F110(&local.value, 7);
+                        Callback25_ShiftVectorRightTowardZero(&local.value, 7);
                         iteration += 1;
                         sample = rand();
                         component = local.value.x;
@@ -1285,7 +1285,7 @@ void func_level_25_80087F34(void) {
         case 0x2C:
         case 0x37:
             Callback25_80041C20();
-            Callback25_80042A44();
+            Callback25_UpdatePlayerSurfaceState();
             Callback25_80041AE8();
             if ((unsigned char)Callback25Player.unk10[4] != 0) {
                 value =
@@ -1300,8 +1300,8 @@ void func_level_25_80087F34(void) {
             return;
         case 0x3D:
             Callback25_80041C20();
-            Callback25_80042A44();
-            Callback25_80043A38(0xC00);
+            Callback25_UpdatePlayerSurfaceState();
+            Callback25_BuildNegatedNormalizedPlayerVector(0xC00);
             Callback25_80049590();
             if (SpawnParticle != 0) {
                 SpawnParticle(1, 9, 0, 0);
@@ -1310,8 +1310,8 @@ void func_level_25_80087F34(void) {
             Callback25Player.unk4[0] = 0;
             Callback25_8006E52C = 4;
             if ((Callback25_8006E344 == 0) &&
-                (Callback25_8003BF6C((int)D_8006C654->supercharge, Callback25Player.unk22[2]) ==
-                 0)) {
+                (Callback25_SoundHandleMatchesIdInStates1Or2((int)D_8006C654->supercharge,
+                                                             Callback25Player.unk22[2]) == 0)) {
                 Callback25Player.unk22[2] = PlaySound((int)D_8006C654->supercharge, 0, 4);
                 Callback25Player.unk22[3] = (int)D_8006C654->supercharge;
             }
@@ -1389,11 +1389,11 @@ extern int Raw25Word __asm__("D_80070328+0x50");
 extern unsigned char Raw25State[] __asm__("D_80070328+0x50");
 extern unsigned char Raw25Union[] __asm__("D_80070328+0x144");
 extern int Raw25Spit __asm__("D_80070328+0x170");
-void Call25_8004F168(Vector3D*) __asm__("func_8004F168");
-int Call25_8004EDE8(Vector3D*, int) __asm__("func_8004EDE8");
-int Call25A358(Vector3D*, int) __asm__("func_8001A358");
-void Call25_800441F0(void) __asm__("func_800441F0");
-void Call25_80043A38(int) __asm__("func_80043A38");
+void Call25_ClearVector(Vector3D*) __asm__("func_8004F168");
+int Call25_MeasureVectorLength(Vector3D*, int) __asm__("func_8004EDE8");
+int Call25QueryWorldHeight(Vector3D*, int) __asm__("func_8001A358");
+void Call25_ClearPlayerMotionVectors(void) __asm__("func_800441F0");
+void Call25_BuildNegatedNormalizedPlayerVector(int) __asm__("func_80043A38");
 void func_80047138(void);
 void func_level_25_80088454(int arg0) {
     Vector3D surfaceVector;
@@ -1411,7 +1411,7 @@ void func_level_25_80088454(int arg0) {
         case 0x36:
             Transition25Player.movementState = MOVEMENT_STATE_STAND;
             Transition25Player.unk5 = 0;
-            Call25_800441F0();
+            Call25_ClearPlayerMotionVectors();
             Transition25Player.grounded = 1;
             goto clearPointers;
         case 0x19:
@@ -1436,9 +1436,9 @@ void func_level_25_80088454(int arg0) {
             if (*(int*)flyState != 6) {
                 *(int*)flyState = 6;
                 Transition25Player.unk5 = 0;
-                Call25_8004F168((Vector3D*)(flyState + 0x104));
+                Call25_ClearVector((Vector3D*)(flyState + 0x104));
                 Transition25Player.union144.a.unk13db.y = 0;
-                vectorLength = Call25_8004EDE8((Vector3D*)(flyState + 0x48), 0);
+                vectorLength = Call25_MeasureVectorLength((Vector3D*)(flyState + 0x48), 0);
                 Transition25Player.unk8[0] = vectorLength;
                 if (vectorLength < 0x800)
                     Transition25Player.unk8[0] = 0x800;
@@ -1472,12 +1472,12 @@ void func_level_25_80088454(int arg0) {
                     }
                     Transition25Player.unk5 = 0;
                     Transition25Player.unk8[0] =
-                        Call25_8004EDE8((Vector3D*)(unionPointer - 0xAC), 0);
+                        Call25_MeasureVectorLength((Vector3D*)(unionPointer - 0xAC), 0);
                     Transition25Player.grounded = 1;
                     Transition25Player.unk15b = 1;
                     func_8004F178(&surfaceVector, (Vector3D*)(unionPointer - 0x144));
                     surfaceVector.z += 0x400;
-                    surfaceResult = Call25A358(&surfaceVector, 0x800);
+                    surfaceResult = Call25QueryWorldHeight(&surfaceVector, 0x800);
                     surfaceVector.z = surfaceResult;
                     if (surfaceResult != 0 && D_80071934 != 0 && SpawnParticle) {
                         SpawnParticle(10, 0x29, &surfaceVector, 0);
@@ -1515,9 +1515,10 @@ void func_level_25_80088454(int arg0) {
             *(int*)stateBase = MOVEMENT_STATE_SUPERCHARGE;
             Transition25Player.unk5 = 0;
             Transition25Player.unk13a[0] = 0x60000;
-            Transition25Player.unk8[0] = Call25_8004EDE8((Vector3D*)(stateBase + 0x48), 0);
+            Transition25Player.unk8[0] =
+                Call25_MeasureVectorLength((Vector3D*)(stateBase + 0x48), 0);
             Transition25Player.horizontalSpeed = 0x1E80;
-            Call25_80043A38(0xC00);
+            Call25_BuildNegatedNormalizedPlayerVector(0xC00);
             Transition25Player.grounded = 1;
             if ((Transition25Player.unk13f[0] != 0) || (Transition25Player.spitState != 0) ||
                 (Transition25Player.unk17t != 6)) {
@@ -1587,26 +1588,26 @@ extern int A25W290 __asm__("D_80070328 + 0x290");
 extern int A25Surface __asm__("D_8006FA38");
 extern unsigned char* A25SoundDesc __asm__("D_8006C654");
 int A25Sound() __asm__("PlaySound");
-int A25H40994() __asm__("func_80040994");
-int A25H4BEF8() __asm__("func_8004BEF8");
-int A25H498C0() __asm__("func_800498C0");
+int A25ProcessPlayerStateFlags() __asm__("func_80040994");
+int A25DispatchPlayerStateRequest() __asm__("func_8004BEF8");
+int A25UpdatePlayerRetryState() __asm__("func_800498C0");
 extern volatile int A25W20C __asm__("D_80070328 + 0x20C");
 extern int A25W214 __asm__("D_80070328 + 0x214");
 extern unsigned char A25B100 __asm__("D_80070328 + 0x100");
 extern unsigned char A25E535 __asm__("D_8006E535");
 extern unsigned char* A25Models __asm__("D_8006EE2C");
-int A25H40BCC() __asm__("func_80040BCC");
-int A25H1A310() __asm__("func_8001A310");
+int A25ProcessPlayerContactFlags() __asm__("func_80040BCC");
+int A25QueryWorldHeightWithOptions() __asm__("func_8001A310");
 extern int A25W10C __asm__("D_80070328 + 0x10C");
 extern int A25WB4 __asm__("D_80070328 + 0xB4");
 extern int A25WA4 __asm__("D_80070328 + 0xA4");
 extern int (*A25Callback1)(int) __asm__("unk_ovlheader_8007431C");
-int A25H40954() __asm__("func_80040954");
+int A25GetSurfaceTypeFromFlags() __asm__("func_80040954");
 extern int A25W50 __asm__("D_80070328 + 0x50");
 extern int A25WBC __asm__("D_80070328 + 0xBC"), A25W1BC __asm__("D_80070328 + 0x1BC"),
     A25W60 __asm__("D_80070328 + 0x60");
 extern short A25H148 __asm__("D_80070328 + 0x148");
-int A25H43194() __asm__("func_80043194");
+int A25TestPlayerProbePattern() __asm__("func_80043194");
 int A25MeasureVectorLength() __asm__("func_8004EDE8");
 void func_level_25_80088868(void) {
     register int work2 __asm__("$2"), work3 __asm__("$3"), work4 __asm__("$4"), work5 __asm__("$5");
@@ -1643,14 +1644,14 @@ void func_level_25_80088868(void) {
             return;
         case 53:
         case 54:
-            work2 = A25H40994();
+            work2 = A25ProcessPlayerStateFlags();
             work4 = 0;
             if (work2)
                 return;
             goto call;
 
         case 25:
-            if (A25H40BCC())
+            if (A25ProcessPlayerContactFlags())
                 return;
             if (A25B1B5 && (A25NewButtons & 64))
                 A25B1B6 = 1;
@@ -1694,13 +1695,13 @@ void func_level_25_80088868(void) {
             goto call;
         case 33:
 
-            if (A25H40994())
+            if (A25ProcessPlayerStateFlags())
                 return;
             locomotion = &A25WB8;
             MATCHING_KEEP(locomotion);
             if (!*locomotion) {
                 if (A25WE4 >= 23)
-                    A25H4BEF8(7);
+                    A25DispatchPlayerStateRequest(7);
                 if (A25WAC > 0) {
                     work3 = A25WB0;
                     work2 = work3 < 3841;
@@ -1732,7 +1733,7 @@ void func_level_25_80088868(void) {
             work4 = 22;
             if (work2)
                 goto call;
-            work2 = A25H43194(4);
+            work2 = A25TestPlayerProbePattern(4);
             work4 = 47;
             if (work2)
                 goto call;
@@ -1774,13 +1775,13 @@ void func_level_25_80088868(void) {
 
         case 34:
 
-            if (A25H40994())
+            if (A25ProcessPlayerStateFlags())
                 return;
             locomotion = &A25WB8;
             MATCHING_KEEP(locomotion);
             if (!*locomotion) {
                 if (A25WE4 >= 23)
-                    A25H4BEF8(7);
+                    A25DispatchPlayerStateRequest(7);
                 if (A25WAC > 0) {
                     work3 = A25WB0;
                     work2 = work3 < 3841;
@@ -1812,7 +1813,7 @@ void func_level_25_80088868(void) {
             work4 = 22;
             if (work2)
                 goto call;
-            work2 = A25H43194(4);
+            work2 = A25TestPlayerProbePattern(4);
             work4 = 47;
             if (work2)
                 goto call;
@@ -1848,13 +1849,13 @@ void func_level_25_80088868(void) {
 
         case 35:
 
-            if (A25H40994())
+            if (A25ProcessPlayerStateFlags())
                 return;
             locomotion = &A25WB8;
             MATCHING_KEEP(locomotion);
             if (!*locomotion) {
                 if (A25WE4 >= 23)
-                    A25H4BEF8(7);
+                    A25DispatchPlayerStateRequest(7);
                 if (A25WAC > 0) {
                     work3 = A25WB0;
                     work2 = work3 < 3841;
@@ -1885,7 +1886,7 @@ void func_level_25_80088868(void) {
             work4 = 22;
             if (work2)
                 goto call;
-            work2 = A25H43194(4);
+            work2 = A25TestPlayerProbePattern(4);
             work4 = 47;
             if (work2)
                 goto call;
@@ -1921,7 +1922,7 @@ void func_level_25_80088868(void) {
 
         case 43: {
             register unsigned char* byte4 __asm__("$4");
-            if (A25H40994())
+            if (A25ProcessPlayerStateFlags())
                 return;
             if ((A25NewButtons & 64) && A25W54 >= 9) {
                 work4 = 6;
@@ -1941,13 +1942,13 @@ void func_level_25_80088868(void) {
             byte4 -= 256;
             if (!work2)
                 goto check44;
-            work2 = A25H1A310(byte4, 1024, 1, 0);
+            work2 = A25QueryWorldHeightWithOptions(byte4, 1024, 1, 0);
             work4 = 40;
             if (work2)
                 goto check44;
             goto call;
         partialCall:
-            A25H4BEF8(work4);
+            A25DispatchPlayerStateRequest(work4);
         check44:
             work2 = A25E535;
             work4 = 44;
@@ -1974,10 +1975,10 @@ void func_level_25_80088868(void) {
             callback2();
             return;
         missingCallback:
-            A25H498C0();
+            A25UpdatePlayerRetryState();
             return;
         other44:
-            if (A25H40994())
+            if (A25ProcessPlayerStateFlags())
                 return;
             if ((A25NewButtons & 64) && A25W54 >= 9) {
                 work4 = 6;
@@ -1997,7 +1998,7 @@ void func_level_25_80088868(void) {
             byte4 -= 256;
             if (!work2)
                 goto mode44;
-            work2 = A25H1A310(byte4, 1024, 1, 0);
+            work2 = A25QueryWorldHeightWithOptions(byte4, 1024, 1, 0);
             work4 = 40;
             if (!work2)
                 goto call;
@@ -2015,7 +2016,7 @@ void func_level_25_80088868(void) {
         case 55:
             if (A25W54 < 101)
                 return;
-            A25H4BEF8(44);
+            A25DispatchPlayerStateRequest(44);
             work2 = 1;
             A25W4C = work2;
             work2 = 8;
@@ -2023,7 +2024,7 @@ void func_level_25_80088868(void) {
             return;
 
         case 61:
-            if (A25H40BCC())
+            if (A25ProcessPlayerContactFlags())
                 return;
             work2 = 1;
             MATCHING_KEEP(work2);
@@ -2033,7 +2034,7 @@ void func_level_25_80088868(void) {
             if (work3 == work2) {
                 if (A25WB8 >= 4)
                     goto partial25;
-                work2 = A25H40954(A25W10C);
+                work2 = A25GetSurfaceTypeFromFlags(A25W10C);
                 work3 = 9;
                 if (work2 == work3)
                     goto finalSpeed;
@@ -2042,7 +2043,7 @@ void func_level_25_80088868(void) {
             }
             if (A25Buttons & 64) {
             partial25:
-                A25H4BEF8(25);
+                A25DispatchPlayerStateRequest(25);
                 work2 = A25WB8;
                 work3 = 3520;
                 A25W94 = work3;
@@ -2097,7 +2098,7 @@ void func_level_25_80088868(void) {
             MATCHING_BARRIER_VOLATILE("memory");
         call:
             MATCHING_BARRIER_VOLATILE("memory");
-            A25H4BEF8(work4);
+            A25DispatchPlayerStateRequest(work4);
             return;
     }
 }

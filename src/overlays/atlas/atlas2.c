@@ -130,9 +130,9 @@ extern volatile unsigned short Atlas_7839C_HalfAE0C __asm__("D_atlas_8007AE0C");
 /* AI generated; not human reviewed. Original-instruction-derived C. Original source asm/nonmatchings/overlays/atlas/atlas2/func_atlas_8007839C.s SHA256 4fa87596a0264bd49542f77c2a10a6e76fd4ad643be07ec4a3ad51796a6a34ef. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
 typedef int (*Atlas_7839C_Callback)(void*, int, int, int);
 #define Atlas_7839C_Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Atlas_7839C_func_800200A0() __asm__("func_800200A0");
+int Atlas_7839CEmitScreenColorQuad() __asm__("func_800200A0");
 /* extern */
-int Atlas_7839C_func_80030258() __asm__("func_80030258");
+int Atlas_7839CRemapPrimitiveListScreenCoordinates() __asm__("func_80030258");
 /* extern */
 int Atlas_7839C_func_atlas_80077EB8() __asm__("func_atlas_80077EB8");
 /* extern */
@@ -212,8 +212,8 @@ void func_atlas_8007839C(void) {
         case 1:
             Atlas_7839C_func_atlas_80077EB8(0x100, 0xC, 0);
             if (Atlas_7839C_D_8006C598 != 0) {
-                Atlas_7839C_func_800200A0(2, Atlas_7839C_D_8006C598, Atlas_7839C_D_8006C598,
-                                          Atlas_7839C_D_8006C598);
+                Atlas_7839CEmitScreenColorQuad(2, Atlas_7839C_D_8006C598, Atlas_7839C_D_8006C598,
+                                               Atlas_7839C_D_8006C598);
                 return;
             }
         default:
@@ -514,7 +514,7 @@ void func_atlas_8007839C(void) {
     }
     return;
 call30258:
-    Atlas_7839C_func_80030258(Atlas_7839C_D_8006FBF8, phaseWord16);
+    Atlas_7839CRemapPrimitiveListScreenCoordinates(Atlas_7839C_D_8006FBF8, phaseWord16);
 }
 #undef Atlas_7839C_Field
 
@@ -536,8 +536,8 @@ typedef struct {
     int unk04;
 } Decoded2058Record;
 extern Decoded2058Record Decoded2058State __asm__("D_8006E788");
-void Decoded2058Update(Decoded2058Record*, int) __asm__("func_80055854");
-void Decoded2058Actor(Moby*) __asm__("func_80034DAC");
+void Decoded2058UpdateMobyAnimations(Decoded2058Record*, int) __asm__("func_80055854");
+void Decoded2058FinalizeMobyAnimationTransform(Moby*) __asm__("func_80034DAC");
 extern void (*Decoded2058Particles)(int) __asm__("UpdateParticles");
 void func_atlas_80078AFC(void) {
     int shift;
@@ -575,10 +575,10 @@ void func_atlas_80078AFC(void) {
     if (D_8006C65C) {
         Decoded2058State.actor = D_8006C65C;
         Decoded2058State.unk04 = 0;
-        Decoded2058Update(&Decoded2058State, 2);
+        Decoded2058UpdateMobyAnimations(&Decoded2058State, 2);
         if (D_8006C648 >= 3)
-            Decoded2058Update(&Decoded2058State, D_8006C648 + 0x7FFFFFFE);
-        Decoded2058Actor(D_8006C65C);
+            Decoded2058UpdateMobyAnimations(&Decoded2058State, D_8006C648 + 0x7FFFFFFE);
+        Decoded2058FinalizeMobyAnimationTransform(D_8006C65C);
     }
     if (Decoded2058Particles)
         Decoded2058Particles(D_8006C648);
@@ -618,11 +618,11 @@ struct Atlas78DOriginalFrameDescription {
     /* 0x00 */ char pad0[0x40];
 };
 /* size = 0x40 */
-void Atlas78D_func_8002A6E4(void) __asm__("func_8002A6E4");
+void Atlas78DSubmitHudSoundByte17(void) __asm__("func_8002A6E4");
 /* extern */
-int Atlas78D_func_8002A714() __asm__("func_8002A714");
+int Atlas78DSubmitHudSoundByte18WithWord0C() __asm__("func_8002A714");
 /* extern */
-int Atlas78D_func_800584BC() __asm__("func_800584BC");
+int Atlas78DBeginLevelWarp() __asm__("func_800584BC");
 /* extern */
 int Atlas78D_func_atlas_80075C3C() __asm__("func_atlas_80075C3C");
 /* extern */
@@ -715,7 +715,7 @@ void func_atlas_80078D0C(unsigned char arg0, short* arg1, int arg2) {
     if (entryMask3 & 0x100) {
         __asm__ volatile("" : "=m"(originalUnusedFrameBytes));
         __asm__("" : : : "$2", "memory");
-        Atlas78D_func_8002A6E4();
+        Atlas78DSubmitHudSoundByte17();
         Atlas78D_D_atlas_8007ADE0 = 6;
         Atlas78D_D_8006FBCC = 1;
         Atlas78D_D_8006FBC4 = 0;
@@ -725,13 +725,13 @@ void func_atlas_80078D0C(unsigned char arg0, short* arg1, int arg2) {
     }
     if (entryMask3 & 0x800) {
         __asm__("" : : : "$4", "memory");
-        Atlas78D_func_8002A6E4();
+        Atlas78DSubmitHudSoundByte17();
         rawWord2 = 6;
         goto block_110;
     }
     if (entryMask3 & 0x10) {
         __asm__("" : : : "$5", "memory");
-        Atlas78D_func_8002A6E4();
+        Atlas78DSubmitHudSoundByte17();
         halfWord2 = *(unsigned short*)&Atlas78D_D_atlas_8007ADE4;
         shiftedWord4 = halfWord2 << 16;
         MATCHING_KEEP(shiftedWord4);
@@ -799,7 +799,7 @@ void func_atlas_80078D0C(unsigned char arg0, short* arg1, int arg2) {
         if (entryMask3 == 0) {
             Atlas78D_D_atlas_8007ADEA = 0;
             __asm__("" : : : "$6", "memory");
-            Atlas78D_func_8002A6E4();
+            Atlas78DSubmitHudSoundByte17();
             Atlas78D_D_8006FBCC = 1;
             __asm__("" : : : "$2", "memory");
             sharedStep2 = Atlas78D_D_8006C648;
@@ -811,7 +811,7 @@ void func_atlas_80078D0C(unsigned char arg0, short* arg1, int arg2) {
             Atlas78D_D_atlas_8007ADEA = 2;
             if (*(&Atlas78D_D_80071FB0 + *(&Atlas78D_D_80066FCC + (entryMask3 * 0xA))) != 0) {
                 __asm__("" : : : "$2", "$4", "memory");
-                Atlas78D_func_8002A6E4();
+                Atlas78DSubmitHudSoundByte17();
                 Atlas78D_D_8006FBCC = 1;
                 __asm__("" : : : "$2", "memory");
                 sharedStep2 = Atlas78D_D_8006C648;
@@ -826,7 +826,7 @@ void func_atlas_80078D0C(unsigned char arg0, short* arg1, int arg2) {
             if (*(&Atlas78D_D_80071FB0 +
                   Atlas78DField(&Atlas78D_D_80066FCC, unsigned char*, 0x32)) != 0) {
                 __asm__("" : : : "$2", "$5", "memory");
-                Atlas78D_func_8002A6E4();
+                Atlas78DSubmitHudSoundByte17();
                 Atlas78D_D_8006FBCC = 1;
                 __asm__("" : : : "$2", "memory");
                 sharedStep2 = Atlas78D_D_8006C648;
@@ -841,7 +841,7 @@ void func_atlas_80078D0C(unsigned char arg0, short* arg1, int arg2) {
             if (*(&Atlas78D_D_80071FB0 +
                   Atlas78DField(&Atlas78D_D_80066FCC, unsigned char*, 0x12)) != 0) {
                 __asm__("" : : : "$2", "$6", "memory");
-                Atlas78D_func_8002A6E4();
+                Atlas78DSubmitHudSoundByte17();
                 Atlas78D_D_8006FBCC = 1;
                 __asm__("" : : : "$2", "memory");
                 sharedStep2 = Atlas78D_D_8006C648;
@@ -862,7 +862,7 @@ void func_atlas_80078D0C(unsigned char arg0, short* arg1, int arg2) {
         Atlas78D_D_atlas_8007ADEA = 8;
         if (*(&Atlas78D_D_80071FB0 + *(&Atlas78D_D_80066FCC + Atlas78D_D_atlas_8007ADE6)) != 0) {
             __asm__("" : : : "$4", "$5", "memory");
-            Atlas78D_func_8002A6E4();
+            Atlas78DSubmitHudSoundByte17();
             Atlas78D_D_8006FBCC = 1;
             Atlas78D_D_8006FBC4 = 0;
             Atlas78D_D_atlas_8007ADF8 = 0;
@@ -889,14 +889,14 @@ block_31:
                 MATCHING_KEEP_CLOBBER(stepPointer16, "memory");
                 Atlas78D_D_atlas_8007AE0C = 0;
                 *stepPointer16 = -sharedStep2;
-                Atlas78D_func_8002A6E4();
+                Atlas78DSubmitHudSoundByte17();
                 rawWord2 = 1;
                 *stepPointer16 = 0;
                 Atlas78D_D_8006FBCC = rawWord2;
             }
             if ((Atlas78D_D_atlas_8007AE0E >= 0xA) && (*maskPointer19 & 0x20)) {
                 Atlas78D_D_atlas_8007ADEA = 0xA;
-                Atlas78D_func_8002A6E4();
+                Atlas78DSubmitHudSoundByte17();
                 Atlas78D_D_8006FBCC = 1;
                 Atlas78D_D_8006FBC4 = 0;
                 Atlas78D_D_atlas_8007AE06 = 0;
@@ -935,12 +935,12 @@ block_31:
         if (temp_a1 != Atlas78D_D_8006C5BC) {
             Atlas78D_D_8007014F = 0;
             Atlas78D_D_80070148 = 0;
-            Atlas78D_func_800584BC(0, temp_a1);
+            Atlas78DBeginLevelWarp(0, temp_a1);
         }
     } else {
     block_44:
         if (Atlas78D_D_8006E53C & 0x1000) {
-            Atlas78D_func_8002A714();
+            Atlas78DSubmitHudSoundByte18WithWord0C();
             cursorPointer3 = &Atlas78D_D_8006FBCC;
             MATCHING_KEEP_CLOBBER(cursorPointer3, "memory");
             rawWord2 = *cursorPointer3;
@@ -1082,7 +1082,7 @@ block_31:
                 *(int*)cursorPointer3 = rawWord2;
             }
         } else if (Atlas78D_D_8006E53C & 0x4000) {
-            Atlas78D_func_8002A714();
+            Atlas78DSubmitHudSoundByte18WithWord0C();
             forwardCursor6 = &Atlas78D_D_8006FBCC;
             __asm__("" : "=r"(forwardCursor6) : "0"(forwardCursor6) : "$4", "memory");
             forwardHalf4 = &Atlas78D_D_atlas_8007ADE8;
@@ -1236,7 +1236,7 @@ block_31:
                         rawWord2 = 2;
                     Atlas78D_D_atlas_8007ADEA = (short)rawWord2;
                 }
-                Atlas78D_func_8002A6E4();
+                Atlas78DSubmitHudSoundByte17();
                 rawWord2 = 1;
             block_107:
                 Atlas78D_D_8006FBCC = rawWord2;
@@ -1301,7 +1301,7 @@ block_31:
                 Atlas78D_D_8006FBC4 = 0;
                 Atlas78D_D_atlas_8007ADE0 = 7;
             }
-            Atlas78D_func_8002A6E4();
+            Atlas78DSubmitHudSoundByte17();
         block_126:
             rawWord2 = 1;
         block_127:
@@ -1658,7 +1658,7 @@ void func_atlas_80079F1C(void) {
 #define Atlas_7A1A8_Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 int Atlas_7A1A8_CDLoadTime() __asm__("CDLoadTime");
 /* extern */
-int Atlas_7A1A8_func_8004ECF4() __asm__("func_8004ECF4");
+int Atlas_7A1A8TransposePackedHalfwordMatrix3x3() __asm__("func_8004ECF4");
 /* extern */
 int Atlas_7A1A8TransformVectorByBasis() __asm__("func_8004ED6C");
 /* extern */
@@ -1801,7 +1801,8 @@ void func_atlas_8007A1A8(void) {
                     (unsigned char)Atlas_7A1A8_D_80070131;
                 Atlas_7A1A8_Field(Atlas_7A1A8_D_8006C65C, unsigned char*, 0x46) =
                     (unsigned char)Atlas_7A1A8_D_80070132;
-                Atlas_7A1A8_func_8004ECF4(matrixPointer16, &Atlas_7A1A8_D_8006E00C);
+                Atlas_7A1A8TransposePackedHalfwordMatrix3x3(matrixPointer16,
+                                                            &Atlas_7A1A8_D_8006E00C);
                 Atlas_7A1A8TransformVectorByBasis(matrixPointer16, data70130Pointer18 - 0x18,
                                                   &originalFrame.sp10);
                 Atlas_7A1A8AddVector(Atlas_7A1A8_D_8006C65C + 0xC, &originalFrame.sp10,

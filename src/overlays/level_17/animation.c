@@ -11,23 +11,24 @@
 /* AI generated; not human reviewed. Original-instruction-derived C candidate. Original source asm/nonmatchings/overlays/level_17/animation/func_level_17_80082528.s SHA256 0ce58b4667640ca62efa8138e2c9335d92f2ff89b5f9eb015050526e3f709395. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
 #define M2C_FIELD(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 
-int Controller82528_func_800363DC() __asm__("func_800363DC");                   /* extern */
-unsigned char Controller82528_func_80040D10() __asm__("func_80040D10");         /* extern */
-unsigned char Controller82528_func_80041580() __asm__("func_80041580");         /* extern */
-unsigned char Controller82528_func_800416F4() __asm__("func_800416F4");         /* extern */
-unsigned char Controller82528_func_800417FC() __asm__("func_800417FC");         /* extern */
-unsigned char Controller82528_func_80041B64() __asm__("func_80041B64");         /* extern */
-int Controller82528InterpolateSine() __asm__("func_8004E9E4");                  /* extern */
-int Controller82528InterpolateCosine() __asm__("func_8004EA2C");                /* extern */
-unsigned char Controller82528TransformVectorByBasis() __asm__("func_8004ED6C"); /* extern */
-int Controller82528MeasureVectorLength() __asm__("func_8004EDE8");              /* extern */
-unsigned char Controller82528ScaleVectorRatioQ15() __asm__("func_8004F08C");    /* extern */
-                                                                                /* extern */
-unsigned char Controller82528ClearVector() __asm__("func_8004F168");            /* extern */
-unsigned char Controller82528CopyVector() __asm__("func_8004F178");             /* extern */
-unsigned char Controller82528AddVector() __asm__("func_8004F194");              /* extern */
-unsigned char Controller82528SubtractVector() __asm__("func_8004F1C8");         /* extern */
-int Controller82528_rand() __asm__("rand");                                     /* extern */
+int Controller82528RandSignedBetween() __asm__("func_800363DC");                        /* extern */
+unsigned char Controller82528UpdatePlayerGroundInputTargets() __asm__("func_80040D10"); /* extern */
+unsigned char Controller82528ApproachPlayerTargetHeading() __asm__("func_80041580");    /* extern */
+unsigned char
+Controller82528BlendPlayerHeadingFromInputVector() __asm__("func_800416F4");       /* extern */
+unsigned char Controller82528ApproachPlayerTargetSpeed() __asm__("func_800417FC"); /* extern */
+unsigned char Controller82528BuildPlayerResponseVector() __asm__("func_80041B64"); /* extern */
+int Controller82528InterpolateSine() __asm__("func_8004E9E4");                     /* extern */
+int Controller82528InterpolateCosine() __asm__("func_8004EA2C");                   /* extern */
+unsigned char Controller82528TransformVectorByBasis() __asm__("func_8004ED6C");    /* extern */
+int Controller82528MeasureVectorLength() __asm__("func_8004EDE8");                 /* extern */
+unsigned char Controller82528ScaleVectorRatioQ15() __asm__("func_8004F08C");       /* extern */
+                                                                                   /* extern */
+unsigned char Controller82528ClearVector() __asm__("func_8004F168");               /* extern */
+unsigned char Controller82528CopyVector() __asm__("func_8004F178");                /* extern */
+unsigned char Controller82528AddVector() __asm__("func_8004F194");                 /* extern */
+unsigned char Controller82528SubtractVector() __asm__("func_8004F1C8");            /* extern */
+int Controller82528_rand() __asm__("rand");                                        /* extern */
 extern unsigned char Controller82528_D_800658A0 __asm__("D_800658A0");
 extern unsigned char Controller82528_D_80065920 __asm__("D_80065920");
 extern void* Controller82528_D_8006C570 __asm__("D_8006C570");
@@ -98,9 +99,9 @@ void func_level_17_80082528(int slotIndex) {
             Controller82528ClearVector(globalVector80);
             Controller82528ClearVector(globalVector80 + 0xC);
             if (Controller82528_D_8006E044 != 7) {
-                Controller82528_func_80040D10(0x1200);
-                Controller82528_func_800416F4();
-                Controller82528_func_80041580(0x5A, 0x10);
+                Controller82528UpdatePlayerGroundInputTargets(0x1200);
+                Controller82528BlendPlayerHeadingFromInputVector();
+                Controller82528ApproachPlayerTargetHeading(0x5A, 0x10);
                 return;
             }
         default:
@@ -156,9 +157,9 @@ void func_level_17_80082528(int slotIndex) {
             }
             goto clearVectors;
         case 0x1C:
-            Controller82528_func_80040D10(0xC80);
-            Controller82528_func_80041580(0x28, 8);
-            Controller82528_func_800417FC(0x140, 0xC0);
+            Controller82528UpdatePlayerGroundInputTargets(0xC80);
+            Controller82528ApproachPlayerTargetHeading(0x28, 8);
+            Controller82528ApproachPlayerTargetSpeed(0x140, 0xC0);
             globalFieldA4Pointer = &Controller82528_D_80070328 + 0xA4;
             globalVector8C = globalFieldA4Pointer - 0x18;
             workWord2 = Controller82528InterpolateCosine(M2C_FIELD(globalFieldA4Pointer, int*, 0));
@@ -186,7 +187,7 @@ void func_level_17_80082528(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer - 0x24;
             }
             Controller82528AddVector(var_a0_3, globalVector8C, &originalFrame.sp20);
-            Controller82528_func_80041B64();
+            Controller82528BuildPlayerResponseVector();
             if (combinedIndex < 0xD) {
                 MATCHING_OBSERVE(combinedIndex);
                 nextField94 = M2C_FIELD(&Controller82528_D_80070328, int*, 0x94) + 0x17;
@@ -208,7 +209,7 @@ void func_level_17_80082528(int slotIndex) {
                     MATCHING_KEEP(vectorAt40);
                 spawnParticleLoop:
                     if (particleThreshold < (Controller82528_rand() & 0xFF)) {
-                        workWord2 = Controller82528_func_800363DC(0, 0xC);
+                        workWord2 = Controller82528RandSignedBetween(0, 0xC);
                         call4 = globalByteE + 0x22;
                         workWord3 = *globalByteE;
                         MATCHING_KEEP(workWord3);
@@ -232,9 +233,9 @@ void func_level_17_80082528(int slotIndex) {
                         MATCHING_BARRIER_VOLATILE("memory");
                         originalFrame.sp34 = (workWord3 * 5) >> 0xA;
                         Controller82528TransformVectorByBasis(call4, call5, call6, signedTableWord);
-                        originalFrame.sp40 += Controller82528_func_800363DC(0, 0x50);
-                        originalFrame.sp44 += Controller82528_func_800363DC(0, 0x50);
-                        originalFrame.sp48 += Controller82528_func_800363DC(0, 0x50);
+                        originalFrame.sp40 += Controller82528RandSignedBetween(0, 0x50);
+                        originalFrame.sp44 += Controller82528RandSignedBetween(0, 0x50);
+                        originalFrame.sp48 += Controller82528RandSignedBetween(0, 0x50);
                         Controller82528AddVector(vectorAt40, vectorAt40, globalByteE - 0xE);
                         temp_v0_5 =
                             Controller82528_SpawnParticle(1, 0xD, vectorAt40, &originalFrame.sp30);
@@ -295,9 +296,9 @@ void func_level_17_80082528(int slotIndex) {
                 originalFrame.sp58 = 0xE;
                 Controller82528CopyVector(&originalFrame.sp60,
                                           (&Controller82528_D_80070328 + 0x94) - 0x94);
-                originalFrame.sp60 += Controller82528_func_800363DC(0, 0x12C);
-                originalFrame.sp64 += Controller82528_func_800363DC(0, 0x12C);
-                originalFrame.sp68 += Controller82528_func_800363DC(0, 0x12C);
+                originalFrame.sp60 += Controller82528RandSignedBetween(0, 0x12C);
+                originalFrame.sp64 += Controller82528RandSignedBetween(0, 0x12C);
+                originalFrame.sp68 += Controller82528RandSignedBetween(0, 0x12C);
                 temp_v0_7 =
                     Controller82528_SpawnParticle(1, 0xD, &originalFrame.sp60, &originalFrame.sp50);
                 M2C_FIELD(temp_v0_7, signed char*, 2) = 6;
@@ -490,11 +491,11 @@ extern int Actor17Movement __asm__("D_80070328+0x50");
 int Actor17CallSound15(int, Moby*, int) __asm__("PlaySound");
 int Actor17CallSound09(int, Moby*, int) __asm__("PlaySound");
 extern Spyro Actor17Spyro __asm__("D_80070328");
-int Actor17Call8004EDE8(Vector3D*, int) __asm__("func_8004EDE8");
-int Actor17Call8003636C(int low, int high) __asm__("func_8003636C");
-void Actor17Call80043A38(int scale) __asm__("func_80043A38");
-void Actor17Call800441F0(void) __asm__("func_800441F0");
-void Actor17Call8004F168(Vector3D*) __asm__("func_8004F168");
+int Actor17MeasureVectorLength(Vector3D*, int) __asm__("func_8004EDE8");
+int Actor17RandBetween(int low, int high) __asm__("func_8003636C");
+void Actor17BuildNegatedNormalizedPlayerVector(int scale) __asm__("func_80043A38");
+void Actor17ClearPlayerMotionVectors(void) __asm__("func_800441F0");
+void Actor17ClearVector(Vector3D*) __asm__("func_8004F168");
 extern int Actor17Word6E524 __asm__("D_8006E524");
 void func_level_17_80082F48(int arg0) {
     register Vector3D* sourceVector __asm__("$16");
@@ -510,9 +511,9 @@ void func_level_17_80082F48(int arg0) {
         case 0x14:
             Actor17Movement = MOVEMENT_STATE_STAND;
             Actor17Spyro.unk5 = 0;
-            Actor17Call800441F0();
+            Actor17ClearPlayerMotionVectors();
             Actor17Spyro.grounded = 1;
-            Actor17Spyro.union144.a.unk13cb = Actor17Call8003636C(1, 3);
+            Actor17Spyro.union144.a.unk13cb = Actor17RandBetween(1, 3);
             Actor17Spyro.union144.a.unk13cc = 0;
             goto clearSharedWords;
         default:
@@ -544,7 +545,7 @@ void func_level_17_80082F48(int arg0) {
             MATCHING_KEEP(value);
             Actor17Spyro.unk7a[2].z = value;
         }
-            Actor17Call80043A38(0xC00);
+            Actor17BuildNegatedNormalizedPlayerVector(0xC00);
             Actor17Spyro.grounded = 1;
             Actor17Word6E524 = 0xF;
             if (SpawnParticle != 0) {
@@ -561,7 +562,7 @@ void func_level_17_80082F48(int arg0) {
             Actor17Movement = MOVEMENT_STATE_HURT;
             Actor17Spyro.unk5 = 0;
             *(int*)savedBase = previousMovementA1;
-            Actor17Call8004F168(destination);
+            Actor17ClearVector(destination);
             Actor17Spyro.grounded = 1;
             Actor17Word6E524 = 0xF;
             if (SpawnParticle != 0) {
@@ -580,7 +581,7 @@ void func_level_17_80082F48(int arg0) {
             Actor17Spyro.unk5 = 0;
             *(int*)savedBase = previousMovementA2;
             func_8004F178(destination, sourceVector);
-            Actor17Spyro.unk8[0] = Actor17Call8004EDE8(sourceVector, 0);
+            Actor17Spyro.unk8[0] = Actor17MeasureVectorLength(sourceVector, 0);
             Actor17Spyro.unk7a[2].z = 0xDC0;
             Actor17Spyro.grounded = 0;
             Actor17Word6E524 = 0xF;
@@ -632,7 +633,7 @@ void func_level_17_80082F48(int arg0) {
         case 0x3A:
             Actor17Movement = MOVEMENT_STATE_DEATH;
             Actor17Spyro.unk5 = 0;
-            Actor17Call80043A38(0xC00);
+            Actor17BuildNegatedNormalizedPlayerVector(0xC00);
             Actor17Spyro.grounded = 1;
             if ((arg0 == 0x3A) || (arg0 == 0x6C)) {
                 PlaySound((int)D_8006C654->lavaBurn, 0, 0);
@@ -694,12 +695,12 @@ extern int A17W290 __asm__("D_80070328 + 0x290");
 extern int A17Surface __asm__("D_8006FA38");
 extern unsigned char* A17SoundDesc __asm__("D_8006C654");
 int A17Sound() __asm__("PlaySound");
-int A17H3BF6C() __asm__("func_8003BF6C");
-int A17H3BE70() __asm__("func_8003BE70");
-int A17H40994() __asm__("func_80040994");
-int A17H4BEF8() __asm__("func_8004BEF8");
-int A17H49688() __asm__("func_80049688");
-int A17H498C0() __asm__("func_800498C0");
+int A17SoundHandleMatchesIdInStates1Or2() __asm__("func_8003BF6C");
+int A17TransitionSoundHandleTo3Or5() __asm__("func_8003BE70");
+int A17ProcessPlayerStateFlags() __asm__("func_80040994");
+int A17DispatchPlayerStateRequest() __asm__("func_8004BEF8");
+int A17SelectPlayerAnimationLoopRequest() __asm__("func_80049688");
+int A17UpdatePlayerRetryState() __asm__("func_800498C0");
 void func_level_17_8008332C(void) {
     register int work2 __asm__("$2");
     register int work3 __asm__("$3");
@@ -741,7 +742,7 @@ void func_level_17_8008332C(void) {
         case 57:
             return;
         case 20:
-            if (A17H40994())
+            if (A17ProcessPlayerStateFlags())
                 return;
             if (A17NewButtons & 0x40)
                 goto set6;
@@ -749,7 +750,7 @@ void func_level_17_8008332C(void) {
                 goto set7;
             work3 = A17Buttons;
             if (work3 & 0x80) {
-                A17H4BEF8(13);
+                A17DispatchPlayerStateRequest(13);
                 return;
             }
             work2 = A17WA8;
@@ -766,7 +767,7 @@ void func_level_17_8008332C(void) {
                 MATCHING_KEEP(state);
                 if (!*state)
                     return;
-                A17H4BEF8(0);
+                A17DispatchPlayerStateRequest(0);
                 if (A17Table[*((unsigned char*)state - 0x2C)] >= 96) {
                     A17B14 = A17B15;
                     A17B16 = A17B17;
@@ -781,16 +782,16 @@ void func_level_17_8008332C(void) {
                 return;
             }
             if (A17BFC) {
-                A17H4BEF8(15);
+                A17DispatchPlayerStateRequest(15);
                 return;
             }
-            A17H49688();
+            A17SelectPlayerAnimationLoopRequest();
             return;
         case 29:
             if (A17W54 < 25)
                 return;
             if (A17W280 < 0) {
-                A17H4BEF8(31);
+                A17DispatchPlayerStateRequest(31);
                 return;
             }
         selectState:
@@ -810,16 +811,16 @@ void func_level_17_8008332C(void) {
             if (A17W54 < 25)
                 return;
             if (A17W280 < 0) {
-                A17H4BEF8(32);
+                A17DispatchPlayerStateRequest(32);
                 return;
             }
             A17Sound(A17SoundDesc[15], 0, 0);
             goto selectState;
         set44:
-            A17H4BEF8(44);
+            A17DispatchPlayerStateRequest(44);
             return;
         set41:
-            A17H4BEF8(41);
+            A17DispatchPlayerStateRequest(41);
             return;
         case 28:
             if (A17B1B5 && (A17NewButtons & 64))
@@ -843,36 +844,36 @@ void func_level_17_8008332C(void) {
                 goto checkSpeed;
             work3 = A17WB0;
             if (work3 > 3840) {
-                A17H4BEF8(3);
+                A17DispatchPlayerStateRequest(3);
                 return;
             }
             work2 = work3 < 1921;
             MATCHING_KEEP(work2);
             if (!work2) {
-                A17H4BEF8(2);
+                A17DispatchPlayerStateRequest(2);
                 return;
             }
         set1:
-            A17H4BEF8(1);
+            A17DispatchPlayerStateRequest(1);
             return;
         checkSpeed:
             if (A17WB0 < 1920)
                 goto set0;
-            A17H4BEF8(4);
+            A17DispatchPlayerStateRequest(4);
             return;
         set0:
-            A17H4BEF8(0);
+            A17DispatchPlayerStateRequest(0);
             return;
         buttons:
             if ((A17Buttons & 128) && A17W4C == 1) {
-                A17H4BEF8(22);
+                A17DispatchPlayerStateRequest(22);
                 return;
             }
             if (A17B1B5 && A17B1B6) {
                 if (A17W4C != 1)
                     return;
             set17:
-                A17H4BEF8(17);
+                A17DispatchPlayerStateRequest(17);
                 return;
             }
             if (A17W4C != 1)
@@ -882,7 +883,7 @@ void func_level_17_8008332C(void) {
             if (A17W54 < 91)
                 return;
         set7:
-            A17H4BEF8(7);
+            A17DispatchPlayerStateRequest(7);
             return;
         case 30: {
             register int* timer4 __asm__("$4");
@@ -920,12 +921,12 @@ void func_level_17_8008332C(void) {
             if (!A17B1B6)
                 return;
             if (A17W28C >= 0) {
-                if (A17H3BF6C(A17W290, A17W28C))
-                    A17H3BE70(A17W28C);
+                if (A17SoundHandleMatchesIdInStates1Or2(A17W290, A17W28C))
+                    A17TransitionSoundHandleTo3Or5(A17W28C);
                 A17W28C = -1;
             }
         set6:
-            A17H4BEF8(6);
+            A17DispatchPlayerStateRequest(6);
             return;
         }
         case 32:
@@ -937,7 +938,7 @@ void func_level_17_8008332C(void) {
             if (work2)
                 return;
         call498C0:
-            A17H498C0();
+            A17UpdatePlayerRetryState();
             return;
     }
 }

@@ -4,6 +4,19 @@ AI-generated investigation and additions; not yet human reviewed.
 
 Latest verified authority: batch36300 / cumulative36380;3098/3098 overlays,337/337 EXE,3435/3435 total;0 remain.
 
+## Current source cleanup (2026-10-23)
+
+The readability cleanup is accepted: 9,354 typed Moby member expressions,
+269 helper aliases for 12 existing operations, and 226 rewrapped definitions.
+All 96 unchanged native commands and all 62 original BASE image hashes pass.
+All 3,435 function matches and the complete ELF/PSX EXE bytes are retained.
+See [the current readability result](source-readability.md) and
+[portable acceptance evidence](decoding/source-readability-2026-10-23/README.md).
+
+Extra raw588 lifetime/null-route verification is stopped at the user's request.
+Do not restart it as a follow-up to this source cleanup. Recorded semantic
+gaps remain open. This pass is AI generated and not human reviewed; publication is recorded in the cleanup commit.
+
 ## Accepted33174: level41 actor2445; 12 overlays remain
 
 Authority **33174/33190:3086/3098 overlays,337/337 EXE,3423/3435 total**.

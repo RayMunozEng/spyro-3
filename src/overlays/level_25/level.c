@@ -458,7 +458,7 @@ void func_level_25_800807F8(int count, int childClass, Moby* sourceMoby, Vector3
 extern int Timer86B88Motion __asm__("D_8006C64C");
 extern unsigned char* Timer86B88SpriteBase __asm__("D_8006C788");
 extern short Timer86B88DigitBase __asm__("D_800719CC");
-int Timer86B88Place(void*, int*, int*, int*) __asm__("func_80029708");
+int Timer86B88ApplyHudMovement(void*, int*, int*, int*) __asm__("func_80029708");
 int Timer86B88Draw(void*, int, int) __asm__("func_800289C8");
 /* AI generated; not yet human reviewed. SCUS-94467 USA Rev 0.
  * Original 356-instruction timer family is the authority. Byte access widths,
@@ -626,7 +626,7 @@ int func_level_25_80080EE8(void* input) {
         remainder60 = quotient60 - value;
         frame.quotient3600 = counter;
     }
-    Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+    Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
     Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
     {
         register int digit __asm__("$2");
@@ -652,7 +652,7 @@ int func_level_25_80080EE8(void* input) {
         digit <<= 3;
         MATCHING_KEEP2(digit, base);
         sprite = base + digit;
-        Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+        Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
         Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
     }
     {
@@ -681,7 +681,7 @@ int func_level_25_80080EE8(void* input) {
         digit -= other;
         x -= digit;
         frame.drawPositionX = x;
-        Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+        Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
         Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
     }
     {
@@ -725,7 +725,7 @@ int func_level_25_80080EE8(void* input) {
             MATCHING_KEEP2(digit, base);
             digit <<= 3;
             sprite = base + digit;
-            Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+            Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
             Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
             {
                 register int nextDigit __asm__("$2");
@@ -751,7 +751,7 @@ int func_level_25_80080EE8(void* input) {
                 nextDigit <<= 3;
                 MATCHING_KEEP2(nextDigit, nextBase);
                 sprite = nextBase + nextDigit;
-                Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+                Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
                 Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
             }
             {
@@ -780,7 +780,7 @@ int func_level_25_80080EE8(void* input) {
                 nextDigit -= other;
                 x -= nextDigit;
                 frame.drawPositionX = x;
-                Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+                Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
                 Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
             }
             {
@@ -825,7 +825,7 @@ int func_level_25_80080EE8(void* input) {
                 MATCHING_KEEP2(digitBase, sprites);
                 digitBase <<= 3;
                 sprite = sprites + digitBase;
-                Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+                Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
                 Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
                 factor = frame.quotient3600;
                 MATCHING_KEEP(factor);
@@ -868,7 +868,7 @@ int func_level_25_80080EE8(void* input) {
             MATCHING_KEEP2(digit, base);
             digit <<= 3;
             sprite = base + digit;
-            Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+            Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
             Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
             singleLeadingDigit = remainder60 < 10;
         }
@@ -899,7 +899,7 @@ int func_level_25_80080EE8(void* input) {
         MATCHING_KEEP2(digit, base);
         sprite = base + digit;
         frame.drawPositionX = x;
-        Timer86B88Place(drawOwner, drawIndex, drawX, drawY);
+        Timer86B88ApplyHudMovement(drawOwner, drawIndex, drawX, drawY);
         Timer86B88Draw(sprite, frame.drawPositionX, frame.drawPositionY);
     }
     return 0;
@@ -1014,7 +1014,7 @@ extern unsigned char* A4926C788 __asm__("D_8006C788");
 extern unsigned char* A4926C654 __asm__("D_8006C654");
 extern unsigned char A4926Records[] __asm__("speedwayRecords");
 extern int (*A4926Callback)() __asm__("unk_ovlheader_80074378");
-int A4926H27934() __asm__("func_80027934");
+int A4926FindHudClassIndex() __asm__("func_80027934");
 int A4926Sound0() __asm__("PlaySound");
 int A4926Sound1() __asm__("PlaySound");
 int A4926Sound2() __asm__("PlaySound");
@@ -1092,7 +1092,7 @@ mode0:
             do {
                 work2 = A4926C5BC;
                 arg4 = work2 * 10 + index17;
-                work2 = A4926H27934(arg4);
+                work2 = A4926FindHudClassIndex(arg4);
                 arg5 = 0;
                 arg7 = work2;
                 arg6 = arg7 << 3;
@@ -1392,7 +1392,7 @@ mode2:
     switch (A4926FBC8) {
         case 0:
             data18 = A4926FA90;
-            work2 = A4926H27934(2001);
+            work2 = A4926FindHudClassIndex(2001);
             work2 <<= 3;
             value19 = 0;
             work3 = (int)A4926C738;
@@ -1418,7 +1418,7 @@ mode2:
             work2 >>= 1;
             index17 = work3 - work2;
             do {
-                work2 = A4926H27934(2001);
+                work2 = A4926FindHudClassIndex(2001);
                 A4926F(data18, short*, 0) = work2;
                 data18 += 8;
                 work3 = (int)A4926C738;
@@ -1594,12 +1594,12 @@ mode2:
 * and every overlay retail hash must remain identical. */
 #define Speedway25Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 unsigned char Speedway25CallDrawStringCenteredView1() __asm__("DrawStringCentered");
-unsigned char Speedway25Call1FB74View1() __asm__("func_8001FB74");
-unsigned char Speedway25Call1FD00View1() __asm__("func_8001FD00");
-int Speedway25Call28378View1() __asm__("func_80028378");
-void* Speedway25Call289C8View1() __asm__("func_800289C8");
-unsigned char Speedway25Call2E748View1() __asm__("func_8002E748");
-int Speedway25Call2EBB0View1() __asm__("func_8002EBB0");
+unsigned char Speedway25EmitHighlightLinePairView1() __asm__("func_8001FB74");
+unsigned char Speedway25BuildUiFramedPanelView1() __asm__("func_8001FD00");
+int Speedway25SelectHudIconAnimationFrameView1() __asm__("func_80028378");
+void* Speedway25EmitHudTexturedQuadsView1() __asm__("func_800289C8");
+unsigned char Speedway25EmitUiTextGlyphPacketsView1() __asm__("func_8002E748");
+int Speedway25MeasureEncodedTextAdvanceView1() __asm__("func_8002EBB0");
 int Speedway25CallsprintfView1() __asm__("sprintf");
 extern unsigned char Speedway25Data69D98View1 __asm__("D_80069D98");
 extern unsigned char Speedway25Data69DA8View1 __asm__("D_80069DA8");
@@ -1664,9 +1664,9 @@ void func_level_25_800824BC(void) {
     int temporaryWord15;
     switch (Speedway25Data6FBD0View1) {
         case 0:
-            Speedway25Call1FD00View1(0x70, 0x190, 0x1E, 0xD0);
-            Speedway25Call1FB74View1(0x90, 0x40, 0x170, 0x40);
-            Speedway25Call1FB74View1(0x90, 0xA8, 0x170, 0xA8);
+            Speedway25BuildUiFramedPanelView1(0x70, 0x190, 0x1E, 0xD0);
+            Speedway25EmitHighlightLinePairView1(0x90, 0x40, 0x170, 0x40);
+            Speedway25EmitHighlightLinePairView1(0x90, 0xA8, 0x170, 0xA8);
             temporaryWord11 = Speedway25Data6FBC8View1;
             if (temporaryWord11 > 0) {
                 argumentWord5 = 256;
@@ -1697,12 +1697,13 @@ void func_level_25_800824BC(void) {
                     rowOrTable17 = recordCursor19 + 6;
                 loop_11:
                     if (entryOrTable18 < Speedway25Field(retainedCountTable22, int*, 0)) {
-                        temporaryWord12 = Speedway25Call28378View1(recordCursor19, entryOrTable18);
+                        temporaryWord12 = Speedway25SelectHudIconAnimationFrameView1(
+                            recordCursor19, entryOrTable18);
                         Speedway25Field(rowOrTable17, unsigned char*, -3) = temporaryWord12;
-                        Speedway25Call289C8View1(Speedway25Data6C788View1 +
-                                                     ((temporaryWord12 & 0xFF) * 8),
-                                                 Speedway25Field(rowOrTable17, short*, -2),
-                                                 Speedway25Field(rowOrTable17, short*, 0));
+                        Speedway25EmitHudTexturedQuadsView1(
+                            Speedway25Data6C788View1 + ((temporaryWord12 & 0xFF) * 8),
+                            Speedway25Field(rowOrTable17, short*, -2),
+                            Speedway25Field(rowOrTable17, short*, 0));
                         rowOrTable17 += 8;
                     } else {
                         argumentWord5 = Speedway25Field(rowOrTable17, short*, -2);
@@ -1711,8 +1712,8 @@ void func_level_25_800824BC(void) {
                         rawWord3 = Speedway25Data6C788View1;
                         rawWord2 <<= 3;
                         widthOrPrimitive16 = rawWord3 + rawWord2;
-                        rawWord2 = (int)Speedway25Call289C8View1(widthOrPrimitive16, argumentWord5,
-                                                                 argumentWord6);
+                        rawWord2 = (int)Speedway25EmitHudTexturedQuadsView1(
+                            widthOrPrimitive16, argumentWord5, argumentWord6);
                         argumentWord4 = rawWord2;
                         rawWord3 = Speedway25Field(widthOrPrimitive16, unsigned short*, 6);
                         rawWord2 = 96;
@@ -1747,17 +1748,20 @@ void func_level_25_800824BC(void) {
                     countTable21 += 4;
                 } while (rowCountOrCenter20 < 4);
                 Speedway25CallsprintfView1(&originalFrame.sp18, &Speedway25Format1View);
-                rowCountOrCenter20 = (Speedway25Call2EBB0View1(&originalFrame.sp18) >> 1) + 0x100;
+                rowCountOrCenter20 =
+                    (Speedway25MeasureEncodedTextAdvanceView1(&originalFrame.sp18) >> 1) + 0x100;
                 Speedway25CallsprintfView1(&originalFrame.sp18, &Speedway25Format2View,
                                            Speedway25Data6FBD4View1);
-                Speedway25Call2E748View1(
+                Speedway25EmitUiTextGlyphPacketsView1(
                     &originalFrame.sp18,
-                    rowCountOrCenter20 - Speedway25Call2EBB0View1(&originalFrame.sp18), 0x32, 2, 0);
+                    rowCountOrCenter20 -
+                        Speedway25MeasureEncodedTextAdvanceView1(&originalFrame.sp18),
+                    0x32, 2, 0);
             }
             if (Speedway25Data6FBC8View1 == 4) {
-                widthOrPrimitive16 = Speedway25Call2EBB0View1(
+                widthOrPrimitive16 = Speedway25MeasureEncodedTextAdvanceView1(
                     *(int*)(&Speedway25Data69DD8View1 + (Speedway25Data6C76CView1 * 4)));
-                rawWord2 = Speedway25Call2EBB0View1(
+                rawWord2 = Speedway25MeasureEncodedTextAdvanceView1(
                     *(int*)(&Speedway25Data69DDCView1 + (Speedway25Data6C76CView1 * 4)));
                 rowOrTable17 = (int)&Speedway25Data69DD8View1;
                 MATCHING_KEEP(rowOrTable17);
@@ -1767,17 +1771,17 @@ void func_level_25_800824BC(void) {
                 MATCHING_KEEP(rawWord3);
                 if (widthOrPrimitive16 < rawWord3)
                     widthOrPrimitive16 = rawWord3;
-                rawWord2 = Speedway25Call2EBB0View1(
+                rawWord2 = Speedway25MeasureEncodedTextAdvanceView1(
                     *(int*)(&Speedway25Data6C438View1 + (Speedway25Data6C76CView1 * 4)));
                 rawWord3 = widthOrPrimitive16 + 10;
                 widthOrPrimitive16 = rawWord3 + rawWord2;
                 rawWord3 = widthOrPrimitive16 >> 1;
                 rawWord2 = 256;
                 widthOrPrimitive16 = rawWord2 - rawWord3;
-                Speedway25Call2E748View1(
+                Speedway25EmitUiTextGlyphPacketsView1(
                     *(int*)(&Speedway25Data6C438View1 + (Speedway25Data6C76CView1 * 4)),
                     widthOrPrimitive16, 0xB2, 2, 0);
-                rawWord2 = Speedway25Call2EBB0View1(
+                rawWord2 = Speedway25MeasureEncodedTextAdvanceView1(
                     *(int*)(&Speedway25Data6C438View1 + (Speedway25Data6C76CView1 * 4)));
                 rawWord3 = widthOrPrimitive16 + 10;
                 widthOrPrimitive16 = rawWord3 + rawWord2;
@@ -1794,8 +1798,9 @@ void func_level_25_800824BC(void) {
                 }
                 argumentWord5 = widthOrPrimitive16;
                 argumentWord6 = 178;
-                Speedway25Call2E748View1(Speedway25Field(argumentWord4, int*, 0), argumentWord5,
-                                         argumentWord6, argumentWord7 | 2, 0);
+                Speedway25EmitUiTextGlyphPacketsView1(Speedway25Field(argumentWord4, int*, 0),
+                                                      argumentWord5, argumentWord6,
+                                                      argumentWord7 | 2, 0);
                 rawWord2 = Speedway25Data6C76CView1;
                 rawWord3 = Speedway25Data6FBCCView1;
                 rawWord2 <<= 2;
@@ -1833,15 +1838,15 @@ void func_level_25_800824BC(void) {
             }
             return;
         case 1:
-            Speedway25Call1FD00View1(0x70, 0x190, 0x40, 0xA8);
-            Speedway25Call1FB74View1(0x90, 0x56, 0x170, 0x56);
-            Speedway25Call1FB74View1(0x90, 0x84, 0x170, 0x84);
+            Speedway25BuildUiFramedPanelView1(0x70, 0x190, 0x40, 0xA8);
+            Speedway25EmitHighlightLinePairView1(0x90, 0x56, 0x170, 0x56);
+            Speedway25EmitHighlightLinePairView1(0x90, 0x84, 0x170, 0x84);
             temporaryWord13 = Speedway25Data6FBC8View1;
             if (temporaryWord13 > 0) {
                 Speedway25CallDrawStringCenteredView1(
                     *(int*)(&Speedway25Data6C440View1 + (Speedway25Data6C76CView1 * 4)), 0xC0, 0x60,
                     2);
-                Speedway25Call2EBB0View1(
+                Speedway25MeasureEncodedTextAdvanceView1(
                     *(int*)(&Speedway25Data6C440View1 + (Speedway25Data6C76CView1 * 4)));
                 temporaryWord1 = Speedway25Data6FA74View1 / 3600;
                 temporaryWord5 = Speedway25Data6FA74View1 / 60;
@@ -1874,7 +1879,7 @@ void func_level_25_800824BC(void) {
                 Speedway25CallDrawStringCenteredView1(
                     *(int*)(&Speedway25Data6C444View1 + (Speedway25Data6C76CView1 * 4)), 0x140,
                     0x60, 2);
-                Speedway25Call2EBB0View1(
+                Speedway25MeasureEncodedTextAdvanceView1(
                     *(int*)(&Speedway25Data6C444View1 + (Speedway25Data6C76CView1 * 4)));
                 temporaryWord9 =
                     &Speedway25DataspeedwayRecordsView1 + 0x14 + (Speedway25Data6FA38View1 * 0x2C);
@@ -1935,9 +1940,9 @@ void func_level_25_800824BC(void) {
                 }
             }
             if (Speedway25Data6FBC8View1 == 4) {
-                widthOrPrimitive16 = Speedway25Call2EBB0View1(
+                widthOrPrimitive16 = Speedway25MeasureEncodedTextAdvanceView1(
                     *(int*)(&Speedway25Data69DD8View1 + (Speedway25Data6C76CView1 * 4)));
-                rawWord2 = Speedway25Call2EBB0View1(
+                rawWord2 = Speedway25MeasureEncodedTextAdvanceView1(
                     *(int*)(&Speedway25Data69DDCView1 + (Speedway25Data6C76CView1 * 4)));
                 rowOrTable17 = (int)&Speedway25Data69DD8View1;
                 MATCHING_KEEP(rowOrTable17);
@@ -1947,17 +1952,17 @@ void func_level_25_800824BC(void) {
                 MATCHING_KEEP(rawWord3);
                 if (widthOrPrimitive16 < rawWord3)
                     widthOrPrimitive16 = rawWord3;
-                rawWord2 = Speedway25Call2EBB0View1(
+                rawWord2 = Speedway25MeasureEncodedTextAdvanceView1(
                     *(int*)(&Speedway25Data6C438View1 + (Speedway25Data6C76CView1 * 4)));
                 rawWord3 = widthOrPrimitive16 + 10;
                 widthOrPrimitive16 = rawWord3 + rawWord2;
                 rawWord3 = widthOrPrimitive16 >> 1;
                 rawWord2 = 256;
                 widthOrPrimitive16 = rawWord2 - rawWord3;
-                Speedway25Call2E748View1(
+                Speedway25EmitUiTextGlyphPacketsView1(
                     *(int*)(&Speedway25Data6C438View1 + (Speedway25Data6C76CView1 * 4)),
                     widthOrPrimitive16, 0x8C, 2, 0);
-                rawWord2 = Speedway25Call2EBB0View1(
+                rawWord2 = Speedway25MeasureEncodedTextAdvanceView1(
                     *(int*)(&Speedway25Data6C438View1 + (Speedway25Data6C76CView1 * 4)));
                 rawWord3 = widthOrPrimitive16 + 10;
                 widthOrPrimitive16 = rawWord3 + rawWord2;
@@ -1974,8 +1979,9 @@ void func_level_25_800824BC(void) {
                 }
                 argumentWord5 = widthOrPrimitive16;
                 argumentWord6 = 140;
-                Speedway25Call2E748View1(Speedway25Field(argumentWord4, int*, 0), argumentWord5,
-                                         argumentWord6, argumentWord7 | 2, 0);
+                Speedway25EmitUiTextGlyphPacketsView1(Speedway25Field(argumentWord4, int*, 0),
+                                                      argumentWord5, argumentWord6,
+                                                      argumentWord7 | 2, 0);
                 rawWord2 = Speedway25Data6C76CView1;
                 rawWord3 = Speedway25Data6FBCCView1;
                 rawWord2 <<= 2;
@@ -2013,9 +2019,9 @@ void func_level_25_800824BC(void) {
             }
             break;
         case 2:
-            Speedway25Call1FD00View1(0x70, 0x190, 0x38, 0xB2);
-            Speedway25Call1FB74View1(0x90, 0x54, 0x170, 0x54);
-            Speedway25Call1FB74View1(0x90, 0x8E, 0x170, 0x8E);
+            Speedway25BuildUiFramedPanelView1(0x70, 0x190, 0x38, 0xB2);
+            Speedway25EmitHighlightLinePairView1(0x90, 0x54, 0x170, 0x54);
+            Speedway25EmitHighlightLinePairView1(0x90, 0x8E, 0x170, 0x8E);
             rawWord2 = Speedway25Data6FBC8View1;
             if (rawWord2 > 0) {
                 rawWord3 = (int)&Speedway25Data6FA44View1;
@@ -2058,16 +2064,17 @@ void func_level_25_800824BC(void) {
                     rowOrTable17 = 0;
                     widthOrPrimitive16 = rawWord3 + 82;
                     do {
-                        temporaryWord15 = Speedway25Call28378View1(entryOrTable18, 0);
+                        temporaryWord15 =
+                            Speedway25SelectHudIconAnimationFrameView1(entryOrTable18, 0);
                         argumentWord5 = Speedway25Field(widthOrPrimitive16, short*, -2);
                         argumentWord6 = Speedway25Field(widthOrPrimitive16, short*, 0);
                         Speedway25Field(widthOrPrimitive16, unsigned char*, -3) = temporaryWord15;
                         widthOrPrimitive16 += 8;
                         entryOrTable18 += 8;
                         rowOrTable17 += 1;
-                        Speedway25Call289C8View1(Speedway25Data6C788View1 +
-                                                     ((temporaryWord15 & 0xFF) * 8),
-                                                 argumentWord5, argumentWord6);
+                        Speedway25EmitHudTexturedQuadsView1(Speedway25Data6C788View1 +
+                                                                ((temporaryWord15 & 0xFF) * 8),
+                                                            argumentWord5, argumentWord6);
                     } while (rowOrTable17 < 2);
                 }
                 rawWord2 = Speedway25Data6FBC8View1;
@@ -2077,7 +2084,7 @@ void func_level_25_800824BC(void) {
                 Speedway25CallDrawStringCenteredView1(
                     *(int*)(&Speedway25Data6C440View1 + (Speedway25Data6C76CView1 * 4)), 0xC0, 0x6A,
                     2);
-                Speedway25Call2EBB0View1(
+                Speedway25MeasureEncodedTextAdvanceView1(
                     *(int*)(&Speedway25Data6C440View1 + (Speedway25Data6C76CView1 * 4)));
                 temporaryWord3 = Speedway25Data6FA74View1 / 3600;
                 temporaryWord7 = (Speedway25Data6FA74View1 / 60) - (temporaryWord3 * 0x3C);
@@ -2108,7 +2115,7 @@ void func_level_25_800824BC(void) {
                 Speedway25CallDrawStringCenteredView1(
                     *(int*)(&Speedway25Data6C444View1 + (Speedway25Data6C76CView1 * 4)), 0x140,
                     0x6A, 2);
-                Speedway25Call2EBB0View1(
+                Speedway25MeasureEncodedTextAdvanceView1(
                     *(int*)(&Speedway25Data6C444View1 + (Speedway25Data6C76CView1 * 4)));
                 temporaryWord10 =
                     &Speedway25DataspeedwayRecordsView1 + 0x28 + (Speedway25Data6FA38View1 * 0x2C);
@@ -2169,9 +2176,9 @@ void func_level_25_800824BC(void) {
                 }
             }
             if (Speedway25Data6FBC8View1 == 5) {
-                widthOrPrimitive16 = Speedway25Call2EBB0View1(
+                widthOrPrimitive16 = Speedway25MeasureEncodedTextAdvanceView1(
                     *(int*)(&Speedway25Data69DD8View1 + (Speedway25Data6C76CView1 * 4)));
-                rawWord2 = Speedway25Call2EBB0View1(
+                rawWord2 = Speedway25MeasureEncodedTextAdvanceView1(
                     *(int*)(&Speedway25Data69DDCView1 + (Speedway25Data6C76CView1 * 4)));
                 rowOrTable17 = (int)&Speedway25Data69DD8View1;
                 MATCHING_KEEP(rowOrTable17);
@@ -2181,17 +2188,17 @@ void func_level_25_800824BC(void) {
                 MATCHING_KEEP(rawWord3);
                 if (widthOrPrimitive16 < rawWord3)
                     widthOrPrimitive16 = rawWord3;
-                rawWord2 = Speedway25Call2EBB0View1(
+                rawWord2 = Speedway25MeasureEncodedTextAdvanceView1(
                     *(int*)(&Speedway25Data6C438View1 + (Speedway25Data6C76CView1 * 4)));
                 rawWord3 = widthOrPrimitive16 + 10;
                 widthOrPrimitive16 = rawWord3 + rawWord2;
                 rawWord3 = widthOrPrimitive16 >> 1;
                 rawWord2 = 256;
                 widthOrPrimitive16 = rawWord2 - rawWord3;
-                Speedway25Call2E748View1(
+                Speedway25EmitUiTextGlyphPacketsView1(
                     *(int*)(&Speedway25Data6C438View1 + (Speedway25Data6C76CView1 * 4)),
                     widthOrPrimitive16, 0x96, 2, 0);
-                rawWord2 = Speedway25Call2EBB0View1(
+                rawWord2 = Speedway25MeasureEncodedTextAdvanceView1(
                     *(int*)(&Speedway25Data6C438View1 + (Speedway25Data6C76CView1 * 4)));
                 rawWord3 = widthOrPrimitive16 + 10;
                 widthOrPrimitive16 = rawWord3 + rawWord2;
@@ -2208,8 +2215,9 @@ void func_level_25_800824BC(void) {
                 }
                 argumentWord5 = widthOrPrimitive16;
                 argumentWord6 = 150;
-                Speedway25Call2E748View1(Speedway25Field(argumentWord4, int*, 0), argumentWord5,
-                                         argumentWord6, argumentWord7 | 2, 0);
+                Speedway25EmitUiTextGlyphPacketsView1(Speedway25Field(argumentWord4, int*, 0),
+                                                      argumentWord5, argumentWord6,
+                                                      argumentWord7 | 2, 0);
                 rawWord2 = Speedway25Data6C76CView1;
                 rawWord3 = Speedway25Data6FBCCView1;
                 rawWord2 <<= 2;
@@ -2226,8 +2234,9 @@ void func_level_25_800824BC(void) {
                 argumentWord5 = widthOrPrimitive16;
                 argumentWord6 = 164;
             drawFinalSelectionRow:
-                Speedway25Call2E748View1(Speedway25Field(argumentWord4, int*, 0), argumentWord5,
-                                         argumentWord6, argumentWord7 | 2, 0);
+                Speedway25EmitUiTextGlyphPacketsView1(Speedway25Field(argumentWord4, int*, 0),
+                                                      argumentWord5, argumentWord6,
+                                                      argumentWord7 | 2, 0);
                 return;
             }
             argumentWord7 = 2;
@@ -2257,8 +2266,8 @@ void func_level_25_800824BC(void) {
 
 extern SpeedwayRecord speedwayRecords[];
 extern SpeedwayData D_8006FA38;
-void func_level_25_800835B4(Moby* argument) {
-    register Moby* moby __asm__("$8") = argument;
+void func_level_25_800835B4(Moby* mobyArgument) {
+    register Moby* moby __asm__("$8") = mobyArgument;
     int index = 0;
     register SpeedwayRecord* records __asm__("$9") = speedwayRecords;
     SpeedwayData* data = &D_8006FA38;
@@ -2611,11 +2620,11 @@ void DecodedSteerAdd(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004F194");
  * AI-generated reconstruction; not yet human reviewed. Caller cadence,
  * source table producers and browser/runtime interpretation are unresolved.
  */
-void func_level_25_80083C64(Moby* argument, DecodedSteerPath* pathArgument,
+void func_level_25_80083C64(Moby* mobyArgument, DecodedSteerPath* pathArgument,
                             DecodedSteerMotion* motionArgument) {
     Vector3D vector;
     int reserved1C;
-    register Moby* moby __asm__("$19") = argument;
+    register Moby* moby __asm__("$19") = mobyArgument;
     register DecodedSteerPath* path __asm__("$16");
     register DecodedSteerMotion* motion __asm__("$17");
     register Vector3D* position __asm__("$18");

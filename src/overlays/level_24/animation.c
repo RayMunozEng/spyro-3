@@ -27,11 +27,11 @@
  * target,selector/data and full EXE/every-overlay retail hashes. Binary identity
  * does not establish synchronized runtime or system completeness. */
 #define Physics24Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-unsigned char Physics24Call40D10View1() __asm__("func_80040D10");
-unsigned char Physics24Call41580View1() __asm__("func_80041580");
-unsigned char Physics24Call416F4View1() __asm__("func_800416F4");
-unsigned char Physics24Call417FCView1() __asm__("func_800417FC");
-unsigned char Physics24Call41B64View1() __asm__("func_80041B64");
+unsigned char Physics24UpdatePlayerGroundInputTargetsView1() __asm__("func_80040D10");
+unsigned char Physics24ApproachPlayerTargetHeadingView1() __asm__("func_80041580");
+unsigned char Physics24BlendPlayerHeadingFromInputVectorView1() __asm__("func_800416F4");
+unsigned char Physics24ApproachPlayerTargetSpeedView1() __asm__("func_800417FC");
+unsigned char Physics24BuildPlayerResponseVectorView1() __asm__("func_80041B64");
 int Physics24InterpolateSineView1() __asm__("func_8004E9E4");
 int Physics24InterpolateCosineView1() __asm__("func_8004EA2C");
 int Physics24MeasureVectorLengthView1() __asm__("func_8004EDE8");
@@ -44,12 +44,12 @@ extern int Physics24Data6E044View1 __asm__("D_8006E044");
 extern unsigned char Physics24Data6E548View1 __asm__("D_8006E548");
 extern unsigned char Physics24Player0View1 __asm__("D_80070328");
 extern void* (*Controller88028_SpawnParticle)() __asm__("SpawnParticle");
-int Physics24Call40D10View2() __asm__("func_80040D10");
-int Physics24Call41580View2() __asm__("func_80041580");
-int Physics24Call416F4View2() __asm__("func_800416F4");
-int Physics24Call417FCView2() __asm__("func_800417FC");
-int Physics24Call41848View1() __asm__("func_80041848");
-int Physics24Call41B64View2() __asm__("func_80041B64");
+int Physics24UpdatePlayerGroundInputTargetsView2() __asm__("func_80040D10");
+int Physics24ApproachPlayerTargetHeadingView2() __asm__("func_80041580");
+int Physics24BlendPlayerHeadingFromInputVectorView2() __asm__("func_800416F4");
+int Physics24ApproachPlayerTargetSpeedView2() __asm__("func_800417FC");
+int Physics24BuildPlayerMovementVectorView1() __asm__("func_80041848");
+int Physics24BuildPlayerResponseVectorView2() __asm__("func_80041B64");
 int Physics24InterpolateSineView2() __asm__("func_8004E9E4");
 int Physics24InterpolateCosineView2() __asm__("func_8004EA2C");
 int Physics24MeasureVectorLengthView2() __asm__("func_8004EDE8");
@@ -83,12 +83,12 @@ extern unsigned char Physics24Player101View1 __asm__("D_80070328+0x101");
 extern int Physics24PlayerA4View1 __asm__("D_80070328+0xA4");
 extern void* (*Physics34_SpawnParticle)() __asm__("SpawnParticle");
 extern void* (*Physics12_SpawnParticle)() __asm__("SpawnParticle");
-int Physics24Call40D10View3() __asm__("func_80040D10");
-int Physics24Call410F8View1() __asm__("func_800410F8");
-int Physics24Call41580View3() __asm__("func_80041580");
-int Physics24Call417FCView3() __asm__("func_800417FC");
-int Physics24Call41848View2() __asm__("func_80041848");
-int Physics24Call41B64View3() __asm__("func_80041B64");
+int Physics24UpdatePlayerGroundInputTargetsView3() __asm__("func_80040D10");
+int Physics24UpdateSmoothedInputPairView1() __asm__("func_800410F8");
+int Physics24ApproachPlayerTargetHeadingView3() __asm__("func_80041580");
+int Physics24ApproachPlayerTargetSpeedView3() __asm__("func_800417FC");
+int Physics24BuildPlayerMovementVectorView2() __asm__("func_80041848");
+int Physics24BuildPlayerResponseVectorView3() __asm__("func_80041B64");
 int Physics24InterpolateCosineView3() __asm__("func_8004EA2C");
 int Physics24TransformVectorByBasisView1() __asm__("func_8004ED6C");
 int Physics24ShiftVectorRightTowardZeroView1() __asm__("func_8004F110");
@@ -193,9 +193,9 @@ void func_level_24_800922B0(int slotIndex) {
             Physics24ClearVectorView1(globalVector80);
             Physics24ClearVectorView1(globalVector80 + 0xC);
             if (Physics24Data6E044View1 != 7) {
-                Physics24Call40D10View1(0x1200);
-                Physics24Call416F4View1();
-                Physics24Call41580View1(0x5A, 0x10);
+                Physics24UpdatePlayerGroundInputTargetsView1(0x1200);
+                Physics24BlendPlayerHeadingFromInputVectorView1();
+                Physics24ApproachPlayerTargetHeadingView1(0x5A, 0x10);
                 return;
             }
             return;
@@ -237,7 +237,7 @@ void func_level_24_800922B0(int slotIndex) {
                 goto block_132;
             call5 -= 192;
             MATCHING_KEEP(workWord2);
-            Physics24Call410F8View1(call4, call5, 0);
+            Physics24UpdateSmoothedInputPairView1(call4, call5, 0);
             workWord3 = Physics24Player4CView1;
             workWord2 = 1;
             if (workWord3 == workWord2) {
@@ -292,12 +292,12 @@ void func_level_24_800922B0(int slotIndex) {
                 Physics24Field(&Physics24Player0View3, int*, 0xAC) = 0;
             }
             if (Physics24Field(&Physics24Player0View3, int*, 0x4C) == 2) {
-                Physics24Call417FCView3(0xC0, 0xC0);
+                Physics24ApproachPlayerTargetSpeedView3(0xC0, 0xC0);
                 if (Physics24Field(&Physics24Player0View3, int*, 0xB0) < 0xE01) {
                     Physics24Field(&Physics24Player0View3, int*, 0x4C) = 0;
                 }
             } else {
-                Physics24Call417FCView3(0xC0, 0x30);
+                Physics24ApproachPlayerTargetSpeedView3(0xC0, 0x30);
             }
             raw21_temp_s0_7 = &Physics24Player0View3 + 0x60;
             raw21_temp_a0_5 =
@@ -323,7 +323,7 @@ void func_level_24_800922B0(int slotIndex) {
             if (Physics24Field(&Physics24Player0View3, int*, 0x5C) >= 0x301) {
                 Physics24Field(&Physics24Player0View3, int*, 0x5C) = 0x300;
             }
-            Physics24Call41848View2(raw21_temp_a0_5, raw21_temp_a1_2);
+            Physics24BuildPlayerMovementVectorView2(raw21_temp_a0_5, raw21_temp_a1_2);
             Physics24CopyVectorView2(raw21_temp_s0_7 + 0x2C, raw21_temp_s0_7 + 0x20);
             workWord2 = Physics24CallRandView1() & 31;
             if (workWord2)
@@ -358,7 +358,8 @@ void func_level_24_800922B0(int slotIndex) {
             raw21_temp_s1_5 = &Physics24Player0View3 + 0x20C;
             if (!(Physics24Field(&Physics24Player0View3, int*, 0x20C) & 0x40)) {
                 if (Physics24Data6E044View3 != 7) {
-                    Physics24Call410F8View1(&originalFrame.sp28, raw21_temp_s1_5 - 0xC0, 0);
+                    Physics24UpdateSmoothedInputPairView1(&originalFrame.sp28,
+                                                          raw21_temp_s1_5 - 0xC0, 0);
                     workWord3 = originalFrame.sp28;
                     numeric4 = originalFrame.sp2C;
                     workWord2 = workWord3 * 5;
@@ -464,7 +465,7 @@ void func_level_24_800922B0(int slotIndex) {
         run42:
             call5 -= 192;
             MATCHING_KEEP(workWord2);
-            Physics24Call410F8View1(call4, call5, 0);
+            Physics24UpdateSmoothedInputPairView1(call4, call5, 0);
             workWord3 = Physics24Player4CView1;
             workWord2 = 1;
             if (workWord3 == workWord2) {
@@ -516,7 +517,7 @@ void func_level_24_800922B0(int slotIndex) {
                 Physics24Field(&Physics24Player0View3, int*, 0x60) = 0x320;
             }
             Physics24Field(&Physics24Player0View3, int*, 0xAC) = 0x1C00;
-            Physics24Call417FCView3(0x240, 0x30);
+            Physics24ApproachPlayerTargetSpeedView3(0x240, 0x30);
             raw21_temp_a0_6 =
                 (((int)(raw21_temp_s0_10 * -(Physics24InterpolateCosineView3(
                                                  Physics24Field(&Physics24Player0View3, int*, 0x60))
@@ -541,7 +542,7 @@ void func_level_24_800922B0(int slotIndex) {
             if (Physics24Field(&Physics24Player0View3, int*, 0x5C) >= 0x301) {
                 Physics24Field(&Physics24Player0View3, int*, 0x5C) = 0x300;
             }
-            Physics24Call41848View2(raw21_temp_a0_6, raw21_temp_a1_3);
+            Physics24BuildPlayerMovementVectorView2(raw21_temp_a0_6, raw21_temp_a1_3);
             Physics24CopyVectorView2(raw21_temp_s1_6 + 0x28, raw21_temp_s1_6 + 0x1C);
             if ((Physics21_SpawnParticle != 0) &&
                 (Physics24Field(&Physics24Player0View3, int*, 0xB4) >= 0x7D1)) {
@@ -571,8 +572,8 @@ void func_level_24_800922B0(int slotIndex) {
             if (workWord3 == workWord2) {
                 Physics24Field(&Physics24Player0View3, int*, 0xB0) = 0;
             } else {
-                Physics24Call40D10View3(0x980);
-                raw21_var_v0_2 = Physics24Call41580View3(0x5A, 0x10);
+                Physics24UpdatePlayerGroundInputTargetsView3(0x980);
+                raw21_var_v0_2 = Physics24ApproachPlayerTargetHeadingView3(0x5A, 0x10);
                 if (raw21_var_v0_2 < 0) {
                     raw21_var_v0_2 = -raw21_var_v0_2;
                 }
@@ -586,12 +587,12 @@ void func_level_24_800922B0(int slotIndex) {
                 } else {
                     raw21_var_a1_4 = 0x40;
                 }
-                Physics24Call417FCView3(raw21_var_a0_2, raw21_var_a1_4);
+                Physics24ApproachPlayerTargetSpeedView3(raw21_var_a0_2, raw21_var_a1_4);
             }
             raw21_temp_s0_11 = &Physics24Player0View3 + 0xB0;
             if (Physics24Field(&Physics24Player0View3, int*, 0xB0) != 0) {
-                Physics24Call41848View2();
-                Physics24Call41B64View3();
+                Physics24BuildPlayerMovementVectorView2();
+                Physics24BuildPlayerResponseVectorView3();
                 Physics24Field(&Physics24Player0View3, int*, 0x94) = 0;
             } else {
                 Physics24ClearVectorView3(raw21_temp_s0_11 - 0x30);
@@ -681,9 +682,9 @@ void func_level_24_800922B0(int slotIndex) {
             Physics24ClearVectorView2(globalVector80);
             Physics24ClearVectorView2(globalVector80 + 12);
             if (Physics24Data6E044View2 != 7) {
-                Physics24Call40D10View2(3840);
-                Physics24Call416F4View2();
-                Physics24Call41580View2(90, 16);
+                Physics24UpdatePlayerGroundInputTargetsView2(3840);
+                Physics24BlendPlayerHeadingFromInputVectorView2();
+                Physics24ApproachPlayerTargetHeadingView2(90, 16);
             }
             workWord2 = Physics24Player1BAView1;
             if (!workWord2)
@@ -705,17 +706,17 @@ void func_level_24_800922B0(int slotIndex) {
             workWord3 = Physics24Data6E044View2;
             workWord2 = 8;
             if (workWord3 != workWord2)
-                Physics24Call40D10View2(3840);
+                Physics24UpdatePlayerGroundInputTargetsView2(3840);
             globalVector80 = &Physics24Data6E538View1;
             workWord2 = Physics24Field(globalVector80, int*, 0) & 12;
             if (workWord2)
                 Physics24PlayerACView1 = 0;
-            workWord2 = Physics24Call416F4View2();
+            workWord2 = Physics24BlendPlayerHeadingFromInputVectorView2();
             call4 = (void*)90;
             call5 = (void*)16;
             MATCHING_KEEP2(call4, call5);
             globalFieldA4Pointer = (void*)workWord2;
-            workWord2 = Physics24Call41580View2(call4, call5);
+            workWord2 = Physics24ApproachPlayerTargetHeadingView2(call4, call5);
             workWord3 = Physics24PlayerA8View1;
             if (workWord3 < 0)
                 workWord3 = -workWord3;
@@ -755,7 +756,7 @@ void func_level_24_800922B0(int slotIndex) {
                     Physics24Field(call4, int*, 0) = workWord3;
             }
         pass101:
-            Physics24Call417FCView2(256, 384);
+            Physics24ApproachPlayerTargetSpeedView2(256, 384);
             workWord2 = Physics24Player101View1;
             call4 = &Physics24PlayerACView1;
             Physics24Field(call4, int*, 0) = (int)globalVector80;
@@ -763,8 +764,8 @@ void func_level_24_800922B0(int slotIndex) {
                 Physics24ClearVectorView2(call4 - 32);
                 goto fields101;
             }
-            Physics24Call41848View1(call4);
-            Physics24Call41B64View2();
+            Physics24BuildPlayerMovementVectorView1(call4);
+            Physics24BuildPlayerResponseVectorView2();
         fields101:
             call6 = &Physics24PlayerFCView1;
             MATCHING_KEEP(call6);
@@ -786,9 +787,9 @@ void func_level_24_800922B0(int slotIndex) {
             workWord2 = 1;
             if (workWord3 != workWord2)
                 goto ground87;
-            Physics24Call40D10View2(3200);
-            Physics24Call41580View2(40, 8);
-            Physics24Call417FCView2(256, 384);
+            Physics24UpdatePlayerGroundInputTargetsView2(3200);
+            Physics24ApproachPlayerTargetHeadingView2(40, 8);
+            Physics24ApproachPlayerTargetSpeedView2(256, 384);
             vectorPointer18 = modePointer17 + 64;
             workWord2 = Physics24InterpolateCosineView2(Physics24PlayerA4View1);
             workWord3 = Physics24PlayerB0View1;
@@ -818,7 +819,7 @@ void func_level_24_800922B0(int slotIndex) {
                 var_a0_3 = modePointer17 + 52;
             }
             Physics24AddVectorView2(var_a0_3, vectorPointer18, framePointer16);
-            Physics24Call41B64View2();
+            Physics24BuildPlayerResponseVectorView2();
             workWord2 = combinedIndex < 13;
             if (!workWord2)
                 goto subtract87;
@@ -842,17 +843,17 @@ void func_level_24_800922B0(int slotIndex) {
             workWord3 = Physics24Data6E044View2;
             workWord2 = 8;
             if (workWord3 != workWord2)
-                Physics24Call40D10View2(3840);
+                Physics24UpdatePlayerGroundInputTargetsView2(3840);
             globalVector80 = &Physics24Data6E538View1;
             workWord2 = Physics24Field(globalVector80, int*, 0) & 12;
             if (workWord2)
                 Physics24PlayerACView1 = 0;
-            workWord2 = Physics24Call416F4View2();
+            workWord2 = Physics24BlendPlayerHeadingFromInputVectorView2();
             call4 = (void*)90;
             call5 = (void*)16;
             MATCHING_KEEP2(call4, call5);
             globalFieldA4Pointer = (void*)workWord2;
-            workWord2 = Physics24Call41580View2(call4, call5);
+            workWord2 = Physics24ApproachPlayerTargetHeadingView2(call4, call5);
             workWord3 = Physics24PlayerA8View1;
             if (workWord3 < 0)
                 workWord3 = -workWord3;
@@ -892,7 +893,7 @@ void func_level_24_800922B0(int slotIndex) {
                     Physics24Field(call4, int*, 0) = workWord3;
             }
         pass87:
-            Physics24Call417FCView2(256, 384);
+            Physics24ApproachPlayerTargetSpeedView2(256, 384);
             workWord2 = Physics24Player101View1;
             call4 = &Physics24PlayerACView1;
             Physics24Field(call4, int*, 0) = (int)globalVector80;
@@ -900,8 +901,8 @@ void func_level_24_800922B0(int slotIndex) {
                 Physics24ClearVectorView2(call4 - 32);
                 goto fields87;
             }
-            Physics24Call41848View1(call4);
-            Physics24Call41B64View2();
+            Physics24BuildPlayerMovementVectorView1(call4);
+            Physics24BuildPlayerResponseVectorView2();
         fields87:
             call6 = &Physics24PlayerFCView1;
             workWord2 = Physics24Field(call6, unsigned char*, 0);
@@ -1011,11 +1012,11 @@ void func_level_24_800922B0(int slotIndex) {
             call4 = (void*)22;
             goto speed89;
         free89:
-            Physics24Call40D10View2(1600);
+            Physics24UpdatePlayerGroundInputTargetsView2(1600);
             call4 = (void*)22;
         speed89:
-            Physics24Call41580View2(call4, 4);
-            Physics24Call417FCView2(256, 384);
+            Physics24ApproachPlayerTargetHeadingView2(call4, 4);
+            Physics24ApproachPlayerTargetSpeedView2(256, 384);
             globalFieldA4Pointer = &Physics24Player4CView1;
             MATCHING_KEEP(globalFieldA4Pointer);
             workWord3 = Physics24Field(globalFieldA4Pointer, int*, 0);
@@ -1070,7 +1071,7 @@ void func_level_24_800922B0(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer + 52;
             }
             Physics24AddVectorView2(var_a0_3, globalVector8C, globalVector80);
-            Physics24Call41B64View2();
+            Physics24BuildPlayerResponseVectorView2();
         subtract89:
             globalPointer = &Physics24Player94View1;
             workWord2 = Physics24Field(globalPointer, int*, 0);
@@ -1081,9 +1082,9 @@ void func_level_24_800922B0(int slotIndex) {
         case 93:
         case 94: {
             int product93_0, product93_1;
-            Physics24Call40D10View1(0xC80);
-            Physics24Call41580View1(0x28, 8);
-            Physics24Call417FCView1(256, 384);
+            Physics24UpdatePlayerGroundInputTargetsView1(0xC80);
+            Physics24ApproachPlayerTargetHeadingView1(0x28, 8);
+            Physics24ApproachPlayerTargetSpeedView1(256, 384);
             globalFieldA4Pointer = &Physics24Player0View1 + 0xA4;
             globalVector8C = globalFieldA4Pointer - 0x18;
             workWord2 =
@@ -1111,7 +1112,7 @@ void func_level_24_800922B0(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer - 0x24;
             }
             Physics24AddVectorView1(var_a0_3, globalVector8C, &originalFrame.spA8);
-            Physics24Call41B64View1();
+            Physics24BuildPlayerResponseVectorView1();
             workWord2 = combinedIndex < 13;
             if (!workWord2)
                 goto subtract93;
@@ -1155,7 +1156,7 @@ void func_level_24_800922B0(int slotIndex) {
             workWord3 = Physics24Data6E044View2;
             workWord2 = 8;
             if (workWord3 != workWord2)
-                Physics24Call40D10View2(1536);
+                Physics24UpdatePlayerGroundInputTargetsView2(1536);
             numeric4 = Physics24Field(globalVector80, int*, 80);
             workWord2 = Physics24PlayerA4View1;
             workWord3 = numeric4 - 512;
@@ -1186,7 +1187,7 @@ void func_level_24_800922B0(int slotIndex) {
             Physics24PlayerACView1 = workWord2;
             if (workWord2 < 0)
                 Physics24PlayerACView1 = 0;
-            workWord2 = Physics24Call41580View2(90, 16);
+            workWord2 = Physics24ApproachPlayerTargetHeadingView2(90, 16);
             angle17 = Physics24PlayerACView1;
             if (workWord2 < 0)
                 workWord2 = -workWord2;
@@ -1198,7 +1199,7 @@ void func_level_24_800922B0(int slotIndex) {
                 if (workWord2)
                     Physics24PlayerACView1 = workWord3;
             }
-            Physics24Call417FCView2(call4, 256);
+            Physics24ApproachPlayerTargetSpeedView2(call4, 256);
             call4 = (void*)Physics24PlayerA4View1;
             MATCHING_OBSERVE_VOLATILE_CLOBBER(call4, "memory");
             globalVector80 = &Physics24PlayerACView1;
@@ -1294,7 +1295,7 @@ extern int Callback24WordE1D8 __asm__("D_8006E1D8");
 extern int Callback24WordE530 __asm__("D_8006E530");
 extern int Callback24WordE52C __asm__("D_8006E52C");
 extern void (*Callback24Header344)(void) __asm__("unk_ovlheader_80074344");
-int Callback24Call80018368(Vector3D*, Vector3D*) __asm__("func_80018368");
+int Callback24QueryWorldSegment(Vector3D*, Vector3D*) __asm__("func_80018368");
 /* AI generated; not human reviewed. SCUS-94467 USA Rev0 80093C5C.
  * Verified14 supplies byte position and shared query routes; verified13 supplies
  * independently scheduled table/flag paths. Original24 supplies private-data
@@ -1311,23 +1312,26 @@ int Callback24Call80018368(Vector3D*, Vector3D*) __asm__("func_80018368");
  * unit and complete original EXE and overlay hashes.
  */
 extern Spyro Callback24Player __asm__("D_80070328");
-int Callback24Call80037058(int x, int y) __asm__("func_80037058");
-void Callback24Call80041930(void) __asm__("func_80041930");
-void Callback24Call80041AE8(void) __asm__("func_80041AE8");
-void Callback24Call80041C20(void) __asm__("func_80041C20");
-void Callback24Call80042A44(void) __asm__("func_80042A44");
-void Callback24Call80043A38(int scale) __asm__("func_80043A38");
+int Callback24SamplePlanarPhaseTable(int x, int y) __asm__("func_80037058");
+void Callback24ProbePlayerContactSegment(void) __asm__("func_80041930");
+void Callback24CapturePlayerPlanarVectorDifference(void) __asm__("func_80041AE8");
+void Callback24UpdatePlayerCollisionResponse(void) __asm__("func_80041C20");
+void Callback24UpdatePlayerSurfaceState(void) __asm__("func_80042A44");
+void Callback24BuildNegatedNormalizedPlayerVector(int scale) __asm__("func_80043A38");
 extern int Callback24Word8006E538 __asm__("D_8006E538");
-int Callback24Call80055E84(Moby*) __asm__("func_80055E84");
-void Callback24Call8004ED6C(void*, Vector3D*, Vector3D*) __asm__("func_8004ED6C");
-void* Callback24Call8001BA30(Vector3D*, int, int, int, int, Moby*) __asm__("func_8001BA30");
-int Callback24Call80019138(Vector3D*, int, int, int, int, Moby*) __asm__("func_80019138");
-int Callback24Call8001830C(Vector3D*, Vector3D*, int, int, Moby*) __asm__("func_8001830C");
+int Callback24ReadSelectedFrameScalar(Moby*) __asm__("func_80055E84");
+void Callback24TransformVectorByBasis(void*, Vector3D*, Vector3D*) __asm__("func_8004ED6C");
+void* Callback24QueryDynamicMobyGeometry(Vector3D*, int, int, int, int,
+                                         Moby*) __asm__("func_8001BA30");
+int Callback24QueryWorldSphereWithOptions(Vector3D*, int, int, int, int,
+                                          Moby*) __asm__("func_80019138");
+int Callback24QueryWorldSegmentWithOptions(Vector3D*, Vector3D*, int, int,
+                                           Moby*) __asm__("func_8001830C");
 extern int Callback24Word290 __asm__("D_80070328+0x290");
 extern unsigned char Callback24Flags[] __asm__("D_8006FCE6");
 extern unsigned char Callback24Values[] __asm__("D_8006FCF0");
-void Callback24Call80049590(void) __asm__("func_80049590");
-int Callback24Call8003BF6C(int, int) __asm__("func_8003BF6C");
+void Callback24MarkPlayerSegmentSurfaceType3Flags(void) __asm__("func_80049590");
+int Callback24SoundHandleMatchesIdInStates1Or2(int, int) __asm__("func_8003BF6C");
 void func_level_24_80093C5C(void) {
     struct {
         Vector3D first;
@@ -1356,26 +1360,27 @@ void func_level_24_80093C5C(void) {
         case 0x55:
             if (func_800438F4() == 0)
                 func_80043728();
-            Callback24Call80041C20();
+            Callback24UpdatePlayerCollisionResponse();
             Callback24Player.unk9a = 0;
-            Callback24Call80042A44();
+            Callback24UpdatePlayerSurfaceState();
             goto clearSharedValue;
         case 0x5A:
-            Callback24Call80041C20();
-            Callback24Call80042A44();
+            Callback24UpdatePlayerCollisionResponse();
+            Callback24UpdatePlayerSurfaceState();
             goto clearSharedValue;
         case 0x1D:
         case 0x58:
-            Callback24Call80041C20();
-            Callback24Call80042A44();
+            Callback24UpdatePlayerCollisionResponse();
+            Callback24UpdatePlayerSurfaceState();
             goto queryC00;
         case 0x28:
         case 0x29:
         case 0x39:
-            Callback24Call80041C20();
-            Callback24Call80042A44();
+            Callback24UpdatePlayerCollisionResponse();
+            Callback24UpdatePlayerSurfaceState();
             descriptor = &Callback24Player.unk22[2];
-            if (Callback24Call8003BF6C((int)D_8006C654->underwater, *descriptor) != 0) {
+            if (Callback24SoundHandleMatchesIdInStates1Or2((int)D_8006C654->underwater,
+                                                           *descriptor) != 0) {
                 valueOffset = *descriptor * 0x2C;
                 decreasingValue = *(int*)(Callback24Values + valueOffset);
                 {
@@ -1396,11 +1401,12 @@ void func_level_24_80093C5C(void) {
             }
             goto clearSharedValue;
         case 0x2A:
-            Callback24Call80041C20();
-            Callback24Call80042A44();
-            Callback24Call80049590();
+            Callback24UpdatePlayerCollisionResponse();
+            Callback24UpdatePlayerSurfaceState();
+            Callback24MarkPlayerSegmentSurfaceType3Flags();
             descriptor = &Callback24Player.unk22[2];
-            if (Callback24Call8003BF6C((int)D_8006C654->underwater, *descriptor) == 0) {
+            if (Callback24SoundHandleMatchesIdInStates1Or2((int)D_8006C654->underwater,
+                                                           *descriptor) == 0) {
                 descriptorResult = PlaySound((int)D_8006C654->underwater, 0, 4);
                 *descriptor = descriptorResult;
                 if (descriptorResult >= 0) {
@@ -1411,7 +1417,8 @@ void func_level_24_80093C5C(void) {
                 __asm__ volatile("" : : : "$16", "memory");
                 descriptor = &Callback24Player.unk22[2];
             }
-            if (Callback24Call8003BF6C((int)D_8006C654->underwater, *descriptor) != 0) {
+            if (Callback24SoundHandleMatchesIdInStates1Or2((int)D_8006C654->underwater,
+                                                           *descriptor) != 0) {
                 valueOffset = *descriptor * 0x2C;
                 increasingValue = *(int*)(Callback24Values + valueOffset);
                 {
@@ -1433,13 +1440,13 @@ void func_level_24_80093C5C(void) {
             goto clearSharedValue;
         case 0x2B:
         case 0x2C:
-            Callback24Call80041C20();
-            Callback24Call80042A44();
-            Callback24Call80041AE8();
+            Callback24UpdatePlayerCollisionResponse();
+            Callback24UpdatePlayerSurfaceState();
+            Callback24CapturePlayerPlanarVectorDifference();
             if ((unsigned char)Callback24Player.unk10[4] != 0) {
                 computedValue = -Callback24Player.unk9ha[4] -
-                                Callback24Call80037058(Callback24Player.position.x,
-                                                       Callback24Player.position.y);
+                                Callback24SamplePlanarPhaseTable(Callback24Player.position.x,
+                                                                 Callback24Player.position.y);
                 positionValue = Callback24Player.unk4a - computedValue;
                 Callback24Player.unk4[0] = computedValue;
                 positionDelta = (int)Callback24Player.union144.a.unk13cc >> 6;
@@ -1453,9 +1460,9 @@ void func_level_24_80093C5C(void) {
         case 0x5C:
             privateData = Callback24Player.critterMobyPtr->mobyTag;
             func_800438F4();
-            Callback24Call80041C20();
-            Callback24Call80042A44();
-            Callback24Call80041930();
+            Callback24UpdatePlayerCollisionResponse();
+            Callback24UpdatePlayerSurfaceState();
+            Callback24ProbePlayerContactSegment();
             if ((unsigned char)Callback24Player.unk10[2] != 0) {
                 selected = Callback24Word71930;
                 *(Moby**)(privateData + 0x4C) = selected;
@@ -1477,30 +1484,32 @@ void func_level_24_80093C5C(void) {
             void* result;
             register Moby* initialMoby __asm__("$4");
             func_800438F4();
-            Callback24Call80041C20();
-            Callback24Call80042A44();
-            Callback24Call80041930();
-            Callback24Call80043A38(0xC00);
+            Callback24UpdatePlayerCollisionResponse();
+            Callback24UpdatePlayerSurfaceState();
+            Callback24ProbePlayerContactSegment();
+            Callback24BuildNegatedNormalizedPlayerVector(0xC00);
             initialMoby = Callback24InitialMoby;
             MATCHING_KEEP_VOLATILE_CLOBBER(initialMoby, "memory");
             clearedWord = &Callback24ClearedWord;
             *clearedWord = 0;
-            if (initialMoby->animationState.id == 2 && Callback24Call80055E84(initialMoby) >= 4 &&
-                Callback24Call80055E84(Callback24QueryMoby) < 13) {
+            if (initialMoby->animationState.id == 2 &&
+                Callback24ReadSelectedFrameScalar(initialMoby) >= 4 &&
+                Callback24ReadSelectedFrameScalar(Callback24QueryMoby) < 13) {
                 local.first.x = 0x600;
                 local.first.y = 0;
                 local.first.z = -0x380;
-                Callback24Call8004ED6C((unsigned char*)clearedWord + 8, &local.first, &local.first);
+                Callback24TransformVectorByBasis((unsigned char*)clearedWord + 8, &local.first,
+                                                 &local.first);
                 sourceBase = (unsigned char*)clearedWord - 0x28;
                 func_8004F194(&local.first, &local.first, (Vector3D*)sourceBase);
-                result =
-                    Callback24Call8001BA30(&local.first, 0x400, 1, 0, 0, Callback24FirstCallMoby);
+                result = Callback24QueryDynamicMobyGeometry(&local.first, 0x400, 1, 0, 0,
+                                                            Callback24FirstCallMoby);
                 if (result) {
                     func_8004F178(&local.second, (Vector3D*)((unsigned char*)result + 0xC));
                     local.second.z += 0x80;
-                    if (Callback24Call80018368((Vector3D*)sourceBase, &local.second) == 0)
-                        Callback24Call8001BA30(&local.first, 0x400, 1, 0, 0x04000000,
-                                               Callback24SecondCallMoby);
+                    if (Callback24QueryWorldSegment((Vector3D*)sourceBase, &local.second) == 0)
+                        Callback24QueryDynamicMobyGeometry(&local.first, 0x400, 1, 0, 0x04000000,
+                                                           Callback24SecondCallMoby);
                 }
                 {
                     register Vector3D* argument0 __asm__("$4") = &local.first;
@@ -1512,12 +1521,13 @@ void func_level_24_80093C5C(void) {
                                                     "memory");
                     mobyPointer = (Moby**)Callback24MobyPointer;
                     lastMoby = *mobyPointer;
-                    Callback24Call80019138(argument0, argument1, argument2, argument3, 0x04000000,
-                                           lastMoby);
+                    Callback24QueryWorldSphereWithOptions(argument0, argument1, argument2,
+                                                          argument3, 0x04000000, lastMoby);
                 }
-                Callback24Call8001830C((Vector3D*)((unsigned char*)mobyPointer - 0x250),
-                                       &local.first, 0, 0x04000000, *mobyPointer);
-                if (Callback24Call80055E84(*mobyPointer) >= 8) {
+                Callback24QueryWorldSegmentWithOptions(
+                    (Vector3D*)((unsigned char*)mobyPointer - 0x250), &local.first, 0, 0x04000000,
+                    *mobyPointer);
+                if (Callback24ReadSelectedFrameScalar(*mobyPointer) >= 8) {
                     register int* limitPointer __asm__("$3") = &Callback24WordE1D4;
                     if (*limitPointer < 0xC00)
                         *limitPointer = 0xC00;
@@ -1539,9 +1549,9 @@ void func_level_24_80093C5C(void) {
         case 0x59:
             privateOther = Callback24Player.critterMobyPtr->mobyTag;
             Callback24Header344();
-            Callback24Call80041C20();
-            Callback24Call80042A44();
-            Callback24Call80041930();
+            Callback24UpdatePlayerCollisionResponse();
+            Callback24UpdatePlayerSurfaceState();
+            Callback24ProbePlayerContactSegment();
             if ((unsigned char)Callback24Player.unk10[2] != 0) {
                 selected = Callback24Word71930;
                 *(Moby**)(privateOther + 0x4C) = selected;
@@ -1576,9 +1586,9 @@ void func_level_24_80093C5C(void) {
             register void* argument0 __asm__("$4");
             if (func_800438F4() == 0)
                 func_80043728();
-            Callback24Call80041C20();
+            Callback24UpdatePlayerCollisionResponse();
             Callback24Player.unk9a = 0;
-            Callback24Call80042A44();
+            Callback24UpdatePlayerSurfaceState();
             Callback24Player.unk4[0] = 0;
             argument0 = (unsigned char*)&Callback24Player.unk9a - 0x8C;
             if (Callback24Player.critterMobyPtr->animationState.id == 6) {
@@ -1586,19 +1596,19 @@ void func_level_24_80093C5C(void) {
                 local.second.x = 0x400;
                 local.second.y = 0;
                 local.second.z = 0x200;
-                Callback24Call8004ED6C(argument0, vectorBase, vectorBase);
+                Callback24TransformVectorByBasis(argument0, vectorBase, vectorBase);
                 func_8004F194(vectorBase, vectorBase,
                               (Vector3D*)((unsigned char*)&Callback24Player.unk9a - 0xBC));
-                Callback24Call8001BA30(vectorBase, 0x400, 0, 0, 0x08000000,
-                                       Callback24Player.critterMobyPtr);
+                Callback24QueryDynamicMobyGeometry(vectorBase, 0x400, 0, 0, 0x08000000,
+                                                   Callback24Player.critterMobyPtr);
             }
             return;
         }
         case 0x5D:
         case 0x5E:
-            Callback24Call80041C20();
-            Callback24Call80042A44();
-            Callback24Call80041930();
+            Callback24UpdatePlayerCollisionResponse();
+            Callback24UpdatePlayerSurfaceState();
+            Callback24ProbePlayerContactSegment();
             if (Callback24Player.unk5 != 0x7F) {
                 if (Callback24Player.unk7a[3].z < 0 && Callback24Player.animationStateFrames >= 4)
                     Callback24Player.unk5 = 1;
@@ -1613,9 +1623,9 @@ void func_level_24_80093C5C(void) {
             privateData = Callback24Player.critterMobyPtr->mobyTag;
             Callback24Header344();
             func_800438F4();
-            Callback24Call80041C20();
-            Callback24Call80042A44();
-            Callback24Call80041930();
+            Callback24UpdatePlayerCollisionResponse();
+            Callback24UpdatePlayerSurfaceState();
+            Callback24ProbePlayerContactSegment();
             if ((unsigned char)Callback24Player.unk10[2] != 0) {
                 selected = Callback24Word71930;
                 *(Moby**)(privateData + 0x4C) = selected;
@@ -1647,7 +1657,7 @@ void func_level_24_80093C5C(void) {
         clearSelected:
             *(Moby**)(privateData + 0x4C) = 0;
         queryC00:
-            Callback24Call80043A38(0xC00);
+            Callback24BuildNegatedNormalizedPlayerVector(0xC00);
         clearSharedValue:
             Callback24Player.unk4[0] = 0;
             return;
@@ -1722,13 +1732,13 @@ void Special24ClearVector(Vector3D*) __asm__("func_8004F168");
 extern int Special24_D_8006E524 __asm__("D_8006E524");
 
 extern int D_80071934;
-int Call24A358(Vector3D*, int) __asm__("func_8001A358");
+int Call24QueryWorldHeight(Vector3D*, int) __asm__("func_8001A358");
 extern int Raw24NegativeWord __asm__("D_80070328+0x28");
 extern int Raw24TableIndex __asm__("D_80070328+0x298");
 extern int Raw24Yaw __asm__("D_80070328+0x64");
 int Transition24RandBetween(int, int) __asm__("func_8003636C");
-void Transition24_func_800441F0(void) __asm__("func_800441F0");
-void Transition24_func_80043A38(int) __asm__("func_80043A38");
+void Transition24ClearPlayerMotionVectors(void) __asm__("func_800441F0");
+void Transition24BuildNegatedNormalizedPlayerVector(int) __asm__("func_80043A38");
 void func_level_24_80094740(int arg0) {
     struct {
         Vector3D first;
@@ -1755,7 +1765,7 @@ void func_level_24_80094740(int arg0) {
         case 0x14:
             Transition24_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Transition24_D_80070328.unk5 = 0;
-            Transition24_func_800441F0();
+            Transition24ClearPlayerMotionVectors();
             Transition24_D_80070328.grounded = 1;
             Transition24_D_80070328.union144.a.unk13cb = Transition24RandBetween(1, 3);
             Transition24_D_80070328.union144.a.unk13cc = 0;
@@ -1786,7 +1796,7 @@ void func_level_24_80094740(int arg0) {
             if (third == 0)
                 second = Transition24_D_80070328.unk7a[3].z;
             Transition24_D_80070328.unk7a[2].z = second;
-            Transition24_func_80043A38(0xC00);
+            Transition24BuildNegatedNormalizedPlayerVector(0xC00);
             Transition24_D_80070328.grounded = 1;
             Transition24_D_8006E524 = 15;
             if (SpawnParticle)
@@ -1818,7 +1828,7 @@ void func_level_24_80094740(int arg0) {
                     }
                     if (Transition24_D_80070328.movementState == MOVEMENT_STATE_CHARGE) {
                         vectors.first.z += 0x400;
-                        firstResult = Call24A358(&vectors.first, 0x800);
+                        firstResult = Call24QueryWorldHeight(&vectors.first, 0x800);
                         vectors.first.z = firstResult;
                         if (firstResult != 0) {
                             firstParticleKind = 6;
@@ -1883,7 +1893,7 @@ void func_level_24_80094740(int arg0) {
                     if (Transition24_D_80070328.movementState == MOVEMENT_STATE_CHARGE) {
                         localVector = &vectors.second;
                         vectors.second.z += 0x400;
-                        secondResult = Call24A358(localVector, 0x800);
+                        secondResult = Call24QueryWorldHeight(localVector, 0x800);
                         vectors.second.z = secondResult;
                         if (secondResult != 0) {
                             secondParticleKind = 6;
@@ -1944,7 +1954,7 @@ void func_level_24_80094740(int arg0) {
                     localVector = &vectors.third;
                     func_8004F178(localVector, (Vector3D*)(unionPointer - 0x144));
                     vectors.third.z += 0x400;
-                    lengthResult = Call24A358(localVector, 0x800);
+                    lengthResult = Call24QueryWorldHeight(localVector, 0x800);
                     vectors.third.z = lengthResult;
                     if (lengthResult != 0 && D_80071934 != 0 && SpawnParticle) {
                         SpawnParticle(10, 0x29, localVector, 0);
@@ -2003,7 +2013,7 @@ void func_level_24_80094740(int arg0) {
         case 0x5B:
             Transition24_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Transition24_D_80070328.unk5 = 0;
-            Transition24_func_800441F0();
+            Transition24ClearPlayerMotionVectors();
             Transition24_D_80070328.grounded = 1;
             return;
         case 0x56:
@@ -2026,7 +2036,7 @@ void func_level_24_80094740(int arg0) {
             }
             Transition24_D_80070328.unk8[0] =
                 Transition24MeasureVectorLength(&Transition24_D_80070328.unk7a[3], 0);
-            Transition24_func_80043A38(0xC00);
+            Transition24BuildNegatedNormalizedPlayerVector(0xC00);
             Transition24_D_80070328.union144.a.unk13cb = MOVEMENT_STATE_STAND;
             Transition24_D_80070328.grounded = 1;
             goto clearSpecialTail;
@@ -2061,7 +2071,7 @@ void func_level_24_80094740(int arg0) {
         case 0x5A:
             Transition24_D_80070328.movementState = MOVEMENT_STATE_DEATH;
             Transition24_D_80070328.unk5 = 0;
-            Transition24_func_80043A38(0xC00);
+            Transition24BuildNegatedNormalizedPlayerVector(0xC00);
             Transition24_D_80070328.grounded = 1;
             Transition24_D_8006E524 = 0xF;
             return;
@@ -2163,10 +2173,10 @@ extern unsigned char Anim24Data66530View1[] __asm__("D_80066530");
 extern int Anim24Data6E538View1 __asm__("D_8006E538"), Anim24Data6E53CView1 __asm__("D_8006E53C");
 extern int Anim24Data6E044View1 __asm__("D_8006E044"), A4898Gate __asm__("D_8006E344"),
     A4898Count __asm__("D_8006C514");
-int Anim24Call40994View1() __asm__("func_80040994");
-int Anim24Call4BEF8View1() __asm__("func_8004BEF8");
-int Anim24Call49688View1() __asm__("func_80049688");
-int Anim24Call498C0View1() __asm__("func_800498C0");
+int Anim24ProcessPlayerStateFlagsView1() __asm__("func_80040994");
+int Anim24DispatchPlayerStateRequestView1() __asm__("func_8004BEF8");
+int Anim24SelectPlayerAnimationLoopRequestView1() __asm__("func_80049688");
+int Anim24UpdatePlayerRetryStateView1() __asm__("func_800498C0");
 extern int Anim24Player4CView1 __asm__("D_80070328 + 0x4C");
 extern int Anim24Player54View2 __asm__("D_80070328 + 0x54");
 extern int Anim24PlayerB0View1 __asm__("D_80070328 + 0xB0");
@@ -2176,15 +2186,15 @@ extern int Anim24Data6E538View2 __asm__("D_8006E538"), Anim24Data6E53CView2 __as
 extern int Anim24Data6E044View2 __asm__("D_8006E044"), A21Gate __asm__("D_8006E344"),
     A21Count __asm__("D_8006C514");
 extern int (*Anim24Data74374View1)() __asm__("unk_ovlheader_80074374");
-int Anim24Call40994View2() __asm__("func_80040994");
-int Anim24Call4BEF8View2() __asm__("func_8004BEF8");
+int Anim24ProcessPlayerStateFlagsView2() __asm__("func_80040994");
+int Anim24DispatchPlayerStateRequestView2() __asm__("func_8004BEF8");
 extern volatile int Anim24Player20CView1 __asm__("D_80070328 + 0x20C");
 extern int Anim24Player214View1 __asm__("D_80070328 + 0x214");
 extern unsigned char Anim24Player100View1 __asm__("D_80070328 + 0x100");
 extern unsigned char Anim24Data6E535View1 __asm__("D_8006E535");
 extern unsigned char* Anim24Data6EE2CView1 __asm__("D_8006EE2C");
-int Anim24Call40BCCView1() __asm__("func_80040BCC");
-int Anim24Call1A310View1() __asm__("func_8001A310");
+int Anim24ProcessPlayerContactFlagsView1() __asm__("func_80040BCC");
+int Anim24QueryWorldHeightWithOptionsView1() __asm__("func_8001A310");
 extern int Anim24Player48View3 __asm__("D_80070328 + 0x48");
 extern int Anim24Player4CView2 __asm__("D_80070328 + 0x4C");
 extern int Anim24Player54View3 __asm__("D_80070328 + 0x54");
@@ -2211,8 +2221,8 @@ extern int Anim24Data6E530View1 __asm__("D_8006E530");
 extern int Anim24Data6E52CView1 __asm__("D_8006E52C");
 extern int (*Anim24Data7431CView1)(int) __asm__("unk_ovlheader_8007431C");
 extern int (*Anim24DataSpawnParticleView1)(int, int, void*, int) __asm__("SpawnParticle");
-int Anim24Call55E84View1(void*) __asm__("func_80055E84");
-int Anim24Call4BEF8View3(int) __asm__("func_8004BEF8");
+int Anim24ReadSelectedFrameScalarView1(void*) __asm__("func_80055E84");
+int Anim24DispatchPlayerStateRequestView3(int) __asm__("func_8004BEF8");
 extern int Anim24PlayerA4View1 __asm__("D_80070328 + 0xA4");
 extern int Anim24PlayerB4View1 __asm__("D_80070328 + 0xB4");
 extern int Anim24PlayerA0View1 __asm__("D_80070328 + 0xA0");
@@ -2234,7 +2244,7 @@ void func_level_24_8009518C(void) {
     rawValue2 = Anim24Player48View1;
     switch (rawValue2) {
         case 20:
-            if (Anim24Call40994View1())
+            if (Anim24ProcessPlayerStateFlagsView1())
                 return;
             rawValue2 = Anim24Data6E53CView1 & 64;
             nextSelector4 = 6;
@@ -2271,7 +2281,7 @@ void func_level_24_8009518C(void) {
                 MATCHING_KEEP(savedPointer16);
                 if (!*savedPointer16)
                     return;
-                Anim24Call4BEF8View1(0);
+                Anim24DispatchPlayerStateRequestView1(0);
                 if (Anim24Data66530View1[*((unsigned char*)savedPointer16 - 0x2C)] >= 96) {
                     Anim24Player14View1 = Anim24Player15View1;
                     Anim24Player16View1 = Anim24Player17View1;
@@ -2289,7 +2299,7 @@ void func_level_24_8009518C(void) {
             nextSelector4 = 15;
             if (rawValue2)
                 goto select;
-            Anim24Call49688View1();
+            Anim24SelectPlayerAnimationLoopRequestView1();
             return;
         case 29:
             if (Anim24Player54View1 < 25)
@@ -2319,7 +2329,7 @@ void func_level_24_8009518C(void) {
             nextSelector4 = 7;
             goto select;
         case 40:
-            if (Anim24Call40994View2())
+            if (Anim24ProcessPlayerStateFlagsView2())
                 return;
             if ((Anim24Data6E538View2 & 128) && Anim24Player4CView1 != 1) {
                 nextSelector4 = 42;
@@ -2335,7 +2345,7 @@ void func_level_24_8009518C(void) {
                 return;
             goto select;
         case 41:
-            if (Anim24Call40994View2())
+            if (Anim24ProcessPlayerStateFlagsView2())
                 return;
             nextSelector4 = Anim24Data6E538View2;
             rawValue2 = nextSelector4 & 128;
@@ -2357,7 +2367,7 @@ void func_level_24_8009518C(void) {
                 goto select;
             return;
         case 42:
-            if (Anim24Call40BCCView1())
+            if (Anim24ProcessPlayerContactFlagsView1())
                 return;
             if ((Anim24Data6E538View2 & 128) || Anim24Player4CView1 == 1)
                 goto flag64;
@@ -2373,7 +2383,7 @@ void func_level_24_8009518C(void) {
             goto select;
         case 43: {
             register unsigned char* byte4 __asm__("$4");
-            if (Anim24Call40994View2())
+            if (Anim24ProcessPlayerStateFlagsView2())
                 return;
             if ((Anim24Data6E53CView2 & 64) && Anim24Player54View2 >= 9) {
                 nextSelector4 = 6;
@@ -2393,13 +2403,13 @@ void func_level_24_8009518C(void) {
             byte4 -= 256;
             if (!rawValue2)
                 goto check44;
-            rawValue2 = Anim24Call1A310View1(byte4, 1024, 1, 0);
+            rawValue2 = Anim24QueryWorldHeightWithOptionsView1(byte4, 1024, 1, 0);
             nextSelector4 = 40;
             if (rawValue2)
                 goto check44;
             goto select;
         partialCall:
-            Anim24Call4BEF8View2(nextSelector4);
+            Anim24DispatchPlayerStateRequestView2(nextSelector4);
         check44:
             rawValue2 = Anim24Data6E535View1;
             nextSelector4 = 44;
@@ -2428,7 +2438,7 @@ void func_level_24_8009518C(void) {
         missingCallback:
             goto call498C0;
         other44:
-            if (Anim24Call40994View2())
+            if (Anim24ProcessPlayerStateFlagsView2())
                 return;
             if ((Anim24Data6E53CView2 & 64) && Anim24Player54View2 >= 9) {
                 nextSelector4 = 6;
@@ -2448,7 +2458,7 @@ void func_level_24_8009518C(void) {
             byte4 -= 256;
             if (!rawValue2)
                 goto mode44;
-            rawValue2 = Anim24Call1A310View1(byte4, 1024, 1, 0);
+            rawValue2 = Anim24QueryWorldHeightWithOptionsView1(byte4, 1024, 1, 0);
             nextSelector4 = 40;
             if (!rawValue2)
                 goto select;
@@ -2584,7 +2594,7 @@ void func_level_24_8009518C(void) {
             if (rawValue2)
                 return;
             nextSelector4 = (int)Anim24Player250View1;
-            rawValue2 = Anim24Call55E84View1((void*)nextSelector4);
+            rawValue2 = Anim24ReadSelectedFrameScalarView1((void*)nextSelector4);
             rawValue2 = rawValue2 < 33;
             nextSelector4 = 92;
             if (rawValue2)
@@ -2654,7 +2664,7 @@ void func_level_24_8009518C(void) {
             nextSelector4 = 86;
             if (!rawValue2)
                 nextSelector4 = 85;
-            Anim24Call4BEF8View3(nextSelector4);
+            Anim24DispatchPlayerStateRequestView3(nextSelector4);
             {
                 register int (*spawn2)(int, int, void*, int) __asm__("$2") =
                     Anim24DataSpawnParticleView1;
@@ -2683,7 +2693,7 @@ void func_level_24_8009518C(void) {
             if (!rawValue2)
                 return;
         call498C0:
-            Anim24Call498C0View1();
+            Anim24UpdatePlayerRetryStateView1();
             return;
         case 91:
             rawValue2 = Anim24Data7431CView1(1);
@@ -3056,7 +3066,7 @@ void func_level_24_8009518C(void) {
             return;
     }
 select:
-    Anim24Call4BEF8View1(nextSelector4);
+    Anim24DispatchPlayerStateRequestView1(nextSelector4);
     return;
 }
 #undef Anim24Field

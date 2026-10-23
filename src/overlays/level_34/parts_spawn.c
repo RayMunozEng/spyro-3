@@ -15,14 +15,14 @@
 extern unsigned char Level34SpawnColor1[] __asm__("D_80066BAC");
 extern unsigned char Level34SpawnColor2[] __asm__("D_80066BAC");
 #define Level34SpawnField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Level34Spawnfunc_8004EA90(void*, void*, int) __asm__("func_8004EA90");
+int Level34SpawnBuildPackedAngleBasisMatrix(void*, void*, int) __asm__("func_8004EA90");
 int Level34SpawnTransformVectorByBasis(void*, void*, void*) __asm__("func_8004ED6C");
 int Level34SpawnShiftVectorRightTowardZero(void*, int) __asm__("func_8004F110");
 int Level34SpawnCopyVector(void*, void*) __asm__("func_8004F178");
 int Level34SpawnAddVector(void*, void*, void*) __asm__("func_8004F194");
 int Level34SpawnMultiplyVectorGpfSf0(void*, void*, int) __asm__("func_8004F1FC");
 int Level34SpawnPackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-void* Level34Spawnfunc_80056434(int) __asm__("func_80056434");
+void* Level34SpawnAllocateParticleRecord(int) __asm__("func_80056434");
 int Level34SpawnRandBetween(int, int) __asm__("func_8003636C");
 int Level34Spawnrand(void) __asm__("rand");
 extern unsigned char Level34SpawnD_800658A0[] __asm__("D_800658A0");
@@ -141,7 +141,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
         do {
             switch (kindSelector) { /* switch 1 */
                 case 0x0:           /* switch 1 */
-                    record = Level34Spawnfunc_80056434(2);
+                    record = Level34SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -185,7 +185,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     Level34SpawnField(record, unsigned char*, 16) = 0;
                     break;
                 case 0x1: /* switch 1 */
-                    record = Level34Spawnfunc_80056434(2);
+                    record = Level34SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -215,7 +215,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     tailByte = 4;
                     goto initializeF8;
                 case 0x2:
-                    record = Level34Spawnfunc_80056434(2);
+                    record = Level34SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -259,7 +259,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     Level34SpawnField(record, unsigned char*, 15) = commonByte9;
                     goto initializeTrailingBytes;
                 case 0x3: /* switch 1 */
-                    record = Level34Spawnfunc_80056434(2);
+                    record = Level34SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -286,7 +286,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
 
                     goto initializeZeroE;
                 case 0x4:
-                    record = Level34Spawnfunc_80056434(2);
+                    record = Level34SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -329,7 +329,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     break;
                 case 0x6:
                     temp_s1 = Level34SpawnField(reference, unsigned char**, 0);
-                    record = Level34Spawnfunc_80056434(3);
+                    record = Level34SpawnAllocateParticleRecord(3);
                     Level34SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level34Spawnrand();
                     {
@@ -388,7 +388,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x9: /* switch 1 */
-                    record = Level34Spawnfunc_80056434(2);
+                    record = Level34SpawnAllocateParticleRecord(2);
                     {
                         register void* playerVector __asm__("$16") = &frame.sp20;
                         register void* destination __asm__("$4") = playerVector;
@@ -464,7 +464,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
 
                     goto initializeF8;
                 case 0xA: /* switch 1 */
-                    record = Level34Spawnfunc_80056434(3);
+                    record = Level34SpawnAllocateParticleRecord(3);
                     Level34SpawnField(record, unsigned char*, 0) = kindSelector;
                     {
                         register void* destination __asm__("$4") = record + 4;
@@ -527,7 +527,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0xC: /* switch 1 */
-                    record = Level34Spawnfunc_80056434(2);
+                    record = Level34SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = reference + 32;
                         register int iteration __asm__("$9") = frame.spB8;
@@ -693,7 +693,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                                          4 + (Level34Spawnrand() & 7));
                     break;
                 case 0xd:
-                    record = Level34Spawnfunc_80056434(2);
+                    record = Level34SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -731,7 +731,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     Level34SpawnField(record, unsigned char*, 15) = commonByte9;
                     goto initializeTrailingBytes;
                 case 0x11:
-                    record = Level34Spawnfunc_80056434(2);
+                    record = Level34SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -767,7 +767,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x13:
-                    record = Level34Spawnfunc_80056434(2);
+                    record = Level34SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -801,7 +801,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     Level34SpawnField(record, unsigned char*, 15) = commonByte9;
                     goto initializeTrailingBytes;
                 case 0x21: /* switch 1 */
-                    record = Level34Spawnfunc_80056434(2);
+                    record = Level34SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level34SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -982,7 +982,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     Level34SpawnField(record, unsigned char*, 14) = scratch19;
                     goto initializeF8;
                 case 0x32:
-                    record = Level34Spawnfunc_80056434(4);
+                    record = Level34SpawnAllocateParticleRecord(4);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1010,7 +1010,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     Level34SpawnField(record, unsigned char*, 15) = commonByte9;
                     goto initializeTrailingBytes;
                 case 0x37:
-                    record = Level34Spawnfunc_80056434(2);
+                    record = Level34SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1044,7 +1044,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     break;
 
                 case 0x38:
-                    record = Level34Spawnfunc_80056434(2);
+                    record = Level34SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level34SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -1077,7 +1077,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x3B: /* switch 1 */
-                    record = Level34Spawnfunc_80056434(5);
+                    record = Level34SpawnAllocateParticleRecord(5);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1143,7 +1143,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                         (short)((Level34Spawnrand() & 0xF) - 8);
                     break;
                 case 0x42: /* switch 1 */
-                    record = Level34Spawnfunc_80056434(0);
+                    record = Level34SpawnAllocateParticleRecord(0);
                     Level34SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level34SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level34Spawnrand() & 0xF);
@@ -1245,7 +1245,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     Level34SpawnField(record, unsigned char*, 0xF) = 0x40;
                     break;
                 case 0x46: /* switch 1 */
-                    record = Level34Spawnfunc_80056434(1);
+                    record = Level34SpawnAllocateParticleRecord(1);
                     Level34SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level34SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level34Spawnrand() & 0xF);
@@ -1253,7 +1253,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     frame.sp70 = 0;
                     frame.sp71 = Level34Spawnrand();
                     frame.sp72 = Level34Spawnrand();
-                    Level34Spawnfunc_8004EA90(&frame.sp70, &frame.sp78, 0);
+                    Level34SpawnBuildPackedAngleBasisMatrix(&frame.sp70, &frame.sp78, 0);
                     frame.sp60 = (int)modeSelector;
                     frame.sp64 = 0;
                     frame.sp68 = 0;
@@ -1307,7 +1307,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x47: /* switch 1 */
-                    record = Level34Spawnfunc_80056434(1);
+                    record = Level34SpawnAllocateParticleRecord(1);
                     Level34SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level34SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level34Spawnrand() & 7);
@@ -1384,7 +1384,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x4A:
-                    record = Level34Spawnfunc_80056434(0);
+                    record = Level34SpawnAllocateParticleRecord(0);
                     Level34SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level34Spawnrand();
                     {
@@ -1412,7 +1412,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     Level34SpawnField(record, unsigned char*, 10) = tailByte;
                     break;
                 case 0x4E: /* switch 1 */
-                    record = Level34Spawnfunc_80056434(0);
+                    record = Level34SpawnAllocateParticleRecord(0);
                     Level34SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level34SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level34Spawnrand() & 0x1F);
@@ -1480,7 +1480,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     Level34SpawnField(record, unsigned char*, 0xA) = 2;
                     break;
                 case 0x4F: /* switch 1 */
-                    record = Level34Spawnfunc_80056434(1);
+                    record = Level34SpawnAllocateParticleRecord(1);
                     Level34SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level34SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level34Spawnrand() & 0xF);
@@ -1556,7 +1556,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     break;
                 case 0x52:
                     temp_s1 = Level34SpawnField(reference, unsigned char**, 0);
-                    record = Level34Spawnfunc_80056434(1);
+                    record = Level34SpawnAllocateParticleRecord(1);
                     Level34SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level34Spawnrand();
                     tailByte &= 15;
@@ -1633,7 +1633,7 @@ void* func_level_34_80093840(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x55:
-                    record = Level34Spawnfunc_80056434(1);
+                    record = Level34SpawnAllocateParticleRecord(1);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;

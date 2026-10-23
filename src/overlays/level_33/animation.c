@@ -27,12 +27,12 @@
  * target, selector/data word and full EXE/every-overlay retail hash.
  * Binary identity does not establish synchronized runtime completeness. */
 #define Physics33Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Physics33Call363DCView1() __asm__("func_800363DC");
-unsigned char Physics33Call40D10View1() __asm__("func_80040D10");
-unsigned char Physics33Call41580View1() __asm__("func_80041580");
-unsigned char Physics33Call416F4View1() __asm__("func_800416F4");
-unsigned char Physics33Call417FCView1() __asm__("func_800417FC");
-unsigned char Physics33Call41B64View1() __asm__("func_80041B64");
+int Physics33RandSignedBetweenView1() __asm__("func_800363DC");
+unsigned char Physics33UpdatePlayerGroundInputTargetsView1() __asm__("func_80040D10");
+unsigned char Physics33ApproachPlayerTargetHeadingView1() __asm__("func_80041580");
+unsigned char Physics33BlendPlayerHeadingFromInputVectorView1() __asm__("func_800416F4");
+unsigned char Physics33ApproachPlayerTargetSpeedView1() __asm__("func_800417FC");
+unsigned char Physics33BuildPlayerResponseVectorView1() __asm__("func_80041B64");
 int Physics33InterpolateSineView1() __asm__("func_8004E9E4");
 int Physics33InterpolateCosineView1() __asm__("func_8004EA2C");
 unsigned char Physics33TransformVectorByBasisView1() __asm__("func_8004ED6C");
@@ -52,13 +52,13 @@ extern unsigned char Physics33Data6E548View1 __asm__("D_8006E548");
 extern unsigned char Physics33Player0View1 __asm__("D_80070328");
 extern int Physics33Player94View1 __asm__("D_80070328+0x94");
 extern void* (*Controller88028_SpawnParticle)() __asm__("SpawnParticle");
-int Physics33Call40D10View2() __asm__("func_80040D10");
-int Physics33Call40F48View1() __asm__("func_80040F48");
-int Physics33Call41580View2() __asm__("func_80041580");
-int Physics33Call416F4View2() __asm__("func_800416F4");
-int Physics33Call417FCView2() __asm__("func_800417FC");
-int Physics33Call41848View1() __asm__("func_80041848");
-int Physics33Call41B64View2() __asm__("func_80041B64");
+int Physics33UpdatePlayerGroundInputTargetsView2() __asm__("func_80040D10");
+int Physics33BuildOrientedInputPairView1() __asm__("func_80040F48");
+int Physics33ApproachPlayerTargetHeadingView2() __asm__("func_80041580");
+int Physics33BlendPlayerHeadingFromInputVectorView2() __asm__("func_800416F4");
+int Physics33ApproachPlayerTargetSpeedView2() __asm__("func_800417FC");
+int Physics33BuildPlayerMovementVectorView1() __asm__("func_80041848");
+int Physics33BuildPlayerResponseVectorView2() __asm__("func_80041B64");
 int Physics33InterpolateSineView2() __asm__("func_8004E9E4");
 int Physics33InterpolateCosineView2() __asm__("func_8004EA2C");
 int Physics33MeasureVectorLengthView2() __asm__("func_8004EDE8");
@@ -88,8 +88,8 @@ extern signed char Physics33Player1B9View1 __asm__("D_80070328+0x1B9");
 extern int Physics33Player20CView1 __asm__("D_80070328+0x20C");
 extern unsigned char Physics33Player101View1 __asm__("D_80070328+0x101");
 extern int Physics33PlayerA4View1 __asm__("D_80070328+0xA4");
-int Physics33Call40F48View2() __asm__("func_80040F48");
-int Physics33Call43194View1() __asm__("func_80043194");
+int Physics33BuildOrientedInputPairView2() __asm__("func_80040F48");
+int Physics33TestPlayerProbePatternView1() __asm__("func_80043194");
 int Physics33PlanarHeadingLookupView1() __asm__("func_8004E880");
 int Physics33TransformVectorByBasisView2() __asm__("func_8004ED6C");
 int Physics33MeasureVectorLengthView3() __asm__("func_8004EDE8");
@@ -106,11 +106,11 @@ extern int Physics33Data6E344View1 __asm__("D_8006E344");
 extern unsigned char Physics33Player0View3 __asm__("D_80070328");
 extern void* (*Physics34_SpawnParticle)() __asm__("SpawnParticle");
 extern int Physics33Player16CView1 __asm__("D_80070328+0x16C");
-int Physics33Call13E38View1() __asm__("func_80013E38");
-int Physics33Call410F8View1() __asm__("func_800410F8");
-int Physics33Call41848View2() __asm__("func_80041848");
-int Physics33Call41B64View3() __asm__("func_80041B64");
-int Physics33Call4E4E4View1() __asm__("func_8004E4E4");
+int Physics33TestSubdividedSegmentPathView1() __asm__("func_80013E38");
+int Physics33UpdateSmoothedInputPairView1() __asm__("func_800410F8");
+int Physics33BuildPlayerMovementVectorView2() __asm__("func_80041848");
+int Physics33BuildPlayerResponseVectorView3() __asm__("func_80041B64");
+int Physics33EvaluateClampedPlayerRootCurveView1() __asm__("func_8004E4E4");
 int Physics33InterpolateCosineView3() __asm__("func_8004EA2C");
 int Physics33AddVectorView4() __asm__("func_8004F194");
 extern int Physics33Data67630View1 __asm__("D_80067630");
@@ -145,7 +145,7 @@ extern void* (*Physics21_SpawnParticle)() __asm__("SpawnParticle");
 extern void* (*Physics32_SpawnParticle)() __asm__("SpawnParticle");
 extern unsigned char Physics33Player0View4 __asm__("D_80070328");
 int Physics33PlanarHeadingLookupView2() __asm__("func_8004E880");
-int Physics33Call41580View3() __asm__("func_80041580");
+int Physics33ApproachPlayerTargetHeadingView3() __asm__("func_80041580");
 extern void* (*Physics50_SpawnParticle)() __asm__("SpawnParticle");
 extern void* (*Physics42_SpawnParticle)() __asm__("SpawnParticle");
 extern int Physics33Player8CView2 __asm__("D_80070328+0x8C");
@@ -222,9 +222,9 @@ void func_level_33_800990E0(int slotIndex) {
             Physics33ClearVectorView1(globalVector80);
             Physics33ClearVectorView1(globalVector80 + 0xC);
             if (Physics33Data6E044View1 != 7) {
-                Physics33Call40D10View1(0x1200);
-                Physics33Call416F4View1();
-                Physics33Call41580View1(0x5A, 0x10);
+                Physics33UpdatePlayerGroundInputTargetsView1(0x1200);
+                Physics33BlendPlayerHeadingFromInputVectorView1();
+                Physics33ApproachPlayerTargetHeadingView1(0x5A, 0x10);
                 return;
             }
             return;
@@ -397,12 +397,12 @@ void func_level_33_800990E0(int slotIndex) {
             Physics33Field(&Physics33Player0View4, int*, 0xA4) = Physics33PlanarHeadingLookupView2(
                 Physics33Field(&Physics33Player0View4, int*, 0x8C),
                 Physics33Field(&Physics33Player0View4, int*, 0x90), 1);
-            Physics33Call41580View3(0x5A, 0x10);
+            Physics33ApproachPlayerTargetHeadingView3(0x5A, 0x10);
             return;
         case 28:
-            Physics33Call40D10View1(0xC80);
-            Physics33Call41580View1(0x28, 8);
-            Physics33Call417FCView1(0x140, 0xC0);
+            Physics33UpdatePlayerGroundInputTargetsView1(0xC80);
+            Physics33ApproachPlayerTargetHeadingView1(0x28, 8);
+            Physics33ApproachPlayerTargetSpeedView1(0x140, 0xC0);
             globalFieldA4Pointer = &Physics33Player0View1 + 0xA4;
             globalVector8C = globalFieldA4Pointer - 0x18;
             workWord2 =
@@ -430,7 +430,7 @@ void func_level_33_800990E0(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer - 0x24;
             }
             Physics33AddVectorView1(var_a0_3, globalVector8C, &originalFrame.sp20);
-            Physics33Call41B64View1();
+            Physics33BuildPlayerResponseVectorView1();
             if (combinedIndex < 0xD) {
                 MATCHING_OBSERVE(combinedIndex);
                 nextField94 = Physics33Field(&Physics33Player0View1, int*, 0x94) + 0x17;
@@ -452,7 +452,7 @@ void func_level_33_800990E0(int slotIndex) {
                     MATCHING_KEEP(vectorAt40);
                 spawnParticleLoop:
                     if (particleThreshold < (Physics33CallRandView1() & 0xFF)) {
-                        workWord2 = Physics33Call363DCView1(0, 0xC);
+                        workWord2 = Physics33RandSignedBetweenView1(0, 0xC);
                         call4 = globalByteE + 0x22;
                         workWord3 = *globalByteE;
                         MATCHING_KEEP(workWord3);
@@ -475,9 +475,9 @@ void func_level_33_800990E0(int slotIndex) {
                         MATCHING_BARRIER_VOLATILE("memory");
                         originalFrame.sp34 = (workWord3 * 5) >> 0xA;
                         Physics33TransformVectorByBasisView1(call4, call5, call6, signedTableWord);
-                        originalFrame.sp40 += Physics33Call363DCView1(0, 0x50);
-                        originalFrame.sp44 += Physics33Call363DCView1(0, 0x50);
-                        originalFrame.sp48 += Physics33Call363DCView1(0, 0x50);
+                        originalFrame.sp40 += Physics33RandSignedBetweenView1(0, 0x50);
+                        originalFrame.sp44 += Physics33RandSignedBetweenView1(0, 0x50);
+                        originalFrame.sp48 += Physics33RandSignedBetweenView1(0, 0x50);
                         Physics33AddVectorView1(vectorAt40, vectorAt40, globalByteE - 0xE);
                         temp_v0_5 =
                             Controller88028_SpawnParticle(1, 0xD, vectorAt40, &originalFrame.sp30);
@@ -525,9 +525,9 @@ void func_level_33_800990E0(int slotIndex) {
                 originalFrame.sp58 = 0xE;
                 Physics33CopyVectorView1(&originalFrame.sp60,
                                          (&Physics33Player0View1 + 0x94) - 0x94);
-                originalFrame.sp60 += Physics33Call363DCView1(0, 0x12C);
-                originalFrame.sp64 += Physics33Call363DCView1(0, 0x12C);
-                originalFrame.sp68 += Physics33Call363DCView1(0, 0x12C);
+                originalFrame.sp60 += Physics33RandSignedBetweenView1(0, 0x12C);
+                originalFrame.sp64 += Physics33RandSignedBetweenView1(0, 0x12C);
+                originalFrame.sp68 += Physics33RandSignedBetweenView1(0, 0x12C);
                 temp_v0_7 =
                     Controller88028_SpawnParticle(1, 0xD, &originalFrame.sp60, &originalFrame.sp50);
                 Physics33Field(temp_v0_7, signed char*, 2) = 6;
@@ -548,7 +548,7 @@ void func_level_33_800990E0(int slotIndex) {
             call4 = &originalFrame.sp50;
             MATCHING_OBSERVE_VOLATILE_CLOBBER(call4, "memory");
             pointer17 = &Physics33Player154View1;
-            Physics33Call410F8View1(call4, pointer17, 0);
+            Physics33UpdateSmoothedInputPairView1(call4, pointer17, 0);
             workWord2 = originalFrame.sp54;
             numeric4 = Physics33Player94View3;
             workWord2 = -workWord2;
@@ -579,7 +579,7 @@ void func_level_33_800990E0(int slotIndex) {
                 originalFrame.sp58 = workWord2;
                 originalFrame.sp5C = workWord3;
                 Physics33AddVectorView4(call4, call5, call6);
-                if (!Physics33Call13E38View1(pointer17, pointer16, 2)) {
+                if (!Physics33TestSubdividedSegmentPathView1(pointer17, pointer16, 2)) {
                     workWord2 = Physics33Player8View1;
                     workWord3 = Physics33Data71908View1;
                     workWord2 -= workWord3;
@@ -690,7 +690,7 @@ void func_level_33_800990E0(int slotIndex) {
         nonnegative33:
             numeric4 = Physics33Player8View1;
             limit16 = 0;
-            workWord2 = Physics33Call4E4E4View1(numeric4);
+            workWord2 = Physics33EvaluateClampedPlayerRootCurveView1(numeric4);
             workWord3 = Physics33Player148View1;
             MATCHING_OBSERVE2_VOLATILE_CLOBBER(workWord3, workWord2, "memory");
             numeric4 = workWord2;
@@ -803,7 +803,7 @@ void func_level_33_800990E0(int slotIndex) {
         storeAngle33:
             Physics33Player5CView1 = workWord2;
         rotationDone33:
-            Physics33Call41848View2();
+            Physics33BuildPlayerMovementVectorView2();
             call5 = &Physics33Player4CView2;
             numeric4 = Physics33Field(call5, int*, 0);
             if (numeric4)
@@ -871,7 +871,7 @@ void func_level_33_800990E0(int slotIndex) {
                 Physics33Field(pointer2, int*, 0) = workWord3;
             }
         end33:
-            Physics33Call41B64View3();
+            Physics33BuildPlayerResponseVectorView3();
             return;
         }
         case 47: {
@@ -882,7 +882,7 @@ void func_level_33_800990E0(int slotIndex) {
             workWord2 = 7;
             if (workWord3 == workWord2)
                 goto zero47;
-            Physics33Call40F48View2(&originalFrame.sp70, 0);
+            Physics33BuildOrientedInputPairView2(&originalFrame.sp70, 0);
             workWord2 = originalFrame.sp70;
             numeric6 = originalFrame.sp74;
             originalFrame.sp78 = 0;
@@ -910,7 +910,7 @@ void func_level_33_800990E0(int slotIndex) {
                     __asm__ volatile("" ::"i"(0x8009A074) : "memory");
                     numeric4 = 1;
                 }
-                if (!Physics33Call43194View1(numeric4)) {
+                if (!Physics33TestPlayerProbePatternView1(numeric4)) {
                     originalFrame.sp7C = 0;
                 }
             } else {
@@ -922,7 +922,7 @@ void func_level_33_800990E0(int slotIndex) {
                     numeric4 = 2;
                 } else
                     numeric4 = 3;
-                if (!Physics33Call43194View1(numeric4)) {
+                if (!Physics33TestPlayerProbePatternView1(numeric4)) {
                     originalFrame.sp80 = 0;
                 }
             }
@@ -941,7 +941,7 @@ void func_level_33_800990E0(int slotIndex) {
             register int numeric4 __asm__("$4");
             register int numeric5 __asm__("$5");
             register int numeric6 __asm__("$6");
-            Physics33Call40F48View2(&originalFrame.sp88, 0);
+            Physics33BuildOrientedInputPairView2(&originalFrame.sp88, 0);
             workWord2 = originalFrame.sp88;
             numeric6 = originalFrame.sp8C;
             originalFrame.sp90 = 0;
@@ -969,7 +969,7 @@ void func_level_33_800990E0(int slotIndex) {
                     __asm__ volatile("" ::"i"(0x8009A16C) : "memory");
                     numeric4 = 1;
                 }
-                if (!Physics33Call43194View1(numeric4)) {
+                if (!Physics33TestPlayerProbePatternView1(numeric4)) {
                     originalFrame.sp94 = 0;
                 }
             } else {
@@ -981,7 +981,7 @@ void func_level_33_800990E0(int slotIndex) {
                     numeric4 = 2;
                 } else
                     numeric4 = 3;
-                if (!Physics33Call43194View1(numeric4)) {
+                if (!Physics33TestPlayerProbePatternView1(numeric4)) {
                     originalFrame.sp98 = 0;
                 }
             }
@@ -1073,9 +1073,9 @@ void func_level_33_800990E0(int slotIndex) {
             workWord2 = 31;
             if (workWord3 == workWord2)
                 goto bytes115;
-            Physics33Call40D10View2(3840);
-            Physics33Call416F4View2();
-            Physics33Call41580View2(90, 16);
+            Physics33UpdatePlayerGroundInputTargetsView2(3840);
+            Physics33BlendPlayerHeadingFromInputVectorView2();
+            Physics33ApproachPlayerTargetHeadingView2(90, 16);
         bytes115:
             globalPointer = &Physics33Player1BAView1;
             workWord2 = Physics33Field(globalPointer, unsigned char*, 0);
@@ -1105,11 +1105,11 @@ void func_level_33_800990E0(int slotIndex) {
                 goto callback131;
             workWord2 = 8;
             if (workWord3 != workWord2)
-                Physics33Call40D10View2(3840);
+                Physics33UpdatePlayerGroundInputTargetsView2(3840);
             workWord2 = Physics33Data6E538View1 & 12;
             if (workWord2)
                 Physics33PlayerACView1 = 0;
-            workWord2 = Physics33Call416F4View2();
+            workWord2 = Physics33BlendPlayerHeadingFromInputVectorView2();
             workWord3 = Physics33Field(mode16, int*, 0);
             callback18 = workWord2;
             if (workWord3 == mode17) {
@@ -1119,7 +1119,7 @@ void func_level_33_800990E0(int slotIndex) {
                 call4 = (void*)90;
                 call5 = (void*)16;
             }
-            workWord2 = Physics33Call41580View2(call4, call5);
+            workWord2 = Physics33ApproachPlayerTargetHeadingView2(call4, call5);
             workWord3 = workWord2;
             workWord2 = Physics33PlayerA8View1;
             if (workWord2 < 0)
@@ -1158,7 +1158,7 @@ void func_level_33_800990E0(int slotIndex) {
                     Physics33Field(call4, int*, 0) = workWord3;
             }
         pass116:
-            Physics33Call417FCView2(320, 192);
+            Physics33ApproachPlayerTargetSpeedView2(320, 192);
             workWord2 = Physics33Player101View1;
             call4 = &Physics33PlayerACView1;
             Physics33Field(call4, int*, 0) = (int)globalVector80;
@@ -1166,8 +1166,8 @@ void func_level_33_800990E0(int slotIndex) {
                 Physics33ClearVectorView2(call4 - 32);
                 goto fields116;
             }
-            Physics33Call41848View1(call4);
-            Physics33Call41B64View2();
+            Physics33BuildPlayerMovementVectorView1(call4);
+            Physics33BuildPlayerResponseVectorView2();
         fields116:
             call6 = &Physics33PlayerFCView1;
             workWord2 = Physics33Field(call6, unsigned char*, 0);
@@ -1180,7 +1180,7 @@ void func_level_33_800990E0(int slotIndex) {
             goto vector130Input;
         }
         case 118:
-            Physics33Call40D10View2(3200);
+            Physics33UpdatePlayerGroundInputTargetsView2(3200);
             workWord3 = Physics33Data6E044View2;
             workWord2 = 40;
             call4 = (void*)40;
@@ -1189,8 +1189,8 @@ void func_level_33_800990E0(int slotIndex) {
                 call5 = (void*)1;
             } else
                 call5 = (void*)8;
-            Physics33Call41580View2(call4, call5);
-            Physics33Call417FCView2(320, 192);
+            Physics33ApproachPlayerTargetHeadingView2(call4, call5);
+            Physics33ApproachPlayerTargetSpeedView2(320, 192);
             globalFieldA4Pointer = &Physics33PlayerA4View1;
             globalVector8C = globalFieldA4Pointer - 24;
             workWord2 =
@@ -1231,7 +1231,7 @@ void func_level_33_800990E0(int slotIndex) {
                 call4 = globalFieldA4Pointer - 36;
             }
             Physics33AddVectorView1(call4, globalVector8C, vectorAt40);
-            Physics33Call41B64View1();
+            Physics33BuildPlayerResponseVectorView1();
         gate118:
             __asm__ volatile("" ::"i"(0x8009A6B0) : "memory");
             workWord2 = combinedIndex < 13;
@@ -1257,9 +1257,9 @@ void func_level_33_800990E0(int slotIndex) {
             workWord2 = 3;
             if (workWord3 != workWord2)
                 goto airborne119;
-            Physics33Call40D10View2(1600);
-            Physics33Call41580View2(22, 4);
-            Physics33Call417FCView2(320, 192);
+            Physics33UpdatePlayerGroundInputTargetsView2(1600);
+            Physics33ApproachPlayerTargetHeadingView2(22, 4);
+            Physics33ApproachPlayerTargetSpeedView2(320, 192);
             globalVector8C = globalFieldA4Pointer + 60;
             workWord2 = Physics33InterpolateCosineView1(Physics33PlayerA4View1);
             workWord3 = Physics33PlayerB0View1;
@@ -1289,14 +1289,14 @@ void func_level_33_800990E0(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer + 48;
             }
             Physics33AddVectorView1(var_a0_3, globalVector8C, vectorAt40);
-            Physics33Call41B64View1();
+            Physics33BuildPlayerResponseVectorView1();
             workWord2 = Physics33Player94View2;
             workWord2 -= 192;
             Physics33Player94View2 = workWord2;
             workWord2 = workWord2 < -8960;
             goto clamp119;
         airborne119:
-            Physics33Call40D10View2(3200);
+            Physics33UpdatePlayerGroundInputTargetsView2(3200);
             workWord3 = Physics33Data6E044View2;
             workWord2 = 40;
             call4 = (void*)40;
@@ -1305,8 +1305,8 @@ void func_level_33_800990E0(int slotIndex) {
                 call5 = (void*)1;
             } else
                 call5 = (void*)8;
-            Physics33Call41580View2(call4, call5);
-            Physics33Call417FCView2(320, 192);
+            Physics33ApproachPlayerTargetHeadingView2(call4, call5);
+            Physics33ApproachPlayerTargetSpeedView2(320, 192);
             globalFieldA4Pointer = &Physics33PlayerA4View1;
             globalVector8C = globalFieldA4Pointer - 24;
             workWord2 =
@@ -1399,7 +1399,7 @@ void func_level_33_800990E0(int slotIndex) {
             call4 = &originalFrame.spE0;
             workWord2 = Physics33Player250View1;
             child18 = Physics33Field((void*)workWord2, void**, 0);
-            Physics33Call40F48View1(call4, 0);
+            Physics33BuildOrientedInputPairView1(call4, 0);
             input16 = &Physics33Data6E040View1;
             workWord2 = Physics33InterpolateCosineView2(Physics33Field(input16, short*, 0));
             position19 = child18 + 100;
@@ -1473,7 +1473,7 @@ void func_level_33_800990E0(int slotIndex) {
                 call5 = (void*)1;
             } else
                 call5 = (void*)4;
-            Physics33Call41580View2(call4, call5);
+            Physics33ApproachPlayerTargetHeadingView2(call4, call5);
             workWord2 = length16 < 6145;
             if (workWord2)
                 goto below122;
@@ -1517,11 +1517,11 @@ void func_level_33_800990E0(int slotIndex) {
             MATCHING_KEEP(globalVector80);
             workWord3 = Physics33Field(globalVector80, int*, 0);
             if (workWord3 != workWord2)
-                Physics33Call40D10View2(3840);
+                Physics33UpdatePlayerGroundInputTargetsView2(3840);
             workWord2 = Physics33Data6E538View1 & 12;
             if (workWord2)
                 Physics33PlayerACView1 = 0;
-            workWord2 = Physics33Call416F4View2();
+            workWord2 = Physics33BlendPlayerHeadingFromInputVectorView2();
             callback17 = workWord2;
             workWord3 = Physics33Field(globalVector80, int*, 0);
             workWord2 = 40;
@@ -1531,7 +1531,7 @@ void func_level_33_800990E0(int slotIndex) {
                 call5 = (void*)1;
             } else
                 call5 = (void*)16;
-            workWord2 = Physics33Call41580View2(call4, call5);
+            workWord2 = Physics33ApproachPlayerTargetHeadingView2(call4, call5);
             workWord3 = workWord2;
             workWord2 = Physics33PlayerA8View1;
             if (workWord2 < 0)
@@ -1570,7 +1570,7 @@ void func_level_33_800990E0(int slotIndex) {
                     Physics33Field(call4, int*, 0) = workWord3;
             }
         pass130:
-            Physics33Call417FCView2(320, 192);
+            Physics33ApproachPlayerTargetSpeedView2(320, 192);
             workWord2 = Physics33Player101View1;
             call4 = &Physics33PlayerACView1;
             Physics33Field(call4, int*, 0) = (int)globalVector80;
@@ -1578,8 +1578,8 @@ void func_level_33_800990E0(int slotIndex) {
                 Physics33ClearVectorView2(call4 - 32);
                 goto fields130;
             }
-            Physics33Call41848View1(call4);
-            Physics33Call41B64View2();
+            Physics33BuildPlayerMovementVectorView1(call4);
+            Physics33BuildPlayerResponseVectorView2();
         fields130:
             call6 = &Physics33PlayerFCView1;
             workWord2 = Physics33Field(call6, unsigned char*, 0);
@@ -1600,7 +1600,7 @@ void func_level_33_800990E0(int slotIndex) {
             Physics33AddVectorView2(call4, call5, call6 - 20);
             return;
         airborne130:
-            Physics33Call40D10View2(3200);
+            Physics33UpdatePlayerGroundInputTargetsView2(3200);
             workWord3 = Physics33Data6E044View2;
             workWord2 = 40;
             call4 = (void*)40;
@@ -1609,8 +1609,8 @@ void func_level_33_800990E0(int slotIndex) {
                 call5 = (void*)1;
             } else
                 call5 = (void*)8;
-            Physics33Call41580View2(call4, call5);
-            Physics33Call417FCView2(320, 192);
+            Physics33ApproachPlayerTargetHeadingView2(call4, call5);
+            Physics33ApproachPlayerTargetSpeedView2(320, 192);
             globalFieldA4Pointer = &Physics33PlayerA4View1;
             globalVector8C = globalFieldA4Pointer - 24;
             workWord2 =
@@ -1642,7 +1642,7 @@ void func_level_33_800990E0(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer - 36;
             }
             Physics33AddVectorView1(var_a0_3, globalVector8C, vectorAt40);
-            Physics33Call41B64View1();
+            Physics33BuildPlayerResponseVectorView1();
             workWord2 = combinedIndex < 13;
             if (!workWord2)
                 goto subtract192_130;
@@ -1695,15 +1695,15 @@ extern int Callback33Step __asm__("D_80070328+0x144");
 extern int Callback33Z __asm__("D_80070328+8");
 extern int Callback33Limit __asm__("D_80070328+0x280");
 extern Spyro Callback33Player __asm__("D_80070328");
-void Callback33Call80041930(void) __asm__("func_80041930");
-void Callback33Call80041C20(void) __asm__("func_80041C20");
-void Callback33Call80042A44(void) __asm__("func_80042A44");
-void Callback33Call80043A38(int scale) __asm__("func_80043A38");
+void Callback33ProbePlayerContactSegment(void) __asm__("func_80041930");
+void Callback33UpdatePlayerCollisionResponse(void) __asm__("func_80041C20");
+void Callback33UpdatePlayerSurfaceState(void) __asm__("func_80042A44");
+void Callback33BuildNegatedNormalizedPlayerVector(int scale) __asm__("func_80043A38");
 extern int Callback33Word8006E538 __asm__("D_8006E538");
 extern int D_8006FA38, D_8006C648;
 int Callback33Query(Vector3D*, int) __asm__("func_8001A358");
 int Callback33Length(Vector3D*, int) __asm__("func_8004EDE8");
-void Callback33Call8004F110(Vector3D*, int) __asm__("func_8004F110");
+void Callback33ShiftVectorRightTowardZero(Vector3D*, int) __asm__("func_8004F110");
 extern short Callback33Count __asm__("D_80070328+0x148");
 void func_level_33_8009AFA8(void) {
     struct {
@@ -1746,32 +1746,32 @@ void func_level_33_8009AFA8(void) {
             if (func_800438F4() == 0) {
                 func_80043728();
             }
-            Callback33Call80041C20();
+            Callback33UpdatePlayerCollisionResponse();
             Callback33Player.unk9a = 0;
-            Callback33Call80042A44();
+            Callback33UpdatePlayerSurfaceState();
             goto clearSharedValue;
         default:
             return;
         case 0x35:
         case 0x36:
         case 0x80:
-            Callback33Call80041C20();
-            Callback33Call80042A44();
+            Callback33UpdatePlayerCollisionResponse();
+            Callback33UpdatePlayerSurfaceState();
             goto clearSharedValue;
         case 0x79:
-            Callback33Call80041C20();
-            Callback33Call80042A44();
+            Callback33UpdatePlayerCollisionResponse();
+            Callback33UpdatePlayerSurfaceState();
             goto queryC00;
         case 0x13:
         case 0x15:
-            Callback33Call80041C20();
-            Callback33Call80042A44();
-            Callback33Call80041930();
+            Callback33UpdatePlayerCollisionResponse();
+            Callback33UpdatePlayerSurfaceState();
+            Callback33ProbePlayerContactSegment();
             goto clearSharedValue;
         case 0x1C:
-            Callback33Call80041C20();
-            Callback33Call80042A44();
-            Callback33Call80041930();
+            Callback33UpdatePlayerCollisionResponse();
+            Callback33UpdatePlayerSurfaceState();
+            Callback33ProbePlayerContactSegment();
             if (Callback33Player.unk7a[3].z < 0 && Callback33Player.animationStateFrames >= 4)
                 Callback33Player.unk5 = 1;
             goto clearSharedValue;
@@ -1813,8 +1813,8 @@ void func_level_33_8009AFA8(void) {
                     Callback33Step = 0x2580;
             }
         limitsDone:
-            Callback33Call80041C20();
-            Callback33Call80042A44();
+            Callback33UpdatePlayerCollisionResponse();
+            Callback33UpdatePlayerSurfaceState();
             func_8004F178(&local.first, &Callback33Player.position);
             local.first.z += 0x400;
             Callback33Player.unk4[0] = Callback33Query(&local.first, 0xC00);
@@ -1829,9 +1829,9 @@ void func_level_33_8009AFA8(void) {
         case 0x21:
         case 0x22:
         case 0x23:
-            Callback33Call80041C20();
-            Callback33Call80042A44();
-            Callback33Call80041930();
+            Callback33UpdatePlayerCollisionResponse();
+            Callback33UpdatePlayerSurfaceState();
+            Callback33ProbePlayerContactSegment();
             if (SpawnParticle != 0) {
                 countBase = (unsigned char*)&Callback33Count;
                 if (*(short*)countBase == 0)
@@ -1847,7 +1847,7 @@ void func_level_33_8009AFA8(void) {
                     sourceBytes = countBase - 0xB0;
                     do {
                         func_8004F178(vectorPointer, (Vector3D*)sourceBytes);
-                        Callback33Call8004F110(vectorPointer, 7);
+                        Callback33ShiftVectorRightTowardZero(vectorPointer, 7);
                         iteration += 1;
                         sample = rand();
                         component = local.second.x;
@@ -1886,15 +1886,15 @@ void func_level_33_8009AFA8(void) {
             }
             goto clearSharedValue;
         case 0x2F:
-            Callback33Call80041C20();
-            Callback33Call80042A44();
-            Callback33Call80041930();
+            Callback33UpdatePlayerCollisionResponse();
+            Callback33UpdatePlayerSurfaceState();
+            Callback33ProbePlayerContactSegment();
             func_80042F64();
             goto clearSharedValue;
         case 0x32:
-            Callback33Call80041C20();
-            Callback33Call80042A44();
-            Callback33Call80041930();
+            Callback33UpdatePlayerCollisionResponse();
+            Callback33UpdatePlayerSurfaceState();
+            Callback33ProbePlayerContactSegment();
             func_80042F64();
             numerator = (int)((unsigned int)Callback33Player.unk7a[3].z << 2);
             Callback33Player.unk4[0] = 0;
@@ -1913,9 +1913,9 @@ void func_level_33_8009AFA8(void) {
             goto compareUpperLimit;
         case 0x33:
         case 0x34:
-            Callback33Call80041C20();
-            Callback33Call80042A44();
-            Callback33Call80041930();
+            Callback33UpdatePlayerCollisionResponse();
+            Callback33UpdatePlayerSurfaceState();
+            Callback33ProbePlayerContactSegment();
             func_80042F64();
             Callback33Player.unk4[0] = 0;
             {
@@ -1943,8 +1943,8 @@ void func_level_33_8009AFA8(void) {
             func_800443A4(clampedValue);
             return;
         case 0x3A:
-            Callback33Call80041C20();
-            Callback33Call80042A44();
+            Callback33UpdatePlayerCollisionResponse();
+            Callback33UpdatePlayerSurfaceState();
             Callback33Player.cheatColour.a = 0xFF;
             Callback33Player.unk4[0] = 0;
             Callback33Player.cheatColour.b = 0x20;
@@ -1953,9 +1953,9 @@ void func_level_33_8009AFA8(void) {
             return;
         case 0x76:
         case 0x77:
-            Callback33Call80041C20();
-            Callback33Call80042A44();
-            Callback33Call80041930();
+            Callback33UpdatePlayerCollisionResponse();
+            Callback33UpdatePlayerSurfaceState();
+            Callback33ProbePlayerContactSegment();
             if (Callback33Player.unk5 != 0x7F) {
                 if ((Callback33Player.unk7a[3].z < 0) &&
                     (Callback33Player.animationStateFrames >= 4)) {
@@ -1973,16 +1973,16 @@ void func_level_33_8009AFA8(void) {
         case 0x83:
         case 0x84:
             func_800438F4();
-            Callback33Call80041C20();
-            Callback33Call80042A44();
-            Callback33Call80041930();
+            Callback33UpdatePlayerCollisionResponse();
+            Callback33UpdatePlayerSurfaceState();
+            Callback33ProbePlayerContactSegment();
         queryC00:
-            Callback33Call80043A38(0xC00);
+            Callback33BuildNegatedNormalizedPlayerVector(0xC00);
             goto clearSharedValue;
         other82:
-            Callback33Call80041C20();
-            Callback33Call80042A44();
-            Callback33Call80041930();
+            Callback33UpdatePlayerCollisionResponse();
+            Callback33UpdatePlayerSurfaceState();
+            Callback33ProbePlayerContactSegment();
             if ((Callback33Player.unk7a[3].z < 0) && (Callback33Player.animationStateFrames >= 4)) {
                 Callback33Player.unk5 = 1;
             } else {
@@ -2077,28 +2077,28 @@ int Transition33PlanarHeadingLookup(int, int, int) __asm__("func_8004E880");
 extern Spyro Transition33_D_80070328 __asm__("D_80070328");
 int Transition33MeasureVectorLength(Vector3D*, int) __asm__("func_8004EDE8");
 int Transition33RandBetween(int low, int high) __asm__("func_8003636C");
-void Transition33_func_80043A38(int scale) __asm__("func_80043A38");
-void Transition33_func_800441F0(void) __asm__("func_800441F0");
+void Transition33BuildNegatedNormalizedPlayerVector(int scale) __asm__("func_80043A38");
+void Transition33ClearPlayerMotionVectors(void) __asm__("func_800441F0");
 void Transition33ClearVector(Vector3D*) __asm__("func_8004F168");
 extern int Transition33_D_8006E524 __asm__("D_8006E524");
 extern unsigned char Transition33RawUnion[] __asm__("D_80070328+0x144");
 extern int Transition33RawMovement __asm__("D_80070328+0x50");
 extern int Raw33Movement __asm__("D_80070328+0x50");
 extern int Raw33Union __asm__("D_80070328+0x144");
-void Call33ED6C(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004ED6C");
+void Call33TransformVectorByBasis(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004ED6C");
 extern void (*Call33Header)(Moby*) __asm__("unk_ovlheader_8007432C");
 extern unsigned char Raw33State[] __asm__("D_80070328+0x50");
 extern Spyro Special33_D_80070328 __asm__("D_80070328");
 extern short Signed33TableA[] __asm__("D_800658A0");
 extern short Signed33TableB[] __asm__("D_80065920");
 int Special33MeasureVectorLength(Vector3D*, int) __asm__("func_8004EDE8");
-void Special33_func_80043A38(int scale) __asm__("func_80043A38");
-void Special33_func_800441F0(void) __asm__("func_800441F0");
+void Special33BuildNegatedNormalizedPlayerVector(int scale) __asm__("func_80043A38");
+void Special33ClearPlayerMotionVectors(void) __asm__("func_800441F0");
 void Special33ClearVector(Vector3D*) __asm__("func_8004F168");
 extern int Special33_D_8006E524 __asm__("D_8006E524");
 
-int Call33EA2C(int) __asm__("func_8004EA2C");
-int Call33E9E4(int) __asm__("func_8004E9E4");
+int Call33InterpolateCosine(int) __asm__("func_8004EA2C");
+int Call33InterpolateSine(int) __asm__("func_8004E9E4");
 void func_level_33_8009B8A8(int arg0) {
     register unsigned char* savedBase __asm__("$3");
     register Vector3D* destination __asm__("$4");
@@ -2124,7 +2124,7 @@ void func_level_33_8009B8A8(int arg0) {
         case 0x14:
             Transition33_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Transition33_D_80070328.unk5 = 0;
-            Transition33_func_800441F0();
+            Transition33ClearPlayerMotionVectors();
             Transition33_D_80070328.grounded = 1;
             Transition33_D_80070328.union144.a.unk13cb = Transition33RandBetween(1, 3);
             Transition33_D_80070328.union144.a.unk13cc = 0;
@@ -2187,9 +2187,10 @@ void func_level_33_8009B8A8(int arg0) {
                 shiftedValue = Transition33PlanarHeadingLookup(
                     -Transition33_D_80070328.unk7a[2].x, -Transition33_D_80070328.unk7a[2].y, 1);
                 Transition33_D_80070328.unk7b = shiftedValue;
-                Transition33_D_80070328.unk7a[2].x = (Call33EA2C(shiftedValue) << 12) >> 12;
+                Transition33_D_80070328.unk7a[2].x =
+                    (Call33InterpolateCosine(shiftedValue) << 12) >> 12;
                 Transition33_D_80070328.unk7a[2].y =
-                    (Call33E9E4(Transition33_D_80070328.unk7b) << 12) >> 12;
+                    (Call33InterpolateSine(Transition33_D_80070328.unk7b) << 12) >> 12;
                 Transition33_D_80070328.unk7a[2].z = 0x1000;
             }
             goto clearPointers;
@@ -2221,7 +2222,7 @@ void func_level_33_8009B8A8(int arg0) {
         case 0x3A:
             Transition33_D_80070328.movementState = MOVEMENT_STATE_DEATH;
             Transition33_D_80070328.unk5 = 0;
-            Transition33_func_80043A38(0xC00);
+            Transition33BuildNegatedNormalizedPlayerVector(0xC00);
             Transition33_D_80070328.grounded = 1;
             if ((arg0 == 0x3A) || (arg0 == 0x6C)) {
                 PlaySound((int)D_8006C654->lavaBurn, 0, 0);
@@ -2282,7 +2283,7 @@ void func_level_33_8009B8A8(int arg0) {
         case 0x36:
             Transition33_D_80070328.movementState = 0;
             Transition33_D_80070328.unk5 = 0;
-            Transition33_func_800441F0();
+            Transition33ClearPlayerMotionVectors();
         groundAndClear:
             Transition33_D_80070328.grounded = 1;
         clearPointers:
@@ -2294,7 +2295,7 @@ void func_level_33_8009B8A8(int arg0) {
         case 0x7E:
             Special33_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Special33_D_80070328.unk5 = 0;
-            Special33_func_800441F0();
+            Special33ClearPlayerMotionVectors();
             Special33_D_80070328.grounded = 1;
             return;
         case 0x74:
@@ -2314,7 +2315,7 @@ void func_level_33_8009B8A8(int arg0) {
         case 0x80:
             Special33_D_80070328.movementState = MOVEMENT_STATE_DEATH;
             Special33_D_80070328.unk5 = 0;
-            Special33_func_80043A38(0xC00);
+            Special33BuildNegatedNormalizedPlayerVector(0xC00);
             Special33_D_80070328.grounded = 1;
             Special33_D_8006E524 = 0xF;
             return;
@@ -2382,7 +2383,7 @@ void func_level_33_8009B8A8(int arg0) {
             *(int*)state = 0;
             Special33_D_80070328.unk5 = 0;
             vector = (Vector3D*)(privateData + 0x64);
-            Special33_func_800441F0();
+            Special33ClearPlayerMotionVectors();
             Special33_D_80070328.grounded = 1;
             Special33_D_80070328.idle = 0;
             Special33_D_80070328.unk15g = 0;
@@ -2390,14 +2391,14 @@ void func_level_33_8009B8A8(int arg0) {
             *(int*)(privateData + 0x64) = 0x1800;
             *(int*)(privateData + 0x68) = 0;
             *(int*)(privateData + 0x6C) = 0;
-            Call33ED6C((Vector3D*)(state - 0x20), vector, vector);
+            Call33TransformVectorByBasis((Vector3D*)(state - 0x20), vector, vector);
             func_8004F194(vector, vector, (Vector3D*)(state - 0x50));
             Call33Header(Special33_D_80070328.critterMobyPtr);
             return;
         }
         case 0x7B:
             Special33_D_80070328.movementState = 0;
-            Special33_func_800441F0();
+            Special33ClearPlayerMotionVectors();
             groundValue = 1;
             goto sharedGround;
         case 0x7C: {
@@ -2405,7 +2406,7 @@ void func_level_33_8009B8A8(int arg0) {
                 Special33_D_80070328.critterMobyPtr->mobyTag;
             register unsigned char* child __asm__("$4");
             Special33_D_80070328.movementState = 0;
-            Special33_func_800441F0();
+            Special33ClearPlayerMotionVectors();
             Special33_D_80070328.grounded = 1;
             Special33_D_80070328.idle = 0;
             Special33_D_80070328.unk15g = 0;
@@ -2465,7 +2466,7 @@ void func_level_33_8009B8A8(int arg0) {
                 }
                 Special33_D_80070328.unk8[0] = Special33MeasureVectorLength(
                     (Vector3D*)((unsigned char*)&Special33_D_80070328.movementState + 0x48), 0);
-                Special33_func_80043A38(0xC00);
+                Special33BuildNegatedNormalizedPlayerVector(0xC00);
                 groundValue = 1;
                 MATCHING_KEEP(groundValue);
                 Special33_D_80070328.union144.a.unk13cb = 0;
@@ -2533,10 +2534,10 @@ extern unsigned char Anim33Data66530View1[] __asm__("D_80066530");
 extern int Anim33Data6E538View1 __asm__("D_8006E538"), Anim33Data6E53CView1 __asm__("D_8006E53C");
 extern int Anim33Data6E044View1 __asm__("D_8006E044"), A4898Gate __asm__("D_8006E344"),
     A4898Count __asm__("D_8006C514");
-int Anim33Call40994View1() __asm__("func_80040994");
-int Anim33Call4BEF8View1() __asm__("func_8004BEF8");
-int Anim33Call49688View1() __asm__("func_80049688");
-int Anim33Call498C0View1() __asm__("func_800498C0");
+int Anim33ProcessPlayerStateFlagsView1() __asm__("func_80040994");
+int Anim33DispatchPlayerStateRequestView1() __asm__("func_8004BEF8");
+int Anim33SelectPlayerAnimationLoopRequestView1() __asm__("func_80049688");
+int Anim33UpdatePlayerRetryStateView1() __asm__("func_800498C0");
 extern int Anim33PlayerB4View1 __asm__("D_80070328 + 0xB4");
 extern int Anim33PlayerA4View1 __asm__("D_80070328 + 0xA4");
 extern int Anim33PlayerBCView1 __asm__("D_80070328 + 0xBC");
@@ -2544,7 +2545,7 @@ extern int Anim33Player158View1 __asm__("D_80070328 + 0x158");
 extern unsigned char Anim33Player0View1[] __asm__("D_80070328");
 extern int A21Mode __asm__("D_8006E044"), Anim33Data6E344View1 __asm__("D_8006E344"),
     Anim33Data6C514View1 __asm__("D_8006C514");
-int Anim33Call40994View2() __asm__("func_80040994");
+int Anim33ProcessPlayerStateFlagsView2() __asm__("func_80040994");
 int Anim33ApproximatePlanarDistanceView1() __asm__("func_8004F334");
 extern int Anim33Player48View3 __asm__("D_80070328 + 0x48");
 extern int Anim33Player50View1 __asm__("D_80070328 + 0x50");
@@ -2573,8 +2574,8 @@ extern int Anim33Data6E52CView1 __asm__("D_8006E52C");
 extern unsigned char* Anim33Data6C654View1 __asm__("D_8006C654");
 extern int (*Anim33Data7431CView1)(int) __asm__("unk_ovlheader_8007431C");
 extern int (*Anim33DataSpawnParticleView1)(int, int, void*, int) __asm__("SpawnParticle");
-int Anim33Call55E84View1(void*) __asm__("func_80055E84");
-int Anim33Call4BEF8View2(int) __asm__("func_8004BEF8");
+int Anim33ReadSelectedFrameScalarView1(void*) __asm__("func_80055E84");
+int Anim33DispatchPlayerStateRequestView2(int) __asm__("func_8004BEF8");
 int Anim33CallPlaySoundView1(unsigned char, int, int) __asm__("PlaySound");
 extern int Anim33Player4CView2 __asm__("D_80070328 + 0x4C");
 extern int Anim33PlayerACView3 __asm__("D_80070328 + 0xAC");
@@ -2582,21 +2583,21 @@ extern int Anim33PlayerB0View3 __asm__("D_80070328 + 0xB0");
 extern int Anim33PlayerB8View3 __asm__("D_80070328 + 0xB8");
 extern int Anim33PlayerE4View3 __asm__("D_80070328 + 0xE4");
 extern int A35Buttons __asm__("D_8006E538"), Anim33Data6E53CView3 __asm__("D_8006E53C");
-int Anim33Call40994View3() __asm__("func_80040994");
-int Anim33Call4BEF8View3() __asm__("func_8004BEF8");
+int Anim33ProcessPlayerStateFlagsView3() __asm__("func_80040994");
+int Anim33DispatchPlayerStateRequestView3() __asm__("func_8004BEF8");
 extern int Anim33PlayerBCView2 __asm__("D_80070328 + 0xBC"),
     Anim33Player1BCView1 __asm__("D_80070328 + 0x1BC"),
     Anim33Player60View1 __asm__("D_80070328 + 0x60");
 extern short Anim33Player148View1 __asm__("D_80070328 + 0x148");
-int Anim33Call43194View1() __asm__("func_80043194");
+int Anim33TestPlayerProbePatternView1() __asm__("func_80043194");
 int Anim33MeasureVectorLengthView1() __asm__("func_8004EDE8");
 extern int Anim33PlayerB4View2 __asm__("D_80070328 + 0xB4");
 extern int Anim33Player28CView1 __asm__("D_80070328 + 0x28C");
 extern int Anim33Player290View1 __asm__("D_80070328 + 0x290");
 extern int Anim33Data6E044View2 __asm__("D_8006E044");
-int Anim33Call498C0View2(void*) __asm__("func_800498C0");
-int Anim33Call3BF6CView1(int, int) __asm__("func_8003BF6C");
-int Anim33Call3BE70View1(int) __asm__("func_8003BE70");
+int Anim33UpdatePlayerRetryStateView2(void*) __asm__("func_800498C0");
+int Anim33SoundHandleMatchesIdInStates1Or2View1(int, int) __asm__("func_8003BF6C");
+int Anim33TransitionSoundHandleTo3Or5View1(int) __asm__("func_8003BE70");
 #define Anim33Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 void func_level_33_8009C2B8(void) {
     register int rawValue2 __asm__("$2");
@@ -2611,7 +2612,7 @@ void func_level_33_8009C2B8(void) {
     rawValue2 = Anim33Player48View1;
     switch (rawValue2) {
         case 20:
-            if (Anim33Call40994View1())
+            if (Anim33ProcessPlayerStateFlagsView1())
                 return;
             rawValue2 = Anim33Data6E53CView1 & 64;
             nextSelector4 = 6;
@@ -2648,7 +2649,7 @@ void func_level_33_8009C2B8(void) {
                 MATCHING_KEEP(savedPointer16);
                 if (!*savedPointer16)
                     return;
-                Anim33Call4BEF8View1(0);
+                Anim33DispatchPlayerStateRequestView1(0);
                 if (Anim33Data66530View1[*((unsigned char*)savedPointer16 - 0x2C)] >= 96) {
                     Anim33Player14View1 = Anim33Player15View1;
                     Anim33Player16View1 = Anim33Player17View1;
@@ -2666,16 +2667,16 @@ void func_level_33_8009C2B8(void) {
             nextSelector4 = 15;
             if (rawValue2)
                 goto select;
-            Anim33Call49688View1();
+            Anim33SelectPlayerAnimationLoopRequestView1();
             return;
         case 53:
         case 54:
-            if (Anim33Call40994View1())
+            if (Anim33ProcessPlayerStateFlagsView1())
                 return;
             nextSelector4 = 0;
             goto select;
         case 19:
-            if (Anim33Call40994View2())
+            if (Anim33ProcessPlayerStateFlagsView2())
                 return;
             rawValue2 = 13;
             rawValue3 = Anim33Data6E344View1;
@@ -2698,7 +2699,7 @@ void func_level_33_8009C2B8(void) {
             if (Anim33Player54View1 < 33)
                 return;
             if (!Anim33PlayerB8View1) {
-                Anim33Call4BEF8View1(4);
+                Anim33DispatchPlayerStateRequestView1(4);
                 Anim33Player4CView1 = 1;
                 return;
             }
@@ -2771,13 +2772,13 @@ void func_level_33_8009C2B8(void) {
                 goto select;
             return;
         case 33:
-            if (Anim33Call40994View3())
+            if (Anim33ProcessPlayerStateFlagsView3())
                 return;
             savedPointer17 = &Anim33PlayerB8View3;
             MATCHING_KEEP(savedPointer17);
             if (!*savedPointer17) {
                 if (Anim33PlayerE4View3 >= 23)
-                    Anim33Call4BEF8View3(7);
+                    Anim33DispatchPlayerStateRequestView3(7);
                 if (Anim33PlayerACView3 > 0) {
                     rawValue3 = Anim33PlayerB0View3;
                     rawValue2 = rawValue3 < 3841;
@@ -2810,7 +2811,7 @@ void func_level_33_8009C2B8(void) {
             nextSelector4 = 22;
             if (rawValue2)
                 goto select;
-            rawValue2 = Anim33Call43194View1(4);
+            rawValue2 = Anim33TestPlayerProbePatternView1(4);
             nextSelector4 = 47;
             if (rawValue2)
                 goto select;
@@ -2850,13 +2851,13 @@ void func_level_33_8009C2B8(void) {
                 return;
             goto select;
         case 34:
-            if (Anim33Call40994View3())
+            if (Anim33ProcessPlayerStateFlagsView3())
                 return;
             savedPointer17 = &Anim33PlayerB8View3;
             MATCHING_KEEP(savedPointer17);
             if (!*savedPointer17) {
                 if (Anim33PlayerE4View3 >= 23)
-                    Anim33Call4BEF8View3(7);
+                    Anim33DispatchPlayerStateRequestView3(7);
                 if (Anim33PlayerACView3 > 0) {
                     rawValue3 = Anim33PlayerB0View3;
                     rawValue2 = rawValue3 < 3841;
@@ -2889,7 +2890,7 @@ void func_level_33_8009C2B8(void) {
             nextSelector4 = 22;
             if (rawValue2)
                 goto select;
-            rawValue2 = Anim33Call43194View1(4);
+            rawValue2 = Anim33TestPlayerProbePatternView1(4);
             nextSelector4 = 47;
             if (rawValue2)
                 goto select;
@@ -2923,13 +2924,13 @@ void func_level_33_8009C2B8(void) {
                 return;
             goto select;
         case 35:
-            if (Anim33Call40994View3())
+            if (Anim33ProcessPlayerStateFlagsView3())
                 return;
             savedPointer17 = &Anim33PlayerB8View3;
             MATCHING_KEEP(savedPointer17);
             if (!*savedPointer17) {
                 if (Anim33PlayerE4View3 >= 23)
-                    Anim33Call4BEF8View3(7);
+                    Anim33DispatchPlayerStateRequestView3(7);
                 if (Anim33PlayerACView3 > 0) {
                     rawValue3 = Anim33PlayerB0View3;
                     rawValue2 = rawValue3 < 3841;
@@ -2961,7 +2962,7 @@ void func_level_33_8009C2B8(void) {
             nextSelector4 = 22;
             if (rawValue2)
                 goto select;
-            rawValue2 = Anim33Call43194View1(4);
+            rawValue2 = Anim33TestPlayerProbePatternView1(4);
             nextSelector4 = 47;
             if (rawValue2)
                 goto select;
@@ -2995,7 +2996,7 @@ void func_level_33_8009C2B8(void) {
                 return;
             goto select;
         case 47:
-            if (Anim33Call40994View1())
+            if (Anim33ProcessPlayerStateFlagsView1())
                 return;
             if (Anim33Data6E53CView1 & 64) {
                 rawValue2 = Anim33Data6E538View1 & 16384;
@@ -3011,7 +3012,7 @@ void func_level_33_8009C2B8(void) {
                 return;
             goto select;
         case 50:
-            if (Anim33Call40994View1())
+            if (Anim33ProcessPlayerStateFlagsView1())
                 return;
             if (Anim33Data6E53CView1 & 64) {
                 rawValue2 = Anim33Data6E538View1 & 16384;
@@ -3042,7 +3043,7 @@ void func_level_33_8009C2B8(void) {
             goto select;
         case 51:
         case 52:
-            if (Anim33Call40994View1())
+            if (Anim33ProcessPlayerStateFlagsView1())
                 return;
             if (Anim33Data6E53CView1 & 64) {
                 rawValue2 = Anim33Data6E538View1 & 16384;
@@ -3050,7 +3051,7 @@ void func_level_33_8009C2B8(void) {
                 if (!rawValue2)
                     goto select;
             specialJump:
-                Anim33Call4BEF8View1(7);
+                Anim33DispatchPlayerStateRequestView1(7);
                 rawValue2 = 3;
                 Anim33Player4CView1 = rawValue2;
                 return;
@@ -3073,7 +3074,7 @@ void func_level_33_8009C2B8(void) {
             if (Anim33Player54View1 < 137)
                 return;
         call498C0:
-            Anim33Call498C0View1();
+            Anim33UpdatePlayerRetryStateView1();
             return;
         case 115:
             rawValue2 = (int)Anim33Player250View1;
@@ -3215,7 +3216,7 @@ void func_level_33_8009C2B8(void) {
             if (rawValue2)
                 return;
             nextSelector4 = (int)Anim33Player250View1;
-            rawValue2 = Anim33Call55E84View1((void*)nextSelector4);
+            rawValue2 = Anim33ReadSelectedFrameScalarView1((void*)nextSelector4);
             rawValue2 = rawValue2 < 37;
             nextSelector4 = 117;
             if (rawValue2)
@@ -3421,7 +3422,7 @@ void func_level_33_8009C2B8(void) {
                 goto effect119;
             nextSelector4 = 117;
         effect119:
-            Anim33Call4BEF8View2(nextSelector4);
+            Anim33DispatchPlayerStateRequestView2(nextSelector4);
             {
                 register int (*spawn2)(int, int, void*, int) __asm__("$2") =
                     Anim33DataSpawnParticleView1;
@@ -3709,7 +3710,7 @@ void func_level_33_8009C2B8(void) {
             }
             goto helper128;
         helper128:
-            Anim33Call498C0View2((void*)nextSelector4);
+            Anim33UpdatePlayerRetryStateView2((void*)nextSelector4);
             return;
         case 129:
             rawValue2 = Anim33Data6E53CView2 & 64;
@@ -3727,7 +3728,7 @@ void func_level_33_8009C2B8(void) {
                     return;
                 rawValue2 = -1;
                 Anim33Player28CView1 = rawValue2;
-                Anim33Call498C0View2((void*)nextSelector4);
+                Anim33UpdatePlayerRetryStateView2((void*)nextSelector4);
                 return;
             }
             rawValue3 = Anim33Player54View2;
@@ -3748,10 +3749,10 @@ void func_level_33_8009C2B8(void) {
             if (product5 < 0)
                 goto select;
             nextSelector4 = Anim33Player290View1;
-            rawValue2 = Anim33Call3BF6CView1(nextSelector4, product5);
+            rawValue2 = Anim33SoundHandleMatchesIdInStates1Or2View1(nextSelector4, product5);
             if (rawValue2) {
                 nextSelector4 = Anim33Player28CView1;
-                Anim33Call3BE70View1(nextSelector4);
+                Anim33TransitionSoundHandleTo3Or5View1(nextSelector4);
             }
             rawValue2 = -1;
             Anim33Player28CView1 = rawValue2;
@@ -3793,7 +3794,7 @@ void func_level_33_8009C2B8(void) {
             goto select;
         preserveAge:
             savedWord16 = Anim33Player54View2;
-            Anim33Call4BEF8View2(119);
+            Anim33DispatchPlayerStateRequestView2(119);
             Anim33Player54View2 = savedWord16;
             return;
         other130:
@@ -3948,7 +3949,7 @@ void func_level_33_8009C2B8(void) {
 select116:
     nextSelector4 = 116;
 select:
-    Anim33Call4BEF8View1(nextSelector4);
+    Anim33DispatchPlayerStateRequestView1(nextSelector4);
     return;
 }
 #undef Anim33Field

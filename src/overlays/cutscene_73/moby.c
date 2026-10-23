@@ -64,8 +64,8 @@ int P74A5CInterpolateMobyVertex(Moby*, int, int*) __asm__("func_80055F14");
 extern int P74A5C_D_8006C598 __asm__("D_8006C598");
 extern int P74A5C_D_8006EDDC __asm__("D_8006EDDC");
 
-void func_cutscene_73_80074A5C(Moby* argument) {
-    register Moby* owner __asm__("$17") = argument;
+void func_cutscene_73_80074A5C(Moby* moby) {
+    register Moby* owner __asm__("$17") = moby;
     Vector3D vector10;
     Vector3D vector20;
     register Moby* selectedMoby __asm__("$16");
@@ -191,7 +191,6 @@ void func_cutscene_73_80074A5C(Moby* argument) {
     }
 }
 
-
 void func_cutscene_73_80074D94(void) {
 }
 
@@ -204,7 +203,7 @@ INCLUDE_RODATA("asm/nonmatchings/overlays/cutscene_73/moby", D_cutscene_73_80074
  * Raw field units, helper meanings and update cadence remain unresolved. */
 /* AI generated; not human reviewed. Original parser recovery and native C; original SHA256 84b12cf1aaba1af1ee55d424d5a0f45a17415ffc6913367ce36ad5086207721a. Raw helper/units/cadence/runtime unproven. */
 #define ParserField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Parser6245_0_func_800359A4() __asm__("func_800359A4");                    /* extern */
+int Parser6245_0CountTimerDown() __asm__("func_800359A4");                    /* extern */
 unsigned char Parser6245_0NormalizeVectorToLength() __asm__("func_8004EF04"); /* extern */
 int Parser6245_0_rand() __asm__("rand");                                      /* extern */
 extern int Parser6245_0_D_8006EDDC __asm__("D_8006EDDC");
@@ -214,8 +213,8 @@ extern unsigned char Parser6245_0_D_cutscene_73_800744C0 __asm__("D_cutscene_73_
 typedef struct {
     int words[4];
 } CutsceneCopy16;
-void func_cutscene_73_80074D9C(Moby* input) {
-    register Moby* arg0 __asm__("$16") = input;
+void func_cutscene_73_80074D9C(Moby* moby) {
+    register Moby* arg0 __asm__("$16") = moby;
     struct {
         Vector3D sp10;
         char pad1C[4];
@@ -250,7 +249,7 @@ void func_cutscene_73_80074D9C(Moby* input) {
     register unsigned int temp_s2 __asm__("$18");
     register void* temp_s2_2 __asm__("$18");
 
-    if (Parser6245_0_func_800359A4(&arg0->substate, 1) != 0) {
+    if (Parser6245_0CountTimerDown(&arg0->substate, 1) != 0) {
         arg0->substate = 0x2D;
         temp_s4 = Parser6245_0_rand() & 3;
         var_s0 = -1;

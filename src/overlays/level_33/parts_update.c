@@ -8,12 +8,12 @@
  * and dispatch: build/sibling4097.func_level_33_80096630.json.
  * Raw units, helper meanings and cadence remain unresolved. */
 #define Update96630Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Update96630func_8004E9E4(int) __asm__("func_8004E9E4");
+int Update96630InterpolateSine(int) __asm__("func_8004E9E4");
 int Update96630InterpolateCosine(int) __asm__("func_8004EA2C");
 int Update96630CopyVector(void*, void*) __asm__("func_8004F178");
 int Update96630PackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-int Update96630func_8004F5A8(void*, void*, void*) __asm__("func_8004F5A8");
-int Update96630func_80056504(void*) __asm__("func_80056504");
+int Update96630AddHalfwordVectors(void*, void*, void*) __asm__("func_8004F5A8");
+int Update96630ReleaseParticleRecord(void*) __asm__("func_80056504");
 extern int Update96630D_8006C644 __asm__("D_8006C644");
 extern unsigned short Update96630Sin[] __asm__("D_80065920");
 extern unsigned short Update96630Cos[] __asm__("D_800658A0");
@@ -136,7 +136,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                 temp_v1 = *record;
                 switch (temp_v1) {
                     case 0x0:
-                        Update96630func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update96630AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update96630Field(recordPlus1, short*, 0x1D);
                         __asm__ __volatile__("" ::: "$3", "memory");
                         doubledStep = 1;
@@ -169,7 +169,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                         Update96630Field(recordPlus1, unsigned char*, 0xD) = scratch3;
                         goto checkPredicate;
                     case 0x1:
-                        Update96630func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update96630AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update96630Field(recordPlus1, short*, 0x1D);
                         __asm__ __volatile__("" ::: "$3", "memory");
                         doubledStep = 1;
@@ -201,7 +201,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                         Update96630Field(recordPlus1, unsigned char*, 0xD) = scratch3;
                         goto checkPredicate;
                     case 0x2:
-                        Update96630func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update96630AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         if (Update96630Field(recordPlus1, short*, 0x1D) != 0)
                             Update96630Field(recordPlus1, unsigned short*, 0x1B) =
                                 Update96630Field(recordPlus1, unsigned short*, 0x1B) + 1;
@@ -245,7 +245,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                         predicate2 = (unsigned int)scratch2 < 32;
                         goto checkPredicate;
                     case 0x3:
-                        Update96630func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update96630AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update96630Field(recordPlus1, short*, 0x1D);
                         if (scratch2 != 0) {
                             scratch2 = Update96630Field(recordPlus1, unsigned short*, 0x1B);
@@ -341,7 +341,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                         scratch3 = product7 >> 12;
                         scratch2 += scratch3;
                         frame.words[0] = scratch2;
-                        scratch2 = Update96630func_8004E9E4(angle18);
+                        scratch2 = Update96630InterpolateSine(angle18);
                         product7 = radius16 * scratch2;
                         scratch2 = frame.words[1];
                         MATCHING_KEEP2(product7, scratch2);
@@ -360,7 +360,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                         goto nextRecord;
                     }
                     case 0x9:
-                        Update96630func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update96630AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update96630Field(recordPlus1, short*, 0x1D);
                         doubledStep = 1;
                         if (scratch2 != 0) {
@@ -405,7 +405,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                         scratch3 += scratch2;
                         frame.words[4] = scratch3;
                         scratch2 =
-                            Update96630func_8004E9E4(Update96630Field(recordPlus1, short*, 0x17));
+                            Update96630InterpolateSine(Update96630Field(recordPlus1, short*, 0x17));
                         scratch4 = (int)recordPlus4;
                         playerEnd = (unsigned char*)temporary16;
                         MATCHING_KEEP3(scratch4, playerEnd, scratch2);
@@ -460,7 +460,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                         MATCHING_KEEP2(scratch2, doubledStep);
                         scratch2 = doubledStep - scratch2;
                         Update96630Field(recordPlus1, unsigned short*, 0x1D) = scratch2;
-                        Update96630func_8004F5A8((void*)scratch4, playerEnd, (void*)scratch6);
+                        Update96630AddHalfwordVectors((void*)scratch4, playerEnd, (void*)scratch6);
                         scratch2 = Update96630Field(recordPlus1, unsigned char*, 9);
                         doubledStep = frame.saved.doubled48;
                         MATCHING_KEEP2(scratch2, doubledStep);
@@ -489,7 +489,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                     case 0xC:
                         Update96630Field(recordPlus1, unsigned char*, 0xA) =
                             (unsigned char)(Update96630Field(recordPlus1, unsigned char*, 0xA) + 8);
-                        Update96630func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update96630AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         temp_v0_4 = Update96630Field(recordPlus1, unsigned char*, 0xB);
                         if (temp_v0_4 != 0) {
                             Update96630Field(recordPlus1, unsigned char*, 0xB) =
@@ -522,7 +522,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                             goto removeRecord;
                         if (Update96630Field(recordPlus1, unsigned char*, 2) == 0)
                             goto removeRecord;
-                        Update96630func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update96630AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update96630Field(recordPlus1, short*, 0x1D);
                         if (scratch2 != 0) {
                             scratch2 = Update96630Field(recordPlus1, unsigned short*, 0x1B);
@@ -595,7 +595,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                         Update96630Field(recordPlus1, unsigned char*, 1) = scratch2;
                         goto nextRecord;
                     case 0x21:
-                        Update96630func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update96630AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         if (Update96630Field(recordPlus1, short*, 0x1D) != 0) {
                             Update96630Field(recordPlus1, unsigned short*, 0x1B) =
                                 (unsigned short)(Update96630Field(recordPlus1, unsigned short*,
@@ -634,7 +634,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                         }
                         break;
                     case 0x24:
-                        Update96630func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update96630AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update96630Field(recordPlus1, unsigned short*, 0x1B);
                         scratch2 -= 4;
                         Update96630Field(recordPlus1, unsigned short*, 0x1B) = scratch2;
@@ -718,7 +718,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                         scratch2 = Update96630CountTimerDown(record + 2, 1);
                         goto sharedResult;
                     case 0x34:
-                        Update96630func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update96630AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update96630Field(recordPlus1, unsigned short*, 0x1B);
                         scratch2 -= 4;
                         Update96630Field(recordPlus1, unsigned short*, 0x1B) = scratch2;
@@ -759,7 +759,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                         scratch2 = 48;
                         goto sharedSubtract38;
                     case 0x37:
-                        Update96630func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update96630AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch3 = Update96630Field(recordPlus1, unsigned char*, 1);
                         MATCHING_KEEP(scratch3);
                         scratch2 = scratch3 + step;
@@ -821,7 +821,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                         scratch3 = 32;
                         goto addedStoreByteC;
                     case 0x38:
-                        Update96630func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update96630AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update96630Field(recordPlus1, unsigned char*, 1);
                         scratch2 += step;
                         Update96630Field(recordPlus1, unsigned char*, 1) = scratch2;
@@ -859,7 +859,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                     case 0x3B:
                         Update96630Field(recordPlus1, unsigned char*, 0xA) =
                             (unsigned char)(Update96630Field(recordPlus1, unsigned char*, 0xA) + 8);
-                        Update96630func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update96630AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         if (Update96630D_8006C640 & 1) {
                             Update96630Field(recordPlus1, unsigned short*, 0x19) =
                                 (unsigned short)(Update96630Field(recordPlus1, unsigned short*,
@@ -1435,7 +1435,7 @@ unsigned char* func_level_33_80096630(int initialStep) {
                         if (scratch2 == 0)
                             goto nextRecord;
                     removeRecord:
-                        Update96630func_80056504(record);
+                        Update96630ReleaseParticleRecord(record);
                         goto nextRecord;
                     default:
                         goto nextRecord;

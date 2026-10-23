@@ -4,7 +4,7 @@
 /* AI-generated; not human reviewed. Verified sibling C adapted only
  * to this function's original SCUS-94467 instructions. Raw field units,
  * helper meanings and update cadence remain unresolved. */
-int Level15Spawnfunc_8001A358(void*, int) __asm__("func_8001A358");
+int Level15SpawnQueryWorldHeight(void*, int) __asm__("func_8001A358");
 extern int Level15SpawnD_8006D07C __asm__("D_8006D07C");
 extern int Level15SpawnD_8006D080 __asm__("D_8006D080");
 extern int Level15SpawnD_8006D084 __asm__("D_8006D084");
@@ -26,15 +26,15 @@ extern unsigned char Level15SpawnPlayerE __asm__("D_80070328 + 0xE");
 extern unsigned char Level15SpawnColor1[] __asm__("D_80066BAC");
 extern unsigned char Level15SpawnColor2[] __asm__("D_80066BAC");
 #define Level15SpawnField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Level15Spawnfunc_8004EA90(void*, void*, int) __asm__("func_8004EA90");
+int Level15SpawnBuildPackedAngleBasisMatrix(void*, void*, int) __asm__("func_8004EA90");
 int Level15SpawnTransformVectorByBasis(void*, void*, void*) __asm__("func_8004ED6C");
 int Level15SpawnShiftVectorRightTowardZero(void*, int) __asm__("func_8004F110");
 int Level15SpawnCopyVector(void*, void*) __asm__("func_8004F178");
 int Level15SpawnAddVector(void*, void*, void*) __asm__("func_8004F194");
 int Level15SpawnMultiplyVectorGpfSf0(void*, void*, int) __asm__("func_8004F1FC");
 int Level15SpawnPackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-void* Level15Spawnfunc_80056434(int) __asm__("func_80056434");
-int Level15Spawnfunc_8004F58C(void*, void*) __asm__("func_8004F58C");
+void* Level15SpawnAllocateParticleRecord(int) __asm__("func_80056434");
+int Level15SpawnCopyHalfwordVector(void*, void*) __asm__("func_8004F58C");
 int Level15Spawnrand(void) __asm__("rand");
 extern unsigned char Level15SpawnD_800658A0[] __asm__("D_800658A0");
 extern unsigned char Level15SpawnD_80065920[] __asm__("D_80065920");
@@ -152,7 +152,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
             MATCHING_KEEP_VOLATILE_CLOBBER(byte255, "memory");
             switch (kindSelector) { /* switch 1 */
                 case 0x0:           /* switch 1 */
-                    record = Level15Spawnfunc_80056434(2);
+                    record = Level15SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -184,7 +184,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                     Level15SpawnField(record, unsigned char*, 14) = commonByte8;
                     goto initializeF9;
                 case 0x1: /* switch 1 */
-                    record = Level15Spawnfunc_80056434(2);
+                    record = Level15SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -215,7 +215,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                     Level15SpawnField(record, unsigned char*, 15) = commonByte8;
                     goto initializeTrailingBytes;
                 case 0x9: /* switch 1 */
-                    record = Level15Spawnfunc_80056434(2);
+                    record = Level15SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = &frame.sp10;
                         register unsigned char* player __asm__("$16");
@@ -283,7 +283,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                     goto initializeTrailingBytes;
 
                 case 0xA: /* switch 1 */
-                    record = Level15Spawnfunc_80056434(3);
+                    record = Level15SpawnAllocateParticleRecord(3);
                     Level15SpawnField(record, unsigned char*, 0) = kindSelector;
                     {
                         register void* destination __asm__("$4") = record + 4;
@@ -346,7 +346,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0xC: /* switch 1 */
-                    record = Level15Spawnfunc_80056434(2);
+                    record = Level15SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = reference + 32;
                         register int iteration __asm__("$9") = frame.spC8;
@@ -512,7 +512,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                                          4 + (Level15Spawnrand() & 7));
                     break;
                 case 0xd:
-                    record = Level15Spawnfunc_80056434(2);
+                    record = Level15SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -543,7 +543,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                     Level15SpawnField(record, unsigned char*, 12) = byte255;
                     goto initializeColorD;
                 case 0x17:
-                    record = Level15Spawnfunc_80056434(2);
+                    record = Level15SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -582,7 +582,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x21: /* switch 1 */
-                    record = Level15Spawnfunc_80056434(2);
+                    record = Level15SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level15SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -904,13 +904,13 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                         value3 = low8 >> 12;
                         value2 += value3;
                         frame.sp64 = value2;
-                        value2 = Level15Spawnfunc_8001A358(destination4, (int)source5);
+                        value2 = Level15SpawnQueryWorldHeight(destination4, (int)source5);
                     }
                     MATCHING_KEEP_VOLATILE_CLOBBER(byte255, "memory");
                     frame.sp68 = value2;
                     if (value2 == 0)
                         break;
-                    record = Level15Spawnfunc_80056434(3);
+                    record = Level15SpawnAllocateParticleRecord(3);
                     MATCHING_KEEP_VOLATILE_CLOBBER(byte255, "memory");
                     value2 = 1;
                     MATCHING_KEEP_CLOBBER(value2, "memory");
@@ -986,7 +986,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                     Level15SpawnField(record, unsigned char*, 31) = Level15SpawnD_80071934;
                 } break;
                 case 0x2A:
-                    record = Level15Spawnfunc_80056434(4);
+                    record = Level15SpawnAllocateParticleRecord(4);
                     {
                         register void* arg4 __asm__("$4") = record + 4;
                         register void* arg5 __asm__("$5") = reference;
@@ -1031,13 +1031,13 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                     {
                         register int commonByte3 __asm__("$3");
                         case 0x2B:
-                            record = Level15Spawnfunc_80056434(4);
+                            record = Level15SpawnAllocateParticleRecord(4);
                             tailByte = 1;
                             Level15SpawnField(record, unsigned char*, 0) = kindSelector;
                             Level15SpawnField(record, unsigned char*, 2) = 0;
                             Level15SpawnField(record, unsigned char*, 3) = tailByte;
                             if (modeSelector == 0) {
-                                Level15Spawnfunc_8004F58C(record + 4, reference);
+                                Level15SpawnCopyHalfwordVector(record + 4, reference);
                                 tailByte = Level15Spawnrand();
                                 tailByte &= 7;
                                 tailByte += 2;
@@ -1098,7 +1098,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                             break;
                     }
                 case 0x2E:
-                    record = Level15Spawnfunc_80056434(2);
+                    record = Level15SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1158,7 +1158,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                     goto initializeF9;
 
                 case 0x37:
-                    record = Level15Spawnfunc_80056434(2);
+                    record = Level15SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1192,7 +1192,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                     Level15SpawnField(record, unsigned char*, 15) = commonByte8;
                     goto initializeTrailingBytes;
                 case 0x38:
-                    record = Level15Spawnfunc_80056434(2);
+                    record = Level15SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level15SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -1225,7 +1225,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x3A:
-                    record = Level15Spawnfunc_80056434(2);
+                    record = Level15SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1262,7 +1262,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                     Level15SpawnField(record, unsigned char*, 16) = 0;
                     break;
                 case 0x3B: /* switch 1 */
-                    record = Level15Spawnfunc_80056434(5);
+                    record = Level15SpawnAllocateParticleRecord(5);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1330,7 +1330,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                 case 0x42: /* switch 1 */
                 {
                     register int local128 __asm__("$9");
-                    record = Level15Spawnfunc_80056434(0);
+                    record = Level15SpawnAllocateParticleRecord(0);
                     Level15SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level15SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level15Spawnrand() & 0xF);
@@ -1437,7 +1437,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                 case 0x46: /* switch 1 */
                 {
                     register int local128 __asm__("$9");
-                    record = Level15Spawnfunc_80056434(1);
+                    record = Level15SpawnAllocateParticleRecord(1);
                     Level15SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level15SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level15Spawnrand() & 0xF);
@@ -1445,7 +1445,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                     frame.sp90 = 0;
                     frame.sp91 = Level15Spawnrand();
                     frame.sp92 = Level15Spawnrand();
-                    Level15Spawnfunc_8004EA90(&frame.sp90, &frame.sp98, 0);
+                    Level15SpawnBuildPackedAngleBasisMatrix(&frame.sp90, &frame.sp98, 0);
                     frame.sp80 = (int)modeSelector;
                     frame.sp84 = 0;
                     frame.sp88 = 0;
@@ -1501,7 +1501,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                     break;
                 }
                 case 0x47: /* switch 1 */
-                    record = Level15Spawnfunc_80056434(1);
+                    record = Level15SpawnAllocateParticleRecord(1);
                     Level15SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level15SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level15Spawnrand() & 7);
@@ -1576,7 +1576,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x4E: /* switch 1 */
-                    record = Level15Spawnfunc_80056434(0);
+                    record = Level15SpawnAllocateParticleRecord(0);
                     Level15SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level15SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level15Spawnrand() & 0x1F);
@@ -1646,7 +1646,7 @@ void* func_level_15_80085854(int entryCount, int kind, void* input, void* mode) 
                 case 0x4F: /* switch 1 */
                 {
                     register int local128 __asm__("$8");
-                    record = Level15Spawnfunc_80056434(1);
+                    record = Level15SpawnAllocateParticleRecord(1);
                     Level15SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level15SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level15Spawnrand() & 0xF);

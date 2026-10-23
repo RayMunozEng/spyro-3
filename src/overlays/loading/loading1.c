@@ -27,11 +27,11 @@
 #define Loading498Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 unsigned char Loading498CallCDLoadAsyncView1() __asm__("CDLoadAsync");
 unsigned char Loading498CallLoadImageView1() __asm__("LoadImage");
-int Loading498Call2B31CView1() __asm__("func_8002B31C");
-unsigned char Loading498Call4E7D4View1() __asm__("func_8004E7D4");
-unsigned char Loading498Call64A2CView1() __asm__("func_80064A2C");
-unsigned char Loading498Call64A8CView1() __asm__("func_80064A8C");
-int Loading498Call64AECView1() __asm__("func_80064AEC");
+int Loading498RelocateAndPublishResourceBlockView1() __asm__("func_8002B31C");
+unsigned char Loading498CopyWordRangeUnrolled4View1() __asm__("func_8004E7D4");
+unsigned char Loading498SetSpuTransferAddressView1() __asm__("func_80064A2C");
+unsigned char Loading498WriteSpuTransferDataView1() __asm__("func_80064A8C");
+int Loading498CheckSpuTransferCompletionView1() __asm__("func_80064AEC");
 int Loading498Call77438View1() __asm__("func_loading_80077438");
 int Loading498Call795BCView1() __asm__("func_loading_800795BC");
 extern int Loading498Data11254View1 __asm__("D_80011254");
@@ -98,7 +98,8 @@ void func_loading_8007494C(void) {
             return;
         case 2:
             Loading498Call77438View1();
-            Loading498Call4E7D4View1(&Loading498Data71980View1, Loading498Data6C6A0View1, 0x28);
+            Loading498CopyWordRangeUnrolled4View1(&Loading498Data71980View1,
+                                                  Loading498Data6C6A0View1, 0x28);
             Loading498Data6C6A0View1 = (int)&Loading498Data71980View1;
             if (Loading498Data6C658View1 == 0) {
                 Loading498Data6C5C8View1 = 0;
@@ -182,7 +183,7 @@ void func_loading_8007494C(void) {
             temporaryWord2 = (int)&Loading498Data722C0View1;
             MATCHING_KEEP2(headerAddressOrChunkLength16, temporaryWord2);
             argumentWord5 = Loading498Field(temporaryWord2, int*, 0);
-            Loading498Call4E7D4View1(argumentWord4, argumentWord5, 0x220);
+            Loading498CopyWordRangeUnrolled4View1(argumentWord4, argumentWord5, 0x220);
             argumentWord6 = 0x80000;
             if (Loading498Data6C5BCView1 >= 60) {
                 rawWord3 = Loading498Data6C58CView1;
@@ -289,11 +290,12 @@ void func_loading_8007494C(void) {
                     if (headerAddressOrChunkLength16 > 65536)
                         headerAddressOrChunkLength16 = 65536;
                     if (headerAddressOrChunkLength16 > 0) {
-                        Loading498Call64A2CView1(temporaryWord2 | 0x1010);
-                        Loading498Call64A8CView1(Loading498Data722C0View1 + temporaryWord2,
-                                                 headerAddressOrChunkLength16);
+                        Loading498SetSpuTransferAddressView1(temporaryWord2 | 0x1010);
+                        Loading498WriteSpuTransferDataView1(Loading498Data722C0View1 +
+                                                                temporaryWord2,
+                                                            headerAddressOrChunkLength16);
                         do {
-                        } while (Loading498Call64AECView1(0) == 0);
+                        } while (Loading498CheckSpuTransferCompletionView1(0) == 0);
                     }
                     Loading498Data6C5E4View1 += 1;
                     return;
@@ -349,7 +351,8 @@ void func_loading_8007494C(void) {
             goto storeLoadingState;
         case 6:
             Loading498Call77438View1();
-            rawWord2 = Loading498Call2B31CView1(Loading498Data722C4View1, 0x80800000);
+            rawWord2 = Loading498RelocateAndPublishResourceBlockView1(Loading498Data722C4View1,
+                                                                      0x80800000);
             MATCHING_KEEP(rawWord2);
             rawWord3 = Loading498Data6C5BCView1;
             Loading498Data722C8View1 = rawWord2;

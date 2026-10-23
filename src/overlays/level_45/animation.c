@@ -35,14 +35,14 @@
 #define Physics45Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 extern void* Physics45Data6C570View1 __asm__("D_8006C570");
 extern unsigned char Physics45Data6E548View1 __asm__("D_8006E548");
-int Physics45Call40D10View1() __asm__("func_80040D10");
-int Physics45Call40F48View1() __asm__("func_80040F48");
-int Physics45Call41404View1() __asm__("func_80041404");
-int Physics45Call41580View1() __asm__("func_80041580");
-int Physics45Call416F4View1() __asm__("func_800416F4");
-int Physics45Call417FCView1() __asm__("func_800417FC");
-int Physics45Call41848View1() __asm__("func_80041848");
-int Physics45Call41B64View1() __asm__("func_80041B64");
+int Physics45UpdatePlayerGroundInputTargetsView1() __asm__("func_80040D10");
+int Physics45BuildOrientedInputPairView1() __asm__("func_80040F48");
+int Physics45ApplyPlayerRotationStepView1() __asm__("func_80041404");
+int Physics45ApproachPlayerTargetHeadingView1() __asm__("func_80041580");
+int Physics45BlendPlayerHeadingFromInputVectorView1() __asm__("func_800416F4");
+int Physics45ApproachPlayerTargetSpeedView1() __asm__("func_800417FC");
+int Physics45BuildPlayerMovementVectorView1() __asm__("func_80041848");
+int Physics45BuildPlayerResponseVectorView1() __asm__("func_80041B64");
 int Physics45InterpolateSineView1() __asm__("func_8004E9E4");
 int Physics45InterpolateCosineView1() __asm__("func_8004EA2C");
 int Physics45ClearVectorView1() __asm__("func_8004F168");
@@ -65,11 +65,11 @@ extern int Physics45PlayerACView1 __asm__("D_80070328+0xAC");
 extern int Physics45Player4CView1 __asm__("D_80070328+0x4C");
 extern unsigned char Physics45PlayerFCView1 __asm__("D_80070328+0xFC");
 extern int Physics45PlayerA0View1 __asm__("D_80070328+0xA0");
-int Physics45Call13E38View1() __asm__("func_80013E38");
-int Physics45Call410F8View1() __asm__("func_800410F8");
-int Physics45Call41848View2() __asm__("func_80041848");
-int Physics45Call41B64View2() __asm__("func_80041B64");
-int Physics45Call4E4E4View1() __asm__("func_8004E4E4");
+int Physics45TestSubdividedSegmentPathView1() __asm__("func_80013E38");
+int Physics45UpdateSmoothedInputPairView1() __asm__("func_800410F8");
+int Physics45BuildPlayerMovementVectorView2() __asm__("func_80041848");
+int Physics45BuildPlayerResponseVectorView2() __asm__("func_80041B64");
+int Physics45EvaluateClampedPlayerRootCurveView1() __asm__("func_8004E4E4");
 int Physics45InterpolateCosineView2() __asm__("func_8004EA2C");
 int Physics45AddVectorView2() __asm__("func_8004F194");
 extern int Physics45Data67630View1 __asm__("D_80067630");
@@ -99,11 +99,11 @@ extern int Physics45PlayerA8View2 __asm__("D_80070328+0xA8");
 extern int Physics45PlayerACView2 __asm__("D_80070328+0xAC");
 extern int Physics45PlayerB0View2 __asm__("D_80070328+0xB0");
 extern int Physics45PlayerF8View1 __asm__("D_80070328+0xF8");
-int Physics45Call40D10View2() __asm__("func_80040D10");
-int Physics45Call41580View2() __asm__("func_80041580");
-int Physics45Call417FCView2() __asm__("func_800417FC");
-int Physics45Call41848View3() __asm__("func_80041848");
-int Physics45Call41B64View3() __asm__("func_80041B64");
+int Physics45UpdatePlayerGroundInputTargetsView2() __asm__("func_80040D10");
+int Physics45ApproachPlayerTargetHeadingView2() __asm__("func_80041580");
+int Physics45ApproachPlayerTargetSpeedView2() __asm__("func_800417FC");
+int Physics45BuildPlayerMovementVectorView3() __asm__("func_80041848");
+int Physics45BuildPlayerResponseVectorView3() __asm__("func_80041B64");
 int Physics45TransformVectorByBasisView1() __asm__("func_8004ED6C");
 int Physics45ShiftVectorRightTowardZeroView1() __asm__("func_8004F110");
 int Physics45ClearVectorView2() __asm__("func_8004F168");
@@ -219,12 +219,12 @@ state20:
     workWord2 = 7;
     if (workWord3 == workWord2)
         return;
-    Physics45Call40D10View1(0x1200);
-    Physics45Call416F4View1();
-    Physics45Call41580View1(90, 16);
+    Physics45UpdatePlayerGroundInputTargetsView1(0x1200);
+    Physics45BlendPlayerHeadingFromInputVectorView1();
+    Physics45ApproachPlayerTargetHeadingView1(90, 16);
     return;
 state25:
-    Physics45Call40F48View1(&originalFrame.sp10, 1);
+    Physics45BuildOrientedInputPairView1(&originalFrame.sp10, 1);
     workWord2 = originalFrame.sp10;
     workWord2 >>= 1;
     Physics45PlayerA8View1 = workWord2;
@@ -238,8 +238,8 @@ state25:
     if (!workWord2)
         Physics45PlayerA8View1 = stateSelector16;
     call4 = (void*)Physics45PlayerA8View1;
-    Physics45Call41404View1(call4);
-    Physics45Call417FCView1(576, 384);
+    Physics45ApplyPlayerRotationStepView1(call4);
+    Physics45ApproachPlayerTargetSpeedView1(576, 384);
     workWord2 = Physics45InterpolateCosineView1(Physics45Player64View1);
     workWord3 = Physics45PlayerB0View1;
     lowProduct0 = workWord3 * workWord2;
@@ -255,7 +255,7 @@ state25:
     workWord2 = lowProduct1 >> 12;
     MATCHING_KEEP(workWord2);
     Physics45Player84View1 = workWord2;
-    Physics45Call41B64View1();
+    Physics45BuildPlayerResponseVectorView1();
     workWord2 = Physics45Player144View1;
     workWord2 += 12;
     Physics45Player144View1 = workWord2;
@@ -279,7 +279,7 @@ clamp19:
 state33:
     MATCHING_OBSERVE2_VOLATILE_CLOBBER(call4, stateSelector16, "memory");
     movementPointer17 = &Physics45Player154View1;
-    Physics45Call410F8View1(call4, movementPointer17, 0);
+    Physics45UpdateSmoothedInputPairView1(call4, movementPointer17, 0);
     workWord2 = originalFrame.sp1C;
     numeric4 = Physics45Player94View2;
     workWord2 = -workWord2;
@@ -310,7 +310,7 @@ state33:
         originalFrame.sp20 = workWord2;
         originalFrame.sp24 = workWord3;
         Physics45AddVectorView2(call4, call5, call6);
-        if (!Physics45Call13E38View1(movementPointer17, scratchPointer16, 2)) {
+        if (!Physics45TestSubdividedSegmentPathView1(movementPointer17, scratchPointer16, 2)) {
             workWord2 = Physics45Player8View1;
             workWord3 = Physics45Data71908View1;
             workWord2 -= workWord3;
@@ -421,7 +421,7 @@ speed33:
 nonnegative33:
     numeric4 = Physics45Player8View1;
     responseLimit16 = 0;
-    workWord2 = Physics45Call4E4E4View1(numeric4);
+    workWord2 = Physics45EvaluateClampedPlayerRootCurveView1(numeric4);
     workWord3 = Physics45Player148View1;
     MATCHING_OBSERVE2_VOLATILE_CLOBBER(workWord3, workWord2, "memory");
     numeric4 = workWord2;
@@ -534,7 +534,7 @@ spring33:
 storeAngle33:
     Physics45Player5CView1 = workWord2;
 rotationDone33:
-    Physics45Call41848View2();
+    Physics45BuildPlayerMovementVectorView2();
     call5 = &Physics45Player4CView2;
     numeric4 = Physics45Field(call5, int*, 0);
     if (!numeric4)
@@ -563,8 +563,8 @@ continue43:
     if (workWord3 == workWord2) {
         Physics45Field(&Physics45Player0View1, int*, 0xB0) = 0;
     } else {
-        Physics45Call40D10View2(0x980);
-        raw21_var_v0_2 = Physics45Call41580View2(0x5A, 0x10);
+        Physics45UpdatePlayerGroundInputTargetsView2(0x980);
+        raw21_var_v0_2 = Physics45ApproachPlayerTargetHeadingView2(0x5A, 0x10);
         if (raw21_var_v0_2 < 0) {
             raw21_var_v0_2 = -raw21_var_v0_2;
         }
@@ -578,12 +578,12 @@ continue43:
         } else {
             raw21_var_a1_4 = 0x40;
         }
-        Physics45Call417FCView2(raw21_var_a0_2, raw21_var_a1_4);
+        Physics45ApproachPlayerTargetSpeedView2(raw21_var_a0_2, raw21_var_a1_4);
     }
     raw21_temp_s0_11 = &Physics45Player0View1 + 0xB0;
     if (Physics45Field(&Physics45Player0View1, int*, 0xB0) != 0) {
-        Physics45Call41848View3();
-        Physics45Call41B64View3();
+        Physics45BuildPlayerMovementVectorView3();
+        Physics45BuildPlayerResponseVectorView3();
         Physics45Field(&Physics45Player0View1, int*, 0x94) = 0;
     } else {
         Physics45ClearVectorView2(raw21_temp_s0_11 - 0x30);
@@ -669,7 +669,7 @@ state55:
         return;
     }
 state61:
-    Physics45Call40F48View1(&originalFrame.sp50, 1);
+    Physics45BuildOrientedInputPairView1(&originalFrame.sp50, 1);
     workWord3 = originalFrame.sp50;
     workWord2 = workWord3 * 25;
     call4 = (void*)(workWord2 >> 7);
@@ -704,7 +704,7 @@ clamp61:
     if (workWord2)
         Physics45Field(call5, int*, 0) = (int)call4;
     call4 = (void*)Physics45PlayerA8View1;
-    Physics45Call41404View1(call4);
+    Physics45ApplyPlayerRotationStepView1(call4);
     workWord3 = Physics45Player60View1;
     workWord2 = workWord3 < 2049;
     if (!workWord2) {
@@ -736,8 +736,8 @@ zero61:
     workWord2 = Physics45Data67640View1;
     Physics45PlayerACView1 = workWord2;
 update61:
-    Physics45Call417FCView1(576, 384);
-    Physics45Call41848View1();
+    Physics45ApproachPlayerTargetSpeedView1(576, 384);
+    Physics45BuildPlayerMovementVectorView1();
     call6 = &Physics45PlayerFCView1;
     workWord2 = Physics45Field(call6, unsigned char*, 0);
     if (workWord2)
@@ -758,7 +758,7 @@ vectorCommit61:
 state160:
     MATCHING_OBSERVE2_VOLATILE_CLOBBER(call4, stateSelector16, "memory");
     movementPointer17 = &Physics45Player154View1;
-    Physics45Call410F8View1(call4, movementPointer17, 0);
+    Physics45UpdateSmoothedInputPairView1(call4, movementPointer17, 0);
     workWord2 = originalFrame.sp74;
     numeric4 = Physics45Player94View2;
     workWord2 = -workWord2;
@@ -789,7 +789,7 @@ state160:
         originalFrame.sp78 = workWord2;
         originalFrame.sp7C = workWord3;
         Physics45AddVectorView2(call4, call5, call6);
-        if (!Physics45Call13E38View1(movementPointer17, scratchPointer16, 2)) {
+        if (!Physics45TestSubdividedSegmentPathView1(movementPointer17, scratchPointer16, 2)) {
             workWord2 = Physics45Player8View1;
             workWord3 = Physics45Data71908View1;
             workWord2 -= workWord3;
@@ -854,7 +854,7 @@ state160:
         Physics45Player60View2 = 800;
     numeric4 = Physics45Player8View1;
     responseLimit16 = 0;
-    workWord2 = Physics45Call4E4E4View1(numeric4);
+    workWord2 = Physics45EvaluateClampedPlayerRootCurveView1(numeric4);
     workWord3 = Physics45Player148View1;
     MATCHING_OBSERVE2_VOLATILE_CLOBBER(workWord3, workWord2, "memory");
     numeric4 = workWord2;
@@ -967,7 +967,7 @@ spring160:
 storeAngle160:
     Physics45Player5CView1 = workWord2;
 rotationDone160:
-    Physics45Call41848View2();
+    Physics45BuildPlayerMovementVectorView2();
     call5 = &Physics45Player4CView2;
     numeric4 = Physics45Field(call5, int*, 0);
     if (numeric4)
@@ -1038,7 +1038,7 @@ add88:
         Physics45Field(pointer2, int*, 0) = workWord3;
     }
 end45:
-    Physics45Call41B64View2();
+    Physics45BuildPlayerResponseVectorView2();
     return;
 }
 #undef Physics45Field
@@ -1055,17 +1055,17 @@ end45:
 extern unsigned char Callback45CountBase[] __asm__("D_80070328+0x148");
 extern int Callback45HeightF4 __asm__("D_80070328+0xF4");
 extern Spyro Callback45Player __asm__("D_80070328");
-int Callback45Call80037058(int x, int y) __asm__("func_80037058");
-int Callback45Call8003BF6C(int soundId, int index) __asm__("func_8003BF6C");
-void Callback45Call80041930(void) __asm__("func_80041930");
-void Callback45Call80041AE8(void) __asm__("func_80041AE8");
-void Callback45Call80041C20(void) __asm__("func_80041C20");
-void Callback45Call80042A44(void) __asm__("func_80042A44");
-void Callback45Call80043728(void) __asm__("func_80043728");
-int Callback45Call800438F4(void) __asm__("func_800438F4");
-void Callback45Call80043A38(int scale) __asm__("func_80043A38");
-void Callback45Call80049590(void) __asm__("func_80049590");
-void Callback45Call8004F110(Vector3D*, int) __asm__("func_8004F110");
+int Callback45SamplePlanarPhaseTable(int x, int y) __asm__("func_80037058");
+int Callback45SoundHandleMatchesIdInStates1Or2(int soundId, int index) __asm__("func_8003BF6C");
+void Callback45ProbePlayerContactSegment(void) __asm__("func_80041930");
+void Callback45CapturePlayerPlanarVectorDifference(void) __asm__("func_80041AE8");
+void Callback45UpdatePlayerCollisionResponse(void) __asm__("func_80041C20");
+void Callback45UpdatePlayerSurfaceState(void) __asm__("func_80042A44");
+void Callback45ApplyPlayerGroundContactCorrection(void) __asm__("func_80043728");
+int Callback45ApplyPlayerMovingSurfaceDelta(void) __asm__("func_800438F4");
+void Callback45BuildNegatedNormalizedPlayerVector(int scale) __asm__("func_80043A38");
+void Callback45MarkPlayerSegmentSurfaceType3Flags(void) __asm__("func_80049590");
+void Callback45ShiftVectorRightTowardZero(Vector3D*, int) __asm__("func_8004F110");
 extern int Callback45Word8006E344 __asm__("D_8006E344");
 extern int Callback45Word8006E52C __asm__("D_8006E52C");
 extern int Callback45Word8006E530 __asm__("D_8006E530");
@@ -1096,23 +1096,23 @@ void func_level_45_80087D60(void) {
     register char* (*particles)(int, int, Vector3D*, Vector3D*)__asm__("$8");
     switch (Callback45Player.animationState) {
         case 20:
-            if (Callback45Call800438F4() == 0) {
-                Callback45Call80043728();
+            if (Callback45ApplyPlayerMovingSurfaceDelta() == 0) {
+                Callback45ApplyPlayerGroundContactCorrection();
             }
-            Callback45Call80041C20();
+            Callback45UpdatePlayerCollisionResponse();
             Callback45Player.unk9a = 0;
-            Callback45Call80042A44();
+            Callback45UpdatePlayerSurfaceState();
             goto clearSharedValue;
         case 0x35:
         case 0x36:
-            Callback45Call80041C20();
-            Callback45Call80042A44();
+            Callback45UpdatePlayerCollisionResponse();
+            Callback45UpdatePlayerSurfaceState();
             goto clearSharedValue;
         case 25:
-            Callback45Call80041C20();
-            Callback45Call80042A44();
-            Callback45Call80041930();
-            Callback45Call80049590();
+            Callback45UpdatePlayerCollisionResponse();
+            Callback45UpdatePlayerSurfaceState();
+            Callback45ProbePlayerContactSegment();
+            Callback45MarkPlayerSegmentSurfaceType3Flags();
             if ((Callback45Player.movementState == MOVEMENT_STATE_SUPERCHARGE) &&
                 (SpawnParticle != 0)) {
                 SpawnParticle(1, 9, 0, 0);
@@ -1126,9 +1126,9 @@ void func_level_45_80087D60(void) {
         case 0x21:
         case 0x22:
         case 0x23:
-            Callback45Call80041C20();
-            Callback45Call80042A44();
-            Callback45Call80041930();
+            Callback45UpdatePlayerCollisionResponse();
+            Callback45UpdatePlayerSurfaceState();
+            Callback45ProbePlayerContactSegment();
             if (SpawnParticle != 0) {
                 countBase = Callback45CountBase;
                 MATCHING_KEEP(countBase);
@@ -1143,7 +1143,7 @@ void func_level_45_80087D60(void) {
                     firstSource = countBase - 0xB0;
                     do {
                         func_8004F178(&local.first, (Vector3D*)firstSource);
-                        Callback45Call8004F110(&local.first, 7);
+                        Callback45ShiftVectorRightTowardZero(&local.first, 7);
                         iteration += 1;
                         sample = rand();
                         component = local.first.x;
@@ -1186,13 +1186,13 @@ void func_level_45_80087D60(void) {
         case 0x2B:
         case 0x2C:
         case 0x37:
-            Callback45Call80041C20();
-            Callback45Call80042A44();
-            Callback45Call80041AE8();
+            Callback45UpdatePlayerCollisionResponse();
+            Callback45UpdatePlayerSurfaceState();
+            Callback45CapturePlayerPlanarVectorDifference();
             if ((unsigned char)Callback45Player.unk10[4] != 0) {
                 computedValue = -Callback45Player.unk9ha[4] -
-                                Callback45Call80037058(Callback45Player.position.x,
-                                                       Callback45Player.position.y);
+                                Callback45SamplePlanarPhaseTable(Callback45Player.position.x,
+                                                                 Callback45Player.position.y);
                 Callback45Player.unk4[0] = computedValue;
                 Callback45Player.position.z = (Callback45Player.unk4a - computedValue) -
                                               ((int)Callback45Player.union144.a.unk13cc >> 6);
@@ -1200,10 +1200,10 @@ void func_level_45_80087D60(void) {
 
             return;
         case 0x3D:
-            Callback45Call80041C20();
-            Callback45Call80042A44();
-            Callback45Call80043A38(0xC00);
-            Callback45Call80049590();
+            Callback45UpdatePlayerCollisionResponse();
+            Callback45UpdatePlayerSurfaceState();
+            Callback45BuildNegatedNormalizedPlayerVector(0xC00);
+            Callback45MarkPlayerSegmentSurfaceType3Flags();
             if (SpawnParticle != 0) {
                 SpawnParticle(1, 9, 0, 0);
             }
@@ -1211,8 +1211,8 @@ void func_level_45_80087D60(void) {
             Callback45Player.unk4[0] = 0;
             Callback45Word8006E52C = 4;
             if ((Callback45Word8006E344 == 0) &&
-                (Callback45Call8003BF6C((int)D_8006C654->supercharge, Callback45Player.unk22[2]) ==
-                 0)) {
+                (Callback45SoundHandleMatchesIdInStates1Or2((int)D_8006C654->supercharge,
+                                                            Callback45Player.unk22[2]) == 0)) {
                 Callback45Player.unk22[2] = PlaySound((int)D_8006C654->supercharge, 0, 4);
                 Callback45Player.unk22[3] = (int)D_8006C654->supercharge;
             }
@@ -1222,15 +1222,15 @@ void func_level_45_80087D60(void) {
         case 0xA1:
         case 0xA2:
         case 0xA3:
-            Callback45Call80041C20();
-            Callback45Call80042A44();
+            Callback45UpdatePlayerCollisionResponse();
+            Callback45UpdatePlayerSurfaceState();
             zWord = &Callback45Player.position.z;
             MATCHING_KEEP(zWord);
             clampValue = Callback45HeightF4 + Callback45Player.unk4a;
             if (*zWord < clampValue) {
                 *zWord = clampValue;
             }
-            Callback45Call80041930();
+            Callback45ProbePlayerContactSegment();
             if ((SpawnParticle != 0) && (Callback45Player.union144.b.unk148 != 0)) {
                 secondLimit = 1;
                 if (Callback45Player.union144.b.unk148 >= 2) {
@@ -1243,7 +1243,7 @@ void func_level_45_80087D60(void) {
                     secondSource = (unsigned char*)zWord + 0x90;
                     do {
                         func_8004F178(secondVector, (Vector3D*)secondSource);
-                        Callback45Call8004F110(secondVector, 7);
+                        Callback45ShiftVectorRightTowardZero(secondVector, 7);
                         iteration += 1;
                         sample = rand();
                         component = local.second.x;
@@ -1353,18 +1353,18 @@ other:
  * owned word, strict full TU and every original EXE/overlay hash required.
  * Helpers, units, audio semantics, cadence and live parity remain open.
  */
-int Call45_8003636C(int, int) __asm__("func_8003636C");
+int Call45_RandBetween(int, int) __asm__("func_8003636C");
 extern Spyro Transition45Player __asm__("D_80070328");
 extern int D_80071934;
 extern int Raw45Word __asm__("D_80070328+0x50");
 extern unsigned char Raw45State[] __asm__("D_80070328+0x50");
 extern unsigned char Raw45Union[] __asm__("D_80070328+0x144");
 extern int Raw45Spit __asm__("D_80070328+0x170");
-void Call45_8004F168(Vector3D*) __asm__("func_8004F168");
-int Call45_8004EDE8(Vector3D*, int) __asm__("func_8004EDE8");
-int Call45A358(Vector3D*, int) __asm__("func_8001A358");
-void Call45_800441F0(void) __asm__("func_800441F0");
-void Call45_80043A38(int) __asm__("func_80043A38");
+void Call45_ClearVector(Vector3D*) __asm__("func_8004F168");
+int Call45_MeasureVectorLength(Vector3D*, int) __asm__("func_8004EDE8");
+int Call45QueryWorldHeight(Vector3D*, int) __asm__("func_8001A358");
+void Call45_ClearPlayerMotionVectors(void) __asm__("func_800441F0");
+void Call45_BuildNegatedNormalizedPlayerVector(int) __asm__("func_80043A38");
 void func_80047138(void);
 void func_level_45_80088484(int arg0) {
     Vector3D surfaceVector;
@@ -1379,9 +1379,9 @@ void func_level_45_80088484(int arg0) {
         case 0x14:
             Transition45Player.movementState = 0;
             Transition45Player.unk5 = 0;
-            Call45_800441F0();
+            Call45_ClearPlayerMotionVectors();
             Transition45Player.grounded = 1;
-            Transition45Player.union144.a.unk13cb = Call45_8003636C(1, 3);
+            Transition45Player.union144.a.unk13cb = Call45_RandBetween(1, 3);
             Transition45Player.union144.a.unk13cc = 0;
             goto clearPointers;
 
@@ -1392,7 +1392,7 @@ void func_level_45_80088484(int arg0) {
         standEntry:
             Transition45Player.movementState = MOVEMENT_STATE_STAND;
             Transition45Player.unk5 = 0;
-            Call45_800441F0();
+            Call45_ClearPlayerMotionVectors();
             Transition45Player.grounded = 1;
             goto clearPointers;
 
@@ -1422,9 +1422,9 @@ void func_level_45_80088484(int arg0) {
             if (*(int*)flyState != 6) {
                 *(int*)flyState = 6;
                 Transition45Player.unk5 = 0;
-                Call45_8004F168((Vector3D*)(flyState + 0x104));
+                Call45_ClearVector((Vector3D*)(flyState + 0x104));
                 Transition45Player.union144.a.unk13db.y = 0;
-                vectorLength = Call45_8004EDE8((Vector3D*)(flyState + 0x48), 0);
+                vectorLength = Call45_MeasureVectorLength((Vector3D*)(flyState + 0x48), 0);
                 Transition45Player.unk8[0] = vectorLength;
                 if (vectorLength < 0x800)
                     Transition45Player.unk8[0] = 0x800;
@@ -1459,12 +1459,12 @@ void func_level_45_80088484(int arg0) {
                     }
                     Transition45Player.unk5 = 0;
                     Transition45Player.unk8[0] =
-                        Call45_8004EDE8((Vector3D*)(unionPointer - 0xAC), 0);
+                        Call45_MeasureVectorLength((Vector3D*)(unionPointer - 0xAC), 0);
                     Transition45Player.grounded = 1;
                     Transition45Player.unk15b = 1;
                     func_8004F178(&surfaceVector, (Vector3D*)(unionPointer - 0x144));
                     surfaceVector.z += 0x400;
-                    surfaceResult = Call45A358(&surfaceVector, 0x800);
+                    surfaceResult = Call45QueryWorldHeight(&surfaceVector, 0x800);
                     surfaceVector.z = surfaceResult;
                     if (surfaceResult != 0 && D_80071934 != 0 && SpawnParticle) {
                         SpawnParticle(10, 0x29, &surfaceVector, 0);
@@ -1503,9 +1503,10 @@ void func_level_45_80088484(int arg0) {
             *(int*)stateBase = MOVEMENT_STATE_SUPERCHARGE;
             Transition45Player.unk5 = 0;
             Transition45Player.unk13a[0] = 0x60000;
-            Transition45Player.unk8[0] = Call45_8004EDE8((Vector3D*)(stateBase + 0x48), 0);
+            Transition45Player.unk8[0] =
+                Call45_MeasureVectorLength((Vector3D*)(stateBase + 0x48), 0);
             Transition45Player.horizontalSpeed = 0x1E80;
-            Call45_80043A38(0xC00);
+            Call45_BuildNegatedNormalizedPlayerVector(0xC00);
             Transition45Player.grounded = 1;
             if ((Transition45Player.unk13f[0] != 0) || (Transition45Player.spitState != 0) ||
                 (Transition45Player.unk17t != 6)) {
@@ -1575,27 +1576,27 @@ extern int A45W290 __asm__("D_80070328 + 0x290");
 extern int A45Surface __asm__("D_8006FA38");
 extern unsigned char* A45SoundDesc __asm__("D_8006C654");
 int A45Sound() __asm__("PlaySound");
-int A45H40994() __asm__("func_80040994");
-int A45H4BEF8() __asm__("func_8004BEF8");
-int A45H49688() __asm__("func_80049688");
-int A45H498C0() __asm__("func_800498C0");
+int A45ProcessPlayerStateFlags() __asm__("func_80040994");
+int A45DispatchPlayerStateRequest() __asm__("func_8004BEF8");
+int A45SelectPlayerAnimationLoopRequest() __asm__("func_80049688");
+int A45UpdatePlayerRetryState() __asm__("func_800498C0");
 extern volatile int A45W20C __asm__("D_80070328 + 0x20C");
 extern int A45W214 __asm__("D_80070328 + 0x214");
 extern unsigned char A45B100 __asm__("D_80070328 + 0x100");
 extern unsigned char A45E535 __asm__("D_8006E535");
 extern unsigned char* A45Models __asm__("D_8006EE2C");
-int A45H40BCC() __asm__("func_80040BCC");
-int A45H1A310() __asm__("func_8001A310");
+int A45ProcessPlayerContactFlags() __asm__("func_80040BCC");
+int A45QueryWorldHeightWithOptions() __asm__("func_8001A310");
 extern int A45W10C __asm__("D_80070328 + 0x10C");
 extern int A45WB4 __asm__("D_80070328 + 0xB4");
 extern int A45WA4 __asm__("D_80070328 + 0xA4");
 extern int (*A45Callback1)(int) __asm__("unk_ovlheader_8007431C");
-int A45H40954() __asm__("func_80040954");
+int A45GetSurfaceTypeFromFlags() __asm__("func_80040954");
 extern int A45W50 __asm__("D_80070328 + 0x50");
 extern int A45WBC __asm__("D_80070328 + 0xBC"), A45W1BC __asm__("D_80070328 + 0x1BC"),
     A45W60 __asm__("D_80070328 + 0x60");
 extern short A45H148 __asm__("D_80070328 + 0x148");
-int A45H43194() __asm__("func_80043194");
+int A45TestPlayerProbePattern() __asm__("func_80043194");
 int A45MeasureVectorLength() __asm__("func_8004EDE8");
 void func_level_45_80088960(void) {
     register int work2 __asm__("$2"), work3 __asm__("$3"), work4 __asm__("$4"), work5 __asm__("$5");
@@ -1733,7 +1734,7 @@ void func_level_45_80088960(void) {
         case 159:
             return;
         case 20:
-            if (A45H40994())
+            if (A45ProcessPlayerStateFlags())
                 return;
             work2 = A45NewButtons & 64;
             work4 = 6;
@@ -1770,7 +1771,7 @@ void func_level_45_80088960(void) {
                 MATCHING_KEEP(state);
                 if (!*state)
                     return;
-                A45H4BEF8(0);
+                A45DispatchPlayerStateRequest(0);
                 if (A45Table[*((unsigned char*)state - 0x2C)] >= 96) {
                     A45B14 = A45B15;
                     A45B16 = A45B17;
@@ -1788,18 +1789,18 @@ void func_level_45_80088960(void) {
             work4 = 15;
             if (work2)
                 goto call;
-            A45H49688();
+            A45SelectPlayerAnimationLoopRequest();
             return;
         case 53:
         case 54:
-            work2 = A45H40994();
+            work2 = A45ProcessPlayerStateFlags();
             work4 = 0;
             if (work2)
                 return;
             goto call;
 
         case 25:
-            if (A45H40BCC())
+            if (A45ProcessPlayerContactFlags())
                 return;
             if (A45B1B5 && (A45NewButtons & 64))
                 A45B1B6 = 1;
@@ -1843,13 +1844,13 @@ void func_level_45_80088960(void) {
             goto call;
         case 33:
 
-            if (A45H40994())
+            if (A45ProcessPlayerStateFlags())
                 return;
             locomotion = &A45WB8;
             MATCHING_KEEP(locomotion);
             if (!*locomotion) {
                 if (A45WE4 >= 23)
-                    A45H4BEF8(7);
+                    A45DispatchPlayerStateRequest(7);
                 if (A45WAC > 0) {
                     work3 = A45WB0;
                     work2 = work3 < 3841;
@@ -1881,7 +1882,7 @@ void func_level_45_80088960(void) {
             work4 = 22;
             if (work2)
                 goto call;
-            work2 = A45H43194(4);
+            work2 = A45TestPlayerProbePattern(4);
             work4 = 47;
             if (work2)
                 goto call;
@@ -1923,13 +1924,13 @@ void func_level_45_80088960(void) {
 
         case 34:
 
-            if (A45H40994())
+            if (A45ProcessPlayerStateFlags())
                 return;
             locomotion = &A45WB8;
             MATCHING_KEEP(locomotion);
             if (!*locomotion) {
                 if (A45WE4 >= 23)
-                    A45H4BEF8(7);
+                    A45DispatchPlayerStateRequest(7);
                 if (A45WAC > 0) {
                     work3 = A45WB0;
                     work2 = work3 < 3841;
@@ -1961,7 +1962,7 @@ void func_level_45_80088960(void) {
             work4 = 22;
             if (work2)
                 goto call;
-            work2 = A45H43194(4);
+            work2 = A45TestPlayerProbePattern(4);
             work4 = 47;
             if (work2)
                 goto call;
@@ -1997,13 +1998,13 @@ void func_level_45_80088960(void) {
 
         case 35:
 
-            if (A45H40994())
+            if (A45ProcessPlayerStateFlags())
                 return;
             locomotion = &A45WB8;
             MATCHING_KEEP(locomotion);
             if (!*locomotion) {
                 if (A45WE4 >= 23)
-                    A45H4BEF8(7);
+                    A45DispatchPlayerStateRequest(7);
                 if (A45WAC > 0) {
                     work3 = A45WB0;
                     work2 = work3 < 3841;
@@ -2034,7 +2035,7 @@ void func_level_45_80088960(void) {
             work4 = 22;
             if (work2)
                 goto call;
-            work2 = A45H43194(4);
+            work2 = A45TestPlayerProbePattern(4);
             work4 = 47;
             if (work2)
                 goto call;
@@ -2070,7 +2071,7 @@ void func_level_45_80088960(void) {
 
         case 43: {
             register unsigned char* byte4 __asm__("$4");
-            if (A45H40994())
+            if (A45ProcessPlayerStateFlags())
                 return;
             if ((A45NewButtons & 64) && A45W54 >= 9) {
                 work4 = 6;
@@ -2090,13 +2091,13 @@ void func_level_45_80088960(void) {
             byte4 -= 256;
             if (!work2)
                 goto check44;
-            work2 = A45H1A310(byte4, 1024, 1, 0);
+            work2 = A45QueryWorldHeightWithOptions(byte4, 1024, 1, 0);
             work4 = 40;
             if (work2)
                 goto check44;
             goto call;
         partialCall:
-            A45H4BEF8(work4);
+            A45DispatchPlayerStateRequest(work4);
         check44:
             work2 = A45E535;
             work4 = 44;
@@ -2123,10 +2124,10 @@ void func_level_45_80088960(void) {
             callback2();
             return;
         missingCallback:
-            A45H498C0();
+            A45UpdatePlayerRetryState();
             return;
         other44:
-            if (A45H40994())
+            if (A45ProcessPlayerStateFlags())
                 return;
             if ((A45NewButtons & 64) && A45W54 >= 9) {
                 work4 = 6;
@@ -2146,7 +2147,7 @@ void func_level_45_80088960(void) {
             byte4 -= 256;
             if (!work2)
                 goto mode44;
-            work2 = A45H1A310(byte4, 1024, 1, 0);
+            work2 = A45QueryWorldHeightWithOptions(byte4, 1024, 1, 0);
             work4 = 40;
             if (!work2)
                 goto call;
@@ -2164,7 +2165,7 @@ void func_level_45_80088960(void) {
         case 55:
             if (A45W54 < 101)
                 return;
-            A45H4BEF8(44);
+            A45DispatchPlayerStateRequest(44);
             work2 = 1;
             A45W4C = work2;
             work2 = 8;
@@ -2172,7 +2173,7 @@ void func_level_45_80088960(void) {
             return;
 
         case 61:
-            if (A45H40BCC())
+            if (A45ProcessPlayerContactFlags())
                 return;
             work2 = 1;
             MATCHING_KEEP(work2);
@@ -2182,7 +2183,7 @@ void func_level_45_80088960(void) {
             if (work3 == work2) {
                 if (A45WB8 >= 4)
                     goto partial25;
-                work2 = A45H40954(A45W10C);
+                work2 = A45GetSurfaceTypeFromFlags(A45W10C);
                 work3 = 9;
                 if (work2 == work3)
                     goto finalSpeed;
@@ -2191,7 +2192,7 @@ void func_level_45_80088960(void) {
             }
             if (A45Buttons & 64) {
             partial25:
-                A45H4BEF8(25);
+                A45DispatchPlayerStateRequest(25);
                 work2 = A45WB8;
                 work3 = 3520;
                 A45W94 = work3;
@@ -2246,7 +2247,7 @@ void func_level_45_80088960(void) {
             MATCHING_BARRIER_VOLATILE("memory");
             goto call;
         case 160:
-            if (A45H40994())
+            if (A45ProcessPlayerStateFlags())
                 return;
             if (A45W54 < 31)
                 return;
@@ -2266,7 +2267,7 @@ void func_level_45_80088960(void) {
                 return;
             goto call;
         case 161:
-            if (A45H40994())
+            if (A45ProcessPlayerStateFlags())
                 return;
             if (A45W54 < 31)
                 return;
@@ -2277,19 +2278,19 @@ void func_level_45_80088960(void) {
             work2 = A45WA8 < -4;
             goto final160;
         case 162:
-            if (A45H40994())
+            if (A45ProcessPlayerStateFlags())
                 return;
             if (A45W54 < 31)
                 return;
             if (A45W60 < -512)
-                A45H4BEF8(163);
+                A45DispatchPlayerStateRequest(163);
             work2 = A45WA8 < 5;
             work4 = 160;
             if (!work2)
                 return;
             goto call;
         case 163:
-            if (A45H40994())
+            if (A45ProcessPlayerStateFlags())
                 return;
             if (A45W54 < 31)
                 return;
@@ -2301,7 +2302,7 @@ void func_level_45_80088960(void) {
             MATCHING_BARRIER_VOLATILE("memory");
         call:
             MATCHING_BARRIER_VOLATILE("memory");
-            A45H4BEF8(work4);
+            A45DispatchPlayerStateRequest(work4);
             return;
     }
 }

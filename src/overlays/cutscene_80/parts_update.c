@@ -14,12 +14,12 @@
  * helper meanings and update cadence remain unresolved. */
 
 #define Update7498CField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Update7498Cfunc_8004E9E4(short) __asm__("func_8004E9E4");
+int Update7498CInterpolateSine(short) __asm__("func_8004E9E4");
 int Update7498CInterpolateCosine(short) __asm__("func_8004EA2C");
 int Update7498CCopyVector(void*, void*) __asm__("func_8004F178");
 int Update7498CPackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-int Update7498Cfunc_8004F5A8(void*, void*, void*) __asm__("func_8004F5A8");
-int Update7498Cfunc_80056504(void*) __asm__("func_80056504");
+int Update7498CAddHalfwordVectors(void*, void*, void*) __asm__("func_8004F5A8");
+int Update7498CReleaseParticleRecord(void*) __asm__("func_80056504");
 int Update7498Crand(void) __asm__("rand");
 extern unsigned char* Update7498CD_8006C554 __asm__("D_8006C554");
 extern int Update7498CD_8006C598 __asm__("D_8006C598");
@@ -128,7 +128,7 @@ unsigned char* func_cutscene_80_8007498C(int initialStep) {
                 temp_v1 = *record;
                 switch (temp_v1) {
                     case 0x0:
-                        Update7498Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update7498CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update7498CField(recordPlus1, short*, 0x1D);
                         __asm__ __volatile__("" ::: "$3", "memory");
                         if (scratch2 != 0) {
@@ -160,7 +160,7 @@ unsigned char* func_cutscene_80_8007498C(int initialStep) {
                         Update7498CField(recordPlus1, unsigned char*, 0xD) = scratch3;
                         goto checkPredicate;
                     case 0x1:
-                        Update7498Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update7498CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update7498CField(recordPlus1, short*, 0x1D);
                         __asm__ __volatile__("" ::: "$3", "memory");
                         if (scratch2 != 0) {
@@ -191,7 +191,7 @@ unsigned char* func_cutscene_80_8007498C(int initialStep) {
                         Update7498CField(recordPlus1, unsigned char*, 0xD) = scratch3;
                         goto checkPredicate;
                     case 0x2:
-                        Update7498Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update7498CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         if (Update7498CField(recordPlus1, short*, 0x1D) != 0)
                             Update7498CField(recordPlus1, unsigned short*, 0x1B) =
                                 Update7498CField(recordPlus1, unsigned short*, 0x1B) + 1;
@@ -257,7 +257,7 @@ unsigned char* func_cutscene_80_8007498C(int initialStep) {
                         scratch3 = product7 >> 12;
                         scratch2 += scratch3;
                         frame.words[0] = scratch2;
-                        scratch2 = Update7498Cfunc_8004E9E4(angle18);
+                        scratch2 = Update7498CInterpolateSine(angle18);
                         product7 = radius16 * scratch2;
                         scratch2 = frame.words[1];
                         MATCHING_KEEP2(product7, scratch2);
@@ -276,7 +276,7 @@ unsigned char* func_cutscene_80_8007498C(int initialStep) {
                         goto nextRecord;
                     }
                     case 0x9:
-                        Update7498Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update7498CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update7498CField(recordPlus1, short*, 0x1D);
                         if (scratch2 != 0) {
                             scratch2 = Update7498CField(recordPlus1, unsigned short*, 0x1B);
@@ -321,7 +321,7 @@ unsigned char* func_cutscene_80_8007498C(int initialStep) {
                         scratch3 += scratch2;
                         frame.words[4] = scratch3;
                         scratch2 =
-                            Update7498Cfunc_8004E9E4(Update7498CField(recordPlus1, short*, 0x17));
+                            Update7498CInterpolateSine(Update7498CField(recordPlus1, short*, 0x17));
                         scratch4 = (int)recordPlus4;
                         playerEnd = (unsigned char*)temporary16;
                         MATCHING_KEEP3(scratch4, playerEnd, scratch2);
@@ -374,7 +374,7 @@ unsigned char* func_cutscene_80_8007498C(int initialStep) {
                         scratch2 = 1;
                         scratch2 -= scratch3;
                         Update7498CField(recordPlus1, unsigned short*, 0x1D) = scratch2;
-                        Update7498Cfunc_8004F5A8((void*)scratch4, playerEnd, (void*)scratch6);
+                        Update7498CAddHalfwordVectors((void*)scratch4, playerEnd, (void*)scratch6);
                         scratch2 = Update7498CField(recordPlus1, unsigned char*, 9);
                         doubledStep = frame.saved.doubled48;
                         MATCHING_KEEP2(scratch2, doubledStep);
@@ -403,7 +403,7 @@ unsigned char* func_cutscene_80_8007498C(int initialStep) {
                     case 0xC:
                         Update7498CField(recordPlus1, unsigned char*, 0xA) =
                             (unsigned char)(Update7498CField(recordPlus1, unsigned char*, 0xA) + 8);
-                        Update7498Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update7498CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         temp_v0_4 = Update7498CField(recordPlus1, unsigned char*, 0xB);
                         if (temp_v0_4 != 0) {
                             Update7498CField(recordPlus1, unsigned char*, 0xB) =
@@ -431,7 +431,7 @@ unsigned char* func_cutscene_80_8007498C(int initialStep) {
                         MATCHING_BARRIER_GNU_VOLATILE("$2");
                         goto checkByte2;
                     case 0x21:
-                        Update7498Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update7498CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         if (Update7498CField(recordPlus1, short*, 0x1D) != 0) {
                             Update7498CField(recordPlus1, unsigned short*, 0x1B) =
                                 (unsigned short)(Update7498CField(recordPlus1, unsigned short*,
@@ -498,7 +498,7 @@ unsigned char* func_cutscene_80_8007498C(int initialStep) {
                     case 0x3B:
                         Update7498CField(recordPlus1, unsigned char*, 0xA) =
                             (unsigned char)(Update7498CField(recordPlus1, unsigned char*, 0xA) + 8);
-                        Update7498Cfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update7498CAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         if (Update7498CD_8006C640 & 1) {
                             Update7498CField(recordPlus1, unsigned short*, 0x19) =
                                 (unsigned short)(Update7498CField(recordPlus1, unsigned short*,
@@ -1021,7 +1021,7 @@ unsigned char* func_cutscene_80_8007498C(int initialStep) {
                         if (scratch2 != 0)
                             goto surviving54;
                     removeRecord:
-                        Update7498Cfunc_80056504(record);
+                        Update7498CReleaseParticleRecord(record);
                         recordPlus1 += 32;
                         break;
                     surviving54:

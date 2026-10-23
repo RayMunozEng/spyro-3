@@ -144,12 +144,12 @@ extern void* Controller582CLinked1 __asm__("D_80070328 + 0x250");
 extern void* Controller582CLinked2 __asm__("D_80070328 + 0x250");
 extern unsigned char Controller582CSave[] __asm__("D_8006C7F8");
 extern int D_8006C6C0, D_8006C710, D_8006E524, D_8007203C, D_80072040;
-int Controller582CHelper3B7B4(void*, int, void*) __asm__("func_8003B7B4");
+int Controller582CRegisterTrackedValue(void*, int, void*) __asm__("func_8003B7B4");
 int Controller582CPlayMobySoundEvent(void*, int, int) __asm__("func_8003BABC");
-int Controller582CHelper3BE70(int) __asm__("func_8003BE70");
-int Controller582CHelper3BFC0(void*, int) __asm__("func_8003BFC0");
-int Controller582CHelper498C0(void) __asm__("func_800498C0");
-int Controller582CHelper4BEF8(int) __asm__("func_8004BEF8");
+int Controller582CTransitionSoundHandleTo3Or5(int) __asm__("func_8003BE70");
+int Controller582CSoundHandleMatchesOwnerInStates1Or2(void*, int) __asm__("func_8003BFC0");
+int Controller582CUpdatePlayerRetryState(void) __asm__("func_800498C0");
+int Controller582CDispatchPlayerStateRequest(int) __asm__("func_8004BEF8");
 /* USA Rev 0, 289 original instructions and eight owned switch-table words.
  * Reuses verified level11/8008582C; target case0 passes 0x1D at 0x80087F84.
  * Units, helper/field semantic chains and caller cadence remain unresolved.
@@ -199,7 +199,7 @@ int func_level_33_8009385C(int inputMask) {
             }
             goto afterCall;
         sharedCall:
-            Controller582CHelper4BEF8(helperArgument);
+            Controller582CDispatchPlayerStateRequest(helperArgument);
         handled:
             MATCHING_BARRIER_VOLATILE("$2");
             return 1;
@@ -328,7 +328,7 @@ int func_level_33_8009385C(int inputMask) {
                         D_80072040 = 0xC8;
                         D_8007203C = 0xA;
                         if (selectedBits & 1) {
-                            Controller582CHelper4BEF8(0x8C);
+                            Controller582CDispatchPlayerStateRequest(0x8C);
                             nextWord = Controller582CField(record0, int*, 0x24) - 1;
                         } else if (({
                                        register int selector __asm__("$2");
@@ -337,10 +337,10 @@ int func_level_33_8009385C(int inputMask) {
                                        MATCHING_KEEP(selector);
                                        selector;
                                    })) {
-                            Controller582CHelper4BEF8(0x8C);
+                            Controller582CDispatchPlayerStateRequest(0x8C);
                             nextWord = Controller582CField(record0, int*, 0x24) - 3;
                         } else {
-                            Controller582CHelper4BEF8(0x8D);
+                            Controller582CDispatchPlayerStateRequest(0x8D);
                             nextWord = Controller582CField(record0, int*, 0x24) - 2;
                         }
                         Controller582CField(record0, int*, 0x24) = nextWord;
@@ -356,7 +356,7 @@ int func_level_33_8009385C(int inputMask) {
                                 Controller582CField(record0, int*, 0x24) = 0;
                             }
                         }
-                        Controller582CHelper3B7B4(record0 + 0x24, 4, Controller582CSave);
+                        Controller582CRegisterTrackedValue(record0 + 0x24, 4, Controller582CSave);
                         return 1;
                     }
 
@@ -387,15 +387,16 @@ int func_level_33_8009385C(int inputMask) {
                     if (Controller582CField(Controller582CPlayer, int*, 0x280) > 0 &&
                         Controller582CField(record1, int*, 0x28) > 0)
                         return 1;
-                    if (Controller582CHelper3BFC0(Controller582CLinked1,
-                                                  Controller582CField(record1, int*, 0x48)) != 0) {
-                        if (Controller582CHelper3BFC0(Controller582CLinked2,
-                                                      Controller582CField(record1, int*, 0x48)) !=
+                    if (Controller582CSoundHandleMatchesOwnerInStates1Or2(
+                            Controller582CLinked1, Controller582CField(record1, int*, 0x48)) != 0) {
+                        if (Controller582CSoundHandleMatchesOwnerInStates1Or2(
+                                Controller582CLinked2, Controller582CField(record1, int*, 0x48)) !=
                             0)
-                            Controller582CHelper3BE70(Controller582CField(record1, int*, 0x48));
+                            Controller582CTransitionSoundHandleTo3Or5(
+                                Controller582CField(record1, int*, 0x48));
                         Controller582CField(record1, int*, 0x48) = -1;
                     }
-                    Controller582CHelper498C0();
+                    Controller582CUpdatePlayerRetryState();
                     return 1;
                 case 6:
                     resultRecord = Controller582CField(
@@ -441,19 +442,21 @@ extern int Controller93E18D_80071900 __asm__("D_80071900");
 extern int Controller93E18D_80071918 __asm__("D_80071918");
 extern int Controller93E18D_8007191C __asm__("D_8007191C");
 extern int Controller93E18D_80071920 __asm__("D_80071920");
-int Controller93E18Helper18368(void*, void*) __asm__("func_80018368");
-int Controller93E18Helper1AD60(void*, void*, int, int, void*) __asm__("func_8001AD60");
-int Controller93E18Helper1BA30(void*, int, int, int, int, void*) __asm__("func_8001BA30");
+int Controller93E18QueryWorldSegment(void*, void*) __asm__("func_80018368");
+int Controller93E18QueryDynamicObjectSegment(void*, void*, int, int,
+                                             void*) __asm__("func_8001AD60");
+int Controller93E18QueryDynamicMobyGeometry(void*, int, int, int, int,
+                                            void*) __asm__("func_8001BA30");
 int Controller93E18PlayMobySoundEvent(void*, int, int) __asm__("func_8003BABC");
 int Controller93E18PlanarHeadingLookup(int, int, int) __asm__("func_8004E880");
-int Controller93E18Helper4ECF4(void*, void*) __asm__("func_8004ECF4");
+int Controller93E18TransposePackedHalfwordMatrix3x3(void*, void*) __asm__("func_8004ECF4");
 int Controller93E18TransformVectorByBasis(void*, void*, void*) __asm__("func_8004ED6C");
 int Controller93E18MeasureVectorLength(void*, int) __asm__("func_8004EDE8");
 int Controller93E18ShiftVectorRightTowardZero(void*, int) __asm__("func_8004F110");
 int Controller93E18CopyVector(void*, void*) __asm__("func_8004F178");
 int Controller93E18AddVector(void*, void*, void*) __asm__("func_8004F194");
-int Controller93E18Helper4F6C4(void*, void*, void*) __asm__("func_8004F6C4");
-int Controller93E18Helper50B00(void*, void*, void*, void*, int) __asm__("func_80050B00");
+int Controller93E18BuildEulerBasisPair(void*, void*, void*) __asm__("func_8004F6C4");
+int Controller93E18AllocateFiveWordSlot(void*, void*, void*, void*, int) __asm__("func_80050B00");
 int Controller93E18DeleteMoby(void*) __asm__("func_80055B18");
 extern void* (*Controller93E18SpawnMoby)(int, void*)__asm__("SpawnMoby");
 /* AI generated; not human reviewed. SCUS-94467 USA Rev 0.
@@ -529,8 +532,8 @@ void func_level_33_80093E18(void** inputOwner) {
     frame.owner = inputOwner;
     data = *inputOwner;
     if ((Controller93E18Field(data, int*, 0x88) != 0) ||
-        (resourceResult =
-             Controller93E18Helper50B00(data + 0x8C, data + 0x3B0, data + 0x3F4, data + 0x80, 1),
+        (resourceResult = Controller93E18AllocateFiveWordSlot(data + 0x8C, data + 0x3B0,
+                                                              data + 0x3F4, data + 0x80, 1),
          Controller93E18Field(data, int*, 0x88) = resourceResult, (resourceResult != 0))) {
         sourceOrVector = Controller93E18D_80070328 + 0x64;
         {
@@ -574,9 +577,9 @@ void func_level_33_80093E18(void** inputOwner) {
             register void* prepared __asm__("$4") = &frame.angles[0];
             MATCHING_KEEP(prepared);
             matrixVector = &frame.matrix[0];
-            Controller93E18Helper4F6C4(prepared, matrixVector, &frame.alternate[0]);
+            Controller93E18BuildEulerBasisPair(prepared, matrixVector, &frame.alternate[0]);
         }
-        Controller93E18Helper4ECF4(matrixVector, matrixVector);
+        Controller93E18TransposePackedHalfwordMatrix3x3(matrixVector, matrixVector);
         Controller93E18TransformVectorByBasis(matrixVector, &frame.third.x, &frame.third.x);
         sourceOrVector = &frame.second.x;
         Controller93E18CopyVector(sourceOrVector, &frame.first.x);
@@ -668,7 +671,7 @@ void func_level_33_80093E18(void** inputOwner) {
         }
         Controller93E18AddVector(sourceOrVector, sourceOrVector, thirdVector);
         if (!(segmentIndex & 1)) {
-            if (Controller93E18Helper18368(&frame.first.x, sourceOrVector) != 0) {
+            if (Controller93E18QueryWorldSegment(&frame.first.x, sourceOrVector) != 0) {
                 Controller93E18CopyVector(sourceOrVector, &Controller93E18D_80071900);
                 if (Controller93E18Field(data, void**, 0x70) == 0) {
                     register void* (*create)(int, void*)__asm__("$2") = Controller93E18SpawnMoby;
@@ -683,9 +686,9 @@ void func_level_33_80093E18(void** inputOwner) {
                 {
                     Controller93E18CopyVector(Controller93E18Field(data, void**, 0x70) + 0xC,
                                               sourceOrVector);
-                    if (Controller93E18Helper1BA30(Controller93E18Field(data, void**, 0x70) + 0xC,
-                                                   0x3E8, 3, 0, 0,
-                                                   Controller93E18Field(data, void**, 0x70)) != 0) {
+                    if (Controller93E18QueryDynamicMobyGeometry(
+                            Controller93E18Field(data, void**, 0x70) + 0xC, 0x3E8, 3, 0, 0,
+                            Controller93E18Field(data, void**, 0x70)) != 0) {
                         childForCheck = Controller93E18Field(data, void**, 0x70);
                         if (Controller93E18Field(childForCheck, unsigned char*, 0x54) == 0xFF) {
                             Controller93E18PlayMobySoundEvent(childForCheck, 0, 0);
@@ -722,8 +725,8 @@ void func_level_33_80093E18(void** inputOwner) {
             }
             {
                 register void* ownerArgument __asm__("$8") = frame.owner;
-                if (Controller93E18Helper1AD60(&frame.first.x, sourceOrVector, 0, 0,
-                                               ownerArgument) != 0) {
+                if (Controller93E18QueryDynamicObjectSegment(&frame.first.x, sourceOrVector, 0, 0,
+                                                             ownerArgument) != 0) {
                     childToRemove = Controller93E18Field(data, void**, 0x70);
                     remainingPredicate = segmentIndex < 0x20;
                     if (childToRemove != 0) {

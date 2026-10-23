@@ -19,9 +19,9 @@
  * internal/conditional targets, original data and all disc hashes.
  */
 #define AnimationField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Animation5FA8_func_80040D10() __asm__("func_80040D10");
-int Animation5FA8_func_80041580() __asm__("func_80041580");
-int Animation5FA8_func_800416F4() __asm__("func_800416F4");
+int Animation5FA8UpdatePlayerGroundInputTargets() __asm__("func_80040D10");
+int Animation5FA8ApproachPlayerTargetHeading() __asm__("func_80041580");
+int Animation5FA8BlendPlayerHeadingFromInputVector() __asm__("func_800416F4");
 int Animation5FA8MeasureVectorLength() __asm__("func_8004EDE8");
 int Animation5FA8ScaleVectorRatioQ15() __asm__("func_8004F08C");
 int Animation5FA8ClearVector() __asm__("func_8004F168");
@@ -74,9 +74,9 @@ void func_level_40_80085FA8(int inputIndex) {
             Animation5FA8ClearVector(playerBlock17 + 0x2C);
             Animation5FA8ClearVector(playerBlock17 + 0x38);
             if (Animation5FA8_D_8006E044 != 7) {
-                Animation5FA8_func_80040D10(0x1200);
-                Animation5FA8_func_800416F4();
-                Animation5FA8_func_80041580(0x5A, 0x10);
+                Animation5FA8UpdatePlayerGroundInputTargets(0x1200);
+                Animation5FA8BlendPlayerHeadingFromInputVector();
+                Animation5FA8ApproachPlayerTargetHeading(0x5A, 0x10);
                 return;
             }
             return;

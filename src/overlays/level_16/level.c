@@ -134,12 +134,12 @@ extern void* Controller582CLinked1 __asm__("D_80070328 + 0x250");
 extern void* Controller582CLinked2 __asm__("D_80070328 + 0x250");
 extern unsigned char Controller582CSave[] __asm__("D_8006C7F8");
 extern int D_8006C6C0, D_8006C710, D_8006E524, D_8007203C, D_80072040;
-int Controller582CHelper3B7B4(void*, int, void*) __asm__("func_8003B7B4");
+int Controller582CRegisterTrackedValue(void*, int, void*) __asm__("func_8003B7B4");
 int Controller582CPlayMobySoundEvent(void*, int, int) __asm__("func_8003BABC");
-int Controller582CHelper3BE70(int) __asm__("func_8003BE70");
-int Controller582CHelper3BFC0(void*, int) __asm__("func_8003BFC0");
-int Controller582CHelper498C0(void) __asm__("func_800498C0");
-int Controller582CHelper4BEF8(int) __asm__("func_8004BEF8");
+int Controller582CTransitionSoundHandleTo3Or5(int) __asm__("func_8003BE70");
+int Controller582CSoundHandleMatchesOwnerInStates1Or2(void*, int) __asm__("func_8003BFC0");
+int Controller582CUpdatePlayerRetryState(void) __asm__("func_800498C0");
+int Controller582CDispatchPlayerStateRequest(int) __asm__("func_8004BEF8");
 /* AI generated; not human reviewed. SCUS-94467 USA Rev 0.
  * Original289 instructions and eight owned jump-table words per copy.
  * Original instruction streams, global/helper symbols and table offsets checked
@@ -198,7 +198,7 @@ int func_level_16_8007FC40(int inputMask) {
             }
             goto afterCall;
         sharedCall:
-            Controller582CHelper4BEF8(helperArgument);
+            Controller582CDispatchPlayerStateRequest(helperArgument);
         handled:
             MATCHING_BARRIER_VOLATILE("$2");
             return 1;
@@ -322,7 +322,7 @@ int func_level_16_8007FC40(int inputMask) {
                         D_80072040 = 0xC8;
                         D_8007203C = 0xA;
                         if (selectedBits & 1) {
-                            Controller582CHelper4BEF8(0x8C);
+                            Controller582CDispatchPlayerStateRequest(0x8C);
                             nextWord = Controller582CField(record0, int*, 0x24) - 1;
                         } else if (({
                                        register int selector __asm__("$2");
@@ -331,10 +331,10 @@ int func_level_16_8007FC40(int inputMask) {
                                        MATCHING_KEEP(selector);
                                        selector;
                                    })) {
-                            Controller582CHelper4BEF8(0x8C);
+                            Controller582CDispatchPlayerStateRequest(0x8C);
                             nextWord = Controller582CField(record0, int*, 0x24) - 3;
                         } else {
-                            Controller582CHelper4BEF8(0x8D);
+                            Controller582CDispatchPlayerStateRequest(0x8D);
                             nextWord = Controller582CField(record0, int*, 0x24) - 2;
                         }
                         Controller582CField(record0, int*, 0x24) = nextWord;
@@ -350,7 +350,7 @@ int func_level_16_8007FC40(int inputMask) {
                                 Controller582CField(record0, int*, 0x24) = 0;
                             }
                         }
-                        Controller582CHelper3B7B4(record0 + 0x24, 4, Controller582CSave);
+                        Controller582CRegisterTrackedValue(record0 + 0x24, 4, Controller582CSave);
                         return 1;
                     }
 
@@ -381,15 +381,16 @@ int func_level_16_8007FC40(int inputMask) {
                     if (Controller582CField(Controller582CPlayer, int*, 0x280) > 0 &&
                         Controller582CField(record1, int*, 0x28) > 0)
                         return 1;
-                    if (Controller582CHelper3BFC0(Controller582CLinked1,
-                                                  Controller582CField(record1, int*, 0x48)) != 0) {
-                        if (Controller582CHelper3BFC0(Controller582CLinked2,
-                                                      Controller582CField(record1, int*, 0x48)) !=
+                    if (Controller582CSoundHandleMatchesOwnerInStates1Or2(
+                            Controller582CLinked1, Controller582CField(record1, int*, 0x48)) != 0) {
+                        if (Controller582CSoundHandleMatchesOwnerInStates1Or2(
+                                Controller582CLinked2, Controller582CField(record1, int*, 0x48)) !=
                             0)
-                            Controller582CHelper3BE70(Controller582CField(record1, int*, 0x48));
+                            Controller582CTransitionSoundHandleTo3Or5(
+                                Controller582CField(record1, int*, 0x48));
                         Controller582CField(record1, int*, 0x48) = -1;
                     }
-                    Controller582CHelper498C0();
+                    Controller582CUpdatePlayerRetryState();
                     return 1;
                 case 6:
                     resultRecord = Controller582CField(
@@ -419,11 +420,11 @@ int func_level_16_8007FC40(int inputMask) {
 extern short Level16_800C4_D_800658A0[0x100] __asm__("D_800658A0");
 extern short Level16_800C4_D_80065920[0x100] __asm__("D_80065920");
 extern Spyro Level16_800C4_D_80070328 __asm__("D_80070328");
-extern int Level16_800C4_func_8001A358(Vector3D*, int) __asm__("func_8001A358");
+extern int Level16_800C4QueryWorldHeight(Vector3D*, int) __asm__("func_8001A358");
 int Level16_800C4TurnMobyTowardHeading(Moby*, int, int, int, int, int) __asm__("func_8003585C");
 int Level16_800C4CountTimerDown(void*, int) __asm__("func_800359A4");
-int Level16_800C4_func_80035DDC(Moby* owner19, int private17, int mode18, int arg3,
-                                int arg4) __asm__("func_80035DDC");
+int Level16_800C4ResolveMobyYawStep(Moby* owner19, int private17, int mode18, int arg3,
+                                    int arg4) __asm__("func_80035DDC");
 int Level16_800C4RandBetween(int low, int high) __asm__("func_8003636C");
 extern int Level16_800C4PlanarHeadingLookup(int, int, int) __asm__("func_8004E880");
 extern void Level16_800C4AddVector(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004F194");
@@ -548,7 +549,7 @@ afterDispatch:
         value2 = 34;
     }
     resultFlags16 =
-        Level16_800C4_func_80035DDC((Moby*)call4, (int)call5, argument6, argument6, value2);
+        Level16_800C4ResolveMobyYawStep((Moby*)call4, (int)call5, argument6, argument6, value2);
     MATCHING_KEEP(resultFlags16);
     argument6 = 0;
     if (resultFlags16 & 1) {
@@ -591,7 +592,7 @@ checkProbeMode:
     MATCHING_KEEP(call4);
     cosine20 = Level16_800C4_D_80065920;
     MATCHING_KEEP(cosine20);
-    value2 = Level16_800C4_func_8001A358(call4, 256);
+    value2 = Level16_800C4QueryWorldHeight(call4, 256);
     if (!value2)
         goto startHeadingSearch;
     value2 = resultFlags16 & 2;
@@ -615,7 +616,7 @@ probeNextAngle:
     scratch.sp1C = (value2 * rawRange18) >> 12;
     scratch.sp20 = 128 - owner19->distanceToGround;
     Level16_800C4AddVector(call4, call5, &owner19->position);
-    value2 = Level16_800C4_func_8001A358((Vector3D*)&scratch.sp18, 256);
+    value2 = Level16_800C4QueryWorldHeight((Vector3D*)&scratch.sp18, 256);
     step16 += 64;
     if (value2)
         goto probeAccepted;

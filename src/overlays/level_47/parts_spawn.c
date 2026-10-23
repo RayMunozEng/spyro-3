@@ -19,14 +19,14 @@
 extern unsigned char Level47SpawnColor1[] __asm__("D_80066BAC");
 extern unsigned char Level47SpawnColor2[] __asm__("D_80066BAC");
 #define Level47SpawnField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Level47Spawnfunc_8004EA90(void*, void*, int) __asm__("func_8004EA90");
+int Level47SpawnBuildPackedAngleBasisMatrix(void*, void*, int) __asm__("func_8004EA90");
 int Level47SpawnTransformVectorByBasis(void*, void*, void*) __asm__("func_8004ED6C");
 int Level47SpawnShiftVectorRightTowardZero(void*, int) __asm__("func_8004F110");
 int Level47SpawnCopyVector(void*, void*) __asm__("func_8004F178");
 int Level47SpawnAddVector(void*, void*, void*) __asm__("func_8004F194");
 int Level47SpawnMultiplyVectorGpfSf0(void*, void*, int) __asm__("func_8004F1FC");
 int Level47SpawnPackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-void* Level47Spawnfunc_80056434(int) __asm__("func_80056434");
+void* Level47SpawnAllocateParticleRecord(int) __asm__("func_80056434");
 int Level47SpawnRandBetween(int, int) __asm__("func_8003636C");
 int Level47Spawnrand(void) __asm__("rand");
 extern unsigned char Level47SpawnD_800658A0[] __asm__("D_800658A0");
@@ -102,7 +102,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
         do {
             switch (kindSelector) { /* switch 1 */
                 case 0x0:           /* switch 1 */
-                    record = Level47Spawnfunc_80056434(2);
+                    record = Level47SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -142,7 +142,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
 
                     goto initializeTrailingBytes;
                 case 0x1: /* switch 1 */
-                    record = Level47Spawnfunc_80056434(2);
+                    record = Level47SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -172,7 +172,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                     goto initializeTrailingBytes;
                 case 0x6:
                     temp_s1 = Level47SpawnField(reference, unsigned char**, 0);
-                    record = Level47Spawnfunc_80056434(3);
+                    record = Level47SpawnAllocateParticleRecord(3);
                     Level47SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level47Spawnrand();
                     {
@@ -236,7 +236,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x9: /* switch 1 */
-                    record = Level47Spawnfunc_80056434(2);
+                    record = Level47SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = &frame.sp10;
                         register unsigned char* player __asm__("$16");
@@ -313,7 +313,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
 
                     goto initializeTrailingBytes;
                 case 0xA: /* switch 1 */
-                    record = Level47Spawnfunc_80056434(3);
+                    record = Level47SpawnAllocateParticleRecord(3);
                     Level47SpawnField(record, unsigned char*, 0) = kindSelector;
                     {
                         register void* destination __asm__("$4") = record + 4;
@@ -373,7 +373,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0xC: /* switch 1 */
-                    record = Level47Spawnfunc_80056434(2);
+                    record = Level47SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = reference + 32;
                         register void* vector __asm__("$6");
@@ -535,7 +535,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                                          4 + (Level47Spawnrand() & 7));
                     break;
                 case 0xd:
-                    record = Level47Spawnfunc_80056434(2);
+                    record = Level47SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -561,7 +561,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                     Level47SpawnField(record, unsigned char*, 14) = 0;
                     goto initializeTrailingBytes;
                 case 0x21: /* switch 1 */
-                    record = Level47Spawnfunc_80056434(2);
+                    record = Level47SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level47SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -718,7 +718,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                     tailByte = 4;
                     goto initializeTrailingBytes;
                 case 0x31:
-                    record = Level47Spawnfunc_80056434(2);
+                    record = Level47SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -742,7 +742,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                     tailByte = 2;
                     goto initializeTrailingBytes;
                 case 0x3B: /* switch 1 */
-                    record = Level47Spawnfunc_80056434(5);
+                    record = Level47SpawnAllocateParticleRecord(5);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -808,7 +808,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                         (short)((Level47Spawnrand() & 0xF) - 8);
                     break;
                 case 0x3C:
-                    record = Level47Spawnfunc_80056434(2);
+                    record = Level47SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -845,7 +845,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                     Level47SpawnField(record, unsigned char*, 13) = byte255;
                     goto initializeTrailingBytes;
                 case 0x3D:
-                    record = Level47Spawnfunc_80056434(2);
+                    record = Level47SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -883,7 +883,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                     Level47SpawnField(record, unsigned char*, 16) = 0;
                     break;
                 case 0x42: /* switch 1 */
-                    record = Level47Spawnfunc_80056434(0);
+                    record = Level47SpawnAllocateParticleRecord(0);
                     Level47SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level47SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level47Spawnrand() & 0xF);
@@ -987,7 +987,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                     Level47SpawnField(record, unsigned char*, 0xF) = 0x40;
                     break;
                 case 0x46: /* switch 1 */
-                    record = Level47Spawnfunc_80056434(1);
+                    record = Level47SpawnAllocateParticleRecord(1);
                     Level47SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level47SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level47Spawnrand() & 0xF);
@@ -995,7 +995,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                     frame.sp60 = 0;
                     frame.sp61 = Level47Spawnrand();
                     frame.sp62 = Level47Spawnrand();
-                    Level47Spawnfunc_8004EA90(&frame.sp60, &frame.sp68, 0);
+                    Level47SpawnBuildPackedAngleBasisMatrix(&frame.sp60, &frame.sp68, 0);
                     frame.sp50 = modeSelector;
                     frame.sp54 = 0;
                     frame.sp58 = 0;
@@ -1049,7 +1049,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x47: /* switch 1 */
-                    record = Level47Spawnfunc_80056434(1);
+                    record = Level47SpawnAllocateParticleRecord(1);
                     Level47SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level47SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level47Spawnrand() & 7);
@@ -1126,7 +1126,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x4E: /* switch 1 */
-                    record = Level47Spawnfunc_80056434(0);
+                    record = Level47SpawnAllocateParticleRecord(0);
                     Level47SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level47SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level47Spawnrand() & 0x1F);
@@ -1194,7 +1194,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                     Level47SpawnField(record, unsigned char*, 0xA) = 2;
                     break;
                 case 0x4F: /* switch 1 */
-                    record = Level47Spawnfunc_80056434(1);
+                    record = Level47SpawnAllocateParticleRecord(1);
                     Level47SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level47SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level47Spawnrand() & 0xF);
@@ -1275,7 +1275,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                     break;
                 case 0x52:
                     temp_s1 = Level47SpawnField(reference, unsigned char**, 0);
-                    record = Level47Spawnfunc_80056434(1);
+                    record = Level47SpawnAllocateParticleRecord(1);
                     Level47SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level47Spawnrand();
                     tailByte &= 15;
@@ -1352,7 +1352,7 @@ void* func_level_47_8008A9DC(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x55:
-                    record = Level47Spawnfunc_80056434(1);
+                    record = Level47SpawnAllocateParticleRecord(1);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;

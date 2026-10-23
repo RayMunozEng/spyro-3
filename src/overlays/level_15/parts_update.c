@@ -14,12 +14,12 @@
  * to this function's original SCUS-94467 instructions. Raw field units,
  * helper meanings and update cadence remain unresolved. */
 #define Update842FCField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Update842FCfunc_8004E9E4(short) __asm__("func_8004E9E4");
+int Update842FCInterpolateSine(short) __asm__("func_8004E9E4");
 int Update842FCInterpolateCosine(short) __asm__("func_8004EA2C");
 int Update842FCCopyVector(void*, void*) __asm__("func_8004F178");
 int Update842FCPackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-int Update842FCfunc_8004F5A8(void*, void*, void*) __asm__("func_8004F5A8");
-int Update842FCfunc_80056504(void*) __asm__("func_80056504");
+int Update842FCAddHalfwordVectors(void*, void*, void*) __asm__("func_8004F5A8");
+int Update842FCReleaseParticleRecord(void*) __asm__("func_80056504");
 int Update842FCSubtractVector(void*, void*, void*) __asm__("func_8004F1C8");
 extern int Update842FCD_8006C648 __asm__("D_8006C648");
 int Update842FCShiftVectorLeft(void*, int) __asm__("func_8004F0E8");
@@ -145,7 +145,7 @@ unsigned char* func_level_15_800842FC(int initialStep) {
                 temp_v1 = *record;
                 switch (temp_v1) {
                     case 0x0:
-                        Update842FCfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update842FCAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update842FCField(recordPlus1, short*, 0x1D);
                         __asm__ __volatile__("" ::: "$3", "memory");
                         if (scratch2 != 0) {
@@ -179,7 +179,7 @@ unsigned char* func_level_15_800842FC(int initialStep) {
                         Update842FCField(recordPlus1, unsigned char*, 0xD) = scratch3;
                         goto checkPredicate;
                     case 0x1:
-                        Update842FCfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update842FCAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update842FCField(recordPlus1, short*, 0x1D);
                         __asm__ __volatile__("" ::: "$3", "memory");
                         if (scratch2 != 0) {
@@ -216,7 +216,7 @@ unsigned char* func_level_15_800842FC(int initialStep) {
                         Update842FCField(recordPlus1, unsigned char*, 0xD) = scratch3;
                         goto checkPredicate;
                     case 0x9:
-                        Update842FCfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update842FCAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update842FCField(recordPlus1, short*, 0x1D);
                         if (scratch2 != 0) {
                             scratch2 = Update842FCField(recordPlus1, unsigned short*, 0x1B);
@@ -263,7 +263,7 @@ unsigned char* func_level_15_800842FC(int initialStep) {
                         scratch3 += scratch2;
                         frame.words[0] = scratch3;
                         scratch2 =
-                            Update842FCfunc_8004E9E4(Update842FCField(recordPlus1, short*, 0x17));
+                            Update842FCInterpolateSine(Update842FCField(recordPlus1, short*, 0x17));
                         scratch4 = (int)recordPlus4;
                         playerEnd = (unsigned char*)&frame.words[0];
                         MATCHING_KEEP3(scratch4, playerEnd, scratch2);
@@ -316,7 +316,7 @@ unsigned char* func_level_15_800842FC(int initialStep) {
                         MATCHING_KEEP2(scratch2, scratch3);
                         scratch2 -= scratch3;
                         Update842FCField(recordPlus1, unsigned short*, 0x1D) = scratch2;
-                        Update842FCfunc_8004F5A8((void*)scratch4, playerEnd, (void*)scratch6);
+                        Update842FCAddHalfwordVectors((void*)scratch4, playerEnd, (void*)scratch6);
                         scratch2 = Update842FCField(recordPlus1, unsigned char*, 9);
                         doubledStep = frame.saved.doubled58;
                         scratch3 = Update842FCField(recordPlus1, unsigned char*, 0xB);
@@ -345,7 +345,7 @@ unsigned char* func_level_15_800842FC(int initialStep) {
                     case 0xC:
                         Update842FCField(recordPlus1, unsigned char*, 0xA) =
                             (unsigned char)(Update842FCField(recordPlus1, unsigned char*, 0xA) + 8);
-                        Update842FCfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update842FCAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         temp_v0_4 = Update842FCField(recordPlus1, unsigned char*, 0xB);
                         if (temp_v0_4 != 0) {
                             Update842FCField(recordPlus1, unsigned char*, 0xB) =
@@ -407,7 +407,7 @@ unsigned char* func_level_15_800842FC(int initialStep) {
                         scratch2 = Update842FCField(recordPlus1, unsigned char*, 2);
                         if (scratch2 == 0)
                             goto removeRecord;
-                        Update842FCfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update842FCAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update842FCField(recordPlus1, short*, 0x1D);
                         if (scratch2 != 0) {
                             scratch2 = Update842FCField(recordPlus1, unsigned short*, 0x1B);
@@ -463,7 +463,7 @@ unsigned char* func_level_15_800842FC(int initialStep) {
                     case 0x17:
                         Update842FCField(recordPlus1, unsigned char*, 0xA) =
                             (unsigned char)(Update842FCField(recordPlus1, unsigned char*, 0xA) + 8);
-                        Update842FCfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update842FCAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         temp_v0_4 = Update842FCField(recordPlus1, unsigned char*, 0xB);
                         if (temp_v0_4 != 0) {
                             Update842FCField(recordPlus1, unsigned char*, 0xB) =
@@ -492,7 +492,7 @@ unsigned char* func_level_15_800842FC(int initialStep) {
                         MATCHING_OBSERVE_VOLATILE_CLOBBER(step, "memory");
                         goto checkByte2;
                     case 0x21:
-                        Update842FCfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update842FCAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         if (Update842FCField(recordPlus1, short*, 0x1D) != 0) {
                             Update842FCField(recordPlus1, unsigned short*, 0x1B) =
                                 (unsigned short)(Update842FCField(recordPlus1, unsigned short*,
@@ -690,7 +690,7 @@ unsigned char* func_level_15_800842FC(int initialStep) {
                         Update842FCField(recordPlus1, unsigned char*, 0xD) = scratch3;
                         goto nextRecord;
                     case 0x37:
-                        Update842FCfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update842FCAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch3 = Update842FCField(recordPlus1, unsigned char*, 1);
                         MATCHING_KEEP(scratch3);
                         scratch2 = scratch3 + step;
@@ -743,7 +743,7 @@ unsigned char* func_level_15_800842FC(int initialStep) {
                         scratch3 = 32;
                         goto addedStoreByteC;
                     case 0x38:
-                        Update842FCfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update842FCAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update842FCField(recordPlus1, unsigned char*, 1);
                         scratch2 += step;
                         Update842FCField(recordPlus1, unsigned char*, 1) = scratch2;
@@ -775,7 +775,7 @@ unsigned char* func_level_15_800842FC(int initialStep) {
                     case 0x3A:
                         if ((unsigned int)Update842FCField(recordPlus1, unsigned char*, 1) >= 28)
                             goto removeRecord;
-                        Update842FCfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update842FCAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update842FCField(recordPlus1, short*, 0x1D);
                         if (scratch2 != 0) {
                             scratch2 = Update842FCField(recordPlus1, unsigned short*, 0x1B);
@@ -826,7 +826,7 @@ unsigned char* func_level_15_800842FC(int initialStep) {
                     case 0x3B:
                         Update842FCField(recordPlus1, unsigned char*, 0xA) =
                             (unsigned char)(Update842FCField(recordPlus1, unsigned char*, 0xA) + 8);
-                        Update842FCfunc_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update842FCAddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         if (Update842FCD_8006C640 & 1) {
                             Update842FCField(recordPlus1, unsigned short*, 0x19) =
                                 (unsigned short)(Update842FCField(recordPlus1, unsigned short*,
@@ -1301,7 +1301,7 @@ unsigned char* func_level_15_800842FC(int initialStep) {
                         if (scratch2 != 0)
                             goto surviving4F;
                     removeRecord:
-                        Update842FCfunc_80056504(record);
+                        Update842FCReleaseParticleRecord(record);
                         recordPlus1 += 32;
                         break;
                     surviving4F:;

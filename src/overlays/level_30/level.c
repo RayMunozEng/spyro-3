@@ -402,11 +402,11 @@ void DecodedSteerAdd(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004F194");
  * AI-generated reconstruction; not yet human reviewed. Caller cadence,
  * source table producers and browser/runtime interpretation are unresolved.
  */
-void func_level_30_800843A0(Moby* argument, DecodedSteerPath* pathArgument,
+void func_level_30_800843A0(Moby* mobyArgument, DecodedSteerPath* pathArgument,
                             DecodedSteerMotion* motionArgument) {
     Vector3D vector;
     int reserved1C;
-    register Moby* moby __asm__("$19") = argument;
+    register Moby* moby __asm__("$19") = mobyArgument;
     register DecodedSteerPath* path __asm__("$16");
     register DecodedSteerMotion* motion __asm__("$17");
     register Vector3D* position __asm__("$18");

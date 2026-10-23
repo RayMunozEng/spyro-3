@@ -1,0 +1,82 @@
+{
+  "AI_generated": true,
+  "human_reviewed": false,
+  "applied_source_width_correction_verified": true,
+  "six_original_plus_four_new_tests_pass": true,
+  "tests": 10,
+  "independent_native_cases": 840,
+  "original_source_available_words": 43,
+  "independently_executed_own_words": 39,
+  "unexecuted_smooth_epilogue": [
+    "80027AD4",
+    "80027AD8",
+    "80027ADC",
+    "80027AE0"
+  ],
+  "original_test_bytes_unchanged": true,
+  "historical_manifest_bytes_unchanged": true,
+  "source_identity": {
+    "revision": "USA Rev1",
+    "BOOT_SHA256": "006363e485559dcd9a203fe71fe4267cb254d476ca59f04ee841048831ad969e",
+    "source_PC_range": "80027A84..80027B2C",
+    "source_words_SHA256": "5514a28e36756d826864e17033c80424d7b4d452f771cdab5bd2f521b54b8faf"
+  },
+  "exact_operation": "Signed LW32 source negative\u21920; SH low16 target; unsigned LHU16 maximum loaded before that SH; ANDIFFFF and unsigned SLTU cap. Immediate path freshly LHU target then SH current in JR delay.",
+  "old_formula_falsified": {
+    "formula": "min(max(source,0),maximum)",
+    "declared_source": 65536,
+    "maximum": 100,
+    "native_result": 0,
+    "previous_result": 100
+  },
+  "accepted_adjacent_vectors_unchanged": {
+    "inputs": [
+      -4,
+      12,
+      40
+    ],
+    "maximum": 20,
+    "results": [
+      0,
+      12,
+      20
+    ]
+  },
+  "units": "Raw guest source32-bit and maximum/target16-bit storage; no gameplay unit or conversion inferred.",
+  "cadence": "One scalar evaluation of already-read nonnull input values; actual caller cadence not inferred.",
+  "scope_conditions": [
+    "Scalar arguments are raw guest bit views, not a new memory facade.",
+    "Actual alias/order and null-pointer behavior are tested independently from original words; the scalar is not invoked to fabricate a null-source value.",
+    "The smoothing prefix stops at its real279B0 entry; no helper result/ABI/preserved register or epilogue execution is supplied.",
+    "Declared tests do not prove natural admission, memory/root lifetime, asynchronous timing or all-input smoothing semantics.",
+    "Historical formula/note/module versions remain archived; old manifests/receipts are not rewritten.",
+    "Browser/native C/guest state and all original focused test expectations remain unchanged."
+  ],
+  "next_exact_evidence": "Any new all-input smoothing or natural HUD claim needs its own current/target/maximum/elapsed producers and original smoothing body comparison.",
+  "archived_original_dependencies": {
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\bounded_counter43193.before\\tools\\yotd_re\\bounded_counter_runtime.py": "211fee8a323d901cf08a51956c0d45a12ae85eb3d51031913e1fa7cf21d70099",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\bounded_counter43193.before\\tests\\yotd_re\\test_bounded_counter_runtime.py": "7e230dcbecd0ae4d6570359fd1d745291940e626e5634e7d7fccac4e8a59a962",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\bounded_counter43193.before\\docs\\yotd-re\\bounded-counter-runtime.md": "edc2b87709ce0a1f9a44612102741c59144d3cde36c19158101931d65ee14767",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\bounded_counter43193.before\\docs\\yotd-re\\manifests\\bounded-counter-runtime.json": "267488d6bd271f5e887d1572832e0f02a0924f1a5e2601a15d398afa0157797c"
+  },
+  "source_dependencies": {
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\apply_bounded_counter43195.py": "e41f5de27feb1568b222e253462ac4568f81c8d40b4865dcde3315c91023ef8f",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\tools\\yotd_re\\bounded_counter_runtime.py": "384d5c114e3820a91e4475b47d41d63515d63778706671256dddca8567225ba4",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\tests\\yotd_re\\test_bounded_counter_runtime.py": "7e230dcbecd0ae4d6570359fd1d745291940e626e5634e7d7fccac4e8a59a962",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\tests\\yotd_re\\test_bounded_counter_source_width_runtime.py": "604d99113a8de8f63347d60642890bc5249ec1aa0c3c30692e280593d52e4a71",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\bounded-counter-runtime.md": "8bcbf1630870f9518708407b6a4bdb0402b9b9a036fa7d6529c93f053cc7dbea",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\evidence-tests\\bounded-counter-source-width-source.json": "da377679dbf0a14c10d8db1a2ffe0a3c805e48d745d9450d8948f0cac54b5512",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\docs\\yotd-re\\manifests\\bounded-counter-runtime.json": "267488d6bd271f5e887d1572832e0f02a0924f1a5e2601a15d398afa0157797c",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\bounded_counter43195.applied-files.json": "ae04b2ca21d369d794b648466deae451ac256a694d25450047c524115b4ed397",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\bounded_counter43195.tests.txt": "da97cd84f17e620a769982c3b2a33f3715ccf0d2679debda95dc74530893b814",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\bounded_counter43195.native-vectors.json": "556a0eba9ca216f08fb084be10d900bc1bbe6fb0590919f91ae639b0887829cd",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\bounded_counter43194.staged-ready.json": "85ae5f16662cddfa59758bde3701c1c6250c81b4fa6a16a09489e6cb83d82cc8",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\bounded_counter43194.source-cut-qualification.json": "5ae84a92d31806f76944c425bfc06d4bd086d10570ed63dc6c7fd1eb62f2893d",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\bounded_counter43193.baseline.txt": "720a7a85184a27aeca9dc33605c33d2b8487dd36ee9c7a5ea3b51cc0cf336829",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\bounded_counter43193.candidate-tests.txt": "376322e0b1b49011bf5796f0ab55a61cfd4bf41bc31366f726f4b2d723620e13",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\helper_names43192.authority-ledger.json": "dd6f23a5cb6167a8e53239254ef1f173b59893af9cd53f1b999f50c71f7d86ee",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\helperReuse43464.accepted.json": "8a1eb99b559eb1f6d367c856d524b81d9322255a667505101659612cc18cfc69",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\build\\helper_names43579.descriptor-field-qualification.json": "8636a4fd9e5d1f10c451262c83b2a5a7b027f9e2b61cd9abc6be439f03224ea7",
+    "C:\\Users\\rmuno\\OneDrive\\Documents\\GitHub\\SpyroCode\\SpyroCode\\tests\\yotd_re\\test_raw588_helper_effects_runtime.py": "7f55eecd03b7d8c6cc35d8fc03b251bfdbb036bcbe0d848e4fe87aff686aeb1e"
+  }
+}

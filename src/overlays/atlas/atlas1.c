@@ -983,8 +983,8 @@ void func_atlas_800765F8(void* inputRecord, int sideWord, int inputModeWord) {
         high;                                                                    \
     })
 /* AI generated; not human reviewed. Original-instruction-derived C. Original source asm/nonmatchings/overlays/atlas/atlas1/func_atlas_80076B64.s SHA256 b6705d41156aa2170af3cba8f305a54b16ffc0c68f90e562a0329097713e55ef. No semantic or runtime parity claim. Exact native/linked/full retail hashes required. */
-int Atlas_76B64_func_80028D30() __asm__("func_80028D30");
-int Atlas_76B64_func_80038B44() __asm__("func_80038B44");
+int Atlas_76B64EmitFlaggedHudTexturedQuads() __asm__("func_80028D30");
+int Atlas_76B64CalculateWeightedCompletionPercent() __asm__("func_80038B44");
 int Atlas_76B64_func_atlas_80076228() __asm__("func_atlas_80076228");
 int Atlas_76B64_func_atlas_80076430() __asm__("func_atlas_80076430");
 int Atlas_76B64_sprintf() __asm__("sprintf");
@@ -1170,7 +1170,8 @@ void func_atlas_80076B64(unsigned char* recordBytes, int argument5, int argument
     quotientWord2 = *bankWord18;
     MATCHING_BARRIER("memory");
     callerWord4 += 0x100;
-    Atlas_76B64_func_80028D30(quotientWord2 + callerWord4, callerWord5, callerWord6, callerWord7);
+    Atlas_76B64EmitFlaggedHudTexturedQuads(quotientWord2 + callerWord4, callerWord5, callerWord6,
+                                           callerWord7);
     highWord8 = frame.savedArgument6;
     callerWord5 = textBaseWord + 0x82;
     if (highWord8 == 0)
@@ -1181,7 +1182,8 @@ void func_atlas_80076B64(unsigned char* recordBytes, int argument5, int argument
     callerWord4 += 0x130;
     quotientWord2 = *bankWord18;
     callerWord7 = frame.savedArgument7;
-    Atlas_76B64_func_80028D30(quotientWord2 + callerWord4, callerWord5, callerWord6, callerWord7);
+    Atlas_76B64EmitFlaggedHudTexturedQuads(quotientWord2 + callerWord4, callerWord5, callerWord6,
+                                           callerWord7);
     highWord9 = frame.savedArgument6;
     if (highWord9 == 0) {
         highWord8 = 55;
@@ -1322,8 +1324,8 @@ void func_atlas_80076B64(unsigned char* recordBytes, int argument5, int argument
                         MATCHING_KEEP_CLOBBER(tablePointer8, "memory");
                         quotientWord2 += (int)tablePointer8;
                         callerWord5 = Atlas_76B64_Field(quotientWord2, int*, 0);
-                        scaledReturnA2 = Atlas_76B64_func_80038B44((int)mappedIndexA16, callerWord5,
-                                                                   flagsCountA6);
+                        scaledReturnA2 = Atlas_76B64CalculateWeightedCompletionPercent(
+                            (int)mappedIndexA16, callerWord5, flagsCountA6);
                         factorA4 = *(&Atlas_76B64_D_80066FA4 + mappedIndexA16);
                         if (factorA4 != 0) {
                             scaledReturnA2 *= factorA4;
@@ -1374,8 +1376,8 @@ void func_atlas_80076B64(unsigned char* recordBytes, int argument5, int argument
                         MATCHING_KEEP_CLOBBER(tablePointer8, "memory");
                         quotientWord2 += (int)tablePointer8;
                         callerWord5 = Atlas_76B64_Field(quotientWord2, int*, 0);
-                        scaledReturnB2 = Atlas_76B64_func_80038B44((int)mappedIndexB16, callerWord5,
-                                                                   flagsCountB6);
+                        scaledReturnB2 = Atlas_76B64CalculateWeightedCompletionPercent(
+                            (int)mappedIndexB16, callerWord5, flagsCountB6);
                         factorB4 = *(&Atlas_76B64_D_80066FA4 + mappedIndexB16);
                         if (factorB4 != 0) {
                             scaledReturnB2 *= factorB4;
@@ -1435,8 +1437,8 @@ void func_atlas_80076B64(unsigned char* recordBytes, int argument5, int argument
                         MATCHING_KEEP_CLOBBER(tablePointer9, "memory");
                         quotientWord2 += (int)tablePointer9;
                         callerWord5 = Atlas_76B64_Field(quotientWord2, int*, 0);
-                        scaledReturnC2 = Atlas_76B64_func_80038B44((int)mappedIndexC16, callerWord5,
-                                                                   flagsCountC6);
+                        scaledReturnC2 = Atlas_76B64CalculateWeightedCompletionPercent(
+                            (int)mappedIndexC16, callerWord5, flagsCountC6);
                         factorC4 = *(&Atlas_76B64_D_80066FA4 + mappedIndexC16);
                         if (factorC4 != 0) {
                             scaledReturnC2 *= factorC4;
@@ -1544,8 +1546,8 @@ void func_atlas_80076B64(unsigned char* recordBytes, int argument5, int argument
                     highWord8 = frame.rawSelector88;
                     callerWord6 = highWord9 - 4;
                     callerWord4 = highWord8 << 3;
-                    Atlas_76B64_func_80028D30(quotientWord2 + callerWord4, callerWord5, callerWord6,
-                                              rowArgument7);
+                    Atlas_76B64EmitFlaggedHudTexturedQuads(quotientWord2 + callerWord4, callerWord5,
+                                                           callerWord6, rowArgument7);
                 }
             }
             highWord9 = (int)frame.rowByteCursor;
@@ -1770,14 +1772,15 @@ void func_atlas_800775D8(int unused, int side, int index, int mode) {
  * mode stack48, original widths, signed remainder14 and constants are retained.
  * Empty constraints emit no opcodes. Acceptance requires 140 original words,
  * internal jumps, strict complete TU and every original EXE/overlay hash.
- * Unknown helper semantics, physical units and live runtime remain open.
+ * String-copy, sprite and text helper identities use existing source references.
+ * Physical units, remaining helper details and live runtime remain open.
  */
 extern unsigned char D_80066FCC[], D_80070300[];
 extern unsigned char Atlas77830Rows[] __asm__("D_atlas_8007B0C0");
 extern unsigned char* Atlas77830Names[] __asm__("D_atlas_8007AA34");
 extern unsigned char* Atlas77830Fallback __asm__("D_atlas_8007AA30");
 extern int Atlas77830Value __asm__("D_atlas_8007AE00"), Atlas77830Base __asm__("D_80070108");
-void Atlas77830Copy(unsigned char*, unsigned char*) __asm__("func_80064DDC");
+void Atlas77830CopyNullTerminatedString(unsigned char*, unsigned char*) __asm__("func_80064DDC");
 unsigned int* Atlas77830Icon(int, int, int, int) __asm__("func_80028D30");
 unsigned char* Atlas77830Split(unsigned char*, int) __asm__("func_atlas_800764DC");
 void Atlas77830Draw(unsigned char*, int, int, int) __asm__("func_atlas_80076228");
@@ -1837,7 +1840,7 @@ void func_atlas_80077830(int unused, int side, int index, int mode) {
             }
             destination = local.buffer;
         copyName:
-            Atlas77830Copy(destination, name);
+            Atlas77830CopyNullTerminatedString(destination, name);
             icon = Atlas77830Icon(Atlas77830Base + 304 + (pulse << 3), x, y, local.mode);
             icon[1] = (icon[1] & 0xFF000000) | iconColour;
             tail = Atlas77830Split(local.buffer, 170);

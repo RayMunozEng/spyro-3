@@ -52,7 +52,7 @@ extern unsigned char CreditsEnvironmentR __asm__("D_8006E33C"),
 extern int CreditsEnvironmentDataCount __asm__("D_8006E334");
 extern int* CreditsEnvironmentDataOffsets __asm__("D_8006E338");
 extern unsigned short CreditsEnvironmentConfig __asm__("D_8006C6A8");
-void CreditsEnvironmentFinish(char*, int) __asm__("func_8002C9F4");
+void CreditsBindSoundTables(char*, int) __asm__("func_8002C9F4");
 void CreditsEnvironmentSound(int, int, int) __asm__("PlaySound");
 char* func_credits_8007458C(char* input) {
     char* cursor = input;
@@ -151,7 +151,7 @@ char* func_credits_8007458C(char* input) {
         cursor += *(int*)cursor;
         if ((short)(config % 12) == 0) {
             block = cursor;
-            CreditsEnvironmentFinish(block + 4, 1);
+            CreditsBindSoundTables(block + 4, 1);
             MATCHING_KEEP(block);
             {
                 register int zero __asm__("$4") = 0;
@@ -352,13 +352,13 @@ int Credits_74BA0_MoveImage(void*, int, int) __asm__("MoveImage");
 int Credits_74BA0CountTimerDown(void*, int) __asm__("func_800359A4");
 int Credits_74BA0RandBetween(int, int) __asm__("func_8003636C");
 int Credits_74BA0RandSignedBetween(int, int) __asm__("func_800363DC");
-void Credits_74BA0_func_8004E7D4(void*, void*, int) __asm__("func_8004E7D4");
-int Credits_74BA0_func_8004F6B4() __asm__("func_8004F6B4");
-int Credits_74BA0_func_8005E074() __asm__("func_8005E074");
-int Credits_74BA0_func_8005F5FC(const char*, ...) __asm__("func_8005F5FC");
-int Credits_74BA0_func_80064A2C() __asm__("func_80064A2C");
-int Credits_74BA0_func_80064A8C() __asm__("func_80064A8C");
-int Credits_74BA0_func_80064AEC() __asm__("func_80064AEC");
+void Credits_74BA0CopyWordRangeUnrolled4(void*, void*, int) __asm__("func_8004E7D4");
+int Credits_74BA0TriggerSignedAdditionOverflow() __asm__("func_8004F6B4");
+int Credits_74BA0SyncCdCommandResult() __asm__("func_8005E074");
+int Credits_74BA0WriteFormattedOutput(const char*, ...) __asm__("func_8005F5FC");
+int Credits_74BA0SetSpuTransferAddress() __asm__("func_80064A2C");
+int Credits_74BA0WriteSpuTransferData() __asm__("func_80064A8C");
+int Credits_74BA0CheckSpuTransferCompletion() __asm__("func_80064AEC");
 void* Credits_74BA0_func_credits_8007458C(void*) __asm__("func_credits_8007458C");
 void Credits_74BA0_func_credits_80074820(void*, int, void*) __asm__("func_credits_80074820");
 extern unsigned char Credits_74BA0_D_800658A0 __asm__("D_800658A0");
@@ -527,8 +527,8 @@ block_5:
                              Credits_74BA0Index0[Credits_74BA0_D_8006C6A8 * 2]);
     headerTextOrDivisor17 = (int)&Credits_74BA0_D_80072098;
     Credits_74BA0Keep(headerTextOrDivisor17);
-    Credits_74BA0_func_8004E7D4(headerTextOrDivisor17,
-                                Credits_74BA0Field(bufferRowOrSlotOffset16, int*, 0), (void*)0x220);
+    Credits_74BA0CopyWordRangeUnrolled4(
+        headerTextOrDivisor17, Credits_74BA0Field(bufferRowOrSlotOffset16, int*, 0), (void*)0x220);
     Credits_74BA0_CDLoadSync(Credits_74BA0Field(ioRootOrSlotIndex18, int*, 0),
                              Credits_74BA0Field(bufferRowOrSlotOffset16, int*, 0), 0x60000,
                              Credits_74BA0Field(headerTextOrDivisor17, int*, 0) +
@@ -549,10 +549,11 @@ block_5:
                              Credits_74BA0_D_8007209C + 0xFFFA0000,
                              Credits_74BA0Field(headerTextOrDivisor17, int*, 0) +
                                  Credits_74BA0Index2[Credits_74BA0_D_8006C6A8 * 2] + 0x60000);
-    Credits_74BA0_func_80064A2C(0x1010);
-    Credits_74BA0_func_80064A8C(Credits_74BA0Field(bufferRowOrSlotOffset16, int*, 0), 0x7EFF0);
+    Credits_74BA0SetSpuTransferAddress(0x1010);
+    Credits_74BA0WriteSpuTransferData(Credits_74BA0Field(bufferRowOrSlotOffset16, int*, 0),
+                                      0x7EFF0);
 loop_6:
-    if (Credits_74BA0_func_80064AEC(0) == 0) {
+    if (Credits_74BA0CheckSpuTransferCompletion(0) == 0) {
         goto loop_6;
     }
     headerTextOrDivisor17 = (int)&Credits_74BA0_D_8006E470;
@@ -597,8 +598,8 @@ loop_6:
     Credits_74BA0_D_8006C540 = resultOrIntermediate2;
     resultOrIntermediate2 = argumentOrIntermediate4 + fieldOrIntermediate3;
     bufferRowOrSlotOffset16 = resultOrIntermediate2 - 0xC;
-    Credits_74BA0_func_8004E7D4(argumentOrIntermediate4, argumentOrIntermediate5,
-                                argumentOrIntermediate6);
+    Credits_74BA0CopyWordRangeUnrolled4(argumentOrIntermediate4, argumentOrIntermediate5,
+                                        argumentOrIntermediate6);
     argumentOrIntermediate4 = 0;
     resultOrIntermediate2 = Credits_74BA0_D_8006C540;
     if (resultOrIntermediate2 <= 0) {
@@ -905,8 +906,8 @@ block_68:
     if (resultOrIntermediate2) {
         goto block_70;
     }
-    Credits_74BA0_func_8005F5FC("Too many moby tags.\n");
-    Credits_74BA0_func_8004F6B4();
+    Credits_74BA0WriteFormattedOutput("Too many moby tags.\n");
+    Credits_74BA0TriggerSignedAdditionOverflow();
 block_70:
     Credits_74BA0Field(bufferRowOrSlotOffset16, short*, 0x12) = (short)originalFrame.home18.word;
     Credits_74BA0Field(bufferRowOrSlotOffset16, unsigned short*, 0x14) =
@@ -1407,7 +1408,7 @@ block_137:
             : "0"(resultOrIntermediate2), "r"(argumentOrIntermediate4));
     argumentOrIntermediate5 = 0;
     resultOrIntermediate2 =
-        Credits_74BA0_func_8005E074(argumentOrIntermediate4, argumentOrIntermediate5);
+        Credits_74BA0SyncCdCommandResult(argumentOrIntermediate4, argumentOrIntermediate5);
     fieldOrIntermediate3 = 2;
     if (resultOrIntermediate2 != fieldOrIntermediate3)
         goto block_155;
@@ -1426,7 +1427,8 @@ block_142:
             MATCHING_OBSERVE_VOLATILE(fieldOrIntermediate3);
             bufferRowOrSlotOffset16 = (int)&Credits_74BA0_D_80072098;
             Credits_74BA0Keep(bufferRowOrSlotOffset16);
-            Credits_74BA0_func_8004E7D4(bufferRowOrSlotOffset16, Credits_74BA0_D_8006C7EC, 0x220);
+            Credits_74BA0CopyWordRangeUnrolled4(bufferRowOrSlotOffset16, Credits_74BA0_D_8006C7EC,
+                                                0x220);
             resultOrIntermediate2 = Credits_74BA0_D_8006C6A8;
             argumentOrIntermediate4 = Credits_74BA0_D_8006E470;
             fieldOrIntermediate3 = Credits_74BA0Field(bufferRowOrSlotOffset16, int*, 0);
@@ -1492,9 +1494,9 @@ block_142:
             originalFrame.sp26 = 0x80;
             Credits_74BA0_MoveImage(&originalFrame.home20.word, 0x200, 0);
             Credits_74BA0_DrawSync(0);
-            Credits_74BA0_func_8004E7D4(Credits_74BA0_D_8006C7F0,
-                                        Credits_74BA0_D_8006C7EC + 0x40000,
-                                        Credits_74BA0_D_8006C500 - 0x40000);
+            Credits_74BA0CopyWordRangeUnrolled4(Credits_74BA0_D_8006C7F0,
+                                                Credits_74BA0_D_8006C7EC + 0x40000,
+                                                Credits_74BA0_D_8006C500 - 0x40000);
             Credits_74BA0_D_8006C7EC =
                 (Credits_74BA0_D_8006C7F0 + Credits_74BA0_D_8006C500) - 0x40000;
             resultOrIntermediate2 = Credits_74BA0_func_credits_8007458C(Credits_74BA0_D_800722C0);

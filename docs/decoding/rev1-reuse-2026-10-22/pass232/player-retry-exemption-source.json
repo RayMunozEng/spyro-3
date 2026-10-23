@@ -1,0 +1,84 @@
+{
+  "AI_generated": true,
+  "human_reviewed": false,
+  "scope": "Original arithmetic packet only; not a natural death/respawn admission or complete callback proof.",
+  "source_identity": {
+    "edition": "USA Rev 1",
+    "BOOT_SHA256": "006363e485559dcd9a203fe71fe4267cb254d476ca59f04ee841048831ad969e",
+    "BOOT_load_address": "80010000",
+    "PSX_EXE_header_bytes": 2048,
+    "whole_helper_entry": "800498E4",
+    "whole_helper_words": 131,
+    "whole_helper_SHA256": "606c2ca31a7342f024260a309eb7d8701e1a7ca6d363d3decd1b84c83203e699"
+  },
+  "authority": "build/helper_names43069.authority-ledger.json",
+  "instruction_entry": "80049A28",
+  "instruction_end_exclusive": "80049A68",
+  "word_count": 16,
+  "SHA256": "3f7000311a431887727a05bafe043255f801d31fbc2b86d8a82bf9563d13f8bb",
+  "original_words": {
+    "80049A28": "34426667",
+    "80049A2C": "00820018",
+    "80049A30": "3C028006",
+    "80049A34": "8C42590C",
+    "80049A38": "3C018007",
+    "80049A3C": "AC220688",
+    "80049A40": "000417C3",
+    "80049A44": "00002810",
+    "80049A48": "00051883",
+    "80049A4C": "00621823",
+    "80049A50": "00031080",
+    "80049A54": "00431021",
+    "80049A58": "00021040",
+    "80049A5C": "2483FFF8",
+    "80049A60": "10430007",
+    "80049A64": "00000000"
+  },
+  "prior_actual_producer": {
+    "PC": "80049A24",
+    "word": "3C026666",
+    "GP2": "66660000"
+  },
+  "declared_unit_inputs": "Incoming level_id is a signed32 source word. GP2 is the result of the immediately preceding actual LUI. The source load590C and store70688 are executed against supplied memory; they are not substituted. No pending branch or load at this internal unit entry.",
+  "representation": "Signed32 level selector; multiply-high signed /10 with truncation toward zero; SLL/ADDU/SUBU use raw32 storage.",
+  "update_cadence": "One invocation of the existing scalar helper; natural calling cadence unchanged.",
+  "confidence": "Exact original instructions and complete arithmetic/register branch replay.",
+  "falsifiable_vectors": [
+    {
+      "level_id": 14,
+      "old_exempt": true,
+      "actual_exempt": false
+    },
+    {
+      "level_id": 18,
+      "old_exempt": false,
+      "actual_exempt": true
+    },
+    {
+      "level_id": -18,
+      "source_quotient": -1,
+      "floor_quotient": -2,
+      "actual_exempt": false
+    }
+  ],
+  "unchanged_adjacent_vectors": [
+    {
+      "level_id": 8,
+      "exempt": true
+    },
+    {
+      "level_id": 17,
+      "exempt": false
+    },
+    {
+      "level_id": 21,
+      "exempt": false
+    },
+    {
+      "level_id": 46,
+      "exempt": false
+    }
+  ],
+  "source_effect": "Compare ((q<<2)+q)<<1 against level-8, where q is the actual signed /10 result. Equality branches to49A80, skipping the life decrement; inequality falls through49A68.",
+  "historical_evidence": "Old receipts and old source/test bytes remain unchanged in build/retry43070/before.zip; the level14 assertion is changed only because the actual source packet falsifies it."
+}

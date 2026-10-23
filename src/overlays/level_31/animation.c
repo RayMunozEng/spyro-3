@@ -29,10 +29,10 @@
  * target,selector/data and full EXE/every-overlay retail hashes. Binary identity
  * does not establish synchronized runtime or system completeness. */
 #define Physics31Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Physics31Call363DCView1() __asm__("func_800363DC");
-unsigned char Physics31Call40D10View1() __asm__("func_80040D10");
-unsigned char Physics31Call41580View1() __asm__("func_80041580");
-unsigned char Physics31Call416F4View1() __asm__("func_800416F4");
+int Physics31RandSignedBetweenView1() __asm__("func_800363DC");
+unsigned char Physics31UpdatePlayerGroundInputTargetsView1() __asm__("func_80040D10");
+unsigned char Physics31ApproachPlayerTargetHeadingView1() __asm__("func_80041580");
+unsigned char Physics31BlendPlayerHeadingFromInputVectorView1() __asm__("func_800416F4");
 int Physics31MeasureVectorLengthView1() __asm__("func_8004EDE8");
 unsigned char Physics31ScaleVectorRatioQ15View1() __asm__("func_8004F08C");
 unsigned char Physics31ClearVectorView1() __asm__("func_8004F168");
@@ -45,8 +45,8 @@ extern int Physics31Data6E044View1 __asm__("D_8006E044");
 extern unsigned char Physics31Data6E548View1 __asm__("D_8006E548");
 extern unsigned char Physics31Player0View1 __asm__("D_80070328");
 extern void* (*Controller88028_SpawnParticle)() __asm__("SpawnParticle");
-int Physics31Call40F48View1() __asm__("func_80040F48");
-int Physics31Call41580View2() __asm__("func_80041580");
+int Physics31BuildOrientedInputPairView1() __asm__("func_80040F48");
+int Physics31ApproachPlayerTargetHeadingView2() __asm__("func_80041580");
 int Physics31MeasureVectorLengthView2() __asm__("func_8004EDE8");
 int Physics31ScaleVectorRatioQ15View2() __asm__("func_8004F08C");
 int Physics31ClearVectorView2() __asm__("func_8004F168");
@@ -77,8 +77,8 @@ extern unsigned char Physics31Player0View3 __asm__("D_80070328");
 extern void* (*Physics34_SpawnParticle)() __asm__("SpawnParticle");
 extern void* (*Physics12_SpawnParticle)() __asm__("SpawnParticle");
 extern int Physics31Player48View1 __asm__("D_80070328+0x48");
-int Physics31Call40D10View2() __asm__("func_80040D10");
-int Physics31Call41580View3() __asm__("func_80041580");
+int Physics31UpdatePlayerGroundInputTargetsView2() __asm__("func_80040D10");
+int Physics31ApproachPlayerTargetHeadingView3() __asm__("func_80041580");
 int Physics31InterpolateSineView1() __asm__("func_8004E9E4");
 int Physics31InterpolateCosineView1() __asm__("func_8004EA2C");
 int Physics31MeasureVectorLengthView4() __asm__("func_8004EDE8");
@@ -156,9 +156,9 @@ void func_level_31_8008C864(int slotIndex) {
             Physics31ClearVectorView1(globalVector80);
             Physics31ClearVectorView1(globalVector80 + 0xC);
             if (Physics31Data6E044View1 != 7) {
-                Physics31Call40D10View1(0x1200);
-                Physics31Call416F4View1();
-                Physics31Call41580View1(0x5A, 0x10);
+                Physics31UpdatePlayerGroundInputTargetsView1(0x1200);
+                Physics31BlendPlayerHeadingFromInputVectorView1();
+                Physics31ApproachPlayerTargetHeadingView1(0x5A, 0x10);
                 return;
             }
             return;
@@ -179,14 +179,14 @@ void func_level_31_8008C864(int slotIndex) {
             workWord2 = 7;
             call4 = (void*)50;
             if (workWord3 != workWord2) {
-                Physics31Call40D10View2(4608);
+                Physics31UpdatePlayerGroundInputTargetsView2(4608);
                 call4 = (void*)50;
             } else {
                 workWord2 = Physics31Player64View1;
                 Physics31PlayerACView1 = 0;
                 Physics31PlayerA4View1 = workWord2;
             }
-            Physics31Call41580View3(call4, 10);
+            Physics31ApproachPlayerTargetHeadingView3(call4, 10);
             workWord3 = 0x38E30000;
             MATCHING_KEEP(workWord3);
             pointer16 = &Physics31PlayerACView1;
@@ -342,9 +342,9 @@ void func_level_31_8008C864(int slotIndex) {
                 originalFrame.sp44 = 0;
                 originalFrame.sp48 = 0xE;
                 Physics31CopyVectorView1(&originalFrame.sp50, call5 - 148);
-                originalFrame.sp50 += Physics31Call363DCView1(0, 0x12C);
-                originalFrame.sp54 += Physics31Call363DCView1(0, 0x12C);
-                originalFrame.sp58 += Physics31Call363DCView1(0, 0x12C);
+                originalFrame.sp50 += Physics31RandSignedBetweenView1(0, 0x12C);
+                originalFrame.sp54 += Physics31RandSignedBetweenView1(0, 0x12C);
+                originalFrame.sp58 += Physics31RandSignedBetweenView1(0, 0x12C);
                 workWord2 = (int)Controller88028_SpawnParticle(1, 0xD, &originalFrame.sp50,
                                                                &originalFrame.sp40);
                 Physics31Field(workWord2, signed char*, 2) = 6;
@@ -419,9 +419,9 @@ void func_level_31_8008C864(int slotIndex) {
                     Physics31PlanarHeadingLookupView1(originalFrame.sp60, originalFrame.sp64, 1);
                 call4 = (void*)32;
                 Physics31PlayerA4View1 = workWord2;
-                Physics31Call41580View2(call4, 8);
+                Physics31ApproachPlayerTargetHeadingView2(call4, 8);
             }
-            Physics31Call40F48View1(&originalFrame.sp50, 1);
+            Physics31BuildOrientedInputPairView1(&originalFrame.sp50, 1);
             workWord2 = originalFrame.sp50;
             numeric4 = originalFrame.sp54;
             originalFrame.sp68 = 0;
@@ -502,9 +502,9 @@ void func_level_31_8008C864(int slotIndex) {
                 Physics31PlanarHeadingLookupView1(originalFrame.sp78, originalFrame.sp7C, 1);
             call4 = (void*)32;
             Physics31PlayerA4View1 = workWord2;
-            Physics31Call41580View2(call4, 8);
+            Physics31ApproachPlayerTargetHeadingView2(call4, 8);
         input136:
-            Physics31Call40F48View1(&originalFrame.sp70, 1);
+            Physics31BuildOrientedInputPairView1(&originalFrame.sp70, 1);
             workWord2 = originalFrame.sp70;
             numeric4 = originalFrame.sp74;
             Physics31Player88View1 = 0;
@@ -599,7 +599,7 @@ void func_level_31_8008C864(int slotIndex) {
                 Physics31PlanarHeadingLookupView1(originalFrame.sp88, originalFrame.sp8C, 1);
             call4 = (void*)32;
             Physics31PlayerA4View1 = workWord2;
-            Physics31Call41580View2(call4, 8);
+            Physics31ApproachPlayerTargetHeadingView2(call4, 8);
         done140:
             return;
         case 142:
@@ -615,9 +615,9 @@ void func_level_31_8008C864(int slotIndex) {
                     Physics31PlanarHeadingLookupView1(originalFrame.sp98, originalFrame.sp9C, 1);
                 call4 = (void*)32;
                 Physics31PlayerA4View1 = workWord2;
-                Physics31Call41580View2(call4, 8);
+                Physics31ApproachPlayerTargetHeadingView2(call4, 8);
             }
-            Physics31Call40F48View1(&originalFrame.sp88, 1);
+            Physics31BuildOrientedInputPairView1(&originalFrame.sp88, 1);
             workWord2 = originalFrame.sp88;
             numeric4 = originalFrame.sp8C;
             workWord3 = workWord2 * 25;
@@ -724,8 +724,8 @@ void func_level_31_8008C864(int slotIndex) {
                 Physics31PlanarHeadingLookupView1(originalFrame.spB0, originalFrame.spB4, 1);
             call4 = (void*)32;
             Physics31PlayerA4View1 = workWord2;
-            Physics31Call41580View2(call4, 8);
-            Physics31Call40F48View1(&originalFrame.spA8, 1);
+            Physics31ApproachPlayerTargetHeadingView2(call4, 8);
+            Physics31BuildOrientedInputPairView1(&originalFrame.spA8, 1);
             workWord2 = originalFrame.spA8;
             numeric4 = originalFrame.spAC;
             originalFrame.spB8 = 0;
@@ -804,21 +804,21 @@ extern void Level31_8D64CShiftVectorRightTowardZero(Vector3D*, int) __asm__("fun
 extern void Level31_8D64CCopyVector(Vector3D*, Vector3D*) __asm__("func_8004F178");
 extern void Level31_8D64CAddVector(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004F194");
 extern void Level31_8D64CRefreshMobySpatialGridAndBasis(Moby*, int) __asm__("func_80055D24");
-extern int Level31_8D64C_func_80055E84(Moby*) __asm__("func_80055E84");
+extern int Level31_8D64CReadSelectedFrameScalar(Moby*) __asm__("func_80055E84");
 
-unsigned char Level31_8D64C_func_8001BA30() __asm__("func_8001BA30");
+unsigned char Level31_8D64CQueryDynamicMobyGeometry() __asm__("func_8001BA30");
 /* extern */
-unsigned char Level31_8D64C_func_80041930() __asm__("func_80041930");
+unsigned char Level31_8D64CProbePlayerContactSegment() __asm__("func_80041930");
 /* extern */
-unsigned char Level31_8D64C_func_80041C20() __asm__("func_80041C20");
+unsigned char Level31_8D64CUpdatePlayerCollisionResponse() __asm__("func_80041C20");
 /* extern */
-unsigned char Level31_8D64C_func_80042A44() __asm__("func_80042A44");
+unsigned char Level31_8D64CUpdatePlayerSurfaceState() __asm__("func_80042A44");
 /* extern */
-unsigned char Level31_8D64C_func_80043728() __asm__("func_80043728");
+unsigned char Level31_8D64CApplyPlayerGroundContactCorrection() __asm__("func_80043728");
 /* extern */
-int Level31_8D64C_func_800438F4() __asm__("func_800438F4");
+int Level31_8D64CApplyPlayerMovingSurfaceDelta() __asm__("func_800438F4");
 /* extern */
-unsigned char Level31_8D64C_func_80043A38() __asm__("func_80043A38");
+unsigned char Level31_8D64CBuildNegatedNormalizedPlayerVector() __asm__("func_80043A38");
 /* extern */
 unsigned char Level31_8D64CInterpolateMobyVertex() __asm__("func_80055F14");
 /* extern */
@@ -866,17 +866,17 @@ void func_level_31_8008D64C(void) {
         case 0x8C:
         case 0x8D:
         case 0x93:
-            if (Level31_8D64C_func_800438F4() == 0) {
-                Level31_8D64C_func_80043728();
+            if (Level31_8D64CApplyPlayerMovingSurfaceDelta() == 0) {
+                Level31_8D64CApplyPlayerGroundContactCorrection();
             }
-            Level31_8D64C_func_80041C20();
+            Level31_8D64CUpdatePlayerCollisionResponse();
             Level31_8D64C_D_80070328.unk9a = 0;
             goto sharedClearAnimationState;
         case 0x20:
         case 0x92:
-            Level31_8D64C_func_80041C20();
+            Level31_8D64CUpdatePlayerCollisionResponse();
         sharedClearAnimationState:
-            Level31_8D64C_func_80042A44();
+            Level31_8D64CUpdatePlayerSurfaceState();
             Level31_8D64C_D_80070328.unk4[0] = 0;
             return;
         case 0xA:
@@ -886,30 +886,30 @@ void func_level_31_8008D64C(void) {
         case 0x8F:
         case 0x90:
         case 0x91:
-            Level31_8D64C_func_800438F4();
-            Level31_8D64C_func_80041C20();
-            Level31_8D64C_func_80042A44();
-            Level31_8D64C_func_80041930();
+            Level31_8D64CApplyPlayerMovingSurfaceDelta();
+            Level31_8D64CUpdatePlayerCollisionResponse();
+            Level31_8D64CUpdatePlayerSurfaceState();
+            Level31_8D64CProbePlayerContactSegment();
             goto sharedRotationCall;
         case 0x1A:
         case 0x1D:
-            Level31_8D64C_func_80041C20();
-            Level31_8D64C_func_80042A44();
+            Level31_8D64CUpdatePlayerCollisionResponse();
+            Level31_8D64CUpdatePlayerSurfaceState();
         sharedRotationCall:
-            Level31_8D64C_func_80043A38(0xC00);
+            Level31_8D64CBuildNegatedNormalizedPlayerVector(0xC00);
             Level31_8D64C_D_80070328.unk4[0] = 0;
             return;
         case 0x88:
-            if (Level31_8D64C_func_800438F4() == 0) {
-                Level31_8D64C_func_80043728();
+            if (Level31_8D64CApplyPlayerMovingSurfaceDelta() == 0) {
+                Level31_8D64CApplyPlayerGroundContactCorrection();
             }
-            Level31_8D64C_func_80041C20();
+            Level31_8D64CUpdatePlayerCollisionResponse();
             Level31_8D64C_D_80070328.unk9a = 0;
-            Level31_8D64C_func_80042A44();
+            Level31_8D64CUpdatePlayerSurfaceState();
             Level31_8D64C_D_80070328.unk4[0] = 0;
             if ((Level31_8D64C_D_80070328.critterMobyPtr->animationState.id ==
                  (Level31_8D64C_D_80070328.animationState - 0x87)) &&
-                ((unsigned int)(Level31_8D64C_func_80055E84(
+                ((unsigned int)(Level31_8D64CReadSelectedFrameScalar(
                                     Level31_8D64C_D_80070328.critterMobyPtr) -
                                 1) < 3U)) {
                 privateRecord17 = Level31_8D64C_D_80070328.critterMobyPtr->mobyTag;
@@ -924,13 +924,13 @@ void func_level_31_8008D64C(void) {
                                                    &scratch.sp28);
                 Level31_8D64CAddVector(&scratch.sp18, &scratch.sp18, &scratch.sp28);
                 Level31_8D64CShiftVectorRightTowardZero(&scratch.sp18, 1);
-                Level31_8D64C_func_8001BA30(&scratch.sp18, 0x140, 1, 0, 1,
-                                            Level31_8D64C_D_80070328.critterMobyPtr);
+                Level31_8D64CQueryDynamicMobyGeometry(&scratch.sp18, 0x140, 1, 0, 1,
+                                                      Level31_8D64C_D_80070328.critterMobyPtr);
                 if (Level31_8D64CField(privateRecord17, int*, 0x3C) > 0) {
                     Level31_8D64CAddVector(&scratch.sp28, &scratch.sp18, privateRecord17 + 0x3C);
                     Level31_8D64CShiftVectorRightTowardZero(&scratch.sp28, 1);
-                    Level31_8D64C_func_8001BA30(&scratch.sp28, 0x100, 1, 0, 4,
-                                                Level31_8D64C_D_80070328.critterMobyPtr);
+                    Level31_8D64CQueryDynamicMobyGeometry(&scratch.sp28, 0x100, 1, 0, 4,
+                                                          Level31_8D64C_D_80070328.critterMobyPtr);
                 }
                 Level31_8D64CCopyVector(privateRecord17 + 0x3C, &scratch.sp18);
                 tableByteOffset3 = Level31_8D64C_D_80070328.bodyRotation.yaw;
@@ -953,16 +953,16 @@ void func_level_31_8008D64C(void) {
         default:
             return;
         case 0x89:
-            if (Level31_8D64C_func_800438F4() == 0) {
-                Level31_8D64C_func_80043728();
+            if (Level31_8D64CApplyPlayerMovingSurfaceDelta() == 0) {
+                Level31_8D64CApplyPlayerGroundContactCorrection();
             }
-            Level31_8D64C_func_80041C20();
+            Level31_8D64CUpdatePlayerCollisionResponse();
             Level31_8D64C_D_80070328.unk9a = 0;
-            Level31_8D64C_func_80042A44();
+            Level31_8D64CUpdatePlayerSurfaceState();
             Level31_8D64C_D_80070328.unk4[0] = 0;
             if ((Level31_8D64C_D_80070328.critterMobyPtr->animationState.id ==
                  (Level31_8D64C_D_80070328.animationState - 0x87)) &&
-                ((unsigned int)(Level31_8D64C_func_80055E84(
+                ((unsigned int)(Level31_8D64CReadSelectedFrameScalar(
                                     Level31_8D64C_D_80070328.critterMobyPtr) -
                                 0xB) < 3U)) {
                 privateRecord18b = Level31_8D64C_D_80070328.critterMobyPtr->mobyTag;
@@ -977,13 +977,13 @@ void func_level_31_8008D64C(void) {
                                                    &scratch.sp48);
                 Level31_8D64CAddVector(&scratch.sp38, &scratch.sp38, &scratch.sp48);
                 Level31_8D64CShiftVectorRightTowardZero(&scratch.sp38, 1);
-                Level31_8D64C_func_8001BA30(&scratch.sp38, 0x140, 1, 0, 2,
-                                            Level31_8D64C_D_80070328.critterMobyPtr);
+                Level31_8D64CQueryDynamicMobyGeometry(&scratch.sp38, 0x140, 1, 0, 2,
+                                                      Level31_8D64C_D_80070328.critterMobyPtr);
                 if (Level31_8D64CField(privateRecord18b, int*, 0x3C) > 0) {
                     Level31_8D64CAddVector(&scratch.sp48, &scratch.sp38, privateRecord18b + 0x3C);
                     Level31_8D64CShiftVectorRightTowardZero(&scratch.sp48, 1);
-                    Level31_8D64C_func_8001BA30(&scratch.sp48, 0x100, 1, 0, 4,
-                                                Level31_8D64C_D_80070328.critterMobyPtr);
+                    Level31_8D64CQueryDynamicMobyGeometry(&scratch.sp48, 0x100, 1, 0, 4,
+                                                          Level31_8D64C_D_80070328.critterMobyPtr);
                 }
                 Level31_8D64CCopyVector(privateRecord18b + 0x3C, &scratch.sp38);
                 tableByteOffset3 = Level31_8D64C_D_80070328.bodyRotation.yaw;
@@ -1005,16 +1005,16 @@ void func_level_31_8008D64C(void) {
             }
             break;
         case 0x8A:
-            if (Level31_8D64C_func_800438F4() == 0) {
-                Level31_8D64C_func_80043728();
+            if (Level31_8D64CApplyPlayerMovingSurfaceDelta() == 0) {
+                Level31_8D64CApplyPlayerGroundContactCorrection();
             }
-            Level31_8D64C_func_80041C20();
+            Level31_8D64CUpdatePlayerCollisionResponse();
             Level31_8D64C_D_80070328.unk9a = 0;
-            Level31_8D64C_func_80042A44();
+            Level31_8D64CUpdatePlayerSurfaceState();
             Level31_8D64C_D_80070328.unk4[0] = 0;
             if ((Level31_8D64C_D_80070328.critterMobyPtr->animationState.id ==
                  (Level31_8D64C_D_80070328.animationState - 0x87)) &&
-                ((unsigned int)(Level31_8D64C_func_80055E84(
+                ((unsigned int)(Level31_8D64CReadSelectedFrameScalar(
                                     Level31_8D64C_D_80070328.critterMobyPtr) -
                                 3) < 3U)) {
                 privateRecord18c = Level31_8D64C_D_80070328.critterMobyPtr->mobyTag;
@@ -1029,13 +1029,13 @@ void func_level_31_8008D64C(void) {
                                                    &scratch.sp68);
                 Level31_8D64CAddVector(&scratch.sp58, &scratch.sp58, &scratch.sp68);
                 Level31_8D64CShiftVectorRightTowardZero(&scratch.sp58, 1);
-                Level31_8D64C_func_8001BA30(&scratch.sp58, 0x100, 1, 0, 4,
-                                            Level31_8D64C_D_80070328.critterMobyPtr);
+                Level31_8D64CQueryDynamicMobyGeometry(&scratch.sp58, 0x100, 1, 0, 4,
+                                                      Level31_8D64C_D_80070328.critterMobyPtr);
                 if (Level31_8D64CField(privateRecord18c, int*, 0x3C) > 0) {
                     Level31_8D64CAddVector(&scratch.sp68, &scratch.sp58, privateRecord18c + 0x3C);
                     Level31_8D64CShiftVectorRightTowardZero(&scratch.sp68, 1);
-                    Level31_8D64C_func_8001BA30(&scratch.sp68, 0x100, 1, 0, 4,
-                                                Level31_8D64C_D_80070328.critterMobyPtr);
+                    Level31_8D64CQueryDynamicMobyGeometry(&scratch.sp68, 0x100, 1, 0, 4,
+                                                          Level31_8D64C_D_80070328.critterMobyPtr);
                 }
                 Level31_8D64CCopyVector(privateRecord18c + 0x3C, &scratch.sp58);
                 tableByteOffset3 = Level31_8D64C_D_80070328.bodyRotation.yaw;
@@ -1115,14 +1115,14 @@ void func_level_31_8008DE1C(int index) {
  * and all complete retail EXE/overlay hashes before acceptance.
  */
 int Transition31Zero(Vector3D*) __asm__("func_8004F168");
-int Transition31Call441F0(void) __asm__("func_800441F0");
+int Transition31ClearPlayerMotionVectors(void) __asm__("func_800441F0");
 extern Spyro Callback31_D_80070328 __asm__("D_80070328");
 extern short Callback31_D_800658A0[] __asm__("D_800658A0");
 extern short Callback31_D_80065920[] __asm__("D_80065920");
 int Callback31MeasureVectorLength(Vector3D*, int) __asm__("func_8004EDE8");
 int Callback31RandBetween(int low, int high) __asm__("func_8003636C");
-void Callback31_func_80043A38(int scale) __asm__("func_80043A38");
-void Callback31_func_800441F0(void) __asm__("func_800441F0");
+void Callback31BuildNegatedNormalizedPlayerVector(int scale) __asm__("func_80043A38");
+void Callback31ClearPlayerMotionVectors(void) __asm__("func_800441F0");
 void Callback31ClearVector(Vector3D*) __asm__("func_8004F168");
 extern int Callback31_D_8006E524 __asm__("D_8006E524");
 extern unsigned char Raw31Union[] __asm__("D_80070328+0x144");
@@ -1143,7 +1143,7 @@ void func_level_31_8008DEC0(int selector) {
         case 0x14:
             Callback31_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Callback31_D_80070328.unk5 = 0;
-            Callback31_func_800441F0();
+            Callback31ClearPlayerMotionVectors();
             Callback31_D_80070328.grounded = 1;
             Callback31_D_80070328.union144.a.unk13cb = Callback31RandBetween(1, 3);
             Callback31_D_80070328.union144.a.unk13cc = 0;
@@ -1155,7 +1155,7 @@ void func_level_31_8008DEC0(int selector) {
             Callback31_D_80070328.unk5 = 0;
             Callback31_D_80070328.unk8[0] = Callback31MeasureVectorLength(
                 (Vector3D*)((unsigned char*)&Callback31_D_80070328.movementState + 0x48), 0);
-            Callback31_func_80043A38(0xC00);
+            Callback31BuildNegatedNormalizedPlayerVector(0xC00);
             Callback31_D_80070328.grounded = 1;
             goto clearPointers;
         case 0x1D: {
@@ -1181,7 +1181,7 @@ void func_level_31_8008DEC0(int selector) {
             if (component == 0)
                 shiftedZ = Callback31_D_80070328.unk7a[3].z;
             Callback31_D_80070328.unk7a[2].z = shiftedZ;
-            Callback31_func_80043A38(0xC00);
+            Callback31BuildNegatedNormalizedPlayerVector(0xC00);
             Callback31_D_80070328.grounded = 1;
             Callback31_D_8006E524 = 0xF;
             if (SpawnParticle != 0) {
@@ -1210,7 +1210,7 @@ void func_level_31_8008DEC0(int selector) {
         case 0x20:
             Callback31_D_80070328.movementState = MOVEMENT_STATE_DEATH;
             Callback31_D_80070328.unk5 = 0;
-            Callback31_func_80043A38(0xC00);
+            Callback31BuildNegatedNormalizedPlayerVector(0xC00);
             Callback31_D_80070328.grounded = 1;
             if ((selector == 0x3A) || (selector == 0x6C)) {
                 PlaySound((int)D_8006C654->lavaBurn, 0, 0);
@@ -1226,7 +1226,7 @@ void func_level_31_8008DEC0(int selector) {
             Callback31_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Callback31_D_80070328.unk5 = 0;
             {
-                register int callResult __asm__("$2") = Transition31Call441F0();
+                register int callResult __asm__("$2") = Transition31ClearPlayerMotionVectors();
                 MATCHING_OBSERVE_VOLATILE_CLOBBER(callResult, "$4");
             }
             goto markGrounded;
@@ -1247,7 +1247,7 @@ void func_level_31_8008DEC0(int selector) {
             }
             Callback31_D_80070328.unk8[0] =
                 Callback31MeasureVectorLength(&Callback31_D_80070328.unk7a[3], 0);
-            Callback31_func_80043A38(0xC00);
+            Callback31BuildNegatedNormalizedPlayerVector(0xC00);
             Callback31_D_80070328.union144.a.unk13cb = MOVEMENT_STATE_STAND;
             Callback31_D_80070328.grounded = 1;
             Callback31_D_80070328.idle = 0;
@@ -1264,7 +1264,7 @@ void func_level_31_8008DEC0(int selector) {
             Callback31_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Callback31_D_80070328.unk5 = 0;
             {
-                register int callResult __asm__("$2") = Transition31Call441F0();
+                register int callResult __asm__("$2") = Transition31ClearPlayerMotionVectors();
                 MATCHING_OBSERVE_VOLATILE_CLOBBER(callResult, "$5");
             }
             goto markGrounded;
@@ -1279,7 +1279,7 @@ void func_level_31_8008DEC0(int selector) {
             Callback31_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Callback31_D_80070328.unk5 = 0;
             {
-                register int callResult __asm__("$2") = Transition31Call441F0();
+                register int callResult __asm__("$2") = Transition31ClearPlayerMotionVectors();
                 MATCHING_OBSERVE_VOLATILE_CLOBBER(callResult, "$6");
             }
             goto markGrounded;
@@ -1294,7 +1294,7 @@ void func_level_31_8008DEC0(int selector) {
             Callback31_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Callback31_D_80070328.unk5 = 0;
             {
-                register int callResult __asm__("$2") = Transition31Call441F0();
+                register int callResult __asm__("$2") = Transition31ClearPlayerMotionVectors();
                 MATCHING_OBSERVE_VOLATILE_CLOBBER(callResult, "$7");
             }
             goto markGrounded;
@@ -1302,7 +1302,7 @@ void func_level_31_8008DEC0(int selector) {
         case 0x8D:
             Callback31_D_80070328.movementState = MOVEMENT_STATE_HURT;
             Callback31_D_80070328.unk5 = 0;
-            Callback31_func_800441F0();
+            Callback31ClearPlayerMotionVectors();
             tableByteOffset = Callback31_D_80070328.unk22[5] * 2;
             if (Callback31_D_80070328.unk22[5] < 0) {
                 {
@@ -1322,14 +1322,14 @@ void func_level_31_8008DEC0(int selector) {
                 Callback31_D_80070328.unk7a[1].z = 0;
                 Callback31_D_80070328.unk7a[1].y = sample;
             }
-            Callback31_func_80043A38(0xC00);
+            Callback31BuildNegatedNormalizedPlayerVector(0xC00);
             Callback31_D_80070328.grounded = 1;
             Callback31_D_8006E524 = 0xF;
             return;
         case 0x92:
             Callback31_D_80070328.movementState = MOVEMENT_STATE_DEATH;
             Callback31_D_80070328.unk5 = 0;
-            Callback31_func_80043A38(0xC00);
+            Callback31BuildNegatedNormalizedPlayerVector(0xC00);
         markGrounded:
             Callback31_D_80070328.grounded = 1;
             return;
@@ -1360,11 +1360,11 @@ void func_level_31_8008DEC0(int selector) {
  * word and the complete EXE/every-overlay retail hashes. Binary identity does
  * not establish synchronized runtime or system completeness. */
 int Anim31CallPlaySoundView1() __asm__("PlaySound");
-int Anim31Call3B7B4View1() __asm__("func_8003B7B4");
-int Anim31Call4BEF8View1() __asm__("func_8004BEF8");
+int Anim31RegisterTrackedValueView1() __asm__("func_8003B7B4");
+int Anim31DispatchPlayerStateRequestView1() __asm__("func_8004BEF8");
 int Anim31NormalizeVectorToLengthView1() __asm__("func_8004EF04");
 int Anim31SubtractVectorView1() __asm__("func_8004F1C8");
-int Anim31Call55E84View1() __asm__("func_80055E84");
+int Anim31ReadSelectedFrameScalarView1() __asm__("func_80055E84");
 extern int Anim31Data6C550View1 __asm__("D_8006C550");
 extern void* Anim31Data6C654View1 __asm__("D_8006C654");
 extern unsigned char Anim31Data6C7F8View1 __asm__("D_8006C7F8");
@@ -1395,12 +1395,12 @@ extern int Anim31Data6E538View2 __asm__("D_8006E538"), Anim31Data6E53CView2 __as
 extern int Anim31Data6E044View1 __asm__("D_8006E044"), Anim31Data6E344View1 __asm__("D_8006E344"),
     Anim31Data6C514View1 __asm__("D_8006C514");
 extern int Anim31Player24View1 __asm__("D_80070328 + 0x24");
-int Anim31Call40994View1() __asm__("func_80040994");
-int Anim31Call4BEF8View2() __asm__("func_8004BEF8");
-int Anim31Call49688View1() __asm__("func_80049688");
-int Anim31Call498C0View1() __asm__("func_800498C0");
+int Anim31ProcessPlayerStateFlagsView1() __asm__("func_80040994");
+int Anim31DispatchPlayerStateRequestView2() __asm__("func_8004BEF8");
+int Anim31SelectPlayerAnimationLoopRequestView1() __asm__("func_80049688");
+int Anim31UpdatePlayerRetryStateView1() __asm__("func_800498C0");
 extern unsigned char Anim31Data6E535View1 __asm__("D_8006E535");
-int Anim31Call40954View1() __asm__("func_80040954");
+int Anim31GetSurfaceTypeFromFlagsView1() __asm__("func_80040954");
 extern int Anim31Player10CView1 __asm__("D_80070328 + 0x10C");
 extern int Anim31PlayerB4View1 __asm__("D_80070328 + 0xB4");
 extern void* Anim31Player250View1 __asm__("D_80070328 + 0x250");
@@ -1421,17 +1421,17 @@ void func_level_31_8008E3C8(void) {
     rawValue2 = Anim31Player48View2;
     switch (rawValue2) {
         case 20:
-            if (Anim31Call40994View1())
+            if (Anim31ProcessPlayerStateFlagsView1())
                 return;
             if (Anim31Data6E53CView2 & 0x40) {
-                Anim31Call4BEF8View2(6);
+                Anim31DispatchPlayerStateRequestView2(6);
                 return;
             }
             if (Anim31PlayerB8View1 >= 4 || Anim31PlayerE4View1 >= 23)
                 goto set7;
             rawValue3 = Anim31Data6E538View2;
             if (rawValue3 & 0x80) {
-                Anim31Call4BEF8View2(13);
+                Anim31DispatchPlayerStateRequestView2(13);
                 return;
             }
             rawValue2 = Anim31PlayerA8View1;
@@ -1448,7 +1448,7 @@ void func_level_31_8008E3C8(void) {
                 MATCHING_KEEP(statePointer16);
                 if (!*statePointer16)
                     return;
-                Anim31Call4BEF8View2(0);
+                Anim31DispatchPlayerStateRequestView2(0);
                 if (Anim31Data66530View1[*((unsigned char*)statePointer16 - 0x2C)] >= 96) {
                     Anim31Player14View1 = Anim31Player15View1;
                     Anim31Player16View1 = Anim31Player17View1;
@@ -1463,17 +1463,17 @@ void func_level_31_8008E3C8(void) {
                 return;
             }
             if (Anim31PlayerFCView1) {
-                Anim31Call4BEF8View2(15);
+                Anim31DispatchPlayerStateRequestView2(15);
                 return;
             }
-            Anim31Call49688View1();
+            Anim31SelectPlayerAnimationLoopRequestView1();
             return;
         case 10:
-            if (Anim31Call40994View1())
+            if (Anim31ProcessPlayerStateFlagsView1())
                 return;
             if (Anim31PlayerB8View1 >= 4 || Anim31PlayerE4View1 >= 23)
                 goto set7;
-            rawValue2 = Anim31Call40954View1(Anim31Player10CView1);
+            rawValue2 = Anim31GetSurfaceTypeFromFlagsView1(Anim31Player10CView1);
             rawValue3 = 4;
             if (rawValue2 != rawValue3)
                 goto set1;
@@ -1487,11 +1487,11 @@ void func_level_31_8008E3C8(void) {
                 goto set12;
             return;
         case 11:
-            if (Anim31Call40994View1())
+            if (Anim31ProcessPlayerStateFlagsView1())
                 return;
             if (Anim31PlayerB8View1 >= 4 || Anim31PlayerE4View1 >= 23)
                 goto set7;
-            rawValue2 = Anim31Call40954View1(Anim31Player10CView1);
+            rawValue2 = Anim31GetSurfaceTypeFromFlagsView1(Anim31Player10CView1);
             rawValue3 = 4;
             if (rawValue2 != rawValue3)
                 goto set1;
@@ -1500,35 +1500,35 @@ void func_level_31_8008E3C8(void) {
             if (Anim31PlayerB4View1 < 2305)
                 goto set10;
         set12:
-            Anim31Call4BEF8View2(12);
+            Anim31DispatchPlayerStateRequestView2(12);
             return;
         case 12:
-            if (Anim31Call40994View1())
+            if (Anim31ProcessPlayerStateFlagsView1())
                 return;
             if (Anim31PlayerB8View1 >= 4 || Anim31PlayerE4View1 >= 23)
                 goto set7;
-            rawValue2 = Anim31Call40954View1(Anim31Player10CView1);
+            rawValue2 = Anim31GetSurfaceTypeFromFlagsView1(Anim31Player10CView1);
             rawValue3 = 4;
             if (rawValue2 != rawValue3) {
             set1:
-                Anim31Call4BEF8View2(1);
+                Anim31DispatchPlayerStateRequestView2(1);
                 return;
             }
             if (!Anim31Data6E535View1) {
             set11:
-                Anim31Call4BEF8View2(11);
+                Anim31DispatchPlayerStateRequestView2(11);
                 return;
             }
             if (Anim31PlayerB4View1 >= 1536)
                 return;
         set10:
-            Anim31Call4BEF8View2(10);
+            Anim31DispatchPlayerStateRequestView2(10);
             return;
         case 29:
             if (Anim31Player54View1 < 25)
                 return;
             if (Anim31Player280View1 < 0) {
-                Anim31Call4BEF8View2(31);
+                Anim31DispatchPlayerStateRequestView2(31);
                 return;
             }
             rawValue3 = Anim31Player144View1;
@@ -1550,7 +1550,7 @@ void func_level_31_8008E3C8(void) {
             if (Anim31Player280View1 < 0) {
                 argument5 = 0;
                 MATCHING_KEEP_VOLATILE(argument5);
-                Anim31Call4BEF8View2(32);
+                Anim31DispatchPlayerStateRequestView2(32);
                 return;
             }
             Anim31CallPlaySoundView1(Anim31Field(Anim31Data6C654View1, unsigned char*, 15), 0, 0);
@@ -1558,27 +1558,27 @@ void func_level_31_8008E3C8(void) {
             rawValue2 = 10;
             if (rawValue3 == rawValue2) {
             set44:
-                Anim31Call4BEF8View2(44);
+                Anim31DispatchPlayerStateRequestView2(44);
                 return;
             }
             rawValue2 = rawValue3 - 11;
             if ((unsigned int)rawValue2 < 2) {
             set41:
-                Anim31Call4BEF8View2(41);
+                Anim31DispatchPlayerStateRequestView2(41);
                 return;
             }
             if (Anim31PlayerB8View1) {
             set7:
-                Anim31Call4BEF8View2(7);
+                Anim31DispatchPlayerStateRequestView2(7);
                 return;
             }
         set0:
-            Anim31Call4BEF8View2(0);
+            Anim31DispatchPlayerStateRequestView2(0);
             return;
         case 32:
             if (Anim31Player54View1 < 125)
                 return;
-            Anim31Call498C0View1();
+            Anim31UpdatePlayerRetryStateView1();
             return;
         case 135:
             rawValue2 = (int)Anim31Player250View1;
@@ -1660,7 +1660,7 @@ void func_level_31_8008E3C8(void) {
             rawValue2 = (int)Anim31OverlayCallbackView1;
             if (((int (*)())rawValue2)(7))
                 return;
-            rawValue2 = Anim31Call55E84View1(Anim31Player250View1);
+            rawValue2 = Anim31ReadSelectedFrameScalarView1(Anim31Player250View1);
             rawValue2 = rawValue2 < 8;
             if (rawValue2)
                 goto checkSelector136;
@@ -1671,7 +1671,7 @@ void func_level_31_8008E3C8(void) {
             if (rawValue2) {
                 rawValue2 = Anim31Field((void*)rawValue3, int*, 0x28) < 15;
                 if (!rawValue2) {
-                    Anim31Call4BEF8View1(136);
+                    Anim31DispatchPlayerStateRequestView1(136);
                     rawValue3 = (int)Anim31Player250View1;
                     rawValue2 = 114;
                     Anim31Field((void*)rawValue3, signed char*, 0x40) = rawValue2;
@@ -1791,7 +1791,7 @@ void func_level_31_8008E3C8(void) {
             rawValue2 = (int)Anim31OverlayCallbackView1;
             if (((int (*)())rawValue2)(7))
                 return;
-            rawValue2 = Anim31Call55E84View1(Anim31Player250View1);
+            rawValue2 = Anim31ReadSelectedFrameScalarView1(Anim31Player250View1);
             rawValue2 = rawValue2 < 10;
             if (rawValue2)
                 goto checkSelector138;
@@ -1810,7 +1810,7 @@ void func_level_31_8008E3C8(void) {
             if (rawValue2) {
                 rawValue2 = Anim31Field((void*)rawValue3, int*, 0x28) < 20;
                 if (!rawValue2) {
-                    Anim31Call4BEF8View1(138);
+                    Anim31DispatchPlayerStateRequestView1(138);
                     rawValue3 = (int)Anim31Player250View1;
                     rawValue2 = 114;
                     Anim31Field((void*)rawValue3, signed char*, 0x40) = rawValue2;
@@ -1979,7 +1979,7 @@ void func_level_31_8008E3C8(void) {
                 rawValue2 = Anim31Field(savedPointer16, int*, 0x28) < 15;
                 if (!rawValue2) {
                 set136:
-                    Anim31Call4BEF8View1(136);
+                    Anim31DispatchPlayerStateRequestView1(136);
                     return;
                 }
             }
@@ -1990,7 +1990,7 @@ void func_level_31_8008E3C8(void) {
                 rawValue2 = Anim31Field(savedPointer16, int*, 0x28) < 20;
                 if (!rawValue2) {
                 set138:
-                    Anim31Call4BEF8View1(138);
+                    Anim31DispatchPlayerStateRequestView1(138);
                     return;
                 }
             }
@@ -2001,14 +2001,14 @@ void func_level_31_8008E3C8(void) {
                 rawValue2 = Anim31Field(savedPointer16, int*, 0x28) < 30;
                 if (!rawValue2) {
                 set137:
-                    Anim31Call4BEF8View1(137);
+                    Anim31DispatchPlayerStateRequestView1(137);
                     return;
                 }
             }
             rawValue2 = Anim31Data6E538View1 & 16;
             if (rawValue2) {
             set139:
-                Anim31Call4BEF8View1(139);
+                Anim31DispatchPlayerStateRequestView1(139);
                 return;
             }
             rawValue2 = Anim31PlayerACView2;
@@ -2032,7 +2032,7 @@ void func_level_31_8008E3C8(void) {
                 rawValue2 = 142;
                 if (rawValue3 != rawValue2) {
                 set142:
-                    Anim31Call4BEF8View1(142);
+                    Anim31DispatchPlayerStateRequestView1(142);
                     return;
                 }
             }
@@ -2042,7 +2042,7 @@ void func_level_31_8008E3C8(void) {
                 rawValue2 = 145;
                 if (rawValue3 != rawValue2) {
                 set145:
-                    Anim31Call4BEF8View1(145);
+                    Anim31DispatchPlayerStateRequestView1(145);
                     return;
                 }
             }
@@ -2052,7 +2052,7 @@ void func_level_31_8008E3C8(void) {
                 rawValue2 = 143;
                 if (rawValue3 != rawValue2) {
                 set143:
-                    Anim31Call4BEF8View1(143);
+                    Anim31DispatchPlayerStateRequestView1(143);
                     return;
                 }
             }
@@ -2064,7 +2064,7 @@ void func_level_31_8008E3C8(void) {
             if (rawValue3 == rawValue2)
                 return;
         set144:
-            Anim31Call4BEF8View1(144);
+            Anim31DispatchPlayerStateRequestView1(144);
             return;
         case 140:
         case 141:
@@ -2078,7 +2078,7 @@ void func_level_31_8008E3C8(void) {
             rawValue2 = 17;
             if (rawValue3 == rawValue2) {
             set147:
-                Anim31Call4BEF8View1(147);
+                Anim31DispatchPlayerStateRequestView1(147);
                 return;
             }
             rawValue2 = Anim31Player48View2;
@@ -2092,10 +2092,10 @@ void func_level_31_8008E3C8(void) {
             rawValue2 = Anim31Field((void*)argument5, int*, 0x24);
             if (rawValue2 > 0)
                 goto set135;
-            Anim31Call4BEF8View1(146);
+            Anim31DispatchPlayerStateRequestView1(146);
             return;
         set135:
-            Anim31Call4BEF8View1(135);
+            Anim31DispatchPlayerStateRequestView1(135);
             return;
         case 146:
             argument4 = (int)Anim31Player250View1;
@@ -2114,7 +2114,7 @@ void func_level_31_8008E3C8(void) {
             rawValue2 = -1;
             argument4 = rawValue3 + 0x24;
             Anim31Field((void*)rawValue3, int*, 0x24) = rawValue2;
-            Anim31Call3B7B4View1((void*)argument4, argument5, (void*)argument6);
+            Anim31RegisterTrackedValueView1((void*)argument4, argument5, (void*)argument6);
         case 147:
             __asm__ volatile("" : : "i"(0x8008F4CC) : "memory");
             return;

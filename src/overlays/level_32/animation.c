@@ -29,12 +29,12 @@
  * target, selector/padding/data word and full EXE/every-overlay retail hash.
  * Binary identity does not establish synchronized runtime/system completion. */
 #define Physics32Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Physics32Call363DCView1() __asm__("func_800363DC");
-unsigned char Physics32Call40D10View1() __asm__("func_80040D10");
-unsigned char Physics32Call41580View1() __asm__("func_80041580");
-unsigned char Physics32Call416F4View1() __asm__("func_800416F4");
-unsigned char Physics32Call417FCView1() __asm__("func_800417FC");
-unsigned char Physics32Call41B64View1() __asm__("func_80041B64");
+int Physics32RandSignedBetweenView1() __asm__("func_800363DC");
+unsigned char Physics32UpdatePlayerGroundInputTargetsView1() __asm__("func_80040D10");
+unsigned char Physics32ApproachPlayerTargetHeadingView1() __asm__("func_80041580");
+unsigned char Physics32BlendPlayerHeadingFromInputVectorView1() __asm__("func_800416F4");
+unsigned char Physics32ApproachPlayerTargetSpeedView1() __asm__("func_800417FC");
+unsigned char Physics32BuildPlayerResponseVectorView1() __asm__("func_80041B64");
 int Physics32InterpolateSineView1() __asm__("func_8004E9E4");
 int Physics32InterpolateCosineView1() __asm__("func_8004EA2C");
 unsigned char Physics32TransformVectorByBasisView1() __asm__("func_8004ED6C");
@@ -78,7 +78,7 @@ extern int Physics32Data6E344View1 __asm__("D_8006E344");
 extern unsigned char Physics32Player0View2 __asm__("D_80070328");
 extern void* (*Physics34_SpawnParticle)() __asm__("SpawnParticle");
 extern int Physics32Player16CView1 __asm__("D_80070328+0x16C");
-int Physics32Call417FCView2() __asm__("func_800417FC");
+int Physics32ApproachPlayerTargetSpeedView2() __asm__("func_800417FC");
 int Physics32PlanarHeadingLookupView1() __asm__("func_8004E880");
 int Physics32InterpolateSineView2() __asm__("func_8004E9E4");
 int Physics32InterpolateCosineView2() __asm__("func_8004EA2C");
@@ -101,12 +101,12 @@ extern int Physics32PlayerCCView1 __asm__("D_80070328+0xCC");
 extern int Physics32PlayerD0View1 __asm__("D_80070328+0xD0");
 extern int Physics32PlayerE4View1 __asm__("D_80070328+0xE4");
 extern unsigned char Physics32PlayerFCView2 __asm__("D_80070328+0xFC");
-int Physics32Call40D10View2() __asm__("func_80040D10");
-int Physics32Call410F8View1() __asm__("func_800410F8");
-int Physics32Call41580View2() __asm__("func_80041580");
-int Physics32Call417FCView3() __asm__("func_800417FC");
-int Physics32Call41848View1() __asm__("func_80041848");
-int Physics32Call41B64View2() __asm__("func_80041B64");
+int Physics32UpdatePlayerGroundInputTargetsView2() __asm__("func_80040D10");
+int Physics32UpdateSmoothedInputPairView1() __asm__("func_800410F8");
+int Physics32ApproachPlayerTargetHeadingView2() __asm__("func_80041580");
+int Physics32ApproachPlayerTargetSpeedView3() __asm__("func_800417FC");
+int Physics32BuildPlayerMovementVectorView1() __asm__("func_80041848");
+int Physics32BuildPlayerResponseVectorView2() __asm__("func_80041B64");
 int Physics32InterpolateCosineView3() __asm__("func_8004EA2C");
 int Physics32TransformVectorByBasisView2() __asm__("func_8004ED6C");
 int Physics32ShiftVectorRightTowardZeroView2() __asm__("func_8004F110");
@@ -122,26 +122,26 @@ extern void* (*Physics21_SpawnParticle)() __asm__("SpawnParticle");
 extern int Physics32Player8CView1 __asm__("D_80070328+0x8C");
 extern int Physics32Player158View1 __asm__("D_80070328+0x158");
 extern int Physics32Player20CView1 __asm__("D_80070328+0x20C");
-int Physics32Call410F8View2() __asm__("func_800410F8");
-int Physics32Call417FCView4() __asm__("func_800417FC");
-int Physics32Call41848View2() __asm__("func_80041848");
+int Physics32UpdateSmoothedInputPairView2() __asm__("func_800410F8");
+int Physics32ApproachPlayerTargetSpeedView4() __asm__("func_800417FC");
+int Physics32BuildPlayerMovementVectorView2() __asm__("func_80041848");
 int Physics32InterpolateCosineView4() __asm__("func_8004EA2C");
 int Physics32CopyVectorView5() __asm__("func_8004F178");
 extern void* (*Physics32_SpawnParticle)() __asm__("SpawnParticle");
 extern unsigned char Physics32Player0View4 __asm__("D_80070328");
-int Physics32Call40F48View1() __asm__("func_80040F48");
-int Physics32Call417FCView5() __asm__("func_800417FC");
-int Physics32Call41848View3() __asm__("func_80041848");
-int Physics32Call4E56CView1() __asm__("func_8004E56C");
+int Physics32BuildOrientedInputPairView1() __asm__("func_80040F48");
+int Physics32ApproachPlayerTargetSpeedView5() __asm__("func_800417FC");
+int Physics32BuildPlayerMovementVectorView3() __asm__("func_80041848");
+int Physics32WriteBasisAngleTripletView1() __asm__("func_8004E56C");
 int Physics32PlanarHeadingLookupView2() __asm__("func_8004E880");
-int Physics32Call4ECF4View1() __asm__("func_8004ECF4");
+int Physics32TransposePackedHalfwordMatrix3x3View1() __asm__("func_8004ECF4");
 int Physics32MeasureVectorLengthView4() __asm__("func_8004EDE8");
 int Physics32ScaleVectorRatioQ15View4() __asm__("func_8004F08C");
 int Physics32CopyVectorView6() __asm__("func_8004F178");
 int Physics32AddVectorView5() __asm__("func_8004F194");
 int Physics32SubtractVectorView4() __asm__("func_8004F1C8");
-int Physics32Call4F6C4View1() __asm__("func_8004F6C4");
-int Physics32Call5F35CView1() __asm__("func_8005F35C");
+int Physics32BuildEulerBasisPairView1() __asm__("func_8004F6C4");
+int Physics32MultiplyPackedGteMatricesView1() __asm__("func_8005F35C");
 extern int* Physics32Data6C570View3 __asm__("D_8006C570");
 extern int Physics32Data6E538View1 __asm__("D_8006E538");
 extern int Physics32PlayerA8View1 __asm__("D_80070328+0xA8");
@@ -166,7 +166,7 @@ extern int Physics32Player84View1 __asm__("D_80070328+0x84");
 extern int Physics32PlayerF4View1 __asm__("D_80070328+0xF4");
 extern int Physics32Player8View1 __asm__("D_80070328+0x8");
 extern int Physics32Player48View1 __asm__("D_80070328+0x48");
-int Physics32Call41580View3() __asm__("func_80041580");
+int Physics32ApproachPlayerTargetHeadingView3() __asm__("func_80041580");
 void func_level_32_80097550(int slotIndex) {
     register int signedWord19 __asm__("$20");
     register int signedWord20 __asm__("$21");
@@ -256,9 +256,9 @@ void func_level_32_80097550(int slotIndex) {
             Physics32ClearVectorView1(globalVector80);
             Physics32ClearVectorView1(globalVector80 + 0xC);
             if (Physics32Data6E044View1 != 7) {
-                Physics32Call40D10View1(0x1200);
-                Physics32Call416F4View1();
-                Physics32Call41580View1(0x5A, 0x10);
+                Physics32UpdatePlayerGroundInputTargetsView1(0x1200);
+                Physics32BlendPlayerHeadingFromInputVectorView1();
+                Physics32ApproachPlayerTargetHeadingView1(0x5A, 0x10);
                 return;
             }
             return;
@@ -270,9 +270,9 @@ void func_level_32_80097550(int slotIndex) {
             MATCHING_KEEP(workWord3);
             workWord2 = 1;
             if (workWord3 == workWord2) {
-                Physics32Call40D10View1(0xC80);
-                Physics32Call41580View1(0x28, 8);
-                Physics32Call417FCView1(0x140, 0xC0);
+                Physics32UpdatePlayerGroundInputTargetsView1(0xC80);
+                Physics32ApproachPlayerTargetHeadingView1(0x28, 8);
+                Physics32ApproachPlayerTargetSpeedView1(0x140, 0xC0);
                 globalVector8CState9 = globalField4CPointer + 0x40;
                 workWord2 = Physics32InterpolateCosineView1(
                     Physics32Field(&Physics32Player0View1, int*, 0xA4));
@@ -300,7 +300,7 @@ void func_level_32_80097550(int slotIndex) {
                     var_a0 = globalField4CPointer + 0x34;
                 }
                 Physics32AddVectorView1(var_a0, globalVector8CState9, &originalFrame.sp10);
-                Physics32Call41B64View1();
+                Physics32BuildPlayerResponseVectorView1();
                 if (combinedIndex < 0xD) {
                     MATCHING_OBSERVE(combinedIndex);
                     workWord2 = Physics32Player94View2;
@@ -515,12 +515,12 @@ void func_level_32_80097550(int slotIndex) {
             Physics32Field(&Physics32Player0View4, int*, 0xA4) = Physics32PlanarHeadingLookupView2(
                 Physics32Field(&Physics32Player0View4, int*, 0x8C),
                 Physics32Field(&Physics32Player0View4, int*, 0x90), 1);
-            Physics32Call41580View3(0x5A, 0x10);
+            Physics32ApproachPlayerTargetHeadingView3(0x5A, 0x10);
             return;
         case 28:
-            Physics32Call40D10View1(0xC80);
-            Physics32Call41580View1(0x28, 8);
-            Physics32Call417FCView1(0x140, 0xC0);
+            Physics32UpdatePlayerGroundInputTargetsView1(0xC80);
+            Physics32ApproachPlayerTargetHeadingView1(0x28, 8);
+            Physics32ApproachPlayerTargetSpeedView1(0x140, 0xC0);
             globalFieldA4Pointer = &Physics32Player0View1 + 0xA4;
             globalVector8CState20 = globalFieldA4Pointer - 0x18;
             workWord2 =
@@ -549,7 +549,7 @@ void func_level_32_80097550(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer - 0x24;
             }
             Physics32AddVectorView1(var_a0_3, globalVector8CState20, &originalFrame.sp30);
-            Physics32Call41B64View1();
+            Physics32BuildPlayerResponseVectorView1();
             if (combinedIndex < 0xD) {
                 MATCHING_OBSERVE(combinedIndex);
                 nextField94 = Physics32Field(&Physics32Player0View1, int*, 0x94) + 0x17;
@@ -571,7 +571,7 @@ void func_level_32_80097550(int slotIndex) {
                     MATCHING_KEEP(vectorAt40);
                 spawnParticleLoop:
                     if (particleThreshold < (Physics32CallRandView1() & 0xFF)) {
-                        workWord2 = Physics32Call363DCView1(0, 0xC);
+                        workWord2 = Physics32RandSignedBetweenView1(0, 0xC);
                         call4 = globalByteE + 0x22;
                         workWord3 = *globalByteE;
                         MATCHING_KEEP(workWord3);
@@ -594,9 +594,9 @@ void func_level_32_80097550(int slotIndex) {
                         MATCHING_BARRIER_VOLATILE("memory");
                         originalFrame.sp44 = (workWord3 * 5) >> 0xA;
                         Physics32TransformVectorByBasisView1(call4, call5, call6, signedTableWord);
-                        originalFrame.sp50 += Physics32Call363DCView1(0, 0x50);
-                        originalFrame.sp54 += Physics32Call363DCView1(0, 0x50);
-                        originalFrame.sp58 += Physics32Call363DCView1(0, 0x50);
+                        originalFrame.sp50 += Physics32RandSignedBetweenView1(0, 0x50);
+                        originalFrame.sp54 += Physics32RandSignedBetweenView1(0, 0x50);
+                        originalFrame.sp58 += Physics32RandSignedBetweenView1(0, 0x50);
                         Physics32AddVectorView1(vectorAt40, vectorAt40, globalByteE - 0xE);
                         temp_v0_5 =
                             Controller88028_SpawnParticle(1, 0x3A, vectorAt40, &originalFrame.sp40);
@@ -619,7 +619,7 @@ void func_level_32_80097550(int slotIndex) {
         case 48: {
             register int numeric4 __asm__("$4");
             register int numeric5 __asm__("$5");
-            Physics32Call40F48View1(&originalFrame.sp40, 0);
+            Physics32BuildOrientedInputPairView1(&originalFrame.sp40, 0);
             workWord2 = originalFrame.sp40;
             call5 = &Physics32PlayerA8View1;
             workWord3 = workWord2 * 9;
@@ -807,8 +807,9 @@ void func_level_32_80097550(int slotIndex) {
             Physics32Field(&originalFrame.sp64, short*, 0) = workWord3;
             workWord2 = -workWord2;
             Physics32Field(&originalFrame.sp60, short*, 2) = workWord2;
-            Physics32Call4F6C4View1(call4, call5, call6);
-            Physics32Call4ECF4View1(globalVector8CState20, globalVector8CState20);
+            Physics32BuildEulerBasisPairView1(call4, call5, call6);
+            Physics32TransposePackedHalfwordMatrix3x3View1(globalVector8CState20,
+                                                           globalVector8CState20);
             call4 = globalVector80;
             call5 = savedPointer17;
             MATCHING_OBSERVE2_VOLATILE_CLOBBER(call4, call5, "memory");
@@ -817,10 +818,11 @@ void func_level_32_80097550(int slotIndex) {
             Physics32Field(&originalFrame.sp60, short*, 0) = signedWord20;
             Physics32Field(&originalFrame.sp60, short*, 2) = signedWord19;
             Physics32Field(&originalFrame.sp64, short*, 0) = signedWord21;
-            Physics32Call4F6C4View1(call4, call5, call6);
-            Physics32Call4ECF4View1(savedPointer17, savedPointer17);
-            Physics32Call5F35CView1(globalVector8CState20, savedPointer17, globalVector80);
-            Physics32Call4E56CView1(savedPointer22, globalVector80);
+            Physics32BuildEulerBasisPairView1(call4, call5, call6);
+            Physics32TransposePackedHalfwordMatrix3x3View1(savedPointer17, savedPointer17);
+            Physics32MultiplyPackedGteMatricesView1(globalVector8CState20, savedPointer17,
+                                                    globalVector80);
+            Physics32WriteBasisAngleTripletView1(savedPointer22, globalVector80);
             workWord2 = Physics32Player164View1;
             if (workWord2) {
                 workWord2 = 14208;
@@ -854,8 +856,8 @@ void func_level_32_80097550(int slotIndex) {
                 workWord2 = 96;
                 Physics32Player168View1 = workWord2;
             }
-            Physics32Call417FCView5(call4, 48);
-            Physics32Call41848View3();
+            Physics32ApproachPlayerTargetSpeedView5(call4, 48);
+            Physics32BuildPlayerMovementVectorView3();
             workWord3 = Physics32Player4CView2;
             workWord2 = 4;
             if (workWord3 != workWord2)
@@ -974,7 +976,7 @@ void func_level_32_80097550(int slotIndex) {
                 goto block_132;
             call5 -= 192;
             MATCHING_KEEP(workWord2);
-            Physics32Call410F8View1(call4, call5, 0);
+            Physics32UpdateSmoothedInputPairView1(call4, call5, 0);
             workWord3 = Physics32Player4CView1;
             workWord2 = 1;
             if (workWord3 == workWord2) {
@@ -1029,12 +1031,12 @@ void func_level_32_80097550(int slotIndex) {
                 Physics32Field(&Physics32Player0View3, int*, 0xAC) = 0;
             }
             if (Physics32Field(&Physics32Player0View3, int*, 0x4C) == 2) {
-                Physics32Call417FCView3(0xC0, 0xC0);
+                Physics32ApproachPlayerTargetSpeedView3(0xC0, 0xC0);
                 if (Physics32Field(&Physics32Player0View3, int*, 0xB0) < 0xE01) {
                     Physics32Field(&Physics32Player0View3, int*, 0x4C) = 0;
                 }
             } else {
-                Physics32Call417FCView3(0xC0, 0x30);
+                Physics32ApproachPlayerTargetSpeedView3(0xC0, 0x30);
             }
             raw21_temp_s0_7 = &Physics32Player0View3 + 0x60;
             raw21_temp_a0_5 =
@@ -1060,7 +1062,7 @@ void func_level_32_80097550(int slotIndex) {
             if (Physics32Field(&Physics32Player0View3, int*, 0x5C) >= 0x301) {
                 Physics32Field(&Physics32Player0View3, int*, 0x5C) = 0x300;
             }
-            Physics32Call41848View1(raw21_temp_a0_5, raw21_temp_a1_2);
+            Physics32BuildPlayerMovementVectorView1(raw21_temp_a0_5, raw21_temp_a1_2);
             Physics32CopyVectorView4(raw21_temp_s0_7 + 0x2C, raw21_temp_s0_7 + 0x20);
             workWord2 = Physics32CallRandView2() & 31;
             if (workWord2)
@@ -1089,7 +1091,8 @@ void func_level_32_80097550(int slotIndex) {
             raw21_temp_s1_5 = &Physics32Player0View3 + 0x20C;
             if (!(Physics32Field(&Physics32Player0View3, int*, 0x20C) & 0x40)) {
                 if (Physics32Data6E044View2 != 7) {
-                    Physics32Call410F8View1(&originalFrame.spD8, raw21_temp_s1_5 - 0xC0, 0);
+                    Physics32UpdateSmoothedInputPairView1(&originalFrame.spD8,
+                                                          raw21_temp_s1_5 - 0xC0, 0);
                     workWord3 = originalFrame.spD8;
                     numeric4 = originalFrame.spDC;
                     workWord2 = workWord3 * 5;
@@ -1195,7 +1198,7 @@ void func_level_32_80097550(int slotIndex) {
         run42:
             call5 -= 192;
             MATCHING_KEEP(workWord2);
-            Physics32Call410F8View1(call4, call5, 0);
+            Physics32UpdateSmoothedInputPairView1(call4, call5, 0);
             workWord3 = Physics32Player4CView1;
             workWord2 = 1;
             if (workWord3 == workWord2) {
@@ -1247,7 +1250,7 @@ void func_level_32_80097550(int slotIndex) {
                 Physics32Field(&Physics32Player0View3, int*, 0x60) = 0x320;
             }
             Physics32Field(&Physics32Player0View3, int*, 0xAC) = 0x1C00;
-            Physics32Call417FCView3(0x240, 0x30);
+            Physics32ApproachPlayerTargetSpeedView3(0x240, 0x30);
             raw21_temp_a0_6 =
                 (((int)(raw21_temp_s0_10 * -(Physics32InterpolateCosineView3(
                                                  Physics32Field(&Physics32Player0View3, int*, 0x60))
@@ -1272,7 +1275,7 @@ void func_level_32_80097550(int slotIndex) {
             if (Physics32Field(&Physics32Player0View3, int*, 0x5C) >= 0x301) {
                 Physics32Field(&Physics32Player0View3, int*, 0x5C) = 0x300;
             }
-            Physics32Call41848View1(raw21_temp_a0_6, raw21_temp_a1_3);
+            Physics32BuildPlayerMovementVectorView1(raw21_temp_a0_6, raw21_temp_a1_3);
             Physics32CopyVectorView4(raw21_temp_s1_6 + 0x28, raw21_temp_s1_6 + 0x1C);
             if ((Physics21_SpawnParticle != 0) &&
                 (Physics32Field(&Physics32Player0View3, int*, 0xB4) >= 0x7D1)) {
@@ -1306,8 +1309,8 @@ void func_level_32_80097550(int slotIndex) {
             if (workWord3 == workWord2) {
                 Physics32Field(&Physics32Player0View3, int*, 0xB0) = 0;
             } else {
-                Physics32Call40D10View2(0x980);
-                raw21_var_v0_2 = Physics32Call41580View2(0x5A, 0x10);
+                Physics32UpdatePlayerGroundInputTargetsView2(0x980);
+                raw21_var_v0_2 = Physics32ApproachPlayerTargetHeadingView2(0x5A, 0x10);
                 if (raw21_var_v0_2 < 0) {
                     raw21_var_v0_2 = -raw21_var_v0_2;
                 }
@@ -1321,12 +1324,12 @@ void func_level_32_80097550(int slotIndex) {
                 } else {
                     raw21_var_a1_4 = 0x40;
                 }
-                Physics32Call417FCView3(raw21_var_a0_2, raw21_var_a1_4);
+                Physics32ApproachPlayerTargetSpeedView3(raw21_var_a0_2, raw21_var_a1_4);
             }
             raw21_temp_s0_11 = &Physics32Player0View3 + 0xB0;
             if (Physics32Field(&Physics32Player0View3, int*, 0xB0) != 0) {
-                Physics32Call41848View1();
-                Physics32Call41B64View2();
+                Physics32BuildPlayerMovementVectorView1();
+                Physics32BuildPlayerResponseVectorView2();
                 Physics32Field(&Physics32Player0View3, int*, 0x94) = 0;
             } else {
                 Physics32ClearVectorView2(raw21_temp_s0_11 - 0x30);
@@ -1447,7 +1450,7 @@ void func_level_32_80097550(int slotIndex) {
             pointer18 = &Physics32PlayerACView2;
             workWord2 = 3840;
             Physics32Field(pointer18, int*, 0) = workWord2;
-            Physics32Call417FCView2(call4, call5);
+            Physics32ApproachPlayerTargetSpeedView2(call4, call5);
             call4 = (void*)Physics32Player148View1;
             pointer17 = pointer18 - 44;
             workWord2 = Physics32InterpolateCosineView2(call4);
@@ -1517,7 +1520,8 @@ void func_level_32_80097550(int slotIndex) {
             register int delta17 __asm__("$17");
             register void* pointer16 __asm__("$16");
             int product150;
-            Physics32Call410F8View2(&originalFrame.sp138, &Physics32Player14CView1, 0);
+            Physics32UpdateSmoothedInputPairView2(&originalFrame.sp138, &Physics32Player14CView1,
+                                                  0);
             workWord2 = originalFrame.sp13C;
             workWord3 = workWord2 << 4;
             workWord2 -= workWord3;
@@ -1584,7 +1588,7 @@ void func_level_32_80097550(int slotIndex) {
             call4 = (void*)192;
             if (workWord3 == workWord2)
                 call4 = (void*)384;
-            Physics32Call417FCView4(call4, 48);
+            Physics32ApproachPlayerTargetSpeedView4(call4, 48);
             pointer16 = &Physics32Player60View1;
             workWord2 = Physics32InterpolateCosineView4(Physics32Field(pointer16, int*, 0));
             workWord3 = workWord2 * 3;
@@ -1618,7 +1622,7 @@ void func_level_32_80097550(int slotIndex) {
             workWord2 = workWord2 < 513;
             if (!workWord2)
                 Physics32Player5CView1 = 512;
-            Physics32Call41848View2();
+            Physics32BuildPlayerMovementVectorView2();
             Physics32CopyVectorView5(pointer16 + 44, pointer16 + 32);
             workWord3 = Physics32PlayerF4View1;
             if (!workWord3)
@@ -1653,22 +1657,22 @@ extern int Callback32Step __asm__("D_80070328+0x144");
 extern int Callback32Z __asm__("D_80070328+8");
 extern int Callback32Limit __asm__("D_80070328+0x280");
 extern Spyro Callback32Player __asm__("D_80070328");
-int Callback32Call80037058(int x, int y) __asm__("func_80037058");
-int Callback32Call8003BF6C(int soundId, int index) __asm__("func_8003BF6C");
-void Callback32Call80041930(void) __asm__("func_80041930");
-void Callback32Call80041AE8(void) __asm__("func_80041AE8");
-void Callback32Call80041C20(void) __asm__("func_80041C20");
-void Callback32Call80042A44(void) __asm__("func_80042A44");
-void Callback32Call80043A38(int scale) __asm__("func_80043A38");
+int Callback32SamplePlanarPhaseTable(int x, int y) __asm__("func_80037058");
+int Callback32SoundHandleMatchesIdInStates1Or2(int soundId, int index) __asm__("func_8003BF6C");
+void Callback32ProbePlayerContactSegment(void) __asm__("func_80041930");
+void Callback32CapturePlayerPlanarVectorDifference(void) __asm__("func_80041AE8");
+void Callback32UpdatePlayerCollisionResponse(void) __asm__("func_80041C20");
+void Callback32UpdatePlayerSurfaceState(void) __asm__("func_80042A44");
+void Callback32BuildNegatedNormalizedPlayerVector(int scale) __asm__("func_80043A38");
 extern int D_8006FA38, D_8006C648;
 int Callback32Query(Vector3D*, int) __asm__("func_8001A358");
 extern int Callback32Word290 __asm__("D_80070328+0x290");
 extern unsigned char Callback32Flags[] __asm__("D_8006FCE6");
 extern unsigned char Callback32Values[] __asm__("D_8006FCF0");
-void Callback32Call80049590(void) __asm__("func_80049590");
+void Callback32MarkPlayerSegmentSurfaceType3Flags(void) __asm__("func_80049590");
 extern int D_8006C640;
 extern int Callback32Word8006E538 __asm__("D_8006E538");
-int Callback32Call800363DC(int, int) __asm__("func_800363DC");
+int Callback32RandSignedBetween(int, int) __asm__("func_800363DC");
 void func_level_32_8009953C(void) {
     struct {
         Vector3D first;
@@ -1696,26 +1700,26 @@ void func_level_32_8009953C(void) {
         case 0x14:
             if (func_800438F4() == 0)
                 func_80043728();
-            Callback32Call80041C20();
+            Callback32UpdatePlayerCollisionResponse();
             Callback32Player.unk9a = 0;
             goto call42A44;
         case 0x35:
         case 0x36:
         case 0x96:
         case 0x97:
-            Callback32Call80041C20();
+            Callback32UpdatePlayerCollisionResponse();
         call42A44:
-            Callback32Call80042A44();
+            Callback32UpdatePlayerSurfaceState();
         clearSharedValue:
             Callback32Player.unk4[0] = 0;
             return;
         case 0x9:
-            Callback32Call80041C20();
-            Callback32Call80042A44();
+            Callback32UpdatePlayerCollisionResponse();
+            Callback32UpdatePlayerSurfaceState();
             if (Callback32Player.unk5 == 1)
-                Callback32Call80041930();
+                Callback32ProbePlayerContactSegment();
             else
-                Callback32Call80043A38(0xC00);
+                Callback32BuildNegatedNormalizedPlayerVector(0xC00);
             if ((unsigned char)Callback32Player.bodyAnimation.nextFrame < 10) {
                 Callback32Player.cheatColour.a = 255;
                 if (Callback32Player.bodyAnimation.nextFrame & 1) {
@@ -1731,14 +1735,14 @@ void func_level_32_8009953C(void) {
             goto clearSharedValue;
         case 0x13:
         case 0x15:
-            Callback32Call80041C20();
-            Callback32Call80042A44();
-            Callback32Call80041930();
+            Callback32UpdatePlayerCollisionResponse();
+            Callback32UpdatePlayerSurfaceState();
+            Callback32ProbePlayerContactSegment();
             goto clearSharedValue;
         case 0x1C:
-            Callback32Call80041C20();
-            Callback32Call80042A44();
-            Callback32Call80041930();
+            Callback32UpdatePlayerCollisionResponse();
+            Callback32UpdatePlayerSurfaceState();
+            Callback32ProbePlayerContactSegment();
             if (Callback32Player.unk7a[3].z < 0 && Callback32Player.animationStateFrames >= 4)
                 Callback32Player.unk5 = 1;
             goto clearSharedValue;
@@ -1780,8 +1784,8 @@ void func_level_32_8009953C(void) {
                     Callback32Step = 0x2580;
             }
         limitsDone:
-            Callback32Call80041C20();
-            Callback32Call80042A44();
+            Callback32UpdatePlayerCollisionResponse();
+            Callback32UpdatePlayerSurfaceState();
             playerPosition = &Callback32Player.position;
             func_8004F178(&local.first, playerPosition);
             local.first.z += 0x400;
@@ -1816,15 +1820,15 @@ void func_level_32_8009953C(void) {
                 local.second.y = 0;
                 local.second.z = 14;
                 func_8004F178(particlePosition, playerPosition);
-                sample = Callback32Call800363DC(0, 300);
+                sample = Callback32RandSignedBetween(0, 300);
                 component = local.third.x + sample;
                 MATCHING_KEEP(component);
                 local.third.x = component;
-                sample = Callback32Call800363DC(0, 300);
+                sample = Callback32RandSignedBetween(0, 300);
                 component = local.third.y + sample;
                 MATCHING_KEEP(component);
                 local.third.y = component;
-                sample = Callback32Call800363DC(0, 300);
+                sample = Callback32RandSignedBetween(0, 300);
                 kind = 1;
                 subtype = 0x3A;
                 MATCHING_KEEP3_CLOBBER(kind, subtype, sample, "memory");
@@ -1848,9 +1852,9 @@ void func_level_32_8009953C(void) {
         case 0x24:
         case 0x25:
         case 0x30:
-            Callback32Call80041C20();
-            Callback32Call80042A44();
-            Callback32Call80043A38(0xC00);
+            Callback32UpdatePlayerCollisionResponse();
+            Callback32UpdatePlayerSurfaceState();
+            Callback32BuildNegatedNormalizedPlayerVector(0xC00);
             if ((Callback32Player.ticksSinceLastSurfaceTouch == 0) &&
                 (func_80040954(Callback32Player.unk11[2]) == 9)) {
                 func_8004F178(
@@ -1874,10 +1878,11 @@ void func_level_32_8009953C(void) {
         case 0x28:
         case 0x29:
         case 0x39:
-            Callback32Call80041C20();
-            Callback32Call80042A44();
+            Callback32UpdatePlayerCollisionResponse();
+            Callback32UpdatePlayerSurfaceState();
             descriptor = &Callback32Player.unk22[2];
-            if (Callback32Call8003BF6C((int)D_8006C654->underwater, *descriptor) != 0) {
+            if (Callback32SoundHandleMatchesIdInStates1Or2((int)D_8006C654->underwater,
+                                                           *descriptor) != 0) {
                 valueOffset = *descriptor * 0x2C;
                 decreasingValue = *(int*)(Callback32Values + valueOffset);
                 {
@@ -1898,11 +1903,12 @@ void func_level_32_8009953C(void) {
             }
             goto clearSharedValue;
         case 0x2A:
-            Callback32Call80041C20();
-            Callback32Call80042A44();
-            Callback32Call80049590();
+            Callback32UpdatePlayerCollisionResponse();
+            Callback32UpdatePlayerSurfaceState();
+            Callback32MarkPlayerSegmentSurfaceType3Flags();
             descriptor = &Callback32Player.unk22[2];
-            if (Callback32Call8003BF6C((int)D_8006C654->underwater, *descriptor) == 0) {
+            if (Callback32SoundHandleMatchesIdInStates1Or2((int)D_8006C654->underwater,
+                                                           *descriptor) == 0) {
                 descriptorResult = PlaySound((int)D_8006C654->underwater, 0, 4);
                 *descriptor = descriptorResult;
                 if (descriptorResult >= 0) {
@@ -1913,7 +1919,8 @@ void func_level_32_8009953C(void) {
                 __asm__ volatile("" : : : "$16", "memory");
                 descriptor = &Callback32Player.unk22[2];
             }
-            if (Callback32Call8003BF6C((int)D_8006C654->underwater, *descriptor) != 0) {
+            if (Callback32SoundHandleMatchesIdInStates1Or2((int)D_8006C654->underwater,
+                                                           *descriptor) != 0) {
                 valueOffset = *descriptor * 0x2C;
                 increasingValue = *(int*)(Callback32Values + valueOffset);
                 {
@@ -1934,13 +1941,13 @@ void func_level_32_8009953C(void) {
             goto clearSharedValue;
         case 0x2B:
         case 0x2C:
-            Callback32Call80041C20();
-            Callback32Call80042A44();
-            Callback32Call80041AE8();
+            Callback32UpdatePlayerCollisionResponse();
+            Callback32UpdatePlayerSurfaceState();
+            Callback32CapturePlayerPlanarVectorDifference();
             if ((unsigned char)Callback32Player.unk10[4] != 0) {
                 computedValue = -Callback32Player.unk9ha[4] -
-                                Callback32Call80037058(Callback32Player.position.x,
-                                                       Callback32Player.position.y);
+                                Callback32SamplePlanarPhaseTable(Callback32Player.position.x,
+                                                                 Callback32Player.position.y);
                 positionValue = Callback32Player.unk4a - computedValue;
                 Callback32Player.unk4[0] = computedValue;
                 positionDelta = (int)Callback32Player.union144.a.unk13cc >> 6;
@@ -1951,16 +1958,17 @@ void func_level_32_8009953C(void) {
             }
             break;
         case 0x31:
-            Callback32Call80041C20();
-            Callback32Call80042A44();
-            Callback32Call80043A38(0xC00);
+            Callback32UpdatePlayerCollisionResponse();
+            Callback32UpdatePlayerSurfaceState();
+            Callback32BuildNegatedNormalizedPlayerVector(0xC00);
             if (func_80040954(Callback32Player.unk11[2]) == 0xA) {
                 Callback32Player.union144.a.unk13cb = 0;
             } else {
                 Callback32Player.union144.a.unk13cb += D_8006C648;
             }
             Callback32Player.unk4[0] = 0;
-            if (Callback32Call8003BF6C((int)D_8006C654->unk32, Callback32Player.unk22[2]) == 0) {
+            if (Callback32SoundHandleMatchesIdInStates1Or2((int)D_8006C654->unk32,
+                                                           Callback32Player.unk22[2]) == 0) {
                 Callback32Player.unk22[2] = PlaySound((int)D_8006C654->unk32, 0, 4);
                 Callback32Player.unk22[3] = (int)D_8006C654->unk32;
                 return;
@@ -2154,11 +2162,11 @@ void func_level_32_80099E1C(int index) {
  * retail hashes. Helper/audio semantics, units, cadence and live parity are open.
  */
 extern int D_8006C700;
-int Call32E9E4(int) __asm__("func_8004E9E4");
-int Call32EA2C(int) __asm__("func_8004EA2C");
+int Call32InterpolateSine(int) __asm__("func_8004E9E4");
+int Call32InterpolateCosine(int) __asm__("func_8004EA2C");
 extern int Transition32_D_8006E528 __asm__("D_8006E528");
 void Transition32ShiftVectorLeft(Vector3D*, int) __asm__("func_8004F0E8");
-int Transition32_func_80040954(int) __asm__("func_80040954");
+int Transition32GetSurfaceTypeFromFlags(int) __asm__("func_80040954");
 extern int Transition32RawX __asm__("D_80070328+0x8C");
 extern short Transition32SignedB[] __asm__("D_80065920");
 extern short Transition32SignedA[] __asm__("D_800658A0");
@@ -2174,13 +2182,13 @@ extern short Signed32TableA[] __asm__("D_800658A0");
 extern short Signed32TableB[] __asm__("D_80065920");
 
 extern int D_80071934;
-int Call32A358(Vector3D*, int) __asm__("func_8001A358");
+int Call32QueryWorldHeight(Vector3D*, int) __asm__("func_8001A358");
 extern int Raw32NegativeWord __asm__("D_80070328+0x28");
 extern int Raw32TableIndex __asm__("D_80070328+0x298");
 extern int Raw32Yaw __asm__("D_80070328+0x64");
 int Transition32RandBetween(int, int) __asm__("func_8003636C");
-void Transition32_func_800441F0(void) __asm__("func_800441F0");
-void Transition32_func_80043A38(int) __asm__("func_80043A38");
+void Transition32ClearPlayerMotionVectors(void) __asm__("func_800441F0");
+void Transition32BuildNegatedNormalizedPlayerVector(int) __asm__("func_80043A38");
 int Transition32PlanarHeadingLookup(int, int, int) __asm__("func_8004E880");
 void func_level_32_80099EB8(int arg0) {
     struct {
@@ -2218,7 +2226,7 @@ void func_level_32_80099EB8(int arg0) {
         case 0x14:
             Transition32_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Transition32_D_80070328.unk5 = 0;
-            Transition32_func_800441F0();
+            Transition32ClearPlayerMotionVectors();
             Transition32_D_80070328.grounded = 1;
             Transition32_D_80070328.union144.a.unk13cb = Transition32RandBetween(1, 3);
             Transition32_D_80070328.union144.a.unk13cc = 0;
@@ -2226,13 +2234,13 @@ void func_level_32_80099EB8(int arg0) {
         case 0x35:
             Transition32_D_80070328.movementState = 0;
             Transition32_D_80070328.unk5 = 0;
-            Transition32_func_800441F0();
+            Transition32ClearPlayerMotionVectors();
             Transition32_D_80070328.grounded = 1;
             MATCHING_BARRIER_VOLATILE("memory");
             goto clearPointers;
         case 0x9:
             header = (unsigned char*)&Transition32_D_80070328.unk11[2];
-            if (Transition32_func_80040954(*(int*)header) == 7) {
+            if (Transition32GetSurfaceTypeFromFlags(*(int*)header) == 7) {
                 sourceA = (int*)(header - 0x74);
                 oldMovementA = Transition32RawMovement;
                 Transition32RawMovement = MOVEMENT_STATE_HURT;
@@ -2271,7 +2279,7 @@ void func_level_32_80099EB8(int arg0) {
                 }
                 func_8004F178(&Transition32_D_80070328.unk7a[1],
                               (Vector3D*)((unsigned char*)&Transition32_D_80070328.unk7a[1] + 0xC));
-                Transition32_func_80043A38(0xC00);
+                Transition32BuildNegatedNormalizedPlayerVector(0xC00);
                 Transition32_D_80070328.grounded = 1;
             }
             Transition32_D_8006E528 = 0x2D;
@@ -2348,9 +2356,10 @@ void func_level_32_80099EB8(int arg0) {
                 shiftedValue = Transition32PlanarHeadingLookup(
                     -Transition32_D_80070328.unk7a[2].x, -Transition32_D_80070328.unk7a[2].y, 1);
                 Transition32_D_80070328.unk7b = shiftedValue;
-                Transition32_D_80070328.unk7a[2].x = (Call32EA2C(shiftedValue) << 12) >> 12;
+                Transition32_D_80070328.unk7a[2].x =
+                    (Call32InterpolateCosine(shiftedValue) << 12) >> 12;
                 Transition32_D_80070328.unk7a[2].y =
-                    (Call32E9E4(Transition32_D_80070328.unk7b) << 12) >> 12;
+                    (Call32InterpolateSine(Transition32_D_80070328.unk7b) << 12) >> 12;
                 Transition32_D_80070328.unk7a[2].z = 0x1000;
             }
             goto clearPointers;
@@ -2444,7 +2453,7 @@ void func_level_32_80099EB8(int arg0) {
             MATCHING_KEEP_VOLATILE_CLOBBER(currentScalar, "memory");
             if (currentScalar < 0x2440)
                 D_8006C700 = scalar;
-            Transition32_func_80043A38(0xC00);
+            Transition32BuildNegatedNormalizedPlayerVector(0xC00);
             savedRoll = Transition32_D_80070328.rotation.roll;
             MATCHING_KEEP(savedRoll);
             Transition32_D_80070328.grounded = 1;
@@ -2478,7 +2487,7 @@ void func_level_32_80099EB8(int arg0) {
                     }
                     if (Transition32_D_80070328.movementState == MOVEMENT_STATE_CHARGE) {
                         vectors.first.z += 0x400;
-                        firstResult = Call32A358(&vectors.first, 0x800);
+                        firstResult = Call32QueryWorldHeight(&vectors.first, 0x800);
                         vectors.first.z = firstResult;
                         if (firstResult != 0) {
                             firstParticleKind = 6;
@@ -2543,7 +2552,7 @@ void func_level_32_80099EB8(int arg0) {
                     if (Transition32_D_80070328.movementState == MOVEMENT_STATE_CHARGE) {
                         localVector = &vectors.second;
                         vectors.second.z += 0x400;
-                        secondResult = Call32A358(localVector, 0x800);
+                        secondResult = Call32QueryWorldHeight(localVector, 0x800);
                         vectors.second.z = secondResult;
                         if (secondResult != 0) {
                             secondParticleKind = 6;
@@ -2604,7 +2613,7 @@ void func_level_32_80099EB8(int arg0) {
                     localVector = &vectors.third;
                     func_8004F178(localVector, (Vector3D*)(unionPointer - 0x144));
                     vectors.third.z += 0x400;
-                    lengthResult = Call32A358(localVector, 0x800);
+                    lengthResult = Call32QueryWorldHeight(localVector, 0x800);
                     vectors.third.z = lengthResult;
                     if (lengthResult != 0 && D_80071934 != 0 && SpawnParticle) {
                         SpawnParticle(10, 0x29, localVector, 0);
@@ -2630,7 +2639,7 @@ void func_level_32_80099EB8(int arg0) {
                           (Vector3D*)((unsigned char*)&Transition32_D_80070328.unk7a[2] - 0xC));
             Transition32_D_80070328.movementState = 17;
             Transition32_D_80070328.unk5 = 0;
-            Transition32_func_80043A38(0xC00);
+            Transition32BuildNegatedNormalizedPlayerVector(0xC00);
             Transition32_D_80070328.grounded = 0;
             Transition32_D_80070328.union144.a.unk13cb = 0;
             valueKind = 1;
@@ -2648,7 +2657,7 @@ void func_level_32_80099EB8(int arg0) {
         case 0x36:
             Transition32_D_80070328.movementState = 0;
             Transition32_D_80070328.unk5 = 0;
-            Transition32_func_800441F0();
+            Transition32ClearPlayerMotionVectors();
             Transition32_D_80070328.grounded = 1;
             goto clearPointers;
         case 0x39: {
@@ -2776,14 +2785,14 @@ extern int (*Anim32Data74374View1)() __asm__("unk_ovlheader_80074374");
 extern int Anim32Player28CView1 __asm__("D_80070328 + 0x28C");
 extern int Anim32Player290View1 __asm__("D_80070328 + 0x290");
 extern int Anim32Data6FA38View1 __asm__("D_8006FA38");
-int Anim32Call3BF6CView1() __asm__("func_8003BF6C");
-int Anim32Call3BE70View1() __asm__("func_8003BE70");
-int Anim32Call40994View1() __asm__("func_80040994");
-int Anim32Call4BEF8View1() __asm__("func_8004BEF8");
-int Anim32Call49688View1() __asm__("func_80049688");
-int Anim32Call498C0View1() __asm__("func_800498C0");
+int Anim32SoundHandleMatchesIdInStates1Or2View1() __asm__("func_8003BF6C");
+int Anim32TransitionSoundHandleTo3Or5View1() __asm__("func_8003BE70");
+int Anim32ProcessPlayerStateFlagsView1() __asm__("func_80040994");
+int Anim32DispatchPlayerStateRequestView1() __asm__("func_8004BEF8");
+int Anim32SelectPlayerAnimationLoopRequestView1() __asm__("func_80049688");
+int Anim32UpdatePlayerRetryStateView1() __asm__("func_800498C0");
 extern int Anim32Player10CView1 __asm__("D_80070328 + 0x10C");
-int Anim32Call40954View1() __asm__("func_80040954");
+int Anim32GetSurfaceTypeFromFlagsView1() __asm__("func_80040954");
 extern int Anim32PlayerBCView1 __asm__("D_80070328 + 0xBC");
 extern int Anim32Player160View1 __asm__("D_80070328 + 0x160");
 extern int Anim32Player15CView1 __asm__("D_80070328 + 0x15C");
@@ -2797,11 +2806,11 @@ int Anim32MeasureVectorLengthView1() __asm__("func_8004EDE8");
 int Anim32PlayMobySoundEventView2() __asm__("func_8003BABC");
 int Anim32TransformVectorByBasisView1() __asm__("func_8004ED6C");
 int Anim32NormalizeVectorToLengthView1() __asm__("func_8004EF04");
-int Anim32Call41848View1() __asm__("func_80041848");
+int Anim32BuildPlayerMovementVectorView1() __asm__("func_80041848");
 int Anim32CopyVectorView1() __asm__("func_8004F178");
 int Anim32ScaleVectorRatioQ15View1() __asm__("func_8004F08C");
 int Anim32AddVectorView1() __asm__("func_8004F194");
-int Anim32Call43E00View1() __asm__("func_80043E00");
+int Anim32UpdatePlayerTiltFromVectorView1() __asm__("func_80043E00");
 int Anim32ShiftVectorRightTowardZeroView1() __asm__("func_8004F110");
 int Anim32SubtractVectorView2() __asm__("func_8004F1C8");
 int Anim32MeasureVectorLengthView2() __asm__("func_8004EDE8");
@@ -2836,16 +2845,16 @@ extern int Anim32Data6E538View3 __asm__("D_8006E538"), Anim32Data6E53CView3 __as
 extern int Anim32Data6E044View2 __asm__("D_8006E044"), Anim32Data6E344View1 __asm__("D_8006E344"),
     Anim32Data6C514View1 __asm__("D_8006C514");
 extern int (*Anim32Data74374View2)() __asm__("unk_ovlheader_80074374");
-int Anim32Call40994View2() __asm__("func_80040994");
-int Anim32Call4BEF8View2() __asm__("func_8004BEF8");
+int Anim32ProcessPlayerStateFlagsView2() __asm__("func_80040994");
+int Anim32DispatchPlayerStateRequestView2() __asm__("func_8004BEF8");
 int Anim32ApproximatePlanarDistanceView1() __asm__("func_8004F334");
 extern volatile int Anim32Player20CView1 __asm__("D_80070328 + 0x20C");
 extern int Anim32Player214View1 __asm__("D_80070328 + 0x214");
 extern unsigned char Anim32Player100View1 __asm__("D_80070328 + 0x100");
 extern unsigned char Anim32Data6E535View1 __asm__("D_8006E535");
 extern unsigned char* Anim32Data6EE2CView1 __asm__("D_8006EE2C");
-int Anim32Call40BCCView1() __asm__("func_80040BCC");
-int Anim32Call1A310View1() __asm__("func_8001A310");
+int Anim32ProcessPlayerContactFlagsView1() __asm__("func_80040BCC");
+int Anim32QueryWorldHeightWithOptionsView1() __asm__("func_8001A310");
 void func_level_32_8009ACBC(void) {
     register int rawValue2 __asm__("$2");
     register int rawValue3 __asm__("$3");
@@ -2866,7 +2875,7 @@ void func_level_32_8009ACBC(void) {
     rawValue2 = Anim32Player48View1;
     switch (rawValue2) {
         case 20:
-            if (Anim32Call40994View1())
+            if (Anim32ProcessPlayerStateFlagsView1())
                 return;
             rawValue2 = Anim32Data6E53CView1 & 64;
             nextSelector4 = 6;
@@ -2903,7 +2912,7 @@ void func_level_32_8009ACBC(void) {
                 MATCHING_KEEP(state);
                 if (!*state)
                     return;
-                Anim32Call4BEF8View1(0);
+                Anim32DispatchPlayerStateRequestView1(0);
                 if (Anim32Data66530View1[*((unsigned char*)state - 0x2C)] >= 96) {
                     Anim32Player14View1 = Anim32Player15View1;
                     Anim32Player16View1 = Anim32Player17View1;
@@ -2921,11 +2930,11 @@ void func_level_32_8009ACBC(void) {
             nextSelector4 = 15;
             if (rawValue2)
                 goto select;
-            Anim32Call49688View1();
+            Anim32SelectPlayerAnimationLoopRequestView1();
             return;
         case 53:
         case 54:
-            if (Anim32Call40994View1())
+            if (Anim32ProcessPlayerStateFlagsView1())
                 return;
             nextSelector4 = 0;
             goto select;
@@ -3034,7 +3043,7 @@ void func_level_32_8009ACBC(void) {
             nextSelector4 = 7;
             goto select;
         case 19:
-            if (Anim32Call40994View2())
+            if (Anim32ProcessPlayerStateFlagsView2())
                 return;
             rawValue2 = 13;
             rawValue3 = Anim32Data6E344View1;
@@ -3057,7 +3066,7 @@ void func_level_32_8009ACBC(void) {
             if (Anim32Player54View1 < 33)
                 return;
             if (!Anim32PlayerB8View1) {
-                Anim32Call4BEF8View1(4);
+                Anim32DispatchPlayerStateRequestView1(4);
                 Anim32Player4CView1 = 1;
                 return;
             }
@@ -3152,7 +3161,7 @@ void func_level_32_8009ACBC(void) {
                     return;
                 Anim32Player28CView1 = -1;
             call498C0:
-                Anim32Call498C0View1();
+                Anim32UpdatePlayerRetryStateView1();
                 MATCHING_BARRIER_VOLATILE("memory");
                 return;
             }
@@ -3168,15 +3177,16 @@ void func_level_32_8009ACBC(void) {
             if (!Anim32Player1B6View1)
                 return;
             if (Anim32Player28CView1 >= 0) {
-                if (Anim32Call3BF6CView1(Anim32Player290View1, Anim32Player28CView1))
-                    Anim32Call3BE70View1(Anim32Player28CView1);
+                if (Anim32SoundHandleMatchesIdInStates1Or2View1(Anim32Player290View1,
+                                                                Anim32Player28CView1))
+                    Anim32TransitionSoundHandleTo3Or5View1(Anim32Player28CView1);
                 Anim32Player28CView1 = -1;
             }
             nextSelector4 = 6;
             goto select;
         }
         case 36:
-            if (Anim32Call40994View1())
+            if (Anim32ProcessPlayerStateFlagsView1())
                 return;
             saved16 = &Anim32Player4CView1;
             rawValue2 = *saved16;
@@ -3222,7 +3232,7 @@ void func_level_32_8009ACBC(void) {
             if (rawValue3 == rawValue2) {
                 if (Anim32Data6E538View1 & 64)
                     Anim32Player1B6View1 = 1;
-                rawValue2 = Anim32Call40954View1(Anim32Player10CView1);
+                rawValue2 = Anim32GetSurfaceTypeFromFlagsView1(Anim32Player10CView1);
                 rawValue3 = 9;
                 if (rawValue2 != rawValue3) {
                     if (Anim32PlayerA0View1 > 0 && Anim32Player160View1 >= 4)
@@ -3237,7 +3247,7 @@ void func_level_32_8009ACBC(void) {
                     goto remainder36;
                 if (Anim32Player158View1 <= 2048)
                     goto reset36;
-                Anim32Call41848View1();
+                Anim32BuildPlayerMovementVectorView1();
                 rawValue3 = Anim32Player15CView1;
                 rawValue2 = 2;
                 if (rawValue3 == rawValue2) {
@@ -3269,7 +3279,7 @@ void func_level_32_8009ACBC(void) {
                     saved16 = saved17 - 14;
                     Anim32Player88View1 += 2048;
                     Anim32AddVectorView1(saved16, saved16, frame.at10);
-                    Anim32Call43E00View1(saved16);
+                    Anim32UpdatePlayerTiltFromVectorView1(saved16);
                     Anim32ShiftVectorRightTowardZeroView1(frame.at10, 4);
                     Anim32AddVectorView1(saved17 - 46, saved17 - 46, frame.at10);
                     nextSelector4 = 37;
@@ -3282,7 +3292,7 @@ void func_level_32_8009ACBC(void) {
                 rawValue2 = 4;
             set36:
                 Anim32Player4CView1 = rawValue2;
-                Anim32Call4BEF8View1(nextSelector4);
+                Anim32DispatchPlayerStateRequestView1(nextSelector4);
                 Anim32PlayMobySoundEventView2(Anim32Player250View1, 1, 0);
                 saved16 = &Anim32Player8CView1;
                 nextSelector4 = (int)saved16;
@@ -3354,7 +3364,7 @@ void func_level_32_8009ACBC(void) {
             MATCHING_BARRIER_VOLATILE("memory");
             goto select;
         case 48:
-            if (Anim32Call40994View1())
+            if (Anim32ProcessPlayerStateFlagsView1())
                 return;
             saved16 = &Anim32PlayerB8View1;
             if (!*saved16 && Anim32PlayerE4View1 < 60) {
@@ -3379,7 +3389,7 @@ void func_level_32_8009ACBC(void) {
                 if (rawValue2 < 1536)
                     goto select;
                 Anim32Player4CView1 = 0;
-                Anim32Call4BEF8View1(36);
+                Anim32DispatchPlayerStateRequestView1(36);
                 object4 = Anim32Player250View1;
                 product5 = 2;
                 goto partialBABC;
@@ -3412,7 +3422,7 @@ void func_level_32_8009ACBC(void) {
             MATCHING_BARRIER_VOLATILE("memory");
             goto select;
         case 37:
-            if (Anim32Call40994View1())
+            if (Anim32ProcessPlayerStateFlagsView1())
                 return;
             saved17 = &Anim32PlayerB8View1;
             if (*saved17)
@@ -3470,14 +3480,14 @@ void func_level_32_8009ACBC(void) {
             nextSelector4 = 21;
             if (rawValue2 < 2560)
                 goto select;
-            Anim32Call4BEF8View1(36);
+            Anim32DispatchPlayerStateRequestView1(36);
             object4 = Anim32Player250View1;
             product5 = 2;
         partialBABC:
             Anim32PlayMobySoundEventView2(object4, product5, 0);
             return;
         case 40:
-            if (Anim32Call40994View2())
+            if (Anim32ProcessPlayerStateFlagsView2())
                 return;
             if ((Anim32Data6E538View3 & 128) && Anim32Player4CView3 != 1) {
                 nextSelector4 = 42;
@@ -3493,7 +3503,7 @@ void func_level_32_8009ACBC(void) {
                 return;
             goto select;
         case 41:
-            if (Anim32Call40994View2())
+            if (Anim32ProcessPlayerStateFlagsView2())
                 return;
             nextSelector4 = Anim32Data6E538View3;
             rawValue2 = nextSelector4 & 128;
@@ -3515,7 +3525,7 @@ void func_level_32_8009ACBC(void) {
                 goto select;
             return;
         case 42:
-            if (Anim32Call40BCCView1())
+            if (Anim32ProcessPlayerContactFlagsView1())
                 return;
             if ((Anim32Data6E538View3 & 128) || Anim32Player4CView3 == 1)
                 goto flag64;
@@ -3531,7 +3541,7 @@ void func_level_32_8009ACBC(void) {
             goto select;
         case 43: {
             register unsigned char* byte4 __asm__("$4");
-            if (Anim32Call40994View2())
+            if (Anim32ProcessPlayerStateFlagsView2())
                 return;
             if ((Anim32Data6E53CView3 & 64) && Anim32Player54View3 >= 9) {
                 nextSelector4 = 6;
@@ -3551,13 +3561,13 @@ void func_level_32_8009ACBC(void) {
             byte4 -= 256;
             if (!rawValue2)
                 goto check44;
-            rawValue2 = Anim32Call1A310View1(byte4, 1024, 1, 0);
+            rawValue2 = Anim32QueryWorldHeightWithOptionsView1(byte4, 1024, 1, 0);
             nextSelector4 = 40;
             if (rawValue2)
                 goto check44;
             goto select;
         partialCall:
-            Anim32Call4BEF8View2(nextSelector4);
+            Anim32DispatchPlayerStateRequestView2(nextSelector4);
         check44:
             rawValue2 = Anim32Data6E535View1;
             nextSelector4 = 44;
@@ -3586,7 +3596,7 @@ void func_level_32_8009ACBC(void) {
         missingCallback:
             goto call498C0;
         other44:
-            if (Anim32Call40994View2())
+            if (Anim32ProcessPlayerStateFlagsView2())
                 return;
             if ((Anim32Data6E53CView3 & 64) && Anim32Player54View3 >= 9) {
                 nextSelector4 = 6;
@@ -3607,7 +3617,7 @@ void func_level_32_8009ACBC(void) {
             byte4 -= 256;
             if (!rawValue2)
                 goto mode44;
-            rawValue2 = Anim32Call1A310View1(byte4, 1024, 1, 0);
+            rawValue2 = Anim32QueryWorldHeightWithOptionsView1(byte4, 1024, 1, 0);
             nextSelector4 = 40;
             if (!rawValue2)
                 goto select;
@@ -3624,7 +3634,7 @@ void func_level_32_8009ACBC(void) {
             goto select;
         }
         case 49:
-            if (Anim32Call40994View1())
+            if (Anim32ProcessPlayerStateFlagsView1())
                 return;
             rawValue2 = Anim32PlayerB8View1 < 4;
             nextSelector4 = 7;
@@ -3674,6 +3684,6 @@ void func_level_32_8009ACBC(void) {
             return;
     }
 select:
-    Anim32Call4BEF8View1(nextSelector4);
+    Anim32DispatchPlayerStateRequestView1(nextSelector4);
     return;
 }

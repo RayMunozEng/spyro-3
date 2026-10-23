@@ -40,14 +40,14 @@
 #define Physics15Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 extern void* Physics15Data6C570View1 __asm__("D_8006C570");
 extern unsigned char Physics15Data6E548View1 __asm__("D_8006E548");
-int Physics15Call40D10View1() __asm__("func_80040D10");
-int Physics15Call40F48View1() __asm__("func_80040F48");
-int Physics15Call41404View1() __asm__("func_80041404");
-int Physics15Call41580View1() __asm__("func_80041580");
-int Physics15Call416F4View1() __asm__("func_800416F4");
-int Physics15Call417FCView1() __asm__("func_800417FC");
-int Physics15Call41848View1() __asm__("func_80041848");
-int Physics15Call41B64View1() __asm__("func_80041B64");
+int Physics15UpdatePlayerGroundInputTargetsView1() __asm__("func_80040D10");
+int Physics15BuildOrientedInputPairView1() __asm__("func_80040F48");
+int Physics15ApplyPlayerRotationStepView1() __asm__("func_80041404");
+int Physics15ApproachPlayerTargetHeadingView1() __asm__("func_80041580");
+int Physics15BlendPlayerHeadingFromInputVectorView1() __asm__("func_800416F4");
+int Physics15ApproachPlayerTargetSpeedView1() __asm__("func_800417FC");
+int Physics15BuildPlayerMovementVectorView1() __asm__("func_80041848");
+int Physics15BuildPlayerResponseVectorView1() __asm__("func_80041B64");
 int Physics15InterpolateSineView1() __asm__("func_8004E9E4");
 int Physics15InterpolateCosineView1() __asm__("func_8004EA2C");
 int Physics15MeasureVectorLengthView1() __asm__("func_8004EDE8");
@@ -74,12 +74,12 @@ extern int Physics15PlayerACView1 __asm__("D_80070328+0xAC");
 extern int Physics15Player4CView1 __asm__("D_80070328+0x4C");
 extern unsigned char Physics15PlayerFCView1 __asm__("D_80070328+0xFC");
 extern int Physics15PlayerA0View1 __asm__("D_80070328+0xA0");
-int Physics15Call13E38View1() __asm__("func_80013E38");
+int Physics15TestSubdividedSegmentPathView1() __asm__("func_80013E38");
 int Physics15RandSignedBetweenView1() __asm__("func_800363DC");
-int Physics15Call410F8View1() __asm__("func_800410F8");
-int Physics15Call41848View2() __asm__("func_80041848");
-int Physics15Call41B64View2() __asm__("func_80041B64");
-int Physics15Call4E4E4View1() __asm__("func_8004E4E4");
+int Physics15UpdateSmoothedInputPairView1() __asm__("func_800410F8");
+int Physics15BuildPlayerMovementVectorView2() __asm__("func_80041848");
+int Physics15BuildPlayerResponseVectorView2() __asm__("func_80041B64");
+int Physics15EvaluateClampedPlayerRootCurveView1() __asm__("func_8004E4E4");
 int Physics15InterpolateCosineView2() __asm__("func_8004EA2C");
 int Physics15AddVectorView2() __asm__("func_8004F194");
 extern int Physics15Data67630View1 __asm__("D_80067630");
@@ -109,11 +109,11 @@ extern int Physics15PlayerA8View2 __asm__("D_80070328+0xA8");
 extern int Physics15PlayerACView2 __asm__("D_80070328+0xAC");
 extern int Physics15PlayerB0View2 __asm__("D_80070328+0xB0");
 extern int Physics15PlayerF8View1 __asm__("D_80070328+0xF8");
-int Physics15Call40D10View2() __asm__("func_80040D10");
-int Physics15Call41580View2() __asm__("func_80041580");
-int Physics15Call417FCView2() __asm__("func_800417FC");
-int Physics15Call41848View3() __asm__("func_80041848");
-int Physics15Call41B64View3() __asm__("func_80041B64");
+int Physics15UpdatePlayerGroundInputTargetsView2() __asm__("func_80040D10");
+int Physics15ApproachPlayerTargetHeadingView2() __asm__("func_80041580");
+int Physics15ApproachPlayerTargetSpeedView2() __asm__("func_800417FC");
+int Physics15BuildPlayerMovementVectorView3() __asm__("func_80041848");
+int Physics15BuildPlayerResponseVectorView3() __asm__("func_80041B64");
 int Physics15TransformVectorByBasisView1() __asm__("func_8004ED6C");
 int Physics15ShiftVectorRightTowardZeroView1() __asm__("func_8004F110");
 int Physics15ClearVectorView2() __asm__("func_8004F168");
@@ -188,12 +188,12 @@ void func_level_15_80086D54(int slotIndex) {
             workWord2 = 7;
             if (workWord3 == workWord2)
                 return;
-            Physics15Call40D10View1(0x1200);
-            Physics15Call416F4View1();
-            Physics15Call41580View1(90, 16);
+            Physics15UpdatePlayerGroundInputTargetsView1(0x1200);
+            Physics15BlendPlayerHeadingFromInputVectorView1();
+            Physics15ApproachPlayerTargetHeadingView1(90, 16);
             return;
         case 25:
-            Physics15Call40F48View1(&originalFrame.sp10, 1);
+            Physics15BuildOrientedInputPairView1(&originalFrame.sp10, 1);
             workWord2 = originalFrame.sp10;
             workWord2 >>= 1;
             Physics15PlayerA8View1 = workWord2;
@@ -207,8 +207,8 @@ void func_level_15_80086D54(int slotIndex) {
             if (!workWord2)
                 Physics15PlayerA8View1 = stateSelector16;
             call4 = (void*)Physics15PlayerA8View1;
-            Physics15Call41404View1(call4);
-            Physics15Call417FCView1(576, 384);
+            Physics15ApplyPlayerRotationStepView1(call4);
+            Physics15ApproachPlayerTargetSpeedView1(576, 384);
             workWord2 = Physics15InterpolateCosineView1(Physics15Player64View1);
             workWord3 = Physics15PlayerB0View1;
             lowProduct0 = workWord3 * workWord2;
@@ -224,7 +224,7 @@ void func_level_15_80086D54(int slotIndex) {
             workWord2 = lowProduct1 >> 12;
             MATCHING_KEEP(workWord2);
             Physics15Player84View1 = workWord2;
-            Physics15Call41B64View1();
+            Physics15BuildPlayerResponseVectorView1();
             workWord2 = Physics15Player144View1;
             workWord2 += 12;
             Physics15Player144View1 = workWord2;
@@ -339,7 +339,7 @@ void func_level_15_80086D54(int slotIndex) {
             call4 = &originalFrame.sp28;
             MATCHING_OBSERVE_VOLATILE_CLOBBER(call4, "memory");
             call5 = playerVector54 + 256;
-            Physics15Call410F8View1(call4, call5, 0);
+            Physics15UpdateSmoothedInputPairView1(call4, call5, 0);
             workWord2 = originalFrame.sp2C;
             numeric4 = Physics15Player94View2;
             workWord2 = -workWord2;
@@ -370,7 +370,7 @@ void func_level_15_80086D54(int slotIndex) {
                 originalFrame.sp30 = workWord2;
                 originalFrame.sp34 = workWord3;
                 Physics15AddVectorView2(call4, call5, call6);
-                if (!Physics15Call13E38View1(playerVector54, scratchPointer16, 2)) {
+                if (!Physics15TestSubdividedSegmentPathView1(playerVector54, scratchPointer16, 2)) {
                     workWord2 = Physics15Player8View1;
                     workWord3 = Physics15Data71908View1;
                     workWord2 -= workWord3;
@@ -481,7 +481,7 @@ void func_level_15_80086D54(int slotIndex) {
         nonnegative33:
             numeric4 = Physics15Player8View1;
             responseLimit16 = 0;
-            workWord2 = Physics15Call4E4E4View1(numeric4);
+            workWord2 = Physics15EvaluateClampedPlayerRootCurveView1(numeric4);
             workWord3 = Physics15Player148View1;
             MATCHING_OBSERVE2_VOLATILE_CLOBBER(workWord3, workWord2, "memory");
             numeric4 = workWord2;
@@ -594,7 +594,7 @@ void func_level_15_80086D54(int slotIndex) {
         storeAngle33:
             Physics15Player5CView1 = workWord2;
         rotationDone33:
-            Physics15Call41848View2();
+            Physics15BuildPlayerMovementVectorView2();
             call5 = &Physics15Player4CView2;
             numeric4 = Physics15Field(call5, int*, 0);
             if (numeric4)
@@ -672,8 +672,8 @@ void func_level_15_80086D54(int slotIndex) {
             if (workWord3 == workWord2) {
                 Physics15Field(&Physics15Player0View1, int*, 0xB0) = 0;
             } else {
-                Physics15Call40D10View2(0x980);
-                raw21_var_v0_2 = Physics15Call41580View2(0x5A, 0x10);
+                Physics15UpdatePlayerGroundInputTargetsView2(0x980);
+                raw21_var_v0_2 = Physics15ApproachPlayerTargetHeadingView2(0x5A, 0x10);
                 if (raw21_var_v0_2 < 0) {
                     raw21_var_v0_2 = -raw21_var_v0_2;
                 }
@@ -687,12 +687,12 @@ void func_level_15_80086D54(int slotIndex) {
                 } else {
                     raw21_var_a1_4 = 0x40;
                 }
-                Physics15Call417FCView2(raw21_var_a0_2, raw21_var_a1_4);
+                Physics15ApproachPlayerTargetSpeedView2(raw21_var_a0_2, raw21_var_a1_4);
             }
             raw21_temp_s0_11 = &Physics15Player0View1 + 0xB0;
             if (Physics15Field(&Physics15Player0View1, int*, 0xB0) != 0) {
-                Physics15Call41848View3();
-                Physics15Call41B64View3();
+                Physics15BuildPlayerMovementVectorView3();
+                Physics15BuildPlayerResponseVectorView3();
                 Physics15Field(&Physics15Player0View1, int*, 0x94) = 0;
             } else {
                 Physics15ClearVectorView2(raw21_temp_s0_11 - 0x30);
@@ -781,7 +781,7 @@ void func_level_15_80086D54(int slotIndex) {
             return;
         }
         case 61:
-            Physics15Call40F48View1(&originalFrame.sp68, 1);
+            Physics15BuildOrientedInputPairView1(&originalFrame.sp68, 1);
             workWord3 = originalFrame.sp68;
             workWord2 = workWord3 * 25;
             call4 = (void*)(workWord2 >> 7);
@@ -816,7 +816,7 @@ void func_level_15_80086D54(int slotIndex) {
             if (workWord2)
                 Physics15Field(call5, int*, 0) = (int)call4;
             call4 = (void*)Physics15PlayerA8View1;
-            Physics15Call41404View1(call4);
+            Physics15ApplyPlayerRotationStepView1(call4);
             workWord3 = Physics15Player60View1;
             workWord2 = workWord3 < 2049;
             if (!workWord2) {
@@ -848,8 +848,8 @@ void func_level_15_80086D54(int slotIndex) {
             workWord2 = Physics15Data67640View1;
             Physics15PlayerACView1 = workWord2;
         update61:
-            Physics15Call417FCView1(576, 384);
-            Physics15Call41848View1();
+            Physics15ApproachPlayerTargetSpeedView1(576, 384);
+            Physics15BuildPlayerMovementVectorView1();
             call6 = &Physics15PlayerFCView1;
             workWord2 = Physics15Field(call6, unsigned char*, 0);
             if (workWord2)
@@ -871,7 +871,7 @@ void func_level_15_80086D54(int slotIndex) {
             call4 = &originalFrame.sp88;
             MATCHING_OBSERVE_VOLATILE_CLOBBER(call4, "memory");
             call5 = playerVector54 + 256;
-            Physics15Call410F8View1(call4, call5, 0);
+            Physics15UpdateSmoothedInputPairView1(call4, call5, 0);
             workWord2 = originalFrame.sp8C;
             numeric4 = Physics15Player94View2;
             workWord2 = -workWord2;
@@ -902,7 +902,7 @@ void func_level_15_80086D54(int slotIndex) {
                 originalFrame.sp90 = workWord2;
                 originalFrame.sp94 = workWord3;
                 Physics15AddVectorView2(call4, call5, call6);
-                if (!Physics15Call13E38View1(playerVector54, scratchPointer16, 2)) {
+                if (!Physics15TestSubdividedSegmentPathView1(playerVector54, scratchPointer16, 2)) {
                     workWord2 = Physics15Player8View1;
                     workWord3 = Physics15Data71908View1;
                     workWord2 -= workWord3;
@@ -967,7 +967,7 @@ void func_level_15_80086D54(int slotIndex) {
                 Physics15Player60View2 = 800;
             numeric4 = Physics15Player8View1;
             responseLimit16 = 0;
-            workWord2 = Physics15Call4E4E4View1(numeric4);
+            workWord2 = Physics15EvaluateClampedPlayerRootCurveView1(numeric4);
             workWord3 = Physics15Player148View1;
             MATCHING_OBSERVE2_VOLATILE_CLOBBER(workWord3, workWord2, "memory");
             numeric4 = workWord2;
@@ -1059,7 +1059,7 @@ void func_level_15_80086D54(int slotIndex) {
         storeAngle160:
             Physics15Player5CView1 = workWord2;
         rotationDone160:
-            Physics15Call41848View2();
+            Physics15BuildPlayerMovementVectorView2();
             numeric4 = Physics15Player4CView2;
             if (numeric4)
                 goto active45;
@@ -1129,7 +1129,7 @@ void func_level_15_80086D54(int slotIndex) {
                 Physics15Field(pointer2, int*, 0) = workWord3;
             }
         end15:
-            Physics15Call41B64View2();
+            Physics15BuildPlayerResponseVectorView2();
             return;
     }
 }
@@ -1138,14 +1138,14 @@ void func_level_15_80086D54(int slotIndex) {
 
 extern Spyro Callback15Player __asm__("D_80070328");
 int Callback15_80037058(int x, int y) __asm__("func_80037058");
-int Callback15_8003BF6C(int soundId, int index) __asm__("func_8003BF6C");
-void Callback15_80041930(void) __asm__("func_80041930");
+int Callback15_SoundHandleMatchesIdInStates1Or2(int soundId, int index) __asm__("func_8003BF6C");
+void Callback15_ProbePlayerContactSegment(void) __asm__("func_80041930");
 void Callback15_80041AE8(void) __asm__("func_80041AE8");
 void Callback15_80041C20(void) __asm__("func_80041C20");
-void Callback15_80042A44(void) __asm__("func_80042A44");
-void Callback15_80043A38(int scale) __asm__("func_80043A38");
+void Callback15_UpdatePlayerSurfaceState(void) __asm__("func_80042A44");
+void Callback15_BuildNegatedNormalizedPlayerVector(int scale) __asm__("func_80043A38");
 void Callback15_80049590(void) __asm__("func_80049590");
-void Callback15_8004F110(Vector3D*, int) __asm__("func_8004F110");
+void Callback15_ShiftVectorRightTowardZero(Vector3D*, int) __asm__("func_8004F110");
 extern int Callback15_8006E344 __asm__("D_8006E344");
 extern int Callback15_8006E52C __asm__("D_8006E52C");
 extern int Callback15_8006E530 __asm__("D_8006E530");
@@ -1172,12 +1172,12 @@ void func_level_15_800882B8(void) {
         case 0x36:
         case 0xB0:
             Callback15_80041C20();
-            Callback15_80042A44();
+            Callback15_UpdatePlayerSurfaceState();
             goto clearValue;
         case 0x19:
             Callback15_80041C20();
-            Callback15_80042A44();
-            Callback15_80041930();
+            Callback15_UpdatePlayerSurfaceState();
+            Callback15_ProbePlayerContactSegment();
             Callback15_80049590();
             if ((Callback15Player.movementState == MOVEMENT_STATE_SUPERCHARGE) &&
                 (SpawnParticle != 0)) {
@@ -1193,8 +1193,8 @@ void func_level_15_800882B8(void) {
         case 0x22:
         case 0x23:
             Callback15_80041C20();
-            Callback15_80042A44();
-            Callback15_80041930();
+            Callback15_UpdatePlayerSurfaceState();
+            Callback15_ProbePlayerContactSegment();
             if ((SpawnParticle != 0) && (Callback15Player.union144.b.unk148 != 0)) {
                 iterationLimit = 1;
                 if (Callback15Player.union144.b.unk148 >= 2) {
@@ -1205,7 +1205,7 @@ void func_level_15_800882B8(void) {
                     sourceBytes = (unsigned char*)&Callback15Player.union144.a.unk13cc - 0xB0;
                     do {
                         func_8004F178(&local.value, (Vector3D*)sourceBytes);
-                        Callback15_8004F110(&local.value, 7);
+                        Callback15_ShiftVectorRightTowardZero(&local.value, 7);
                         iteration += 1;
                         sample = rand();
                         component = local.value.x;
@@ -1244,7 +1244,7 @@ void func_level_15_800882B8(void) {
         case 0x2C:
         case 0x37:
             Callback15_80041C20();
-            Callback15_80042A44();
+            Callback15_UpdatePlayerSurfaceState();
             Callback15_80041AE8();
             if ((unsigned char)Callback15Player.unk10[4] != 0) {
                 sample =
@@ -1266,8 +1266,8 @@ void func_level_15_800882B8(void) {
             return;
         case 0x3D:
             Callback15_80041C20();
-            Callback15_80042A44();
-            Callback15_80043A38(0xC00);
+            Callback15_UpdatePlayerSurfaceState();
+            Callback15_BuildNegatedNormalizedPlayerVector(0xC00);
             Callback15_80049590();
             if (SpawnParticle != 0) {
                 SpawnParticle(1, 9, 0, 0);
@@ -1276,15 +1276,15 @@ void func_level_15_800882B8(void) {
             Callback15Player.unk4[0] = 0;
             Callback15_8006E52C = 4;
             if ((Callback15_8006E344 == 0) &&
-                (Callback15_8003BF6C((int)D_8006C654->supercharge, Callback15Player.unk22[2]) ==
-                 0)) {
+                (Callback15_SoundHandleMatchesIdInStates1Or2((int)D_8006C654->supercharge,
+                                                             Callback15Player.unk22[2]) == 0)) {
                 Callback15Player.unk22[2] = PlaySound((int)D_8006C654->supercharge, 0, 4);
                 Callback15Player.unk22[3] = (int)D_8006C654->supercharge;
             }
             break;
         case 0xAF:
             Callback15_80041C20();
-            Callback15_80042A44();
+            Callback15_UpdatePlayerSurfaceState();
             value = Callback15Player.unk9ha[4];
             height = Callback15Player.unk4a;
             sample = Callback15Player.position.z;
@@ -1292,7 +1292,7 @@ void func_level_15_800882B8(void) {
             value = value + height;
             if (sample < value)
                 Callback15Player.position.z = value;
-            Callback15_80041930();
+            Callback15_ProbePlayerContactSegment();
         clearValue:
             Callback15Player.unk4[0] = 0;
             return;
@@ -1370,11 +1370,11 @@ extern int Raw15Word __asm__("D_80070328+0x50");
 extern unsigned char Raw15State[] __asm__("D_80070328+0x50");
 extern unsigned char Raw15Union[] __asm__("D_80070328+0x144");
 extern int Raw15Spit __asm__("D_80070328+0x170");
-void Call15_8004F168(Vector3D*) __asm__("func_8004F168");
-int Call15_8004EDE8(Vector3D*, int) __asm__("func_8004EDE8");
-int Call15A358(Vector3D*, int) __asm__("func_8001A358");
-void Call15_800441F0(void) __asm__("func_800441F0");
-void Call15_80043A38(int) __asm__("func_80043A38");
+void Call15_ClearVector(Vector3D*) __asm__("func_8004F168");
+int Call15_MeasureVectorLength(Vector3D*, int) __asm__("func_8004EDE8");
+int Call15QueryWorldHeight(Vector3D*, int) __asm__("func_8001A358");
+void Call15_ClearPlayerMotionVectors(void) __asm__("func_800441F0");
+void Call15_BuildNegatedNormalizedPlayerVector(int) __asm__("func_80043A38");
 void func_80047138(void);
 extern int Transition15DamageTimer __asm__("D_8006E524");
 void func_level_15_800888D4(int arg0) {
@@ -1394,7 +1394,7 @@ void func_level_15_800888D4(int arg0) {
         standEntry:
             Transition15Player.movementState = MOVEMENT_STATE_STAND;
             Transition15Player.unk5 = 0;
-            Call15_800441F0();
+            Call15_ClearPlayerMotionVectors();
             Transition15Player.grounded = 1;
             goto clearPointers;
 
@@ -1421,9 +1421,9 @@ void func_level_15_800888D4(int arg0) {
             if (*(int*)flyState != 6) {
                 *(int*)flyState = 6;
                 Transition15Player.unk5 = 0;
-                Call15_8004F168((Vector3D*)(flyState + 0x104));
+                Call15_ClearVector((Vector3D*)(flyState + 0x104));
                 Transition15Player.union144.a.unk13db.y = 0;
-                vectorLength = Call15_8004EDE8((Vector3D*)(flyState + 0x48), 0);
+                vectorLength = Call15_MeasureVectorLength((Vector3D*)(flyState + 0x48), 0);
                 Transition15Player.unk8[0] = vectorLength;
                 if (vectorLength < 0x800)
                     Transition15Player.unk8[0] = 0x800;
@@ -1458,12 +1458,12 @@ void func_level_15_800888D4(int arg0) {
                     }
                     Transition15Player.unk5 = 0;
                     Transition15Player.unk8[0] =
-                        Call15_8004EDE8((Vector3D*)(unionPointer - 0xAC), 0);
+                        Call15_MeasureVectorLength((Vector3D*)(unionPointer - 0xAC), 0);
                     Transition15Player.grounded = 1;
                     Transition15Player.unk15b = 1;
                     func_8004F178(&surfaceVector, (Vector3D*)(unionPointer - 0x144));
                     surfaceVector.z += 0x400;
-                    surfaceResult = Call15A358(&surfaceVector, 0x800);
+                    surfaceResult = Call15QueryWorldHeight(&surfaceVector, 0x800);
                     surfaceVector.z = surfaceResult;
                     if (surfaceResult != 0 && D_80071934 != 0 && SpawnParticle) {
                         SpawnParticle(10, 0x29, &surfaceVector, 0);
@@ -1502,9 +1502,10 @@ void func_level_15_800888D4(int arg0) {
             *(int*)stateBase = MOVEMENT_STATE_SUPERCHARGE;
             Transition15Player.unk5 = 0;
             Transition15Player.unk13a[0] = 0x60000;
-            Transition15Player.unk8[0] = Call15_8004EDE8((Vector3D*)(stateBase + 0x48), 0);
+            Transition15Player.unk8[0] =
+                Call15_MeasureVectorLength((Vector3D*)(stateBase + 0x48), 0);
             Transition15Player.horizontalSpeed = 0x1E80;
-            Call15_80043A38(0xC00);
+            Call15_BuildNegatedNormalizedPlayerVector(0xC00);
             Transition15Player.grounded = 1;
             if ((Transition15Player.unk13f[0] != 0) || (Transition15Player.spitState != 0) ||
                 (Transition15Player.unk17t != 6)) {
@@ -1527,7 +1528,7 @@ void func_level_15_800888D4(int arg0) {
             MATCHING_KEEP(originalZ);
             Raw15Word = originalZ;
             Transition15Player.unk5 = 0;
-            Call15_80043A38(0xC00);
+            Call15_BuildNegatedNormalizedPlayerVector(0xC00);
             Transition15Player.grounded = 1;
             Transition15DamageTimer = 15;
             return;
@@ -1583,26 +1584,26 @@ extern int A15W290 __asm__("D_80070328 + 0x290");
 extern int A15Surface __asm__("D_8006FA38");
 extern unsigned char* A15SoundDesc __asm__("D_8006C654");
 int A15Sound() __asm__("PlaySound");
-int A15H40994() __asm__("func_80040994");
-int A15H4BEF8() __asm__("func_8004BEF8");
-int A15H498C0() __asm__("func_800498C0");
+int A15ProcessPlayerStateFlags() __asm__("func_80040994");
+int A15DispatchPlayerStateRequest() __asm__("func_8004BEF8");
+int A15UpdatePlayerRetryState() __asm__("func_800498C0");
 extern volatile int A15W20C __asm__("D_80070328 + 0x20C");
 extern int A15W214 __asm__("D_80070328 + 0x214");
 extern unsigned char A15B100 __asm__("D_80070328 + 0x100");
 extern unsigned char A15E535 __asm__("D_8006E535");
 extern unsigned char* A15Models __asm__("D_8006EE2C");
-int A15H40BCC() __asm__("func_80040BCC");
-int A15H1A310() __asm__("func_8001A310");
+int A15ProcessPlayerContactFlags() __asm__("func_80040BCC");
+int A15QueryWorldHeightWithOptions() __asm__("func_8001A310");
 extern int A15W10C __asm__("D_80070328 + 0x10C");
 extern int A15WB4 __asm__("D_80070328 + 0xB4");
 extern int A15WA4 __asm__("D_80070328 + 0xA4");
 extern int (*A15Callback1)(int) __asm__("unk_ovlheader_8007431C");
-int A15H40954() __asm__("func_80040954");
+int A15GetSurfaceTypeFromFlags() __asm__("func_80040954");
 extern int A15W50 __asm__("D_80070328 + 0x50");
 extern int A15WBC __asm__("D_80070328 + 0xBC"), A15W1BC __asm__("D_80070328 + 0x1BC"),
     A15W60 __asm__("D_80070328 + 0x60");
 extern short A15H148 __asm__("D_80070328 + 0x148");
-int A15H43194() __asm__("func_80043194");
+int A15TestPlayerProbePattern() __asm__("func_80043194");
 int A15MeasureVectorLength() __asm__("func_8004EDE8");
 extern int A15WF4 __asm__("D_80070328 + 0xF4");
 void func_level_15_80088D88(void) {
@@ -1614,11 +1615,11 @@ void func_level_15_80088D88(void) {
     switch (*state) {
         case 53:
         case 54:
-            if (!A15H40994())
+            if (!A15ProcessPlayerStateFlags())
                 goto set0;
             return;
         case 25:
-            if (A15H40BCC())
+            if (A15ProcessPlayerContactFlags())
                 return;
             if (A15B1B5 && (A15NewButtons & 64))
                 A15B1B6 = 1;
@@ -1641,7 +1642,7 @@ void func_level_15_80088D88(void) {
                     goto set14;
             }
             if (!A15WB8 && A15W54 >= 5) {
-                A15H4BEF8(61);
+                A15DispatchPlayerStateRequest(61);
                 return;
             }
             if (A15B1B6) {
@@ -1653,11 +1654,11 @@ void func_level_15_80088D88(void) {
                 goto set22;
             return;
         case 33:
-            if (A15H40994())
+            if (A15ProcessPlayerStateFlags())
                 return;
             if (!state[28]) {
                 if (A15WE4 >= 23)
-                    A15H4BEF8(7);
+                    A15DispatchPlayerStateRequest(7);
                 if (A15WAC > 0) {
                 speed33:
                     work3 = A15WB0;
@@ -1679,7 +1680,7 @@ void func_level_15_80088D88(void) {
             MATCHING_KEEP(buttons);
             if (*buttons & 128)
                 goto set22;
-            if (A15H43194(4))
+            if (A15TestPlayerProbePattern(4))
                 goto set47;
             if (!A15WBC)
                 goto set7;
@@ -1704,11 +1705,11 @@ void func_level_15_80088D88(void) {
                 return;
             goto set35;
         case 34:
-            if (A15H40994())
+            if (A15ProcessPlayerStateFlags())
                 return;
             if (!state[28]) {
                 if (A15WE4 >= 23)
-                    A15H4BEF8(7);
+                    A15DispatchPlayerStateRequest(7);
                 MATCHING_BARRIER_VOLATILE("memory");
                 if (A15WAC <= 0)
                     goto speed0;
@@ -1719,7 +1720,7 @@ void func_level_15_80088D88(void) {
             MATCHING_KEEP(buttons);
             if (*buttons & 128)
                 goto set22;
-            if (A15H43194(4))
+            if (A15TestPlayerProbePattern(4))
                 goto set47;
             if (!A15WBC)
                 goto set7;
@@ -1734,7 +1735,7 @@ void func_level_15_80088D88(void) {
             if (*(short*)((char*)state + 256) < 2)
                 goto turn34;
         set35:
-            A15H4BEF8(35);
+            A15DispatchPlayerStateRequest(35);
             return;
         turn34:
             if (state[6] >= 256)
@@ -1743,11 +1744,11 @@ void func_level_15_80088D88(void) {
                 goto set33;
             return;
         case 35:
-            if (A15H40994())
+            if (A15ProcessPlayerStateFlags())
                 return;
             if (!A15WB8) {
                 if (A15WE4 >= 23)
-                    A15H4BEF8(7);
+                    A15DispatchPlayerStateRequest(7);
                 if (A15WAC > 0) {
                     work3 = A15WB0;
                     work2 = work3 < 3841;
@@ -1757,45 +1758,45 @@ void func_level_15_80088D88(void) {
                     if (work2)
                         goto set1;
                 set2:
-                    A15H4BEF8(2);
+                    A15DispatchPlayerStateRequest(2);
                     return;
                 set1:
-                    A15H4BEF8(1);
+                    A15DispatchPlayerStateRequest(1);
                     return;
                 }
                 if (A15WB0 < 1920)
                     goto set0;
             set4:
-                A15H4BEF8(4);
+                A15DispatchPlayerStateRequest(4);
                 return;
             set0:
-                A15H4BEF8(0);
+                A15DispatchPlayerStateRequest(0);
                 return;
             }
             buttons = &A15NewButtons;
             MATCHING_KEEP(buttons);
             if (*buttons & 128) {
             set22:
-                A15H4BEF8(22);
+                A15DispatchPlayerStateRequest(22);
                 return;
             }
-            if (A15H43194(4)) {
+            if (A15TestPlayerProbePattern(4)) {
             set47:
-                A15H4BEF8(47);
+                A15DispatchPlayerStateRequest(47);
                 return;
             }
             if (!A15WBC)
                 goto set7;
             if (!A15W1BC) {
             set17:
-                A15H4BEF8(17);
+                A15DispatchPlayerStateRequest(17);
                 return;
             }
             work2 = *buttons & 16;
             work4 = (int)state + 80;
             if (work2) {
             set18:
-                A15H4BEF8(18);
+                A15DispatchPlayerStateRequest(18);
                 return;
             }
             if (A15MeasureVectorLength((void*)work4, 1) < 1024)
@@ -1804,17 +1805,17 @@ void func_level_15_80088D88(void) {
                 return;
             if (state[1]) {
             set34:
-                A15H4BEF8(34);
+                A15DispatchPlayerStateRequest(34);
                 return;
             }
             if (state[6] < -255)
                 return;
         set33:
-            A15H4BEF8(33);
+            A15DispatchPlayerStateRequest(33);
             return;
         case 43: {
             register unsigned char* byte4 __asm__("$4");
-            if (A15H40994())
+            if (A15ProcessPlayerStateFlags())
                 return;
             if ((A15NewButtons & 64) && A15W54 >= 9) {
                 work4 = 6;
@@ -1834,15 +1835,15 @@ void func_level_15_80088D88(void) {
             byte4 -= 256;
             if (!work2)
                 goto check44;
-            if (!A15H1A310(byte4, 1024, 1, 0))
+            if (!A15QueryWorldHeightWithOptions(byte4, 1024, 1, 0))
                 goto set40;
             goto check44;
         partial43:
-            A15H4BEF8(work4);
+            A15DispatchPlayerStateRequest(work4);
         check44:
             if (!A15E535)
                 return;
-            A15H4BEF8(44);
+            A15DispatchPlayerStateRequest(44);
             return;
         }
         case 44: {
@@ -1864,10 +1865,10 @@ void func_level_15_80088D88(void) {
             callback2();
             return;
         other44:
-            if (A15H40994())
+            if (A15ProcessPlayerStateFlags())
                 return;
             if ((A15NewButtons & 64) && A15W54 >= 9) {
-                A15H4BEF8(6);
+                A15DispatchPlayerStateRequest(6);
                 return;
             }
             byte4 = &A15B100;
@@ -1882,10 +1883,10 @@ void func_level_15_80088D88(void) {
             byte4 -= 256;
             if (!work2)
                 goto mode44;
-            if (A15H1A310(byte4, 1024, 1, 0))
+            if (A15QueryWorldHeightWithOptions(byte4, 1024, 1, 0))
                 goto mode44;
         set40:
-            A15H4BEF8(40);
+            A15DispatchPlayerStateRequest(40);
             return;
         mode44:
             work3 = A15Mode;
@@ -1894,20 +1895,20 @@ void func_level_15_80088D88(void) {
                 return;
             if (A15E535)
                 return;
-            A15H4BEF8(43);
+            A15DispatchPlayerStateRequest(43);
             return;
         }
         case 55:
             if (A15W54 < 101)
                 return;
-            A15H4BEF8(44);
+            A15DispatchPlayerStateRequest(44);
             work2 = 1;
             A15W4C = work2;
             work2 = 8;
             A15W50 = work2;
             return;
         case 61:
-            if (A15H40BCC())
+            if (A15ProcessPlayerContactFlags())
                 return;
             work2 = 1;
             work3 = A15W4C;
@@ -1915,7 +1916,7 @@ void func_level_15_80088D88(void) {
                 goto buttons61;
             if (A15WB8 >= 4)
                 goto partial25;
-            work2 = A15H40954(A15W10C);
+            work2 = A15GetSurfaceTypeFromFlags(A15W10C);
             work3 = 9;
             if (work2 == work3)
                 goto finalSpeed;
@@ -1924,7 +1925,7 @@ void func_level_15_80088D88(void) {
         buttons61:
             if (A15Buttons & 64) {
             partial25:
-                A15H4BEF8(25);
+                A15DispatchPlayerStateRequest(25);
                 work2 = A15WB8;
                 work3 = 3520;
                 A15W94 = work3;
@@ -1932,7 +1933,7 @@ void func_level_15_80088D88(void) {
                 return;
             }
             if (A15WB8 >= 4) {
-                A15H4BEF8(25);
+                A15DispatchPlayerStateRequest(25);
                 return;
             }
             if (state[39] >= 23) {
@@ -1946,7 +1947,7 @@ void func_level_15_80088D88(void) {
                 if (work2 >= 0)
                     goto checkState;
             set7:
-                A15H4BEF8(7);
+                A15DispatchPlayerStateRequest(7);
                 return;
             }
         checkState:
@@ -1969,7 +1970,7 @@ void func_level_15_80088D88(void) {
             if (work3 == work2)
                 goto finalSpeed;
         set3:
-            A15H4BEF8(3);
+            A15DispatchPlayerStateRequest(3);
             return;
         finalSpeed:
             work3 = A15WB0;
@@ -1981,12 +1982,12 @@ void func_level_15_80088D88(void) {
             if (!work2)
                 return;
         set14:
-            A15H4BEF8(14);
+            A15DispatchPlayerStateRequest(14);
             return;
         case 175:
             if (!A15W24)
                 return;
-            A15H4BEF8(176);
+            A15DispatchPlayerStateRequest(176);
             A15W24 = 0;
             return;
         case 176:
@@ -1995,7 +1996,7 @@ void func_level_15_80088D88(void) {
             if (A15W54 < 91)
                 return;
         fallback:
-            A15H498C0();
+            A15UpdatePlayerRetryState();
             return;
     }
 }

@@ -22,8 +22,8 @@
  * Falsification: every original native/linked word, conditional/internal
  * target, owned table/data record, and full EXE/every-overlay retail hash.
  * Binary identity does not establish synchronized runtime/system completion. */
-int Spawn989E8func_8004F570(void*, void*) __asm__("func_8004F570");
-int Spawn989E8func_8004F5A8(void*, void*, void*) __asm__("func_8004F5A8");
+int Spawn989E8NarrowWordVectorToHalfwords(void*, void*) __asm__("func_8004F570");
+int Spawn989E8AddHalfwordVectors(void*, void*, void*) __asm__("func_8004F5A8");
 #include "common.h"
 extern int Spawn989E8D_8006E020 __asm__("D_8006E020");
 extern int Spawn989E8D_8006E024 __asm__("D_8006E024");
@@ -36,8 +36,8 @@ extern unsigned short Spawn989E8D_8006E03E __asm__("D_8006E03E");
 extern short Spawn989E8D_8006E040 __asm__("D_8006E040");
 int Spawn989E8InterpolateCosine(int) __asm__("func_8004EA2C");
 int Spawn989E8InterpolateSine(int) __asm__("func_8004E9E4");
-int Spawn989E8func_8001A310(void*, int, int, int) __asm__("func_8001A310");
-int Spawn989E8func_8001A358(void*, int) __asm__("func_8001A358");
+int Spawn989E8QueryWorldHeightWithOptions(void*, int, int, int) __asm__("func_8001A310");
+int Spawn989E8QueryWorldHeight(void*, int) __asm__("func_8001A358");
 extern int Spawn989E8D_8006D07C __asm__("D_8006D07C");
 extern int Spawn989E8D_8006D080 __asm__("D_8006D080");
 extern int Spawn989E8D_8006D084 __asm__("D_8006D084");
@@ -52,16 +52,16 @@ extern unsigned char Spawn989E8PlayerE __asm__("D_80070328 + 0xE");
 extern unsigned char Spawn989E8Color1[] __asm__("D_80066BAC");
 extern unsigned char Spawn989E8Color2[] __asm__("D_80066BAC");
 #define Spawn989E8Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Spawn989E8func_8004EA90(void*, void*, int) __asm__("func_8004EA90");
+int Spawn989E8BuildPackedAngleBasisMatrix(void*, void*, int) __asm__("func_8004EA90");
 int Spawn989E8TransformVectorByBasis(void*, void*, void*) __asm__("func_8004ED6C");
 int Spawn989E8ShiftVectorRightTowardZero(void*, int) __asm__("func_8004F110");
 int Spawn989E8CopyVector(void*, void*) __asm__("func_8004F178");
 int Spawn989E8AddVector(void*, void*, void*) __asm__("func_8004F194");
 int Spawn989E8MultiplyVectorGpfSf0(void*, void*, int) __asm__("func_8004F1FC");
 int Spawn989E8PackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-void* Spawn989E8func_80056434(int) __asm__("func_80056434");
+void* Spawn989E8AllocateParticleRecord(int) __asm__("func_80056434");
 int Spawn989E8RandBetween(int, int) __asm__("func_8003636C");
-int Spawn989E8func_8004F58C(void*, void*) __asm__("func_8004F58C");
+int Spawn989E8CopyHalfwordVector(void*, void*) __asm__("func_8004F58C");
 int Spawn989E8rand(void) __asm__("rand");
 extern unsigned char Spawn989E8D_800658A0[] __asm__("D_800658A0");
 extern unsigned char Spawn989E8D_80065920[] __asm__("D_80065920");
@@ -70,7 +70,7 @@ extern unsigned char Spawn989E8D_80066A48[] __asm__("D_80066A48");
 extern unsigned char Spawn989E8D_80066BAC[] __asm__("D_80066BAC");
 extern unsigned char Spawn989E8D_80070328[] __asm__("D_80070328");
 extern int Spawn989E8D_8006E344 __asm__("D_8006E344");
-int Spawn989E8func_8001830C(void*, void*, int, int, int) __asm__("func_8001830C");
+int Spawn989E8QueryWorldSegmentWithOptions(void*, void*, int, int, int) __asm__("func_8001830C");
 extern int Spawn989E8D_80071908 __asm__("D_80071908");
 #define Spawn989E8Stack(t, o) (*(t*)((unsigned char*)&frame + (o) - 0x18))
 void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) {
@@ -111,7 +111,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
             MATCHING_KEEP_VOLATILE_CLOBBER(byte255, "memory");
             switch (kindSelector) {
                 case 0x0:
-                    record = Spawn989E8func_80056434(2);
+                    record = Spawn989E8AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -144,7 +144,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     Spawn989E8Field(record, unsigned char*, 15) = commonByte8;
                     goto initializeTrailingBytes;
                 case 0x1:
-                    record = Spawn989E8func_80056434(2);
+                    record = Spawn989E8AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -173,7 +173,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     tailByte = 4;
                     goto initializeF9;
                 case 0x4:
-                    record = Spawn989E8func_80056434(2);
+                    record = Spawn989E8AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -217,7 +217,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     Spawn989E8Field(record, unsigned short*, 30) = tailByte;
                     break;
                 case 0x9:
-                    record = Spawn989E8func_80056434(2);
+                    record = Spawn989E8AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = &Spawn989E8Stack(int, 0x18);
                         register unsigned char* player __asm__("$16");
@@ -283,7 +283,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     Spawn989E8Field(record, unsigned char*, 15) = commonByte8;
                     goto initializeTrailingBytes;
                 case 0xA:
-                    record = Spawn989E8func_80056434(3);
+                    record = Spawn989E8AllocateParticleRecord(3);
                     Spawn989E8Field(record, unsigned char*, 0) = kindSelector;
                     {
                         register void* destination __asm__("$4") = record + 4;
@@ -346,7 +346,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0xC:
-                    record = Spawn989E8func_80056434(2);
+                    record = Spawn989E8AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = reference + 32;
                         register int iteration __asm__("$9");
@@ -507,7 +507,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                                          4 + (Spawn989E8rand() & 7));
                     break;
                 case 0xD:
-                    record = Spawn989E8func_80056434(2);
+                    record = Spawn989E8AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -609,7 +609,8 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                         break;
                     if (value4 <= 0)
                         break;
-                    value2 = Spawn989E8func_8001A310(&Spawn989E8Stack(int, 0x38), 0x60C0, 2, 0);
+                    value2 = Spawn989E8QueryWorldHeightWithOptions(&Spawn989E8Stack(int, 0x38),
+                                                                   0x60C0, 2, 0);
                     scratch16 = value2;
                     if (reference) {
                         value2 = Spawn989E8rand();
@@ -649,7 +650,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                         break;
                     if (scratch16 && Spawn989E8D_80071920 <= 0)
                         break;
-                    record = Spawn989E8func_80056434(3);
+                    record = Spawn989E8AllocateParticleRecord(3);
                     value5 = 1;
                     Spawn989E8Field(record, unsigned char*, 0) = kindSelector;
                     Spawn989E8Field(record, unsigned char*, 2) = 0;
@@ -695,8 +696,8 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     Spawn989E8MultiplyVectorGpfSf0((void*)value4, (void*)value5,
                                                    Spawn989E8Field(record, short*, 0x1C));
                     vector16 = &Spawn989E8Stack(int, 0x68);
-                    Spawn989E8func_8004F570(vector16, vector17);
-                    Spawn989E8func_8004F5A8(vector18, vector18, vector16);
+                    Spawn989E8NarrowWordVectorToHalfwords(vector16, vector17);
+                    Spawn989E8AddHalfwordVectors(vector18, vector18, vector16);
                     value2 = Spawn989E8Field(record, unsigned short*, 4);
                     value3 = Spawn989E8Field(record, unsigned short*, 6);
                     Spawn989E8Field(record, unsigned short*, 24) = value2;
@@ -737,7 +738,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     break;
                 }
                 case 0x12:
-                    record = Spawn989E8func_80056434(4);
+                    record = Spawn989E8AllocateParticleRecord(4);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -746,7 +747,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                         Spawn989E8Field(record, unsigned char*, 0) = kindSelector;
                         Spawn989E8Field(record, unsigned char*, 2) = 0;
                         Spawn989E8Field(record, unsigned char*, 3) = tailByte;
-                        Spawn989E8func_8004F58C(destination, source);
+                        Spawn989E8CopyHalfwordVector(destination, source);
                     }
                     tailByte = Spawn989E8rand();
                     tailByte &= 6;
@@ -770,7 +771,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x21:
-                    record = Spawn989E8func_80056434(2);
+                    record = Spawn989E8AllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Spawn989E8Field(record, unsigned char*, 0) = kindSelector;
@@ -966,7 +967,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     Spawn989E8Field(record, unsigned char*, 15) = commonByte8;
                     goto initializeTrailingBytes;
                 case 0x27:
-                    record = Spawn989E8func_80056434(2);
+                    record = Spawn989E8AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1104,12 +1105,12 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                         value3 = low8 >> 12;
                         value2 += value3;
                         Spawn989E8Stack(int, 0xA4) = value2;
-                        value2 = Spawn989E8func_8001A358(destination4, (int)source5);
+                        value2 = Spawn989E8QueryWorldHeight(destination4, (int)source5);
                     }
                     Spawn989E8Stack(int, 0xA8) = value2;
                     if (value2 == 0)
                         break;
-                    record = Spawn989E8func_80056434(3);
+                    record = Spawn989E8AllocateParticleRecord(3);
                     value2 = 1;
                     MATCHING_KEEP_CLOBBER(value2, "memory");
                     Spawn989E8Field(record, volatile unsigned char*, 3) = value2;
@@ -1169,7 +1170,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     Spawn989E8Field(record, unsigned char*, 31) = Spawn989E8D_80071934;
                 } break;
                 case 0x2A:
-                    record = Spawn989E8func_80056434(4);
+                    record = Spawn989E8AllocateParticleRecord(4);
                     {
                         register void* arg4 __asm__("$4") = record + 4;
                         register void* arg5 __asm__("$5") = reference;
@@ -1214,13 +1215,13 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     {
                         register int commonByte3 __asm__("$3");
                         case 0x2B:
-                            record = Spawn989E8func_80056434(4);
+                            record = Spawn989E8AllocateParticleRecord(4);
                             tailByte = 1;
                             Spawn989E8Field(record, unsigned char*, 0) = kindSelector;
                             Spawn989E8Field(record, unsigned char*, 2) = 0;
                             Spawn989E8Field(record, unsigned char*, 3) = tailByte;
                             if (modeSelector == 0) {
-                                Spawn989E8func_8004F58C(record + 4, reference);
+                                Spawn989E8CopyHalfwordVector(record + 4, reference);
                                 tailByte = Spawn989E8rand();
                                 tailByte &= 7;
                                 tailByte += 2;
@@ -1298,9 +1299,9 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                         player16 = table9 - 0x30;
                     }
                     Spawn989E8AddVector(arg4, arg5, player16);
-                    if (Spawn989E8func_8001830C(player16, vector17, 2, 0, 0) != 0)
+                    if (Spawn989E8QueryWorldSegmentWithOptions(player16, vector17, 2, 0, 0) != 0)
                         break;
-                    record = Spawn989E8func_80056434(2);
+                    record = Spawn989E8AllocateParticleRecord(2);
                     arg4 = record + 4;
                     arg5 = vector17;
                     value2 = 1;
@@ -1360,7 +1361,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     value2 = Spawn989E8Stack(int, 0xD8);
                     value2 += 3072;
                     Spawn989E8Stack(int, 0xD8) = value2;
-                    value2 = Spawn989E8func_8001830C(arg4, arg5, 2, 0, 0);
+                    value2 = Spawn989E8QueryWorldSegmentWithOptions(arg4, arg5, 2, 0, 0);
                     if (value2) {
                         value2 = Spawn989E8D_80071908;
                         value2 >>= 2;
@@ -1377,7 +1378,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     Spawn989E8Field(record, unsigned short*, 30) = value2;
                 } break;
                 case 0x2E:
-                    record = Spawn989E8func_80056434(2);
+                    record = Spawn989E8AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1436,7 +1437,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     Spawn989E8Field(record, unsigned char*, 14) = commonByte8;
                     goto initializeF9;
                 case 0x37:
-                    record = Spawn989E8func_80056434(2);
+                    record = Spawn989E8AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1470,7 +1471,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     Spawn989E8Field(record, unsigned char*, 15) = commonByte8;
                     goto initializeTrailingBytes;
                 case 0x38:
-                    record = Spawn989E8func_80056434(2);
+                    record = Spawn989E8AllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Spawn989E8Field(record, unsigned char*, 0) = kindSelector;
@@ -1503,7 +1504,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x39:
-                    record = Spawn989E8func_80056434(2);
+                    record = Spawn989E8AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1531,7 +1532,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     Spawn989E8Field(record, unsigned char*, 15) = commonByte8;
                     goto initializeTrailingBytes;
                 case 0x3A:
-                    record = Spawn989E8func_80056434(2);
+                    record = Spawn989E8AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1560,7 +1561,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     Spawn989E8Field(record, unsigned char*, 15) = commonByte8;
                     goto initializeTrailingBytes;
                 case 0x3B:
-                    record = Spawn989E8func_80056434(5);
+                    record = Spawn989E8AllocateParticleRecord(5);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1624,7 +1625,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     Spawn989E8Field(record, short*, 0x1C) = (short)((Spawn989E8rand() & 0xF) - 8);
                     break;
                 case 0x3C:
-                    record = Spawn989E8func_80056434(2);
+                    record = Spawn989E8AllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1667,7 +1668,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     Spawn989E8Field(record, unsigned char*, 16) = 0;
                     break;
                 case 0x42:
-                    record = Spawn989E8func_80056434(0);
+                    record = Spawn989E8AllocateParticleRecord(0);
                     Spawn989E8Field(record, unsigned char*, 0) = kindSelector;
                     Spawn989E8Field(record, unsigned char*, 2) =
                         (unsigned char)(Spawn989E8rand() & 0xF);
@@ -1770,7 +1771,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     Spawn989E8Field(record, unsigned char*, 0xF) = 0x40;
                     break;
                 case 0x46:
-                    record = Spawn989E8func_80056434(1);
+                    record = Spawn989E8AllocateParticleRecord(1);
                     Spawn989E8Field(record, unsigned char*, 0) = kindSelector;
                     Spawn989E8Field(record, unsigned char*, 2) =
                         (unsigned char)(Spawn989E8rand() & 0xF);
@@ -1778,8 +1779,8 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     Spawn989E8Stack(unsigned char, 0xF0) = 0;
                     Spawn989E8Stack(unsigned char, 0xF1) = Spawn989E8rand();
                     Spawn989E8Stack(unsigned char, 0xF2) = Spawn989E8rand();
-                    Spawn989E8func_8004EA90(&Spawn989E8Stack(unsigned char, 0xF0),
-                                            &Spawn989E8Stack(int, 0xF8), 0);
+                    Spawn989E8BuildPackedAngleBasisMatrix(&Spawn989E8Stack(unsigned char, 0xF0),
+                                                          &Spawn989E8Stack(int, 0xF8), 0);
                     Spawn989E8Stack(int, 0xE0) = modeSelector;
                     Spawn989E8Stack(int, 0xE4) = 0;
                     Spawn989E8Stack(int, 0xE8) = 0;
@@ -1834,7 +1835,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x47:
-                    record = Spawn989E8func_80056434(1);
+                    record = Spawn989E8AllocateParticleRecord(1);
                     Spawn989E8Field(record, unsigned char*, 0) = kindSelector;
                     Spawn989E8Field(record, unsigned char*, 2) =
                         (unsigned char)(Spawn989E8rand() & 7);
@@ -1909,7 +1910,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x4E:
-                    record = Spawn989E8func_80056434(0);
+                    record = Spawn989E8AllocateParticleRecord(0);
                     Spawn989E8Field(record, unsigned char*, 0) = kindSelector;
                     Spawn989E8Field(record, unsigned char*, 2) =
                         (unsigned char)(Spawn989E8rand() & 0x1F);
@@ -1978,7 +1979,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     break;
                 case 0x4F: {
                     register int local128 __asm__("$8");
-                    record = Spawn989E8func_80056434(1);
+                    record = Spawn989E8AllocateParticleRecord(1);
                     Spawn989E8Field(record, unsigned char*, 0) = kindSelector;
                     Spawn989E8Field(record, unsigned char*, 2) =
                         (unsigned char)(Spawn989E8rand() & 0xF);
@@ -2042,7 +2043,7 @@ void* func_level_50_800989E8(int entryCount, int kind, void* input, void* mode) 
                     break;
                 }
                 case 0x54:
-                    record = Spawn989E8func_80056434(0);
+                    record = Spawn989E8AllocateParticleRecord(0);
                     Spawn989E8Field(record, unsigned char*, 0) = kindSelector;
                     tailByte = Spawn989E8rand();
                     tailByte &= 15;

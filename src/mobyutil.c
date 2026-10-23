@@ -189,7 +189,7 @@ void func_80034FEC(Moby* arg0) {
  * Maybe consider making a txt file with my common functions and externed variables when this is in too
  * https://decomp.me/scratch/KUovp
  */
-int func_80035030(Moby* arg0, int* arg1, int arg2, int* arg3, int arg4, int arg5, int arg6,
+int func_80035030(Moby* moby, int* arg1, int arg2, int* arg3, int arg4, int arg5, int arg6,
                   int arg7) {
     int temp_v0;
     int temp_v1_2;
@@ -206,7 +206,7 @@ int func_80035030(Moby* arg0, int* arg1, int arg2, int* arg3, int arg4, int arg5
     if (var_v1 & 0x4000)
         var_a3 = 0;
     if (*arg1 != 0) {
-        var_s3 = func_80035EE0(arg0, arg2, *arg1, var_a3, arg6, var_v1 | 0x2000);
+        var_s3 = func_80035EE0(moby, arg2, *arg1, var_a3, arg6, var_v1 | 0x2000);
         *arg1 -= arg4;
         if (*arg1 < 0)
             *arg1 = 0;
@@ -214,21 +214,21 @@ int func_80035030(Moby* arg0, int* arg1, int arg2, int* arg3, int arg4, int arg5
     if (arg3 != 0) {
         var_v0 = var_s3;
         if (*arg3 != 0xFFFF) {
-            temp_v0 = func_80035D84(arg0, 0x258);
-            arg0->position.z += *arg3;
+            temp_v0 = func_80035D84(moby, 0x258);
+            moby->position.z += *arg3;
             temp_v1_2 = *arg3 - arg5;
             *arg3 = temp_v1_2;
             if (temp_v1_2 < -0x104)
                 *arg3 = -0x104;
             if (*arg3 <= 0) {
-                temp_v1_3 = temp_v0 + arg0->distanceToGround;
-                if (arg0->position.z < temp_v1_3) {
-                    arg0->position.z = temp_v1_3;
+                temp_v1_3 = temp_v0 + moby->distanceToGround;
+                if (moby->position.z < temp_v1_3) {
+                    moby->position.z = temp_v1_3;
                     var_s3 = 3;
                 }
             }
-            func_80056270(arg0);
-            func_8005629C(arg0);
+            func_80056270(moby);
+            func_8005629C(moby);
         }
     }
     return var_s3;
@@ -654,7 +654,7 @@ typedef struct {
 } PathHeaderRev0;
 int func_8004F334(Vector3D*, Vector3D*);
 int func_80035DDC(Moby*, int, int, int, int);
-int func_80035A80(Moby* arg0, PathHeaderRev0* arg1, int arg2, int arg3, int arg4, int arg5,
+int func_80035A80(Moby* moby, PathHeaderRev0* arg1, int arg2, int arg3, int arg4, int arg5,
                   int arg6, int arg7) {
     int temp_a0;
     int temp_v0;
@@ -667,19 +667,19 @@ int func_80035A80(Moby* arg0, PathHeaderRev0* arg1, int arg2, int arg3, int arg4
     var_s4 = 0;
     var_s6 = 0;
     if (arg7 & 0x100) {
-        temp_v0 = arg0->position.z - arg1->unkC[arg1->unk2].unk0.z;
+        temp_v0 = moby->position.z - arg1->unkC[arg1->unk2].unk0.z;
         var_s0_2 = (ABS(temp_v0) < arg2);
     } else {
         var_s0_2 = 1;
     }
-    if (func_8004F334(&arg0->position, &arg1->unkC[arg1->unk2].unk0) < arg2) {
+    if (func_8004F334(&moby->position, &arg1->unkC[arg1->unk2].unk0) < arg2) {
         if (var_s0_2)
             var_s4 = 1;
     }
     if (arg7 & 0x20000) {
-        if (func_8004F264(arg0->angle.yaw,
-                          func_8004E880(arg1->unkC[arg1->unk2].unk0.x - arg0->position.x,
-                                        arg1->unkC[arg1->unk2].unk0.y - arg0->position.y, 0)) >=
+        if (func_8004F264(moby->angle.yaw,
+                          func_8004E880(arg1->unkC[arg1->unk2].unk0.x - moby->position.x,
+                                        arg1->unkC[arg1->unk2].unk0.y - moby->position.y, 0)) >=
             0x41)
             var_s4 = 1;
     }
@@ -691,21 +691,21 @@ int func_80035A80(Moby* arg0, PathHeaderRev0* arg1, int arg2, int arg3, int arg4
         else
             var_s6 = 1;
     }
-    temp_v0_4 = func_8004E880(arg1->unkC[arg1->unk2].unk0.x - arg0->position.x,
-                              arg1->unkC[arg1->unk2].unk0.y - arg0->position.y, 0);
-    temp_v0_5 = func_8004F264(temp_v0_4, arg0->angle.yaw);
+    temp_v0_4 = func_8004E880(arg1->unkC[arg1->unk2].unk0.x - moby->position.x,
+                              arg1->unkC[arg1->unk2].unk0.y - moby->position.y, 0);
+    temp_v0_5 = func_8004F264(temp_v0_4, moby->angle.yaw);
     if (arg6 >= temp_v0_5) {
-        func_8003585C(arg0, temp_v0_4, arg5, arg6, 1, 0);
-        func_80035DDC(arg0, arg3, arg4, 0, arg7);
+        func_8003585C(moby, temp_v0_4, arg5, arg6, 1, 0);
+        func_80035DDC(moby, arg3, arg4, 0, arg7);
     } else {
         if (D_8006C648 == 3)
             arg5 += arg5 >> 1;
         else if (D_8006C648 == 4)
             arg5 *= 2;
         MAX(arg5, temp_v0_5);
-        func_8003585C(arg0, temp_v0_4, arg5, 0x80, 1, 0);
+        func_8003585C(moby, temp_v0_4, arg5, 0x80, 1, 0);
     }
-    if (func_8004F264(temp_v0_4, arg0->angle.yaw) > 0)
+    if (func_8004F264(temp_v0_4, moby->angle.yaw) > 0)
         var_s6 |= 4;
     return var_s6;
 }
@@ -1211,7 +1211,7 @@ extern int func_8004EDE8(Vector3D*, int);
  * execute once at their corresponding branch in this call. Confidence: exact.
  * Falsifiable test: compare all 254 words, the full PSX.EXE SHA-256, and every
  * corrected and encrypted overlay hash through build_multiproc.py. */
-Moby* func_80036A68(Moby* arg0, int arg1, Vector3D* arg2, Vector3D* arg3) {
+Moby* func_80036A68(Moby* moby, int arg1, Vector3D* arg2, Vector3D* arg3) {
     Vector3D sp18;
     Vector3D sp28;
     register Moby* sourceMoby asm("$19");
@@ -1227,7 +1227,7 @@ Moby* func_80036A68(Moby* arg0, int arg1, Vector3D* arg2, Vector3D* arg3) {
     unsigned char temp_v0;
     register GemMobyTag* spawnedTag asm("$21");
 
-    sourceMoby = arg0;
+    sourceMoby = moby;
     MATCHING_KEEP(sourceMoby);
     var_s2 = arg1;
     var_s0 = (int)arg2;
@@ -1366,7 +1366,7 @@ void func_8003BA00(Moby*);
 /* Retail source: USA Rev 0 0x80036E60..0x80037014 (109 words).
  * One call records one collected value; integer fields have no fixed-point scale.
  * Exact test: full PSX.EXE SHA-256 plus all overlay hashes in build_multiproc.py. */
-void func_80036E60(Moby* arg0) {
+void func_80036E60(Moby* moby) {
     int gemValue;
     int temp_v0;
     register int temp_a1 __asm__("$5");
@@ -1374,23 +1374,23 @@ void func_80036E60(Moby* arg0) {
     unsigned char temp_v1;
     register Moby* var_a0 __asm__("$4");
 
-    gemValue = D_80066980[arg0->substate];
-    if (arg0->mobyClass != 0x141) {
+    gemValue = D_80066980[moby->substate];
+    if (moby->mobyClass != 0x141) {
         D_8006C71C += gemValue;
         D_80071A10[levelIndex] += gemValue;
     }
-    D_8006E3B0[D_8006C6F8 & 0x1F] = arg0->substate;
+    D_8006E3B0[D_8006C6F8 & 0x1F] = moby->substate;
     D_8006C6F8 += 1;
-    if ((arg0->mobyClass == 1) && (arg0->position.z >= 0x300)) {
-        func_80036708(gemValue, arg0);
+    if ((moby->mobyClass == 1) && (moby->position.z >= 0x300)) {
+        func_80036708(gemValue, moby);
     }
-    if (arg0->mobyClass != 0x141) {
-        temp_v1 = arg0->linkedMoby;
+    if (moby->mobyClass != 0x141) {
+        temp_v1 = moby->linkedMoby;
         if (temp_v1 != 0xFF) {
             var_s0 = temp_v1 + D_8006C79C;
             var_a0 = &D_8006C550[temp_v1];
         } else {
-            var_a0 = arg0;
+            var_a0 = moby;
             temp_a1 = (unsigned int)var_a0 - (unsigned int)D_8006C550;
             temp_v0 = temp_a1 * -0x45D1745D;
             var_s0 = (temp_v0 >> 3) + D_8006C79C;
@@ -2157,7 +2157,7 @@ void func_80037F50(Moby* arg0) {
  * signed integer world units; arg4 is a behavior bitfield evaluated once per
  * caller invocation. Confirmed by an exact 189/189 instruction comparison;
  * falsify with any word mismatch in this span or a different retail revision. */
-int func_80038000(Moby* arg0, Vector3D* arg1, int arg2, int arg3, int arg4) {
+int func_80038000(Moby* moby, Vector3D* arg1, int arg2, int arg3, int arg4) {
     register int vertical asm("$18");
     register int result asm("$17");
     register int collision asm("$20");
@@ -2168,7 +2168,7 @@ int func_80038000(Moby* arg0, Vector3D* arg1, int arg2, int arg3, int arg4) {
         arg1->z += 0x12C + arg2;
     }
     if ((arg3 != 0) && (!(arg4 & 0x4000))) {
-        collision = func_8001BA30(arg1, arg3, 0, 0, 0, arg0);
+        collision = func_8001BA30(arg1, arg3, 0, 0, 0, moby);
     } else {
         collision = 0;
     }
@@ -2186,7 +2186,7 @@ int func_80038000(Moby* arg0, Vector3D* arg1, int arg2, int arg3, int arg4) {
         }
         func_8004F178(arg1, &D_8007190C);
     }
-    if ((arg4 & 0x400) && (func_80018368(&arg0->position, arg1) != 0)) {
+    if ((arg4 & 0x400) && (func_80018368(&moby->position, arg1) != 0)) {
         result |= 0x10;
         goto done;
     }
@@ -2199,8 +2199,8 @@ int func_80038000(Moby* arg0, Vector3D* arg1, int arg2, int arg3, int arg4) {
         arg1->z -= 0x400;
     }
     if (arg4 & 0x10) {
-        int currentZ = arg0->position.z;
-        int combined = vertical + arg0->distanceToGround;
+        int currentZ = moby->position.z;
+        int combined = vertical + moby->distanceToGround;
         difference = combined - currentZ;
         if (difference < 0) {
             goto negative_height;
@@ -2223,7 +2223,7 @@ int func_80038000(Moby* arg0, Vector3D* arg1, int arg2, int arg3, int arg4) {
     }
 height_ok:
     if (arg4 & 0x200) {
-        difference = (vertical + arg0->distanceToGround) - arg0->position.z;
+        difference = (vertical + moby->distanceToGround) - moby->position.z;
         if (difference < 0xC9) {
             goto angle_check;
         }
@@ -2249,12 +2249,12 @@ angle_check:
         }
     }
 
-    arg0->position.x = arg1->x;
-    arg0->position.y = arg1->y;
+    moby->position.x = arg1->x;
+    moby->position.y = arg1->y;
     if (arg4 & 4) {
-        int oldZ = arg0->position.z;
+        int oldZ = moby->position.z;
         register int temp_v0 asm("$2");
-        temp_v0 = vertical + arg0->distanceToGround;
+        temp_v0 = vertical + moby->distanceToGround;
         vertical = temp_v0 - oldZ;
         temp_v0 = vertical < (-0xFA);
         if (temp_v0) {
@@ -2272,15 +2272,15 @@ angle_check:
         asm volatile("" : "=r"(vertical) : "0"(vertical));
         temp_v0 = oldZ + vertical;
     assign_z:
-        arg0->position.z = temp_v0;
+        moby->position.z = temp_v0;
 
     } else if (arg4 & 0x1000) {
-        arg0->position.z = arg1->z;
+        moby->position.z = arg1->z;
     }
     asm volatile("" : "=r"(arg4) : "0"(arg4));
-    func_80056270(arg0);
-    func_8005629C(arg0);
-    func_80055D24(arg0, 2);
+    func_80056270(moby);
+    func_8005629C(moby);
+    func_80055D24(moby, 2);
 done:
     if (collision != 0) {
     store_collision:
@@ -2805,8 +2805,8 @@ typedef struct {
  * Confirmed by an exact 199/199 instruction comparison and all 62 retail
  * hashes; falsify with any mismatch in this span or a different revision. */
 
-void func_80038BF8(Moby* arg0, EnemyTag* arg1, int arg2, int arg3) {
-    register Moby* moby __asm__("$16") = arg0;
+void func_80038BF8(Moby* mobyArgument, EnemyTag* arg1, int arg2, int arg3) {
+    register Moby* moby __asm__("$16") = mobyArgument;
     register MobyStateSetup* setup __asm__("$17") = (MobyStateSetup*)arg1;
     unsigned int mode = arg2;
     int animation = arg3;
@@ -2953,8 +2953,8 @@ void func_80038BF8(Moby* arg0, EnemyTag* arg1, int arg2, int arg3) {
  * durations are signed 16-bit values, and the routine advances once per call.
  * Confirmed by an exact 181/181 instruction comparison; falsify with any word
  * mismatch in that address span or a nonmatching retail executable. */
-void func_80038F14(Moby* arg0, void* arg1, unsigned int arg2, int arg3) {
-    register Moby* moby __asm__("$18") = arg0;
+void func_80038F14(Moby* mobyArgument, void* arg1, unsigned int arg2, int arg3) {
+    register Moby* moby __asm__("$18") = mobyArgument;
     register MobyStateSetup* setup __asm__("$17") = arg1;
     unsigned int mode = arg2;
     int animation = arg3;
@@ -3362,8 +3362,8 @@ extern void func_8004F08C(Vector3D*, int, int);
  * 16-bit values, angles are unsigned bytes, and lifetime/cooldown update once
  * per call. Confirmed by an exact 152/152 instruction comparison; falsify with
  * any word mismatch in that address span or a nonmatching retail executable. */
-int func_80039714(Moby* arg0) {
-    register Moby* moby __asm__("$17") = arg0;
+int func_80039714(Moby* mobyArgument) {
+    register Moby* moby __asm__("$17") = mobyArgument;
     register MobyPhysicsTag* tag __asm__("$16");
     register Vector3D* normal __asm__("$18");
     int dot;

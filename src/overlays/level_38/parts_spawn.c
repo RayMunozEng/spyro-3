@@ -4,7 +4,7 @@
 /* AI-generated; not human reviewed. Verified sibling C adapted only
  * to this function's original SCUS-94467 instructions. Raw field units,
  * helper meanings and update cadence remain unresolved. */
-int Level38Spawnfunc_8001830C(void*, void*, int, int, int) __asm__("func_8001830C");
+int Level38SpawnQueryWorldSegmentWithOptions(void*, void*, int, int, int) __asm__("func_8001830C");
 int Level38SpawnSubtractVector(void*, void*, void*) __asm__("func_8004F1C8");
 int Level38SpawnPlanarHeadingLookup(int, int, int) __asm__("func_8004E880");
 extern int Level38SpawnD_80071908 __asm__("D_80071908");
@@ -33,14 +33,14 @@ extern unsigned char Level38SpawnPlayerE __asm__("D_80070328 + 0xE");
 extern unsigned char Level38SpawnColor1[] __asm__("D_80066BAC");
 extern unsigned char Level38SpawnColor2[] __asm__("D_80066BAC");
 #define Level38SpawnField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Level38Spawnfunc_8004EA90(void*, void*, int) __asm__("func_8004EA90");
+int Level38SpawnBuildPackedAngleBasisMatrix(void*, void*, int) __asm__("func_8004EA90");
 int Level38SpawnTransformVectorByBasis(void*, void*, void*) __asm__("func_8004ED6C");
 int Level38SpawnShiftVectorRightTowardZero(void*, int) __asm__("func_8004F110");
 int Level38SpawnCopyVector(void*, void*) __asm__("func_8004F178");
 int Level38SpawnAddVector(void*, void*, void*) __asm__("func_8004F194");
 int Level38SpawnMultiplyVectorGpfSf0(void*, void*, int) __asm__("func_8004F1FC");
 int Level38SpawnPackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-void* Level38Spawnfunc_80056434(int) __asm__("func_80056434");
+void* Level38SpawnAllocateParticleRecord(int) __asm__("func_80056434");
 int Level38SpawnRandBetween(int, int) __asm__("func_8003636C");
 int Level38Spawnrand(void) __asm__("rand");
 extern unsigned char Level38SpawnD_800658A0[] __asm__("D_800658A0");
@@ -161,7 +161,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
         do {
             switch (kindSelector) { /* switch 1 */
                 case 0x0:           /* switch 1 */
-                    record = Level38Spawnfunc_80056434(2);
+                    record = Level38SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -201,7 +201,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     Level38SpawnField(record, unsigned char*, 15) = commonByte8;
                     goto initializeTrailingBytes;
                 case 0x1: /* switch 1 */
-                    record = Level38Spawnfunc_80056434(2);
+                    record = Level38SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -231,7 +231,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     tailByte = 4;
                     goto initializeF9;
                 case 0x9: /* switch 1 */
-                    record = Level38Spawnfunc_80056434(2);
+                    record = Level38SpawnAllocateParticleRecord(2);
                 initializeMode0:
                     {
                         register void* destination __asm__("$4") = &frame.sp18;
@@ -298,7 +298,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
 
                     goto initializeF9;
                 case 0xA: /* switch 1 */
-                    record = Level38Spawnfunc_80056434(3);
+                    record = Level38SpawnAllocateParticleRecord(3);
                     Level38SpawnField(record, unsigned char*, 0) = kindSelector;
                     {
                         register void* destination __asm__("$4") = record + 4;
@@ -361,7 +361,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0xC: /* switch 1 */
-                    record = Level38Spawnfunc_80056434(2);
+                    record = Level38SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = reference + 32;
                         register int iteration __asm__("$8") = frame.spD0;
@@ -527,7 +527,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                                          4 + (Level38Spawnrand() & 7));
                     break;
                 case 0xd:
-                    record = Level38Spawnfunc_80056434(2);
+                    record = Level38SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -561,7 +561,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     Level38SpawnField(record, unsigned char*, 15) = commonByte8;
                     goto initializeTrailingBytes;
                 case 0x14:
-                    record = Level38Spawnfunc_80056434(2);
+                    record = Level38SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -577,7 +577,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     tailByte = 48;
                     goto initializeAddedCase;
                 case 0x1E: /* switch 1 */
-                    record = Level38Spawnfunc_80056434(2);
+                    record = Level38SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -611,7 +611,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     break;
 
                 case 0x21: /* switch 1 */
-                    record = Level38Spawnfunc_80056434(2);
+                    record = Level38SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level38SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -810,9 +810,10 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     MATCHING_KEEP_CLOBBER(arg6, "memory");
                     arg5 = vector17;
                     Level38SpawnAddVector(arg4, arg5, arg6);
-                    if (Level38Spawnfunc_8001830C(Level38SpawnD_80070328, vector17, 2, 0, 0) != 0)
+                    if (Level38SpawnQueryWorldSegmentWithOptions(Level38SpawnD_80070328, vector17,
+                                                                 2, 0, 0) != 0)
                         break;
-                    record = Level38Spawnfunc_80056434(2);
+                    record = Level38SpawnAllocateParticleRecord(2);
                     arg4 = record + 4;
                     arg5 = vector17;
                     value2 = 1;
@@ -869,7 +870,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     value2 = frame.sp70;
                     value2 += 3072;
                     frame.sp70 = value2;
-                    value2 = Level38Spawnfunc_8001830C(arg4, arg5, 2, 0, 0);
+                    value2 = Level38SpawnQueryWorldSegmentWithOptions(arg4, arg5, 2, 0, 0);
                     if (value2) {
                         value2 = Level38SpawnD_80071908;
                         value2 >>= 2;
@@ -886,7 +887,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     Level38SpawnField(record, unsigned short*, 30) = value2;
                 } break;
                 case 0x37:
-                    record = Level38Spawnfunc_80056434(2);
+                    record = Level38SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -918,7 +919,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     Level38SpawnField(record, unsigned char*, 16) = 0;
                     break;
                 case 0x38:
-                    record = Level38Spawnfunc_80056434(2);
+                    record = Level38SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level38SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -951,7 +952,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x3B: /* switch 1 */
-                    record = Level38Spawnfunc_80056434(5);
+                    record = Level38SpawnAllocateParticleRecord(5);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1017,7 +1018,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                         (short)((Level38Spawnrand() & 0xF) - 8);
                     break;
                 case 0x3E: /* switch 1 */
-                    record = Level38Spawnfunc_80056434(2);
+                    record = Level38SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1075,7 +1076,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x42: /* switch 1 */
-                    record = Level38Spawnfunc_80056434(0);
+                    record = Level38SpawnAllocateParticleRecord(0);
                     Level38SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level38SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level38Spawnrand() & 0xF);
@@ -1177,7 +1178,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     Level38SpawnField(record, unsigned char*, 0xF) = 0x40;
                     break;
                 case 0x46: /* switch 1 */
-                    record = Level38Spawnfunc_80056434(1);
+                    record = Level38SpawnAllocateParticleRecord(1);
                     Level38SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level38SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level38Spawnrand() & 0xF);
@@ -1185,7 +1186,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     frame.sp98 = 0;
                     frame.sp99 = Level38Spawnrand();
                     frame.sp9A = Level38Spawnrand();
-                    Level38Spawnfunc_8004EA90(&frame.sp98, &frame.spA0, 0);
+                    Level38SpawnBuildPackedAngleBasisMatrix(&frame.sp98, &frame.spA0, 0);
                     frame.sp88 = (int)modeSelector;
                     frame.sp8C = 0;
                     frame.sp90 = 0;
@@ -1239,7 +1240,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x47: /* switch 1 */
-                    record = Level38Spawnfunc_80056434(1);
+                    record = Level38SpawnAllocateParticleRecord(1);
                     Level38SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level38SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level38Spawnrand() & 7);
@@ -1314,7 +1315,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x4E: /* switch 1 */
-                    record = Level38Spawnfunc_80056434(0);
+                    record = Level38SpawnAllocateParticleRecord(0);
                     Level38SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level38SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level38Spawnrand() & 0x1F);
@@ -1382,7 +1383,7 @@ void* func_level_38_800869A8(int entryCount, int kind, void* input, void* mode) 
                     Level38SpawnField(record, unsigned char*, 0xA) = 2;
                     break;
                 case 0x4F: /* switch 1 */
-                    record = Level38Spawnfunc_80056434(1);
+                    record = Level38SpawnAllocateParticleRecord(1);
                     Level38SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level38SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level38Spawnrand() & 0xF);

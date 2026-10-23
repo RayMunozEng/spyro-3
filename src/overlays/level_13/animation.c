@@ -25,12 +25,12 @@
  * target, selector/data word and full EXE/every-overlay retail hash.
  * Binary identity does not establish synchronized runtime/system completion. */
 #define Physics13Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Physics13Call363DCView1() __asm__("func_800363DC");
-unsigned char Physics13Call40D10View1() __asm__("func_80040D10");
-unsigned char Physics13Call41580View1() __asm__("func_80041580");
-unsigned char Physics13Call416F4View1() __asm__("func_800416F4");
-unsigned char Physics13Call417FCView1() __asm__("func_800417FC");
-unsigned char Physics13Call41B64View1() __asm__("func_80041B64");
+int Physics13RandSignedBetweenView1() __asm__("func_800363DC");
+unsigned char Physics13UpdatePlayerGroundInputTargetsView1() __asm__("func_80040D10");
+unsigned char Physics13ApproachPlayerTargetHeadingView1() __asm__("func_80041580");
+unsigned char Physics13BlendPlayerHeadingFromInputVectorView1() __asm__("func_800416F4");
+unsigned char Physics13ApproachPlayerTargetSpeedView1() __asm__("func_800417FC");
+unsigned char Physics13BuildPlayerResponseVectorView1() __asm__("func_80041B64");
 int Physics13InterpolateSineView1() __asm__("func_8004E9E4");
 int Physics13InterpolateCosineView1() __asm__("func_8004EA2C");
 unsigned char Physics13TransformVectorByBasisView1() __asm__("func_8004ED6C");
@@ -50,15 +50,15 @@ extern unsigned char Physics13Data6E548View1 __asm__("D_8006E548");
 extern unsigned char Physics13Player0View1 __asm__("D_80070328");
 extern int Physics13Player94View1 __asm__("D_80070328+0x94");
 extern void* (*Controller88028_SpawnParticle)() __asm__("SpawnParticle");
-int Physics13Call40D10View2() __asm__("func_80040D10");
-int Physics13Call40F48View1() __asm__("func_80040F48");
-int Physics13Call410F8View1() __asm__("func_800410F8");
-int Physics13Call41404View1() __asm__("func_80041404");
-int Physics13Call41580View2() __asm__("func_80041580");
-int Physics13Call416F4View2() __asm__("func_800416F4");
-int Physics13Call417FCView2() __asm__("func_800417FC");
-int Physics13Call41848View1() __asm__("func_80041848");
-int Physics13Call41B64View2() __asm__("func_80041B64");
+int Physics13UpdatePlayerGroundInputTargetsView2() __asm__("func_80040D10");
+int Physics13BuildOrientedInputPairView1() __asm__("func_80040F48");
+int Physics13UpdateSmoothedInputPairView1() __asm__("func_800410F8");
+int Physics13ApplyPlayerRotationStepView1() __asm__("func_80041404");
+int Physics13ApproachPlayerTargetHeadingView2() __asm__("func_80041580");
+int Physics13BlendPlayerHeadingFromInputVectorView2() __asm__("func_800416F4");
+int Physics13ApproachPlayerTargetSpeedView2() __asm__("func_800417FC");
+int Physics13BuildPlayerMovementVectorView1() __asm__("func_80041848");
+int Physics13BuildPlayerResponseVectorView2() __asm__("func_80041B64");
 int Physics13InterpolateSineView2() __asm__("func_8004E9E4");
 int Physics13InterpolateCosineView2() __asm__("func_8004EA2C");
 int Physics13MeasureVectorLengthView2() __asm__("func_8004EDE8");
@@ -156,9 +156,9 @@ void func_level_13_80088BDC(int slotIndex) {
             Physics13ClearVectorView1(globalVector80);
             Physics13ClearVectorView1(globalVector80 + 0xC);
             if (Physics13Data6E044View1 != 7) {
-                Physics13Call40D10View1(0x1200);
-                Physics13Call416F4View1();
-                Physics13Call41580View1(0x5A, 0x10);
+                Physics13UpdatePlayerGroundInputTargetsView1(0x1200);
+                Physics13BlendPlayerHeadingFromInputVectorView1();
+                Physics13ApproachPlayerTargetHeadingView1(0x5A, 0x10);
                 return;
             }
             return;
@@ -198,7 +198,7 @@ void func_level_13_80088BDC(int slotIndex) {
             workWord2 = workWord2 < -8960;
             goto clamp19;
         case 25:
-            Physics13Call40F48View1(&originalFrame.sp20, 1);
+            Physics13BuildOrientedInputPairView1(&originalFrame.sp20, 1);
             workWord2 = originalFrame.sp20;
             call4 = &Physics13PlayerA8View1;
             workWord2 >>= 1;
@@ -215,8 +215,8 @@ void func_level_13_80088BDC(int slotIndex) {
                 Physics13Field(call4, int*, 0) = workWord2;
             }
             call4 = (void*)Physics13Field(call4, int*, 0);
-            Physics13Call41404View1(call4);
-            Physics13Call417FCView2(576, 384);
+            Physics13ApplyPlayerRotationStepView1(call4);
+            Physics13ApproachPlayerTargetSpeedView2(576, 384);
             workWord2 = Physics13InterpolateCosineView2(Physics13Player64View1);
             workWord3 = Physics13PlayerB0View1;
             lowProduct0 = workWord3 * workWord2;
@@ -232,7 +232,7 @@ void func_level_13_80088BDC(int slotIndex) {
             workWord2 = lowProduct1 >> 12;
             MATCHING_KEEP(workWord2);
             Physics13Player84View1 = workWord2;
-            Physics13Call41B64View2();
+            Physics13BuildPlayerResponseVectorView2();
             workWord2 = Physics13Player144View1;
             workWord2 += 12;
             Physics13Player144View1 = workWord2;
@@ -255,9 +255,9 @@ void func_level_13_80088BDC(int slotIndex) {
             return;
         case 28:
         case 107:
-            Physics13Call40D10View1(0xC80);
-            Physics13Call41580View1(0x28, 8);
-            Physics13Call417FCView1(0x140, 0xC0);
+            Physics13UpdatePlayerGroundInputTargetsView1(0xC80);
+            Physics13ApproachPlayerTargetHeadingView1(0x28, 8);
+            Physics13ApproachPlayerTargetSpeedView1(0x140, 0xC0);
             globalFieldA4Pointer = &Physics13Player0View1 + 0xA4;
             globalVector8C = globalFieldA4Pointer - 0x18;
             workWord2 =
@@ -285,7 +285,7 @@ void func_level_13_80088BDC(int slotIndex) {
                 var_a0_3 = globalFieldA4Pointer - 0x24;
             }
             Physics13AddVectorView1(var_a0_3, globalVector8C, &originalFrame.sp28);
-            Physics13Call41B64View1();
+            Physics13BuildPlayerResponseVectorView1();
             if (combinedIndex < 0xD) {
                 MATCHING_OBSERVE(combinedIndex);
                 nextField94 = Physics13Field(&Physics13Player0View1, int*, 0x94) + 0x17;
@@ -307,7 +307,7 @@ void func_level_13_80088BDC(int slotIndex) {
                     MATCHING_KEEP(vectorAt40);
                 spawnParticleLoop:
                     if (particleThreshold < (Physics13CallRandView1() & 0xFF)) {
-                        workWord2 = Physics13Call363DCView1(0, 0xC);
+                        workWord2 = Physics13RandSignedBetweenView1(0, 0xC);
                         call4 = globalByteE + 0x22;
                         workWord3 = *globalByteE;
                         MATCHING_KEEP(workWord3);
@@ -330,9 +330,9 @@ void func_level_13_80088BDC(int slotIndex) {
                         MATCHING_BARRIER_VOLATILE("memory");
                         originalFrame.sp3C = (workWord3 * 5) >> 0xA;
                         Physics13TransformVectorByBasisView1(call4, call5, call6, signedTableWord);
-                        originalFrame.sp48 += Physics13Call363DCView1(0, 0x50);
-                        originalFrame.sp4C += Physics13Call363DCView1(0, 0x50);
-                        originalFrame.sp50 += Physics13Call363DCView1(0, 0x50);
+                        originalFrame.sp48 += Physics13RandSignedBetweenView1(0, 0x50);
+                        originalFrame.sp4C += Physics13RandSignedBetweenView1(0, 0x50);
+                        originalFrame.sp50 += Physics13RandSignedBetweenView1(0, 0x50);
                         Physics13AddVectorView1(vectorAt40, vectorAt40, globalByteE - 0xE);
                         temp_v0_5 =
                             Controller88028_SpawnParticle(1, 0xD, vectorAt40, &originalFrame.sp38);
@@ -381,9 +381,9 @@ void func_level_13_80088BDC(int slotIndex) {
                 originalFrame.sp60 = 0xE;
                 Physics13CopyVectorView1(&originalFrame.sp68,
                                          (&Physics13Player0View1 + 0x94) - 0x94);
-                originalFrame.sp68 += Physics13Call363DCView1(0, 0x12C);
-                originalFrame.sp6C += Physics13Call363DCView1(0, 0x12C);
-                originalFrame.sp70 += Physics13Call363DCView1(0, 0x12C);
+                originalFrame.sp68 += Physics13RandSignedBetweenView1(0, 0x12C);
+                originalFrame.sp6C += Physics13RandSignedBetweenView1(0, 0x12C);
+                originalFrame.sp70 += Physics13RandSignedBetweenView1(0, 0x12C);
                 temp_v0_7 =
                     Controller88028_SpawnParticle(1, 0xD, &originalFrame.sp68, &originalFrame.sp58);
                 Physics13Field(temp_v0_7, signed char*, 2) = 6;
@@ -393,7 +393,7 @@ void func_level_13_80088BDC(int slotIndex) {
         case 38: {
             register int numeric4 __asm__("$4");
             register int numeric5 __asm__("$5");
-            Physics13Call410F8View1(&originalFrame.sp58, &Physics13Player14CView1, 0);
+            Physics13UpdateSmoothedInputPairView1(&originalFrame.sp58, &Physics13Player14CView1, 0);
             workWord3 = Physics13Player60View1;
             workWord2 = workWord3 + 800;
             workWord2 = (unsigned int)workWord2 < 1825;
@@ -451,12 +451,12 @@ void func_level_13_80088BDC(int slotIndex) {
             workWord3 = Physics13Player4CView1;
             workWord2 = 2;
             if (workWord3 == workWord2) {
-                Physics13Call417FCView2(320, 192);
+                Physics13ApproachPlayerTargetSpeedView2(320, 192);
                 workWord2 = Physics13PlayerB0View1 < 6145;
                 if (workWord2)
                     Physics13Player4CView1 = 0;
             } else
-                Physics13Call417FCView2(320, 80);
+                Physics13ApproachPlayerTargetSpeedView2(320, 80);
             globalFieldA4Pointer = &Physics13Player60View1;
             workWord2 =
                 Physics13InterpolateCosineView2(Physics13Field(globalFieldA4Pointer, int*, 0));
@@ -493,12 +493,12 @@ void func_level_13_80088BDC(int slotIndex) {
                 workWord2 = 768;
                 Physics13Player5CView1 = workWord2;
             }
-            Physics13Call41848View1(numeric4, numeric5);
+            Physics13BuildPlayerMovementVectorView1(numeric4, numeric5);
             Physics13CopyVectorView2(globalFieldA4Pointer + 44, globalFieldA4Pointer + 32);
             return;
         }
         case 61:
-            Physics13Call40F48View1(&originalFrame.sp60, 1);
+            Physics13BuildOrientedInputPairView1(&originalFrame.sp60, 1);
             workWord3 = originalFrame.sp60;
             workWord2 = workWord3 * 25;
             call4 = (void*)(workWord2 >> 7);
@@ -537,7 +537,7 @@ void func_level_13_80088BDC(int slotIndex) {
             if (workWord2)
                 Physics13Field(call5, int*, 0) = (int)call4;
             call4 = (void*)Physics13PlayerA8View1;
-            Physics13Call41404View1(call4);
+            Physics13ApplyPlayerRotationStepView1(call4);
             workWord3 = Physics13Player60View1;
             workWord2 = workWord3 < 2049;
             if (!workWord2) {
@@ -568,8 +568,8 @@ void func_level_13_80088BDC(int slotIndex) {
             workWord2 = Physics13Data67640View1;
             Physics13PlayerACView1 = workWord2;
         update61:
-            Physics13Call417FCView2(576, 384);
-            Physics13Call41848View1();
+            Physics13ApproachPlayerTargetSpeedView2(576, 384);
+            Physics13BuildPlayerMovementVectorView1();
             call6 = &Physics13PlayerFCView1;
             workWord2 = Physics13Field(call6, unsigned char*, 0);
             if (workWord2)
@@ -611,9 +611,9 @@ void func_level_13_80088BDC(int slotIndex) {
             Physics13ClearVectorView2(globalVector80);
             Physics13ClearVectorView2(globalVector80 + 12);
             if (Physics13Data6E044View2 != 7) {
-                Physics13Call40D10View2(3840);
-                Physics13Call416F4View2();
-                Physics13Call41580View2(90, 16);
+                Physics13UpdatePlayerGroundInputTargetsView2(3840);
+                Physics13BlendPlayerHeadingFromInputVectorView2();
+                Physics13ApproachPlayerTargetHeadingView2(90, 16);
             }
             workWord2 = Physics13Player1BAView1;
             if (!workWord2) {
@@ -633,17 +633,17 @@ void func_level_13_80088BDC(int slotIndex) {
             workWord3 = Physics13Data6E044View2;
             workWord2 = 8;
             if (workWord3 != workWord2)
-                Physics13Call40D10View2(3840);
+                Physics13UpdatePlayerGroundInputTargetsView2(3840);
             globalVector80 = &Physics13Data6E538View1;
             workWord2 = Physics13Field(globalVector80, int*, 0) & 12;
             if (workWord2)
                 Physics13PlayerACView1 = 0;
-            workWord2 = Physics13Call416F4View2();
+            workWord2 = Physics13BlendPlayerHeadingFromInputVectorView2();
             call4 = (void*)90;
             call5 = (void*)16;
             MATCHING_KEEP2(call4, call5);
             globalFieldA4Pointer = (void*)workWord2;
-            workWord2 = Physics13Call41580View2(call4, call5);
+            workWord2 = Physics13ApproachPlayerTargetHeadingView2(call4, call5);
             workWord3 = Physics13PlayerA8View1;
             if (workWord3 < 0)
                 workWord3 = -workWord3;
@@ -683,7 +683,7 @@ void func_level_13_80088BDC(int slotIndex) {
                     Physics13Field(call4, int*, 0) = workWord3;
             }
         pass101:
-            Physics13Call417FCView2(256, 384);
+            Physics13ApproachPlayerTargetSpeedView2(256, 384);
             workWord2 = Physics13Player101View1;
             call4 = &Physics13PlayerACView1;
             Physics13Field(call4, int*, 0) = (int)globalVector80;
@@ -691,8 +691,8 @@ void func_level_13_80088BDC(int slotIndex) {
                 Physics13ClearVectorView2(call4 - 32);
                 goto fields101;
             }
-            Physics13Call41848View1(call4);
-            Physics13Call41B64View2();
+            Physics13BuildPlayerMovementVectorView1(call4);
+            Physics13BuildPlayerResponseVectorView2();
         fields101:
             call6 = &Physics13PlayerFCView1;
             workWord2 = Physics13Field(call6, unsigned char*, 0);
@@ -717,7 +717,7 @@ void func_level_13_80088BDC(int slotIndex) {
         case 106: {
             register int limit17 __asm__("$17");
             register int numeric5 __asm__("$5");
-            Physics13Call40D10View2(6400);
+            Physics13UpdatePlayerGroundInputTargetsView2(6400);
             workWord2 = Physics13Data6E538View1;
             workWord3 = workWord2 & 12;
             if (workWord3)
@@ -726,7 +726,7 @@ void func_level_13_80088BDC(int slotIndex) {
                                                               Physics13Player64View1);
             workWord2 = workWord2 < 1665;
             if (workWord2)
-                Physics13Call41580View2(44, 6);
+                Physics13ApproachPlayerTargetHeadingView2(44, 6);
             limit17 = 80;
             goto move106;
         held106:
@@ -751,7 +751,7 @@ void func_level_13_80088BDC(int slotIndex) {
             Physics13PlayerA4View1 = workWord2;
             limit17 = 320;
         move106:
-            Physics13Call417FCView2(256, 384);
+            Physics13ApproachPlayerTargetSpeedView2(256, 384);
             globalVector8C = &Physics13Player210View1;
             workWord2 = Physics13Field(globalVector8C, int*, 0) & 1024;
             if (workWord2)
@@ -782,7 +782,7 @@ void func_level_13_80088BDC(int slotIndex) {
             if (workWord2)
                 Physics13ScaleVectorRatioQ15View2(globalVector80, call5, limit17);
             Physics13AddVectorView2(globalVector8C - 400, globalVector8CState20, globalVector80);
-            Physics13Call41B64View2();
+            Physics13BuildPlayerResponseVectorView2();
             workWord2 = (int)Physics13Data6C570View2;
             workWord2 = Physics13Field((void*)workWord2, int*, 0) & 64;
             if (workWord2)
@@ -943,7 +943,7 @@ extern unsigned char Callback13Flags[] __asm__("D_8006FCE6");
 extern int Callback13Word8006E530 __asm__("D_8006E530");
 extern int Callback13Word8006E52C __asm__("D_8006E52C");
 extern int Callback13Word8006E344 __asm__("D_8006E344");
-void Callback13Call80049590(void) __asm__("func_80049590");
+void Callback13MarkPlayerSegmentSurfaceType3Flags(void) __asm__("func_80049590");
 /* AI generated; not human reviewed. SCUS-94467 USA Rev0 80089E88 callback.
  * Reuses verified22 child/vector path and verified21 table/flag producers.
  * Original13 supplies selector scope, independent case19 flag store, private
@@ -956,11 +956,11 @@ void Callback13Call80049590(void) __asm__("func_80049590");
  * complete translation unit, complete EXE and every overlay retail hash.
  */
 extern Spyro Callback13Player __asm__("D_80070328");
-int Callback13Call8003BF6C(int soundId, int index) __asm__("func_8003BF6C");
-void Callback13Call80041930(void) __asm__("func_80041930");
-void Callback13Call80041C20(void) __asm__("func_80041C20");
-void Callback13Call80042A44(void) __asm__("func_80042A44");
-void Callback13Call80043A38(int scale) __asm__("func_80043A38");
+int Callback13SoundHandleMatchesIdInStates1Or2(int soundId, int index) __asm__("func_8003BF6C");
+void Callback13ProbePlayerContactSegment(void) __asm__("func_80041930");
+void Callback13UpdatePlayerCollisionResponse(void) __asm__("func_80041C20");
+void Callback13UpdatePlayerSurfaceState(void) __asm__("func_80042A44");
+void Callback13BuildNegatedNormalizedPlayerVector(int scale) __asm__("func_80043A38");
 extern int Callback13Word8006E538 __asm__("D_8006E538");
 extern int D_8006C648;
 int Callback13Query(Vector3D*, int) __asm__("func_8001A358");
@@ -968,10 +968,10 @@ extern unsigned char* Callback13Table[] __asm__("D_8006EE2C");
 extern unsigned char Callback13Source[] __asm__("D_80070328+0x74");
 extern int D_80071908;
 extern Vector3D D_80071918;
-void Callback13Call8004F110(Vector3D*, int) __asm__("func_8004F110");
-int Callback13Call80038000(Moby*, Vector3D*, int, int, int) __asm__("func_80038000");
-void Callback13Call8004F1C8(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004F1C8");
-void Callback13Call8003BE70(int) __asm__("func_8003BE70");
+void Callback13ShiftVectorRightTowardZero(Vector3D*, int) __asm__("func_8004F110");
+int Callback13ResolveMobyMotionCollision(Moby*, Vector3D*, int, int, int) __asm__("func_80038000");
+void Callback13SubtractVector(Vector3D*, Vector3D*, Vector3D*) __asm__("func_8004F1C8");
+void Callback13TransitionSoundHandleTo3Or5(int) __asm__("func_8003BE70");
 void func_level_13_80089E88(void) {
     Vector3D localVector;
     int reserved;
@@ -990,43 +990,43 @@ void func_level_13_80089E88(void) {
         case 0x64:
             if (func_800438F4() == 0)
                 func_80043728();
-            Callback13Call80041C20();
+            Callback13UpdatePlayerCollisionResponse();
             Callback13Player.unk9a = 0;
             goto call42A44;
         case 0x67:
         case 0x69:
         case 0x6C:
-            Callback13Call80041C20();
+            Callback13UpdatePlayerCollisionResponse();
         call42A44:
-            Callback13Call80042A44();
+            Callback13UpdatePlayerSurfaceState();
         clearSharedValue:
             Callback13Player.unk4[0] = 0;
             return;
         case 0x66:
-            Callback13Call80041C20();
-            Callback13Call80042A44();
+            Callback13UpdatePlayerCollisionResponse();
+            Callback13UpdatePlayerSurfaceState();
             descriptorMoby = Callback13Player.critterMobyPtr;
             MATCHING_KEEP_VOLATILE_CLOBBER(descriptorMoby, "memory");
             Callback13Player.unk4[0] = 0;
             goto descriptorTail;
         case 0x65:
             func_800438F4();
-            Callback13Call80041C20();
-            Callback13Call80042A44();
-            Callback13Call80041930();
+            Callback13UpdatePlayerCollisionResponse();
+            Callback13UpdatePlayerSurfaceState();
+            Callback13ProbePlayerContactSegment();
             goto queryC00;
         case 0x1D:
         case 0x68:
-            Callback13Call80041C20();
-            Callback13Call80042A44();
+            Callback13UpdatePlayerCollisionResponse();
+            Callback13UpdatePlayerSurfaceState();
         queryC00:
-            Callback13Call80043A38(0xC00);
+            Callback13BuildNegatedNormalizedPlayerVector(0xC00);
             goto clearSharedValue;
         case 0x19:
-            Callback13Call80041C20();
-            Callback13Call80042A44();
-            Callback13Call80041930();
-            Callback13Call80049590();
+            Callback13UpdatePlayerCollisionResponse();
+            Callback13UpdatePlayerSurfaceState();
+            Callback13ProbePlayerContactSegment();
+            Callback13MarkPlayerSegmentSurfaceType3Flags();
             if (Callback13Player.movementState == MOVEMENT_STATE_SUPERCHARGE && SpawnParticle != 0)
                 SpawnParticle(1, 9, 0, 0);
             if (Callback13Player.unk7a[3].z < 0 && Callback13Player.animationStateFrames >= 4) {
@@ -1037,17 +1037,18 @@ void func_level_13_80089E88(void) {
             goto clearSharedValue;
         case 0x1C:
         case 0x6B:
-            Callback13Call80041C20();
-            Callback13Call80042A44();
-            Callback13Call80041930();
+            Callback13UpdatePlayerCollisionResponse();
+            Callback13UpdatePlayerSurfaceState();
+            Callback13ProbePlayerContactSegment();
             if (Callback13Player.unk7a[3].z < 0 && Callback13Player.animationStateFrames >= 4)
                 Callback13Player.unk5 = 1;
             goto clearSharedValue;
         case 0x26:
-            Callback13Call80041C20();
-            Callback13Call80042A44();
+            Callback13UpdatePlayerCollisionResponse();
+            Callback13UpdatePlayerSurfaceState();
             descriptor = &Callback13Player.unk22[2];
-            if (Callback13Call8003BF6C((int)D_8006C654->underwater, *descriptor) != 0) {
+            if (Callback13SoundHandleMatchesIdInStates1Or2((int)D_8006C654->underwater,
+                                                           *descriptor) != 0) {
                 valueOffset = *descriptor * 0x2C;
                 decreasingValue = *(int*)(Callback13Values + valueOffset);
                 {
@@ -1068,8 +1069,8 @@ void func_level_13_80089E88(void) {
             }
             goto clearSharedValue;
         case 0x3A:
-            Callback13Call80041C20();
-            Callback13Call80042A44();
+            Callback13UpdatePlayerCollisionResponse();
+            Callback13UpdatePlayerSurfaceState();
             Callback13Player.cheatColour.a = 255;
             Callback13Player.unk4[0] = 0;
             Callback13Player.cheatColour.b = 32;
@@ -1077,18 +1078,18 @@ void func_level_13_80089E88(void) {
             Callback13Player.cheatColour.r = 32;
             return;
         case 0x3D:
-            Callback13Call80041C20();
-            Callback13Call80042A44();
-            Callback13Call80043A38(0xC00);
-            Callback13Call80049590();
+            Callback13UpdatePlayerCollisionResponse();
+            Callback13UpdatePlayerSurfaceState();
+            Callback13BuildNegatedNormalizedPlayerVector(0xC00);
+            Callback13MarkPlayerSegmentSurfaceType3Flags();
             if (SpawnParticle != 0)
                 SpawnParticle(1, 9, 0, 0);
             Callback13Word8006E530 = 120;
             Callback13Player.unk4[0] = 0;
             Callback13Word8006E52C = 4;
             if (Callback13Word8006E344 == 0 &&
-                Callback13Call8003BF6C((int)D_8006C654->supercharge, Callback13Player.unk22[2]) ==
-                    0) {
+                Callback13SoundHandleMatchesIdInStates1Or2((int)D_8006C654->supercharge,
+                                                           Callback13Player.unk22[2]) == 0) {
                 Callback13Player.unk22[2] = PlaySound((int)D_8006C654->supercharge, 0, 4);
                 Callback13Player.unk22[3] = (int)D_8006C654->supercharge;
             }
@@ -1104,7 +1105,7 @@ void func_level_13_80089E88(void) {
             if (*(Moby**)(privateData + 0x30) != 0) {
                 sourceBase = Callback13Source;
                 func_8004F178((&localVector), (Vector3D*)sourceBase);
-                Callback13Call8004F110((&localVector), 6);
+                Callback13ShiftVectorRightTowardZero((&localVector), 6);
                 {
                     Moby* child = *(Moby**)(privateData + 0x30);
                     child->position.z +=
@@ -1123,7 +1124,7 @@ void func_level_13_80089E88(void) {
                                                     0x38)
                                << 16)) >>
                         17;
-                    register int result = Callback13Call80038000(
+                    register int result = Callback13ResolveMobyMotionCollision(
                         *(Moby**)(privateData + 0x30), (&localVector), height, height, 0x1022);
                     register Vector3D* childVector __asm__("$4") = (&localVector);
                     if (result != 0) {
@@ -1133,15 +1134,15 @@ void func_level_13_80089E88(void) {
                                 *(Moby**)(privateData + 0x30);
                             MATCHING_KEEP_VOLATILE_CLOBBER(changed, "memory");
                             changed = 1;
-                            Callback13Call8004F1C8(childVector,
-                                                   (Vector3D*)((unsigned char*)childArgument + 0xC),
-                                                   childCopy);
+                            Callback13SubtractVector(
+                                childVector, (Vector3D*)((unsigned char*)childArgument + 0xC),
+                                childCopy);
                         }
                         func_8004F0E8((&localVector), 6);
                         func_8004F194((Vector3D*)sourceBase, (Vector3D*)sourceBase, (&localVector));
                     }
                 }
-                Callback13Call80041C20();
+                Callback13UpdatePlayerCollisionResponse();
                 {
                     register Vector3D* argument0 __asm__("$4") = (Vector3D*)(sourceBase + 0x24);
                     if (changed != 0) {
@@ -1158,7 +1159,7 @@ void func_level_13_80089E88(void) {
                         localVector.x = componentX;
                         localVector.y = componentY;
                         localVector.z = componentZ;
-                        Callback13Call8004F1C8(argument0, argument0, (&localVector));
+                        Callback13SubtractVector(argument0, argument0, (&localVector));
                     }
                 }
                 {
@@ -1191,7 +1192,7 @@ void func_level_13_80089E88(void) {
                     *counterPointer = counterValue;
                 }
             } else
-                Callback13Call80041C20();
+                Callback13UpdatePlayerCollisionResponse();
             Callback13Player.unk4[0] = 0;
             if (Callback13Player.animationState != 0x6A)
                 return;
@@ -1199,13 +1200,14 @@ void func_level_13_80089E88(void) {
         descriptorTail:
             selector = Callback13Table[descriptorMoby->mobyClass][6];
             if (selector != (unsigned int)Callback13Player.unk22[3]) {
-                if (Callback13Call8003BF6C(Callback13Player.unk22[3], Callback13Player.unk22[2]) !=
-                    0)
-                    Callback13Call8003BE70(Callback13Player.unk22[2]);
+                if (Callback13SoundHandleMatchesIdInStates1Or2(Callback13Player.unk22[3],
+                                                               Callback13Player.unk22[2]) != 0)
+                    Callback13TransitionSoundHandleTo3Or5(Callback13Player.unk22[2]);
                 Callback13Player.unk22[2] = -1;
             }
             Callback13Player.unk22[3] = selector;
-            if (Callback13Call8003BF6C(selector, Callback13Player.unk22[2]) == 0)
+            if (Callback13SoundHandleMatchesIdInStates1Or2(selector, Callback13Player.unk22[2]) ==
+                0)
                 Callback13Player.unk22[2] = PlaySound(Callback13Player.unk22[3], 0, 4);
             return;
         }
@@ -1276,8 +1278,8 @@ extern short Signed13TableB[] __asm__("D_80065920");
 
 extern int D_80071934;
 int Transition13RandBetween(int, int) __asm__("func_8003636C");
-void Transition13_func_800441F0(void) __asm__("func_800441F0");
-void Transition13_func_80043A38(int) __asm__("func_80043A38");
+void Transition13ClearPlayerMotionVectors(void) __asm__("func_800441F0");
+void Transition13BuildNegatedNormalizedPlayerVector(int) __asm__("func_80043A38");
 void func_80047138(void);
 void func_level_13_8008A7E8(int arg0) {
     register Vector3D* destination __asm__("$4");
@@ -1294,7 +1296,7 @@ void func_level_13_8008A7E8(int arg0) {
         case 0x14:
             Transition13_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Transition13_D_80070328.unk5 = 0;
-            Transition13_func_800441F0();
+            Transition13ClearPlayerMotionVectors();
             Transition13_D_80070328.grounded = 1;
             Transition13_D_80070328.union144.a.unk13cb = Transition13RandBetween(1, 3);
             Transition13_D_80070328.union144.a.unk13cc = 0;
@@ -1325,7 +1327,7 @@ void func_level_13_8008A7E8(int arg0) {
             if (third == 0)
                 second = Transition13_D_80070328.unk7a[3].z;
             Transition13_D_80070328.unk7a[2].z = second;
-            Transition13_func_80043A38(0xC00);
+            Transition13BuildNegatedNormalizedPlayerVector(0xC00);
             Transition13_D_80070328.grounded = 1;
             Transition13_D_8006E524 = 15;
             if (SpawnParticle)
@@ -1377,7 +1379,7 @@ void func_level_13_8008A7E8(int arg0) {
         case 0x3A:
             Transition13_D_80070328.movementState = MOVEMENT_STATE_DEATH;
             Transition13_D_80070328.unk5 = 0;
-            Transition13_func_80043A38(0xC00);
+            Transition13BuildNegatedNormalizedPlayerVector(0xC00);
             Transition13_D_80070328.grounded = 1;
             if ((arg0 == 0x3A) || (arg0 == 0x6C)) {
                 PlaySound((int)D_8006C654->lavaBurn, 0, 0);
@@ -1404,7 +1406,7 @@ void func_level_13_8008A7E8(int arg0) {
             Transition13_D_80070328.unk8[0] = Transition13MeasureVectorLength(
                 (Vector3D*)((unsigned char*)&Transition13_D_80070328.movementState + 0x48), 0);
             Transition13_D_80070328.horizontalSpeed = 0x1E80;
-            Transition13_func_80043A38(0xC00);
+            Transition13BuildNegatedNormalizedPlayerVector(0xC00);
             Transition13_D_80070328.grounded = 1;
             if ((Transition13_D_80070328.unk13f[0] != 0) ||
                 (Transition13_D_80070328.spitState != 0) || (Transition13_D_80070328.unk17t != 6)) {
@@ -1426,7 +1428,7 @@ void func_level_13_8008A7E8(int arg0) {
         case 0x6D:
             Transition13_D_80070328.movementState = MOVEMENT_STATE_STAND;
             Transition13_D_80070328.unk5 = 0;
-            Transition13_func_800441F0();
+            Transition13ClearPlayerMotionVectors();
             Transition13_D_80070328.grounded = 1;
             return;
         case 0x65:
@@ -1444,14 +1446,14 @@ void func_level_13_8008A7E8(int arg0) {
             }
             Transition13_D_80070328.unk8[0] =
                 Transition13MeasureVectorLength(&Transition13_D_80070328.unk7a[3], 0);
-            Transition13_func_80043A38(0xC00);
+            Transition13BuildNegatedNormalizedPlayerVector(0xC00);
             Transition13_D_80070328.union144.a.unk13cb = MOVEMENT_STATE_STAND;
             Transition13_D_80070328.grounded = 1;
             goto clearSpecialTail;
         case 0x69:
             Transition13_D_80070328.movementState = MOVEMENT_STATE_DEATH;
             Transition13_D_80070328.unk5 = 0;
-            Transition13_func_80043A38(0xC00);
+            Transition13BuildNegatedNormalizedPlayerVector(0xC00);
             Transition13_D_80070328.grounded = 1;
             goto clearDeathFlag;
         case 0x66:
@@ -1497,7 +1499,7 @@ void func_level_13_8008A7E8(int arg0) {
         case 0x6C:
             Transition13_D_80070328.movementState = MOVEMENT_STATE_DEATH;
             Transition13_D_80070328.unk5 = 0;
-            Transition13_func_80043A38(0xC00);
+            Transition13BuildNegatedNormalizedPlayerVector(0xC00);
             Transition13_D_80070328.grounded = 1;
             if ((arg0 == 0x3A) || (arg0 == 0x6C)) {
                 PlaySound((int)D_8006C654->lavaBurn, 0, 0);
@@ -1584,7 +1586,7 @@ extern unsigned char A4891Table[] __asm__("D_800676E8");
 extern int A4891Row __asm__("D_8006C58C"), A4891Column __asm__("D_8006C5C8");
 extern int (*A4891Callback)(int) __asm__("unk_ovlheader_8007431C");
 void A4891Select(int) __asm__("func_8004BEF8");
-void A4891H498C0(void) __asm__("func_800498C0");
+void A4891UpdatePlayerRetryState(void) __asm__("func_800498C0");
 
 extern int A4898W48 __asm__("D_80070328 + 0x48");
 extern int A4898W4C __asm__("D_80070328 + 0x4C");
@@ -1627,21 +1629,21 @@ extern int A4898W290 __asm__("D_80070328 + 0x290");
 extern int A4898Surface __asm__("D_8006FA38");
 extern unsigned char* A4898SoundDesc __asm__("D_8006C654");
 int A4898Sound() __asm__("PlaySound");
-int A4898H40994() __asm__("func_80040994");
-int A4898H4BEF8() __asm__("func_8004BEF8");
-int A4898H49688() __asm__("func_80049688");
-int A4898H498C0() __asm__("func_800498C0");
+int A4898ProcessPlayerStateFlags() __asm__("func_80040994");
+int A4898DispatchPlayerStateRequest() __asm__("func_8004BEF8");
+int A4898SelectPlayerAnimationLoopRequest() __asm__("func_80049688");
+int A4898UpdatePlayerRetryState() __asm__("func_800498C0");
 extern volatile int A4898W20C __asm__("D_80070328 + 0x20C");
 extern int A4898W214 __asm__("D_80070328 + 0x214");
 extern unsigned char A4898B100 __asm__("D_80070328 + 0x100");
 extern unsigned char A4898E535 __asm__("D_8006E535");
 extern unsigned char* A4898Models __asm__("D_8006EE2C");
-int A4898H40BCC() __asm__("func_80040BCC");
+int A4898ProcessPlayerContactFlags() __asm__("func_80040BCC");
 extern int A4898W10C __asm__("D_80070328 + 0x10C");
 extern int A4898WB4 __asm__("D_80070328 + 0xB4");
 extern int A4898WA4 __asm__("D_80070328 + 0xA4");
 extern int (*A4898Callback1)(int) __asm__("unk_ovlheader_8007431C");
-int A4898H40954() __asm__("func_80040954");
+int A4898GetSurfaceTypeFromFlags() __asm__("func_80040954");
 
 void func_level_13_8008AFCC(void) {
     register int work2 __asm__("$2");
@@ -1733,7 +1735,7 @@ void func_level_13_8008AFCC(void) {
             return;
 
         case 20:
-            if (A4898H40994())
+            if (A4898ProcessPlayerStateFlags())
                 return;
             work2 = A4898NewButtons & 64;
             selector4 = 6;
@@ -1770,7 +1772,7 @@ void func_level_13_8008AFCC(void) {
                 MATCHING_KEEP(state);
                 if (!*state)
                     return;
-                A4898H4BEF8(0);
+                A4898DispatchPlayerStateRequest(0);
                 if (A4898Table[*((unsigned char*)state - 0x2C)] >= 96) {
                     A4898B14 = A4898B15;
                     A4898B16 = A4898B17;
@@ -1788,7 +1790,7 @@ void func_level_13_8008AFCC(void) {
             selector4 = 15;
             if (work2)
                 goto select;
-            A4898H49688();
+            A4898SelectPlayerAnimationLoopRequest();
             return;
         case 29:
             if (A4898W54 < 25)
@@ -1818,7 +1820,7 @@ void func_level_13_8008AFCC(void) {
             selector4 = 7;
             goto select;
         case 25:
-            if (A4898H40BCC())
+            if (A4898ProcessPlayerContactFlags())
                 return;
             if (A4898B1B5 && (A4898NewButtons & 64))
                 A4898B1B6 = 1;
@@ -1932,11 +1934,11 @@ void func_level_13_8008AFCC(void) {
         case 58:
             if (A4898W54 < 137)
                 return;
-            A4898H498C0();
+            A4898UpdatePlayerRetryState();
             return;
 
         case 61:
-            if (A4898H40BCC())
+            if (A4898ProcessPlayerContactFlags())
                 return;
             work2 = 1;
             MATCHING_KEEP(work2);
@@ -1946,7 +1948,7 @@ void func_level_13_8008AFCC(void) {
             if (work3 == work2) {
                 if (A4898WB8 >= 4)
                     goto partial25;
-                work2 = A4898H40954(A4898W10C);
+                work2 = A4898GetSurfaceTypeFromFlags(A4898W10C);
                 work3 = 9;
                 if (work2 == work3)
                     goto finalSpeed;
@@ -1955,7 +1957,7 @@ void func_level_13_8008AFCC(void) {
             }
             if (A4898Buttons & 64) {
             partial25:
-                A4898H4BEF8(25);
+                A4898DispatchPlayerStateRequest(25);
                 work2 = A4898WB8;
                 work3 = 3520;
                 A4898W94 = work3;
@@ -2187,7 +2189,7 @@ void func_level_13_8008AFCC(void) {
             work2 = A4891Field(object4, unsigned char*, 0x42) & 2;
             if (!work2)
                 return;
-            A4891H498C0();
+            A4891UpdatePlayerRetryState();
             return;
 
         case 106:

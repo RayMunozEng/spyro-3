@@ -13,12 +13,12 @@
  * to this function's original SCUS-94467 instructions. Raw field units,
  * helper meanings and update cadence remain unresolved. */
 #define Update74960Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Update74960func_8004E9E4(short) __asm__("func_8004E9E4");
+int Update74960InterpolateSine(short) __asm__("func_8004E9E4");
 int Update74960InterpolateCosine(short) __asm__("func_8004EA2C");
 int Update74960CopyVector(void*, void*) __asm__("func_8004F178");
 int Update74960PackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-int Update74960func_8004F5A8(void*, void*, void*) __asm__("func_8004F5A8");
-int Update74960func_80056504(void*) __asm__("func_80056504");
+int Update74960AddHalfwordVectors(void*, void*, void*) __asm__("func_8004F5A8");
+int Update74960ReleaseParticleRecord(void*) __asm__("func_80056504");
 int Update74960InterpolateMobyVertex(void*, int, void*) __asm__("func_80055F14");
 int Update74960ShiftVectorRightTowardZero(void*, int) __asm__("func_8004F110");
 extern unsigned char* Update74960D_8006C550 __asm__("D_8006C550");
@@ -127,7 +127,7 @@ unsigned char* func_cutscene_70_80074960(int initialStep) {
                 temp_v1 = *record;
                 switch (temp_v1) {
                     case 0x0:
-                        Update74960func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update74960AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update74960Field(recordPlus1, short*, 0x1D);
                         __asm__ __volatile__("" ::: "$3", "memory");
                         if (scratch2 != 0) {
@@ -164,7 +164,7 @@ unsigned char* func_cutscene_70_80074960(int initialStep) {
                         Update74960Field(recordPlus1, unsigned char*, 0xD) = scratch3;
                         goto checkPredicate;
                     case 0x1:
-                        Update74960func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update74960AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update74960Field(recordPlus1, short*, 0x1D);
                         __asm__ __volatile__("" ::: "$3", "memory");
                         if (scratch2 != 0) {
@@ -201,7 +201,7 @@ unsigned char* func_cutscene_70_80074960(int initialStep) {
                         Update74960Field(recordPlus1, unsigned char*, 0xD) = scratch3;
                         goto checkPredicate;
                     case 0x2:
-                        Update74960func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update74960AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         if (Update74960Field(recordPlus1, short*, 0x1D) != 0)
                             Update74960Field(recordPlus1, unsigned short*, 0x1B) =
                                 Update74960Field(recordPlus1, unsigned short*, 0x1B) + 1;
@@ -244,7 +244,7 @@ unsigned char* func_cutscene_70_80074960(int initialStep) {
                         predicate2 = (unsigned int)scratch2 < 32;
                         goto checkPredicate;
                     case 0x9:
-                        Update74960func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update74960AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         scratch2 = Update74960Field(recordPlus1, short*, 0x1D);
                         if (scratch2 != 0) {
                             scratch2 = Update74960Field(recordPlus1, unsigned short*, 0x1B);
@@ -286,7 +286,7 @@ unsigned char* func_cutscene_70_80074960(int initialStep) {
                         scratch3 += scratch2;
                         frame.words[0] = scratch3;
                         scratch2 =
-                            Update74960func_8004E9E4(Update74960Field(recordPlus1, short*, 0x17));
+                            Update74960InterpolateSine(Update74960Field(recordPlus1, short*, 0x17));
                         scratch4 = (int)recordPlus4;
                         playerEnd = (unsigned char*)&frame.words[0];
                         MATCHING_KEEP3(scratch4, playerEnd, scratch2);
@@ -338,7 +338,7 @@ unsigned char* func_cutscene_70_80074960(int initialStep) {
                         rawOne = 1;
                         scratch2 = rawOne - scratch2;
                         Update74960Field(recordPlus1, unsigned short*, 0x1D) = scratch2;
-                        Update74960func_8004F5A8((void*)scratch4, playerEnd, (void*)scratch6);
+                        Update74960AddHalfwordVectors((void*)scratch4, playerEnd, (void*)scratch6);
                         scratch2 = Update74960Field(recordPlus1, unsigned char*, 9);
                         scratch3 = Update74960Field(recordPlus1, unsigned char*, 0xB);
                         MATCHING_KEEP2(scratch2, scratch3);
@@ -366,7 +366,7 @@ unsigned char* func_cutscene_70_80074960(int initialStep) {
                     case 0xC:
                         Update74960Field(recordPlus1, unsigned char*, 0xA) =
                             (unsigned char)(Update74960Field(recordPlus1, unsigned char*, 0xA) + 8);
-                        Update74960func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update74960AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         temp_v0_4 = Update74960Field(recordPlus1, unsigned char*, 0xB);
                         if (temp_v0_4 != 0) {
                             Update74960Field(recordPlus1, unsigned char*, 0xB) =
@@ -398,7 +398,7 @@ unsigned char* func_cutscene_70_80074960(int initialStep) {
                             goto removeRecord;
                         if (Update74960Field(recordPlus1, unsigned char*, 2) == 0)
                             goto removeRecord;
-                        Update74960func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update74960AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         if (Update74960Field(recordPlus1, short*, 0x1D) != 0)
                             Update74960Field(recordPlus1, unsigned short*, 0x1B) =
                                 Update74960Field(recordPlus1, unsigned short*, 0x1B) + 1;
@@ -459,7 +459,7 @@ unsigned char* func_cutscene_70_80074960(int initialStep) {
                         Update74960Field(recordPlus1, unsigned char*, 1) = scratch2;
                         goto nextRecord;
                     case 0x21:
-                        Update74960func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update74960AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         if (Update74960Field(recordPlus1, short*, 0x1D) != 0) {
                             Update74960Field(recordPlus1, unsigned short*, 0x1B) =
                                 (unsigned short)(Update74960Field(recordPlus1, unsigned short*,
@@ -548,7 +548,7 @@ unsigned char* func_cutscene_70_80074960(int initialStep) {
                             Update74960Field(recordPlus1, unsigned short*, 7) = scratch2;
                             goto original25Tail;
                         }
-                        Update74960func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update74960AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                     original25Tail:
                         scratch2 = Update74960Field(recordPlus1, unsigned char*, 9);
                         scratch2 += step;
@@ -598,7 +598,7 @@ unsigned char* func_cutscene_70_80074960(int initialStep) {
                     case 0x3B:
                         Update74960Field(recordPlus1, unsigned char*, 0xA) =
                             (unsigned char)(Update74960Field(recordPlus1, unsigned char*, 0xA) + 8);
-                        Update74960func_8004F5A8(recordPlus4, recordPlus4, recordPlus24);
+                        Update74960AddHalfwordVectors(recordPlus4, recordPlus4, recordPlus24);
                         if (Update74960D_8006C640 & 1) {
                             Update74960Field(recordPlus1, unsigned short*, 0x19) =
                                 (unsigned short)(Update74960Field(recordPlus1, unsigned short*,
@@ -1098,7 +1098,7 @@ unsigned char* func_cutscene_70_80074960(int initialStep) {
                         if (scratch2 != 0)
                             goto surviving4F;
                     removeRecord:
-                        Update74960func_80056504(record);
+                        Update74960ReleaseParticleRecord(record);
                         recordPlus1 += 32;
                         break;
                     surviving4F:

@@ -46,12 +46,12 @@ extern unsigned char OptionsTextData69E4CView1[] __asm__("D_80069E4C");
 extern unsigned char OptionsTextData69E50View1[] __asm__("D_80069E50");
 extern unsigned char OptionsTextDatag_CheatFlags_2View1 __asm__("g_CheatFlags + 2");
 extern unsigned char OptionsTextData6E50CView1 __asm__("D_8006E50C");
-void OptionsTextCall1FD00View1(int, int, int, int) __asm__("func_8001FD00");
+void OptionsTextBuildUiFramedPanelView1(int, int, int, int) __asm__("func_8001FD00");
 void OptionsTextCallDrawStringCenteredView1(char*, int, int, int) __asm__("DrawStringCentered");
 void OptionsTextCallDrawStringRightAlignedView1(char*, int, int,
                                                 int) __asm__("DrawStringRightAligned");
-void OptionsTextCall2E748View1(char*, int, int, int, void*) __asm__("func_8002E748");
-int OptionsTextCall2EBB0View1(char*) __asm__("func_8002EBB0");
+void OptionsTextEmitUiTextGlyphPacketsView1(char*, int, int, int, void*) __asm__("func_8002E748");
+int OptionsTextMeasureEncodedTextAdvanceView1(char*) __asm__("func_8002EBB0");
 int OptionsTextCallSprintfView1(char*, const char*, ...) __asm__("sprintf");
 #define OptionsTextField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
 void func_options_80074C00(void) {
@@ -88,7 +88,7 @@ void func_options_80074C00(void) {
     rawValue2 = rawValue3 * 12;
     rawValue3 = (int)OptionsTextData67570View1;
     savedWord16 = rawValue2 + rawValue3;
-    OptionsTextCall1FD00View1(argument4, argument5, argument6, argument7);
+    OptionsTextBuildUiFramedPanelView1(argument4, argument5, argument6, argument7);
     MATCHING_KEEP(savedWord16);
     argument5 = 256;
     argument6 = 80;
@@ -163,7 +163,7 @@ styleReady:
         goto drawCentered;
     argument6 = rowArgument17;
     argument7 = savedWord16;
-    OptionsTextCall2E748View1((char*)argument4, argument5, argument6, argument7, 0);
+    OptionsTextEmitUiTextGlyphPacketsView1((char*)argument4, argument5, argument6, argument7, 0);
     rawValue2 = OptionsTextField((void*)entryPointer19, unsigned char*, 0);
     switch (rawValue2) {
         case 13:
@@ -289,12 +289,13 @@ styleReady:
             rawValue2 = bufferPointer20 + rawValue3;
             MATCHING_KEEP(rawValue2);
             OptionsTextField((void*)rawValue2, unsigned char*, 0) = 0;
-            rawValue2 = OptionsTextCall2EBB0View1((char*)argument4);
+            rawValue2 = OptionsTextMeasureEncodedTextAdvanceView1((char*)argument4);
             argument4 = bufferPointer20;
             argument5 = rightArgument18 - rawValue2;
             argument6 = rowArgument17;
             argument7 = savedWord16;
-            OptionsTextCall2E748View1((char*)argument4, argument5, argument6, argument7, 0);
+            OptionsTextEmitUiTextGlyphPacketsView1((char*)argument4, argument5, argument6,
+                                                   argument7, 0);
             rowArgument17 += 14;
             goto nextEntry;
         off20:
@@ -356,11 +357,11 @@ void Options75180_DrawStringCentered(int, int, int, int) __asm__("DrawStringCent
 /* extern */
 void Options75180_DrawStringRowCentered(int, int, int, int) __asm__("DrawStringRowCentered");
 /* extern */
-int Options75180_func_80027934(int) __asm__("func_80027934");
+int Options75180FindHudClassIndex(int) __asm__("func_80027934");
 /* extern */
-int Options75180_func_80028378(unsigned char*, unsigned char) __asm__("func_80028378");
+int Options75180SelectHudIconAnimationFrame(unsigned char*, unsigned char) __asm__("func_80028378");
 /* extern */
-void* Options75180_func_800289C8(void*, int, int) __asm__("func_800289C8");
+void* Options75180EmitHudTexturedQuads(void*, int, int) __asm__("func_800289C8");
 /* extern */
 unsigned char Options75180_func_options_80078010(int) __asm__("func_options_80078010");
 /* extern */
@@ -628,7 +629,7 @@ void func_options_80075180(void) {
             scratch2 = *recordPointer4;
             if (!scratch2)
                 goto scalar13;
-            scratch2 = Options75180_func_80028378(recordPointer4 + 14, 0);
+            scratch2 = Options75180SelectHudIconAnimationFrame(recordPointer4 + 14, 0);
             Options75180_D_options_8007AFC7 = scratch2;
             scratch2 &= 255;
             scratch2 <<= 3;
@@ -644,8 +645,9 @@ void func_options_80075180(void) {
             scratch17 = scratch2 >> 1;
             scratch2 = recordCoordinate6 >> 1;
             recordCoordinate5 = 256 - scratch2;
-            Options75180_func_800289C8(recordPointer4, recordCoordinate5, scratch16 - scratch17);
-            scratch2 = Options75180_func_80027934(0x44E);
+            Options75180EmitHudTexturedQuads(recordPointer4, recordCoordinate5,
+                                             scratch16 - scratch17);
+            scratch2 = Options75180FindHudClassIndex(0x44E);
             scratch3 = Options75180_D_8006C738;
             scratch2 <<= 3;
             scratch2 += scratch3;
@@ -664,7 +666,7 @@ void func_options_80075180(void) {
             scratch16 = recordCoordinate6 >> 1;
             recordCoordinate5 = 344 - scratch16;
             scratch2 =
-                (int)Options75180_func_800289C8(recordPointer4, recordCoordinate5, scratch17);
+                (int)Options75180EmitHudTexturedQuads(recordPointer4, recordCoordinate5, scratch17);
             scratch3 = Options75180_D_options_8007AFBC;
             scratch3 &= 31;
             scratch3 = scratch3 < 22;
@@ -681,8 +683,8 @@ void func_options_80075180(void) {
             recordCoordinate6 = scratch17;
             scratch2 = Options75180_D_8006C788;
             recordPointer4 = (unsigned char*)scratch2 + (recordIndex18 << 3);
-            scratch2 = (int)Options75180_func_800289C8(recordPointer4, recordCoordinate5,
-                                                       recordCoordinate6);
+            scratch2 = (int)Options75180EmitHudTexturedQuads(recordPointer4, recordCoordinate5,
+                                                             recordCoordinate6);
             scratch3 = Options75180_D_options_8007AFBC;
             scratch3 &= 31;
             scratch3 = scratch3 < 22;
@@ -892,15 +894,15 @@ special:
 
 int Options75B18_PlaySound(int, int, int) __asm__("PlaySound");
 /* extern */
-unsigned char Options75B18_func_800142AC(void*) __asm__("func_800142AC");
+unsigned char Options75B18SelectCameraModeFromFlag(void*) __asm__("func_800142AC");
 /* extern */
-void Options75B18_func_8002A6B4(void) __asm__("func_8002A6B4");
+void Options75B18SubmitHudSoundByte16(void) __asm__("func_8002A6B4");
 /* extern */
-void Options75B18_func_8002A714(void) __asm__("func_8002A714");
+void Options75B18SubmitHudSoundByte18WithWord0C(void) __asm__("func_8002A714");
 /* extern */
-void Options75B18_func_8002A754(void) __asm__("func_8002A754");
+void Options75B18SubmitHudSoundByte1AWithWord0C(void) __asm__("func_8002A754");
 /* extern */
-unsigned char Options75B18_func_8003C140(int, int) __asm__("func_8003C140");
+unsigned char Options75B18SetSoundHandleWord0CAndFlag10(int, int) __asm__("func_8003C140");
 /* extern */
 extern unsigned char Options75B18_D_80067570 __asm__("D_80067570");
 extern int Options75B18_D_8006C3F8 __asm__("D_8006C3F8");
@@ -1010,7 +1012,7 @@ selectOther:
 test33:
     if (scratch3 != 33)
         goto navigation;
-    Options75B18_func_8002A6B4();
+    Options75B18SubmitHudSoundByte16();
     Options75B18_D_8006FBD0 = 11;
     Options75B18_D_8006FBC4 = 0;
     Options75B18_D_8006FBD4 = 0;
@@ -1018,11 +1020,11 @@ test33:
     Options75B18_D_options_8007AFB4 = 0;
     goto done;
 selected31:
-    Options75B18_func_8002A6B4();
+    Options75B18SubmitHudSoundByte16();
     scratch2 = 9;
     goto storeSelection;
 selected32:
-    Options75B18_func_8002A6B4();
+    Options75B18SubmitHudSoundByte16();
     scratch2 = 10;
 storeSelection:
     Options75B18_D_8006FBD0 = scratch2;
@@ -1039,7 +1041,7 @@ navigation:
         scratch2 = scratch3 & 0x4000;
         goto nextNavigation;
     }
-    Options75B18_func_8002A714();
+    Options75B18SubmitHudSoundByte18WithWord0C();
     cursorPointer6 = &Options75B18_D_8006FBCC;
     scratch2 = *cursorPointer6 - 1;
     *cursorPointer6 = scratch2;
@@ -1068,7 +1070,7 @@ previousLoop:
 nextNavigation:
     if (!scratch2)
         goto selectedSetting;
-    Options75B18_func_8002A714();
+    Options75B18SubmitHudSoundByte18WithWord0C();
     cursorPointer5 = &Options75B18_D_8006FBCC;
     scratch2 = *cursorPointer5 + 1;
     *cursorPointer5 = scratch2;
@@ -1092,17 +1094,17 @@ selectedSetting:
     switch (scratch2) {
         case 13: /* switch 2 */
             if (Options75B18_D_8006E53C & 0xA040) {
-                Options75B18_func_8002A754();
+                Options75B18SubmitHudSoundByte1AWithWord0C();
                 Options75B18Field(&g_CheatFlags, unsigned char*, 2) =
                     (unsigned char)(1 - Options75B18Field(&g_CheatFlags, unsigned char*, 2));
-                Options75B18_func_800142AC(&g_CheatFlags + 2);
+                Options75B18SelectCameraModeFromFlag(&g_CheatFlags + 2);
                 return;
             }
         default: /* switch 2 */
             return;
         case 14: /* switch 2 */
             if (Options75B18_D_8006E53C & 0xA040) {
-                Options75B18_func_8002A754();
+                Options75B18SubmitHudSoundByte1AWithWord0C();
                 toggledByte2 = 1 - Options75B18_D_8006E50C;
                 Options75B18_D_8006E50C = toggledByte2;
                 if (toggledByte2 & 0xFF) {
@@ -1133,7 +1135,7 @@ selectedSetting:
         store15:
             Options75B18_D_8006C694 = scratch2;
             Options75B18_D_8006C7AC = 1;
-            Options75B18_func_8002A754();
+            Options75B18SubmitHudSoundByte1AWithWord0C();
         copy15:
             scratch2 = Options75B18Field(&Options75B18_D_8006C694, unsigned short*, 0);
             Options75B18_D_8006FCD4 = scratch2;
@@ -1158,7 +1160,7 @@ selectedSetting:
         store16:
             Options75B18_D_8006C698 = scratch2;
             Options75B18_D_8006C7AC = 1;
-            Options75B18_func_8002A754();
+            Options75B18SubmitHudSoundByte1AWithWord0C();
         copy16:
             scratch2 = Options75B18Field(&Options75B18_D_8006C698, unsigned short*, 0);
             Options75B18_D_8006FCD6 = scratch2;
@@ -1166,7 +1168,7 @@ selectedSetting:
             goto done;
         case 18: /* switch 2 */
             if (Options75B18_D_8006E53C & 0xA040) {
-                Options75B18_func_8002A754();
+                Options75B18SubmitHudSoundByte1AWithWord0C();
                 Options75B18_D_8006C7B0 = 1 - Options75B18_D_8006C7B0;
                 return;
             }
@@ -1189,7 +1191,7 @@ selectedSetting:
             scratch2 = scratch3 - 1;
         store19:
             Options75B18_D_8006C3F8 = scratch2;
-            Options75B18_func_8002A754();
+            Options75B18SubmitHudSoundByte1AWithWord0C();
             goto done;
         case 20: /* switch 2 */
             quantity6 = Options75B18_D_8006C3FC;
@@ -1217,13 +1219,14 @@ selectedSetting:
             channel4 = Options75B18_PlaySound(descriptorPointer3[0x1A], argumentZero5, 0);
         afterAudio:
             if (channel4 >= 0) {
-                Options75B18_func_8003C140(channel4, (Options75B18_D_8006C3FC * 0xC00) / 10);
+                Options75B18SetSoundHandleWord0CAndFlag10(channel4,
+                                                          (Options75B18_D_8006C3FC * 0xC00) / 10);
             }
             Options75B18_D_8006E4AC = (Options75B18_D_8006C3FC * 0x5FFF) / 10;
             return;
         case 21: /* switch 2 */
             if (Options75B18_D_8006E53C & 0xA040) {
-                Options75B18_func_8002A754();
+                Options75B18SubmitHudSoundByte1AWithWord0C();
                 Options75B18_D_8006C400 = 1 - Options75B18_D_8006C400;
             }
             goto done;
@@ -1265,9 +1268,9 @@ done:
 */
 /* Original assembly SHA256 78a2521633cfb8a92b06ce01bc620e4491717762c936518e3fc02e010bf3d843 */
 #define Options761D4Field(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Options761D4Call27934View1(int) __asm__("func_80027934");
-void Options761D4Call4E790View1(void*, int, int) __asm__("func_8004E790");
-void Options761D4Call4E7D4View1(int*, int*, int) __asm__("func_8004E7D4");
+int Options761D4FindHudClassIndexView1(int) __asm__("func_80027934");
+void Options761D4FillWordRangeView1(void*, int, int) __asm__("func_8004E790");
+void Options761D4CopyWordRangeUnrolled4View1(int*, int*, int) __asm__("func_8004E7D4");
 int Options761D4Call778A0View1(unsigned char*) __asm__("func_options_800778A0");
 void Options761D4Call778C8View1(void*, int) __asm__("func_options_800778C8");
 int Options761D4Call77B58View1(void*) __asm__("func_options_80077B58");
@@ -1933,9 +1936,9 @@ block_119:
     Options761D4Field(argumentWord4, unsigned char*, 0) = rawWord2;
     goto block_150;
 originalDispatch2Case2:
-    Options761D4Call4E790View1((int)&Options761D4Data7AFDCView1, 0, 0x1D80);
-    Options761D4Call4E7D4View1((int)&Options761D4Data7AFDCView1, (int)&Options761D4Data7ABE8View1,
-                               0x200);
+    Options761D4FillWordRangeView1((int)&Options761D4Data7AFDCView1, 0, 0x1D80);
+    Options761D4CopyWordRangeUnrolled4View1((int)&Options761D4Data7AFDCView1,
+                                            (int)&Options761D4Data7ABE8View1, 0x200);
     Options761D4Data7B1DFView1 = 0;
     Options761D4Data7B260View1 = 0;
     Options761D4Data7B1DCView1 = (signed char)Options761D4Data6C694View1;
@@ -2054,10 +2057,10 @@ block_148:
     MATCHING_OBSERVE2_VOLATILE_CLOBBER(retainedContextBase18, retainedModePointerOrIndex17, "$19");
     retainedSignedTerminator19 = argumentWord4 + 38;
 loop_149:
-    temporaryWord2 =
-        Options761D4Call27934View1(Options761D4Field((int)&Options761D4Data7B260View1,
-                                                     unsigned char*, (retainedContextBase18) * 1) +
-                                   0x3E8);
+    temporaryWord2 = Options761D4FindHudClassIndexView1(
+        Options761D4Field((int)&Options761D4Data7B260View1, unsigned char*,
+                          (retainedContextBase18) * 1) +
+        0x3E8);
     Options761D4Field(retainedContextRecordOrIndex16, short*, 0) = temporaryWord2;
     retainedContextBase18 += 0x900;
     Options761D4Field((int)&Options761D4Data7AFC6View1, unsigned char*,
@@ -2177,7 +2180,7 @@ block_177:
     retainedContextRecordOrIndex16 = -1;
     retainedModePointerOrIndex17++;
 loop_178:
-    rawWord2 = Options761D4Call27934View1(retainedModePointerOrIndex17 + 1001);
+    rawWord2 = Options761D4FindHudClassIndexView1(retainedModePointerOrIndex17 + 1001);
     rawWord3 = Options761D4Data6C738View1;
     rawWord2 *= 8;
     rawWord2 += rawWord3;
@@ -2217,7 +2220,7 @@ block_187:
     rawWord2 = retainedModePointerOrIndex17 < retainedContextRecordOrIndex16;
     if (!argumentWord6)
         goto loop_180;
-    rawWord2 = Options761D4Call27934View1(retainedContextRecordOrIndex16 + 1000);
+    rawWord2 = Options761D4FindHudClassIndexView1(retainedContextRecordOrIndex16 + 1000);
     Options761D4Data7AFC4View1 = rawWord2;
     rawWord3 = Options761D4Data6C738View1;
     rawWord2 = (rawWord2 << 16) >> 13;
@@ -2255,7 +2258,7 @@ block_191:
     retainedModePointerOrIndex17 = -1;
     retainedContextRecordOrIndex16++;
 loop_193:
-    rawWord2 = Options761D4Call27934View1(retainedContextRecordOrIndex16 + 1001);
+    rawWord2 = Options761D4FindHudClassIndexView1(retainedContextRecordOrIndex16 + 1001);
     rawWord3 = Options761D4Data6C738View1;
     rawWord2 *= 8;
     rawWord2 += rawWord3;
@@ -2305,7 +2308,7 @@ block_204:
         goto returnOriginal;
     retainedContextRecordOrIndex16++;
 loop_206:
-    rawWord2 = Options761D4Call27934View1(retainedContextRecordOrIndex16 + 1001);
+    rawWord2 = Options761D4FindHudClassIndexView1(retainedContextRecordOrIndex16 + 1001);
     rawWord3 = Options761D4Data6C738View1;
     rawWord2 *= 8;
     rawWord2 += rawWord3;
@@ -2346,7 +2349,7 @@ block_215:
         goto loop_208;
 block_216:
     Options761D4Data7AFB8View1 = argumentWord5;
-    rawWord2 = Options761D4Call27934View1(argumentWord5 + 1000);
+    rawWord2 = Options761D4FindHudClassIndexView1(argumentWord5 + 1000);
     Options761D4Data7AFC4View1 = rawWord2;
     rawWord3 = Options761D4Data6C738View1;
     rawWord2 = (rawWord2 << 16) >> 13;

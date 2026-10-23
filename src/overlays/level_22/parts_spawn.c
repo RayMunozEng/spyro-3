@@ -15,14 +15,14 @@
 extern unsigned char Level22SpawnColor1[] __asm__("D_80066BAC");
 extern unsigned char Level22SpawnColor2[] __asm__("D_80066BAC");
 #define Level22SpawnField(p, t, o) (*(t)((unsigned char*)(p) + (o)))
-int Level22Spawnfunc_8004EA90(void*, void*, int) __asm__("func_8004EA90");
+int Level22SpawnBuildPackedAngleBasisMatrix(void*, void*, int) __asm__("func_8004EA90");
 int Level22SpawnTransformVectorByBasis(void*, void*, void*) __asm__("func_8004ED6C");
 int Level22SpawnShiftVectorRightTowardZero(void*, int) __asm__("func_8004F110");
 int Level22SpawnCopyVector(void*, void*) __asm__("func_8004F178");
 int Level22SpawnAddVector(void*, void*, void*) __asm__("func_8004F194");
 int Level22SpawnMultiplyVectorGpfSf0(void*, void*, int) __asm__("func_8004F1FC");
 int Level22SpawnPackVectorShiftRight2(void*, void*) __asm__("func_8004F504");
-void* Level22Spawnfunc_80056434(int) __asm__("func_80056434");
+void* Level22SpawnAllocateParticleRecord(int) __asm__("func_80056434");
 int Level22SpawnRandBetween(int, int) __asm__("func_8003636C");
 int Level22SpawnRandSignedBetween(int, int) __asm__("func_800363DC");
 int Level22Spawnrand(void) __asm__("rand");
@@ -141,7 +141,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
         do {
             switch (kindSelector) { /* switch 1 */
                 case 0x0:           /* switch 1 */
-                    record = Level22Spawnfunc_80056434(2);
+                    record = Level22SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -185,7 +185,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     Level22SpawnField(record, unsigned char*, 16) = 0;
                     break;
                 case 0x1: /* switch 1 */
-                    record = Level22Spawnfunc_80056434(2);
+                    record = Level22SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -215,7 +215,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     tailByte = 4;
                     goto initializeF8;
                 case 0x2:
-                    record = Level22Spawnfunc_80056434(2);
+                    record = Level22SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -259,7 +259,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     Level22SpawnField(record, unsigned char*, 15) = commonByte9;
                     goto initializeTrailingBytes;
                 case 0x3: /* switch 1 */
-                    record = Level22Spawnfunc_80056434(2);
+                    record = Level22SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -287,7 +287,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     goto initializeZeroE;
                 case 0x6:
                     temp_s1 = Level22SpawnField(reference, unsigned char**, 0);
-                    record = Level22Spawnfunc_80056434(3);
+                    record = Level22SpawnAllocateParticleRecord(3);
                     Level22SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level22Spawnrand();
                     {
@@ -346,7 +346,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x9: /* switch 1 */
-                    record = Level22Spawnfunc_80056434(2);
+                    record = Level22SpawnAllocateParticleRecord(2);
                     {
                         register void* playerVector __asm__("$16") = &frame.sp20;
                         register void* destination __asm__("$4") = playerVector;
@@ -423,7 +423,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     Level22SpawnField(record, unsigned char*, 15) = commonByte9;
                     goto initializeTrailingBytes;
                 case 0xA: /* switch 1 */
-                    record = Level22Spawnfunc_80056434(3);
+                    record = Level22SpawnAllocateParticleRecord(3);
                     Level22SpawnField(record, unsigned char*, 0) = kindSelector;
                     {
                         register void* destination __asm__("$4") = record + 4;
@@ -486,7 +486,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0xC: /* switch 1 */
-                    record = Level22Spawnfunc_80056434(2);
+                    record = Level22SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = reference + 32;
                         register int iteration __asm__("$8") = frame.spB8;
@@ -652,7 +652,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                                          4 + (Level22Spawnrand() & 7));
                     break;
                 case 0xd:
-                    record = Level22Spawnfunc_80056434(2);
+                    record = Level22SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -683,7 +683,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     Level22SpawnField(record, unsigned char*, 12) = byte255;
                     goto initializeColorD;
                 case 0x13:
-                    record = Level22Spawnfunc_80056434(2);
+                    record = Level22SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -717,7 +717,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     Level22SpawnField(record, unsigned char*, 15) = commonByte9;
                     goto initializeTrailingBytes;
                 case 0x21: /* switch 1 */
-                    record = Level22Spawnfunc_80056434(2);
+                    record = Level22SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level22SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -898,7 +898,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     Level22SpawnField(record, unsigned char*, 14) = scratch19;
                     goto initializeF8;
                 case 0x26:
-                    record = Level22Spawnfunc_80056434(2);
+                    record = Level22SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -929,7 +929,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     Level22SpawnField(record, unsigned char*, 15) = commonByte9;
                     goto initializeTrailingBytes;
                 case 0x37:
-                    record = Level22Spawnfunc_80056434(2);
+                    record = Level22SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -953,7 +953,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     Level22SpawnField(record, unsigned char*, 0xC) = byte255;
                     goto initializeColorD;
                 case 0x38:
-                    record = Level22Spawnfunc_80056434(2);
+                    record = Level22SpawnAllocateParticleRecord(2);
                     tailByte = 1;
                     MATCHING_KEEP_CLOBBER(tailByte, "memory");
                     Level22SpawnField(record, unsigned char*, 0) = kindSelector;
@@ -986,7 +986,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x3A:
-                    record = Level22Spawnfunc_80056434(2);
+                    record = Level22SpawnAllocateParticleRecord(2);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1019,7 +1019,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     Level22SpawnField(record, unsigned char*, 16) = 0;
                     break;
                 case 0x3B: /* switch 1 */
-                    record = Level22Spawnfunc_80056434(5);
+                    record = Level22SpawnAllocateParticleRecord(5);
                     {
                         register void* destination __asm__("$4") = record + 4;
                         register void* source __asm__("$5") = reference;
@@ -1085,7 +1085,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                         (short)((Level22Spawnrand() & 0xF) - 8);
                     break;
                 case 0x42: /* switch 1 */
-                    record = Level22Spawnfunc_80056434(0);
+                    record = Level22SpawnAllocateParticleRecord(0);
                     Level22SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level22SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level22Spawnrand() & 0xF);
@@ -1187,7 +1187,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     Level22SpawnField(record, unsigned char*, 0xF) = 0x40;
                     break;
                 case 0x46: /* switch 1 */
-                    record = Level22Spawnfunc_80056434(1);
+                    record = Level22SpawnAllocateParticleRecord(1);
                     Level22SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level22SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level22Spawnrand() & 0xF);
@@ -1195,7 +1195,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     frame.sp70 = 0;
                     frame.sp71 = Level22Spawnrand();
                     frame.sp72 = Level22Spawnrand();
-                    Level22Spawnfunc_8004EA90(&frame.sp70, &frame.sp78, 0);
+                    Level22SpawnBuildPackedAngleBasisMatrix(&frame.sp70, &frame.sp78, 0);
                     frame.sp60 = (int)modeSelector;
                     frame.sp64 = 0;
                     frame.sp68 = 0;
@@ -1249,7 +1249,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x47: /* switch 1 */
-                    record = Level22Spawnfunc_80056434(1);
+                    record = Level22SpawnAllocateParticleRecord(1);
                     Level22SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level22SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level22Spawnrand() & 7);
@@ -1324,7 +1324,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     }
                     break;
                 case 0x4A:
-                    record = Level22Spawnfunc_80056434(0);
+                    record = Level22SpawnAllocateParticleRecord(0);
                     Level22SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level22Spawnrand();
                     {
@@ -1352,7 +1352,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     Level22SpawnField(record, unsigned char*, 10) = tailByte;
                     break;
                 case 0x4E: /* switch 1 */
-                    record = Level22Spawnfunc_80056434(0);
+                    record = Level22SpawnAllocateParticleRecord(0);
                     Level22SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level22SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level22Spawnrand() & 0x1F);
@@ -1420,7 +1420,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     Level22SpawnField(record, unsigned char*, 0xA) = 2;
                     break;
                 case 0x4F: /* switch 1 */
-                    record = Level22Spawnfunc_80056434(1);
+                    record = Level22SpawnAllocateParticleRecord(1);
                     Level22SpawnField(record, unsigned char*, 0) = kindSelector;
                     Level22SpawnField(record, unsigned char*, 2) =
                         (unsigned char)(Level22Spawnrand() & 0xF);
@@ -1496,7 +1496,7 @@ void* func_level_22_80095054(int entryCount, int kind, void* input, void* mode) 
                     break;
                 case 0x52:
                     temp_s1 = Level22SpawnField(reference, unsigned char**, 0);
-                    record = Level22Spawnfunc_80056434(1);
+                    record = Level22SpawnAllocateParticleRecord(1);
                     Level22SpawnField(record, unsigned char*, 0) = kindSelector;
                     tailByte = Level22Spawnrand();
                     tailByte &= 15;

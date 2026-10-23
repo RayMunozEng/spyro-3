@@ -3,6 +3,51 @@
 This pass is AI generated and has not been human reviewed. It applies to the
 Rev 0 matching fork, not to the browser engine's gameplay implementation.
 
+## Current readability result (2026-10-23)
+
+At the user's request, extra raw588 lifetime/null-route verification has stopped.
+This completed source cleanup uses existing USA Rev 1 decoding and the original
+repository's code. Recorded semantic gaps remain open.
+
+| Applied cleanup | Verified scope |
+| --- | --- |
+| Existing typed `Moby` members replace generated offset accesses | 9,354 expressions in 266 callback functions across 37 C files |
+| Descriptive private helper aliases use existing operation evidence | 269 aliases for 12 additional operations across 72 C files; 707 identifier occurrences |
+| Consistent wrapping and indentation | 226 function definitions in 41 C files; 2,502 whitespace edits |
+| Outdated blanket comments corrected | Three comments; unresolved details remain explicit |
+
+The combined pass changes 74 C files. Member expressions use the original
+repository's existing `Moby` declaration, including `position`, `angle`,
+`animationState`, `state` and `substate`. Access widths, signedness, owner
+bindings and register constraints are preserved. Signed, packed and private
+views without an exact existing member remain explicit. One raw position read
+in `func_level_41_80087950` retains its original spelling because the typed
+spelling changes compiler load scheduling.
+
+Helper names describe established operations: dialogue start, Moby animation
+updates and transform finalization, HUD movement, sound-table binding, linked
+state, world-surface effects, tracers and null-terminated string copying.
+They retain original linker symbols, declaration types, context prefixes and
+ABI view suffixes. Two declarations inspect dialogue-start executable data;
+their `CodeWords` and `CodeByte` names preserve that distinction.
+
+All 74 candidate objects retained their allocated sections and resolved
+relocations. The final composed source passed the full rebuild, all **96
+unchanged native commands** and all **62 original BASE image hashes**.
+All **337 executable and 3,098 overlay function matches** remain intact.
+The complete linked ELF and PSX executable are bit-identical to the accepted
+build. Compiler flags, filters, reference data and checks were unchanged.
+
+This cleanup is **AI generated and has not been human reviewed**. It adds no
+gameplay approximation and does not establish whole-game semantic completeness.
+The remaining named unknowns are evidence gaps, not requests to restart the
+stopped raw588 experiment. The next review step for this pass is human source
+review. Publication is recorded in the cleanup commit.
+
+See the [accepted result and portable naming/layout evidence](
+decoding/source-readability-2026-10-23/README.md).
+The dated sections below retain their narrower historical verification scope.
+
 ## Original repository examples
 
 The baseline is The MobyCollective's `spyro-3`, commit
@@ -103,10 +148,12 @@ generated and has not been human reviewed. Unknown gameplay meanings and runtime
 producer/lifecycle assumptions remain open; no new browser-specific behavior or
 tentative gameplay approximation was added.
 
-The next semantic evidence target remains raw588's foreign private-field stores
-at Rev 0 `0x8007F3F8`, `0x8007F468` and `0x8007F4EC`, together with the retained
-prior-callback/nested-frame producer frontier. See the decoding frontier notes;
-source readability does not close those gaps.
+That earlier pass recorded raw588's foreign private-field stores at Rev 0
+`0x8007F3F8`, `0x8007F468` and `0x8007F4EC`, together with the retained
+prior-callback/nested-frame producer frontier, as a subsequent semantic target.
+The decoding frontier notes preserve that historical scope and its later
+successors. Extra raw588 verification is now stopped at the user's request;
+source readability does not close the remaining gaps.
 
 ## Remaining cleanup completed
 
@@ -151,10 +198,13 @@ alone prove playback-state semantics. Renaming those predicates as sound states
 would overstate the evidence. See the naming authority and open-target inventory
 under `docs/decoding/`.
 
-This completes the available source cleanup against the original repository's
-existing code. It does not complete the game's semantic decode. The raw588
-private-field and cold-frame producer frontier remains the next exact evidence
-target described above. All changes remain AI generated and not human reviewed.
+That follow-up completed the source cleanup available within its recorded
+original-repository and helper-authority scope. It did not complete the game's
+semantic decode. Its raw588 private-field and cold-frame producer frontier is
+retained as historical evidence, with later progress recorded in the decoding
+notes. The active readability task is described at the top of this document;
+extra raw588 verification has stopped. All changes remain AI generated and not
+human reviewed.
 
 The final supplement applied 442 live aliases; seven aliases had already been removed as unused.
 
@@ -169,3 +219,9 @@ The remaining cleanup is complete against the existing original shared code and
 the currently proved helper operations. Unknown address-based helpers retain
 explicit evidence gaps. This result does not claim semantic completeness or
 human review. Publication is recorded in the cleanup commit.
+
+## Reusing existing Rev 1 operations (2026-10-22)
+
+The continuation applies 232 existing operation authorities through 6,555 private helper aliases and 20,559 identifier occurrences across 228 C files. It also names 305 already typed Moby parameters and reflows 118 C files (625 definitions). Eight unchanged historical definitions are restored byte for byte; the earlier 313-formal receipt is historical. All helper, scoped-parameter and direct-format CPP checks pass, together with all 96 unchanged native commands and all 62 original image hashes. The entire ELF and PSX executable remain bit-identical. These changes are AI generated and have not been human reviewed.
+
+See [the continuation and portable naming evidence](decoding/rev1-reuse-2026-10-22/pass232/source-readability-reuse.md). Existing unresolved annotations and old name inventories retain their historical scope; the continuation supplies the newer operation authority. No whole-game semantic completion or new unique decoding-word credit is claimed.
